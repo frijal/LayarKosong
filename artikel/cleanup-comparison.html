@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perbandingan cleanup.js vs cleanup-auto.js</title>
+<meta name="description" content="Perbandingan antara cleanup.js interaktif dan cleanup-auto.js otomatis untuk manajemen dependensi Node.js di GitHub Pages.">
+<link rel="icon" href="https://frijal.pages.dev/favicon.ico">
+<link rel="canonical" href="https://frijal.pages.dev/artikel/cleanup-comparison.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Perbandingan cleanup.js vs cleanup-auto.js">
+<meta property="og:description" content="Perbandingan fitur dan penggunaan cleanup.js interaktif dan cleanup-auto.js otomatis untuk menjaga proyek GitHub Pages tetap bersih.">
+<meta property="og:url" content="https://frijal.pages.dev/artikel/cleanup-comparison.html">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Perbandingan cleanup.js vs cleanup-auto.js">
+<meta name="twitter:description" content="Kapan sebaiknya pakai versi interaktif atau otomatis untuk menghapus paket tak terpakai di GitHub Pages.">
+
+<!-- Prism.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css">
+
+<style>
+:root {
+  color-scheme: light dark;
+}
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.6;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 880px;
+  background: var(--bg, #fafafa);
+  color: var(--fg, #222);
+  transition: color .3s, background .3s;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    --bg: #0d1117;
+    --fg: #c9d1d9;
+  }
+}
+h1, h2, h3 { color: var(--fg); text-align: center; }
+pre {
+  background: rgba(128,128,128,.15);
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+code { font-family: "Courier New", monospace; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 0.7rem;
+  text-align: left;
+}
+th {
+  background: #e0e0e0;
+}
+@media (prefers-color-scheme: dark) {
+  th {
+    background: #161b22;
+  }
+}
+.share-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+.share-icons a svg { width: 28px; height: 28px; fill: var(--fg); transition: transform .2s; }
+.share-icons a:hover svg { transform: scale(1.2); }
+footer {
+  margin-top: 3rem;
+  font-size: 0.9em;
+  opacity: .7;
+  text-align: center;
+}
+img.lazy { filter: blur(8px); transition: filter .5s ease; }
+img.lazy.loaded { filter: blur(0); }
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+.lightbox button {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.lightbox .prev { left: 5%; }
+.lightbox .next { right: 5%; }
+.lightbox .close { top: 5%; right: 5%; font-size: 2.2rem; }
+
+</style>
+<meta property="og:image" content="https://frijal.pages.dev/img/cleanup-comparison.webp">
+  <meta property="og:image:alt" content="Perbandingan cleanup.js vs cleanup-auto.js">
+  <meta name="twitter:image" content="https://frijal.pages.dev/img/cleanup-comparison.webp">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/cleanup-comparison.webp">
+
+    <meta property="article:published_time" content="2025-10-09T00:31:25.605+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+
+<article>
+<h1>🧩 Perbandingan cleanup.js vs cleanup-auto.js</h1>
+<div id="iposbrowser"></div>
+
+
+<p>Dalam proyek <strong>Node.js</strong> di GitHub Pages, menjaga dependensi tetap bersih sangat penting. 
+Dua skrip yang tersedia adalah <strong>cleanup.js</strong> (interaktif) dan <strong>cleanup-auto.js</strong> (otomatis penuh).</p>
+
+<p>Kedua skrip memiliki tujuan sama: menghapus paket tidak terpakai dan reinstall dependensi, namun cara kerjanya berbeda. Berikut perbandingannya:</p>
+
+<h2>📊 Tabel Perbandingan</h2>
+<table>
+<tr>
+<th>Fitur</th>
+<th>cleanup.js (Interaktif)</th>
+<th>cleanup-auto.js (Otomatis)</th>
+</tr>
+<tr>
+<td>Jenis Operasi</td>
+<td>Manual (via prompt)</td>
+<td>Otomatis penuh</td>
+</tr>
+<tr>
+<td>Lingkungan Disarankan</td>
+<td>Local Development</td>
+<td>CI/CD (GitHub Actions)</td>
+</tr>
+<tr>
+<td>Konfirmasi Penghapusan</td>
+<td>Ya (pakai inquirer)</td>
+<td>Tidak</td>
+</tr>
+<tr>
+<td>Hapus node_modules</td>
+<td>Opsional</td>
+<td>Selalu</td>
+</tr>
+<tr>
+<td>Reinstall Dependensi</td>
+<td>Bisa dipilih</td>
+<td>Otomatis</td>
+</tr>
+<tr>
+<td>Kesesuaian Workflow</td>
+<td>Manual/Semi otomatis</td>
+<td>CI/CD otomatis</td>
+</tr>
+</table>
+
+<h2>🔧 Contoh Penggunaan</h2>
+<h3>1️⃣ cleanup.js (Interaktif)</h3>
+<pre><code class="language-bash">npm install --save-dev depcheck inquirer
+node ext/cleanup.js</code></pre>
+
+<p>Skrip ini menampilkan paket tidak terpakai dan memberi opsi penghapusan serta reinstall jika diinginkan.</p>
+
+<h3>2️⃣ cleanup-auto.js (Otomatis)</h3>
+<pre><code class="language-bash">node ext/cleanup-auto.js</code></pre>
+<p>Skrip ini otomatis menghapus paket tak terpakai, membersihkan node_modules, dan reinstall semua dependensi.</p>
+
+<h2>⚙️ Workflow Contoh GitHub Actions</h2>
+<pre><code class="language-yaml">name: Cleanup Dependencies
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Setiap minggu
+  workflow_dispatch:
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Jalankan cleanup-auto.js
+        run: node ext/cleanup-auto.js</code></pre>
+
+<h2>💬 Kesimpulan</h2>
+<p>Gunakan <strong>cleanup.js</strong> untuk kontrol manual di laptop, dan <strong>cleanup-auto.js</strong> untuk otomatisasi penuh di pipeline GitHub Actions.</p>
+
+<div class="share-icons">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cleanup-comparison.html" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12a10 10 0 008.44 9.87v-6.99H8v-2.88h2.44V9.41c0-2.41 1.43-3.74 3.62-3.74 1.05 0 2.14.19 2.14.19v2.36h-1.21c-1.19 0-1.56.74-1.56 1.5v1.8h2.65l-.42 2.88h-2.23v6.99A10 10 0 0022 12z"/></svg>
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cleanup-comparison.html&text=Perbandingan cleanup.js vs cleanup-auto.js" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.26 4.26 0 001.88-2.34 8.59 8.59 0 01-2.72 1.04 4.24 4.24 0 00-7.3 3.86A12 12 0 013 4.9a4.25 4.25 0 001.31 5.66 4.19 4.19 0 01-1.92-.53v.05a4.25 4.25 0 003.4 4.17 4.25 4.25 0 01-1.91.07 4.25 4.25 0 003.97 2.95A8.5 8.5 0 012 19.54a12 12 0 006.29 1.84c7.55 0 11.69-6.26 11.69-11.69 0-.18 0-.36-.01-.53A8.36 8.36 0 0022.46 6z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/cleanup-comparison.html" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.88 3.5 3 4.38 3 5.48s.88 1.98 1.98 1.98S6.96 6.58 6.96 5.48 6.08 3.5 4.98 3.5zM3.5 8h3v12h-3zM9 8h2.85v1.71h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59V20h-3v-5.53c0-1.32-.02-3.02-1.84-3.02-1.85 0-2.14 1.44-2.14 2.93V20h-3z"/></svg>
+  </a>
+</div>
+
+
+
+<footer>🄯 2025 frijal.pages.dev · Perbandingan cleanup.js vs cleanup-auto.js</footer>
+</article>
+
+<!-- Facebook SDK -->
+
+<!-- Lazy-load & Prism -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const lazyImgs=document.querySelectorAll("img.lazy");
+  if("IntersectionObserver"in window){
+    let obs=new IntersectionObserver((entries,obs)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const img=e.target;
+          img.src=img.dataset.src;
+          img.onload=()=>img.classList.add("loaded");
+          obs.unobserve(img);
+        }
+      });
+    },{rootMargin:"150px"});
+    lazyImgs.forEach(img=>obs.observe(img));
+  }else{
+    lazyImgs.forEach(img=>{
+      img.src=img.dataset.src;
+      img.onload=()=>img.classList.add("loaded");
+    });
+  }
+  Prism.highlightAll();
+});
+</script>
+
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>

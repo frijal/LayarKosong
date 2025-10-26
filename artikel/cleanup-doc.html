@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pembersih Paket Otomatis GitHub Pages</title>
+
+<!-- 🧠 Metadata SEO -->
+<meta name="description" content="Panduan lengkap dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak terpakai di proyek GitHub Pages menggunakan depcheck.">
+<link rel="canonical" href="https://frijal.pages.dev/artikel/cleanup-doc.html">
+<link rel="icon" href="/favicon.ico">
+
+<!-- 🟦 Open Graph -->
+<meta property="og:title" content="Pembersih Paket Otomatis GitHub Pages">
+<meta property="og:description" content="Hilangkan dependensi tidak terpakai dari proyek GitHub Pages kamu secara otomatis dengan depcheck dan cleanup.js.">
+<meta property="og:url" content="https://frijal.pages.dev/artikel/cleanup-doc.html">
+<meta property="og:type" content="article">
+
+
+<!-- 🐦 Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pembersih Paket Otomatis GitHub Pages">
+<meta name="twitter:description" content="Panduan dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak digunakan di proyek GitHub Pages.">
+
+
+<!-- 🌙 Tema & Gaya -->
+<style>
+:root {
+  color-scheme: light dark;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 2rem;
+  background: #121212;
+  color: #e0e0e0;
+}
+@media (prefers-color-scheme: light) {
+  body { background: #fafafa; color: #222; }
+}
+h1, h2, h3 { color: #ffcc33; line-height: 1.3; }
+pre {
+  background: #1e1e1e;
+  color: #8be9fd;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+@media (prefers-color-scheme: light) {
+  pre { background: #f0f0f0; color: #006; }
+}
+a { color: #80cbc4; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img.lazy {
+  filter: blur(6px);
+  transition: filter 0.4s ease;
+  max-width: 100%;
+  border-radius: 10px;
+}
+img.lazy.loaded { filter: blur(0); }
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  margin-top: 3rem;
+  color: #aaa;
+}
+.social-share {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.social-share a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: #222;
+  color: white;
+  transition: transform 0.2s;
+}
+.social-share a:hover { transform: scale(1.1); }
+.fb-comments { margin-top: 2rem; }
+
+</style>
+<meta property="og:image" content="https://frijal.pages.dev/img/cleanup-doc.webp">
+  <meta property="og:image:alt" content="Pembersih Paket Otomatis GitHub Pages">
+  <meta name="twitter:image" content="https://frijal.pages.dev/img/cleanup-doc.webp">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/cleanup-doc.webp">
+
+    <meta property="article:published_time" content="2025-10-09T00:31:25.605+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+<header>
+<h1>🧹 Pembersih Paket Otomatis untuk GitHub Pages</h1>
+<div id="iposbrowser"></div>
+
+<p>Panduan dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak digunakan di proyek statis berbasis <strong>GitHub Pages</strong>.</p>
+</header>
+
+<section>
+<h2>1. Instalasi Awal</h2>
+<pre><code>npm install --save-dev depcheck</code></pre>
+<p>Pastikan kamu sudah berada di folder proyek GitHub Pages, lalu jalankan perintah di atas untuk memasang <em>depcheck</em>.</p>
+</section>
+
+<section>
+<h2>2. Versi Interaktif</h2>
+<p>Jalankan skrip berikut untuk meninjau dan memilih paket yang akan dihapus secara manual:</p>
+<pre><code>node ext/cleanup.js</code></pre>
+<p>Skrip akan menampilkan daftar paket tidak terpakai dan menanyakan konfirmasi sebelum menghapusnya.</p>
+</section>
+
+<section>
+<h2>3. Versi Otomatis (Non-Interaktif)</h2>
+<p>Untuk otomatisasi (misalnya dalam <strong>GitHub Actions</strong>), gunakan skrip:</p>
+<pre><code>node ext/cleanup-auto.js</code></pre>
+<p>Skrip ini berjalan tanpa konfirmasi — langsung menghapus semua paket tidak terpakai dan menginstal ulang dependensi baru.</p>
+</section>
+
+<section>
+<h2>4. Integrasi dengan GitHub Actions</h2>
+<p>Tambahkan langkah berikut di <code>.github/workflows/build.yml</code> setelah build selesai:</p>
+<pre><code>- name: Cleanup Dependencies
+  run: node ext/cleanup-auto.js</code></pre>
+</section>
+
+<!-- 🌐 Bagikan ke Media Sosial -->
+<section>
+<h2>Jaga Data Pribadi Tetap Aman</h2>
+<div class="social-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cleanup-doc.html" title="Bagikan ke Facebook" target="_blank" style="background:#1877F2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.596 0 0 .596 0 1.325v21.351C0 23.405.596 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.316h3.587l-.467 3.622h-3.12V24h6.116C23.405 24 24 23.405 24 22.676V1.325C24 .596 23.405 0 22.675 0z"/></svg></a>
+
+  <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cleanup-doc.html&text=Pembersih+Paket+Otomatis+GitHub+Pages" title="Bagikan ke X/Twitter" target="_blank" style="background:#000"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M18.244 2H21.532L14.86 9.615L22.637 22H16.177L11.182 13.936L5.47 22H2.182L9.312 13.766L1.863 2H8.5L12.993 9.381L18.244 2ZM17.12 19.748H18.89L7.458 4.142H5.554L17.12 19.748Z"/></svg></a>
+
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/cleanup-doc.html" title="Bagikan ke LinkedIn" target="_blank" style="background:#0A66C2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 5.43 3.43 7 1.5 7S-1.98 5.43-1.98 3.5 0.57 0 2.5 0 4.98 1.57 4.98 3.5zM.02 8.98H5V24H.02V8.98zM8.98 8.98h4.77v2.05h.07c.66-1.25 2.28-2.56 4.69-2.56 5.02 0 5.94 3.31 5.94 7.61V24h-5V16.05c0-1.89-.03-4.33-2.63-4.33-2.63 0-3.03 2.05-3.03 4.19V24h-5V8.98z"/></svg></a>
+
+  <a href="https://api.whatsapp.com/send?text=Pembersih+Paket+Otomatis+GitHub+Pages+https://frijal.pages.dev/artikel/cleanup-doc.html" title="Bagikan ke WhatsApp" target="_blank" style="background:#25D366"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M20.52 3.48A11.84 11.84 0 0012 0 11.84 11.84 0 003.48 3.48 11.84 11.84 0 000 12a11.84 11.84 0 003.48 8.52A11.84 11.84 0 0012 24a11.84 11.84 0 008.52-3.48A11.84 11.84 0 0024 12a11.84 11.84 0 00-3.48-8.52zM12 21.84a9.84 9.84 0 01-5.26-1.49l-.38-.23-3.12.82.83-3.05-.25-.39A9.84 9.84 0 012.16 12 9.84 9.84 0 0112 2.16a9.84 9.84 0 019.84 9.84A9.84 9.84 0 0112 21.84zm5.5-6.89c-.3-.15-1.77-.88-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.66-1.6-.91-2.2-.24-.58-.49-.5-.66-.51-.17-.01-.38-.02-.58-.02s-.53.08-.8.38c-.27.3-1.06 1.04-1.06 2.54 0 1.5 1.09 2.95 1.24 3.15.15.2 2.14 3.26 5.18 4.56.72.31 1.29.5 1.73.63.73.23 1.4.2 1.93.12.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.26-.2-.56-.34z"/></svg></a>
+
+  <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/cleanup-doc.html&text=Pembersih+Paket+Otomatis+GitHub+Pages" title="Bagikan ke Telegram" target="_blank" style="background:#0088cc"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M9.036 15.472l-.396 5.587c.567 0 .812-.243 1.108-.533l2.663-2.568 5.518 4.055c1.012.562 1.73.266 1.993-.937l3.61-16.967c.32-1.497-.543-2.087-1.54-1.72L1.56 9.76c-1.458.568-1.437 1.383-.263 1.751l5.573 1.74L19.034 5.36c.53-.351 1.01-.157.614.194"/></svg></a>
+</div>
+</section>
+
+<!-- 💬 Jaga Data Pribadi Tetap Aman. Facebook -->
+
+
+
+<footer>
+<p>🄯 2025 frijal.pages.dev — Dokumentasi dan Skrip Pembersih Dependensi Otomatis</p>
+</footer>
+
+<!-- 🌙 Lazy Load & FB SDK -->
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>

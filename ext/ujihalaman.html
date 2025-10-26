@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Uji Lengkap Manifest • PWA • SEO • Structured Data</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #0f172a;
+        color: #e5e7eb;
+        padding: 20px;
+      }
+      h1 {
+        color: #3b82f6;
+      }
+      h2 {
+        color: #f97316;
+        margin-top: 24px;
+      }
+      pre {
+        background: #1e293b;
+        padding: 10px;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+      .ok {
+        color: #22c55e;
+      }
+      .fail {
+        color: #ef4444;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      .article-report {
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 8px 0;
+        background: #1e293b;
+      }
+      .category {
+        margin-top: 20px;
+      }
+      button {
+        margin: 4px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔍 Uji Lengkap Manifest • PWA • SEO • Structured Data</h1>
+
+    <section>
+      <h2>1. Uji Manifest & PWA</h2>
+      <div id="statusManifest">Memuat manifest...</div>
+      <pre id="jsonManifest"></pre>
+      <div id="iconsManifest"></div>
+      <div id="statusPWA"></div>
+    </section>
+
+    <section>
+      <h2>2. Uji Semua Artikel dari <code>artikel.json</code></h2>
+      <div>
+        <button onclick="setFilter('all')">📋 Tampilkan semua</button>
+        <button onclick="setFilter('fail')">🔴 Tampilkan hanya fail</button>
+        <button onclick="setFilter('pass')">🟢 Tampilkan hanya pass</button>
+      </div>
+      <div id="articlesReport">Memuat daftar artikel...</div>
+    </section>
+
+    <script>
+      const manifestUrl = '/site.webmanifest'
+      let currentFilter = 'all' // default
+
+      // --- Uji Manifest + PWA ---
+      fetch(manifestUrl)
+        .then((r) => r.json())
+        .then((data) => {
+          document.getElementById('statusManifest').innerHTML =
+            '✅ Manifest berhasil dimuat'
+          document.getElementById('jsonManifest').textContent = JSON.stringify(
+            data,
+            null,
+            2,
+          )
+          if (data.icons) {
+            const iconsDiv = document.getElementById('iconsManifest')
+            iconsDiv.innerHTML = '<h3>Ikon:</h3>'
+            data.icons.forEach((icon) => {
+              const img = document.createElement('img')
+              img.src = '/' + icon.src
+              img.alt = icon.sizes
+              img.title = icon.sizes
+              iconsDiv.appendChild(img)
+            })
+          }
+          document.getElementById('statusPWA').innerHTML =
+            data.name && data.icons && data.start_url
+              ? '🚀 PWA installable (name, icons, start_url lengkap)'
+              : '⚠ Masih ada properti PWA yang kurang'
+        })
+        .catch((err) => {
+          document.getElementById('statusManifest').innerHTML =
+            '❌ ' + err.message
+        })
+
+      // --- Uji Semua Artikel dari artikel.json ---
+      const container = document.getElementById('articlesReport')
+
+      function checkMeta(doc, selector, label) {
+        if (doc.querySelector(selector)) {
+          return `<li class="ok">✔ ${label} ada</li>`
+        } else {
+          return `<li class="fail">✖ ${label} tidak ada</li>`
+        }
+      }
+
+      function renderArticles(data) {
+        container.innerHTML = ''
+        for (const kategori in data) {
+          const group = data[kategori]
+          container.innerHTML += `<h3 class="category">📚 ${kategori}</h3>`
+          group.forEach((item) => {
+            const judul = item[0]
+            const file = item[1]
+            const url = '/artikel/' + file
+
+            fetch(url)
+              .then((r) => r.text())
+              .then((html) => {
+                const parser = new DOMParser()
+                const doc = parser.parseFromString(html, 'text/html')
+                const title =
+                  doc.querySelector('title')?.innerText || judul || file
+
+                let checks = []
+                checks.push(
+                  checkMeta(doc, 'meta[name="description"]', 'Description'),
+                )
+                checks.push(
+                  checkMeta(doc, 'link[rel="canonical"]', 'Canonical'),
+                )
+                checks.push(
+                  checkMeta(doc, 'meta[property="og:title"]', 'OG Title'),
+                )
+                checks.push(
+                  checkMeta(
+                    doc,
+                    'meta[property="og:description"]',
+                    'OG Description',
+                  ),
+                )
+                checks.push(
+                  checkMeta(doc, 'meta[property="og:image"]', 'OG Image'),
+                )
+                checks.push(
+                  checkMeta(doc, 'meta[name="twitter:card"]', 'Twitter Card'),
+                )
+                checks.push(
+                  checkMeta(doc, 'meta[name="twitter:title"]', 'Twitter Title'),
+                )
+                checks.push(
+                  checkMeta(
+                    doc,
+                    'meta[name="twitter:description"]',
+                    'Twitter Description',
+                  ),
+                )
+                checks.push(
+                  checkMeta(doc, 'meta[name="twitter:image"]', 'Twitter Image'),
+                )
+                checks.push(
+                  checkMeta(
+                    doc,
+                    'script[type="application/ld+json"]',
+                    'Structured Data',
+                  ),
+                )
+
+                // filter sesuai pilihan
+                let filtered = checks.filter((c) => {
+                  if (currentFilter === 'all') return true
+                  if (currentFilter === 'fail') return c.includes('fail')
+                  if (currentFilter === 'pass') return c.includes('ok')
+                })
+
+                if (filtered.length > 0) {
+                  let report = `<div class="article-report">
+                  <h4>📄 ${title} - ${file}</h4>
+                  <ul>${filtered.join('')}</ul>
+                </div>`
+                  container.innerHTML += report
+                }
+              })
+              .catch(() => {
+                container.innerHTML += `<div class="article-report"><h4>📄 ${judul} - ${file}</h4><p class="fail">❌ Tidak bisa dimuat</p></div>`
+              })
+          })
+        }
+      }
+
+      function setFilter(mode) {
+        currentFilter = mode
+        fetch('/artikel.json')
+          .then((r) => r.json())
+          .then((data) => renderArticles(data))
+          .catch(() => {
+            container.innerHTML = '❌ Gagal memuat artikel.json'
+          })
+      }
+
+      // initial load
+      setFilter('all')
+    </script>
+  </body>
+</html>

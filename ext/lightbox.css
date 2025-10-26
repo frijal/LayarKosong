@@ -1,0 +1,82 @@
+/* lightbox.css */
+
+/* Overlay gelap fullscreen */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: zoom-out;
+  transition: opacity 0.3s ease;
+}
+
+/* Tampilkan overlay */
+.lightbox-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Kontainer gambar/video */
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+/* Animasi zoom */
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Navigasi panah */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #00b7ff;
+  background: rgba(0,0,0,0.5);
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s, transform 0.3s;
+}
+.lightbox-nav:hover {
+  background: rgba(0,183,255,0.8);
+  transform: scale(1.2);
+}
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+/* Close button */
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: #00b7ff;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s, transform 0.3s;
+}
+.lightbox-close:hover {
+  color: #33ccff;
+  transform: scale(1.2);
+}
+
+/* Responsif */
+@media(max-width:600px) {
+  .lightbox-nav { font-size:1.5rem; padding:0.4rem 0.6rem; }
+  .lightbox-close { font-size:1.5rem; top:0.5rem; right:0.5rem; }
+}

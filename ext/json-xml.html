@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate JSON & Sitemap Hybrid</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      h1 {
+        text-align: center;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-family: monospace;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      #log {
+        background: #111;
+        color: #0f0;
+        padding: 10px;
+        height: 300px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 13px;
+        margin-top: 15px;
+        border-radius: 4px;
+        white-space: pre-wrap;
+      }
+      #progressContainer {
+        margin-top: 15px;
+      }
+      #progressBar {
+        width: 0%;
+        height: 20px;
+        background: #4caf50;
+        border-radius: 4px;
+      }
+      #progressText {
+        text-align: right;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Generate JSON & Sitemap Hybrid</h1>
+
+    <div style="margin-top: 15px">
+      <button id="onlineModeBtn">🌐 Scan Online (GitHub)</button>
+      <button id="offlineModeBtn">📂 Scan Offline (Local)</button>
+    </div>
+
+    <div id="progressContainer">
+      <div
+        style="
+          background: #ddd;
+          border-radius: 4px;
+          overflow: hidden;
+          height: 20px;
+        "
+      >
+        <div id="progressBar"></div>
+      </div>
+      <div id="progressText">0 / 0 files</div>
+    </div>
+
+    <h3>artikel JSON Output</h3>
+    <textarea id="jsonOutput" readonly></textarea>
+    <br />
+    <button id="downloadJsonBtn">⬇️ Download JSON</button>
+    <button id="copyJsonBtn">📋 Copy JSON</button>
+
+    <h3>Sitemap Output XML</h3>
+    <textarea id="sitemapOutput" readonly></textarea>
+    <br />
+    <button id="downloadSitemapBtn">⬇️ Download Sitemap</button>
+    <button id="copySitemapBtn">📋 Copy Sitemap</button>
+
+    <h3>Verbose Log</h3>
+    <div id="log"></div>
+
+    <script>
+      // ----------------- Utility -----------------
+      function log(msg) {
+        const logBox = document.getElementById('log')
+        logBox.textContent += msg + '\n'
+        logBox.scrollTop = logBox.scrollHeight
+      }
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms))
+      }
+
+      // ----------------- Escape XML -----------------
+      function escapeXML(s) {
+        return s
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&apos;')
+      }
+
+      // ----------------- Config -----------------
+      const owner = 'frijal'
+      const repo = 'frijal.pages.dev'
+      const folder = 'artikel'
+      const BASE_URL = 'https://frijal.pages.dev/artikel/'
+      const FALLBACK_IMG = 'thumbnail.jpg'
+
+      // ----------------- Kategori -----------------
+      function titleToCategory(title) {
+        const t = title.toLowerCase()
+        const cats = [
+          {
+            name: '📽️ Multimedia & Editing',
+            k: [
+              'ffmpeg',
+              'video',
+              'film',
+              'audio',
+              'mp3',
+              'ogg',
+              'rekam',
+              'convert',
+              'split',
+              'cut',
+              'durasi',
+              'imagemagick',
+              'resize',
+              'format',
+              'potong',
+              'watermark',
+              'foto',
+              'gambar',
+              'pdf',
+              'gabung',
+              'kompres',
+              'scan',
+              'ghostscript',
+              'pdftk',
+              'vlc',
+              'multimedia',
+              'codec',
+            ],
+          },
+          {
+            name: '🐧 Linux & Open Source',
+            k: [
+              'linux',
+              'libreoffice',
+              'openoffice',
+              'perl',
+              'ubuntu',
+              'distro',
+              'lts',
+              'live usb',
+              'conky',
+              'fedora',
+              'debian',
+              'arch',
+              'slackware',
+              'nixos',
+              'opensuse',
+              'blankon',
+              'mirror',
+              'repo',
+              'apt',
+              'yum',
+              'rsync',
+              'grub',
+              'chroot',
+              'dpkg',
+              'open source',
+              'oss',
+              'foss',
+              'komunitas',
+              'kpli',
+              'gnome',
+              'kde',
+              'compiz',
+              'desktop',
+              'ubuntu party',
+            ],
+          },
+          {
+            name: '📚 Islam & Kehidupan',
+            k: [
+              'islam',
+              'shalat',
+              'akidah',
+              'aqidah',
+              'qunut',
+              'istigfar',
+              'istighfar',
+              'mukjizat',
+              'masjid',
+              'madinah',
+              'imam',
+              'risalah',
+              'nabi',
+              'quran',
+              'hadis',
+              'hijriyah',
+              'muslim',
+              'doa',
+              'hukum',
+              'halal',
+              'haram',
+              'syariat',
+              'fiqh',
+              'hijab',
+              'ramadhan',
+              'maulid',
+              'piagam madinah',
+              'mushaf utsman',
+              'tabut',
+              'iman',
+              'sabar',
+              'ghibah',
+              'fitnah',
+              'sombong',
+              'salam',
+              'janji',
+            ],
+          },
+          {
+            name: '🏞️ Budaya, Kuliner & Lifestyle',
+            k: [
+              'kuliner',
+              'obat',
+              'sakit',
+              'pecel',
+              'minuman',
+              'jagung',
+              'kerupuk',
+              'angkringan',
+              'kurma',
+              'kopi',
+              'camilan',
+              'wisata',
+              'jogja',
+              'bali',
+              'bekapai',
+              'hotel',
+              'bandara',
+              'respiro',
+              'tidur',
+              'kesehatan',
+              'psikotes',
+              'wanita',
+              'bahagia',
+            ],
+          },
+          {
+            name: '📰 Catatan & Sosial',
+            k: [
+              'catatan',
+              'pt',
+              'kopdar',
+              'sejarah',
+              'indonesia',
+              'peradaban',
+              'sahabat',
+              'kota',
+              'rencana',
+              'kreativitas',
+              'ibu',
+              'perjalanan',
+              'bisnis',
+              'perusahaan',
+              'ekspedisi',
+              'aturan',
+              'harian',
+              'cuti',
+              'nostalgia',
+              'renungan',
+              'golput',
+              'duit',
+              'pekerjaan',
+              'kerja halal',
+              'perencanaan',
+              'produktifitas',
+              'sahabat',
+              'fenomena',
+              'sktm',
+              'ppdb',
+            ],
+          },
+          {
+            name: '💻 Windows & Teknologi Umum',
+            k: [
+              'windows',
+              'learning',
+              'cpu',
+              'samba',
+              'jaringan',
+              'software',
+              'terminal',
+              'github',
+              'shutdown',
+              'hdd',
+              'ssd',
+              'refresh',
+              'optimasi',
+              'bootloader',
+              'virtualbox',
+              'keyring',
+              'laptop',
+              'osborne1',
+              'baterai',
+              'mic',
+              'wifi',
+              'amd',
+              'cooling',
+              'phishing',
+              'eula',
+              'lisensi',
+              'piracy',
+            ],
+          },
+        ]
+        return (
+          cats.find((c) => c.k.some((k) => t.includes(k))) || {
+            name: '🗂️ Lainnya',
+          }
+        ).name
+      }
+
+      // ----------------- GitHub Helpers -----------------
+      async function checkRateLimit() {
+        try {
+          const res = await fetch('https://api.github.com/rate_limit')
+          const data = await res.json()
+          const remaining = data.rate.remaining
+          const resetTime = data.rate.reset * 1000
+          log(
+            `🔹 GitHub API Remaining: ${remaining}, Reset at: ${new Date(resetTime).toLocaleTimeString()}`,
+          )
+          return { remaining, resetTime }
+        } catch (err) {
+          log('❌ Gagal cek rate limit: ' + err.message)
+          return { remaining: 1, resetTime: Date.now() + 60000 }
+        }
+      }
+      async function fetchFileWithRateLimit(file) {
+        while (true) {
+          const { remaining, resetTime } = await checkRateLimit()
+          if (remaining > 5) break
+          const waitMs = resetTime - Date.now() + 1000
+          log(
+            `⏳ Menunggu ${Math.ceil(waitMs / 1000)}s karena rate limit hampir habis...`,
+          )
+          await sleep(waitMs)
+        }
+        return await fetch(file.download_url).then((r) => r.text())
+      }
+
+      // ----------------- Generate JSON & Sitemap -----------------
+      async function generate(grouped, sitemapUrls) {
+        // JSON
+        function jsonPretty(obj) {
+          return (
+            '{\n' +
+            Object.keys(obj)
+              .map(
+                (cat) =>
+                  `  "${cat}":[\n${obj[cat].map((a) => `    ["${a[0]}","${a[1]}"]`).join(',\n')}\n  ]`,
+              )
+              .join(',\n') +
+            '\n}'
+          )
+        }
+        document.getElementById('jsonOutput').value = jsonPretty(grouped)
+
+        // Sitemap
+        let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+        sitemapUrls.forEach((u) => {
+          const lastmod = u.lastmod
+            ? new Date(u.lastmod).toISOString().split('T')[0]
+            : new Date().toISOString().split('T')[0]
+
+          sitemap += `  <url>\n`
+          sitemap += `    <loc>${escapeXML(BASE_URL + u.loc)}</loc>\n`
+          sitemap += `    <lastmod>${lastmod}</lastmod>\n`
+
+          if (u.loc === '/') {
+            sitemap += `    <priority>1.0</priority>\n`
+            sitemap += `    <changefreq>daily</changefreq>\n`
+          } else if (u.loc.includes('/kategori/')) {
+            sitemap += `    <priority>0.8</priority>\n`
+            sitemap += `    <changefreq>weekly</changefreq>\n`
+          } else {
+            sitemap += `    <priority>0.6</priority>\n`
+            sitemap += `    <changefreq>monthly</changefreq>\n`
+          }
+
+          if (u.img) {
+            sitemap += `    <image:image>\n`
+            sitemap += `      <image:loc>${escapeXML(u.img)}</image:loc>\n`
+            sitemap += `    </image:image>\n`
+          }
+
+          sitemap += `  </url>\n`
+        })
+        sitemap += `</urlset>`
+        document.getElementById('sitemapOutput').value = sitemap
+
+        log('\n✅ Proses selesai! JSON & Sitemap siap dicopy / di-download.')
+      }
+
+      // ----------------- Mode Online -----------------
+      async function generateOnline() {
+        document.getElementById('jsonOutput').value = ''
+        document.getElementById('sitemapOutput').value = ''
+        document.getElementById('log').textContent = ''
+        document.getElementById('progressBar').style.width = '0%'
+        document.getElementById('progressText').textContent = '0 / 0 files'
+
+        try {
+          log('🔍 Mengambil daftar file dari repo...')
+          const res = await fetch(
+            `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`,
+          )
+          const files = await res.json()
+          const htmlFiles = files.filter(
+            (f) => f.type === 'file' && f.name.endsWith('.html'),
+          )
+          totalFiles = htmlFiles.length
+          completedFiles = 0
+          log(`📂 Ditemukan ${totalFiles} file HTML`)
+
+          const grouped = {}
+          const sitemapUrls = []
+          let index = 0
+          async function worker() {
+            while (index < htmlFiles.length) {
+              const i = index++
+              const f = htmlFiles[i]
+              try {
+                const htmlText = await fetchFileWithRateLimit(f)
+                const doc = new DOMParser().parseFromString(
+                  htmlText,
+                  'text/html',
+                )
+                const title = doc.querySelector('title')?.innerText || f.name
+                const category = titleToCategory(title)
+                if (!grouped[category]) grouped[category] = []
+                grouped[category].push([title, f.name])
+
+                let imgMeta =
+                  doc.querySelector('meta[property="og:image"]')?.content ||
+                  doc.querySelector('meta[name="twitter:image"]')?.content ||
+                  doc.querySelector('main section img')?.src ||
+                  FALLBACK_IMG
+                if (!imgMeta.startsWith('http')) imgMeta = BASE_URL + imgMeta
+                sitemapUrls.push({ loc: f.name, img: imgMeta })
+              } catch (err) {
+                log('❌ Error file ' + f.name + ': ' + err.message)
+              }
+
+              completedFiles++
+              const percent = Math.round((completedFiles / totalFiles) * 100)
+              document.getElementById('progressBar').style.width = percent + '%'
+              const elapsed = (Date.now() - startTimeProgress) / 1000
+              const eta = Math.round(
+                (elapsed / completedFiles) * (totalFiles - completedFiles),
+              )
+              document.getElementById('progressText').textContent =
+                `${completedFiles} / ${totalFiles} files (${percent}%) | ETA: ${eta}s`
+            }
+          }
+          await Promise.all(
+            Array(10)
+              .fill()
+              .map(() => worker()),
+          )
+          await generate(grouped, sitemapUrls)
+        } catch (err) {
+          log('❌ Error online: ' + err.message)
+        }
+      }
+
+      // ----------------- Mode Offline ----------------
+      async function generateOffline() {
+        const filesInput = document.createElement('input')
+        filesInput.type = 'file'
+        filesInput.multiple = true
+        filesInput.accept = '.html'
+        filesInput.webkitdirectory = true
+        filesInput.addEventListener('change', async () => {
+          const files = Array.from(filesInput.files).filter((f) =>
+            f.name.endsWith('.html'),
+          )
+          totalFiles = files.length
+          completedFiles = 0
+          startTimeProgress = Date.now()
+          const grouped = {}
+          const sitemapUrls = []
+          log(`📂 Ditemukan ${totalFiles} file HTML (offline)`)
+
+          for (const f of files) {
+            try {
+              const text = await f.text()
+              const doc = new DOMParser().parseFromString(text, 'text/html')
+              const title = doc.querySelector('title')?.innerText || f.name
+              const category = titleToCategory(title)
+              if (!grouped[category]) grouped[category] = []
+              grouped[category].push([title, f.name])
+
+              let imgMeta =
+                doc.querySelector('meta[property="og:image"]')?.content ||
+                doc.querySelector('meta[name="twitter:image"]')?.content ||
+                doc.querySelector('main section img')?.src ||
+                FALLBACK_IMG
+              if (!imgMeta.startsWith('http')) imgMeta = BASE_URL + imgMeta
+              sitemapUrls.push({ loc: f.name, img: imgMeta })
+
+              completedFiles++
+              const percent = Math.round((completedFiles / totalFiles) * 100)
+              document.getElementById('progressBar').style.width = percent + '%'
+              const elapsed = (Date.now() - startTimeProgress) / 1000
+              const eta = Math.round(
+                (elapsed / completedFiles) * (totalFiles - completedFiles),
+              )
+              document.getElementById('progressText').textContent =
+                `${completedFiles} / ${totalFiles} files (${percent}%) | ETA: ${eta}s`
+            } catch (err) {
+              log('❌ Error file ' + f.name + ': ' + err.message)
+            }
+          }
+          await generate(grouped, sitemapUrls)
+        })
+        filesInput.click()
+      }
+
+      // ----------------- Tombol -----------------
+      document.getElementById('onlineModeBtn').addEventListener('click', () => {
+        startTimeProgress = Date.now()
+        generateOnline()
+      })
+      document
+        .getElementById('offlineModeBtn')
+        .addEventListener('click', () => {
+          startTimeProgress = Date.now()
+          generateOffline()
+        })
+
+      document
+        .getElementById('downloadJsonBtn')
+        .addEventListener('click', () => {
+          const blob = new Blob([document.getElementById('jsonOutput').value], {
+            type: 'application/json',
+          })
+          const url = URL.createObjectURL(blob)
+          const a = document.createElement('a')
+          a.href = url
+          a.download = 'artikel.json'
+          a.click()
+          URL.revokeObjectURL(url)
+        })
+      document
+        .getElementById('copyJsonBtn')
+        .addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(
+              document.getElementById('jsonOutput').value,
+            )
+            log('📋 JSON berhasil dicopy!')
+          } catch (err) {
+            log('❌ Gagal copy JSON: ' + err.message)
+          }
+        })
+      document
+        .getElementById('downloadSitemapBtn')
+        .addEventListener('click', () => {
+          const blob = new Blob(
+            [document.getElementById('sitemapOutput').value],
+            { type: 'application/xml' },
+          )
+          const url = URL.createObjectURL(blob)
+          const a = document.createElement('a')
+          a.href = url
+          a.download = 'sitemap.xml'
+          a.click()
+          URL.revokeObjectURL(url)
+        })
+      document
+        .getElementById('copySitemapBtn')
+        .addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(
+              document.getElementById('sitemapOutput').value,
+            )
+            log('📋 Sitemap berhasil dicopy!')
+          } catch (err) {
+            log('❌ Gagal copy Sitemap: ' + err.message)
+          }
+        })
+    </script>
+  </body>
+</html>

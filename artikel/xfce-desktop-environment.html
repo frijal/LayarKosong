@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xfce: Desktop Environment Ringan, Cepat, dan Stabil untuk Linux</title>
+    
+    <meta name="description" content="Kenalan sama Xfce, lingkungan desktop Linux yang super cepat, ringan, stabil, dan nggak neko-neko. Cocok buat hardware lama maupun baru.">
+    <meta name="keywords" content="Xfce, Linux, Desktop Environment, DE, Ringan, Cepat, Stabil, Open Source, Olivier Fourdan, GTK">
+    <meta name="author" content="Olivier Fourdan & Komunitas Open Source">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://example.com/xfce-desktop-environment-lengkap">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐭</text></svg>" type="image/svg+xml">
+    <meta name="date" content="2025-10-08T12:00:00+07:00">
+    
+    <meta property="og:title" content="Xfce: Desktop Environment Ringan, Cepat, dan Stabil untuk Linux">
+    <meta property="og:description" content="Kenalan sama Xfce, lingkungan desktop Linux yang super cepat, ringan, stabil, dan nggak neko-neko.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://example.com/xfce-desktop-environment-lengkap">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEwXRdmiz34VXRa3Xc5MpggCjskgA78kpzCI1aVgn6anxe6k9-9qIZnYJLJr6Afqs2H9EUb4Y33zw2M0rhe0UDChnUZ229867ZjBKO55RDcQQB-MApYsE0FUckvPRmFVZqaK43-N1s64aY4navaGE1oPeQU2e3m1v3Zy8TJ4r4-axyv4nNo5VPRo3cVDY/s1600/317-wallpaper.png">
+    <meta property="og:image:alt" content="Infografis Sejarah Singkat Xfce">
+    <meta property="og:site_name" content="Info Teknologi Santai">
+    <meta property="article:published_time" content="2025-10-08T12:00:00+07:00">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xfce: Desktop Environment Ringan, Cepat, dan Stabil untuk Linux">
+    <meta name="twitter:description" content="Kenalan sama Xfce, lingkungan desktop Linux yang super cepat, ringan, stabil, dan nggak neko-neko.">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEwXRdmiz34VXRa3Xc5MpggCjskgA78kpzCI1aVgn6anxe6k9-9qIZnYJLJr6Afqs2H9EUb4Y33zw2M0rhe0UDChnUZ229867ZjBKO55RDcQQB-MApYsE0FUckvPRmFVZqaK43-N1s64aY4navaGE1oPeQU2e3m1v3Zy8TJ4r4-axyv4nNo5VPRo3cVDY/s1600/317-wallpaper.png">
+    <meta name="twitter:image:alt" content="Infografis Sejarah Singkat Xfce">
+    <meta name="twitter:creator" content="@InfoTeknologi">
+    
+    <style>
+        /* CSS3 untuk Desain & Tata Letak Responsif */
+        :root {
+            --bg-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --accent-color: #3498db;
+            --card-bg: #34495e;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+            font-size: 18px;
+        }
+        /* Desain Widescreen/Fullscreen: Kontainer utama satu kolom */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1, h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+        }
+        .intro {
+            font-style: italic;
+            color: #bdc3c7;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .timeline-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: rgba(0,0,0,0.2);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid;
+            border-radius: 5px;
+        }
+        .kelebihan li { border-color: #27ae60; }
+        .kekurangan li { border-color: #c0392b; }
+        /* Lightbox CSS */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+        }
+        .lightbox .close, .lightbox .prev, .lightbox .next {
+            position: absolute;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+        .lightbox .close:hover, .lightbox .prev:hover, .lightbox .next:hover {
+            color: var(--accent-color);
+        }
+        .lightbox .close { top: 20px; right: 35px; }
+        .lightbox .prev { left: 20px; top: 50%; transform: translateY(-50%); }
+        .lightbox .next { right: 20px; top: 50%; transform: translateY(-50%); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Ikon Social Share */
+        .social-share {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4a627a;
+        }
+        .social-share a {
+            margin: 0 10px;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .social-share a:hover {
+            transform: translateY(-5px);
+        }
+        .social-share svg {
+            width: 40px;
+            height: 40px;
+        }
+        /* Mobile-Friendly */
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .container { padding: 15px; }
+            h1 { font-size: 2em; }
+        }
+
+    </style>
+<meta itemprop="image" content="https://frijal.pages.dev/img/xfce-desktop-environment.webp">
+
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐭 Xfce: Desktop Environment Ringan, Cepat, dan Stabil untuk Linux</h1>
+<div id="iposbrowser"></div>
+
+        </header>
+
+        <main>
+            <p class="intro">
+                Kalau kamu cari lingkungan desktop Linux yang nggak neko-neko, super cepat, dan stabilnya juara, kenalan dulu sama <strong>Xfce</strong>. Desktop environment ini sudah jadi andalan banyak pengguna Linux selama bertahun-tahun, terutama mereka yang butuh performa tanpa mengorbankan fungsionalitas inti.
+            </p>
+
+            <article>
+                <section>
+                    <h2>Sejarah Singkat Xfce</h2>
+                    <p>
+                        Perjalanan Xfce dimulai pada tahun 1996 oleh Olivier Fourdan. Awalnya, proyek ini dibuat sebagai alternatif desktop yang ringan untuk sistem mirip Unix menggunakan <em>toolkit</em> XForms. Tujuannya dari dulu simpel banget: bikin sesuatu yang cepat, sederhana, tapi tetap fungsional buat kerja sehari-hari.
+                    </p>
+                    
+                    <a href="javascript:void(0);" onclick="openLightbox()">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEwXRdmiz34VXRa3Xc5MpggCjskgA78kpzCI1aVgn6anxe6k9-9qIZnYJLJr6Afqs2H9EUb4Y33zw2M0rhe0UDChnUZ229867ZjBKO55RDcQQB-MApYsE0FUckvPRmFVZqaK43-N1s64aY4navaGE1oPeQU2e3m1v3Zy8TJ4r4-axyv4nNo5VPRo3cVDY/s1600/317-wallpaper.png" alt="Infografis timeline sejarah Xfce" class="timeline-image" loading="lazy">
+                    </a>
+                    
+                    <p>
+                        Seiring berjalannya waktu, Xfce terus berevolusi. Proyek ini kemudian ditulis ulang dari nol menggunakan GTK, sebuah langkah besar yang membuatnya lebih fleksibel dan modern. Berkat migrasi ini, Xfce jadi lebih mudah diadopsi oleh banyak distro Linux populer. Hingga hari ini, pengembangannya terus berlanjut dan dikelola oleh komunitas <em>open-source</em> global yang solid.
+                    </p>
+                </section>
+                
+                <section>
+                    <h2>Plus Minus Pakai Xfce</h2>
+                    <p>Seperti software lainnya, Xfce punya kelebihan dan kekurangan. Yuk, kita bedah satu-satu!</p>
+                    
+                    <div class="kelebihan">
+                        <h3>Kelebihan Xfce 👍</h3>
+                        <ul>
+                            <li><strong>Sangat ringan:</strong> Hemat sumber daya banget, jadi RAM dan CPU kamu bisa napas lega.</li>
+                            <li><strong>Stabil dan bisa diandalkan:</strong> Cocok buat pemakaian jangka panjang tanpa takut crash atau error aneh.</li>
+                            <li><strong>Gampang dipakai:</strong> Tampilannya pakai tata letak desktop tradisional yang familiar, mirip Windows klasik.</li>
+                            <li><strong>Jalan lancar di mana saja:</strong> Mau di komputer jadul atau laptop baru, performanya tetap gesit.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="kekurangan">
+                        <h3>Kekurangan Xfce 👎</h3>
+                        <ul>
+                            <li><strong>Fitur nggak secanggih kompetitor:</strong> Kalau dibandingin sama KDE Plasma atau GNOME, fiturnya memang lebih standar.</li>
+                            <li><strong>Tampilan standar agak kuno:</strong> Tampilan bawaannya kelihatan simpel banget, tapi untungnya bisa dipercantik dengan tema dan ikon.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Fakta Unik</h2>
+                    <p>
+                        Dulu, banyak yang mengira "XFCE" adalah singkatan dari "XForms Common Environment". Tapi, seiring proyek ini ditulis ulang pakai GTK, nama itu jadi nggak relevan lagi. Sekarang, nama "Xfce" sudah tidak punya kepanjangan resmi. Itu hanyalah nama keren dari proyeknya!
+                    </p>
+                </section>
+                
+                <section class="social-share">
+                    <h3>Jaga Data Pribadi Tetap Aman</h3>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/xfce-desktop-environment-lengkap" target="_blank" title="Bagikan ke Facebook">
+                        <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.407.593 24 1.324 24h11.494v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.324V1.324C24 .593 23.407 0 22.676 0z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=https://example.com/xfce-desktop-environment-lengkap&text=Xfce:%20Desktop%20Environment%20Ringan,%20Cepat,%20dan%20Stabil%20untuk%20Linux" target="_blank" title="Bagikan ke Twitter">
+                        <svg viewBox="0 0 24 24" fill="#1DA1F2"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 0 0 2.048-2.578 9.3 9.3 0 0 1-2.958 1.13 4.66 4.66 0 0 0-7.938 4.25 13.229 13.229 0 0 1-9.602-4.868c-.333.57-.523 1.24-.523 1.942 0 1.62.824 3.054 2.076 3.888a4.63 4.63 0 0 1-2.11-.58v.06a4.66 4.66 0 0 0 3.733 4.56c-.386.105-.794.16-1.21.16-.3 0-.59-.028-.875-.083a4.66 4.66 0 0 0 4.35 3.234 9.348 9.348 0 0 1-5.786 1.995c-.376 0-.747-.022-1.112-.065a13.175 13.175 0 0 0 7.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.455 9.455 0 0 0 2.323-2.41z"/></svg>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?text=Wajib%20baca%20nih!%20Xfce:%20Desktop%20Environment%20Ringan,%20Cepat,%20dan%20Stabil%20untuk%20Linux%20https://example.com/xfce-desktop-environment-lengkap" target="_blank" title="Bagikan ke WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2.003c-5.52 0-9.99 4.47-9.99 9.99 0 1.77.46 3.44 1.28 4.92l-1.32 4.82 4.93-1.3c1.45.77 3.09 1.19 4.79 1.19h.01c5.52 0 9.99-4.47 9.99-9.99s-4.47-9.99-9.99-9.99zM12.04 20.13c-1.48 0-2.91-.4-4.19-1.11l-.3-.18-3.12.82.83-3.04-.2-.31c-.8-1.32-1.22-2.84-1.22-4.43 0-4.54 3.69-8.23 8.23-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.23-8.23 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.79.96-.15.17-.3.19-.56.06-.26-.12-1.09-.4-2.07-1.28-.77-.69-1.29-1.54-1.44-1.8-.15-.26-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.76 2.68 4.27 3.75 2.5 1.07 2.5.71 2.94.69.45-.02 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/></svg>
+                    </a>
+                </section>
+                
+                <section id="comments">
+                    <h2>Jaga Data Pribadi Tetap Aman.</h2>
+                    
+                    
+                </section>
+            </article>
+        </main>
+    </div>
+    
+    <div id="myLightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImage" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEwXRdmiz34VXRa3Xc5MpggCjskgA78kpzCI1aVgn6anxe6k9-9qIZnYJLJr6Afqs2H9EUb4Y33zw2M0rhe0UDChnUZ229867ZjBKO55RDcQQB-MApYsE0FUckvPRmFVZqaK43-N1s64aY4navaGE1oPeQU2e3m1v3Zy8TJ4r4-axyv4nNo5VPRo3cVDY/s1600/317-wallpaper.png" alt="Infografis timeline sejarah Xfce">
+        <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+        <a class="next" onclick="changeImage(1)">&#10095;</a>
+    </div>
+    
+    <script>
+        // Javascript untuk Lightbox (Galeri Foto)
+        const images = ["https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEwXRdmiz34VXRa3Xc5MpggCjskgA78kpzCI1aVgn6anxe6k9-9qIZnYJLJr6Afqs2H9EUb4Y33zw2M0rhe0UDChnUZ229867ZjBKO55RDcQQB-MApYsE0FUckvPRmFVZqaK43-N1s64aY4navaGE1oPeQU2e3m1v3Zy8TJ4r4-axyv4nNo5VPRo3cVDY/s1600/317-wallpaper.png"];
+        let currentImageIndex = 0;
+        
+        function openLightbox() {
+            document.getElementById('myLightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('myLightbox').style.display = 'none';
+        }
+        
+        function changeImage(n) {
+            // Karena hanya ada 1 gambar, fungsi ini hanya log
+            console.log("Navigasi lightbox diklik. Fitur siap untuk galeri dengan banyak gambar.");
+        }
+        
+        // Tutup lightbox dengan tombol Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>

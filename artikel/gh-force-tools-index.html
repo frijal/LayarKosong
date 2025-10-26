@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paket gh-force-tools: Otomatisasi Merge & Clean Branch GitHub</title>
+<meta name="description" content="Kumpulan skrip otomatis gh-force-tools untuk GitHub CLI: gh-force-merge.sh dan gh-force-clean.sh. Lengkap dengan fitur dry-run, auto mode, dan dukungan CI/CD.">
+<link rel="canonical" href="https://frijal.pages.dev/artikel/gh-force-tools-index.html">
+<link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="gh-force-tools: Otomatisasi Merge & Clean Branch GitHub">
+<meta property="og:description" content="Paket skrip gh-force-tools berisi gh-force-merge.sh dan gh-force-clean.sh untuk mempermudah pengelolaan branch di GitHub.">
+<meta property="og:url" content="https://frijal.pages.dev/artikel/gh-force-tools-index.html">
+<meta property="og:site_name" content="Jaga Data Pribadi Tetap Aman Dev">
+<meta property="og:image" content="https://frijal.pages.dev/img/gh-force-tools-index.webp">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="gh-force-tools: Otomatisasi Merge & Clean Branch GitHub">
+<meta name="twitter:description" content="Skrip praktis untuk merge otomatis dan membersihkan branch Git yang sudah di-merge.">
+<meta name="twitter:image" content="https://frijal.pages.dev/img/gh-force-tools-index.webp">
+
+<meta name="color-scheme" content="light dark">
+<style>
+:root {
+  --bg: #fefefe;
+  --text: #1b1b1b;
+  --accent: #0078ff;
+  --card-bg: #ffffff;
+  --shadow: rgba(0,0,0,0.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
+    --card-bg: #161b22;
+    --shadow: rgba(255,255,255,0.05);
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+header {
+  text-align: center;
+  padding: 2.5rem 1rem 1rem;
+}
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+header p { opacity: 0.8; }
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 3rem 3rem;
+  max-width: 1200px;
+  margin: auto;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+.card img {
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin-right: 1rem;
+}
+.card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+}
+.card p {
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.8rem;
+}
+.card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.card a:hover {
+  text-decoration: underline;
+}
+.social-share {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.social-share img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(1);
+  transition: 0.3s;
+  margin: 0 0.4rem;
+}
+.social-share img:hover {
+  filter: none;
+  transform: scale(1.1);
+}
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(127,127,127,0.2);
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  main { padding: 1.2rem; }
+}
+
+</style>
+<meta property="og:image:alt" content="Paket gh-force-tools: Otomatisasi Merge & Clean Branch GitHub">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/gh-force-tools-index.webp">
+
+    <meta property="article:published_time" content="2025-10-13T21:14:36.042+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+<header>
+  <h1>⚙️ gh-force-tools: Otomatisasi GitHub Dev</h1>
+<div id="iposbrowser"></div>
+
+  <p>Paket dua skrip andalan untuk mengelola branch GitHub secara efisien: <strong>gh-force-merge.sh</strong> & <strong>gh-force-clean.sh</strong></p>
+</header>
+
+<main>
+  <div class="card">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub icon">
+    <h2>🚀 gh-force-merge.sh</h2>
+    <p>Skrip otomatis untuk mendeteksi PR aktif dari branch lokal, lalu mencoba merge via <code>gh</code>.  
+    Jika merge gagal, otomatis fallback ke <code>--admin --squash</code>.</p>
+    <a href="https://frijal.pages.dev/artikel/gh-force-merge.html">🔗 Baca artikel lengkap</a>
+  </div>
+
+  <div class="card">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git icon">
+    <h2>🧹 gh-force-clean.sh</h2>
+    <p>Skrip bash untuk membersihkan branch lokal dan remote yang sudah di-merge ke branch utama.  
+    Dukungan penuh untuk <code>--dry-run</code>, <code>--auto</code>, dan <code>--base</code>.</p>
+    <a href="https://frijal.pages.dev/artikel/gh-force-clean.html">🔗 Baca artikel lengkap</a>
+  </div>
+</main>
+
+<section class="social-share">
+  <p>Jaga Data Pribadi Tetap Aman</p>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/gh-force-tools-index.html" target="_blank" rel="noopener">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/gh-force-tools-index.html&text=Paket%20gh-force-tools%20untuk%20otomatisasi%20GitHub%20CLI" target="_blank" rel="noopener">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/twitter.svg" alt="Twitter">
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/gh-force-tools-index.html" target="_blank" rel="noopener">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
+  </a>
+</section>
+
+
+
+<footer>
+  <p>🄯 2025 Frijal — Paket gh-force-tools (DevOps GitHub)</p>
+</footer>
+
+
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>

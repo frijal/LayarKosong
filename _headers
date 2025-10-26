@@ -1,0 +1,74 @@
+# 🌐 Default untuk semua file HTML dan XML
+/*
+  X-Robots-Tag: all
+
+# 🖼️ Gambar dan ikon statis (cache kuat + CORS)
+/img/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=604800, immutable
+
+/logo.png
+  Cache-Control: public, max-age=604800, immutable
+
+/icon.png
+  Cache-Control: public, max-age=604800, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=604800, immutable
+
+/favicon.png
+  Cache-Control: public, max-age=604800, immutable
+
+/favicon.svg
+  Cache-Control: public, max-age=604800, immutable
+
+# 📦 Ekstensi dan font (cache kuat + CORS)
+/ext/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=604800, immutable
+
+# 📄 Artikel JSON (non-cache + CORS)
+/artikel.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: no-store, must-revalidate
+  Content-Type: application/json
+
+# 📁 Folder artikel (halaman bisa diindeks)
+/artikel
+  X-Robots-Tag: index, follow
+
+# 📜 Halaman utama dan navigasi
+/index.html
+  X-Robots-Tag: index, follow
+  
+# 📜 Halaman disclaimer
+/disclaimer.html
+  X-Robots-Tag: index, follow
+  
+# 📜 Halaman search
+/search.html
+  X-Robots-Tag: index, follow
+
+/feed.html
+  X-Robots-Tag: index, follow
+
+/sitemap.html
+  X-Robots-Tag: index, follow
+
+# 🗺️ Sitemap dan RSS (indeks + MIME type)
+/sitemap.xml
+  X-Robots-Tag: index, follow
+  Content-Type: application/xml
+
+/feed-*.xml
+  X-Robots-Tag: index, follow
+  Content-Type: application/rss+xml
+
+/rss.xml
+  X-Robots-Tag: index, follow
+  Content-Type: application/rss+xml
+
+# 🤖 Robots.txt tetap bisa diindeks
+/robots.txt
+  X-Robots-Tag: index, follow
+

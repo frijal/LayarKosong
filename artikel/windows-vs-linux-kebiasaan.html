@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="id">
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <title>Windows vs Linux: beda kebiasaan pengguna (tanpa nyinyir)</title>
+  <meta content="Ringan, lucu, tapi informatif: kebiasaan umum pengguna Windows dan Linux saat memasang aplikasi, menyiapkan sistem, dan menunggu proses. Disajikan seimbang, plus tips dan contoh perintah." name="description">
+  <link href="https://frijal.pages.dev/artikel/windows-vs-linux-kebiasaan.html" rel="canonical">
+  <meta content="2025-09-27" name="date">
+  <meta content="id_ID" property="og:locale">
+  <meta content="article" property="og:type">
+  <meta content="Windows vs Linux: beda kebiasaan pengguna (tanpa nyinyir)" property="og:title">
+  <meta content="Obrolan santai tentang perbedaan kebiasaan pengguna Windows dan Linux—dengan contoh nyata, tips, dan humor yang sehat." property="og:description">
+  <meta content="https://frijal.pages.dev/artikel/windows-vs-linux-kebiasaan.html" property="og:url">
+  <meta content="frijal.pages.dev" property="og:site_name">
+  <meta content="https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp" property="og:image">
+  <meta content="Ilustrasi Windows dan Linux berdampingan" property="og:image:alt">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="Windows vs Linux: beda kebiasaan pengguna (tanpa nyinyir)" name="twitter:title">
+  <meta content="Bahas perbedaan kebiasaan pengguna Windows & Linux secara santai, seimbang, dan bermanfaat." name="twitter:description">
+  <meta content="@frijal" name="twitter:site">
+  <meta content="https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp" name="twitter:image">
+  <meta content="https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp" itemprop="image">
+  <link href='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"&gt;&lt;defs&gt;&lt;linearGradient id="g" x1="0" y1="0" x2="1" y2="1"&gt;&lt;stop stop-color="%232563eb" offset="0"/&gt;&lt;stop stop-color="%23ff4b91" offset="1"/&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;rect width="128" height="128" rx="28" fill="url(%23g)"/&gt;&lt;g transform="translate(20,20)"&gt;&lt;rect x="8" y="12" width="80" height="20" rx="10" fill="%23fff" opacity=".92"/&gt;&lt;rect x="8" y="48" width="62" height="20" rx="10" fill="%23fff" opacity=".92"/&gt;&lt;rect x="8" y="84" width="44" height="20" rx="10" fill="%23fff" opacity=".92"/&gt;&lt;/g&gt;&lt;/svg&gt;' rel="icon" type="image/svg+xml">
+  <link href="https://cdnjs.cloudflare.com" rel="preconnect">
+  <link href="https://cdn.jsdelivr.net" rel="preconnect">
+  <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" referrerpolicy="no-referrer" rel="stylesheet">
+  <meta content="2025-09-18T11:00:00+08:00" property="article:published_time">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+     <meta property="article:published_time" content="2025-10-17T08:24:29.868+00:00">
+</head>
+ <body>
+   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://frijal.pages.dev/","image":"https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp"},{"@type":"ListItem","position":2,"name":"Artikel","item":"https://frijal.pages.dev/artikel","image":"https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp"},{"@type":"ListItem","position":3,"name":"Windows vs Linux: kebiasaan","item":"https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.html","image":"https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp"}],"image":"https://frijal.pages.dev/img/windows-vs-linux-kebiasaan.webp"}</script>
+  <style>
+   :root {
+    --bg: #0b1020;
+    --layer: #0f1530;
+    --glass: rgba(255, 255, 255, 0.06);
+    --ink: #e9edf8;
+    --muted: #9aa3b2;
+    --p: #2563eb;
+    --s: #22d3ee;
+    --t: #ff4b91;
+    --y: #f59e0b;
+    --g: #10b981;
+    --ring: 0 0 0 6px rgba(37, 99, 235, 0.22);
+    --maxw: 1240px;
+    --radius: 20px;
+    --shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    --border: 1px solid rgba(255, 255, 255, 0.12);
+   }
+
+   * {
+    box-sizing: border-box;
+   }
+
+   body,
+   html {
+    height: 100%;
+   }
+
+   body {
+    margin: 0;
+    color: var(--ink);
+    font-family:
+     Inter,
+     ui-sans-serif,
+     system-ui,
+     -apple-system,
+     Segoe UI,
+     Roboto,
+     'Helvetica Neue',
+     Arial;
+    background:
+     radial-gradient(60vw 40vh at 10% -10%,
+      rgba(37, 99, 235, 0.25),
+      transparent 60%),
+     radial-gradient(60vw 40vh at 110% 10%,
+      rgba(255, 75, 145, 0.2),
+      transparent 60%),
+     var(--bg);
+    line-height: 1.6;
+   }
+
+   a {
+    color: #9bc9ff;
+    text-decoration: none;
+   }
+
+   a:hover {
+    text-decoration: underline;
+   }
+
+   .wrap {
+    width: min(94vw, var(--maxw));
+    margin: 28px auto;
+   }
+
+   header.hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    background: linear-gradient(180deg,
+      rgba(18, 22, 50, 0.8),
+      rgba(11, 16, 32, 0.96));
+   }
+
+   .kicker {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+   }
+
+   .kdot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(45deg, var(--p), var(--t));
+   }
+
+   h1 {
+    margin: 10px 0 6px;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.12;
+   }
+
+   .sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(14px, 1.4vw, 18px);
+   }
+
+   .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+   }
+
+   .chip {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: var(--border);
+    background: #0f1838;
+    color: #cbd5e1;
+    font-size: 12px;
+   }
+
+   .grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 24px;
+   }
+
+   @media (max-width: 1020px) {
+    .grid {
+     grid-template-columns: 1fr;
+    }
+   }
+
+   .card {
+    background: linear-gradient(180deg,
+      rgba(15, 21, 48, 0.9),
+      rgba(11, 16, 40, 0.96));
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    height: fit-content;
+    /* Untuk sidebar */
+   }
+
+   .card .hd {
+    padding: 16px 18px;
+    border-bottom: var(--border);
+    background: linear-gradient(90deg,
+      rgba(37, 99, 235, 0.18),
+      rgba(34, 211, 238, 0.12),
+      rgba(255, 75, 145, 0.12));
+    font-weight: 900;
+   }
+
+   .card .bd {
+    padding: 20px 22px 24px;
+   }
+
+   .muted {
+    color: var(--muted);
+   }
+
+   .cols {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+   }
+
+   @media (max-width: 820px) {
+    .cols {
+     grid-template-columns: 1fr;
+    }
+   }
+
+   .box {
+    padding: 16px;
+    border-radius: 16px;
+    border: var(--border);
+    background: linear-gradient(135deg,
+      rgba(37, 99, 235, 0.1),
+      rgba(255, 75, 145, 0.1));
+   }
+
+   .box h3 {
+    margin: 0 0 8px;
+   }
+
+   .box ul {
+    margin: 0;
+    padding-left: 18px;
+   }
+
+   .note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 12px;
+    border: var(--border);
+    background: #0f1830;
+    margin-top: 12px;
+   }
+
+   .gallery {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+   }
+
+   @media (max-width: 880px) {
+    .gallery {
+     grid-template-columns: repeat(2, 1fr);
+    }
+   }
+
+   @media (max-width: 560px) {
+    .gallery {
+     grid-template-columns: 1fr;
+    }
+   }
+
+   .shot {
+    position: relative;
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    border: var(--border);
+    background: #0c1028;
+    cursor: pointer;
+   }
+
+   .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+    filter: saturate(1.05);
+   }
+
+   .shot:hover img {
+    transform: scale(1.035);
+   }
+
+   .shot .cap {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #fff;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
+   }
+
+   .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 10, 20, 0.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 9998;
+   }
+
+   .lightbox.open {
+    display: flex;
+   }
+
+   .lightbox img {
+    max-width: 96vw;
+    max-height: 92vh;
+    border-radius: 14px;
+    border: var(--border);
+    background: #000;
+   }
+
+   .lightbox .ctrl {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+   }
+
+   .lightbox button {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: var(--border);
+    background: #0f1830;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 800;
+   }
+
+   .lightbox button:hover {
+    box-shadow: var(--ring);
+   }
+
+   pre {
+    background: #0d132c;
+    border: var(--border);
+    border-radius: 12px;
+    overflow: auto;
+   }
+
+   .share {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+   }
+
+   .btn-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #0f1830;
+    border: var(--border);
+    font-weight: 800;
+    color: #e2e8f0;
+    text-decoration: none;
+   }
+
+   .btn-share:hover {
+    box-shadow: var(--ring);
+   }
+
+   .ico {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+   }
+
+   .kbd {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    font-family: monospace;
+    font-size: 12px;
+   }
+
+  </style>
+  <div class="wrap">
+   <header class="hero">
+    <div class="kicker">
+     <span class="kdot">
+     </span>
+     <span>
+      Obrolan Santai &bull; Windows & Linux
+     </span>
+    </div>
+    <h1>
+     Windows vs Linux: beda kebiasaan pengguna, tanpa nyinyir, tanpa
+     menggurui
+    </h1>
+<div id="iposbrowser"></div>
+    <p class="sub">
+     Hasil diskusi ringan yang bikin senyum: bagaimana pengguna Windows dan
+     Linux biasanya memasang aplikasi, menyiapkan sistem, dan menghadapi
+     &ldquo;waktu tunggu&rdquo;. Kita rangkum seimbang&mdash;karena setiap orang punya alasan
+     dan kebutuhannya sendiri.
+    </p>
+    <div class="chips">
+     <span class="chip">
+      Windows
+     </span>
+     <span class="chip">
+      Linux
+     </span>
+     <span class="chip">
+      Install Apps
+     </span>
+     <span class="chip">
+      Kebiasaan Pengguna
+     </span>
+    </div>
+   </header>
+   <div class="grid">
+    <article class="card">
+     <div class="hd">
+      Kebiasaan umum yang sering terlihat
+     </div>
+     <div class="bd">
+      <div class="cols">
+       <div class="box">
+        <h3>
+         Linux
+        </h3>
+        <ul>
+         <li>
+          <b>
+           Install cepat via terminal:
+          </b>
+          ketik perintah paket,
+          tunggu sebentar, aplikasi siap dipakai.
+         </li>
+         <li>
+          <b>
+           Banyak bawaan:
+          </b>
+          setelah instal sistem, biasanya sudah
+          ada editor dokumen, pemutar multimedia, utilitas sistem, dan
+          lain-lainnya.
+         </li>
+         <li>
+          <b>
+           Repositori terpusat:
+          </b>
+          satu tempat untuk mencari,
+          memasang, memperbarui, dan menghapus aplikasi.
+         </li>
+        </ul>
+        <div class="note">
+         <span>
+          💡
+         </span>
+         <div>
+          GUI store (mis. Software Center) juga tersedia&mdash;tidak harus
+          terminal. Pilih yang paling nyaman.
+         </div>
+        </div>
+       </div>
+       <div class="box">
+        <h3>
+         Windows
+        </h3>
+        <ul>
+         <li>
+          <b>
+           Installer mandiri:
+          </b>
+          unduh .exe/.msi dari situs resmi,
+          jalankan <em>wizard</em>, klik Next hingga selesai.
+         </li>
+         <li>
+          <b>
+           Lisensi & kunci produk:
+          </b>
+          beberapa aplikasi butuh
+          aktivasi; simpan akun/serial dengan aman.
+         </li>
+         <li>
+          <b>
+           Store & package manager:
+          </b>
+          kini ada Microsoft Store,
+          winget, atau Chocolatey untuk pemasangan cepat.
+         </li>
+        </ul>
+        <div class="note">
+         <span>
+          🔐
+         </span>
+         <div>
+          Utamakan sumber resmi. Hindari <em>software</em> bajakan supaya
+          aman, stabil, dan legal.
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="note" style="margin-top: 16px">
+       <span>
+        🤝
+       </span>
+       <div>
+        Intinya bukan siapa yang &ldquo;lebih manja&rdquo; atau &ldquo;lebih sabar&rdquo;.
+        Setiap platform punya kemudahan dan tantangannya. Pilih yang
+        paling cocok dengan pekerjaan dan kebiasaan Anda.
+       </div>
+      </div>
+     </div>
+    </article>
+    <aside class="card">
+     <div class="hd">
+      Contoh perintah pemasangan
+     </div>
+     <div class="bd">
+      <p>
+       <b>
+        Linux (Debian/Ubuntu):
+       </b>
+      </p>
+      <pre><code class="language-bash">sudo apt update
+sudo apt install paket-yang-dicari</code></pre>
+      <p>
+       <b>
+        Linux (Fedora):
+       </b>
+      </p>
+      <pre><code class="language-bash">sudo dnf install paket-yang-dicari</code></pre>
+      <p>
+       <b>
+        Windows (winget):
+       </b>
+      </p>
+      <pre><code class="language-bash">winget search nama-aplikasi
+winget install Nama.Paket.Resmi</code></pre>
+      <p>
+       <b>
+        Windows (Chocolatey):
+       </b>
+      </p>
+      <pre><code class="language-bash">choco install nama-aplikasi</code></pre>
+      <p class="muted">
+       Nama paket berbeda-beda. Selalu periksa dokumentasi resmi aplikasi
+       yang Anda butuhkan.
+      </p>
+     </div>
+    </aside>
+   </div>
+      <section class="card" style="margin-top: 24px">
+    <div class="hd">
+     Tips menjaga kenyamanan di kedua platform
+    </div>
+    <div class="bd">
+     <ul>
+      <li>
+       <b>
+        Sumber resmi:
+       </b>
+       unduh dari situs atau repositori tepercaya
+       untuk menghindari <em>malware</em>.
+      </li>
+      <li>
+       <b>
+        Cadangan:
+       </b>
+       buat <em>backup</em> sebelum perubahan besar; gunakan
+       <em>restore point</em> (Windows) atau <em>snapshot</em> (Linux/Btrfs).
+      </li>
+      <li>
+       <b>
+        Otomasi update:
+       </b>
+       aktifkan pembaruan berkala agar aman dan
+       stabil.
+      </li>
+      <li>
+       <b>
+        Catat lisensi:
+       </b>
+       simpan lisensi/akun aplikasi berbayar dan
+       catatan konfigurasi penting.
+      </li>
+     </ul>
+    </div>
+   </section>
+   <section class="card" style="margin-top: 24px">
+    <div class="hd">
+     Bagikan Artikel
+    </div>
+    <div class="bd">
+     <p class="muted">
+      Link berbagi:
+      <b>
+       https://frijal.pages.dev/artikel/windows-vs-linux-kebiasaan.html
+      </b>
+     </p>
+     <div class="share">
+      <a aria-label="Bagikan ke Facebook" class="btn-share" href="#" id="share-fb" rel="noreferrer">
+       <svg aria-hidden="true" class="ico" viewbox="0 0 24 24">
+        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078V12.07h3.047V9.412c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.49 0-1.953.926-1.953 1.875v2.262h3.328l-.532 3.492h-2.796V24C19.612 23.094 24 18.1 24 12.073z" fill="#1877F2">
+        </path>
+       </svg>
+       Facebook
+      </a>
+      <a aria-label="Bagikan ke X (Twitter)" class="btn-share" href="#" id="share-x" rel="noreferrer">
+       <svg class="ico" viewbox="0 0 24 24">
+        <path d="M18.244 2H21l-6.51 7.44L22.5 22h-6.91l-4.33-5.66L5.19 22H2.43l6.98-7.98L1.5 2h6.91l3.92 5.18L18.24 2z" fill="#fff">
+        </path>
+       </svg>
+       X
+      </a>
+      <a aria-label="Bagikan ke WhatsApp" class="btn-share" href="#" id="share-wa" rel="noreferrer">
+       <svg class="ico" viewbox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 0 11.993C0 5.373 5.373 0 11.995 0 18.617 0 24 5.373 24 11.993c0 6.62-5.383 11.993-12.005 11.993-2.051 0-3.975-.504-5.668-1.392L.057 24z" fill="#25D366">
+        </path>
+       </svg>
+       WhatsApp
+      </a>
+      <a aria-label="Bagikan ke Telegram" class="btn-share" href="#" id="share-tg" rel="noreferrer">
+       <svg class="ico" viewbox="0 0 24 24">
+        <path d="M9.999 15.2l-.4 5.6c.6 0 .9-.3 1.3-.6l3.1-2.9 6.4 4.7c1.2.7 2.1.3 2.4-1.1l4.3-20.1c.4-1.7-.6-2.4-1.8-2l-25 9.7c-1.7.7-1.7 1.6-.3 2l6.4 2 14.8-9.3c.7-.4 1.3-.2.8.3" fill="#26A5E4">
+        </path>
+       </svg>
+       Telegram
+      </a>
+      <button aria-label="Salin tautan artikel" class="btn-share" id="share-copy" type="button">
+       Salin Link
+      </button>
+     </div>
+     <div style="margin-top: 16px; color: var(--muted); font-size: 10px">
+      <span class="small-muted" id="current-url">
+      </span>
+     </div>
+    </div>
+   </section>
+  </div>
+  <script async crossorigin="anonymous" defer referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js">
+  </script>
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const CANONICAL_URL = document.querySelector(
+     'link[rel="canonical"]'
+    ).href;
+    const PAGE_TITLE = document.title;
+    const SHARE_TEXT =
+     'Windows vs Linux: beda kebiasaan pengguna (tanpa nyinyir)';
+
+    // --- 1. Lazy Loading & Lightbox ---
+    const setupLightbox = () => {
+     const lazyImages = document.querySelectorAll('img[data-src]');
+     if ('IntersectionObserver' in window) {
+      let observer = new IntersectionObserver(
+       (entries, observer) => {
+        entries.forEach((entry) => {
+         if (entry.isIntersecting) {
+          let img = entry.target;
+          img.src = img.getAttribute('data-src');
+          img.removeAttribute('data-src');
+          observer.unobserve(img);
+         }
+        });
+       }, {
+        rootMargin: '150px'
+       }
+      );
+      lazyImages.forEach((img) => observer.observe(img));
+     } else {
+      lazyImages.forEach((img) => {
+       img.src = img.getAttribute('data-src');
+       img.removeAttribute('data-src');
+      });
+     }
+
+     const lightbox = document.getElementById('lightbox');
+     const lbImg = document.getElementById('lb-img');
+     const lbClose = document.getElementById('lb-close');
+
+     document
+      .getElementById('gallery')
+      .addEventListener('click', function(e) {
+       const shot = e.target.closest('.shot');
+       if (shot) {
+        e.preventDefault();
+        lbImg.src = shot.getAttribute('href');
+        lbImg.alt =
+         shot.getAttribute('data-caption') ||
+         'Gambar dari galeri diperbesar';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+       }
+      });
+
+     const closeLB = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+     };
+     lbClose.addEventListener('click', closeLB);
+     lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLB();
+     });
+     window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+       closeLB();
+      }
+     });
+    };
+
+    // --- 2. Share Buttons & Copy Link ---
+    const setupSharing = () => {
+     const e = encodeURIComponent;
+     const urlMap = {
+      'share-fb': `https://www.facebook.com/sharer/sharer.php?u=${e(CANONICAL_URL)}`,
+      'share-x': `https://twitter.com/intent/tweet?url=${e(CANONICAL_URL)}&text=${e(SHARE_TEXT)}`,
+      'share-wa': `https://api.whatsapp.com/send?text=${e(SHARE_TEXT)}%20${e(CANONICAL_URL)}`,
+      'share-tg': `https://t.me/share/url?url=${e(CANONICAL_URL)}&text=${e(SHARE_TEXT)}`,
+     };
+
+     Object.entries(urlMap).forEach(([id, href]) => {
+      const el = document.getElementById(id);
+      if (el) el.href = href;
+     });
+
+     // Copy Link
+     const copyBtn = document.getElementById('share-copy');
+     if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+       try {
+        await navigator.clipboard.writeText(CANONICAL_URL);
+        copyBtn.textContent = 'Tersalin!';
+        setTimeout(() => (copyBtn.textContent = 'Salin Link'), 1400);
+       } catch (err) {
+        prompt('Gagal menyalin. Salin manual:', CANONICAL_URL);
+       }
+      });
+     }
+
+     // Web Share API fallback (for X button, if available)
+     const shareXButton = document.getElementById('share-x');
+     if (navigator.share && shareXButton) {
+      shareXButton.addEventListener('click', async (event) => {
+       event.preventDefault();
+       try {
+        await navigator.share({
+         title: PAGE_TITLE,
+         text: SHARE_TEXT,
+         url: CANONICAL_URL,
+        });
+       } catch (err) {
+        // Fallback to original href if user cancels share dialog
+        window.open(shareXButton.href, '_blank', 'noopener noreferrer');
+       }
+      });
+     }
+    };
+
+    // --- RUNTIME EXECUTION ---
+    setupLightbox();
+    setupSharing();
+
+    // Highlight.js
+    if (typeof hljs !== 'undefined') {
+     document
+      .querySelectorAll('pre code')
+      .forEach((block) => {
+       hljs.highlightElement(block);
+      });
+    }
+
+    // Update URL display
+    const currentUrlEl = document.getElementById('current-url');
+    if (currentUrlEl) {
+     currentUrlEl.textContent = CANONICAL_URL;
+    }
+   });
+  </script>
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+ </body>
+</html>

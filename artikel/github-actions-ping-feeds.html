@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workflow Otomatis Ping Sitemap & Feeds via GitHub Actions | f-Page</title>
+    <meta name="description" content="Panduan lengkap membuat workflow GitHub Actions untuk otomatis 'ping' sitemap.xml dan RSS feeds ke Google, Bing, dan Ping-o-Matic setiap hari atau saat ada perubahan.">
+    
+    <link rel="canonical" href="https://frijal.pages.dev/artikel/github-actions-ping-feeds.html" id="canonical-link">
+
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%232088FF' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
+
+    <meta property="og:title" content="Workflow Otomatis Ping Sitemap & Feeds via GitHub Actions | f-Page">
+    <meta property="og:description" content="Panduan lengkap membuat workflow GitHub Actions untuk otomatis 'ping' sitemap.xml dan RSS feeds ke Google, Bing, dan Ping-o-Matic.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frijal.pages.dev/artikel/github-actions-ping-feeds.html">
+    <meta property="og:site_name" content="f-Page">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4lNIxMWMP__ww0ZixJ1USQo3JZxk__3Jfjf0CjIC3gV-zKgmFIRM8qUFiMQ4m2CO3DJ-iXqS7ePKv7Sv96NxsMz1Hv-oNxGrvw8Zo6R9kLEjpKKbw2V3YOwEkKhKz1nwRNG5BCOouq6GN1P7QTEzwpJo4rY0F5Y4oDLKgkilDoiQwIBVYOSfvh2YP90U/s1600/Screenshot%20From%202025-10-23%2014-08-19.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Log sukses dari workflow GitHub Actions untuk ping sitemap dan feeds">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Workflow Otomatis Ping Sitemap & Feeds via GitHub Actions | f-Page">
+    <meta name="twitter:description" content="Panduan lengkap membuat workflow GitHub Actions untuk otomatis 'ping' sitemap.xml dan RSS feeds ke Google, Bing, dan Ping-o-Matic.">
+    <meta name="twitter:site" content="@frijal">
+    <meta name="twitter:creator" content="@frijal">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4lNIxMWMP__ww0ZixJ1USQo3JZxk__3Jfjf0CjIC3gV-zKgmFIRM8qUFiMQ4m2CO3DJ-iXqS7ePKv7Sv96NxsMz1Hv-oNxGrvw8Zo6R9kLEjpKKbw2V3YOwEkKhKz1nwRNG5BCOouq6GN1P7QTEzwpJo4rY0F5Y4oDLKgkilDoiQwIBVYOSfvh2YP90U/s1600/Screenshot%20From%202025-10-23%2014-08-19.png">
+    <meta name="twitter:image:alt" content="Log sukses dari workflow GitHub Actions untuk ping sitemap dan feeds">
+    
+    <style>
+        :root {
+            --bg-color: #f9fafb; /* bg-gray-50 */
+            --text-color: #111827; /* bg-gray-900 */
+            --card-bg: #ffffff;
+            --primary-color: #2563eb; /* blue-600 */
+            --border-color: #e5e7eb; /* gray-200 */
+            --max-width: 960px; 
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column; 
+            font-size: 17px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header.main-header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header.main-header h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 0.5rem; 
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        header.main-header p { color: #6b7280; /* gray-500 */ }
+
+        /* Konten Utama */
+        main.content {
+            flex-grow: 1; /* Mendorong footer ke bawah */
+            padding: 3rem 0;
+        }
+        
+        article h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        article h3 {
+             font-size: 1.4rem;
+             font-weight: 600;
+             margin-top: 2rem;
+             margin-bottom: 1rem;
+        }
+        article p, article ul {
+            font-size: 1.1rem;
+            margin-bottom: 1.5em;
+        }
+        article code {
+            background-color: #e5e7eb;
+            color: #be123c; /* rose-700 */
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: "Consolas", "Menlo", monospace;
+            font-size: 0.9em;
+        }
+
+        /* Gambar */
+        .main-image {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 2.5rem auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Code Block */
+        .code-block-wrapper {
+            background-color: #1f2937; /* gray-800 */
+            color: #d1d5db; /* gray-300 */
+            border-radius: 8px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #374151; /* gray-700 */
+            font-size: 0.9rem;
+        }
+        .copy-code-btn {
+            background-color: #4b5563; /* gray-600 */
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .copy-code-btn:hover { background-color: #6b7280; }
+        .code-block-wrapper pre {
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        .code-block-wrapper pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer.main-footer {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #4b5563; /* gray-600 */
+            padding: 3rem 0;
+            text-align: center;
+        }
+        footer h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; color: #1f2937; }
+        .social-share { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .social-share-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 600; text-decoration: none; color: #fff;
+            border: none; padding: 10px 18px; border-radius: 6px;
+            cursor: pointer; transition: opacity 0.3s ease;
+        }
+        .social-share-btn:hover { opacity: 0.85; }
+        .social-share-btn svg { width: 18px; height: 18px; margin-right: 8px; fill: currentColor; }
+        #share-fb { background-color: #1877F2; }
+        #share-x { background-color: #000000; }
+        #share-wa { background-color: #25D366; }
+        #copy-link { background-color: #6b7280; }
+        .footer-copy { margin-top: 2rem; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            header.main-header h1 { font-size: 1.8rem; }
+            main.content { padding: 2rem 0; }
+            article h2 { font-size: 1.5rem; }
+            article p, article ul { font-size: 1rem; }
+        }
+    </style>
+<meta itemprop="image" content="https://frijal.pages.dev/img/github-actions-ping-feeds.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+    <meta property="article:published_time" content="2025-10-23T07:03:49.523+00:00">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1>Workflow Otomatis: Ping Sitemap & Feeds via GitHub Actions</h1>
+<div id="iposbrowser"></div>
+            <p>Beri tahu Google & Bing setiap kali websitemu update, biar makin cepat diindeks!</p>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <article>
+                <p>Setelah situs kita di-deploy, langkah selanjutnya yang tidak kalah penting adalah memberitahu *search engine* seperti Google dan Bing bahwa ada konten baru. Tujuannya? Tentu saja agar mereka lebih cepat datang dan meng-indeks halaman baru kita.</p>
+                <p>Daripada melakukannya manual, kita bisa membuat proses ini sepenuhnya otomatis menggunakan **GitHub Actions**. Ini adalah workflow yang sudah disempurnakan untuk melakukan "ping" ke berbagai layanan setiap hari.</p>
+                
+                <h2>Kode Workflow Lengkap</h2>
+                <p>Ini adalah kode lengkap yang bisa kamu simpan di repositori GitHub kamu, misalnya di file <code>.github/workflows/ping-feeds.yml</code>.</p>
+
+                <div class="code-block-wrapper">
+                    <div class="code-block-header">
+                        <span>📄 .github/workflows/ping-feeds.yml</span>
+                        <button class="copy-code-btn" id="copy-code">Salin Kode</button>
+                    </div>
+                    <pre id="code-to-copy"><code>
+name: Ping Feeds & Sitemap
+
+on:
+  workflow_dispatch:    # Bisa dijalankan manual
+  schedule:
+    - cron: "0 6 * * *"    # Otomatis tiap hari jam 06:00 UTC
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔔 Ping Feeds ke Ping-o-Matic
+        run: |
+          BASE_URL="https://frijal.pages.dev"
+          BLOG_TITLE="Frijal Pages"
+          FEEDS=(
+            "feed-catatan-and-opini-sosial.xml"
+            "feed-kuliner-gaya-hidup-and-kesehatan.xml"
+            "feed-lainnya.xml"
+            "feed-linux-and-open-source.xml"
+            "feed-multimedia-and-editing.xml"
+            "feed-sejarah-and-religi.xml"
+            "feed-teknologi-web-ai-and-umum.xml"
+            "rss.xml"
+          )
+          echo "--- Pinging Ping-o-Matic for ${#FEEDS[@]} feeds ---"
+          for feed_file in "${FEEDS[@]}"; do
+            FEED_URL="$BASE_URL/$feed_file"
+            echo "Pinging: $FEED_URL"
+            curl -s -o /dev/null -X POST \
+              --data-urlencode "title=$BLOG_TITLE" \
+              --data-urlencode "blogurl=$BASE_URL/" \
+              --data-urlencode "rssurl=$FEED_URL" \
+              https://pingomatic.com/ping/
+          done
+          echo "--- Ping-o-Matic Pings Sent ---"
+
+      - name: 📍 Ping Sitemap & Main RSS ke Google & Bing
+        run: |
+          BASE_URL="https://frijal.pages.dev"
+          SITEMAP_URL="$BASE_URL/sitemap.xml"
+          RSS_URL="$BASE_URL/rss.xml"
+
+          echo "--- Pinging Google ---"
+          echo "Pinging Sitemap: $SITEMAP_URL"
+          curl -s "https://www.google.com/ping?sitemap=$SITEMAP_URL"
+          echo "Pinging RSS Feed: $RSS_URL"
+          curl -s "https://www.google.com/ping?sitemap=$RSS_URL"
+          
+          echo "--- Pinging Bing (+ Yandex) ---"
+          echo "Pinging Sitemap: $SITEMAP_URL"
+          curl -s "https://www.bing.com/ping?sitemap=$SITEMAP_URL"
+          echo "Pinging RSS Feed: $RSS_URL"
+          curl -s "https://www.bing.com/ping?sitemap=$RSS_URL"
+          
+          echo "--- Google & Bing Pings Sent ---"
+
+</code></pre>
+                </div>
+                
+                <h2>Bedah Workflow Baris per Baris</h2>
+                <p>Mari kita pahami setiap bagian dari workflow di atas.</p>
+
+                <h3>1. Pemicu (Triggers)</h3>
+                <p>Bagian <code>on:</code> menentukan kapan workflow ini akan berjalan.</p>
+                <ul>
+                    <li><code>workflow_dispatch:</code> Ini memungkinkan kita menjalankan workflow secara manual dari tab "Actions" di GitHub. Berguna untuk testing atau jika kita butuh melakukan ping di luar jadwal.</li>
+                    <li><code>schedule: - cron: "0 6 * * *"</code> Ini adalah pemicu utamanya. Workflow akan berjalan **otomatis setiap hari pada jam 06:00 UTC**. Kamu bisa sesuaikan waktunya sesuai kebutuhan.</li>
+                </ul>
+
+                <h3>2. Langkah 1: Ping ke Ping-o-Matic 🔔</h3>
+                <p>Langkah pertama ini bertujuan untuk jangkauan yang lebih luas. **Ping-o-Matic** adalah layanan gratis yang akan meneruskan "ping" kita ke berbagai layanan aggregator feed lainnya, bukan hanya search engine besar.</p>
+                <ul>
+                    <li>Skrip ini membuat daftar semua file feed per kategori (<code>FEEDS</code>).</li>
+                    <li>Kemudian ia melakukan *looping*, mengirimkan *request* <code>POST</code> ke Ping-o-Matic untuk setiap feed.</li>
+                    <li>Kita menggunakan <code>curl</code> untuk mengirim data seperti judul blog dan URL feed yang sedang diperbarui.</li>
+                </ul>
+                
+                <h3>3. Langkah 2: Ping ke Google & Bing 📍</h3>
+                <p>Ini adalah langkah yang paling penting. Kita memberitahu langsung dua search engine terbesar bahwa situs kita punya pembaruan.</p>
+                <ul>
+                    <li>Untuk efisiensi, kita hanya perlu me-ping file utama, yaitu <code>sitemap.xml</code> (yang berisi semua link halaman) dan <code>rss.xml</code> (feed utama). Google dan Bing cukup pintar untuk mengikuti link dari sana.</li>
+                    <li>Lagi-lagi kita menggunakan <code>curl -s</code> untuk mengirim *request* ke URL ping milik Google dan Bing, dengan parameter URL sitemap kita.</li>
+                </ul>
+
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4lNIxMWMP__ww0ZixJ1USQo3JZxk__3Jfjf0CjIC3gV-zKgmFIRM8qUFiMQ4m2CO3DJ-iXqS7ePKv7Sv96NxsMz1Hv-oNxGrvw8Zo6R9kLEjpKKbw2V3YOwEkKhKz1nwRNG5BCOouq6GN1P7QTEzwpJo4rY0F5Y4oDLKgkilDoiQwIBVYOSfvh2YP90U/s1600/Screenshot%20From%202025-10-23%2014-08-19.png" alt="Log sukses dari workflow GitHub Actions untuk ping sitemap dan feeds" class="main-image">
+                <p>Gambar di atas menunjukkan log dari GitHub Actions saat workflow ini berhasil dijalankan. Terlihat jelas setiap langkah dan URL mana saja yang berhasil di-"ping". Semuanya berjalan mulus dan otomatis!</p>
+
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <h3>Bagikan Artikel Ini</h3>
+            <div class="social-share">
+                <button type="button" id="share-fb" class="social-share-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.36 9.5 5.32v2.14H6.1v4h3.4v12h4.5V11.46h3.97l.6-4z"/></svg>
+                    Facebook
+                </button>
+                <button type="button" id="share-x" class="social-share-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X
+                </button>
+                <button type="button" id="share-wa" class="social-share-btn">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.0-5.825 4.72-10.545 10.545-10.545 5.825 0 10.545 4.72 10.545 10.545s-4.72 10.545-10.545 10.545c-2.006 0-3.957-.55-5.687-1.588L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 4.465 0 8.1-3.635 8.1-8.1 0-4.465-3.635-8.1-8.1-8.1-4.465 0-8.1 3.635-8.1 8.1 0 2.136.805 4.12 2.192 5.66l-1.4 5.095z"/></svg>
+                    WhatsApp
+                </button>
+                <button type="button" id="copy-link" class="social-share-btn">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    Salin Link
+                </button>
+            </div>
+            <p class="footer-copy">
+                &copy; <span id="current-year"></span> f-Page. Hak Cipta Dilindungi.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // --- Logika Salin Kode ---
+            const copyBtn = document.getElementById('copy-code');
+            const codeToCopy = document.getElementById('code-to-copy');
+            if (copyBtn && codeToCopy) {
+                copyBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(codeToCopy.textContent.trim());
+                        copyBtn.textContent = 'Tersalin!';
+                        setTimeout(() => { copyBtn.textContent = 'Salin Kode'; }, 2000);
+                    } catch (err) {
+                        console.error('Gagal menyalin kode:', err);
+                        alert('Gagal menyalin kode.');
+                    }
+                });
+            }
+
+            // --- Logika Share ---
+            const canonicalLink = document.getElementById('canonical-link');
+            const shareUrl = canonicalLink ? canonicalLink.href : window.location.href;
+            const shareTitle = document.title;
+            function popup(url) { window.open(url, "_blank", "noopener,noreferrer,width=600,height=500"); }
+            document.getElementById("share-fb").addEventListener('click', () => popup("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl)));
+            document.getElementById("share-x").addEventListener('click', () => popup("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareTitle) + "&url=" + encodeURIComponent(shareUrl)));
+            document.getElementById("share-wa").addEventListener('click', () => window.open("https://wa.me/?text=" + encodeURIComponent(shareTitle + " " + shareUrl), '_blank', 'noopener,noreferrer'));
+            
+            const copyLinkBtn = document.getElementById("copy-link");
+            if (copyLinkBtn) {
+                const originalContent = copyLinkBtn.innerHTML;
+                copyLinkBtn.addEventListener('click', async function() {
+                    try {
+                        await navigator.clipboard.writeText(shareUrl);
+                        this.innerHTML = '<svg class="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Tersalin!';
+                        setTimeout(() => { this.innerHTML = originalContent; }, 2000);
+                    } catch (err) {
+                        prompt("Gagal menyalin. Salin URL ini:", shareUrl);
+                    }
+                });
+            }
+        });
+    </script>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+</body>
+</html>

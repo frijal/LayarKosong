@@ -1,0 +1,42 @@
+name: 📝 Buat Daftar Judul Artikel
+
+on:
+  workflow_dispatch: # Izinkan untuk dijalankan secara manual dari tab Actions
+
+permissions:
+  contents: write # Beri izin untuk melakuukan commit ke repositori
+
+jobs:
+  generate_title_list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Buat daftar judul dari artikel.json
+        run: |
+          # Pastikan jq terinstal (umumnya sudah ada, tapi ini untuk keamanan)
+          sudo apt-get update && sudo apt-get install -y jq
+          
+          # Buat direktori 'mini' jika belum ada
+          mkdir -p mini
+          
+          # Gunakan jq untuk mengekstrak judul (arr[0]) dari setiap artikel
+          # '.[] | .[] | .[0]' artinya:
+          # .[]       -> Ambil semua value dari objek utama (yaitu array artikel per kategori)
+          # | .[]     -> Dari setiap array tersebut, ambil semua elemennya (yaitu setiap artikel)
+          # | .[0]    -> Dari setiap artikel, ambil elemen pertama (indeks 0), yaitu judul
+          # -r        -> Hasilkan output sebagai teks mentah (tanpa tanda kutip)
+          jq -r '.[] | .[] | .[0]' artikel.json > mini/daftar-judul.txt
+          
+          echo "✅ File mini/daftar-judul.txt berhasil dibuat."
+          echo "📝 Isi file:"
+          cat mini/daftar-judul.txt
+
+      - name: Commit file daftar judul
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: perbarui daftar judul artikel (daftar-judul.txt)"
+          file_pattern: mini/daftar-judul.txt
+          skip_empty_commit: true

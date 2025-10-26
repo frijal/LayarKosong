@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sitemap - Daftar Isi Artikel</title>
+
+  <meta name="description" content="Jelajahi semua artikel yang pernah dipublikasikan. Temukan tulisan berdasarkan kategori, gunakan pencarian, dan lacak artikel yang sudah dibaca." />
+  <link rel="canonical" href="https://frijal.pages.dev/sitemap.html" />
+  <link rel="icon" href="data:,☢️" />
+  <meta property="og:title" content="Sitemap - Daftar Isi Dinamis" />
+  <meta property="og:description" content="Jelajahi semua artikel yang pernah dipublikasikan." />
+  <meta property="og:image" content="https://frijal.pages.dev/thumbnail.webp" />
+  <meta property="og:url" content="https://frijal.pages.dev/sitemap.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="/ext/sitemap.css" />
+</head>
+<body>
+  <div id="marquee-tooltip"></div>
+  <div id="category-tooltip"></div>
+
+  <div class="sticky-controls">
+    <div class="sticky-controls-content">
+      <div class="title-and-search">
+        <div class="title-block">
+          <h1>Daftar Isi Artikel</h1>
+          <p id="totalCount">memuat statistik...</p>
+        </div>
+        <div id="search-wrapper">
+          <input type="text" id="search" placeholder="Cari artikel..." />
+          <button id="clearSearch" title="Hapus pencarian">❌</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="switch-label">
+          <span>🌙</span>
+          <label class="switch">
+            <input type="checkbox" id="darkSwitch" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="iposbrowser"></div>
+
+        <div class="action-buttons">
+
+          <a href="https://frijal.pages.dev"
+             id="home-link"
+             title="Home"
+             aria-label="Home"
+             style="perspective: 300px;">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+              <path d="M3 11L12 2l9 9" />
+
+              <path d="M5 11v10h14V11" />
+
+              <g class="door">
+                <rect x="10" y="13" width="4" height="8" rx="0.5" ry="0.5" fill="currentColor" stroke="none" />
+                <circle cx="12.5" cy="17.5" r="0.5" fill="#fff" stroke="none" />
+              </g>
+            </svg>
+          </a>
+
+          <a href="https://frijal.pages.dev/feed.html"
+             id="feed-link"
+             title="Langganan via RSS Feed"
+             aria-label="Langganan via RSS Feed">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24"
+                 viewBox="0 0 24 24">
+              <circle class="pulse pulse1" cx="6" cy="18" r="4" />
+              <circle class="pulse pulse2" cx="6" cy="18" r="4" />
+              <circle class="rss-dot" cx="6" cy="18" r="2.5" />
+              <path class="rss-arc small" d="M6 13a5 5 0 0 1 5 5" />
+              <path class="rss-arc large" d="M6 8a10 10 0 0 1 10 10" />
+            </svg>
+          </a>
+
+          <button id="tocToggle">buka semua</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="marquee">
+    <div id="marquee-content">memuat artikel...</div>
+  </div>
+
+  <div id="toc">
+    <p>memuat daftar isi...</p>
+  </div>
+
+  <script src="/ext/sitemap.js"></script> 
+  <script defer src="/ext/iposbrowser.js"></script>  
+
+</body>
+</html>

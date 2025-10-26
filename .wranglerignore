@@ -1,0 +1,27 @@
+# Sistem & Git
+.git
+.github/
+.gitignore
+.wranglerignore
+wrangler.toml
+
+# Node & dependency
+node_modules/
+package.json
+package-lock.json
+
+# GitHub Pages khusus
+.nojekyll
+
+# Dokumentasi & lisensi
+README.md
+LICENSE
+isi-repo.txt
+
+# Skrip internal
+replace-meta-images.sh
+
+# Folder eksperimen/draft
+artikelx/
+mini/
+sementara/

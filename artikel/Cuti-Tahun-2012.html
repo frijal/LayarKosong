@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catatan Perjalanan Cuti Tahun 2012</title>
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/1/14/Streaming_icon.png" type="image/png">
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family: Arial, sans-serif; color:#fff; background:#000; scroll-behavior: smooth; overflow-x:hidden;}
+main {width:100%;}
+
+/* Section fullscreen dengan proporsional */
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+section figure {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* memastikan proporsional, tidak terpotong */
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+section img:hover {
+  transform: scale(1.02);
+}
+
+figcaption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Kontainer utama dengan margin untuk sidemenu */
+body {
+  display: flex;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Konten utama (section) */
+main {
+  flex: 1; /* mengisi sisa lebar layar */
+  padding: 1rem;
+}
+
+/* Sidemenu kanan */
+#sideMenu {
+  width: 200px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+/* Tombol menu */
+#sideMenu button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+}
+
+#sideMenu button:hover {
+  background: #444;
+}
+
+/* Responsive mobile: side menu di atas konten, scrollable horizontal */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sideMenu {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.25rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+}
+
+/* Modal styles */
+#imgModal {
+  display:none; position:fixed; z-index:2000; top:0; left:0;
+  width:100%; height:100%; background: rgba(0,0,0,0.9);
+  justify-content:center; align-items:center; flex-direction: column;
+}
+/* Modal fullscreen proporsional */
+#imgModal img {
+  max-width: 95%;
+  max-height: 90%;
+  object-fit: contain; /* proporsional */
+  margin: auto;
+  display: block;
+}
+#imgModal span.close {position:absolute; top:20px; right:30px; color:#fff; font-size:3rem; font-weight:bold; cursor:pointer;}
+#imgModal button.nav {position:absolute; top:50%; transform:translateY(-50%); background: rgba(255,255,255,0.3); border:none; color:#fff; font-size:2rem; padding:1rem; cursor:pointer;}
+#imgModal button#prev {left:20px;}
+#imgModal button#next {right:20px;}
+#imgModal button.nav:hover {background: rgba(255,255,255,0.6);}
+
+</style>
+    <meta property="article:published_time" content="2025-10-18T00:01:09.576+00:00">
+</head>
+<body>
+
+<main>
+
+<section id="section1">
+<p>Artikel ini sekedar catatan perjalanan cuti tahunan saya di penghujung tahun 2012. Yang dimulai tanggal 18 Desember sampai 25 Desember. Dimulai dengan keberangkatan pada sore hari melalui Bandara Sepinggan Balikpapan.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiW1aHLmti_J5Ex2F1b03eq0si5h-8l5yRtI1R6c9G1JURYwyAQWnEFMdEEapYJtqa-j8WbL-9WG6McBjvSeQR-7-Hiy5eWmnSVTMaiNd2wHQi8qs_U9M4dMG6iw4GxBXjbNHcpADldeIjy/s1600/IMG_20121218_180722.jpg" alt="Ngopi sejenak di Sepinggan Airport sebelum berangkat" loading="lazy" onclick="openModal(0)">
+    <figcaption>Ngopi sejenak di Sepinggan Airport sebelum berangkat...</figcaption>
+  </figure>
+  </section>
+
+<section id="section2">
+<p>Jam 17:40 WITA, Lion Air berangkat sesuai jadwal. (Tumben)</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhihpsIS5Ju7KzfKVuEXVC0FePuTM8sCmZbyFFERInyQc568_sBm6qLU0FxV-zrBDgtYWvjwFbpEYpmd7FS5Cx75NLfoWsI-E_WXDcS-cAnkSOYvipSJL1_NNQkspyUGL1xA6Y2bXGGtv7V/s1600/IMG_20121218_182904.jpg" alt="Penerbangan Lion Air jam 17:40 WITA" loading="lazy" onclick="openModal(1)">
+  </figure>
+  </section>
+
+<section id="section3">
+  <p>Sampai di Jogja menginap semalam, kemudian melanjutkan perjalanan kembali ke Timur menuju Cepu.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2P6NJoSoyC06LIIEL4V_H2wWQqzKrRRWMj85iHkpamsaKg_10SFYp0ZGfoM7cGYdFIFY45jEiCDdeujgVY8ua5GG_Hux7BIwsj3l9oclMBKfyfM0neO2TERqg32NUR4bKflyaf37Pp_EQ/s1600/IMG_20121220_181943.jpg" alt="Rute Jogja - Solo, Bukan Bis PATAS" loading="lazy" onclick="openModal(2)">
+    <figcaption>Bukan Bis PATAS, rute Jogja - Solo</figcaption>
+  </figure>
+</section>
+
+<section id="section4">
+  <p>Sampai di Solo, langsung berganti Bis lagi untuk meneruskan ke Ngawi.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFJrpgsoFsZhwk0ZscMXYM0CGgi0zvfP7Tp7WhBQXP0mz-zXGj0VXNZehvRsYBDSFe2s9ucnSc8IuBn5M6nscThibaLRRujojieftrqEOwvzGpm9lQNRzuDjc-htI2yW1Kwxc7155H7ZH6/s1600/IMG_20121220_200242.jpg" alt="Bis PATAS Sumber Selamat jurusan Solo - Ngawi" loading="lazy" onclick="openModal(3)">
+    <figcaption>Lumayan, Bis PATAS Sumber Selamat jurusan Solo - Ngawi</figcaption>
+  </figure>
+</section>
+
+<section id="section5">
+  <p>Sekira jam 23, sampai di Terminal Lawas Ngawi, tentunya seorang CoffeeHolic seperti saya ini harus ngopi... ;)</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim_GThs5oHSgPM2aJeeVv-jul6mCBxWIFKw_t5NYNb0cHdIjdp8TU1k18BSEumz712cJGZ4D6CqmB_av9zoCHe99Jc_4IwyUPHUk3Iq4cCSs6_2d08RBr9T3pWH11ZiouIVFhVX1sOZQzh/s1600/IMG_20121220_222204.jpg" alt="Angkringan Prapatan Terminal Bis Lawas, Ngawi" loading="lazy" onclick="openModal(4)">
+    <figcaption>Angkringan Prapatan Terminal Bis Lawas, Ngawi</figcaption>
+  </figure>
+</section>
+
+<section id="section6">
+  <p>Melanjutkan perjalanan ke Cepu, segera setelah hari berganti langsung ngopi lagi... ;)</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgWvU00JW3Xy1OyeYrztfnYzxMUVQFkfmGpT3PXg6NE1VLBIhYkosISgkpBODaeRaUj5dn2M7nGpII1tqiQN91OXw1o5ATGCygoCPMsylB6h9z57__ginrZUsLjK0gk-XGX8YnvOJjiDos/s1600/IMG_20121221_155808.jpg" alt="Ngopi bersama Dua Orang Bolo Kurowo, teman STM Migas Cepu" loading="lazy" onclick="openModal(5)">
+    <figcaption>Ngopi bersama Dua Orang Bolo Kurowo, teman STM Migas Cepu.</figcaption>
+  </figure>
+</section>
+
+<section id="section7">
+  <p>Hari kedua berada di Cepu, langsung diberi hadiah hujan deras...</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJeKz7QEadU0uCiMceMGjaXD8MUY960MyUla-hW6CIZkcTxaZSlYSNCGOBdVcIBgsyN-jGQakZ_pvI4Yb9RP2ECKQQw-9bl8492dJS16UkEAT4HaWo8PEWjYtqZgbFc1UalNo5_B-7Nga1/s1600/IMG_20121223_165559.jpg" alt="Hujan Deras di Cepu" loading="lazy" onclick="openModal(6)">
+    <figcaption>Hujan Deras di Cepu</figcaption>
+  </figure>
+</section>
+
+<section id="section8">
+  <p>Nah, bagian ini yang seru! Dan hadiah berikutnya adalah Hidangan kesukaan saya... (ndeso)</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmKRSQ1d5itfMqBvTg34z2hyNQ8kqDmsm3qvEsuf_4hz-pkOVdlbQDp1dzhcfKqcErA3by21tPtINRgD-3wHX5snPsyURJKhaHoNB_ncKmJKH6jrr1YP-T-lkzbfQMZXmdkbquFQXphLz3/s1600/IMG_20121224_073502.jpg" alt="Sego Pecel yang selalu dibungkus Godong Jati" loading="lazy" onclick="openModal(7)">
+    <figcaption>Sego Pecel yang selalu dibungkus Godong Jati... (joss!)</figcaption>
+  </figure>
+</section>
+
+<section id="section9">
+  <p>Untungnya saya sempat mengambil gambar dengan mode Panorama, melalui kamera Ponsel:</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjizkma5b7uz0hw1sBBNDVOTfmJVdYPC3_Ki5vBRrdKFWzh55ZssAKQ2JlUNBsrTgPTStQaz8X7z6LYCVfcnWw9bzYOw-bC1fymqlNk5t-Uq2VoRtU-uOkUEnF1KFvUnSN1EFw-i4G3FhWd/s1600/PANO_20121224_082951936.jpg" alt="Jalan Kiri adalah sisi Timur, Jalan Kanan adalah sisi Barat" loading="lazy" onclick="openModal(8)">
+    <figcaption>Jalan Kiri adalah sisi Timur, Jalan Kanan adalah sisi Barat</figcaption>
+  </figure>
+</section>
+
+<section id="section10">
+  <p>Karena jadwal pulang saya adalah tanggal 25 Desember via International Airport Juanda Surabaya, tentunya harus menuju lebih ke timur. Tanggal 23 Desember, saya berkesempatan chat dengan rekan Pengembang BlankOn yang ada di Gresik, diantaranya Pak Azis WS, Mas Kokabiel, serta Pak Aftian yang akhirnya mengijinkan saya untuk silaturahim di Gresik. Perjalanan ke Timur dimulai lagi dari Cepu.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSX8LhCcVtP40ynTi6npIx1mL0hk7U2q8jx7N5CLCVGDcELJqoEogYk9UwIkqUYHrIJY9gZUDgV-83oW0ip_w3MzQY5s-KRCq8FcaGTswBjRB4YtBVEyZvsV9QBYoSvMOxqSu1OaoI5M0L/s1600/IMG_20121224_132915.jpg" alt="Sampai di Pasar Babat pertigaan ke Jombang - Tuban - Lamongan" loading="lazy" onclick="openModal(9)">
+    <figcaption>Sampai di Pasar Babat pertigaan ke Jombang - Tuban - Lamongan</figcaption>
+  </figure>
+</section>
+
+<section id="section11">
+  <p>Di Kota Lamongan hujan deras...</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJs84GLoBUWlrrSHEaGpFySCtmBE5PowfQZzB5PUt8rXM2rOUiAzYlc4nttRNdxvFsoPBkeKVuTZL27fVBlFq7PqyyG06tnnx24k7R19qW91MlHwkiqDD6rZB-LeOekspq1H7BdEO51SOw/s1600/IMG_20121224_135111.jpg" alt="Bis yang saya tumpangi Balapan lawan Kereta Api" loading="lazy" onclick="openModal(10)">
+    <figcaption>Bis yang saya tumpangi Balapan lawan Kereta Api</figcaption>
+  </figure>
+</section>
+
+<section id="section12">
+  <p>Akhirnya sampai di wilayah Kecamatan Duduk Sampeyan, seperti yang instruksikan oleh Pak Azis WS.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVOOErQzaxG3mOJL_nrtaCIBmTVIKd90_MUtjUS6p6TYX4HdS5Mt_FGZC3aNKPHEhKltxH5uYi-EBNMlDhOoJVo3LoGNjQPRDvz8u1Mypz2QohMC9-35LxPJG-txNpkqMLRby7kZiPiBr1/s1600/IMG_20121224_142339.jpg" alt="Muacete Puool..." loading="lazy" onclick="openModal(11)">
+    <figcaption>Muacete Puool...</figcaption>
+  </figure>
+</section>
+
+<section id="section13">
+  <p>Sampai di rumahnya Pak Azis WS, langsung diberi hidangan Khas Gresik.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIs76galmJX7fSfneTwcDhpoXuDizt5pyCLHbN5tvySvfc3ikWmd0suEvwVV6w_mL8TRwoiOg90PrAQBENiaGZ80bUxfzC5Ah8pa9bzYib6dm8eUnm0M91v7TqgVQgSVSHdNZvxnP2cYX6/s1600/IMG_20121224_144548.jpg" alt="Kopi Hitam Mantap dan Kue Ikan" loading="lazy" onclick="openModal(12)">
+    <figcaption>Kopi Hitam Mantap... ;) Serta Kue Ikan. (yang bunder-bunder)</figcaption>
+  </figure>
+</section>
+
+<section id="section14">
+  <p>Setelah hari berganti malam, saya langsung diajak untuk dinner bareng dengan dedengkot BlankOn Gresik.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCKNQY_VNj8CoGbMfrOavlsbz3t7mE8D40w4ewQI16wDzYpXOm7uECyYLVsUx94gdcdYzZReaIJYpdY7Sw9SW5XNHdRJbABLhFN9LlzlJfkup0M50IbEAPdu3_fvgKqbWvpI0Sc1NE8txh/s1600/IMG_20121224_194719.jpg" alt="Dinner Hidangan Bebek Goreng di Warung Pasundan 1, Menganti" loading="lazy" onclick="openModal(13)">
+    <figcaption>Dinner Hidangan Bebek Goreng di Warung Pasundan 1, Menganti</figcaption>
+  </figure>
+</section>
+
+<section id="section15">
+  <p>Dilanjutkan dengan ngopi di Padepokan Icik-Icik Amira.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiw5mf4GrOSsG9b98X9ldpjGm8OHpcXwA6zHAT5HAlxTcVEosVIjF80MxqFpw6ictqELZujWxsR8h0KadPWy0wqknSktZnYrjN3pmY1sV-qk4poJRBMq0Yqf5IQiTjK8De2rGmP-aRt2fRL/s1600/419395_4505966725253_1669617194_n-1.jpg" alt="Padepokan Icik-Icik Amira" loading="lazy" onclick="openModal(14)">
+    <figcaption>Padepokan Icik-Icik Amira</figcaption>
+  </figure>
+</section>
+
+<section id="section16">
+  <p>Pulangnya masih sempet nggowo Jaket BlankOn.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiv-mdnCNzLZ4SQt2CyKcZ8k20TEqc1G-f0syHCg9gPKXAUcsVDQVHJ1NJHmbz063jzg-lJN-VUtU9kX44cEpCq11IqPBxQFpxpGHv9ivDI6rhbRxhxJirmNWoiMS1V9hS-EiaLsKFpcQhc/s1600/547653_4505966205240_335012988_n-1.jpg" alt="Bungkusan Jaket BlankOn" loading="lazy" onclick="openModal(15)">
+    <figcaption>Bungkusan Jaket BlankOn</figcaption>
+  </figure>
+</section>
+
+<section id="section17">
+  <p>Tepat tanggal 25 Desember, saya berangkat dari Kecamatan Duduk Sampeyan di Gresik dengan tujuan Bandara Juanda Surabaya. Transit di Terminal Bis Tambak Osowilangun, untuk berganti Bis Lagi menuju Terminal Bungurasih.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCRoO4Zo9E_r8XYHCZoUQWpGmjk0-KnX2R-6xyfQSQ_YgdA82JlcrtTNbwV9GbUm-RP2k8eaFTW8l5ILWEfvFjEwA2OwHnrmVykvOOWEDcgOWCMZtOC1A5DH6xuP-Ek_9rhJeCOz1fet1x/s1600/IMG_20121225_101647.jpg" alt="Damri Tambak Osowilangun" loading="lazy" onclick="openModal(16)">
+    <figcaption>Damri Tambak Osowilangun</figcaption>
+  </figure>
+</section>
+
+<section id="section18">
+  <p>Lalu dilanjutkan lagi dengan Shuttle Bus Damri yang khusus menuju Bandara Juanda.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1tQnC7o2MvYKK3Y3pPXQjHbFVoW5u23IYz_GgEwpWNJYDZ3Dqi0R9AULWt_YIb_jT5Jvqp5BHNanFwaW8f1zycRScIKV-ua8m6evDFfAjlVIxEodf3HDRfEEFjUlgiEwOjniEFOHVTSAm/s1600/IMG_20121225_112009.jpg" alt="Shuttle Bus Terminal Bungurasih - Bandara Juanda" loading="lazy" onclick="openModal(17)">
+    <figcaption>Shuttle Bus Terminal Bungurasih - Bandara Juanda</figcaption>
+  </figure>
+</section>
+
+<section id="section19">
+  <p>Karena berangkat pagi hari sekitar jam 10, saya bisa sampai di Bandara Juanda sekira jam 13 siang.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhDWKfXx8WUVtB7Qjf0cYDN7vex3Nr2WcwBkDx_aUvz4N1MjZNvn86cmf4ao84T1yFw0PXkQIZpIDcyOJDH1VbWyFekZv8Wn-yc9tJohXJk7VLvnjlhE-vkTiXn1VEloBxi_Gnu_Y3xVBe1/s1600/FB_IMG_13564124456969394.jpg" alt="Board Kuning Keberangkatan Domestik" loading="lazy" onclick="openModal(18)">
+    <figcaption>Langsung Take picture Board Kuning, Keberangkatan Domestik. (untuk memberi kabar kepada rekan-rekan BlankOn di Gresik)</figcaption>
+  </figure>
+</section>
+
+<section id="section20">
+  <p>Nah sambil menunggu jadwal keberangkatan jam 14:50 WIB, saya menikmati rokok yang ternyata tinggal satu-satunya ini:</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4zvl4PbD53M9TFMCwDhy1a71t_HB-4geND0AllbkDYlg2CKn158jDFJtw6C5NDssZ4PH29C3hxnXbgPGr8Zr4TdHpWArC_mDBFry2YUp2-3t5N_vR_FlC3I9ZBY8o9gadCIS66ir0oNMO/s16000/IMG_20121225_112400.jpg" alt="Rokok terakhir menunggu keberangkatan" loading="lazy" onclick="openModal(19)">
+    <figcaption>Ngenes...</figcaption>
+  </figure>
+</section>
+
+<section id="section21">
+  <p>Lalu ada bis Damri yang melintas di Drop Line bandara, dengan tulisan besar <b>ANGKUTAN KHUSUS BANDARA JUANDA - GRESIK PP</b> pada jendela body belakangnya. Ternyata ada moda transportasi bagi warga Gresik dan sekitarnya yang berniat ke Bandara Juanda, bisa langsung menggunakan fasilitas yang disediakan oleh DAMRI.</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL1xb_0S86L_nnO6Kb4BomnyanJIQRBl-yuwwxMrRmJhvN-zBv9caACryNtAp0F2xqT6z_LZidMGMV6rtiM7ijPJQf6a2Y47PSggd82cFUpMx7g7gHpG4gc-XOYJP35L6R2JEnZiB48p8h/s16000/IMG_20121225_125336.jpg" alt="Bis Damri Bandara Juanda - Gresik" loading="lazy" onclick="openModal(20)">
+    <figcaption>Bandara Juanda - Gresik. PP.</figcaption>
+  </figure>
+</section>
+
+<section id="section22">
+  <p>Jam 17 WITA, akhirnya saya landing dengan selamat di Bandara Sepinggan Balikpapan. Seketika langsung install Jaket Blankon:</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw8YccUNg9pIz-bfhidE1BJw5kp0d6eal5nMYwXPpUOTnXg24OV7POaPNO2qpTfyx4O9gKsyZ-GatrUM0EZ8ILrNU0lzAqlQiVJntSGgLE6RJ34_5RJ-YsvfSwvUPXka_pPDzfZCYNqMZ_/s16000/IMG_20121225_174841.jpg" alt="BlankOn Front View" loading="lazy" onclick="openModal(21)">
+    <figcaption>BlankOn Front View</figcaption>
+  </figure>
+  </section>
+  
+  <section id="section23">
+  <p>Selamat Beraktivitas Kembali!</p>
+  <figure>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXhYMbyZWCu1ohktcx8OBI-JjpA82NfUjg5e2laRhSMbeAg6lfOsL7T8vGkl0BhCWldkEUldrxD7iEMUS37P_nj_QqT12OZZ-JJ5NoiktgboPHnDWcpwdOLw8xum8kPdNGsybDvd1FC6pi/s16000/IMG_20121225_174852.jpg" alt="BlankOn Back View" loading="lazy" onclick="openModal(22)">
+    <figcaption>BlankOn Back View</figcaption>
+  </figure>
+</section>
+</main>
+
+<!-- Side menu -->
+<nav id="sideMenu">
+  <button onclick="scrollToSection('section1')">Balikpapan - Bandara Sepinggan</button>
+  <button onclick="scrollToSection('section2')">Yogyakarta - Lion Air</button>
+  <button onclick="scrollToSection('section3')">Bus Jogja - Solo</button>
+<button onclick="scrollToSection('section4')">Bus Solo - Ngawi</button>
+<button onclick="scrollToSection('section5')">Ngawi - Terminal Bus Lawas</button>
+<button onclick="scrollToSection('section6')">Cepu - STM Migas</button>
+<button onclick="scrollToSection('section7')">Cepu Hujan Deras</button>
+<button onclick="scrollToSection('section8')">Cepu - Pecel Godong Jati</button>
+<button onclick="scrollToSection('section9')">Pulo - Sawah Kedungtuban</button>
+<button onclick="scrollToSection('section10')">Pertigaan Pasar Babat</button> 
+ <button onclick="scrollToSection('section11')">Bus Cepu - Lamongan</button>
+<button onclick="scrollToSection('section12')">Duduk Sampeyan - Gresik</button>
+<button onclick="scrollToSection('section13')">Kue Ikan Gresik</button>
+<button onclick="scrollToSection('section14')">Warung Pasundan 1, Menganti</button>
+<button onclick="scrollToSection('section15')">Padepokan Icik-Icik Amira</button>
+<button onclick="scrollToSection('section16')">Jaket BlankOn</button>
+<button onclick="scrollToSection('section17')">Terminal Bus Tambak Osowilangun</button>
+<button onclick="scrollToSection('section18')">Terminal Bus Tambak Bungurasih</button>
+<button onclick="scrollToSection('section19')">Surabaya - Bandara Juanda</button>
+<button onclick="scrollToSection('section20')">Rokok Tinggal Satu</button>
+<button onclick="scrollToSection('section21')">Surabaya - DAMRI Juanda</button>
+<button onclick="scrollToSection('section22')">Balikpapan - Bandara Sepinggan</button>
+<button onclick="scrollToSection('section23')">BlankOn Balikpapan</button>
+                          
+</nav>
+
+<!-- Mobile toggle -->
+<button id="menuToggle" onclick="toggleMenu()">☰</button>
+
+<!-- Modal -->
+<div id="imgModal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <button class="nav" id="prev" onclick="changeSlide(-1)">&#10094;</button>
+  <img id="modalImg" src="">
+  <button class="nav" id="next" onclick="changeSlide(1)">&#10095;</button>
+</div>
+
+<script>
+const images = [
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiW1aHLmti_J5Ex2F1b03eq0si5h-8l5yRtI1R6c9G1JURYwyAQWnEFMdEEapYJtqa-j8WbL-9WG6McBjvSeQR-7-Hiy5eWmnSVTMaiNd2wHQi8qs_U9M4dMG6iw4GxBXjbNHcpADldeIjy/s1600/IMG_20121218_180722.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhihpsIS5Ju7KzfKVuEXVC0FePuTM8sCmZbyFFERInyQc568_sBm6qLU0FxV-zrBDgtYWvjwFbpEYpmd7FS5Cx75NLfoWsI-E_WXDcS-cAnkSOYvipSJL1_NNQkspyUGL1xA6Y2bXGGtv7V/s1600/IMG_20121218_182904.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2P6NJoSoyC06LIIEL4V_H2wWQqzKrRRWMj85iHkpamsaKg_10SFYp0ZGfoM7cGYdFIFY45jEiCDdeujgVY8ua5GG_Hux7BIwsj3l9oclMBKfyfM0neO2TERqg32NUR4bKflyaf37Pp_EQ/s1600/IMG_20121220_181943.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFJrpgsoFsZhwk0ZscMXYM0CGgi0zvfP7Tp7WhBQXP0mz-zXGj0VXNZehvRsYBDSFe2s9ucnSc8IuBn5M6nscThibaLRRujojieftrqEOwvzGpm9lQNRzuDjc-htI2yW1Kwxc7155H7ZH6/s1600/IMG_20121220_200242.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim_GThs5oHSgPM2aJeeVv-jul6mCBxWIFKw_t5NYNb0cHdIjdp8TU1k18BSEumz712cJGZ4D6CqmB_av9zoCHe99Jc_4IwyUPHUk3Iq4cCSs6_2d08RBr9T3pWH11ZiouIVFhVX1sOZQzh/s1600/IMG_20121220_222204.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgWvU00JW3Xy1OyeYrztfnYzxMUVQFkfmGpT3PXg6NE1VLBIhYkosISgkpBODaeRaUj5dn2M7nGpII1tqiQN91OXw1o5ATGCygoCPMsylB6h9z57__ginrZUsLjK0gk-XGX8YnvOJjiDos/s1600/IMG_20121221_155808.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJeKz7QEadU0uCiMceMGjaXD8MUY960MyUla-hW6CIZkcTxaZSlYSNCGOBdVcIBgsyN-jGQakZ_pvI4Yb9RP2ECKQQw-9bl8492dJS16UkEAT4HaWo8PEWjYtqZgbFc1UalNo5_B-7Nga1/s1600/IMG_20121223_165559.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmKRSQ1d5itfMqBvTg34z2hyNQ8kqDmsm3qvEsuf_4hz-pkOVdlbQDp1dzhcfKqcErA3by21tPtINRgD-3wHX5snPsyURJKhaHoNB_ncKmJKH6jrr1YP-T-lkzbfQMZXmdkbquFQXphLz3/s1600/IMG_20121224_073502.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjizkma5b7uz0hw1sBBNDVOTfmJVdYPC3_Ki5vBRrdKFWzh55ZssAKQ2JlUNBsrTgPTStQaz8X7z6LYCVfcnWw9bzYOw-bC1fymqlNk5t-Uq2VoRtU-uOkUEnF1KFvUnSN1EFw-i4G3FhWd/s1600/PANO_20121224_082951936.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSX8LhCcVtP40ynTi6npIx1mL0hk7U2q8jx7N5CLCVGDcELJqoEogYk9UwIkqUYHrIJY9gZUDgV-83oW0ip_w3MzQY5s-KRCq8FcaGTswBjRB4YtBVEyZvsV9QBYoSvMOxqSu1OaoI5M0L/s1600/IMG_20121224_132915.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJs84GLoBUWlrrSHEaGpFySCtmBE5PowfQZzB5PUt8rXM2rOUiAzYlc4nttRNdxvFsoPBkeKVuTZL27fVBlFq7PqyyG06tnnx24k7R19qW91MlHwkiqDD6rZB-LeOekspq1H7BdEO51SOw/s1600/IMG_20121224_135111.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVOOErQzaxG3mOJL_nrtaCIBmTVIKd90_MUtjUS6p6TYX4HdS5Mt_FGZC3aNKPHEhKltxH5uYi-EBNMlDhOoJVo3LoGNjQPRDvz8u1Mypz2QohMC9-35LxPJG-txNpkqMLRby7kZiPiBr1/s1600/IMG_20121224_142339.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIs76galmJX7fSfneTwcDhpoXuDizt5pyCLHbN5tvySvfc3ikWmd0suEvwVV6w_mL8TRwoiOg90PrAQBENiaGZ80bUxfzC5Ah8pa9bzYib6dm8eUnm0M91v7TqgVQgSVSHdNZvxnP2cYX6/s1600/IMG_20121224_144548.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCKNQY_VNj8CoGbMfrOavlsbz3t7mE8D40w4ewQI16wDzYpXOm7uECyYLVsUx94gdcdYzZReaIJYpdY7Sw9SW5XNHdRJbABLhFN9LlzlJfkup0M50IbEAPdu3_fvgKqbWvpI0Sc1NE8txh/s1600/IMG_20121224_194719.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiw5mf4GrOSsG9b98X9ldpjGm8OHpcXwA6zHAT5HAlxTcVEosVIjF80MxqFpw6ictqELZujWxsR8h0KadPWy0wqknSktZnYrjN3pmY1sV-qk4poJRBMq0Yqf5IQiTjK8De2rGmP-aRt2fRL/s1600/419395_4505966725253_1669617194_n-1.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiv-mdnCNzLZ4SQt2CyKcZ8k20TEqc1G-f0syHCg9gPKXAUcsVDQVHJ1NJHmbz063jzg-lJN-VUtU9kX44cEpCq11IqPBxQFpxpGHv9ivDI6rhbRxhxJirmNWoiMS1V9hS-EiaLsKFpcQhc/s1600/547653_4505966205240_335012988_n-1.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCRoO4Zo9E_r8XYHCZoUQWpGmjk0-KnX2R-6xyfQSQ_YgdA82JlcrtTNbwV9GbUm-RP2k8eaFTW8l5ILWEfvFjEwA2OwHnrmVykvOOWEDcgOWCMZtOC1A5DH6xuP-Ek_9rhJeCOz1fet1x/s1600/IMG_20121225_101647.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1tQnC7o2MvYKK3Y3pPXQjHbFVoW5u23IYz_GgEwpWNJYDZ3Dqi0R9AULWt_YIb_jT5Jvqp5BHNanFwaW8f1zycRScIKV-ua8m6evDFfAjlVIxEodf3HDRfEEFjUlgiEwOjniEFOHVTSAm/s1600/IMG_20121225_112009.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhDWKfXx8WUVtB7Qjf0cYDN7vex3Nr2WcwBkDx_aUvz4N1MjZNvn86cmf4ao84T1yFw0PXkQIZpIDcyOJDH1VbWyFekZv8Wn-yc9tJohXJk7VLvnjlhE-vkTiXn1VEloBxi_Gnu_Y3xVBe1/s1600/FB_IMG_13564124456969394.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4zvl4PbD53M9TFMCwDhy1a71t_HB-4geND0AllbkDYlg2CKn158jDFJtw6C5NDssZ4PH29C3hxnXbgPGr8Zr4TdHpWArC_mDBFry2YUp2-3t5N_vR_FlC3I9ZBY8o9gadCIS66ir0oNMO/s16000/IMG_20121225_112400.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjL1xb_0S86L_nnO6Kb4BomnyanJIQRBl-yuwwxMrRmJhvN-zBv9caACryNtAp0F2xqT6z_LZidMGMV6rtiM7ijPJQf6a2Y47PSggd82cFUpMx7g7gHpG4gc-XOYJP35L6R2JEnZiB48p8h/s16000/IMG_20121225_125336.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw8YccUNg9pIz-bfhidE1BJw5kp0d6eal5nMYwXPpUOTnXg24OV7POaPNO2qpTfyx4O9gKsyZ-GatrUM0EZ8ILrNU0lzAqlQiVJntSGgLE6RJ34_5RJ-YsvfSwvUPXka_pPDzfZCYNqMZ_/s16000/IMG_20121225_174841.jpg",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXhYMbyZWCu1ohktcx8OBI-JjpA82NfUjg5e2laRhSMbeAg6lfOsL7T8vGkl0BhCWldkEUldrxD7iEMUS37P_nj_QqT12OZZ-JJ5NoiktgboPHnDWcpwdOLw8xum8kPdNGsybDvd1FC6pi/s16000/IMG_20121225_174852.jpg"
+];
+
+let currentIndex = 0;
+
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+function toggleMenu(){ const menu=document.getElementById('sideMenu'); menu.style.display=(menu.style.display==='flex')?'none':'flex'; }
+
+function openModal(index){
+  currentIndex = index;
+  document.getElementById('imgModal').style.display='flex';
+  document.getElementById('modalImg').src = images[currentIndex];
+}
+
+function closeModal(){ document.getElementById('imgModal').style.display='none'; }
+
+function changeSlide(n){
+  currentIndex += n;
+  if(currentIndex < 0) currentIndex = images.length-1;
+  if(currentIndex >= images.length) currentIndex = 0;
+  document.getElementById('modalImg').src = images[currentIndex];
+}
+
+window.addEventListener('load',()=>{document.getElementById('sideMenu').style.display='flex';});
+</script>
+<script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    
+  </script>
+</body>
+</html>
+

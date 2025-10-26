@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mudah Berbagi Folder dengan Samba Server Configuration</title>
+    <meta name="description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+    <meta name="keywords" content="samba server, linux file sharing, system-config-samba, berbagi folder linux, smb.conf gui, tutorial samba">
+    <meta name="author" content="Admin Linux">
+    <meta name="date" content="2025-09-28">
+    <link rel="canonical" href="https://frijal.pages.dev/artikel/samba-server-config.html">
+    <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration">
+    <meta property="og:description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frijal.pages.dev/artikel/samba-server-config.html">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.png">
+    <meta property="og:image:alt" content="Tampilan antarmuka Samba Server Configuration di Linux">
+    <meta property="og:site_name" content="frijal.pages.dev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration">
+    <meta name="twitter:description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux.">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.png">
+    <meta name="twitter:image:alt" content="Tampilan antarmuka Samba Server Configuration di Linux">
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
+        header { text-align: center; color: #005a9e; padding-bottom: 10px; border-bottom: 2px solid #0078d4; }
+        h1, h2 { color: #005a9e; }
+        .gallery { margin: 20px 0; }
+        .gallery img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.05); }
+        figcaption { font-size: 0.9em; color: #666; text-align: center; margin-top: 8px; }
+        .social-sharing { text-align: center; margin: 30px 0; }
+        .social-sharing h2 { border: none; font-size: 1.2em; }
+        .social-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .social-buttons a { display: inline-block; transition: transform 0.2s; }
+        .social-buttons a:hover { transform: scale(1.15); }
+        .social-buttons svg { width: 32px; height: 32px; }
+        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .lightbox-content { max-width: 90%; max-height: 80%; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; user-select: none; }
+
+    </style>
+<meta itemprop="image" content="https://frijal.pages.dev/img/samba-server-config.webp">
+
+    <meta property="article:published_time" content="2025-10-14T18:15:06.420+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+    
+    <main class="container">
+        <header>
+            <h1>Panduan Mudah Berbagi Folder dengan Samba</h1>
+<div id="iposbrowser"></div>
+
+            <p>Solusi cepat & praktis untuk berbagi file di jaringan menggunakan Linux.</p>
+        </header>
+        
+        <article>
+            <section>
+                <h2>📂 Mengapa Samba?</h2>
+                <p>Samba adalah solusi standar industri di Linux untuk berbagi folder dan printer dalam jaringan lokal agar bisa diakses oleh komputer Windows, macOS, dan Linux lainnya. Dengan tool grafis seperti <strong>system-config-samba</strong>, kita bisa mengatur folder bersama tanpa harus menyentuh file konfigurasi yang rumit secara manual.</p>
+            </section>
+            
+            <section class="gallery">
+                <figure>
+                    <img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.png" alt="Tampilan utama aplikasi Samba Server Configuration">
+                    <figcaption>Tampilan GUI yang memudahkan pengaturan folder bersama.</figcaption>
+                </figure>
+            </section>
+            
+            <section>
+                <h2>✅ Kelebihan Menggunakan GUI</h2>
+                <ul>
+                    <li><strong>Mudah Digunakan:</strong> Antarmuka grafis (GUI) sangat memudahkan pengaturan folder bagi pemula.</li>
+                    <li><strong>Cepat:</strong> Tidak perlu menghafal dan mengetik perintah di file konfigurasi <code>smb.conf</code>.</li>
+                    <li><strong>Terintegrasi:</strong> Mudah diakses melalui menu sistem di sebagian besar distro Linux.</li>
+                </ul>
+            </section>
+            
+            <section class="social-sharing">
+                <h2>Jaga Data Pribadi Tetap Aman</h2>
+                <div class="social-buttons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/samba-server-config.html" target="_blank" rel="noopener noreferrer" title="Facebook"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1.38 0-1.5.62-1.5 1.5V12h3l-.5 3h-2.5v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+                    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/samba-server-config.html&text=Panduan%20Mudah%20Berbagi%20Folder%20dengan%20Samba" target="_blank" rel="noopener noreferrer" title="Twitter"><svg viewBox="0 0 24 24" fill="#1DA1F2"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.49-1.74.85-2.7 1.03A4.2 4.2 0 0016.31 4c-2.38 0-4.3 1.92-4.3 4.3 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.76 2.81 1.91 3.58-.7-.02-1.36-.21-1.94-.53v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.3 4.3 0 004 2.98 8.62 8.62 0 01-5.33 1.84c-.35 0-.69-.02-1.03-.06A12.18 12.18 0 008.5 20c7.8 0 12.07-6.47 12.07-12.07 0-.18 0-.36-.01-.54.83-.6 1.56-1.35 2.14-2.22z"/></svg></a>
+                </div>
+            </section>
+            
+            
+        </article>
+    </main>
+    
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar yang diperbesar">
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".gallery img");
+            if (images.length > 0) {
+                const lightbox = document.getElementById("lightbox");
+                const lightboxImg = document.getElementById("lightbox-img");
+                const closeBtn = document.querySelector(".lightbox-close");
+                
+                images.forEach(img => {
+                    img.addEventListener("click", () => {
+                        lightbox.style.display = "flex";
+                        lightboxImg.src = img.src;
+                    });
+                });
+                
+                function closeLightbox() {
+                    lightbox.style.display = "none";
+                }
+                
+                closeBtn.addEventListener("click", closeLightbox);
+                
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+
+                window.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && lightbox.style.display === "flex") {
+                        closeLightbox();
+                    }
+                });
+            }
+        });
+    </script>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>
