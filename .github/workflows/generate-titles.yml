@@ -1,0 +1,28 @@
+name: 📝 Buat Daftar Judul Artikel
+
+on:
+  workflow_dispatch: # Izinkan untuk dijalankan secara manual dari tab Actions
+
+permissions:
+  contents: write # Beri izin untuk melakuukan commit ke repositori
+
+jobs:
+  generate_title_list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Buat daftar judul dari artikel.json
+        run: |          
+          jq -r '.[] | .[] | .[0]' artikel.json > mini/daftar-judul.txt
+          echo "✅ File mini/daftar-judul.txt berhasil dibuat."
+          echo "📝 Isi file:"
+          cat mini/daftar-judul.txt
+
+      - name: Commit file daftar judul
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: perbarui daftar judul artikel (daftar-judul.txt)"
+          file_pattern: mini/daftar-judul.txt
