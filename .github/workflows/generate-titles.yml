@@ -15,21 +15,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Buat daftar judul dari artikel.json
-        run: |
-          # Pastikan jq terinstal (umumnya sudah ada, tapi ini untuk keamanan)
-          sudo apt update && sudo apt install -y jq
-          
-          # Buat direktori 'mini' jika belum ada
-          mkdir -p mini
-          
-          # Gunakan jq untuk mengekstrak judul (arr[0]) dari setiap artikel
-          # '.[] | .[] | .[0]' artinya:
-          # .[]       -> Ambil semua value dari objek utama (yaitu array artikel per kategori)
-          # | .[]     -> Dari setiap array tersebut, ambil semua elemennya (yaitu setiap artikel)
-          # | .[0]    -> Dari setiap artikel, ambil elemen pertama (indeks 0), yaitu judul
-          # -r        -> Hasilkan output sebagai teks mentah (tanpa tanda kutip)
+        run:          
           jq -r '.[] | .[] | .[0]' artikel.json > mini/daftar-judul.txt
-          
           echo "✅ File mini/daftar-judul.txt berhasil dibuat."
           echo "📝 Isi file:"
           cat mini/daftar-judul.txt
