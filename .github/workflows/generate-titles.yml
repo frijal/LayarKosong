@@ -17,7 +17,7 @@ jobs:
       - name: Buat daftar judul dari artikel.json
         run: |
           # Pastikan jq terinstal (umumnya sudah ada, tapi ini untuk keamanan)
-          sudo apt-get update && sudo apt-get install -y jq
+          sudo apt update && sudo apt install -y jq
           
           # Buat direktori 'mini' jika belum ada
           mkdir -p mini
@@ -39,4 +39,3 @@ jobs:
         with:
           commit_message: "docs: perbarui daftar judul artikel (daftar-judul.txt)"
           file_pattern: mini/daftar-judul.txt
-          skip_empty_commit: true
