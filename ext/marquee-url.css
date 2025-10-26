@@ -242,6 +242,11 @@ a.category-link.visible {
   opacity: 1;
   transform: translateY(0);
 }
+a:link,
+a:visited {
+  color: inherit;       
+  text-decoration: none;
+}
 
 .btn-emoji {
   font-size: 2rem;
