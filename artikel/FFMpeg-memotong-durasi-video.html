@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FFmpeg: Memotong Durasi Video</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f8ff;
+  color: #111;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #ff6347;
+}
+h2 {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  color: #00bfff;
+}
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+pre {
+  background: linear-gradient(120deg, #f0f8ff, #ffe4e1);
+  padding: 15px;
+  border-radius: 12px;
+  overflow-x: auto;
+  position: relative;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.copy-btn:hover {
+  opacity: 0.8;
+}
+.info-box {
+  margin-top: 50px;
+  padding: 20px;
+  background: linear-gradient(120deg, #ffe4e1, #f0f8ff);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.1rem;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.info-item img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.share-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.share-buttons a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+.share-facebook { background: #3b5998; }
+.share-twitter { background: #1da1f2; }
+.share-whatsapp { background: #25d366; }
+.share-buttons a:hover { opacity: 0.8; }
+
+@media(max-width:600px){
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  p { font-size: 1rem; }
+  pre { font-size: 1rem; }
+  .info-item img { width: 24px; height: 24px; }
+}
+
+</style>
+<meta name="date" content="2025-09-28">
+<meta property="og:image" content="https://frijal.pages.dev/img/FFMpeg-memotong-durasi-video.webp">
+<meta property="og:image:alt" content="FFmpeg: Memotong Durasi Video">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frijal.pages.dev/img/FFMpeg-memotong-durasi-video.webp">
+<meta itemprop="image" content="https://frijal.pages.dev/img/FFMpeg-memotong-durasi-video.webp">
+<meta property="article:published_time" content="2025-09-14T11:00:00+08:00">
+
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+<div class="container">
+  <h1>FFmpeg: Memotong Durasi Video</h1>
+<div id="iposbrowser"></div>
+
+
+  <p>Perintah berikut digunakan untuk memotong video menjadi durasi yang diinginkan menggunakan <strong>FFmpeg</strong>:</p>
+  <pre><code id="ffmpegCode">ffmpeg -i input.mp4 -ss 00:00:10 -to 00:01:30 -c copy output.mp4</code>
+  <button class="copy-btn" onclick="copyCode()">Copy</button></pre>
+
+  <h2>Penjelasan Perintah</h2>
+  <p><strong>-i input.mp4</strong>: File video input yang akan dipotong.</p>
+  <p><strong>-ss 00:00:10</strong>: Menentukan titik mulai potong, dalam format HH:MM:SS. Contoh: mulai dari detik ke-10.</p>
+  <p><strong>-to 00:01:30</strong>: Menentukan titik akhir potong, dalam format HH:MM:SS. Contoh: berhenti di detik ke-90.</p>
+  <p><strong>-c copy</strong>: Menyalin stream video dan audio tanpa re-encoding agar lebih cepat dan kualitas tetap.</p>
+  <p><strong>output.mp4</strong>: Nama file video hasil potongan.</p>
+
+  <div class="info-box">
+    <h2>Informasi Tambahan</h2>
+    <div class="info-item">
+      <img src="https://img.icons8.com/color/48/000000/video.png" alt="Video Icon">
+      <span>FFmpeg mendukung berbagai format video seperti MP4, MKV, AVI, dan lainnya.</span>
+    </div>
+    <div class="info-item">
+      <img src="https://img.icons8.com/color/48/000000/settings.png" alt="Settings Icon">
+      <span>Penggunaan <strong>-c copy</strong> memastikan kualitas video tetap sama tanpa proses encoding ulang.</span>
+    </div>
+    <div class="info-item">
+      <img src="https://img.icons8.com/color/48/000000/time.png" alt="Time Icon">
+      <span>Opsi <strong>-ss</strong> dan <strong>-to</strong> fleksibel, bisa menggunakan detik, menit, atau jam sesuai kebutuhan.</span>
+    </div>
+  </div>
+
+  <div class="share-buttons">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/FFMpeg-memotong-durasi-video.html" target="_blank" class="share-facebook">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/FFMpeg-memotong-durasi-video.html&text=Tutorial%20FFmpeg%20Memotong%20Video" target="_blank" class="share-twitter">Twitter</a>
+    <a href="https://api.whatsapp.com/send?text=Tutorial%20FFmpeg%20Memotong%20Video%20https://frijal.pages.dev/artikel/FFMpeg-memotong-durasi-video.html" target="_blank" class="share-whatsapp">WhatsApp</a>
+  </div>
+</div>
+
+<script>
+// Copy syntax
+function copyCode(){
+  const code = document.getElementById('ffmpegCode').textContent;
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Disalin!';
+    setTimeout(()=>{ btn.textContent = 'Copy'; },2000);
+  });
+}
+</script>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>

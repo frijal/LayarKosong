@@ -1,0 +1,33 @@
+# robots.txt untuk frijal.pages.dev
+# Versi Sederhana
+
+User-agent: *
+
+# 🚫 BLOKIR folder development, sistem, dan sementara
+Disallow: /artikelx/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /mini/
+Disallow: /node_modules/
+Disallow: /sementara/
+Disallow: /.vscode/
+
+# 🚫 BLOKIR tipe file sistem dan internal build
+Disallow: /*.lock$
+Disallow: /*.md$
+Disallow: /.nojekyll
+Disallow: /*.sh$
+Disallow: /*.toml$
+Disallow: /*.yaml$
+Disallow: /*.yml$
+
+# 🚫 BLOKIR semua file .json...
+Disallow: /*.json$
+# ...✅ KECUALI file artikel.json yang penting ini
+Allow: /artikel.json
+
+# ✅ Tautan ke peta situs (WAJIB URL LENGKAP)
+Sitemap: https://frijal.pages.dev/sitemap.xml
+
+# 🧹 Opsional: hindari parameter URL duplikas (sudah bagus)
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&fbclid

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apa Artinya 'Main Branch Isn't Protected' di GitHub?</title>
+    <meta name="description" content="Penjelasan santai tentang arti 'main branch isn't protected' di GitHub. Pahami siapa saja yang bisa push ke repo, peran branch protection, dan keamanan repository publik.">
+    <meta name="keywords" content="GitHub, main branch, branch protection, repository, repo, push, pull request, kolaborator, keamanan repo">
+    <meta name="author" content="Frijal">
+    <link rel="canonical" href="https://frijal.pages.dev/artikel/main-branch-protection.html">
+    <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Apa Artinya 'Main Branch Isn't Protected' di GitHub?">
+    <meta property="og:description" content="Penjelasan santai tentang arti 'main branch isn't protected' di GitHub. Pahami siapa saja yang bisa push ke repo, peran branch protection, dan keamanan repository publik.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frijal.pages.dev/artikel/main-branch-protection.html">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apa Artinya 'Main Branch Isn't Protected' di GitHub?">
+    <meta name="twitter:description" content="Penjelasan santai tentang arti 'main branch isn't protected' di GitHub. Pahami siapa saja yang bisa push ke repo, peran branch protection, dan keamanan repository publik.">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.jpg">
+    <style>
+        :root {
+            --primary-color: #6a0572; --secondary-color: #ab6cc9; --accent-color: #ff9900;
+            --background-color: #f0f0f5; --text-color: #333; --heading-color: #4a0450;
+            --card-bg: #fff; --border-radius: 12px; --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.7;
+            background-color: var(--background-color); color: var(--text-color);
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+        }
+        .container {
+            width: 90%; max-width: 900px; margin: 30px 0;
+            background-color: var(--card-bg); border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow); overflow: hidden;
+            padding: 40px; animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1, h2, h3 { color: var(--heading-color); font-weight: 700; line-height: 1.4; margin-bottom: 20px; }
+        h1 { font-size: 2.5rem; text-align: center; color: var(--primary-color); margin-bottom: 40px; }
+        h2 {
+            font-size: 2rem; border-left: 5px solid var(--secondary-color);
+            padding-left: 15px; margin-top: 30px;
+        }
+        p { margin-bottom: 20px; }
+        strong { color: var(--primary-color); font-weight: 600; }
+        ul { list-style: none; padding-left: 20px; margin-bottom: 20px; }
+        ul li { position: relative; margin-bottom: 10px; }
+        ul li::before { content: '👉'; position: absolute; left: -25px; color: var(--accent-color); }
+        .main-image { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .social-share { display: flex; justify-content: center; align-items: center; margin-top: 30px; gap: 15px; }
+        .social-share a {
+            display: inline-flex; width: 45px; height: 45px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            justify-content: center; align-items: center; font-size: 20px; text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .social-share a:hover { transform: scale(1.1); background-color: var(--primary-color); }
+        .fb-comments { margin-top: 50px; }
+        hr { border: 0; height: 1px; background-color: #e0e0e0; margin: 40px 0; }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta property="og:image:alt" content="Apa Artinya 'Main Branch Isn't Protected' di GitHub?">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/main-branch-protection.webp">
+
+    <meta property="article:published_time" content="2025-10-14T18:15:06.406+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+</head>
+<body>
+    <div class="container">
+        <h1>Apa Artinya 'Main Branch Isn't Protected' di GitHub? 🤔</h1>
+<div id="iposbrowser"></div>
+
+        <p>Sering banget kan, pas buka repository di GitHub, tiba-tiba muncul peringatan kayak gini: <strong>"Your main branch isn't protected, Protect this branch from force pushing or deletion, or require status checks before merging."</strong> Nah, kalau lihat tulisan itu, banyak yang langsung mikir, "Waduh, berarti semua orang bisa seenaknya ubah dan hapus file di repo saya dong?" </p>
+        
+        <img class="main-image" alt="Peringatan 'main branch isn't protected' di GitHub" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.jpg" />
+        
+        <p style="margin-top:20px;">Tenang, itu pertanyaan yang bagus dan penting banget buat dipahami. Jawabannya: <strong>tidak</strong>.</p>
+        <p>Meskipun branch utama kamu <strong>tidak dilindungi (unprotected)</strong>, bukan berarti semua orang bisa seenaknya ubah atau hapus file di repo kamu. Mari kita bahas lebih lanjut biar kamu makin paham.</p>
+        
+        <hr>
+        
+        <h2>🔑 Siapa Saja yang Bisa Push ke Repo Kamu?</h2>
+        <p>Ada aturan ketat di GitHub tentang siapa yang bisa langsung mengubah kode di repo kamu. Ini dia daftarnya:</p>
+        <ul>
+            <li><strong>Kamu (pemilik repo)</strong>: Jelas, kamu selalu punya hak penuh untuk push.</li>
+            <li><strong>Kolaborator</strong>: Orang-orang yang sudah kamu undang secara khusus sebagai kolaborator juga bisa push ke repo.</li>
+            <li><strong>GitHub Actions</strong>: Bot atau skrip otomatis hanya bisa push kalau kamu memberikan izin (`contents: write`) menggunakan `GITHUB_TOKEN` atau Personal Access Token (PAT) yang kamu buat sendiri.</li>
+        </ul>
+        <p>Poin paling pentingnya adalah: <strong>Orang luar (publik, user lain di GitHub) tidak bisa langsung push ke repo kamu</strong>. Mereka cuma bisa melakukan dua hal ini:</p>
+        <ul>
+            <li><strong>Fork</strong> repo kamu, alias bikin salinan repo-nya di akun mereka sendiri.</li>
+            <li><strong>Buat Pull Request (PR)</strong>, yaitu mengusulkan perubahan. Tapi, kamu tetap punya kendali penuh untuk memutuskan apakah usulan itu akan diterima (di-merge) atau tidak.</li>
+        </ul>
+        
+        <hr>
+
+        <h2>🔒 Apa Maksud 'Main Branch Isn’t Protected'?</h2>
+        <p>Jadi, arti sebenarnya dari peringatan itu lebih ke soal <strong>aturan internal</strong>. Peringatan itu cuma memberitahu kamu bahwa:</p>
+        <ul>
+            <li><strong>Kamu</strong> (atau bot yang kamu izinkan) bisa push langsung ke branch <code>main</code> tanpa hambatan.</li>
+            <li>Tidak ada aturan tambahan yang wajib dipenuhi, misalnya harus ada review dari kolaborator lain atau harus lulus tes otomatis dulu sebelum kode bisa di-merge.</li>
+        </ul>
+        <p>Jadi, peringatan itu <strong>sama sekali tidak berarti publik bisa bebas push atau hapus kode</strong>. Ini lebih seperti "jalan bebas hambatan" untuk pemilik repo sendiri.</p>
+
+        <hr>
+
+        <h2>📌 Ringkasnya</h2>
+        <ul>
+            <li><strong>Repo publik</strong>: Orang lain bisa <strong>melihat</strong> dan <strong>meng-fork</strong>, tapi <strong>tidak bisa push langsung</strong>.</li>
+            <li><strong>Repo privat</strong>: Hanya kamu dan kolaborator yang kamu undang yang bisa mengakses.</li>
+            <li><strong>Branch protection</strong>: Ini fitur opsional yang tujuannya untuk menambah aturan internal, terutama kalau kamu bekerja dalam tim dengan banyak kolaborator.</li>
+        </ul>
+        <p>Intinya, kalau repo ini hanya kamu yang pegang, membiarkan branch <code>main</code> tidak terlindungi itu <strong>tidak masalah sama sekali</strong>. Aman kok! 😉</p>
+        
+        <div class="social-share">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/main-branch-protection.html" target="_blank" rel="noopener" aria-label="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/main-branch-protection.html&text=Penjelasan santai tentang arti 'main branch isn't protected' di GitHub!" target="_blank" rel="noopener" aria-label="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/main-branch-protection.html&text=Penjelasan santai tentang arti 'main branch isn't protected' di GitHub!" target="_blank" rel="noopener" aria-label="Bagikan ke Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/?text=Penjelasan santai tentang arti 'main branch isn't protected' di GitHub! https://frijal.pages.dev/artikel/main-branch-protection.html" target="_blank" rel="noopener" aria-label="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        
+            
+        </div>
+    </div>
+    
+    
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+
+
+</body>
+</html>
