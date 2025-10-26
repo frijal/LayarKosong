@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Buat daftar judul dari artikel.json
-        run:          
+        run: |          
           jq -r '.[] | .[] | .[0]' artikel.json > mini/daftar-judul.txt
           echo "✅ File mini/daftar-judul.txt berhasil dibuat."
           echo "📝 Isi file:"
