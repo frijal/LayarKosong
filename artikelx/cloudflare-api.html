@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cara Membuat API di Cloudflare</title>
+  <meta name="description" content="Panduan lengkap membuat API di Cloudflare dengan mudah. Pelajari cara mendapatkan API Token dan API Key, serta menggunakannya untuk otomatisasi website Anda.">
+  <meta name="author" content="Frijal">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://frijal.pages.dev/artikel/cloudflare-api.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frijal Pages">
+  <meta property="og:title" content="Cara Membuat API di Cloudflare">
+  <meta property="og:description" content="Langkah mudah untuk membuat API Token dan API Key di Cloudflare agar website bisa diintegrasikan dengan aman.">
+  <meta property="og:url" content="https://frijal.pages.dev/artikel/cloudflare-api.html">
+  <meta property="og:image" content="https://frijal.pages.dev/img/cloudflare-api.webp">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cara Membuat API di Cloudflare">
+  <meta name="twitter:description" content="Langkah-langkah mudah membuat API Cloudflare untuk otomatisasi website.">
+  <meta name="twitter:image" content="https://frijal.pages.dev/img/cloudflare-api.webp">
+  <meta name="twitter:creator" content="@frijal">
+
+  <!-- CSS internal -->
+  <style>
+    :root {
+      --bg-light: #f9f9fb;
+      --bg-dark: #111;
+      --text-light: #222;
+      --text-dark: #f1f1f1;
+      --accent: #f38020;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+      }
+      a { color: #ffaf66; }
+    }
+
+    @media (prefers-color-scheme: light) {
+      body {
+        background: var(--bg-light);
+        color: var(--text-light);
+      }
+      a { color: var(--accent); }
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    h1, h2 {
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2em; margin-bottom: 0.5em; }
+    h2 { margin-top: 2em; }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .social img:hover {
+      transform: scale(1.15);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🔐 Cara Membuat API di Cloudflare</h1>
+
+    <section>
+      <p>
+        Cloudflare menyediakan API yang memungkinkan kamu mengelola DNS, konfigurasi keamanan, cache, dan banyak fitur lainnya secara otomatis — tanpa harus membuka dashboard.
+        API ini sangat berguna kalau kamu ingin menghubungkan website, aplikasi, atau sistem otomatis (seperti CI/CD GitHub Actions).
+      </p>
+    </section>
+
+    <section>
+      <h2>Langkah 1: Masuk ke Akun Cloudflare</h2>
+      <p>
+        Buka <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">Cloudflare Dashboard</a> dan login ke akun kamu.
+        Setelah masuk, klik ikon profil di kanan atas, lalu pilih <strong>“My Profile”</strong>.
+      </p>
+      </section>
+
+    <section>
+      <h2>Langkah 2: Buat API Token</h2>
+      <p>
+        Masuk ke tab <strong>API Tokens</strong>, lalu klik tombol <strong>“Create Token”</strong>.  
+        Pilih template “Edit zone DNS” jika kamu hanya ingin mengelola DNS, atau buat kustom sesuai kebutuhan.  
+        Setelah selesai, salin token tersebut dan simpan di tempat aman.
+      </p>
+      <p><strong>⚠️ Catatan:</strong> Token API tidak bisa ditampilkan ulang setelah dibuat, jadi pastikan kamu menyimpannya!</p>
+    </section>
+
+    <section>
+      <h2>Langkah 3: Gunakan API Key</h2>
+      <p>
+        Selain API Token, Cloudflare juga punya <strong>Global API Key</strong> — ini seperti “kunci utama” akun kamu.  
+        Kamu bisa menemukannya di halaman yang sama, di bagian “API Keys”.  
+        Gunakan dengan hati-hati, karena ini memberi akses penuh ke akunmu.
+      </p>
+    </section>
+
+    <section>
+      <h2>Langkah 4: Uji API Menggunakan curl</h2>
+      <p>
+        Setelah punya token, kamu bisa mencoba memanggil API Cloudflare lewat terminal, misalnya:
+      </p>
+      <pre><code>curl -X GET "https://api.cloudflare.com/client/v4/user" \
+-H "Authorization: Bearer YOUR_API_TOKEN" \
+-H "Content-Type: application/json"</code></pre>
+      <p>Kalau berhasil, kamu akan melihat data akunmu dalam format JSON.</p>
+    </section>
+
+    <section>
+      <h2>Penutup</h2>
+      <p>
+        Dengan API Cloudflare, kamu bisa mengotomatisasi banyak hal, seperti update DNS otomatis, flush cache, atau pengaturan keamanan.
+        Ini langkah penting buat kamu yang ingin situsmu lebih efisien dan modern.
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 Frijal Pages — Artikel edukasi & panduan teknologi ringan.</p>
+      <div class="social">
+        <a href="https://facebook.com" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://x.com" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter X">
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JavaScript kecil: efek fade-in -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.style.opacity = 0;
+      document.body.style.transition = "opacity 0.8s ease";
+      requestAnimationFrame(() => document.body.style.opacity = 1);
+    });
+  </script>
+</body>
+</html>
