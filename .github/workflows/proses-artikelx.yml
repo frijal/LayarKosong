@@ -25,7 +25,7 @@ jobs:
           for file in artikelx/*.html; do
             echo "🪄 Memproses $file"
             perl -pi -w -e 's#frijal.github.io#frijal.pages.dev#g' "$file"
-            perl -pi -w -e 's#bak.xo.je#frijal.pages.dev#g' "$file"
+            perl -pi -w -e 's#Fakhrul Rijal#Kibot Rusak#g' "$file"
             perl -pi -w -e 's#https://frijal.pages.dev/assets/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
             perl -pi -w -e 's#hhttps://frijal.pages.dev/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
             perl -pi -w -e 's#YOUR_APP_ID#1471267430691023#g' "$file"
