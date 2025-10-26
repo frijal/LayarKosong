@@ -1,5 +1,3 @@
-[](https://frijal.github.io/index.html)
-
 ## 🌟 Lisensi UNLICENSE
 
 <details>
