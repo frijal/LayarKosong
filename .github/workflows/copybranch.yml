@@ -2,7 +2,7 @@ name: ⚠️ Copy ke Branch Site Cloudflare
 
 on:
   workflow_run:
-    workflows: ["🔄 Proses ArtikelX"] # Pastikan NAMA workflow pertama SAMA PERSIS
+    workflows: ["☢️ Build and Generate Site Files"] # Pastikan NAMA workflow pertama SAMA PERSIS
     types:
       - completed # Hanya berjalan jika workflow pertama SELESAI
     branches: ['main'] # Hanya berjalan jika workflow pertama dijalankan di branch main
