@@ -81,7 +81,7 @@ jobs:
           # Hanya commit jika ada perubahan yang di-stage
           if ! git diff --staged --quiet; then
             echo "⏳ Perubahan ditemukan. Melakukan commit..."
-            git commit -m "build: 🚀 Update generated site files (auto)"
+            git commit -m "build: 🚀 html dan json udah beres."
 
             echo "🔃 Melakukan sinkronisasi sebelum push..."
             git pull --rebase origin main || { echo "⚠️ Gagal pull --rebase, mencoba push biasa"; git pull origin main; }
