@@ -14,7 +14,7 @@ on:
       - main  
   # ⬇️ Tambahkan filter paths di sini
     paths:
-      - '*.json'            # File spesifik di root
+      - '*rtikel.json'            # File spesifik di root
       - '_redirects'        # File spesifik di root
       - '_headers'          # File spesifik di root
       - '*.html'            # File HTML di root
