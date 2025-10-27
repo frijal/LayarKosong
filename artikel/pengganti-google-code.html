@@ -62,7 +62,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-
     <style>
       /* Mengatur font utama dan warna dasar (Dark Mode) */
       body {
@@ -72,7 +71,6 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-
       /* Kustomisasi style untuk link di dalam artikel */
       article a {
         color: #60a5fa; /* text-blue-400 */
@@ -84,7 +82,6 @@
         color: #93c5fd; /* text-blue-300 */
         background-color: rgba(59, 130, 246, 0.1);
       }
-
       /* Style untuk pesan "copied" */
       .copied-feedback {
         position: fixed;
@@ -123,7 +120,6 @@
         </h2>
       </div>
     </header>
-
     <!-- Konten Utama (Widescreen dan Responsif) -->
     <main
       class="w-full max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 sm:py-12"
@@ -141,7 +137,6 @@
           setelah ditutup, apa yang menggantikannya? Dan apakah Google masih
           punya layanan serupa? Jawabannya: "ya dan tidak".
         </p>
-
         <!-- Gambar Utama (Gambar BARU) -->
         <figure class="my-6 sm:my-8">
           <img
@@ -154,7 +149,6 @@
             platform seperti GitHub.
           </figcaption>
         </figure>
-
         <!-- Isi Artikel -->
         <div
           class="prose prose-lg prose-invert max-w-none text-gray-300 text-lg leading-relaxed"
@@ -203,7 +197,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
             >) ke GitHub. Tujuannya? Tentu saja agar lebih dekat dengan
             komunitas developer yang sekarang semuanya ada di sana.
           </p>
-
           <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-8 mb-4">
             2. Apakah Google Masih Punya Layanan Serupa?
           </h2>
@@ -223,7 +216,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
             utamanya sangat jelas, dan ini menunjukkan pergeseran strategi
             Google:
           </p>
-
           <div
             class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose"
           >
@@ -276,7 +268,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
               </ul>
             </div>
           </div>
-
           <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-8 mb-4">
             Kesimpulan Singkat
           </h2>
@@ -295,7 +286,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
             Google membuat **Cloud Source Repositories** (untuk bisnis).
           </p>
         </div>
-
         <!-- Tombol Share Media Sosial -->
         <section class="social-share mt-8 sm:mt-12 pt-6 border-t border-gray-700">
           <h3 class="text-xl font-semibold text-white mb-4">
@@ -350,14 +340,12 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
         </section>
       </article>
     </main>
-
     <!-- Footer Simpel -->
     <footer class="w-full mt-12 py-6 border-t border-gray-700/50">
       <div class="max-w-5xl mx-auto text-center text-gray-500 px-4">
         <p>&copy; 2024 - frijal.pages.dev. Dibuat dengan cinta dan kopi.</p>
       </div>
     </footer>
-
     <!-- Feedback "Copied" -->
     <div id="copied-feedback" class="copied-feedback">Link disalin!</div>
     <script>
@@ -369,7 +357,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
         const articleTitle = document.title;
         const encodedUrl = encodeURIComponent(articleUrl);
         const encodedTitle = encodeURIComponent(articleTitle);
-
         // Fungsi Share
         const shareTwitter = document.getElementById('share-twitter');
         if (shareTwitter) {
@@ -377,32 +364,27 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
           shareTwitter.target = '_blank';
           shareTwitter.rel = 'noopener noreferrer';
         }
-
         const shareFacebook = document.getElementById('share-facebook');
         if (shareFacebook) {
           shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
           shareFacebook.target = '_blank';
           shareFacebook.rel = 'noopener noreferrer';
         }
-
         const shareLinkedIn = document.getElementById('share-linkedin');
         if (shareLinkedIn) {
           shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
           shareLinkedIn.target = '_blank';
           shareLinkedIn.rel = 'noopener noreferrer';
         }
-
         const shareWhatsApp = document.getElementById('share-whatsapp');
         if (shareWhatsApp) {
           shareWhatsApp.href = `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`;
           shareWhatsApp.target = '_blank';
         }
-
         // Fungsi Copy Link (lebih kompatibel)
         const copyButton = document.getElementById('share-copy');
         const copyButtonText = document.getElementById('copy-text');
         const copiedFeedback = document.getElementById('copied-feedback');
-
         if (copyButton) {
           copyButton.addEventListener('click', function () {
             // Buat elemen textarea sementara
@@ -411,15 +393,12 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
             document.body.appendChild(tempTextArea);
             tempTextArea.select();
             tempTextArea.setSelectionRange(0, 99999); // Untuk mobile
-
             try {
               // Gunakan execCommand (didukung luas)
               document.execCommand('copy');
-
               // Tampilkan feedback
               if (copyButtonText) copyButtonText.textContent = 'Disalin!';
               if (copiedFeedback) copiedFeedback.classList.add('show');
-
               // Reset setelah 2 detik
               setTimeout(() => {
                 if (copyButtonText) copyButtonText.textContent = 'Salin Link';
@@ -429,7 +408,6 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
               console.error('Gagal menyalin link:', err);
               if (copyButtonText) copyButtonText.textContent = 'Gagal!';
             }
-
             // Hapus textarea sementara
             document.body.removeChild(tempTextArea);
           });

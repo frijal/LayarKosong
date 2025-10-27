@@ -63,7 +63,7 @@
       name="twitter:image"
       content="https://frijal.pages.dev/img/preset-lightroom-xmp-natgeo-monokrom-sepia.webp"
     />
-    
+
     <style>
       :root {
         --bg: #0f172a;
@@ -267,9 +267,7 @@
           grid-template-columns: 1fr 1fr;
         }
       }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
   </head>
   <body>
@@ -296,7 +294,6 @@
         <section class="hero">
           <h1>Preset Lightroom (.xmp) – Paket Lengkap</h1>
 <div id="iposbrowser"></div>
-
           <div class="meta">
             <span>Dipublikasikan: 05 Okt 2025</span>
             <span>Format: Panduan preset siap pakai</span>
@@ -353,16 +350,15 @@
                 <li><strong>Color Grading</strong>: Highlights (Hue 40, Sat 25); Shadows (Hue 30, Sat 15).</li>
             </ul>
           </article>
-
           <article class="card">
             <h2>Diskusi & Jaga Data Pribadi Tetap Aman.</h2>
             <p>
               Bagikan pengalaman Anda membuat preset atau hasil editan Anda.
               Tips kecil yang Anda temukan bisa membantu banyak orang.
             </p>
-            
+
             <div class="comments">
-              
+
             </div>
           </article>
         </section>
@@ -378,7 +374,7 @@
         </div>
       </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <div class="lightbox-content">
         <img class="lightbox-img" id="lightboxImg" alt="Foto fullscreen" />
@@ -387,30 +383,25 @@
         <button class="lightbox-next" id="lightboxNext" title="Berikutnya" aria-label="Berikutnya">▶</button>
       </div>
     </div>
-    
 
-    
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Skrip deteksi pengguna DIHAPUS sesuai instruksi ---
-
         // --- Lightbox Galeri ---
         (() => {
           const gallery = document.getElementById('gallery');
           const lightbox = document.getElementById('lightbox');
           // Periksa jika elemen galeri & lightbox tidak ada
           if (!gallery || !lightbox) return;
-
           const lightboxImg = document.getElementById('lightboxImg');
           const btnClose = document.getElementById('lightboxClose');
           const btnPrev = document.getElementById('lightboxPrev');
           const btnNext = document.getElementById('lightboxNext');
           const items = Array.from(gallery.querySelectorAll('img'));
           let currentIndex = 0;
-          
-          if (items.length === 0) return; // Keluar jika tidak ada gambar
 
+          if (items.length === 0) return; // Keluar jika tidak ada gambar
           function showImage(index) {
             const img = items[index];
             if (img) {
@@ -418,42 +409,36 @@
                 lightboxImg.alt = img.alt;
             }
           }
-
           function openLightbox(index) {
             currentIndex = index;
             showImage(currentIndex);
             lightbox.classList.add('active');
             lightbox.setAttribute('aria-hidden', 'false');
           }
-
           function closeLightbox() {
             lightbox.classList.remove('active');
             lightbox.setAttribute('aria-hidden', 'true');
           }
-
           function prevImage() {
             currentIndex = (currentIndex - 1 + items.length) % items.length;
             showImage(currentIndex);
           }
-
           function nextImage() {
             currentIndex = (currentIndex + 1) % items.length;
             showImage(currentIndex);
           }
-
           items.forEach((img, index) => {
             // Memberi data-index jika belum ada
             if(!img.dataset.index) img.dataset.index = index;
             img.addEventListener('click', () => openLightbox(index));
           });
-          
+
           btnClose.addEventListener('click', closeLightbox);
           btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
           btnNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
           lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
           });
-
           window.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -461,7 +446,6 @@
             if (e.key === 'ArrowRight') nextImage();
           });
         })();
-
         // --- Facebook SDK ---
         (() => {
           const script = document.createElement('script');
@@ -474,13 +458,10 @@
         })();
       });
     </script>
-    
-    
+
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
   </body>
 </html>

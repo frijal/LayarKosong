@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <!-- Styles: 1 kolom, dark theme -->
@@ -106,12 +105,10 @@
                         <button class="btn-share" data-share="whatsapp">WhatsApp</button>
                         <button class="btn-share" id="copyLink">Salin Tautan</button>
                     </div>
-
                     <h2>Langkah 1: Unduh dan Ekstrak Ventoy</h2>
                     <p>Kunjungi <a href="https://www.ventoy.net/en/download.html" target="_blank">halaman unduh Ventoy</a> dan dapatkan file untuk Linux. Setelah itu, ekstrak arsipnya.</p>
                     <pre class="language-bash"><code id="code1">tar xvf ventoy-*.tar.gz
 cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <h2>Langkah 2: Instal Ventoy ke USB</h2>
                     <p>Gunakan perintah <code>lsblk</code> untuk menemukan nama device USB Anda (misalnya, <code>/dev/sdb</code>). Hati-hati, jangan salah pilih disk! Kemudian, jalankan skrip instalasi.</p>
                     <pre class="language-bash"><code id="code2">sudo sh Ventoy2Disk.sh -i /dev/sdX</code><button class="copy-btn" data-target="code2">Salin</button></pre>
@@ -120,10 +117,8 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
                     <p>Jika Anda lebih suka antarmuka grafis, Ventoy menyediakan mode web. Jalankan skrip berikut, lalu buka <code>http://127.0.0.1:24680</code> di browser Anda.</p>
                     <pre class="language-bash"><code id="code3">sudo sh VentoyWeb.sh</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <figure><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhQvs0sWh4Qu6UXaiNWYskGXzt9ZHqrKuGwDLPh9OsVK7QuXsvzQ-URUpBvKIvulF55y-qcAUgxKtfsRsipjCJuV0uKXiqogHFqmKuygdUm2HtEuzn48n7w3CBWllF_2AA7kJmpCAWjBeGL4AbRuhpU2G4ejtcb8Kpta_S3lEuwY7V8WPukyW4gGIvzHf0" alt="Tampilan VentoyWeb GUI"></figure>
-
                     <h2>Fitur Persistence (Menyimpan Perubahan)</h2>
                     <p>Ingin menyimpan perubahan pada Live OS? Ventoy mendukung fitur <em>persistence</em>. Anda bisa membuat file data terpisah yang akan digunakan oleh Live OS untuk menyimpan pengaturan, file, dan aplikasi yang diinstal.</p>
-
                     <h2>Kesimpulan</h2>
                     <p>Ventoy adalah alat yang sangat praktis bagi siapa saja yang sering bekerja dengan banyak sistem operasi. Kemudahan penggunaan dan fleksibilitasnya menjadikannya pilihan utama untuk membuat multi-boot USB. Selamat mencoba!</p>
                 </article>
@@ -133,12 +128,10 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
             <small>🄯 2025 frijal.pages.dev · Multi-boot USB jadi mudah!</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3e4e58; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -159,7 +152,6 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
                 if (url) window.open(url, '_blank', 'noopener,noreferrer');
             });
         });
-
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
@@ -167,13 +159,11 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

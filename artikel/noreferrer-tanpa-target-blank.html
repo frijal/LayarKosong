@@ -5,25 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- prettier-ignore -->
 <title>Dampak Akibat rel=noreferrer Tanpa target=_blank</title>
-  
+
   <!-- Metadata SEO -->
   <link rel="canonical" href="https://frijal.pages.dev/artikel/noreferrer-tanpa-target-blank.html">
   <meta name="description" content="Penjelasan lengkap dan santai tentang dampak penggunaan rel='noreferrer' tanpa target='_blank'. Dilengkapi demo interaktif uji referer, galeri, share, komentar, dan deteksi environment.">
-  
+
   <!-- Open Graph -->
   <meta property="og:title" content="Apa Dampaknya rel='noreferrer' Tanpa target='_blank'">
   <meta property="og:description" content="Artikel + demo interaktif: apa efek rel='noreferrer' tanpa target='_blank' di HTML.">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/noreferrer-tanpa-target-blank.html">
   <meta property="og:type" content="article">
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Apa Dampaknya rel='noreferrer' Tanpa target='_blank'">
   <meta name="twitter:description" content="Artikel + demo interaktif untuk uji referer.">
-
   <!-- Favicon -->
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
   <!-- CSS -->
   <style>
 body {
@@ -142,24 +139,19 @@ footer {
 .demo-links a:hover {
   background: #dde;
 }
-
   </style>
   <meta property="og:image" content="https://frijal.pages.dev/img/noreferrer-tanpa-target-blank.webp">
   <meta property="og:image:alt" content="Dampak Akibat rel=noreferrer Tanpa target=_blank">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/noreferrer-tanpa-target-blank.webp">
   <meta itemprop="image" content="https://frijal.pages.dev/img/noreferrer-tanpa-target-blank.webp">
-
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 <meta property="article:published_time" content="2025-10-02T11:00:00+08:00"></head>
 <body>
   <header>
 <h1>Apa Dampaknya rel="noreferrer" Tanpa target="_blank"</h1>
 <div id="iposbrowser"></div>
-
 <p>Panduan santai tapi lengkap + demo interaktif</p>
   </header>
-
   <main>
 <h2>🔹 Dampak yang tetap ada</h2>
 <p>
@@ -170,19 +162,16 @@ footer {
   <li><b>Referer disembunyikan</b> → situs tujuan tidak tahu halaman asal link.</li>
   <li>Link terbuka di tab/jendela yang sama.</li>
 </ul>
-
 <h2>🔹 Dampak yang tidak terjadi</h2>
 <ul>
   <li>Tidak ada proteksi <code>window.opener</code> (tidak relevan karena tidak ada tab baru).</li>
   <li>Perilaku link biasa, hanya privasi lebih terjaga.</li>
 </ul>
-
 <h2>🔑 Kesimpulan</h2>
 <p>
-  Jadi, <code>rel="noreferrer"</code> <b>tetap berguna</b> walau tanpa <code>target="_blank"</code>.  
+  Jadi, <code>rel="noreferrer"</code> <b>tetap berguna</b> walau tanpa <code>target="_blank"</code>.
   Efeknya fokus ke <b>privasi</b> (menyembunyikan sumber traffic), bukan ke keamanan tab baru.
 </p>
-
 <h2>⚡ Demo Interaktif Uji Referer</h2>
 <p>Klik link di bawah untuk melihat apakah <b>Referer</b> dikirim:</p>
 <div class="demo-links">
@@ -191,34 +180,28 @@ footer {
   <a href="https://frijal.pages.dev/sitemap.html" rel="noreferrer">Dengan rel="noreferrer" tanpa target="_blank" → (Referer disembunyikan)</a>
   <a href="https://frijal.pages.dev/sitemap.html" target="_blank" rel="noreferrer">Dengan rel="noreferrer" + target="_blank" → (Referer disembunyikan, tab baru)</a>
 </div>
-
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
   <img id="lightbox-img" src="">
   <span class="nav next" onclick="changeImg(1)">&#10095;</span>
 </div>
-
 <h2>🔗 Jaga Data Pribadi Tetap Aman</h2>
 <div class="share">
   <a href="https://facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/noreferrer-tanpa-target-blank.html" target="_blank">📘 Facebook</a>
   <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/noreferrer-tanpa-target-blank.html" target="_blank">🐦 Twitter</a>
   <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/noreferrer-tanpa-target-blank.html" target="_blank">💼 LinkedIn</a>
 </div>
-
 <h2>💬 Jaga Data Pribadi Tetap Aman.</h2>
   </main>
-
   <footer>
 🄯 2025 Frijal Blog • Artikel edukasi HTML
   </footer>
-
   <script>
 const gallery = document.querySelectorAll('.gallery img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 let currentIndex = 0;
-
 gallery.forEach((img, i) => {
   img.addEventListener('click', () => {
 lightbox.style.display = 'flex';
@@ -226,21 +209,17 @@ lightboxImg.src = img.src;
 currentIndex = i;
   });
 });
-
 function changeImg(step) {
   currentIndex = (currentIndex + step + gallery.length) % gallery.length;
   lightboxImg.src = gallery[currentIndex].src;
 }
-
 lightbox.addEventListener('click', (e) => {
   if (e.target === lightbox) lightbox.style.display = 'none';
 });
   </script>
- 
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
-</html>
+</html>w

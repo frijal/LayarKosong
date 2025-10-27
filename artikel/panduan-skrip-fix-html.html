@@ -111,9 +111,7 @@
         .info-item { display: flex; align-items: center; gap: 0.5rem; }
         .info-item .icon { font-size: 1.5rem; }
         footer { text-align: center; padding: 2rem; color: #6b7380; font-size: 0.9em; margin-top: 2rem; }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
@@ -121,7 +119,6 @@
         <header>
             <h1>⚙️ Panduan Lengkap: Skrip Otomatis Perbaikan HTML</h1>
 <div id="iposbrowser"></div>
-
             <p class="subtitle">Sebuah rangkuman perjalanan dari error hingga solusi final dengan Python & BeautifulSoup.</p>
         </header>
         <main>
@@ -138,7 +135,6 @@ error: externally-managed-environment</code></pre>
                 <p>Cara paling profesional adalah dengan membuat lingkungan kerja yang terisolasi. Dengan begitu, kita bebas menginstal paket apa pun tanpa mengganggu sistem utama.</p>
                 <pre><code># 1. Buat folder lingkungan virtual bernama 'venv'
 python3 -m venv venv
-
 # 2. Aktifkan lingkungan tersebut
 source venv/bin/activate</code></pre>
                 <hr>
@@ -168,9 +164,7 @@ source venv/bin/activate.fish</code></pre>
                 <pre><code class="language-python">import os
 import re
 from bs4 import BeautifulSoup, Comment, NavigableString
-
 LOG_FILE = "perbaikan_log.txt"
-
 def strip_whitespace_in_tags(soup):
     tags_to_exclude = {'pre', 'code', 'style', 'script'}
     for tag in soup.find_all(lambda t: t.name not in tags_to_exclude):
@@ -182,27 +176,23 @@ def strip_whitespace_in_tags(soup):
                         content.replace_with(cleaned_string)
                     else:
                         content.extract()
-
 def fix_html_file(file_path):
     log_messages = []
     has_changes = False
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-
         if "times;</span>" in content:
             content = content.replace("times;</span>", "&times;</span>")
             log_messages.append("  - Memperbaiki &lt;span&gt; penutup yang rusak.")
             has_changes = True
-        
+
         end_marker = '&lt;/html&gt;'
         if end_marker in content and content[content.rfind(end_marker) + len(end_marker):].strip():
             log_messages.append("  - Menemukan konten setelah &lt;/html&gt; yang akan dipindahkan.")
             has_changes = True
-
         soup = BeautifulSoup(content, 'lxml')
         if not soup.body: return log_messages
-
         json_scripts = soup.find_all('script', type='application/ld+json')
         json_cleaned_count = 0
         for script in json_scripts:
@@ -212,25 +202,23 @@ def fix_html_file(file_path):
                 if cleaned_json.strip() != original_string.strip():
                     script.string = cleaned_json.strip()
                     json_cleaned_count += 1
-        
+
         if json_cleaned_count > 0:
             log_messages.append(f"  - Membersihkan {json_cleaned_count} blok skrip JSON-LD.")
             has_changes = True
-
         empty_divs_removed = 0
         for div in soup.find_all('div'):
             if not any(isinstance(c, Comment) or (isinstance(c, str) and c.strip()) or hasattr(c, 'name') for c in div.contents):
                 div.decompose()
                 empty_divs_removed += 1
-        
+
         if empty_divs_removed > 0:
             log_messages.append(f"  - Menghapus {empty_divs_removed} tag &lt;div&gt; kosong.")
             has_changes = True
-        
+
         strip_whitespace_in_tags(soup)
         log_messages.append("  - Membersihkan spasi berlebih di dalam tag HTML.")
         has_changes = True
-
         if has_changes:
             output_path = file_path.replace('.html', '_fixed.html')
             with open(output_path, 'w', encoding='utf-8') as f:
@@ -238,32 +226,30 @@ def fix_html_file(file_path):
             print(f"  [✓] Perbaikan & pembersihan diterapkan: {os.path.basename(output_path)}")
         else:
             print(f"  [-] Tidak ada perbaikan yang diperlukan.")
-        
-        return log_messages
 
+        return log_messages
     except Exception as e:
         print(f"  [✗] Gagal memproses {file_path}: {e}")
         return [f"  - ERROR: {e}"]
-
 def main():
     all_logs = {}
     if os.path.exists(LOG_FILE): os.remove(LOG_FILE)
-    
+
     html_files_to_process = sorted([f for f in os.listdir('.') if f.endswith('.html') and not f.endswith('_fixed.html')])
-    
+
     if not html_files_to_process:
         print("🤷‍♂️ Tidak ada file .html yang ditemukan.")
         return
-        
+
     print(f"Ditemukan {len(html_files_to_process)} file untuk diproses...\n")
-    
+
     for filename in html_files_to_process:
         print(f"[*] Memproses file: {filename}...")
         log_messages = fix_html_file(os.path.join('.', filename))
         if log_messages: all_logs[filename] = log_messages
-        
+
     print("\n🎉 Proses selesai.")
-    
+
     if all_logs:
         with open(LOG_FILE, 'w', encoding='utf-8') as log_file:
             log_file.write(f"================ SUMMARY ================\n")
@@ -274,7 +260,6 @@ def main():
                 for msg in all_logs[filename]: log_file.write(f"{msg}\n")
                 log_file.write("-" * 40 + "\n")
         print(f"📝 Catatan log dengan summary telah dibuat di: {LOG_FILE}")
-
 if __name__ == "__main__":
     main()
 </code></pre>
@@ -320,8 +305,8 @@ Log untuk file: contoh.html
             <hr>
             <section id="fb-comments-container" class="user-info">
                 <h3>Jaga Data Pribadi Tetap Aman</h3>
-                
-                
+
+
             </section>
         </main>
         <footer>
@@ -343,7 +328,6 @@ Log untuk file: contoh.html
                 });
             });
             lazyImages.forEach(img => lazyImageObserver.observe(img));
-
             // --- Lightbox ---
             const gallery = document.querySelector('.gallery');
             const lightbox = document.getElementById('lightbox');
@@ -351,7 +335,6 @@ Log untuk file: contoh.html
                 const lbImg = document.getElementById('lb-img');
                 const images = Array.from(gallery.querySelectorAll('a'));
                 let currentIndex = 0;
-
                 function showImage(index) {
                     const imgLink = images[index];
                     if (imgLink) {
@@ -360,7 +343,6 @@ Log untuk file: contoh.html
                         currentIndex = index;
                     }
                 }
-
                 gallery.addEventListener('click', e => {
                     e.preventDefault();
                     const link = e.target.closest('a');
@@ -370,12 +352,10 @@ Log untuk file: contoh.html
                         showImage(index);
                     }
                 });
-
                 document.getElementById('lb-close').addEventListener('click', () => lightbox.classList.remove('open'));
                 document.getElementById('lb-prev').addEventListener('click', () => showImage((currentIndex - 1 + images.length) % images.length));
                 document.getElementById('lb-next').addEventListener('click', () => showImage((currentIndex + 1) % images.length));
                 lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
-
                 document.addEventListener('keydown', e => {
                     if (lightbox.classList.contains('open')) {
                         if (e.key === 'Escape') lightbox.classList.remove('open');
@@ -384,7 +364,6 @@ Log untuk file: contoh.html
                     }
                 });
             }
-
             // --- Social Sharing ---
             const shareContainer = document.getElementById('share-container');
             if(shareContainer) {
@@ -396,7 +375,6 @@ Log untuk file: contoh.html
                     'WhatsApp': `https://wa.me/?text=${title}%20${url}`,
                     'Telegram': `https://t.me/share/url?url=${url}&text=${title}`
                 };
-
                 function getIconPath(name) {
                     const icons = {
                         'Facebook': 'M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm2.5 12.46h-2.5v7.5h-3v-7.5H7.5v-2.5h1.5v-1.5c0-1.5 1-2.5 2.5-2.5h2v2.5h-1.5v1.5h1.5v2.5z',
@@ -406,7 +384,6 @@ Log untuk file: contoh.html
                     };
                     return icons[name] || '';
                 }
-
                 for (const [name, link] of Object.entries(platforms)) {
                     const a = document.createElement('a');
                     a.href = link;
@@ -419,10 +396,7 @@ Log untuk file: contoh.html
             }
         });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body></html>

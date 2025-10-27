@@ -202,7 +202,6 @@
         /* Floating buttons removed */
         /* Browser info removed */
         /* FB comments removed */
-
         @media (max-width: 900px) {
             main {max-width: 97vw; padding: 1.2em 0.2em;}
             .gallery img { width: 130px; height: 130px;}
@@ -214,7 +213,6 @@
             .gallery img { width: 100px; height: 100px;}
             .lightbox-arrow.left, .lightbox-arrow.right { display: none;}
         }
-
     </style>
 <meta property="og:image:alt" content="Kisah Nabi Ilyasa’ عليه السلام: Murid Setia & Penerus Dakwah">
   <meta itemprop="image" content="https://frijal.pages.dev/img/nabi-ilyasa.webp">
@@ -232,23 +230,19 @@
             <span><span class="icon">📖</span>Kisah Nabi</span>
         </div>
     </header>
-
     <main>
         <div class="narasi">
             <p><span class="highlight">Nabi Ilyasa’ عليه السلام</span> — Murid setia Nabi Ilyas, dikenal juga dengan nama Elisha. Ceritanya seru: jadi penerus guru, penuh tantangan, mukjizat, dan teladan kesabaran. Simak kisahnya dengan gaya santai dan penuh hikmah!</p>
         </div>
-
         <section class="narasi">
             <h2>🌍 Masa Kenabian: Penerus Dakwah Guru</h2>
             <p>Setelah Nabi Ilyas diangkat Allah, tugas berat jatuh ke Ilyasa’. Masyarakat Bani Israil masih banyak yang musyrik, sisa penyembah Ba‘l masih merajalela. Tapi ada juga yang sudah tercerahkan berkat dakwah Ilyas. Ilyasa’ lanjutkan perjuangan: <b>mengajak tauhid, lawan kemusyrikan</b>.</p>
         </section>
-
         <div class="gallery" id="gallery">
             <img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtf5mbkJCov9FW2xaNV8EMRWiZa99nEkz-58wr3fI8J4RjP_llED-ZI0btzQrP0jEj9djFsjLIiD3hseWu68NpnCOpEvRvNFqG0Oyp4EE0PTJptWI7mkC5tVqudpIx03oYPvH4cq9t6pErS1Xxfqcbvp4DOEbA_GhHwo45NpTUvUBM67_o2weLARaqePY/s1600/ilyasa.jpg" alt="Nabi Ilyasa" class="lazy">
             <img data-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Lembah sungai Yordan" class="lazy">
             <img data-src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Baitul Maqdis" class="lazy">
         </div>
-
         <section class="narasi">
             <h2>⚔️ Dakwah & Tantangan</h2>
             <ul>
@@ -259,7 +253,6 @@
                 “Dan ingatlah Isma‘il, Ilyasa’, dan Dzul-Kifl. Mereka semua termasuk orang-orang yang baik.” (QS. Shad: 48)
             </blockquote>
         </section>
-
         <section class="narasi">
             <h2>✨ Mukjizat Nabi Ilyasa’</h2>
             <ul>
@@ -270,21 +263,18 @@
             </ul>
             <p>Mukjizat ini jadi bukti kenabian, bukan buat pamer kekuatan pribadi.</p>
         </section>
-
         <section class="narasi">
             <h2>🕌 Kepemimpinan & Syariat</h2>
             <p>
                 Ilyasa’ terkenal sangat taat, tegas menjaga syariat Musa. Ia ajarkan lagi hukum Taurat ke Bani Israil, bahkan ada riwayat beliau sempat memimpin Baitul Maqdis. Dakwahnya: <b>kembali ke tauhid, jangan nyimpang!</b>
             </p>
         </section>
-
         <section class="narasi">
             <h2>🌿 Wafat & Warisan Ilyasa’</h2>
             <p>
                 Tidak ada catatan pasti soal wafatnya, tapi beliau diyakini wafat dalam keadaan mulia. Makamnya diklaim ada di berbagai tempat (Palestina, Syam, Irak), tapi wallahu a’lam. Yang jelas: Ilyasa’ dikenang sebagai nabi yang sabar, teguh, dan terus lanjutkan dakwah.
             </p>
         </section>
-
         <section class="list-hikmah">
             <h2>📖 Pelajaran Kehidupan Nabi Ilyasa’</h2>
             <ul>
@@ -294,7 +284,6 @@
                 <li>Allah pilih hamba-hamba ikhlas, bukan cuma keturunan nabi atau bangsawan.</li>
             </ul>
         </section>
-
         <section class="narasi">
             <h2>✨ Penutup</h2>
             <p>
@@ -314,14 +303,12 @@
             3️⃣ <b>Riwayat Israiliyyat klasik & sumber visual</b>
         </div>
         </main>
-
     <div class="lightbox" id="lightbox">
         <button class="lightbox-arrow left" id="lightbox-prev" >⏪</button>
         <img id="lightbox-img" class="lightbox-img" src="" alt="">
         <button class="lightbox-arrow right" id="lightbox-next" >⏩</button>
         <button class="lightbox-close" id="lightbox-close" >✖️</button>
     </div>
-
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Lazy Load Gallery
@@ -342,13 +329,11 @@
             // fallback: just load all
             lazyImgs.forEach(img => img.src = img.dataset.src);
         }
-
         // Lightbox Gallery
         const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         let lightboxIndex = 0;
-
         function showLightbox(idx) {
             lightboxIndex = idx;
             lightboxImg.src = galleryImgs[idx].dataset.src || galleryImgs[idx].src.replace('/s600/', '/s1600/'); // Try getting larger image
@@ -380,7 +365,6 @@
             if(e.key === "ArrowLeft") document.getElementById('lightbox-prev').click();
             if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
         });
-
         // Share Buttons
         window.shareTo = function(platform) { // Made function global
             const url = encodeURIComponent('https://frijal.pages.dev/artikel/nabi-ilyasa.html'); // Use canonical URL
@@ -412,7 +396,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

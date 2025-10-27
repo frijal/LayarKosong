@@ -48,7 +48,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
     <main class="container">
         <header>
             <h1>Membuat USB Bootable Ubuntu Tanpa USB Creator</h1>
@@ -56,11 +55,9 @@
         </header>
         <article>
             <p>Umumnya, Ubuntu menyediakan aplikasi USB Creator karena file ISO-nya tidak selalu menyertakan fitur Hybrid ISO. Namun, jika Anda menggunakan distro lain atau ingin cara yang lebih universal, perintah <code>dd</code> adalah solusinya.</p>
-
             <section class="gallery">
                 <img loading="lazy" src="https://frijal.pages.dev/img/usb-bootable-ubuntu.webp" alt="USB flashdisk dengan logo Ubuntu">
             </section>
-
             <section>
                 <h2>Menggunakan Perintah `dd`</h2>
                 <p>Jika file ISO Linux Anda sudah berjenis *Hybrid ISO* (seperti Fedora atau rilis Ubuntu modern), Anda bisa membuat USB bootable langsung dari terminal menggunakan perintah <code>dd</code>. Pastikan Anda sangat berhati-hati saat menentukan nama perangkat USB (misalnya <code>/dev/sdb</code>) agar tidak salah format hard disk utama.</p>
@@ -75,16 +72,13 @@ sudo dd if=ubuntu.iso of=/dev/sdX bs=4M status=progress oflag=sync</code><button
                     <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/usb-bootable-ubuntu.html&text=Membuat%20USB%20Bootable%20Ubuntu%20Tanpa%20USB%20Creator" target="_blank" rel="noopener noreferrer" title="Twitter"><svg viewBox="0 0 24 24" fill="#1DA1F2"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.49-1.74.85-2.7 1.03A4.2 4.2 0 0016.31 4c-2.38 0-4.3 1.92-4.3 4.3 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.76 2.81 1.91 3.58-.7-.02-1.36-.21-1.94-.53v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.3 4.3 0 004 2.98 8.62 8.62 0 01-5.33 1.84c-.35 0-.69-.02-1.03-.06A12.18 12.18 0 008.5 20c7.8 0 12.07-6.47 12.07-12.07 0-.18 0-.36-.01-.54.83-.6 1.56-1.35 2.14-2.22z"/></svg></a>
                 </div>
             </section>
-
             <h2>Diskusi & Jaga Data Pribadi Tetap Aman.</h2>
-
         </article>
     </main>
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
         <img class="lightbox-content" id="lightbox-img" />
     </div>
-
     <script>
         function copyCode(id) {
             const code = document.getElementById(id).innerText;
@@ -104,7 +98,6 @@ sudo dd if=ubuntu.iso of=/dev/sdX bs=4M status=progress oflag=sync</code><button
                         lightboxImg.src = img.src;
                     });
                 });
-
                 function closeLightbox() {
                     lightbox.style.display = "none";
                 }

@@ -8,7 +8,6 @@
 <link rel="icon" href="https://frijal.pages.dev/img/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="https://frijal.pages.dev/img/favicon.ico">
 <link rel="canonical" href="https://frijal.pages.dev/artikel/multi-video-youtube-gallery.html">
-
 <!-- Open Graph -->
 <meta property="og:title" content="Multi Video YouTube dengan Thumbnail Gallery">
 <meta property="og:description" content="Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.">
@@ -16,14 +15,12 @@
 <meta property="og:url" content="https://frijal.pages.dev/artikel/multi-video-youtube-gallery.html">
 <meta property="og:image" content="https://frijal.pages.dev/img/multi-video-youtube-gallery.webp">
 <meta property="og:site_name" content="Frijal Pages">
-
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Multi Video YouTube dengan Thumbnail Gallery">
 <meta name="twitter:description" content="Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.">
 <meta name="twitter:image" content="https://frijal.pages.dev/img/multi-video-youtube-gallery.webp">
 <meta name="twitter:site" content="@frijal">
-
 <style>
 :root{
   --bg:#121212; --paper:#1e1e1e; --accent:#1f7a8c; --text:#e0e0e0;
@@ -51,7 +48,6 @@ textarea{font-family:monospace;height:160px;margin-top:15px;background:#222;colo
 .lb-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.2);border:none;padding:8px 12px;border-radius:var(--radius);cursor:pointer;color:#fff;}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.3);border:none;padding:12px;border-radius:50%;cursor:pointer;color:#fff;font-size:20px;}
 .lb-prev{left:20px;} .lb-next{right:20px;}
-
 </style>
 <meta property="og:image:alt" content="Multi Video YouTube dengan Thumbnail Gallery">
   <meta itemprop="image" content="https://frijal.pages.dev/img/multi-video-youtube-gallery.webp">
@@ -62,7 +58,6 @@ textarea{font-family:monospace;height:160px;margin-top:15px;background:#222;colo
 <main>
 <h2>Multi Video YouTube dengan Thumbnail Gallery</h2>
 <p>Masukkan beberapa URL video YouTube (pisahkan dengan enter), pilih rasio, klik tombol untuk generate. Klik thumbnail atau video untuk fullscreen & navigasi panah/swipe.</p>
-
 <textarea id="ytUrls" placeholder="https://www.youtube.com/watch?v=xxxx&#10;https://youtu.be/yyyyy"></textarea>
 <label for="ratio">Pilih rasio:</label>
 <select id="ratio">
@@ -71,18 +66,14 @@ textarea{font-family:monospace;height:160px;margin-top:15px;background:#222;colo
 <option value="100">1:1 (persegi)</option>
 </select>
 <button id="validateBtn">Validasi & Generate Semua</button>
-
 <div class="msg" id="message"></div>
 <div class="video-container" id="previewContainer" style="padding-bottom:56.25%;">
   <iframe id="preview" allowfullscreen loading="lazy"></iframe>
 </div>
-
 <div class="gallery" id="gallery"></div>
-
 <h3>Script Embed Siap-Tempel</h3>
 <textarea id="embedCode" readonly placeholder="Kode embed akan muncul di sini..."></textarea>
 </main>
-
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" id="lbClose">Tutup</button>
@@ -90,7 +81,6 @@ textarea{font-family:monospace;height:160px;margin-top:15px;background:#222;colo
   <button class="lb-nav lb-next" id="lbNext">&#10095;</button>
   <iframe id="lbFrame" allowfullscreen></iframe>
 </div>
-
 <script>
 const validateBtn = document.getElementById('validateBtn');
 const ytInput = document.getElementById('ytUrls');
@@ -99,31 +89,25 @@ const preview = document.getElementById('preview');
 const previewContainer = document.getElementById('previewContainer');
 const embedBox = document.getElementById('embedCode');
 const gallery = document.getElementById('gallery');
-
 const lightbox = document.getElementById('lightbox');
 const lbFrame = document.getElementById('lbFrame');
 const lbClose = document.getElementById('lbClose');
 const lbPrev = document.getElementById('lbPrev');
 const lbNext = document.getElementById('lbNext');
-
 let videoList = [];
 let currentIndex = 0;
-
 function extractVideoId(url){
   const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
   const match = url.trim().match(regex);
   return match ? match[1] : null;
 }
-
 validateBtn.addEventListener('click', ()=>{
   const urls = ytInput.value.trim().split('\n').map(u=>u.trim()).filter(u=>u);
   videoList = urls.map(extractVideoId).filter(Boolean);
-
   if(videoList.length>0){
     currentIndex = 0;
     updatePreview();
     msg.textContent = `✅ ${videoList.length} video valid. Klik thumbnail atau video untuk fullscreen & navigasi.`;
-
     // Generate embed code
     const ratio = document.getElementById('ratio').value;
     let embedHtml = '';
@@ -133,7 +117,6 @@ validateBtn.addEventListener('click', ()=>{
       embedHtml += `<div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:${ratio}%;">
   <iframe src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
 </div>\n`;
-
       // Tambah thumbnail gallery
       const thumbDiv = document.createElement('div');
       thumbDiv.classList.add('thumbnail');
@@ -150,7 +133,6 @@ validateBtn.addEventListener('click', ()=>{
       gallery.appendChild(thumbDiv);
     });
     embedBox.value = embedHtml;
-
   } else {
     preview.src = '';
     msg.textContent = '❌ Tidak ada URL valid.';
@@ -158,7 +140,6 @@ validateBtn.addEventListener('click', ()=>{
     gallery.innerHTML='';
   }
 });
-
 function updatePreview(){
   const id = videoList[currentIndex];
   const ratio = document.getElementById('ratio').value;
@@ -171,29 +152,24 @@ function updatePreview(){
     document.body.style.overflow='hidden';
   };
 }
-
 lbClose.addEventListener('click', ()=>{
   lightbox.classList.remove('open');
   lbFrame.src='';
   document.body.style.overflow='';
 });
-
 lbPrev.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex-1+videoList.length)%videoList.length;
   lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
 });
-
 lbNext.addEventListener('click', ()=>{
   if(videoList.length===0) return;
   currentIndex = (currentIndex+1)%videoList.length;
   lbFrame.src = `https://www.youtube.com/embed/${videoList[currentIndex]}`;
 });
-
 // Swipe support untuk mobile
 let touchStartX = 0;
 let touchEndX = 0;
-
 lbFrame.addEventListener('touchstart', e=>{
   touchStartX = e.changedTouches[0].screenX;
 });
@@ -201,7 +177,6 @@ lbFrame.addEventListener('touchend', e=>{
   touchEndX = e.changedTouches[0].screenX;
   handleGesture();
 });
-
 function handleGesture(){
   if(touchEndX < touchStartX - 40) lbNext.click();
   if(touchEndX > touchStartX + 40) lbPrev.click();
@@ -210,8 +185,5 @@ function handleGesture(){
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>
-

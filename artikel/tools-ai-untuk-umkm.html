@@ -60,7 +60,7 @@
       name="twitter:image"
       content="https://frijal.pages.dev/img/tools-ai-untuk-umkm.webp"
     />
-    
+
     <meta
       property="article:published_time"
       content="2025-10-04T15:37:18.279+00:00"
@@ -210,18 +210,15 @@
         header h1 { font-size: 2.2rem; }
         article h2 { font-size: 1.8rem; }
       }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
   </head>
   <body>
-    
+
     <div class="container">
       <header>
         <h1>Tools AI Canggih yang Bikin UMKM & Pelajar Naik Kelas</h1>
 <div id="iposbrowser"></div>
-
         <p>Senjata Rahasia di Era Digital</p>
       </header>
       <article>
@@ -237,7 +234,6 @@
           seringnya mengerjakan semua sendiri, ini ibarat punya tim digital yang
           siap 24/7.
         </p>
-
         <h2>1. Copy.ai - Bikin Teks Iklan Otomatis</h2>
         <div class="tool-card">
           <h3>✍️ Menulis Caption Tanpa Pusing</h3>
@@ -248,7 +244,6 @@
             menarik.
           </p>
         </div>
-
         <h2>2. Canva Magic Studio - Desain Jadi Gampang</h2>
         <div class="tool-card">
           <h3>🎨 Desainer Grafis Pribadi Anda</h3>
@@ -258,7 +253,6 @@
             Anda, AI-nya akan membuatkan desainnya dari nol.
           </p>
         </div>
-
         <h2>3. Tidio - Chatbot Pelayan Pelanggan</h2>
         <div class="tool-card">
           <h3>🤖 CS yang Tidak Pernah Tidur</h3>
@@ -268,10 +262,8 @@
             rekomendasi produk, bahkan mengumpulkan data pelanggan.
           </p>
         </div>
-
         <h2>Galeri Contoh Hasil Kreasi AI</h2>
         <div class="gallery" id="photoGallery"></div>
-
         <p>
           Masih banyak lagi *tools* lain seperti <strong>SurferSEO</strong> untuk
           optimasi artikel, <strong>Synthesia</strong> untuk membuat video
@@ -279,14 +271,13 @@
           logo. Intinya, AI membuka banyak pintu kemudahan bagi siapa saja yang
           mau beradaptasi.
         </p>
-
         <div class="social-sharing">
           <h3>Bagikan Artikel Keren Ini!</h3>
           <a href="#" class="share-icon share-fb" id="shareFacebook" title="Bagikan ke Facebook">FB</a>
           <a href="#" class="share-icon share-tw" id="shareTwitter" title="Bagikan ke Twitter">TW</a>
           <a href="#" class="share-icon share-wa" id="shareWhatsApp" title="Bagikan ke WhatsApp">WA</a>
           <a href="#" class="share-icon share-tg" id="shareTelegram" title="Bagikan ke Telegram">TG</a>
-        </div>       
+        </div>
       </article>
       <footer>
         <p>🄯 2025 Frijal. Dibuat dengan semangat berbagi.</p>
@@ -299,9 +290,6 @@
       <a class="lightbox-next">&#10095;</a>
     </div>
 
-    
-
-    
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -314,7 +302,6 @@
             const prevBtn = document.querySelector('.lightbox-prev');
             const nextBtn = document.querySelector('.lightbox-next');
             let currentIndex;
-
             // Mengisi galeri dengan gambar
             const images = Array.from({ length: 8 }, (_, i) => `https://picsum.photos/id/${10 + i}/800/600`);
             images.forEach((src, index) => {
@@ -324,16 +311,14 @@
                 img.loading = 'lazy';
                 gallery.appendChild(img);
             });
-            
-            const imagesInGallery = Array.from(gallery.children);
 
+            const imagesInGallery = Array.from(gallery.children);
             function showImage(index) {
                 if (index >= imagesInGallery.length) currentIndex = 0;
                 else if (index < 0) currentIndex = imagesInGallery.length - 1;
                 else currentIndex = index;
                 lightboxImg.src = imagesInGallery[currentIndex].src;
             }
-
             gallery.addEventListener('click', (e) => {
                 if (e.target.tagName === 'IMG') {
                     const clickedIndex = imagesInGallery.indexOf(e.target);
@@ -341,7 +326,6 @@
                     showImage(clickedIndex);
                 }
             });
-
             closeBtn.addEventListener('click', () => (lightbox.style.display = 'none'));
             prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
             nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
@@ -349,7 +333,7 @@
                 if (e.target === lightbox) lightbox.style.display = 'none';
             });
         }
-        
+
         // --- SOCIAL SHARING ---
         (() => {
             const pageUrl = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
@@ -360,7 +344,6 @@
                 shareWhatsApp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
                 shareTelegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`
             };
-
             for (const id in shareLinks) {
                 const link = document.getElementById(id);
                 if (link) {
@@ -371,11 +354,9 @@
             }
         })();
       });
-    </script> 
+    </script>
     <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
   </body>
 </html>

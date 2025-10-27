@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Cara Membuat File album.json untuk Galeri Gambar (Python & Node.js)</title>
     <meta name="description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/artikel/membuat-album-json.html">
-    
+
     <meta property="og:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python & Node.js)">
     <meta property="og:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
     <meta property="og:type" content="article">
@@ -18,13 +18,13 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="frijal.pages.dev">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@frijal"> <meta name="twitter:creator" content="@frijal"> <meta name="twitter:title" content="Cara Membuat File album.json untuk Galeri Gambar (Python & Node.js)">
     <meta name="twitter:description" content="Punya folder gambar online? Buatkan file manifest album.json secara otomatis pakai script Python atau Node.js ini. Script ini memindai folder rekursif.">
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+
     <style>
         /* --- CSS Reset Sederhana --- */
         *,
@@ -32,12 +32,10 @@
         *::after {
             box-sizing: border-box;
         }
-
         body, h1, h2, h3, p, ul, ol, pre {
             margin: 0;
             padding: 0;
         }
-
         /* --- Desain Utama & Tipografi --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -45,7 +43,6 @@
             background-color: #f4f7f6;
             color: #333;
         }
-
         /* --- Kontainer Widescreen --- */
         .container {
             max-width: 900px;
@@ -54,7 +51,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             width: 100%;
         }
-        
+
         /* --- Header Artikel --- */
         .article-header {
             background-color: #2c3e50;
@@ -73,23 +70,19 @@
             font-weight: 300;
             color: #ecf0f1;
         }
-
         /* --- Konten Artikel --- */
         .article-content {
             padding: 2.5rem;
         }
-
         .article-content hr {
             border: none;
             border-top: 1px solid #eee;
             margin: 2.5rem 0;
         }
-
         .article-content p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
         }
-
         .article-content h2 {
             font-size: 1.8rem;
             font-weight: 600;
@@ -107,7 +100,7 @@
             color: #3498db;
             font-size: 1.5rem;
         }
-        
+
         .article-content h3 {
             font-size: 1.4rem;
             font-weight: 600;
@@ -122,7 +115,6 @@
             color: #777;
             font-size: 1.1rem;
         }
-
         .article-content a {
             color: #3498db;
             text-decoration: none;
@@ -131,7 +123,6 @@
         .article-content a:hover {
             text-decoration: underline;
         }
-
         /* --- Blok Kode --- */
         .article-content pre {
             background-color: #2d2d2d;
@@ -146,7 +137,7 @@
         .article-content pre code {
             font-family: inherit;
         }
-        
+
         /* Blok untuk terminal */
         .terminal-code {
             background: #e0e0e0;
@@ -155,7 +146,6 @@
             border-radius: 6px;
             font-family: 'Courier New', Courier, monospace;
         }
-
         /* --- Info Box untuk "Cara Pakai" --- */
         .info-box {
             background: #eaf5ff;
@@ -178,7 +168,6 @@
             margin-bottom: 0.75rem;
             line-height: 1.6;
         }
-
         /* --- Bagian Share Media Sosial --- */
         .share-section {
             text-align: center;
@@ -207,7 +196,6 @@
         .share-buttons .fa-facebook:hover { color: #1877F2; }
         .share-buttons .fa-telegram:hover { color: #0088cc; }
         .share-buttons .fa-linkedin:hover { color: #0077b5; }
-
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -219,7 +207,7 @@
             margin: 0;
             font-size: 0.9rem;
         }
-             
+
         /* --- CSS Responsif (Mobile-Friendly) --- */
         @media (max-width: 900px) {
             .container {
@@ -227,7 +215,7 @@
                 box-shadow: none;
             }
         }
-        
+
         @media (max-width: 768px) {
             .article-header {
                 padding: 2rem 1.5rem;
@@ -268,16 +256,15 @@
 </head>
 <body>
     <div class="container">
-        
+
         <header class="article-header">
             <h1>Buat File `album.json` Otomatis untuk Galeri Online-mu</h1>
 <div id="iposbrowser"></div>
             <p class="subtitle">Gunakan script Python atau Node.js untuk memindai folder album rekursif dengan cepat.</p>
         </header>
-
         <main>
             <article class="article-content">
-                
+
                 <p>Tentu. Karena browser tidak bisa *memindai* folder di komputer Anda, kita tidak bisa membuatnya dari halaman web.</p>
                 <p>Sebagai gantinya, kita bisa menggunakan script pendek di komputer Anda untuk *membuat* file `album.json` tersebut. Setelah file itu jadi, Anda bisa mengunggahnya bersama semua gambar Anda ke server.</p>
                 <p>Saya akan berikan dua opsi script yang paling umum: <strong>Python</strong> (seringkali sudah ada di Mac/Linux dan mudah di-install di Windows) dan <strong>Node.js</strong> (jika Anda lebih suka JavaScript).</p>
@@ -287,7 +274,7 @@
                     <li>Mencari semua file gambar (jpg, png, webp, gif).</li>
                     <li>Membuat file <code>album.json</code> yang berisi daftar path relatif dari gambar-gambar tersebut.</li>
                 </ul>
-                
+
                 <div class="info-box">
                     <h2><i class="fas fa-rocket"></i>Cara Pakai (Penting!)</h2>
                     <ol>
@@ -299,64 +286,54 @@
                         <li>Unggah <em>seluruh isi</em> folder <code>album-liburan</code> (termasuk <code>album.json</code> dan semua subfolder gambar) ke server web Anda.</li>
                     </ol>
                 </div>
-
                 <hr>
-
                 <h2><i class="fab fa-python"></i>Opsi 1: Script Python (<code>.py</code>)</h2>
                 <p>Ini adalah cara yang paling simpel jika Anda punya Python. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.py</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
-                
+
 <pre><code class="language-python">import os
 import json
-
 # --- Konfigurasi ---
 START_DIR = '.'  # Titik (.) berarti folder saat ini
 OUTPUT_FILE = 'album.json' # Nama file JSON yang akan dibuat
 SCRIPT_NAME = os.path.basename(__file__) # Nama script ini agar diabaikan
 IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif')
 # --------------------
-
 image_paths = []
-
 print(f"Memindai '{START_DIR}' untuk mencari gambar...")
-
 # os.walk() akan menjelajah semua subfolder secara otomatis
 for root, dirs, files in os.walk(START_DIR, topdown=True):
     # Abaikan folder .git atau node_modules jika ada
     dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules']]
-    
+
     for file in files:
         # 1. Abaikan file script ini dan file outputnya sendiri
         if file == SCRIPT_NAME or file == OUTPUT_FILE:
             continue
-            
+
         # 2. Cek apakah ekstensinya adalah gambar
         if file.lower().endswith(IMAGE_EXTENSIONS):
             # 3. Dapatkan path lengkap dan path relatif
             full_path = os.path.join(root, file)
             # os.path.relpath akan membuat path relatif (mis: 'subfolder/gambar.jpg')
             relative_path = os.path.relpath(full_path, START_DIR)
-            
+
             # 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
             relative_path = relative_path.replace(os.path.sep, '/')
-            
+
             image_paths.append(relative_path)
             print(f"  Menemukan: {relative_path}")
-
 # 5. Urutkan daftar agar rapi
 image_paths.sort()
-
 # 6. Tulis semua path ke dalam file JSON
 try:
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         # indent=2 membuat file JSON rapi dan mudah dibaca
         json.dump(image_paths, f, indent=2, ensure_ascii=False)
-    
-    print(f"\n✅ Sukses! {len(image_paths)} gambar telah disimpan ke '{OUTPUT_FILE}'")
 
+    print(f"\n✅ Sukses! {len(image_paths)} gambar telah disimpan ke '{OUTPUT_FILE}'")
 except IOError as e:
     print(f"\n❌ Gagal menulis file: {e}")
 </code></pre>
-
                 <h3><i class="fas fa-terminal"></i>Cara Menjalankan (Python)</h3>
                 <p>1. Buka terminal atau Command Prompt.<br>
                    2. Masuk ke folder album Anda:<br>
@@ -364,55 +341,45 @@ except IOError as e:
                    3. Jalankan script:<br>
                    <code class="terminal-code">python buat_json.py</code> (atau <code>python3 buat_json.py</code>)
                 </p>
-
                 <hr>
-
                 <h2><i class="fab fa-node-js"></i>Opsi 2: Script Node.js (<code>.js</code>)</h2>
                 <p>Gunakan ini jika Anda sudah meng-install Node.js di komputer Anda. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.js</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
-                
+
 <pre><code class="language-javascript">const fs = require('fs');
 const path = require('path');
-
 // --- Konfigurasi ---
 const START_DIR = '.'; // Titik (.) berarti folder saat ini
 const OUTPUT_FILE = 'album.json'; // Nama file JSON yang akan dibuat
 const SCRIPT_NAME = path.basename(__filename); // Nama script ini agar diabaikan
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
 // --------------------
-
 const imagePaths = [];
-
 console.log(`Memindai '${START_DIR}' untuk mencari gambar...`);
-
 // Fungsi rekursif untuk memindai folder
 function findImages(currentDir) {
   try {
     const entries = fs.readdirSync(currentDir, { withFileTypes: true });
-
     for (const entry of entries) {
       const fullPath = path.join(currentDir, entry.name);
-
       // Abaikan folder .git atau node_modules
       if (entry.isDirectory() && entry.name !== '.git' && entry.name !== 'node_modules') {
         findImages(fullPath); // Rekursif ke subfolder
       } else if (entry.isFile()) {
-        
+
         // 1. Abaikan file script ini dan file outputnya sendiri
         if (entry.name === SCRIPT_NAME || entry.name === OUTPUT_FILE) {
           continue;
         }
-
         // 2. Cek apakah ekstensinya adalah gambar
         const ext = path.extname(entry.name).toLowerCase();
         if (IMAGE_EXTENSIONS.has(ext)) {
-          
+
           // 3. Dapatkan path relatif
           // path.relative akan membuat path relatif (mis: 'subfolder/gambar.jpg')
           const relativePath = path.relative(START_DIR, fullPath);
-
           // 4. Ganti backslash (\) Windows menjadi forward slash (/) untuk URL
           const urlPath = relativePath.replace(/\\/g, '/');
-          
+
           imagePaths.push(urlPath);
           console.log(`  Menemukan: ${urlPath}`);
         }
@@ -422,26 +389,21 @@ function findImages(currentDir) {
     console.error(`Gagal membaca folder: ${currentDir}`, err);
   }
 }
-
 // Mulai pemindaian
 findImages(START_DIR);
-
 // 5. Urutkan daftar agar rapi
 imagePaths.sort();
-
 // 6. Tulis semua path ke dalam file JSON
 try {
   // JSON.stringify dengan 'null, 2' membuat file rapi dan mudah dibaca
   const jsonContent = JSON.stringify(imagePaths, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
-  
-  console.log(`\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'`);
 
+  console.log(`\n✅ Sukses! ${imagePaths.length} gambar telah disimpan ke '${OUTPUT_FILE}'`);
 } catch (err) {
   console.error(`\n❌ Gagal menulis file: ${err}`);
 }
 </code></pre>
-
                 <h3><i class="fas fa-terminal"></i>Cara Menjalankan (Node.js)</h3>
                 <p>1. Buka terminal atau Command Prompt.<br>
                    2. Masuk ke folder album Anda:<br>
@@ -449,9 +411,7 @@ try {
                    3. Jalankan script:<br>
                    <code class="terminal-code">node buat_json.js</code>
                 </p>
-
             </article>
-
             <section class="share-section">
                 <h3>Bagikan Halaman Ini:</h3>
                 <div class="share-buttons">
@@ -463,11 +423,10 @@ try {
                 </div>
             </section>
         </main>
-
         <footer>
             <p>&copy; 2025 frijal.pages.dev. Hak Cipta Dilindungi.</p>
         </footer>
-    </div> 
+    </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
