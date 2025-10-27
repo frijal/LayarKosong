@@ -63,7 +63,7 @@
       name="twitter:image"
       content="https://frijal.pages.dev/img/workflow-perbaikan-foto-ala-national-geographic.webp"
     />
-    
+
     <style>
       :root {
         --bg: #0f172a;
@@ -206,9 +206,7 @@
         font-size: 0.92rem;
         text-align: center;
       }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
   </head>
   <body>
@@ -235,7 +233,6 @@
         <section class="hero">
           <h1>Workflow Perbaikan Foto ala National Geographic</h1>
 <div id="iposbrowser"></div>
-
           <div class="meta">
             <span>Dipublikasikan: 05 Okt 2025</span>
             <span>Format: Panduan teknis & artistik</span>
@@ -322,9 +319,9 @@
               Bagikan pengalaman Anda memperbaiki foto lama. Trik kecil yang
               Anda temukan bisa sangat membantu orang lain.
             </p>
-            
+
             <div class="comments">
-              
+
             </div>
           </article>
         </section>
@@ -336,7 +333,6 @@
         </div>
       </footer>
     </div>
-
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <div class="lightbox-content">
         <img class="lightbox-img" id="lightboxImg" alt="Foto fullscreen" />
@@ -345,29 +341,23 @@
         <button class="lightbox-next" id="lightboxNext" title="Berikutnya" aria-label="Berikutnya">▶</button>
       </div>
     </div>
-    
 
-    
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Skrip deteksi pengguna DIHAPUS sesuai instruksi ---
-
         // Lightbox galeri
         (() => {
           const gallery = document.querySelector('.gallery'); // Menyesuaikan selector jika ada galeri
           const lightbox = document.getElementById('lightbox');
           if (!gallery || !lightbox) return; // Keluar jika tidak ada galeri atau lightbox
-
           const lightboxImg = document.getElementById('lightboxImg');
           const btnClose = document.getElementById('lightboxClose');
           const btnPrev = document.getElementById('lightboxPrev');
           const btnNext = document.getElementById('lightboxNext');
           const items = Array.from(gallery.querySelectorAll('img'));
           let currentIndex = 0;
-
           if (items.length === 0) return; // Keluar jika galeri kosong
-
           function showImage(index) {
             const img = items[index];
             if(img) {
@@ -375,24 +365,22 @@
               lightboxImg.alt = img.alt;
             }
           }
-
           function openLightbox(index) {
             currentIndex = index;
             showImage(currentIndex);
             lightbox.classList.add('active');
           }
-
           function closeLightbox() {
             lightbox.classList.remove('active');
           }
-          
+
           items.forEach((img, index) => {
             if(!img.dataset.index) img.dataset.index = index;
             img.addEventListener('click', () => openLightbox(index));
           });
-          
+
           btnClose.addEventListener('click', closeLightbox);
-          btnPrev.addEventListener('click', (e) => { 
+          btnPrev.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + items.length) % items.length;
             showImage(currentIndex);
@@ -402,12 +390,10 @@
             currentIndex = (currentIndex + 1) % items.length;
             showImage(currentIndex);
           });
-
           lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
           });
         })();
-
         // Facebook SDK untuk komentar
         (() => {
           if (document.querySelector('.fb-comments')) {
@@ -421,13 +407,10 @@
         })();
       });
     </script>
-    
-    
+
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
   </body>
 </html>

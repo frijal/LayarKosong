@@ -6,7 +6,6 @@
   <title>UNLICENSE: Dedikasi Domain Publik untuk Kebebasan Maksimum</title>
   <meta name="description" content="Lisensi UNLICENSE adalah dedikasi domain publik agar karya dapat digunakan tanpa batasan. Penjelasan, karakteristik, alasan menggunakan, dan contoh ikon.">
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
   <style>
     :root{
       --bg:#0f1419;
@@ -147,7 +146,6 @@
     .lb-close{ top: 14px; right: 14px; }
     .lb-prev{ left: 12px; top: 50%; transform: translateY(-50%); }
     .lb-next{ right: 12px; top: 50%; transform: translateY(-50%); }
-
     /* Share buttons statis */
     .share{
       display:flex;
@@ -168,13 +166,11 @@
     .share svg{
       width:18px;height:18px;fill:#fff;
     }
-
     footer{
       margin-top: 24px;
       color: var(--muted);
       font-size: 0.92rem;
     }
-
   </style>
 <meta property="og:image" content="https://frijal.pages.dev/img/unlicense.webp">
   <meta property="og:image:alt" content="UNLICENSE: Dedikasi Domain Publik untuk Kebebasan Maksimum">
@@ -196,7 +192,6 @@
         <span>🔖 Kategori: Lisensi & Domain Publik</span>
       </div>
     </header>
-
     <!-- UNLICENSE Icon + Intro -->
     <section class="card licon">
       <svg xmlns="http://www.w3.org/2000/svg" width="196" height="196" aria-label="UNLICENSE Icon">
@@ -217,7 +212,6 @@
         </p>
       </div>
     </section>
-
     <!-- Karakteristik Utama -->
     <section class="card">
       <h2 class="section-title">Karakteristik utama</h2>
@@ -236,7 +230,6 @@
         </li>
       </ul>
     </section>
-
     <!-- Mengapa Menggunakan -->
     <section class="card">
       <h2 class="section-title">Mengapa menggunakan UNLICENSE?</h2>
@@ -252,7 +245,6 @@
         Sebagai pelengkap, kamu bisa menambahkan file <code>UNLICENSE</code> di root repo agar niat dedikasi ke domain publik terbaca jelas oleh pengguna, package manager, dan platform hosting. Pastikan juga dokumentasi menyebutkan risiko umum (misalnya tanpa jaminan/garansi), agar pengguna memahami konsekuensinya.
       </p>
     </section>
-
     <!-- Galeri Foto dengan lazy-load -->
     <section class="card">
       <h2 class="section-title">Galeri icon dan contoh penggunaan</h2>
@@ -280,7 +272,6 @@
         </div>
       </div>
     </section>
-
     <!-- Share statis -->
     <section class="card">
       <h2 class="section-title">Jaga Data Pribadi Tetap Aman</h2>
@@ -291,17 +282,14 @@
         <a href="https://wa.me/?text=UNLICENSE%20https://frijal.pages.dev/artikel/unlicense.html" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </section>
-
     <footer>
       <p>Lisensi konten halaman: UNLICENSE — dedikasi domain publik. Tidak ada garansi; gunakan dengan bijak.</p>
       <p>&#127279; <span id="year"></span> frijal.pages.dev — Halaman dirancang untuk satu kolom, responsif, dan ramah SEO.</p>
     </footer>
   </div>
-
   <script>
     // Tahun dinamis
     document.getElementById('year').textContent = new Date().getFullYear();
-
     // Lightbox gallery
     (function(){
       const gallery = document.querySelectorAll('.gallery img');
@@ -310,16 +298,13 @@
       const lbClose = lightbox.querySelector('.lb-close');
       const lbPrev = lightbox.querySelector('.lb-prev');
       const lbNext = lightbox.querySelector('.lb-next');
-
       let idx = 0;
-
       function show(i){
         idx = i;
         lbImg.src = gallery[idx].src;
         lightbox.classList.add('active');
       }
       function close(){ lightbox.classList.remove('active'); }
-
       gallery.forEach((img, i) => img.addEventListener('click', ()=>show(i)));
       lbClose.addEventListener('click', close);
       lbPrev.addEventListener('click', ()=>show((idx-1+gallery.length)%gallery.length));
@@ -336,8 +321,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>
-

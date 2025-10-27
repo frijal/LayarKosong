@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Meta dasar -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi</title>
   <meta name="description" content="Menemukan tulisan 'UBUNTU' di angkot dan spanduk kios di Bontang. Catatan singkat, klarifikasi ramah tentang Ubuntu, galeri foto (lazy-load + lightbox), dan tombol berbagi." />
   <link rel="canonical" href="https://frijal.pages.dev/artikel/ubuntu-di-bontang.html" />
 
-  <!-- Favicon -->
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="https://frijal.pages.dev/favicon.svg" />
   <link rel="apple-touch-icon" href="https://frijal.pages.dev/ext/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0ea5e9" />
 
-  <!-- Twitter Card (Open Graph dihapus sesuai permintaan) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi" />
   <meta name="twitter:description" content="Cerita kecil tentang 'UBUNTU' di kota Bontang dan klarifikasi ramah: Ubuntu bukan antivirus dan update itu penting." />
   <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmqZIXUzjQWX0OrmoLNakYGMmsAt8g8MoVST2gtJSFui2Bli8kasho7PlFd4W2G4amOU1a6wcCqxuPSSmIRxT5IEqegKhn6f9IV-2lWumuJk1ugZo0SpjWzZ31BxvamDi7-nTzm4YY1KO/s800/angkotubuntu.jpg" />
 
-  <!-- JSON-LD: Article -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +37,6 @@
   }
   </script>
 
-  <!-- JSON-LD: Breadcrumb -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -54,10 +49,8 @@
   }
   </script>
 
-  <!-- Prism.js (opsional untuk snippet) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-twilight.min.css" />
 
-  <!-- CSS: Tema cyan-lime (baru), glass cards, wide fullscreen, responsif -->
   <style>
     :root{
       --bg: #06121a;
@@ -69,9 +62,10 @@
       --card: rgba(255,255,255,.06);
       --border: 1px solid rgba(255,255,255,.12);
       --shadow: 0 22px 60px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.04) inset;
-      --accent:#0ea5e9; --accent2:#84cc16;
+      --accent:#0ea5e9; --accent2:#84cc16; --danger: #f43f5e;
       --radius:18px;
-      --w: min(1200px, 94vw);
+      /* Lebar utama untuk 1 kolom, nyaman dibaca (900px) */
+      --w: min(900px, 94vw);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -80,13 +74,16 @@
       font:16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background: var(--grad); background-attachment: fixed;
     }
-    a{color:#9bd7ff}
+    a{color:#9bd7ff; text-decoration: none;}
+    a:hover { color: #dbeeff; text-decoration: underline; }
+
     header{
       position:sticky; top:0; z-index:1000;
       background: rgba(6,18,26,.6); backdrop-filter: blur(10px) saturate(140%);
       border-bottom: var(--border);
     }
     .wrap{width:var(--w); margin:0 auto; padding:18px}
+
     .hero{display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px 0}
     .brand{
       display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.2px;
@@ -102,33 +99,78 @@
     .cta a{
       display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:900;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#08131e; padding:10px 14px; border-radius:999px; box-shadow: var(--shadow)
+      color:#08131e; padding:10px 14px; border-radius:999px; box-shadow: var(--shadow);
+      transition: transform .2s ease;
     }
+    .cta a:hover { transform: scale(1.05); }
+
     main{padding:26px 0 64px}
-    .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:22px}
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
-    .card{background: var(--card); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding:22px}
-    h1,h2,h3{margin:0 0 12px}
-    h1{font:900 clamp(22px, 2.6vw, 34px)/1.2 Poppins, Inter, Arial}
-    h2{font:800 clamp(20px, 2.2vw, 28px)/1.25 Poppins, Inter, Arial}
-    h3{font:700 clamp(18px, 1.9vw, 22px)/1.3 Poppins, Inter, Arial; color:#e6f6ff}
-    p{margin:0 0 12px}
-    .lead{font-size:18px; color:#eaf7ff}
-    .muted{color:var(--muted)}
-    .note{
-      padding:12px 14px; border-radius:14px; margin:10px 0;
-      background: linear-gradient(135deg, rgba(14,165,233,.18), rgba(132,204,22,.18));
-      border:1px dashed rgba(255,255,255,.22); color:#f1fbff
+    /* .grid dihapus, .card sekarang jadi layout utama */
+    .card{
+      background: var(--card); border: var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: clamp(18px, 4vw, 32px); /* Padding responsif */
     }
-    .list{display:grid; gap:10px; margin:10px 0}
-    .list li{list-style:none; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05)}
-    .gallery{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:10px}
-    @media (max-width: 760px){ .gallery{grid-template-columns: 1fr} }
+
+    h1,h2,h3{margin:24px 0 12px; line-height: 1.3;}
+    h1:first-child, h2:first-child, h3:first-child { margin-top: 0; }
+    h1{font:900 clamp(24px, 4vw, 34px)/1.2 Poppins, Inter, Arial; color: #fff;}
+    h2{font:800 clamp(22px, 3.5vw, 28px)/1.25 Poppins, Inter, Arial; color: #f1f9ff;}
+    h3{font:700 clamp(20px, 3vw, 22px)/1.3 Poppins, Inter, Arial; color:#e6f6ff}
+
+    p{margin:0 0 16px}
+    .lead{font-size:18px; color:#eaf7ff; margin-bottom: 20px;}
+    .muted{color:var(--muted); font-size: 15px;}
+
+    .note{
+      padding:16px 20px; border-radius:14px; margin:20px 0;
+      background: linear-gradient(135deg, rgba(14,165,233,.18), rgba(132,204,22,.18));
+      border:1px dashed rgba(255,255,255,.22); color:#f1fbff;
+      font-size: 15px;
+    }
+
+    /* List dengan Ikon */
+    .list{display:grid; gap:10px; margin:16px 0; padding-left: 0;}
+    .list li{
+      list-style:none;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      display: flex; /* Untuk ikon */
+      align-items: flex-start; /* Rata atas */
+      gap: 12px; /* Jarak ikon & teks */
+    }
+    .list li svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 3px; /* Penyesuaian posisi vertikal */
+    }
+    .list-senang svg { color: var(--accent2); }
+    .list-sedih svg { color: var(--danger); }
+    .list-faq svg { color: var(--accent); }
+    .list-info svg { color: #f59e0b; } /* Amber */
+
+    .gallery{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:16px; margin-bottom: 24px;}
+    @media (max-width: 600px){ .gallery{grid-template-columns: 1fr} } /* Tetap 1 kolom di HP */
+
     .gallery a{display:block; overflow:hidden; border-radius:14px; border:1px solid rgba(255,255,255,.12)}
-    .gallery img{width:100%; height:360px; object-fit:cover; display:block; transition: transform .35s ease; filter:saturate(1.04) contrast(1.03)}
+    .gallery img{
+      width:100%; height:auto; aspect-ratio: 16 / 10; /* Jaga rasio */
+      object-fit:cover; display:block;
+      transition: transform .35s ease;
+      filter:saturate(1.04) contrast(1.03);
+    }
     .gallery a:hover img{ transform: scale(1.03) }
-    .share{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
-    .share a{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; text-decoration:none; color:#08131e; font-weight:800}
+
+    .share{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .share a{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px;
+      border-radius:12px; text-decoration:none; color:#08131e; font-weight:800;
+      transition: all .2s ease;
+    }
+    .share a:hover { opacity: 0.85; transform: translateY(-2px); }
     .share .tw{background:#1DA1F2; color:#fff}
     .share .x{background:#0f1419; color:#fff}
     .share .wa{background:#25D366}
@@ -136,14 +178,19 @@
     .share .ig{background:linear-gradient(45deg,#F58529,#FEDA77,#DD2A7B,#8134AF,#515BD4); color:#fff}
     .share .threads{background:#000; color:#fff}
     .share .tt{background:#111; color:#fff}
-    .code-wrap{position:relative}
+
+    .code-wrap{position:relative; margin: 16px 0;}
     .copy-btn{
       position:absolute; right:8px; top:8px; padding:6px 10px; font-size:12px; border-radius:8px; border:1px solid rgba(255,255,255,.25);
       background:rgba(255,255,255,.1); color:#fff; cursor:pointer; font-weight:800
     }
-    pre{border-radius:14px; border:1px solid rgba(255,255,255,.12); background:#0b1021 !important}
-    footer{margin-top:40px; border-top:1px solid rgba(255,255,255,.12); background: rgba(6,18,26,.6); backdrop-filter: blur(8px)}
+    pre{border-radius:14px; border:1px solid rgba(255,255,255,.12); background:#0b1021 !important; margin: 0;}
 
+    footer{
+      margin-top:40px; border-top:1px solid rgba(255,255,255,.12);
+      background: rgba(6,18,26,.6); backdrop-filter: blur(8px)
+    }
+    footer p { margin-bottom: 0; }
   </style>
 
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
@@ -151,120 +198,147 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="wrap hero">
       <div class="brand">
-        <span class="logo" aria-hidden="true"></span>
-        Ubuntu di Bontang • Catatan Lapangan
+        <span class="logo"></span>
+        Ubuntu di Bontang
       </div>
-      <div class="cta">
-        <a href="#konten" aria-label="Mulai baca">Mulai baca</a>
-      </div>
-    </div>
+       </div>
   </header>
 
   <main class="wrap">
-    <div class="grid">
-      <!-- Konten utama -->
-      <article class="card" id="konten" role="main">
-        <h1>“UBUNTU” di angkot dan kios: senang lihatnya, tapi ada yang perlu diluruskan</h1>
-<div id="iposbrowser"></div>
 
-        <p class="lead">
-          Menemukan tulisan “UBUNTU” di samping angkot dan di spanduk kios di Bontang itu rasanya campur—bangga karena nama Ubuntu terdengar makin akrab, tapi juga gemas saat disandingkan dengan “anti virus” atau klaim “tak perlu update”. Di sini kita rapikan informasinya secara ramah.
-        </p>
-        <p class="muted">Klik gambar untuk memperbesar. Foto dimuat hemat data dan rapi di semua layar.</p>
-        <div class="gallery" id="gallery">
-          <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmqZIXUzjQWX0OrmoLNakYGMmsAt8g8MoVST2gtJSFui2Bli8kasho7PlFd4W2G4amOU1a6wcCqxuPSSmIRxT5IEqegKhn6f9IV-2lWumuJk1ugZo0SpjWzZ31BxvamDi7-nTzm4YY1KO/s800/angkotubuntu.jpg" data-lightbox="galeri" aria-label="Angkot bertuliskan Ubuntu">
-            <img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmqZIXUzjQWX0OrmoLNakYGMmsAt8g8MoVST2gtJSFui2Bli8kasho7PlFd4W2G4amOU1a6wcCqxuPSSmIRxT5IEqegKhn6f9IV-2lWumuJk1ugZo0SpjWzZ31BxvamDi7-nTzm4YY1KO/s16000/angkotubuntu.jpg" alt="Angkot bertuliskan Ubuntu" />
-          </a>
-          <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHuCFs0nYQPEJFwXokcO4q5jRx9ANJeeztLR2132NQVENr8_r_q5Ufn7tq27P6WsK4DciMCQwKwO8b7tL7Bj9FSOlZZze2fqUffe66JdokM3y7LyJKBz3KuOJllEZbgTwGIEBZinNE6OjL/s800/antivirus.jpg" data-lightbox="galeri" aria-label="Spanduk kios bertuliskan Ubuntu dan antivirus">
-            <img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHuCFs0nYQPEJFwXokcO4q5jRx9ANJeeztLR2132NQVENr8_r_q5Ufn7tq27P6WsK4DciMCQwKwO8b7tL7Bj9FSOlZZze2fqUffe66JdokM3y7LyJKBz3KuOJllEZbgTwGIEBZinNE6OjL/s16000/antivirus.jpg" alt="Spanduk kios menyebut Ubuntu & antivirus" />
-          </a>
-        </div>
+    <article class="card" id="konten">
 
-        <h2>Kebahagiaan: kenapa ini kabar baik?</h2>
-        <ul class="list">
-          <li><strong>Ubuntu sudah sampai Bontang:</strong> nama dan semangat open-source makin dikenal.</li>
-          <li><strong>Internet cepat & sistem stabil:</strong> tepat—Ubuntu punya reputasi stabil dan efisien.</li>
-          <li><strong>Data aman dari USB:</strong> relatif lebih aman karena model perizinan Linux, tetap perlu kewaspadaan.</li>
-          <li><strong>Bisa untuk laptop/PC:</strong> dukungan perangkat luas dan terus membaik.</li>
-        </ul>
+      <h1>“UBUNTU” di Angkot dan Kios: Senang Lihatnya, Tapi Ada yang Perlu Diluruskan</h1>
+      <div id="iposbrowser"></div>
 
-        <h2>Kesedihan: yang perlu diluruskan.</h2>
-        <ul class="list">
-          <li><strong>Ubuntu bukan antivirus:</strong> Ubuntu adalah sistem operasi GNU/Linux—bukan aplikasi keamanan.</li>
-          <li><strong>Update itu penting:</strong> klaim “tidak perlu update” keliru. Pembaruan menutup celah, menambah fitur, dan memperbaiki bug.</li>
-        </ul>
+      <p class="lead">
+        Menemukan tulisan “UBUNTU” di samping angkot dan di spanduk kios di Bontang itu rasanya campur aduk. Bangga sih karena nama Ubuntu terdengar makin akrab di telinga warga, tapi juga gemas waktu lihat disandingkan dengan “anti virus” atau klaim “tak perlu update”. Nah, di sini kita coba rapikan informasinya secara santai dan ramah.
+      </p>
+      <div class="gallery" id="gallery">
+        <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmqZIXUzjQWX0OrmoLNakYGMmsAt8g8MoVST2gtJSFui2Bli8kasho7PlFd4W2G4amOU1a6wcCqxuPSSmIRxT5IEqegKhn6f9IV-2lWumuJk1ugZo0SpjWzZ31BxvamDi7-nTzm4YY1KO/s800/angkotubuntu.jpg" data-lightbox="galeri">
+          <img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDmqZIXUzjQWX0OrmoLNakYGMmsAt8g8MoVST2gtJSFui2Bli8kasho7PlFd4W2G4amOU1a6wcCqxuPSSmIRxT5IEqegKhn6f9IV-2lWumuJk1ugZo0SpjWzZ31BxvamDi7-nTzm4YY1KO/s16000/angkotubuntu.jpg" alt="Angkot di Bontang bertuliskan Ubuntu" />
+        </a>
+        <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHuCFs0nYQPEJFwXokcO4q5jRx9ANJeeztLR2132NQVENr8_r_q5Ufn7tq27P6WsK4DciMCQwKwO8b7tL7Bj9FSOlZZze2fqUffe66JdokM3y7LyJKBz3KuOJllEZbgTwGIEBZinNE6OjL/s800/antivirus.jpg" data-lightbox="galeri">
+          <img loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHuCFs0nYQPEJFwXokcO4q5jRx9ANJeeztLR2132NQVENr8_r_q5Ufn7tq27P6WsK4DciMCQwKwO8b7tL7Bj9FSOlZZze2fqUffe66JdokM3y7LyJKBz3KuOJllEZbgTwGIEBZinNE6OjL/s16000/antivirus.jpg" alt="Spanduk kios komputer menyebut Ubuntu & antivirus" />
+        </a>
+      </div>
 
-        <div class="note">
-          Cara menjelaskan yang ramah: “Ubuntu itu sistem operasi bebas dan terbuka. Supaya aman dan nyaman, tetap rutin update dari repositori resmi. Antivirus umumnya bukan kebutuhan utama di Linux desktop, tapi keamanan tetap nomor satu: update, backup, dan praktik digital sehat.”
-        </div>
+      <h2>🥳 Asiknya: Kenapa Ini Kabar Baik?</h2>
+      <p>Tentu aja kita senang lihat nama Ubuntu makin populer. Ini beberapa poin positif yang (sebagian) benar dari spanduk itu:</p>
+      <ul class="list list-senang">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <strong>Ubuntu sudah sampai Bontang:</strong> Keren! Artinya nama dan semangat open-source makin dikenal luas, nggak cuma di kota-kota besar.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <strong>Internet cepat & sistem stabil:</strong> Ini tepat. Ubuntu (dan Linux pada umumnya) punya reputasi sangat stabil, ringan, dan efisien.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <strong>Data aman dari USB:</strong> Relatif lebih aman. Karena model perizinan (permission) di Linux, virus dari Windows nggak bisa langsung jalan/eksekusi otomatis. Tapi, tetap perlu waspada.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <strong>Bisa untuk laptop/PC:</strong> Jelas! Dukungan perangkat keras (hardware) Ubuntu sekarang luas banget dan terus membaik setiap rilisnya.
+        </li>
+      </ul>
 
-        <h2>Snippet klarifikasi (siap tempel di brosur/kios)</h2>
-        <div class="code-wrap">
-          <button class="copy-btn" data-copy="#snip-brosur">Salin</button>
-          <pre><code id="snip-brosur" class="language-html">&lt;div class=&quot;klarifikasi&quot;&gt;
+      <h2>😥 Sayangnya: Ini yang Perlu Diluruskan...</h2>
+      <p>Nah, ini bagian kagetnya. Ada beberapa info yang kurang pas dan bisa bikin salah kaprah:</p>
+      <ul class="list list-sedih">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
+          <strong>Ubuntu bukan antivirus:</strong> Ini yang paling fatal. Ubuntu itu adalah SISTEM OPERASI (OS), sama seperti Windows atau macOS. Dia adalah "rumahnya", bukan "satpam"-nya.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
+          <strong>Update itu penting:</strong> Klaim “tidak perlu update” itu keliru banget. Justru update (pembaruan) itu penting untuk menutup celah keamanan, menambah fitur baru, dan memperbaiki bug.
+        </li>
+      </ul>
+
+      <div class="note">
+        <strong>Cara menjelaskan yang ramah (kalau ketemu pemilik kiosnya):</strong>
+        <p style="margin-top: 8px; margin-bottom: 0;">“Mantap, Mas/Mbak, pakai Ubuntu! Oh ya, sedikit info: Ubuntu itu sebenarnya sistem operasinya (OS), bukan antivirus. Biar OS-nya makin aman dan nyaman, jangan lupa tetap rutin di-update dari repositori resminya, ya. Soal virus, di Linux memang jauh lebih aman, tapi update itu tetap nomor satu buat jaga-jaga.”</p>
+      </div>
+
+      <h2>📝 Inti Klarifikasinya (TL;DR)</h2>
+      <p>Jadi, kalau dirangkum poin-poin pentingnya kayak gini:</p>
+      <ul class="list list-info">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 22 4-4"></path><path d="M20 14v-4a8 8 0 1 0-16 0v4"></path><path d="M20 14h-4a8 8 0 0 0-8 8v0"></path><path d="M4 14H0"></path><path d="M16 14h4"></path></svg>
+          <strong>Ubuntu</strong> = Sistem Operasi (OS) berbasis GNU/Linux, bukan aplikasi antivirus.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path><path d="M21 12a9 9 0 0 0-9-9"></path></svg>
+          <strong>Update</strong> = Tetap sangat penting! Ini kunci utama keamanan & stabilitas di OS manapun.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>
+          <strong>Keamanan USB</strong> = Relatif lebih aman karena arsitektur Linux, tapi bukan berarti kebal 100%. Tetap waspada.
+        </li>
+      </ul>
+
+      <h3>🤔 Tanya Jawab Singkat (FAQ)</h3>
+      <ul class="list list-faq">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+          <strong>Jadi, perlu antivirus di Ubuntu?</strong> Umumnya tidak perlu untuk penggunaan desktop harian. Keamanan utama di Linux adalah dari update rutin, izin aplikasi (permission), dan backup data.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+          <strong>Bayar nggak?</strong> Ubuntu itu 100% gratis (bebas) diunduh dan digunakan. Biaya yang mungkin muncul biasanya cuma jasa instalasi atau pengganti media (DVD/Flashdisk) dari tokonya.
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+          <strong>Aplikasi kerja ada?</strong> Banyak banget! Ada LibreOffice (pengganti Ms. Office), Firefox/Chrome, GIMP (edit foto), VSCode (koding), VLC (video), dan ribuan lainnya.
+        </li>
+      </ul>
+      <h2>Snippet Klarifikasi (Siap Tempel di Brosur/Kios)</h2>
+      <p>Ini contoh teks HTML sederhana yang bisa dipakai untuk meluruskan info di brosur atau web kiosnya:</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-copy="#snip-brosur">Salin</button>
+        <pre><code id="snip-brosur" class="language-html">&lt;div class=&quot;klarifikasi&quot;&gt;
   &lt;h3&gt;Apa itu Ubuntu?&lt;/h3&gt;
-  &lt;p&gt;Ubuntu adalah sistem operasi GNU/Linux yang bebas dan terbuka, bukan antivirus.&lt;/p&gt;
+  &lt;p&gt;Ubuntu adalah sistem operasi (OS) GNU/Linux yang bebas dan terbuka, BUKAN antivirus.&lt;/p&gt;
   &lt;ul&gt;
     &lt;li&gt;Aman dan stabil, tapi &lt;strong&gt;tetap perlu update&lt;/strong&gt; rutin dari repositori resmi.&lt;/li&gt;
     &lt;li&gt;Cocok untuk laptop/PC, internet cepat, dan kerja harian.&lt;/li&gt;
     &lt;li&gt;Dukungan aplikasi: LibreOffice, Firefox, GIMP, dll.&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
-        </div>
+      </div>
 
-        <h2>Bagikan</h2>
-        <div class="share" id="share">
-          <a class="tw" href="#" target="_blank" rel="noopener" aria-label="Twitter">
-            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 0 0 1.87-2.36 8.46 8.46 0 0 1-2.7 1.03 4.24 4.24 0 0 0-7.22 3.87A12.06 12.06 0 0 1 3.15 4.9a4.22 4.22 0 0 0 1.31 5.66 4.2 4.2 0 0 1-1.92-.53v.05c0 2.07 1.48 3.8 3.44 4.19a4.25 4.25 0 0 1-1.91.07 4.24 4.24 0 0 0 3.96 2.95A8.51 8.51 0 0 1 2 19.55a12.03 12.03 0 0 0 6.53 1.92c7.84 0 12.13-6.49 12.13-12.12 0-.18 0-.36-.01-.53A8.64 8.64 0 0 0 22.46 6Z"/></svg>
-            Twitter
-          </a>
-          <a class="x" href="#" target="_blank" rel="noopener" aria-label="X">
-            <svg width="16" height="16" viewBox="0 0 1200 1227"><path fill="currentColor" d="M714 519l435-519H963L640 384 384 0H0l459 651L0 1227h237l335-400 272 400h384L714 519zM300 194l611 839H900L288 194h12z"/></svg>
-            X
-          </a>
-          <a class="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
-          <a class="tg" href="#" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
-          <a class="ig" href="#" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-          <a class="threads" href="#" target="_blank" rel="noopener" aria-label="Threads">Threads</a>
-          <a class="tt" href="#" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
-        </div>
-      </article>
+      <p>Punya cerita serupa di kotamu? Atau mau bantu luruskan info ini? Silakan bagikan artikel ini:</p>
+      <div class="share" id="share">
+        <a class="tw" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 0 0 1.87-2.36 8.46 8.46 0 0 1-2.7 1.03 4.24 4.24 0 0 0-7.22 3.87A12.06 12.06 0 0 1 3.15 4.9a4.22 4.22 0 0 0 1.31 5.66 4.2 4.2 0 0 1-1.92-.53v.05c0 2.07 1.48 3.8 3.44 4.19a4.25 4.25 0 0 1-1.91.07 4.24 4.24 0 0 0 3.96 2.95A8.51 8.51 0 0 1 2 19.55a12.03 12.03 0 0 0 6.53 1.92c7.84 0 12.13-6.49 12.13-12.12 0-.18 0-.36-.01-.53A8.64 8.64 0 0 0 22.46 6Z"/></svg>
+          Twitter
+        </a>
+        <a class="x" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 1200 1227"><path fill="currentColor" d="M714 519l435-519H963L640 384 384 0H0l459 651L0 1227h237l335-400 272 400h384L714 519zM300 194l611 839H900L288 194h12z"/></svg>
+          X
+        </a>
+        <a class="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="tg" href="#" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </article>
 
-      <!-- Samping: ringkasan & FAQ mini -->
-      <aside class="card">
-        <h2>Inti klarifikasi</h2>
-        <ul class="list">
-          <li><strong>Ubuntu</strong> = Sistem Operasi Linux (bukan antivirus).</li>
-          <li><strong>Update</strong> = penting untuk keamanan & stabilitas.</li>
-          <li><strong>USB aman</strong> = relatif; tetap waspada & gunakan update.</li>
-        </ul>
-
-        <h3>FAQ mini</h3>
-        <ul class="list">
-          <li><strong>Perlu antivirus?</strong> Umumnya tidak di desktop Linux, tapi keamanan tetap prioritas (update, izin aplikasi, backup).</li>
-          <li><strong>Biaya?</strong> Ubuntu gratis; biaya boleh dikenakan sebatas pengganti media/jasa.</li>
-          <li><strong>Dukungan aplikasi?</strong> Banyak: office, browser, desain, pemrograman, multimedia.</li>
-        </ul>
-      </aside>
-    </div>
   </main>
 
-  <!-- Lightbox sederhana -->
-  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.84); align-items:center; justify-content:center; z-index:9990;">
+  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.84); align-items:center; justify-content:center; z-index:9990; cursor: pointer;">
     <img id="lightbox-img" alt="Preview" style="max-width:92vw; max-height:92vh; border-radius:16px; box-shadow:0 24px 80px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.3)" />
   </div>
 
   <footer>
     <div class="wrap">
-      <p class="muted">Sekian laporan pandangan mata dari Bontang – Kalimantan Timur. Jika punya foto serupa, bagikan di komentar.</p>
+      <p class="muted">Yo wis, sekian dulu laporan pandangan mata dari Bontang – Kalimantan Timur. Kalau kamu punya foto atau cerita serupa, jangan ragu bagikan di komentar!</p>
     </div>
   </footer>
 
-  <!-- Prism Core + Autoloader -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-auto-download="true"></script>
 
@@ -296,7 +370,7 @@
       });
     });
 
-    // Link share
+    // Link share (tanpa ARIA)
     const shareUrl = 'https://frijal.pages.dev/artikel/ubuntu-di-bontang.html';
     const shareText = encodeURIComponent('Ubuntu Sampai Bontang: Antara Bangga dan Luruskan Informasi');
     const share = document.getElementById('share');
@@ -305,9 +379,7 @@
     setHref('.x',  `https://x.com/intent/post?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
     setHref('.wa', `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`);
     setHref('.tg', `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-    setHref('.ig', `https://www.instagram.com/`);
-    setHref('.threads', `https://www.threads.net/`);
-    setHref('.tt', `https://www.tiktok.com/`);
+
   </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

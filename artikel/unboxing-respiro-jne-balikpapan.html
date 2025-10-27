@@ -147,7 +147,6 @@
         strong { font-weight: bold; color: var(--accent); } /* Style for strong */
         a { color: var(--accent-2); text-decoration: none;} /* Basic link style */
         a:hover { text-decoration: underline; }
-
     </style>
 <meta property="og:image:alt" content="Unboxing Respiro: Paket Datang! (JNE Balikpapan)">
   <meta itemprop="image" content="https://frijal.pages.dev/img/unboxing-respiro-jne-balikpapan.webp">
@@ -245,7 +244,6 @@
         </div>
     </div>
     <script>
-
         // Share links
         (function(){
             const url = encodeURIComponent("https://frijal.pages.dev/artikel/unboxing-respiro-jne-balikpapan.html"); // Updated URL
@@ -262,7 +260,6 @@
                 }
             });
         })();
-
         // Lazy load
         (function(){
             const imgs = document.querySelectorAll('img[data-src]');
@@ -278,7 +275,6 @@
                 else { img.src=img.dataset.src; img.removeAttribute('data-src'); }
             });
         })();
-
         // Lightbox
         (function(){
             const lb = document.getElementById('lightbox');
@@ -288,18 +284,15 @@
             const next = document.getElementById('lb-next');
             const closeBtn = document.getElementById('lb-close');
             let groups={}, g='', i=0;
-
             document.querySelectorAll('.thumb[data-group]').forEach(a=>{ // Ensure selector matches links
                 const key=a.dataset.group||'g';
                 (groups[key] ||= []).push(a);
                 a.addEventListener('click',ev=>{ ev.preventDefault(); open(key, groups[key].indexOf(a)); });
             });
-
             function open(group, idx){ g=group; i=idx; update(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
             function update(){ const arr=groups[g]; if(!arr || arr.length === 0) return; const el=arr[i]; img.src=el.dataset.src; img.alt=el.querySelector('img')?.alt||'Foto'; count.textContent=(i+1)+' / '+arr.length; }
             function move(d){ const arr=groups[g]; if(!arr || arr.length === 0) return; i=(i+d+arr.length)%arr.length; update(); }
             function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; img.src=''; }
-
             prev?.addEventListener('click',()=>move(-1));
             next?.addEventListener('click',()=>move(1));
             closeBtn?.addEventListener('click',close);
@@ -311,7 +304,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

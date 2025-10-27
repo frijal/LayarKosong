@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat Website dari Data .json | f-Page</title>
     <meta name="description" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
-    
+
     <!-- Ganti '[website-dari-json]' dengan nama file (tanpa .html) -->
     <link rel="canonical" href="https://frijal.pages.dev/artikel/website-dari-json.html" id="canonical-link">
-
     <!-- Favicon (Data URI - "FP" untuk f-Page) -->
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230b3d91' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
-
     <!-- Open Graph (Facebook, LinkedIn, dll.) -->
     <meta property="og:title" content="Cara Membuat Website dari Data .json | f-Page">
     <meta property="og:description" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json.">
@@ -23,7 +21,6 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Ilustrasi data JSON diubah menjadi halaman website">
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cara Membuat Website dari Data .json | f-Page">
@@ -33,17 +30,15 @@
     <meta name="twitter:creator" content="[@frijal]">
     <meta name="twitter:image" content="https://frijal.pages.dev/img/website-dari-json.webp">
     <meta name="twitter:image:alt" content="Ilustrasi data JSON diubah menjadi halaman website">
-
     <!-- Meta Artikel -->
     <meta property="article:published_time" content="2025-10-23T12:30:00+08:00">
     <meta property="article:author" content="Frijal">
-    
-    <!-- 
+
+    <!--
     ====================================================================
     AKHIR DARI BAGIAN EDIT
     ====================================================================
     -->
-
     <!-- CSS3 Internal untuk Tata Letak -->
     <style>
         :root {
@@ -54,17 +49,14 @@
             --max-width: 960px; /* Desain Widescreen */
             --code-bg: #f9f9f9;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         html, body {
             height: 100%; /* Memastikan body bisa mengisi tinggi layar */
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #fff;
@@ -74,7 +66,6 @@
             flex-direction: column; /* Struktur layout fullscreen */
             font-size: 17px;
         }
-
         .container {
             width: 100%;
             max-width: var(--max-width);
@@ -82,7 +73,6 @@
             margin-right: auto;
             padding: 0 20px; /* Padding untuk mobile */
         }
-
         /* Header */
         header.main-header {
             width: 100%;
@@ -96,13 +86,12 @@
             font-size: 1.8rem;
             margin: 0;
         }
-
         /* Konten Utama */
         main.content {
             flex-grow: 1; /* Mendorong footer ke bawah */
             padding: 30px 0 50px;
         }
-        
+
         article.article-content h1 {
             font-size: 2.5rem;
             color: var(--primary-color);
@@ -123,8 +112,7 @@
             margin-top: 2rem;
             margin-bottom: 0.5rem;
         }
-
-        article.article-content p, 
+        article.article-content p,
         article.article-content ul {
             font-size: 1.1rem;
             margin-bottom: 1.5em;
@@ -132,7 +120,6 @@
         article.article-content ul {
             padding-left: 25px;
         }
-
         /* Analogi Restoran */
         .analogy-container {
             display: grid;
@@ -155,7 +142,6 @@
             font-size: 1rem;
             margin-bottom: 0;
         }
-
         /* Blok Kode */
         pre {
             background-color: var(--code-bg);
@@ -178,8 +164,6 @@
             border-radius: 4px;
             font-size: 0.9em;
         }
-
-
         /* Footer */
         footer.main-footer {
             width: 100%;
@@ -189,13 +173,12 @@
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
-        
+
         footer.main-footer h3 {
             font-size: 1.2rem;
             margin-bottom: 20px;
             color: var(--text-color);
         }
-
         /* Ikon Media Sosial (Styling Button) */
         .social-share {
             display: flex;
@@ -231,12 +214,10 @@
         #share-wa { background-color: #25D366; }
         #share-tg { background-color: #26A5E4; }
         #copy-link { background-color: #6c757d; }
-
         .footer-copy {
             margin-top: 30px;
             font-size: 0.9rem;
         }
-
         /* CSS3 Responsif */
         @media (max-width: 768px) {
             article.article-content h1 {
@@ -253,7 +234,6 @@
             }
         }
     </style>
-
     <!-- Schema.org JSON-LD (Sangat baik untuk SEO) -->
     <script type="application/ld+json">
     {
@@ -265,17 +245,17 @@
       },
       "headline": "Cara Membuat Website dari Data .json - Penjelasan Lengkap",
       "description": "Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.",
-      "image": "https://frijal.pages.dev/img/website-dari-json.webp",  
+      "image": "https://frijal.pages.dev/img/website-dari-json.webp",
       "author": {
         "@type": "Person",
         "name": "Frijal"
-      },  
+      },
       "publisher": {
         "@type": "Organization",
         "name": "f-Page",
         "logo": {
           "@type: "ImageObject",
-          "url": "https://frijal.pages.dev/img/logo.png" 
+          "url": "https://frijal.pages.dev/img/logo.png"
         }
       },
       "datePublished": "2025-10-23"
@@ -284,9 +264,7 @@
 <meta itemprop="image" content="https://frijal.pages.dev/img/website-dari-json.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
-
 <body>
-
     <!-- Header Halaman -->
     <header class="main-header">
         <div class="container">
@@ -294,23 +272,20 @@
 <div id="iposbrowser"></div>
         </div>
     </header>
-
     <!-- Konten Utama -->
     <main class="content">
         <div class="container">
             <article class="article-content">
-                
+
                 <h1>Membuat Website dari Data .json? Tentu Saja Bisa!</h1>
 <div id="iposbrowser"></div>
-                
+
                 <p>Tentu saja bisa. Membuat website yang datanya berasal dari file <code>.json</code> bukan hanya mungkin, tetapi juga merupakan <strong>praktik standar dan sangat umum</strong> dalam pengembangan web modern.</p>
-                
+
                 <p>Konsep ini dikenal sebagai "Data-Driven Website," di mana tampilan (desain) dan konten (data) dipisahkan. Ini adalah salah satu konsep inti yang membuat *framework* modern seperti React, Vue, dan Angular sangat populer.</p>
-
                 <h2>Analogi Sederhana: Restoran 🍽️</h2>
-                
-                <p>Bayangkan membuat sebuah website itu seperti menjalankan restoran:</p>
 
+                <p>Bayangkan membuat sebuah website itu seperti menjalankan restoran:</p>
                 <div class="analogy-container">
                     <div class="analogy-card">
                         <div class="analogy-card-title">🏗️</div>
@@ -333,15 +308,12 @@
                         <p>Adalah <strong>koki dan pelayan</strong>. Merekalah yang membaca resep (data <code>.json</code>), memasak, dan menyajikannya di piring kosong (HTML).</p>
                     </div>
                 </div>
-
                 <h2>Bagaimana Cara Kerjanya?</h2>
-                
+
                 <p>Prosesnya secara umum mengikuti tiga langkah utama. Mari kita buat contoh blog sederhana.</p>
-
                 <h3>Langkah 1: Siapkan Data dalam Format JSON</h3>
-                
-                <p>Pertama, Anda siapkan semua konten Anda dalam sebuah file, misalnya <code>data.json</code>. JSON (JavaScript Object Notation) menggunakan format kunci-nilai (*key-value*) yang mudah dibaca manusia dan mesin.</p>
 
+                <p>Pertama, Anda siapkan semua konten Anda dalam sebuah file, misalnya <code>data.json</code>. JSON (JavaScript Object Notation) menggunakan format kunci-nilai (*key-value*) yang mudah dibaca manusia dan mesin.</p>
 <pre><code>
 {
   "posts": [
@@ -362,11 +334,9 @@
   ]
 }
 </code></pre>
-
                 <h3>Langkah 2: Buat "Cetakan" di HTML</h3>
-                
-                <p>Selanjutnya, Anda siapkan "wadah" atau "cetakan" kosong di file <code>index.html</code> Anda. Di sinilah JavaScript akan "menuangkan" data nanti.</p>
 
+                <p>Selanjutnya, Anda siapkan "wadah" atau "cetakan" kosong di file <code>index.html</code> Anda. Di sinilah JavaScript akan "menuangkan" data nanti.</p>
 <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="id"&gt;
@@ -378,41 +348,35 @@
     &lt;header&gt;
         &lt;h1&gt;Blog Saya&lt;/h1&gt;
     &lt;/header&gt;
-    
+
     &lt;main id="blog-posts-container"&gt;
         &lt;!-- Konten dari JSON akan ditampilkan di sini --&gt;
     &lt;/main&gt;
-
     &lt;script src="script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
                 <p>Perhatikan <code>div</code> dengan <code>id="blog-posts-container"</code>. Saat ini, bagian tersebut kosong.</p>
-
-
                 <h3>Langkah 3: Gunakan JavaScript untuk Menghubungkan Keduanya 🔌</h3>
-                
-                <p>Ini adalah langkah intinya. Dengan JavaScript (kita sebut <code>script.js</code>), Anda akan membaca file <code>.json</code>, mengolah datanya, dan mengubahnya menjadi elemen HTML.</p>
 
+                <p>Ini adalah langkah intinya. Dengan JavaScript (kita sebut <code>script.js</code>), Anda akan membaca file <code>.json</code>, mengolah datanya, dan mengubahnya menjadi elemen HTML.</p>
 <pre><code>
 // Menunggu hingga semua elemen HTML dimuat
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Ambil elemen wadah dari HTML
     const container = document.getElementById('blog-posts-container');
-
     // Gunakan 'fetch' untuk mengambil data dari file data.json
     // 'fetch' adalah cara modern JS untuk meminta data
     fetch('data.json')
         .then(response => response.json()) // Ubah respons teks menjadi format JSON yang bisa dibaca JS
         .then(data => {
             // 'data' sekarang berisi semua objek dari file .json
-            
-            let htmlContent = ''; // Siapkan variabel string kosong untuk menampung HTML
 
+            let htmlContent = ''; // Siapkan variabel string kosong untuk menampung HTML
             // Lakukan perulangan (looping) untuk setiap post di dalam data.posts
             data.posts.forEach(post => {
-                
+
                 // Buat string HTML untuk setiap post menggunakan template literal (backtick ``)
                 // Ini seperti "mencetak" data ke dalam cetakan HTML
                 htmlContent += `
@@ -423,7 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     &lt;/article&gt;
                 `;
             });
-
             // Setelah semua HTML terkumpul, masukkan ke dalam wadah di halaman web
             container.innerHTML = htmlContent;
         })
@@ -435,8 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </code></pre>
                 <p>Hasilnya, halaman web Anda akan secara dinamis menampilkan dua artikel yang berasal dari file <code>data.json</code>.</p>
-
-
                 <h2>Mengapa Pendekatan Ini Keren Banget?</h2>
                 <ul>
                     <li><strong>Pemisahan Logika</strong>: Anda bisa mengubah total desain (HTML/CSS) tanpa menyentuh satu baris pun konten di <code>.json</code>.</li>
@@ -444,19 +405,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><strong>Dinamis & Skalabel</strong>: Anda bisa memiliki ribuan item di file <code>.json</code>, dan JavaScript akan secara otomatis membuatkan halamannya untuk Anda.</li>
                     <li><strong>Satu Sumber Data</strong>: File <code>.json</code> yang sama bisa digunakan untuk website, aplikasi mobile (Android/iOS), atau layanan lainnya, memastikan konsistensi data di semua platform.</li>
                 </ul>
-
                 <p>Jadi, ya, tidak hanya bisa, tapi ini adalah cara yang sangat direkomendasikan untuk membangun web di era modern!</p>
-
-
             </article>
         </div>
     </main>
-
     <!-- Footer Halaman -->
     <footer class="main-footer">
         <div class="container">
             <h3>Bagikan Artikel Ini</h3>
-            
+
             <!-- Ikon Resmi Media Sosial -->
             <div class="social-share">
                 <button type="button" id="share-fb" class="social-share-btn">
@@ -480,48 +437,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     Salin Link
                 </button>
             </div>
-
             <p class="footer-copy">
                 &copy; <span id="current-year"></span> f-Page. Hak Cipta Dilindungi.
             </p>
         </div>
     </footer>
-
     <!-- JavaScript untuk Fungsi Halaman -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // Set Tahun Copyrights
             document.getElementById('current-year').textContent = new Date().getFullYear();
-
             // --- Logika Share ---
-            
+
             // Ambil URL dari tag canonical untuk memastikan URL bersih
             const canonicalLink = document.getElementById('canonical-link');
             const shareUrl = canonicalLink ? canonicalLink.href : window.location.href;
             const shareTitle = document.title;
-
             function popup(url) {
                 window.open(url, "_blank", "noopener,noreferrer,width=600,height=500");
             }
-
-            document.getElementById("share-fb").addEventListener('click', () => 
+            document.getElementById("share-fb").addEventListener('click', () =>
                 popup("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl))
             );
-            
-            document.getElementById("share-x").addEventListener('click', () => 
+
+            document.getElementById("share-x").addEventListener('click', () =>
                 popup("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareTitle) + "&url=" + encodeURIComponent(shareUrl))
             );
-            
+
             document.getElementById("share-wa").addEventListener('click', () => {
                 const waUrl = "https://wa.me/?text=" + encodeURIComponent(shareTitle + " " + shareUrl);
                 window.open(waUrl, '_blank', 'noopener,noreferrer');
             });
-            
-            document.getElementById("share-tg").addEventListener('click', () => 
+
+            document.getElementById("share-tg").addEventListener('click', () =>
                 popup("https://t.me/share/url?url=" + encodeURIComponent(shareUrl) + "&text=" + encodeURIComponent(shareTitle))
             );
-            
+
             const copyBtn = document.getElementById("copy-link");
             if (copyBtn) {
                 copyBtn.addEventListener('click', async function() {
@@ -539,10 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
 </body>
 </html>
-

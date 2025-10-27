@@ -7,24 +7,20 @@
     <title>Memberi Watermark pada Gambar dengan ImageMagick di Linux</title>
     <meta name="description" content="Panduan lengkap cara memberi watermark pada gambar menggunakan ImageMagick di Linux. Dilengkapi script bash otomatis, tutorial, dan contoh interaktif.">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/watermark-imagemagick.html">
-
     <!-- Favicon & Theme -->
     <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZfd7lBezHxJd1AZq0NAtIDxU1yLmHgZMPDEB6_Z_d9CbQXDilSGRra1cNlZ_RnZSJV6GReo4oIlqaHa-mbQrO9BGSXtSM6aK9Z9QRK-0LenuEmQ9CSQMjER-8CaFJ49gFTFr4Oqe3Kgf_/s1600/Logo_Imagemagick.png">
     <meta name="theme-color" content="#1e2a38">
-
     <!-- Open Graph -->
     <meta property="og:title" content="Memberi Watermark pada Gambar dengan ImageMagick di Linux">
     <meta property="og:description" content="Panduan lengkap cara memberi watermark pada gambar menggunakan ImageMagick di Linux.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/watermark-imagemagick.html">
     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZfd7lBezHxJd1AZq0NAtIDxU1yLmHgZMPDEB6_Z_d9CbQXDilSGRra1cNlZ_RnZSJV6GReo4oIlqaHa-mbQrO9BGSXtSM6aK9Z9QRK-0LenuEmQ9CSQMjER-8CaFJ49gFTFr4Oqe3Kgf_/s1600/Logo_Imagemagick.png">
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Memberi Watermark pada Gambar dengan ImageMagick di Linux">
     <meta name="twitter:description" content="Panduan lengkap cara memberi watermark pada gambar menggunakan ImageMagick di Linux.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZfd7lBezHxJd1AZq0NAtIDxU1yLmHgZMPDEB6_Z_d9CbQXDilSGRra1cNlZ_RnZSJV6GReo4oIlqaHa-mbQrO9BGSXtSM6aK9Z9QRK-0LenuEmQ9CSQMjER-8CaFJ49gFTFr4Oqe3Kgf_/s1600/Logo_Imagemagick.png">
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
     {
@@ -37,10 +33,9 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-    
+
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
-
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -85,7 +80,6 @@
         .copy-btn { position: absolute; top: 12px; right: 12px; background: #3a4857; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
-
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-16T23:20:38.208+00:00">
@@ -95,31 +89,28 @@
         <header class="site">
             <div class="brand">🖼️ frijal.pages.dev</div>
         </header>
-
         <main>
             <div class="col">
                 <article>
                     <h1>Memberi Watermark pada Gambar dengan ImageMagick di Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Banyak instansi memerlukan watermark pada gambar sebelum dipublikasikan untuk melindungi hak cipta. Dengan GNU/Linux, kita bisa memanfaatkan ImageMagick untuk melakukan ini secara massal, sebagai alternatif dari fitur "Action" di Photoshop.</p>
-
                     <div class="share-bar">
                         <button class="btn-share" data-share="twitter">Twitter</button>
                         <button class="btn-share" data-share="facebook">Facebook</button>
                         <button class="btn-share" data-share="whatsapp">WhatsApp</button>
                         <button class="btn-share" id="copyLink">Salin Tautan</button>
                     </div>
-                    
+
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZfd7lBezHxJd1AZq0NAtIDxU1yLmHgZMPDEB6_Z_d9CbQXDilSGRra1cNlZ_RnZSJV6GReo4oIlqaHa-mbQrO9BGSXtSM6aK9Z9QRK-0LenuEmQ9CSQMjER-8CaFJ49gFTFr4Oqe3Kgf_/s1600/Logo_Imagemagick.png" alt="Logo ImageMagick">
                     </figure>
-                    
+
                     <h2>Skrip Bash untuk Watermark Massal</h2>
                     <p>Skrip berikut akan menambahkan watermark ke semua file gambar di dalam direktori saat ini. Skrip ini akan menimpa (overwrite) file asli, jadi pastikan Anda sudah memiliki backup jika diperlukan.</p>
                     <pre class="language-bash"><code id="code1">#!/bin/bash
 # Skrip untuk memberi watermark pada semua gambar di direktori saat ini.
 # Dependensi: ImageMagick
-
 # --- KONFIGURASI ---
 # Lokasi file watermark Anda (ganti sesuai kebutuhan)
 WM_FILE="$HOME/watermark.png"
@@ -129,11 +120,9 @@ SCALE="25"
 DISSOLVE="50"
 # Posisi watermark (center, north, southeast, dll.)
 GRAVITY="southeast"
-
 # --- EKSEKUSI ---
 echo "Skrip ini akan menambahkan watermark ke semua gambar di folder ini."
 read -p "Lanjutkan? (Y/n): " REPLY
-
 if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
     for IMAGE in *.jpg *.jpeg *.png *.gif; do
         if [ -f "$IMAGE" ]; then
@@ -146,9 +135,8 @@ else
     echo "Dibatalkan."
     exit 0
 fi
-
 exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-                    
+
                     <h2>Cara Menggunakan Skrip</h2>
                     <ol>
                         <li>Simpan kode di atas sebagai file, misalnya <code>watermark.sh</code>.</li>
@@ -162,23 +150,20 @@ exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                 </article>
             </div>
         </main>
-
         <footer class="site">
             <small>🄯 2025 Tutorial Linux · Bekerja lebih cerdas dengan otomatisasi.</small>
         </footer>
     </div>
-    
+
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3847; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
         const shareMap = {
             twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
             facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
@@ -192,11 +177,11 @@ exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                 if (url) window.open(url, '_blank', 'noopener,noreferrer');
             });
         });
-        
+
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
-        
+
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');
@@ -211,8 +196,5 @@ exit 0</code><button class="copy-btn" data-target="code1">Salin</button></pre>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>
-
