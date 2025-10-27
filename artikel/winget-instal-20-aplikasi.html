@@ -43,10 +43,8 @@
     .code-block .string { color: #ce9178; }  /* string oranye */
     .code-block .cmdlet { color: #569cd6; }  /* cmdlet biru */
     .code-block .var { color: #4ec9b0; } /* variabel hijau toska */
-
   </style>
 <meta itemprop="image" content="https://frijal.pages.dev/img/winget-instal-20-aplikasi.webp">
-
     <meta property="article:published_time" content="2025-10-14T18:15:06.430+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
@@ -55,9 +53,7 @@
     <article>
       <h1>Pasang 20 Aplikasi Windows Sekaligus dengan Winget</h1>
 <div id="iposbrowser"></div>
-
       <p class="lead">Winget bikin setup Windows jadi cepat, aman, dan otomatis. Panduan santai + skrip PowerShell untuk memasang 20 aplikasi sekaligus, lengkap dengan tips, ekspor/impor daftar, dan best practice.</p>
-
       <h2>Winget itu apa sih?</h2>
       <p>Winget adalah manajer paket resmi dari Microsoft untuk Windows 10 dan 11, dirilis sejak 2020. Bisa dibilang ini “toko aplikasi” yang hidup di dalam Command Prompt atau PowerShell.</p>
       <ul>
@@ -65,13 +61,11 @@
         <li>Aman, karena yang dipasang adalah versi asli dari publisher.</li>
         <li>Karena berbasis command line, Winget gampang diintegrasikan ke skrip atau dipakai untuk instalasi massal.</li>
       </ul>
-
       <h2>Instalasi massal: hemat waktu & lebih aman</h2>
       <p>Biasanya, kalau habis install ulang Windows, kita harus unduh installer satu per satu: browser, pemutar musik, editor teks, dan seterusnya. Itu bisa makan waktu berjam-jam, plus ada risiko salah klik link palsu yang ternyata malware.</p>
       <p>Dengan Winget, cukup jalankan satu perintah. Contoh untuk 20 aplikasi populer:</p>
       <pre><code>winget install MarkText.MarkText AIMP.AIMP Microsoft.VisualStudioCode Notepad++.Notepad++ VideoLAN.VLC 7zip.7zip Audacity.Audacity Discord.Discord Spotify.Spotify REALiX.HWiNFO Microsoft.PowerToys BlastApps.FluentSearch Git.Git Python.Python.3 Zen-Team.Zen-Browser OBSProject.OBSStudio Notion.Notion SlackTechnologies.Slack Zoom.Zoom Valve.Steam</code></pre>
       <p>Selesai. Tinggal ditinggal ngopi, Windows akan otomatis memasang semuanya tanpa klik-klik installer.</p>
-
       <h2>Tips praktis</h2>
       <ul>
         <li><strong>Nama paket</strong> harus sesuai format: <code>Publisher.App</code>. Misalnya Slack → <code>SlackTechnologies.Slack</code>, Steam → <code>Valve.Steam</code>.</li>
@@ -83,23 +77,18 @@
           </ul>
         </li>
       </ul>
-
       <h2>Ekspor & impor daftar aplikasi</h2>
       <p>Kalau sering pindah PC, Winget juga bisa ekspor daftar aplikasi ke file JSON:</p>
       <pre><code>winget export -o daftar.json</code></pre>
       <p>Lalu di mesin baru:</p>
       <pre><code>winget import -i daftar.json</code></pre>
       <p>Semua aplikasi lama langsung terpasang lagi. Selain itu, Winget mendukung file konfigurasi YAML (DSC) untuk sekaligus mengatur aplikasi + setting Windows sesuai kebutuhan.</p>
-
       <h2>Contoh skrip PowerShell siap pakai</h2>
     <p><strong>Simpan sebagai <code>setup.ps1</code>, lalu jalankan dengan hak Administrator agar mulus.</strong></p>
-
     <div class="code-block"><code><span class="comment"># setup.ps1</span>
 <span class="comment"># Skrip instalasi massal aplikasi Windows dengan Winget</span>
 <span class="comment"># Jalankan dengan hak administrator agar semua aplikasi bisa terpasang</span>
-
 <span class="cmdlet">Write-Host</span> <span class="string">"=== Instalasi aplikasi favorit dimulai... ==="</span> -ForegroundColor Cyan
-
 <span class="comment"># Daftar aplikasi (ID paket Winget)</span>
 <span class="var">$apps</span> = @(
   <span class="string">"MarkText.MarkText"</span>,
@@ -123,34 +112,26 @@
   <span class="string">"Zoom.Zoom"</span>,
   <span class="string">"Valve.Steam"</span>
 )
-
 <span class="comment"># Loop instalasi</span>
 <span class="cmdlet">foreach</span> (<span class="var">$app</span> in <span class="var">$apps</span>) {
   <span class="cmdlet">Write-Host</span> <span class="string">"&gt;&gt; Menginstal $app ..."</span> -ForegroundColor Yellow
   <span class="cmdlet">winget</span> install --id <span class="var">$app</span> --silent --accept-package-agreements --accept-source-agreements
 }
-
 <span class="cmdlet">Write-Host</span> <span class="string">"=== Semua aplikasi sudah diproses! ==="</span> -ForegroundColor Green
 </code></div>
-
       <h2>Hemat waktu banget</h2>
       <p>Instal manual 20 aplikasi bisa makan 2–3 jam. Dengan Winget, cukup 10–15 menit. Kamu juga bisa bikin skrip pribadi (batch/PowerShell) berisi daftar aplikasi favorit, jadi setiap kali setup ulang Windows tinggal jalankan skrip itu.</p>
       <blockquote>👉 Intinya: <strong>Winget bikin setup Windows jadi cepat, aman, dan otomatis</strong>. Sekali coba, rasanya malas balik ke cara manual lagi.</blockquote>
 
-      
-      
+
     </article>
   </main>
-
   <footer>
     <p>🄯 2025 frijal.pages.dev</p>
   </footer>
 
-    
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

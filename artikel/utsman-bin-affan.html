@@ -201,7 +201,6 @@
             .gallery img { width: 100px; height: 100px;}
             .lightbox-arrow.left, .lightbox-arrow.right { display: none;}
         }
-
     </style>
 <meta property="og:image" content="https://frijal.pages.dev/img/utsman-bin-affan.webp">
   <meta property="og:image:alt" content="Kisah Utsman bin ‘Affan: Khalifah Dermawan & Keluarga Penuh Hikmah">
@@ -222,7 +221,6 @@
             <span><span class="icon">📖</span>Artikel Islam</span>
         </div>
     </header>
-
     <main>
         <div class="narasi">
             <p><span class="highlight">Utsman bin ‘Affan R.A.</span> — Khalifah ketiga, sahabat terpercaya Nabi, dan sosok super dermawan yang hidupnya penuh hikmah, cinta, dan pengorbanan. Yuk, kenali lebih dekat perjalanan hidup dan keluarganya!</p>
@@ -346,7 +344,6 @@
             3️⃣ <b>Kitab-kitab tarikh & dokumentasi visual</b>
         </div>
     </main>
-
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-arrow left" id="lightbox-prev" aria-label="Sebelumnya">⏪</button>
@@ -354,7 +351,6 @@
         <button class="lightbox-arrow right" id="lightbox-next" aria-label="Selanjutnya">⏩</button>
         <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">✖️</button>
     </div>
-
     <script>
     // Lazy Load Gallery
     document.addEventListener("DOMContentLoaded", function() {
@@ -375,7 +371,6 @@
             lazyImgs.forEach(img => img.src = img.dataset.src);
         }
     });
-
     // Lightbox Gallery
     const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
     const lightbox = document.getElementById('lightbox');
@@ -412,7 +407,6 @@
         if(e.key === "ArrowLeft") document.getElementById('lightbox-prev').click();
         if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
     });
-
     // Share Buttons
     function shareTo(platform) {
         const url = encodeURIComponent(window.location.href);
@@ -432,8 +426,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>
-

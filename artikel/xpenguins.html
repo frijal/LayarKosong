@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>XPenguins: Penguin lucu jatuh dari atas layar di Linux</title>
   <meta name="description" content="XPenguins menampilkan animasi penguin jatuh dari tepi atas layar dan beraksi di desktop. Panduan instalasi, cara pakai, video demo, serta galeri gambar." />
   <link rel="canonical" href="https://frijal.pages.dev/artikel/xpenguins.html" />
-
   <!-- Open Graph -->
   <meta property="og:locale" content="id_ID" />
   <meta property="og:type" content="article" />
@@ -17,27 +15,22 @@
   <meta property="og:site_name" content="frijal.github.io" />
   <meta property="og:image" content="https://frijal.pages.dev/img/xpenguins.webp" />
   <meta property="og:image:alt" content="Animasi XPenguins di desktop Linux" />
-
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="XPenguins: Penguin lucu di desktop" />
   <meta name="twitter:description" content="Penguin jatuh dari atas layar dan beraksi. Lihat cara pasang dan demonya." />
   <meta name="twitter:image" content="https://frijal.pages.dev/img/xpenguins.webp" />
   <meta name="twitter:site" content="@frijal" />
-
   <!-- Favicon (inline SVG) -->
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2300D1FF" offset="0"/><stop stop-color="%23FF7A00" offset="1"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(%23g)"/><g transform="translate(20,16)"><ellipse cx="44" cy="62" rx="26" ry="20" fill="%23fff"/><circle cx="44" cy="40" r="22" fill="%23000"/><circle cx="37" cy="36" r="4" fill="%23fff"/><circle cx="51" cy="36" r="4" fill="%23fff"/><path d="M44 46l8 6-8 4-8-4z" fill="%23FFB703"/></g></svg>' />
-
   <!-- Preconnect -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
-
   <!-- Highlight.js (syntax highlighting + copy) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" integrity="sha512-HFvN0Yy8mS9L9mZ68F8pBnJ3l40xvJzq2d+3f8BW8eGQRTFq0Bzj3z9tzW3d1Jp1+p5nWZUS8b0xAZ3D9oRzrw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-zL5f3A4q9u1VJz3qk1p7i3a8b8w8H42rA1+9eq+0lK9M3xgYz1o0l3P6k1mM1Bf4Y8oL+2o1F4QvFZk0l8l4nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('pre code').forEach(el=>hljs.highlightElement(el));});</script>
-
   <style>
     :root{
       --bg: #f7fafc;
@@ -64,7 +57,6 @@
         var(--bg);
     }
     a{color:var(--primary); text-decoration:none}
-    
 
     /* Shell */
     .wrap{width:min(94vw,var(--maxw)); margin:28px auto}
@@ -89,7 +81,6 @@
       grid-template-columns: 2fr 1fr;
     }
     @media (max-width: 1020px){ main.grid{ grid-template-columns: 1fr } }
-
     .card{
       background: var(--paper); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
       overflow:hidden;
@@ -97,11 +88,9 @@
     .card .hd{ padding:16px 18px; border-bottom: var(--border); background: linear-gradient(90deg, rgba(37,99,235,.06), rgba(239,68,68,.06)); font-weight:800 }
     .card .bd{ padding:20px 20px 22px }
     .muted{ color: var(--muted) }
-
     /* Media */
     .ratio{position:relative; width:100%; padding-top:56.25%}
     .ratio > iframe, .ratio > video{position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:14px}
-
     /* Gallery */
     .gallery{ display:grid; gap:10px; grid-template-columns: repeat(3, 1fr) }
     @media (max-width: 860px){ .gallery{ grid-template-columns: repeat(2, 1fr) } }
@@ -110,7 +99,6 @@
     .shot img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .25s ease }
     .shot:hover img{ transform: scale(1.04) }
     .shot .cap{position:absolute; inset:auto 0 0 0; padding:10px 12px; font-size:12px; color:#fff; background: linear-gradient(180deg, transparent, rgba(0,0,0,.6))}
-
     /* Lightbox */
     .lightbox{ position:fixed; inset:0; background: rgba(15,23,42,.85); display:none; align-items:center; justify-content:center; padding:16px; z-index:9998 }
     .lightbox.open{ display:flex }
@@ -118,27 +106,22 @@
     .lightbox .ctrl{ position:fixed; top:14px; right:16px; display:flex; gap:8px }
     .lightbox button{ padding:8px 12px; border-radius:10px; border:var(--border); background:#fff; cursor:pointer; font-weight:700 }
     .lightbox button:hover{ box-shadow: var(--ring) }
-
     /* Lists */
     ol, ul{ padding-left:18px }
     pre{ background:#f8fafc; border: var(--border); border-radius:12px; padding:12px; overflow:auto }
-
     /* Share */
     .share{ display:flex; flex-wrap:wrap; gap:10px }
     .btn-share{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#fff; border:var(--border); font-weight:700; color:#0f172a; text-decoration:none }
     .btn-share:hover{ box-shadow: var(--ring) }
     .ico{ width:20px; height:20px; display:inline-block }
-
     /* Env */
     .env{ display:grid; gap:10px; grid-template-columns: 1fr 1fr }
     @media (max-width: 700px){ .env{ grid-template-columns: 1fr } }
     .env .row{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:12px; border: var(--border); background:#fff }
-
     /* Footer info */
     footer{ margin: 24px 0 60px }
     .ipbox{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:12px; border-radius:14px; border: var(--border); background: linear-gradient(90deg, rgba(16,185,129,.08), rgba(37,99,235,.08)) }
     .flag{ width:32px; height:24px; border-radius:4px; object-fit:cover; border: var(--border) }
-
     /* Floating Home Buttons (requested; filled styles and working) */
     #btn-home-left, #btn-home-right {
       position: fixed;
@@ -164,9 +147,7 @@
     #btn-home-left { left: 10px; top: 30%; transform: translateY(-50%) }
     #btn-home-right { right: 10px; bottom: 20%; transform: translateY(50%) }
     #btn-home-left svg, #btn-home-right svg { width:18px; height:18px; fill: currentColor; margin-right:6px }
-
   </style>
-
   <!-- JSON-LD Article -->
   <script type="application/ld+json">
   {
@@ -183,7 +164,6 @@
     "mainEntityOfPage":"https://frijal.pages.dev/artikel/xpenguins.html"
   }
   </script>
-
   <!-- JSON-LD Breadcrumb -->
   <script type="application/ld+json">
   {
@@ -200,8 +180,6 @@
     <meta property="article:published_time" content="2025-10-16T23:20:38.209+00:00">
 </head>
 <body>
-
-
   <div class="wrap">
     <header class="top">
       <div class="kicker"><span class="dot"></span><span>Hiburan Desktop • Linux</span></div>
@@ -215,13 +193,11 @@
         <span class="tag">Animasi</span>
       </div>
     </header>
-
     <main class="grid">
       <article class="card">
         <div class="hd">Apa itu XPenguins?</div>
         <div class="bd">
           <p>XPenguins adalah aplikasi ringan yang menampilkan karakter penguin jatuh dari atas layar, berjalan, melompat, hingga berinteraksi dengan jendela di desktop X11. Aplikasi ini murni hiburan: tidak mengganggu kerja, tetapi menyenangkan untuk dilihat sambil menunggu.</p>
-
           <div class="ratio" style="margin-top:8px">
             <iframe
               src="https://www.youtube.com/embed/J-7Pz9g3AVA"
@@ -233,25 +209,20 @@
           <p class="muted" style="margin-top:10px">Video demo di atas adalah hasil rekaman XPenguins yang bisa langsung ditonton.</p>
         </div>
       </article>
-
       <aside class="card">
         <div class="hd">Instalasi cepat</div>
         <div class="bd">
           <p><b>Debian/Ubuntu/BlankOn:</b></p>
           <pre><code class="language-bash">sudo apt-get update
 sudo apt-get install xpenguins</code></pre>
-
           <p><b>Fedora:</b></p>
           <pre><code class="language-bash">sudo dnf install xpenguins</code></pre>
-
           <p><b>Arch/Manjaro:</b></p>
           <pre><code class="language-bash">sudo pacman -S xpenguins</code></pre>
-
           <p class="muted">Nama paket dapat bervariasi pada rilis tertentu. Jika tidak tersedia di repo resmi, cek AUR/PPAs atau kompilasi dari sumber.</p>
         </div>
       </aside>
     </main>
-
     <section class="card" style="margin-top:24px">
       <div class="hd">Cara pakai dan opsi populer</div>
       <div class="bd">
@@ -261,21 +232,16 @@ sudo apt-get install xpenguins</code></pre>
           <li><b>Mengatur jumlah:</b> pakai <span class="kbd">-n</span> untuk mengatur banyaknya penguin agar tetap ringan.</li>
           <li><b>Menutup:</b> tekan <span class="kbd">Ctrl</span> + <span class="kbd">C</span> di terminal tempat XPenguins dijalankan.</li>
         </ol>
-
         <h4>Contoh perintah</h4>
         <pre><code class="language-bash"># Menjalankan dengan jumlah penguin tertentu
 xpenguins -n 30
-
 # Menjalankan dengan tema (jika tema tersedia pada sistem)
 xpenguins -t "Penguins"
-
 # Menjalankan di layar tertentu (multi-monitor, X11)
 DISPLAY=:0 xpenguins -n 20</code></pre>
-
         <p class="muted">Catatan: XPenguins berjalan di lingkungan X11 tradisional. Pada Wayland, kompatibilitas bisa terbatas dan memerlukan XWayland.</p>
       </div>
     </section>
-
        <section class="card" style="margin-top:24px">
       <div class="hd">Jaga Data Pribadi Tetap Aman</div>
       <div class="bd">
@@ -316,11 +282,9 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
           <button class="btn-share" id="share-copy" type="button">Salin Link</button>
         </div>
     </section>
-
     <footer>
     </footer>
   </div>
-
   <script>
     // Lazy-load images (IntersectionObserver)
     (function(){
@@ -341,14 +305,12 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
         imgs.forEach(i=>{ i.src = i.getAttribute('data-src'); i.removeAttribute('data-src'); });
       }
     })();
-
     // Simple Lightbox
     (function(){
       const gallery = document.getElementById('gallery');
       const lb = document.getElementById('lightbox');
       const img = document.getElementById('lb-img');
       const btnClose = document.getElementById('lb-close');
-
       gallery.addEventListener('click', (e)=>{
         const a = e.target.closest('a[data-lightbox="gal"]');
         if(!a) return;
@@ -361,13 +323,11 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
       lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('open'); });
       window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('open'); });
     })();
-
     // Share links
     (function(){
       const shareUrl = 'https://frijal.pages.dev/artikel/xpenguins.html';
       const text = 'XPenguins: Penguin lucu jatuh dari atas layar di Linux';
       const enc = encodeURIComponent;
-
       const map = {
         'share-fb': `https://www.facebook.com/sharer/sharer.php?u=${enc(shareUrl)}`,
         'share-x': `https://twitter.com/intent/tweet?url=${enc(shareUrl)}&text=${enc(text)}`,
@@ -379,7 +339,6 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
         const el = document.getElementById(id);
         if (el) el.href = map[id];
       });
-
       const btnCopy = document.getElementById('share-copy');
       btnCopy?.addEventListener('click', async()=>{
         try{
@@ -388,7 +347,6 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
           setTimeout(()=>btnCopy.textContent='Salin Link', 1400);
         }catch(e){ alert('Gagal menyalin. Salin manual: ' + shareUrl); }
       });
-
       if (navigator.share) {
         const x = document.getElementById('share-x');
         x?.addEventListener('click', async (e)=>{
@@ -401,7 +359,5 @@ DISPLAY=:0 xpenguins -n 20</code></pre>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

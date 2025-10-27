@@ -4,27 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>⚙️ Workflow GitHub Actions: Copy ke Branch Site Cloudflare</title>
-
   <!-- SEO Metadata -->
   <meta name="description" content="Penjelasan lengkap dan santai tentang workflow GitHub Actions untuk sinkronisasi branch ke Cloudflare Site. Cocok untuk developer yang ingin deploy otomatis dan efisien." />
   <link rel="canonical" href="https://frijal.pages.dev/artikel/workflow-cloudflare.html" />
-
   <!-- Open Graph -->
   <meta property="og:title" content="⚙️ Workflow GitHub Actions: Copy ke Branch Site Cloudflare" />
   <meta property="og:description" content="Penjelasan lengkap dan santai tentang workflow GitHub Actions untuk sinkronisasi branch ke Cloudflare Site." />
   <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhA31C78nMTd9AcKc8Totzjmzm3ubTA1MClmmh4eyrl1mHIjwPfZWu6rrCCL-tQj2UJ2jZprqwp1ao4eeEiwAUnIAkz6DaypVnSrCpxYsPY6olObBpqVM_FRgTOEgV_lvITMnyJw_j83lmuV7Mdga5fCZa_j97935APX33_uY4bMq2OZrqgCdcnlQTN0Vg/s1600/Screenshot_20251025_234149.webp" />
   <meta property="og:url" content="https://frijal.pages.dev/artikel/workflow-cloudflare.html" />
   <meta property="og:type" content="article" />
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="⚙️ Workflow GitHub Actions: Copy ke Branch Site Cloudflare" />
   <meta name="twitter:description" content="Penjelasan lengkap dan santai tentang workflow GitHub Actions untuk sinkronisasi branch ke Cloudflare Site." />
   <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhA31C78nMTd9AcKc8Totzjmzm3ubTA1MClmmh4eyrl1mHIjwPfZWu6rrCCL-tQj2UJ2jZprqwp1ao4eeEiwAUnIAkz6DaypVnSrCpxYsPY6olObBpqVM_FRgTOEgV_lvITMnyJw_j83lmuV7Mdga5fCZa_j97935APX33_uY4bMq2OZrqgCdcnlQTN0Vg/s1600/Screenshot_20251025_234149.webp" />
-
   <!-- Favicon -->
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon" />
-
   <!-- CSS -->
   <style>
     body {
@@ -100,20 +95,16 @@
 <div id="iposbrowser"></div>
     <p>Penjelasan santai dan lengkap untuk developer yang ingin deploy otomatis dan efisien</p>
   </header>
-
   <main>
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhA31C78nMTd9AcKc8Totzjmzm3ubTA1MClmmh4eyrl1mHIjwPfZWu6rrCCL-tQj2UJ2jZprqwp1ao4eeEiwAUnIAkz6DaypVnSrCpxYsPY6olObBpqVM_FRgTOEgV_lvITMnyJw_j83lmuV7Mdga5fCZa_j97935APX33_uY4bMq2OZrqgCdcnlQTN0Vg/s1600/Screenshot_20251025_234149.webp" alt="Tangkapan layar workflow GitHub Actions" />
-
     <section>
       <h2>🎯 Tujuan Workflow</h2>
       <p>Workflow ini dirancang untuk menyalin file dari branch <code>main</code> ke branch <code>site</code> secara otomatis, hanya jika ada perubahan yang relevan. Cocok banget buat kamu yang pakai Cloudflare Pages dan ingin proses deploy yang bersih dan efisien.</p>
     </section>
-
     <section>
       <h2>🔧 Struktur dan Langkah-langkah</h2>
       <p>Berikut adalah isi lengkap file <code>.github/workflows/deploy-to-site.yml</code>:</p>
       <pre><code>name: ⚠️ Copy ke Branch Site Cloudflare
-
 on:
   schedule:
     - cron: '0 17 * * *'
@@ -133,30 +124,24 @@ on:
       - 'thumbnail.*'
       - '*.webmanifest'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
           ref: main
           path: source
-
       - name: Checkout site branch (for comparison)
         uses: actions/checkout@v4
         with:
           ref: site
           path: site
-
       - name: Create clean directory
         run: mkdir deploy_dir
-
       - name: Sync allowed files to deploy directory
         run: |
           rsync -a --delete \
@@ -176,7 +161,6 @@ jobs:
             --include='*.webmanifest' \
             --exclude='*' \
             source/ deploy_dir/
-
       - name: Check for changes vs deployed site
         id: check_changes
         run: |
@@ -185,7 +169,6 @@ jobs:
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-
       - name: Deploy to site branch
         if: steps.check_changes.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v4
@@ -198,13 +181,11 @@ jobs:
           force_orphan: false
           keep_files: false
 </code></pre>
-
     <section>
       <h2>📌 Penjelasan Tambahan</h2>
       <p>Workflow ini sangat cocok untuk kamu yang ingin menjaga branch <code>site</code> tetap bersih dan hanya berisi file yang memang dibutuhkan untuk deploy ke Cloudflare Pages. Dengan filter <code>paths</code> dan <code>rsync --include</code>, kamu bisa pastikan hanya file penting seperti HTML, JSON, favicon, dan manifest yang ikut disalin.</p>
       <p>Langkah <strong>check_changes</strong> juga penting banget karena mencegah deploy yang sia-sia kalau ternyata tidak ada perubahan signifikan. Ini hemat waktu dan resource.</p>
     </section>
-
     <section>
       <h2>🔗 Bagikan ke Sosial Media</h2>
       <div class="social-share">
@@ -215,11 +196,9 @@ jobs:
       </div>
     </section>
   </main>
-
   <footer>
     <p>&copy; 2025 Frijal Pages. Dibuat dengan ❤️ oleh Fakhrul.</p>
   </footer>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
