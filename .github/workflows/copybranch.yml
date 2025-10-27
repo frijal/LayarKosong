@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  
+  schedule:
+    - cron: '0 12 * * *' 
     # ⬇️ Tambahkan filter paths di sini
     paths:
       - 'artikel.json'      # File spesifik di root
