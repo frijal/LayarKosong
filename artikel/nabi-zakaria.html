@@ -202,7 +202,6 @@
         /* Floating buttons removed */
         /* Browser info removed */
         /* FB comments removed */
-
         @media (max-width: 900px) {
             main {max-width: 97vw; padding: 1.2em 0.2em;}
             .gallery img { width: 130px; height: 130px;}
@@ -214,7 +213,6 @@
             .gallery img { width: 100px; height: 100px;}
             .lightbox-arrow.left, .lightbox-arrow.right { display: none;}
         }
-
     </style>
 <meta property="og:image:alt" content="Kisah Nabi Zakaria A.S.: Dakwah, Doa, & Kesabaran yang Tak Tergoyahkan">
   <meta itemprop="image" content="https://frijal.pages.dev/img/nabi-zakaria.webp">
@@ -232,25 +230,21 @@
             <span><span class="icon">📖</span>Kisah Nabi</span>
         </div>
     </header>
-
     <main>
         <div class="narasi">
             <p><span class="highlight">Nabi Zakaria A.S.</span> — Sang penjaga mihrab, ayah dari Yahya, dan pengasuh Maryam. Kisahnya penuh inspirasi: dakwah tanpa lelah, doa yang mustahil jadi nyata, dan kesabaran luar biasa. Yuk, lanjut bacanya!</p>
         </div>
-
         <section class="narasi">
             <h2>🌱 Dakwah Tanpa Lelah</h2>
             <p>
                 Tiap hari Zakaria mengingatkan Bani Israil, “Sembahlah Allah, jangan syirik, jangan nyimpang dari ajaran nabi-nabi!” Tapi... Bani Israil terkenal keras kepala, banyak yang menentang bahkan ngeyel. Zakaria tetap sabar dan nggak pernah capek mengajarkan kebaikan & Taurat.
             </p>
         </section>
-
         <div class="gallery" id="gallery">
             <img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPeKLnvdp8U0erdJilsPljJwDpsXIwdmnLDYv-txBdWFb8iBKnPaNnrHQ5465EKiasEmc_f-H9xfkLCBX4IFfQA8hY4ek0bOgViINeFvSXYDdhqZAxFWtbkJ-Emb452MuVnpyG1UorxuAiFjWjStXnnXIekvTNdrUD7I2oyYcz_ZJjBiAHQeIi-O_QTTo/s1600/zakaria.jpg" alt="Nabi Zakaria" class="lazy">
             <img data-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Baitul Maqdis zaman dulu" class="lazy">
             <img data-src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Pohon zaitun Palestina" class="lazy">
         </div>
-
         <section class="narasi">
             <h2>👶 Doa Mustahil? Tidak Ada Bagi Allah!</h2>
             <p>
@@ -260,28 +254,24 @@
                 “Ya Tuhanku, tulangku sudah lemah, kepalaku penuh uban, dan istriku mandul. Tetapi aku tetap memohon kepada-Mu...”
             </blockquote>
         </section>
-
         <section class="narasi">
             <h2>🌟 Kabar Gembira: Lahirnya Nabi Yahya</h2>
             <p>
                 Allah kabulkan doanya. Malaikat Jibril datang, “Zakaria, Allah memberimu anak bernama Yahya, seorang nabi suci.” Zakaria sempat heran, “Bagaimana mungkin, aku sudah tua banget?” Jawab Allah, “Itu mudah bagi-Ku.” Akhirnya, istri Zakaria hamil dan lahirlah Yahya!
             </p>
         </section>
-
         <section class="narasi">
             <h2>⚔️ Dakwah Tetap Jalan, Ujian Makin Berat</h2>
             <p>
                 Meski sudah punya anak, ujian nggak berhenti. Bani Israil makin keras kepala, makin banyak yang menolak. Bahkan, saat Yahya ikut berdakwah, penolakan makin parah. Sejarah mencatat: banyak nabi Allah dizalimi, bahkan dibunuh kaumnya sendiri.
             </p>
         </section>
-
         <section class="narasi">
             <h2>🕊️ Wafat Tragis, Dakwah Tetap Hidup</h2>
             <p>
                 Zakaria wafat disiksa dan dibunuh secara zalim oleh kaumnya. Tapi ajarannya hidup terus, diteruskan Yahya dan kemudian Isa. Tubuh boleh binasa, dakwah nggak pernah mati!
             </p>
         </section>
-
         <section class="list-hikmah">
             <h2>✨ Pelajaran Kisah Nabi Zakaria</h2>
             <ul>
@@ -310,14 +300,12 @@
             3️⃣ <b>Riwayat Israiliyyat & sumber visual</b>
         </div>
         </main>
-
     <div class="lightbox" id="lightbox">
         <button class="lightbox-arrow left" id="lightbox-prev" >⏪</button>
         <img id="lightbox-img" class="lightbox-img" src="" alt="">
         <button class="lightbox-arrow right" id="lightbox-next" >⏩</button>
         <button class="lightbox-close" id="lightbox-close" >✖️</button>
     </div>
-
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Lazy Load Gallery
@@ -342,13 +330,11 @@
                 if(img.dataset.src) img.src = img.dataset.src;
             });
         }
-
         // Lightbox Gallery
         const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         let lightboxIndex = 0;
-
         function showLightbox(idx) {
             if (idx < 0 || idx >= galleryImgs.length) return; // Prevent out of bounds
             lightboxIndex = idx;
@@ -359,7 +345,6 @@
             lightbox.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         galleryImgs.forEach((img, idx) => {
             img.addEventListener('click', () => showLightbox(idx));
         });
@@ -384,7 +369,6 @@
             if(e.key === "ArrowLeft") document.getElementById('lightbox-prev').click();
             if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
         });
-
         // Share Buttons
         window.shareTo = function(platform) { // Made function global
             const url = encodeURIComponent('https://frijal.pages.dev/artikel/nabi-zakaria.html'); // Use canonical URL
@@ -418,7 +402,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

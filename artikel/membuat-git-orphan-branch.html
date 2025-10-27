@@ -4,23 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat Orphan Branch di Git & GitHub | Frijal's Page</title>
-
     <meta name="description" content="Tutorial lengkap dan santai cara membuat branch Git baru (orphan branch) yang tidak punya riwayat commit dari branch main. Cocok untuk halaman gh-pages atau proyek terpisah.">
     <meta name="keywords" content="git, github, orphan branch, git branch, tutorial git, web development, frijal pages">
     <meta name="author" content="Frijal">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/membuat-git-orphan-branch.html">
-
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="apple-touch-icon.png"> <meta property="og:title" content="Cara Gampang Bikin Orphan Branch di Git & GitHub">
     <meta property="og:description" content="Mau bikin branch yang bener-bener baru tanpa bawa-bawa history dari 'main'? Pakai orphan branch aja! Cek tutorialnya di sini.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/membuat-git-orphan-branch.html">
     <meta property="og:image" content="https://frijal.pages.dev/img/membuat-git-orphan-branch.webp"> <meta property="og:site_name" content="Frijal's Page">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cara Gampang Bikin Orphan Branch di Git & GitHub">
     <meta name="twitter:description" content="Mau bikin branch yang bener-bener baru tanpa bawa-bawa history dari 'main'? Pakai orphan branch aja! Cek tutorialnya di sini.">
-    <meta name="twitter:image" content="https://frijal.pages.dev/img/membuat-git-orphan-branch.webp"> <meta name="twitter:creator" content="@frijal"> 
+    <meta name="twitter:image" content="https://frijal.pages.dev/img/membuat-git-orphan-branch.webp"> <meta name="twitter:creator" content="@frijal">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,7 +26,6 @@
   <meta itemprop="image" content="https://frijal.pages.dev/img/membuat-git-orphan-branch.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-22T11:53:56.636+00:00">
-
 <style>
 :root {
     --bg-color: #1a1a2e;
@@ -41,7 +37,6 @@
     --code-bg: #2d2d44;
     --border-color: #3a3a5a;
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
@@ -50,7 +45,6 @@ body {
     margin: 0;
     padding: 20px;
 }
-
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -59,31 +53,26 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     overflow: hidden;
 }
-
 header {
     background-color: var(--secondary-color);
     padding: 40px;
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
 }
-
 header h1 {
     color: var(--header-color);
     font-size: 2.5rem;
     margin: 0;
     font-weight: 700;
 }
-
 header .subtitle {
     color: var(--text-color);
     font-size: 1.1rem;
     margin-top: 10px;
 }
-
 main {
     padding: 30px 40px;
 }
-
 article h2 {
     color: var(--accent-color);
     font-size: 1.8rem;
@@ -91,18 +80,15 @@ article h2 {
     padding-bottom: 10px;
     margin-top: 40px;
 }
-
 article p {
     font-size: 1rem;
     margin-bottom: 20px;
 }
-
 .step {
     display: flex;
     gap: 25px;
     margin-top: 40px;
 }
-
 .step-icon {
     font-size: 2.5rem;
     color: var(--accent-color);
@@ -110,14 +96,12 @@ article p {
     width: 50px;
     text-align: center;
 }
-
 .step-content h3 {
     font-size: 1.4rem;
     color: var(--header-color);
     margin: 0 0 10px 0;
     font-weight: 600;
 }
-
 .code-block {
     position: relative;
     background-color: var(--code-bg);
@@ -127,18 +111,15 @@ article p {
     overflow-x: auto;
     border: 1px solid var(--border-color);
 }
-
 .code-block pre {
     margin: 0;
     padding: 0;
 }
-
 .code-block code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.95rem;
     color: #a6e22e; /* Green for code */
 }
-
 .copy-btn {
     position: absolute;
     top: 10px;
@@ -152,16 +133,13 @@ article p {
     opacity: 0.8;
     transition: opacity 0.2s, transform 0.2s;
 }
-
 .copy-btn:hover {
     opacity: 1;
     transform: scale(1.05);
 }
-
 .copy-btn:active {
     transform: scale(0.95);
 }
-
 .tip {
     background-color: rgba(22, 33, 62, 0.8);
     border-left: 4px solid #3d5af1;
@@ -173,29 +151,24 @@ article p {
 .tip.warning {
     border-left-color: #f7b731;
 }
-
 .tip i {
     margin-right: 10px;
 }
-
 .share-section {
     text-align: center;
     margin-top: 50px;
     padding-top: 30px;
     border-top: 2px solid var(--border-color);
 }
-
 .share-section h3 {
     color: var(--header-color);
     margin-bottom: 20px;
 }
-
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
 }
-
 .social-icon, .copy-link {
     display: inline-flex;
     justify-content: center;
@@ -208,11 +181,9 @@ article p {
     font-size: 1.2rem;
     transition: transform 0.3s, background-color 0.3s;
 }
-
 .social-icon:hover, .copy-link:hover {
     transform: translateY(-5px);
 }
-
 .twitter { background: #1DA1F2; }
 .facebook { background: #1877F2; }
 .whatsapp { background: #25D366; }
@@ -222,7 +193,6 @@ article p {
     border: none;
     cursor: pointer;
 }
-
 footer {
     text-align: center;
     padding: 20px;
@@ -231,12 +201,10 @@ footer {
     font-size: 0.9rem;
     margin-top: 40px;
 }
-
 footer a {
     color: var(--accent-color);
     text-decoration: none;
 }
-
 /* --- Media Queries untuk Mobile --- */
 @media (max-width: 768px) {
     body {
@@ -266,21 +234,17 @@ footer a {
 </style>
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>Bikin Branch Baru di GitHub Tanpa "Beban" Masa Lalu 🚀</h1>
 <div id="iposbrowser"></div>
             <p class="subtitle">Panduan santai membuat <strong>Orphan Branch</strong>, alias branch yang jomblo dan gak ada hubungan sama `main`.</p>
         </header>
-
         <main>
             <article>
                 <h2>Apa sih Orphan Branch itu?</h2>
                 <p>Bayangin aja, kamu mau mulai sesuatu yang bener-bener baru di proyekmu. Misalnya, mau bikin halaman dokumentasi atau deploy website statis pakai GitHub Pages. Nah, kamu gak mau kan riwayat commit dari kode utama (`main` atau `master`) ikut kebawa? Di sinilah <strong>orphan branch</strong> jadi pahlawan. Dia ini branch kosong, tanpa orang tua, tanpa sejarah commit, siap untuk diisi dari nol!</p>
-
                 <h2>Langkah-Langkah Eksekusi</h2>
-
                 <div class="step">
                     <div class="step-icon"><i class="fas fa-code-branch"></i></div>
                     <div class="step-content">
@@ -296,7 +260,6 @@ footer a {
                         </div>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-icon"><i class="fas fa-broom"></i></div>
                     <div class="step-content">
@@ -312,7 +275,6 @@ footer a {
                         </div>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-icon"><i class="fas fa-file-alt"></i></div>
                     <div class="step-content">
@@ -326,7 +288,6 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                         </div>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-icon"><i class="fas fa-rocket"></i></div>
                     <div class="step-content">
@@ -338,11 +299,9 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                         </div>
                     </div>
                 </div>
-
                 <h2>Selesai! Gampang kan?</h2>
                 <p>Selamat! Kamu sekarang punya branch `gh-pages` di GitHub yang riwayatnya bersih dan terpisah total dari branch `main`. Siap dipakai untuk proyek-proyek kerenmu selanjutnya!</p>
             </article>
-
             <div class="share-section">
                 <h3>Bagikan Artikel Ini:</h3>
                 <div class="social-icons">
@@ -354,22 +313,18 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                 </div>
             </div>
         </main>
-
         <footer>
             <p>&copy; 2025 - <a href="https://frijal.pages.dev">frijal.pages.dev</a></p>
         </footer>
     </div>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-
     // --- Fungsi Tombol Salin Kode ---
     const allCopyButtons = document.querySelectorAll('.copy-btn');
     allCopyButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const codeBlock = e.currentTarget.previousElementSibling;
             const code = codeBlock.querySelector('code').innerText;
-
             navigator.clipboard.writeText(code).then(() => {
                 // Beri feedback visual
                 e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
@@ -381,11 +336,9 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
             });
         });
     });
-
     // --- Fungsi Berbagi ke Media Sosial ---
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title);
-
     const shareLinks = {
         twitter: document.getElementById('share-twitter'),
         facebook: document.getElementById('share-facebook'),
@@ -393,27 +346,22 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
         linkedin: document.getElementById('share-linkedin'),
         copyButton: document.getElementById('copy-link-button')
     };
-
     if (shareLinks.twitter) {
         shareLinks.twitter.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
         shareLinks.twitter.target = '_blank';
     }
-
     if (shareLinks.facebook) {
         shareLinks.facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
         shareLinks.facebook.target = '_blank';
     }
-
     if (shareLinks.whatsapp) {
         shareLinks.whatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
         shareLinks.whatsapp.target = '_blank';
     }
-
     if (shareLinks.linkedin) {
         shareLinks.linkedin.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
         shareLinks.linkedin.target = '_blank';
     }
-
     if (shareLinks.copyButton) {
         shareLinks.copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(decodeURIComponent(pageUrl)).then(() => {

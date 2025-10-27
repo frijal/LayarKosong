@@ -220,7 +220,6 @@
         transition: background 0.13s;
       }
       .share-btn:hover {background: var(--secondary);}
-
       @media (max-width: 900px) {
         main {max-width: 99vw;}
       }
@@ -231,7 +230,6 @@
         .artikel-section {font-size: 1.01rem;}
         .point-section, .hikmah-section, .kitab-section {font-size: .97rem;}
       }
-
     </style>
 <meta property="og:image:alt" content="Kisah Perjanjian Madinah & Persiapan Perang Badar">
   <meta itemprop="image" content="https://frijal.pages.dev/img/perjanjian-madinah.webp">
@@ -306,7 +304,6 @@
       </div>
     </main>
   </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Lazy Load Gallery
@@ -331,48 +328,38 @@
           if (img.dataset.src) img.src = img.dataset.src;
         });
       }
-
       // Lightbox
       const galleryItems = Array.from(document.querySelectorAll('.galeri-item img, .featured-img'));
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightbox-img");
       let currentIndex = 0;
-
       const showLightbox = (index) => {
           currentIndex = index;
           // Ensure the element exists and get src or data-src
           const currentItem = galleryItems[index];
           if (!currentItem) return;
           const imgSrc = currentItem.dataset.src || currentItem.src;
-
           // Replace size parameter for potentially higher resolution
           lightboxImg.src = imgSrc.replace(/s\d+(\/|\?|$)/, 's1600/').replace(/w\d+/, 'w1600');
           lightboxImg.alt = currentItem.alt || 'Gambar diperbesar';
           lightbox.classList.add("active");
           document.body.style.overflow = 'hidden'; // Prevent background scrolling
       };
-
-
       const closeLightbox = () => {
         lightbox.classList.remove("active");
         document.body.style.overflow = ''; // Restore scrolling
       };
-
       const showPrev = () => showLightbox((currentIndex - 1 + galleryItems.length) % galleryItems.length);
       const showNext = () => showLightbox((currentIndex + 1) % galleryItems.length);
-
       galleryItems.forEach((item, index) => {
           item.addEventListener('click', () => showLightbox(index));
       });
-
-
       document.getElementById("lightbox-close").addEventListener('click', closeLightbox);
       document.getElementById("lightbox-prev").addEventListener('click', showPrev);
       document.getElementById("lightbox-next").addEventListener('click', showNext);
       lightbox.addEventListener('click', e => {
         if (e.target === lightbox) closeLightbox();
       });
-
       document.addEventListener('keydown', e => {
         if (lightbox.classList.contains('active')) {
           if (e.key === "Escape") closeLightbox();
@@ -380,7 +367,6 @@
           if (e.key === "ArrowRight") showNext();
         }
       });
-
       // Share Buttons
       const shareButtons = document.querySelectorAll('.share-btn');
       shareButtons.forEach(button => {
@@ -404,7 +390,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

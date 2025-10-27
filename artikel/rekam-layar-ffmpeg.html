@@ -8,7 +8,6 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF5722' d='M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 15h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z'/%3E%3C/svg%3E">
 <meta name="description" content="Tutorial lengkap cara merekam sebagian area layar desktop di Linux menggunakan perintah FFmpeg. Pelajari cara menentukan area tangkapan dengan presisi.">
 <meta name="keywords" content="FFmpeg, rekam layar, screen recording, x11grab, tutorial, Linux, video desktop">
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-coy.min.css" rel="stylesheet" />
 <style>
 :root {
@@ -112,34 +111,27 @@ pre[class*="language-"] {
 .btn-threads { background-color: #000; }
 .btn-tiktok { background-color: #000; }
 footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; }
-
 </style>
 <meta property="og:image" content="https://frijal.pages.dev/img/rekam-layar-ffmpeg.webp">
   <meta property="og:image:alt" content="Cara Merekam Sebagian Layar Desktop dengan FFmpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/rekam-layar-ffmpeg.webp">
   <meta itemprop="image" content="https://frijal.pages.dev/img/rekam-layar-ffmpeg.webp">
-
     <meta property="article:published_time" content="2025-10-14T18:15:06.419+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
 <header>
 <h1>Merekam Bagian Layar Desktop dengan FFmpeg</h1>
 <div id="iposbrowser"></div>
-
 <p>Tutorial praktis untuk merekam area tertentu menggunakan perintah terminal</p>
 </header>
-
 <div class="container">
 <main class="content">
-
 <div style="text-align:center;">
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTdv_O1APqjhPX7TatZxFEWTY844H4edW8S67Pc9j-v_fEtzm2QDfqtH5-U-i63qOp0-Hfsnx21TUYBXKoD3f6uozGBCm4aGlgJHu1Hk3y8cpEXlFTrZn_gJMirsp22DAenr1N93cvHiT0/s1600/ffmpeg-logo.png" alt="Logo FFmpeg" style="max-width: 150px; margin-bottom: 20px;">
 <p>Bagi Anda yang sering membuat tutorial atau demo di komputer, merekam seluruh layar terkadang tidak efisien. Dengan <b>FFmpeg</b>, kita bisa merekam hanya area tertentu.</p>
 </div>
-
 <hr>
 <h2>Alat-alat yang Dibutuhkan</h2>
 <ol>
@@ -149,7 +141,6 @@ footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; }
 <div class="image-container">
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhh3NObdLIGWsCY_NzU4QOb136aG9vNxsUXrHcuEtu_i_ozuYeAQzrlOYi3ufVAaY8_5-n3vQ_Q6iEJnQQyoXiaIk48DqUyBKMXOFKoYL5FERJqS5RSXZ1QswHF_7SwlhZDgR9Thyu1Nb4M/s800/Screen%252520Ruler_005.jpeg" alt="Ilustrasi penggunaan Screen Ruler">
 </div>
-
 <hr>
 <h2>Perintah Dasar</h2>
 <pre><code class="language-bash">ffmpeg -f x11grab -s 700x500 -r 25 -i :0.0+1,1 -sameq output.mpg</code><button class="copy-button">Salin</button></pre>
@@ -164,11 +155,9 @@ footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; }
 <li><b>output.mpg:</b> Nama file hasil rekaman.</li>
 </ul>
 </div>
-
 <hr>
 <h2>Tips Tambahan</h2>
 <p>Tekan <b>Ctrl + C</b> untuk menghentikan perekaman. Sesuaikan ukuran, posisi, dan kualitas sesuai kebutuhan.</p>
-
 <hr>
 <h2>Tombol Berbagi</h2>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
@@ -180,14 +169,11 @@ footer { text-align: center; padding: 20px; font-size: 0.8em; color: #777; }
 <a href="#" class="btn-social btn-threads" title="Threads">TH</a>
 <a href="#" class="btn-social btn-tiktok" title="TikTok">TT</a>
 </div>
-
 </main>
 </div>
-
 <footer>
 <p>🄯 2025. Halaman ini dibuat untuk tujuan edukasi. Jaga Data Pribadi Tetap Aman.</p>
 </footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 <script>
@@ -203,12 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

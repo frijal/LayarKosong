@@ -9,23 +9,19 @@
   <meta name="keywords" content="GitHub Actions, Workflow Otomatis, frijal.pages.dev, WebP, laporan harian, automation, YAML">
   <meta name="author" content="frijal">
   <link rel="canonical" href="https://frijal.pages.dev/artikel/pengecekan-dan-laporan-konten-harian.html">
-
   <!-- 🌐 Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="🔆 Pengecekan & Laporan Konten Harian">
   <meta property="og:description" content="Otomasi GitHub Actions untuk membersihkan gambar orphan dan membuat laporan jumlah konten secara otomatis.">
   <meta property="og:image" content="https://frijal.pages.dev/img/pengecekan-dan-laporan-konten-harian.webp">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/pengecekan-dan-laporan-konten-harian.html">
-
   <!-- 🐦 Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="🔆 Pengecekan & Laporan Konten Harian">
   <meta name="twitter:description" content="Workflow otomatis GitHub Actions untuk laporan konten harian di frijal.pages.dev">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/pengecekan-dan-laporan-konten-harian.webp">
-
   <!-- 🖼️ Favicon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
   <!-- 🎨 CSS -->
   <style>
     :root {
@@ -144,18 +140,14 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-22T11:53:56.642+00:00">
 </head>
-
 <body>
   <header>
     <h1>🔆 Pengecekan &amp; Laporan Konten Harian</h1>
 <div id="iposbrowser"></div>
   </header>
-
   <main>
     <p>Workflow ini berjalan otomatis di <strong>GitHub Actions</strong> setiap hari untuk menjaga kebersihan dan keteraturan konten di situs <em>frijal.pages.dev</em>. Ia melakukan dua hal penting: membersihkan gambar yang tidak dipakai lagi (orphan) dan membuat laporan jumlah konten serta badge status yang bisa ditampilkan di halaman utama. Santai tapi disiplin 😄</p>
-
     <h2>🧩 Alur Kerja (Flow)</h2>
-
     <div class="flowchart">
       <div class="node">⏰ Jadwal Otomatis (21:00 UTC)</div>
       <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--accent)" stroke-width="3"><path d="M5 20 L35 20 M25 10 L35 20 L25 30"/></svg>
@@ -165,32 +157,26 @@
       <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--accent)" stroke-width="3"><path d="M5 20 L35 20 M25 10 L35 20 L25 30"/></svg>
       <div class="node">🚀 Commit & Push</div>
     </div>
-
     <h2>🧭 Tujuan Workflow</h2>
     <ul>
       <li><strong>Membersihkan gambar orphan:</strong> Menghapus file <code>.webp</code> yang tidak punya pasangan <code>.html</code>.</li>
       <li><strong>Membuat laporan harian:</strong> Menghitung jumlah file HTML, WebP, PNG, dan membuat badge status otomatis.</li>
     </ul>
-
     <h2>📜 Kode Workflow Lengkap</h2>
     <pre><code>name: 🔆 Pengecekan & Laporan Konten Harian
-
 on:
   schedule:
     - cron: '0 21 * * *'
   workflow_dispatch:
-
 jobs:
   cleanup:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Cari dan Hapus Gambar Orphan
         id: cleanup_step
         run: |
@@ -205,7 +191,6 @@ jobs:
             fi
           done
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
-
       - if: steps.cleanup_step.outputs.deleted_count != '0'
         run: |
           git config user.name "github-actions[bot]"
@@ -213,17 +198,14 @@ jobs:
           git commit -m "chore(cleanup): hapus gambar orphan"
           git pull origin main --rebase
           git push
-
   reporting:
     needs: cleanup
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y jq
-
       - name: Setup Variabel
         id: vars
         run: |
@@ -232,7 +214,6 @@ jobs:
           REPORT="mini/${DATE}-laporan_konten.txt"
           echo "report=$REPORT" >> $GITHUB_OUTPUT
           echo "targets=$TARGETS" >> $GITHUB_OUTPUT
-
       - name: Hitung File
         id: count
         run: |
@@ -243,7 +224,6 @@ jobs:
           done
           counts[all]=$(find $TARGETS -maxdepth 1 -type f | wc -l)
           for k in "${!counts[@]}"; do echo "$k=${counts[$k]}" >> $GITHUB_OUTPUT; done
-
       - name: Buat Laporan
         run: |
           REPORT="${{ steps.vars.outputs.report }}"
@@ -257,7 +237,6 @@ jobs:
             echo "URL Artikel:"
             find artikel -maxdepth 1 -iname "*.html" | sort
           } > "$REPORT"
-
       - name: Buat Badge JSON
         run: |
           mkdir -p mini
@@ -265,7 +244,6 @@ jobs:
           webp=${{ steps.count.outputs.webp }}
           color=$(if (( html > webp )); then echo red; elif (( html < webp )); then echo green; else echo blue; fi)
           jq -n --arg h "$html" --arg w "$webp" '{schemaVersion:1,label:"html/webp",message:("\($h)/\($w)"),color:"'$color'"}' > mini/html_webp_badge.json
-
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
@@ -276,7 +254,6 @@ jobs:
             git pull origin main --rebase
             git push
           fi</code></pre>
-
     <h2>📈 Hasil Akhir</h2>
     <p>Setelah workflow selesai, folder <code>mini/</code> akan berisi:</p>
     <ul>
@@ -284,10 +261,8 @@ jobs:
       <li><code>html_webp_badge.json</code> — badge status</li>
       <li>Beberapa laporan sebelumnya (maksimal 7 hari)</li>
     </ul>
-
     <h2>💡 Kesimpulan</h2>
     <p>Dengan workflow ini, semuanya jadi otomatis: file lama dibersihkan, laporan diperbarui, dan badge status konten dibuat setiap hari tanpa sentuhan manual. Workflow kecil tapi sangat membantu menjaga kualitas konten di <strong>frijal.pages.dev</strong> 🚀</p>
-
     <div class="social-share">
       <a href="https://twitter.com/intent/tweet?text=🔆%20Pengecekan%20dan%20Laporan%20Konten%20Harian%20GitHub%20Actions&url=https://frijal.pages.dev/artikel/pengecekan-dan-laporan-konten-harian.html" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter"></a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/pengecekan-dan-laporan-konten-harian.html" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"></a>
@@ -295,11 +270,9 @@ jobs:
       <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/pengecekan-dan-laporan-konten-harian.html&text=Pengecekan%20dan%20Laporan%20Konten%20Harian" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg" alt="Telegram"></a>
     </div>
   </main>
-
   <footer>
     <p>🄯 2025 <a href="https://frijal.pages.dev">frijal.pages.dev</a> — Workflow Otomatis Harian</p>
   </footer>
-
   <!-- ⚡ Animasi ringan -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -314,4 +287,3 @@ jobs:
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
 </body>
 </html>
-

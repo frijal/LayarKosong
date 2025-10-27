@@ -7,23 +7,19 @@
     <title>SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern</title>
     <meta name="description" content="SSH3 dibangun di atas HTTP/3 (QUIC + TLS 1.3): lebih cepat, lebih aman, lebih fleksibel. Autentikasi modern, resiliensi koneksi, dan multiplexing untuk era internet." />
     <link rel="canonical" href="https://frijal.pages.dev/artikel/ssh3-evolusi-keamanan.html" />
-
     <!-- Favicon & Theme -->
     <link rel="icon" href="https://frijal.pages.dev/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#0f121a" />
-
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content="SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern" />
     <meta property="og:description" content="Fondasi HTTP/3, QUIC, dan TLS 1.3 membawa SSH ke masa depan: cepat, aman, dan fleksibel, dengan autentikasi modern dan koneksi tahan gangguan." />
     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaupjz-fdFQV0A_v0YyQgVyVylHGjgPX684A5qgSH_44BaahHcOudPRKWjpkEh_b0BDxL2vFsMa_foPKT9eWBBtbGgBe3dPwl8jlux8krkBXChY5TVJw0oK9E-G4DYAKlf52BnRwK-DNCKEqhxFnATCL6N2EazUCWjNI1hUKoK8tAb6XDiHV0YAsh3kBY/s1600/ssh3.jpg" />
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern" />
     <meta name="twitter:description" content="SSH di atas HTTP/3: Zero-RTT, multiplexing, SSO modern, koneksi tahan pindah jaringan—remote akses yang relevan untuk internet modern." />
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaupjz-fdFQV0A_v0YyQgVyVylHGjgPX684A5qgSH_44BaahHcOudPRKWjpkEh_b0BDxL2vFsMa_foPKT9eWBBtbGgBe3dPwl8jlux8krkBXChY5TVJw0oK9E-G4DYAKlf52BnRwK-DNCKEqhxFnATCL6N2EazUCWjNI1hUKoK8tAb6XDiHV0YAsh3kBY/s1600/ssh3.jpg" />
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
     {
@@ -36,7 +32,7 @@
       "publisher": { "@type": "Organization", "name": "Frijal" }
     }
     </script>
-    
+
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -81,7 +77,6 @@
         .lightbox.open { display: flex; }
         .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
-
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-16T23:20:38.205+00:00">
@@ -91,64 +86,53 @@
         <header class="site">
             <div class="brand">🚀 Jaga Data Pribadi Tetap Aman</div>
         </header>
-
         <main>
             <div class="col">
                 <article>
                     <h1>SSH3: Evolusi Keamanan dan Kecepatan di Era Internet Modern</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">SSH3 bukanlah sekadar pembaruan minor dari SSH klasik; ini adalah sebuah lompatan besar. Dengan dibangun di atas fondasi modern HTTP/3 (yang menggunakan QUIC + TLS 1.3), SSH3 mewarisi kecepatan, keamanan, dan fleksibilitas yang relevan untuk internet saat ini.</p>
-
                     <div class="share-bar">
                         <button class="btn-share" data-share="twitter">Twitter</button>
                         <button class="btn-share" data-share="facebook">Facebook</button>
                         <button class="btn-share" data-share="whatsapp">WhatsApp</button>
                         <button class="btn-share" id="copyLink">Salin Tautan</button>
                     </div>
-                    
+
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaupjz-fdFQV0A_v0YyQgVyVylHGjgPX684A5qgSH_44BaahHcOudPRKWjpkEh_b0BDxL2vFsMa_foPKT9eWBBtbGgBe3dPwl8jlux8krkBXChY5TVJw0oK9E-G4DYAKlf52BnRwK-DNCKEqhxFnATCL6N2EazUCWjNI1hUKoK8tAb6XDiHV0YAsh3kBY/s1600/ssh3.jpg" alt="Ilustrasi logo SSH3">
                     </figure>
-
                     <h2>Keuntungan Kunci SSH3</h2>
                     <h3>1. Penyiapan Sesi Lebih Cepat</h3>
                     <p>Berkat QUIC dan TLS 1.3, SSH3 dapat membangun sesi koneksi jauh lebih cepat dibandingkan SSH klasik yang berbasis TCP. Ini sangat terasa pada jaringan dengan latensi tinggi.</p>
-
                     <h3>2. Autentikasi Modern dan Fleksibel</h3>
                     <p>Selain kunci SSH tradisional, SSH3 mendukung metode autentikasi modern seperti OAuth 2.0 dan OpenID Connect. Ini membuka pintu untuk integrasi yang lebih mulus dengan sistem Single Sign-On (SSO), memungkinkan Anda login ke server menggunakan akun Google atau GitHub.</p>
-
                     <h3>3. Keamanan Tingkat Lanjut</h3>
                     <blockquote>
                         Karena berjalan di atas HTTP/3 (biasanya port 443), koneksi SSH3 secara efektif "tidak terlihat" oleh pemindai port yang mencari port SSH standar (port 22). Ini adalah lapisan keamanan tambahan yang cerdas.
                     </blockquote>
-
                     <h3>4. Resiliensi Koneksi yang Lebih Baik</h3>
                     <p>Jika alamat IP Anda berubah saat berpindah dari Wi-Fi ke jaringan seluler, koneksi SSH klasik akan terputus. SSH3, berkat QUIC, dapat mempertahankan koneksi karena mengidentifikasi sesi berdasarkan ID unik, bukan alamat IP.</p>
-
                     <h3>5. Multi-Streaming (Channel Multiplexing)</h3>
                     <p>SSH3 memungkinkan beberapa "saluran" data berjalan secara independen dalam satu koneksi. Ini berarti Anda bisa melakukan transfer file besar sambil tetap menjalankan perintah di terminal dengan lancar dan responsif.</p>
-
                     <h2>Masa Depan SSH3</h2>
                     <p>Meskipun masih dalam tahap awal adopsi, potensi SSH3 sangat besar. Ini adalah lompatan evolusioner yang membawa protokol SSH ke era internet modern, menjanjikan pengalaman akses jarak jauh yang lebih cepat, lebih aman, dan jauh lebih fleksibel.</p>
                 </article>
             </div>
         </main>
-
         <footer class="site">
             <small>🄯 2025 Frijal · Remote akses untuk masa depan.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #161d2a; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
         const shareMap = {
             twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
             facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
@@ -162,26 +146,24 @@
                 if (url) window.open(url, '_blank', 'noopener,noreferrer');
             });
         });
-        
+
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
-
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
-
         function closeLb(){ lb.classList.remove('open'); }
         lb.addEventListener('click', closeLb);
         window.addEventListener('keydown', (e) => {
@@ -192,8 +174,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>
-

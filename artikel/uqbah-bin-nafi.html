@@ -24,7 +24,6 @@
     <meta name="twitter:site" content="@frijal" />
     <!-- JSON-LD -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kisah Uqbah bin Nāfi‘ al-Fihrī Muslim","author":{"@type":"Person","name":"Fakhrul","image":"https://frijal.pages.dev/img/uqbah-bin-nafi.webp"},"image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUrFqnMAD057iVpFN4aadb8uhQoQ9l305Itnmkf9qbGiNQzYIRr2YrvKJMXExuD0H9n-ebcHW0t1wu4T5KQwHuokdTzuBjoAde09gK-b6sH3QZlK_OvyP_zb7IlzjFuycqRlJcaj62LUmSX4frtYHTBKTYh8btUZ95P4N1R3xzYtWk5BcrMrbQZK2PpGU/s1600/Uqbah.webp","datePublished":"2025-09-24","publisher":{"@type":"Organization","name":"Frijal","image":"https://frijal.pages.dev/img/uqbah-bin-nafi.webp"}}</script>
-
     <!-- Styles: 1 kolom, dark glass theme -->
     <style>
         :root {
@@ -99,7 +98,6 @@
                         <button class="btn-share" data-share="whatsapp">WhatsApp</button>
                         <button class="btn-share" id="copyLink">Salin Tautan</button>
                     </div>
-
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUrFqnMAD057iVpFN4aadb8uhQoQ9l305Itnmkf9qbGiNQzYIRr2YrvKJMXExuD0H9n-ebcHW0t1wu4T5KQwHuokdTzuBjoAde09gK-b6sH3QZlK_OvyP_zb7IlzjFuycqRlJcaj62LUmSX4frtYHTBKTYh8btUZ95P4N1R3xzYtWk5BcrMrbQZK2PpGU/s1600/Uqbah.jpg" alt="Uqbah bin Nāfi‘"></figure>
                         <figure><img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop" alt="Masjid Agung Qairawān"></figure>
@@ -124,7 +122,6 @@
             <small>🄯 2025 Frijal. Ditulis santai, dengan niat baik berbagi pengetahuan.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <button id="lb-prev" class="lightbox-nav-btn lightbox-prev" title="Sebelumnya">&lt;</button>
         <img id="lightbox-img" alt="Gambar diperbesar">
@@ -149,7 +146,6 @@
                 if (url) window.open(url, '_blank', 'noopener,noreferrer');
             });
         });
-
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
@@ -160,7 +156,6 @@
         const lbClose = document.getElementById('lb-close');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-
         function showImage(index) {
             currentIndex = index;
             let src = galleryImages[currentIndex].src;
@@ -176,12 +171,10 @@
             const newIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
             showImage(newIndex);
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => showImage(index));
         });
         function closeLb(){ lb.classList.remove('open'); }
-
         lb.addEventListener('click', (e) => {
             if (e.target === lb) {
                 closeLb();

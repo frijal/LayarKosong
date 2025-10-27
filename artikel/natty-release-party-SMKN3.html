@@ -141,11 +141,9 @@
         .lightbox .next { right: 14px; top: 50%; transform: translateY(-50%); }
         .lightbox .caption { position: absolute; bottom: 16px; left: 16px; right: 16px; color: #fff; font-size: 13px; text-align: center }
         footer { margin: 30px 0 40px; text-align: center; color: var(--muted); }
-
     </style>
 <meta property="og:image:alt" content="Natty Release Party: Ruang Belajar Open Source yang Penuh Semangat">
   <meta itemprop="image" content="https://frijal.pages.dev/img/natty-release-party-SMKN3.webp">
-
     <meta property="article:published_time" content="2025-10-14T18:15:06.412+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
@@ -155,7 +153,6 @@
             <div class="wrap">
                 <h1 id="top">Semangat Belajar di Tengah Keterbatasan: Kisah Komunitas Open Source di Balik Natty Release Party</h1>
 <div id="iposbrowser"></div>
-
                 <p class="sub">Mengabadikan momen dan semangat para pegiat open source yang berjuang mencari ruang untuk belajar dan beregenerasi.</p>
             </div>
         </header>
@@ -189,7 +186,7 @@
                     <figure class="figure"><img class="lightboxable" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUuKbUgsInSGRtNGk-cGy2WUDfmZNSvFAsskp0EEfBhjoU5WpgQYJWhfZusLMOaW6Q2LiDQON-PmBD5lpQ3wBSPY6a0ko8QU-icEh3lQT04iBvZOZA5y5mvNj2_2fgDRfJ1JW8FpzKkFLr/s320/DSC07775+-+Copy.resized.JPG" data-fullsrc="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUuKbUgsInSGRtNGk-cGy2WUDfmZNSvFAsskp0EEfBhjoU5WpgQYJWhfZusLMOaW6Q2LiDQON-PmBD5lpQ3wBSPY6a0ko8QU-icEh3lQT04iBvZOZA5y5mvNj2_2fgDRfJ1JW8FpzKkFLr/s1600/DSC07775+-+Copy.resized.JPG" alt="Suasana belajar yang santai namun serius." loading="lazy" decoding="async" fetchpriority="low" data-caption="Suasana riang saat belajar."><figcaption>Suasana riang</figcaption></figure>
                     <figure class="figure"><img class="lightboxable" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5we7QuWWWZAPmmbYcOwDR3SUtyK1-aNd7PHLjiSFJ23Nag_4prXtkNAADHUwM8KKZFbQdFVbVM2Fr6KVq-umEwiKoWtkzTjFJFe21aDJiYqJ7ax3dbgq9qqDmi7D8tLzTw-03JvbArTiE/s320/DSC07773+-+Copy.resized.JPG" data-fullsrc="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5we7QuWWWZAPmmbYcOwDR3SUtyK1-aNd7PHLjiSFJ23Nag_4prXtkNAADHUwM8KKZFbQdFVbVM2Fr6KVq-umEwiKoWtkzTjFJFe21aDJiYqJ7ax3dbgq9qqDmi7D8tLzTw-03JvbArTiE/s1600/DSC07773+-+Copy.resized.JPG" alt="Instalasi Linux di laptop." loading="lazy" decoding="async" fetchpriority="low" data-caption="Instalasi Linux di laptop."><figcaption>Instalasi di laptop</figcaption></figure>
                     <figure class="figure"><img class="lightboxable" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s320/DSC07770.resized.JPG" data-fullsrc="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s1600/DSC07770.resized.JPG" alt="Materi yang sedang disajikan." loading="lazy" decoding="async" fetchpriority="low" data-caption="Sesi presentasi."><figcaption>Presentasi</figcaption></figure>
-                    
+
                 </div>
             </article>
             <aside>
@@ -230,7 +227,6 @@
             // ====== Lightbox ======
             const imgs = Array.from(document.querySelectorAll('.lightboxable'));
             if (imgs.length === 0) return;
-
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
             const lbCap = document.getElementById('lightbox-cap');
@@ -238,43 +234,35 @@
             const prevBtn = document.getElementById('lightbox-prev');
             const nextBtn = document.getElementById('lightbox-next');
             let currentIndex = 0;
-
             function openLightbox(index) {
                 currentIndex = index;
                 updateLightbox();
                 lb.classList.add('open');
                 document.body.style.overflow = "hidden";
             }
-
             function updateLightbox() {
                 const img = imgs[currentIndex];
                 lbImg.src = img.dataset.fullsrc || img.src;
                 lbImg.alt = img.alt || '';
                 lbCap.textContent = img.dataset.caption || img.alt || '';
             }
-
             function move(direction) {
                 currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
                 updateLightbox();
             }
-
             function closeLightbox() {
                 lb.classList.remove('open');
                 document.body.style.overflow = "";
             }
-
             imgs.forEach((img, index) => {
                 img.addEventListener('click', () => openLightbox(index));
             });
-
             closeBtn.addEventListener('click', closeLightbox);
             prevBtn.addEventListener('click', () => move(-1));
             nextBtn.addEventListener('click', () => move(1));
-
             lb.addEventListener('click', (e) => {
                 if (e.target === lb) closeLightbox();
             });
-
             document.addEventListener('keydown', (e) => {
                 if (!lb.classList.contains('open')) return;
                 if (e.key === 'Escape') closeLightbox();
@@ -283,11 +271,8 @@
             });
         });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

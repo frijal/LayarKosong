@@ -8,24 +8,18 @@
   <meta name="twitter:description" content="Kisah penaklukan Persia: dari ekspedisi awal hingga runtuhnya Sassanid, pertempuran besar, dan warisan budaya yang membentuk peradaban Islam.">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
   <link rel="icon" href="/favicon.ico">
-
   <link id="canonical-link" rel="canonical" href="https://frijal.pages.dev/artikel/Penaklukan-Persia.html">
-
   <meta property="og:type" content="article">
   <meta property="og:title" content="Penaklukan Persia">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/Penaklukan-Persia.html">
   <meta property="og:site_name" content="Frijal">
   <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvleuZqlPcC_KsQCuhIpLX9b5-3Zz-jCEwEBMfDoyQhwyusyuCzhEhH21Y6RtmrSFRbpk7EXs549RJ8rqJ513Una9cPLwFHuVEAyrLRBdtvcG5yg1IB4vNWB1LTflX76Ie9vkkL4YE_t3QIZX0Pb_1cTGbgHlS5F4hDPxhCj_WSlP6nCuyf4QqYMG7xQs/s1600/persia.jpg">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Penaklukan Persia">
   <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvleuZqlPcC_KsQCuhIpLX9b5-3Zz-jCEwEBMfDoyQhwyusyuCzhEhH21Y6RtmrSFRbpk7EXs549RJ8rqJ513Una9cPLwFHuVEAyrLRBdtvcG5yg1IB4vNWB1LTflX76Ie9vkkL4YE_t3QIZX0Pb_1cTGbgHlS5F4hDPxhCj_WSlP6nCuyf4QqYMG7xQs/s1600/persia.jpg">
-
   <script type="application/ld+json" id="ld-json">
   {
     "@context": "https://schema.org",
@@ -53,7 +47,6 @@
     "dateModified": "2025-09-24T00:56:00+08:00"
   }
   </script>
-
   <style>
     :root{
       --bg: #0e0f14;
@@ -70,21 +63,18 @@
       --maxw: 860px;
       --gap: 24px;
     }
-
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin:0; padding:0; background: var(--bg); color: var(--text); }
     img { max-width: 100%; height: auto; display: block; }
     a { color: var(--primary); text-decoration: none; }
     a:hover { color: var(--accent); }
     button { font: inherit; cursor: pointer; }
-
     #scroll-progress {
       position: fixed; top:0; left:0; height: 4px; width: 0%;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       box-shadow: var(--shadow);
       z-index: 9999;
     }
-
     header.hero {
       position: relative;
       padding: 56px 20px 24px;
@@ -105,7 +95,6 @@
       color: transparent;
     }
     .article-sub { color: var(--muted); max-width: 780px; }
-
     main {
       display: block;
       width: min(100%, 1200px);
@@ -116,7 +105,6 @@
       width: min(100%, var(--maxw));
       margin: 0 auto;
     }
-
     section.card {
       background: var(--surface);
       border: 1px solid rgba(255,255,255,.08);
@@ -132,7 +120,6 @@
       color: #fff;
     }
     section.card p { color: var(--muted); }
-
     .gallery {
       display: grid; gap: 12px;
       grid-template-columns: repeat(3, 1fr);
@@ -157,7 +144,6 @@
       padding: 8px 10px; font-size: 13px; color: var(--muted);
       background: linear-gradient(180deg, transparent, rgba(0,0,0,.65));
     }
-
     .lightbox {
       position: fixed; inset:0; display: none; place-items: center;
       background: rgba(0,0,0,.7);
@@ -182,7 +168,6 @@
     }
     .lb-btn:hover { background: rgba(255,255,255,.18); }
     .lb-close { position: absolute; top: 10px; right: 12px; }
-
     .share {
       display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
       padding: 10px; margin-top: 8px;
@@ -198,12 +183,10 @@
     }
     .share a.btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.16); }
     .share svg { width: 18px; height: 18px; }
-
     footer {
       width: min(100%, var(--maxw)); margin: 30px auto 60px;
       color: var(--muted); text-align: center;
     }
-
     .content p { line-height: 1.7; font-size: 17px; }
     .content blockquote {
       margin: 16px 0; padding: 14px 16px; border-left: 3px solid var(--accent);
@@ -211,7 +194,6 @@
     }
     .content hr { border: none; height: 1px; background: rgba(255,255,255,.08); margin: 20px 0; }
     .muted { color: var(--muted); }
-
     .timeline {
       position: relative;
       margin: 20px 0;
@@ -240,7 +222,6 @@
       color: var(--muted);
       font-size: 15px;
     }
-
     .timeline-progress {
       position: relative;
       height: 6px;
@@ -256,7 +237,6 @@
       background: linear-gradient(90deg, var(--primary), var(--accent));
       transition: width .4s ease;
     }
-
     .tokoh-grid {
       display: grid;
       gap: 20px;
@@ -297,7 +277,6 @@
     .leaflet-interactive {
       filter: drop-shadow(0 0 6px rgba(109,211,255,.8));
     }
-
   </style>
 <meta property="og:image:alt" content="Sejarah Islam Penaklukan Persia">
   <meta itemprop="image" content="https://frijal.pages.dev/img/Penaklukan-Persia.webp">
@@ -306,7 +285,6 @@
 </head>
 <body>
   <div id="scroll-progress"></div>
-
   <header class="hero">
     <div class="content">
       <div class="site-title">Artikel Sejarah</div>
@@ -318,10 +296,8 @@
       </p>
     </div>
   </header>
-
   <main>
     <div class="content">
-
       <section class="card" id="section-1">
         <h2>Latar Belakang</h2>
         <p>
@@ -330,7 +306,6 @@
           Kondisi ini membuka jalan bagi pertemuan dua kekuatan besar.<img alt="" border="0" data-original-height="1920" data-original-width="1920" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvleuZqlPcC_KsQCuhIpLX9b5-3Zz-jCEwEBMfDoyQhwyusyuCzhEhH21Y6RtmrSFRbpk7EXs549RJ8rqJ513Una9cPLwFHuVEAyrLRBdtvcG5yg1IB4vNWB1LTflX76Ie9vkkL4YE_t3QIZX0Pb_1cTGbgHlS5F4hDPxhCj_WSlP6nCuyf4QqYMG7xQs/s1600/persia.jpg">
         </p>
       </section>
-
       <section class="card" id="section-2">
         <h2>Pertempuran Awal</h2>
         <p>
@@ -339,7 +314,6 @@
           Kemenangan ini menandai awal masuknya pasukan Muslim ke wilayah Irak, pintu gerbang Persia.
         </p>
       </section>
-
       <section class="card" id="section-3">
         <h2>Pertempuran Besar</h2>
         <p>
@@ -349,7 +323,6 @@
           Beberapa tahun kemudian, pertempuran Nahawand (642 M) menjadi penentu, dikenal sebagai “Kemenangan Besar” <em>Fath al-Futuh</em>.
         </p>
       </section>
-
       <section class="card" id="section-4">
         <h2>Runtuhnya Kekuasaan Sassanid</h2>
         <p>
@@ -357,7 +330,6 @@
           Dengan itu, kekuasaan Persia runtuh, dan wilayahnya secara bertahap masuk ke dalam kekuasaan Daulah Islam.
         </p>
       </section>
-
       <section class="card" id="section-5">
         <h2>Dampak Jangka Panjang</h2>
         <p>
@@ -366,7 +338,6 @@
           Persia menjadi pusat intelektual dunia Islam selama berabad-abad.
         </p>
       </section>
-
       <section class="card" id="section-6">
         <h2>Refleksi</h2>
         <p>
@@ -375,7 +346,6 @@
           Sejarah ini mengajarkan tentang dinamika kekuasaan, ketahanan iman, dan pentingnya pertukaran budaya.
         </p>
       </section>
-
       <section class="card">
         <h2>Bagikan</h2>
         <div class="share" id="share">
@@ -398,12 +368,10 @@
           </a>
         </div>
       </section>
-
       <section class="card" id="map-section">
         <h2>Peta Interaktif Penaklukan Persia</h2>
         <div id="map" style="height: 480px; border-radius: 12px; overflow: hidden;"></div>
       </section>
-
       <section class="card" id="timeline">
         <h2>Kronologi Penaklukan Persia</h2>
         <div class="timeline">
@@ -426,7 +394,6 @@
         </div>
         <div class="timeline-progress"><span></span></div>
       </section>
-
       <section class="card" id="tokoh">
         <h2>Tokoh-Tokoh Penting</h2>
         <div class="tokoh-grid">
@@ -448,14 +415,11 @@
           </div>
         </div>
       </section>
-
     </div>
   </main>
-
   <footer>
     <p>🄯 Frijal • Dibangun dengan cinta, warna, dan ketelitian.</p>
   </footer>
-
   <div class="lightbox" id="lightbox">
     <div class="lightbox-content">
       <img class="lightbox-img" id="lightbox-img" alt="">
@@ -466,7 +430,6 @@
       <div class="lightbox-controls"></div>
     </div>
   </div>
-
   <script>
     var sp = document.getElementById("scroll-progress");
     function onScrollBar() {
@@ -476,7 +439,6 @@
     }
     document.addEventListener("scroll", onScrollBar, { passive: true });
     onScrollBar();
-
     (function(){
       var url = location.href;
       var canonical = document.getElementById("canonical-link");
@@ -493,7 +455,6 @@
         } catch(e){}
       }
     })();
-
     (function(){
       var url = encodeURIComponent(location.href);
       var title = encodeURIComponent(document.title);
@@ -501,7 +462,6 @@
       var fb = document.getElementById("share-fb");
       var wa = document.getElementById("share-wa");
       var cp = document.getElementById("share-copy");
-
       if (tw) tw.href = "https://twitter.com/intent/tweet?url=" + url + "&text=" + title;
       if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + url;
       if (wa) wa.href = "https://wa.me/?text=" + title + "%20" + url;
@@ -512,7 +472,6 @@
           .finally(function(){ setTimeout(function(){ cp.textContent = "Salin tautan"; }, 2000); });
       });
     })();
-
     (function(){
       var figures = Array.prototype.slice.call(document.querySelectorAll(".gallery figure"));
       var lb = document.getElementById("lightbox");
@@ -521,9 +480,7 @@
       var prev = document.getElementById("lb-prev");
       var next = document.getElementById("lb-next");
       var close = document.getElementById("lb-close");
-
       var index = 0;
-
       function open(i) {
         index = i;
         var fig = figures[index];
@@ -545,7 +502,6 @@
         img.src = "";
         cap.textContent = "";
       }
-
       figures.forEach(function(fig, i){
         fig.addEventListener("click", function(){ open(i); });
       });
@@ -560,12 +516,10 @@
         if (e.key === "ArrowRight") move(1);
       });
     })();
-
     (function(){
       var progressEl = document.querySelector(".timeline-progress span");
       var timeline = document.querySelector("#timeline");
       if (!timeline) return;
-
       function onScrollTimeline() {
         var rect = timeline.getBoundingClientRect();
         var winH = window.innerHeight;
@@ -578,14 +532,11 @@
       onScrollTimeline();
     })();
   </script>
-
   <script>
     var map = L.map("map").setView([32.0, 45.0], 5);
-
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "🄯 OpenStreetMap contributors"
     }).addTo(map);
-
     var battles = [
       {
         name: "Pertempuran Dzat as-Salasil (633 M)",
@@ -608,23 +559,19 @@
         desc: "Dikenal sebagai Fath al-Futuh (Kemenangan Besar)."
       }
     ];
-
     battles.forEach(function(b){
       L.marker(b.coords).addTo(map)
         .bindPopup("<strong>" + b.name + "</strong><br>" + b.desc);
     });
   </script>
-
   <script>
     var routeCoords = battles.map(function(b){ return b.coords; });
-
     var routeLine = L.polyline(routeCoords, {
       color: "#6dd3ff",
       weight: 4,
       opacity: 0.7,
       dashArray: "10, 10"
     }).addTo(map);
-
     var progress = 0;
     function animateRoute() {
       progress += 1;
@@ -641,7 +588,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

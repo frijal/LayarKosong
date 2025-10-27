@@ -70,39 +70,33 @@
         --color-card-bg: #1f1f1f;
         --max-width: 1000px; /* Definisi max-width untuk 1 kolom */
       }
-
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-
       body {
         font-family: system-ui, -apple-system, Segoe UI, sans-serif;
         background-color: var(--color-bg);
         color: var(--color-text);
         line-height: 1.7;
       }
-
       header,
       footer {
         text-align: center;
         padding: 20px;
         background-color: var(--color-secondary);
       }
-
       .container {
         max-width: var(--max-width);
         margin: 0 auto;
         padding: 20px;
       }
-
       h1 {
         color: var(--color-primary);
         margin-bottom: 10px;
         font-size: 2.8em;
       }
-
       h2 {
         border-bottom: 2px solid var(--color-primary);
         padding-bottom: 5px;
@@ -110,7 +104,6 @@
         margin-bottom: 20px;
         font-size: 2em;
       }
-
       code {
         background-color: #333;
         color: var(--color-primary);
@@ -118,22 +111,19 @@
         border-radius: 4px;
         font-family: Consolas, monospace;
       }
-      
+
       strong {
         color: var(--color-primary); /* Menyorot teks strong */
       }
-
       ul,
       ol {
         padding-left: 25px;
         margin-bottom: 15px;
       }
-
       .distro-list li {
         font-size: 1.1em;
         margin-bottom: 8px;
       }
-
       .social-share {
         text-align: center;
         margin: 30px 0;
@@ -141,25 +131,21 @@
         border-top: 1px solid var(--color-secondary);
         border-bottom: 1px solid var(--color-secondary);
       }
-
       .social-share a {
         color: var(--color-text);
         font-size: 28px;
         margin: 0 12px;
         transition: color 0.3s;
       }
-
       .social-share a:hover {
         color: var(--color-primary);
       }
-
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 15px;
         margin: 20px 0;
       }
-
       .gallery img {
         width: 100%;
         height: 220px;
@@ -168,12 +154,10 @@
         cursor: pointer;
         transition: transform 0.3s, box-shadow 0.3s;
       }
-
       .gallery img:hover {
         transform: scale(1.03);
         box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
       }
-
       .lightbox {
         display: none;
         position: fixed;
@@ -182,14 +166,12 @@
         background-color: rgba(0, 0, 0, 0.95);
         place-items: center;
       }
-
       .lightbox-content {
         display: block;
         width: 90%;
         max-width: 1100px;
         max-height: 90vh;
       }
-
       .close-btn,
       .prev,
       .next {
@@ -199,14 +181,12 @@
         transition: 0.3s;
         user-select: none;
       }
-
       .close-btn {
         top: 20px;
         right: 45px;
         font-size: 45px;
         font-weight: bold;
       }
-
       .prev,
       .next {
         top: 50%;
@@ -216,50 +196,40 @@
         background-color: rgba(0, 153, 255, 0.7);
         border-radius: 5px;
       }
-
       .next {
         right: 15px;
       }
-
       .prev {
         left: 15px;
       }
-
       .prev:hover,
       .next:hover,
       .close-btn:hover {
         color: var(--color-primary);
       }
-
       @media (max-width: 768px) {
         h1 {
           font-size: 2em;
         }
-
         h2 {
           font-size: 1.6em;
         }
-
         .container {
           padding: 10px;
         }
-
         .gallery {
           grid-template-columns: 1fr;
         }
       }
-
     </style>
   <meta itemprop="image" content="https://frijal.pages.dev/img/paru-lintas-distro.webp">
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
   <body>
-    
+
     <header>
       <h1><i class="fas fa-satellite-dish"></i> Paru Bisa Dipakai di Mana Saja? Tentu Saja!</h1>
 <div id="iposbrowser"></div>
-
     </header>
     <div class="container">
       <article>
@@ -334,7 +304,7 @@
           <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/paru-lintas-distro.html&text=Paru%20Bukan%20Hanya%20Milik%20CachyOS!" target="_blank" rel="noopener noreferrer" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
           <a href="https://wa.me/?text=Fakta%20tentang%20AUR%20Helper%20Paru%20dan%20Distro%20Arch%3A%20https://frijal.pages.dev/artikel/paru-lintas-distro.html" target="_blank" rel="noopener noreferrer" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </section>
-        
+
       </article>
     </div>
     <div id="lightbox-modal" class="lightbox">
@@ -349,24 +319,22 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Lightbox Gallery & Navigation (Disederhanakan karena tidak ada gambar di HTML) ---
-        const galleryImages = []; 
+        const galleryImages = [];
         const lightboxModal = document.getElementById('lightbox-modal');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = lightboxModal.querySelector('.close-btn');
         const prevBtn = lightboxModal.querySelector('.prev');
         const nextBtn = lightboxModal.querySelector('.next');
         let currentIndex = 0;
-
         function closeLightbox() {
           lightboxModal.style.display = 'none';
         }
-
         if (galleryImages.length > 0) {
             function changeImage(n) {
                 currentIndex = (currentIndex + n + galleryImages.length) % galleryImages.length;
                 lightboxImg.src = galleryImages[currentIndex].src;
             }
-            
+
             closeBtn.addEventListener('click', closeLightbox);
             prevBtn.addEventListener('click', () => changeImage(-1));
             nextBtn.addEventListener('click', () => changeImage(1));
@@ -387,16 +355,11 @@
             nextBtn.style.display = 'none';
         }
 
-
-        
         // Dihapus: Skrip deteksi User Info (detectUserInfo dan getGeoLocation)
       });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
   </body>
 </html>

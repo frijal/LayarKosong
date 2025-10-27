@@ -191,9 +191,7 @@
         gap: .5em;
       }
       .share-btn:hover { background: #cfdbe8cc; color: #273c4d; }
-
       /* Info bar removed */
-
       @media (max-width: 600px) {
         header h1 { font-size: 1.15em; }
         main { padding: 1em 0.2em; }
@@ -201,7 +199,6 @@
         .share-box { flex-direction: column; gap: .8em; }
         /* Floating buttons removed */
       }
-
     </style>
 <meta property="og:image:alt" content="Pertempuran Yarmuk & Penyerahan Yerusalem | Kisah Islam di Syam">
   <meta itemprop="image" content="https://frijal.pages.dev/img/pertempuran-yarmuk-yerusalem.webp">
@@ -325,15 +322,12 @@
       const lbPrev = document.getElementById('lb-prev');
       const lbNext = document.getElementById('lb-next');
       let lbIndex = 0;
-
       imgs.forEach(img => {
           if (img.dataset.src) { // Check if data-src exists
               img.loading = "lazy"; // Use native lazy loading
               // Fallback for Intersection Observer can be added here if needed
           }
       });
-
-
       function openLightbox(idx) {
         lbIndex = idx;
         const currentImg = imgs[lbIndex];
@@ -343,33 +337,27 @@
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
-
       function closeLightbox() {
         lightbox.style.display = 'none';
         document.body.style.overflow = '';
       }
-
       function showPrev() {
         lbIndex = (lbIndex - 1 + imgs.length) % imgs.length;
         lbImg.src = imgs[lbIndex].dataset.src || imgs[lbIndex].src;
         lbImg.alt = imgs[lbIndex].alt;
       }
-
       function showNext() {
         lbIndex = (lbIndex + 1) % imgs.length;
         lbImg.src = imgs[lbIndex].dataset.src || imgs[lbIndex].src;
         lbImg.alt = imgs[lbIndex].alt;
       }
-
       imgs.forEach((img, i) => {
         img.onclick = () => openLightbox(i);
       });
-
       if (lbClose) lbClose.onclick = closeLightbox;
       if (lbPrev) lbPrev.onclick = showPrev;
       if (lbNext) lbNext.onclick = showNext;
       if (lightbox) lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
-
       document.addEventListener('keydown', function(e) {
         if (lightbox && lightbox.style.display === 'flex') {
           if (e.key === "ArrowLeft") showPrev();
@@ -377,7 +365,6 @@
           if (e.key === "Escape") closeLightbox();
         }
       });
-
       // Copy Link Button
       const copyBtn = document.getElementById('copy-link-btn');
       if (copyBtn) {
@@ -400,7 +387,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

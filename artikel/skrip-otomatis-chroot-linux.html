@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --bg-color: #1a1a1a;
@@ -35,13 +35,11 @@
             --code-bg: #222;
             --max-width: 900px;
         }
-
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
@@ -49,7 +47,6 @@
             line-height: 1.8;
             font-size: 17px;
         }
-
         /* Tata Letak Utama (1 Kolom) */
         .container {
             max-width: var(--max-width);
@@ -57,7 +54,6 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
-
         header h1 {
             font-size: 3rem;
             text-align: center;
@@ -65,14 +61,12 @@
             color: #fff;
             text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
         }
-
         header .meta-info {
             text-align: center;
             font-size: 0.9rem;
             color: #aaa;
             margin-bottom: 40px;
         }
-
         article h2 {
             font-size: 2rem;
             color: var(--primary-color);
@@ -81,18 +75,15 @@
             margin-top: 50px;
             margin-bottom: 25px;
         }
-
         article h3 {
             font-size: 1.5rem;
             color: #eee;
             margin-top: 30px;
             margin-bottom: 15px;
         }
-
         article p {
             margin-bottom: 20px;
         }
-
         /* Styling Blok Kode */
         pre {
             background-color: var(--code-bg);
@@ -103,13 +94,11 @@
             position: relative;
             margin: 20px 0;
         }
-
         code.language-bash {
             font-family: 'Fira Code', monospace;
             font-size: 0.95em;
             color: #c5c8c6;
         }
-
         .copy-btn {
             position: absolute;
             top: 10px;
@@ -123,30 +112,24 @@
             font-family: 'Poppins', sans-serif;
             transition: background-color 0.2s;
         }
-
         .copy-btn:hover {
             background-color: #555;
         }
-
         .copy-btn.copied {
             background-color: #28a745;
             color: white;
         }
-
         /* Dihapus: Tombol Navigasi Tetap */
-
         /* Sharing & Jaga Data Pribadi Tetap Aman. */
         .interaction-section {
             margin-top: 50px;
             padding-top: 30px;
             border-top: 1px solid var(--border-color);
         }
-
         .social-share {
             text-align: center;
             margin-bottom: 40px;
         }
-
         .social-share a {
             font-size: 2rem;
             color: #ccc;
@@ -154,11 +137,9 @@
             text-decoration: none;
             transition: color 0.3s;
         }
-
         .social-share a:hover {
             color: var(--primary-color);
         }
-
         /* Footer Info */
         footer {
             margin-top: 50px;
@@ -169,95 +150,82 @@
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
         }
-
         /* Mobile-friendly */
         @media (max-width: 1000px) {
             .container {
                 padding: 20px 15px;
             }
-
             body {
                 font-size: 16px;
             }
-
             header h1 {
                 font-size: 2.2rem;
             }
-
             article h2 {
                 font-size: 1.8rem;
             }
         }
-
     </style>
     <meta property="og:image:alt" content="Skrip Canggih Chroot di Linux: Setup & Cleanup Otomatis">
     <meta itemprop="image" content="https://frijal.pages.dev/img/skrip-otomatis-chroot-linux.webp">
     <meta property="article:published_time" content="2025-09-23T11:00:00+08:00">
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-    
+
     <main class="container">
         <header>
             <h1>Skrip Canggih Chroot di Linux: Setup & Cleanup Otomatis</h1>
 <div id="iposbrowser"></div>
-
             <div class="meta-info"><span>Ditulis oleh Frijal</span> | <span>Diperbarui: 2 Oktober 2025</span></div>
         </header>
         <article>
             <p>Buat kamu yang sering ngoprek sistem Linux, `chroot` itu ibarat punya "penjara" pribadi buat sebuah proses. Kerennya, proses di dalam `chroot` cuma bisa lihat direktori yang kita tentukan, jadi lebih aman dan terisolasi. Tapi, ada satu hal yang kadang bikin repot: proses setup-nya.</p>
             <p>Setiap kali mau masuk `chroot`, kita harus `mount` beberapa filesystem virtual penting seperti `/dev`, `/proc`, dan `/sys`. Terus, setelah selesai, harus di-`umount` lagi satu per satu. Lupa satu langkah aja bisa bikin sistem jadi aneh. Nah, biar hidup lebih santai, kita bisa otomatisasi semua itu pakai skrip Bash!</p>
-            
+
             <section>
                 <h2>Skrip Otomatis: Setup & Cleanup chroot</h2>
                 <p>Untuk memudahkan, berikut contoh skrip shell sederhana agar tidak perlu mengetik semua perintah mount/umount secara manual.</p>
-                
+
                 <h3>1. Setup (buat file <code>enter-chroot.sh</code>)</h3>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # enter-chroot.sh
 # Gunakan: sudo ./enter-chroot.sh /srv/chroot/debian
 CHROOT_DIR="$1"
-
 if [ -z "$CHROOT_DIR" ]; then
   echo "Usage: $0 /path/to/chroot"
   exit 1
 fi
-
 # Mount filesystem penting
 echo "Mounting virtual filesystems..."
 mount --bind /dev "$CHROOT_DIR/dev"
 mount --bind /dev/pts "$CHROOT_DIR/dev/pts"
 mount -t proc /proc "$CHROOT_DIR/proc"
 mount -t sysfs /sys "$CHROOT_DIR/sys"
-
 # Copy resolv.conf untuk DNS
 echo "Copying DNS configuration..."
 cp /etc/resolv.conf "$CHROOT_DIR/etc/"
-
 # Masuk ke chroot
 echo "Entering chroot. Ketik 'exit' untuk keluar."
 chroot "$CHROOT_DIR" /bin/bash
 echo "Keluar dari chroot."</code></pre>
-                
+
                 <h3>2. Cleanup (buat file <code>exit-chroot.sh</code>)</h3>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # exit-chroot.sh
 # Gunakan: sudo ./exit-chroot.sh /srv/chroot/debian
 CHROOT_DIR="$1"
-
 if [ -z "$CHROOT_DIR" ]; then
   echo "Usage: $0 /path/to/chroot"
   exit 1
 fi
-
 echo "Unmounting virtual filesystems..."
 umount "$CHROOT_DIR/dev/pts"
 umount "$CHROOT_DIR/dev"
 umount "$CHROOT_DIR/proc"
 umount "$CHROOT_DIR/sys"
 echo "Cleanup selesai!"</code></pre>
-                
+
                 <h3>3. Cara Pakainya Gimana?</h3>
                 <p>Pertama, pastikan kamu memberi izin eksekusi pada kedua file skrip yang baru dibuat:</p>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">chmod +x enter-chroot.sh exit-chroot.sh</code></pre>
@@ -267,7 +235,7 @@ echo "Cleanup selesai!"</code></pre>
                 <pre><button class="copy-btn">Copy</button><code class="language-bash">sudo ./exit-chroot.sh /srv/chroot/debian</code></pre>
                 <p>Dengan cara ini, proses mount dan umount jadi jauh lebih aman, konsisten, dan anti lupa. Selamat mencoba!</p>
             </section>
-            
+
             <section class="interaction-section">
                 <div class="social-share">
                     <h3>Jaga Data Pribadi Tetap Aman:</h3>
@@ -276,15 +244,14 @@ echo "Cleanup selesai!"</code></pre>
                     <a href="#" id="share-whatsapp" rel="noreferrer" aria-label="Bagikan ke WhatsApp">💬</a>
                     <a href="#" id="share-linkedin" rel="noreferrer" aria-label="Bagikan ke LinkedIn">🔗</a>
                 </div>
-                
+
             </section>
         </article>
     </main>
-    
+
     <footer>
         <p>🄯 2025 Frijal. Dibuat dengan penuh ☕ di Balikpapan.</p>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- Copy Button Logic ---
@@ -305,16 +272,14 @@ echo "Cleanup selesai!"</code></pre>
                     });
                 });
             });
-
             // --- Social Share Logic ---
             const pageUrl = encodeURIComponent(window.location.href);
             const pageTitle = encodeURIComponent(document.title);
-            
+
             document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
             document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
             document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
             document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-
             // --- Facebook Comments SDK ---
             (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -323,15 +288,11 @@ echo "Cleanup selesai!"</code></pre>
                 js.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023&autoLogAppEvents=1";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-
             // --- Dihapus: User Info Logic ---
         });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

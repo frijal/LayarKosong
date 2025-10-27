@@ -183,7 +183,6 @@
         .lightbox .caption { font-size: .98rem;}
         /* Floating buttons removed */
       }
-
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <meta property="og:image:alt" content="Penyebaran Islam ke India: Sindh, Ghaznawi, Delhi, Mughal">
@@ -197,12 +196,10 @@
 <div id="iposbrowser"></div>
         <div class="subtitle">Dari Sindh ke Mughal, sejarah seru, foto, dan info unik!</div>
         </header>
-
     <main>
         <section>
             <p>Hai teman-teman! Di halaman ini, kita bakal jalan-jalan santai menelusuri kisah penyebaran Islam ke India, mulai dari Sindh, Ghaznawi, Kesultanan Delhi, sampai kejayaan Dinasti Mughal. Ayo, kita kulik bareng sejarah + galeri foto + info seru lainnya!</p>
         </section>
-
         <section>
             <h2 id="sindh">Muhammad bin Qasim & Penaklukan Sindh (711 M)</h2>
             <p>
@@ -219,7 +216,6 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Multan_Fort.jpg" alt="Kota Multan" loading="lazy" data-caption="Benteng Multan, simbol pertemuan budaya (CC BY-SA)">
             </div>
         </section>
-
         <section>
             <h2>Mahmud al-Ghaznawi: Ekspedisi Besar ke India Utara (971–1030 M)</h2>
             <p>
@@ -234,7 +230,6 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Lahore_Fort.jpg" alt="Lahore Fort" loading="lazy" data-caption="Benteng Lahore, Punjab (CC BY-SA)">
             </div>
         </section>
-
         <section>
             <h2>Kesultanan Delhi (abad 12–15 M)</h2>
             <p>
@@ -249,7 +244,6 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Jama_Masjid%2C_Delhi.jpg" alt="Jami Masjid Delhi" loading="lazy" data-caption="Jami Masjid Delhi, karya Dinasti Mughal (CC BY-SA)">
             </div>
         </section>
-
         <section>
             <h2>Dinasti Mughal (abad 16–18 M)</h2>
             <h3>Babur & Panipat (1526 M)</h3>
@@ -274,7 +268,6 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Fatehpur_Sikri_view.jpg" alt="Fatehpur Sikri" loading="lazy" data-caption="Kompleks istana Akbar, Fatehpur Sikri (CC BY-SA)">
             </div>
         </section>
-
         <section>
             <h2>Warisan Peradaban Mughal</h2>
             <ul>
@@ -287,7 +280,6 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Jama_Masjid%2C_Delhi.jpg" alt="Masjid Jami Delhi" loading="lazy" data-caption="Jami Masjid Delhi, karya Dinasti Mughal (CC BY-SA)">
             </div>
         </section>
-
         <section>
             <h2>Kesimpulan</h2>
             <ol>
@@ -300,7 +292,6 @@
                 Islam di India bukan cuma soal penaklukan, tapi juga cerita tentang keadilan sosial, toleransi, seni, dan administrasi yang jejaknya masih terasa sampai sekarang. Keren, kan?
             </p>
         </section>
-
         <div class="share-buttons">
             <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/penyebaran-islam-india.html&text=Penyebaran%20Islam%20ke%20India%3A%20Sindh%2C%20Ghaznawi%2C%20Delhi%2C%20Mughal" target="_blank" title="Bagikan ke Twitter"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/penyebaran-islam-india.html" target="_blank" title="Bagikan ke Facebook"><i class="fab fa-facebook"></i></a>
@@ -327,7 +318,6 @@
                 gal.querySelectorAll('img').forEach(img => imgList.push(img));
             });
             let imgIndex = 0;
-
             function showLightbox(idx) {
                 if (idx < 0 || idx >= imgList.length) return; // Boundary check
                 imgIndex = idx;
@@ -337,7 +327,6 @@
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-
             galleryImgs.forEach((img, idx) => {
                 img.addEventListener('click', () => {
                     // Find the correct index in the flattened imgList
@@ -347,7 +336,6 @@
                     }
                 });
             });
-
             document.querySelector('.lightbox .close').onclick = () => {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = '';
@@ -373,7 +361,6 @@
                 if (e.key === 'ArrowLeft') document.querySelector('.lightbox .nav.prev').click();
                 if (e.key === 'ArrowRight') document.querySelector('.lightbox .nav.next').click();
             });
-
             // Info OS & browser script removed
             // GeoIP script removed
         });
@@ -381,7 +368,5 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
 </body>
 </html>

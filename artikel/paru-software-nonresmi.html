@@ -60,7 +60,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    
+
     <meta
       property="article:published_time"
       content="2025-10-06T06:06:53.376+00:00"
@@ -208,22 +208,18 @@
           padding: 10px;
         }
       }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
   </head>
   <body>
-    
+
     <header>
       <h1>
         <i class="fas fa-cubes"></i> Paru dan Software Komunitas: Menguak
         Kekuatan AUR
       </h1>
 <div id="iposbrowser"></div>
-
     </header>
-
     <div class="container">
       <article>
         <p>
@@ -237,7 +233,6 @@
           <code>sudo pacman -S</code>, Paru adalah alat yang akan membantu Anda
           mencarinya, mengunduh, mengkompilasi, dan menginstalnya dari AUR.
         </p>
-
         <section>
           <h2><i class="fas fa-globe"></i> Apa Itu AUR?</h2>
           <p>
@@ -316,14 +311,12 @@
             </li>
           </ul>
         </section>
-
         <section class="social-share">
           <p>Bagikan info penting tentang AUR dan Paru ini:</p>
           <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/paru-software-nonresmi.html" target="_blank" rel="noopener noreferrer" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
           <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/paru-software-nonresmi.html&text=Paru%20membuka%20akses%20ke%20ribuan%20software%20komunitas%20di%20AUR!" target="_blank" rel="noopener noreferrer" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
           <a href="https://wa.me/?text=Penting!%20Cara%20Paru%20menginstal%20software%20luar%20repositori%20resmi%3A%20https://frijal.pages.dev/artikel/paru-software-nonresmi.html" target="_blank" rel="noopener noreferrer" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </section>
-
         <section id="fb-comments-container">
           <h2><i class="far fa-comment-dots"></i> Jaga Data Pribadi Tetap Aman.</h2>
           <div
@@ -335,22 +328,18 @@
         </section>
       </article>
     </div>
-
     <div id="lightbox-modal" class="lightbox">
       <span class="close-btn">&times;</span>
       <img class="lightbox-content" id="lightbox-img" alt="Gambar diperbesar" />
       <a class="prev"><i class="fas fa-chevron-left"></i></a>
       <a class="next"><i class="fas fa-chevron-right"></i></a>
     </div>
-
     <footer>
       <p>🄯 2024 Artikel Frijal. Gunakan Paru dengan bijak dan aman!</p>
     </footer>
 
-    
 
-    
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Lightbox Gallery (disembunyikan jika tidak ada gambar) ---
@@ -362,7 +351,6 @@
             const prevBtn = lightboxModal.querySelector('.prev');
             const nextBtn = lightboxModal.querySelector('.next');
             let currentIndex = 0;
-
             function openLightbox(index) {
                 lightboxModal.style.display = 'grid';
                 lightboxImg.src = galleryImages[index].src;
@@ -375,7 +363,6 @@
                 currentIndex = (currentIndex + n + galleryImages.length) % galleryImages.length;
                 lightboxImg.src = galleryImages[currentIndex].src;
             }
-
             galleryImages.forEach((img, index) => img.addEventListener('click', () => openLightbox(index)));
             closeBtn.addEventListener('click', closeLightbox);
             prevBtn.addEventListener('click', () => changeImage(-1));
@@ -389,19 +376,14 @@
                 }
             });
         }
-        
-
 
         // --- Blok deteksi info pengguna DIHAPUS ---
       });
     </script>
-    
-    
+
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
-
-
   </body>
 </html>
