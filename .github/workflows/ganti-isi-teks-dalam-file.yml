@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       search:
-        description: 'Teks yang mau diiganti (case-sensitive)'
+        description: 'Teks yang mau diganti (case-sensitive)'
         required: true
         default: 'makan siang bersama'
       replace:
@@ -20,21 +20,36 @@ on:
         required: false
         default: '**/*.txt,**/*.html'
 
+permissions:
+  contents: write   # ⬅️ WAJIB agar bisa git push
+
 jobs:
   replace:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Jalankan penggantian string di folder terpilih
+        shell: bash
         run: |
           TARGET="${{ github.event.inputs.folder }}"
           IFS=',' read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
+          SEARCH="${{ github.event.inputs.search }}"
+          REPLACE="${{ github.event.inputs.replace }}"
+
+          echo "🔍 Mencari dan mengganti teks: '$SEARCH' → '$REPLACE'"
+          echo "📂 Folder target: $TARGET"
+          echo "📁 Pola file: ${GLOBS[*]}"
+
           for g in "${GLOBS[@]}"; do
-            echo "Proses pola: $g di folder $TARGET"
-            find "$TARGET" -type f -name "${g##*/}" -print | while read -r file; do
-              perl -pi -w -e 's#${{ github.event.inputs.search }}#${{ github.event.inputs.replace }}#g' "$file"
+            echo "➡️ Pola: $g"
+            # Gunakan find dengan pola wildcard
+            find "$TARGET" -type f -path "$TARGET/$g" 2>/dev/null | while read -r file; do
+              echo "  ✏️  Mengubah isi $file"
+              perl -pi -e "s/\Q$SEARCH\E/$REPLACE/g" "$file"
             done
           done
 
@@ -45,5 +60,3 @@ jobs:
           git add -A
           git commit -m "chore: replace '${{ github.event.inputs.search }}' -> '${{ github.event.inputs.replace }}' di folder ${{ github.event.inputs.folder }}" || echo "Tidak ada perubahan"
           git push
-
-    #       sed -i "s/${{ github.event.inputs.search }}/${{ github.event.inputs.replace }}/g" "$file"
