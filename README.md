@@ -22,8 +22,6 @@
 [![Ping Feeds & Sitemap](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml)
 [![🔆 Pengecekan & Laporan Konten Harian](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
 
-[![Heroku](https://img.shields.io/badge/Heroku-Yes-430098?logo=heroku&logoColor=white)](#readme)
-[![Aria2](https://img.shields.io/badge/Aria2-Yes-green?logo=aria2&logoColor=white)](#readme)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Yes-2088FF?logo=githubactions&logoColor=white)](#readme)
 [![GitHub Bot](https://img.shields.io/badge/GitHub%20Bot-Active-blue?logo=github&logoColor=white)](#readme)
 [![GitHub Cron](https://img.shields.io/badge/GitHub%20Cron-Scheduled-2f363d?logo=github&logoColor=white)](#readme)
