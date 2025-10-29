@@ -6,7 +6,7 @@ on:
   
   # 2. Dijalankan otomatis setiap bulan, tanggal 1, jam 2 UTC
   schedule:
-    - cron: '0 2 1 * *'
+    - cron: '0 1 1 * *'
 
 jobs:
   maintenance-pr:
