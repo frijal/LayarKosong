@@ -258,11 +258,15 @@
             }
         }
     </style>
+<meta property="og:image:alt" content="Pemisah JSON Artikel Mingguan (Offline) - frijal.pages.dev">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/pemisah-json-mingguan-offline.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
 
     <main>
         <h1>✂️ Pemisah JSON Artikel Mingguan (Offline)</h1>
+<div id="iposbrowser"></div>
         <p>Pilih file <code>file.json</code> Anda atau tempelkan kontennya di bawah ini, lalu klik tombol untuk memisahkannya menjadi file-file JSON per minggu (Senin-Minggu) dengan format nama <strong>YYYY-minggu-WW.json</strong>.</p>
         
         <label for="jsonFile">Pilih File JSON:</label>
@@ -458,5 +462,8 @@
         }
     </script>
 
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
 </body>
 </html>
