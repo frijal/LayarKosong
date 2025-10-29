@@ -29,7 +29,7 @@ jobs:
         run: npm install # Install ncu dan depcheck dari devDependencies
 
       - name: Make script executable
-        run: chmod +x ./cleanup.js # Pastikan skrip cleanup bisa dijalankan
+        run: chmod +x ext/cleanup.js # Pastikan skrip cleanup bisa dijalankan
 
       # --- BAGIAN 1: DARI WORKFLOW 'UPGRADE' ---
       - name: 1. Upgrade dependencies (minor & patch)
