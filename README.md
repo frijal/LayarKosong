@@ -14,6 +14,13 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Yes-blue?logo=github&logoColor=white)](#readme)
 [![Release Continuous](https://img.shields.io/badge/Release-Continuous-orange?logo=github&logoColor=white)](#readme)
 [![Last Commit](https://img.shields.io/github/last-commit/frijal/frijal.github.io?logo=github&logoColor=white)](#readme)
+[![😉 Upgrade (Minor/Patch) for NPM](https://github.com/frijal/LayarKosong/actions/workflows/upgrade-everything.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/upgrade-everything.yml)
+[![🔄 Proses ArtikelX](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml)
+[![☢️ Build and Generate Site Files](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml)
+[![⚠️ Copy ke Branch Site Cloudflare](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml)
+[![IndexNow Daily Submit](https://github.com/frijal/LayarKosong/actions/workflows/indexnow.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/indexnow.yml)
+[![Ping Feeds & Sitemap](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml)
+[![🔆 Pengecekan & Laporan Konten Harian](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
 
 [![Heroku](https://img.shields.io/badge/Heroku-Yes-430098?logo=heroku&logoColor=white)](#readme)
 [![Aria2](https://img.shields.io/badge/Aria2-Yes-green?logo=aria2&logoColor=white)](#readme)
