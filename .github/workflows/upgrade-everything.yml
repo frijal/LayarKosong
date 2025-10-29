@@ -42,7 +42,7 @@ jobs:
       - name: 2. Cleanup unused packages
         run: |
           echo "Menjalankan skrip cleanup..."
-          ./cleanup.js # Skrip ini akan uninstall DAN npm install ulang
+          ext/cleanup.js # Skrip ini akan uninstall DAN npm install ulang
 
       # --- BAGIAN 3: GABUNGAN UNTUK MEMBUAT PR ---
       
@@ -76,7 +76,7 @@ jobs:
           body: |
             PR otomatis ini melakukan dua hal:
             1.  **Upgrade:** Menggunakan `npm-check-updates` untuk dependensi minor/patch.
-            2.  **Cleanup:** Menjalankan `./cleanup.js` untuk menghapus paket yang tidak terpakai.
+            2.  **Cleanup:** Menjalankan `ext/cleanup.js` untuk menghapus paket yang tidak terpakai.
 
             - Build dan test sudah dijalankan di CI.
             - Mohon review sebelum di-merge.
