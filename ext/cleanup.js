@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * ===================================================================
- * CLEANUP AUTO v1.0
+ * CLEANUP AUTO v1.1
  * Hapus paket tidak terpakai dan reinstall otomatis (non-interaktif)
  * Cocok untuk workflow GitHub Actions
  * ===================================================================
@@ -12,7 +12,10 @@ import fs from 'node:fs';
 
 (async () => {
   console.log('🚀 Memeriksa paket tidak terpakai...');
-  const result = await depcheck(process.cwd());
+  
+  // FIX: Tambahkan objek kosong {} sebagai argumen kedua untuk 'options'
+  const result = await depcheck(process.cwd(), {});
+  
   const unused = [...result.dependencies, ...result.devDependencies];
 
   if (unused.length === 0) {
