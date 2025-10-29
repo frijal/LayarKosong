@@ -20,16 +20,12 @@
   },
   "homepage": "https://github.com/frijal/LayarKosong#readme",
   "devDependencies": {
-    "depcheck": "^1.4.7",
-    "eslint": "^9.38.0",
-    "inquirer": "^12.10.0",
-    "prettier": "^3.6.2"
+    "depcheck": "^1.4.7"
   },
   "dependencies": {
     "@xmldom/xmldom": "^0.9.8",
     "express": "^5.1.0",
-    "puppeteer": "^24.26.1",
-    "rss-parser": "^3.13.0",
+    "puppeteer": "^24.27.0",
     "sharp": "^0.34.4"
   }
 }
