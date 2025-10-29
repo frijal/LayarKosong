@@ -14,7 +14,6 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Yes-blue?logo=github&logoColor=white)](#readme)
 [![Release Continuous](https://img.shields.io/badge/Release-Continuous-orange?logo=github&logoColor=white)](#readme)
 [![Last Commit](https://img.shields.io/github/last-commit/frijal/frijal.github.io?logo=github&logoColor=white)](#readme)
-[![😉 Upgrade (Minor/Patch) for NPM](https://github.com/frijal/LayarKosong/actions/workflows/upgrade-everything.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/upgrade-everything.yml)
 [![🔄 Proses ArtikelX](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml)
 [![☢️ Build and Generate Site Files](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml)
 [![⚠️ Copy ke Branch Site Cloudflare](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml)
