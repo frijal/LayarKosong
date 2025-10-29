@@ -1,15 +1,19 @@
-name: 😉 Upgrade (Minor/Patch) for NPM
+name: 🛠️ Pemeliharaan Dependensi (Upgrade & Cleanup)
+
 on:
+  # 1. Bisa dijalankan manual dari tab "Actions"
   workflow_dispatch:
+  
+  # 2. Dijalankan otomatis setiap bulan, tanggal 1, jam 2 UTC
   schedule:
-    - cron: '0 2 1 * *' # Setiap bulan, tanggal 1, jam 2 UTC
+    - cron: '0 2 1 * *'
 
 jobs:
-  upgrade-dependencies:
+  maintenance-pr:
     runs-on: ubuntu-latest
     permissions:
       contents: write       # Izin untuk commit/push ke branch
-      pull-requests: write # Izin untuk membuat PR
+      pull-requests: write  # Izin untuk membuat PR
 
     steps:
       - name: Checkout code
@@ -19,51 +23,63 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm' # Mengaktifkan caching npm
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci # Gunakan ci untuk install dari lockfile
+      - name: Install dependencies (untuk tools)
+        run: npm install # Install ncu dan depcheck dari devDependencies
 
-      - name: Upgrade dependencies (minor & patch only)
-        id: upgrade # Beri ID untuk cek output
+      - name: Make script executable
+        run: chmod +x ./cleanup.js # Pastikan skrip cleanup bisa dijalankan
+
+      # --- BAGIAN 1: DARI WORKFLOW 'UPGRADE' ---
+      - name: 1. Upgrade dependencies (minor & patch)
         run: |
-          npm install -g npm-check-updates
-          # Jalankan ncu, simpan outputnya
-          UPGRADES=$(ncu -u --target minor)
-          echo "Output ncu: $UPGRADES"
-          # Cek apakah ada perubahan di package.json setelah ncu
-          if [[ $(git status --porcelain package.json) ]]; then
+          npm install -g npm-check-updates # Install ncu di runner
+          ncu -u --target minor
+          echo "Selesai upgrade minor/patch."
+
+      # --- BAGIAN 2: DARI WORKFLOW 'CLEANUP' ---
+      - name: 2. Cleanup unused packages
+        run: |
+          echo "Menjalankan skrip cleanup..."
+          ./cleanup.js # Skrip ini akan uninstall DAN npm install ulang
+
+      # --- BAGIAN 3: GABUNGAN UNTUK MEMBUAT PR ---
+      
+      # Cek apakah langkah 1 atau 2 menghasilkan perubahan
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ $(git status --porcelain package.json package-lock.json) ]]; then
+            echo "Perubahan terdeteksi."
             echo "changes_detected=true" >> $GITHUB_OUTPUT
-            npm install # Install ulang untuk update lockfile
           else
+            echo "Tidak ada perubahan."
             echo "changes_detected=false" >> $GITHUB_OUTPUT
-            echo "Tidak ada upgrade minor/patch yang ditemukan."
           fi
 
       # Hanya jalankan test jika ada perubahan
       - name: Run tests (if changes detected)
-        if: steps.upgrade.outputs.changes_detected == 'true'
+        if: steps.check_changes.outputs.changes_detected == 'true'
         run: |
           npm run build --if-present
           npm test --if-present
-        # Tambahkan '|| true' jika test boleh gagal tapi PR tetap dibuat
-        # run: (npm run build --if-present && npm test --if-present) || true
 
+      # Buat PR jika ada perubahan
       - name: Create Pull Request (if changes detected)
-        if: steps.upgrade.outputs.changes_detected == 'true'
+        if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          # Token default GITHUB_TOKEN punya izin karena 'permissions' di atas
-          # token: ${{ secrets.PAT_FOR_PR }} # Opsional: Gunakan PAT jika butuh trigger workflow lain
-          branch: chore/upgrade-deps-${{ github.run_id }}
-          title: 'chore: upgrade npm dependencies (minor/patch)'
-          commit-message: 'chore: upgrade npm dependencies (minor/patch)'
+          branch: chore/auto-maintenance-${{ github.run_id }}
+          title: 'chore: Upgrade (minor) & Cleanup Dependencies'
+          commit-message: 'chore: Upgrade (minor) & Cleanup Dependencies'
           body: |
-            Upgrade otomatis dependencies menggunakan npm-check-updates (target: minor/patch).
-            - Build dan test dijalankan di CI.
-            - Perubahan dapat dilihat pada file `package.json` dan `package-lock.json`.
+            PR otomatis ini melakukan dua hal:
+            1.  **Upgrade:** Menggunakan `npm-check-updates` untuk dependensi minor/patch.
+            2.  **Cleanup:** Menjalankan `./cleanup.js` untuk menghapus paket yang tidak terpakai.
+
+            - Build dan test sudah dijalankan di CI.
             - Mohon review sebelum di-merge.
           labels: dependencies, chore, automated pr
           reviewers: frijal # Ganti dengan username GitHub Anda/tim
-          # assignees: user1,user2
-          draft: false # Set true jika ingin PR dibuat sebagai draft
+          draft: false
