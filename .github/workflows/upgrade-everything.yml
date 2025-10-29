@@ -27,10 +27,7 @@ jobs:
 
       - name: Install dependencies (untuk tools)
         run: npm install # Install ncu dan depcheck dari devDependencies
-
-      - name: Make script executable
-        run: chmod +x ext/cleanup.js # Pastikan skrip cleanup bisa dijalankan
-
+     
       # --- BAGIAN 1: DARI WORKFLOW 'UPGRADE' ---
       - name: 1. Upgrade dependencies (minor & patch)
         run: |
@@ -42,7 +39,7 @@ jobs:
       - name: 2. Cleanup unused packages
         run: |
           echo "Menjalankan skrip cleanup..."
-          ext/cleanup.js # Skrip ini akan uninstall DAN npm install ulang
+          node ext/cleanup.js
 
       # --- BAGIAN 3: GABUNGAN UNTUK MEMBUAT PR ---
       
