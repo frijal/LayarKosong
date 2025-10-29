@@ -147,7 +147,7 @@ code[class*="language-"], pre[class*="language-"] {
   <pre><code class="language-js">#!/usr/bin/env node
 /**
  * ===================================================================
- * CLEANUP AUTO v1.0
+ * CLEANUP AUTO v1.1
  * Hapus paket tidak terpakai dan reinstall otomatis (non-interaktif)
  * Cocok untuk workflow GitHub Actions
  * ===================================================================
@@ -156,9 +156,12 @@ import { execSync } from 'node:child_process';
 import depcheck from 'depcheck';
 import fs from 'node:fs';
 
-(async () =&gt; {
+(async () => {
   console.log('🚀 Memeriksa paket tidak terpakai...');
-  const result = await depcheck(process.cwd());
+  
+  // FIX: Tambahkan objek kosong {} sebagai argumen kedua untuk 'options'
+  const result = await depcheck(process.cwd(), {});
+  
   const unused = [...result.dependencies, ...result.devDependencies];
 
   if (unused.length === 0) {
@@ -176,7 +179,8 @@ import fs from 'node:fs';
   execSync('npm install', { stdio: 'inherit' });
 
   console.log('✨ Cleanup selesai tanpa prompt!');
-})();</code></pre>
+})();
+</code></pre>
 
   <h2>⚙️ Integrasi ke Workflow GitHub Actions</h2>
   <p>
