@@ -73,7 +73,7 @@
             background:var(--chip);padding:.55rem .85rem;border-radius:999px
         }
         .chip svg{width:18px;height:18px;fill:var(--muted)}
-        
+
         main{display:block}
         .container{width:var(--w);margin:-2.2rem auto 3.2rem}
         article{
@@ -184,22 +184,7 @@
 - Komunikasi empatik; beri masa transisi bagi peserta yang sedang berproses.</code></pre>
 
                     <div class="share">
-                        <a id="share-whatsapp" href="#" rel="noopener" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-14.7 4.7L4 22l5.5-1.4A8 8 0 1 1 20 12Zm-4.7 2.7c-.2-.1-1.4-.7-1.7-.8-.3-.1-.6-.1-.8.2s-.9 1-1.1 1.2-.4.2-.7.1a6.4 6.4 0 0 1-3.4-3c-.3-.6.4-.6 1-.2l.3.2c.2.1.3.1.5-.1l.7-.9c.2-.2.2-.4 0-.7s-.6-1.3-.8-1.7-.4-.4-.7-.4-.6 0-1 .5c-.3.5-1.1 1.1-1.1 2.6s1.2 3 1.4 3.2a7.8 7.8 0 0 0 5.5 3c.6 0 1.2 0 1.7-.5.4-.5.6-1 .6-1.1s-.1-.2-.3-.3Z"/></svg>
-                            WhatsApp
-                        </a>
-                        <a id="share-twitter" href="#" rel="noopener" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M18 2H6a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4ZM7.9 17.6l3-4.1-4.9-7.1h3l3.4 4.9 3.4-4.9h3l-4.9 7.1 3 4.1h-3l-1.9-2.7-1.9 2.7h-3Z"/></svg>
-                            X/Twitter
-                        </a>
-                        <a id="share-facebook" href="#" rel="noopener" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.8c0-2.1 1.2-3.2 3-3.2.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12Z"/></svg>
-                            Facebook
-                        </a>
-                        <a id="share-copy" href="#">
-                            <svg viewBox="0 0 24 24"><path d="M8 7V3h13v14h-4v4H4V7h4Zm0 2h9v8h2V5H10v2H8Zm2 2h9v8H10V11Z"/></svg>
-                            Salin Link
-                        </a>
+                        <div id="disqus_thread"></div>
                     </div>
                     </div>
             </article>
@@ -220,7 +205,7 @@
             <button class="btn lb-next" title="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
     </div>
-    
+
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Reading progress bar
@@ -283,30 +268,6 @@
                 if (e.key === "Escape") close();
                 if (e.key === "ArrowLeft") prev();
                 if (e.key === "ArrowRight") next();
-            });
-        })();
-
-        // Share handlers
-        (function share(){
-            const url = encodeURIComponent("https://frijal.pages.dev/artikel/hijab-yang-berkeadaban.html");
-            const text = encodeURIComponent("Hijab Berkeadaban: Panduan Ringkas, Etis, dan Mudah Dipahami");
-            
-            const w = document.getElementById("share-whatsapp");
-            const t = document.getElementById("share-twitter");
-            const f = document.getElementById("share-facebook");
-            const c = document.getElementById("share-copy");
-            
-            if(w) w.href = `https://wa.me/?text=${text}%20${url}`;
-            if(t) t.href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-            if(f) f.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            
-            if(c) c.addEventListener("click", (e) => {
-                e.preventDefault();
-                navigator.clipboard.writeText(decodeURIComponent(url)).then(()=>{
-                    const originalText = c.innerHTML;
-                    c.innerHTML = "<span>✔️</span> Tersalin!"; 
-                    setTimeout(()=>{ c.innerHTML = originalText; },1500);
-                }).catch(()=>{ alert("Gagal menyalin tautan"); });
             });
         })();
     });

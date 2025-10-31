@@ -287,20 +287,13 @@
                 Hijrah ke Habasyah jadi langkah strategis Nabi ﷺ melindungi umatnya, sebelum hijrah besar-besaran ke Madinah. Bukti bahwa perjuangan selalu butuh strategi, bukan cuma keberanian!
             </p>
         </section>
-
-        <div class="share-bar">
-            <button id="share-fb" title="Bagikan ke Facebook">📘</button>
-            <button id="share-tw" title="Bagikan ke Twitter/X">🐦</button>
-            <button id="share-wa" title="Bagikan ke WhatsApp">🟢</button>
-            <button id="copy-link" title="Salin Link Artikel">🔗</button>
-        </div>
-
         <div class="sources">
             <b>Sumber:</b><br>
             1️⃣ <b>Al-Qur’an:</b> QS. An-Nahl [16:41], QS. Al-Anfal [8:72]<br>
             2️⃣ <b>Sirah Nabawiyah:</b> Sirah Ibnu Ishaq (Ibnu Hisyam), Tarikh al-Tabari, Ar-Rahiq al-Makhtum<br>
             3️⃣ <b>Hadis:</b> Bukhari & Muslim, riwayat Abu Hurairah & Aisyah tentang dialog Ja’far dan Raja Negus
         </div>
+        <div id="disqus_thread"></div>
         </main>
 
     <div class="lightbox" id="lightbox">
@@ -374,30 +367,6 @@
             if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
         });
 
-        // Share Buttons
-        const CANONICAL_URL = "https://frijal.pages.dev/artikel/hijrah-habasyah.html";
-        const PAGE_TITLE = document.title;
-
-        document.getElementById('share-fb').addEventListener('click', () => {
-            window.open(`https://www.facebook.com/sharer.php?u=${encodeURIComponent(CANONICAL_URL)}`, '_blank', 'noopener,noreferrer');
-        });
-        document.getElementById('share-tw').addEventListener('click', () => {
-            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(CANONICAL_URL)}&text=${encodeURIComponent(PAGE_TITLE)}`, '_blank', 'noopener,noreferrer');
-        });
-        document.getElementById('share-wa').addEventListener('click', () => {
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(PAGE_TITLE)}%20${encodeURIComponent(CANONICAL_URL)}`, '_blank', 'noopener,noreferrer');
-        });
-
-        const copyBtn = document.getElementById('copy-link');
-        copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(CANONICAL_URL).then(() => {
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '✔️';
-                setTimeout(() => { copyBtn.innerHTML = originalText; }, 1500);
-            }).catch(() => {
-                prompt("Gagal menyalin. Salin manual:", CANONICAL_URL);
-            });
-        });
     });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

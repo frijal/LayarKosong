@@ -333,10 +333,7 @@
         </section>
 
         <div class="share-bar">
-            <button onclick="shareTo('facebook')" title="Bagikan ke Facebook">📘</button>
-            <button onclick="shareTo('twitter')" title="Bagikan ke Twitter/X">🐦</button>
-            <button onclick="shareTo('whatsapp')" title="Bagikan ke WhatsApp">🟢</button>
-            <button onclick="copyLink()" title="Salin Link Artikel">🔗</button>
+       <div id="disqus_thread"></div>
         </div>
 
         <div class="sources">
@@ -413,26 +410,6 @@
         if(e.key === "ArrowLeft") document.getElementById('lightbox-prev').click();
         if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
     });
-
-    // Share Buttons
-    function shareTo(platform) {
-        const url = encodeURIComponent(window.location.href);
-        const title = encodeURIComponent(document.title);
-        if (platform === "facebook") {
-            window.open(`https://www.facebook.com/sharer.php?u=${url}`, '_blank');
-        } else if (platform === "twitter") {
-            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
-        } else if (platform === "whatsapp") {
-            window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
-        }
-    }
-    function copyLink() {
-        navigator.clipboard.writeText(window.location.href)
-        .then(()=>alert("Link artikel sudah disalin!"))
-        .catch(()=>prompt("Salin manual:", window.location.href));
-    }
-    window.shareTo = shareTo;
-    window.copyLink = copyLink;
 
         </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
