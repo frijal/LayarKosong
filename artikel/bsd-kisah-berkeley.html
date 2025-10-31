@@ -31,7 +31,7 @@
       "datePublished": "2025-09-28"
     }
     </script>
-    
+
     <style>
         :root {
             --bg: #0b1220;
@@ -95,13 +95,6 @@
 
                     <p class="lead">Kisah BSD (Berkeley Software Distribution) dimulai dari modifikasi UNIX di Berkeley, berlanjut ke "Perang UNIX", hingga melahirkan 4.4BSD-Lite yang warisannya masih hidup di sistem operasi modern.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRa5i6zllcWW9LmI0ik04QJ8Qk4rmlD_LjYYYoI1OSCm_hN3ew2o4FCqijYOgmi37GKh0MJUDdtG8Ufa3FfVdw8Yt-vW7tqsrT4ZlvUk-8GUfQNcV61v1lNbvIt0Aa28-vCBIMxTSFioP4BlRtW3fTvtnyu9V2Qs5G6mowY_wi0bWtRYiWsQ8NO3mkVvM/s1536/bsd.jpg" alt="Ilustrasi Sejarah BSD">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">BSD di Berkeley: dari patch menjadi sistem, dari konflik menjadi kelahiran kembali.</figcaption>
@@ -110,7 +103,7 @@
                     <h2>Awal Mula: Ketika Mahasiswa Mengubah Kode AT&T</h2>
                     <p>Kisah BSD dimulai pada akhir 1970-an. Saat itu, sistem operasi <strong>UNIX</strong> milik AT&T menjadi raja di dunia komputasi akademik. Universitas, termasuk Berkeley, memiliki lisensi untuk menggunakan dan memodifikasi kode sumber UNIX.</p>
                     <p>Para peneliti di Berkeley, yang awalnya hanya ingin memperbaiki hal-hal kecil, mulai menambahkan fitur besar seperti <strong>TCP/IP</strong> (fondasi internet). Kontribusi mereka tumbuh begitu besar hingga BSD berevolusi menjadi sistem operasi <em>Unix-like</em> yang berdiri sendiri.</p>
-                    
+
                     <h2>Era Perang UNIX dan Kelahiran Kembali</h2>
                     <p>Popularitas BSD yang meledak memicu konflik kepemilikan kode dengan AT&T, yang dikenal sebagai "Perang UNIX" pada awal 1990-an. Kasus ini selesai pada tahun 1994, di mana BSD setuju untuk menghapus semua sisa kode milik AT&T.</p>
                     <blockquote>Ironisnya, momen ini menjadi titik balik heroik. Dari abu perseteruan itu, lahirlah <strong>4.4BSD-Lite</strong>, sebuah versi BSD yang sepenuhnya bersih dari kode proprietari.</blockquote>
@@ -126,6 +119,7 @@
                     <p>Lebih jauh lagi, filosofi dan sebagian kode BSD menjadi fondasi bagi sistem operasi populer lainnya. <strong>macOS dan iOS</strong> dari Apple, misalnya, berdiri di atas lapisan kernel yang berasal dari BSD.</p>
                     <p>Pada intinya, BSD adalah perwujudan bahwa kebebasan dan keterbukaan dalam kode adalah kunci kemajuan teknologi yang berkelanjutan.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -133,7 +127,7 @@
             <small>🄯 2025 Frijal · Pemberontakan kampus yang mengubah dunia digital.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -143,24 +137,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');

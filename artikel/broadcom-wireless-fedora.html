@@ -104,27 +104,22 @@
 
                     <p class="lead">Setelah melakukan pembaruan kernel di Fedora, beberapa perangkat wireless Broadcom mungkin berhenti berfungsi. Hal ini biasanya terjadi karena konflik antara modul kernel `bcma` bawaan dengan driver Broadcom yang sebenarnya dibutuhkan.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                    </div>
-
                     <p>Untungnya, solusinya sangat mudah dan hanya memerlukan satu baris perintah di terminal.</p>
-                    
+
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_2V202CIKxIMvkPVWaUWTje6nvsynBctApvHIPFRRGcozz25Y2SwLnu8DwgVZ3w255aEJPi27xzg43WbMDA7TxKRNqHF0s0oQo3RAWGm2R5ek8nY24JqPyP2Yom0yEKjhxiUPF_8C2kW-/s320/broadcom.gif" alt="Logo Broadcom Wireless">
                     </figure>
 
                     <h2>Langkah Perbaikan</h2>
                     <p>Buka terminal, lalu masuk sebagai <strong>root</strong> (misalnya dengan perintah <code>sudo -i</code>). Setelah itu, salin dan jalankan perintah di bawah ini untuk memasukkan modul `bcma` ke dalam daftar hitam (blacklist), sehingga tidak akan dimuat saat boot.</p>
-                    
+
                     <pre><code id="code1">echo "blacklist bcma" >> /etc/modprobe.d/broadcom-wl-blacklist.conf</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-                    
+
                     <p>Setelah menjalankan perintah tersebut, <strong>reboot</strong> komputer Anda. Perangkat wireless Broadcom Anda seharusnya sudah dapat berfungsi kembali dengan normal.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
-        </main>
+       </main>
 
         <footer class="site">
             <small>🄯 2025 Pelan Kiri · Solusi cepat untuk masalah umum di Linux.</small>
@@ -141,19 +136,7 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-
-        const lb = document.getElementById('lightbox');
+                const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {
             el.addEventListener('click', () => {

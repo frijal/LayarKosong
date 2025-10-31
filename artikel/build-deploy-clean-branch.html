@@ -431,31 +431,10 @@ jobs:
           <li><strong>Keamanan:</strong> Pastikan tidak ada file sensitif yang lolos: validasi dengan skrip audit (regex nama file, ekstensi, path).</li>
         </ul>
       </section>
+      <section><div id="disqus_thread"></div></section>
 
       <footer class="site">
-        <div class="share" id="shareBox">
-          <a id="shareTwitter" href="#" target="_blank" rel="noopener">
-            <!-- Twitter icon (resmi gaya vektor sederhana) -->
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 4.83a9.43 9.43 0 0 1-2.6.71 4.56 4.56 0 0 0 2-2.52 9.13 9.13 0 0 1-2.88 1.1 4.57 4.57 0 0 0-7.78 4.17A12.97 12.97 0 0 1 3.15 3.6a4.57 4.57 0 0 0 1.41 6.09 4.52 4.52 0 0 1-2.06-.57v.06a4.57 4.57 0 0 0 3.66 4.47 4.6 4.6 0 0 1-2.06.08 4.58 4.58 0 0 0 4.27 3.17A9.16 9.16 0 0 1 2 19.54a12.92 12.92 0 0 0 7 2.05c8.39 0 12.98-6.95 12.98-12.98 0-.2 0-.41-.01-.61A9.27 9.27 0 0 0 23 4.83z"/></svg>
-            <span>Bagikan ke Twitter</span>
-          </a>
-          <a id="shareFacebook" href="#" target="_blank" rel="noopener">
-            <!-- Facebook icon -->
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.01h3.129V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.764v2.318h3.59l-.467 3.696h-3.123V24h6.127C23.407 24 24 23.407 24 22.674V1.326C24 .593 23.407 0 22.675 0z"/></svg>
-            <span>Bagikan ke Facebook</span>
-          </a>
-          <a id="shareLinkedIn" href="#" target="_blank" rel="noopener">
-            <!-- LinkedIn icon -->
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 5 3.9 6.1 2.5 6.1S0 5 0 3.5 1.1.9 2.5.9s2.48 1.1 2.48 2.6zM.43 8.68h4.14V24H.43V8.68zM8.95 8.68h3.97v2.1h.06c.55-1.05 1.88-2.16 3.86-2.16 4.13 0 4.89 2.72 4.89 6.26V24h-4.14v-7.38c0-1.76-.03-4.04-2.46-4.04-2.47 0-2.85 1.93-2.85 3.91V24H8.95V8.68z"/></svg>
-            <span>Bagikan ke LinkedIn</span>
-          </a>
-          <a id="copyLink" href="#" role="button">
-            <!-- Link icon -->
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.9 12a4.1 4.1 0 0 1 4.1-4.1h3a1 1 0 1 1 0 2h-3a2.1 2.1 0 1 0 0 4.2h3a1 1 0 1 1 0 2h-3A4.1 4.1 0 0 1 3.9 12zm9-3.1h3a4.1 4.1 0 1 1 0 8.2h-3a1 1 0 1 1 0-2h3a2.1 2.1 0 1 0 0-4.2h-3a1 1 0 1 1 0-2z"/></svg>
-            <span>Salin tautan</span>
-          </a>
-        </div>
-        <div style="margin-top:10px;">
+               <div style="margin-top:10px;">
           🄯 2025 Frijal Docs — Artikel DevOps. Canonical: <a href="https://frijal.pages.dev/artikel/build-deploy-clean-branch.html">frijal.pages.dev/artikel/build-deploy-clean-branch.html</a>
         </div>
       </footer>
@@ -467,28 +446,6 @@ jobs:
     (function() {
       const canonical = document.querySelector('link[rel="canonical"]')?.href || location.href;
       const title = document.title;
-
-      // Share links
-      const t = encodeURIComponent(title);
-      const u = encodeURIComponent(canonical);
-      const d = encodeURIComponent(document.querySelector('meta[name="description"]')?.content || '');
-
-      const tw = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
-      const fb = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
-      const li = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
-
-      document.getElementById('shareTwitter').href = tw;
-      document.getElementById('shareFacebook').href = fb;
-      document.getElementById('shareLinkedIn').href = li;
-
-      // Copy link
-      document.getElementById('copyLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        navigator.clipboard.writeText(canonical).then(() => {
-          this.querySelector('span').textContent = 'Tautan disalin';
-          setTimeout(() => this.querySelector('span').textContent = 'Salin tautan', 1600);
-        });
-      });
 
       // Fullscreen toggle
       const wrap = document.querySelector('.wrap');

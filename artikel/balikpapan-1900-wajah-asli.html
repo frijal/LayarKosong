@@ -66,7 +66,7 @@
       letter-spacing:.15px;
     }
     a{color:var(--accent);text-decoration:none}
-    
+
 
     /* Hero */
     header.hero{
@@ -243,6 +243,7 @@
     <!-- Tambahan konteks santai -->
     <h2>Konteks tambahan santai</h2>
     <p>Kalau dilihat, jejak Balikpapan itu gabungan antara garis pantai niaga, temuan minyak, dan struktur kampung yang fleksibel mengikuti kebutuhan—termasuk masa ketika BPM jadi “pagar” ekonomi. Paham secuil sejarah ini bikin kita lebih mudah mengenali nama-nama kawasan dan kenapa batas-batas administratifnya berubah seiring waktu.</p>
+    <div id="disqus_thread"></div>
   </article>
 
   <!-- Lightbox container -->
@@ -253,15 +254,6 @@
       <button class="lb-btn lb-next" aria-label="Berikutnya">▶</button>
       <button class="lb-btn lb-close" aria-label="Tutup">✕</button>
     </div>
-  </div>
-
-  <!-- Share -->
-  <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
-    <button class="btn" id="copyLink"><span class="sicon">🔗</span><span>Salin tautan</span></button>
-    <a class="btn" id="waShare" href="#" target="_blank" rel="noopener"><span class="sicon">🟢</span><span>WhatsApp</span></a>
-    <a class="btn" id="fbShare" href="#" target="_blank" rel="noopener"><span class="sicon">🔵</span><span>Facebook</span></a>
-    <a class="btn" id="xShare" href="#" target="_blank" rel="noopener"><span class="sicon">⚫</span><span>X (Twitter)</span></a>
-    <a class="btn" id="tgShare" href="#" target="_blank" rel="noopener"><span class="sicon">🔷</span><span>Telegram</span></a>
   </div>
 
   <footer>
@@ -292,20 +284,6 @@
         if(e.key==='ArrowLeft') step(-1);
         if(e.key==='ArrowRight') step(1);
       });
-    })();
-
-    // Share links
-    (function(){
-      const url = encodeURIComponent('https://frijal.pages.dev/artikel/balikpapan-1900-wajah-asli.html');
-      const title = encodeURIComponent('Balikpapan 1900: Jejak awal kota minyak dan kampung-kampung lama');
-      document.getElementById('copyLink').addEventListener('click', async ()=>{
-        try{ await navigator.clipboard.writeText(decodeURIComponent(url)); alert('Tautan disalin!'); }
-        catch{ prompt('Salin tautan secara manual:', decodeURIComponent(url)); }
-      });
-      document.getElementById('waShare').href = `https://wa.me/?text=${title}%20${url}`;
-      document.getElementById('fbShare').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      document.getElementById('xShare').href = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
-      document.getElementById('tgShare').href = `https://t.me/share/url?url=${url}&text=${title}`;
     })();
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

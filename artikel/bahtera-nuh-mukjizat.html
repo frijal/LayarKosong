@@ -98,7 +98,7 @@
         .share svg{width:18px;height:18px}
         /* Info bar removed */
         /* Floating nav buttons removed */
-        
+
         /* Quran block */
         .quran{margin:2rem 0;padding:1.25rem;border:1px solid var(--border);border-radius:14px;background:#0b121fcc}
         .quran h2{font-size:1.45rem;margin:0 0 .75rem;color:#93c5fd}
@@ -262,30 +262,7 @@
                         </ul>
                     </div>
                 </section>
-
-                <div class="share">
-                    <a class="share-btn" data-net="fb" href="#" target="_blank" rel="noopener" title="Bagikan ke Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.98v-7.06H7.9v-2.92h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.77l-.44 2.92h-2.33v7.06C18.34 21.25 22 17.08 22 12.06z"/></svg>
-                        Facebook
-                    </a>
-                    <a class="share-btn" data-net="tw" href="#" target="_blank" rel="noopener" title="Bagikan ke Twitter/X">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.06 2H17.4L12.8 9.14 7.7 2H2l8.28 11.6L2.26 22h2.66l5.04-7.7L16.3 22h5.7l-8.7-12.2L20.06 2z"/></svg>
-                        X
-                    </a>
-                    <a class="share-btn" data-net="wa" href="#" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3.5A10.5 10.5 0 0 0 3.3 17.6L2 22l4.5-1.2A10.5 10.5 0 1 0 20 3.5zm-7.9 16.9a8.7 8.7 0 1 1 7.3-13.5 8.7 8.7 0 0 1-7.3 13.5z"/></svg>
-                        WhatsApp
-                    </a>
-                    <a class="share-btn" data-net="tg" href="#" target="_blank" rel="noopener" title="Bagikan ke Telegram">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.3 8.9 19.2c.4 0 .6-.2.8-.4l1.9-1.8 3.92 2.87c.72.4 1.24.18 1.44-.66l2.61-12.26v-.01c.23-1.06-.38-1.48-1.08-1.22L3.1 10.2c-1.04.41-1.02 1-.18 1.27l4.83 1.5 11.22-7.08c.53-.32 1.02-.14.62.18"/></svg>
-                        Telegram
-                    </a>
-                    <a class="share-btn" data-net="cp" href="#" title="Salin tautan">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
-                        Salin
-                    </a>
-                </div>
-                </article>
+                                </article>
 
             <aside class="side">
                 <div class="card">
@@ -309,6 +286,7 @@
                 </div>
             </aside>
         </section>
+        <div id="disqus_thread"></div>
         </main>
 
     <div class="lightbox" id="lightbox">
@@ -357,7 +335,7 @@
                 if (net === 'tw') shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=frijal`;
                 if (net === 'wa') shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
                 if (net === 'tg') shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
-                
+
                 if (net === 'cp') {
                     navigator.clipboard?.writeText(url).then(() => {
                         const originalText = btn.innerHTML;
@@ -385,7 +363,7 @@
                 const imgNode = imgs[idx];
                 const fullSrc = imgNode.dataset.full || imgNode.src;
                 // Attempt to get higher res from Blogger URL
-                lbImg.src = fullSrc.replace(/\/s\d+(-[ch])?\//, '/s1600/'); 
+                lbImg.src = fullSrc.replace(/\/s\d+(-[ch])?\//, '/s1600/');
                 lbImg.alt = imgNode.alt || 'Gambar diperbesar';
                 lb.classList.add('open');
                 document.body.style.overflow = 'hidden';

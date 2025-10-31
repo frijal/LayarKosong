@@ -125,14 +125,7 @@
                 <p class="lead">
                     <strong>Bumbu pecel kacang</strong> adalah saus khas Indonesia untuk menyiram sayuran rebus. Di halaman ini Anda akan menemukan pengertian, bahan-bahan, langkah membuat, tips, serta tombol untuk membagikan artikel ini ke media sosial.
                 </p>
-                <div class="actions" style="margin-top:12px">
-                    <button class="btn primary" id="copy-link">Salin Link</button>
-                    <a class="btn" id="btn-share-facebook">Share Facebook</a>
-                    <a class="btn" id="btn-share-twitter">Share X/Twitter</a>
-                    <a class="btn" id="btn-share-whatsapp">WhatsApp</a>
-                    <a class="btn" id="btn-share-telegram">Telegram</a>
-                    <button class="btn" id="btn-share-instagram">Instagram</button> </div>
-            </div>
+                           </div>
         </header>
 
         <div class="grid">
@@ -180,6 +173,7 @@
 <strong>Kesulitan:</strong> Mudah
 <strong>Hasil:</strong> 4 porsi</pre>
             </aside>
+            <div id="disqus_thread"></div>
         </div>
 
         <footer>
@@ -221,20 +215,6 @@
 
         const title = encodeURIComponent(document.title);
         const url = encodeURIComponent(currentUrl);
-
-        document.getElementById("btn-share-facebook").href = "https://www.facebook.com/sharer/sharer.php?u=" + url;
-        document.getElementById("btn-share-twitter").href = `https://x.com/intent/tweet?text=${title}&url=` + url;
-        document.getElementById("btn-share-whatsapp").href = `https://api.whatsapp.com/send?text=${title}%20` + url;
-        document.getElementById("btn-share-telegram").href = `https://t.me/share/url?url=${url}&text=` + title;
-        document.getElementById("btn-share-instagram").addEventListener("click", () => {
-            alert("Instagram tidak mendukung share URL langsung. Silakan salin link dan bagikan di aplikasi.");
-        });
-
-        // Add target blank and rel noopener to share links
-        document.querySelectorAll(".actions a.btn").forEach(t => {
-            t.target = "_blank";
-            t.rel = "noopener noreferrer";
-        });
 
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
