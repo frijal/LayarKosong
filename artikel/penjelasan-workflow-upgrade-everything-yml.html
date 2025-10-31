@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Bedah Workflow upgrade-everything.yml: Otomatis Upgrade & Cleanup Dependensi.</title>
     <meta name="description" content="Penjelasan lengkap dan santai tentang cara kerja workflow GitHub Actions upgrade-everything.yml untuk otomatis upgrade (minor/patch) dan cleanup dependensi Node.js, lalu membuat Pull Request.">
-    
     <link rel="canonical" href="https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html"> <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-    
     <meta property="og:title" content="Bedah Workflow upgrade-everything.yml: Otomatis Upgrade & Cleanup Dependensi!">
     <meta property="og:description" content="Penjelasan lengkap dan santai cara kerja workflow GitHub Actions upgrade-everything.yml untuk otomatis upgrade & cleanup dependensi Node.js + bikin PR.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html">
-    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw4RdahPQaBd_WuWLKqam9l9sjBn6yQOo2_7bqq1v22D91zlLVMhU6-RWAYB561a-YgDWg_Gd9FdK3LI6PX5k31Q296ZMHS6-REwjVaFsjsy-pYo1tbpXBL-jwT4ZozmRditys52dPF4L7PBe1gDSpbS4WMbpLtrfQUMbi442HDWJNGUZVeSwjNTewkTE/s1600/upgradeclean.webp"> <meta property="og:image:width" content="1600"> 
-    <meta property="og:image:height" content="900"> 
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw4RdahPQaBd_WuWLKqam9l9sjBn6yQOo2_7bqq1v22D91zlLVMhU6-RWAYB561a-YgDWg_Gd9FdK3LI6PX5k31Q296ZMHS6-REwjVaFsjsy-pYo1tbpXBL-jwT4ZozmRditys52dPF4L7PBe1gDSpbS4WMbpLtrfQUMbi442HDWJNGUZVeSwjNTewkTE/s1600/upgradeclean.webp"> <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <meta property="og:site_name" content="frijal.pages.dev">
     <meta property="article:published_time" content="2025-10-29T19:00:00Z"> <meta property="article:author" content="Frijal">
-    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bedah Workflow upgrade-everything.yml: Otomatis Upgrade & Cleanup Dependensi!">
     <meta name="twitter:description" content="Penjelasan lengkap dan santai cara kerja workflow GitHub Actions upgrade-everything.yml untuk otomatis upgrade & cleanup dependensi Node.js + bikin PR.">
@@ -35,13 +31,12 @@
             --code-bg: #e9ecef;
             --inline-code-bg: #f1f1f1;
             --inline-code-border: #ddd;
-            --pre-bg: #2d2d2d; 
-            --pre-text: #ccc;  
+            --pre-bg: #2d2d2d;
+            --pre-text: #ccc;
             --button-bg: #007bff; /* Warna tombol */
             --button-text: #ffffff;
             --button-hover-bg: #0056b3;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -55,26 +50,23 @@
                 --code-bg: #2a2a2a;
                 --inline-code-bg: #333;
                 --inline-code-border: #444;
-                --pre-bg: #1e1e1e; 
-                --pre-text: #d4d4d4; 
+                --pre-bg: #1e1e1e;
+                --pre-text: #d4d4d4;
                 --button-bg: #00aaff; /* Warna tombol dark mode */
                 --button-text: #121212;
                 --button-hover-bg: #0088cc;
             }
         }
-
         /* --- Global & Desain Fullscreen --- */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         html, body {
             min-height: 100vh;
             width: 100%;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -83,29 +75,24 @@
             font-size: 17px;
             transition: background-color 0.3s, color 0.3s;
         }
-
         /* --- Desain Widescreen & Responsif --- */
         main {
             max-width: 900px; /* Layout widescreen untuk artikel */
             margin: 2rem auto;
             padding: 1rem 2rem;
         }
-
         article {
             width: 100%;
         }
-
         section {
             margin-bottom: 2.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px dashed var(--border-color);
         }
-        
         section:last-of-type {
             border-bottom: none;
             padding-bottom: 0;
         }
-
         /* --- Tipografi & Elemen --- */
         h1 {
             font-size: 2.4rem;
@@ -114,7 +101,6 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
         }
-        
         h2 {
             font-size: 2rem;
             color: var(--header-color);
@@ -123,46 +109,37 @@
             padding-bottom: 0.5rem;
             border-bottom: 3px solid var(--accent-color);
         }
-
         h3 {
             font-size: 1.5rem;
             color: var(--header-color);
             margin-top: 1.5rem;
             margin-bottom: 1rem;
         }
-
         p {
             margin-bottom: 1.2rem;
         }
-
         strong {
-            font-weight: 600; 
+            font-weight: 600;
         }
-        
         em {
             font-style: italic;
         }
-        
         a {
             color: var(--link-color);
             text-decoration: none;
         }
-        
         a:hover {
             color: var(--link-hover);
             text-decoration: underline;
         }
-        
         ul, ol { /* Style untuk ordered list juga */
            margin-left: 1.5rem;
            margin-bottom: 1rem;
            padding-left: 1rem; /* Tambahkan padding kiri */
         }
-        
         li {
             margin-bottom: 0.75rem; /* Sedikit lebih rapat */
         }
-
         /* --- Kode --- */
         code { /* Kode inline & di dalam pre */
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -171,27 +148,24 @@
             padding: 0.2rem 0.4rem;
             border-radius: 6px;
             font-size: 0.9em;
-            color: var(--text-color); 
+            color: var(--text-color);
         }
-
         pre { /* Blok Kode */
-            background-color: var(--pre-bg); 
+            background-color: var(--pre-bg);
             color: var(--pre-text);
             padding: 1rem;
             border-radius: 8px;
-            overflow-x: auto; 
+            overflow-x: auto;
             margin-bottom: 1.5rem;
-            font-size: 0.9em; 
+            font-size: 0.9em;
         }
-
-        pre code { 
-            background: none !important; 
+        pre code {
+            background: none !important;
             padding: 0 !important;
             border: none !important;
-            color: inherit; 
-            font-size: inherit; 
+            color: inherit;
+            font-size: inherit;
         }
-        
         /* --- Blockquote --- */
          blockquote {
             border-left: 5px solid var(--accent-color);
@@ -202,11 +176,9 @@
             font-style: italic;
             position: relative;
         }
-        
         blockquote p:last-child {
-            margin-bottom: 0; 
+            margin-bottom: 0;
         }
-        
         /* --- Gambar --- */
         img {
             max-width: 100%;
@@ -216,7 +188,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
         /* --- Ikon Sharing Media Sosial --- */
         .social-share {
             text-align: center;
@@ -224,30 +195,25 @@
             margin-top: 2rem;
             border-top: 1px dashed var(--border-color);
         }
-
         .social-share h3 {
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
             color: var(--text-color);
         }
-
         .social-share a {
             display: inline-block;
             margin: 0 0.75rem;
             text-decoration: none;
             transition: transform 0.2s ease-in-out;
         }
-
         .social-share a:hover {
             transform: scale(1.15);
         }
-
         .social-share svg {
             width: 32px;
             height: 32px;
-            fill: var(--text-color); 
+            fill: var(--text-color);
         }
-        
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -255,33 +221,28 @@
             font-size: 0.9em;
             color: #888;
             border-top: 1px solid var(--border-color);
-            margin-top: 1rem; 
+            margin-top: 1rem;
         }
-        
         footer a {
             color: var(--accent-color);
             text-decoration: none;
         }
-
         /* --- Mobile-Friendly (Responsif) --- */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
             }
-            
             h2 {
                 font-size: 1.75rem;
             }
-
             main {
                 margin: 1rem auto;
                 padding: 0 1rem;
             }
-            
              pre {
                 font-size: 0.85em;
              }
-             code { 
+             code {
                  font-size: 0.85em;
              }
              ul, ol {
@@ -294,7 +255,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
     <main>
         <article>
             <header>
@@ -302,22 +262,17 @@
 <div id="iposbrowser"></div>
                 <p style="text-align: center; font-size: 1.1rem; color: #888;">Otomatis Upgrade & Cleanup Dependensi Node.js + Bikin PR!</p>
             </header>
-            
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw4RdahPQaBd_WuWLKqam9l9sjBn6yQOo2_7bqq1v22D91zlLVMhU6-RWAYB561a-YgDWg_Gd9FdK3LI6PX5k31Q296ZMHS6-REwjVaFsjsy-pYo1tbpXBL-jwT4ZozmRditys52dPF4L7PBe1gDSpbS4WMbpLtrfQUMbi442HDWJNGUZVeSwjNTewkTE/s1600/upgradeclean.webp" alt="Ilustrasi workflow otomatis">
-
             <section id="tujuan-workflow">
                 <h2>🎯 Buat Apa Sih Workflow Ini?</h2>
                 <p>Mantap! Workflow GitHub Actions ini beneran keren dan dirancang buat <strong>jaga dependensi Node.js</strong> di proyek kamu biar <strong>tetap update</strong> (versi terbaru) dan <strong>bersih</strong> (buang yang nggak kepakai).</p>
                 <p>Nggak cuma itu, setelah dia beres-beres, dia bakal <strong>ngajuin perubahan itu sebagai Pull Request (PR)</strong>. Jadi, kamu atau tim bisa cek dulu (review) sebelum perubahannya digabung ke kode utama. Lebih aman, kan?</p>
                 <p>Enaknya lagi, workflow ini bisa kamu <strong>jalankan manual</strong> kapan aja kamu mau, atau <strong>dijadwalin otomatis</strong> jalan sebulan sekali. Jadi, urusan *maintenance* dependensi bisa lebih enteng!</p>
             </section>
-            
             <hr>
-
             <section id="cara-kerja">
                 <h2>🔎 Gimana Cara Kerjanya? (Langkah demi Langkah)</h2>
                 <p>Workflow ini kerjaannya cukup sistematis. Ini dia urutannya:</p>
-                
                 <ol>
                     <li>
                         <strong>Kapan Jalan? (<code>on:</code>)</strong>
@@ -391,9 +346,7 @@
                     </li>
                 </ol>
             </section>
-            
             <hr>
-
             <section id="kesimpulan">
                  <h2>✨ Kerennya Workflow Ini Apa Aja?</h2>
                  <ul>
@@ -408,9 +361,7 @@
                  </ul>
                  <p>Secara keseluruhan, workflow <code class="inline">upgrade-everything.yml</code> dan <code class="inline">cleanup.js</code> ini adalah contoh yang **solid dan bagus** buat otomatisasi tugas *maintenance* dependensi proyek Node.js kamu di GitHub! 👍</p>
             </section>
-            
             <hr>
-            
             <section id="ambil-kode">
                  <h2>🚀 Mau Lihat Kodenya Langsung?</h2>
                  <p>Kamu bisa lihat kode lengkap workflow <code class="inline">upgrade-everything.yml</code> dan <code class="inline">cleanup.js</code> ini langsung dari repositori GitHub:</p>
@@ -424,36 +375,12 @@
                  </p>
                  <p>Kamu bisa adaptasi workflow ini untuk proyek Node.js kamu yang lain. Jangan lupa sesuaikan skrip <code class="inline">data/cleanup.js</code> (kalau beda) dan nama *reviewer* di bagian PR.</p>
             </section>
-
-
-            <aside class="social-share">
-                <h3>Bagikan Artikel Ini:</h3>
-                
-                <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html&text=Bedah%20Workflow%20upgrade-everything.yml%3A%20Otomatis%20Upgrade%20%26%20Cleanup%20Dependensi%21" target="_blank" rel="noopener noreferrer" title="Bagikan ke Twitter">
-                    <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                </a>
-                
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html" target="_blank" rel="noopener noreferrer" title="Bagikan ke Facebook">
-                    <svg viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.14 9.5 5.35V7.46H6.11v4.09h3.39v10.04h4.09V11.55h3.89l.39-4.09z"/></svg>
-                </a>
-                
-                <a href="https://api.whatsapp.com/send?text=Yuk%20baca%20penjelasan%20workflow%20GitHub%20Actions%20ini%3A%20https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html" target="_blank" rel="noopener noreferrer" title="Bagikan ke WhatsApp">
-                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zM6.598 8.258c-.315-.159-.882-.44-1.028-.499-.146-.059-.306-.059-.465.059-.159.119-.391.391-.479.479-.088.088-.176.176-.088.354.088.176.391.564.436.62.044.059.088.119.132.176.176.354.354.766.53 1.028.176.264.354.529.577.794.529.619 1.078 1.168 1.758 1.549.619.354 1.192.479 1.631.59 1.028.264 1.804.236 2.408.119.66-.119 1.129-.504 1.275-.985.146-.479.146-.957.103-1.028-.044-.059-.132-.088-.264-.146s-1.549-.766-1.782-.854-.391-.088-.55.088-.22.306-.264.391c-.044.088-.088.119-.176.059-.577-.176-1.129-.391-1.631-.705-.44-.264-.766-.577-.985-.943-.176-.306-.044-.479.044-.577.088-.088.176-.22.264-.306.088-.088.132-.146.176-.22s.088-.176.044-.264c-.044-.088-.479-1.129-.66-1.549-.176-.42-.354-.354-.479-.354h-.479z"/></svg>
-                </a>
-                
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frijal.pages.dev/artikel/penjelasan-workflow-upgrade-everything-yml.html&title=Bedah%20Workflow%20upgrade-everything.yml&summary=Penjelasan%20lengkap%20cara%20kerja%20workflow%20GitHub%20Actions%20upgrade-everything.yml%20untuk%20otomatis%20upgrade%20%26%20cleanup%20dependensi%20Node.js." target="_blank" rel="noopener noreferrer" title="Bagikan ke LinkedIn">
-                    <svg viewBox="0 0 24 24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.5 2.5-2.5c1.6 0 2.5 1.2 2.5 2.5S5.6 6.5 4 6.5zM21.5 21.5h-5v-6.6c0-1.7-.6-2.8-2-2.8-1.1 0-1.7.7-2 1.4-.1.3-.1.6-.1.9v7.1h-5s.1-11.8 0-13h5v2.2c.6-1 1.6-2.4 4.5-2.4 3.2 0 5.5 2.1 5.5 6.6v6.6z"/></svg>
-                </a>
-                
-            </aside>
-            
+           <div id="disqus_thread"></div>
         </article>
     </main>
-    
     <footer>
         <p>&copy; 2025 <a href="https://frijal.pages.dev">frijal.pages.dev</a> | Dibuat dengan cinta dan secangkir kopi.</p>
     </footer>
-    
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

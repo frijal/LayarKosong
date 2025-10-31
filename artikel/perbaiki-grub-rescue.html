@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "LinuxID" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <!-- Styles: 1 kolom, dark theme -->
@@ -99,7 +98,6 @@
                     <h1>Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Saat konfigurasi partisi salah atau setelah menghapus Windows dari dual-boot, Anda mungkin akan disambut dengan layar `grub rescue>`. Jangan panik! Berikut adalah panduan untuk memperbaikinya langsung dari prompt tersebut.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkDL4vht__Sph6vdoIQAkW_R8nyo7jxNm34uZncj4Y_ZqcZDPuZmnLpcATemu6ZBtp6utOQ66ySSvKOf2dGu3_l2lX1CxHCvPnFawcZcw8p1lbWmWVkx80M-mI4kq-h5SqkFueS82AeeRZ/s800/grub-rescue.jpg" alt="Error GRUB Rescue">
                     </figure>
@@ -109,7 +107,6 @@
                     <p>Outputnya akan terlihat seperti <code>(hd0) (hd0,msdos1) (hd0,msdos2)</code>. Coba periksa isi setiap partisi sampai Anda menemukan yang berisi direktori <code>/boot/grub</code>.</p>
                     <pre class="language-bash"><code id="code2">ls (hd0,msdos1)/boot/grub</code></pre>
                     <p class="muted">Ulangi perintah di atas untuk setiap partisi (misalnya, `(hd0,msdos2)`, `(hd0,msdos3)`, dst.) sampai Anda menemukan yang benar.</p>
-
                     <h2>Langkah 2: Boot Manual ke Linux</h2>
                     <p>Setelah menemukan partisi yang benar (misalnya, <code>(hd0,msdos1)</code>), jalankan serangkaian perintah berikut untuk melakukan boot manual. Gunakan tombol `Tab` untuk auto-complete nama file kernel dan initrd.</p>
                     <pre class="language-bash"><code id="code3"># Ganti (hd0,msdos1) dengan partisi Anda
@@ -130,17 +127,16 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code4">Sa
                     <p class="muted">Ganti `/dev/sda` jika disk utama Anda memiliki nama yang berbeda (misalnya, `/dev/nvme0n1`). Setelah itu, reboot komputer Anda. Masalah GRUB Rescue seharusnya sudah teratasi.</p>
                 </article>
             </div>
+            <div id="disqus_thread"></div>
         </main>
         <footer class="site">
             <small>🄯 2025 LinuxID · Jangan panik, selalu ada solusi.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #222f3e; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -148,9 +144,6 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code4">Sa
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {

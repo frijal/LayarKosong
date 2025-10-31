@@ -1,23 +1,18 @@
-const shareTwitter = document.getElementById('share-twitter');
-        if (shareTwitter) {
-          shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
-          shareTwitter.target = '_blank';
-          shareTwitter.rel = 'noopener noreferrer';
-        }
-        const shareFacebook = document.getElementById('share-facebook');
-        if (shareFacebook) {
-          shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-          shareFacebook.target = '_blank';
-          shareFacebook.rel = 'noopener noreferrer';
-        }
-        const shareLinkedIn = document.getElementById('share-linkedin');
-        if (shareLinkedIn) {
-          shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
-          shareLinkedIn.target = '_blank';
-          shareLinkedIn.rel = 'noopener noreferrer';
-        }
-        const shareWhatsApp = document.getElementById('share-whatsapp');
-        if (shareWhatsApp) {
-          shareWhatsApp.href = `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`;
-          shareWhatsApp.target = '_blank';
-        }
+          const pageUrl = encodeURIComponent(window.location.href);
+          const pageTitle = encodeURIComponent(document.title);
+          const shareLinks = {
+            shareFacebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
+            shareTwitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
+            shareWhatsApp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
+            shareTelegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`,
+          };
+          for (const id in shareLinks) {
+            const link = document.getElementById(id);
+            if (link) {
+              link.href = shareLinks[id];
+              link.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.open(this.href, 'share-window', 'height=450,width=550');
+              });
+            }
+          }
