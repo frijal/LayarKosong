@@ -116,7 +116,7 @@
           const exec = document.getElementById('exec').value.trim();
           const terminal = document.getElementById('terminal').value;
           const enabled = document.getElementById('enabled').value;
-          
+
           const output = `[Desktop Entry]
 Type=Application
 Version=1.0
@@ -126,15 +126,15 @@ Exec=${exec || '/path/to/script.sh'}
 StartupNotify=false
 Terminal=${terminal}
 X-GNOME-Autostart-enabled=${enabled}`;
-          
+
           document.getElementById('output').textContent = output;
         }
 
         // Expose function globally so button can call it (if needed outside DOMContentLoaded)
-        window.generateDesktop = generateDesktop; 
+        window.generateDesktop = generateDesktop;
       });
     </script>
-
+<div id="disqus_thread"></div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

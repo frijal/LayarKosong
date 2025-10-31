@@ -7,7 +7,7 @@
     <meta name="description" content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="git, github, github actions, workflow permissions, github_token, security, ci/cd, tutorial git, frijal">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/artikel/github-actions-workflow-permissions.html">
 
     <link rel="icon" type="image/x-icon" href="https://frijal.pages.dev/favicon.ico">
@@ -24,11 +24,11 @@
     <meta name="twitter:title" content="Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN">
     <meta name="twitter:description" content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQQWCgT4AUgvX8nbcUcqTh1pWgTdtWeqwAhcyPdXAwzzyISi9c1yPGD0d5TW5vJiccUtmPEtmwas8wL75LyrYD5p6WEBs_yjzKAO2gHjdQuVjg4c6sP4V92ddtveKF6cj5QrE-JKK53dwaLrgjp4xxi8qkIKGuL85QWfEVZ4GiQfIznIjBOAaMwkihDZU/s1600/Screenshot%20From%202025-10-21%2022-29-44.png">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -113,12 +113,12 @@
             font-size: 1rem;
             color: var(--text-color);
         }
-        
+
         strong {
             color: white;
             font-weight: 600;
         }
-        
+
         code {
             background-color: var(--code-bg);
             color: #f0f0f0;
@@ -127,7 +127,7 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.95rem;
         }
-        
+
         blockquote {
             background-color: rgba(0, 170, 255, 0.05);
             border-left: 4px solid var(--primary-color);
@@ -155,23 +155,23 @@
             margin-top: 10px;
             font-style: italic;
         }
-        
+
         .recommendation {
             padding: 20px;
             margin: 40px 0;
             border-radius: 8px;
         }
-        
+
         .rec-secure {
             background-color: #2d4d3f;
             border-left: 5px solid #4dff9d;
         }
-        
+
         .rec-flexible {
              background-color: #2b4556;
             border-left: 5px solid #00aaff;
         }
-        
+
         .recommendation strong {
             font-size: 1.2rem;
             display: block;
@@ -200,7 +200,7 @@
             font-weight: 600;
             color: white;
         }
-        
+
         tbody tr:hover {
             background-color: #3a3a3a;
         }
@@ -244,7 +244,7 @@
             color: #aaa;
             font-size: 0.9rem;
         }
-        
+
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             h2 { font-size: 1.8rem; }
@@ -268,22 +268,22 @@
         <main>
             <article>
                 <p>Saat kita membuat automasi dengan GitHub Actions, ada satu aspek krusial yang sering terlewat: keamanan. Pengaturan "Workflow permissions" ini mengontrol seberapa besar "kuasa" yang kita berikan pada skrip automasi kita. Yuk, kita pahami artinya biar repositori kita tetap aman!</p>
-                
+
                 <div class="image-container">
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQQWCgT4AUgvX8nbcUcqTh1pWgTdtWeqwAhcyPdXAwzzyISi9c1yPGD0d5TW5vJiccUtmPEtmwas8wL75LyrYD5p6WEBs_yjzKAO2gHjdQuVjg4c6sP4V92ddtveKF6cj5QrE-JKK53dwaLrgjp4xxi8qkIKGuL85QWfEVZ4GiQfIznIjBOAaMwkihDZU/s1600/Screenshot%20From%202025-10-21%2022-29-44.png" alt="Pengaturan Workflow Permissions di GitHub">
                         <figcaption>Kunci keamanan automasi Anda ada di sini.</figcaption>
                     </figure>
                 </div>
-                
+
                 <section>
                     <h2>1. Izin untuk <code>GITHUB_TOKEN</code></h2>
                     <p>Setiap kali GitHub Actions berjalan, ia menggunakan token rahasia sementara bernama <code>GITHUB_TOKEN</code> untuk berinteraksi dengan repositori. Pengaturan ini menentukan level akses standar untuk token tersebut.</p>
-                    
+
                     <h3>Read and write permissions (Izin Baca dan Tulis)</h3>
                     <p>Opsi ini memberikan <code>GITHUB_TOKEN</code> kekuasaan penuh. Workflow tidak hanya bisa membaca, tapi juga <strong>menulis/mengubah</strong> data di repositori, seperti push commit baru, membuat rilis, dan lainnya.</p>
                     <blockquote><strong>Analogi:</strong> Ini seperti memberikan kunci master sebuah gedung kepada seorang kontraktor. Dia bisa masuk ke semua ruangan (baca) dan juga merenovasi atau mengubah isi ruangan tersebut (tulis).</blockquote>
-                    
+
                     <h3>Read repository contents... (Izin Hanya Baca)</h3>
                     <p>Opsi ini membatasi <code>GITHUB_TOKEN</code> agar <strong>hanya bisa membaca</strong> konten. Workflow tidak bisa mengubah apa pun. Ini adalah penerapan "Prinsip Hak Akses Terbatas", standar keamanan yang sangat baik.</p>
                      <blockquote><strong>Analogi:</strong> Ini seperti memberikan kartu akses tamu. Kontraktor bisa masuk dan melihat semua ruangan untuk mengukur (baca), tapi tidak bisa memindahkan barang atau mengecat dinding (tidak bisa tulis).</blockquote>
@@ -331,13 +331,9 @@
                         </table>
                     </div>
                 </section>
-                
+
                 <div class="social-share">
-                    <h3>Jaga Repomu, Bagikan Ilmunya!</h3>
-                    <a href="#" class="social-twitter" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-facebook" title="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-whatsapp" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-linkedin" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+<div id="disqus_thread"></div>
                 </div>
 
             </article>
@@ -347,36 +343,6 @@
             <p>&copy; 2025 Frijal. Dibuat dengan santai untuk para developer.</p>
         </footer>
     </div>
-    
-    <script>
-        // JavaScript untuk fungsionalitas sharing
-        document.addEventListener('DOMContentLoaded', function() {
-            const pageUrl = encodeURIComponent(window.location.href);
-            const pageTitle = encodeURIComponent(document.title);
-
-            const twitterShare = document.querySelector('.social-twitter');
-            twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
-
-            const facebookShare = document.querySelector('.social-facebook');
-            facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            
-            const whatsappShare = document.querySelector('.social-whatsapp');
-            whatsappShare.href = `https.api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
-            const linkedinShare = document.querySelector('.social-linkedin');
-            linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-
-            // Tambahkan event listener untuk membuka di window baru
-            const shareLinks = document.querySelectorAll('.social-share a');
-            shareLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.open(this.href, 'share-window', 'height=450,width=550,toolbar=0,location=0,menubar=0,directories=0,scrollbars=0');
-                });
-            });
-        });
-    </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

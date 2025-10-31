@@ -323,27 +323,7 @@
             });
         }
         
-        // --- SOCIAL SHARING ---
-        (() => {
-            const pageUrl = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
-            const pageTitle = encodeURIComponent(document.title);
-            const shareLinks = {
-                shareFacebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-                shareTwitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-                shareWhatsApp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-            };
-
-            for (const id in shareLinks) {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.href = shareLinks[id];
-                    link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        window.open(this.href, 'share-window', 'height=450,width=550');
-                    });
-                }
-            }
-        })();
+        
       });
     </script>
     

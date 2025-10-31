@@ -1,6 +1,25 @@
-<div class="share-bar">
-            <a href="#" id="share-wa" title="Bagikan ke WhatsApp" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" id="share-tw" title="Bagikan ke Twitter/X" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" id="share-fb" title="Bagikan ke Facebook" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" id="share-tg" title="Bagikan ke Telegram" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
-        </div>
+document.addEventListener('DOMContentLoaded', function() {
+            const pageUrl = encodeURIComponent(window.location.href);
+            const pageTitle = encodeURIComponent(document.title);
+
+            const twitterShare = document.querySelector('.social-twitter');
+            twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
+
+            const facebookShare = document.querySelector('.social-facebook');
+            facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+            
+            const whatsappShare = document.querySelector('.social-whatsapp');
+            whatsappShare.href = `https.api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+
+            const linkedinShare = document.querySelector('.social-linkedin');
+            linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
+
+            // Tambahkan event listener untuk membuka di window baru
+            const shareLinks = document.querySelectorAll('.social-share a');
+            shareLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open(this.href, 'share-window', 'height=450,width=550,toolbar=0,location=0,menubar=0,directories=0,scrollbars=0');
+                });
+            });
+        });

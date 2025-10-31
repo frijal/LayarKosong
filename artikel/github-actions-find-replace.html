@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Workflow 'Cari & Ganti' Otomatis via GitHub Actions | f-Page</title>
     <meta name="description" content="Panduan lengkap membuat workflow GitHub Actions untuk 'find and replace' teks secara massal di seluruh repositori Anda. Otomatisasi update link, refactor kode, dan lainnya.">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/artikel/github-actions-find-replace.html" id="canonical-link">
-
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%236e5494' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
-
     <meta property="og:title" content="Workflow 'Cari & Ganti' Otomatis via GitHub Actions | f-Page">
     <meta property="og:description" content="Panduan lengkap membuat workflow GitHub Actions untuk 'find and replace' teks secara massal di seluruh repositori Anda.">
     <meta property="og:type" content="article">
@@ -20,7 +17,6 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Dialog 'Run workflow' untuk find and replace di GitHub Actions">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Workflow 'Cari & Ganti' Otomatis via GitHub Actions | f-Page">
     <meta name="twitter:description" content="Panduan lengkap membuat workflow GitHub Actions untuk 'find and replace' teks secara massal di seluruh repositori Anda.">
@@ -28,7 +24,7 @@
     <meta name="twitter:creator" content="@frijal">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6ZjuV7rDnWY8JXp6Axz9_54HyIbv1nRy5SmNLZ-S-NVwvXs1gvV_JU96us0FLhcgLhU-z6RJyhbkI836PfPInDd6oJJlwcd3URDwxWh4_lwPv_FQyESDzdvG1LD87f7UYncLtgsQjPOaCAY9DtMAWEpEcF4JKCQBCLnyxA3piz4I1vVF4RUMJVn8Vuyg/s1600/Screenshot%20From%202025-10-23%2014-17-20.png">
     <meta name="twitter:image:alt" content="Dialog 'Run workflow' untuk find and replace di GitHub Actions">
-    
+
     <style>
         :root {
             --bg-color: #f6f8fa; /* GitHub bg */
@@ -36,22 +32,19 @@
             --card-bg: #ffffff;
             --primary-color: #6e5494; /* Purple-ish */
             --border-color: #e1e4e8;
-            --max-width: 960px; 
+            --max-width: 960px;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             font-size: 17px;
         }
-
         .container {
             width: 100%;
             max-width: var(--max-width);
@@ -59,7 +52,6 @@
             margin-right: auto;
             padding: 0 20px;
         }
-
         /* Header */
         header.main-header {
             background-color: #24292e; /* GitHub header */
@@ -69,13 +61,12 @@
         }
         header.main-header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
         header.main-header p { color: #d1d5db; }
-
         /* Konten Utama */
         main.content {
-            flex-grow: 1; 
+            flex-grow: 1;
             padding: 3rem 0;
         }
-        
+
         article {
             background-color: var(--card-bg);
             padding: 2.5rem;
@@ -110,7 +101,6 @@
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
             font-size: 0.9em;
         }
-
         /* Use case cards */
         .use-case-grid {
             display: grid;
@@ -123,7 +113,6 @@
             border-radius: 8px;
         }
         .use-case-card span { font-size: 2rem; display: block; margin-bottom: 1rem; }
-
         /* Gambar */
         .main-image {
             width: 100%;
@@ -134,7 +123,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border: 1px solid var(--border-color);
         }
-
         /* Code Block */
         .code-block-wrapper {
             background-color: #1f2937; /* gray-800 */
@@ -172,7 +160,6 @@
             font-size: 0.9rem;
             border: none;
         }
-
         /* Footer */
         footer.main-footer {
             background-color: #e5e7eb; /* gray-200 */
@@ -195,7 +182,6 @@
         #share-wa { background-color: #25D366; }
         #copy-link { background-color: #6b7280; }
         .footer-copy { margin-top: 2rem; font-size: 0.9rem; }
-
         @media (max-width: 768px) {
             header.main-header h1 { font-size: 1.8rem; }
             main.content { padding: 1rem 0; }
@@ -208,7 +194,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-23T07:03:49.523+00:00">
 </head>
-
 <body>
     <header class="main-header">
         <div class="container">
@@ -217,13 +202,12 @@
             <p>Alat canggih untuk mengedit file secara massal di repositori Anda.</p>
         </div>
     </header>
-
     <main class="content">
         <div class="container">
             <article>
                 <p>Pernahkah kamu perlu mengganti satu kata atau kalimat yang sama di puluhan file berbeda? Misalnya, mengupdate tahun copyright di footer, mengubah link, atau me-refactor nama variabel. Tentu melelahkan jika dilakukan satu per satu.</p>
                 <p>Dengan **GitHub Actions**, kita bisa membuat sebuah *workflow* yang berfungsi sebagai alat **"Cari dan Ganti" (Find and Replace)** otomatis untuk seluruh repositori kita. Semuanya bisa dijalankan secara manual langsung dari halaman GitHub.</p>
-                
+
                 <h2>Contoh Kasus Penggunaan ⚙️</h2>
                 <div class="use-case-grid">
                     <div class="use-case-card">
@@ -242,7 +226,6 @@
                         <p>Mengganti nama fungsi atau variabel lama, misalnya <code>old_function_name</code> menjadi <code>newFunctionName</code> di seluruh file <code>.js</code>.</p>
                     </div>
                 </div>
-
                 <h2>Bagaimana Cara Pakainya?</h2>
                 <ol>
                     <li>Pergi ke tab <strong>"Actions"</strong> di repositori GitHub kamu.</li>
@@ -258,12 +241,10 @@
                     </li>
                     <li>Klik tombol hijau "Run workflow". Selesai!</li>
                 </ol>
-                
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6ZjuV7rDnWY8JXp6Axz9_54HyIbv1nRy5SmNLZ-S-NVwvXs1gvV_JU96us0FLhcgLhU-z6RJyhbkI836PfPInDd6oJJlwcd3URDwxWh4_lwPv_FQyESDzdvG1LD87f7UYncLtgsQjPOaCAY9DtMAWEpEcF4JKCQBCLnyxA3piz4I1vVF4RUMJVn8Vuyg/s1600/Screenshot%20From%202025-10-23%2014-17-20.png" alt="Dialog 'Run workflow' untuk find and replace di GitHub Actions" class="main-image">
 
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6ZjuV7rDnWY8JXp6Axz9_54HyIbv1nRy5SmNLZ-S-NVwvXs1gvV_JU96us0FLhcgLhU-z6RJyhbkI836PfPInDd6oJJlwcd3URDwxWh4_lwPv_FQyESDzdvG1LD87f7UYncLtgsQjPOaCAY9DtMAWEpEcF4JKCQBCLnyxA3piz4I1vVF4RUMJVn8Vuyg/s1600/Screenshot%20From%202025-10-23%2014-17-20.png" alt="Dialog 'Run workflow' untuk find and replace di GitHub Actions" class="main-image">
                 <h2>Kode Workflow Lengkap</h2>
                 <p>Ini adalah kode lengkap yang bisa kamu simpan di repositori GitHub kamu, misalnya di file <code>.github/workflows/find-replace.yml</code>.</p>
-
                 <div class="code-block-wrapper">
                     <div class="code-block-header">
                         <span>📄 .github/workflows/find-replace.yml</span>
@@ -271,7 +252,6 @@
                     </div>
                     <pre id="code-to-copy"><code>
 name: ganti isi teks dalam file
-
 on:
   workflow_dispatch:
     inputs:
@@ -291,23 +271,20 @@ on:
         description: 'Polanya file (misal: **/*.txt,**/*.html)'
         required: false
         default: '**/*.txt,**/*.html'
-
 jobs:
   replace:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
       - name: Jalankan penggantian string di folder terpilih
         run: |
           TARGET="${{ github.event.inputs.folder }}"
           SEARCH_TERM="${{ github.event.inputs.search }}"
           REPLACE_TERM="${{ github.event.inputs.replace }}"
-          
+
           # Ubah koma menjadi spasi untuk loop
           read -ra GLOBS <<< "${{ github.event.inputs.globs//,/ / }}"
-
           for g in "${GLOBS[@]}"; do
             echo "🔎 Proses pola: '$g' di folder '$TARGET'"
             # Gunakan find -path untuk mencocokkan pola **/*
@@ -316,7 +293,6 @@ jobs:
               perl -pi -e 's#\Q$ENV{SEARCH_TERM}\E#$ENV{REPLACE_TERM}#g' "$file"
             done
           done
-
       - name: Commit & push perubahan
         run: |
           git config user.name "${{ github.actor }}"
@@ -327,7 +303,7 @@ jobs:
           git push
 </code></pre>
                 </div>
-                
+
                 <h2>Bedah Singkat Kode</h2>
                 <ul>
                     <li><strong><code>on: workflow_dispatch: inputs:</code></strong>: Bagian ini yang membuat formulir interaktif saat kita menekan "Run workflow".</li>
@@ -337,38 +313,18 @@ jobs:
             </article>
         </div>
     </main>
-
     <footer class="main-footer">
         <div class="container">
-            <h3>Bagikan Artikel Ini</h3>
-            <div class="social-share">
-                <button type="button" id="share-fb" class="social-share-btn">
-                    <svg viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.36 9.5 5.32v2.14H6.1v4h3.4v12h4.5V11.46h3.97l.6-4z"/></svg>
-                    Facebook
-                </button>
-                <button type="button" id="share-x" class="social-share-btn">
-                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    X
-                </button>
-                <button type="button" id="share-wa" class="social-share-btn">
-                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.0-5.825 4.72-10.545 10.545-10.545 5.825 0 10.545 4.72 10.545 10.545s-4.72 10.545-10.545 10.545c-2.006 0-3.957-.55-5.687-1.588L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 4.465 0 8.1-3.635 8.1-8.1 0-4.465-3.635-8.1-8.1-8.1-4.465 0-8.1 3.635-8.1 8.1 0 2.136.805 4.12 2.192 5.66l-1.4 5.095z"/></svg>
-                    WhatsApp
-                </button>
-                <button type="button" id="copy-link" class="social-share-btn">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                    Salin Link
-                </button>
-            </div>
+            <div id="disqus_thread"></div>
             <p class="footer-copy">
                 &copy; <span id="current-year"></span> f-Page. Hak Cipta Dilindungi.
             </p>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            
+
             // --- Logika Salin Kode ---
             const copyBtn = document.getElementById('copy-code');
             const codeToCopy = document.getElementById('code-to-copy');
@@ -385,31 +341,8 @@ jobs:
                 });
             }
 
-            // --- Logika Share ---
-            const canonicalLink = document.getElementById('canonical-link');
-            const shareUrl = canonicalLink ? canonicalLink.href : window.location.href;
-            const shareTitle = document.title;
-            function popup(url) { window.open(url, "_blank", "noopener,noreferrer,width=600,height=500"); }
-            document.getElementById("share-fb").addEventListener('click', () => popup("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl)));
-            document.getElementById("share-x").addEventListener('click', () => popup("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareTitle) + "&url=" + encodeURIComponent(shareUrl)));
-            document.getElementById("share-wa").addEventListener('click', () => window.open("https://wa.me/?text=" + encodeURIComponent(shareTitle + " " + shareUrl), '_blank', 'noopener,noreferrer'));
-            
-            const copyLinkBtn = document.getElementById("copy-link");
-            if (copyLinkBtn) {
-                const originalContent = copyLinkBtn.innerHTML;
-                copyLinkBtn.addEventListener('click', async function() {
-                    try {
-                        await navigator.clipboard.writeText(shareUrl);
-                        this.innerHTML = '<svg class="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Tersalin!';
-                        setTimeout(() => { this.innerHTML = originalContent; }, 2000);
-                    } catch (err) {
-                        prompt("Gagal menyalin. Salin URL ini:", shareUrl);
-                    }
-                });
-            }
         });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

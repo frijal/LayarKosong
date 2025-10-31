@@ -310,10 +310,7 @@
                 
                 <div class="social-share">
                     <h3>Suka Trik Ini? Bagikan!</h3>
-                    <a href="#" class="social-twitter" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-facebook" title="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-whatsapp" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-linkedin" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    
                 </div>
 
             </article>
@@ -324,34 +321,7 @@
         </footer>
     </div>
     
-    <script>
-        // JavaScript untuk fungsionalitas sharing
-        document.addEventListener('DOMContentLoaded', function() {
-            const pageUrl = encodeURIComponent(window.location.href);
-            const pageTitle = encodeURIComponent(document.title);
-
-            const twitterShare = document.querySelector('.social-twitter');
-            twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
-
-            const facebookShare = document.querySelector('.social-facebook');
-            facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            
-            const whatsappShare = document.querySelector('.social-whatsapp');
-            whatsappShare.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
-            const linkedinShare = document.querySelector('.social-linkedin');
-            linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-
-            // Tambahkan event listener untuk membuka di window baru
-            const shareLinks = document.querySelectorAll('.social-share a');
-            shareLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.open(this.href, 'share-window', 'height=450,width=550,toolbar=0,location=0,menubar=0,directories=0,scrollbars=0');
-                });
-            });
-        });
-    </script>
+    
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

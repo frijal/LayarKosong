@@ -40,7 +40,7 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-    
+
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
@@ -112,7 +112,7 @@
 
                     <p class="lead">Garuda Linux, distro berbasis Arch yang dikenal dengan tampilan visual memukau, merilis ISO snapshot terbaru. Ini adalah pembaruan kumulatif yang mencakup semua paket terbaru dan perbaikan bug penting.</p>
 
-                    
+
 
                     <h2>Perubahan Utama</h2>
                     <p>Meskipun bukan rilis mayor, snapshot ini membawa beberapa perbaikan krusial:</p>
@@ -124,7 +124,7 @@
 
                     <h2>Pembaruan Edisi Dr460nized</h2>
                     <p>Edisi andalan Garuda, Dr460nized, juga mendapatkan pembaruan, termasuk Plasma 6.4.4, shell Fish 4.0, dan kernel Linux 6.16 terbaru.</p>
-                    
+
                     <div class="gallery">
                         <figure>
                             <img src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_auto/linuxiac.com/wp-content/uploads/2025/09/garuda-september-2025-update.jpg" alt="Garuda Linux September 2025">
@@ -133,12 +133,13 @@
                             <img src="https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_auto/linuxiac.com/wp-content/uploads/2025/09/garuda-september-2025-desktop.jpg" alt="Garuda Linux Dr460nized Edition">
                         </figure>
                     </div>
-                    
+
                     <h2>Cara Update</h2>
                     <p>Jika Anda sudah menggunakan Garuda Linux, Anda tidak perlu melakukan instalasi ulang. Cukup jalankan perintah berikut di terminal untuk mendapatkan semua pembaruan terbaru:</p>
                     <pre class="language-bash"><code id="code1">garuda-update</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-                    
+
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -146,12 +147,12 @@
             <small>🄯 2025 frijal.pages.dev · Selalu update untuk pengalaman terbaik.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a2c3c; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -161,8 +162,8 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        
-        
+
+
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
@@ -171,13 +172,13 @@
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

@@ -5,27 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- prettier-ignore -->
 <title>Mengatasi Git Merge Conflict dengan Santai</title>
-
   <!-- SEO Metadata -->
   <meta name="description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
   <link rel="canonical" href="https://frijal.pages.dev/artikel/git-merge-conflict.html">
-
   <!-- Open Graph -->
   <meta property="og:title" content="Mengatasi Git Merge Conflict dengan Santai">
   <meta property="og:description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/git-merge-conflict.html">
   <meta property="og:type" content="article">
-
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mengatasi Git Merge Conflict dengan Santai">
   <meta name="twitter:description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
-
-
   <!-- Favicon -->
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
   <style>
 body {
   font-family: Arial, sans-serif;
@@ -126,29 +119,23 @@ footer {
   font-size: 14px;
   color: #555;
 }
-
   </style>
   <meta property="og:image" content="https://frijal.pages.dev/img/git-merge-conflict.webp">
   <meta property="og:image:alt" content="Mengatasi Git Merge Conflict dengan Santai">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/git-merge-conflict.webp">
   <meta itemprop="image" content="https://frijal.pages.dev/img/git-merge-conflict.webp">
-
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 <meta property="article:published_time" content="2025-09-14T11:00:00+08:00"></head>
 <body>
   <header>
 <h1>Mengatasi Git Merge Conflict dengan Santai 🤖</h1>
 <div id="iposbrowser"></div>
-
-
 <p>Panduan step-by-step biar nggak panik waktu ketemu tulisan merah di terminal.</p>
   </header>
   <main>
 <h2>🔎 Situasi yang Sering Terjadi</h2>
-<p>Kamu lagi kerja di branch <code>main</code>, commit sudah dibuat, lalu tiba-tiba pas <code>git merge origin/main</code> muncul pesan <b>conflict</b>.  
+<p>Kamu lagi kerja di branch <code>main</code>, commit sudah dibuat, lalu tiba-tiba pas <code>git merge origin/main</code> muncul pesan <b>conflict</b>.
 Ini artinya branch lokal dan remote sudah berbeda arah, dan Git minta kamu yang tentukan mana isi file yang benar.</p>
-
 <h2>🛠 Langkah Penyelesaian</h2>
 <ol>
   <li><b>Cek status</b> dengan <code>git status</code> biar tahu file mana yang bermasalah.</li>
@@ -163,41 +150,32 @@ Ini artinya branch lokal dan remote sudah berbeda arah, dan Git minta kamu yang 
 >>>>>>> origin/main
 </pre>
   </li>
-  <li><b>Edit manual</b> → pilih isi yang kamu butuhkan, atau gabungkan dua-duanya.  
+  <li><b>Edit manual</b> → pilih isi yang kamu butuhkan, atau gabungkan dua-duanya.
   Jangan lupa hapus tanda <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, dan <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</li>
   <li><b>Tandai selesai</b> dengan <code>git add</code>.</li>
   <li><b>Commit merge</b> dengan <code>git commit</code>.</li>
   <li><b>Push</b> hasil merge ke remote dengan <code>git push origin main</code>.</li>
 </ol>
-
 <h2>🩹 Kalau Mau Batalin Merge</h2>
 <p>Kadang kita salah edit atau bingung, santai aja. Kamu bisa mundur dengan:</p>
 <pre>git merge --abort</pre>
-
    <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="prev">&#10094;</span>
   <img id="lightbox-img" src="">
   <span class="next">&#10095;</span>
 </div>
-
-<h2>📢 Jaga Data Pribadi Tetap Aman</h2>
 <div class="share">
-  <a href="https://facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/git-merge-conflict.html" target="_blank">📘 Facebook</a>
-  <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/git-merge-conflict.html" target="_blank">🐦 Twitter</a>
-  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/git-merge-conflict.html" target="_blank">💼 LinkedIn</a>
+<div id="disqus_thread"></div>
 </div>
   </main>
   <footer>
 <p>🄯 2025 Panduan Git Merge Conflict - Dibuat dengan ❤ untuk developer Indonesia</p>
   </footer>
-
   <!-- Lightbox Script -->
-  
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>

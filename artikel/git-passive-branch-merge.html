@@ -21,18 +21,18 @@
     <meta property="og:description" content="Pernah berpikir gimana caranya merge tanpa harus lewat Pull Request? Yuk, pelajari alur kerja di mana 'main' branch yang berkuasa penuh!">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/git-passive-branch-merge.html">
-    <meta property="og:image" content="https://frijal.pages.dev/img/git-passive-branch-merge.webp"> 
+    <meta property="og:image" content="https://frijal.pages.dev/img/git-passive-branch-merge.webp">
     <meta property="og:site_name" content="Frijal's Page">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Git Workflow: Saat Main Branch yang 'Memanggil', Bukan Anak Branch yang 'Meminta'">
     <meta name="twitter:description" content="Pernah berpikir gimana caranya merge tanpa harus lewat Pull Request? Yuk, pelajari alur kerja di mana 'main' branch yang berkuasa penuh!">
-    <meta name="twitter:image" content="https://frijal.pages.dev/img/git-passive-branch-merge.webp"> 
-    <meta name="twitter:creator" content="@frijal"> 
+    <meta name="twitter:image" content="https://frijal.pages.dev/img/git-passive-branch-merge.webp">
+    <meta name="twitter:creator" content="@frijal">
 
     <!-- CSS & Font -->
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -379,7 +379,7 @@ git pull origin main</code></pre>
                             <pre><code>git merge fitur-keren</code></pre>
                             <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
                         </div>
-                        
+
                         <h4>Langkah 3: Publikasikan Hasil Gabungan</h4>
                         <p>Terakhir, dorong (push) `main` branch yang kini sudah berisi kode baru ke server. Semua perubahan dari `fitur-keren` kini resmi menjadi bagian dari `main`.</p>
                         <div class="code-block">
@@ -436,14 +436,7 @@ git pull origin main</code></pre>
             </article>
 
             <div class="share-section">
-                <h3>Jaga Data Pribadi Tetap Aman</h3>
-                <div class="social-icons">
-                    <a href="#" class="social-icon twitter" id="share-twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon facebook" id="share-facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon whatsapp" id="share-whatsapp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-icon linkedin" id="share-linkedin"><i class="fab fa-linkedin-in"></i></a>
-                    <button class="social-icon copy-link" id="copy-link-button"><i class="fas fa-link"></i></button>
-                </div>
+<div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -474,55 +467,6 @@ git pull origin main</code></pre>
             });
         });
     });
-
-    // --- Fungsi Berbagi ke Media Sosial ---
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
-    const shareText = encodeURIComponent("Cek alur kerja Git yang menarik ini!");
-
-    const shareLinks = {
-        twitter: document.getElementById('share-twitter'),
-        facebook: document.getElementById('share-facebook'),
-        whatsapp: document.getElementById('share-whatsapp'),
-        linkedin: document.getElementById('share-linkedin'),
-        copyButton: document.getElementById('copy-link-button')
-    };
-
-    if (shareLinks.twitter) {
-        shareLinks.twitter.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
-        shareLinks.twitter.target = '_blank';
-    }
-
-    if (shareLinks.facebook) {
-        shareLinks.facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-        shareLinks.facebook.target = '_blank';
-    }
-
-    if (shareLinks.whatsapp) {
-        shareLinks.whatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-        shareLinks.whatsapp.target = '_blank';
-    }
-
-    if (shareLinks.linkedin) {
-        shareLinks.linkedin.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-        shareLinks.linkedin.target = '_blank';
-    }
-
-    if (shareLinks.copyButton) {
-        shareLinks.copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(decodeURIComponent(pageUrl)).then(() => {
-                const originalIcon = shareLinks.copyButton.innerHTML;
-                shareLinks.copyButton.innerHTML = '<i class="fas fa-check"></i>';
-                shareLinks.copyButton.disabled = true;
-                setTimeout(() => {
-                    shareLinks.copyButton.innerHTML = originalIcon;
-                    shareLinks.copyButton.disabled = false;
-                }, 2000);
-            }).catch(err => {
-                console.error('Gagal menyalin link: ', err);
-            });
-        });
-    }
 });
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

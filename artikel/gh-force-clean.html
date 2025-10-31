@@ -7,7 +7,6 @@
 <meta name="description" content="Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch.">
 <link rel="canonical" href="https://frijal.pages.dev/artikel/gh-force-clean.html">
 <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:locale" content="id_ID">
@@ -16,13 +15,11 @@
 <meta property="og:url" content="https://frijal.pages.dev/artikel/gh-force-clean.html">
 <meta property="og:site_name" content="Jaga Data Pribadi Tetap Aman Dev">
 <meta property="og:image" content="https://frijal.pages.dev/img/gh-force-clean.webp">
-
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge">
 <meta name="twitter:description" content="Skrip Bash sederhana untuk menghapus branch Git yang sudah di-merge, lengkap dengan opsi dry-run dan auto.">
 <meta name="twitter:image" content="https://frijal.pages.dev/img/gh-force-clean.webp">
-
 <meta name="color-scheme" content="light dark">
 <style>
 :root {
@@ -98,11 +95,9 @@ footer {
   header h1 { font-size: 1.5rem; }
   article { padding: 1rem; }
 }
-
 </style>
 <meta property="og:image:alt" content="Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge">
   <meta itemprop="image" content="https://frijal.pages.dev/img/gh-force-clean.webp">
-
     <meta property="article:published_time" content="2025-10-13T21:14:36.042+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
@@ -110,17 +105,14 @@ footer {
 <header>
   <h1>🧹 Skrip Otomatis gh-force-clean.sh</h1>
 <div id="iposbrowser"></div>
-
   <p style="opacity:0.8;">Bersihkan branch Git yang sudah di-merge (lokal & remote) dengan aman dan cepat</p>
 </header>
-
 <article>
   <section>
-    <p>Kalau kamu sering kerja di repo Git yang penuh branch lama, skrip ini bisa jadi solusi.  
+    <p>Kalau kamu sering kerja di repo Git yang penuh branch lama, skrip ini bisa jadi solusi.
     Dengan <strong>gh-force-clean.sh</strong>, kamu bisa otomatis menghapus branch lokal dan remote yang sudah di-merge ke <code>main</code> (atau branch lain), tanpa repot periksa satu-satu. 🚀</p>
     <p>Cocok buat developer yang ingin menjaga repo tetap bersih, atau buat pipeline CI/CD yang rapi.</p>
   </section>
-
   <section>
     <h2>🧩 Fitur Unggulan</h2>
     <ul>
@@ -132,20 +124,16 @@ footer {
       <li>🌈 Output berwarna, mudah dibaca di terminal</li>
     </ul>
   </section>
-
   <section>
     <h2>⚙️ Isi Skrip: <code>gh-force-clean.sh</code></h2>
     <pre><code>#!/usr/bin/env bash
 set -euo pipefail
-
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; RESET='\033[0m'
 DRY_RUN=false; AUTO=false; BASE_BRANCH="main"
-
 usage() {
   echo "Gunakan: $0 [--dry-run] [--auto] [--base <branch>]"
   exit 0
 }
-
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true; shift ;;
@@ -155,56 +143,42 @@ while [[ $# -gt 0 ]]; do
     *) echo "Argumen tidak dikenal: $1"; usage ;;
   esac
 done
-
 echo -e "${CYAN}🔍 Mengecek branch utama: ${BASE_BRANCH}${RESET}"
 git fetch -p origin >/dev/null 2>&1
 git checkout "$BASE_BRANCH" >/dev/null 2>&1 || exit 1
-
 MERGED_BRANCHES=$(git branch --merged "$BASE_BRANCH" | grep -vE "^\*|$BASE_BRANCH$")
 REMOTE_MERGED=$(git branch -r --merged "origin/$BASE_BRANCH" | grep -vE "origin/(HEAD|$BASE_BRANCH)$")
-
 [[ -z "$MERGED_BRANCHES" ]] && echo "Tidak ada branch lokal yang sudah di-merge"
 [[ -z "$REMOTE_MERGED" ]] && echo "Tidak ada branch remote yang sudah di-merge"
-
 if [[ "$DRY_RUN" == true ]]; then
   echo "[DRY RUN] Tidak ada branch dihapus."
   exit 0
 fi
-
 if [[ "$AUTO" == false ]]; then
   read -rp "Lanjut hapus semua branch yang sudah di-merge? [y/N]: " CONFIRM
   [[ ! "$CONFIRM" =~ ^[Yy]$ ]] && { echo "Dibatalkan."; exit 0; }
 fi
-
 for BR in $MERGED_BRANCHES; do
   git branch -d "$BR" >/dev/null 2>&1 || git branch -D "$BR" >/dev/null 2>&1
 done
-
 for RB in $REMOTE_MERGED; do
   RB_NAME=$(echo "$RB" | sed 's|origin/||')
   git push origin --delete "$RB_NAME" >/dev/null 2>&1 || true
 done
-
 echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</code></pre>
   </section>
-
   <section>
     <h2>💡 Cara Menggunakan</h2>
     <pre><code>chmod +x gh-force-clean.sh
-
 # Mode interaktif (manual)
 ./gh-force-clean.sh
-
 # Simulasi (hanya tampilkan tanpa hapus)
 ./gh-force-clean.sh --dry-run
-
 # Mode otomatis untuk CI/CD
 ./gh-force-clean.sh --auto
-
 # Jika repo kamu pakai branch utama "develop"
 ./gh-force-clean.sh --base develop</code></pre>
   </section>
-
   <section>
     <h2>🧠 Tips Aman</h2>
     <ul>
@@ -213,33 +187,16 @@ echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</code></pre>
       <li>Jika branch belum di-merge atau masih ada konflik, skrip ini tidak akan menghapusnya.</li>
     </ul>
   </section>
-
   <div class="social-share">
-    <p>Jaga Data Pribadi Tetap Aman</p>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/gh-force-clean.html" target="_blank" rel="noopener">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
-    </a>
-    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/gh-force-clean.html&text=Skrip%20gh-force-clean.sh%20:%20Bersihkan%20Branch%20Lokal%20%26%20Remote" target="_blank" rel="noopener">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/twitter.svg" alt="Twitter">
-    </a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/gh-force-clean.html" target="_blank" rel="noopener">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
-    </a>
+  <div id="disqus_thread"></div>
   </div>
 
-  
 </article>
-
 <footer>
   <p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
 </footer>
-
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>

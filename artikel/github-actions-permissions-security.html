@@ -7,7 +7,7 @@
     <meta name="description" content="Pahami cara kerja Actions Permissions di GitHub. Pelajari risiko 'Allow all actions' dan kenapa memilih 'Allow select actions' adalah praktik keamanan terbaik untuk proyekmu.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="git, github, github actions, actions permissions, security, ci/cd, supply chain attack, tutorial git, frijal">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/artikel/github-actions-permissions-security.html">
 
     <link rel="icon" type="image/x-icon" href="https://frijal.pages.dev/favicon.ico">
@@ -24,11 +24,11 @@
     <meta name="twitter:title" content="Mengamankan Repositori: Panduan Lengkap Actions Permissions di GitHub">
     <meta name="twitter:description" content="Pahami cara kerja Actions Permissions di GitHub, pelajari risiko 'Allow all actions' dan kenapa memilih 'Allow select actions' adalah praktik keamanan terbaik.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-B_tNpehEn6YhovPemrCBF1kK24Gw4u_U9TyX9q7JVJ5rAdfak7ifPG3VIKdExoNr9fv_rrb0QJs9ETDLTS-5_lbDreQbW4MBNK0yK4F2usvDtP73cBjDGchyphenhyphenqSCeL03i_HKptp9sGK6ekCkpV6ikBMIqoVWbDG0Nl7H_CYRzR1njbBBomonse_ivF98/s1600/Screenshot%20From%202025-10-21%2022-35-04.png">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -134,7 +134,7 @@
         .social-whatsapp:hover { background-color: #25D366; }
         .social-linkedin:hover { background-color: #0A66C2; }
         footer { text-align: center; padding: 40px 20px; margin-top: 40px; color: #aaa; font-size: 0.9rem; }
-        
+
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             h2 { font-size: 1.8rem; }
@@ -164,10 +164,10 @@
                         <figcaption>Di sinilah Anda mengatur "daftar tamu" untuk workflow Anda.</figcaption>
                     </figure>
                 </div>
-                
+
                 <h2>Penjelasan: "Actions permissions"</h2>
                 <p>Pengaturan ini pada dasarnya adalah "daftar tamu" untuk repositori Anda. Ia menentukan <code>action</code> (skrip buatan orang lain) mana yang Anda izinkan untuk masuk dan berjalan di dalam alur kerja (workflow) GitHub Actions Anda. Ini penting karena setiap <code>action</code> yang Anda gunakan adalah kode buatan orang lain yang berjalan di lingkungan yang memiliki akses ke kode Anda.</p>
-                
+
                 <section>
                     <h3>1. Allow all actions and reusable workflows (Izinkan semua)</h3>
                     <p><strong>Penjelasan:</strong> Ini adalah opsi paling terbuka. Repositori Anda diizinkan untuk menggunakan <code>action</code> apa pun dari mana pun, baik itu yang dibuat oleh GitHub, oleh perusahaan terverifikasi, atau oleh developer acak di internet.</p>
@@ -189,7 +189,7 @@
                     <blockquote><strong>Analogi:</strong> Anda hanya memperbolehkan mandor menggunakan alat-alat yang ada di garasi pribadi Anda.</blockquote>
                     <p><strong>Risiko:</strong> Sangat aman, tetapi sangat tidak praktis. Anda harus membuat ulang atau menyalin (fork) setiap <code>action</code> pihak ketiga yang ingin Anda gunakan ke akun Anda sendiri.</p>
                 </section>
-                
+
                 <section>
                     <h3>4. Allow frijal, and select non-frijal, actions... (Izinkan dari milik sendiri + daftar terpercaya)</h3>
                     <p><strong>Penjelasan:</strong> Ini adalah jalan tengah terbaik. Anda bisa mengizinkan semua <code>action</code> dari akun Anda sendiri, DAN Anda bisa membuat "daftar putih" berisi pembuat <code>action</code> pihak ketiga yang Anda percayai. Misalnya, Anda bisa menentukan bahwa hanya <code>action</code> yang dibuat oleh <code>actions</code> (resmi dari GitHub) dan <code>cloudflare</code> yang boleh digunakan.</p>
@@ -203,7 +203,7 @@
                     <blockquote><strong>Analogi:</strong> Alih-alih memesan "pizza rasa terbaru", Anda memesan "pizza yang dibuat pada hari Selasa, jam 10:35 pagi, oleh koki Budi dengan resep nomor 5". Anda tahu persis apa yang akan Anda dapatkan, tidak akan berubah.</blockquote>
                     <p><strong>Risiko:</strong> Paling aman dari <em>supply chain attack</em>, tetapi perawatannya paling tinggi. Anda tidak akan mendapat pembaruan otomatis dan harus mengganti SHA secara manual setiap kali ingin memperbarui <code>action</code>.</p>
                 </section>
-                
+
                 <section>
                     <h2>Rekomendasi Untuk Proyek Anda</h2>
                     <div class="table-container">
@@ -265,11 +265,7 @@
                 </div>
 
                 <div class="social-share">
-                    <h3>Amankan Repomu, Bagikan Ilmunya!</h3>
-                    <a href="#" class="social-twitter" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-facebook" title="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-whatsapp" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-linkedin" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+<div id="disqus_thread"></div>
                 </div>
             </article>
         </main>
@@ -278,33 +274,6 @@
             <p>&copy; 2025 Frijal. Dibuat dengan santai untuk para developer.</p>
         </footer>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pageUrl = encodeURIComponent(window.location.href);
-            const pageTitle = encodeURIComponent(document.title);
-
-            const twitterShare = document.querySelector('.social-twitter');
-            twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
-
-            const facebookShare = document.querySelector('.social-facebook');
-            facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            
-            const whatsappShare = document.querySelector('.social-whatsapp');
-            whatsappShare.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
-            const linkedinShare = document.querySelector('.social-linkedin');
-            linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-
-            const shareLinks = document.querySelectorAll('.social-share a');
-            shareLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.open(this.href, 'share-window', 'height=450,width=550,toolbar=0,location=0,menubar=0,directories=0,scrollbars=0');
-                });
-            });
-        });
-    </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
