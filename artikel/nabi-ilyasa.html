@@ -290,18 +290,13 @@
                 Nabi Ilyasa’ adalah contoh penerus dakwah sejati: setia pada ajaran guru, sabar pada ujian, dan tetap menebar kebaikan. Semoga kita bisa meneladani semangat beliau!
             </p>
         </section>
-        <div class="share-bar">
-            <button onclick="shareTo('facebook')" title="Bagikan ke Facebook">📘</button>
-            <button onclick="shareTo('twitter')" title="Bagikan ke Twitter/X">🐦</button>
-            <button onclick="shareTo('whatsapp')" title="Bagikan ke WhatsApp">🟢</button>
-            <button onclick="copyLink()" title="Salin Link Artikel">🔗</button>
-        </div>
-        <div class="sources">
+               <div class="sources">
             <b>Sumber:</b><br>
             1️⃣ <b>Al-Qur’an:</b> QS. Al-An’am: 86, QS. Shad: 48<br>
             2️⃣ <b>Kitab-kitab tafsir & sejarah nabi</b><br>
             3️⃣ <b>Riwayat Israiliyyat klasik & sumber visual</b>
         </div>
+        <div id="disqus_thread"></div>
         </main>
     <div class="lightbox" id="lightbox">
         <button class="lightbox-arrow left" id="lightbox-prev" >⏪</button>
@@ -365,33 +360,7 @@
             if(e.key === "ArrowLeft") document.getElementById('lightbox-prev').click();
             if(e.key === "ArrowRight") document.getElementById('lightbox-next').click();
         });
-        // Share Buttons
-        window.shareTo = function(platform) { // Made function global
-            const url = encodeURIComponent('https://frijal.pages.dev/artikel/nabi-ilyasa.html'); // Use canonical URL
-            const title = encodeURIComponent(document.title);
-            let shareUrl = '';
-            if (platform === "facebook") {
-                shareUrl = `https://www.facebook.com/sharer.php?u=${url}`;
-            } else if (platform === "twitter") {
-                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-            } else if (platform === "whatsapp") {
-                shareUrl = `https://wa.me/?text=${title}%20${url}`;
-            }
-            if (shareUrl) {
-                window.open(shareUrl, '_blank', 'noopener,noreferrer');
-            }
-        }
-        window.copyLink = function() { // Made function global
-            navigator.clipboard.writeText('https://frijal.pages.dev/artikel/nabi-ilyasa.html') // Use canonical URL
-            .then(()=>{
-                const btn = document.querySelector('.share-bar button[onclick="copyLink()"]');
-                const originalContent = btn.innerHTML;
-                btn.innerHTML = '✔️'; // Indicate success
-                setTimeout(()=> btn.innerHTML = originalContent, 1500); // Revert after 1.5s
-            })
-            .catch(()=>prompt("Salin manual:", 'https://frijal.pages.dev/artikel/nabi-ilyasa.html'));
-        }
-    });
+                  });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

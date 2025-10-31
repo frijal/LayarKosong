@@ -95,7 +95,7 @@
                     <h1>Menggabungkan Berkas PDF dengan PDFtk</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Seringkali kita perlu menggabungkan beberapa file PDF menjadi satu dokumen tunggal. Dengan bantuan <code>PDFtk</code>, proses ini dapat dilakukan dengan cepat dan mudah langsung dari terminal.</p>
-                    
+
 
                     <h2>Langkah 1: Instalasi PDFtk</h2>
                     <p>Pastikan Anda sudah memasang paket <code>pdftk</code> di sistem Anda. Pada distribusi Linux modern seperti Ubuntu 22.04 ke atas, Anda mungkin perlu menginstal versi Java-nya.</p>
@@ -124,6 +124,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
                         <li><strong>Banyak Fitur:</strong> Selain menggabungkan, PDFtk juga bisa memecah, memutar, dan mengenkripsi file PDF.</li>
                     </ul>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
@@ -140,9 +141,9 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
+
 
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{

@@ -184,13 +184,7 @@
                     </ul>
                 </div>
                 <div class="share">
-                    <a class="btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fmasyitoh.html&text=Kisah%20Masyitoh%20%E2%80%94%20pelayan%20istana%20Fir%E2%80%98aun%20yang%20syahid%20di%20jalan%20Allah"
-                       target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
-                    <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fmasyitoh.html"
-                       target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-                    <a class="btn" href="https://api.whatsapp.com/send?text=Kisah%20Masyitoh%20%E2%80%94%20https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fmasyitoh.html"
-                       target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-                    <button class="btn" id="copy-link">🔗 Salin Link</button>
+                 <div id="disqus_thread"></div>
                 </div>
                 </article>
         </main>
@@ -247,20 +241,7 @@
                     if (e.key === 'ArrowRight') next();
                     if (e.key === 'Escape') close();
                 });
-                const copyBtn = document.getElementById('copy-link');
-                if (copyBtn) {
-                    const originalText = copyBtn.textContent;
-                    copyBtn.addEventListener('click', async () => {
-                        try {
-                            await navigator.clipboard.writeText('https://frijal.pages.dev/artikel/masyitoh.html');
-                            copyBtn.textContent = '✅ Tersalin!';
-                            setTimeout(() => copyBtn.textContent = originalText, 1500);
-                        } catch(e) {
-                            alert('Gagal menyalin link');
-                        }
-                    });
-                }
-            })();
+                           })();
         });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

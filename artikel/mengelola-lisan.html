@@ -257,36 +257,11 @@
                 <p>Ingatlah, setiap muslim haram atas muslim lainnya; darahnya, kehormatannya, dan hartanya. Allah tidak memandang rupa atau fisik kita, tetapi Dia melihat hati dan ketakwaan kita. Semoga Allah SWT senantiasa membimbing kita untuk menjaga lisan agar selalu menuturkan perkataan yang bermanfaat.</p>
             </section>
             <div class="social-sharing">
-                <h3>Jaga Data Pribadi Tetap Aman</h3>
-                <div class="share-buttons" id="share-buttons">
+            <div id="disqus_thread"></div>
                     </div>
             </div>
             </main>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Social Sharing
-            setupSocialSharing('https://frijal.pages.dev/artikel/mengelola-lisan.html');
-        });
-        function setupSocialSharing(url) {
-            const shareContainer = document.getElementById('share-buttons');
-            if (!shareContainer) return;
-            const title = document.title;
-            const encodedUrl = encodeURIComponent(url);
-            const encodedTitle = encodeURIComponent(title);
-            const platforms = {
-                facebook: { url: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, icon: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.81C10.44 7.31 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>`, class: 'share-fb' },
-                twitter: { url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`, icon: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`, class: 'share-x' },
-                whatsapp: { url: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`, icon: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m.01 1.67c4.56 0 8.25 3.69 8.25 8.25 0 4.56-3.69 8.25-8.25 8.25-1.53 0-3-.42-4.29-1.19l-.3-.18-3.18.83.85-3.1-.2-.31c-.82-1.31-1.28-2.82-1.28-4.4s3.69-8.25 8.25-8.25m4.52 9.15c-.24-.12-1.43-.7-1.65-.78-.23-.08-.39-.12-.56.12-.17.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.71-.63-1.19-1.4-1.33-1.64-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.3.23.24-.88 1.03-.88 2.5s.9 2.9 1.02 3.1c.12.2.82 1.83 3.6 3.16.65.31 1.16.5 1.56.64.4.14.77.12 1.06.07.32-.05.99-.4 1.13-.78.14-.38.14-.71.1-.78c-.04-.07-.16-.11-.4-.23Z"/></svg>`, class: 'share-wa' },
-                telegram: { url: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`, icon: `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.69 6.54l-1.63 7.63c-.15.7-.58.87-1.14.54l-2.43-1.78l-1.17 1.12c-.13.13-.24.24-.48.24l.17-2.48l4.46-4.04c.19-.17-.03-.27-.27-.1l-5.5 3.44l-2.37-.74c-.69-.22-.7-.73.14-1.07l9.42-3.61c.58-.22 1.04.14.87.8z"/></svg>`, class: 'share-tg' }
-            };
-            let buttonsHtml = '';
-            for (const key in platforms) {
-                buttonsHtml += `<a href="${platforms[key].url}" target="_blank" rel="noopener noreferrer" class="${platforms[key].class}" title="Bagikan ke ${key.charAt(0).toUpperCase() + key.slice(1)}">${platforms[key].icon}</a>`;
-            }
-            shareContainer.innerHTML = buttonsHtml;
-        }
-    </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

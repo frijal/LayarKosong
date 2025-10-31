@@ -98,13 +98,6 @@
 
                     <p class="lead">Linux dan UNIX adalah dua sistem operasi yang sangat erat hubungannya, baik dari segi desain maupun filosofi. Keduanya bisa dianggap seperti saudara tiri: tidak lahir dari kode program yang sama, tapi punya prinsip yang identik.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="linkedin">LinkedIn</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-
                     <h2>Sejarah dan Perbedaan Dasar</h2>
                     <table>
                         <thead>
@@ -130,7 +123,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+
                     <h2>Filosofi yang Diwariskan</h2>
                     <p>Meskipun kode sumbernya berbeda, Linux mewarisi filosofi inti dari UNIX:</p>
                     <ul>
@@ -150,6 +143,7 @@
                     <h2>Kesimpulan</h2>
                     <p>Secara sederhana, <strong>UNIX adalah kakek yang proprietary, dan Linux adalah cucu open source</strong> yang mewarisi aturan dan etos kakeknya melalui kepatuhan pada standar POSIX. Mereka berbeda di kode, namun identik di jiwa.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -167,22 +161,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            linkedin: url => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
-        
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');

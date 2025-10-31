@@ -129,6 +129,7 @@
                     <h2>Kesimpulan</h2>
                     <p>Linux memberikan kebebasan untuk memilih. Dengan banyaknya pilihan Desktop Environment, Anda bisa membangun pengalaman komputasi yang paling sesuai dengan selera dan kebutuhan perangkat keras Anda.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
@@ -143,18 +144,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        const lb = document.getElementById('lightbox');
+               const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {
             el.addEventListener('click', () => {

@@ -101,31 +101,24 @@
     <ul class="config-keys" id="configKeysList">
     <li>
         <span class="ckey">browser.ml.linkPreview.enabled</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">browser.ml.chat.enabled</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">browser.ml.enable</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">browser.tabs.groups.smart.enabled</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">browser.tabs.groups.smart.userEnabled</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">extensions.ml.enabled</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
     <li>
         <span class="ckey">sidebar.revamp</span>
-        <button class="copy-btn" title="Copy config key">Copy</button>
     </li>
 </ul>
     <div class="tips">
@@ -136,49 +129,11 @@
     </div>
     </div>
     </div>
-
     <div style="margin:32px 0 9px;font-size:1rem;color:#ffd;">
         Fitur AI di browser makin banyak menuai komentar. Banyak yang pengen <b>fitur lama aja, tanpa AI.</b> Kalo kamu juga ngerasa gitu—kamu gak sendirian! Tweaking sedikit di about:config bisa bikin pengalaman browsing balik ke asal: <b>cepat, ringan, & no AI bot.</b>
     </div>
-    <div class="share-icons">
-        <!-- Share to Facebook -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/matikan-ai-firefox.html" target="_blank" rel="noopener noreferrer" title="Bagikan ke Facebook">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/facebook.svg" alt="Facebook" />
-        </a>
-        <!-- Twitter/X -->
-        <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/matikan-ai-firefox.html&text=Matikan%20AI%20Chat%20di%20Firefox%20dengan%20Cara%20Gampang%20!" target="_blank" rel="noopener noreferrer" title="Bagikan ke Twitter">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/twitter.svg" alt="Twitter" />
-        </a>
-        <!-- WhatsApp -->
-        <a href="https://api.whatsapp.com/send?text=Matikan%20AI%20Chat%20di%20Firefox%20dengan%20Cara%20Gampang%20!%20https://frijal.pages.dev/artikel/matikan-ai-firefox.html" target="_blank" rel="noopener noreferrer" title="Bagikan ke WhatsApp">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/whatsapp.svg" alt="WhatsApp" />
-        </a>
-        <!-- Telegram -->
-        <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/matikan-ai-firefox.html&text=Matikan%20Fitur%20AI%20Chat%20Firefox%20dengan%20Trik%20Gampang!" target="_blank" rel="noopener noreferrer" title="Bagikan ke Telegram">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/telegram.svg" alt="Telegram" />
-        </a>
-    </div>
+   <div id="disqus_thread"></div>
 </div>
-<script>
-// Share icon hover fx
-document.querySelectorAll('.share-icons a').forEach(e=>{
-    e.addEventListener('mouseenter',()=>e.style.scale="1.18");
-    e.addEventListener('mouseleave',()=>e.style.scale="1");
-});
-// Copy key buttons
-document.querySelectorAll('.copy-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-        var key = btn.previousElementSibling.textContent;
-        navigator.clipboard.writeText(key);
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function(){
-            btn.textContent = 'Copy';
-            btn.classList.remove('copied');
-        }, 2000);
-    });
-});
-</script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
