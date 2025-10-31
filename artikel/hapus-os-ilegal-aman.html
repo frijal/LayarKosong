@@ -36,7 +36,7 @@
       "publisher": { "@type": "Organization", "name": "Frijal" }
     }
     </script>
-    
+
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
 
@@ -109,7 +109,7 @@
 
                     <p class="lead">Panduan ini menunjukkan cara menghapus sistem operasi ilegal (seperti Windows bajakan) dari komputer Anda dengan aman, langsung dari Linux yang sudah terpasang, tanpa memerlukan Live CD/USB.</p>
 
-                    
+
 
                     <div class="warn">
                         <strong>Peringatan:</strong> Operasi partisi berisiko. Pastikan Anda telah mencadangkan semua data penting ke partisi Linux atau drive eksternal terlebih dahulu. Baca setiap langkah dengan teliti.
@@ -124,13 +124,13 @@
                     <h2>Langkah-langkah Rapi</h2>
                     <h3>1. Pindahkan Data Penting</h3>
                     <p>Salin semua file penting dari partisi Windows ke partisi Linux atau ke drive eksternal.</p>
-                    
+
                     <h3>2. Pasang dan Jalankan GParted</h3>
                     <p>Jika belum terinstal, pasang GParted, lalu jalankan dengan hak akses root.</p>
                     <pre class="language-bash"><code id="code1">sudo apt-get update
 sudo apt-get install gparted
 sudo gparted</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-                    
+
                     <h3>3. Hapus Partisi Windows</h3>
                     <ol>
                         <li>Di GParted, identifikasi partisi Windows Anda (biasanya berformat NTFS).</li>
@@ -141,7 +141,7 @@ sudo gparted</code><button class="copy-btn" data-target="code1">Salin</button></
 
                     <h3>4. Atur Ulang Ruang Disk</h3>
                     <p>Setelah partisi Windows dihapus, Anda akan memiliki ruang kosong (unallocated). Anda bisa menggunakannya untuk memperbesar partisi Linux yang ada atau membuat partisi baru untuk data.</p>
-                    
+
                     <h3>5. Pasang Ulang GRUB</h3>
                     <p>Langkah terakhir adalah memperbarui dan memasang ulang bootloader GRUB agar komputer Anda bisa booting langsung ke Linux tanpa error.</p>
                     <pre class="language-bash"><code id="code2">sudo update-grub
@@ -150,6 +150,7 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code2">Sa
 
                     <p>Setelah restart, sistem Anda akan bersih, legal, dan boot langsung ke Linux. Ruang disk yang sebelumnya digunakan oleh OS ilegal kini menjadi milik Anda sepenuhnya.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -157,12 +158,12 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code2">Sa
             <small>🄯 2025 Frijal · Legal itu ringan di hati dan enak dipakai.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #334155; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -172,23 +173,17 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code2">Sa
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        
-        
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
-
-        const lb = document.getElementById('lightbox');
+        st lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
