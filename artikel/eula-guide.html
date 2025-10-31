@@ -63,8 +63,8 @@ h2{margin:30px 0 15px;font-size:1.8rem;color:#004e89;border-left:4px solid #ff6b
 </header>
 
 <nav class="breadcrumb">
-  <a href="https://frijal.pages.dev/">Home</a> / 
-  <a href="https://frijal.pages.dev/artikel">Artikel</a> / 
+  <a href="https://frijal.pages.dev/">Home</a> /
+  <a href="https://frijal.pages.dev/artikel">Artikel</a> /
   <span>EULA Guide</span>
 </nav>
 
@@ -130,50 +130,11 @@ Marilah kita gunakan perangkat lunak legal.<br>
 Stop penggunaan perangkat lunak bajakan!<br>
 Pilih Perangkat Lunak Bebas Terbuka.
   </div>
-<!-- Container for FB comments plugin requirement (user script uses id="current-url") -->
-<div style="margin-top:16px;color:var(--muted);font-size:10px">
-  <span id="current-url" class="small-muted"></span>
-</div>
 
-<!-- Facebook Comments Plugin (user-provided) -->
 <div style="margin-top:18px">
-  <!-- Facebook Comments Plugin -->
-  
-  
 
-  <script>
-const currentUrl = window.location.href;
-document.getElementById("current-url").textContent = currentUrl;
-// Set data-href FB Comments ke URL halaman ini
-document.getElementById("fb-comments").setAttribute("data-href", currentUrl);
-// Reload plugin FB agar data-href diperbarui (jika SDK sudah siap)
-window.fbAsyncInit = function() {
-  if (typeof FB !== 'undefined') {
-try { FB.XFBML.parse(); } catch(e) { /* ignore */ }
-  }
-}
-  </script>
 </div>
-  <!-- Share -->
-  <div class="social-share">
-<h3>🔗 Jaga Data Pribadi Tetap Aman</h3>
-<div class="share-buttons">
-  <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/eula-guide.html" target=""> 
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 4.84 3.44 8.84 7.94 9.77v-6.9H7.9v-2.87h2.04V9.83c0-2.02 1.2-3.14 3.04-3.14.88 0 1.8.16 1.8.16v1.98h-1.02c-1 0-1.31.62-1.31 1.25v1.5h2.23l-.36 2.87h-1.87v6.9c4.5-.93 7.94-4.93 7.94-9.77z"/></svg>
-Facebook
-  </a>
-  <a class="share-btn twitter" href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/eula-guide.html&text=Panduan+Lengkap+EULA" target=""> 
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.24 4.24 0 0 0 1.85-2.34 8.59 8.59 0 0 1-2.71 1.03 4.22 4.22 0 0 0-7.3 3.85A12 12 0 0 1 3.16 4.9a4.22 4.22 0 0 0 1.31 5.63 4.18 4.18 0 0 1-1.91-.53v.05c0 2.05 1.46 3.76 3.4 4.15a4.2 4.2 0 0 1-1.9.07 4.22 4.22 0 0 0 3.95 2.94A8.47 8.47 0 0 1 2 19.54a11.94 11.94 0 0 0 6.29 1.84c7.55 0 11.68-6.25 11.68-11.68 0-.18-.01-.36-.02-.54A8.36 8.36 0 0 0 22.46 6z"/></svg>
-Twitter
-  </a>
-  <a class="share-btn whatsapp" href="https://api.whatsapp.com/send?text=Panduan+Lengkap+EULA+-+https://frijal.pages.dev/artikel/eula-guide.html" target=""> 
-WhatsApp
-  </a>
-  <a class="share-btn telegram" href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/eula-guide.html&text=Panduan+Lengkap+EULA" target=""> 
-Telegram
-  </a>
-</div>
-  </div>
+ <div id="disqus_thread"></div>
 </div>
 
 <!-- Lightbox -->

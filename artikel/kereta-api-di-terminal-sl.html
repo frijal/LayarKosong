@@ -369,14 +369,7 @@ You can install it by typing: sudo apt-get install sl
     lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('active'); });
     window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('active'); });
 
-    // Share URLs
-    const url = encodeURIComponent(location.href);
-    const title = encodeURIComponent(document.title);
-    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    document.getElementById('share-twitter').href  = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-    document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${title}%20${url}`;
-    document.getElementById('share-telegram').href = `https://t.me/share/url?url=${url}&text=${title}`;
-    document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+    
 
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

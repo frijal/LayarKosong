@@ -85,12 +85,7 @@
                     <h1>Open Source: Kisah Sukses di Dunia Digital</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Open Source, atau Sumber Terbuka, adalah sebuah filosofi pengembangan perangkat lunak yang terbukti berhasil dan telah melahirkan banyak produk ikonik yang kita gunakan sehari-hari.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <h2>Contoh Kesuksesan Open Source</h2>
                     <h3>Wikipedia</h3>
                     <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9dlmEkkH8WwY7n8mweRXffj4hm-1Q9HLZdiYkmlThXZA3MMW3lb0sxIEEOUVD3Dps66lJhp0uWEQXpmAkXtOEj60T74IwJ2bRepS1gTZoChzc-KYR8Mv7uB__9Pp6kZQbhyOoX_Eucb_FfSSlpz0bcCOD0zBdIJhU_1ihj7YIpoyNgqzi13COaxZx7X8/s960/Wikipedia_Wallpaper.jpg" alt="Wikipedia" loading="lazy"></figure>
@@ -124,19 +119,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

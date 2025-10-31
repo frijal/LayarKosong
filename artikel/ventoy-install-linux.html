@@ -99,12 +99,7 @@
                     <h1>Cara Instal & Pakai Ventoy untuk Bootable USB di Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Ventoy adalah tool open-source yang memungkinkan Anda membuat flashdisk menjadi multi-boot USB. Cukup instal Ventoy sekali, lalu Anda bisa menyalin banyak file ISO, WIM, atau IMG ke dalamnya dan memilih OS mana yang akan di-boot dari menu.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <h2>Langkah 1: Unduh dan Ekstrak Ventoy</h2>
                     <p>Kunjungi <a href="https://www.ventoy.net/en/download.html" target="_blank">halaman unduh Ventoy</a> dan dapatkan file untuk Linux. Setelah itu, ekstrak arsipnya.</p>
                     <pre class="language-bash"><code id="code1">tar xvf ventoy-*.tar.gz
@@ -139,19 +134,7 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });

@@ -87,12 +87,7 @@
                     <h1>Dampak <code>rel="noreferrer"</code> Tanpa <code>target="_blank"</code></h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Panduan santai ini akan menjelaskan tentang dampak privasi dan keamanan saat menggunakan atribut <code>rel="noreferrer"</code> pada link HTML tanpa <code>target="_blank"</code>.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <h2>Dampak yang Tetap Ada (Privasi)</h2>
                     <p>Jika Anda menggunakan <code>rel="noreferrer"</code> tetapi <strong>tidak</strong> menyertakan <code>target="_blank"</code>, efek privasi tetap berlaku. Artinya:</p>
                     <ul>
@@ -120,19 +115,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

@@ -95,12 +95,7 @@
                     <h1>Menggabungkan Berkas PDF dengan PDFtk</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Seringkali kita perlu menggabungkan beberapa file PDF menjadi satu dokumen tunggal. Dengan bantuan <code>PDFtk</code>, proses ini dapat dilakukan dengan cepat dan mudah langsung dari terminal.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
 
                     <h2>Langkah 1: Instalasi PDFtk</h2>
                     <p>Pastikan Anda sudah memasang paket <code>pdftk</code> di sistem Anda. Pada distribusi Linux modern seperti Ubuntu 22.04 ke atas, Anda mungkin perlu menginstal versi Java-nya.</p>
@@ -145,19 +140,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

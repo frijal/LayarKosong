@@ -86,12 +86,7 @@
                     <h1>Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Ini adalah catatan perjalanan Komunitas Ubuntu Jogja saat menghadiri acara GCOS (Gelar Cipta Open Source) di Jakarta, di mana komunitas ini menerima penghargaan sebagai Komunitas FOSS terbaik.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <p>Perjalanan dimulai pada Minggu sore dari Jogja menggunakan bus Rosalia Indah. Sesuai fasilitas, kami mendapatkan makan malam di Rumah Makan Lestari di Kebumen. Meskipun waktu di sana terbatas, kami tetap menyempatkan diri untuk meninggalkan jejak berupa stiker Ubuntu sebagai bagian dari sosialisasi kepada masyarakat.</p>
                     <p>Di Kebumen, kami juga bertemu singkat dengan perwakilan KPLI Kebumen dan memberikan kenang-kenangan berupa pin sebelum melanjutkan perjalanan ke Jakarta.</p>
                     <div class="gallery">
@@ -123,19 +118,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

@@ -100,12 +100,7 @@
                     <h1>Mengatasi Ubuntu yang Sering "Not Responding"</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Beberapa pengguna Ubuntu melaporkan masalah di mana sistem sering *freeze* atau "Not Responding". Salah satu penyebab umumnya adalah adanya driver VGA yang tidak sesuai atau driver lama yang masih tertinggal di sistem.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT4bXdx_j8zHalnxm0otIg5SxZiPJTDsU6pV4fuJ-G-XBocJ7ldYJ8B9XVs8FWchyphenhyphenr-fxEKQ7_DuZqdYrePjlCObBLHnnCLPyVF27s3rLCMV1dHX0RfxzmvAkwxidIYhESZgD_UrvpjU-P/s1600/ubuntu_rr.png" alt="Ubuntu Not Responding">
                     </figure>
@@ -148,19 +143,7 @@ sudo apt remove xserver-xorg-video-intel</code><button class="copy-btn" data-tar
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

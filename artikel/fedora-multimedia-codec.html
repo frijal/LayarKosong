@@ -32,7 +32,7 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://frijal.pages.dev/artikel/code-fedora-multimedia-codec.html" }
     }
     </script>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
     <style>
@@ -107,7 +107,7 @@
                     </div>
 
                     <p>Tutorial ini adalah catatan lawas untuk Fedora 16 dan 19, menunjukkan betapa mudahnya menambahkan kemampuan multimedia penuh ke sistem Anda hanya dengan beberapa perintah di terminal.</p>
-                    
+
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPSXcp3t_5nMZecJkwm8UQE8sCvOtZZW-JTKRPcuXs4_2j7cAt-ruti-sOPA2AxuX2b-NnH1xcwU6YsnhWrwRbA_kjvWl-gaEePYx4pId4Z3ixc9Ol6TwejVMHWAuHU46jPl4Yup_MePd_/s1600/poweredby.png" alt="Logo Fedora Project">
                     </figure>
@@ -128,6 +128,7 @@
 sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <p class="muted">Setelah selesai, Fedora Anda dijamin sudah bisa "bernyanyi dan menari" memainkan berbagai format media! 😉</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -140,7 +141,7 @@ sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target=
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
@@ -149,19 +150,7 @@ sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target=
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-
-        const lb = document.getElementById('lightbox');
+              const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {
             el.addEventListener('click', () => {

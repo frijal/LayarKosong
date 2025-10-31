@@ -126,7 +126,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 
   <p>
-    Kadang kita ingin proyek Node.js di GitHub Pages tetap bersih tanpa perlu konfirmasi manual saat melakukan pembersihan <em>dependencies</em> yang tidak terpakai.  
+    Kadang kita ingin proyek Node.js di GitHub Pages tetap bersih tanpa perlu konfirmasi manual saat melakukan pembersihan <em>dependencies</em> yang tidak terpakai.
     Di sinilah mode otomatis berguna: skrip berjalan sepenuhnya tanpa prompt dan cocok diintegrasikan ke workflow GitHub Actions.
   </p>
 
@@ -158,10 +158,10 @@ import fs from 'node:fs';
 
 (async () => {
   console.log('🚀 Memeriksa paket tidak terpakai...');
-  
+
   // FIX: Tambahkan objek kosong {} sebagai argumen kedua untuk 'options'
   const result = await depcheck(process.cwd(), {});
-  
+
   const unused = [...result.dependencies, ...result.devDependencies];
 
   if (unused.length === 0) {
@@ -227,15 +227,7 @@ jobs:
   </p>
 
   <div class="share">
-    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cleanup-auto.html&amp;text=Pembersihan%20Otomatis%20Dependencies%20Node.js%20di%20GitHub%20Pages" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter">
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cleanup-auto.html" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-    </a>
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://frijal.pages.dev/artikel/cleanup-auto.html" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
-    </a>
+    <div id="disqus_thread"></div>
   </div>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

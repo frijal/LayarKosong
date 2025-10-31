@@ -139,8 +139,8 @@
 <div id="iposbrowser"></div>
 
   <p>
-    Seri artikel ini menjelaskan bagaimana cara menjaga proyek <strong>GitHub Pages</strong> tetap bersih, ringan, dan efisien 
-    dengan melakukan pembersihan dependensi Node.js menggunakan dua pendekatan: interaktif dan otomatis penuh.  
+    Seri artikel ini menjelaskan bagaimana cara menjaga proyek <strong>GitHub Pages</strong> tetap bersih, ringan, dan efisien
+    dengan melakukan pembersihan dependensi Node.js menggunakan dua pendekatan: interaktif dan otomatis penuh.
     Cocok untuk kamu yang sering mengembangkan situs statis dengan workflow berbasis <code>package.json</code>.
   </p>
 
@@ -159,7 +159,7 @@
       <img loading="lazy" data-src="https://frijal.pages.dev/img/cleanup-auto.webp" alt="cleanup-auto.js otomatis">
       <h3>⚙️ cleanup-auto.js (Otomatis)</h3>
       <p>
-        Skrip non-interaktif yang langsung menghapus semua paket tak terpakai dan reinstall dependensi. 
+        Skrip non-interaktif yang langsung menghapus semua paket tak terpakai dan reinstall dependensi.
         Ideal untuk dijalankan di <strong>GitHub Actions</strong> tanpa campur tangan pengguna.
       </p>
       <a href="https://frijal.pages.dev/artikel/cleanup-auto.html">Pelajari Versi Otomatis →</a>
@@ -181,24 +181,10 @@
     Dengan dua alat ini, kamu bisa memastikan proyek Node.js untuk GitHub Pages tetap bersih dan cepat di-build.
     Gunakan versi interaktif saat bekerja secara lokal, dan versi otomatis di CI/CD agar workflow berjalan mulus tanpa repot konfigurasi ulang.
   </p>
-
-  <div class="share">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cleanup-series.html" target="_blank">📘</a>
-    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cleanup-series.html&text=Cleanup%20Series%20%E2%80%93%20Manajemen%20Dependensi%20Otomatis%20GitHub%20Pages" target="_blank">🐦</a>
-    <a href="https://api.whatsapp.com/send?text=Cleanup%20Series%20%E2%80%93%20Manajemen%20Dependensi%20Otomatis%20GitHub%20Pages%20https://frijal.pages.dev/artikel/cleanup-series.html" target="_blank">💬</a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/cleanup-series.html" target="_blank">💼</a>
-  </div>
-
-  <div id="fb-comments" class="fb-comments"
-       data-href="https://frijal.pages.dev/artikel/cleanup-series.html"
-       data-width="100%" data-numposts="5"></div>
-
+<div id="disqus_thread"></div>
   <footer>🄯 2025 frijal.pages.dev · Cleanup Series Documentation</footer>
 </main>
 
-<!-- Facebook SDK -->
-
-<!-- Lazy-load -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const lazyImages = document.querySelectorAll("img[loading='lazy']");
@@ -215,7 +201,6 @@
     lazyImages.forEach(img => observer.observe(img));
   });
 </script>
-
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

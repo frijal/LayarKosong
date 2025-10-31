@@ -91,12 +91,7 @@
                     <h1>Perbaiki Tangkapan Wi-Fi Realtek RTL8723BE di Ubuntu Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Jika sinyal Wi-Fi di laptop Anda yang menggunakan chip Realtek RTL8723BE terasa lemah di Linux, jangan khawatir. Solusinya cukup mudah: kita akan mengunduh dan menginstal driver yang sudah diperbaiki dari GitHub.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.png" alt="Logo Realtek">
                     </figure>
@@ -140,19 +135,7 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

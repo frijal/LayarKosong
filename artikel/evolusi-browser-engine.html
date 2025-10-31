@@ -7,7 +7,7 @@
     <meta name="description" content="Jelajahi sejarah singkat mesin browser modern! Lihat bagaimana KHTML melahirkan WebKit, yang kemudian menjadi dasar bagi Chromium dan akhirnya Blink. Timeline interaktif dan seru!">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="browser engine, KHTML, WebKit, Blink, Chromium, sejarah browser, teknologi web, HTML5">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
 
     <link rel="canonical" href="https://frijal.pages.dev/artikel/evolusi-browser-engine.html">
@@ -107,7 +107,7 @@
         .timeline-item.right {
             left: 50%;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -124,7 +124,7 @@
         .timeline-item.right::after {
             left: -16px;
         }
-        
+
         .timeline-item.left::before {
             content: " ";
             height: 0;
@@ -160,12 +160,12 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .content-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(233, 69, 96, 0.2);
         }
-        
+
         .content-box h2 {
             font-size: 1.5rem;
             color: var(--accent-color);
@@ -202,7 +202,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        
+
         .timeline-item.left .tooltip-info {
             left: 50%;
             transform: translateX(-50%);
@@ -212,7 +212,7 @@
             visibility: visible;
             opacity: 1;
         }
-        
+
         /* Footer & Extra Sections */
         .conclusion, .sharing, .comments {
             text-align: center;
@@ -226,7 +226,7 @@
              color: white;
              margin-bottom: 1rem;
         }
-        
+
         .conclusion p {
             max-width: 800px;
             margin: 0 auto;
@@ -246,13 +246,13 @@
         .fa-whatsapp:hover { color: #25D366; }
         .fa-linkedin:hover { color: #0A66C2; }
         .fa-telegram:hover { color: #0088cc; }
-        
+
         .fb-comments {
             background: white;
             border-radius: 8px;
             padding: 10px;
         }
-        
+
         /* Responsive layout - Mobile Friendly */
         @media screen and (max-width: 768px) {
             .header h1 { font-size: 2.2rem; }
@@ -278,7 +278,7 @@
             .timeline-item.left::after, .timeline-item.right::after {
                 left: 15px;
             }
-            
+
             .timeline-item.right {
                 left: 0%;
             }
@@ -292,7 +292,7 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-    
+
     <div class="container">
         <header class="header">
             <h1>Timeline Evolusi Mesin Browser 🌐</h1>
@@ -347,16 +347,8 @@
             <h2>📜 Kesimpulan Singkat</h2>
             <p>Jadi, ceritanya begini: dari <strong>KHTML</strong> yang sederhana, lahirlah <strong>WebKit</strong> yang dipoles Apple. Kemudian, Google membangun <strong>Chromium</strong> di atasnya, sebelum akhirnya menciptakan <strong>Blink</strong> yang kini mendominasi dunia web. Semua saling terhubung dan menunjukkan betapa kolaboratifnya dunia open-source!</p>
         </section>
-        
-        <section class="sharing">
-            <h3>Suka dengan info ini? Bagikan!</h3>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fevolusi-browser-engine.html" target="_blank" title="Bagikan ke Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fevolusi-browser-engine.html&text=Keren!+Timeline+evolusi+mesin+browser+dari+KHTML+sampai+Blink.+Wajib+tahu+nih!+&via=frijal" target="_blank" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://api.whatsapp.com/send?text=Keren!+Lihat+timeline+evolusi+mesin+browser+di+sini:+https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fevolusi-browser-engine.html" target="_blank" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fevolusi-browser-engine.html&title=Timeline+Evolusi+Browser+Engine&summary=Jelajahi+sejarah+singkat+mesin+browser+modern!+Lihat+bagaimana+KHTML+melahirkan+WebKit,+yang+kemudian+menjadi+dasar+bagi+Chromium+dan+akhirnya+Blink." target="_blank" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin"></i></a>
-                 <a href="https://t.me/share/url?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fevolusi-browser-engine.html&text=Keren!+Timeline+evolusi+mesin+browser+dari+KHTML+sampai+Blink" target="_blank" title="Bagikan ke Telegram"><i class="fab fa-telegram"></i></a>
-            </div>
+
+        <section><div id="disqus_thread"></div>
         </section>
     </div>
 

@@ -87,12 +87,7 @@
                     <h1>Ubuntu 25.10 Beta Dirilis dengan Kernel 6.17 dan GNOME 49</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Canonical telah merilis Ubuntu 25.10 "Questing Quokka" Beta. Edisi ini menandai langkah berani dengan menjadikan Wayland sebagai satu-satunya sesi desktop, memodernisasi aplikasi bawaan, dan memperkuat lapisan keamanan dengan enkripsi berbasis TPM.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOArWwQS6HpTl3b_IJ3gwIgNSUWWm5-9hZ-lRD8OLwFYoagDpinerazkMOFuNjub7RDSPCAuMWv9s1yWZMITIeYAg9jbB8j97DTarfmIi9BbgO6W_rYOCh8f8qlrhBoRhG9O3Wk4-KIxDDcRZNrmoX8fp-jWWcJB4OGyxRi2Ckj9ouQZzU24Teb3N5WgM/s1600/ubuntu2510-beta.jpg" alt="Poster Ubuntu 25.10 Beta"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwVd-72MJz6z0TIMIOqbE24fdqnoHT01QnmHO299zzGDU0i-DEfP-OiD4-U223Bbuj7JeT9VsTiqLTFyORhFDihQVi5RwPbIOp1KOVRV72BPSFdtvDjzWatemjiGp4_wh_v_jhlwCYwdbIPYmTc253tiE9BCafLnnLxtOJgk3mzCbgXM2P32OEiNQGPig/s1600/ubuntu2510-beta-desktop.jpg" alt="Tampilan desktop Ubuntu 25.10"></figure>
@@ -125,19 +120,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

@@ -92,12 +92,7 @@
                     <h1>Kisah Uqbah bin Nāfi‘ al-Fihrī</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Kisah seorang panglima yang hatinya selalu condong ke cahaya. Dari Mekah, Mesir, Qairawān, hingga tepi Atlantik, jejaknya menautkan futūhāt Islam dan menyalakan keberanian yang bertahan lintas zaman.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUrFqnMAD057iVpFN4aadb8uhQoQ9l305Itnmkf9qbGiNQzYIRr2YrvKJMXExuD0H9n-ebcHW0t1wu4T5KQwHuokdTzuBjoAde09gK-b6sH3QZlK_OvyP_zb7IlzjFuycqRlJcaj62LUmSX4frtYHTBKTYh8btUZ95P4N1R3xzYtWk5BcrMrbQZK2PpGU/s1600/Uqbah.jpg" alt="Uqbah bin Nāfi‘"></figure>
                         <figure><img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop" alt="Masjid Agung Qairawān"></figure>
@@ -133,19 +128,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });

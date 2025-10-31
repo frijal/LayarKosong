@@ -3,22 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Editor JSON Artikel Mingguan (Format Array)</title>
-
 <!-- Favicon -->
 <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
 <!-- Canonical -->
 <link rel="canonical" href="https://frijal.pages.dev/artikel/editor-json-artikel-mingguan.html">
-
 <!-- Meta SEO -->
 <meta name="description" content="Editor JSON Artikel Mingguan dalam format array: alat praktis untuk membuat, mengedit, dan memvalidasi daftar artikel mingguan berbasis JSON langsung dari browser.">
 <meta name="keywords" content="editor JSON, artikel mingguan, format array, JSON editor, web tool, data editor, Frijal Pages">
 <meta name="author" content="Frijal Pages">
 <meta name="robots" content="index, follow">
 <meta name="language" content="id">
-
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Editor JSON Artikel Mingguan (Format Array)">
@@ -26,18 +21,14 @@
 <meta property="og:url" content="https://frijal.pages.dev/artikel/editor-json-artikel-mingguan.html">
 <meta property="og:site_name" content="Frijal Pages">
 <meta property="og:image" content="https://frijal.pages.dev/assets/img/editor-json-artikel-mingguan.webp">
-
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Editor JSON Artikel Mingguan (Format Array)">
 <meta name="twitter:description" content="Kelola artikel mingguan berbasis JSON dengan editor praktis, langsung dari browser.">
 <meta name="twitter:image" content="https://frijal.pages.dev/assets/img/editor-json-artikel-mingguan.webp">
 <meta name="twitter:creator" content="@frijal">
-
 <!-- Theme Color -->
 <meta name="theme-color" content="#0ea5e9">
-
-
   <style>
     :root {
       --bg-light: #ffffff;
@@ -109,19 +100,17 @@
     <h1>Editor JSON Artikel Mingguan (Format Array)</h1>
 <div id="iposbrowser"></div>
     <p>Unggah file <code>artikel.json</code> dengan format kategori → array artikel, lalu potong per minggu berdasarkan tanggal.</p>
-    
+
     <input type="file" id="fileInput" accept=".json">
     <button onclick="processJSON()">Proses</button>
-    
+
     <textarea id="jsonInput" placeholder="Atau tempel JSON di sini..."></textarea>
-    
+
     <div class="output" id="output"></div>
     <div class="download-links" id="downloadLinks"></div>
   </div>
-
   <script>
     let jsonData = {};
-
     document.getElementById('fileInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -130,7 +119,6 @@
       };
       reader.readAsText(file);
     });
-
     function processJSON() {
       try {
         jsonData = JSON.parse(document.getElementById('jsonInput').value);
@@ -138,7 +126,6 @@
           alert("Format JSON harus berupa object kategori → array artikel.");
           return;
         }
-
         // Flatten semua artikel dari kategori
         const allArticles = [];
         Object.keys(jsonData).forEach(cat => {
@@ -154,7 +141,6 @@
             });
           });
         });
-
         // Group by week
         const grouped = {};
         allArticles.forEach(item => {
@@ -166,7 +152,6 @@
           if (!grouped[key]) grouped[key] = [];
           grouped[key].push(item);
         });
-
         // Render output
         let html = "";
         let links = "";
@@ -177,7 +162,6 @@
             html += `<li><strong>${a.judul}</strong> [${a.kategori}] - <a href="${a.url}" target="_blank">${a.url}</a></li>`;
           });
           html += "</ul>";
-
           // Buat link download JSON per minggu
           const blob = new Blob([JSON.stringify(grouped[week], null, 2)], {type: "application/json"});
           const url = URL.createObjectURL(blob);
@@ -190,7 +174,6 @@
         alert("Error parsing JSON: " + err.message);
       }
     }
-
     function getWeekNumber(d) {
       d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
       const dayNum = d.getUTCDay() || 7;
@@ -204,4 +187,3 @@
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 </body>
 </html>
-

@@ -148,12 +148,7 @@
 <div id="iposbrowser"></div>
                     <p class="lead">Sebuah catatan kilas balik dari 4 Oktober 2010, tentang momen spesial ketika Kementerian Riset dan Teknologi bersama Pemda Kutai Kartanegara menggelar acara sosialisasi pemanfaatan perangkat lunak legal dan Open Source Software (OSS).</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
 
                     <p>Acara ini dibuka langsung oleh Wakil Bupati Kutai Kartanegara dan tidak hanya berhenti pada sosialisasi. Kegiatan ini dilanjutkan dengan <strong>Migrasi dan Pelatihan OSS</strong> yang dipandu oleh tim teknis dari Makara UI, Komunitas OSS - KPLI Balikpapan, dan POSS Universitas Mulawarman Samarinda. Mereka turun tangan untuk memandu seluruh SKPD agar mahir menggunakan perangkat lunak legal ini.</p>
                     <p>Pesertanya pun beragam, mulai dari Kepala SKPD, guru, mahasiswa, hingga komunitas OSS lokal. Narasumber yang hadir juga bukan nama sembarangan, termasuk pakar IT ternama, <strong>Onno Purbo</strong>.</p>
@@ -186,19 +181,7 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
         
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

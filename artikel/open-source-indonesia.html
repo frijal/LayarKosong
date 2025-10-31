@@ -92,12 +92,7 @@
                     <h1>Open Source vs Gratis: Paham Lisensi, Maksimalkan Peluang</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Di Indonesia, banyak yang membutuhkan aplikasi "gratis," tetapi belum tentu paham bedanya dengan "open source." Mari kita urai perbedaannya, kenali jenis lisensi, dan lihat bagaimana open source bisa menjadi peluang usaha yang etis.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeAwhu8yPzBNy3XsSIosZELBrNyaCZQ_jdm5hr6wcJbBUWBgcg46WEDyaqb3rd19ANTZi0yp5CaO4pxJRM0jTuUbs4QsIEoo-XqeZ7JNkrzYBj300dEDtgTFbatUbAxNcy9OYpJGMRpJjC/s1600/wpid-open_source_windows.jpg" alt="Ilustrasi open source di platform Windows">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Open source software (OSS) bisa hidup berdampingan di platform tertutup.</figcaption>
@@ -150,19 +145,7 @@ Changes:
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

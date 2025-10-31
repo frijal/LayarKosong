@@ -86,12 +86,7 @@
                     <h1>Dukungan Microsoft Exchange Hadir di Thunderbird pada Oktober 2025</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Tim Thunderbird telah mengonfirmasi bahwa dukungan email Exchange akan secara resmi diperkenalkan di versi 144. Ini adalah titik balik yang membuka pintu bagi klien email open-source ini ke segmen bisnis yang lebih luas.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjq3fZWSfUH3WElJYSwVA8dSTWI_ceYZQK2NiC50pt5rgXOG4LlqlbJf9Bg0Q0lO2NBUAt-BpSkjL2MmBZ5sUB7itEBtXf4RmtEN3F8j2GtJNKTEu2TnzsXlWE6M1RfNiTHFckZ9RPbAWezhGtVz8uDOITNXDGALfQJBPI8aH1mU1CMm6nyIwyoRbc5qdU/s1600/thunderbird-exchange.jpg" alt="Thunderbird menambah dukungan Exchange">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Thunderbird 144 + Exchange: kolaborasi yang telah lama ditunggu.</figcaption>
@@ -130,19 +125,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

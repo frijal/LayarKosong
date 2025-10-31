@@ -196,18 +196,8 @@ footer {
   <p>Sangat membantu ketika kamu sering melakukan pembersihan otomatis sebelum build ulang proyek.</p>
 
   <section>
-    <h2>📤 Jaga Data Pribadi Tetap Aman</h2>
-    <div class="social-share">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cleanup-guide.html" style="background:#1877F2" title="Bagikan ke Facebook" target="_blank">📘</a>
-      <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cleanup-guide.html&text=🪄+Petunjuk+Penggunaan+Cleanup+Script" style="background:#000" title="Bagikan ke X/Twitter" target="_blank">🐦</a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://frijal.pages.dev/artikel/cleanup-guide.html" style="background:#0A66C2" title="Bagikan ke LinkedIn" target="_blank">💼</a>
-      <a href="https://api.whatsapp.com/send?text=🪄+Petunjuk+Penggunaan+Cleanup+Script+https://frijal.pages.dev/artikel/cleanup-guide.html" style="background:#25D366" title="Bagikan ke WhatsApp" target="_blank">💬</a>
-      <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/cleanup-guide.html&text=🪄+Petunjuk+Penggunaan+Cleanup+Script" style="background:#0088cc" title="Bagikan ke Telegram" target="_blank">✈️</a>
-    </div>
+  <div id="disqus_thread"></div>
   </section>
-
-  
-  
 
   <footer>
     🄯 2025 frijal.pages.dev · Panduan Penggunaan Cleanup Script
@@ -245,18 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }));
   lightbox.addEventListener("click", () => lightbox.classList.remove("visible"));
 });
-
-// Facebook SDK
-window.fbAsyncInit = function() {
-  FB.init({appId: "1471267430691023", xfbml: true, version: "v21.0"});
-};
-(function(d, s, id) {
-  let js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/id_ID/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, "script", "facebook-jssdk"));
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

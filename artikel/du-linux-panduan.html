@@ -38,7 +38,7 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://frijal.pages.dev/artikel/du-linux-panduan.html" }
     }
     </script>
-    
+
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
@@ -109,12 +109,6 @@
 
                     <p class="lead">Di Linux, untuk mengetahui berapa banyak ruang yang dipakai file atau folder, kita tidak bisa sekadar klik kanan. Untungnya ada <code>du</code> (disk usage), tool ajaib untuk memeriksa ukuran file/direktori lewat command line.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                    </div>
-                    
                     <h2>Opsi Paling Populer</h2>
                     <p>Berikut adalah beberapa kombinasi opsi <code>du</code> yang paling sering digunakan:</p>
                     <ul>
@@ -129,12 +123,12 @@
 
                     <h3>Cek Ukuran Setiap Folder di Dalamnya</h3>
                     <pre class="language-bash"><code id="code2">du -sh *</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-                    
+
                     <figure>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Tux Mascot">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Tux, teman setia pengguna terminal!</figcaption>
                     </figure>
-                    
+
                     <h2>Keterbatasan: Masalah Hard Link</h2>
                     <p>Perintah <code>du</code> standar dapat memberikan hasil yang kurang akurat jika sistem file Anda mengandung <strong>hard link</strong>. Hard link memungkinkan satu file untuk muncul di banyak lokasi tanpa memakan ruang ekstra. Akibatnya, <code>du</code> bisa menghitung ukuran file yang sama berulang kali.</p>
 
@@ -162,11 +156,12 @@ foreach my $fn (@todo) {
 }
 print "$total_blocks blocks\n";
 print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-target="code3">Salin</button></pre>
-                    
+
                     <p>Simpan skrip di atas sebagai file (misalnya `du_accurate.pl`), berikan izin eksekusi (`chmod +x du_accurate.pl`), lalu jalankan di direktori target. Hasilnya akan jauh lebih akurat.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
-        </main>
+                    </main>
 
         <footer class="site">
             <small>🄯 2025 frijal.pages.dev · Semoga disk Anda tetap lega!</small>
@@ -177,7 +172,7 @@ print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-ta
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #394a54; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -186,18 +181,6 @@ print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-ta
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');

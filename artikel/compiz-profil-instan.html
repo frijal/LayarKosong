@@ -98,19 +98,13 @@
 
                     <p class="lead">Saat sosialisasi atau demo, mengatur efek Compiz secara manual bisa memakan waktu. Dengan profil siap pakai, semua efek andalan bisa aktif dalam sekejap. Cepat, konsisten, dan memikat!</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                    </div>
-
-                    <h2>3 Langkah Kilat Impor Profil</h2>
+                                       <h2>3 Langkah Kilat Impor Profil</h2>
                     <ol>
                         <li><strong>Buka CCSM:</strong> Cari "CompizConfig Settings Manager" di menu atau jalankan <code>ccsm</code> di terminal.</li>
                         <li><strong>Masuk ke Preference:</strong> Di jendela CCSM, klik tombol "Preferences" di bagian kiri bawah.</li>
                         <li><strong>Impor Profil:</strong> Pilih tab "Profile", klik tombol "Import", lalu cari dan pilih file <code>*.profile</code> yang sudah Anda siapkan.</li>
                     </ol>
-                    
+
                     <h2>Galeri: Proses Impor</h2>
                     <div class="gallery">
                         <figure>
@@ -130,7 +124,7 @@
                     <h2>Unduh Paket Profil</h2>
                     <p>Tersedia tiga variasi profil Compiz siap pakai yang bisa Anda unduh dan coba. Simpan di folder khusus agar mudah ditemukan saat proses impor.</p>
                     <p><a href="http://www.box.net/shared/f8vggdezu5" target="_blank" rel="noopener"><strong>Unduh Profil Compiz di Sini</strong></a></p>
-                    
+
                     <h2>Catatan Tambahan</h2>
                     <ul>
                         <li>Pastikan driver grafis sudah terinstal dengan benar agar efek Compiz berjalan mulus.</li>
@@ -138,6 +132,7 @@
                         <li>Simpan profil favorit Anda untuk digunakan kembali di acara atau demo berikutnya.</li>
                     </ul>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -155,18 +150,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');

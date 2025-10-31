@@ -95,12 +95,7 @@
                     <h1>Mengganti Kata dalam Banyak Dokumen dengan Perl</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Terkadang kita perlu merevisi dokumen dengan mengganti kata tertentu di banyak file sekaligus. Jika dilakukan manual, tentu sangat melelahkan. Untungnya, Perl menyediakan solusi cepat dengan satu baris perintah.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmO8NTjyL75ML_31USiYa3l0wszCYNRszJg6FHIfp5qT0LallW8xHyskyaf0zZ2oIn4BcT7J8HhR6Chw0UomjirShOwtX1xwN7wajrd5mG_xkJGBGGQ54jSNatKcU_374fZPIce9NOyXjp/s1600/perl_logo.jpg" alt="Logo Perl">
                     </figure>
@@ -135,19 +130,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

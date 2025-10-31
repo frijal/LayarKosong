@@ -92,12 +92,7 @@
                     <h1>Manajemen Dokumen di Lingkungan Multi-Distro</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Bagi Anda yang hobi memasang banyak distro Linux dalam satu komputer (multi-boot), seringkali muncul masalah duplikasi dokumen. Solusinya adalah dengan membuat partisi data terpusat dan menggunakan symbolic link.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <p>Permasalahan utamanya adalah setiap distro baru memiliki direktori <code>/home</code> sendiri. Jika Anda menyimpan dokumen di sana, file-file tersebut tidak akan bisa diakses dari distro lain, yang berujung pada duplikasi file, pemborosan ruang disk, dan kebingungan versi dokumen.</p>
                     <h2>Langkah 1: Buat Partisi Data Terpusat</h2>
                     <p>Gunakan GParted atau alat partisi lainnya untuk membuat satu partisi besar yang akan berfungsi sebagai "gudang" penyimpanan data untuk semua sistem operasi Anda. Format partisi ini dengan filesystem yang kompatibel dengan semua OS Anda (misalnya, NTFS jika Anda juga menggunakan Windows, atau EXT4 jika hanya Linux).</p>
@@ -132,19 +127,7 @@ ln -s /media/data/Documents ~/Documents</code><button class="copy-btn" data-targ
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

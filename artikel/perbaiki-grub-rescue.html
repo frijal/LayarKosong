@@ -99,12 +99,7 @@
                     <h1>Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Saat konfigurasi partisi salah atau setelah menghapus Windows dari dual-boot, Anda mungkin akan disambut dengan layar `grub rescue>`. Jangan panik! Berikut adalah panduan untuk memperbaikinya langsung dari prompt tersebut.</p>
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkDL4vht__Sph6vdoIQAkW_R8nyo7jxNm34uZncj4Y_ZqcZDPuZmnLpcATemu6ZBtp6utOQ66ySSvKOf2dGu3_l2lX1CxHCvPnFawcZcw8p1lbWmWVkx80M-mI4kq-h5SqkFueS82AeeRZ/s800/grub-rescue.jpg" alt="Error GRUB Rescue">
                     </figure>
@@ -153,19 +148,7 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code4">Sa
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
 
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

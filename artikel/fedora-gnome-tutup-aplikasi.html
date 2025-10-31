@@ -6,12 +6,12 @@
     <title>Fedora + GNOME: Menutup Semua Aplikasi & Tips Screencast FFMPEG</title>
     <meta name="description" content="Demo menutup semua aplikasi di Fedora GNOME, embed video YouTube, snippet FFMPEG dengan tombol salin, serta info perangkat dan komentar." />
     <link rel="canonical" href="https://frijal.pages.dev/artikel/fedora-gnome-tutup-aplikasi.html" />
-    
+
     <link rel="icon" href="https://frijal.pages.dev/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="https://frijal.pages.dev/favicon.svg" />
     <link rel="apple-touch-icon" href="https://frijal.pages.dev/icon.png" />
     <meta name="theme-color" content="#06b6d4" />
-    
+
     <meta name="date" content="2025-09-28">
     <meta property="og:image" content="https://frijal.pages.dev/img/fedora-gnome-tutup-aplikasi.webp">
     <meta property="og:image:alt" content="Fedora + GNOME: Menutup Semua Aplikasi & Tips Screencast FFMPEG">
@@ -19,7 +19,7 @@
     <meta name="twitter:image" content="https://frijal.pages.dev/img/fedora-gnome-tutup-aplikasi.webp">
     <meta itemprop="image" content="https://frijal.pages.dev/img/fedora-gnome-tutup-aplikasi.webp">
     <meta property="article:published_time" content="2025-09-18T11:00:00+08:00">
-    
+
     <style>
         :root {
             --ink: #e6f1ff; --muted: #b7c4d9;
@@ -201,14 +201,7 @@
                 </ul>
                 <p>Kini GNOME menjadi desktop default di banyak distribusi besar seperti Fedora, Ubuntu (versi terbaru), dan openSUSE, menjadikannya salah satu standar de facto lingkungan desktop Linux modern.</p>
             </section>
-            <section class="card">
-                <h2>Jaga Data Pribadi Tetap Aman</h2>
-                <div class="share">
-                    <a id="share-fb" class="fb" target="_blank" rel="noopener noreferrer">Facebook</a>
-                    <a id="share-wa" class="wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    <a id="share-tw" class="tw" target="_blank" rel="noopener noreferrer">Twitter</a>
-                    <a id="share-tg" class="tg" target="_blank" rel="noopener noreferrer">Telegram</a>
-                </div>
+            <section><div id="disqus_thread"></div>
             </section>
         </div>
     </main>
@@ -223,22 +216,7 @@
                 navigator.clipboard.writeText(c).then(() => alert("Kode disalin!"));
             }
 
-            // Tombol share
-            const u = encodeURIComponent(location.href);
-            const t = encodeURIComponent(document.title);
-            document.getElementById("share-fb").href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
-            document.getElementById("share-wa").href = `https://wa.me/?text=${t}%20${u}`;
-            document.getElementById("share-tw").href = `https://twitter.com/intent/tweet?url=${u}&text=${t}`;
-            document.getElementById("share-tg").href = `https://t.me/share/url?url=${u}&text=${t}`;
-            
-            // Facebook SDK
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+
         });
     </script>
 

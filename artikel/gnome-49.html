@@ -102,12 +102,7 @@
 
                     <p class="lead">Enam bulan setelah versi 48, GNOME 49 hadir dengan fokus pada pengalaman yang lebih mulus, tampilan elegan, dan fitur-fitur yang relevan untuk pengguna desktop Linux modern.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
+                    
 
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbvzz-OwS4HYUs9S6IKtLgZFCQGJTKdNgll5JtVAiXUOm5NAeixlJxpzMFsCma4ZfWTVDdrBwVaqzse159QeLEgfp8Wor9_Q6YSenkQ01k3DXdr49lF6jY_n-4eP0RcYbOc74Q0wmFdOF2lKIVKbN55-BGqKrxBBQzmmr1tjo9ikV9LB1n7Q9_c2Yvg4k/s1600/gnome49.jpg" alt="Tampilan utama GNOME 49"></figure>
@@ -146,19 +141,7 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
+        
         
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));

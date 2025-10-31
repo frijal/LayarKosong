@@ -7,20 +7,17 @@
 <meta name="description" content="Panduan memperbaiki error Git 'cannot run ssh: No such file or directory' di Slackware Linux.">
 <link rel="canonical" href="https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html">
 <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Perbaiki Git SSH Error di Slackware Linux">
 <meta property="og:description" content="Solusi Git SSH di Slackware menggunakan pkgtool, slackpkg, dan verifikasi manual OpenSSH.">
 <meta property="og:url" content="https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html">
 <meta property="og:image" content="https://frijal.pages.dev/img/fix-git-ssh-slackware.webp">
-
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Perbaiki Git SSH Error di Slackware Linux">
 <meta name="twitter:description" content="Langkah mudah memperbaiki Git SSH error di Slackware menggunakan pkgtool dan slackpkg.">
 <meta name="twitter:image" content="https://frijal.pages.dev/img/fix-git-ssh-slackware.webp">
-
   <style>
     body {
       margin: 0;
@@ -86,7 +83,6 @@
       body { font-size: 16px; }
       main { padding: 1.5rem 1rem; }
     }
-
     /* Lightbox effect */
     #lightbox {
       position: fixed;
@@ -102,76 +98,60 @@
       max-height: 90%;
     }
     #lightbox:target { display: flex; }
-
   </style>
 <meta property="og:image:alt" content="Perbaiki “cannot run ssh” di Git — Slackware Linux">
   <meta itemprop="image" content="https://frijal.pages.dev/img/fix-git-ssh-slackware.webp">
-
     <meta property="article:published_time" content="2025-10-12T04:53:51.214+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
 <header>
   <h1>🐧 Panduan Perbaikan Git SSH Error di Slackware</h1>
 <div id="iposbrowser"></div>
-
   <p>Solusi untuk pesan: <code>error: cannot run ssh: No such file or directory</code></p>
 </header>
-
 <main>
-
 <section id="penjelasan">
 <h2>🧩 Kenapa Error Ini Terjadi</h2>
 <p>
-Git tidak bisa menemukan executable <code>ssh</code> di sistem kamu.  
+Git tidak bisa menemukan executable <code>ssh</code> di sistem kamu.
 Biasanya disebabkan karena <b>OpenSSH</b> belum diinstal atau PATH belum mengarah ke <code>/usr/bin</code>.
 </p>
 </section>
-
 <section id="langkah">
 <h2>⚙️ Langkah-Langkah Perbaikan</h2>
-
 <h3>1️⃣ Cek apakah OpenSSH sudah ada</h3>
 <pre><code>ls /var/log/packages | grep openssh</code></pre>
 <p>
 Jika tidak ada hasil, berarti paket <b>openssh</b> belum terinstal.
 </p>
-
 <h3>2️⃣ Instal OpenSSH</h3>
 <p>
 Gunakan <code>slackpkg</code> (jika sudah dikonfigurasi):</p>
 <pre><code>sudo slackpkg install openssh</code></pre>
-
 <p>Atau jika kamu menggunakan image ISO / DVD Slackware, instal manual dengan:</p>
 <pre><code>sudo installpkg /mnt/cdrom/slackware/n/openssh-*.txz</code></pre>
-
 <h3>3️⃣ Cek keberadaan biner SSH</h3>
 <pre><code>which ssh</code></pre>
 <p>Hasil yang benar:</p>
 <pre><code>/usr/bin/ssh</code></pre>
-
 <h3>4️⃣ Tes versi SSH</h3>
 <pre><code>ssh -V</code></pre>
 <p>
-Harus menampilkan seperti:  
+Harus menampilkan seperti:
 <code>OpenSSH_9.8p1, OpenSSL 3.3.1 ...</code>
 </p>
-
 <h3>5️⃣ Tes koneksi Git SSH (opsional)</h3>
 <pre><code>ssh -T git@github.com</code></pre>
 <p>
 Kalau muncul prompt atau pesan autentikasi, artinya SSH sudah berfungsi normal.
 </p>
-
 </section>
-
 <section id="script">
 <h2>💻 Script Otomatis (opsional)</h2>
 <p>
 Kamu bisa buat script kecil seperti ini untuk mengecek dan memperbaiki otomatis:
 </p>
-
 <pre><code>#!/bin/bash
 echo "🔍 Memeriksa OpenSSH di Slackware..."
 if ! ls /var/log/packages | grep -q openssh; then
@@ -180,7 +160,6 @@ if ! ls /var/log/packages | grep -q openssh; then
 else
   echo "✅ OpenSSH sudah terinstal."
 fi
-
 if ! command -v ssh >/dev/null; then
   echo "⚠️  ssh tidak ditemukan di PATH. Pastikan /usr/bin ada di PATH kamu."
 else
@@ -189,22 +168,20 @@ else
 fi
 </code></pre>
 </section>
-
 <section id="catatan">
 <h2>💡 Catatan Tambahan</h2>
 <ul>
   <li>Pastikan file <code>/etc/ssh/ssh_config</code> tidak rusak atau kosong.</li>
-  <li>Jika menggunakan Slackware minimal, tambahkan PATH:  
+  <li>Jika menggunakan Slackware minimal, tambahkan PATH:
     <code>export PATH=/usr/bin:$PATH</code></li>
   <li>Gunakan <code>su -</code> daripada hanya <code>su</code> agar environment login dimuat penuh.</li>
 </ul>
 </section>
- 
+
   <!-- Lightbox -->
   <div id="lightbox">
     <img id="lightbox-img" src="" alt="">
   </div>
-
   <script>
     document.querySelectorAll('.separator a').forEach(link => {
       link.addEventListener('click', e => {
@@ -218,32 +195,16 @@ fi
       });
     });
   </script>
-
   <div class="share">
-    <h3>Jaga Data Pribadi Tetap Aman 🔗</h3>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html" target="_blank" title="Bagikan di Facebook">📘</a>
-    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html&text=Solusi%20Error%20Git%20'cannot%20run%20ssh'%20di%20Fedora%20RHEL%20CentOS" target="_blank" title="Tweet">🐦</a>
-    <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html" target="_blank" title="Bagikan di Telegram">💬</a>
-    <a href="https://www.reddit.com/submit?url=https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html" target="_blank" title="Bagikan di Reddit">👽</a>
+<div id="disqus_thread"></div>
   </div>
-
   <div id="fb-comments" class="fb-comments" data-href="https://frijal.pages.dev/artikel/fix-git-ssh-slackware.html" data-width="100%" data-numposts="5"></div>
-
 </main>
-
 <footer>
   <p>🄯 2025 Jaga Data Pribadi Tetap Aman Linux & DevOps</p>
 </footer>
-
-<!-- Facebook SDK (lazy load) -->
-
-
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>

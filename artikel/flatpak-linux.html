@@ -144,13 +144,8 @@
             <h2>🎯 Kesimpulan</h2>
             <p>Flatpak bikin instalasi aplikasi di Linux makin praktis dan universal. Dengan <strong>Flathub</strong>, kamu bisa dapat ribuan aplikasi yang selalu <em>up-to-date</em>. Ditambah lagi, kehadiran <strong>Flatseal</strong> membuat pengaturan izin keamanan menjadi semudah klik-klik saja.</p>
         </section>
-        <div class="share-bar">
-            <a href="#" id="share-wa" title="Bagikan ke WhatsApp" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" id="share-tw" title="Bagikan ke Twitter/X" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" id="share-fb" title="Bagikan ke Facebook" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" id="share-tg" title="Bagikan ke Telegram" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
-        </div>
-        <div id="fb-comments-container">
+        
+        
             
             
         </div>
@@ -198,18 +193,7 @@
             
             setupGallery();
 
-            const shareUrl = encodeURIComponent(location.href);
-            const shareText = encodeURIComponent(document.title);
-            const shareLinks = {
-                "share-wa": `https://wa.me/?text=${shareText}%20${shareUrl}`,
-                "share-tw": `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`,
-                "share-fb": `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-                "share-tg": `https://t.me/share/url?url=${shareUrl}&text=${shareText}`
-            };
-            for (const id in shareLinks) {
-                const elem = document.getElementById(id);
-                if(elem) elem.href = shareLinks[id];
-            }
+            
         });
     </script>
 

@@ -7,9 +7,9 @@
     <meta name="description" content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.">
     <meta name="keywords" content="alternatif software, open source, gratis, tabel software, perbandingan software, GIMP, Inkscape, LibreOffice, Blender, free software">
     <meta name="author" content="Frijal">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/artikel/alternatif-software-gratis-tabel.html">
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
 
     <meta property="og:title" content="Daftar Lengkap Alternatif Software Open Source Gratis (Tabel)">
@@ -18,7 +18,7 @@
     <meta property="og:url" content="https://frijal.pages.dev/artikel/alternatif-software-gratis-tabel.html">
     <meta property="og:image" content="https://i.ibb.co/6yqJc3f/open-source-hero.jpg">
     <meta property="og:site_name" content="Frijal's Github Page">
-    
+
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Daftar Lengkap Alternatif Software Open Source Gratis (Tabel)">
@@ -78,7 +78,7 @@
             margin-bottom: 1rem;
             color: var(--accent-color);
         }
-        
+
         h2 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
@@ -94,7 +94,7 @@
             max-width: 700px;
             margin: 0 auto;
         }
-        
+
         a {
             color: var(--accent-color);
             text-decoration: none;
@@ -105,7 +105,7 @@
             color: #ffffff;
             text-decoration: underline;
         }
-        
+
         strong {
             color: #ffffff;
         }
@@ -115,7 +115,7 @@
             overflow-x: auto; /* Penting untuk responsif di mobile */
             -webkit-overflow-scrolling: touch;
         }
-        
+
         .software-table {
             width: 100%;
             border-collapse: collapse;
@@ -150,7 +150,7 @@
         .software-table td:nth-child(3) a {
             word-break: break-all;
         }
-        
+
         /* Styling untuk bagian lainnya tetap sama */
 
         /* Galeri Foto */
@@ -213,7 +213,7 @@
             user-select: none;
             transition: color 0.3s ease;
         }
-        
+
         .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
             color: var(--accent-color);
         }
@@ -222,7 +222,7 @@
         .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
-        
+
         /* Ikon Berbagi */
         .share-buttons {
             display: flex;
@@ -239,7 +239,7 @@
             transform: scale(1.2);
             color: #ffffff;
         }
-        
+
         /* Footer */
         footer {
             text-align: center;
@@ -248,7 +248,7 @@
             border-top: 1px solid var(--border-color);
             color: var(--secondary-text-color);
         }
-        
+
         /* Media Queries untuk Responsif */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
@@ -266,7 +266,7 @@
 </head>
 <body>
 
-    
+
     <div class="container">
         <header>
             <h1>📋 Alternatif Software Open Source: Gratis, Legal, dan Keren!</h1>
@@ -286,18 +286,8 @@
             <a class="lightbox-prev">&#10094;</a>
             <a class="lightbox-next">&#10095;</a>
         </div>
-        
-        <section class="share-section">
-            <h2>Suka Artikel Ini? Bagikan, dong!</h2>
-            <div class="share-buttons" id="share-buttons">
-                </div>
+              <section><div id="disqus_thread"></div>
         </section>
-
-        <section class="comments-section">
-            <h2>Jaga Data Pribadi Tetap Aman</h2>
-            
-        </section>
-
     </div>
 
     <footer>
@@ -306,7 +296,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             // --- Data Software ---
             const softwareDataRaw = `
                 3D Home Architect | Sweet Home 3D | http://sweethome3d.sourceforge.net/index.html
@@ -599,13 +589,13 @@
             function setupLightbox() {
                 const lightbox = document.getElementById('lightbox');
                 if (!lightbox) return;
-                
+
                 const lightboxImg = document.getElementById('lightbox-img');
                 const galleryImages = document.querySelectorAll('.gallery-grid img');
                 const closeBtn = document.querySelector('.lightbox-close');
                 const prevBtn = document.querySelector('.lightbox-prev');
                 const nextBtn = document.querySelector('.lightbox-next');
-                
+
                 let currentIndex;
                 const imageSources = Array.from(galleryImages).map(img => img.src);
 
@@ -629,10 +619,10 @@
                         lightbox.classList.remove('active');
                     }
                 });
-                
+
                 prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
                 nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
-                
+
                 document.addEventListener('keydown', (e) => {
                     if (lightbox.classList.contains('active')) {
                         if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
@@ -641,60 +631,17 @@
                     }
                 });
             }
-
-            // --- Fungsi untuk Tombol Share (tidak berubah) ---
-            function setupShareButtons() {
-                const container = document.getElementById('share-buttons');
-                if (!container) return;
-                
-                const url = encodeURIComponent('https://frijal.pages.dev/artikel/alternatif-software-gratis-tabel.html');
-                const title = encodeURIComponent(document.title);
-                const via = 'frijal';
-                
-                const platforms = {
-                    twitter: {
-                        icon: 'fab fa-twitter',
-                        url: `https://twitter.com/intent/tweet?url=${url}&text=${title}&via=${via}`
-                    },
-                    facebook: {
-                        icon: 'fab fa-facebook-f',
-                        url: `https://www.facebook.com/sharer/sharer.php?u=${url}`
-                    },
-                    whatsapp: {
-                        icon: 'fab fa-whatsapp',
-                        url: `https://api.whatsapp.com/send?text=${title}%20${url}`
-                    },
-                    linkedin: {
-                        icon: 'fab fa-linkedin-in',
-                        url: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`
-                    },
-                    telegram: {
-                        icon: 'fab fa-telegram-plane',
-                        url: `https://t.me/share/url?url=${url}&text=${title}`
-                    }
-                };
-                
-                let html = '';
-                for (const platform in platforms) {
-                    html += `<a href="${platforms[platform].url}" target="_blank" rel="noopener noreferrer" class="share-btn" title="Bagikan ke ${platform}"><i class="${platforms[platform].icon}"></i></a>`;
-                }
-                container.innerHTML = html;
-            }
-
             // Jalankan semua fungsi
             renderSoftwareTable();
             setupLightbox();
-            setupShareButtons();
         });
     </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
 
 </body>
 </html>
