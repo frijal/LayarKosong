@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengatasi PARU Gagal Update dan Upgrade di CachyOS</title>
-    
+
     <meta name="description" content="Panduan santai dan langkah-langkah terstruktur untuk mengatasi error PARU (pacman) saat update dan upgrade di CachyOS, termasuk masalah PGP Key dan paket korup.">
     <meta name="keywords" content="CachyOS, PARU, Pacman, Gagal Update, Fix, Error, Linux, Arch, PGP Key">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html">
-    
+
     <meta property="og:title" content="SOLUSI! Mengatasi PARU Gagal Update dan Upgrade di CachyOS">
     <meta property="og:description" content="Yuk, bongkar tuntas masalah update PARU di CachyOS. Dijamin berhasil!">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html">
     <meta property="og:image" content="https://frijal.pages.dev/img/cachyos-paru-gagal-update.webp"> <meta property="og:site_name" content="Frijal's Articles">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@frijal"> <meta name="twitter:title" content="Fix PARU CachyOS Error">
     <meta name="twitter:description" content="Cara paling ampuh mengatasi PARU yang rewel saat update.">
@@ -96,7 +96,7 @@
         li {
             margin-bottom: 5px;
         }
-        
+
         /* USER INFO CARD */
         #user-info {
             background-color: var(--color-card-bg);
@@ -108,7 +108,7 @@
         #user-info p {
             margin-bottom: 5px;
         }
-        
+
         /* SHARING ICONS */
         .social-share {
             text-align: center;
@@ -159,7 +159,7 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.95);
-            display: grid; 
+            display: grid;
             place-items: center;
         }
         .lightbox-content {
@@ -172,7 +172,7 @@
         .lightbox-content img {
             width: 100%;
             height: auto;
-            border-radius: 0; 
+            border-radius: 0;
             border: none;
         }
         .close-btn {
@@ -217,7 +217,7 @@
             padding: var(--padding-base);
             border-radius: 8px;
         }
-        
+
         /* MEDIA QUERIES (Mobile-Friendly) */
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
@@ -237,8 +237,8 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-    
-    
+
+
     <header>
         <h1><i class="fas fa-exclamation-triangle"></i> PARU GAGAL?! Begini Cara Ampuh Mengatasinya di CachyOS</h1>
 <div id="iposbrowser"></div>
@@ -282,16 +282,16 @@
 
                 <h3>B. Bersihkan dan Isi Ulang Kunci</h3>
                 <p>Jika cara di atas masih gagal, kita lakukan reset dan populasi kunci secara menyeluruh:</p>
-                <pre><code># 1. Hapus cache kunci yang lama; 
+                <pre><code># 1. Hapus cache kunci yang lama;
 sudo rm -r /etc/pacman.d/gnupg
 <br>
-# 2. Inisiasi ulang GPG; 
+# 2. Inisiasi ulang GPG;
 sudo pacman-key --init
 <br>
-# 3. Isi ulang (populate) kunci resmi dari Arch dan CachyOS; 
+# 3. Isi ulang (populate) kunci resmi dari Arch dan CachyOS;
 sudo pacman-key --populate archlinux cachyos
 <br>
-# 4. Refresh semua kunci (pastikan port GPG tidak diblokir); 
+# 4. Refresh semua kunci (pastikan port GPG tidak diblokir);
 sudo pacman-key --refresh-keys
 </code></pre>
                 <p>Setelah langkah ini, coba jalankan kembali proses update dengan `paru -Syu`.</p>
@@ -330,16 +330,9 @@ sudo pacman -Sc
                     <li>Pastikan paket dasar seperti `base-devel` sudah terinstal: <pre><code>sudo pacman -S base-devel</code></pre></li>
                 </ul>
             </section>
-            
-            <section class="social-share">
-                <p>Artikel ini bermanfaat? Yuk, bagikan ke teman CachyOS lainnya:</p>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html" target="_blank" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html&text=Fix%20Gagal%20Update%20PARU%20CachyOS%20Ampuh!" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://wa.me/?text=Cara%20mengatasi%20PARU%20gagal%20update%20di%20CachyOS%3A%20https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </section>                  
-            <section id="fb-comments-container">
-                <h2><i class="far fa-comment-dots"></i> Pelan Kiri</h2>
-                
+
+            <section><div id="disqus_thread"></div>
+
             </section>
 
         </article>

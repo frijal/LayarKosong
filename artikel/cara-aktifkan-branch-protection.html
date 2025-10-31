@@ -37,7 +37,7 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-    
+
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -101,24 +101,17 @@
 
                     <p class="lead">Panduan ini akan menunjukkan cara mengaktifkan <strong>branch protection</strong> di GitHub. Fitur ini sangat penting untuk memastikan semua perubahan pada branch utama (seperti <code>main</code> atau <code>master</code>) melalui proses review via <strong>Pull Request (PR)</strong>.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-                    
                     <h2>1. Masuk ke Pengaturan Repositori</h2>
                     <p>Buka repositori Anda di GitHub, lalu klik tab <strong>Settings</strong>.</p>
                     <figure><img src="https://frijal.pages.dev/artikel/repo-settings-tab.png" alt="Akses Settings"></figure>
-                    
+
                     <h2>2. Pilih Menu Branches</h2>
                     <p>Di menu navigasi sebelah kiri, pilih <strong>Branches</strong>. Kemudian, klik tombol <strong>Add branch protection rule</strong>.</p>
                     <figure><img src="https://frijal.pages.dev/artikel/repo-settings-branches.png" alt="Menu Branches"></figure>
-                    
+
                     <h2>3. Tentukan Branch yang Akan Dilindungi</h2>
                     <p>Pada kolom <code>Branch name pattern</code>, ketik nama branch yang ingin Anda lindungi, misalnya <code>main</code>. Anda juga bisa menggunakan wildcard seperti <code>release/*</code> untuk melindungi semua branch yang diawali dengan "release/".</p>
-                    
+
                     <h2>4. Aktifkan Aturan Proteksi</h2>
                     <p>Centang opsi-opsi yang Anda butuhkan. Beberapa yang paling umum adalah:</p>
                     <ul>
@@ -131,6 +124,7 @@
                     <h2>5. Simpan Aturan</h2>
                     <p>Klik tombol <strong>Create</strong> atau <strong>Save changes</strong> di bagian bawah halaman. Setelah ini, setiap upaya untuk melakukan `push` langsung ke branch `main` akan diblokir, dan semua perubahan harus diajukan melalui Pull Request.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -138,7 +132,7 @@
             <small>🄯 2025 Frijal · Menjaga kualitas kode bersama.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -149,20 +143,6 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
@@ -171,13 +151,13 @@
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
