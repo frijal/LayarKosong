@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mengenal Veo: Generator Video AI Canggih dari Google</title>
-    
+
     <meta name="description" content="Yuk, kenalan sama Veo, generator video AI super canggih dari Google DeepMind! Cari tahu apa itu Veo, kemampuannya, dan gimana cara daftarnya di sini." />
     <meta name="keywords" content="Google Veo, Veo AI, AI video generator, text-to-video, Google DeepMind, VideoFX, AI untuk video, kecerdasan buatan, teknologi AI" />
     <meta name="author" content="Gemini" />
@@ -17,13 +17,13 @@
     <meta property="og:url" content="https://frijal.pages.dev/artikel/google-veo-ai.html" />
     <meta property="og:type" content="article" />
     <meta property="fb:app_id" content="1471267430691023" />
-    
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@frijal" />
     <meta name="twitter:title" content="Mengenal Veo: Generator Video AI Canggih dari Google" />
     <meta name="twitter:description" content="Penasaran sama AI yang bisa bikin video dari teks doang? Kenalan sama Veo dari Google, teknologi masa depan yang bikin konten video jadi gampang banget!" />
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3_BC1QXfy1lWArcUhvvPVDsrp1oiovHpG5pefciY53YUWqxfKGIu83FxEh_cZ93Ok-_WMEKR4EGFSjaV1Mv4OYaoQchT-GOTDGAWjvNsAv6nj8zA3_05lQcXyIJbs8BOqPxdgLoysR0EYIGPRUIV57wWXGsBdhQkWmkZJLqOKVYAjtBf6hB_0OmscZBM/s1600/veo3.png" />
-    
+
     <meta itemprop="image" content="https://frijal.pages.dev/img/google-veo-ai.webp" />
     <meta property="article:published_time" content="2025-10-04T00:04:13.237+00:00" />
 
@@ -449,20 +449,9 @@
             Siap-siap jadi sutradara film hanya dengan modal ketikan jarimu!
           </p>
         </article>
-        <section class="share-section">
-          <h3>Suka Artikel Ini? Bagikan, Yuk!</h3>
-          <div class="share-buttons">
-            <a href="#" class="share-btn facebook" id="share-fb" title="Bagikan ke Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="share-btn twitter" id="share-tw" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="share-btn whatsapp" id="share-wa" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="share-btn telegram" id="share-tg" title="Bagikan ke Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="#" class="share-btn copy" id="share-copy" title="Salin Tautan"><i class="fas fa-link"></i></a>
-          </div>
-        </section>
+
         <section class="comments-section">
-          <h3>Jaga Data Pribadi Tetap Aman</h3>
-          
-          
+<div id="disqus_thread"></div>
         </section>
       </div>
     </main>
@@ -496,18 +485,18 @@
             );
             lazyImageObserver.observe(lazyImage);
           }
-          
+
           // 2. Fungsi Lightbox
           const lightbox = document.getElementById('lightbox');
           const lightboxImg = document.getElementById('lightbox-img');
           const closeLightbox = document.querySelector('.close-lightbox');
-          
+
           if (lazyImage && lightbox && lightboxImg && closeLightbox) {
             lazyImage.addEventListener('click', () => {
               lightbox.style.display = 'flex';
               lightboxImg.src = lazyImage.src;
             });
-            
+
             closeLightbox.addEventListener('click', () => {
               lightbox.style.display = 'none';
             });
@@ -516,43 +505,6 @@
               if (e.target === lightbox) {
                 lightbox.style.display = 'none';
               }
-            });
-          }
-
-          // 3. Fungsi Tombol Berbagi
-          const pageUrl = 'https://frijal.pages.dev/artikel/google-veo-ai.html';
-          const pageTitle = encodeURIComponent(document.title);
-          
-          const shareButtons = {
-              'share-fb': `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-              'share-tw': `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-              'share-wa': `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-              'share-tg': `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`
-          };
-
-          Object.keys(shareButtons).forEach(id => {
-              const btn = document.getElementById(id);
-              if (btn) {
-                  btn.href = shareButtons[id];
-                  btn.addEventListener('click', function (e) {
-                      e.preventDefault();
-                      window.open(this.href, 'Share', 'width=600,height=400');
-                  });
-              }
-          });
-
-          const shareCopy = document.getElementById('share-copy');
-          if (shareCopy) {
-            shareCopy.addEventListener('click', function (e) {
-              e.preventDefault();
-              navigator.clipboard.writeText(pageUrl)
-                .then(() => {
-                  alert('Tautan berhasil disalin!');
-                })
-                .catch((err) => {
-                  console.error('Gagal menyalin tautan:', err);
-                  alert('Gagal menyalin tautan.');
-                });
             });
           }
       });

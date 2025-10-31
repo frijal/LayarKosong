@@ -247,55 +247,7 @@
           </p>
         </div>
         <section class="social-share mt-8 sm:mt-12 pt-6 border-t border-gray-700">
-          <h3 class="text-xl font-semibold text-white mb-4">
-            Bagikan Artikel Ini
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            <a
-              id="share-twitter"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-sky-500"
-              title="Bagikan ke Twitter/X"
-            >
-              <i class="fab fa-twitter"></i>
-              <span>Twitter/X</span>
-            </a>
-            <a
-              id="share-facebook"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-blue-600"
-              title="Bagikan ke Facebook"
-            >
-              <i class="fab fa-facebook-f"></i>
-              <span>Facebook</span>
-            </a>
-            <a
-              id="share-whatsapp"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-green-500"
-              title="Bagikan ke WhatsApp"
-            >
-              <i class="fab fa-whatsapp"></i>
-              <span>WhatsApp</span>
-            </a>
-            <a
-              id="share-linkedin"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-blue-700"
-              title="Bagikan ke LinkedIn"
-            >
-              <i class="fab fa-linkedin-in"></i>
-              <span>LinkedIn</span>
-            </a>
-            <button
-              id="share-copy"
-              class="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-gray-500"
-              title="Salin Link"
-            >
-              <i class="fas fa-link"></i>
-              <span id="copy-text">Salin Link</span>
-            </button>
-          </div>
+         <div id="disqus_thread"></div>
         </section>
       </article>
     </main>
@@ -304,83 +256,7 @@
         <p>&copy; 2024 - frijal.pages.dev. Dibuat dengan cinta dan kopi.</p>
       </div>
     </footer>
-    <div id="copied-feedback" class="copied-feedback">Link disalin!</div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // Ambil URL kanonis dan judul dari metadata
-        const articleUrl =
-          document.querySelector("link[rel='canonical']").href ||
-          window.location.href;
-        const articleTitle = document.title;
-        const encodedUrl = encodeURIComponent(articleUrl);
-        const encodedTitle = encodeURIComponent(articleTitle);
 
-        // Fungsi Share
-        const shareTwitter = document.getElementById('share-twitter');
-        if (shareTwitter) {
-          shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
-          shareTwitter.target = '_blank';
-          shareTwitter.rel = 'noopener noreferrer';
-        }
-
-        const shareFacebook = document.getElementById('share-facebook');
-        if (shareFacebook) {
-          shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-          shareFacebook.target = '_blank';
-          shareFacebook.rel = 'noopener noreferrer';
-        }
-
-        const shareLinkedIn = document.getElementById('share-linkedin');
-        if (shareLinkedIn) {
-          shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
-          shareLinkedIn.target = '_blank';
-          shareLinkedIn.rel = 'noopener noreferrer';
-        }
-
-        const shareWhatsApp = document.getElementById('share-whatsapp');
-        if (shareWhatsApp) {
-          shareWhatsApp.href = `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`;
-          shareWhatsApp.target = '_blank';
-        }
-
-        // Fungsi Copy Link (lebih kompatibel)
-        const copyButton = document.getElementById('share-copy');
-        const copyButtonText = document.getElementById('copy-text');
-        const copiedFeedback = document.getElementById('copied-feedback');
-
-        if (copyButton) {
-          copyButton.addEventListener('click', function () {
-            // Buat elemen textarea sementara
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = articleUrl;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            tempTextArea.setSelectionRange(0, 99999); // Untuk mobile
-
-            try {
-              // Gunakan execCommand (didukung luas)
-              document.execCommand('copy');
-
-              // Tampilkan feedback
-              if (copyButtonText) copyButtonText.textContent = 'Disalin!';
-              if (copiedFeedback) copiedFeedback.classList.add('show');
-
-              // Reset setelah 2 detik
-              setTimeout(() => {
-                if (copyButtonText) copyButtonText.textContent = 'Salin Link';
-                if (copiedFeedback) copiedFeedback.classList.remove('show');
-              }, 2000);
-            } catch (err) {
-              console.error('Gagal menyalin link:', err);
-              if (copyButtonText) copyButtonText.textContent = 'Gagal!';
-            }
-
-            // Hapus textarea sementara
-            document.body.removeChild(tempTextArea);
-          });
-        }
-      });
-    </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

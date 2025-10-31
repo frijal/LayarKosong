@@ -1,25 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-            const pageUrl = encodeURIComponent(window.location.href);
-            const pageTitle = encodeURIComponent(document.title);
-
-            const twitterShare = document.querySelector('.social-twitter');
-            twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
-
-            const facebookShare = document.querySelector('.social-facebook');
-            facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            
-            const whatsappShare = document.querySelector('.social-whatsapp');
-            whatsappShare.href = `https.api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
-            const linkedinShare = document.querySelector('.social-linkedin');
-            linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-
-            // Tambahkan event listener untuk membuka di window baru
-            const shareLinks = document.querySelectorAll('.social-share a');
-            shareLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.open(this.href, 'share-window', 'height=450,width=550,toolbar=0,location=0,menubar=0,directories=0,scrollbars=0');
-                });
-            });
-        });
+<div class="share-buttons">
+            <a href="#" class="share-btn facebook" id="share-fb" title="Bagikan ke Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="share-btn twitter" id="share-tw" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="share-btn whatsapp" id="share-wa" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="share-btn telegram" id="share-tg" title="Bagikan ke Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="share-btn copy" id="share-copy" title="Salin Tautan"><i class="fas fa-link"></i></a>
+          </div>

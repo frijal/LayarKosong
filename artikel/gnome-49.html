@@ -36,7 +36,7 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-    
+
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -102,7 +102,7 @@
 
                     <p class="lead">Enam bulan setelah versi 48, GNOME 49 hadir dengan fokus pada pengalaman yang lebih mulus, tampilan elegan, dan fitur-fitur yang relevan untuk pengguna desktop Linux modern.</p>
 
-                    
+
 
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbvzz-OwS4HYUs9S6IKtLgZFCQGJTKdNgll5JtVAiXUOm5NAeixlJxpzMFsCma4ZfWTVDdrBwVaqzse159QeLEgfp8Wor9_Q6YSenkQ01k3DXdr49lF6jY_n-4eP0RcYbOc74Q0wmFdOF2lKIVKbN55-BGqKrxBBQzmmr1tjo9ikV9LB1n7Q9_c2Yvg4k/s1600/gnome49.jpg" alt="Tampilan utama GNOME 49"></figure>
@@ -119,10 +119,11 @@
                         <li><strong>Kalender Responsif:</strong> Aplikasi Kalender didesain ulang agar nyaman digunakan di berbagai ukuran layar, dari ponsel hingga desktop.</li>
                         <li><strong>Peningkatan Desktop Jarak Jauh:</strong> Kini mendukung input multitouch, input mouse relatif untuk gaming, dan monitor virtual tambahan.</li>
                     </ul>
-                    
+
                     <h2>Ketersediaan</h2>
                     <p>GNOME 49 akan menjadi bagian dari rilis distro mendatang seperti <strong>Fedora 43</strong> dan <strong>Ubuntu 25.10</strong>. Pengguna disarankan untuk menunggu hingga GNOME 49 tersedia di repositori resmi distro mereka untuk proses pembaruan yang aman dan stabil.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -130,7 +131,7 @@
             <small>🄯 2025 Jaga Data Pribadi Tetap Aman</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -141,8 +142,8 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        
-        
+
+
         document.getElementById('copyLink')?.addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
         });
@@ -151,13 +152,13 @@
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
