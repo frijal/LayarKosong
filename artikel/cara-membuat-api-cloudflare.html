@@ -6,7 +6,7 @@
   <title>Cara Membuat API Cloudflare</title>
   <meta name="description" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.">
   <link rel="canonical" href="https://frijal.pages.dev/artikel/cara-membuat-api-cloudflare.html">
-  
+
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="https://frijal.pages.dev/favicon.svg">
   <link rel="apple-touch-icon" href="https://frijal.pages.dev/ext/icons/apple-touch-icon.png">
@@ -38,7 +38,7 @@
       --radius: 18px;
       --shadow: 0 22px 60px rgba(0,0,0,.45);
       /* Lebar 1 kolom yang lebih nyaman dibaca */
-      --w: min(900px, 94vw); 
+      --w: min(900px, 94vw);
     }
     *{box-sizing:border-box}
     body{
@@ -66,27 +66,27 @@
       transition: transform .2s ease;
     }
     .cta-button:hover { transform: scale(1.05); }
-    
+
     main{padding:36px 0 64px;}
     article{
       background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius); box-shadow:var(--shadow); 
+      border-radius:var(--radius); box-shadow:var(--shadow);
       padding: clamp(22px, 4vw, 32px); /* Padding responsif */
     }
-    
+
     h1,h2,h3 { margin: 24px 0 14px; line-height: 1.3; }
     h1:first-child, h2:first-child, h3:first-child { margin-top: 0; }
     h1{font:900 clamp(24px,4vw,38px)/1.2 'Poppins',sans-serif;}
     h2{font:800 clamp(20px,3.5vw,30px)/1.25 'Poppins',sans-serif; color:#ffd199; display: flex; align-items: center; gap: 12px;}
-    
+
     p{margin:0 0 16px}
     .lead { font-size: 1.1rem; color: var(--muted); margin-bottom: 24px; }
     a { color: #ffc870; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    
+
     pre{background-color:#0e1117;color:#c9d1d9;padding:1rem;border-radius:0.75rem;overflow-x:auto; margin: 16px 0;}
     code{background-color:rgba(255,255,255,0.08);padding:3px 6px;border-radius:4px;font-family:monospace;}
-    
+
     /* --- CSS BARU UNTUK GAMBAR & LIGHTBOX --- */
     .gallery-wrapper {
       display: block;
@@ -110,20 +110,20 @@
     /* --- AKHIR CSS BARU --- */
 
     .list { display: grid; gap: 10px; margin: 16px 0; padding-left: 0; }
-    .list li { 
-      list-style: none; padding: 12px 16px; 
-      border-radius: 14px; border: 1px solid rgba(255,255,255,.12); 
-      background: rgba(255,255,255,.05); 
+    .list li {
+      list-style: none; padding: 12px 16px;
+      border-radius: 14px; border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
     }
-    
+
     footer{border-top:1px solid rgba(255,255,255,.12);background:rgba(12,12,18,.7);backdrop-filter:blur(8px);}
     footer p { color:var(--muted); margin: 0; }
-    
+
     .share{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .share a{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;border-radius:12px;font-weight:700;text-decoration:none;color:#fff; transition: all .2s ease;}
     .share a:hover { opacity: 0.85; transform: translateY(-2px); }
     .tw{background:#1DA1F2}.x{background:#0f1419}.wa{background:#25D366}.tg{background:#0088cc}.fb{background:#1877F2}
-    
+
     @media (max-width:768px){
       .hero{flex-direction:column;align-items:flex-start}
       h2 { align-items: flex-start; } /* Biar ikon & teks rata atas di mobile */
@@ -161,7 +161,7 @@
       <h2><span>2️⃣</span> Langkah 2 – Pilih Jenis Token</h2>
       <p>Di sini, Cloudflare ngasih banyak pilihan. Biar gampang dan aman, kamu bisa pakai template yang udah ada. Misalnya, kalau cuma buat hapus cache (purge), pilih aja <strong>“Zone: Cache Purge”</strong>.</p>
       <p>Tapi kalau butuh yang lebih spesifik, kamu bisa pilih "Create Custom Token". Ini contoh setting izin (permission) yang sering dipakai:</p>
-      
+
       <pre><code>Permissions (Izin):
 - Zone → Cache Purge → Edit  (Untuk hapus cache)
 - Zone → Zone → Read        (Untuk baca info zona)</code></pre>
@@ -195,13 +195,7 @@
 
       <h2>Bermanfaat? Bagikan!</h2>
       <p>Kalau panduan ini ngebantu, jangan ragu buat bagikan ke teman-teman kamu yang mungkin juga butuh.</p>
-      <div class="share" id="share">
-        <a class="fb" href="#" target="_blank" rel="noopener">Facebook</a>
-        <a class="tw" href="#" target="_blank" rel="noopener">Twitter</a>
-        <a class="x" href="#" target="_blank" rel="noopener">X</a>
-        <a class="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="tg" href="#" target="_blank" rel="noopener">Telegram</a>
-      </div>
+      <div id="disqus_thread"></div>
     </article>
   </main>
 
@@ -233,20 +227,6 @@
       this.style.display = 'none'; // Sembunyikan lightbox
       document.getElementById('lightbox-img').src = ''; // Kosongkan src biar gak flash
     });
-
-    const shareUrl = location.href;
-    const shareText = encodeURIComponent('Cara Gampang Membuat API Token Cloudflare'); // Sedikit diubah biar lebih santai
-    const share = document.getElementById('share');
-    const setHref = (sel, url) => {
-      const el = share.querySelector(sel);
-      if (el) el.setAttribute('href', url);
-    };
-
-    setHref('.fb', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
-    setHref('.tw', `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-    setHref('.x',  `https://x.com/intent/post?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-    setHref('.wa', `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`);
-    setHref('.tg', `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
