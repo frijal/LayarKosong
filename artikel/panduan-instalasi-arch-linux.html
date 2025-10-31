@@ -100,7 +100,7 @@
                     <h1>Panduan Instalasi Arch Linux untuk Pemula</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Arch Linux terkenal karena pendekatannya yang minimalis dan "user-centric". Panduan ini akan memandu Anda melalui proses instalasi menggunakan skrip <code>archinstall</code> yang ramah pemula.</p>
-                    
+
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/a/AVvXsEggq0PZHyxy8mW2W2r2VvqWjeDBlGN60lJBL8sSq4n0E7ISKE7JQ87NwuSwDsP0W7Loj9602iaX_2IM1aPzukeY_Kf34NnnEuwUiIUGN3uKwSqScdHAEpJyw7Kwzn8eB8rhkG1zgRMxWmyz_PMSmsfk9pOc2cg8fV0Nu5TDvjVcR9-HXw18NgYWgKaTNUo" alt="Logo Arch Linux"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhA1Ci6WzGQQrtKIumixaj1D0Tm_jP-n9A3WeAx2hWjlIzkvienrLTd04PgRDYqGHgmbxXc9WQ-ALbSJQKSWgRPzFN9l1HoiepRl1uDDmcAJ74hMxmh5HbN7wqCf16zG55SFT68hWYd-80s7zozk7rX8cC6JS2inc5oJ_ceuT7lReaS8RJBkbEAg9BiriM" alt="Menu archinstall"></figure>
@@ -131,6 +131,7 @@
                     <h2>Kesimpulan</h2>
                     <p>Arch Linux menawarkan kebebasan penuh untuk membangun sistem yang ringan dan sesuai keinginan Anda. Berkat skrip <code>archinstall</code>, proses yang dulu menantang kini menjadi jauh lebih mudah diakses oleh pemula. Selamat mencoba!</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
@@ -146,9 +147,9 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));

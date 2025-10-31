@@ -71,7 +71,6 @@
     <h1>Pahlawan Sejati dalam Sejarah Islam</h1>
 <div id="iposbrowser"></div>
     <p>Dalam sejarah peradaban Islam, banyak sekali tokoh-tokoh luar biasa yang mewariskan sejarah agung untuk kita. Mereka bukan hanya panglima atau pemimpin, tapi juga teladan dalam **keberanian**, **keadilan**, dan **pengorbanan**. Berikut adalah beberapa dari mereka:</p>
-
     <ul>
         <li><strong>Khalid bin Walid</strong>: Dikenal sebagai panglima militer terbesar yang menghancurkan dua imperium, Romawi dan Persia, hanya dalam lima tahun. Di Pertempuran Mu’tah saja, sembilan pedang patah di tangannya.</li>
         <li><strong>Dhirar bin Al-Azwar</strong>: Di Pertempuran Yarmuk, ia dijuluki "Setan Bertelanjang Dada" oleh bangsa Romawi karena berhasil membunuh 20 panglima musuh dalam duel satu lawan satu sebelum pertempuran utama dimulai.</li>
@@ -95,23 +94,15 @@
             </ul>
         </li>
     </ul>
-
     <p>Mereka semua, dari masa ke masa, mengajarkan nilai-nilai luhur Islam: menolak penindasan, menegakkan keadilan, dan berjuang demi harkat martabat manusia. Inilah **pahlawan-pahlawan sejati** kita.</p>
-
     <div class="gallery">
         <div class="gallery-item" onclick="openLightbox(0)">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0BbXUSuGJlRoCDJSJDTNWAKPtv8gIUwOFf2HTMgmsg8WFG_Ey9tFQaYFkjD60Z_nFBX8M9GfBL2bjYYAxjNeDzYblZQ6HpEKuoI9-fg37HWiJ45b3KiD-Uh2jf2k0OQbLJzFw_MyGeEkM9sm6rbtkJnUoxJOHVZx25k3nUC-TaqHD2UfS-9B-2WAkWG4/s1600/pahlawanislam.jpg" alt="Pahlawan Islam" loading="lazy">
         </div>
     </div>
-
     <div class="social-share">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/pahlawan-islam.html" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/pahlawan-islam.html&text=Kisah-kisah heroik pahlawan muslim dalam sejarah!" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/pahlawan-islam.html&text=Kisah-kisah heroik pahlawan muslim dalam sejarah!" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Telegram"><i class="fab fa-telegram-plane"></i></a>
-        <a href="https://wa.me/?text=Kisah-kisah heroik pahlawan muslim dalam sejarah! https://frijal.pages.dev/artikel/pahlawan-islam.html" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
+       <div id="disqus_thread"></div>
     </div>
-
-
     </div>
 </div>
 <div class="lightbox" id="lightbox">
@@ -137,17 +128,6 @@
         currentIndex = (currentIndex + direction + images.length) % images.length;
         document.getElementById('lightbox-image').src = images[currentIndex];
     }
-
-    // Memastikan tautan social share memiliki target yang benar (diisi ulang di JavaScript)
-    document.addEventListener('DOMContentLoaded', function() {
-        const url = encodeURIComponent(document.querySelector('link[rel="canonical"]').href);
-        const text = encodeURIComponent("Kisah-kisah heroik pahlawan muslim dalam sejarah!");
-
-        document.querySelector('.social-share a[aria-label="Bagikan ke Facebook"]').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-        document.querySelector('.social-share a[aria-label="Bagikan ke Twitter"]').href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-        document.querySelector('.social-share a[aria-label="Bagikan ke Telegram"]').href = `https://t.me/share/url?url=${url}&text=${text}`;
-        document.querySelector('.social-share a[aria-label="Bagikan ke WhatsApp"]').href = `https://wa.me/?text=${text}%20${url}`;
-    });
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

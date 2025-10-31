@@ -409,32 +409,7 @@
         if (el) el.textContent = `Waktu baca: ~${min} menit`;
       });
       // Share buttons
-      safe(() => {
-        const current = window.location.href;
-        const title = document.title;
-        const strip = document.querySelector('.share-strip');
-        const ok = document.querySelector('.copy-ok');
-        const open = (u) => window.open(u, '_blank', 'noopener,noreferrer');
-        strip?.addEventListener('click', (e) => {
-          const btn = e.target.closest('.share-btn');
-          if (!btn) return;
-          const type = btn.dataset.share;
-          if (type === 'copy') {
-            navigator.clipboard?.writeText(current).then(() => {
-              if (ok) { ok.hidden = false; setTimeout(() => ok.hidden = true, 1500); }
-            });
-            return;
-          }
-          if (navigator.share && (type === 'facebook' || type === 'twitter')) {
-            navigator.share({ title, url: current }).catch(() => {});
-            return;
-          }
-          if (type === 'facebook') open(`https://www.facebook.com/sharer.php?u=${encodeURIComponent(current)}`);
-          if (type === 'twitter') open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(current)}`);
-          if (type === 'whatsapp') open(`https://wa.me/?text=${encodeURIComponent(title + ' ' + current)}`);
-          if (type === 'telegram') open(`https://t.me/share/url?url=${encodeURIComponent(current)}&text=${encodeURIComponent(title)}`);
-        });
-      });
+      
       // Lightbox gallery with arrow keys
       safe(() => {
         const lb = document.getElementById('lightbox');

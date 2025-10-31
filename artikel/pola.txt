@@ -1,10 +1,23 @@
-
-        (function setupShareLinks() {
-            const text = encodeURIComponent(ARTICLE_TITLE);
-            const url = encodeURIComponent(CANON_URL);
-            const via = encodeURIComponent(VIA_TWITTER);
-            document.getElementById('share-wa').href = `https://wa.me/?text=${text}%20${url}`;
-            document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&via=${via}`;
-            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-        })();
+const shareTwitter = document.getElementById('share-twitter');
+        if (shareTwitter) {
+          shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+          shareTwitter.target = '_blank';
+          shareTwitter.rel = 'noopener noreferrer';
+        }
+        const shareFacebook = document.getElementById('share-facebook');
+        if (shareFacebook) {
+          shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+          shareFacebook.target = '_blank';
+          shareFacebook.rel = 'noopener noreferrer';
+        }
+        const shareLinkedIn = document.getElementById('share-linkedin');
+        if (shareLinkedIn) {
+          shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+          shareLinkedIn.target = '_blank';
+          shareLinkedIn.rel = 'noopener noreferrer';
+        }
+        const shareWhatsApp = document.getElementById('share-whatsapp');
+        if (shareWhatsApp) {
+          shareWhatsApp.href = `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`;
+          shareWhatsApp.target = '_blank';
+        }

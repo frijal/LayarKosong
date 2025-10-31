@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "Open Source ID" }
     }
     </script>
-
     <!-- Styles: 1 kolom, light theme -->
     <style>
         :root {
@@ -95,12 +94,11 @@
                     <h1>Gunakan Perangkat Lunak Bebas Terbuka di Sekolah</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Setiap tahun, sistem pendidikan kita dapat menghemat biaya besar dengan beralih ke perangkat lunak bebas dan terbuka (Open Source Software). Selain hemat, OSS juga mendorong kreativitas dan kemandirian siswa.</p>
-                    
+
                     <p>Kami menganjurkan penggantian bertahap perangkat lunak berbayar dengan alternatif GPL Open Source. Ini memberikan kesempatan bagi pelajar untuk menjadi lebih kreatif dan mandiri, tidak hanya sebagai konsumen tetapi juga sebagai calon pencipta teknologi.</p>
                     <blockquote>
                         Perangkat lunak seperti GNU/Linux, LibreOffice, GIMP, dan GNUCash sudah tersedia secara gratis, lengkap dengan dokumentasi dan alat pendukung. Penggunaannya harus didorong sebagai media pembelajaran utama.
                     </blockquote>
-
                     <figure>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Maskot Linux Tux" style="max-width: 150px;">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Tux, maskot Linux, adalah simbol dari semangat perangkat lunak terbuka.</figcaption>
@@ -121,18 +119,17 @@
                             <figcaption><strong>GNUCash</strong><br>Aplikasi Akuntansi</figcaption>
                         </figure>
                     </div>
-
                     <h2>Kebebasan untuk Masa Depan</h2>
                     <p>Kebebasan untuk memilih perangkat lunak adalah hal yang penting untuk perkembangan teknologi dan masa depan anak-anak kita. Dengan menggunakan open source, siswa tidak hanya menjadi pengguna pasif, tetapi juga memiliki kesempatan untuk memahami bagaimana teknologi bekerja di baliknya.</p>
                     <p>Mari dukung penggunaan perangkat lunak bebas dan terbuka di sekolah-sekolah di Indonesia untuk generasi yang lebih kreatif dan mandiri secara digital.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 Open Source ID · Mendorong kreativitas dan kemandirian digital.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -141,20 +138,17 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img, figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
