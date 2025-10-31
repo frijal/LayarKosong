@@ -68,6 +68,10 @@
   X-Robots-Tag: index, follow
   Content-Type: application/rss+xml
 
+/ads.txt
+  X-Robots-Tag: index, follow
+  Content-Type: text/plain
+
 # 🤖 Robots.txt tetap bisa diindeks
 /robots.txt
   X-Robots-Tag: index, follow
