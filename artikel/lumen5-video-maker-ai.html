@@ -329,27 +329,7 @@
             });
         }
         
-        // --- SOCIAL SHARING ---
-        (() => {
-            const pageUrl = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
-            const pageTitle = encodeURIComponent(document.title);
-            const shareLinks = {
-                shareFacebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-                shareTwitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-                shareWhatsApp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-            };
-
-            for (const id in shareLinks) {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.href = shareLinks[id];
-                    link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        window.open(this.href, 'share-window', 'height=450,width=550');
-                    });
-                }
-            }
-        })();
+        
       });
     </script>
     
@@ -357,7 +337,7 @@
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 
 
   </body>

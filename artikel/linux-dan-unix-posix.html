@@ -182,9 +182,7 @@
             });
         });
         
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
+        
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
@@ -204,7 +202,7 @@
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 
 
 </body>

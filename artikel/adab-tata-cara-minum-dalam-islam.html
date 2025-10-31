@@ -133,6 +133,7 @@ Diperbarui: <span id="date-side">—</span>
 </div>
 </aside>
 </div>
+<div id="disqus_thread"></div>
 </main>
 
 <footer>
@@ -149,22 +150,11 @@ document.getElementById("updated-time").textContent = new Date().toLocaleDateStr
 document.getElementById("date-side").textContent = new Date().toLocaleDateString("id-ID");
 document.getElementById("year").textContent = new Date().getFullYear();
 document.getElementById("current-url").textContent = currentUrl;
-
-// Update FB Comments data-href
-const fbComments = document.getElementById("fb-comments");
-if(fbComments) {
-  fbComments.setAttribute("data-href", currentUrl);
-}
-
-// Render ulang FB XFBML jika FB SDK sudah siap
-if(typeof FB !== 'undefined' && FB.XFBML && typeof FB.XFBML.parse === 'function') {
-  FB.XFBML.parse();
-}
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 
 
 </body>
