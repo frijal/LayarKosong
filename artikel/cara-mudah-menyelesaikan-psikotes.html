@@ -137,57 +137,11 @@ margin-right: 6px;
 <li>Belajar dari pengalaman, evaluasi kesalahan psikotes sebelumnya.</li>
 <li>Persiapkan fisik dan mental agar lebih siap menghadapi tekanan.</li>
 </ul>
-<div class="social-share">
-<button class="facebook" onclick='share("facebook")'>Facebook</button>
-<button class="twitter" onclick='share("twitter")'>Twitter</button>
-<button class="whatsapp" onclick='share("whatsapp")'>WhatsApp</button>
-<button class="telegram" onclick='share("telegram")'>Telegram</button>
-<button class="instagram" onclick='share("instagram")'>Instagram</button>
-<button class="threads" onclick='share("threads")'>Threads</button>
-<button class="tiktok" onclick='share("tiktok")'>TikTok</button>
-</div>
-<div style="margin-top:18px;color:#9aa4b2;font-size:10px">
-<span id="current-url"></span>
-</div>
-<div style="margin-top:18px">
-
-
-</div>
-
+<div id="disqus_thread"></div>
 </main>
 <footer>
 🄯 2025 Panduan Psikotes - Jaga Data Pribadi Tetap Aman
 </footer>
-
-</div>
-<script>
-// Logika Share Media Sosial
-function share(e){
-let n=encodeURIComponent(window.location.href),
-t=encodeURIComponent(document.title),
-a="";
-switch(e){
-case"facebook":a="https://www.facebook.com/sharer/sharer.php?u="+n;break;
-case"twitter":a=`https://twitter.com/intent/tweet?url=${n}&text=`+t;break;
-case"whatsapp":a=`https://api.whatsapp.com/send?text=${t}%20`+n;break;
-case"telegram":a=`https://t.me/share/url?url=${n}&text=`+t;break;
-case"instagram":return void alert("Bagikan manual ke Instagram Stories.");
-case"threads":return void alert("Bagikan manual ke Threads.");
-case"tiktok":return void alert("Bagikan manual ke TikTok.");
-}
-window.open(a,"");
-}
-
-
-// Set Current URL
-document.getElementById("current-url").textContent = window.location.href;
-
-// Facebook SDK manual parse (jika diperlukan)
-window.fbAsyncInit=function(){if("undefined"!=typeof FB)try{FB.XFBML.parse()}catch(t){}}
-</script>
-
-<div id="related-marquee-container"></div></section><div id="kategori-aktif"></div><script src="/ext/marquee-url.js"></script>
-
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
