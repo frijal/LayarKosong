@@ -269,14 +269,7 @@
       </div>
 
       <div class="sep"></div>
-
-      <h2>Jaga Data Pribadi Tetap Aman</h2>
-      <div class="share">
-        <button class="btn tw" id="share-twitter">🐦 Twitter</button>
-        <button class="btn wa" id="share-whatsapp">🟢 WhatsApp</button>
-        <button class="btn fb" id="share-facebook">📘 Facebook</button>
-        <button class="btn copy" id="share-copy">🔗 Salin tautan</button>
-      </div>
+<div id="disqus_thread"></div>
       <div class="sep"></div>
 
           <footer>
@@ -297,34 +290,6 @@
   <!-- Scripts -->
   <script>
         const canonical = document.querySelector('link[rel="canonical"]')?.href || location.href;
-
-    // Share buttons
-    document.getElementById('share-twitter').addEventListener('click', () => {
-      const u = new URL('https://twitter.com/intent/tweet');
-      u.searchParams.set('text', 'Kisah Kekaisaran Mongol: Dari Temüjin ke Dinasti Yuan');
-      u.searchParams.set('url', canonical);
-      window.open(u.toString(), '_blank');
-    });
-    document.getElementById('share-whatsapp').addEventListener('click', () => {
-      const txt = `Kisah Kekaisaran Mongol ,  baca di: ${canonical}`;
-      const wa = /Android|iPhone|iPad/i.test(navigator.userAgent)
-        ? `https://wa.me/?text=${encodeURIComponent(txt)}`
-        : `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
-      window.open(wa, '_blank');
-    });
-    document.getElementById('share-facebook').addEventListener('click', () => {
-      const u = new URL('https://www.facebook.com/sharer/sharer.php');
-      u.searchParams.set('u', canonical);
-      window.open(u.toString(), '_blank');
-    });
-    document.getElementById('share-copy').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(canonical);
-        alert('Tautan disalin!');
-      } catch(e) {
-        prompt('Salin tautan berikut:', canonical);
-      }
-    });
 
         // Lightbox
     const gallery = Array.from(document.querySelectorAll('#gallery .card'));

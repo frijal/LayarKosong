@@ -288,55 +288,7 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
         </div>
         <!-- Tombol Share Media Sosial -->
         <section class="social-share mt-8 sm:mt-12 pt-6 border-t border-gray-700">
-          <h3 class="text-xl font-semibold text-white mb-4">
-            Bagikan Cerita Ini
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            <a
-              id="share-twitter"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-sky-500"
-              title="Bagikan ke Twitter/X"
-            >
-              <i class="fab fa-twitter"></i>
-              <span>Twitter/X</span>
-            </a>
-            <a
-              id="share-facebook"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-blue-600"
-              title="Bagikan ke Facebook"
-            >
-              <i class="fab fa-facebook-f"></i>
-              <span>Facebook</span>
-            </a>
-            <a
-              id="share-whatsapp"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-green-500"
-              title="Bagikan ke WhatsApp"
-            >
-              <i class="fab fa-whatsapp"></i>
-              <span>WhatsApp</span>
-            </a>
-            <a
-              id="share-linkedin"
-              href="#"
-              class="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-blue-700"
-              title="Bagikan ke LinkedIn"
-            >
-              <i class="fab fa-linkedin-in"></i>
-              <span>LinkedIn</span>
-            </a>
-            <button
-              id="share-copy"
-              class="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 hover:bg-gray-500"
-              title="Salin Link"
-            >
-              <i class="fas fa-link"></i>
-              <span id="copy-text">Salin Link</span>
-            </button>
-          </div>
+         <div id="disqus_thread"></div>
         </section>
       </article>
     </main>
@@ -357,30 +309,7 @@ Obsesi. Layanan lain seperti **GitLab** dan **Bitbucket** juga mengambil
         const articleTitle = document.title;
         const encodedUrl = encodeURIComponent(articleUrl);
         const encodedTitle = encodeURIComponent(articleTitle);
-        // Fungsi Share
-        const shareTwitter = document.getElementById('share-twitter');
-        if (shareTwitter) {
-          shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
-          shareTwitter.target = '_blank';
-          shareTwitter.rel = 'noopener noreferrer';
-        }
-        const shareFacebook = document.getElementById('share-facebook');
-        if (shareFacebook) {
-          shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
-          shareFacebook.target = '_blank';
-          shareFacebook.rel = 'noopener noreferrer';
-        }
-        const shareLinkedIn = document.getElementById('share-linkedin');
-        if (shareLinkedIn) {
-          shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
-          shareLinkedIn.target = '_blank';
-          shareLinkedIn.rel = 'noopener noreferrer';
-        }
-        const shareWhatsApp = document.getElementById('share-whatsapp');
-        if (shareWhatsApp) {
-          shareWhatsApp.href = `whatsapp://send?text=${encodedTitle}%20${encodedUrl}`;
-          shareWhatsApp.target = '_blank';
-        }
+
         // Fungsi Copy Link (lebih kompatibel)
         const copyButton = document.getElementById('share-copy');
         const copyButtonText = document.getElementById('copy-text');

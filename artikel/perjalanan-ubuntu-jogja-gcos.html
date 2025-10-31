@@ -86,7 +86,6 @@
                     <h1>Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Ini adalah catatan perjalanan Komunitas Ubuntu Jogja saat menghadiri acara GCOS (Gelar Cipta Open Source) di Jakarta, di mana komunitas ini menerima penghargaan sebagai Komunitas FOSS terbaik.</p>
-                    
                     <p>Perjalanan dimulai pada Minggu sore dari Jogja menggunakan bus Rosalia Indah. Sesuai fasilitas, kami mendapatkan makan malam di Rumah Makan Lestari di Kebumen. Meskipun waktu di sana terbatas, kami tetap menyempatkan diri untuk meninggalkan jejak berupa stiker Ubuntu sebagai bagian dari sosialisasi kepada masyarakat.</p>
                     <p>Di Kebumen, kami juga bertemu singkat dengan perwakilan KPLI Kebumen dan memberikan kenang-kenangan berupa pin sebelum melanjutkan perjalanan ke Jakarta.</p>
                     <div class="gallery">
@@ -103,13 +102,13 @@
                         <li><a href="http://milisdad.blogspot.com/2009/11/perjalanan-menuju-gcos.html" target="_blank">Milisdad Blog</a></li>
                     </ul>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2024 Jaga Data Pribadi Tetap Aman. · Sebuah kenangan dari era komunitas FOSS yang aktif.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -118,14 +117,10 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             // Replace s16000 with s1600 for potentially larger image
@@ -133,7 +128,6 @@
             lbImg.src = largeSrc;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

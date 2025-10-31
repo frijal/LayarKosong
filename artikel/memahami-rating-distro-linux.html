@@ -304,11 +304,7 @@
       </article>
       <section class="interaction-section">
         <div class="social-share">
-          <h3>Jaga Data Pribadi Tetap Aman:</h3>
-          <a href="#" id="share-twitter" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Twitter">🐦</a>
-          <a href="#" id="share-facebook" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Facebook">👍</a>
-          <a href="#" id="share-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke WhatsApp">💬</a>
-          <a href="#" id="share-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">🔗</a>
+         <div id="disqus_thread"></div>
         </div>
 
       </section>
@@ -363,23 +359,7 @@
                   }
               });
           }
-          // --- Social Share Logic ---
-          const pageUrl = encodeURIComponent(window.location.href);
-          const pageTitle = encodeURIComponent(document.title);
-
-          const socialLinks = {
-              'share-twitter': `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-              'share-facebook': `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-              'share-whatsapp': `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-              'share-linkedin': `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`
-          };
-          for (const id in socialLinks) {
-              const elem = document.getElementById(id);
-              if (elem) {
-                  elem.href = socialLinks[id];
-              }
-          }
-      });
+              });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

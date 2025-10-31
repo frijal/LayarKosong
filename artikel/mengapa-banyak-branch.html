@@ -199,11 +199,8 @@
           </li>
         </ol>
                <div class="share">
-          <a id="share-twitter" target="_blank" rel="noopener noreferrer">Bagikan ke Twitter</a>
-          <a id="share-fb" target="_blank" rel="noopener noreferrer">Bagikan ke Facebook</a>
-          <a id="share-ln" target="_blank" rel="noopener noreferrer">Bagikan ke LinkedIn</a>
+        <div id="disqus_thread"></div>
         </div>
-
 
       </article>
     </main>
@@ -240,16 +237,7 @@
             lightbox.style.display = 'none';
           }
         };
-        // Share Links Logic
-        const pageUrl = encodeURIComponent(location.href);
-        const pageTitle = encodeURIComponent(document.title);
-        document.getElementById('share-twitter').href =
-          `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-        document.getElementById('share-fb').href =
-          `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-        document.getElementById('share-ln').href =
-          `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
-      });
+             });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

@@ -326,11 +326,7 @@
       </article>
       <section class="interaction-section">
         <div class="social-share">
-          <h3>Jaga Data Pribadi Tetap Aman:</h3>
-          <a href="#" id="share-twitter" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Twitter">🐦</a>
-          <a href="#" id="share-facebook" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Facebook">👍</a>
-          <a href="#" id="share-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke WhatsApp">💬</a>
-          <a href="#" id="share-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">🔗</a>
+       <div id="disqus_thread"></div>
         </div>
 
       </section>
@@ -402,22 +398,6 @@
                       })
                       .catch((err) => console.error('Gagal menyalin teks: ', err));
               });
-          });
-          // --- Social Share Logic ---
-          const pageUrl = encodeURIComponent(window.location.href);
-          const pageTitle = encodeURIComponent(document.title);
-
-          const shareLinks = {
-              'share-twitter': `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-              'share-facebook': `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-              'share-whatsapp': `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-              'share-linkedin': `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`
-          };
-          Object.keys(shareLinks).forEach(id => {
-              const link = document.getElementById(id);
-              if (link) {
-                  link.href = shareLinks[id];
-              }
           });
       });
     </script>

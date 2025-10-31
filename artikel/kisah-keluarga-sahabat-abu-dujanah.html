@@ -256,14 +256,7 @@
 
       <p><em>Catatan santai:</em> integritas itu kadang pahit di awal, tapi manisnya bisa mengubah takdir. Abu Dujanah menunjukkan: amanah itu dijalani, bahkan ketika perut keroncongan.</p>
 
-      <!-- Ikon sharing -->
-      <div class="share-row">
-        <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-        <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener noreferrer">🔵 X (Twitter)</a>
-        <a class="share-btn" id="share-fb" href="#" target="_blank" rel="noopener noreferrer">🔵 Facebook</a>
-        <a class="share-btn" id="share-telegram" href="#" target="_blank" rel="noopener noreferrer">🔷 Telegram</a>
-        <button class="share-btn" id="copy-link">🔗 Salin Tautan</button>
-      </div>
+   <div id="disqus_thread"></div>
 
           <footer>
         Ditulis oleh Fakhrul • Diperbarui: 28 Sep 2025 • Tag: Amanah, Harta Halal, Kisah Sahabat
@@ -281,25 +274,6 @@
     </div>
   </div>
   <script>
-      // Share links
-    (function() {
-      const url = encodeURIComponent(location.href);
-      const title = encodeURIComponent(document.title);
-      const descMeta = document.querySelector('meta[name="description"]')?.content || "";
-      const text = encodeURIComponent(descMeta || document.title);
-      document.getElementById("share-whatsapp").href = "https://wa.me/?text=" + title + "%0A" + url;
-      document.getElementById("share-twitter").href = "https://twitter.com/intent/tweet?text=" + title + "&url=" + url;
-      document.getElementById("share-fb").href = "https://www.facebook.com/sharer/sharer.php?u=" + url;
-      document.getElementById("share-telegram").href = "https://t.me/share/url?url=" + url + "&text=" + text;
-      document.getElementById("copy-link").addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(location.href);
-          alert("Tautan disalin! 🎉");
-        } catch {
-          prompt("Salin tautan ini:", location.href);
-        }
-      });
-    })();
 
     // Galeri + Lightbox
     (function(){

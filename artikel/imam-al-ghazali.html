@@ -196,15 +196,7 @@
             </div>
 
             <div class="sep"></div>
-
-            <h2>Jaga Data Pribadi Tetap Aman</h2>
-            <div class="share">
-                <button class="btn blue" id="share-twitter">🐦 Twitter</button>
-                <button class="btn green" id="share-whatsapp">🟢 WhatsApp</button>
-                <button class="btn dark" id="share-facebook">📘 Facebook</button>
-                <button class="btn orange" id="share-copy">🔗 Salin tautan</button>
-            </div>
-
+<div id="disqus_thread"></div>
             <footer>
                 🄯 2025 frijal.pages.dev, Halaman satu kolom, responsif, dan ramah mobile.
             </footer>
@@ -223,37 +215,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const canonical = 'https://frijal.pages.dev/artikel/imam-al-ghazali.html';
-
-            // Share buttons
-            document.getElementById('share-twitter').addEventListener('click', () => {
-                const u = new URL('https://twitter.com/intent/tweet');
-                u.searchParams.set('text', document.title);
-                u.searchParams.set('url', canonical);
-                window.open(u.toString(), '_blank', 'noopener,noreferrer');
-            });
-            document.getElementById('share-whatsapp').addEventListener('click', () => {
-                const txt = `${document.title}, baca di: ${canonical}`;
-                const wa = `https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`;
-                window.open(wa, '_blank', 'noopener,noreferrer');
-            });
-            document.getElementById('share-facebook').addEventListener('click', () => {
-                const u = new URL('https://www.facebook.com/sharer/sharer.php');
-                u.searchParams.set('u', canonical);
-                window.open(u.toString(), '_blank', 'noopener,noreferrer');
-            });
-
-            const copyBtn = document.getElementById('share-copy');
-            const originalCopyText = copyBtn.textContent;
-            copyBtn.addEventListener('click', async () => {
-                try {
-                    await navigator.clipboard.writeText(canonical);
-                    copyBtn.textContent = 'Tautan disalin!';
-                    setTimeout(() => { copyBtn.textContent = originalCopyText; }, 2000);
-                } catch(e) {
-                    prompt('Salin tautan berikut:', canonical);
-                }
-            });
-
             // Lightbox
             const gallery = Array.from(document.querySelectorAll('#gallery .card'));
             const lightbox = document.getElementById('lightbox');

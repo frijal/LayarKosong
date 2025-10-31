@@ -249,19 +249,7 @@
   (function(){
     const CANON = document.querySelector('link[rel="canonical"]')?.href || location.href;
     // Share
-    const shareMap = {
-      twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-      facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + url)}`,
-      linkedin: url => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
-    };
-    document.querySelectorAll('.btn-share').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const t = btn.getAttribute('data-share');
-        const u = shareMap[t]?.(CANON);
-        if (u) window.open(u, '_blank', 'noopener,noreferrer');
-      });
-    });
+
     // Lightbox (Simplified)
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');

@@ -85,6 +85,7 @@
                     <div class="info-row"><div class="small">Diperbarui</div><div class="small" id="updated-short">—</div></div>
                 </aside>
             </div>
+            <div id="disqus_thread"></div>
         </main>
         <footer>
             <div class="footer-inner container">
@@ -105,18 +106,7 @@
         const canonical = document.getElementById('canonical-link');
         if (canonical) canonical.setAttribute('href', currentUrl);
 
-        // set fb comments href and current url placeholder
-        const fb = document.getElementById('fb-comments');
-        if (fb) fb.setAttribute('data-href', currentUrl);
-        const cur = document.getElementById('current-url');
-        if (cur) cur.textContent = currentUrl;
 
-        // reload FB plugin if available
-        window.addEventListener('load', ()=>{
-            if (window.FB && FB.XFBML && typeof FB.XFBML.parse === 'function'){
-                FB.XFBML.parse();
-            }
-        });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

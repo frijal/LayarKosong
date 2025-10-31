@@ -235,13 +235,7 @@ N. Kirim ke editor (1 hari)</code></pre>
             </ol>
             <p>Pada akhirnya, tidak ada strategi tunggal yang "terbaik" untuk semua orang. Kunci keberhasilan adalah <strong>memahami diri Anda sendiri</strong>, bereksperimen dengan berbagai pendekatan, dan menemukan metode yang paling cocok untuk gaya kerja dan jenis tugas Anda. Yang terpenting adalah terus bergerak maju, satu langkah demi satu langkah, hingga rencana Anda terwujud sepenuhnya.</p>
         </article>
-        <div class="sharing-buttons">
-            <a href="javascript:void(0);" onclick="shareTo('facebook')" class="btn-facebook">Facebook</a>
-            <a href="javascript:void(0);" onclick="shareTo('twitter')" class="btn-twitter">Twitter</a>
-            <a href="javascript:void(0);" onclick="shareTo('x')" class="btn-x">X</a>
-            <a href="javascript:void(0);" onclick="shareTo('whatsapp')" class="btn-whatsapp">WhatsApp</a>
-            <a href="javascript:void(0);" onclick="shareTo('telegram')" class="btn-telegram">Telegram</a>
-        </div>
+        <div id="disqus_thread"></div>
     </div>
     <script>
         // Syntax highlighting (Prism.js)
@@ -261,33 +255,7 @@ N. Kirim ke editor (1 hari)</code></pre>
                 console.error('Gagal menyalin kode: ', err);
             });
         }
-        // Social Sharing Functions
-        function shareTo(platform) {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            let shareUrl = '';
-            switch (platform) {
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                    break;
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                    break;
-                case 'x': // Alias for Twitter
-                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                    break;
-                case 'whatsapp':
-                    shareUrl = `https://api.whatsapp.com/send?text=${title}%20-%20${url}`;
-                    break;
-                case 'telegram':
-                    shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
-                    break;
-                default:
-                    return;
-            }
-            window.open(shareUrl, '_blank', 'width=600,height=400');
-        }
-    </script>
+           </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-plaintext.min.js"></script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

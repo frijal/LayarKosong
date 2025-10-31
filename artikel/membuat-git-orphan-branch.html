@@ -303,8 +303,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                 <p>Selamat! Kamu sekarang punya branch `gh-pages` di GitHub yang riwayatnya bersih dan terpisah total dari branch `main`. Siap dipakai untuk proyek-proyek kerenmu selanjutnya!</p>
             </article>
             <div class="share-section">
-                <h3>Bagikan Artikel Ini:</h3>
-                
+<div id="disqus_thread"></div>
             </div>
         </main>
         <footer>
@@ -330,46 +329,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
             });
         });
     });
-    // --- Fungsi Berbagi ke Media Sosial ---
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
-    const shareLinks = {
-        twitter: document.getElementById('share-twitter'),
-        facebook: document.getElementById('share-facebook'),
-        whatsapp: document.getElementById('share-whatsapp'),
-        linkedin: document.getElementById('share-linkedin'),
-        copyButton: document.getElementById('copy-link-button')
-    };
-    if (shareLinks.twitter) {
-        shareLinks.twitter.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-        shareLinks.twitter.target = '_blank';
-    }
-    if (shareLinks.facebook) {
-        shareLinks.facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-        shareLinks.facebook.target = '_blank';
-    }
-    if (shareLinks.whatsapp) {
-        shareLinks.whatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-        shareLinks.whatsapp.target = '_blank';
-    }
-    if (shareLinks.linkedin) {
-        shareLinks.linkedin.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-        shareLinks.linkedin.target = '_blank';
-    }
-    if (shareLinks.copyButton) {
-        shareLinks.copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(decodeURIComponent(pageUrl)).then(() => {
-                const originalIcon = shareLinks.copyButton.innerHTML;
-                shareLinks.copyButton.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    shareLinks.copyButton.innerHTML = originalIcon;
-                }, 2000);
-            }).catch(err => {
-                console.error('Gagal menyalin link: ', err);
-            });
-        });
-    }
-});
+  });
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

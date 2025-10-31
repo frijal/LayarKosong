@@ -85,7 +85,6 @@
                     <h1>Open Source: Kisah Sukses di Dunia Digital</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Open Source, atau Sumber Terbuka, adalah sebuah filosofi pengembangan perangkat lunak yang terbukti berhasil dan telah melahirkan banyak produk ikonik yang kita gunakan sehari-hari.</p>
-                    
                     <h2>Contoh Kesuksesan Open Source</h2>
                     <h3>Wikipedia</h3>
                     <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9dlmEkkH8WwY7n8mweRXffj4hm-1Q9HLZdiYkmlThXZA3MMW3lb0sxIEEOUVD3Dps66lJhp0uWEQXpmAkXtOEj60T74IwJ2bRepS1gTZoChzc-KYR8Mv7uB__9Pp6kZQbhyOoX_Eucb_FfSSlpz0bcCOD0zBdIJhU_1ihj7YIpoyNgqzi13COaxZx7X8/s960/Wikipedia_Wallpaper.jpg" alt="Wikipedia" loading="lazy"></figure>
@@ -104,13 +103,13 @@
                     <p>Sistem operasi seluler paling dominan di dunia, yang intinya (kernel Linux) adalah perangkat lunak open source.</p>
                    <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxGvXVJWqpx5GW1BHJRIMbCmL_wTQhSgAd7Vk22nxqZZ7723da2UdwpHOIax9xRnPWiAZRLs_r2hi_StDPI7D1HpHSBCE6uu4wSe0PoC9CULJyp4tzL-_CU_Lvi95UX67s2Tfzf81KUlV3jFY_x_3iX1UXXPP_rgC0SVBtFmimlCI5p6kSekMsk4Fub-o/s1600/Frame_599.png" alt="Android" loading="lazy"></figure>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
-        </main>
+                    </main>
         <footer class="site">
             <small>🄯 2025 Jaga Data Pribadi Tetap Aman. · Filosofi Bebas Terbuka di balik teknologi modern.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -119,20 +118,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img, article > img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

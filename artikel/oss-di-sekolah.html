@@ -259,6 +259,7 @@ Telegram
 </ul>
   </aside>
 </div>
+<div id="disqus_thread"></div>
   </main>
   <footer>
 <div class="wrap">
@@ -282,16 +283,6 @@ navigator.clipboard.writeText(text).then(()=>{
 });
   });
 });
-// Link share (gunakan URL artikel Anda)
-const shareUrl = 'https://frijal.pages.dev/artikel/oss-di-sekolah.html';
-const shareText = encodeURIComponent('Kampanye OSS di Sekolah: Hemat Anggaran, Tingkatkan Kreativitas');
-const share = document.getElementById('share');
-const setHref = (sel, url) => share.querySelector(sel)?.setAttribute('href', url);
-setHref('.fb', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
-setHref('.tw', `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-setHref('.x',  `https://x.com/intent/post?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-setHref('.wa', `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`);
-setHref('.tg', `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

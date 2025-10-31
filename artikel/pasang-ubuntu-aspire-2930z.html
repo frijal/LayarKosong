@@ -173,14 +173,7 @@
            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdx26esAjxLp5QisDxzJPgVbLCoPBv9DF9IrEg8fPdRrVemZHmmhm6MEqEuMv5UM5HVxtEJtP0P-7Y5eBYOuTBYXu14DBfSMJuWaVdv3at974aol6l2FGeWo0OUoEWblHyXF-3czO4lYhQ/s1600/22.jpeg" alt="CD Ship-It Ubuntu yang langka">
         </figure>
       </div>
-      <h2>Bagikan Cerita Ini</h2>
-      <div class="share" id="share">
-        <a class="fb" href="#" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-        <a class="tw" href="#" target="_blank" rel="noopener" aria-label="Twitter">X</a>
-        <a class="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
-        <a class="tg" href="#" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
-        <a class="li" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-      </div>
+      <div id="disqus_thread"></div>
     </article>
   </main>
   <div id="lightbox" class="lightbox">
@@ -207,18 +200,7 @@
     window.addEventListener('keydown', (e) => {
       if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
     });
-    // Link share
-    const shareUrl = 'https://frijal.pages.dev/artikel/pasang-ubuntu-aspire-2930z.html';
-    const shareText = encodeURIComponent('Pasang Ubuntu 9.10 di Acer Aspire 2930Z — dari Live Session ke Full Install');
-    const shareContainer = document.getElementById('share');
-    const setHref = (sel, url) => shareContainer.querySelector(sel)?.setAttribute('href', url);
-
-    setHref('.fb', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
-    setHref('.tw',  `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-    setHref('.wa', `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`);
-    setHref('.tg', `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${shareText}`);
-    setHref('.li', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`);
-  </script>
+    </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

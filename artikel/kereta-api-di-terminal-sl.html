@@ -82,7 +82,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2) 55%, #fff 100%);color:var(--ink);font:16px/1.7 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:var(--accent);text-decoration:none}
-    
+
     img{max-width:100%;display:block}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,28px)}
     header.hero{
@@ -264,34 +264,7 @@ You can install it by typing: sudo apt-get install sl
       <!-- Share -->
       <section class="card">
         <div class="pad">
-          <div class="title"><span class="tick"></span><h2>Bagikan ke teman-teman</h2></div>
-          <div class="share" id="share">
-            <a class="btn" id="share-facebook" target="_blank" rel="noopener" title="Bagikan ke Facebook" href="#">
-              <!-- Facebook SVG -->
-              <svg viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
-              <span>Facebook</span>
-            </a>
-            <a class="btn" id="share-twitter" target="_blank" rel="noopener" title="Bagikan ke X (Twitter)" href="#">
-              <!-- X SVG -->
-              <svg viewBox="0 0 24 24" fill="#000" aria-hidden="true"><path d="M18.244 2H21L14.5 10.02 22 22h-6.244l-4.338-6.46L6.5 22H4l6.98-8.56L4 2h6.244l4.01 5.94L18.244 2zM17 20h1.5L8.5 4H7L17 20z"/></svg>
-              <span>X</span>
-            </a>
-            <a class="btn" id="share-whatsapp" target="_blank" rel="noopener" title="Bagikan ke WhatsApp" href="#">
-              <!-- WhatsApp SVG -->
-              <svg viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M20.52 3.48A11.83 11.83 0 0 0 12.01 0C5.39 0 .02 5.37.02 12c0 2.12.55 4.2 1.6 6.03L0 24l6.12-1.6A11.92 11.92 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 21.5c-1.98 0-3.92-.53-5.6-1.53l-.4-.24-3.62.95.97-3.52-.26-.42A9.5 9.5 0 0 1 2.5 12C2.5 6.76 6.77 2.5 12 2.5S21.5 6.76 21.5 12 17.24 21.5 12 21.5zm5.32-6.33c-.29-.14-1.7-.84-1.96-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.9 1.12-.17.19-.33.21-.62.07-.29-.14-1.23-.45-2.34-1.43-.86-.77-1.44-1.7-1.61-1.99-.17-.29-.02-.45.12-.59.12-.12.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.48l-.55-.01c-.19 0-.5.07-.76.36-.26.29-1 1-1 2.45s1.03 2.84 1.17 3.04c.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.81.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33z"/></svg>
-              <span>WhatsApp</span>
-            </a>
-            <a class="btn" id="share-telegram" target="_blank" rel="noopener" title="Bagikan ke Telegram" href="#">
-              <!-- Telegram SVG -->
-              <svg viewBox="0 0 24 24" fill="#26A5E4" aria-hidden="true"><path d="M9.036 15.47 8.88 20.14c.41 0 .59-.18.8-.39l1.92-1.85 3.98 2.92c.73.4 1.24.19 1.44-.68l2.61-12.25.01-.01c.23-1.07-.39-1.49-1.1-1.22L2.83 9.33c-1.06.41-1.04 1-.18 1.27l4.55 1.42 10.55-6.64c.5-.31.96-.14.58.17L9.036 15.47z"/></svg>
-              <span>Telegram</span>
-            </a>
-            <a class="btn" id="share-linkedin" target="_blank" rel="noopener" title="Bagikan ke LinkedIn" href="#">
-              <!-- LinkedIn SVG -->
-              <svg viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.026-3.036-1.85-3.036-1.853 0-2.136 1.447-2.136 2.942v5.663H9.354V9h3.414v1.561h.05c.476-.9 1.637-1.85 3.368-1.85 3.604 0 4.27 2.372 4.27 5.456v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.99 20.452H3.68V9h3.31v11.452z"/></svg>
-              <span>LinkedIn</span>
-            </a>
-          </div>
+          <div id="disqus_thread"></div>
         </div>
       </section>
 
@@ -323,7 +296,7 @@ You can install it by typing: sudo apt-get install sl
 
   <!-- Interaksi, lazy-load, share, env info -->
   <script>
-    
+
     // Copy buttons
     document.querySelectorAll('.copy').forEach(btn=>{
       btn.addEventListener('click', ()=>{
@@ -369,7 +342,7 @@ You can install it by typing: sudo apt-get install sl
     lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('active'); });
     window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('active'); });
 
-    
+
 
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

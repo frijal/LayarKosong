@@ -115,7 +115,7 @@
 
   </style>
 
-  
+
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
@@ -133,17 +133,17 @@
 
     <main class="article">
     <figure>
-  <img src="https://spectralops.io/wp-content/uploads/2021/09/github-branch-protection-rules.png" 
+  <img src="https://spectralops.io/wp-content/uploads/2021/09/github-branch-protection-rules.png"
        alt="Pengaturan branch protection di GitHub" loading="lazy">
   <figcaption>Pengaturan branch protection di GitHub — menambahkan aturan proteksi pada branch <code>main</code>.</figcaption>
 </figure>
 <figure>
-  <img src="https://docs.wpvip.com/wp-content/uploads/2021/03/github-required-status-checks.png" 
+  <img src="https://docs.wpvip.com/wp-content/uploads/2021/03/github-required-status-checks.png"
        alt="Status checks sebelum merge" loading="lazy">
   <figcaption>Status checks wajib lulus sebelum merge — memastikan build/test berjalan sukses.</figcaption>
 </figure>
 <figure>
-  <img src="https://docs.github.com/assets/cb-33223/images/help/pull_requests/pr-review-changes.png" 
+  <img src="https://docs.github.com/assets/cb-33223/images/help/pull_requests/pr-review-changes.png"
        alt="Wajib review PR di GitHub" loading="lazy">
   <figcaption>Wajib review PR — pull request harus ditinjau dan disetujui sebelum digabung ke <code>main</code>.</figcaption>
 </figure>
@@ -205,20 +205,7 @@
         <div class="note">
           Publik bisa lihat & fork, tapi tidak bisa push langsung. Branch protection menambah aturan internal; aktifkan jika kolaborasi makin ramai atau butuh kualitas yang konsisten.
         </div>
-
-
-        <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
-          <small>Bagikan:</small>
-          <button class="icon" id="share-twitter" title="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.8.4-1.6.6-2.5.8.9-.6 1.6-1.4 1.9-2.4-.9.5-1.9.9-3 1.1A4.1 4.1 0 0 0 12 8.5c0 .3 0 .6.1.9-3.3-.2-6.3-1.8-8.3-4.3-.3.6-.5 1.3-.5 2 0 1.4.7 2.7 1.8 3.5-.7 0-1.3-.2-1.9-.5v.1c0 2 1.5 3.7 3.4 4.1-.4.1-.8.2-1.3.2-.3 0-.6 0-.9-.1.6 1.7 2.2 2.9 4.1 2.9A8.3 8.3 0 0 1 2 18.6 11.7 11.7 0 0 0 8.1 20c7.5 0 11.7-6.2 11.7-11.7v-.5c.8-.6 1.5-1.3 2.2-2z"/></svg>
-          </button>
-          <button class="icon" id="share-fb" title="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2.1 1.2-3.3 3.1-3.3.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0 0 22 12z"/></svg>
-          </button>
-          <button class="icon" id="share-copy" title="Copy link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 14H8V7h11v12z"/></svg>
-          </button>
-        </div>
+<div id="disqus_thread"></div>
       </article>
     </main>
 
@@ -277,24 +264,6 @@
       if(e.key==='Escape') closeLightbox();
       if(e.key==='ArrowLeft') nav(-1);
       if(e.key==='ArrowRight') nav(1);
-    });
-
-    // Share buttons
-    const url = document.querySelector('link[rel=canonical]')?.href || location.href;
-    document.getElementById('share-twitter').addEventListener('click', ()=>{
-      const u = new URL('https://twitter.com/intent/tweet');
-      u.searchParams.set('url', url);
-      u.searchParams.set('text', document.title);
-      window.open(u.toString(), '_blank');
-    });
-    document.getElementById('share-fb').addEventListener('click', ()=>{
-      const u = new URL('https://www.facebook.com/sharer/sharer.php');
-      u.searchParams.set('u', url);
-      window.open(u.toString(), '_blank');
-    });
-    document.getElementById('share-copy').addEventListener('click', async ()=>{
-      try{ await navigator.clipboard.writeText(url); alert('Link disalin!'); }
-      catch{ prompt('Copy link secara manual:', url); }
     });
    </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

@@ -80,7 +80,7 @@
                     <h1>Skrip <code>nixos-mirror.sh</code>: Atur Mirror Tercepat untuk NixOS</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p>
-                    
+
 
                     <div class="warning-box">
                         <strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.
@@ -112,6 +112,7 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
                     </ol>
                     <p>Setelah selesai, proses build dan update NixOS Anda seharusnya akan berjalan lebih cepat dengan memanfaatkan mirror tambahan tersebut.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
@@ -127,9 +128,9 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
+
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');

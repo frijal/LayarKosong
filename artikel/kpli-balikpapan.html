@@ -148,8 +148,8 @@
 
   <main class="container">
     <p>
-      Kegiatan <b>Komunitas Pengguna Linux Indonesia (KPLI) Balikpapan</b> kali ini diadakan di ruang <b>DiLo Telkom</b>.  
-      Acara berlangsung sederhana namun penuh semangat, berupa <i>rilis party</i> Ubuntu 16.04 yang ditujukan kepada pelajar SMK di Kota Balikpapan.  
+      Kegiatan <b>Komunitas Pengguna Linux Indonesia (KPLI) Balikpapan</b> kali ini diadakan di ruang <b>DiLo Telkom</b>.
+      Acara berlangsung sederhana namun penuh semangat, berupa <i>rilis party</i> Ubuntu 16.04 yang ditujukan kepada pelajar SMK di Kota Balikpapan.
       Selain memperkenalkan Linux, kegiatan ini juga bertujuan menumbuhkan minat generasi muda terhadap <i>open source</i> dan dunia teknologi informasi.
     </p>
 
@@ -164,14 +164,14 @@
 
     <h2>Sejarah dan Keberadaan KPLI</h2>
     <p>
-      KPLI didirikan di Jakarta pada <b>31 Oktober 1998</b> dengan nama awal KPLI-Jakarta.  
-      Sejak awal, KPLI hadir sebagai wadah bagi pengguna Linux di Indonesia, dengan tujuan memasyarakatkan perangkat lunak <b>gratis dan terbuka</b>.  
+      KPLI didirikan di Jakarta pada <b>31 Oktober 1998</b> dengan nama awal KPLI-Jakarta.
+      Sejak awal, KPLI hadir sebagai wadah bagi pengguna Linux di Indonesia, dengan tujuan memasyarakatkan perangkat lunak <b>gratis dan terbuka</b>.
       Saat ini, banyak daerah memiliki KPLI lokal atau dikenal sebagai <i>Linux User Group (LUG)</i>.
     </p>
 
     <h2>KPLI di Balikpapan</h2>
     <p>
-      KPLI Balikpapan rutin mengadakan kegiatan seperti <i>kopdar</i>, seminar, hingga acara rilis sistem operasi.  
+      KPLI Balikpapan rutin mengadakan kegiatan seperti <i>kopdar</i>, seminar, hingga acara rilis sistem operasi.
       Dengan adanya kegiatan ini, diharapkan semakin banyak pelajar dan masyarakat yang memahami Linux dan perangkat lunak <i>open source</i>.
     </p>
 
@@ -179,14 +179,7 @@
     <pre><code class="language-bash">sudo apt update && sudo apt upgrade -y</code></pre>
     <button class="copy-btn" onclick="copyCommand()">Copy</button>
 
-    <div class="share-buttons">
-      <p>Jaga Data Pribadi Tetap Aman</p>
-      <button class="fb" onclick="share('facebook')">Facebook</button>
-      <button class="tw" onclick="share('twitter')">Twitter</button>
-      <button class="wa" onclick="share('whatsapp')">WhatsApp</button>
-      <button class="tg" onclick="share('telegram')">Telegram</button>
-      <button class="li" onclick="share('linkedin')">LinkedIn</button>
-    </div>
+    <div id="disqus_thread"></div>
   </main>
 
   <footer>
@@ -230,21 +223,6 @@
     function copyCommand() {
       navigator.clipboard.writeText("sudo apt update && sudo apt upgrade -y")
         .then(() => alert("Perintah Linux disalin ke clipboard!"));
-    }
-
-    // Tombol share sosial
-    function share(platform) {
-      const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent("Kegiatan KPLI Balikpapan – Rilis Party Ubuntu 16.04");
-      let shareUrl = "";
-      switch(platform) {
-        case "facebook": shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
-        case "twitter": shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`; break;
-        case "whatsapp": shareUrl = `https://wa.me/?text=${text}%20${url}`; break;
-        case "telegram": shareUrl = `https://t.me/share/url?url=${url}&text=${text}`; break;
-        case "linkedin": shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`; break;
-      }
-      window.open(shareUrl, "_blank");
     }
   </script>
 

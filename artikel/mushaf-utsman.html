@@ -249,26 +249,7 @@
                              alt="Mushaf Utsman bin Affan - tampilan halaman" data-full="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqO49Ig6_Mw3477c9zsZhx47wpp9KOrNvsYV6hJMdOz5hPfRHVNR5sOpdi0eC5dPMMBOjQ1qKJyyPqCsByu84uHCdpIJ1-o_C8jg7zq3RFD0ZLswFy_yvTuSc2-khJgCYRU3cDsInh2Q3uAa494tcOL3DX63F2PBiW3bKo6WjhyphenhyphenWaUuqaq73fhk1Dt4ik/s1600/Mushaf-Utsman-bin-Affan.jpg">
                     </figure>
                     </section>
-                <div class="share">
-                    <a target="_blank" rel="noopener" href="#" id="share-whatsapp" title="WhatsApp">
-                        <span>🟢</span> WhatsApp
-                    </a>
-                    <a target="_blank" rel="noopener" href="#" id="share-telegram" title="Telegram">
-                        <span>🔷</span> Telegram
-                    </a>
-                    <a target="_blank" rel="noopener" href="#" id="share-twitter" title="X">
-                        <span>🐦</span> X
-                    </a>
-                    <a target="_blank" rel="noopener" href="#" id="share-facebook" title="Facebook">
-                        <span>📘</span> Facebook
-                    </a>
-                    <a target="_blank" rel="noopener" href="#" id="share-linkedin" title="LinkedIn">
-                        <span>💼</span> LinkedIn
-                    </a>
-                    <a href="#" id="share-copy" title="Salin tautan">
-                        <span>🔗</span> Salin
-                    </a>
-                </div>
+                <div id="disqus_thread"></div>
                 </article>
             </main>
     </div>
@@ -305,29 +286,7 @@
         const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
         // Year
         $('#year').textContent = new Date().getFullYear();
-        // Share links
-        const pageUrl = encodeURIComponent('https://frijal.pages.dev/artikel/mushaf-utsman.html'); // Use canonical directly
-        const pageTitle = encodeURIComponent(document.title);
-        $('#share-whatsapp').href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
-        $('#share-telegram').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
-        $('#share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-        $('#share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-        $('#share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
-        const shareCopyBtn = $('#share-copy');
-        if (shareCopyBtn) {
-            const originalCopyHTML = shareCopyBtn.innerHTML;
-            shareCopyBtn.addEventListener('click', (e)=>{
-                e.preventDefault();
-                navigator.clipboard?.writeText(decodeURIComponent(pageUrl)).then(()=>{
-                    shareCopyBtn.innerHTML = '<span>✔️</span> Disalin!';
-                    setTimeout(() => { shareCopyBtn.innerHTML = originalCopyHTML; }, 2000);
-                }).catch(err => {
-                    console.error("Copy failed:", err);
-                    alert('Gagal menyalin tautan.');
-                });
-            });
-        }
-        // Lightbox
+                // Lightbox
         (function(){
             const items = $$('.gallery .thumb img').map((img, idx)=>({
                 thumb: img.src, full: img.dataset.full || img.src, alt: img.alt || `Gambar ${idx+1}`

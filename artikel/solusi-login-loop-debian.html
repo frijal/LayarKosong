@@ -309,11 +309,7 @@ sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
         <section class="social-share">
           <h3>Jaga Data Pribadi Tetap Aman</h3>
           <div class="social-share-icons">
-            <a href="#" id="share-fb" target="_blank" rel="noopener noreferrer" title="Bagikan ke Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" id="share-twitter" target="_blank" rel="noopener noreferrer" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" id="share-telegram" target="_blank" rel="noopener noreferrer" title="Bagikan ke Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="#" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin"></i></a>
+            
           </div>
         </section>
         <hr />
@@ -327,13 +323,7 @@ sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const pageUrl = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
-        const pageTitle = encodeURIComponent(document.title);
-        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-        document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-        document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${pageTitle} ${pageUrl}`;
-        document.getElementById('share-telegram').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
-        document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
+        
       });
     </script>
 

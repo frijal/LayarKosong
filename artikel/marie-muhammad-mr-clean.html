@@ -221,40 +221,13 @@
           Kisah ini diambil dari berbagai sumber, termasuk autobiografi <em>Mr.Clean Marie Muhammad</em> (2025), serta wawancara keluarganya.</p>
     </article>
     <div class="share-box">
-      <span>Bagikan ke Media Sosial:</span>
-      <div class="share-icons">
-        <a href="#" title="Share ke Facebook" onclick="shareTo('facebook');return false"><i class="fab fa-facebook-square"></i></a>
-        <a href="#" title="Share ke Twitter" onclick="shareTo('twitter');return false"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="Share ke WhatsApp" onclick="shareTo('whatsapp');return false"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" title="Share ke Telegram" onclick="shareTo('telegram');return false"><i class="fab fa-telegram"></i></a>
-      </div>
+      <div id="disqus_thread"></div>
     </div>
     <div style="margin-top:2rem;font-size:0.95rem;color:#888;text-align:right;">
       <i class="fa fa-user-circle"></i> Artikel oleh <b>Frijal Pages</b>
     </div>
   </main>
-   <script>
-    function shareTo(platform) {
-      const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent(document.title);
-      let shareUrl = "";
-      switch(platform) {
-        case 'twitter':
-          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-          break;
-        case 'facebook':
-          shareUrl = `https://www.facebook.com/sharer.php?u=${url}`;
-          break;
-        case 'whatsapp':
-          shareUrl = `https://wa.me/?text=${text}%20${url}`;
-          break;
-        case 'telegram':
-          shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
-          break;
-      }
-      window.open(shareUrl, '_blank');
-    }
-  </script>
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

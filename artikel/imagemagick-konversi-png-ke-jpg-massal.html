@@ -176,27 +176,7 @@
             Ditulis oleh <span itemprop="author">Fakhrul</span> · <time itemprop="datePublished" datetime="2025-10-03">03 Okt 2025</time>
           </div>
 
-          <!-- Bar sharing + badges -->
-          <div class="share-bar" aria-label="Jaga Data Pribadi Tetap Aman">
-            <button class="btn-share" data-share="twitter" aria-label="Bagikan ke Twitter">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4.8c-.8.4-1.7.7-2.6.8.9-.6 1.6-1.4 1.9-2.5-.9.6-2 .9-3.1 1.1A4.5 4.5 0 0 0 12 7.5c0 .4 0 .8.1 1.2-3.8-.2-7.2-2-9.5-4.8-.4.7-.6 1.5-.6 2.4 0 1.6.8 3 2.1 3.9-.7 0-1.4-.2-2-.5v.1c0 2.2 1.6 4.1 3.7 4.6-.4.1-.9.2-1.3.2-.3 0-.6 0-.9-.1.6 1.9 2.4 3.3 4.4 3.3A9.1 9.1 0 0 1 1 19c1.9 1.2 4.2 2 6.6 2 7.9 0 12.2-6.6 12.2-12.3v-.6c.8-.6 1.5-1.3 2.1-2.1z" fill="currentColor"/></svg>
-              <span>Twitter</span>
-            </button>
-            <button class="btn-share" data-share="facebook" aria-label="Bagikan ke Facebook">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 9h2.2l.3-2.6h-2.5V5.1c0-.8.2-1.3 1.4-1.3h1.2V1.5c-.2 0-.9-.1-1.9-.1-1.8 0-3 1.1-3 3.2v2h-2v2.6h2v7.6h2.6V9z" fill="currentColor"/></svg>
-              <span>Facebook</span>
-            </button>
-            <button class="btn-share" data-share="whatsapp" aria-label="Bagikan ke WhatsApp">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3.9A10 10 0 0 0 3.9 20L2 22l2-.6A10 10 0 0 0 12 22a10 10 0 0 0 8-18.1zM12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm4.6-5.9c-.3-.2-1.7-.8-1.9-.9s-.4-.1-.6.1c-.2.2-.6.7-.8.9-.1.2-.3.2-.6.1a6.4 6.4 0 0 1-3.5-3.1c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-.4-1c-.1-.2-.2-.3-.4-.3h-.4c-.2 0-.4.1-.6.3-.9.9-1 2.3-.3 3.7s2.6 3.2 4.9 4c.5.2 1 .2 1.3.2.4 0 1.2-.4 1.4-1 .2-.7.2-1 .1-1.1z" fill="currentColor"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-share" data-share="linkedin" aria-label="Bagikan ke LinkedIn">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 3.5c0 1 .9 1.9 2 1.9s2-.8 2-1.9c0-1-.9-1.9-2-1.9s-2 .9-2 1.9zM4.8 8.2h3.8V21H4.8zM10.4 8.2h3.6v1.7h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.6 2.6 4.6 6V21h-3.8v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21h-4z" fill="currentColor"/></svg>
-              <span>LinkedIn</span>
-            </button>
-          </div>
-
-          <!-- Konten artikel -->
+            <!-- Konten artikel -->
           <div class="content" itemprop="articleBody">
             <h2>Prinsip umum: mogrify untuk massal</h2>
             <p><strong>ImageMagick</strong> menyediakan perintah <code>mogrify</code> untuk memproses banyak file sekaligus. Versi baru memanggilnya lewat <code>magick</code>, jadi pola umumnya: <code>magick mogrify</code>. Perintahnya konsisten di Linux, macOS, dan Windows—bedanya cuma shell/terminal yang dipakai.</p>
@@ -260,8 +240,9 @@ mogrify -format jpg *.png</code></pre>
 
             <figure>
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/s1600/imlinux.jpg" alt="Ilustrasi konversi massal PNG ke JPG dengan ImageMagick" loading="lazy">
-            </figure>    
-                  <small>© 2025 frijal.pages.dev · Artikel disajikan dengan gaya santai, tetap akurat dan ramah pengguna.</small>        
+            </figure>
+            <div id="disqus_thread"></div>
+                  <small>© 2025 frijal.pages.dev · Artikel disajikan dengan gaya santai, tetap akurat dan ramah pengguna.</small>
           </div>
 
           <!-- Lightbox overlay -->
@@ -290,21 +271,6 @@ mogrify -format jpg *.png</code></pre>
   <script>
   (function(){
     const CANON = document.querySelector('link[rel="canonical"]')?.href || location.href;
-
-    // Share
-    const shareMap = {
-      twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-      facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + url)}`,
-      linkedin: url => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
-    };
-    document.querySelectorAll('.btn-share').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const t = btn.getAttribute('data-share');
-        const u = shareMap[t]?.(CANON);
-        if (u) window.open(u, '_blank', 'noopener,noreferrer');
-      });
-    });
 
     // Lightbox
     const gallery = [...document.querySelectorAll('#gallery .item')];

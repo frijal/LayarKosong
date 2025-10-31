@@ -290,12 +290,7 @@
                 <button id="lightbox-next" title="Berikutnya">&rsaquo;</button>
             </div>
             <div class="share-section">
-                <span>Jaga Data Pribadi Tetap Aman</span>
-                <button class="share-btn" data-platform="wa">WhatsApp</button>
-                <button class="share-btn" data-platform="fb">Facebook</button>
-                <button class="share-btn" data-platform="tw">Twitter/X</button>
-                <button class="share-btn" data-platform="tg">Telegram</button>
-                <button class="share-btn" data-platform="ln">LinkedIn</button>
+<div id="disqus_thread"></div>
             </div>
             </main>
     </div>
@@ -364,25 +359,6 @@
                     if (e.key === "ArrowLeft") prevLightbox();
                     if (e.key === "ArrowRight") nextLightbox();
                 }
-            });
-
-            // Share
-            const shareButtons = document.querySelectorAll('.share-btn');
-            shareButtons.forEach(button => {
-                button.onclick = () => {
-                    const platform = button.dataset.platform;
-                    const url = encodeURIComponent('https://frijal.pages.dev/artikel/jumat.html');
-                    const title = encodeURIComponent(document.title);
-                    let shareUrl = "#";
-                    switch(platform) {
-                        case 'wa': shareUrl = `https://wa.me/?text=${title}%20${url}`; break;
-                        case 'fb': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
-                        case 'tw': shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`; break;
-                        case 'tg': shareUrl = `https://t.me/share/url?url=${url}&text=${title}`; break;
-                        case 'ln': shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`; break;
-                    }
-                    window.open(shareUrl, "_blank", "noopener,noreferrer");
-                };
             });
         });
     </script>

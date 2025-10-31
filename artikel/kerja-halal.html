@@ -16,13 +16,13 @@
   <meta name="twitter:title" content="Cara Memahami dan Mencari Kerja Halal — Panduan Singkat">
   <meta name="twitter:description" content="Penjelasan mudah tentang apa itu kerja halal menurut perspektif Islam, contoh pekerjaan halal, etika kerja, dan tips memilih nafkah yang benar.">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/kerja-halal.webp">
-  
+
   <meta itemprop="image" content="https://frijal.pages.dev/img/kerja-halal.webp">
   <meta name="date" content="2025-09-27">
 
   <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230b3d91' width='100' height='100'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial'>KH</text></svg>">
-  
-  
+
+
   <link rel="stylesheet" href="/ext/marquee-url.css">
   <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 
@@ -199,56 +199,20 @@
       <h3>Kesimpulan singkat</h3>
       <p>Kerja halal bukan hanya soal jenis pekerjaan, tetapi juga cara, niat, dan etika. Mencari nafkah halal memberi ketenangan hati dan manfaat bagi sesama.</p>
 
-      <div class="share-row">
-        <button type="button" class="btn primary" id="share-fb" aria-label="Bagikan ke Facebook">Facebook</button>
-        <button type="button" class="btn" id="share-x" aria-label="Bagikan ke X (Twitter)">X (Twitter)</button>
-        <button type="button" class="btn" id="share-wa" aria-label="Bagikan ke WhatsApp">WhatsApp</button>
-        <button type="button" class="btn" id="share-tg" aria-label="Bagikan ke Telegram">Telegram</button>
-        <button type="button" class="btn ghost" id="copy-link" aria-label="Salin Tautan">Salin Link</button>
-      </div>
+      <div id="disqus_thread"></div>
     </article>
   </main>
 
   <footer>
     © 2025 Panduan Halal • <span class="small">Sumber umum, bukan fatwa khusus</span>
   </footer>
-  
+
   <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
   <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-  
+
   <script defer src="/ext/marquee-url.js"></script>
   <script defer src="/ext/iposbrowser.js"></script>
   <script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mengambil URL dari link canonical untuk memastikan URL bersih (tanpa parameter aneh)
-      const canonicalLink = document.getElementById('canonical-link');
-      const shareUrl = canonicalLink ? canonicalLink.href : window.location.href;
-      const shareTitle = document.title;
-      
-      function popup(url) {
-        window.open(url, "_blank", "noopener,noreferrer,width=780,height=520");
-      }
-
-      document.getElementById("share-fb").addEventListener('click', () => popup("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl)));
-      document.getElementById("share-x").addEventListener('click', () => popup("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareTitle) + "&url=" + encodeURIComponent(shareUrl)));
-      document.getElementById("share-wa").addEventListener('click', () => window.location.href = "https://wa.me/?text=" + encodeURIComponent(shareTitle + " " + shareUrl));
-      document.getElementById("share-tg").addEventListener('click', () => popup("https://t.me/share/url?url=" + encodeURIComponent(shareUrl) + "&text=" + encodeURIComponent(shareTitle)));
-      
-      const copyBtn = document.getElementById("copy-link");
-      if (copyBtn) {
-        copyBtn.addEventListener('click', async function() {
-          try {
-            await navigator.clipboard.writeText(shareUrl);
-            this.textContent = "Tersalin ✓";
-            setTimeout(() => { this.textContent = "Salin Link"; }, 2000);
-          } catch (err) {
-            prompt("Gagal menyalin otomatis. Salin URL ini:", shareUrl);
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html>

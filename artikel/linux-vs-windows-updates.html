@@ -257,7 +257,7 @@
 </head>
 
 <body>
- 
+
   <!-- Topbar -->
   <header class="topbar" role="navigation">
     <div class="wrap">
@@ -382,29 +382,7 @@
           </figure>
         </div>
 
-        <div class="share-strip" aria-label="Jaga Data Pribadi Tetap Aman">
-          <button class="share-btn" data-share="facebook" aria-label="Bagikan ke Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l-1 4h-2v8h-4v-8H7v-4h3V8.5C10 6.6 11.2 5 13.8 5H17v4h-3c-.7 0-1 .3-1 1V10Z"/></svg>
-            <span>Facebook</span>
-          </button>
-          <button class="share-btn" data-share="twitter" aria-label="Bagikan ke X/Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 6.4c.7-.9 1.2-1.9 1.4-3-1 .6-2 .9-3.1 1.1A4.3 4.3 0 0 0 13.3 8c0 .3 0 .6.1.9A12.2 12.2 0 0 1 3.3 5.4a4.3 4.3 0 0 0 1.3 5.8c-.8 0-1.6-.3-2.2-.7v.1a4.3 4.3 0 0 0 3.4 4.2c-.5.1-1.1.2-1.6.1.5 1.7 2.1 2.9 4 3a8.7 8.7 0 0 1-5.4 1.9c-.4 0-.7 0-1.1-.1a12.3 12.3 0 0 0 18.9-10.3V9c.8-.6 1.5-1.3 2-2.1-1 .4-1.7.7-2.5.9Z"/></svg>
-            <span>X/Twitter</span>
-          </button>
-          <button class="share-btn" data-share="whatsapp" aria-label="Bagikan ke WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Zm5.1 13.2c-.2.6-1.3 1.1-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.7a10.5 10.5 0 0 1-3.7-3.1 4.1 4.1 0 0 1-.8-2.2c0-.6.3-1.3.6-1.6.3-.3.7-.4.9-.4h.5c.2 0 .4.3.5.6.2.5.6 1.6.7 1.7 0 .2 0 .4-.3.7l-.4.5c-.1.1-.1.2 0 .4l.7.9c.4.6 1 .9 1.6 1.2.2.1.3.1.4 0l.9-.5c.2-.1.4-.1 .6 0l1.6.8c.2.1.3.3.3.5Z"/></svg>
-            <span>WhatsApp</span>
-          </button>
-          <button class="share-btn" data-share="telegram" aria-label="Bagikan ke Telegram">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 4 4 11l6.6 2.3L14 20l2.8-13.4L9.6 13.1"/></svg>
-            <span>Telegram</span>
-          </button>
-          <button class="share-btn" data-share="copy" aria-label="Salin tautan">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V8Zm-4 4a2 2 0 0 1 2-2h1v2H6v4h4v-1h2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4Z"/></svg>
-            <span>Salin Link</span>
-            <span class="copy-ok" hidden>✔ Tersalin</span>
-          </button>
-        </div>
+       <div id="disqus_thread"></div>
       </section>
 
         </section>
@@ -436,9 +414,6 @@
       safe(() => {
         const url = new URL(window.location.href);
         const canonical = document.querySelector('#canonical-link');
-        const ogUrl = document.querySelector('#og-url');
-        const ogImg = document.querySelector('#og-image');
-        const twImg = document.querySelector('#twitter-image');
 
         if (canonical) canonical.href = url.href;
         if (ogUrl) ogUrl.content = url.href;
@@ -471,35 +446,6 @@
         const min = Math.max(3, Math.round(words / 200));
         const el = document.querySelector('#read-time span');
         if (el) el.textContent = `Waktu baca: ~${min} menit`;
-      });
-           // Share buttons
-      safe(() => {
-        const current = window.location.href;
-        const title = document.title;
-        const strip = document.querySelector('.share-strip');
-        const ok = document.querySelector('.copy-ok');
-
-        const open = (u) => window.open(u, '_blank', 'noopener,noreferrer');
-
-        strip?.addEventListener('click', (e) => {
-          const btn = e.target.closest('.share-btn');
-          if (!btn) return;
-          const type = btn.dataset.share;
-          if (type === 'copy') {
-            navigator.clipboard?.writeText(current).then(() => {
-              if (ok) { ok.hidden = false; setTimeout(() => ok.hidden = true, 1500); }
-            });
-            return;
-          }
-          if (navigator.share && (type === 'facebook' || type === 'twitter')) {
-            navigator.share({ title, url: current }).catch(() => {});
-            return;
-          }
-          if (type === 'facebook') open(`https://www.facebook.com/sharer.php?u=${encodeURIComponent(current)}`);
-          if (type === 'twitter') open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(current)}`);
-          if (type === 'whatsapp') open(`https://wa.me/?text=${encodeURIComponent(title + ' ' + current)}`);
-          if (type === 'telegram') open(`https://t.me/share/url?url=${encodeURIComponent(current)}&text=${encodeURIComponent(title)}`);
-        });
       });
 
       // Lightbox gallery with arrow keys

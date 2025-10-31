@@ -35,7 +35,7 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://frijal.pages.dev/artikel/install-virtualbox-4-ubuntu.html" }
     }
     </script>
-    
+
     <style>
         :root {
             --bg-dark: #1e1e2e;
@@ -102,13 +102,6 @@
 <div id="iposbrowser"></div>
 
                     <p class="lead">Kangen dengan tampilan Ubuntu 10.04 Lucid Lynx atau 11.04 Natty Narwhal? Berikut panduan cepat untuk memasang VirtualBox versi 4 yang cocok untuk sistem operasi lawas tersebut.</p>
-
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                    </div>
-
                     <p>Proses instalasi ini sangat mudah dan hanya memerlukan tiga langkah utama di terminal. Mari kita mulai!</p>
 
                     <h2>Tiga Langkah Instalasi via Terminal</h2>
@@ -126,12 +119,12 @@
                     <pre><code id="code3">sudo apt-get update; sudo apt-get install virtualbox-4.0; sudo apt-get install virtualbox-ose-guest-utils</code><button class="copy-btn" data-target="code3">Salin</button></pre>
 
                     <p>Setelah selesai, Anda dapat menemukan VirtualBox di menu aplikasi Anda. Selamat bernostalgia!</p>
-                    
+
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4JPM9E8qR23bDLeghlz9Qp-0Xdut1D25JC0xi-Tv4FXOedxs1eY5ZtLD5j-j1oEpV8OoWfxk7qvAN30sJSEZLKWRjkXwzbykQ2x-MsgntwtND-JyCLiqz5vsZCTwV9PIxdHGGE3_nqSox/s1600/Oracle-VM-VirtualBox-Manager_001.jpeg" alt="Tampilan Oracle VM VirtualBox Manager">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Tampilan VirtualBox Manager setelah terinstal.</figcaption>
                     </figure>
-
+<div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -145,49 +138,6 @@
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #45475a; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
-    <script>
-    (function(){
-        const toast = document.getElementById('toast');
-        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = shareMap[btn.dataset.share]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        document.querySelectorAll('figure img').forEach(el => {
-            el.addEventListener('click', () => {
-                lbImg.src = el.src;
-                lb.classList.add('open');
-            });
-        });
-        function closeLb(){ lb.classList.remove('open'); }
-        lb.addEventListener('click', closeLb);
-        window.addEventListener('keydown', (e) => {
-            if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-                const targetId = btn.getAttribute('data-target');
-                const codeEl = document.getElementById(targetId);
-                if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
-                }
-            });
-        });
-    })();
-    </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

@@ -197,7 +197,6 @@
             <main class="main" id="main-article">
                 <h1>Sahabat: Arti, Ciri, dan Cara Menjaga Persahabatan</h1>
 <div id="iposbrowser"></div>
-
                 <div class="meta">
                     <span class="badge">Panduan</span>
                     <span class="muted">Ditulis oleh <strong>Tim Konten</strong></span>
@@ -206,7 +205,6 @@
                 </div>
                 <article>
                     <p><strong>Sahabat</strong> adalah seseorang yang memiliki hubungan persahabatan yang erat dengan Anda — orang yang dapat dipercaya, mendukung, dan menerima Anda apa adanya. Persahabatan yang sehat memberi rasa aman, dukungan emosional, dan berbagi pengalaman hidup.</p>
-
                     <h2>Apa ciri-ciri sahabat sejati?</h2>
                     <div class="cards">
                         <div class="card"><strong>Kepercayaan</strong>
@@ -222,7 +220,6 @@
                             <div class="muted">Tetap bersama melewati konflik atau perubahan.</div>
                         </div>
                     </div>
-
                     <h2>Bagaimana membangun dan menjaga persahabatan?</h2>
                     <ol>
                         <li><strong>Komunikasi terbuka:</strong> Bicara jujur dan dengarkan tanpa menghakimi.</li>
@@ -231,14 +228,11 @@
                         <li><strong>Respek terhadap batasan:</strong> Hargai ruang pribadi dan keputusan masing-masing.</li>
                         <li><strong>Dukungan timbal balik:</strong> Keseimbangan memberi dan menerima adalah kunci.</li>
                     </ol>
-
                     <h2>Kesalahan umum yang merusak persahabatan</h2>
                     <p>Beberapa perilaku yang sering merusak hubungan persahabatan antara lain: pengkhianatan, gosip, ketidakjujuran, tidak menghargai waktu atau prioritas sahabat, dan sikap egois yang terus menerus.</p>
-
                     <h2>Penutup singkat</h2>
                     <p>Persahabatan adalah salah satu aset emosional terbesar dalam hidup. Menjaga kepercayaan, komunikasi yang baik, dan rasa saling menghormati membantu persahabatan bertahan lama.</p>
                     <hr>
-
                     <section>
                         <h3>Tanya Jawab (FAQ singkat)</h3>
                         <div>
@@ -248,30 +242,14 @@
                             <p class="muted">Tidak ada angka pasti. Kualitas lebih penting daripada kuantitas. Beberapa orang nyaman dengan sedikit sahabat dekat, sementara yang lain memiliki banyak teman.</p>
                         </div>
                     </section>
-
                     <div class="meta-block">
-                        <div class="muted">Jaga Data Pribadi Tetap Aman</div>
-                        <div class="share-row">
-                            <button class="btn" id="share-fb">Facebook</button>
-                            <button class="btn" id="share-x">Twitter/X</button>
-                            <button class="btn" id="share-wa">WhatsApp</button>
-                            <button class="btn" id="share-tg">Telegram</button>
-                        </div>
-                        <div style="margin-top:8px;display:flex;gap:8px">
-                            <button class="btn btn--primary" id="copy-link">Salin Link</button>
-                            <button class="btn" id="open-in-new">Buka di Tab Baru</button>
-                        </div>
-                        <div style="margin-top:8px;font-size:13px;color:green;display:none" id="copy-msg">Link berhasil disalin.</div>
-                        <div style="margin-top:8px;font-size:12px;color:var(--muted)">URL: <span id="current-url">-</span></div>
+                        <div id="disqus_thread"></div>
                     </div>
                     <div style="margin-top:18px">
-
-
                     </div>
                 </article>
             </main>
         </div>
-
         <footer>
             <div class="footer-inner container">
                 <div>🄯 <span id="year">2025</span> Panduan Sahabat. Jaga Data Pribadi Tetap Aman.</div>
@@ -279,45 +257,21 @@
             </div>
         </footer>
     </div>
-
     <script>
         const canonicalUrl = "https://frijal.pages.dev/artikel/penjelasan-lengkap-tentang-sahabat.html";
-
         // 1. Logic untuk Tanggal dan Tahun
         const updateDateElements = () => {
             const date = new Date();
             document.getElementById("updated-at").textContent = date.toLocaleString("id-ID", {dateStyle:"long",timeStyle:"short"});
             document.getElementById("year").textContent = date.getFullYear();
         };
-        // 2. Logic Pembagian (Share)
-        const setupShareButtons = () => {
-            const url = encodeURIComponent(canonicalUrl);
-            const title = encodeURIComponent(document.title);
-            const copyMsg = document.getElementById("copy-msg");
-            document.getElementById("share-fb").addEventListener("click", () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "", "noopener"));
-            document.getElementById("share-x").addEventListener("click", () => window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, "", "noopener"));
-            document.getElementById("share-wa").addEventListener("click", () => window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, "", "noopener"));
-            document.getElementById("share-tg").addEventListener("click", () => window.open(`https://t.me/share/url?url=${url}&text=${title}`, "", "noopener"));
-
-            document.getElementById("copy-link").addEventListener("click", async () => {
-                try {
-                    await navigator.clipboard.writeText(canonicalUrl);
-                    copyMsg.style.display = "block";
-                    setTimeout(() => copyMsg.style.display = "none", 2500);
-                } catch(e) {
-                    alert("Salin otomatis gagal. Silakan salin secara manual: " + canonicalUrl);
-                }
-            });
-            document.getElementById("open-in-new").addEventListener("click", () => window.open(canonicalUrl, "_blank", "noopener"));
-
-            // Set URL display in sidebar
+                // Set URL display in sidebar
             document.getElementById("current-url").textContent = canonicalUrl;
         };
         // Inisialisasi
         document.addEventListener("DOMContentLoaded", () => {
             updateDateElements();
             setupShareButtons();
-
             // Re-parse FB comments for initial load after DCL
             window.fbAsyncInit = function() {
                 if (typeof FB !== 'undefined') {

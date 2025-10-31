@@ -95,7 +95,7 @@
                     <h1>Mengubah Banyak Gambar Menjadi Satu PDF dengan ImageMagick</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Jika Anda memiliki banyak file gambar terpisah—seperti hasil scan dokumen atau halaman komik—akan merepotkan untuk membukanya satu per satu. Solusi praktisnya adalah menggabungkan semua gambar tersebut menjadi satu file PDF.</p>
-                    
+
 
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZfd7lBezHxJd1AZq0NAtIDxU1yLmHgZMPDEB6_Z_d9CbQXDilSGRra1cNlZ_RnZSJV6GReo4oIlqaHa-mbQrO9BGSXtSM6aK9Z9QRK-0LenuEmQ9CSQMjER-8CaFJ49gFTFr4Oqe3Kgf_/s1600/Logo_Imagemagick.png" alt="Logo ImageMagick">
@@ -112,6 +112,7 @@ sudo pacman -S imagemagick</code><button class="copy-btn" data-target="code1">Sa
                     <p>Buka terminal di dalam folder yang berisi gambar-gambar Anda, lalu jalankan perintah <code>convert</code>.</p>
                     <pre class="language-bash"><code id="code2">convert *.jpg nama_file_output.pdf</code><button class="copy-btn" data-target="code2">Salin</button></pre>
                     <p class="muted">Perintah di atas akan mengambil semua file dengan ekstensi <code>.jpg</code> di folder saat ini dan menggabungkannya secara berurutan menjadi satu file PDF. Anda bisa mengganti <code>*.jpg</code> dengan ekstensi lain seperti <code>*.png</code> atau menggunakan pola yang lebih spesifik seperti <code>halaman-*.jpg</code>.</p>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -129,9 +130,6 @@ sudo pacman -S imagemagick</code><button class="copy-btn" data-target="code1">Sa
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
 
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{

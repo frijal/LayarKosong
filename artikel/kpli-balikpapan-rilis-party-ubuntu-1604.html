@@ -219,25 +219,7 @@
       <div class="content">
         <span class="badge">Komunitas Pengguna Linux Indonesia (KPLI)</span>
         <p>Kegiatan komunitas itu sederhana: berbagi pengetahuan. Di sesi ini, kita kenalan dengan Ubuntu 16.04, bahas instalasi, paket, dan best practice buat pemula langsung praktik bareng pelajar SMK.</p>
-        <div class="share" id="share-top">
-          <a id="share-wa" target="_blank" rel="noopener" aria-label="Bagikan ke WhatsApp">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L0 24l6.3-1.7A12 12 0 0 0 12 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.5zM12 21.3c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-3.7 1 1-3.6-.2-.4A9.3 9.3 0 1 1 12 21.3zm5.4-6.9c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.2l-.5.6c-.2.2-.4.2-.7.1-1.9-.9-3.2-2.4-3.7-3.3-.2-.4 0-.6.1-.8l.3-.3c.1-.2.2-.4.3-.6.1-.2 0-.4 0-.6 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.3 3.4 1.5 3.6c.2.2 2.6 3.9 6.2 5.4 3.7 1.4 3.7.9 4.4.8.7-.1 2.1-.9 2.4-1.8.3-.9.3-1.7.2-1.8-.1-.1-.3-.2-.6-.3z"/></svg>
-            WhatsApp
-          </a>
-          <a id="share-x" target="_blank" rel="noopener" aria-label="Bagikan ke X">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-7.1 8.1L23 22h-6.9l-5.4-7-6.2 7H2l7.6-8.6L1.3 2H8l5 6.5L18.9 2zM17.8 20h1.9L8.3 4H6.3l11.5 16z"/></svg>
-            X
-          </a>
-          <a id="share-fb" target="_blank" rel="noopener" aria-label="Bagikan ke Facebook">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06C2 17.05 5.66 21.13 10.44 22v-7.02H7.9v-2.92h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.57v1.89h2.76l-.44 2.92h-2.32V22C18.34 21.13 22 17.05 22 12.06z"/></svg>
-            Facebook
-          </a>
-          <a id="share-tele" target="_blank" rel="noopener" aria-label="Bagikan ke Telegram">
-            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9.03 15.45l-.38 5.32c.54 0 .78-.23 1.07-.51l2.57-2.46 5.32 3.9c.98.54 1.68.26 1.95-.91l3.54-16.6v-.01c.31-1.44-.52-2-1.48-1.64L1.2 10.35c-1.41.55-1.39 1.33-.24 1.68l5.37 1.67L19.2 6.24c.6-.37 1.16-.17.71.2"/></svg>
-            Telegram
-          </a>
-        </div>
-        <div id="iposbrowser"></div>
+               <div id="iposbrowser"></div>
       </div>
     </section>
 
@@ -304,6 +286,7 @@
         <p>Dari rilis party, install fest, sampai klinik migrasi kita jalan terus. Bawa rasa ingin tahu, pulang bawa ilmu baru. Pantau kanal komunitas buat info jadwal.</p>
       </div>
     </section>
+    <div id="disqus_thread"></div>
   </main>
 
   <footer>
@@ -332,32 +315,7 @@
 
   <!-- Scripts -->
   <script>
-      // Share links
-    (function(){
-      const url = encodeURIComponent(location.href);
-      const text = encodeURIComponent('KPLI Balikpapan - Rilis Party Ubuntu 16.04 di DiLo Telkom');
-      const wa = `https://wa.me/?text=${text}%20%7C%20${url}`;
-      const x  = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-      const fb = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      const tg = `https://t.me/share/url?url=${url}&text=${text}`;
-      const ids = ['share-wa','share-x','share-fb','share-tele'];
-      [wa,x,fb,tg].forEach((link,i)=>{ const el=document.getElementById(ids[i]); if(el){ el.href=link; el.target='_blank'; el.rel='noopener'; } });
-      // clone to other spot
-      const top = document.getElementById('share-top');
-      ['share-bottom'].forEach(id=>{
-        const c=document.getElementById(id);
-        if(c&&top){ c.innerHTML=top.innerHTML; c.querySelectorAll('a').forEach(a=>{
-          const label=a.textContent.trim();
-          if(label.includes('WhatsApp')) a.href=wa;
-          if(label==='X') a.href=x;
-          if(label.includes('Facebook')) a.href=fb;
-          if(label.includes('Telegram')) a.href=tg;
-          a.target='_blank'; a.rel='noopener';
-        });}
-      });
-    })();
-
-    // Lazy load
+      // Lazy load
     (function(){
       const imgs = document.querySelectorAll('img[data-src]');
       const io = 'IntersectionObserver' in window ? new IntersectionObserver((ents,obs)=>{

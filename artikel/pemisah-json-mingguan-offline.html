@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Pemisah JSON Artikel Mingguan (Offline) - frijal.pages.dev</title>
     <meta name="description" content="Alat offline untuk memisahkan data artikel dari file JSON besar (via upload atau paste) menjadi file JSON per minggu (Senin-Minggu) dengan format nama file YYYY-minggu-WW.json.">
-    
+
     <link rel="canonical" href="https://frijal.pages.dev/tools/pemisah-json-mingguan-offline.html"> <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>">
-    
+
     <meta property="og:title" content="Pemisah JSON Artikel Mingguan (Offline)">
     <meta property="og:description" content="Alat web offline untuk membagi JSON artikel besar per minggu via upload atau paste (nama file: YYYY-minggu-WW.json).">
     <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="frijal.pages.dev">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pemisah JSON Artikel Mingguan (Offline)">
     <meta name="twitter:description" content="Alat web offline untuk membagi JSON artikel besar per minggu via upload atau paste (nama file: YYYY-minggu-WW.json).">
@@ -103,13 +103,13 @@
         p {
             margin-bottom: 1.2rem;
         }
-        
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
-        
+
         /* Styling untuk input file */
         input[type="file"] {
             display: block;
@@ -123,7 +123,7 @@
             border-radius: 8px;
             cursor: pointer;
         }
-        
+
          input[type="file"]::file-selector-button {
             padding: 0.5rem 1rem;
             margin-right: 1rem;
@@ -134,14 +134,14 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        
+
         input[type="file"]::file-selector-button:hover {
             background-color: var(--button-hover-bg);
         }
 
         textarea {
             width: 100%;
-            min-height: 200px; 
+            min-height: 200px;
             padding: 1rem;
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             font-size: 0.9em;
@@ -189,7 +189,7 @@
              border-radius: 8px;
              margin-bottom: 0.75rem;
         }
-        
+
         #outputLinks a {
             display: block;
             padding: 0.8rem 1.2rem;
@@ -197,15 +197,15 @@
             color: var(--link-color);
             font-weight: 500;
         }
-        
+
         #outputLinks a:hover {
              color: var(--link-hover);
              background-color: var(--code-bg);
              border-radius: 8px;
         }
-        
+
         .status-message, .error-message {
-            color: var(--text-color); 
+            color: var(--text-color);
             background-color: var(--code-bg);
             border: 1px solid var(--border-color);
             padding: 1rem;
@@ -213,7 +213,7 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
-        
+
         .error-message {
             color: #dc3545; /* Bootstrap danger color */
             background-color: rgba(220, 53, 69, 0.1);
@@ -229,7 +229,7 @@
             border-top: 1px solid var(--border-color);
             margin-top: 3rem;
         }
-        
+
         footer a {
             color: var(--accent-color);
             text-decoration: none;
@@ -269,7 +269,7 @@
         <h1>✂️ Pemisah JSON Artikel Mingguan (Offline)</h1>
 <div id="iposbrowser"></div>
         <p>Pilih file <code>file.json</code> Anda atau tempelkan kontennya di bawah ini, lalu klik tombol untuk memisahkannya menjadi file-file JSON per minggu (Senin-Minggu) dengan format nama <strong>YYYY-minggu-WW.json</strong>.</p>
-        
+
         <label for="jsonFile">Pilih File JSON:</label>
         <input type="file" id="jsonFile" accept=".json">
 
@@ -280,8 +280,9 @@
 
         <div id="outputLinks">
             </div>
+            <div id="disqus_thread"></div>
     </main>
-    
+
     <footer>
         <p>&copy; 2025 <a href="https://frijal.pages.dev">frijal.pages.dev</a> | Dibuat dengan cinta dan secangkir kopi.</p>
     </footer>
@@ -337,7 +338,7 @@
             const day = date.getDate().toString().padStart(2, '0');
             return `${year}-${month}-${day}`;
         }
-        
+
         // Helper to get ISO week number (Standard algorithm)
         function getIsoWeek(date) {
             const tempDate = new Date(date.getTime());
@@ -352,7 +353,7 @@
         }
 
         // Core processing function (now takes jsonString as argument)
-        function processJson(jsonString) { 
+        function processJson(jsonString) {
             const outputDiv = document.getElementById('outputLinks');
             outputDiv.innerHTML = ''; // Clear processing message
 
@@ -376,7 +377,7 @@
                         articlesInCategory.forEach(articleArr => {
                             if (Array.isArray(articleArr) && articleArr.length >= 4) {
                                 const [title, slug, image, dateStr, summary] = articleArr;
-                                
+
                                 // Basic validation for essential fields
                                 if (!title || !slug || !dateStr) {
                                     console.warn("Skipping article with missing title, slug, or date:", articleArr);
@@ -416,7 +417,7 @@
                     }
                 }
             }
-            
+
             if (articleCount === 0) {
                  outputDiv.innerHTML = '<p class="error-message">Tidak ada artikel valid yang ditemukan dalam JSON.</p>';
                  return;
@@ -428,22 +429,22 @@
             // 3. Generate download links for each week
             const outputList = document.createElement('ul');
             outputDiv.innerHTML = `<h2>File JSON Mingguan (Total ${articleCount} artikel):</h2>`;
-            
+
             sortedWeeks.forEach((mondayKey) => {
                 const weekArticles = weeklyData[mondayKey];
-                
+
                 // Sort articles within the week by date (ascending)
                  weekArticles.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
 
                 // --- Updated Week Numbering Logic with Year ---
-                const currentWeekDate = new Date(mondayKey); 
+                const currentWeekDate = new Date(mondayKey);
                 const currentWeekNumber = getIsoWeek(currentWeekDate);
                 const currentYear = currentWeekDate.getFullYear(); // Get the year
                 // Pad week number with leading zero if needed
-                const paddedWeekNumber = currentWeekNumber.toString().padStart(2, '0'); 
+                const paddedWeekNumber = currentWeekNumber.toString().padStart(2, '0');
                 const fileName = `${currentYear}-minggu-${paddedWeekNumber}.json`; // YYYY-minggu-WW.json
                 // --- End Updated Logic ---
-                
+
                 const jsonStringOutput = JSON.stringify(weekArticles, null, 2); // Pretty print
                 const blob = new Blob([jsonStringOutput], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
@@ -454,11 +455,11 @@
                 link.download = fileName;
                 // Update link text content to show the new filename format
                 link.textContent = `Unduh ${fileName} (Minggu ke-${currentWeekNumber} ${currentYear}, mulai ${mondayKey}, ${weekArticles.length} artikel)`;
-                
+
                 listItem.appendChild(link);
                 outputList.appendChild(listItem);
             });
-            
+
             outputDiv.appendChild(outputList);
         }
     </script>

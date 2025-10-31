@@ -224,11 +224,7 @@ Disallow: /</code></pre>
                   </article>
                 <section class="interaction-section">
             <div class="social-share">
-                <h3>Jaga Data Pribadi Tetap Aman</h3>
-                <a href="#" id="share-twitter" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Twitter">🐦</a>
-                <a href="#" id="share-facebook" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Facebook">👍</a>
-                <a href="#" id="share-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke WhatsApp">💬</a>
-                <a href="#" id="share-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">🔗</a>
+             <div id="disqus_thread"></div>
             </div>
         </section>
     </main>
@@ -248,9 +244,7 @@ Disallow: /</code></pre>
         galleryItems.forEach((item,index)=>{item.addEventListener('click',e=>{e.preventDefault();lightbox.style.display='flex';showImage(index)})});closeBtn.addEventListener('click',()=>lightbox.style.display='none');prevBtn.addEventListener('click',()=>showImage(currentIndex-1));nextBtn.addEventListener('click',()=>showImage(currentIndex+1));lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.style.display='none'});document.addEventListener('keydown',e=>{if(lightbox.style.display==='flex'){if(e.key==='Escape')closeBtn.click();if(e.key==='ArrowLeft')prevBtn.click();if(e.key==='ArrowRight')nextBtn.click()}});
         // --- Copy Button Logic ---
         document.querySelectorAll('.copy-btn').forEach(button=>{button.addEventListener('click',()=>{const code=button.nextElementSibling.textContent;navigator.clipboard.writeText(code).then(()=>{const originalText=button.textContent;button.textContent='Disalin!';button.classList.add('copied');setTimeout(()=>{button.textContent=originalText;button.classList.remove('copied')},2000)}).catch(err=>console.error('Gagal menyalin teks: ',err))})});
-        // --- Social Share Logic ---
-        const pageUrl=encodeURIComponent(window.location.href),pageTitle=encodeURIComponent(document.title);document.getElementById('share-twitter').href=`https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;document.getElementById('share-facebook').href=`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;document.getElementById('share-whatsapp').href=`https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;document.getElementById('share-linkedin').href=`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-          });
+               });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

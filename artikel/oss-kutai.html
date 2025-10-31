@@ -92,10 +92,8 @@
                     <h1>Sosialisasi OSS di Kutai Kartanegara</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Sebuah catatan kilas balik acara sosialisasi penggunaan perangkat lunak legal dan Open Source Software (OSS) yang diadakan oleh Kementerian Riset dan Teknologi di Kabupaten Kutai Kartanegara pada 4 Oktober 2010.</p>
-                    
                     <p>Acara ini dibuka oleh Wakil Bupati Kutai Kartanegara dan Kepala Dinas Kominfo sebagai penyelenggara lokal. Tujuannya adalah untuk mendorong implementasi perangkat lunak legal berbasis OSS, sejalan dengan surat edaran MenPAN saat itu.</p>
                     <p>Kegiatan ini dilanjutkan dengan migrasi dan pelatihan OSS di seluruh SKPD, yang dipandu oleh tim dari Makara UI, KPLI Balikpapan, dan POSS Universitas Mulawarman Samarinda. Peserta yang hadir mencakup Kepala SKPD, guru, mahasiswa, dan komunitas OSS, dengan narasumber ternama seperti Onno Purbo.</p>
-
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.png" alt="Sosialisasi OSS 1"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4xGZROzzRw1_4woVewzXkhNt7Ff8JSrKDYM_4kXJ2ubYCPf7iz4EvM6RrjLrxdcuoughTyeDYYE7cYAY8heVQNZ7dlCLRu8Ml4QaEbFS2OlMroSLvYwP8J0i6Aw35hJEbz-9FQoeed-CA/s1600/CIMG3312.JPG" alt="Sosialisasi OSS 2"></figure>
@@ -103,13 +101,13 @@
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsod5LDLRFfxsAiGMIj5_CrzAOjp7Gp_e7f3iHbZoBkhDY_oUiuh4bFASYJQMIy55jI6jyJc1yfpaCpNA2c4PhqEz8kUqfpiwz_SwaGlOseH1q1RWlunhAsXl-fojTakp8iGkskjh2uu8r/s1600/CIMG3380.JPG" alt="Sosialisasi OSS 5"></figure>
                     </div>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2024 Frijal · Momen penting dalam sejarah adopsi OSS di Indonesia.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -118,14 +116,10 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             let src = galleryImages[currentIndex].src;
@@ -134,7 +128,6 @@
             lbImg.src = src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
