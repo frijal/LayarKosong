@@ -17,7 +17,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="f-Page">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Analisis Workflow GitHub Actions yang Efisien">
@@ -86,7 +86,7 @@
             </h2>
 
             <div class="space-y-8">
-                
+
                 <!-- 1. Pemicu (Triggers) -->
                 <article class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
                     <div class="flex items-center mb-4">
@@ -132,7 +132,7 @@
 
                     <!-- Sub-langkah -->
                     <div class="mt-6 pl-4 md:pl-6 border-l-4 border-indigo-200 space-y-6">
-                        
+
                         <!-- Langkah 1 & 2 -->
                         <div>
                             <h4 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">Langkah 1 & 2: Checkout Dua Branch</h4>
@@ -245,22 +245,7 @@
 
             </div>
         </section>
-        <section class="text-center my-12 p-6 bg-white rounded-lg shadow-lg">
-            <h3 class="text-2xl font-bold text-indigo-600 mb-6">Jaga Data Pribadi Tetap Aman</h3>
-            <div class="flex justify-center gap-3 md:gap-4 flex-wrap">
-                <button id="shareTwitter" class="inline-block bg-blue-400 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-500 transition-colors">
-                    Bagikan ke Twitter
-                </button>
-                <button id="shareLinkedIn" class="inline-block bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-800 transition-colors">
-                    Bagikan ke LinkedIn
-                </button>
-                <button id="shareWhatsApp" class="inline-block bg-green-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-green-600 transition-colors">
-                    Bagikan ke WhatsApp
-                </button>
-                <button id="copyLink" class="inline-block bg-gray-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-gray-700 transition-colors">
-                    Salin Tautan
-                </button>
-            </div>
+        <section><div id="disqus_thread"></div>
         </section>
 
     </main>
@@ -270,145 +255,6 @@
         <p>Dibuat dengan ❤️ oleh f-Page.</p>
         <p>&copy; 2024. Semua penjelasan ini hanya untuk tujuan edukasi.</p>
     </footer>
-
-    <script>
-        // Konteks workflow asli dari artikel untuk diberikan ke Gemini
-        const workflowContext = `
-name: ⚠️ Build and Deploy to Clean Branch
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-permissions:
-  contents: write
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source branch
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: source
-      - name: Checkout site branch
-        uses: actions/checkout@v4
-        with:
-          ref: site
-          path: site
-      - name: Create clean directory
-        run: mkdir deploy_dir
-      - name: Sync allowed files to deploy directory
-        run: |
-          rsync -a --delete \\
-            --include='artikel/***' \\
-            --include='ext/***' \\
-            --include='img/***' \\
-            --include='artikel.json' \\
-            --include='_redirects' \\
-            --include='_headers' \\
-            --include='*.html' \\
-            --include='*.xml' \\
-            --include='*.txt' \\
-            --include='favicon.*' \\
-            --include='icon.*' \\
-            --include='logo.*' \\
-            --include='thumbnail.*' \\
-            --include='*.webmanifest' \\
-            --exclude='*' \\
-            source/ deploy_dir/
-      - name: Check for changes (Fast & No-Log)
-        id: check_changes
-        run: |
-          if git diff --no-index --quiet deploy_dir/ site/; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-      - name: Deploy to site branch
-        if: steps.check_changes.outputs.changed == 'true'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: \${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy_dir
-          publish_branch: site
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          force_orphan: false
-          keep_files: false
-        `;
-
-     document.addEventListener('DOMContentLoaded', (event) => {
-            
-            // --- Logika Back to Top ---
-            const toTopBtn = document.getElementById('toTopBtn');
-            
-            window.onscroll = function() {
-                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                    toTopBtn.classList.remove('hidden');
-                } else {
-                    toTopBtn.classList.add('hidden');
-                }
-            };
-
-            toTopBtn.onclick = function() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            };
-
-            // --- Logika Share ---
-            const pageUrl = "https://frijal.pages.dev/artikel/analisis-workflow-github-actions.html";
-            const pageTitle = "Ngoprek Workflow GitHub Actions yang Efisien";
-            const pageDesc = "Penjelasan mendalam tentang workflow GitHub Actions untuk build dan deploy ke branch 'site' secara efisien.";
-
-            const shareTwitter = document.getElementById('shareTwitter');
-            const shareLinkedIn = document.getElementById('shareLinkedIn');
-            const shareWhatsApp = document.getElementById('shareWhatsApp');
-            const copyLink = document.getElementById('copyLink');
-
-            shareTwitter.onclick = () => {
-                const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}&via=frijal`;
-                window.open(url, '_blank', 'width=600,height=400');
-            };
-
-            shareLinkedIn.onclick = () => {
-                const url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(pageTitle)}&summary=${encodeURIComponent(pageDesc)}`;
-                window.open(url, '_blank', 'width=600,height=600');
-            };
-
-            shareWhatsApp.onclick = () => {
-                const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(pageTitle + "\n\n" + pageUrl)}`;
-                window.open(url, '_blank');
-            };
-
-            copyLink.onclick = () => {
-                navigator.clipboard.writeText(pageUrl).then(() => {
-                    copyLink.innerText = 'Tautan Disalin!';
-                    setTimeout(() => {
-                        copyLink.innerText = 'Salin Tautan';
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Gagal menyalin tautan: ', err);
-                });
-            };
-
-            // --- Event Listeners Baru untuk Gemini ---
-            const geminiSubmit = document.getElementById('geminiSubmit');
-            const geminiQueryInput = document.getElementById('geminiQuery');
-            const promptButtons = document.querySelectorAll('.gemini-prompt-btn');
-
-            geminiSubmit.onclick = handleGeminiSubmit;
-
-            promptButtons.forEach(btn => {
-                btn.onclick = () => {
-                    geminiQueryInput.value = btn.innerText;
-                    geminiQueryInput.focus();
-                };
-            });
-
-        });
-    </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

@@ -335,30 +335,6 @@ kemenangan semata.
 <div style="margin-top: 18px; color: var(--muted); font-size: 10px">
   <span id="current-url" class="small-muted"></span>
 </div>
-<div style="margin-top: 18px">
-  
-  <div
-class="fb-comments"
-id="fb-comments"
-data-href=""
-data-width="100%"
-data-numposts="5"
-  ></div>
-  <script>
-let currentUrl = window.location.href;
-((document.getElementById("current-url").textContent =
-  currentUrl),
-  document
-.getElementById("fb-comments")
-.setAttribute("data-href", currentUrl),
-  (window.fbAsyncInit = function () {
-if ("undefined" != typeof FB)
-  try {
-FB.XFBML.parse();
-  } catch (t) {}
-  }));
-  </script>
-</div>
   </article>
   <aside class="card" aria-labelledby="about-title">
 <h3 id="about-title">Info Singkat</h3>
@@ -378,6 +354,7 @@ FB.XFBML.parse();
   Diperbarui: <span id="date-side">—</span>
 </div>
   </aside>
+  <div id="disqus_thread"></div>
 </div>
   </main>
   <footer>
@@ -392,36 +369,6 @@ arsip lengkap silakan merujuk ke PUSTEKKOM/PUSTAKA terkait.
 </div>
   </footer>
 </div>
-<script>
-  ((document.getElementById("updated-time").textContent =
-new Date().toLocaleString("id-ID", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-})),
-(document.getElementById("date-side").textContent =
-  new Date().toLocaleDateString("id-ID")),
-(document.getElementById("year").textContent =
-  new Date().getFullYear()));
-  let currentUrl = window.location.href,
-metaOg = document.getElementById("meta-og-url"),
-canonical =
-  (metaOg && metaOg.setAttribute("content", currentUrl),
-  document.getElementById("canonical-link")),
-fb =
-  (canonical && canonical.setAttribute("href", currentUrl),
-  document.getElementById("fb-comments")),
-cur =
-  (fb && fb.setAttribute("data-href", currentUrl),
-  document.getElementById("current-url"));
-  (cur && (cur.textContent = currentUrl),
-window.addEventListener("load", () => {
-  window.FB &&
-FB.XFBML &&
-"function" == typeof FB.XFBML.parse &&
-FB.XFBML.parse();
-}));
-</script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

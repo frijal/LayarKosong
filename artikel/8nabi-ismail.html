@@ -195,18 +195,7 @@
               </div>
             </div>
           </div>
-          <!-- Ikon sharing -->
-          <div class="section">
-            <h3>Bagikan</h3>
-            <div class="share">
-              <a class="icon-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener">🟢 WhatsApp</a>
-              <a class="icon-btn" id="share-telegram" href="#" target="_blank" rel="noopener">🔵 Telegram</a>
-              <a class="icon-btn" id="share-twitter" href="#" target="_blank" rel="noopener">🐦 X/Twitter</a>
-              <a class="icon-btn" id="share-facebook" href="#" target="_blank" rel="noopener">🔷 Facebook</a>
-              <button class="icon-btn" id="share-native">📤 Share</button>
-              <button class="icon-btn" id="copy-link">🔗 Salin Link</button>
-            </div>
-          </div>
+          <div id="disqus_thread"></div>
         </article>
         <footer>
           🄯 Ramadahan Tales ,  disusun hangat untuk teman-teman pembaca. Terima kasih sudah singgah.
@@ -251,37 +240,7 @@
       if(e.key === 'ArrowLeft') prev();
       if(e.key === 'ArrowRight') next();
     });
-    // Share links
-    function enc(s){ return encodeURIComponent(s); }
-    const shareWhatsApp = document.getElementById('share-whatsapp');
-    const shareTelegram = document.getElementById('share-telegram');
-    const shareTwitter  = document.getElementById('share-twitter');
-    const shareFacebook = document.getElementById('share-facebook');
-    const shareNative   = document.getElementById('share-native');
-    const copyLinkBtn   = document.getElementById('copy-link');
-    const shareText = 'Baca kisah hangat: Nabi Ismail ‘Alaihissalam ,  Ramadahan Tales';
-    shareWhatsApp.href = `https://wa.me/?text=${enc(shareText + ' ' + CANONICAL)}`;
-    shareTelegram.href = `https://t.me/share/url?url=${enc(CANONICAL)}&text=${enc(shareText)}`;
-    shareTwitter.href  = `https://twitter.com/intent/tweet?url=${enc(CANONICAL)}&text=${enc(shareText)}&via=Frijal`;
-    shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${enc(CANONICAL)}`;
-    shareNative.addEventListener('click', async () => {
-      if(navigator.share){
-        try{
-          await navigator.share({ title: document.title, text: shareText, url: CANONICAL });
-        }catch(e){ /* user cancelled */ }
-      }else{
-        alert('Fitur share native belum tersedia di browser ini.');
-      }
-    });
-    copyLinkBtn.addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(CANONICAL);
-        copyLinkBtn.textContent = '✅ Tersalin';
-        setTimeout(()=> copyLinkBtn.textContent = '🔗 Salin Link', 1500);
-      }catch(e){
-        prompt('Salin URL secara manual:', CANONICAL);
-      }
-    });
+
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

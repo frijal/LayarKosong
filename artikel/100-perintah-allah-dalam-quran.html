@@ -208,18 +208,7 @@
                 </header>
                 <ol id="command-list" class="command-list">
                     </ol>
-                <div class="social-share">
-                    <h3>Bagikan Pengetahuan Ini</h3>
-                    <div class="share-buttons">
-                        <a href="#" class="share-fb" id="share-fb" title="Bagikan ke Facebook">Facebook</a>
-                        <a href="#" class="share-twitter" id="share-twitter" title="Bagikan ke Twitter">Twitter</a>
-                        <a href="#" class="share-whatsapp" id="share-whatsapp" title="Bagikan ke WhatsApp">WhatsApp</a>
-                        <a href="#" class="share-telegram" id="share-telegram" title="Bagikan ke Telegram">Telegram</a>
-                        <a href="#" class="share-copy" id="copy-link" title="Salin Tautan">Salin Link</a>
-                    </div>
-                </div>
-                <section class="comments-section" id="comments">
-                    <h3>Mari Berdiskusi dan Saling Mengingatkan</h3>
+                <section><div id="disqus_thread"></div>
                 </section>
             </article>
         </main>
@@ -361,23 +350,7 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
             }
-            // Social Sharing Functionality
-            const pageUrl = 'https://frijal.pages.dev/artikel/100-perintah-allah-dalam-quran.html';
-            const pageTitle = encodeURIComponent("100 Perintah Allah Kepada Manusia di Dalam Al-Qur'an");
-            const shareText = encodeURIComponent("Sangat bermanfaat, daftar 100 perintah Allah dalam Al-Qur'an sebagai panduan hidup kita.");
-            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
-            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${shareText}%20${pageUrl}`;
-            document.getElementById('share-telegram').href = `https://t.me/share/url?url=${pageUrl}&text=${shareText}`;
-            document.getElementById('copy-link').addEventListener('click', function(e) {
-                e.preventDefault();
-                navigator.clipboard.writeText(pageUrl).then(() => {
-                    alert('Tautan berhasil disalin ke clipboard!');
-                }).catch(err => {
-                    alert('Gagal menyalin tautan.');
-                });
-            });
-        });
+                    });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

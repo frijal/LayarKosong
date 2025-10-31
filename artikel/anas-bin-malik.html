@@ -245,7 +245,7 @@ h2 { font-size: 1.8em; }
 <p>Anas sendiri tumbuh sebagai anak yang cerdas, sopan, dan rajin. Teman-temannya di Yatsrib mengenalnya sebagai bocah yang cepat tanggap dan menyenangkan. Karena ayahnya tiada, ia sudah terbiasa membantu ibunya dalam urusan rumah tangga. Kehidupan penuh kesederhanaan inilah yang kelak membentuk karakternya: **rendah hati, sabar, dan tabah**.</p>
 <div class="gallery" id="lightbox-gallery">
 <div class="gallery-item" onclick="openLightbox(0)">
-<img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFgmnJUT5zlcEHsuOaTRHmEyq29z7A7kIh4-av9EXRHIx_pUb4qVVfVlUBBNZdu0a0_SVd0nSojKoV63E0UP6qnIe5Gc_o7PBn81ph56MsUhb1aUN7Jm9V25HzpJ3ZVg_MkTP3PlsWNP8ps-LI4iC6Ky6HEsjQBCNPxFvW3N3iB0w6Do2a6oPYPmZnkc0/s1600/Anas.jpg" 
+<img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFgmnJUT5zlcEHsuOaTRHmEyq29z7A7kIh4-av9EXRHIx_pUb4qVVfVlUBBNZdu0a0_SVd0nSojKoV63E0UP6qnIe5Gc_o7PBn81ph56MsUhb1aUN7Jm9V25HzpJ3ZVg_MkTP3PlsWNP8ps-LI4iC6Ky6HEsjQBCNPxFvW3N3iB0w6Do2a6oPYPmZnkc0/s1600/Anas.jpg"
  alt="Ilustrasi Anas bin Mālik" loading="lazy" class="lazy-image">
 <p>Ilustrasi Anas bin Mālik di masa muda, pelayan kesayangan Nabi ﷺ.</p>
 </div>
@@ -336,14 +336,7 @@ h2 { font-size: 1.8em; }
 </section>
 
 <hr>
-
-<div class="social-share">
-<h3>Yuk, Sebarkan Kisah Akhlak Mulia Ini!</h3>
-<a href="#" class="share-btn" data-platform="facebook" title="Bagikan di Facebook"><i class="fab fa-facebook-f"></i></a>
-<a href="#" class="share-btn" data-platform="twitter" title="Bagikan di Twitter/X"><i class="fab fa-twitter"></i></a>
-<a href="#" class="share-btn" data-platform="whatsapp" title="Bagikan di WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<a href="#" id="copy-link-btn" title="Salin Link"><i class="fas fa-link"></i></a>
-</div>
+<div id="disqus_thread"></div>
 <hr>
 </div> <footer style="text-align: center; padding: 30px; background-color: #333; color: #ccc; margin-top: 50px; font-size: 0.9em;">
 <p>🄯 2025 Artikel Sejarah Islam. Warisan Khadim Rasulullah ﷺ.</p>
@@ -359,8 +352,8 @@ let imageObserver = new IntersectionObserver(function(entries, observer) {
 entries.forEach(function(entry) {
 if (entry.isIntersecting) {
 let image = entry.target;
-image.src = image.dataset.src; 
-image.removeAttribute('loading'); 
+image.src = image.dataset.src;
+image.removeAttribute('loading');
 imageObserver.unobserve(image);
 }
 });
@@ -383,42 +376,7 @@ console.log(`Lightbox dibuka untuk gambar index: ${index}.`);
 alert(`Fitur Lightbox diaktifkan! (Tampilkan gambar index ${index}). Anda dapat menggunakan tombol panah virtual untuk navigasi.`);
 // Di sini Anda akan menambahkan HTML/CSS overlay, menampilkan gambar, dan menambahkan tombol panah.
 }
-// 4. SOCIAL SHARE ICONS
-document.querySelectorAll('.share-btn').forEach(button => {
-button.addEventListener('click', (e) => {
-e.preventDefault();
-const platform = e.currentTarget.getAttribute('data-platform');
-const url = encodeURIComponent(window.location.href);
-const text = encodeURIComponent(document.title);
-let shareUrl = '';
 
-switch (platform) {
-case 'facebook':
-shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-break;
-case 'twitter':
-shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-break;
-case 'whatsapp':
-shareUrl = `whatsapp://send?text=${text} ${url}`;
-break;
-default:
-return;
-}
-window.open(shareUrl, '_blank', 'width=600,height=400');
-});
-});
-
-// 5. COPY LINK BUTTON
-document.getElementById('copy-link-btn').addEventListener('click', (e) => {
-e.preventDefault();
-navigator.clipboard.writeText(window.location.href).then(() => {
-alert("Link artikel berhasil disalin ke clipboard!");
-}).catch(err => {
-console.error('Gagal menyalin link: ', err);
-alert("Gagal menyalin link. Silakan salin secara manual.");
-});
-});
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

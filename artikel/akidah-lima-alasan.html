@@ -49,7 +49,7 @@
             font:16px/1.74 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
         }
         a{color:var(--emerald); text-decoration:none}
-        
+
 
         /* Header sticky */
         header.site{
@@ -142,7 +142,7 @@
 
         /* Footer */
         footer.site{margin-top:24px; padding:18px 22px; color:var(--muted); text-align: center;}
-        
+
         /* Floating buttons removed */
         /* Related posts removed */
 
@@ -227,16 +227,7 @@
                         <li>Menguatkan fondasi agar tidak tergelincir oleh arus informasi yang menyesatkan.</li>
                     </ul>
                 </div>
-
-                <div class="share">
-                    <a class="btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fakidah-lima-alasan.html&text=Lima%20alasan%20kenapa%20harus%20belajar%20akidah"
-                       target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
-                    <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fakidah-lima-alasan.html"
-                       target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-                    <a class="btn" href="https://api.whatsapp.com/send?text=Lima%20alasan%20belajar%20akidah%20%E2%80%94%20https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fakidah-lima-alasan.html"
-                       target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-                    <button class="btn" id="copy-link">🔗 Salin Link</button>
-                </div>
+<div id="disqus_thread"></div>
 
                 </article>
         </main>
@@ -303,23 +294,7 @@
                     if (e.key === 'Escape') close();
                 });
             })();
-
-            // Copy share link
-            const copyBtn = document.getElementById('copy-link');
-            if (copyBtn) {
-                const originalText = copyBtn.textContent;
-                copyBtn.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    try {
-                        await navigator.clipboard.writeText('httpsIA://frijal.pages.dev/artikel/akidah-lima-alasan.html');
-                        copyBtn.textContent = '✅ Tersalin!';
-                        setTimeout(() => copyBtn.textContent = originalText, 1500);
-                    } catch(err) {
-                        alert('Gagal menyalin link');
-                    }
-                });
-            }
-        });
+                   });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

@@ -269,18 +269,8 @@
                 <div class="footer-text">
                     ♡ Sebarkan, Semoga Allah memberkahimu♡
                 </div>
-
-                <div class="social-share">
-                    <div class="share-buttons">
-                        <a href="#" class="share-fb" id="share-fb" title="Bagikan ke Facebook">Facebook</a>
-                        <a href="#" class="share-twitter" id="share-twitter" title="Bagikan ke Twitter">Twitter</a>
-                        <a href="#" class="share-whatsapp" id="share-whatsapp" title="Bagikan ke WhatsApp">WhatsApp</a>
-                        <a href="#" class="share-telegram" id="share-telegram" title="Bagikan ke Telegram">Telegram</a>
-                        <a href="#" class="share-copy" id="copy-link" title="Salin Tautan">Salin Link</a>
-                    </div>
-                </div>
-                <section class="comments-section" id="comments">
-
+                <section>
+<div id="disqus_thread"></div>
                 </section>
 
             </article>
@@ -363,46 +353,6 @@
                     lightbox.style.display = "none";
                 }
             }
-
-            // Lazy Load Facebook Comments
-            const commentsSection = document.getElementById('comments');
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        loadFacebookSDK();
-                        observer.unobserve(entry.target); // Hanya load sekali
-                    }
-                });
-            }, { rootMargin: '0px 0px 200px 0px' }); // Load saat 200px sebelum masuk viewport
-            observer.observe(commentsSection);
-
-            function loadFacebookSDK() {
-                (function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023&autoLogAppEvents=1";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            }
-
-            // Social Sharing Functionality
-            const pageUrl = 'https://frijal.pages.dev/artikel/33-pertanyaan-tauhid-untuk-anak.html';
-            const pageTitle = encodeURIComponent('33 Pertanyaan Tauhid untuk Anak: Panduan Belajar Aqidah Sejak Dini');
-
-            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-            document.getElementById('share-telegram').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
-
-            document.getElementById('copy-link').addEventListener('click', function(e) {
-                e.preventDefault();
-                navigator.clipboard.writeText(pageUrl).then(() => {
-                    alert('Tautan berhasil disalin!');
-                }, () => {
-                    alert('Gagal menyalin tautan.');
-                });
-            });
         });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

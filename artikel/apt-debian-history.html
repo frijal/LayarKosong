@@ -31,7 +31,7 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
     <style>
@@ -99,15 +99,7 @@
 <div id="iposbrowser"></div>
 
                     <p class="lead">Ada kabar baik bagi pengguna Debian dan turunannya: manajer paket APT akan segera memiliki perintah <code>history</code> bawaan. Fitur ini memungkinkan Anda untuk melacak apa yang pernah diinstal, di-upgrade, atau dihapus langsung dari terminal.</p>
-
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-
-                    <figure>
+                                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3GNgQgtwi84ncT4eejV4_28434gIZHOB46ob4Mf9OwTG-9E8OxZ7HQ_XtEsen9f71sdApPMTtHw4k1D4wtJ4YsfSXRyaXZhND_HXywFwP7IeIjXw5p1BbU77VVyIom-q5aLhxwVyIGUrtrBjsLwx46cgBch7RXaJGUfW_SqifwKMDjha4au-b1AMqljI/s1600/apt-history.jpg" alt="Ilustrasi riwayat APT">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Riwayat transaksi APT: lebih mudah ditelusuri tanpa skrip tambahan.</figcaption>
                     </figure>
@@ -127,10 +119,11 @@
                     <h3>Menampilkan Detail Transaksi Tertentu</h3>
                     <p>Misalnya, untuk melihat detail transaksi dengan ID 42:</p>
                     <pre class="language-bash"><code id="code2">sudo apt history-info 42</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-                    
+
                     <h2>Status Saat Ini</h2>
                     <p>Saat ini, fitur tersebut masih dalam tahap peninjauan dan diharapkan akan segera hadir di rilis APT mendatang. Penambahan kapabilitas riwayat ini dipandang sebagai tambahan yang sangat berguna untuk manajer paket yang sudah sangat dihormati ini.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -138,12 +131,12 @@
             <small>🄯 2025 frijal.pages.dev · Melacak paket jadi lebih mudah.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #1a2a2d; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
@@ -151,36 +144,17 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
-
-        const lb = document.getElementById('lightbox');
+               const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-        
+
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

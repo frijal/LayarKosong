@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peringatan 'Policy will reject signature' di Linux? Ini Artinya!</title>
-    
+
     <meta name="description" content="Jangan panik saat 'sudo apt update' memunculkan peringatan 'Policy will reject signature within a year'. Pelajari arti, dampak, dan cara mengatasinya di sini.">
     <meta name="keywords" content="apt warning, policy will reject signature, debian, ubuntu, linux, gpg key expired, mx linux, frijal.pages.dev, command line, terminal">
     <meta name="author" content="Frijal">
@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://frijal.pages.dev/img/arti-peringatan-apt-policy-reject-signature.webp">
     <meta property="og:image:alt" content="Ilustrasi terminal Linux dengan pesan peringatan">
     <meta property="og:site_name" content="Frijal Blog">
-    
+
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@frijal">
@@ -97,7 +97,7 @@
         main {
             font-size: 1.1em;
         }
-        
+
         /* Bagian konten */
         .content-section {
             margin-bottom: 2.5rem;
@@ -118,7 +118,7 @@
         .content-section p {
             margin-bottom: 1rem;
         }
-        
+
         /* Gaya untuk code block */
         pre {
             background-color: var(--code-bg-color);
@@ -142,7 +142,7 @@
             color: #c0392b;
             font-size: 0.9em;
         }
-        
+
         /* Gaya untuk daftar */
         ol {
             padding-left: 25px;
@@ -225,7 +225,7 @@
 </head>
 <body>
 
-    
+
     <div class="container">
         <header class="article-header">
             <h1>Muncul Peringatan 'Policy will reject signature' di Linux? Tenang, Ini Artinya!</h1>
@@ -238,12 +238,12 @@
             <section class="content-section">
                 <h2>Awal Mula Cerita: Pesan Peringatan Aneh di Terminal</h2>
                 <p>Pernah nggak sih, pas lagi asyik-asyik menjalankan perintah sakti <code>sudo apt update</code>, tiba-tiba muncul pesan peringatan yang bikin kening berkerut? Mungkin pesannya mirip-mirip seperti ini:</p>
-                <pre>/usr/lib/python3/dist-packages/apt/cache.py:565: Warning: 
+                <pre>/usr/lib/python3/dist-packages/apt/cache.py:565: Warning:
 W:http://download.opensuse.org/.../InRelease: Policy will reject signature within a year
 res = self._cache.update(fetch_progress, slist, pulse_interval)</pre>
                 <p>Kalau kamu lihat pesan itu, reaksi pertama mungkin panik. "Waduh, sistemku rusak?", "Kena hack nih?", "Kok ada OpenSuse di Debian-ku?". Tenang, tarik napas dulu. Pesan ini sebenarnya nggak seseram kelihatannya kok.</p>
             </section>
-            
+
             <section class="content-section">
                 <h2>Artinya Apa Sih? (Versi Santai)</h2>
                 <p>Pesan ini adalah <strong>peringatan (Warning)</strong>, bukan kesalahan (Error). Artinya, sistem kamu masih sehat walafiat, tapi dia lagi ngasih tau kamu soal potensi masalah di masa depan.</p>
@@ -253,13 +253,13 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</pre>
 
             <section class="content-section">
                 <h2>Bedah Pesannya Satu per Satu</h2>
-                
+
                 <h3>1. Sumber Masalah</h3>
                 <p>Bagian <code>W:http://download.opensuse.org/.../InRelease:</code> nunjukkin biang keladinya. Ini adalah alamat repositori (sumber software) pihak ketiga yang pernah kamu tambahkan. Mungkin kamu dulu nambahin ini buat install aplikasi tertentu yang nggak ada di sumber resmi Debian/Ubuntu.</p>
 
                 <h3>2. Inti Peringatan</h3>
                 <p>Nah, <code>Policy will reject signature within a year</code> ini bagian utamanya. Setiap repositori aman punya "tanda tangan digital" buat buktiin isinya asli. Tanda tangan ini punya masa berlaku. Pesan ini ngasih tau kalau masa berlaku tanda tangan repositori itu akan habis dalam setahun ke depan.</p>
-                
+
                 <h3>3. Saran Sistem</h3>
                 <p>Tulisan <code>see --audit for details</code> itu saran dari sistem. Kalau kamu penasaran kapan persisnya tanggal kedaluwarsanya, kamu bisa pakai perintah ini.</p>
             </section>
@@ -267,7 +267,7 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</pre>
             <section class="content-section">
                 <h2>Terus, Aku Harus Ngapain?</h2>
                 <p>Kamu punya beberapa pilihan, mulai dari yang paling gampang sampai yang butuh sedikit aksi.</p>
-                
+
                 <h3>Pilihan 1: Santai dan Abaikan Dulu (Paling Direkomendasikan)</h3>
                 <p>Serius, ini pilihan terbaik untuk sekarang. Biasanya, pengelola repositori itu sadar kok dan bakal memperbarui "segel" mereka sebelum kedaluwarsa. Nanti juga peringatan ini bakal hilang sendiri pas kamu <code>sudo apt update</code> lagi di masa depan.</p>
 
@@ -275,7 +275,7 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</pre>
                 <p>Kalau kamu tipe yang penasaran, jalanin aja perintah yang disarankan sistem buat lihat detailnya:</p>
                 <pre>sudo apt update --audit</pre>
                 <p>Perintah ini nggak bakal memperbaiki apa-apa, tapi bisa memuaskan rasa ingin tahumu soal tanggal pastinya.</p>
-                
+
                 <h3>Pilihan 3: Putus Hubungan (Kalau Sudah Nggak Butuh)</h3>
                 <p>Kalau kamu ngerasa udah nggak butuh lagi software dari repositori itu, cara paling bersih ya dihapus aja. Caranya:</p>
                 <ol>
@@ -290,23 +290,7 @@ res = self._cache.update(fetch_progress, slist, pulse_interval)</pre>
             </section>
         </main>
 
-        <div class="social-share">
-            <h3>Bagikan Artikel Keren Ini!</h3>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/arti-peringatan-apt-policy-reject-signature.html" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.046-1.558-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
-            </a>
-            <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/arti-peringatan-apt-policy-reject-signature.html&text=Peringatan%20'Policy%20will%20reject%20signature'%20di%20Linux%3F%20Ini%20Artinya!" class="twitter" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frijal.pages.dev/artikel/arti-peringatan-apt-policy-reject-signature.html&title=Peringatan%20'Policy%20will%20reject%20signature'%20di%20Linux%3F%20Ini%20Artinya!" class="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-11 5v9H5V8zm4 0v9h-3V8zm4 0v9h-3V8zm-8-2a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2a1 1 0 0 0 0-2z"/></svg>
-            </a>
-        </div>
-
-        <div id="fb-comments">
-            <h3>Diskusi di Sini Yuk!</h3>
-            
-        </div>
+       <div id="disqus_thread"></div>
     </div>
 
 

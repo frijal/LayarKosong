@@ -161,12 +161,7 @@
             <figcaption class="caption">Nabi Ilyas ‘Alaihissalam • Sumber: bloggerusercontent.com</figcaption>
           </figure>
         </div>
-        <div class="share">
-          <button class="chip" id="share-whatsapp" aria-label="Bagikan ke WhatsApp">🟢 WhatsApp</button>
-          <button class="chip" id="share-twitter" aria-label="Bagikan ke X (Twitter)">🔵 X/Twitter</button>
-          <button class="chip" id="share-facebook" aria-label="Bagikan ke Facebook">🔷 Facebook</button>
-          <button class="chip" id="share-copy" aria-label="Salin tautan">📋 Salin Tautan</button>
-        </div>
+       <div id="disqus_thread"></div>
           </article>
       <footer class="wrap">
         <p>Tagar: #RamadanTales • Narasi: Saudari Sharifah Syazreen Al-Idrus • Desain: satu kolom, dark-mode, interaktif, mobile-first.</p>
@@ -204,33 +199,7 @@
       document.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     })();
-    // Share buttons
-    (function() {
-      const url = document.querySelector('link[rel=canonical]')?.href || location.href;
-      const ttl = document.title;
-      const open = u => window.open(u, '_blank', 'noopener,noreferrer');
-      document.getElementById('share-whatsapp')?.addEventListener('click', () => {
-        const u = `https://wa.me/?text=${encodeURIComponent(ttl + ' - ' + url)}`;
-        open(u);
-      });
-      document.getElementById('share-twitter')?.addEventListener('click', () => {
-        const u = `https://twitter.com/intent/tweet?text=${encodeURIComponent(ttl)}&url=${encodeURIComponent(url)}&hashtags=RamadanTales,NabiIlyas`;
-        open(u);
-      });
-      document.getElementById('share-facebook')?.addEventListener('click', () => {
-        const u = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        open(u);
-      });
-      document.getElementById('share-copy')?.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(url);
-          alert('Tautan disalin!');
-        } catch {
-          prompt('Salin tautan secara manual:', url);
-        }
-      });
-    })();
-    // Simple lightbox with arrow navigation
+        // Simple lightbox with arrow navigation
     (function() {
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');

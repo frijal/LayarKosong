@@ -67,39 +67,7 @@
       Adaro (PT Adaro Energy Tbk dan grupnya) adalah salah satu perusahaan energi dan sumber daya terkemuka di Indonesia yang fokus pada penambangan batu bara termal, logistik, serta bisnis terkait energi&mdash;termasuk pembangkit listrik dan jasa tambang. Artikel ini menyajikan sejarah singkat, unit usaha, dan beberapa fakta penting yang berguna sebagai pengantar.
      </p>
      <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
-      <div class="share">
-       <button class="btn" id="share-fb" title="Bagikan ke Facebook">
-        <svg fill="currentColor" viewbox="0 0 24 24">
-         <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.14h-1.09c-1.07 0-1.4.66-1.4 1.34V12h2.38l-.38 2.9h-2V22A10 10 0 0022 12z">
-         </path>
-        </svg>
-        Facebook
-       </button>
-       <button class="btn" id="share-x" title="Bagikan ke X/Twitter">
-        <svg fill="currentColor" viewbox="0 0 24 24">
-         <path d="M22 5.9c-.6.3-1.3.5-2 .6.7-.4 1.2-1.1 1.5-1.9-.7.4-1.5.7-2.3.9C18.6 4.7 17.7 4 16.7 4c-1.6 0-2.9 1.3-2.9 2.9 0 .2 0 .4.1.6C11.6 7.4 9.1 6 7.3 4.1c-.2.4-.4.8-.4 1.3 0 .99.5 1.86 1.3 2.38-.5 0-1-.15-1.4-.4v.04c0 1.42 1.01 2.6 2.34 2.87-.24.06-.5.1-.76.1-.18 0-.36 0-.53-.05.36 1.13 1.4 1.94 2.64 1.96-1 .78-2.27 1.24-3.64 1.24-.24 0-.48-.02-.71-.04 1.3.83 2.85 1.31 4.52 1.31 5.42 0 8.38-4.49 8.38-8.39v-.38c.57-.4 1.06-.9 1.45-1.48-.52.23-1.07.38-1.63.45z">
-         </path>
-        </svg>
-        X
-       </button>
-       <button class="btn" id="share-wa" title="Bagikan ke WhatsApp">
-        <svg fill="currentColor" viewbox="0 0 24 24">
-         <path d="M20.5 3.5A11 11 0 0012 1C6 1 1.4 5.6 1.4 11.6c0 2 .5 3.9 1.4 5.6L1 23l6.1-1.6c1.6.5 3.3.8 5 .8 6 0 10.6-4.6 10.6-10.6 0-2.9-1.2-5.7-3.1-7.1zM12 20.1c-1.5 0-3-.3-4.3-.8L5 19l.7-2.6C5 15.6 4.6 14 4.6 12.6 4.6 8.3 8 5 12.6 5c2.9 0 5.6 1.3 7.5 3.5-2.2.2-4.2 1.3-5.5 3.1-1.2 1.7-1.7 3.9-1 5.9.1.4.1.8.2 1.2-.9-.2-1.8-.3-2.9-.3z">
-         </path>
-        </svg>
-        WhatsApp
-       </button>
-       <button class="btn" id="share-tg" title="Bagikan ke Telegram">
-        <svg fill="currentColor" viewbox="0 0 24 24">
-         <path d="M22 3L2 10.5 8 13l1 6 3.5-3 4.5 2 3.5-13z">
-         </path>
-        </svg>
-        Telegram
-       </button>
-       <button class="btn" id="copy-link" title="Salin link ke clipboard">
-        Salin Link
-       </button>
-      </div>
+      <div id="disqus_thread"></div>
      </div>
     </div>
     <aside class="hero-thumb">
@@ -234,33 +202,6 @@
       console.error("Gagal parse schema-article JSON-LD:", e);
      }
     }
-
-    // 2. Share buttons (Fixed)
-    document.getElementById('share-fb').addEventListener('click', () => {
-     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, '_blank', 'noopener,width=700,height=500');
-    });
-
-    document.getElementById('share-x').addEventListener('click', () => {
-     window.open(`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`, '_blank', 'noopener,width=700,height=500');
-    });
-
-    document.getElementById('share-wa').addEventListener('click', () => {
-     window.open(`https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`, '_blank', 'noopener');
-    });
-
-    document.getElementById('share-tg').addEventListener('click', () => {
-     window.open(`https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`, '_blank', 'noopener');
-    });
-
-    document.getElementById('copy-link').addEventListener('click', async () => {
-     try {
-      await navigator.clipboard.writeText(currentUrl);
-      alert('Link disalin ke clipboard!')
-     } catch (e) {
-      prompt('Salin link ini:', currentUrl)
-     }
-    });
-
     // 3. Build FAQPage JSON-LD (Fixed)
     const faqs = [];
     document.querySelectorAll('#faq-list details').forEach((d) => {

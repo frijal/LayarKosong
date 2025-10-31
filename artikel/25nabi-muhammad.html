@@ -189,24 +189,7 @@
           </div>
         </div>
         <!-- Share -->
-        <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
-          <a id="share-twitter" target="_blank" rel="noopener" aria-label="Bagikan ke Twitter">
-            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-            Twitter
-          </a>
-          <a id="share-fb" target="_blank" rel="noopener" aria-label="Bagikan ke Facebook">
-            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.95 0 1.9.17 1.9.17v2.1h-1.1c-1.1 0-1.5.68-1.5 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12"/></svg>
-            Facebook
-          </a>
-          <a id="share-wa" target="_blank" rel="noopener" aria-label="Bagikan ke WhatsApp">
-            <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.02 0C5.4 0 .03 5.37.03 12c0 2.11.56 4.2 1.63 6.03L0 24l6.16-1.62A12 12 0 0 0 24 12c0-3.18-1.24-6.17-3.48-8.52zm-8.5 19.05c-1.95 0-3.86-.52-5.51-1.51l-.39-.23-3.66.97.98-3.56-.26-.41A9.94 9.94 0 0 1 2.03 12C2.03 6.58 6.6 2.01 12.02 2.01S22 6.58 22 12s-4.57 9.53-10 9.53zm5.69-7.36c-.31-.16-1.83-.9-2.12-1-.29-.1-.5-.16-.72.16-.21.31-.83 1-.1 1.17.73.17 1.22.83 1.41 1.08.19.25.62.83 1.53.56.91-.27 1.49-1.33 1.55-1.49.06-.16.06-1.05-.55-1.33z"/></svg>
-            WhatsApp
-          </a>
-          <button class="copy" id="copy-link" aria-label="Salin tautan">
-            <svg viewBox="0 0 24 24"><path d="M3 7a4 4 0 0 1 4-4h5a1 1 0 1 1 0 2H7a2 2 0 0 0 0 4h5a4 4 0 0 1 0 8H7a1 1 0 1 1 0-2h5a2 2 0 1 0 0-4H7A4 4 0 0 1 3 7zm14 0a1 1 0 0 1 1-1h-5a1 1 0 1 0 0 2h5a1 1 0 0 1 1 1 4 4 0 0 1-4 4h-5a1 1 0 1 0 0 2h5a6 6 0 0 0 6-6 3 3 0 0 0-3-3z"/></svg>
-            Salin Link
-          </button>
-        </div>
+        <div id="disqus_thread"></div>
       </article>
       <footer>
         #RamadahanTales, Dituturkan oleh: Saudari Sharifah Syazreen Al-Idrus · Disusun ulang untuk web: Frijal
@@ -214,31 +197,7 @@
     </main>
   </div>
   <script>
-      // Share links
-    function initShare(){
-      const url = document.querySelector('link[rel="canonical"]')?.href || location.href;
-      const title = document.title;
-      const tw = document.getElementById('share-twitter');
-      const fb = document.getElementById('share-fb');
-      const wa = document.getElementById('share-wa');
-      const cp = document.getElementById('copy-link');
-      tw.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=frijal`;
-      fb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-      wa.href = isMobile
-        ? `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`
-        : `https://web.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`;
-      cp.addEventListener('click', async ()=>{
-        try{
-          await navigator.clipboard.writeText(url);
-          cp.textContent = 'Tersalin!';
-          setTimeout(()=>{cp.textContent='Salin Link'},1500);
-        }catch(e){
-          alert('Gagal menyalin link. Salin manual: ' + url);
-        }
-      });
-    }
-    // Gallery & Lightbox
+       // Gallery & Lightbox
     function initGallery(){
       const gallery = document.getElementById('gallery');
       const items = Array.from(gallery.querySelectorAll('figure'));

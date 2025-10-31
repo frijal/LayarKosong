@@ -50,7 +50,7 @@
       font:16px/1.72 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
     }
     a{color:var(--amber); text-decoration:none}
-    
+
 
     /* Header sticky */
     header.site{
@@ -136,7 +136,7 @@
     /* Share */
     .share{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 4px;}
     .share a, .share button{border:none}
-    
+
     /* Footer */
     footer.site{margin-top:24px; padding:18px 22px; color:var(--muted);}
 
@@ -212,15 +212,7 @@
           </ul>
         </div>
 
-        <div class="share">
-          <a class="btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalhah.html&text=Abu%20Thalhah%20%E2%80%94%20pengawal%20Rasulullah%20SAW%2C%20puasa%20tanpa%20henti%2C%20akhir%20mulia%20di%20lautan"
-            target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
-          <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalhah.html"
-            target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-          <a class="btn" href="https://api.whatsapp.com/send?text=Abu%20Thalhah%20%E2%80%94%20https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalhah.html"
-            target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-          <button class="btn" id="copy-link">🔗 Salin Link</button>
-        </div>
+      <div id="disqus_thread"></div>
 
         </article>
 
@@ -280,19 +272,6 @@
         if (e.key === 'ArrowLeft') prev();
         if (e.key === 'ArrowRight') next();
         if (e.key === 'Escape') close();
-      });
-
-      // Copy share link
-      const copyBtn = document.getElementById('copy-link');
-      const currentUrl = 'https://frijal.pages.dev/artikel/abu-thalhah.html'; // Update URL ke frijal.pages.dev
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(currentUrl);
-          copyBtn.textContent = '✅ Tersalin!';
-          setTimeout(() => copyBtn.textContent = '🔗 Salin Link', 1500);
-        } catch(e) {
-          alert('Gagal menyalin link');
-        }
       });
     })();
   </script>

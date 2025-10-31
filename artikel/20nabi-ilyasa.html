@@ -189,12 +189,7 @@
             <figcaption class="caption">Nabi Ilyasa ‘Alaihissalam • Sumber: bloggerusercontent.com</figcaption>
           </figure>
         </div>
-        <div class="share">
-          <button class="chip" id="share-whatsapp" aria-label="Bagikan ke WhatsApp">🟢 WhatsApp</button>
-          <button class="chip" id="share-twitter" aria-label="Bagikan ke X (Twitter)">🔵 X/Twitter</button>
-          <button class="chip" id="share-facebook" aria-label="Bagikan ke Facebook">🔷 Facebook</button>
-          <button class="chip" id="share-copy" aria-label="Salin tautan">📋 Salin Tautan</button>
-        </div>
+        <div id="disqus_thread"></div>
       </article>
       <footer class="container">
         <p>Tagar: #RamadanTales • Narasi: Saudari Sharifah Syazreen Al-Idrus • Desain: satu kolom, dark-mode, interaktif, mobile-first.</p>
@@ -232,30 +227,7 @@
       document.addEventListener('scroll', onScroll, {passive:true});
       onScroll();
     })();
-    // Share buttons
-    (function(){
-      const url = document.querySelector('link[rel=canonical]')?.href || location.href;
-      const ttl = document.title;
-      const open = u => window.open(u, '_blank', 'noopener,noreferrer');
-      document.getElementById('share-whatsapp')?.addEventListener('click', () => {
-        open(`https://wa.me/?text=${encodeURIComponent(ttl + ' ,  ' + url)}`);
-      });
-      document.getElementById('share-twitter')?.addEventListener('click', () => {
-        open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(ttl)}&url=${encodeURIComponent(url)}&hashtags=RamadanTales,NabiIlyasa`);
-      });
-      document.getElementById('share-facebook')?.addEventListener('click', () => {
-        open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-      });
-      document.getElementById('share-copy')?.addEventListener('click', async () => {
-        try{
-          await navigator.clipboard.writeText(url);
-          alert('Tautan disalin!');
-        }catch{
-          prompt('Salin tautan secara manual:', url);
-        }
-      });
-    })();
-      // Lightbox
+          // Lightbox
     (function(){
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
@@ -284,15 +256,7 @@
         if(e.key === 'ArrowRight') next();
       });
     })();
-    // Facebook SDK
-    (function(d,s,id){
-      if(d.getElementById(id)) return;
-      const js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v16.0';
-      const fjs = d.getElementsByTagName(s)[0];
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
-  </script>
+      </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

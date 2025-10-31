@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="Apa Itu AUR? Penjelasan Santai Arch User Repository (AUR)">
     <meta name="twitter:description" content="Pahami AUR, PKGBUILD, dan AUR Helper (yay/paru) dalam bahasa santai.">
     <meta name="twitter:image" content="https://frijal.pages.dev/img/aur_explained.webp">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
     <style>
@@ -85,14 +85,6 @@
 <div id="iposbrowser"></div>
 
                     <p class="lead">AUR (Arch User Repository) adalah salah satu fitur paling keren dan unik dari Arch Linux. Singkatnya, AUR adalah repositori atau gudang paket yang dikelola oleh komunitas pengguna.</p>
-
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-
                     <h2>Gudang Resep Komunitas</h2>
                     <p>Berbeda dengan repositori resmi Arch yang berisi paket-paket siap pakai, AUR adalah gudang <strong>tidak resmi</strong>. Isinya bukanlah program jadi, melainkan <strong>PKGBUILD</strong>.</p>
                     <p>PKGBUILD adalah sebuah skrip atau "resep" yang berisi instruksi untuk komputer Anda:</p>
@@ -114,7 +106,7 @@
                     <div class="warning-box">
                         <strong>Catatan Penting:</strong> Proses kompilasi ini membutuhkan waktu dan sumber daya komputasi.
                     </div>
-                    
+
                     <h2>Keamanan dan Risiko</h2>
                     <p>Karena AUR dikelola oleh komunitas, ada beberapa risiko yang perlu diperhatikan:</p>
                     <ul>
@@ -128,6 +120,7 @@
 yay -S nama-paket-dari-aur</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <p>Dengan AUR Helper, menggunakan AUR terasa semudah menggunakan repositori resmi.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -135,46 +128,11 @@ yay -S nama-paket-dari-aur</code><button class="copy-btn" data-target="code1">Sa
             <small>🄯 2025 Frijal Article | Desain oleh Gemini AI.</small>
         </footer>
     </div>
-    
+
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2c2c2c; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
-    <script>
-    (function(){
-        const toast = document.getElementById('toast');
-        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-                const targetId = btn.getAttribute('data-target');
-                const codeEl = document.getElementById(targetId);
-                if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
-                }
-            });
-        });
-    })();
-    </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

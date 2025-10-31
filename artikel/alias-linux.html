@@ -30,7 +30,7 @@
       "author": { "@type": "Person", "name": "Frijal" }
     }
     </script>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
 
     <style>
@@ -99,14 +99,7 @@
 
                     <p class="lead">Bayangkan <strong>alias</strong> itu seperti nama panggilan untuk perintah terminal yang panjang. Ini adalah cara praktis untuk membuat shortcut, menghemat waktu, dan membuat kerja Anda di terminal jadi super efisien.</p>
 
-                    <div class="share-bar">
-                        <button class="btn-share" data-share="twitter">Twitter</button>
-                        <button class="btn-share" data-share="facebook">Facebook</button>
-                        <button class="btn-share" data-share="whatsapp">WhatsApp</button>
-                        <button class="btn-share" id="copyLink">Salin Tautan</button>
-                    </div>
-
-                    <h2>Melihat Alias yang Sudah Ada</h2>
+                                       <h2>Melihat Alias yang Sudah Ada</h2>
                     <p>Untuk melihat semua alias yang aktif di sesi terminal Anda saat ini, cukup ketik perintah:</p>
                     <pre class="language-bash"><code id="code1">alias</code><button class="copy-btn" data-target="code1">Salin</button></pre>
 
@@ -125,12 +118,13 @@
                     <p>Untuk menghapus alias pada sesi terminal saat ini, gunakan perintah <code>unalias</code>.</p>
                     <pre class="language-bash"><code id="code3">unalias up</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <p>Untuk menghapusnya secara permanen, cukup hapus baris alias tersebut dari file <code>~/.bashrc</code> Anda.</p>
-                    
+
                     <h2>Menjalankan Perintah Asli (Escaping)</h2>
                     <p>Jika Anda perlu menjalankan perintah asli yang sudah tergantikan oleh alias, gunakan tanda backslash (<code>\</code>) di depannya.</p>
                     <pre class="language-bash"><code id="code4">\ls</code><button class="copy-btn" data-target="code4">Salin</button></pre>
                     <p>Ini akan menjalankan perintah <code>ls</code> yang sesungguhnya, mengabaikan alias apapun yang mungkin telah Anda buat.</p>
                 </article>
+                <div id="disqus_thread"></div>
             </div>
         </main>
 
@@ -138,70 +132,14 @@
             <small>🄯 2024 Frijal's Tech Blog · Selamat berkreasi dengan alias!</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a3d5a; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
-    <script>
-    (function(){
-        const toast = document.getElementById('toast');
-        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-        const shareMap = {
-            twitter: url => `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(document.title)}`,
-            facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            whatsapp: url => `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`
-        };
-        document.querySelectorAll('.btn-share').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const shareType = btn.dataset.share;
-                if (!shareType) return;
-                const url = shareMap[shareType]?.(location.href);
-                if (url) window.open(url, '_blank', 'noopener,noreferrer');
-            });
-        });
-        
-        document.getElementById('copyLink')?.addEventListener('click', () => {
-            navigator.clipboard.writeText(location.href).then(() => showToast('Tautan disalin!'));
-        });
-
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
-        let currentIndex = 0;
-        
-        function openLightbox(index) {
-            currentIndex = index;
-            lbImg.src = galleryImages[currentIndex].src;
-            lb.classList.add('open');
-        }
-        
-        galleryImages.forEach((el, index) => {
-            el.addEventListener('click', () => openLightbox(index));
-        });
-
-        function closeLb(){ lb.classList.remove('open'); }
-        lb.addEventListener('click', closeLb);
-        window.addEventListener('keydown', (e) => {
-            if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-                const targetId = btn.getAttribute('data-target');
-                const codeEl = document.getElementById(targetId);
-                if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
-                }
-            });
-        });
-    })();
-    </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

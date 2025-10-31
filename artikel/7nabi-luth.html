@@ -363,24 +363,7 @@
               <figcaption>Langit senja</figcaption>
             </figure>
           </section>
-          <!-- Share Icons -->
-          <div class="share">
-            <a href="#" id="shareWhatsApp" aria-label="Bagikan ke WhatsApp">
-              <!-- icon WA -->
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-9.2 14.3L2 22l5.9-1.6A10 10 0 1 0 12 2z"/></svg>
-              <span>WhatsApp</span>
-            </a>
-            <a href="#" id="shareTwitter" aria-label="Bagikan ke Twitter">
-              <!-- icon Twitter/X -->
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.2.6.8-.5 1.4-1.3 1.7-2.1-.7.5-1.6.8-2.5 1A3.8 3.8 0 0 0 12 7.7c0 .3 0 .6.1.9-3.2-.2-6-1.7-7.9-4-.3.5-.4 1.1-.4 1.7 0 1.3.7 2.5 1.8 3.2-.6 0-1.1-.2-1.6-.4v.1c0 1.8 1.3 3.3 3 3.7-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.8 2.4 3.4 2.5-1.3 1-3 1.6-4.7 1.6H3c1.7 1.1 3.8 1.8 6.1 1.8 7.4 0 11.5-6.1 11.5-11.5v-.5c.8-.6 1.4-1.3 1.9-2.2z"/></svg>
-              <span>Twitter</span>
-            </a>
-            <a href="#" id="shareFacebook" aria-label="Bagikan ke Facebook">
-              <!-- icon Facebook -->
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.8c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 2.7.2v2.1h-1.5c-1.2 0-1.6.7-1.6 1.5V12h3l-.5 2.9h-2.5v7A10 10 0 0 0 22 12z"/></svg>
-              <span>Facebook</span>
-            </a>
-          </div>
+          <div id="disqus_thread"></div>
         </section>
       </article>
     </main>
@@ -466,26 +449,7 @@
         if(e.key === 'ArrowRight') next();
       });
     }
-    // Share buttons
-    function initShare(){
-      const url = document.querySelector('link[rel="canonical"]')?.href || location.href;
-      const title = document.querySelector('meta[property="og:title"]')?.content || document.title;
-      document.getElementById('shareWhatsApp').addEventListener('click', e=>{
-        e.preventDefault();
-        const link = 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + url);
-        window.open(link, '_blank');
-      });
-      document.getElementById('shareTwitter').addEventListener('click', e=>{
-        e.preventDefault();
-        const link = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url);
-        window.open(link, '_blank');
-      });
-      document.getElementById('shareFacebook').addEventListener('click', e=>{
-        e.preventDefault();
-        const link = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
-        window.open(link, '_blank');
-      });
-    }
+
     // Init
         initLazyLoad();
     initLightbox();

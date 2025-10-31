@@ -56,7 +56,7 @@
       font:16px/1.72 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
     }
     a{color:var(--gold); text-decoration:none}
-    
+
 
     /* Header sticky */
     header.site{
@@ -178,7 +178,7 @@
   </style>
 
   <!-- Wajib: stylesheet related setelah </title> -->
-  
+
 <meta property="og:image:alt" content="Abu Thalib: Muslim Penopang yang Teguh">
   <meta itemprop="image" content="https://frijal.pages.dev/img/abu-thalib.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
@@ -353,16 +353,7 @@
             <li>Nama yang dicatat sebagai penopang di masa genting ‘Aamul Huzn.</li>
           </ul>
         </div>
-
-        <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
-          <a class="btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalib.html&text=Kisah%20Abu%20Thalib%20%E2%80%94%20penopang%20yang%20teguh%20di%20Makkah"
-             target="_blank" rel="noopener noreferrer">🐦 Twitter</a>
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalib.html"
-             target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-          <a class="btn" href="https://api.whatsapp.com/send?text=Kisah%20Abu%20Thalib%20%E2%80%94%20https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fabu-thalib.html"
-             target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-          <button class="btn" id="copy-link">🔗 Salin Link</button>
-        </div>
+<div id="disqus_thread"></div>
       </article>
 
       <!-- Lightbox -->
@@ -419,18 +410,6 @@
         if (e.key === 'ArrowLeft') prev();
         if (e.key === 'ArrowRight') next();
         if (e.key === 'Escape') close();
-      });
-
-      // Copy share link
-      const copyBtn = document.getElementById('copy-link');
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(location.href);
-          copyBtn.textContent = '✅ Tersalin!';
-          setTimeout(() => copyBtn.textContent = '🔗 Salin Link', 1500);
-        } catch(e) {
-          alert('Gagal menyalin link');
-        }
       });
     })();
   </script>

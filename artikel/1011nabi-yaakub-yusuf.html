@@ -403,18 +403,7 @@
         </div>
       </section>
 
-      <!-- Share icons -->
-      <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
-        <button class="btn" data-share="whatsapp" aria-label="Bagikan ke WhatsApp">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3.996A9.99 9.99 0 0 0 3.997 20l-2 2 4.3-1.13A9.99 9.99 0 1 0 20 3.996Zm-7.03 14.42c-1.77 0-3.52-.52-5.02-1.5l-.36-.23-.33.2-1.06.63.28-1.16.08-.33-.22-.34a7.39 7.39 0 0 1-1.13-3.94c0-4.09 3.33-7.42 7.42-7.42 4.08 0 7.41 3.33 7.41 7.42 0 4.08-3.33 7.41-7.41 7.41Zm4.27-4.48c-.23-.11-1.35-.66-1.56-.73-.21-.07-.36-.11-.51.11-.15.22-.59.73-.72.88-.13.15-.27.17-.5.06-.23-.11-.95-.35-1.81-1.12-.67-.6-1.12-1.35-1.24-1.58-.13-.23-.01-.36.1-.47.1-.1.22-.27.33-.4.11-.13.15-.23.22-.38.07-.15.04-.29-.02-.41-.06-.12-.51-1.23-.7-1.68-.19-.45-.38-.38-.51-.38l-.43-.01c-.15 0-.4.06-.61.29-.21.22-.8.78-.8 1.89 0 1.11.82 2.18.93 2.33.11.15 1.62 2.47 3.95 3.36.55.24 .98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.35-.55 1.54-1.08.19-.53.19-.99.13-1.08-.06-.09-.21-.15-.44-.26Z"/></svg>
-          WhatsApp
-        </button>
-        <button class="btn" data-share="twitter" aria-label="Bagikan ke X">🐦 X/Twitter</button>
-        <button class="btn" data-share="facebook" aria-label="Bagikan ke Facebook">📘 Facebook</button>
-        <button class="btn" data-share="telegram" aria-label="Bagikan ke Telegram">✈️ Telegram</button>
-        <button class="btn" data-share="linkedin" aria-label="Bagikan ke LinkedIn">💼 LinkedIn</button>
-        <button class="btn flat" id="copyLink" aria-label="Salin tautan">🔗 Salin tautan</button>
-      </div>
+      <div id="disqus_thread"></div>
          </main>
 
     <footer>
@@ -502,39 +491,6 @@
       if (e.key === 'ArrowLeft') showIndex(currentIndex - 1);
       if (e.key === 'ArrowRight') showIndex(currentIndex + 1);
     });
-
-    // Share handlers
-    const shareData = {
-      title: document.title,
-      text: 'Kisah Nabi Ya\'qub dan Yusuf — narasi santai, hikmah, galeri.',
-      url: document.querySelector('link[rel="canonical"]')?.href || location.href
-    };
-    document.querySelectorAll('.share .btn[data-share]').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const t = btn.getAttribute('data-share');
-        const url = encodeURIComponent(shareData.url);
-        const text = encodeURIComponent(shareData.text);
-        let shareUrl = '';
-        if (navigator.share) { try { await navigator.share(shareData); return; } catch(e) {} }
-        switch (t) {
-          case 'whatsapp': shareUrl = `https://wa.me/?text=${text}%20${url}`; break;
-          case 'twitter': shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`; break;
-          case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
-          case 'telegram': shareUrl = `https://t.me/share/url?url=${url}&text=${text}`; break;
-          case 'linkedin': shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${encodeURIComponent(shareData.title)}&summary=${text}`; break;
-        }
-        if (shareUrl) window.open(shareUrl, '_blank', 'noopener,noreferrer,width=740,height=560');
-      });
-    });
-    document.getElementById('copyLink').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        const c = document.getElementById('copyLink');
-        c.textContent = '✅ Tautan disalin';
-        setTimeout(() => c.textContent = '🔗 Salin tautan', 1600);
-      } catch(e) { alert('Gagal menyalin tautan'); }
-    });
-
     // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
