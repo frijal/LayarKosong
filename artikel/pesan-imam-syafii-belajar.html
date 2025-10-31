@@ -193,23 +193,7 @@
           </div>
           </div>
       </section>
-      <section class="grid">
-        <article class="prose card">
-          <h2>Makna yang merawat arah</h2>
-          <p>Belajar bukan soal jam berapa atau di mana tapi tentang siapa kamu ingin jadi. Sakit sebentar karena fokus hari ini, menyehatkan masa depanmu besok.</p>
-          <p>Ambil bagian kecil: satu halaman, satu latihan, satu percobaan. Lelah itu tanda kamu tumbuh.</p>
-        </article>
-        <aside class="gallery card" id="gallery">
-          <a class="thumb" data-group="g1" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-mjzkKPNidknfqZPUIUU1Arvp5aUgQqC8cBGb8jEa6MhfbRzLxCCvjHkP-ihHcpjU6LD7RnsjU6kUiZoRopc_BVFDp9oGuJzmb7FPzs9YwRHpKPnwmQFhiVlBnAQzNlJsHo7RuS_artTEHiaAXrRbzJGm6h_8qhPWUadG4toidZPt5QpDiZG-omlIbVg/s1600/belajar.jpg">
-            <span class="tag">Belajar</span>
-            <img loading="lazy" alt="Belajar kapanpun dimanapun" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-mjzkKPNidknfqZPUIUU1Arvp5aUgQqC8cBGb8jEa6MhfbRzLxCCvjHkP-ihHcpjU6LD7RnsjU6kUiZoRopc_BVFDp9oGuJzmb7FPzs9YwRHpKPnwmQFhiVlBnAQzNlJsHo7RuS_artTEHiaAXrRbzJGm6h_8qhPWUadG4toidZPt5QpDiZG-omlIbVg/s800/belajar.jpg">
-          </a>
-          <a class="thumb" data-group="g1" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinMfsl46yxTqeiLEzKq4ajvCJVXDjbaNo6mnxs9kZhHhZwF1L33JppHBM-kdndQ_zzSpETtmkP9p1QUZl5BAf3UqytDmpCRRw02FpHt5ZyTQMJ56bfcVRk7b7Jnh3l7pun8dTWWp0fncwdQDl-jr8m4zSdDSBPPczqdSzEhJet81k0DLEP_gkdbEjMkUc/s1600/Desain_Meja_Belajar_Sederhana.width-800.format-webp.webp">
-            <span class="tag">Fokus</span>
-            <img loading="lazy" alt="Meja belajar" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinMfsl46yxTqeiLEzKq4ajvCJVXDjbaNo6mnxs9kZhHhZwF1L33JppHBM-kdndQ_zzSpETtmkP9p1QUZl5BAf3UqytDmpCRRw02FpHt5ZyTQMJ56bfcVRk7b7Jnh3l7pun8dTWWp0fncwdQDl-jr8m4zSdDSBPPczqdSzEhJet81k0DLEP_gkdbEjMkUc/s800/Desain_Meja_Belajar_Sederhana.width-800.format-webp.webp">
-          </a>
-        </aside>
-      </section>
+     <div id="disqus_thread"></div>
     </main>
     <footer>
       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
@@ -233,19 +217,7 @@
       </div>
     </div>
     <script>
-
-      // Share links (Script dipertahankan karena fungsi tombol share adalah fungsi inti)
-      (function(){
-        const url = encodeURIComponent('https://frijal.pages.dev/artikel/pesan-imam-syafii-belajar.html');
-        const text = encodeURIComponent('Belajar kapanpun, dimanapun - pesan Imam Syafi’i');
-        const wa = `https://wa.me/?text=${text}%20%7C%20${url}`;
-        const x  = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-        const fb = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-        const tg = `https://t.me/share/url?url=${url}&text=${text}`;
-        const ids = ['share-wa','share-x','share-fb','share-tele'];
-        [wa,x,fb,tg].forEach((link,i)=>{ const el=document.getElementById(ids[i]); if(el){ el.href=link; el.target='_blank'; el.rel='noopener'; } });
-      })();
-      // Lazy load
+          // Lazy load
       (function(){
         const imgs = document.querySelectorAll('img[data-src]');
         const io = 'IntersectionObserver' in window ? new IntersectionObserver((ents,obs)=>{
