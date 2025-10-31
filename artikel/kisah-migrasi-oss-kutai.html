@@ -148,17 +148,18 @@
 <div id="iposbrowser"></div>
                     <p class="lead">Sebuah catatan kilas balik dari 4 Oktober 2010, tentang momen spesial ketika Kementerian Riset dan Teknologi bersama Pemda Kutai Kartanegara menggelar acara sosialisasi pemanfaatan perangkat lunak legal dan Open Source Software (OSS).</p>
 
-                    
+
 
                     <p>Acara ini dibuka langsung oleh Wakil Bupati Kutai Kartanegara dan tidak hanya berhenti pada sosialisasi. Kegiatan ini dilanjutkan dengan <strong>Migrasi dan Pelatihan OSS</strong> yang dipandu oleh tim teknis dari Makara UI, Komunitas OSS - KPLI Balikpapan, dan POSS Universitas Mulawarman Samarinda. Mereka turun tangan untuk memandu seluruh SKPD agar mahir menggunakan perangkat lunak legal ini.</p>
                     <p>Pesertanya pun beragam, mulai dari Kepala SKPD, guru, mahasiswa, hingga komunitas OSS lokal. Narasumber yang hadir juga bukan nama sembarangan, termasuk pakar IT ternama, <strong>Onno Purbo</strong>.</p>
-                    
+
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.png" alt="Suasana sosialisasi OSS"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4xGZROzzRw1_4woVewzXkhNt7Ff8JSrKDYM_4kXJ2ubYCPf7iz4EvM6RrjLrxdcuoughTyeDYYE7cYAY8heVQNZ7dlCLRu8Ml4QaEbFS2OlMroSLvYwP8J0i6Aw35hJEbz-9FQoeed-CA/s1600/CIMG3312.JPG" alt="Peserta acara sosialisasi"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRV8y1SzLWfa0fJxmnmT0V6PBPokwFU2znUjZjiTy4EdKt9B_yj-L-K9ezWTL3FAidMuNAaKaIwHiYfINDDbUTnoRApCEpc4BY6xSU4uDmD5WadFxnHMQ939VKP202xPnWiaULYzbcQ0Pg/s1600/CIMG3333.JPG" alt="Presentasi narasumber"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgB36hVOitnrc5sNyd9jWXepule9HcNqBpE_wx4zGsNCtPKdUbeROgL5T0BZCONLzJSa93T7sokoeZkniwJHrl7jOrYdg5eWH5tH6d_ct8AlrTuWYq5hU-gGUa8ZRLMKG_sS6TuRjKxQo57/s1600/CIMG3352.JPG" alt="Onno Purbo sebagai narasumber"></figure>
                     </div>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -167,7 +168,7 @@
             <small>🄯 2024 Frijal's Blog · Sebuah kenangan dari era komunitas FOSS yang aktif.</small>
         </footer>
     </div>
-    
+
     <div class="lightbox" id="lightbox">
         <button id="lb-prev" class="lightbox-nav-btn lightbox-prev" title="Sebelumnya">&lt;</button>
         <img id="lightbox-img" alt="Gambar diperbesar">
@@ -181,9 +182,9 @@
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
 
-        
-        
-        
+
+
+
 
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
@@ -192,7 +193,7 @@
         const lbClose = document.getElementById('lb-close');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-        
+
         function showImage(index) {
             currentIndex = index;
             let src = galleryImages[currentIndex].src;
@@ -211,13 +212,13 @@
             const newIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
             showImage(newIndex);
         }
-        
+
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => showImage(index));
         });
 
         function closeLb(){ lb.classList.remove('open'); }
-        
+
         lb.addEventListener('click', (e) => {
             if (e.target === lb) {
                 closeLb();

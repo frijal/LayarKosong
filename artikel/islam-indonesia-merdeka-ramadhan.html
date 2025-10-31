@@ -113,7 +113,7 @@
         .lightbox .close{top:18px; right:18px}
         .lightbox .prev{left:18px; top:50%; transform:translateY(-50%)}
         .lightbox .next{right:18px; top:50%; transform:translateY(-50%)}
-        
+
         /* Floating buttons removed */
 
         footer{padding:2rem 0 4rem; color:var(--muted); text-align:center}
@@ -243,26 +243,7 @@
 
             <aside>
                 <div class="card">
-                    <h3>Jaga Data Pribadi Tetap Aman</h3>
-                    <p>Kalau ini menggerakkan hati, titip share. Semoga kebaikan menyebar.</p>
-                    <div class="share-row">
-                        <a class="btn" id="share-wa-2" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.7c-.28-.14-1.66-.81-1.92-.9-.26-.1-.45-.14-.64.14-.19.28-.74.9-.9 1.08-.17.18-.33.2-.62.07-.28-.14-1.2-.44-2.28-1.4-.84-.75-1.4-1.68-1.56-1.96-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.47h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44s1.02 2.83 1.16 3.02c.14.19 2.01 3.07 4.87 4.31.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.66-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.54-.33z"/><path d="M16 3a13 13 0 00-11.2 19.5L3 29l6.7-1.76A13 13 0 1016 3zm7.76 20.76A11 11 0 115.01 5 11 11 0 0123.76 23.76z"/></svg>
-                            <span>WhatsApp</span>
-                        </a>
-                        <a class="btn" id="share-x-2" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21l-6.72 7.69L22 22h-6.828l-5.34-6.51L3.6 22H1l7.2-8.24L2 2h6.914l4.86 5.93L18.244 2zM7.42 3.83H4.28l12.36 16.38h3.27L7.42 3.83z"/></svg>
-                            <span>Bagikan</span>
-                        </a>
-                        <a class="btn" id="share-fb-2" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.24 10.44 22v-7.02H7.9v-2.91h2.54v-2.22c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.9h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.1 22 12.07z"/></svg>
-                            <span>Facebook</span>
-                        </a>
-                        <a class="btn" id="share-ln-2" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6a2 2 0 11.001-4.001A2 2 0 016 6zM4 8h4v12H4V8zm6 0h3.8v1.64h.05c.53-1 1.84-2.06 3.78-2.06C21.1 7.58 22 9.57 22 12.7V20h-4v-6.3c0-1.5-.03-3.44-2.1-3.44-2.1 0-2.4 1.63-2.4 3.32V20h-4V8z"/></svg>
-                            <span>LinkedIn</span>
-                        </a>
-                    </div>
+                   <div id="disqus_thread"></div>
                 </div>
                 </aside>
         </div>
@@ -283,38 +264,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Share links
-            (function share(){
-                const url = encodeURIComponent('https://frijal.pages.dev/artikel/islam-indonesia-merdeka-ramadhan.html');
-                const title = encodeURIComponent(document.title);
-                const text = encodeURIComponent('Baca: Islam, Indonesia Merdeka, dan Ramadhan - rangkum hangat & inspiratif:');
-                const pairs = [
-                    ['share-wa',`https://wa.me/?text=${text}%20${url}`],
-                    ['share-wa-2',`https://wa.me/?text=${text}%20${url}`],
-                    ['share-x',`https://twitter.com/intent/tweet?url=${url}&text=${title}`],
-                    ['share-x-2',`https://twitter.com/intent/tweet?url=${url}&text=${title}`],
-                    ['share-fb',`https://www.facebook.com/sharer/sharer.php?u=${url}`],
-                    ['share-fb-2',`https://www.facebook.com/sharer/sharer.php?u=${url}`],
-                    ['share-ln',`https://www.linkedin.com/sharing/share-offsite/?url=${url}`],
-                    ['share-ln-2',`https://www.linkedin.com/sharing/share-offsite/?url=${url}`]
-                ];
-                pairs.forEach(([id,href])=>{ const a=document.getElementById(id); if(a) a.href=href; });
-                
-                const btnCopy = document.getElementById('btn-copy');
-                if(btnCopy){
-                    const originalHTML = btnCopy.innerHTML;
-                    btnCopy.addEventListener('click', async (e)=>{
-                        e.preventDefault(); // Prevent navigation
-                        try{
-                            await navigator.clipboard.writeText(decodeURIComponent(url));
-                            btnCopy.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/></svg><span>Tautan disalin</span>';
-                            setTimeout(() => { btnCopy.innerHTML = originalHTML; }, 2000);
-                        }catch{ alert('Gagal menyalin tautan.'); }
-                    });
-                }
-            })();
-
-            // Lightbox
+              // Lightbox
             (function lightbox(){
                 const gallery = [...document.querySelectorAll('#gallery a')];
                 const lb = document.getElementById('lightbox');

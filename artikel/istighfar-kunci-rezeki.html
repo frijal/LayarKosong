@@ -69,7 +69,7 @@
       line-height:1.75;
     }
     a{color:var(--accent);text-decoration:none}
-    
+
 
     header.hero{
       position:relative;min-height:44vh;display:grid;place-items:center;overflow:hidden;
@@ -236,10 +236,7 @@
 
   <!-- Share -->
   <div class="share">
-    <button class="btn" id="copyLink"><span class="sicon">🔗</span><span>Salin tautan</span></button>
-    <a class="btn" id="waShare" href="#" target="_blank" rel="noopener"><span class="sicon">🟢</span><span>WhatsApp</span></a>
-    <a class="btn" id="xShare" href="#" target="_blank" rel="noopener"><span class="sicon">⚫</span><span>X (Twitter)</span></a>
-    <a class="btn" id="tgShare" href="#" target="_blank" rel="noopener"><span class="sicon">🔷</span><span>Telegram</span></a>
+<div id="disqus_thread"></div>
   </div>
 
   <footer>
@@ -272,18 +269,6 @@
       });
     })();
 
-    // Share links
-    (function(){
-      const url = encodeURIComponent('https://frijal.pages.dev/artikel/istighfar-kunci-rezeki.html');
-      const title = encodeURIComponent('Istighfar: Kunci Pembuka Pintu Langit dan Rezeki');
-      document.getElementById('copyLink').addEventListener('click', async ()=>{
-        try{ await navigator.clipboard.writeText(decodeURIComponent(url)); alert('Tautan disalin!'); }
-        catch{ prompt('Salin tautan secara manual:', decodeURIComponent(url)); }
-      });
-      document.getElementById('waShare').href = `https://wa.me/?text=${title}%20${url}`;
-      document.getElementById('xShare').href = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
-      document.getElementById('tgShare').href = `https://t.me/share/url?url=${url}&text=${title}`;
-    })();
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

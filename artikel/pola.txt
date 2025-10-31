@@ -1,4 +1,10 @@
-<button id="share-fb" title="Bagikan ke Facebook">📘</button>
-            <button id="share-tw" title="Bagikan ke Twitter/X">🐦</button>
-            <button id="share-wa" title="Bagikan ke WhatsApp">🟢</button>
-            <button id="copy-link" title="Salin Link Artikel">🔗</button>
+
+        (function setupShareLinks() {
+            const text = encodeURIComponent(ARTICLE_TITLE);
+            const url = encodeURIComponent(CANON_URL);
+            const via = encodeURIComponent(VIA_TWITTER);
+            document.getElementById('share-wa').href = `https://wa.me/?text=${text}%20${url}`;
+            document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&via=${via}`;
+            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        })();

@@ -120,6 +120,7 @@ Penelitian menunjukkan korelasi antara paparan cahaya malam dan gangguan tidur, 
 </div>
 </article>
 </div>
+<div id="disqus_thread"></div>
 </main>
 
 <footer>
@@ -137,16 +138,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const canonicalUrl = "https://frijal.pages.dev/artikel/kurangi-cahaya-ketidur.html";
 document.getElementById("current-url").textContent = canonicalUrl;
 
-// Set data-href FB Comments
-const fbComments = document.getElementById("fb-comments");
-if (fbComments) fbComments.setAttribute("data-href", canonicalUrl);
-
-// Reload plugin FB
-window.fbAsyncInit = function() {
-if (typeof FB !== 'undefined') {
-try { FB.XFBML.parse(); } catch(e) {}
-}
-}
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

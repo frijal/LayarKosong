@@ -260,13 +260,6 @@
 <div id="iposbrowser"></div>
         </div>
     </header>
-    <div class="container">
-           <div class="share-bar">
-            <a href="#" id="share-wa" title="Bagikan ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" id="share-tw" title="Bagikan ke Twitter"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" id="share-fb" title="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" id="share-tg" title="Bagikan ke Telegram"><i class="fab fa-telegram-plane"></i></a>
-        </div>
         <p style="font-size:1.1em">📌 Sumber asli: <a href="https://www.linux.org/threads/linux-and-internet-protocol-television-iptv.52959/" target="_blank" rel="noopener">Linux.org</a></p>
 
         <h2>🔎 Apa itu IPTV?</h2>
@@ -276,7 +269,7 @@
 
         <h2>🖥️ Aplikasi IPTV di Linux</h2>
         <p>
-            Dahulu ada FreeTuxTV, tapi sekarang lebih populer pakai <b>Hypnotix</b> (bawaan Linux Mint, tapi bisa kok di Ubuntu/distro lain). 
+            Dahulu ada FreeTuxTV, tapi sekarang lebih populer pakai <b>Hypnotix</b> (bawaan Linux Mint, tapi bisa kok di Ubuntu/distro lain).
             Cara pakainya gampang, tampilannya juga kekinian.
         </p>
         <div class="gallery" id="gallery">
@@ -303,7 +296,7 @@
 
         <h2>📂 Kategori Konten</h2>
         <p>
-            Di halaman utama Hypnotix ada tiga kategori: <b>TV Channels</b>, <b>Movies</b>, dan <b>Series</b>. 
+            Di halaman utama Hypnotix ada tiga kategori: <b>TV Channels</b>, <b>Movies</b>, dan <b>Series</b>.
             Jumlah channel bisa beda-beda, ada yang 24 jam, ada yang kadang off.
         </p>
 
@@ -356,7 +349,7 @@
         <p>
             Selamat streaming di Linux! 🎉
         </p>
-
+<div id="disqus_thread"></div>
     </div>
     <script>
     // Galeri Gambar
@@ -419,14 +412,6 @@
     }
     window.addEventListener('DOMContentLoaded', setupGallery);
 
-    // Share
-    const shareUrl = encodeURIComponent(location.href);
-    const shareText = encodeURIComponent(document.title);
-    document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
-    document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`;
-    document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-    document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
-    
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

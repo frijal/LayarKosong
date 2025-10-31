@@ -213,7 +213,7 @@
           <div class="tip" style="margin-top:12px">
             <span>✅</span>
             <div>
-              <strong>Butuh paket:</strong> ghostscript. Jika belum ada, pasang terlebih dulu (lihat bagian “Instalasi”). 
+              <strong>Butuh paket:</strong> ghostscript. Jika belum ada, pasang terlebih dulu (lihat bagian “Instalasi”).
             </div>
           </div>
         </div>
@@ -317,22 +317,7 @@ sudo pacman -S --noconfirm ghostscript</code></pre>
     <!-- Bagikan -->
     <section class="card" style="margin-top:18px">
       <div class="inner">
-        <span class="badge">Bagikan</span>
-        <h2>Bantu teman kerja yang butuh ini</h2>
-        <div class="share" id="share-links">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/kompres-pdf-ghostscript.html" target="_blank" rel="noopener">
-            <span>📘</span><span>Facebook</span>
-          </a>
-          <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/kompres-pdf-ghostscript.html&text=Kompres%20PDF%20dengan%20Ghostscript%20%F0%9F%93%84" target="_blank" rel="noopener">
-            <span>🐦</span><span>Twitter / X</span>
-          </a>
-          <a href="https://wa.me/?text=https://frijal.pages.dev/artikel/kompres-pdf-ghostscript.html" target="_blank" rel="noopener">
-            <span>📱</span><span>WhatsApp</span>
-          </a>
-          <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/kompres-pdf-ghostscript.html&text=Kompres%20PDF%20GS" target="_blank" rel="noopener">
-            <span>📨</span><span>Telegram</span>
-          </a>
-                 </div>
+        <div id="disqus_thread"></div>
       </div>
     </section>
   </main>
@@ -366,25 +351,6 @@ sudo pacman -S --noconfirm ghostscript</code></pre>
         } catch(e) { btn.textContent = 'Gagal menyalin'; }
       });
     });
-
-    // Web Share API (opsional)
-    (function(){
-      const share = document.getElementById('share-links');
-      if (navigator.share) {
-        const btn = document.createElement('a');
-        btn.href = '#';
-        btn.innerHTML = '<span>🔗</span><span>Bagikan Cepat</span>';
-        btn.addEventListener('click', (e)=>{
-          e.preventDefault();
-          navigator.share({
-            title: document.title,
-            text: 'Compress PDF scan super cepat dengan Ghostscript.',
-            url: location.href
-          }).catch(()=>{});
-        });
-        share.appendChild(btn);
-      }
-    })();
 
     // Lightbox sederhana
     const lb = document.getElementById('lightbox');
