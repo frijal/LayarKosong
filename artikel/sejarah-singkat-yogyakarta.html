@@ -228,7 +228,7 @@
 
 
                         <div style="margin-top:8px;font-size:13px;color:var(--muted)">URL halaman saat ini: <span id="current-url">—</span></div>
-                    </div>
+                    </div><div id="disqus_thread"></div>
                 </article>
                 <aside class="card" aria-labelledby="about-title" style="margin-top: 28px;">
                     <h3 id="about-title">Ringkasan Cepat</h3>
@@ -248,28 +248,6 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        // Update dynamic metadata and timestamps
-        document.getElementById('updated-time').textContent = new Date().toLocaleString('id-ID', {year:'numeric',month:'long',day:'numeric'});
-        document.getElementById('year').textContent = new Date().getFullYear();
-        // Set canonical and OG url to current page
-        const currentUrl = window.location.href;
-        const metaOg = document.getElementById('meta-og-url');
-        if (metaOg) metaOg.setAttribute('content', currentUrl);
-        const canonical = document.getElementById('canonical-link');
-        if (canonical) canonical.setAttribute('href', currentUrl);
-        // show current URL for FB comments and placeholder
-        document.getElementById('current-url').textContent = currentUrl;
-        document.getElementById('fb-comments').setAttribute('data-href', currentUrl);
-        // Reload FB plugin if available (useful when SPAs set data-href dynamically)
-        window.addEventListener('load', ()=>{
-            if (window.FB && FB.XFBML && typeof FB.XFBML.parse === 'function'){
-                FB.XFBML.parse();
-            }
-        });
-        // Dihapus: Seluruh JavaScript deteksi OS/IP
-    </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
