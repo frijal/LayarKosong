@@ -115,30 +115,11 @@
         </footer>
       </main>
       <aside class="card">
-        <div style="font-weight:700">Jaga Data Pribadi Tetap Aman</div>
-        <div class="share-buttons">
-          <a class="btn" id="share-fb" href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a class="btn" id="share-x" href="#" target="_blank" rel="noopener noreferrer">X</a>
-          <a class="btn" id="share-wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn" id="share-tg" href="#" target="_blank" rel="noopener noreferrer">Telegram</a>
-        </div>
+        <div id="disqus_thread"></div>
       </aside>
     </div>
   </div>
-  <script>
-    (function(){
-      const pageUrl = encodeURIComponent(window.location.href);
-      const pageTitle = encodeURIComponent(document.title);
-      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
-      document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-      document.getElementById('share-tg').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
-      document.getElementById('updated-at').textContent = new Date().toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'});
-      const btn=document.getElementById('btn-copy-link');
-      btn.onclick=async()=>{await navigator.clipboard.writeText(window.location.href);btn.textContent='Tersalin ✓';setTimeout(()=>btn.textContent='Copy Link',2000);}
-    })();
-  </script>
-<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+  <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 </body>
