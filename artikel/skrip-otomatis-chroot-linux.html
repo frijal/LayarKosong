@@ -237,14 +237,7 @@ echo "Cleanup selesai!"</code></pre>
             </section>
 
             <section class="interaction-section">
-                <div class="social-share">
-                    <h3>Jaga Data Pribadi Tetap Aman:</h3>
-                    <a href="#" id="share-twitter" rel="noreferrer" aria-label="Bagikan ke Twitter">🐦</a>
-                    <a href="#" id="share-facebook" rel="noreferrer" aria-label="Bagikan ke Facebook">👍</a>
-                    <a href="#" id="share-whatsapp" rel="noreferrer" aria-label="Bagikan ke WhatsApp">💬</a>
-                    <a href="#" id="share-linkedin" rel="noreferrer" aria-label="Bagikan ke LinkedIn">🔗</a>
-                </div>
-
+              <div id="disqus_thread"></div>
             </section>
         </article>
     </main>
@@ -272,24 +265,7 @@ echo "Cleanup selesai!"</code></pre>
                     });
                 });
             });
-            // --- Social Share Logic ---
-            const pageUrl = encodeURIComponent(window.location.href);
-            const pageTitle = encodeURIComponent(document.title);
-
-            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-            document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-            document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-            // --- Facebook Comments SDK ---
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023&autoLogAppEvents=1";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-            // --- Dihapus: User Info Logic ---
-        });
+                   });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

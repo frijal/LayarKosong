@@ -40,16 +40,13 @@
       --radius: 18px;
       --max: 900px; /* Disesuaikan untuk 1 kolom */
     }
-
     * {
       box-sizing: border-box;
     }
-
     body,
     html {
       height: 100%;
     }
-
     body {
       margin: 0;
       font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -59,22 +56,18 @@
         radial-gradient(700px 500px at 50% 120%, rgba(245, 158, 11, 0.14), transparent 60%),
         var(--bg);
     }
-
     a {
       color: var(--brand);
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
       padding: 24px;
     }
-
     header.hero {
       position: relative;
       min-height: 30vh; /* Dikurangi karena layout 1 kolom */
@@ -82,7 +75,6 @@
       display: block; /* Header menjadi 1 kolom */
       text-align: center;
     }
-
     .title {
       background: linear-gradient(90deg, var(--brand), var(--brand-2));
       -webkit-background-clip: text;
@@ -95,14 +87,12 @@
       margin: 0 0 8px;
       text-align: center;
     }
-
     .sub {
       color: var(--muted);
       font-size: clamp(16px, 1.8vw, 20px);
       margin: 0 0 16px;
       text-align: center;
     }
-
     .chips {
       display: flex;
       flex-wrap: wrap;
@@ -110,7 +100,6 @@
       margin: 10px 0 0;
       justify-content: center;
     }
-
     .chip {
       display: inline-flex;
       align-items: center;
@@ -121,14 +110,12 @@
       padding: 8px 12px;
       box-shadow: var(--shadow);
     }
-
     .panel {
       background: var(--paper);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
-
     .panel img {
       width: 100%;
       height: auto; /* Disesuaikan untuk 1 kolom */
@@ -136,11 +123,9 @@
       display: block;
       border-radius: 0 0 var(--radius) var(--radius);
     }
-
     main {
       margin-top: -40px;
     }
-
     .section {
       background: var(--paper);
       border-radius: var(--radius);
@@ -148,12 +133,10 @@
       padding: 24px;
       margin: 24px 0;
     }
-
     h2 {
       margin: 0 0 12px;
       font-size: 24px;
     }
-
     .meta {
       display: flex;
       flex-wrap: wrap;
@@ -162,18 +145,15 @@
       font-size: 14px;
       margin-bottom: 8px;
     }
-
     /* Grid 2 kolom diubah menjadi 1 kolom */
     .grid-2 {
       display: block;
       gap: 18px;
     }
-
     .lead {
       font-size: 18px;
       color: #273445;
     }
-
     .note {
       background: linear-gradient(180deg, #fff9f0, #fff3df);
       border: 1px solid #ffe7c2;
@@ -181,7 +161,6 @@
       padding: 12px 14px;
       color: #7a4a00;
     }
-
     .warn {
       background: linear-gradient(180deg, #fff5f5, #ffeaea);
       border: 1px solid #ffd0d0;
@@ -190,13 +169,11 @@
       color: #7a0a0a;
       margin-top: 12px;
     }
-
     code,
     kbd,
     pre {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
-
     pre {
       background: #0f172a;
       color: #e5e7eb;
@@ -205,12 +182,10 @@
       overflow: auto;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
-
     .tech {
       display: block; /* Dibuat blok vertikal */
       margin-top: 12px;
     }
-
     .card {
       border: 1px solid #eef1f6;
       border-radius: 14px;
@@ -220,13 +195,11 @@
       gap: 12px;
       margin-bottom: 12px; /* Margin untuk card tech */
     }
-
     /* Gallery (Dibuat 1 kolom penuh) */
     .gallery {
       display: block;
       margin: 20px 0;
     }
-
     .gallery a {
       position: relative;
       display: block;
@@ -236,7 +209,6 @@
       background: #f8fafc;
       margin-bottom: 10px;
     }
-
     .gallery img {
       width: 100%;
       height: auto;
@@ -244,14 +216,12 @@
       object-fit: cover;
       filter: saturate(1.05);
     }
-
     .share {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center; /* Dipusatkan */
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -264,27 +234,21 @@
       font-weight: 700;
       letter-spacing: 0.2px;
     }
-
     .wa {
       background: #25d366;
     }
-
     .tw {
       background: #111;
     }
-
     .fb {
       background: #1877f2;
     }
-
     .li {
       background: #0a66c2;
     }
-
     .tg {
       background: #229ed9;
     }
-
     .comments {
       background: #fff;
       border-radius: 14px;
@@ -292,7 +256,6 @@
       padding: 16px;
       margin-top: 24px;
     }
-
     /* Lightbox */
     .lightbox {
       position: fixed;
@@ -304,18 +267,15 @@
       z-index: 9999;
       padding: 20px;
     }
-
     .lightbox.open {
       display: flex;
     }
-
     .lightbox img {
       max-width: 96vw;
       max-height: 86vh;
       border-radius: 12px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
     }
-
     .lightbox .close {
       position: absolute;
       top: 14px;
@@ -330,22 +290,17 @@
       cursor: pointer;
       box-shadow: var(--shadow);
     }
-
     footer {
       text-align: center;
       color: var(--muted);
       padding: 40px 16px;
     }
-
   </style>
   <meta itemprop="image" content="https://frijal.pages.dev/img/fedora15-networkmanager-fix.webp">
-
     <meta property="article:published_time" content="2025-10-14T18:15:06.390+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
-
     <header class="hero wrap">
         <div>
             <div class="chips">
@@ -355,7 +310,6 @@
             </div>
             <h1 class="title">Kalem, modem USB macet habis update? Kita betulin bareng</h1>
 <div id="iposbrowser"></div>
-
             <p class="sub">Ada bug di paket NetworkManager tanggal 26 Mei 2011 yang bikin koneksi seluler gagal. Solusinya: pasang build perbaikan, bersihkan koneksi lama, dan start fresh.</p>
             <div class="meta">
                 <span>Bug: gnome-0.8.999.3.git20110526.fc15</span> <span>•</span>
@@ -377,14 +331,12 @@
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.png" alt="Instalasi selesai di Fedora 15" loading="eager"/>
         </div>
     </header>
-
     <main class="wrap">
         <article class="section">
             <div class="grid-2">
                 <div>
                     <h2>Langkah ringkas via Terminal</h2>
                     <p class="lead">Kita pakai terminal biar rapi dan bisa ditelusuri. Pastikan koneksi internet aktif (pakai kabel/Wi‑Fi). Simpan semua RPM di satu folder.</p>
-
                     <h3>1. Unduh paket yang diperlukan</h3>
                     <pre>mkdir -p ~/Downloads/nm-fix &amp;&amp; cd ~/Downloads/nm-fix# Dependensi (contoh i686 sesuai sumber lama)# dbus, glib2, dbus-glib devel# Paket NetworkManager versi 0.8.9997-1.git20110531.fc15# (gunakan tautan asli yang kamu punya/arsip lokal)</pre>
                     <p>Daftar tautan historis (arsip):</p>
@@ -399,18 +351,15 @@
                         <li><a href="http://kojipkgs.fedoraproject.org/packages/NetworkManager/0.8.9997/1.git20110531.fc15/i686/NetworkManager-glib-devel-0.8.9997-1.git20110531.fc15.i686.rpm">NetworkManager-glib-devel-0.8.9997</a></li>
                         <li><a href="http://kojipkgs.fedoraproject.org/packages/NetworkManager/0.8.9997/1.git20110531.fc15/i686/NetworkManager-debuginfo-0.8.9997-1.git20110531.fc15.i686.rpm">NetworkManager-debuginfo-0.8.9997</a></li>
                     </ul>
-
                     <h3>2. Instal massal RPM lokal</h3>
                     <pre>cd ~/Downloads/nm-fix
 sudo yum localinstall *.rpm</pre>
-
                     <h3>3. Bersihkan profil koneksi lama (backup dulu!)</h3>
                     <pre># Backup profil koneksi
 sudo cp -a /etc/NetworkManager/system-connections{,.backup}
 # Hapus profil lama (akan dibuat ulang)
 cd /etc/NetworkManager/system-connections/
 sudo rm -f *</pre>
-
                     <h3>4. Mulai ulang NetworkManager</h3>
                     <pre># Opsi A (service)
 sudo service NetworkManager restart
@@ -418,7 +367,6 @@ sudo service NetworkManager restart
 sudo systemctl restart NetworkManager
 # Opsi C (jalanin biner langsung - tidak selalu diperlukan)
 # sudo NetworkManager</pre>
-
                     <p class="note">
                         <strong>Hasil yang diharapkan:</strong> Applet NM muncul normal,
                         modem USB/ponsel terdeteksi, kamu bisa buat koneksi baru, dan
@@ -429,7 +377,6 @@ sudo systemctl restart NetworkManager
                 </div>
             </div>
         </article>
-
         <section class="section">
             <h2>Galeri foto</h2>
             <div class="gallery" id="gallery">
@@ -443,26 +390,19 @@ sudo systemctl restart NetworkManager
                 <img src="" alt="Pratinjau foto" id="lbImg" />
             </div>
         </section>
-
         <section class="section">
             <div id="disqus_thread"></div>
         </section>
     </main>
-
     <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
         <button class="close" id="lbClose" aria-label="Tutup galeri"><svg viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
         <img src="" alt="Pratinjau foto" id="lbImg" />
     </div>
-
     <footer>
         🄯 2011–2025 Frijal — Semoga modem kamu kembali ngebut. Kalau masih seret, tulis kendalanya di komentar, biar kita oprek bareng.
     </footer>
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>
