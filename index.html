@@ -72,7 +72,8 @@ a:visited {
   color: inherit;       /* atau warna spesifik seperti black, #333, dll */
   text-decoration: none;
 }
- /* CSS Reset dan Tema Dark/Light Otomatis */
+
+        /* CSS Reset dan Tema Dark/Light Otomatis */
         :root {
             /* Tema Light (Default) */
             --bg-color: #f9f9f9;
@@ -279,8 +280,7 @@ a:visited {
                 grid-template-columns: 1fr; /* 1 kolom di mobile */
             }
         }
-
-</style>
+    </style>
 </head>
 <body>
 
@@ -311,6 +311,7 @@ a:visited {
         document.addEventListener('DOMContentLoaded', main);
 
         let allArticles = []; // Cache global untuk semua artikel, terurut
+        let originalJsonData = {}; // Cache untuk data JSON asli
 
         /**
          * Fungsi utama, dieksekusi setelah DOM siap.
@@ -321,30 +322,31 @@ a:visited {
 
             try {
                 // 1. Fetch dan proses data
-                const response = await fetch('/artikel.json');
+                const response = await fetch('/artikel.json'); // Ambil dari root
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const jsonData = await response.json();
+                originalJsonData = await response.json();
                 
-                allArticles = processArticles(jsonData);
+                allArticles = processArticles(originalJsonData);
                 
                 // 2. Isi dropdown filter
-                populateFilters(allArticles, jsonData);
+                populateCategoryFilter(originalJsonData);
+                populateWeekFilter(allArticles); // Initial population with all weeks
                 
                 // 3. Render tampilan default
-                renderDefaultView(allArticles, jsonData);
+                renderDefaultView(allArticles, originalJsonData);
                 
                 // 4. Sembunyikan pesan loading
                 loadingMessage.classList.add('hidden');
                 
                 // 5. Tambahkan event listener ke filter
-                document.getElementById('category-filter').addEventListener('change', applyFilters);
+                document.getElementById('category-filter').addEventListener('change', handleCategoryChange);
                 document.getElementById('week-filter').addEventListener('change', applyFilters);
 
             } catch (error) {
                 console.error("Gagal memuat atau memproses artikel.json:", error);
-                container.innerHTML = `<p class="message">Gagal memuat data artikel. Pastikan file <strong>artikel.json</strong> ada di root server Anda.</p>`;
+                container.innerHTML = `<p class="message">Gagal memuat data artikel. Pastikan file <b>artikel.json</b> ada di root server Anda.</p>`;
             }
         }
 
@@ -373,27 +375,35 @@ a:visited {
         }
 
         /**
-         * Mengisi dropdown Kategori dan Minggu berdasarkan data artikel.
-         * @param {Array<object>} allArticles - Array semua artikel.
-         * @param {object} jsonData - Data JSON asli (untuk nama kategori).
+         * Mengisi dropdown Kategori.
+         * @param {object} jsonData - Data JSON asli.
          */
-        function populateFilters(allArticles, jsonData) {
+        function populateCategoryFilter(jsonData) {
             const categorySelect = document.getElementById('category-filter');
-            // Isi filter Kategori
             Object.keys(jsonData).sort().forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
                 option.textContent = category;
                 categorySelect.appendChild(option);
             });
-
+        }
+        
+        /**
+         * Mengisi dropdown Minggu berdasarkan daftar artikel yang disediakan.
+         * @param {Array<object>} articles - Daftar artikel untuk diekstrak minggunya.
+         */
+        function populateWeekFilter(articles) {
             const weekSelect = document.getElementById('week-filter');
+            weekSelect.innerHTML = '<option value="all">Semua Minggu</option>'; // Reset
+            
             const weekMap = new Map();
-            // Buat daftar minggu unik
-            allArticles.forEach(article => {
+            
+            // Buat daftar minggu unik dari artikel yang diberikan
+            articles.forEach(article => {
                 const weekStartISO = getWeekStartDate(article.date);
                 if (!weekMap.has(weekStartISO)) {
-                    const weekStartDate = new Date(weekStartISO);
+                    // Gunakan 'T12:00:00Z' untuk menghindari masalah timezone saat parsing
+                    const weekStartDate = new Date(weekStartISO + 'T12:00:00Z'); 
                     const weekNum = getWeekNumber(weekStartDate);
                     weekMap.set(weekStartISO, `Minggu ${weekNum} (Mulai ${formatDateForDisplay(weekStartDate)})`);
                 }
@@ -409,6 +419,26 @@ a:visited {
                 option.textContent = label;
                 weekSelect.appendChild(option);
             });
+        }
+
+        /**
+         * Dipanggil saat filter Kategori berubah (CASCADING).
+         */
+        function handleCategoryChange() {
+            const categoryValue = document.getElementById('category-filter').value;
+            
+            let articlesForWeekFilter;
+            if (categoryValue === 'all') {
+                articlesForWeekFilter = allArticles;
+            } else {
+                articlesForWeekFilter = allArticles.filter(a => a.category === categoryValue);
+            }
+            
+            // 1. Repopulasi filter Minggu berdasarkan kategori (CASCAADING)
+            populateWeekFilter(articlesForWeekFilter);
+            
+            // 2. Terapkan filter untuk menampilkan artikel
+            applyFilters();
         }
 
         /**
@@ -462,6 +492,7 @@ a:visited {
             if (categoryValue === 'all' && weekValue === 'all') {
                 defaultView.classList.remove('hidden');
                 filteredView.classList.add('hidden');
+                filteredView.innerHTML = ''; // Kosongkan view filter
                 return;
             }
 
@@ -510,14 +541,14 @@ a:visited {
         function createCardElement(article) {
             const card = document.createElement('a');
             card.className = 'article-card';
-            card.href = `artikel/${article.url}`; // Asumsi semua artikel ada di folder /artikel/
+            // Asumsi semua artikel ada di folder /artikel/
+            // Jika artikel ada di root, hapus 'artikel/'
+            card.href = `artikel/${article.url}`; 
 
-            // Tambahkan gambar, lazy loading
             const img = document.createElement('img');
             img.src = article.image;
             img.alt = article.title;
             img.loading = 'lazy';
-            // Fallback jika gambar error
             img.onerror = (e) => { e.target.style.display = 'none'; }; 
             
             const content = document.createElement('div');
@@ -550,16 +581,16 @@ a:visited {
         // --- Helper Functions ---
 
         /**
-         * Mendapatkan tanggal Senin dari minggu tertentu.
+         * Mendapatkan tanggal Senin dari minggu tertentu (ISO Date string).
          * @param {Date} d - Objek tanggal.
          * @returns {string} String ISO "YYYY-MM-DD" dari hari Senin.
          */
         function getWeekStartDate(d) {
-            const date = new Date(d);
-            const day = date.getDay();
-            const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Minggu = 0
-            const monday = new Date(date.setDate(diff));
-            monday.setHours(0, 0, 0, 0);
+            const date = new Date(d.getTime());
+            const day = date.getUTCDay();
+            const diff = date.getUTCDate() - day + (day === 0 ? -6 : 1); // Minggu = 0
+            const monday = new Date(date.setUTCDate(diff));
+            monday.setUTCHours(0, 0, 0, 0);
             return monday.toISOString().split('T')[0];
         }
 
@@ -582,12 +613,15 @@ a:visited {
          * @returns {string} String format "DD Mon YYYY".
          */
         function formatDateForDisplay(date) {
-            return date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+            // Gunakan UTC agar konsisten dengan getWeekStartDate
+            return date.toLocaleDateString('id-ID', { 
+                day: '2-digit', 
+                month: 'short', 
+                year: 'numeric',
+                timeZone: 'UTC' 
+            });
         }
 
     </script>
-    <footer class="page-footer">
-        <p>🄯 2025 frijal.pages.dev</p>
-    </footer>
- </body>
+</body>
 </html>
