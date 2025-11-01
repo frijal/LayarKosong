@@ -180,7 +180,6 @@ body { font-family: Inter, sans-serif; }
 <pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -crf 23 -c:a aac "${f%.mov}.mp4"; done</code></pre>
 </div>
 </template>
-<div id="disqus_thread"></div>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const navigation = document.getElementById("navigation");
