@@ -3,15 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Cara Uninstall Paket Global Node.js (npm, yarn, pnpm)</title>
     <meta name="description" content="Tutorial gampang cara uninstall atau hapus paket global npm, yarn, dan pnpm di Linux, macOS, dan Windows PowerShell.">
     <meta name="keywords" content="npm, node.js, uninstall, hapus paket global, npm uninstall, yarn global remove, pnpm remove, cli, tutorial, developer">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/uninstall-paket-global-npm.html">
-
     <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="https://frijal.pages.dev/icon.png">
-
     <meta property="og:type" content="article">
     <meta property="og:title" content="Cara Uninstall Paket Global Node.js (npm, yarn, pnpm)">
     <meta property="og:description" content="Tutorial gampang cara uninstall atau hapus paket global npm, yarn, dan pnpm di Linux, macOS, dan Windows PowerShell.">
@@ -21,16 +18,13 @@
     <meta property="article:author" content="Fakhrul">
     <meta property="article:section" content="Tutorial">
     <meta property="article:tag" content="npm, node.js, cli, tutorial, uninstall">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cara Uninstall Paket Global Node.js (npm, yarn, pnpm)">
     <meta name="twitter:description" content="Tutorial gampang cara uninstall atau hapus paket global npm, yarn, dan pnpm di Linux, macOS, dan Windows.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
     <meta name="twitter:site" content="@frijal">
     <meta name="twitter:creator" content="@frijal">
-
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Cara Uninstall Paket Global Node.js (npm, yarn, pnpm)","description":"Tutorial gampang cara uninstall atau hapus paket global npm, yarn, dan pnpm di Linux, macOS, dan Windows PowerShell.","image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp","author":{"@type":"Person","name":"Fakhrul","image":"https://frijal.pages.dev/img/uninstall-paket-global-npm.webp"},"datePublished":"2025-10-27","dateModified":"2025-10-27","publisher":{"@type":"Organization","name":"Frijal","logo":{"@type":"ImageObject","url":"https://frijal.pages.dev/icon.png","image":"https://frijal.pages.dev/img/uninstall-paket-global-npm.webp"},"image":"https://frijal.pages.dev/img/uninstall-paket-global-npm.webp"},"mainEntityOfPage":"https://frijal.pages.dev/artikel/uninstall-paket-global-npm.html"}</script>
-
     <style>
     /* CSS yang sama persis dari artikel sebelumnya untuk konsistensi */
     :root {
@@ -132,7 +126,6 @@
     .card > pre:first-child { margin-top: 0; }
     .card > pre:last-child { margin-bottom: 0; }
     .card > strong + pre { margin-top: 12px; }
-
     .copy-btn {
       position: absolute; top: 12px; right: 12px;
       background: color-mix(in oklab, var(--card) 60%, transparent);
@@ -203,7 +196,6 @@
         </div>
       </nav>
     </header>
-
     <section class="hero">
       <div>
         <h1 class="title">🗑️ Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)</h1>
@@ -222,15 +214,12 @@
         <p class="note">Gunakan flag <span class="kbd">-g</span> untuk menghapus paket global.</p>
       </div>
     </section>
-
     <main>
       <article>
         <p class="lead">Di artikel sebelumnya, kita udah bahas cara <span class="accent">melihat daftar</span> semua paket global yang terpasang. Nah, setelah kamu lihat daftarnya, pasti ada beberapa paket yang udah nggak kepake lagi, 'kan? Entah itu tool lama, salah install, atau cuma menuh-menuhin tempat.</p>
         <p>Gampang aja, cara hapusnya mirip banget sama cara install-nya. Kamu cuma perlu pakai perintah *uninstall* dari package manager yang kamu gunakan.</p>
-
         <h2>1. Terminal (Linux & macOS) 🐧🍎</h2>
         <p>Perintah di terminal Linux (seperti Ubuntu, Fedora, BlankOn, CachyOS, dll.) dan macOS itu pada dasarnya sama persis.</p>
-
         <h3>Untuk NPM:</h3>
         <p>Gunakan perintah <span class="kbd">npm uninstall</span> dengan flag <span class="kbd">-g</span> (singkatan dari <span class="kbd">--global</span>).</p>
         <div class="card">
@@ -239,7 +228,6 @@
           </button>
           <pre><code>npm uninstall -g &lt;nama-paket&gt;</code></pre>
         </div>
-
         <h3>Untuk Yarn:</h3>
         <p>Yarn pakai perintah <span class="kbd">yarn global remove</span>. Lebih deskriptif, ya?</p>
         <div class="card">
@@ -248,7 +236,6 @@
           </button>
           <pre><code>yarn global remove &lt;nama-paket&gt;</code></pre>
         </div>
-
         <h3>Untuk PNPM:</h3>
         <p>PNPM mirip NPM, pakai <span class="kbd">pnpm remove</span> (atau <span class="kbd">rm</span>) plus flag <span class="kbd">-g</span>.</p>
         <div class="card">
@@ -257,15 +244,12 @@
           </button>
           <pre><code>pnpm remove -g &lt;nama-paket&gt;</code></pre>
         </div>
-
         <blockquote>
             <strong>Catatan Penting (Linux/macOS):</strong><br>
             Kalau dulu kamu install-nya pakai <span class="kbd">sudo</span> (misal: <span class="kbd">sudo npm install -g ...</span>), maka kamu juga harus pakai <span class="kbd">sudo</span> buat uninstall-nya. Contoh: <span class="kbd">sudo npm uninstall -g &lt;nama-paket&gt;</span>.
         </blockquote>
-
         <h2>2. Windows (PowerShell) 💻</h2>
         <p>Kabar baik buat pengguna Windows! Perintahnya <strong>tetap sama</strong> persis kok di dalam PowerShell.</p>
-
         <h3>Untuk NPM:</h3>
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
@@ -273,7 +257,6 @@
           </button>
           <pre><code>npm uninstall -g &lt;nama-paket&gt;</code></pre>
         </div>
-
         <h3>Untuk Yarn:</h3>
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
@@ -281,7 +264,6 @@
           </button>
           <pre><code>yarn global remove &lt;nama-paket&gt;</code></pre>
         </div>
-
         <h3>Untuk PNPM:</h3>
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
@@ -289,18 +271,15 @@
           </button>
           <pre><code>pnpm remove -g &lt;nama-paket&gt;</code></pre>
         </div>
-
         <blockquote>
             <strong>Catatan Penting (Windows):</strong><br>
             Paket global itu seringnya di-install di folder yang dilindungi sistem (kayak <span class="kbd">C:\Program Files\nodejs</span>). Jadi, kamu mungkin perlu menjalankan PowerShell <strong>sebagai Administrator</strong> (klik kanan ikon PowerShell > "Run as administrator") biar proses hapusnya lancar jaya.
         </blockquote>
-
         <h2>3. Contoh Praktis (Studi Kasus) 🧑‍💻</h2>
         <p>Misalnya, kamu baru aja jalanin perintah dari artikel sebelumnya:</p>
         <pre><code>npm list -g --depth=0</code></pre>
         <p>Terus kamu lihat ada paket <span class="kbd">nodemon</span> dan <span class="kbd">pm2</span> yang udah nggak kamu pakai lagi.</p>
         <p>Yaudah, tinggal eksekusi aja perintah uninstall-nya satu per satu:</p>
-
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
@@ -309,9 +288,8 @@
 npm uninstall -g pm2</code></pre>
         </div>
         <p>Selesai! Paket-paket itu sekarang udah bersih dari laptop kamu.</p>
-
+<div id="disqus_thread"></div>
       </article>
-
       <aside>
         <div class="card">
           <h3>Bagikan artikel ini</h3>
@@ -328,7 +306,6 @@ npm uninstall -g pm2</code></pre>
         </div>
       </aside>
     </main>
-
     <footer class="footer">
       <div class="footer-inner">
         <div>🄯 2025 Frijal — Ditulis oleh Fakhrul</div>
@@ -336,7 +313,6 @@ npm uninstall -g pm2</code></pre>
       </div>
     </footer>
   </div>
-
     <script>
     // --- Fitur Copy Kode ---
     // (Script ini sama persis dari artikel sebelumnya, berfungsi untuk semua tombol salin)
@@ -346,7 +322,6 @@ npm uninstall -g pm2</code></pre>
         const card = btn.closest('.card');
         const codeEl = card.querySelector('pre > code');
         if (!codeEl) return;
-
         try {
           await navigator.clipboard.writeText(codeEl.innerText);
           // Ganti ikon jadi centang
