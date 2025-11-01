@@ -94,7 +94,7 @@
                     <h1>Refresh GitHub Codespaces dari Browser</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Saat lingkungan pengembangan Anda di Codespaces terasa aneh atau error, ada beberapa cara untuk menyegarkannya kembali. Panduan ini menjelaskan perbedaan antara Restart, Rebuild, dan Full Rebuild, serta kapan harus menggunakannya.</p>
-                    
+
                     <h2>Cara Rebuild Codespace dari Browser</h2>
                     <ol>
                         <li>Buka Codespace Anda di browser (VS Code web).</li>
@@ -137,6 +137,7 @@
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyiGg7d3w67OPfBLHy8OHsY09rMvaxzU1NelbOIshAoMVBNNYyTkHe6qfOJPCQM3bm6jg3EEOAIC980ckSoxFLwCLw3Xm-g6FHekjLS6DbwkwCwCMfhCOIrNX0tfHhyvCjbTx9vV_5rxBMtYvTcbiqPFYtszeXM_XqYAw9qQw95-cK8LJkivmpFEx853c/s1600/Screenshot%20From%202025-10-06%2020-48-01.png" alt="Diagram alur kapan pilih Restart, Rebuild, atau Full Rebuild">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Diagram alur untuk memilih metode refresh yang tepat.</figcaption>
                     </figure>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -153,9 +154,9 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
