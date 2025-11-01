@@ -174,6 +174,7 @@
                         Salin
                     </a>
                 </div>
+                <div id="disqus_thread"></div>
             </article>
             <aside class="side">
                 <div class="card">
@@ -197,18 +198,7 @@
             </aside>
         </section>
     </main>
-    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
-        <div class="nav">
-            <button class="prev" aria-label="Sebelumnya">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
-            <button class="next" aria-label="Berikutnya">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="m8.59 16.59 4.58-4.59-4.58-4.59L10 6l6 6-6 6-1.41-1.41z"/></svg> </button>
-        </div>
-        <img id="lightboxImg" alt="Pratinjau gambar" src="">
-        <button class="close" aria-label="Tutup">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button>
-    </div>
+
     <footer>
         <p>🄯 2025 frijal.pages.dev • Sejarah yang mengalir seperti air wakaf</p>
     </footer>
@@ -223,30 +213,7 @@
             };
             document.addEventListener('scroll', onScroll, { passive: true });
             onScroll(); // Initial call
-            // Share buttons
-            document.querySelectorAll('.share-btn').forEach(btn => {
-                btn.addEventListener('click', e => {
-                    e.preventDefault();
-                    const net = btn.dataset.net,
-                          title = document.title,
-                          url = 'https://frijal.pages.dev/artikel/sumur-rumah-madinah.html'; // Use canonical directly
-                    let shareUrl = url;
-                    if (net === 'fb') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                    if (net === 'tw') shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=frijal`;
-                    if (net === 'wa') shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
-                    if (net === 'tg') shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
-                    if (net === 'cp') {
-                        navigator.clipboard?.writeText(url).then(() => {
-                            const originalHTML = btn.innerHTML; // Store original content
-                            btn.innerHTML = '✔️ Tersalin';
-                            setTimeout(() => { btn.innerHTML = originalHTML; }, 1500); // Restore after 1.5s
-                        }).catch(err => console.error('Gagal menyalin:', err));
-                        return;
-                    }
-                    window.open(shareUrl, '_blank', 'noopener,width=680,height=520');
-                });
-            });
-            // Gallery Lightbox
+                        // Gallery Lightbox
             const imgs = [...document.querySelectorAll('#gallery img')];
             const lb = document.getElementById('lightbox'),
                   lbImg = document.getElementById('lightboxImg');

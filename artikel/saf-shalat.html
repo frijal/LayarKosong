@@ -271,31 +271,7 @@
         </section>
         <section class="card" style="margin-top:18px">
             <div class="inner">
-                <span class="badge">Bagikan</span>
-                <h2>Sebarkan kebaikan</h2>
-                <div class="share" id="share-links">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://frijal.pages.dev/artikel/saf-shalat.html" target="_blank" rel="noopener">
-                        <span>📘</span><span>Facebook</span>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?url=https://frijal.pages.dev/artikel/saf-shalat.html&text=Panduan%20Saf%20Shalat%20%F0%9F%8C%9F" target="_blank" rel="noopener">
-                        <span>🐦</span><span>Twitter / X</span>
-                    </a>
-                    <a href="https://wa.me/?text=https://frijal.pages.dev/artikel/saf-shalat.html" target="_blank" rel="noopener">
-                        <span>📱</span><span>WhatsApp</span>
-                    </a>
-                    <a href="https://t.me/share/url?url=https://frijal.pages.dev/artikel/saf-shalat.html&text=Panduan%20Saf%20Shalat" target="_blank" rel="noopener">
-                        <span>📨</span><span>Telegram</span>
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener">
-                        <span>📷</span><span>Instagram</span>
-                    </a>
-                    <a href="https://www.threads.net/" target="_blank" rel="noopener">
-                        <span>🧵</span><span>Threads</span>
-                    </a>
-                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener">
-                        <span>🎵</span><span>TikTok</span>
-                    </a>
-                </div>
+                <div id="disqus_thread"></div>
             </div>
         </section>
     </main>
@@ -323,23 +299,7 @@
                     }
                 });
             });
-            // Web Share API (opsional)
-            const shareContainer = document.getElementById('share-links');
-            if (navigator.share && shareContainer) {
-                const btn = document.createElement('a');
-                btn.href = '#';
-                btn.innerHTML = '<span>🔗</span><span>Bagikan Cepat</span>';
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    navigator.share({
-                        title: document.title,
-                        text: 'Ringkas tapi lengkap: panduan merapikan saf shalat.',
-                        url: 'https://frijal.pages.dev/artikel/saf-shalat.html' // Use canonical URL
-                    }).catch(() => {});
-                });
-                shareContainer.appendChild(btn);
-            }
-        });
+                    });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>

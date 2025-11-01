@@ -268,14 +268,7 @@
             <figcaption class="caption">Lorong-lorong masa lalu — tempat langkah disatukan.</figcaption>
           </figure>
         </div>
-        <!-- Sharing -->
-        <div class="share">
-          <a id="share-whatsapp" href="#" aria-label="Bagikan via WhatsApp">🟢 WhatsApp</a>
-          <a id="share-twitter" href="#" aria-label="Bagikan ke X/Twitter">🔵 X/Twitter</a>
-          <a id="share-facebook" href="#" aria-label="Bagikan ke Facebook">🔵 Facebook</a>
-          <a id="share-telegram" href="#" aria-label="Bagikan ke Telegram">🔵 Telegram</a>
-          <a id="share-copy" href="#" aria-label="Salin tautan">📋 Salin Link</a>
-        </div>
+      <div id="disqus_thread"></div>
       </section>
       <section class="footer">
         <p itemprop="author">🄯 Fakhrul — Disusun untuk menguatkan harapan, mengingatkan syarat-syarat kemenangan.</p>
@@ -293,27 +286,7 @@
   </div>
   <!-- Scripts -->
   <script>
-    // Canonical URL (harus sinkron dengan <link rel="canonical">)
-    const CANON = "https://frijal.pages.dev/artikel/shalahuddin-yerusalem.html";
-    // Share links
-    function setShareLinks(){
-      const text = encodeURIComponent(document.title + " — " + document.querySelector('meta[name="description"]').content);
-      const url  = encodeURIComponent(CANON);
-      document.getElementById('share-whatsapp').href = `https://wa.me/?text=${text}%20${url}`;
-      document.getElementById('share-twitter').href  = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-      document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      document.getElementById('share-telegram').href = `https://t.me/share/url?url=${url}&text=${text}`;
-      document.getElementById('share-copy').addEventListener('click', (e)=> {
-        e.preventDefault();
-        navigator.clipboard.writeText(CANON).then(()=> {
-          const a = e.currentTarget;
-          const prev = a.textContent;
-          a.textContent = "✅ Tautan disalin";
-          setTimeout(()=> a.textContent = prev, 1800);
-        });
-      });
-    }
-    // Gallery lightbox
+       // Gallery lightbox
     const imgs = [...document.querySelectorAll('#gallery .card img')];
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lbImg');
