@@ -98,7 +98,7 @@
                     <h1>Uji Kecepatan Internet dari Terminal</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Penasaran dengan kecepatan internet Anda tanpa harus membuka browser? Ada cara keren untuk melakukannya langsung dari terminal menggunakan `speedtest-cli`.</p>
-                    
+
                     <h2>Cara Pemasangan <code>speedtest-cli</code></h2>
                     <h3>Di Linux (Debian/Ubuntu)</h3>
                     <pre class="language-bash"><code id="code1">sudo apt update && sudo apt install speedtest-cli</code><button class="copy-btn" data-target="code1">Salin</button></pre>
@@ -121,6 +121,7 @@
                         <li><strong>Hasil dalam Bytes:</strong> Gunakan opsi <code>--bytes</code> untuk menampilkan hasil dalam MB/s, bukan Mbit/s.</li>
                         <li><strong>Hasil Berbentuk JSON:</strong> Tambahkan opsi <code>--json</code> untuk output yang mudah diolah oleh skrip.</li>
                     </ul>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -141,9 +142,9 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));

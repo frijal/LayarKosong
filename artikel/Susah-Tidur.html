@@ -241,18 +241,9 @@
                 <p class="small">Coba: atur napas 4-4-4-4 selama 3 menit, matikan lampu & layar, dan fokus pada rileks otot.</p>
             </div>
             <div class="sep"></div>
-            <div class="meta">Bagikan:</div>
             <div class="share-row" id="share-buttons">
-                <button class="btn" id="share-facebook" title="Share ke Facebook">Facebook</button>
-                <button class="btn" id="share-x" title="Share ke X (Twitter)">X / Twitter</button>
-                <button class="btn" id="share-whatsapp" title="Share ke WhatsApp">WhatsApp</button>
-                <button class="btn" id="share-telegram" title="Share ke Telegram">Telegram</button>
-                <button class="btn" id="share-copy" title="Salin link">Copy Link</button>
-                <button class="btn ghost" id="share-threads" title="Threads (buka profil atau share)">Threads</button>
-                <button class="btn ghost" id="share-instagram" title="Instagram (link)">Instagram</button>
-                <button class="btn ghost" id="share-tiktok" title="TikTok (link)">TikTok</button>
+             <div id="disqus_thread"></div>
             </div>
-            <div class="sep"></div>
             <div class="sep"></div>
             <div class="meta">Sumber singkat</div>
             <div class="small">
@@ -297,52 +288,6 @@
         } catch(e){
             console.warn("JSON-LD update error", e);
         }
-        // Facebook comments script removed
-        // Browser & OS Info Script Removed
-        // Share buttons behavior
-        function openCentered(url, title, w=900, h=600){
-            const left = (screen.width/2)-(w/2);
-            const top = (screen.height/2)-(h/2);
-            window.open(url, title, `toolbar=0,status=0,width=${w},height=${h},top=${top},left=${left}`);
-        }
-        const pageTitle = document.title;
-        const encodedUrl = encodeURIComponent(currentUrl);
-        const encodedTitle = encodeURIComponent(pageTitle);
-        document.getElementById('share-facebook')?.addEventListener('click', () => {
-            openCentered(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, 'Share Facebook');
-        });
-        document.getElementById('share-x')?.addEventListener('click', () => {
-            openCentered(`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`, 'Share X');
-        });
-        document.getElementById('share-whatsapp')?.addEventListener('click', () => {
-            const wurl = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
-            window.open(wurl, '_blank');
-        });
-        document.getElementById('share-telegram')?.addEventListener('click', () => {
-            window.open(`https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`, '_blank');
-        });
-        document.getElementById('share-copy')?.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(currentUrl);
-                alert('URL disalin ke clipboard');
-            } catch(e){
-                prompt('Salin link berikut:', currentUrl);
-            }
-        });
-         // Buttons for Threads, Instagram, TikTok kept but link to main sites
-        document.getElementById('share-threads')?.addEventListener('click', () => {
-             window.open('https://www.threads.net/', '_blank');
-         });
-         document.getElementById('share-instagram')?.addEventListener('click', () => {
-             window.open('https://www.instagram.com/', '_blank');
-         });
-         document.getElementById('share-tiktok')?.addEventListener('click', () => {
-             window.open('https://www.tiktok.com/', '_blank');
-         });
-        // IP & Location Fetch Script Removed
-        // Facebook Parse Function Removed
-        // Add dynamic FAQ JSON-LD (already included in the main JSON-LD update)
-        // Ensure FAQ JSON-LD uses the updated URL
         const faq = {
           "@context":"https://schema.org",
           "@type":"FAQPage",
