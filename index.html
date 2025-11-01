@@ -486,7 +486,7 @@ a:visited {
                 const otherArticles = allArticles
                     .filter(a => a.category === category)      // Filter per kategori
                     .filter(a => !top30Urls.has(a.url))  // Hapus yang sudah ada di top 30
-                    .slice(0, 10);                           // Ambil 10 teratas
+                    .slice(0, 6);                           // Ambil 6 teratas
 
                 if (otherArticles.length > 0) {
                     defaultView.innerHTML += `<h2>Artikel Lainnya di ${category}</h2>`;
