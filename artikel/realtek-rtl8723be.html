@@ -26,7 +26,6 @@
       "publisher": { "@type": "Organization", "name": "Frijal" }
     }
     </script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <style>
         :root {
@@ -91,24 +90,20 @@
                     <h1>Perbaiki Tangkapan Wi-Fi Realtek RTL8723BE di Ubuntu Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Jika sinyal Wi-Fi di laptop Anda yang menggunakan chip Realtek RTL8723BE terasa lemah di Linux, jangan khawatir. Solusinya cukup mudah: kita akan mengunduh dan menginstal driver yang sudah diperbaiki dari GitHub.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.png" alt="Logo Realtek">
                     </figure>
                     <h2>Langkah Cepat Perbaikan</h2>
                     <p>Intinya adalah kita akan meng-clone repositori driver dari GitHub, lalu menjalankan skrip instalasi yang sudah disediakan. Proses ini akan mengompilasi dan memasang modul kernel yang tepat untuk perangkat Anda.</p>
-
                     <h3>1. Siapkan Alat Build</h3>
                     <p>Pertama, pastikan semua paket yang diperlukan untuk kompilasi sudah terinstal.</p>
                     <pre class="language-bash"><code id="code1">sudo apt update && sudo apt install -y build-essential git dkms linux-headers-$(uname -r)</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <h3>2. Unduh dan Instal Driver</h3>
                     <p>Selanjutnya, unduh repositori driver, masuk ke direktorinya, dan jalankan skrip instalasi.</p>
                     <pre class="language-bash"><code id="code2">git clone https://github.com/tarunbatra/fixRTL8723BE
 cd fixRTL8723BE
 chmod +x install.sh
 sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-
                     <h3>3. Reboot</h3>
                     <p>Setelah instalasi selesai, reboot komputer Anda agar modul kernel yang baru dapat dimuat.</p>
                     <pre class="language-bash"><code id="code3">sudo reboot</code><button class="copy-btn" data-target="code3">Salin</button></pre>
@@ -116,6 +111,7 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
                     <div class="note">
                         <strong>Tips:</strong> Siapkan koneksi internet alternatif (misalnya, tethering dari ponsel atau kabel Ethernet) untuk berjaga-jaga selama proses instalasi driver ini.
                     </div>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -123,21 +119,16 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
             <small>🄯 2025 Frijal · Sinyal kuat, hati tenang.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #1e3a45; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {

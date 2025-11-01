@@ -27,7 +27,6 @@
       "datePublished": "2025-09-28"
     }
     </script>
-
     <style>
         :root {
             --bg: #0f1520;
@@ -86,7 +85,6 @@
                     <h1>MX Linux 25 "Infinity" Beta: Beralih ke Debian 13 "Trixie"</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">MX Linux 25, dengan nama kode "Infinity," baru saja meluncurkan versi beta publik pertamanya. Pembaruan besar ini membawa MX Linux ke basis Debian 13 "Trixie" terbaru, menyajikan berbagai perubahan penting di bawah kap mesin.</p>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzrUkQu7AOuTrn0ezaJT0hIaPeZMeuNvGE4XoRFUtLdog_JY-T3BqzO01e8HuMElRFNt5a3TF5eshO-wTqhHCvwlGXPDXl_afDR-H3yrey2rkP6hPfFmX0lQ_RhjAho5-SbKC3ytWhHTwoWaAqLim-NnPCqb-LVggSj8hZ-6efXnq95LkTUSAEcVb1NBM/s1920/mx25b.jpg" alt="MX Linux 25 Infinity beta desktop">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">MX 25 Infinity: Wayland, Qt6, dan alat yang kian ramah pengguna.</figcaption>
@@ -100,7 +98,6 @@
                         <li><strong>KDE Plasma 6.3.6:</strong> Pembaruan besar dengan <strong>Wayland</strong> sebagai default untuk grafis yang lebih halus dan pengalaman multi-monitor yang lebih baik.</li>
                         <li><strong>Fluxbox 1.3.7:</strong> Pilihan paling minimalis untuk efisiensi maksimal.</li>
                     </ul>
-
                     <h3>3. Dukungan Penuh Systemd</h3>
                     <p>Meskipun MX Linux dikenal dengan <code>sysVinit</code>, versi 25 ini kini menawarkan image dengan <strong>systemd</strong> secara penuh. Edisi Xfce dan Fluxbox dengan <code>sysVinit</code> tetap tersedia bagi pengguna yang memilihnya.</p>
                     <h3>4. Peningkatan MX Tools</h3>
@@ -112,15 +109,14 @@
                     <h2>Kesimpulan</h2>
                     <blockquote>MX Linux 25 "Infinity" menunjukkan kesiapan merangkul teknologi masa depan seperti Wayland dan Qt6, sambil tetap menghormati akarnya dengan menyediakan opsi sysVinit.</blockquote>
                     <p><strong>Peringatan penting:</strong> Ini adalah rilis <strong>beta</strong> dan tidak disarankan untuk digunakan pada komputer utama. Tujuan beta adalah untuk pengujian oleh komunitas guna menemukan bug dan memberikan masukan sebelum rilis final.</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 Frijal · Beta yang menjembatani tradisi dan masa depan.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -129,9 +125,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-
-
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {

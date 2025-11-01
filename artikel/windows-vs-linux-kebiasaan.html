@@ -538,54 +538,7 @@ winget install Nama.Paket.Resmi</code></pre>
     </div>
    </section>
    <section class="card" style="margin-top: 24px">
-    <div class="hd">
-     Bagikan Artikel
-    </div>
-    <div class="bd">
-     <p class="muted">
-      Link berbagi:
-      <b>
-       https://frijal.pages.dev/artikel/windows-vs-linux-kebiasaan.html
-      </b>
-     </p>
-     <div class="share">
-      <a aria-label="Bagikan ke Facebook" class="btn-share" href="#" id="share-fb" rel="noreferrer">
-       <svg aria-hidden="true" class="ico" viewbox="0 0 24 24">
-        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078V12.07h3.047V9.412c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.49 0-1.953.926-1.953 1.875v2.262h3.328l-.532 3.492h-2.796V24C19.612 23.094 24 18.1 24 12.073z" fill="#1877F2">
-        </path>
-       </svg>
-       Facebook
-      </a>
-      <a aria-label="Bagikan ke X (Twitter)" class="btn-share" href="#" id="share-x" rel="noreferrer">
-       <svg class="ico" viewbox="0 0 24 24">
-        <path d="M18.244 2H21l-6.51 7.44L22.5 22h-6.91l-4.33-5.66L5.19 22H2.43l6.98-7.98L1.5 2h6.91l3.92 5.18L18.24 2z" fill="#fff">
-        </path>
-       </svg>
-       X
-      </a>
-      <a aria-label="Bagikan ke WhatsApp" class="btn-share" href="#" id="share-wa" rel="noreferrer">
-       <svg class="ico" viewbox="0 0 24 24">
-        <path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 0 11.993C0 5.373 5.373 0 11.995 0 18.617 0 24 5.373 24 11.993c0 6.62-5.383 11.993-12.005 11.993-2.051 0-3.975-.504-5.668-1.392L.057 24z" fill="#25D366">
-        </path>
-       </svg>
-       WhatsApp
-      </a>
-      <a aria-label="Bagikan ke Telegram" class="btn-share" href="#" id="share-tg" rel="noreferrer">
-       <svg class="ico" viewbox="0 0 24 24">
-        <path d="M9.999 15.2l-.4 5.6c.6 0 .9-.3 1.3-.6l3.1-2.9 6.4 4.7c1.2.7 2.1.3 2.4-1.1l4.3-20.1c.4-1.7-.6-2.4-1.8-2l-25 9.7c-1.7.7-1.7 1.6-.3 2l6.4 2 14.8-9.3c.7-.4 1.3-.2.8.3" fill="#26A5E4">
-        </path>
-       </svg>
-       Telegram
-      </a>
-      <button aria-label="Salin tautan artikel" class="btn-share" id="share-copy" type="button">
-       Salin Link
-      </button>
-     </div>
-     <div style="margin-top: 16px; color: var(--muted); font-size: 10px">
-      <span class="small-muted" id="current-url">
-      </span>
-     </div>
-    </div>
+         <div id="disqus_thread"></div>
    </section>
   </div>
   <script async crossorigin="anonymous" defer referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js">
@@ -654,66 +607,6 @@ winget install Nama.Paket.Resmi</code></pre>
       }
      });
     };
-    // --- 2. Share Buttons & Copy Link ---
-    const setupSharing = () => {
-     const e = encodeURIComponent;
-     const urlMap = {
-      'share-fb': `https://www.facebook.com/sharer/sharer.php?u=${e(CANONICAL_URL)}`,
-      'share-x': `https://twitter.com/intent/tweet?url=${e(CANONICAL_URL)}&text=${e(SHARE_TEXT)}`,
-      'share-wa': `https://api.whatsapp.com/send?text=${e(SHARE_TEXT)}%20${e(CANONICAL_URL)}`,
-      'share-tg': `https://t.me/share/url?url=${e(CANONICAL_URL)}&text=${e(SHARE_TEXT)}`,
-     };
-     Object.entries(urlMap).forEach(([id, href]) => {
-      const el = document.getElementById(id);
-      if (el) el.href = href;
-     });
-     // Copy Link
-     const copyBtn = document.getElementById('share-copy');
-     if (copyBtn) {
-      copyBtn.addEventListener('click', async () => {
-       try {
-        await navigator.clipboard.writeText(CANONICAL_URL);
-        copyBtn.textContent = 'Tersalin!';
-        setTimeout(() => (copyBtn.textContent = 'Salin Link'), 1400);
-       } catch (err) {
-        prompt('Gagal menyalin. Salin manual:', CANONICAL_URL);
-       }
-      });
-     }
-     // Web Share API fallback (for X button, if available)
-     const shareXButton = document.getElementById('share-x');
-     if (navigator.share && shareXButton) {
-      shareXButton.addEventListener('click', async (event) => {
-       event.preventDefault();
-       try {
-        await navigator.share({
-         title: PAGE_TITLE,
-         text: SHARE_TEXT,
-         url: CANONICAL_URL,
-        });
-       } catch (err) {
-        // Fallback to original href if user cancels share dialog
-        window.open(shareXButton.href, '_blank', 'noopener noreferrer');
-       }
-      });
-     }
-    };
-    // --- RUNTIME EXECUTION ---
-    setupLightbox();
-    setupSharing();
-    // Highlight.js
-    if (typeof hljs !== 'undefined') {
-     document
-      .querySelectorAll('pre code')
-      .forEach((block) => {
-       hljs.highlightElement(block);
-      });
-    }
-    // Update URL display
-    const currentUrlEl = document.getElementById('current-url');
-    if (currentUrlEl) {
-     currentUrlEl.textContent = CANONICAL_URL;
-    }
    });
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

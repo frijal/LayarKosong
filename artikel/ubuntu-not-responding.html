@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <!-- Styles: 1 kolom, dark theme -->
@@ -100,7 +99,6 @@
                     <h1>Mengatasi Ubuntu yang Sering "Not Responding"</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Beberapa pengguna Ubuntu melaporkan masalah di mana sistem sering *freeze* atau "Not Responding". Salah satu penyebab umumnya adalah adanya driver VGA yang tidak sesuai atau driver lama yang masih tertinggal di sistem.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT4bXdx_j8zHalnxm0otIg5SxZiPJTDsU6pV4fuJ-G-XBocJ7ldYJ8B9XVs8FWchyphenhyphenr-fxEKQ7_DuZqdYrePjlCObBLHnnCLPyVF27s3rLCMV1dHX0RfxzmvAkwxidIYhESZgD_UrvpjU-P/s1600/ubuntu_rr.png" alt="Ubuntu Not Responding">
                     </figure>
@@ -109,11 +107,9 @@
                     <h3>1. Lihat Daftar Driver VGA yang Terinstal</h3>
                     <p>Buka terminal dan jalankan perintah berikut untuk melihat semua paket driver video yang ada di sistem Anda:</p>
                     <pre class="language-bash"><code id="code1">apt list --installed | grep xserver-xorg-video-</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBdvJV53PzuFnKOuVW47LNEF6JL9vkAUAhDX_29CUDQn-V2TxjbU95J7XIUq276Jt_HR93nfI_ZHz9WJU2nqgI05q9aZtmuqgHvCjKx9jmrB9jb4YtV2Ldp_8r9FWJoRFfr04OIS1-6pyF/s1600/Screenshot+from+2013-05-24+18%253A46%253A56.png" alt="Daftar driver VGA di terminal Ubuntu">
                     </figure>
-
                     <h3>2. Hapus Driver yang Tidak Digunakan</h3>
                     <p>Setelah melihat daftarnya, hapus paket driver yang tidak sesuai dengan kartu grafis Anda. Misalnya, jika Anda tidak menggunakan GPU dari Nouveau, AMD, atau Intel, Anda bisa menghapusnya satu per satu.</p>
                     <pre class="language-bash"><code id="code2">sudo apt remove xserver-xorg-video-nouveau
@@ -123,6 +119,7 @@ sudo apt remove xserver-xorg-video-intel</code><button class="copy-btn" data-tar
                         <strong>Peringatan Keras:</strong> Jangan sekali-kali menghapus driver VGA yang sedang aktif digunakan oleh sistem Anda. Jika ragu, jangan hapus. Menghapus driver yang salah dapat menyebabkan antarmuka grafis gagal dimuat.
                     </div>
                     <p>Setelah membersihkan driver yang tidak perlu, restart komputer Anda. Langkah ini seringkali efektif untuk mengatasi masalah *freeze* atau *not responding* yang disebabkan oleh konflik driver.</p>
+                         <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -130,12 +127,10 @@ sudo apt remove xserver-xorg-video-intel</code><button class="copy-btn" data-tar
             <small>🄯 2025 frijal.pages.dev · Selalu berhati-hati saat mengelola driver sistem.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #231f1c; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -143,20 +138,15 @@ sudo apt remove xserver-xorg-video-intel</code><button class="copy-btn" data-tar
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src.replace('/s1600/', '/s0/'); // Try to load original size
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

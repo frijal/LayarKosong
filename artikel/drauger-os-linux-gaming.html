@@ -122,8 +122,8 @@
                     </ul>
                     <h2>Kesimpulan</h2>
                     <p>Jika Anda mencari distro Linux yang fokus pada gaming dengan performa optimal, Drauger OS adalah pilihan yang sangat layak untuk dicoba. Coba dulu di Virtual Machine, dan jika Anda puas, install di PC atau laptop gaming Anda.</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
@@ -138,7 +138,7 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));

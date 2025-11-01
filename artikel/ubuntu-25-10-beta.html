@@ -27,7 +27,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <style>
         :root {
             --bg: #1b1a17;
@@ -87,7 +86,6 @@
                     <h1>Ubuntu 25.10 Beta Dirilis dengan Kernel 6.17 dan GNOME 49</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Canonical telah merilis Ubuntu 25.10 "Questing Quokka" Beta. Edisi ini menandai langkah berani dengan menjadikan Wayland sebagai satu-satunya sesi desktop, memodernisasi aplikasi bawaan, dan memperkuat lapisan keamanan dengan enkripsi berbasis TPM.</p>
-                    
                     <div class="gallery">
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOArWwQS6HpTl3b_IJ3gwIgNSUWWm5-9hZ-lRD8OLwFYoagDpinerazkMOFuNjub7RDSPCAuMWv9s1yWZMITIeYAg9jbB8j97DTarfmIi9BbgO6W_rYOCh8f8qlrhBoRhG9O3Wk4-KIxDDcRZNrmoX8fp-jWWcJB4OGyxRi2Ckj9ouQZzU24Teb3N5WgM/s1600/ubuntu2510-beta.jpg" alt="Poster Ubuntu 25.10 Beta"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwVd-72MJz6z0TIMIOqbE24fdqnoHT01QnmHO299zzGDU0i-DEfP-OiD4-U223Bbuj7JeT9VsTiqLTFyORhFDihQVi5RwPbIOp1KOVRV72BPSFdtvDjzWatemjiGp4_wh_v_jhlwCYwdbIPYmTc253tiE9BCafLnnLxtOJgk3mzCbgXM2P32OEiNQGPig/s1600/ubuntu2510-beta-desktop.jpg" alt="Tampilan desktop Ubuntu 25.10"></figure>
@@ -101,9 +99,9 @@
                         <li><strong>Peningkatan Keamanan:</strong> Installer menawarkan enkripsi disk penuh yang didukung <strong>TPM</strong>, termasuk indikator entropi untuk frasa sandi dan dukungan PIN.</li>
                         <li><strong>Dracut sebagai Default:</strong> Menggantikan <code>initramfs-tools</code> sebagai generator initramfs bawaan.</li>
                     </ul>
-
                     <h2>Ketersediaan</h2>
                     <p>Ubuntu 25.10 Beta sudah dapat diunduh untuk dicoba. Namun, perlu diingat bahwa ini adalah versi beta dan tidak disarankan untuk penggunaan produksi. Rilis final dijadwalkan pada 9 Oktober. Jika Anda mencari stabilitas, tunggulah rilis final tersebut.</p>
+                         <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -111,7 +109,6 @@
             <small>🄯 2025 Frijal • Hangat, modern, dan siap untuk masa depan.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -120,20 +117,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

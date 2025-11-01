@@ -6,20 +6,16 @@
     <title>Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi | frijal.pages.dev</title>
     <meta name="description" content="Tutorial mudah memasang paket multimedia tambahan untuk Fedora 16 dan Fedora 19 agar bisa memutar MP3, MP4, MKV, dan format lainnya. Tinggal copy-paste!">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/code-fedora-multimedia-codec.html">
-
     <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
     <meta name="theme-color" content="#0B57A4">
-
     <meta property="og:title" content="Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi">
     <meta property="og:description" content="Tutorial mudah memasang paket multimedia tambahan untuk Fedora 16 dan Fedora 19 agar bisa memutar MP3, MP4, MKV, dan format lainnya.">
     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPSXcp3t_5nMZecJkwm8UQE8sCvOtZZW-JTKRPcuXs4_2j7cAt-ruti-sOPA2AxuX2b-NnH1xcwU6YsnhWrwRbA_kjvWl-gaEePYx4pId4Z3ixc9Ol6TwejVMHWAuHU46jPl4Yup_MePd_/s1600/poweredby.png">
     <meta property="og:type" content="article">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi">
     <meta name="twitter:description" content="Tutorial mudah memasang paket multimedia tambahan untuk Fedora 16 dan Fedora 19.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPSXcp3t_5nMZecJkwm8UQE8sCvOtZZW-JTKRPcuXs4_2j7cAt-ruti-sOPA2AxuX2b-NnH1xcwU6YsnhWrwRbA_kjvWl-gaEePYx4pId4Z3ixc9Ol6TwejVMHWAuHU46jPl4Yup_MePd_/s1600/poweredby.png">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -32,9 +28,7 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://frijal.pages.dev/artikel/code-fedora-multimedia-codec.html" }
     }
     </script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
-
     <style>
         :root {
             --bg: #1e2a38;
@@ -80,9 +74,7 @@
         .copy-btn { position: absolute; top: 12px; right: 12px; background: #475569; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 20px; color: var(--muted); border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-16T23:20:38.180+00:00">
 </head>
@@ -91,63 +83,49 @@
         <header class="site">
             <div class="brand">🐧 frijal.pages.dev</div>
         </header>
-
         <main>
             <div class="col">
                 <article>
                     <h1>Fedora: Pasang Codec Tambahan Agar Bisa Bernyanyi</h1>
 <div id="iposbrowser"></div>
-
                     <p class="lead">Secara bawaan, Fedora hanya mendukung format media bebas paten seperti OGG. Agar bisa memutar MP3, MP4, MKV, dan lainnya, Anda perlu memasang paket codec tambahan.</p>
-
                     <div class="share-bar">
-
                     </div>
-
                     <p>Tutorial ini adalah catatan lawas untuk Fedora 16 dan 19, menunjukkan betapa mudahnya menambahkan kemampuan multimedia penuh ke sistem Anda hanya dengan beberapa perintah di terminal.</p>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPSXcp3t_5nMZecJkwm8UQE8sCvOtZZW-JTKRPcuXs4_2j7cAt-ruti-sOPA2AxuX2b-NnH1xcwU6YsnhWrwRbA_kjvWl-gaEePYx4pId4Z3ixc9Ol6TwejVMHWAuHU46jPl4Yup_MePd_/s1600/poweredby.png" alt="Logo Fedora Project">
                     </figure>
-
                     <h2>Tahapan untuk Fedora 16</h2>
                     <p>Untuk Fedora 16, prosesnya terdiri dari dua langkah utama.</p>
                     <h3>1. Instal Repositori RPM Fusion</h3>
                     <p>Pertama, tambahkan repositori RPM Fusion Free dan Non-free yang berisi paket-paket multimedia.</p>
                     <pre class="language-bash"><code id="code1">sudo yum -y localinstall --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <h3>2. Instal Paket Multimedia</h3>
                     <p>Setelah repositori ditambahkan, instal semua codec yang diperlukan dengan satu perintah.</p>
                     <pre class="language-bash"><code id="code2">sudo yum -y install gstreamer gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly libdvdread libdvdnav lsdvd libdvdcss ffmpeg ffmpeg-libs gstreamer-ffmpeg libmatroska xvidcore xine-lib xine-lib-extras-freeworld xine-plugin</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-
                     <h2>Untuk Fedora 19 dan yang Lebih Baru</h2>
                     <p>Untuk Fedora 19 dan versi yang lebih modern, prosesnya jauh lebih ringkas. Setelah menambahkan RPM Fusion, Anda hanya perlu menginstal beberapa grup paket utama.</p>
                     <pre class="language-bash"><code id="code3">sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <p class="muted">Setelah selesai, Fedora Anda dijamin sudah bisa "bernyanyi dan menari" memainkan berbagai format media! 😉</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
-
         <footer class="site">
             <small>🄯 2025 frijal.pages.dev · Panduan lawas, semangat tetap baru.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
               const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {
@@ -161,7 +139,6 @@ sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target=
         window.addEventListener('keydown', (e) => {
             if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
         });
-
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');
@@ -173,11 +150,8 @@ sudo dnf groupupdate sound-and-video</code><button class="copy-btn" data-target=
         });
     })();
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>

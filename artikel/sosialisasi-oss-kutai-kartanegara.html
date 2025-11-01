@@ -267,15 +267,7 @@
     </section>
 
     <div class="social-share">
-        <a class="share-btn share-facebook" id="share-fb" href="#">
-            📘 Bagikan di Facebook
-        </a>
-        <a class="share-btn share-twitter" id="share-tw" href="#">
-            🐦 Tweet
-        </a>
-        <a class="share-btn share-whatsapp" id="share-wa" href="#">
-            💬 WhatsApp
-        </a>
+            <div id="disqus_thread"></div>
     </div>
    </div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -303,22 +295,6 @@
         window.closeLightbox = function() {
             document.getElementById('lightbox').classList.remove('active');
         }
-
-        // Social Share Functions (Menggunakan URL baru)
-        const url = encodeURIComponent(BASE_URL);
-        const title = encodeURIComponent(ARTICLE_TITLE);
-        const text = encodeURIComponent(ARTICLE_DESC);
-        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-        document.getElementById('share-fb').target = '_blank';
-        document.getElementById('share-fb').rel = 'noopener';
-        document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-        document.getElementById('share-tw').target = '_blank';
-        document.getElementById('share-tw').rel = 'noopener';
-
-        document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent('Lihat: ' + ARTICLE_TITLE + ' - ')}${url}`;
-        document.getElementById('share-wa').target = '_blank';
-        document.getElementById('share-wa').rel = 'noopener';
-
     });
     window.openLightbox = function(element) {
         const img = element.querySelector('img');

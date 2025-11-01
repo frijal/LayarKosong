@@ -32,7 +32,6 @@
       "publisher": { "@type": "Organization", "name": "Pelan Kiri" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <!-- Styles: 1 kolom, dark theme -->
@@ -91,22 +90,17 @@
                     <h1>Membaca Teks Terbalik dengan Perintah `rev` di Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Pernah menemukan teks yang urutan hurufnya terbalik dan sulit dibaca? Linux memiliki solusi unik dan sederhana untuk masalah ini: perintah `rev`.</p>
-                    
                     <h2>Contoh Kasus</h2>
                     <p>Misalnya, Anda memiliki teks berikut yang tampak aneh:</p>
                     <pre class="language-bash"><code id="code1">.mumu araces xuniL anuggneP nagned nakgnidnabid swodniW isarepO metsiS</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <h2>Cara Membaca dengan `rev`</h2>
                     <p>Ada dua cara umum untuk menggunakan `rev`:</p>
-
                     <h3>1. Dari File</h3>
                     <p>Simpan teks terbalik di atas ke dalam sebuah file, misalnya <code>teks.txt</code>, lalu jalankan perintah:</p>
                     <pre class="language-bash"><code id="code2">rev teks.txt</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-
                     <h3>2. Menggunakan Pipe</h3>
                     <p>Anda juga bisa langsung membalikkan teks menggunakan pipe (`|`) dari perintah lain, seperti `echo`:</p>
                     <pre class="language-bash"><code id="code3">echo ".mumu araces xuniL" | rev</code><button class="copy-btn" data-target="code3">Salin</button></pre>
-
                     <p>Kedua metode di atas akan menghasilkan output yang sudah dibalik dan dapat dibaca dengan normal:</p>
                     <pre class="language-bash"><code>Sistem Operasi Windows dibandingkan dengan Pengguna Linux secara umum.
 Linux secara umum.</code></pre>
@@ -117,6 +111,7 @@ Linux secara umum.</code></pre>
                         <li>Sangat berguna dalam skrip shell untuk memanipulasi string.</li>
                     </ul>
                     <p>Perintah `rev` adalah contoh bagus dari filosofi UNIX: sebuah alat kecil yang melakukan satu hal dengan sangat baik.</p>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -124,9 +119,7 @@ Linux secara umum.</code></pre>
             <small>🄯 2025 Frijal • Perintah kecil, manfaat besar.</small>
         </footer>
     </div>
-
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #222f3e; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -134,9 +127,6 @@ Linux secara umum.</code></pre>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');

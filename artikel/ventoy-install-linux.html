@@ -99,7 +99,7 @@
                     <h1>Cara Instal & Pakai Ventoy untuk Bootable USB di Linux</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Ventoy adalah tool open-source yang memungkinkan Anda membuat flashdisk menjadi multi-boot USB. Cukup instal Ventoy sekali, lalu Anda bisa menyalin banyak file ISO, WIM, atau IMG ke dalamnya dan memilih OS mana yang akan di-boot dari menu.</p>
-                    
+
                     <h2>Langkah 1: Unduh dan Ekstrak Ventoy</h2>
                     <p>Kunjungi <a href="https://www.ventoy.net/en/download.html" target="_blank">halaman unduh Ventoy</a> dan dapatkan file untuk Linux. Setelah itu, ekstrak arsipnya.</p>
                     <pre class="language-bash"><code id="code1">tar xvf ventoy-*.tar.gz
@@ -116,6 +116,7 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
                     <p>Ingin menyimpan perubahan pada Live OS? Ventoy mendukung fitur <em>persistence</em>. Anda bisa membuat file data terpisah yang akan digunakan oleh Live OS untuk menyimpan pengaturan, file, dan aplikasi yang diinstal.</p>
                     <h2>Kesimpulan</h2>
                     <p>Ventoy adalah alat yang sangat praktis bagi siapa saja yang sering bekerja dengan banyak sistem operasi. Kemudahan penggunaan dan fleksibilitasnya menjadikannya pilihan utama untuk membuat multi-boot USB. Selamat mencoba!</p>
+                         <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -134,8 +135,8 @@ cd ventoy-*/</code><button class="copy-btn" data-target="code1">Salin</button></
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-        
+
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));

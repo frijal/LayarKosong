@@ -144,23 +144,9 @@
             <li><strong>Integrasi OneDrive:</strong> Masuk dengan akun Microsoft 365 Anda dan telusuri file OneDrive langsung dari aplikasi File.</li>
             <li><strong>Peningkatan Lainnya:</strong> Rilis ini juga membawa dukungan *login* jarak jauh menggunakan RDP, menu Zorin yang mendukung multi-monitor, dan kualitas suara yang lebih baik berkat PipeWire.</li>
           </ul>
-          <h2>Galeri</h2>
-          <div class="gallery">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixJG3kWuEgLqPIqZrOvcR6PC-i-wa19ViIdqtvpJJQGjSG6ponPSX0OZZzwbcfe-gAKrLj1-Qhx9HvLYicgdaPfDnrEl_Ucg5e1xaASkpa97UdGHhILbQDH0OmUErWdM3t2yle54RKDfEpYV4PWpzqthG16F4cwAmYExI71BDMJJsyb6EDfkJUGU6NgQw/s1600/chtgpt.png" alt="Poster rilis Beta" loading="lazy">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0XrBjBQtc_dVe4TlJdGu_sdpxKtaiXitrXiIEw3S2dO1GqBLum6w2gDnGK9k8HuqPsSl_7A5jt0PZGENeq37uR0XYHADfP00FJGULlUuHGMUtZ1UdatiJYghRJOrwWeWf3gKIgijjirA0racAtPmCv61A3KsIj5dQIhjXDZMvcoOPKrlG5lkHXrVI8iI/s1600/perplexityes.png" alt="Kemampuan tiling baru" loading="lazy">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjT6g_iOZl1Ooh4YIvHTbLTaBiUbW1uBRM8qrsO3kXJtczJ-RrUHsRtuaNVtg6ACEZtFeq3qAI-8Bnv1AiZI6Yqimd4y-0B2G9DNtGBGYYj0KC1bzjfpUAFML_zgmEEXEGXo_vaNRlbMVNjSJBaxFfcpObZDGWzXDq1S4NJVJOfUt_kGZsnHetCCknwbco/s1600/gemini-ai.png" alt="Tampilan desktop Zorin 18" loading="lazy">
-          </div>
-          <div class="share" aria-label="bagikan">
-            <a id="share-twitter" href="#" rel="noopener noreferrer" target="_blank">Bagikan ke X</a>
-            <a id="share-facebook" href="#" rel="noopener noreferrer" target="_blank">Bagikan ke Facebook</a>
-            <a id="share-whatsapp" href="#" rel="noopener noreferrer" target="_blank">Bagikan ke WhatsApp</a>
-            <a id="share-telegram" href="#" rel="noopener noreferrer" target="_blank">Bagikan ke Telegram</a>
-          </div>
           <hr style="margin: 24px 0; border-color: rgba(255,255,255,0.1);">
           <section aria-label="komentar">
-            <h3>Jaga Data Pribadi Tetap Aman.</h3>
-
-
+<div id="disqus_thread"></div>
           </section>
         </article>
         <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
@@ -205,15 +191,6 @@
             }
           });
         }
-
-        (() => {
-          const url = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
-          const title = encodeURIComponent(document.title);
-          document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
-          document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-          document.getElementById('share-whatsapp').href = `https://wa.me/?text=${title}%20${url}`;
-          document.getElementById('share-telegram').href = `https://t.me/share/url?url=${url}&text=${title}`;
-        })();
       });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

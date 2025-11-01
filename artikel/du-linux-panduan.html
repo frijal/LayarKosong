@@ -7,24 +7,20 @@
     <title>Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂</title>
     <meta name="description" content="Panduan santai dan interaktif seputar perintah du di Linux. Cek penggunaan disk, tips opsi -h -s -a, dan script untuk menangani hardlink.">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/du-linux-panduan.html">
-
     <!-- Favicon & Theme -->
     <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
     <meta name="theme-color" content="#00cec9">
-
     <!-- Open Graph -->
     <meta property="og:title" content="📂 Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk">
     <meta property="og:description" content="Panduan santai & interaktif perintah du Linux. Tips opsi -h -s -a, dan script untuk menangani hardlink.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/du-linux-panduan.html">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg">
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="📂 Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk">
     <meta name="twitter:description" content="Panduan santai & interaktif perintah du Linux. Tips opsi -h -s -a, dan script untuk menangani hardlink.">
     <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg">
-
     <!-- JSON-LD -->
     <script type="application/ld+json">
     {
@@ -38,10 +34,8 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://frijal.pages.dev/artikel/du-linux-panduan.html" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
-
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -89,9 +83,7 @@
         .copy-btn { position: absolute; top: 12px; right: 12px; background: #475569; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 20px; color: var(--muted); border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
-
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-16T23:20:38.179+00:00">
 </head>
@@ -100,15 +92,12 @@
         <header class="site">
             <div class="brand">📂 frijal.pages.dev</div>
         </header>
-
         <main>
             <div class="col">
                 <article>
                     <h1>Panduan Perintah <code>du</code> di Linux: Cek Pemakaian Ruang Disk</h1>
 <div id="iposbrowser"></div>
-
                     <p class="lead">Di Linux, untuk mengetahui berapa banyak ruang yang dipakai file atau folder, kita tidak bisa sekadar klik kanan. Untungnya ada <code>du</code> (disk usage), tool ajaib untuk memeriksa ukuran file/direktori lewat command line.</p>
-
                     <h2>Opsi Paling Populer</h2>
                     <p>Berikut adalah beberapa kombinasi opsi <code>du</code> yang paling sering digunakan:</p>
                     <ul>
@@ -116,22 +105,17 @@
                         <li><code>-s</code> &rarr; <strong>Summarize</strong>, hanya menampilkan total ukuran, tanpa rincian subfolder.</li>
                         <li><code>-a</code> &rarr; <strong>All</strong>, menampilkan ukuran setiap file individual selain direktori.</li>
                     </ul>
-
                     <h2>Contoh Penggunaan Praktis</h2>
                     <h3>Cek Ukuran Total Direktori Saat Ini</h3>
                     <pre class="language-bash"><code id="code1">du -sh .</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-
                     <h3>Cek Ukuran Setiap Folder di Dalamnya</h3>
                     <pre class="language-bash"><code id="code2">du -sh *</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-
                     <figure>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Tux Mascot">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Tux, teman setia pengguna terminal!</figcaption>
                     </figure>
-
                     <h2>Keterbatasan: Masalah Hard Link</h2>
                     <p>Perintah <code>du</code> standar dapat memberikan hasil yang kurang akurat jika sistem file Anda mengandung <strong>hard link</strong>. Hard link memungkinkan satu file untuk muncul di banyak lokasi tanpa memakan ruang ekstra. Akibatnya, <code>du</code> bisa menghitung ukuran file yang sama berulang kali.</p>
-
                     <h2>Solusi dengan Skrip Perl</h2>
                     <p>Untuk mendapatkan hasil yang lebih presisi, Anda bisa menggunakan skrip Perl berikut. Skrip ini melacak nomor <em>inode</em> setiap file untuk memastikan hard link tidak dihitung ganda.</p>
                     <pre class="language-perl"><code id="code3">#!/usr/bin/perl -w
@@ -156,32 +140,26 @@ foreach my $fn (@todo) {
 }
 print "$total_blocks blocks\n";
 print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-target="code3">Salin</button></pre>
-
                     <p>Simpan skrip di atas sebagai file (misalnya `du_accurate.pl`), berikan izin eksekusi (`chmod +x du_accurate.pl`), lalu jalankan di direktori target. Hasilnya akan jauh lebih akurat.</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
                     </main>
-
         <footer class="site">
             <small>🄯 2025 frijal.pages.dev · Semoga disk Anda tetap lega!</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #394a54; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {
@@ -195,7 +173,6 @@ print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-ta
         window.addEventListener('keydown', (e) => {
             if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
         });
-
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');
@@ -207,11 +184,8 @@ print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-ta
         });
     })();
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>

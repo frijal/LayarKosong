@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "Pelan Kiri" }
     }
     </script>
-
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <!-- Styles: 1 kolom, dark theme -->
@@ -95,7 +94,6 @@
                     <h1>Mengganti Kata dalam Banyak Dokumen dengan Perl</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Terkadang kita perlu merevisi dokumen dengan mengganti kata tertentu di banyak file sekaligus. Jika dilakukan manual, tentu sangat melelahkan. Untungnya, Perl menyediakan solusi cepat dengan satu baris perintah.</p>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmO8NTjyL75ML_31USiYa3l0wszCYNRszJg6FHIfp5qT0LallW8xHyskyaf0zZ2oIn4BcT7J8HhR6Chw0UomjirShOwtX1xwN7wajrd5mG_xkJGBGGQ54jSNatKcU_374fZPIce9NOyXjp/s1600/perl_logo.jpg" alt="Logo Perl">
                     </figure>
@@ -113,17 +111,15 @@
                         <li><strong>Powerful:</strong> Dukungan Regular Expression (regex) memungkinkan pencarian dan penggantian yang sangat kompleks.</li>
                     </ul>
                     <p class="muted">Perlu diingat, metode ini paling cocok untuk file teks biasa (<em>plain text</em>), seperti <code>.txt</code>, <code>.html</code>, <code>.css</code>, <code>.xml</code>, dan file kode sumber lainnya.</p>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
-            <div id="disqus_thread"></div>
         </main>
         <footer class="site">
             <small>🄯 2025 Pelan Kiri · Bekerja cerdas, bukan hanya keras.</small>
         </footer>
     </div>
-
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3847; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <!-- Prism.js Core for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -131,9 +127,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-
-
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');

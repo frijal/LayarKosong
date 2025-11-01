@@ -28,7 +28,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <style>
         :root {
             --bg: #1a212e;
@@ -88,7 +87,6 @@
                     <h1>Rescuezilla: Alat Pemulihan Sistem yang Mudah dan Powerful</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Rescuezilla adalah fork dari Clonezilla yang hadir dengan antarmuka grafis, membuatnya sangat ramah pengguna. Alat ini berjalan sebagai Live USB dan cocok untuk backup, restore, dan kloning disk.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhFMsqTDfQnrYBkdBUcq11EN_7IOj10UwiYAlZa6Jgi0RXoxLdQx3j8bM-1_Z0qNW2yTJn1G1gHp0GEwikE2MeOQ08t8fvFhqgdjnemPMcfhSWyNEab6248mtrH2ndS1BUh47FDPQXSoDgiag4CgIlZHYsJkUYg5vDawiK5RNywEhvh5LQSO15r_AgA2VU" alt="Tampilan awal Rescuezilla setelah boot">
                     </figure>
@@ -113,11 +111,11 @@
                         <figure><img src="https://blogger.googleusercontent.com/img/a/AVvXsEgIlcZ6SEw-Q0_XFiy_4vz9zvzVPBqzOnuQoBfnmvlqt1svr0qOWsr-8Tr3YR0x5Emn-A2WxBJLF_GWdKUY_dPaSAtqso2Z-gMLWVGDuOivsfEaRVXfnhWrCtUPm02Q-8rVdyOtUxx1N3XG4r-CQzP6jFNkbztFc_4uhobmPelHirvTO4f5Cul1in-U7AI" alt="Pilih partisi untuk backup"></figure>
                         <figure><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhXNQDhKq3vMcXe2PDS3kY968l7E9DwpA6MnGgBSVkzf6-BtvEWIxaFCBhl4WoLuByS74Xw5RZZcQifuLTXiGd44FOi9v6m8qX50UwD9x7wwNWMCyVRUTNf8zXeYmxEUgxrF2FYv3XkALCOjhbIQFYeWJgAAoRuUl1taVJiTi1njzvWeIjTOBihvdfV57M" alt="Pilih metode kompresi"></figure>
                     </div>
-
                     <h2>Restore dan Fitur Lainnya</h2>
                     <p>Proses <strong>Restore</strong> sama mudahnya, hanya kebalikannya dari proses backup. Selain itu, Rescuezilla juga memiliki fitur <strong>Image Explorer</strong> (Beta) yang memungkinkan Anda melihat isi file backup tanpa harus melakukan restore penuh.</p>
                     <h2>Kesimpulan</h2>
                     <p>Rescuezilla adalah alat yang sangat direkomendasikan bagi siapa saja yang membutuhkan solusi backup dan recovery yang andal namun mudah digunakan. Antarmuka grafisnya menghilangkan kerumitan yang sering ditemui pada alat berbasis terminal seperti Clonezilla, menjadikannya pilihan ideal untuk pemula maupun pengguna berpengalaman.</p>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -125,7 +123,6 @@
             <small>🄯 2025 frijal.pages.dev · Backup rutin itu penting!</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -134,20 +131,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img, figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
