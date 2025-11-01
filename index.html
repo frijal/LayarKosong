@@ -73,7 +73,7 @@ a:visited {
   text-decoration: none;
 }
 
-        /* CSS Reset dan Tema Dark/Light Otomatis */
+/* CSS Reset dan Tema Dark/Light Otomatis */
         :root {
             /* Tema Light (Default) */
             --bg-color: #f9f9f9;
@@ -159,6 +159,22 @@ a:visited {
             border-radius: 8px;
             cursor: pointer;
             min-width: 220px;
+        }
+        
+        /* [BARU] Info detail filter */
+        .filter-info-text {
+            text-align: center;
+            margin-top: 1.5rem; /* Memberi jarak dari dropdown */
+            font-size: 0.95rem;
+            color: var(--meta-color);
+            background-color: var(--accent-light);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 600px; /* Batasi lebar di desktop */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Grid Artikel */
@@ -279,6 +295,9 @@ a:visited {
             .article-grid {
                 grid-template-columns: 1fr; /* 1 kolom di mobile */
             }
+            .filter-info-text {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -295,6 +314,7 @@ a:visited {
                     <option value="all">Semua Minggu</option>
                 </select>
             </div>
+            <p id="filter-info" class="filter-info-text hidden"></p>
         </header>
 
         <main id="article-container">
@@ -487,16 +507,15 @@ a:visited {
             
             const defaultView = document.getElementById('default-view');
             const filteredView = document.getElementById('filtered-view');
-
-            // Jika filter dikembalikan ke "all", tampilkan default view
+            
             if (categoryValue === 'all' && weekValue === 'all') {
                 defaultView.classList.remove('hidden');
                 filteredView.classList.add('hidden');
-                filteredView.innerHTML = ''; // Kosongkan view filter
+                filteredView.innerHTML = ''; 
+                updateFilterInfo([]); // Panggil ini untuk menyembunyikan info box
                 return;
             }
 
-            // Jika ada filter aktif, sembunyikan default view dan tampilkan filtered view
             defaultView.classList.add('hidden');
             filteredView.classList.remove('hidden');
             
@@ -509,8 +528,55 @@ a:visited {
                 filteredArticles = filteredArticles.filter(a => getWeekStartDate(a.date) === weekValue);
             }
             
-            // Render hasil filter
+            // Panggil updateFilterInfo SEKARANG, setelah filteredArticles final
+            updateFilterInfo(filteredArticles); 
+            
             renderArticles(filteredArticles, filteredView);
+        }
+
+        /**
+         * [BARU] Memperbarui teks info di bawah filter.
+         * @param {Array<object>} articlesToShow - Artikel yang akan ditampilkan.
+         */
+        function updateFilterInfo(articlesToShow) {
+            const infoElement = document.getElementById('filter-info');
+            const weekSelect = document.getElementById('week-filter');
+            const weekValue = weekSelect.value;
+
+            // Sembunyikan jika "Semua Minggu" dipilih
+            if (weekValue === 'all') {
+                infoElement.textContent = '';
+                infoElement.classList.add('hidden');
+                return;
+            }
+
+            // Tampilkan jika minggu spesifik dipilih
+            infoElement.classList.remove('hidden');
+            const jumlah = articlesToShow.length;
+
+            if (jumlah === 0) {
+                infoElement.textContent = 'Tidak ada artikel yang ditemukan untuk minggu ini.';
+                return;
+            }
+
+            // Hitung rentang tanggal dari artikel yang *sebenarnya* difilter
+            const dates = articlesToShow.map(a => a.date.getTime());
+            const minDate = new Date(Math.min(...dates));
+            const maxDate = new Date(Math.max(...dates));
+            
+            const startDate = formatDateForDisplay(minDate);
+            const endDate = formatDateForDisplay(maxDate);
+
+            // Ambil info minggu & tahun dari teks dropdown yang dipilih
+            const selectedOptionText = weekSelect.options[weekSelect.selectedIndex].text;
+            const mingguMatch = selectedOptionText.match(/Minggu (\d+)/);
+            const tahunMatch = selectedOptionText.match(/(\d{4})/);
+            
+            const minggu = mingguMatch ? mingguMatch[1] : '?';
+            const tahun = tahunMatch ? tahunMatch[1] : '?';
+            
+            // Format string sesuai permintaan
+            infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke-${minggu}, tahun ${tahun} dengan jumlah ${jumlah} judul.`;
         }
 
         /**
@@ -613,7 +679,7 @@ a:visited {
          * @returns {string} String format "DD Mon YYYY".
          */
         function formatDateForDisplay(date) {
-            // Gunakan UTC agar konsisten dengan getWeekStartDate
+            // Gunakan UTC agar konsisten
             return date.toLocaleDateString('id-ID', { 
                 day: '2-digit', 
                 month: 'short', 
