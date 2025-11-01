@@ -71,21 +71,523 @@
 a:visited {
   color: inherit;       /* atau warna spesifik seperti black, #333, dll */
   text-decoration: none;
-}</style>
+}
+ /* CSS Reset dan Tema Dark/Light Otomatis */
+        :root {
+            /* Tema Light (Default) */
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --header-color: #111111;
+            --meta-color: #666666;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --border-color: #eeeeee;
+            --accent-color: #007bff;
+            --accent-light: #f0f6ff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            /* Tema Dark Otomatis */
+            :root {
+                --bg-color: #121212;
+                --card-bg: #1e1e1e;
+                --text-color: #eeeeee;
+                --header-color: #ffffff;
+                --meta-color: #999999;
+                --shadow-color: rgba(255, 255, 255, 0.05);
+                --border-color: #333333;
+                --accent-color: #58a6ff;
+                --accent-light: #222a36;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Layout Utama Widescreen */
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px; /* Lebih lebar untuk landing page */
+            padding: 2rem;
+        }
+
+        /* Header dan Filter */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--header-color);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap; /* Responsif di mobile */
+        }
+
+        .filters select {
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 220px;
+        }
+
+        /* Grid Artikel */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Kartu Artikel */
+        .article-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--border-color); /* Fallback jika gambar error */
+        }
+
+        .card-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Membuat konten mengisi sisa ruang */
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--header-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--meta-color);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .card-meta .category {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .card-meta .date {
+            white-space: nowrap;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            flex-grow: 1; /* Dorong meta-bawah ke bawah */
+        }
+
+        /* Judul Seksi */
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--header-color);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Loading & No Results */
+        .message {
+            font-size: 1.2rem;
+            color: var(--meta-color);
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+        }
+
+        /* Utility classes */
+        .hidden {
+            display: none;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .filters {
+                flex-direction: column;
+            }
+            .filters select {
+                width: 100%;
+            }
+            .article-grid {
+                grid-template-columns: 1fr; /* 1 kolom di mobile */
+            }
+        }
+
+</style>
 </head>
 <body>
+
     <div class="container">
-        <h1><a href="https://frijal.pages.dev/disclaimer.html">Galeri Artikel</a></h1>
-        <div id="main-container"></div>
+        <header class="page-header">
+            <h1>Daftar Artikel</h1>
+            <div class="filters">
+                <select id="category-filter" aria-label="Filter berdasarkan kategori">
+                    <option value="all">Semua Kategori</option>
+                </select>
+                <select id="week-filter" aria-label="Filter berdasarkan minggu">
+                    <option value="all">Semua Minggu</option>
+                </select>
+            </div>
+        </header>
+
+        <main id="article-container">
+            <div id="default-view">
+                <p class="message" id="loading-message">Memuat artikel...</p>
+                </div>
+
+            <div id="filtered-view" class="article-grid hidden">
+                </div>
+        </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', main);
+
+        let allArticles = []; // Cache global untuk semua artikel, terurut
+
+        /**
+         * Fungsi utama, dieksekusi setelah DOM siap.
+         */
+        async function main() {
+            const container = document.getElementById('article-container');
+            const loadingMessage = document.getElementById('loading-message');
+
+            try {
+                // 1. Fetch dan proses data
+                const response = await fetch('/artikel.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const jsonData = await response.json();
+                
+                allArticles = processArticles(jsonData);
+                
+                // 2. Isi dropdown filter
+                populateFilters(allArticles, jsonData);
+                
+                // 3. Render tampilan default
+                renderDefaultView(allArticles, jsonData);
+                
+                // 4. Sembunyikan pesan loading
+                loadingMessage.classList.add('hidden');
+                
+                // 5. Tambahkan event listener ke filter
+                document.getElementById('category-filter').addEventListener('change', applyFilters);
+                document.getElementById('week-filter').addEventListener('change', applyFilters);
+
+            } catch (error) {
+                console.error("Gagal memuat atau memproses artikel.json:", error);
+                container.innerHTML = `<p class="message">Gagal memuat data artikel. Pastikan file <strong>artikel.json</strong> ada di root server Anda.</p>`;
+            }
+        }
+
+        /**
+         * Mengubah data JSON mentah menjadi array objek yang rapi dan terurut.
+         * @param {object} jsonData - Data mentah dari artikel.json
+         * @returns {Array<object>} Array artikel yang sudah diproses dan diurutkan.
+         */
+        function processArticles(jsonData) {
+            const articles = [];
+            for (const [category, articleList] of Object.entries(jsonData)) {
+                articleList.forEach(article => {
+                    articles.push({
+                        title: article[0],
+                        url: article[1],
+                        image: article[2],
+                        date: new Date(article[3]), // Ubah jadi objek Date
+                        description: article[4],
+                        category: category
+                    });
+                });
+            }
+            // Urutkan semua artikel dari terbaru ke terlama
+            articles.sort((a, b) => b.date - a.date);
+            return articles;
+        }
+
+        /**
+         * Mengisi dropdown Kategori dan Minggu berdasarkan data artikel.
+         * @param {Array<object>} allArticles - Array semua artikel.
+         * @param {object} jsonData - Data JSON asli (untuk nama kategori).
+         */
+        function populateFilters(allArticles, jsonData) {
+            const categorySelect = document.getElementById('category-filter');
+            // Isi filter Kategori
+            Object.keys(jsonData).sort().forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+
+            const weekSelect = document.getElementById('week-filter');
+            const weekMap = new Map();
+            // Buat daftar minggu unik
+            allArticles.forEach(article => {
+                const weekStartISO = getWeekStartDate(article.date);
+                if (!weekMap.has(weekStartISO)) {
+                    const weekStartDate = new Date(weekStartISO);
+                    const weekNum = getWeekNumber(weekStartDate);
+                    weekMap.set(weekStartISO, `Minggu ${weekNum} (Mulai ${formatDateForDisplay(weekStartDate)})`);
+                }
+            });
+
+            // Urutkan minggu (terbaru di atas)
+            const sortedWeeks = [...weekMap.entries()].sort((a, b) => b[0].localeCompare(a[0]));
+            
+            // Isi filter Minggu
+            sortedWeeks.forEach(([iso, label]) => {
+                const option = document.createElement('option');
+                option.value = iso;
+                option.textContent = label;
+                weekSelect.appendChild(option);
+            });
+        }
+
+        /**
+         * Merender tampilan default: 30 terbaru + 10 lainnya per kategori.
+         * @param {Array<object>} allArticles - Array semua artikel.
+         * @param {object} jsonData - Data JSON asli.
+         */
+        function renderDefaultView(allArticles, jsonData) {
+            const defaultView = document.getElementById('default-view');
+            defaultView.innerHTML = ''; // Hapus "Memuat..."
+
+            // 1. Dapatkan 30 artikel terbaru
+            const top30Articles = allArticles.slice(0, 30);
+            const top30Urls = new Set(top30Articles.map(a => a.url)); // Set untuk cek duplikat
+
+            // Render 30 terbaru
+            defaultView.innerHTML += '<h2>30 Artikel Terbaru</h2>';
+            const top30Grid = document.createElement('div');
+            top30Grid.className = 'article-grid';
+            renderArticles(top30Articles, top30Grid);
+            defaultView.appendChild(top30Grid);
+
+            // 2. Render "Artikel Lainnya" per kategori
+            for (const category of Object.keys(jsonData).sort()) {
+                const otherArticles = allArticles
+                    .filter(a => a.category === category)      // Filter per kategori
+                    .filter(a => !top30Urls.has(a.url))  // Hapus yang sudah ada di top 30
+                    .slice(0, 10);                           // Ambil 10 teratas
+
+                if (otherArticles.length > 0) {
+                    defaultView.innerHTML += `<h2>Artikel Lainnya di ${category}</h2>`;
+                    const categoryGrid = document.createElement('div');
+                    categoryGrid.className = 'article-grid';
+                    renderArticles(otherArticles, categoryGrid);
+                    defaultView.appendChild(categoryGrid);
+                }
+            }
+        }
+
+        /**
+         * Menerapkan filter saat dropdown berubah.
+         */
+        function applyFilters() {
+            const categoryValue = document.getElementById('category-filter').value;
+            const weekValue = document.getElementById('week-filter').value;
+            
+            const defaultView = document.getElementById('default-view');
+            const filteredView = document.getElementById('filtered-view');
+
+            // Jika filter dikembalikan ke "all", tampilkan default view
+            if (categoryValue === 'all' && weekValue === 'all') {
+                defaultView.classList.remove('hidden');
+                filteredView.classList.add('hidden');
+                return;
+            }
+
+            // Jika ada filter aktif, sembunyikan default view dan tampilkan filtered view
+            defaultView.classList.add('hidden');
+            filteredView.classList.remove('hidden');
+            
+            let filteredArticles = allArticles;
+
+            if (categoryValue !== 'all') {
+                filteredArticles = filteredArticles.filter(a => a.category === categoryValue);
+            }
+            if (weekValue !== 'all') {
+                filteredArticles = filteredArticles.filter(a => getWeekStartDate(a.date) === weekValue);
+            }
+            
+            // Render hasil filter
+            renderArticles(filteredArticles, filteredView);
+        }
+
+        /**
+         * Merender daftar artikel ke dalam kontainer yang ditentukan.
+         * @param {Array<object>} articles - Daftar artikel untuk dirender.
+         * @param {HTMLElement} container - Elemen DOM untuk menampung kartu.
+         */
+        function renderArticles(articles, container) {
+            container.innerHTML = ''; // Kosongkan kontainer
+            if (articles.length === 0) {
+                container.innerHTML = '<p class="message">Tidak ada artikel yang ditemukan.</p>';
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+            articles.forEach(article => {
+                const card = createCardElement(article);
+                fragment.appendChild(card);
+            });
+            container.appendChild(fragment);
+        }
+
+        /**
+         * Membuat satu elemen kartu artikel.
+         * @param {object} article - Objek artikel.
+         * @returns {HTMLElement} Elemen 'a' (anchor) yang berisi kartu.
+         */
+        function createCardElement(article) {
+            const card = document.createElement('a');
+            card.className = 'article-card';
+            card.href = `artikel/${article.url}`; // Asumsi semua artikel ada di folder /artikel/
+
+            // Tambahkan gambar, lazy loading
+            const img = document.createElement('img');
+            img.src = article.image;
+            img.alt = article.title;
+            img.loading = 'lazy';
+            // Fallback jika gambar error
+            img.onerror = (e) => { e.target.style.display = 'none'; }; 
+            
+            const content = document.createElement('div');
+            content.className = 'card-content';
+            
+            const meta = document.createElement('div');
+            meta.className = 'card-meta';
+            meta.innerHTML = `
+                <span class="category">${article.category}</span>
+                <span class="date">${formatDateForDisplay(article.date)}</span>
+            `;
+            
+            const title = document.createElement('h3');
+            title.textContent = article.title;
+            
+            const description = document.createElement('p');
+            description.className = 'card-description';
+            description.textContent = article.description;
+            
+            content.appendChild(meta);
+            content.appendChild(title);
+            content.appendChild(description);
+            
+            card.appendChild(img);
+            card.appendChild(content);
+            
+            return card;
+        }
+
+        // --- Helper Functions ---
+
+        /**
+         * Mendapatkan tanggal Senin dari minggu tertentu.
+         * @param {Date} d - Objek tanggal.
+         * @returns {string} String ISO "YYYY-MM-DD" dari hari Senin.
+         */
+        function getWeekStartDate(d) {
+            const date = new Date(d);
+            const day = date.getDay();
+            const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Minggu = 0
+            const monday = new Date(date.setDate(diff));
+            monday.setHours(0, 0, 0, 0);
+            return monday.toISOString().split('T')[0];
+        }
+
+        /**
+         * Mendapatkan nomor minggu ISO 8601.
+         * @param {Date} d - Objek tanggal.
+         * @returns {number} Nomor minggu.
+         */
+        function getWeekNumber(d) {
+            const date = new Date(d.getTime());
+            date.setHours(0, 0, 0, 0);
+            date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+            const week1 = new Date(date.getFullYear(), 0, 4);
+            return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+        }
+        
+        /**
+         * Format tanggal untuk ditampilkan.
+         * @param {Date} date - Objek tanggal.
+         * @returns {string} String format "DD Mon YYYY".
+         */
+        function formatDateForDisplay(date) {
+            return date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+    </script>
     <footer class="page-footer">
         <p>🄯 2025 frijal.pages.dev</p>
     </footer>
-  <nav id="quick-nav" aria-label="Navigasi cepat"></nav>
-  <script type="module" src="ext/indexhtml-util.js"></script>
-  <script type="module" src="ext/indexhtml-render.js"></script>
-  <script type="module" src="ext/indexhtml-main.js"></script>
-  <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<script defer src="ext/marquee-url.js"></script><script defer src="ext/markdown.js"></script>
-</body>
+ </body>
 </html>
