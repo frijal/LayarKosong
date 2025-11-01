@@ -272,11 +272,7 @@
           mau beradaptasi.
         </p>
         <div class="social-sharing">
-          <h3>Bagikan Artikel Keren Ini!</h3>
-          <a href="#" class="share-icon share-fb" id="shareFacebook" title="Bagikan ke Facebook">FB</a>
-          <a href="#" class="share-icon share-tw" id="shareTwitter" title="Bagikan ke Twitter">TW</a>
-          <a href="#" class="share-icon share-wa" id="shareWhatsApp" title="Bagikan ke WhatsApp">WA</a>
-          <a href="#" class="share-icon share-tg" id="shareTelegram" title="Bagikan ke Telegram">TG</a>
+         <div id="disqus_thread"></div>
         </div>
       </article>
       <footer>
@@ -333,26 +329,6 @@
                 if (e.target === lightbox) lightbox.style.display = 'none';
             });
         }
-
-        // --- SOCIAL SHARING ---
-        (() => {
-            const pageUrl = encodeURIComponent(document.querySelector("link[rel='canonical']")?.href || location.href);
-            const pageTitle = encodeURIComponent(document.title);
-            const shareLinks = {
-                shareFacebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-                shareTwitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-                shareWhatsApp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
-                shareTelegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`
-            };
-            for (const id in shareLinks) {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.href = shareLinks[id];
-                    link.setAttribute('target', '_blank');
-                    link.setAttribute('rel', 'noopener noreferrer');
-                }
-            }
-        })();
       });
     </script>
     <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <!-- Styles: 1 kolom, light theme -->
     <style>
         :root {
@@ -93,13 +92,11 @@
                     <h1>Waspada Phishing: Jaga Data Pribadi Anda Tetap Aman!</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Penipuan online bisa datang dari mana saja. Yuk, kenali modusnya dan pelajari cara menghindarinya agar data pribadi dan finansial Anda tetap aman.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVHkObjiTPqhlkCa-m4gLhedgCnS1ErHjwQ9Avm6UUrDw7acLRjePYi96EMpcxYQKUd5OjuWCkoep4Tvd33ZqRslrJ5v9g-Wl4fsXQahX1ub3wyY4iq1DnCAYzUC34MjsVAKD6oMb1sSwL/s1600/golput.jpg" alt="Ilustrasi bahaya phishing">
                     </figure>
                     <h2>Apa Itu Phishing?</h2>
                     <p>Singkatnya, <strong>phishing</strong> adalah aksi pencurian data. Pelaku akan mencoba mengambil informasi pribadi dan sensitif Anda, seperti User ID, PIN, nomor rekening, atau nomor kartu kredit, secara ilegal. Tujuannya jelas: untuk menipu atau melakukan kejahatan finansial.</p>
-
                     <h2>Bagaimana Phishing Dilakukan?</h2>
                     <p>Para penipu memiliki banyak cara untuk menjebak korban. Modus yang paling sering digunakan antara lain:</p>
                     <ul>
@@ -107,7 +104,6 @@
                         <li>Membuat <strong>website palsu</strong> yang desainnya menjiplak situs aslinya. Begitu Anda memasukkan data, informasi tersebut langsung dicuri.</li>
                         <li>Mengirimkan <strong>formulir isian</strong> lewat email yang memaksa Anda untuk mengisi data-data sensitif.</li>
                     </ul>
-
                     <h2>Cara Mudah Mencegah Phishing</h2>
                     <p>Jangan panik! Ada beberapa langkah sederhana yang bisa Anda lakukan untuk melindungi diri:</p>
                     <ul>
@@ -116,6 +112,7 @@
                         <li><strong>Jangan langsung percaya</strong> pada tawaran hadiah undian yang meminta Anda melakukan transfer ke rekening tertentu.</li>
                         <li>Jika ada email yang mencurigakan, <strong>jangan klik tautan atau lampiran</strong> di dalamnya. Langsung hapus saja.</li>
                     </ul>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -123,7 +120,6 @@
             <small>🄯 2025 frijal.pages.dev · Tetap waspada di dunia digital.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -132,20 +128,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img, .image-container img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src.replace('/s1600/', '/s0/'); // Try to load original size
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
