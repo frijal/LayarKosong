@@ -68,14 +68,10 @@
                         <li><strong>Dialog ideologis</strong> — membuka ruang diskusi tentang alternatif sistem politik yang dapat diterima secara luas, termasuk kajian akademis dan penyuluhan publik.</li>
                     </ul>
                     <p class="muted">Tulisan ini bertujuan memberikan gambaran analitis singkat—bukan ajakan politik. Pilihan untuk ikut serta atau tidak dalam pemilu adalah hak pribadi setiap warga negara dan bagian dari arena kebebasan sipil yang perlu dihormati.</p>
-
                     <div style="margin-top:18px;">
-
-
-                        <div style="margin-top:8px;font-size:13px;color:var(--muted)">URL halaman saat ini: <span id="current-url">—</span></div>
-                    </div>
+<div id="disqus_thread"></div>
+</div>
                 </article>
-
                 <aside class="card" aria-labelledby="about-title">
                     <h3 id="about-title">Ringkasan Cepat</h3>
                     <div class="info-row"><div class="small">Isu utama</div><div class="small">Korupsi, ketidakadilan, ideologi</div></div>
@@ -85,7 +81,6 @@
                     <div class="info-row"><div class="small">Diperbarui</div><div class="small" id="updated-short">—</div></div>
                 </aside>
             </div>
-            <div id="disqus_thread"></div>
         </main>
         <footer>
             <div class="footer-inner container">
@@ -98,15 +93,12 @@
         document.getElementById('updated-time').textContent = new Date().toLocaleString('id-ID', {year:'numeric',month:'long',day:'numeric'});
         document.getElementById('updated-short').textContent = new Date().toLocaleDateString('id-ID');
         document.getElementById('year').textContent = new Date().getFullYear();
-
         // set canonical & og url
         const currentUrl = window.location.href;
         const metaOg = document.getElementById('meta-og-url');
         if (metaOg) metaOg.setAttribute('content', currentUrl);
         const canonical = document.getElementById('canonical-link');
         if (canonical) canonical.setAttribute('href', currentUrl);
-
-
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
