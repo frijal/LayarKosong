@@ -26,7 +26,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <style>
         :root {
@@ -90,7 +89,6 @@
                     <h1>Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Kernel lama yang menumpuk bisa dibersihkan untuk menghemat ruang disk. Namun, penting untuk melakukannya dengan aman. Panduan ini menunjukkan cara praktis untuk mengelola kernel di sistem berbasis Debian/Ubuntu.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.jpg" alt="Ilustrasi update kernel Linux">
                     </figure>
@@ -106,10 +104,10 @@
                     <p>Cara yang lebih aman dan mudah adalah menggunakan <code>apt autoremove</code>. Perintah ini secara cerdas akan menghapus semua kernel lama, kecuali dua versi terbaru (kernel yang sedang berjalan dan satu versi sebelumnya sebagai cadangan).</p>
                     <pre class="language-bash"><code id="code3">sudo apt autoremove --purge</code><button class="copy-btn" data-target="code3">Salin</button></pre>
                     <p class="muted">Opsi <code>--purge</code> memastikan file konfigurasi juga ikut dibersihkan.</p>
-
                     <div class="tip-box">
                         <strong>Tips Terbaik:</strong> Biasakan menyimpan minimal <strong>dua kernel terakhir</strong>. Jika kernel terbaru menyebabkan masalah (misalnya, WiFi tidak berfungsi), Anda bisa boot menggunakan kernel sebelumnya dari menu GRUB.
                     </div>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -117,21 +115,16 @@
             <small>🄯 2025 frijal.pages.dev · Selalu cek versi sebelum menghapus.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #1c2b52; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {

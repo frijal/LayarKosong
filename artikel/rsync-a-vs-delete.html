@@ -282,25 +282,7 @@ rsync -a /folder/sumber/ /folder/tujuan/</code></pre>
 rsync -avn --delete /folder/sumber/ /folder/tujuan/</code></pre>
                 </div>
                 <section class="share-section">
-                    <h4>Suka artikel ini? Bagikan!</h4>
-                    <div class="share-buttons">
-                        <a href="#" class="share-button share-x" id="share-x" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                            <span>Share ke X</span>
-                        </a>
-                        <a href="#" class="share-button share-facebook" id="share-facebook" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-                            <span>Share ke Facebook</span>
-                        </a>
-                        <a href="#" class="share-button share-whatsapp" id="share-whatsapp" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M19.11 4.93A9.9 9.9 0 0 0 12.05 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.95L2 22l5.05-1.34a9.9 9.9 0 0 0 4.95 1.28c5.52 0 10-4.48 10-10a9.9 9.9 0 0 0-2.89-7.07zm-1.16 12.48c-.28.13-.63.18-1.04.1-1.03-.2-2.33-.84-3.5-2.03-1.06-1.06-1.7-2.3-1.9-3.26-.05-.28-.01-.58.11-.83.2-.42.7-.53 1-.53.28 0 .53.05.7.38.3.6 1.04 2.5 1.14 2.68.1.18.15.38.05.58-.1.2-.25.38-.45.58-.2.2-.4.45-.55.63-.15.18-.3.33-.1.63.2.3.88 1.5 1.83 2.45.8.8 1.83 1.3 2.18 1.45.35.15.58.1.78-.1.2-.2.88-.95 1.1-1.25.23-.3.45-.25.7-.15.25.1.18.1.7.45.53.35 1.23.5 1.4.58.18.08.3.13.35.23.04.1.04.58-.2 1.1z"/></svg>
-                            <span>Share ke WhatsApp</span>
-                        </a>
-                        <a href="#" class="share-button share-telegram" id="share-telegram" target="_blank">
-                            <svg viewBox="0 0 24 24"><path d="M21.4 4.6a.5.5 0 0 0-.6-.5l-18 7a.5.5 0 0 0 0 .9l4.4 1.7 1.7 4.4a.5.5 0 0 0 .9 0l7-18a.5.5 0 0 0-.5-.6zM9.5 14.9l-1.1-2.9 8.9-6.8-5.3 7.8-2.5.9z"/></svg>
-                            <span>Share ke Telegram</span>
-                        </a>
-                    </div>
+                   <div id="disqus_thread"></div>
                 </section>
             </article>
         </main>
@@ -308,47 +290,7 @@ rsync -avn --delete /folder/sumber/ /folder/tujuan/</code></pre>
             <p>&copy; 2025 frijal.pages.dev - Penjelasan Kode Santai.</p>
         </footer>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Data untuk sharing
-            // Ambil URL kanonis dari tag <link>
-            const canonicalElement = document.querySelector('link[rel="canonical"]');
-            const pageUrl = canonicalElement ? canonicalElement.href : window.location.href;
-            const pageTitle = document.title;
-            const encodedPageUrl = encodeURIComponent(pageUrl);
-            const encodedPageTitle = encodeURIComponent(pageTitle);
-            // URL Sharing
-            const shareLinks = {
-                x: `https://twitter.com/intent/tweet?url=${encodedPageUrl}&text=${encodedPageTitle}`,
-                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedPageUrl}`,
-                whatsapp: `https://api.whatsapp.com/send?text=${encodedPageTitle}%20${encodedPageUrl}`,
-                telegram: `https://t.me/share/url?url=${encodedPageUrl}&text=${encodedPageTitle}`
-            };
-            // Pasang URL ke tombol
-            document.getElementById('share-x').href = shareLinks.x;
-            document.getElementById('share-facebook').href = shareLinks.facebook;
-            document.getElementById('share-whatsapp').href = shareLinks.whatsapp;
-            document.getElementById('share-telegram').href = shareLinks.telegram;
-            // Buka di popup (opsional tapi keren)
-            const shareButtons = document.querySelectorAll('.share-button');
-            shareButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // Jangan buka di WhatsApp web jika di mobile
-                    if (this.id === 'share-whatsapp' && /Mobi|Android/i.test(navigator.userAgent)) {
-                        return; // Biarkan default action
-                    }
-                    e.preventDefault();
-                    const url = this.href;
-                    const width = 600;
-                    const height = 400;
-                    const left = (window.screen.width / 2) - (width / 2);
-                    const top = (window.screen.height / 2) - (height / 2);
-                    window.open(url, 'shareWindow', `width=${width},height=${height},top=${top},left=${left},toolbar=0,status=0`);
-                });
-            });
-        });
-    </script>
-<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+   <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
 </body>

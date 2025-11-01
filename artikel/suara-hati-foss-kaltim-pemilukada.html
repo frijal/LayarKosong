@@ -75,11 +75,8 @@ h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; c
 </ul>
 <p class="mt-8">diketik tanggal 26 Agustus 2013 oleh Unknown</p>
 <hr class="my-8">
-<h2 class="text-xl font-bold mb-4 text-center text-slate-700">Yuk, Bagikan Cerita Ini!</h2>
 <div class="social-share flex justify-center space-x-4 my-8">
-<a href="#" id="share-facebook" target="_blank" class="text-3xl text-gray-500 hover:text-blue-600 transition-colors" title="Bagikan ke Facebook"><i class="fab fa-facebook-f"></i></a>
-<a href="#" id="share-twitter" target="_blank" class="text-3xl text-gray-500 hover:text-blue-400 transition-colors" title="Bagikan ke Twitter"><i class="fab fa-twitter"></i></a>
-<a href="#" id="share-linkedin" target="_blank" class="text-3xl text-gray-500 hover:text-blue-700 transition-colors" title="Bagikan ke LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+     <div id="disqus_thread"></div>
 </div>
 </article>
 </div>
@@ -90,13 +87,7 @@ h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; c
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Social Sharing
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
-    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-    document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-    document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
-    // Lazy Load & Lightbox
+        // Lazy Load & Lightbox
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');

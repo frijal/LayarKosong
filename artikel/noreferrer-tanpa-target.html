@@ -32,7 +32,6 @@
       "publisher": { "@type": "Organization", "name": "Frijal Blog" }
     }
     </script>
-
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -87,7 +86,6 @@
                     <h1>Dampak <code>rel="noreferrer"</code> Tanpa <code>target="_blank"</code></h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Panduan santai ini akan menjelaskan tentang dampak privasi dan keamanan saat menggunakan atribut <code>rel="noreferrer"</code> pada link HTML tanpa <code>target="_blank"</code>.</p>
-
                     <h2>Dampak yang Tetap Ada (Privasi)</h2>
                     <p>Jika Anda menggunakan <code>rel="noreferrer"</code> tetapi <strong>tidak</strong> menyertakan <code>target="_blank"</code>, efek privasi tetap berlaku. Artinya:</p>
                     <ul>
@@ -99,26 +97,21 @@
                         <li><strong>Tidak Ada Proteksi <code>window.opener</code>:</strong> Atribut <code>rel="noopener"</code> (yang sering dipasangkan dengan <code>noreferrer</code>) berfungsi untuk mencegah halaman baru mendapatkan akses ke objek <code>window</code> dari halaman asal. Namun, karena link ini tidak membuka tab baru, ancaman keamanan terkait <code>window.opener</code> tidak relevan.</li>
                         <li><strong>Perilaku Link Normal:</strong> Selain menyembunyikan referrer, link akan berfungsi seperti link biasa.</li>
                     </ul>
-
                     <h2>Kesimpulan</h2>
                     <p>Jadi, <code>rel="noreferrer"</code> <strong>tetap berguna</strong> meskipun tanpa <code>target="_blank"</code>. Bedanya, dalam kasus ini, efeknya murni berfokus pada <strong>privasi</strong> (menyembunyikan sumber traffic), bukan pada keamanan yang terkait dengan pembukaan tab baru.</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 Frijal Blog · Artikel edukasi HTML</small>
         </footer>
     </div>
-
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #334155; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-
-
     })();
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

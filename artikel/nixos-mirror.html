@@ -15,9 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="⚡ Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS">
     <meta name="twitter:description" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update.">
-
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Mengatur Mirror Tercepat untuk NixOS dengan Skrip","description":"Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update.","author":{"@type":"Person","name":"frijal","image":"https://frijal.pages.dev/img/nixos-mirror.webp"},"datePublished":"2025-09-28","image":"https://frijal.pages.dev/img/nixos-mirror.webp"}</script>
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
     <style>
         :root {
@@ -80,8 +78,6 @@
                     <h1>Skrip <code>nixos-mirror.sh</code>: Atur Mirror Tercepat untuk NixOS</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p>
-
-
                     <div class="warning-box">
                         <strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.
                     </div>
@@ -111,26 +107,21 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
                         <li>Jalankan skrip dengan hak akses root: <code>sudo ./nixos-mirror.sh</code>.</li>
                     </ol>
                     <p>Setelah selesai, proses build dan update NixOS Anda seharusnya akan berjalan lebih cepat dengan memanfaatkan mirror tambahan tersebut.</p>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 frijal.pages.dev · Pastikan kunci publik substituter benar agar paket bisa diverifikasi.</small>
         </footer>
     </div>
-
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-
-
         document.querySelectorAll('.copy-btn').forEach(btn=>{
             btn.addEventListener('click', ()=>{
                 const targetId = btn.getAttribute('data-target');

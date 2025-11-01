@@ -31,7 +31,6 @@
       "datePublished": "2025-09-28"
     }
     </script>
-
     <!-- Styles: 1 kolom, light theme -->
     <style>
         :root {
@@ -91,27 +90,24 @@
                     <h1>Pusat Instalasi Linux: Ide Gila yang Dibutuhkan untuk Menjangkau Semua Kalangan</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Desktop Linux itu cepat, aman, dan gratis. Tapi bagi pengguna awam, melompat ke Linux terasa seperti masuk ke hutan belantara. Mereka takut dengan terminal dan bingung memilih distro. Ide "Pusat Instalasi Linux" bisa menjadi jembatan yang sangat dibutuhkan.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWZx7Cnu5O0cTmkl60kPEdALobIUgS576FFZ7As298JYaWhI3Mb0Es0E3A6udOLE5MhaStAGa23mEJvVy8BCkmzGc_4RyVCWNe3lhy2rnJ_7C1KXwuo9BV-owxS7HRmMq5jnC3uwUoFxOz0SWf4h1HrFXlRg5TklWEMO17Rly5qXwSBAdxgiYvWKfukz8/s1024/linuxtsc.jpg" alt="Konsep Pusat Instalasi Linux">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Pusat Instalasi Linux: ruang aman untuk migrasi tanpa terminal dan belajar bersama.</figcaption>
                     </figure>
                     <h2>Mengapa Pusat Instalasi Itu Krusial?</h2>
                     <p>Dukungan untuk pengguna Linux non-teknis sebagian besar bersifat virtual (forum, grup chat). Ini tidak cukup bagi orang yang ingin beralih tetapi tidak berani mengutak-atik sistemnya sendiri. Pusat Instalasi Linux (LIC) dapat berfungsi sebagai jembatan, mengubah ketakutan menjadi kenyamanan.</p>
-
                     <h3>1. Menghilangkan "Rasa Takut Terminal"</h3>
                     <p>Bagi pengguna awam, langkah pertama—instalasi—seringkali menjadi yang paling menakutkan. LIC dapat menyediakan teknisi yang akan memasangkan distro ramah pengguna seperti Ubuntu atau Linux Mint, sehingga pengguna menerima perangkat yang siap pakai.</p>
                     <h3>2. Solusi Hardware dan Driver</h3>
                     <p>Masalah kompatibilitas hardware seperti Wi-Fi atau driver NVIDIA seringkali memaksa pengguna awam menyerah. Di LIC, teknisi dapat mendiagnosis dan menginstal paket yang diperlukan di balik layar, tanpa membebani pengguna dengan baris kode.</p>
-
                     <h3>3. Dukungan Tatap Muka</h3>
                     <p>Mendapat bantuan dari orang sungguhan di lokasi fisik jauh lebih menenangkan. LIC bisa menjadi "bengkel" tempat pengguna datang untuk bertanya, mengatasi masalah, dan mendapatkan pelatihan singkat.</p>
                     <h2>Model Operasional yang Ideal</h2>
                     <blockquote>LIC bukan hanya tentang instalasi, tetapi juga edukasi. Workshop santai seperti "Mengenal Office Suite di Linux" atau "Migrasi dari Adobe ke GIMP/Krita" dapat menciptakan lingkungan belajar yang aman.</blockquote>
                     <p>Agar berkelanjutan, LIC bisa menawarkan model hibrida: layanan dasar gratis oleh relawan, dan layanan profesional berbayar untuk setup bisnis atau pelatihan mendalam. Kolaborasi dengan toko komputer lokal untuk layanan pra-instalasi juga dapat memperluas jangkauan pasar Linux.</p>
-
                     <h2>Kesimpulan</h2>
                     <p>Tantangan terbesarnya adalah standardisasi dan ketersediaan sumber daya manusia. Namun, jika komunitas Linux mengadopsi model ini—bahkan sebagai acara bulanan—kita bisa mengubah citra Linux dari "sistem operasi teknisi" menjadi "sistem operasi pilihan cerdas untuk semua orang."</p>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -119,7 +115,6 @@
             <small>🄯 2025 Frijal · Jembatan ramah untuk migrasi dan belajar bersama.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -128,9 +123,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         document.querySelectorAll('figure img').forEach(el => {

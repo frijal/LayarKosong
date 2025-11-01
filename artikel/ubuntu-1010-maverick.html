@@ -343,17 +343,7 @@
                     Semoga kegiatan serupa dapat terus digelar di tahun-tahun berikutnya, sehingga semakin banyak masyarakat yang mengenal, memahami, dan menggunakan perangkat lunak bebas dan open source dalam kehidupan sehari-hari.
                 </p>
             </section>
-            <h2>Bagikan</h2>
-            <div class="share" id="share">
-                <a class="fb" href="#" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-                <a class="tw" href="#" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
-                <a class="x" href="#" target="_blank" rel="noopener" aria-label="X">X</a>
-                <a class="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
-                <a class="tg" href="#" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
-                <a class="ig" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                <a class="threads" href="https://www.threads.net/" target="_blank" rel="noopener" aria-label="Threads">Threads</a>
-                <a class="tt" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
-            </div>
+                 <div id="disqus_thread"></div>
         </article>
     </main>
     <footer>
@@ -361,26 +351,7 @@
             <p class="muted">Terima kasih kepada panitia, narasumber, dan peserta. Semoga semangat open source terus tumbuh di Balikpapan.</p>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const url = 'https://frijal.pages.dev/artikel/ubuntu-1010-maverick.html';
-            const text = encodeURIComponent('Pesta Rilis Ubuntu 10.10 Maverick Meerkat — STMIK STIKOM Balikpapan');
-            const encodedUrl = encodeURIComponent(url);
-            const shareLinks = {
-                '.fb': `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-                '.tw': `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${text}`,
-                '.x': `https://x.com/intent/post?url=${encodedUrl}&text=${text}`,
-                '.wa': `https://wa.me/?text=${text}%20${encodedUrl}`,
-                '.tg': `https://t.me/share/url?url=${encodedUrl}&text=${text}`
-            };
-            for (const selector in shareLinks) {
-                const el = document.querySelector(selector);
-                if (el) {
-                    el.setAttribute('href', shareLinks[selector]);
-                }
-            }
-        });
-    </script>
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
