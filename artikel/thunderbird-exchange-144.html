@@ -27,7 +27,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <style>
         :root {
             --bg: #0e0f19;
@@ -86,7 +85,6 @@
                     <h1>Dukungan Microsoft Exchange Hadir di Thunderbird pada Oktober 2025</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Tim Thunderbird telah mengonfirmasi bahwa dukungan email Exchange akan secara resmi diperkenalkan di versi 144. Ini adalah titik balik yang membuka pintu bagi klien email open-source ini ke segmen bisnis yang lebih luas.</p>
-                    
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjq3fZWSfUH3WElJYSwVA8dSTWI_ceYZQK2NiC50pt5rgXOG4LlqlbJf9Bg0Q0lO2NBUAt-BpSkjL2MmBZ5sUB7itEBtXf4RmtEN3F8j2GtJNKTEu2TnzsXlWE6M1RfNiTHFckZ9RPbAWezhGtVz8uDOITNXDGALfQJBPI8aH1mU1CMm6nyIwyoRbc5qdU/s1600/thunderbird-exchange.jpg" alt="Thunderbird menambah dukungan Exchange">
                         <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Thunderbird 144 + Exchange: kolaborasi yang telah lama ditunggu.</figcaption>
@@ -101,7 +99,6 @@
                         <li><strong>Autosync Manager:</strong> Pengunduhan pesan yang lebih efisien untuk menghemat waktu dan data.</li>
                         <li><strong>Peningkatan Lampiran:</strong> Opsi untuk menghapus atau melepaskan (detach) lampiran kini terintegrasi.</li>
                     </ul>
-
                     <h2>Arah Pengembangan Selanjutnya</h2>
                     <p>Tim pengembang telah merencanakan peningkatan lebih lanjut di masa depan, termasuk:</p>
                     <ul>
@@ -109,6 +106,7 @@
                         <li>Integrasi <strong>Kalender</strong> dan <strong>Buku Alamat</strong> melalui Exchange Web Services (EWS).</li>
                         <li>Pengembangan lain seperti tampilan email berulir (threaded view) gaya Gmail.</li>
                     </ul>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -116,7 +114,6 @@
             <small>🄯 2025 frijal.pages.dev • Sebuah langkah besar untuk produktivitas open-source.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -125,20 +122,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

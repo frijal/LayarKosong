@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "Frijal's Artikel" }
     }
     </script>
-
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -96,7 +95,7 @@
                     <h1>Kenalan Sama Strategi Branching Populer di GitHub</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Pernah bingung melihat banyaknya branch di sebuah repositori? Itu bukan karena iseng, tapi karena tim pengembang menggunakan strategi branching tertentu untuk mengelola kode agar lebih teratur dan aman.</p>
-                    
+
                     <h2>Perbandingan 3 Strategi Populer</h2>
                     <div class="table-container">
                         <table>
@@ -134,12 +133,12 @@
                             </tbody>
                         </table>
                     </div>
-
                     <div class="gallery">
                         <figure><img src="https://frijal.pages.dev/img/gallery/gitflow.webp" alt="Diagram alur kerja Git Flow"></figure>
                         <figure><img src="https://frijal.pages.dev/img/gallery/trunkbased.webp" alt="Diagram alur kerja Trunk Based Development"></figure>
                         <figure><img src="https://frijal.pages.dev/img/gallery/githubflow.webp" alt="Diagram alur kerja GitHub Flow"></figure>
                     </div>
+                    <div id="disqus_thread"></div>
                 </article>
             </div>
         </main>
@@ -147,7 +146,6 @@
             <small>🄯 2025 Frijal's Artikel · Dibuat dengan ❤️ di Balikpapan</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -156,20 +154,17 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
 
-        
+
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });

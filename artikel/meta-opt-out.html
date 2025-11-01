@@ -33,7 +33,6 @@
       "publisher": { "@type": "Organization", "name": "frijal.pages.dev" }
     }
     </script>
-
     <!-- Styles: 1 kolom, "Cyber Privacy" dark theme -->
     <style>
         :root {
@@ -95,7 +94,6 @@
                     <h1>Menolak Data Anda untuk Pelatihan AI Meta</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Meta (induk perusahaan Facebook, Instagram, dan WhatsApp) menyediakan opsi bagi pengguna untuk menolak penggunaan data publik mereka dalam pelatihan model AI. Berikut adalah panduan praktis, klarifikasi hoaks, dan tips tambahan untuk menjaga privasi Anda.</p>
-
                     <figure>
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiq7K_ryLz7ORz3JCz-kZT66VfLZa9k6ADP1WTUVNz8BBZ1ejLeDzJZl8OYsUwg6lePQF3ahUAuvt-Jj7r2xTGrHozHdbwKfoXk2B2TN8ugqPn5XcpHyDvuEDQFi2xmO8kKYpV7NNn5z4LW7cMRU7me66vrOg9jZg73XmpDFZxPo3hZHEDnHfQ84_9L8JY/s1600/nsa_facebook_google_mind_control.jpg" alt="Ilustrasi kontrol data dan privasi">
                     </figure>
@@ -109,7 +107,6 @@
                         <li>Isi formulir dengan alamat email yang terhubung ke akun Anda dan jelaskan alasan keberatan Anda, lalu kirim.</li>
                     </ol>
                     <p class="muted">Setelah permintaan Anda diproses, Meta akan mengirimkan konfirmasi melalui email bahwa data publik Anda tidak akan digunakan untuk pengembangan model AI di masa depan.</p>
-
                     <h2>Klarifikasi Hoaks "Goodbye Meta AI"</h2>
                     <div class="warning-box">
                         <p><strong>Fakta:</strong> Postingan viral yang berisi teks "Goodbye Meta AI" atau sejenisnya <strong>tidak efektif</strong> untuk melindungi data Anda. Meta telah mengonfirmasi bahwa postingan semacam itu adalah hoaks.</p>
@@ -121,15 +118,14 @@
                         <li><strong>Bersihkan Postingan Lama:</strong> Hapus postingan lama yang tidak lagi relevan untuk mengurangi jejak digital publik Anda.</li>
                         <li><strong>Aktifkan Otentikasi Dua Faktor (2FA):</strong> Ini adalah langkah keamanan penting untuk melindungi akun Anda dari akses tidak sah.</li>
                     </ul>
+                    <div id="disqus_thread"></div>
                 </article>
-                <div id="disqus_thread"></div>
             </div>
         </main>
         <footer class="site">
             <small>🄯 2025 Frijal · Kendalikan data Anda, tetap santai, dan tetap aman.</small>
         </footer>
     </div>
-
     <div class="lightbox" id="lightbox">
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
@@ -138,20 +134,15 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-
-
-
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));
         let currentIndex = 0;
-
         function openLightbox(index) {
             currentIndex = index;
             lbImg.src = galleryImages[currentIndex].src;
             lb.classList.add('open');
         }
-
         galleryImages.forEach((el, index) => {
             el.addEventListener('click', () => openLightbox(index));
         });
