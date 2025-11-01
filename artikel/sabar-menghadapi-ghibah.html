@@ -225,15 +225,8 @@
                     <li><strong>Dijauhi dan Hilang Kepercayaan:</strong> Orang yang dikenal suka berghibah akan kehilangan kepercayaan dari orang-orang di sekitarnya. Orang akan merasa tidak nyaman dan takut untuk berbagi cerita karena khawatir akan menjadi bahan gunjingan.</li>
                 </ul>
                 <p>Pelajaran terpenting dari video pendek tersebut adalah bahwa kesabaran dan keikhlasan dalam menghadapi ghibah adalah sikap yang sangat mulia. Dengan tidak membalas keburukan dengan keburukan, seorang muslim tidak hanya menjaga hatinya, tetapi juga membiarkan Allah SWT yang akan membalas perbuatan buruk tersebut di akhirat. Semoga kita semua selalu diberi kekuatan untuk menjaga lisan dan menjauhi perbuatan ghibah.</p>
-            </article>
-            <div class="social-share">
-                <p><strong>Jaga Data Pribadi Tetap Aman</strong></p>
-                <a href="#" class="share-button share-facebook" data-share-platform="facebook" aria-label="Share on Facebook">Facebook</a>
-                <a href="#" class="share-button share-twitter" data-share-platform="twitter" aria-label="Share on X">X</a>
-                <a href="#" class="share-button share-whatsapp" data-share-platform="whatsapp" aria-label="Share on WhatsApp">WhatsApp</a>
-                <a href="#" class="share-button share-telegram" data-share-platform="telegram" aria-label="Share on Telegram">Telegram</a>
-            </div>
-        </main>
+         <div id="disqus_thread"></div>   </article>
+                 </main>
     </div>
     <footer class="footer">
         <p>&copy; 2025. Artikel ini dibuat untuk tujuan edukasi. Semua hak cipta dari konten video adalah milik pemilik aslinya.</p>
@@ -243,36 +236,7 @@
     <script>Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';</script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Social Sharing
-            const shareButtons = document.querySelectorAll('.share-button');
-            shareButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const platform = e.target.getAttribute('data-share-platform');
-                    const url = encodeURIComponent('https://frijal.pages.dev/artikel/sabar-menghadapi-ghibah.html'); // Canonical URL
-                    const title = encodeURIComponent(document.title);
-                    let shareUrl = '';
-                    switch(platform) {
-                        case 'facebook':
-                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                            break;
-                        case 'twitter': // For X/Twitter
-                            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-                            break;
-                        case 'whatsapp':
-                            shareUrl = `https://api.whatsapp.com/send?text=${title}%20${url}`;
-                            break;
-                        case 'telegram':
-                            shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
-                            break;
-                        // Add cases for other platforms if needed
-                    }
-                    if (shareUrl) {
-                        window.open(shareUrl, '_blank', 'noopener,noreferrer');
-                    }
-                });
-            });
-            // Copy button for syntax highlighting
+                        // Copy button for syntax highlighting
             const highlightContainers = document.querySelectorAll('.highlight-container');
             highlightContainers.forEach(container => {
                 const button = container.querySelector('.copy-button');
