@@ -63,7 +63,6 @@
       name="twitter:image"
       content="https://frijal.pages.dev/img/workflow-perbaikan-foto-ala-national-geographic.webp"
     />
-
     <style>
       :root {
         --bg: #0f172a;
@@ -319,9 +318,8 @@
               Bagikan pengalaman Anda memperbaiki foto lama. Trik kecil yang
               Anda temukan bisa sangat membantu orang lain.
             </p>
-
             <div class="comments">
-
+<div id="disqus_thread"></div>
             </div>
           </article>
         </section>
@@ -341,8 +339,6 @@
         <button class="lightbox-next" id="lightboxNext" title="Berikutnya" aria-label="Berikutnya">▶</button>
       </div>
     </div>
-
-
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Skrip deteksi pengguna DIHAPUS sesuai instruksi ---
@@ -373,12 +369,10 @@
           function closeLightbox() {
             lightbox.classList.remove('active');
           }
-
           items.forEach((img, index) => {
             if(!img.dataset.index) img.dataset.index = index;
             img.addEventListener('click', () => openLightbox(index));
           });
-
           btnClose.addEventListener('click', closeLightbox);
           btnPrev.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -394,21 +388,8 @@
             if (e.target === lightbox) closeLightbox();
           });
         })();
-        // Facebook SDK untuk komentar
-        (() => {
-          if (document.querySelector('.fb-comments')) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.defer = true;
-            script.crossOrigin = 'anonymous';
-            script.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0";
-            document.body.appendChild(script);
-          }
-        })();
-      });
+            });
     </script>
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

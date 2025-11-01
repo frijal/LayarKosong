@@ -63,7 +63,6 @@
       name="twitter:image"
       content="https://frijal.pages.dev/img/preset-lightroom-xmp-natgeo-monokrom-sepia.webp"
     />
-
     <style>
       :root {
         --bg: #0f172a;
@@ -356,9 +355,8 @@
               Bagikan pengalaman Anda membuat preset atau hasil editan Anda.
               Tips kecil yang Anda temukan bisa membantu banyak orang.
             </p>
-
             <div class="comments">
-
+<div id="disqus_thread"></div>
             </div>
           </article>
         </section>
@@ -374,7 +372,6 @@
         </div>
       </footer>
     </div>
-
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <div class="lightbox-content">
         <img class="lightbox-img" id="lightboxImg" alt="Foto fullscreen" />
@@ -383,8 +380,6 @@
         <button class="lightbox-next" id="lightboxNext" title="Berikutnya" aria-label="Berikutnya">▶</button>
       </div>
     </div>
-
-
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // --- Skrip deteksi pengguna DIHAPUS sesuai instruksi ---
@@ -400,7 +395,6 @@
           const btnNext = document.getElementById('lightboxNext');
           const items = Array.from(gallery.querySelectorAll('img'));
           let currentIndex = 0;
-
           if (items.length === 0) return; // Keluar jika tidak ada gambar
           function showImage(index) {
             const img = items[index];
@@ -432,7 +426,6 @@
             if(!img.dataset.index) img.dataset.index = index;
             img.addEventListener('click', () => openLightbox(index));
           });
-
           btnClose.addEventListener('click', closeLightbox);
           btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
           btnNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
@@ -446,20 +439,8 @@
             if (e.key === 'ArrowRight') nextImage();
           });
         })();
-        // --- Facebook SDK ---
-        (() => {
-          const script = document.createElement('script');
-          script.async = true;
-          script.defer = true;
-          script.crossOrigin = "anonymous";
-          script.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=1471267430691023";
-          // Nonce bisa ditambahkan di sini jika diperlukan
-          document.body.appendChild(script);
-        })();
-      });
+            });
     </script>
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>

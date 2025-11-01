@@ -97,7 +97,6 @@
                     <h1>Menyatukan Pecahan Film dengan Perintah <code>cat</code></h1>
 <div id="iposbrowser"></div>
                     <p class="lead">Sering mengunduh film yang terbagi menjadi beberapa bagian kecil? Di Linux, Anda bisa menyatukannya dengan sangat mudah menggunakan perintah <code>cat</code> langsung dari terminal.</p>
-                    
                     <h2>Contoh Kasus</h2>
                     <p>Bayangkan Anda memiliki beberapa file seperti di bawah ini dalam satu folder:</p>
                     <figure>
@@ -116,7 +115,7 @@
                     <pre class="language-bash"><code id="code1">cat film.part1.avi film.part2.avi film.part3.avi > film-lengkap.avi</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <p class="muted">Tips: Jika file Anda memiliki pola nama yang urut (misalnya, <code>file.001</code>, <code>file.002</code>), Anda bisa menggunakan wildcard: <code>cat file.* > film-lengkap.mkv</code>.</p>
                     <p>Hasilnya adalah satu file film utuh pada folder yang sama, tanpa mengubah kualitas video aslinya.</p>
-                </article>
+                <div id="disqus_thread"></div></article>
             </div>
         </main>
         <footer class="site">
@@ -134,8 +133,6 @@
     (function(){
         const toast = document.getElementById('toast');
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        
-        
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const galleryImages = Array.from(document.querySelectorAll('figure img'));

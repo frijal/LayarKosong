@@ -9,9 +9,7 @@
     <link rel="canonical" href="https://frijal.pages.dev/artikel/ffmpeg-panduan-interaktif.html" />
     <meta name="date" content="2025-09-27" />
     <meta name="robots" content="index, follow" />
-
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%233b82f6' d='M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 15h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z'/></svg>" type="image/svg+xml" />
-
     <meta property="og:title" content="Panduan FFmpeg Lengkap: Audio & Video Interaktif" />
     <meta property="og:description" content="Kumpulan perintah FFmpeg yang mudah disalin, lengkap dengan visualisasi proses untuk konversi, trim, dan manipulasi media." />
     <meta property="og:type" content="article" />
@@ -19,7 +17,6 @@
     <meta property="og:site_name" content="Frijal Command Line Guides" />
     <meta property="og:image" content="https://frijal.pages.dev/img/ffmpeg-panduan-interaktif.webp" />
     <meta property="og:image:alt" content="Visualisasi Konversi Media FFmpeg di Command Line" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Panduan FFmpeg Lengkap: Audio & Video Interaktif" />
     <meta name="twitter:description" content="Kumpulan perintah FFmpeg yang mudah disalin, lengkap dengan visualisasi dan penjelasan parameter." />
@@ -36,12 +33,10 @@ body { font-family: Inter, sans-serif; }
 .diagram-box { border: 2px dashed #9ca3af; background-color: #f3f4f6; padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100px; margin-bottom: 1rem; flex-wrap: wrap; }
 .diagram-step { text-align: center; font-family: monospace; font-size: 0.875rem; margin: 0.5rem; }
 .diagram-arrow { font-size: 2rem; color: #3b82f6; margin: 0 1rem; }
-
 </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-16T23:20:38.181+00:00">
 </head>
-
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
   <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -80,10 +75,8 @@ body { font-family: Inter, sans-serif; }
       </div>
     </nav>
   </aside>
-
   <main id="content-display" class="w-full md:ml-[25%] lg:ml-[20%] p-6 md:p-10"></main>
 </div>
-
 <!-- Templates -->
 <template id="welcome-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -92,7 +85,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600">Gunakan tombol "Salin" untuk menyalin perintah dengan mudah. Semua perintah dapat dicoba langsung di terminal Anda.</p>
 </div>
 </template>
-
 <!-- ==================== AUDIO BLOCKS ==================== -->
 <template id="mp3-ogg-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -111,7 +103,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Format OGG biasanya lebih kecil ukurannya, cocok untuk streaming.</p>
 </div>
 </template>
-
 <template id="batch-audio-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Audio</h2>
@@ -129,7 +120,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Mengonversi semua file MP3 di folder ke OGG secara otomatis.</p>
 </div>
 </template>
-
 <template id="wav-mp3-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">WAV → MP3</h2>
@@ -147,7 +137,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Konversi WAV ke MP3 dengan bitrate 192kbps.</p>
 </div>
 </template>
-
 <template id="normalize-audio-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Normalize Audio</h2>
@@ -165,7 +154,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Menormalkan volume audio sehingga rata-rata output stabil.</p>
 </div>
 </template>
-
 <template id="change-bitrate-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Ubah Bitrate Audio</h2>
@@ -183,7 +171,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Mengubah bitrate audio menjadi 128kbps.</p>
 </div>
 </template>
-
 <!-- ==================== VIDEO BLOCKS ==================== -->
 <template id="trim-video-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -202,7 +189,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Trim video dari detik 10 sampai 30 tanpa re-encode.</p>
 </div>
 </template>
-
 <template id="resize-video-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Resize Video</h2>
@@ -220,7 +206,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Ubah resolusi video menjadi 1280x720 piksel.</p>
 </div>
 </template>
-
 <template id="extract-audio-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Extract Audio dari Video</h2>
@@ -238,7 +223,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Ekstrak audio terbaik dari video.</p>
 </div>
 </template>
-
 <template id="mp4-webm-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">MP4 → WebM</h2>
@@ -256,7 +240,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Konversi MP4 ke WebM menggunakan codec VP8 dan Vorbis.</p>
 </div>
 </template>
-
 <template id="batch-video-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Video</h2>
@@ -274,7 +257,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Batch convert semua video MP4 ke MKV.</p>
 </div>
 </template>
-
 <template id="merge-videos-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Merge Videos</h2>
@@ -292,7 +274,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Gabungkan beberapa video tanpa re-encode.</p>
 </div>
 </template>
-
 <template id="overlay-watermark-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Overlay / Watermark</h2>
@@ -310,7 +291,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Tambahkan watermark/logo di pojok kiri atas video.</p>
 </div>
 </template>
-
 <!-- ==================== ADVANCED BLOCKS ==================== -->
 <template id="change-codec-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -329,7 +309,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Ubah codec video ke H.265 dan audio ke AAC.</p>
 </div>
 </template>
-
 <template id="compress-video-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Compress Video</h2>
@@ -347,7 +326,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Kompresi video dengan CRF 28 (nilai lebih rendah = kualitas lebih baik).</p>
 </div>
 </template>
-
 <template id="framerate-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Change Framerate</h2>
@@ -365,7 +343,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Ubah framerate video menjadi 60fps.</p>
 </div>
 </template>
-
 <template id="tips-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Tips & Best Practices</h2>
@@ -378,18 +355,15 @@ body { font-family: Inter, sans-serif; }
 </ul>
 </div>
 </template>
-
 <div id="iposbrowser"></div>
 <div style="margin-top:50px;padding:20px;text-align:center;">
 <p class="text-xs text-gray-500">🄯 2025 Command Line Guides | Panduan Interaktif FFmpeg Lengkap</p>
 </div>
-<div id="disqus_thread"></div>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
   const navigation=document.getElementById("navigation");
   const contentDisplay=document.getElementById("content-display");
   const navLinks=document.querySelectorAll(".nav-link");
-
   const contentMap={
     "#mp3-ogg":"mp3-ogg-content",
     "#batch-audio":"batch-audio-content",
@@ -408,7 +382,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     "#framerate":"framerate-content",
     "#tips":"tips-content"
   };
-
   const loadContent=(hash)=>{
     navLinks.forEach(l=>l.classList.remove("active-nav"));
     contentDisplay.innerHTML="";
@@ -422,10 +395,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       contentDisplay.appendChild(welcomeTemplate.content.cloneNode(true));
     }
   };
-
   navigation.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();window.location.hash=e.target.hash;}});
   window.addEventListener("hashchange",()=>loadContent(window.location.hash));
-
   contentDisplay.addEventListener("click",t=>{
     if(t.target.classList.contains("copy-btn")){
       const codeEl=t.target.nextElementSibling.querySelector("code");
@@ -434,7 +405,6 @@ document.addEventListener("DOMContentLoaded",()=>{
       .catch(err=>console.error("Gagal menyalin",err));
     }
   });
-
   if(window.location.hash) loadContent(window.location.hash);
   else loadContent("");
 });
@@ -442,8 +412,5 @@ document.addEventListener("DOMContentLoaded",()=>{
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>
-
