@@ -335,12 +335,7 @@
                 Kisah Umar bin Khattab membuktikan: sekeras-keras hati, tetap bisa berubah kalau Allah sudah berkehendak. Dari penentang jadi pembela Islam sejati—semoga kita bisa ambil hikmahnya!
             </p>
         </section>
-        <div class="share-bar">
-            <button id="share-fb" title="Bagikan ke Facebook">📘</button>
-            <button id="share-twitter" title="Bagikan ke Twitter/X">🐦</button>
-            <button id="share-wa" title="Bagikan ke WhatsApp">🟢</button>
-            <button id="copy-link" title="Salin Link Artikel">🔗</button>
-        </div>
+    <div id="disqus_thread"></div>
         <div class="sources">
             <b>Sumber:</b><br>
             1️⃣ <b>Sirah Ibnu Ishaq & Ibnu Hisyam</b><br>
@@ -421,31 +416,7 @@
                 if (e.key === "ArrowLeft") showPrev();
                 if (e.key === "ArrowRight") showNext();
             });
-            // --- 2. Share Buttons ---
-            const shareUrl = encodeURIComponent(window.location.href);
-            const shareTitle = encodeURIComponent(document.title);
-            document.getElementById('share-fb').addEventListener('click', () => {
-                window.open(`https://www.facebook.com/sharer.php?u=${shareUrl}`, '_blank');
-            });
-            document.getElementById('share-twitter').addEventListener('click', () => {
-                window.open(`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`, '_blank');
-            });
-            document.getElementById('share-wa').addEventListener('click', () => {
-                window.open(`https://wa.me/?text=${shareTitle}%20${shareUrl}`, '_blank');
-            });
-            const copyBtn = document.getElementById('copy-link');
-            copyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    const originalText = copyBtn.innerHTML;
-                    copyBtn.innerHTML = '✔️';
-                    setTimeout(() => {
-                        copyBtn.innerHTML = originalText;
-                    }, 1500);
-                }).catch(() => {
-                    prompt("Gagal menyalin otomatis. Salin manual:", window.location.href);
-                });
-            });
-        });
+                    });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
