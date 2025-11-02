@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'body .artikel-gambar',
       'body main .wp-block-image img',
       'body article img',
-      'body main img'
+      'body main img',
+      'body separator'
+
     ],
 
     minImageWidth: 50,
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Temukan dan filter semua gambar yang relevan
   const potentialImages = findElements(CONFIG.galleryImageSelectors);
-  
+
   // [DIPERBARUI] Filter kini memeriksa lebar DAN ekstensi file
   const galleryImages = Array.from(potentialImages).filter(img => {
     const isWideEnough = img.naturalWidth >= CONFIG.minImageWidth || img.width >= CONFIG.minImageWidth;
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const srcPath = img.src.split('?')[0];
     return allowedExtensions.test(srcPath);
   });
-  
+
   let currentIndex = 0;
 
   // 2. [KONDISI UTAMA] Jika tidak cukup gambar valid, hentikan.
