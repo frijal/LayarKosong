@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keutamaan Menuntut Ilmu (Sebuah Catatan Sejarah)</title>
+    <meta name="description" content="Jejak sejarah ilmu pengetahuan, dari era Yunani (Socrates, Pythagoras) ke era Islam (Ibnu Sina), Renaissance, hingga era modern (Einstein) dan pandangannya dalam Islam.">
+    <link rel="canonical" href="https://frijal.pages.dev/artikel/keutamaan-menuntut-ilmu.html">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <meta property="og:title" content="Keutamaan Menuntut Ilmu (Sebuah Catatan Sejarah)">
+    <meta property="og:description" content="Jejak sejarah ilmu, dari Yunani ke Islam, Renaissance, hingga era modern dan pandangannya dalam Islam.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frijal.pages.dev/artikel/keutamaan-menuntut-ilmu.html">
+    <meta property="og:image" content="https://frijal.pages.dev/img/keutamaan-menuntut-ilmu.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Keutamaan Menuntut Ilmu (Sebuah Catatan Sejarah)">
+    <meta name="twitter:description" content="Jejak sejarah ilmu, dari Yunani ke Islam, Renaissance, hingga era modern dan pandangannya dalam Islam.">
+    <meta name="twitter:image" content="https://frijal.pages.dev/img/keutamaan-menuntut-ilmu.webp">
+    <style>
+        /* 1. CSS Reset & Dasar */
+        :root {
+            /* Tema Terang (Light Mode) - Default */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --header-color: #111111;
+            --link-color: #0056b3;
+            --pre-border: #e0e0e0;
+            --icon-color: #333;
+            --timestamp-color: #777;
+            --dalil-bg: #f5f5f5;
+            --dalil-border: #0056b3;
+            --blockquote-color: #444;
+            --intro-color: #555;
+        }
+        @media (prefers-color-scheme: dark) {
+            /* Tema Gelap (Dark Mode) - Otomatis terdeteksi */
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #e0e0e0;
+                --header-color: #ffffff;
+                --link-color: #58a6ff;
+                --pre-border: #444;
+                --icon-color: #e0e0e0;
+                --timestamp-color: #999;
+                --dalil-bg: #2a2a2a;
+                --dalil-border: #58a6ff;
+                --blockquote-color: #ccc;
+                --intro-color: #bbb;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            min-height: 100%;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* 2. Tata Letak (Widescreen & Responsif) */
+        main {
+            max-width: 900px; /* Desain Widescreen */
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem 1.5rem;
+        }
+        article {
+            width: 100%;
+        }
+        /* 3. Tipografi & Elemen Konten */
+        .article-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--pre-border);
+            padding-bottom: 1.5rem;
+        }
+        .article-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            color: var(--icon-color);
+        }
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--header-color);
+        }
+        .timestamp {
+            color: var(--timestamp-color);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--header-color);
+            border-bottom: 1px solid var(--pre-border);
+            padding-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+        p.intro {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--intro-color);
+            border-bottom: 1px solid var(--pre-border);
+            padding-bottom: 2rem;
+        }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* 4. Elemen Khusus Artikel */
+        /* Blok untuk Dalil (Hadits) */
+        .dalil-block {
+            background-color: var(--dalil-bg);
+            border-left: 5px solid var(--dalil-border);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .dalil-block blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--blockquote-color);
+            margin: 0;
+            padding: 0;
+            font-weight: 500;
+        }
+        .dalil-block blockquote p {
+            margin: 0;
+        }
+        #komentar {
+            margin-top: 4rem;
+        }
+        /* 5. Mobile-Friendly */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            main {
+                padding: 1.5rem 1rem 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article>
+            <header class="article-header">
+                <svg class="article-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
+                </svg>
+                <h1>Keutamaan Menuntut Ilmu</h1>
+            </header>
+            <p class="timestamp"><time datetime="2010-01-17T10:03:00">17 Januari 2010 10:03</time></p>
+            <p class="intro">
+                (Catatan editor: Ini adalah artikel arsip dari tahun 2010. Teks di bawah ini adalah narasi asli yang mencoba merangkum jejak panjang sejarah 'ilmu' dalam peradaban manusia. Selamat bernostalgia dan menikmati!)
+            </p>
+            <h2>Akar Ilmu: Dari Definisi Hingga Era Yunani</h2>
+            <p>
+                Kata ILMU berasal dari Bahasa Arab yaitu ’ALAMA yang berarti mengetahui. Ilmu didefinisikan menjadi pengetahuan tentang sesuatu. Ilmu paling primitif yang sudah ada sejak era yunani antara lain filsafat, matematika, astronomi.
+            </p>
+            <p>
+                Filsafat meliputi konsep alam semisal faham Egosentris, Geosentris, ataupun Heliosentris. Pandangan terakhir dikemukakan SOCRATES. Dalam matematika, PHYTAGORAS menemukan rumusan tentang hubungan sisi Segitiga Siku-Siku.
+            </p>
+            <h2>Jejak Emas: Peradaban Islam dan Cina</h2>
+            <p>
+                Peradaban Yunani kemudian berpindah ke lingkungan Islam pada abad 8H di era Kerajaan Byzantium. Ilmuan Islam turut andil dalam menorehkan Dasar Kedokteran yakni Ibnu Sina atau Aavicenna, Astronomi seperti Umar Khayam.
+            </p>
+            <p>
+                Kala itu di Cina ilmu pengetahuan dan teknologi juga telah dirintis. Penemuan kertas sebagai alat tulis di Cina, pembangunan Tembok Raksasa Cina menunjukkan Negara Cina yang kala itu berbentuk kekaisaran sudah berperadaban maju.
+            </p>
+            <div class="dalil-block">
+                <blockquote>
+                    <p>”Tuntutlah Ilmu Sampai ke Negeri Cina”.</p>
+                </blockquote>
+            </div>
+            <h2>Kebangkitan Eropa: Renaissance & Revolusi Industri</h2>
+            <p>
+                Pengetahuan kemudian beralih ke tangan Umat Kristen setelah Perang Salib. Munculnya gerakan Renaissance di Perancis yang menyebar ke Benua Eropa menghasilkan karya seni ataupun filsafat politik baru serta melahirkan era Industrialisasi. Semangat Renaissance dan Humanisme tersebut menghasilkan konsep ”COBAR DERUM”atau ”Nikmati Hidup”.
+            </p>
+            <p>
+                Di Inggris timbul Revolusi Industri yang berawal dari Konsep Merkantilisme (Industri Rumah Tangga). Revolusi Industri merupakan penerapan dari inovasi teknologi oleh ilmuan pada abad 18. Penemuan Mesin Uap oleh James Watt, Pesawat Terbang oleh Wilbur Wright bersaudara, Mesin Cetak oleh Johann Gutenberg, dan inovasi-inovasi lainnya.
+            </p>
+            <h2>Era Modern: Penemuan Besar dan Dilema Kemanusiaan</h2>
+            <p>
+                Di Amerika, seorang Thomas Alva Edison berhasil menciptakan Lampu Pijar setelah ratusan kali eksperimen, Alexander Graham Bell menciptakan Telepon dan Telegraph. Albert Einstein melakukan penelitian tentang Uranium sebagai bahan baku Bom Atom.
+            </p>
+            <p>
+                Sayangnya penelitiannya disalahgunakan untuk kepentingan Perang Dunia II. Hancurnya Hiroshima dan Nagasaki setelah dibom Amerika membukakan mata kita bahwa ilmu pengetahuan seharusnya ditujukan untuk kemanusiaan ataupun konservasi bumi serta atmosfernya.
+            <h2>Ilmu dan Agama Saling Melengkapi</h2>
+            <p>
+                Dalam Islam ada Hadits Rasulullah:
+            </p>
+            <div class="dalil-block">
+                <blockquote>
+                    <p>”Ilmu Tanpa Agama Buta, Agama Tanpa Ilmu Pincang”</p>
+                </blockquote>
+            </div>
+            <p>
+                Hadits tersebut mengisyaratkan bahwa menuntut ilmu sangat ditekankan dalam Islam, baik Ilmu Agama maupun ilmu lainnya. Mencari ilmu bisa dilakukan secara formal maupun informal. Sekolah merupakan pranala ilmu yang paling dominan dan sekarang menjadi bagian yang tak terpisahkan dari masyarakat kita.
+            </p>
+            <section id="komentar">
+                <div id="disqus_thread"></div>
+            </section>
+        </article>
+    </main>
+
+</body>
+</html>
