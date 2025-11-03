@@ -1,41 +1,61 @@
-name: 🌍 Ping All Feed Sitemap
+name: 🌍 Smart Ping Feeds & Sitemap (Modern SEO Edition)
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 6 * * *' # otomatis setiap hari jam 06:00 UTC (13:00 WIB)
-  push:
-    paths:
-      - 'feed-*.xml'
-      - 'rss.xml'
-      - 'sitemap.xml'
 
 jobs:
-  ping:
+  smart-ping:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Ping feeds and sitemap to search engines
+      - name: Ping only recently updated XMLs
         run: |
           DOMAIN="https://frijal.pages.dev"
           INDEXNOW_KEY="f8399d60e90d46a6945577b73ff3f778"
 
-          FILES=$(ls feed-*.xml rss.xml sitemap.xml | sed "s|^|${DOMAIN}/|")
+          echo "🔎 Mendeteksi file XML yang diubah dalam 24 jam terakhir..."
+          RECENT_FILES=$(find . -maxdepth 1 -type f \( -name "feed-*.xml" -o -name "rss.xml" -o -name "sitemap.xml" \) -mtime -1)
 
-          for URL in $FILES; do
+          if [ -z "$RECENT_FILES" ]; then
+            echo "✅ Tidak ada feed/sitemap yang diubah dalam 24 jam terakhir. Ping dibatalkan."
+            exit 0
+          fi
+
+          echo "📂 File yang akan diping:"
+          echo "$RECENT_FILES"
+          echo "============================================"
+
+          for FILE in $RECENT_FILES; do
+            URL="${DOMAIN}/${FILE#./}"
             echo "🔔 Mem-ping: $URL"
 
-          curl -s "https://pingomatic.com/ping/?title=Frijal+Feed&blogurl=${URL}&rssurl=${URL}" || true
-          curl -s "https://feedburner.google.com/fb/a/pingSubmit?bloglink=${URL}" || true
-          curl -s -d "url=${URL}" https://rpc.twingly.com/ || true
-          curl -s -d "name=Frijal&url=${URL}" http://rpc.weblogs.com/RPC2 || true
-          curl -s "https://api.indexnow.org/indexnow?url=${URL}&key=${INDEXNOW_KEY}" || true
-          curl -s "https://www.bing.com/ping?sitemap=${URL}" || true
+            # 🌍 Ping-o-matic (multi aggregator)
+            curl -s "https://pingomatic.com/ping/?title=Frijal+Feed&blogurl=${URL}&rssurl=${URL}" || true
 
-          sleep 5
-            echo "✅ Ping selesai untuk: $URL"
+            # 🔥 FeedBurner
+            curl -s "https://feedburner.google.com/fb/a/pingSubmit?bloglink=${URL}" || true
+
+            # 🔗 Twingly
+            curl -s -d "url=${URL}" https://rpc.twingly.com/ || true
+
+            # 📰 Weblogs.com
+            curl -s -d "name=Frijal&url=${URL}" http://rpc.weblogs.com/RPC2 || true
+
+            # ⚡ IndexNow (Bing, Yandex, Naver, Seznam)
+            curl -s "https://api.indexnow.org/indexnow?url=${URL}&key=${INDEXNOW_KEY}" || true
+
+            # 🔍 Bing Webmaster Ping
+            curl -s "https://www.bing.com/ping?sitemap=${URL}" || true
+
+            echo "✅ Ping sukses dikirim: $URL"
+            echo "---------------------------------------------"
+
+            # jeda 5 detik agar aman dari rate-limit
+            sleep 5
           done
 
-            echo "🎉 Semua feed & sitemap sukses dikirim ke mesin pencari modern!"
+          echo "🎉 Semua file terbaru berhasil diping ke layanan modern!"
