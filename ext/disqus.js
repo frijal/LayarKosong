@@ -1,56 +1,58 @@
+<script>
 var disqus_config = function () {
-    this.page.url = window.location.href;
-    this.page.identifier = window.location.pathname;
-
-    // --- LOGIKA DETEKSI TEMA START ---
-
-    // 1. Definisikan Skema Warna Dasar
-    var textColorForDark = '#ffffff'; // Teks Putih untuk Dark Mode
-    var textColorForLight = '#333333'; // Teks Hitam Gelap untuk Light Mode
-    var bgColorForDark = '#1a1a1a'; // Latar Belakang Gelap (sesuaikan dengan warna latar website Anda)
-    var bgColorForLight = '#ffffff'; // Latar Belakang Terang
-
-    // 2. Deteksi preferensi tema sistem pengguna
-    var isDarkModeActive = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    var textColor = isDarkModeActive ? textColorForDark : textColorForLight;
-    var bgColor = isDarkModeActive ? bgColorForDark : bgColorForLight;
-    
-    // --- LOGIKA DETEKSI TEMA END ---
-
-    // 3. Inject CSS ke dalam Disqus dengan warna yang sudah ditentukan
-    this.config.injectCss = `
-        /* Warna teks komentar utama */
-        .post-body p, 
-        .comment-header, 
-        .publisher-nav {
-            color: ${textColor} !important;
-        }
-
-        /* Warna tautan (link) agar terlihat jelas */
-        a {
-            color: ${isDarkModeActive ? '#90CAF9' : '#1a73e8'} !important; 
-        }
-
-        /* Latar Belakang Disqus agar sesuai */
-        body, .thread, .comment-box {
-            background-color: ${bgColor} !important;
-        }
-
-        /* Pastikan elemen UI lain yang mungkin berwarna gelap ikut direset jika dark mode */
-        .header, .footer {
-            background-color: ${bgColor} !important;
-            color: ${textColor} !important;
-        }
-    `;
-
-    // OPSIONAL: Mengaktifkan mode warna bawaan Disqus berdasarkan deteksi
-    this.config.colorScheme = isDarkModeActive ? 'dark' : 'light';
+  this.page.url = window.location.href;
+  this.page.identifier = window.location.pathname;
 };
 
-(function() { // JANGAN EDIT DI BAWAH BARIS INI
-var d = document, s = d.createElement('script');
-s.src = 'https://layarkosong.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+// === Jangan edit di bawah ini ===
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://layarkosong.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+
+  // 🔧 Inject CSS setelah Disqus iframe dimuat
+  var observer = new MutationObserver(function(mutations, obs) {
+    var iframe = document.querySelector('iframe[id^="dsq-app"]');
+    if (iframe) {
+      try {
+        var css = `
+          html, body {
+            color: inherit !important;
+            background: transparent !important;
+            font: inherit !important;
+          }
+          body, div, p, span, a {
+            color: var(--disqus-text, inherit) !important;
+            font: inherit !important;
+          }
+          a { text-decoration: underline !important; }
+          .post-message, .comment, .reply, .text {
+            color: inherit !important;
+          }
+        `;
+        var style = iframe.contentDocument.createElement('style');
+        style.textContent = css;
+
+        // deteksi tema dark/light dari sistem pengguna
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) {
+          iframe.contentDocument.body.style.color = '#e0e0e0';
+          iframe.contentDocument.body.style.background = 'transparent';
+        } else {
+          iframe.contentDocument.body.style.color = '#222';
+          iframe.contentDocument.body.style.background = 'transparent';
+        }
+
+        iframe.contentDocument.head.appendChild(style);
+      } catch(e) {
+        console.warn('Gagal inject CSS ke Disqus:', e);
+      }
+      obs.disconnect();
+    }
+  });
+
+  observer.observe(document, { childList: true, subtree: true });
 })();
+</script>
+
