@@ -11,7 +11,6 @@
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="https://frijal.pages.dev/favicon.ico">
   <link rel="canonical" id="canonical-link" href="https://frijal.pages.dev/artikel/linux-vs-windows-updates.html">
-
   <!-- Open Graph -->
   <meta property="og:title" content="Linux vs. Windows: Si Transparan dan Si Misterius dalam Dunia Update">
   <meta property="og:description" content="Narasi santai membandingkan pengalaman update dan instalasi antara Linux dan Windows, tentang transparansi, kontrol, dan kenyamanan pengguna.">
@@ -22,14 +21,12 @@
   <meta property="og:image:alt" content="Linux vs Windows Update">
   <meta property="article:section" content="Teknologi">
   <meta property="article:tag" content="Linux, Windows, Update, Instalasi, Transparansi, OS">
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Linux vs. Windows: Si Transparan dan Si Misterius dalam Dunia Update">
   <meta name="twitter:description" content="Narasi santai membandingkan pengalaman update dan instalasi antara Linux dan Windows, tentang transparansi, kontrol, dan kenyamanan pengguna.">
   <meta name="twitter:image" id="twitter-image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje4G0Kejhn9T2u8gLzznStttUUM5qGS8af4r3cjrMtP56Wtgp67a9U0cGchX1IWwbAve7_D_ZLi1a-mCDs2OXK5gpFbdIf7wk1KkIHsvxpPX9KMxgdKctnDNHUjmnO5dSsJ7jAuNguuP4KEO23fDHwwEnNTGDAeDlt3yEnflRtK0ZLn5UUkQyKDanBv6g/s1600/hasil_horizontal_1.jpg">
   <meta name="twitter:site" content="@frijal">
-
   <!-- CSS: Single-column wide fullscreen, mobile-friendly, berbeda dari versi sebelumnya -->
   <style>
     :root {
@@ -235,9 +232,7 @@
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important }
     }
-
   </style>
-
   <!-- Structured data: Article -->
   <script id="ld-json" type="application/ld+json">
   {
@@ -255,9 +250,7 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-05-25T23:20:38.191+00:00">
 </head>
-
 <body>
-
   <!-- Topbar -->
   <header class="topbar" role="navigation">
     <div class="wrap">
@@ -275,13 +268,11 @@
             </div>
     </div>
   </header>
-
   <main>
     <section class="hero" role="banner">
       <h1>Linux vs. Windows: Si Transparan dan Si Misterius dalam Dunia Update</h1>
 <div id="iposbrowser"></div>
       <p class="dek">Perbandingan santai soal update: Linux yang jujur dan detail, versus Windows yang suka bikin penasaran. Mana yang bikin kamu lebih tenang?</p>
-
       <!-- Hero image / fallback-aware -->
       <figure class="zoomable" style="margin:0">
         <img id="hero-image"
@@ -291,7 +282,6 @@
         <figcaption style="color:#5e738a">Ilustrasi singkat dua dunia update: yang transparan dan yang misterius.</figcaption>
       </figure>
     </section>
-
     <section class="content" aria-label="Isi Artikel">
       <!-- Narasi asli + sedikit pelengkap santai -->
       <article class="block" id="linux">
@@ -320,7 +310,6 @@
           Intinya, ekosistem Linux itu tanpa rahasia. Lognya berbentuk teks polos, errornya spesifik, dan solusinya bisa kamu cari cepat. Rasanya seperti punya partner kerja yang selalu cerita jujur apa yang sedang dikerjakan di sistemmu.
         </p>
       </article>
-
       <article class="block" id="windows">
         <h2>Windows: si misterius yang suka bikin penasaran</h2>
         <p>
@@ -347,7 +336,6 @@
           Windows itu seperti seseorang yang bilang “Serahkan padaku,” lalu bekerja di balik pintu tertutup. Kamu menunggu di luar, menanti kabar baik, atau setidaknya penjelasan yang lebih jelas.
         </p>
       </article>
-
       <article class="block" id="kesimpulan">
         <h2>Kesimpulan santai</h2>
         <p>
@@ -356,8 +344,8 @@
         <p class="quote">
           “Kalau kamu suka tahu detil apa yang terjadi di balik layar, Linux terasa menenangkan. Kalau kamu ingin semuanya ‘beres saja’ tanpa intervensi, Windows bisa jadi nyaman, asal siap menunggu.”
         </p>
+               <div id="disqus_thread"></div>
       </article>
-
       <!-- Galeri foto (lazy-load) -->
       <section class="block" aria-label="Galeri Foto">
         <h2>Galeri foto</h2>
@@ -381,13 +369,9 @@
             <figcaption>Linux vs Windows secara visual</figcaption>
           </figure>
         </div>
-
-       <div id="disqus_thread"></div>
       </section>
-
         </section>
   </main>
-
   <!-- Lightbox overlay -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Lightbox Gambar">
     <button class="lb-btn lb-close" aria-label="Tutup lightbox">
@@ -404,32 +388,25 @@
     <img id="lb-image" alt="">
     <div class="lb-index" id="lb-index">1 / 3</div>
   </div>
-
   <!-- JS: SEO hydration, share, lightbox, info chips (browser/OS/IP/flag), accessibility, fallbacks -->
   <script>
     (function() {
       const safe = (f) => { try { f(); } catch (e) { /* tetap lanjut */ } };
-
       // Canonical & OG/Twitter url/image meta auto dari lokasi saat ini + fallback artikel/*.jpg
       safe(() => {
         const url = new URL(window.location.href);
         const canonical = document.querySelector('#canonical-link');
-
         if (canonical) canonical.href = url.href;
         if (ogUrl) ogUrl.content = url.href;
-
         const path = url.pathname; // e.g., /artikel/linux-vs-windows-updates.html
         const jpgFallback = path.endsWith('.html')
           ? url.origin + path.replace('.html', '.jpg')
           : url.origin + '/artikel/fallback.jpg';
-
         const articleImgs = Array.from(document.querySelectorAll('img'));
         const firstValid = articleImgs.find(i => i && i.src);
         const finalImg = firstValid ? firstValid.src : jpgFallback;
-
         if (ogImg) ogImg.content = finalImg;
         if (twImg) twImg.content = finalImg;
-
         // Update LD+JSON image juga
         const ld = document.querySelector('#ld-json');
         if (ld) {
@@ -438,7 +415,6 @@
           ld.textContent = JSON.stringify(data);
         }
       });
-
       // Estimasi waktu baca ~200 kata/menit
       safe(() => {
         const text = document.body.innerText || "";
@@ -447,7 +423,6 @@
         const el = document.querySelector('#read-time span');
         if (el) el.textContent = `Waktu baca: ~${min} menit`;
       });
-
       // Lightbox gallery with arrow keys
       safe(() => {
         const lb = document.getElementById('lightbox');
@@ -458,7 +433,6 @@
         const close = lb.querySelector('.lb-close');
         const items = Array.from(document.querySelectorAll('.gallery img, #hero-image'));
         let idx = 0;
-
         const openAt = (i) => {
           idx = i;
           lbImg.src = items[idx].src;
@@ -476,7 +450,6 @@
           lbImg.src = items[idx].src;
           lbIndex.textContent = `${idx+1} / ${items.length}`;
         };
-
         document.querySelectorAll('.zoomable').forEach((fig, i) => {
           fig.addEventListener('click', () => openAt(i));
         });
@@ -491,7 +464,6 @@
           if (e.key === 'ArrowRight') step(+1);
         });
       });
-
       // Fallback hero image ke /artikel/*.jpg bila gagal
       safe(() => {
         const img = document.getElementById('hero-image');
@@ -504,11 +476,8 @@
       });
     })();
   </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>
