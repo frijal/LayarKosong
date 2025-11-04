@@ -1,80 +1,72 @@
 // /ext/disqus.js
 (function() {
-  // 1. Buat elemen bingkai/tombol komentar (💬)
+  // 1. Buat elemen tombol komentar
   const btn = document.createElement('button');
   btn.id = 'show-comments';
   
-  // Perubahan: Tambahkan spasi non-breaking space (&nbsp;) antara ikon dan tempat angka
+  // Konten: Ikon 💬 diikuti spasi (&nbsp;) dan tempat angka
   btn.innerHTML = '💬&nbsp;'; 
   
   // Span untuk hitungan (sekarang akan terlihat)
   const countSpan = document.createElement('span');
   countSpan.className = 'disqus-comment-count';
   countSpan.setAttribute('data-disqus-identifier', window.location.pathname);
-  // countSpan.style.display = 'none'; // Baris ini dihapus untuk menampilkan angka
+  // Tidak ada display:none, sehingga angka akan terlihat
   btn.appendChild(countSpan);
   
-  // 2. CSS untuk Bingkai, Responsif, dan Dark/Light Theme
+  // 2. CSS untuk Transparansi, Posisi Tengah, dan Adaptasi Tema
   
   // Tentukan warna default (Light Mode)
   let textColor = '#333';
-  let borderColor = '#ccc';
   let hoverColor = '#0078ff';
 
   // Periksa preferensi tema pengguna (Dark Mode)
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     textColor = '#ddd';
-   /* borderColor = '#555'; */
     hoverColor = '#66b3ff';
   }
 
   btn.style.cssText = `
+    /* Hapus Bingkai & Background */
+    background:transparent; 
+    border:none; /* Hapus border/bingkai */
+    
     /* Flexbox untuk penataan ikon dan angka */
     display:inline-flex;
     align-items:center;
     justify-content:center; /* Perubahan: Mengatur konten di tengah horizontal */
     
-    /* Tampilan Bingkai dan Adaptasi Tema */
-    background:transparent; 
+    /* Adaptasi Tema & Teks */
     color:${textColor}; 
-  /*  border:2px solid ${borderColor};  */
-/*    border-radius:8px; */
+    border-radius:0; /* Tidak perlu radius */
     
-    /* Perubahan: Menggunakan unit viewport (vw) atau unit relatif besar, 
-       atau lebih baik menggunakan properti 'inherit' atau '1.5rem' yang besar */
-    font-size:1.5rem; 
+    /* Ukuran dan Responsif (Mengikuti H1 jika ada) */
+    font-size:inherit; /* Default besar jika H1 tidak ditemukan */
     line-height:1;
-    padding:10px 18px; /* Padding disesuaikan */
+    padding:5px 8px; /* Padding minimal agar mudah diklik */
     cursor:pointer;
     transition:all 0.3s ease;
     
     /* Gaya lainnya */
     box-shadow:none;
-    position:center;
+    position:relative;
     overflow:hidden;
-    /* Pastikan tampilan responsive di mobile */
-    min-width:60px; /* Ukuran sentuh yang lebih besar */
-    height:auto; /* Tinggi disesuaikan dengan padding dan font */
   `;
   
   // Perubahan: Atur agar font size tombol mengikuti ukuran H1
-  // Ini adalah cara yang lebih baik untuk mengikuti ukuran elemen lain
   const h1Element = document.querySelector('h1');
   if (h1Element) {
     btn.style.fontSize = getComputedStyle(h1Element).fontSize;
-    btn.style.padding = '10px 18px'; // Sesuaikan padding agar terlihat bagus dengan font besar
+    btn.style.padding = '5px 8px'; 
   } else {
-    // Jika H1 tidak ada, gunakan ukuran default besar yang responsif
-    btn.style.fontSize = '1.5rem'; 
+    btn.style.fontSize = 'inherit'; 
   }
 
-  // Efek hover sederhana (adaptif)
+  // Efek hover sederhana (hanya perubahan warna teks)
   btn.addEventListener('mouseover', () => {
-    btn.style.borderColor = hoverColor;
     btn.style.color = hoverColor;
   });
   btn.addEventListener('mouseout', () => {
-    btn.style.borderColor = borderColor;
     btn.style.color = textColor;
   });
 
@@ -92,8 +84,7 @@
   countScript.async = true;
   document.head.appendChild(countScript);
 
-  // ... (Fungsi loadDisqus dan event listener tetap sama)
-  
+  // Fungsi untuk memuat embed Disqus saat tombol diklik
   let disqusLoaded = false;
   function loadDisqus() {
     if (disqusLoaded) return;
