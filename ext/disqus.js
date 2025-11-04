@@ -1,5 +1,5 @@
 (function() {
-  // Fungsi bantu untuk mendeteksi kecerahan warna
+  // Deteksi kecerahan warna
   function isColorDark(hex) {
     if (!hex) return true;
     hex = hex.replace('#', '');
@@ -7,43 +7,67 @@
     const r = parseInt(hex.substr(0, 2), 16);
     const g = parseInt(hex.substr(2, 2), 16);
     const b = parseInt(hex.substr(4, 2), 16);
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    const luminance = (0.299*r + 0.587*g + 0.114*b) / 255;
     return luminance < 0.5;
   }
 
-  // Ambil CSS variable
   function getCSSVar(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
 
-  // Warna bingkai otomatis berlawanan dengan background
   function getContrastColor() {
-    const bg = getCSSVar('--bg') || '#000';
-    const ink = getCSSVar('--ink') || '#fff';
+    const bg = getCSSVar('--bg') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? '#000' : '#fff');
+    const ink = getCSSVar('--ink') || (isColorDark(bg) ? '#fff' : '#000');
     return isColorDark(bg) ? ink : bg;
   }
 
-  // Buat tombol 💬
+  // ====== Buat wrapper tombol di tengah ======
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:2.4rem 0;
+    width:100%;
+    text-align:center;
+  `;
+
+  // ====== Tombol 💬 ======
   const btn = document.createElement('button');
   btn.id = 'show-comments';
-  btn.innerHTML = '💬&nbsp;<span class="disqus-comment-count" data-disqus-identifier="' + window.location.pathname + '"></span>';
+  btn.innerHTML = '💬';
   btn.style.cssText = `
     display:inline-flex;
     align-items:center;
     justify-content:center;
     font: inherit;
-    font-size:1.4rem;
-    padding:10px 18px;
-    border-radius:9999px;
-    border:1.8px solid;
+    font-size:1.6rem;
+    width:3.4rem;
+    height:3.4rem;
+    border-radius:50%;
+    border:2px solid;
     background:transparent;
     cursor:pointer;
-    transition:all .3s ease;
-    position:relative;
-    backdrop-filter: blur(6px);
+    transition:transform .25s ease, opacity .25s ease;
+    -webkit-tap-highlight-color: transparent;
   `;
 
-  // Terapkan warna otomatis kontras dengan background
+  wrapper.appendChild(btn);
+
+  // Pastikan disisipkan setelah elemen komentar ada
+  function insertButton() {
+    const disqusDiv = document.getElementById('disqus_thread');
+    if (!disqusDiv || !disqusDiv.parentNode) {
+      setTimeout(insertButton, 300);
+      return;
+    }
+    disqusDiv.style.display = 'none';
+    disqusDiv.style.transition = 'opacity .6s ease';
+    disqusDiv.parentNode.insertBefore(wrapper, disqusDiv);
+  }
+  insertButton();
+
+  // Terapkan warna kontras
   function applyTheme() {
     const color = getContrastColor();
     btn.style.color = color;
@@ -51,40 +75,20 @@
   }
   applyTheme();
 
-  // Efek hover halus
-  btn.addEventListener('mouseenter', () => {
-    btn.style.transform = 'scale(1.08)';
-    btn.style.opacity = '0.8';
-  });
-  btn.addEventListener('mouseleave', () => {
+  // Efek tekan (mobile-friendly)
+  function pressEffect(e) {
+    btn.style.transform = 'scale(0.92)';
+    btn.style.opacity = '0.6';
+  }
+  function releaseEffect(e) {
     btn.style.transform = 'scale(1)';
     btn.style.opacity = '1';
-  });
-
-  // Bungkus di tengah
-  const wrapper = document.createElement('div');
-  wrapper.style.cssText = `
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:2.8rem 0;
-  `;
-  wrapper.appendChild(btn);
-
-  // Tempat komentar
-  const disqusDiv = document.getElementById('disqus_thread');
-  if (disqusDiv) {
-    disqusDiv.style.display = 'none';
-    disqusDiv.style.transition = 'opacity .6s ease';
-    disqusDiv.parentNode.insertBefore(wrapper, disqusDiv);
   }
-
-  // Muat count.js untuk menghitung komentar
-  const countScript = document.createElement('script');
-  countScript.src = 'https://layarkosong.disqus.com/count.js';
-  countScript.id = 'dsq-count-scr';
-  countScript.async = true;
-  document.head.appendChild(countScript);
+  btn.addEventListener('touchstart', pressEffect, {passive:true});
+  btn.addEventListener('touchend', releaseEffect, {passive:true});
+  btn.addEventListener('mousedown', pressEffect);
+  btn.addEventListener('mouseup', releaseEffect);
+  btn.addEventListener('mouseleave', releaseEffect);
 
   // Konfigurasi Disqus
   window.disqus_config = function () {
@@ -92,13 +96,21 @@
     this.page.identifier = window.location.pathname;
   };
 
-  // Klik tombol untuk menampilkan kolom komentar
+  // Muat count.js
+  const countScript = document.createElement('script');
+  countScript.src = 'https://layarkosong.disqus.com/count.js';
+  countScript.id = 'dsq-count-scr';
+  countScript.async = true;
+  document.head.appendChild(countScript);
+
+  // Klik untuk tampilkan Disqus
   let disqusLoaded = false;
   btn.addEventListener('click', () => {
     if (disqusLoaded) return;
     disqusLoaded = true;
+    const disqusDiv = document.getElementById('disqus_thread');
     disqusDiv.style.display = 'block';
-    setTimeout(() => disqusDiv.style.opacity = '1', 30);
+    setTimeout(() => disqusDiv.style.opacity = '1', 50);
 
     const s = document.createElement('script');
     s.src = 'https://layarkosong.disqus.com/embed.js';
@@ -106,14 +118,13 @@
     (document.head || document.body).appendChild(s);
 
     wrapper.style.transition = 'opacity .4s ease, transform .4s ease';
-    wrapper.style.transform = 'scale(0.9)';
     wrapper.style.opacity = '0';
+    wrapper.style.transform = 'scale(0.9)';
     setTimeout(() => wrapper.remove(), 400);
   });
 
-  // Perhatikan perubahan tema (prefers-color-scheme, dsb)
-  const observer = new MutationObserver(applyTheme);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+  // Perubahan tema di mobile
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  mq.addEventListener ? mq.addEventListener('change', applyTheme)
+                      : mq.addListener(applyTheme);
 })();
-
