@@ -24,7 +24,7 @@
   // Periksa preferensi tema pengguna (Dark Mode)
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     textColor = '#ddd';
-    borderColor = '#555';
+   /* borderColor = '#555'; */
     hoverColor = '#66b3ff';
   }
 
@@ -37,8 +37,8 @@
     /* Tampilan Bingkai dan Adaptasi Tema */
     background:transparent; 
     color:${textColor}; 
-    border:2px solid ${borderColor}; 
-    border-radius:8px; 
+  /*  border:2px solid ${borderColor};  */
+/*    border-radius:8px; */
     
     /* Perubahan: Menggunakan unit viewport (vw) atau unit relatif besar, 
        atau lebih baik menggunakan properti 'inherit' atau '1.5rem' yang besar */
@@ -50,7 +50,7 @@
     
     /* Gaya lainnya */
     box-shadow:none;
-    position:relative;
+    position:center;
     overflow:hidden;
     /* Pastikan tampilan responsive di mobile */
     min-width:60px; /* Ukuran sentuh yang lebih besar */
