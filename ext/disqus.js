@@ -1,55 +1,30 @@
-var disqus_config = function () {
-  this.page.url = window.location.href;
-  this.page.identifier = window.location.pathname;
-};
+  // Konfigurasi halaman untuk Disqus
+  var disqus_config = function () {
+    this.page.url = window.location.href;  
+    this.page.identifier = window.location.pathname;
+  };
 
-// === Jangan edit di bawah ini ===
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://layarkosong.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
+  // Fungsi untuk memuat script Disqus
+  function loadDisqus() {
+    if (window.disqusLoaded) return; // cegah duplikat load
+    window.disqusLoaded = true;
 
-  // 🔧 Inject CSS setelah Disqus iframe dimuat
-  var observer = new MutationObserver(function(mutations, obs) {
-    var iframe = document.querySelector('iframe[id^="dsq-app"]');
-    if (iframe) {
-      try {
-        var css = `
-          html, body {
-            color: inherit !important;
-            background: transparent !important;
-            font: inherit !important;
-          }
-          body, div, p, span, a {
-            color: var(--disqus-text, inherit) !important;
-            font: inherit !important;
-          }
-          a { text-decoration: underline !important; }
-          .post-message, .comment, .reply, .text {
-            color: inherit !important;
-          }
-        `;
-        var style = iframe.contentDocument.createElement('style');
-        style.textContent = css;
+    const d = document, s = d.createElement('script');
+    s.src = 'https://layarkosong.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  }
 
-        // deteksi tema dark/light dari sistem pengguna
-        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (dark) {
-          iframe.contentDocument.body.style.color = '#e0e0e0';
-          iframe.contentDocument.body.style.background = 'transparent';
-        } else {
-          iframe.contentDocument.body.style.color = '#222';
-          iframe.contentDocument.body.style.background = 'transparent';
-        }
+  // Gunakan IntersectionObserver untuk lazy load Disqus
+  const komentarSection = document.getElementById('disqus_thread');
 
-        iframe.contentDocument.head.appendChild(style);
-      } catch(e) {
-        console.warn('Gagal inject CSS ke Disqus:', e);
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadDisqus();
+        observer.unobserve(komentarSection); // berhenti mengamati
       }
-      obs.disconnect();
-    }
-  });
+    });
+  }, { threshold: 0.1 }); // aktif saat 10% area terlihat
 
-  observer.observe(document, { childList: true, subtree: true });
-})();
+  observer.observe(komentarSection);
