@@ -5,8 +5,8 @@
     const isBodyDark = document.body.classList.contains('dark') || document.documentElement.classList.contains('dark');
 
     if (isDark || isBodyDark) {
-      btn.style.color = 'var(--text-color, #f1f1f1)';
-      btn.style.borderColor = 'var(--text-color, #f1f1f1)';
+      btn.style.color = 'var(--text-color, #ffffff)';
+      btn.style.borderColor = 'var(--text-color, #ffffff)';
     } else {
       btn.style.color = 'var(--text-color, #111)';
       btn.style.borderColor = 'var(--text-color, #111)';
