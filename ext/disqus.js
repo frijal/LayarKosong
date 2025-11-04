@@ -21,10 +21,10 @@
     }
   }
 
-  // 🔹 Buat tombol komentar
+  // 🔹 Buat tombol tanggapan
   const btn = document.createElement('button');
   btn.id = 'show-comments';
-  btn.innerHTML = '💬 <span class="disqus-comment-count" data-disqus-identifier="' + window.location.pathname + '"></span> Komentar';
+  btn.innerHTML = '💬 <span class="disqus-comment-count" data-disqus-identifier="' + window.location.pathname + '"></span> tanggapan';
   btn.style.cssText = `
     display:inline-flex;
     align-items:center;
@@ -64,7 +64,7 @@
     disqusDiv.parentNode.insertBefore(wrapper, disqusDiv);
   }
 
-  // 🔹 Muat count.js untuk menghitung komentar
+  // 🔹 Muat count.js untuk menghitung tanggapan
   const countScript = document.createElement('script');
   countScript.src = 'https://layarkosong.disqus.com/count.js';
   countScript.id = 'dsq-count-scr';
@@ -77,7 +77,7 @@
     this.page.identifier = window.location.pathname;
   };
 
-  // 🔹 Hilangkan angka “0” jika belum ada komentar
+  // 🔹 Hilangkan angka “0” jika belum ada tanggapan
   countScript.addEventListener('load', () => {
     const span = btn.querySelector('.disqus-comment-count');
     const val = span.textContent.trim();
@@ -89,7 +89,7 @@
     }
   });
 
-  // 🔹 Muat komentar Disqus hanya setelah diklik
+  // 🔹 Muat tanggapan Disqus hanya setelah diklik
   let disqusLoaded = false;
   function loadDisqus() {
     if (disqusLoaded) return;
