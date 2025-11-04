@@ -25,6 +25,6 @@
         observer.unobserve(komentarSection); // berhenti mengamati
       }
     });
-  }, { threshold: 0.1 }); // aktif saat 10% area terlihat
+  }, { threshold: 1 }); // aktif saat 10% area terlihat
 
   observer.observe(komentarSection);
