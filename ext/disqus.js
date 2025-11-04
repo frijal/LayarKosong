@@ -15,17 +15,7 @@
   
   // 2. CSS untuk Transparansi, Posisi Tengah, dan Font/Warna Inherit
   
-  // Tentukan warna hover (hanya ini yang tidak di-inherit)
-  let hoverColor = '#0078ff';
-
-  // Periksa preferensi tema pengguna (Dark Mode) untuk warna hover
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // Hanya hoverColor yang dipertahankan karena textColor akan menggunakan inherit
-    hoverColor = '#66b3ff';
-  }
-  
-  // ❌ Variabel textColor telah dihapus karena kita akan menggunakan inherit di CSS
-  // ❌ Logika if/else untuk textColor dihapus
+  // ❌ Variabel hoverColor telah dihapus karena tidak lagi digunakan.
 
   btn.style.cssText = `
     /* Hapus Bingkai & Background */
@@ -37,16 +27,16 @@
     align-items:center;
     justify-content:center;
     
-    /* Perubahan: Warna teks menggunakan inherit */
+    /* Warna teks menggunakan inherit */
     color:inherit; 
     border-radius:0; 
     
     /* Font size juga menggunakan inherit */
     font-size:inherit; 
     line-height:1;
-    padding:5px 8px; /* Padding minimal agar mudah diklik */
+    padding:5px 8px; 
     cursor:pointer;
-    transition:all 0.3s ease;
+    transition:all 0.3s ease; /* Transisi dipertahankan untuk animasi klik */
     
     /* Gaya lainnya */
     box-shadow:none;
@@ -54,15 +44,8 @@
     overflow:hidden;
   `;
   
-  // Efek hover sederhana (hanya perubahan warna teks)
-  btn.addEventListener('mouseover', () => {
-    // Gunakan hoverColor yang sudah disesuaikan tema
-    btn.style.color = hoverColor; 
-  });
-  btn.addEventListener('mouseout', () => {
-    // Kembali menggunakan warna inherit
-    btn.style.color = 'inherit'; 
-  });
+  // ❌ Fungsi hover (btn.addEventListener('mouseover')) telah dihilangkan.
+  // ❌ Fungsi mouseout (btn.addEventListener('mouseout')) telah dihilangkan.
 
   // Masukkan tombol di atas kolom komentar Disqus
   const disqusDiv = document.getElementById('disqus_thread');
