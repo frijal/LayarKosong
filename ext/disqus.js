@@ -50,27 +50,27 @@
   `;
   wrapper.appendChild(btn);
 
-  // 🔹 Sembunyikan Disqus
+  // 🔹 Sembunyikan Disqus dulu
   const disqusDiv = document.getElementById('disqus_thread');
   if (disqusDiv) {
     disqusDiv.style.display = 'none';
     disqusDiv.parentNode.insertBefore(wrapper, disqusDiv);
   }
 
-  // 🔹 Muat count.js
+  // 🔹 Muat count.js (untuk jumlah tanggapan)
   const countScript = document.createElement('script');
   countScript.src = 'https://layarkosong.disqus.com/count.js';
   countScript.id = 'dsq-count-scr';
   countScript.async = true;
   document.head.appendChild(countScript);
 
-  // 🔹 Konfigurasi Disqus
+  // 🔹 Konfigurasi dasar Disqus
   window.disqus_config = function () {
     this.page.url = window.location.href;
     this.page.identifier = window.location.pathname;
   };
 
-  // 🔹 Muat tanggapan saat tombol diklik
+  // 🔹 Klik tombol = tampilkan tanggapan
   let disqusLoaded = false;
   function loadDisqus() {
     if (disqusLoaded) return;
@@ -86,6 +86,7 @@
     s.setAttribute('data-timestamp', +new Date());
     (document.head || document.body).appendChild(s);
 
+    // Tombol fade out
     wrapper.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     wrapper.style.transform = 'scale(0.9)';
     wrapper.style.opacity = '0';
@@ -94,18 +95,11 @@
 
   btn.addEventListener('click', loadDisqus);
 
-  // 🔹 Pantau perubahan tema
+  // 🔹 Deteksi perubahan tema otomatis
   const themeWatcher = window.matchMedia('(prefers-color-scheme: dark)');
   themeWatcher.addEventListener('change', () => applyTheme(btn));
-  setInterval(() => applyTheme(btn), 1000);
 
-  // 🔹 Tambahkan logika otomatis ubah "💬 0 tanggapan" → "💬 tanggapan"
-  const observer = new MutationObserver(() => {
-    const text = btn.textContent.trim();
-    if (text === '💬 0 tanggapan') {
-      btn.textContent = '💬 tanggapan';
-    }
-  });
-  observer.observe(btn, { childList: true, subtree: true, characterData: true });
+  // 🔹 Perbarui warna jika tema situs berubah manual (misal class .dark)
+  setInterval(() => applyTheme(btn), 1000);
 })();
 
