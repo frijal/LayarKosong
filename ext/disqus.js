@@ -1,5 +1,6 @@
+<script>
 (function() {
-  // Deteksi kecerahan warna
+  // ===== Deteksi kecerahan warna =====
   function isColorDark(hex) {
     if (!hex) return true;
     hex = hex.replace('#', '');
@@ -21,7 +22,7 @@
     return isColorDark(bg) ? ink : bg;
   }
 
-  // ====== Buat wrapper tombol di tengah ======
+  // ===== Wrapper tombol =====
   const wrapper = document.createElement('div');
   wrapper.style.cssText = `
     display:flex;
@@ -32,29 +33,34 @@
     text-align:center;
   `;
 
-  // ====== Tombol 💬 ======
+  // ===== Tombol 💬 + counter =====
   const btn = document.createElement('button');
   btn.id = 'show-comments';
-  btn.innerHTML = '💬';
   btn.style.cssText = `
     display:inline-flex;
     align-items:center;
     justify-content:center;
+    gap:0.4rem;
     font: inherit;
     font-size:1.6rem;
-    width:3.4rem;
+    padding:0 1.2rem;
     height:3.4rem;
-    border-radius:50%;
+    border-radius:2rem;
     border:2px solid;
     background:transparent;
     cursor:pointer;
     transition:transform .25s ease, opacity .25s ease;
     -webkit-tap-highlight-color: transparent;
   `;
+  btn.innerHTML = `
+    💬&nbsp; <span class="disqus-comment-count" 
+      data-disqus-url="${window.location.href}" 
+      style="font-size:1.3rem;opacity:0.8;"></span>
+  `;
 
   wrapper.appendChild(btn);
 
-  // Pastikan disisipkan setelah elemen komentar ada
+  // ===== Sisipkan sebelum Disqus =====
   function insertButton() {
     const disqusDiv = document.getElementById('disqus_thread');
     if (!disqusDiv || !disqusDiv.parentNode) {
@@ -67,7 +73,7 @@
   }
   insertButton();
 
-  // Terapkan warna kontras
+  // ===== Tema =====
   function applyTheme() {
     const color = getContrastColor();
     btn.style.color = color;
@@ -75,35 +81,29 @@
   }
   applyTheme();
 
-  // Efek tekan (mobile-friendly)
-  function pressEffect(e) {
-    btn.style.transform = 'scale(0.92)';
-    btn.style.opacity = '0.6';
-  }
-  function releaseEffect(e) {
-    btn.style.transform = 'scale(1)';
-    btn.style.opacity = '1';
-  }
+  // ===== Efek tekan =====
+  function pressEffect() { btn.style.transform = 'scale(0.92)'; btn.style.opacity = '0.6'; }
+  function releaseEffect() { btn.style.transform = 'scale(1)'; btn.style.opacity = '1'; }
   btn.addEventListener('touchstart', pressEffect, {passive:true});
   btn.addEventListener('touchend', releaseEffect, {passive:true});
   btn.addEventListener('mousedown', pressEffect);
   btn.addEventListener('mouseup', releaseEffect);
   btn.addEventListener('mouseleave', releaseEffect);
 
-  // Konfigurasi Disqus
+  // ===== Konfigurasi Disqus =====
   window.disqus_config = function () {
     this.page.url = window.location.href;
     this.page.identifier = window.location.pathname;
   };
 
-  // Muat count.js
+  // ===== Muat count.js =====
   const countScript = document.createElement('script');
   countScript.src = 'https://layarkosong.disqus.com/count.js';
   countScript.id = 'dsq-count-scr';
   countScript.async = true;
-  document.head.appendChild(countScript);
+  document.body.appendChild(countScript);
 
-  // Klik untuk tampilkan Disqus
+  // ===== Klik untuk tampilkan komentar =====
   let disqusLoaded = false;
   btn.addEventListener('click', () => {
     if (disqusLoaded) return;
@@ -123,8 +123,10 @@
     setTimeout(() => wrapper.remove(), 400);
   });
 
-  // Perubahan tema di mobile
+  // ===== Pantau perubahan tema =====
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
   mq.addEventListener ? mq.addEventListener('change', applyTheme)
                       : mq.addListener(applyTheme);
 })();
+</script>
+
