@@ -13,17 +13,19 @@
   countSpan.setAttribute('data-disqus-identifier', window.location.pathname);
   btn.appendChild(countSpan);
   
-  // 2. CSS untuk Transparansi, Posisi Tengah, Adaptasi Tema, dan Font Inherit
+  // 2. CSS untuk Transparansi, Posisi Tengah, dan Font/Warna Inherit
   
-  // Tentukan warna default (Light Mode)
-  let textColor = '#333';
+  // Tentukan warna hover (hanya ini yang tidak di-inherit)
   let hoverColor = '#0078ff';
 
-  // Periksa preferensi tema pengguna (Dark Mode)
+  // Periksa preferensi tema pengguna (Dark Mode) untuk warna hover
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    textColor = '#ddd';
+    // Hanya hoverColor yang dipertahankan karena textColor akan menggunakan inherit
     hoverColor = '#66b3ff';
   }
+  
+  // ❌ Variabel textColor telah dihapus karena kita akan menggunakan inherit di CSS
+  // ❌ Logika if/else untuk textColor dihapus
 
   btn.style.cssText = `
     /* Hapus Bingkai & Background */
@@ -35,11 +37,11 @@
     align-items:center;
     justify-content:center;
     
-    /* Adaptasi Tema & Teks */
-    color:${textColor}; 
+    /* Perubahan: Warna teks menggunakan inherit */
+    color:inherit; 
     border-radius:0; 
     
-    /* Perubahan: Menggunakan font-size: inherit */
+    /* Font size juga menggunakan inherit */
     font-size:inherit; 
     line-height:1;
     padding:5px 8px; /* Padding minimal agar mudah diklik */
@@ -52,14 +54,14 @@
     overflow:hidden;
   `;
   
-  // ❌ Logika pencarian h1 dihilangkan, karena font-size sudah inherit.
-  
   // Efek hover sederhana (hanya perubahan warna teks)
   btn.addEventListener('mouseover', () => {
-    btn.style.color = hoverColor;
+    // Gunakan hoverColor yang sudah disesuaikan tema
+    btn.style.color = hoverColor; 
   });
   btn.addEventListener('mouseout', () => {
-    btn.style.color = textColor;
+    // Kembali menggunakan warna inherit
+    btn.style.color = 'inherit'; 
   });
 
   // Masukkan tombol di atas kolom komentar Disqus
