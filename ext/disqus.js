@@ -1,4 +1,3 @@
-<script>
 var disqus_config = function () {
   this.page.url = window.location.href;
   this.page.identifier = window.location.pathname;
@@ -54,5 +53,3 @@ var disqus_config = function () {
 
   observer.observe(document, { childList: true, subtree: true });
 })();
-</script>
-
