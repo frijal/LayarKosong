@@ -52,7 +52,7 @@
     -webkit-tap-highlight-color: transparent;
   `;
   btn.innerHTML = `
-    💬&nbsp; <span class="disqus-comment-count" 
+    💬 &nbsp; <span class="disqus-comment-count" 
       data-disqus-url="${window.location.href}" 
       style="font-size:1.3rem;opacity:0.8;"></span>
   `;
@@ -95,13 +95,6 @@
     this.page.identifier = window.location.pathname;
   };
 
-  // ===== Muat count.js =====
-  const countScript = document.createElement('script');
-  countScript.src = 'https://layarkosong.disqus.com/count.js';
-  countScript.id = 'dsq-count-scr';
-  countScript.async = true;
-  document.body.appendChild(countScript);
-
   // ===== Klik untuk tampilkan komentar =====
   let disqusLoaded = false;
   btn.addEventListener('click', () => {
@@ -121,6 +114,13 @@
     wrapper.style.transform = 'scale(0.9)';
     setTimeout(() => wrapper.remove(), 400);
   });
+
+  // ===== Muat count.js =====
+  const countScript = document.createElement('script');
+  countScript.src = 'https://layarkosong.disqus.com/count.js';
+  countScript.id = 'dsq-count-scr';
+  countScript.async = true;
+  document.body.appendChild(countScript);
 
   // ===== Pantau perubahan tema =====
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
