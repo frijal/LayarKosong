@@ -1,4 +1,3 @@
-<script>
 (function() {
   // ===== Deteksi kecerahan warna =====
   function isColorDark(hex) {
@@ -128,5 +127,3 @@
   mq.addEventListener ? mq.addEventListener('change', applyTheme)
                       : mq.addListener(applyTheme);
 })();
-</script>
-
