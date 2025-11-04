@@ -7,14 +7,13 @@
   // Konten: Ikon 💬 diikuti spasi (&nbsp;) dan tempat angka
   btn.innerHTML = '💬&nbsp;'; 
   
-  // Span untuk hitungan (sekarang akan terlihat)
+  // Span untuk hitungan
   const countSpan = document.createElement('span');
   countSpan.className = 'disqus-comment-count';
   countSpan.setAttribute('data-disqus-identifier', window.location.pathname);
-  // Tidak ada display:none, sehingga angka akan terlihat
   btn.appendChild(countSpan);
   
-  // 2. CSS untuk Transparansi, Posisi Tengah, dan Adaptasi Tema
+  // 2. CSS untuk Transparansi, Posisi Tengah, Adaptasi Tema, dan Font Inherit
   
   // Tentukan warna default (Light Mode)
   let textColor = '#333';
@@ -29,19 +28,19 @@
   btn.style.cssText = `
     /* Hapus Bingkai & Background */
     background:transparent; 
-    border:none; /* Hapus border/bingkai */
+    border:none; 
     
     /* Flexbox untuk penataan ikon dan angka */
     display:inline-flex;
     align-items:center;
-    justify-content:center; /* Perubahan: Mengatur konten di tengah horizontal */
+    justify-content:center;
     
     /* Adaptasi Tema & Teks */
     color:${textColor}; 
-    border-radius:0; /* Tidak perlu radius */
+    border-radius:0; 
     
-    /* Ukuran dan Responsif (Mengikuti H1 jika ada) */
-    font-size:inherit; /* Default besar jika H1 tidak ditemukan */
+    /* Perubahan: Menggunakan font-size: inherit */
+    font-size:inherit; 
     line-height:1;
     padding:5px 8px; /* Padding minimal agar mudah diklik */
     cursor:pointer;
@@ -53,15 +52,8 @@
     overflow:hidden;
   `;
   
-  // Perubahan: Atur agar font size tombol mengikuti ukuran H1
-  const h1Element = document.querySelector('h1');
-  if (h1Element) {
-    btn.style.fontSize = getComputedStyle(h1Element).fontSize;
-    btn.style.padding = '5px 8px'; 
-  } else {
-    btn.style.fontSize = 'inherit'; 
-  }
-
+  // ❌ Logika pencarian h1 dihilangkan, karena font-size sudah inherit.
+  
   // Efek hover sederhana (hanya perubahan warna teks)
   btn.addEventListener('mouseover', () => {
     btn.style.color = hoverColor;
