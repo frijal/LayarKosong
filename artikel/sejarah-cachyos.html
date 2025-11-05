@@ -38,6 +38,12 @@
         .social-buttons a:hover { transform: scale(1.15); }
         .social-buttons svg { width: 32px; height: 32px; }
         .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
+         footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: .9rem;
+    }
         .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
         .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
         pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; position: relative; }
@@ -71,11 +77,12 @@
                 <p>Sebagai distro berbasis Arch, perintah untuk memperbarui sistem adalah melalui manajer paket `pacman`:</p>
                 <pre><code id="code1">sudo pacman -Syu</code><button class="copy-btn" onclick="copyCode('code1')">Copy</button></pre>
             </section>
-            <section class="social-sharing">
                 <div id="disqus_thread"></div>
-            </section>
         </article>
-    </main>
+         <footer>
+    <a href="https://frijal.pages.dev/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
+  </footer>
+        </main>
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
         <img class="lightbox-content" id="lightbox-img" />

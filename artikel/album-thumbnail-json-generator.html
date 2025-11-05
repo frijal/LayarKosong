@@ -109,7 +109,12 @@
             margin: 0; padding: 6px; font-size: 0.75rem; text-align: center; white-space: nowrap;
             overflow: hidden; text-overflow: ellipsis; background: #f9f9f9; color: #555;
         }
-
+ footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: .9rem;
+    }
         @media (max-width: 768px) {
             body { padding: 10px; height: auto; }
             .viewer-area { flex-direction: column; height: auto; }
@@ -166,8 +171,12 @@
             </div>
 
         </div>
-    </div>
+
 <div id="disqus_thread"></div>
+ <footer>
+    <a href="https://frijal.pages.dev/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
+  </footer>
+  </div>
     <script>
         // --- Ambil Elemen DOM ---
         const openFolderBtn = document.getElementById('openFolderBtn');
