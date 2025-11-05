@@ -31,6 +31,7 @@ jobs:
             perl -pi -w -e 's#frijal_tw#frijal#g' "$file"
             perl -pi -w -e 's#YOUR_FACEBOOK_APP_ID#1471267430691023#g' "$file"
             perl -pi -w -e 's#nama_twitter_anda#frijal#g' "$file"
+            perl -pi -w -e 's#&copy;#🄯#g' "$file"
             perl -pi -w -e 's#akun_twitter_kamu#frijal#g' "$file"
             perl -pi -w -e 's/©/🄯/g' "$file"
           done
