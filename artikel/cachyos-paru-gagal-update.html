@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengatasi PARU Gagal Update dan Upgrade di CachyOS</title>
-
     <meta name="description" content="Panduan santai dan langkah-langkah terstruktur untuk mengatasi error PARU (pacman) saat update dan upgrade di CachyOS, termasuk masalah PGP Key dan paket korup.">
     <meta name="keywords" content="CachyOS, PARU, Pacman, Gagal Update, Fix, Error, Linux, Arch, PGP Key">
     <link rel="canonical" href="https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html">
-
     <meta property="og:title" content="SOLUSI! Mengatasi PARU Gagal Update dan Upgrade di CachyOS">
     <meta property="og:description" content="Yuk, bongkar tuntas masalah update PARU di CachyOS. Dijamin berhasil!">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://frijal.pages.dev/artikel/cachyos-paru-gagal-update.html">
     <meta property="og:image" content="https://frijal.pages.dev/img/cachyos-paru-gagal-update.webp"> <meta property="og:site_name" content="Frijal's Articles">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@frijal"> <meta name="twitter:title" content="Fix PARU CachyOS Error">
     <meta name="twitter:description" content="Cara paling ampuh mengatasi PARU yang rewel saat update.">
     <meta name="twitter:image" content="https://frijal.pages.dev/img/cachyos-paru-gagal-update.webp"> <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
         :root {
             --color-bg: #121212;
@@ -30,14 +26,12 @@
             --color-card-bg: #1e1e1e;
             --padding-base: 20px;
         }
-
         /* RESET & BASE */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--color-bg);
@@ -45,21 +39,18 @@
             line-height: 1.7;
             padding: 0;
         }
-
         /* HEADER & FOOTER */
         header, footer {
             text-align: center;
             padding: var(--padding-base);
             background-color: var(--color-secondary);
         }
-
         /* ONE-COLUMN LAYOUT */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: var(--padding-base);
         }
-
         /* TYPOGRAPHY & TEXT STYLES */
         h1 {
             color: var(--color-primary);
@@ -96,7 +87,6 @@
         li {
             margin-bottom: 5px;
         }
-
         /* USER INFO CARD */
         #user-info {
             background-color: var(--color-card-bg);
@@ -108,7 +98,6 @@
         #user-info p {
             margin-bottom: 5px;
         }
-
         /* SHARING ICONS */
         .social-share {
             text-align: center;
@@ -126,7 +115,6 @@
         .social-share a:hover {
             color: var(--color-primary);
         }
-
         /* GALLERY & LAZY LOAD */
         .gallery {
             display: grid;
@@ -147,7 +135,6 @@
             transform: scale(1.03);
             box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
         }
-
         /* LIGHTBOX */
         .lightbox {
             display: none;
@@ -209,7 +196,6 @@
         .prev:hover, .next:hover {
             background-color: var(--color-primary);
         }
-
         /* KOMENTAR FACEBOOK */
         #fb-comments-container {
             margin-top: 40px;
@@ -217,7 +203,6 @@
             padding: var(--padding-base);
             border-radius: 8px;
         }
-
         /* MEDIA QUERIES (Mobile-Friendly) */
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
@@ -228,23 +213,17 @@
             .prev, .next { padding: 10px; font-size: 18px; margin-top: -35px; }
             .close-btn { right: 20px; font-size: 35px; }
         }
-
     </style>
 <meta property="og:image:alt" content="Mengatasi PARU Gagal Update dan Upgrade di CachyOS">
   <meta itemprop="image" content="https://frijal.pages.dev/img/cachyos-paru-gagal-update.webp">
-
     <meta property="article:published_time" content="2025-08-17T06:06:53.230+00:00">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
 </head>
 <body>
-
-
     <header>
         <h1><i class="fas fa-exclamation-triangle"></i> PARU GAGAL?! Begini Cara Ampuh Mengatasinya di CachyOS</h1>
 <div id="iposbrowser"></div>
-
     </header>
-
     <div class="container">
                     <article>
             <p>
@@ -253,7 +232,6 @@
             <p>
                 Daripada panik, yuk ikuti langkah-langkah terstruktur di bawah ini. Dijamin CachyOS Anda akan lancar lagi!
             </p>
-
             <section>
                 <h2><i class="fas fa-route"></i> Langkah 1: Periksa Koneksi dan Sinkronisasi Ulang Database</h2>
                 <p>
@@ -267,19 +245,15 @@
                 <p>Setelah itu, coba jalankan paru lagi:</p>
                 <pre><code>paru -Syu</code></pre>
             </section>
-
             <hr>
-
             <section>
                 <h2><i class="fas fa-key"></i> Langkah 2: Atasi Masalah Kunci PGP (GPG Keys)</h2>
                 <p>
                     Ini adalah biang kerok kegagalan update paling sering. Pesan error biasanya menyebut "invalid or corrupted package" atau "key is unknown/untrusted".
                 </p>
-
                 <h3>A. Update Keyring Resmi</h3>
                 <p>Kunci lama di sistem Anda perlu diperbarui terlebih dahulu dengan kunci resmi Arch dan CachyOS yang baru:</p>
                 <pre><code>sudo pacman -S archlinux-keyring cachyos-keyring</code></pre>
-
                 <h3>B. Bersihkan dan Isi Ulang Kunci</h3>
                 <p>Jika cara di atas masih gagal, kita lakukan reset dan populasi kunci secara menyeluruh:</p>
                 <pre><code># 1. Hapus cache kunci yang lama;
@@ -296,21 +270,17 @@ sudo pacman-key --refresh-keys
 </code></pre>
                 <p>Setelah langkah ini, coba jalankan kembali proses update dengan `paru -Syu`.</p>
             </section>
-
             <hr>
-
             <section>
                 <h2><i class="fas fa-trash-alt"></i> Langkah 3: Hapus Paket Korup dan Cache</h2>
                 <p>
                     Terkadang, proses download terputus sehingga meninggalkan file paket yang terunduh setengah jalan (.part) atau korup. Pacman dan Paru akan bingung saat menemukannya.
                 </p>
-
                 <h3>A. Singkirkan File Partial</h3>
                 <p>Gunakan perintah ini untuk mencari dan menghapus semua file yang rusak atau terunduh setengah (.part) di dalam cache Pacman:</p>
                 <pre><code># Cari dan hapus semua file .part
 sudo find /var/cache/pacman/pkg/ -iname "*.part" -exec rm {} \;
 </code></pre>
-
                 <h3>B. Bersihkan Cache Pacman</h3>
                 <p>Ini adalah tindakan terakhir jika semua cara di atas gagal. Perintah ini akan menghapus paket yang sudah tidak terinstal, membuat cache Anda lebih rapi.</p>
                 <pre><code># Hapus paket yang tidak terinstal, hanya menyisakan yang aktif
@@ -318,7 +288,6 @@ sudo pacman -Sc
 </code></pre>
                 <p>Jika Anda ingin lebih ekstrem (Hanya lakukan ini jika Anda yakin!), gunakan `sudo pacman -Scc` untuk menghapus semua paket di cache, termasuk paket yang sedang terinstal.</p>
             </section>
-
             <section>
                 <h2><i class="fas fa-cogs"></i> Langkah Tambahan: Kegagalan Khusus AUR</h2>
                 <p>
@@ -328,34 +297,22 @@ sudo pacman -Sc
                     <li>Perhatikan output error-nya. Paket AUR mana yang gagal diinstal?</li>
                     <li>Coba cari paket tersebut di AUR, dan cek apakah ada komentar tentang dependensi baru yang perlu diinstal manual.</li>
                     <li>Pastikan paket dasar seperti `base-devel` sudah terinstal: <pre><code>sudo pacman -S base-devel</code></pre></li>
-                </ul>
+                </ul><div id="disqus_thread"></div>
             </section>
-
-            <section><div id="disqus_thread"></div>
-
-            </section>
-
         </article>
     </div>
-
     <div id="lightbox-modal" class="lightbox" style="display: none;">
         <span class="close-btn">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
         <a class="prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></a>
         <a class="next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></a>
     </div>
-
     <footer>
         <p>🄯 2024 Artikel Frijal. Semoga CachyOS Anda selalu lancar!</p>
     </footer>
 <div id="kategori-aktif"></div>
-
-
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>
-
-
 </body>
 </html>
