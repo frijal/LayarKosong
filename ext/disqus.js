@@ -4,36 +4,53 @@
   const style = document.createElement('style');
   style.textContent = `
     :root {
-      --btn-text-color: #222; /* default untuk light mode */
+      /* Light mode defaults */
+      --warna-teks-tombol: #222;
+      --warna-bg-tombol: #f5f5f5;
+      --warna-border-tombol: #ccc;
+      --warna-hover-tombol: #e0e0e0;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --btn-text-color: #eee; /* default untuk dark mode */
+        /* Dark mode overrides */
+        --warna-teks-tombol: #eee;
+        --warna-bg-tombol: #333;
+        --warna-border-tombol: #555;
+        --warna-hover-tombol: #444;
       }
     }
-    #show-comments {
-      background: transparent;
-      border: none;
+    .tombol-tanggapan {
+      background-color: var(--warna-bg-tombol);
+      border: 1px solid var(--warna-border-tombol);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--btn-text-color);
+      color: var(--warna-teks-tombol);
       font-size: inherit;
       line-height: 1;
-      padding: 5px 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .tombol-tanggapan:hover {
+      background-color: var(--warna-hover-tombol);
+    }
+    .jumlah-tanggapan {
+      margin-left: 4px;
+      font-weight: 500;
     }
   `;
   document.head.appendChild(style);
 
   // Buat tombol komentar
   const btn = document.createElement('button');
-  btn.id = 'show-comments';
-  btn.innerHTML = '💬&nbsp;';
+  btn.className = 'tombol-tanggapan';
+  btn.innerHTML = '💬';
 
   // Span untuk hitungan komentar
   const countSpan = document.createElement('span');
-  countSpan.className = 'disqus-comment-count';
+  countSpan.className = 'jumlah-tanggapan disqus-comment-count';
   countSpan.dataset.disqusIdentifier = window.location.pathname;
   btn.appendChild(countSpan);
 
