@@ -46,7 +46,7 @@
   // Buat tombol komentar
   const btn = document.createElement('button');
   btn.className = 'tombol-tanggapan';
-  btn.innerHTML = '💬';
+  btn.innerHTML = '💬&nbsp;';
 
   // Span untuk hitungan komentar
   const countSpan = document.createElement('span');
