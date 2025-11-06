@@ -22,7 +22,6 @@
       line-height: 1;
       padding: 5px 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
   `;
   document.head.appendChild(style);
@@ -70,11 +69,8 @@
       this.page.identifier = window.location.pathname;
     };
 
-    // Animasi fade-in
+    // Tampilkan langsung tanpa animasi
     disqusDiv.style.display = 'block';
-    disqusDiv.style.opacity = '0';
-    disqusDiv.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => disqusDiv.style.opacity = '1', 10);
 
     // Muat embed.js
     const s = document.createElement('script');
@@ -82,11 +78,8 @@
     s.setAttribute('data-timestamp', +new Date());
     (document.head || document.body).appendChild(s);
 
-    // Hilangkan tombol dengan animasi
-    btn.style.transition = 'all 0.5s ease';
-    btn.style.transform = 'scale(0.9)';
-    btn.style.opacity = '0';
-    setTimeout(() => btn.remove(), 500);
+    // Hilangkan tombol langsung tanpa animasi
+    btn.remove();
   }
 
   btn.addEventListener('click', loadDisqus);
