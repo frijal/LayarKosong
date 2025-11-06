@@ -24,7 +24,7 @@ jobs:
           shopt -s nullglob
           for file in artikelx/*.html; do
             echo "🪄 Memproses $file"
-            perl -pi -w -e 's#frijal.github.io#frijal.pages.dev#g' "$file"
+            perl -pi -w -e 's#</head>#<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>#g' "$file"
             perl -pi -w -e 's#bak.xo.je#frijal.pages.dev#g' "$file"
             perl -pi -w -e 's#https://frijal.pages.dev/assets/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
             perl -pi -w -e 's#hhttps://frijal.pages.dev/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
