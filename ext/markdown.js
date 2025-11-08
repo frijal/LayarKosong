@@ -1,8 +1,7 @@
 /*!
- * markdown.js v14.0 — NO XSS ESCAPING
- * Raw HTML diizinkan di Markdown
- * Auto detect, checkbox, nested list, table
- * Tanpa escapeHTML → bisa pakai <span>, <br>, dll
+ * markdown.js v15.0 — Sensitive Inline Detection
+ * Deteksi bold/italic/list bahkan di teks panjang
+ * NO XSS ESCAPING | Auto detect | Checkbox interaktif
  */
 
 (function () {
@@ -83,15 +82,15 @@
   // === PROCESS INLINE (NO ESCAPE) ===
   function processInline(text) {
     return text
-      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
+      .replace(/$$ ([^ $$]+)\]$$ ([^)\s]+) $$/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
   }
 
-  // === DETEKSI MARKDOWN ===
+  // === DETEKSI MARKDOWN (LEBIH SENSITIF) ===
   function isLikelyMarkdown(text) {
-    if (!text || text.length < 10) return false;
+    if (!text || text.length < 5) return false; // Turun dari 10 ke 5
     const t = text.trim();
     return (
       /^#{1,6}\s/.test(t) ||
@@ -99,10 +98,12 @@
       /^\s*>\s/.test(t) ||
       /```[\s\S]*```/.test(text) ||
       /\[.*?\]\(.+?\)/.test(text) ||
-      /\*\*.*\*\*/.test(text) ||
+      /\*\*.*\*\*/.test(text) ||  // Tambah sensitif untuk bold
+      /\*.*\*/.test(text) ||      // Tambah sensitif untuk italic
       /`[^`]+`/.test(text) ||
       /^\s*\|.*\|/.test(t) && text.includes('\n') ||
-      /- \[[ x]\]/.test(text)
+      /- \[[ x]\]/.test(text) ||
+      t.includes('* ') && t.includes('**')  // Deteksi list + bold/italic di narasi
     );
   }
 
@@ -144,7 +145,6 @@
         i++;
         while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
         i++;
-        // Code block tetap escape (aman dari XSS)
         blocks.push(`<pre><code class="language-${lang}">${code.join('\n').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`);
         continue;
       }
@@ -153,7 +153,7 @@
       if (cbMatch) {
         const indent = cbMatch[1].length;
         const checked = cbMatch[2] === 'x';
-        const label = processInline(cbMatch[3]); // RAW HTML allowed
+        const label = processInline(cbMatch[3]);
         const id = genId();
         const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
         const li = `<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`;
@@ -169,7 +169,7 @@
       const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
       if (listMatch) {
         const indent = listMatch[1].length;
-        const item = processInline(listMatch[2]); // RAW HTML allowed
+        const item = processInline(listMatch[2]);
         const level = Math.floor(indent / 2);
         while (stack.length > level) { const c = stack.pop().close(); if (stack.length) stack[stack.length-1].items.push(c); else blocks.push(c); }
         const li = `<li>${item}</li>`;
@@ -180,14 +180,14 @@
       }
 
       if (stack.length && !/^\s/.test(line)) close();
-      if (line.trim()) blocks.push(`<p>${processInline(line)}</p>`); // RAW HTML allowed
+      if (line.trim()) blocks.push(`<p>${processInline(line)}</p>`);
       i++;
     }
     close();
     return blocks.length ? blocks.join('') : processInline(text);
   }
 
-  // === ENHANCE NODE ===
+  // === ENHANCE NODE (Dengan Partial Inline) ===
   function enhanceNode(node) {
     if (node.dataset.mdProcessed) return;
     if (node.closest('pre, code, script, style, .no-md')) return;
@@ -237,12 +237,12 @@
           const cb = item.match(/^\[([\sx])\]\s+(.+)$/);
           if (cb) {
             const checked = cb[1] === 'x';
-            const label = processInline(cb[2]); // RAW
+            const label = processInline(cb[2]);
             const id = genId();
             const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
             items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`);
           } else {
-            items.push(`<li>${processInline(item)}</li>`); // RAW
+            items.push(`<li>${processInline(item)}</li>`);
           }
           i++;
         }
@@ -256,7 +256,8 @@
         continue;
       }
 
-      if (trimmed) blocks.push(`<p>${processInline(raw)}</p>`); // RAW HTML allowed
+      // Partial inline: Selalu proses inline, bahkan jika baris biasa
+      if (trimmed) blocks.push(processInline(raw));  // Langsung inline, tanpa <p> wrapper
       i++;
     }
 
