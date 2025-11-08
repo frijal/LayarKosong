@@ -1,13 +1,14 @@
 /*!
- * markdown-enhancer-frijal.js — 🌿 Edisi Lengkap oleh Frijal
- * Meningkatkan konten HTML dengan sintaks Markdown + highlight.js adaptif
- * - Tidak mengubah atau menimpa tampilan <a>
- * - Tema highlight otomatis mengikuti preferensi pengguna (dark/light)
- * - Tanpa baris baru buatan (<br>)
- * - Aman digunakan di <header>, <table>, maupun konten artikel
+ * markdown-enhancer.js — Frijal edition (no CSS inject)
+ * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
+ * - Mendukung elemen di dalam <table>, <header>, dan elemen lainnya
+ * - Tidak membuat baris baru (<br>)
+ * - Tidak memodifikasi <a>
+ * - Otomatis memuat highlight.js dengan tema adaptif (dark/light)
  */
 
 (async function () {
+
   // === 1️⃣ Muat highlight.js otomatis ===
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
@@ -19,74 +20,27 @@
     return window.hljs;
   }
 
-  // === 2️⃣ Tambahkan gaya highlight.js (tanpa <a> style) ===
-  function injectHighlightTheme() {
-    if (document.getElementById("hljs-combined-style")) return;
+  // === 2️⃣ Terapkan tema highlight.js sesuai sistem ===
+  function applyHighlightTheme() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const existing = document.querySelector("link[data-hljs-theme]");
+    const newHref = prefersDark
+      ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+      : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
 
-    const style = document.createElement("style");
-    style.id = "hljs-combined-style";
-    style.textContent = `
-/* ==========================================================
-   Highlight.js Combined Theme (GitHub Light + Dark)
-   Versi tanpa styling <a>
-   ========================================================== */
-
-/* Blok kode highlight */
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
-  border-radius: 8px;
-  font-size: 0.9em;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-  line-height: 1.5;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Warna dasar mode terang (GitHub Light) */
-:root {
-  --hljs-bg: #f6f8fa;
-  --hljs-text: #24292e;
-  --hljs-border: #d0d7de;
-}
-
-/* Warna dasar mode gelap (GitHub Dark) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --hljs-bg: #0d1117;
-    --hljs-text: #c9d1d9;
-    --hljs-border: #30363d;
+    if (existing) {
+      if (existing.href !== newHref) existing.href = newHref;
+    } else {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = newHref;
+      link.dataset.hljsTheme = "true";
+      document.head.appendChild(link);
+    }
   }
-}
 
-/* Terapkan warna tema */
-pre code.hljs {
-  background-color: var(--hljs-bg) !important;
-  color: var(--hljs-text) !important;
-  border: 1px solid var(--hljs-border);
-}
-
-/* Inline code */
-code:not(.hljs) {
-  background-color: rgba(127, 127, 127, 0.1);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9em;
-}
-@media (prefers-color-scheme: dark) {
-  code:not(.hljs) {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-/* Reset untuk header agar tidak rusak */
-header, header *, header strong, header span {
-  all: revert !important;
-}
-`;
-    document.head.appendChild(style);
-  }
+  applyHighlightTheme();
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
 
   // === 3️⃣ Konversi Markdown → HTML ringan ===
   function convertInlineMarkdown(text) {
@@ -105,7 +59,7 @@ header, header *, header strong, header span {
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
       .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
-      // List
+      // Lists
       .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
       .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
       // Code block ```
@@ -128,24 +82,24 @@ header, header *, header strong, header span {
   }
 
   // === 4️⃣ Proses semua elemen yang berisi Markdown ===
-function enhanceMarkdown() {
-  const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
-  document.querySelectorAll(selector).forEach(el => {
-    if (el.classList.contains("no-md")) return;
-    if (el.querySelector("pre, code, table")) return;
+  function enhanceMarkdown() {
+    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.classList.contains("no-md")) return;
+      if (el.querySelector("pre, code, table")) return;
 
-    const original = el.innerHTML.trim();
-    if (!original) return;
+      const original = el.innerHTML.trim();
+      if (!original) return;
 
-    // 💡 Perbaikan utama: hapus line break di antara tag HTML juga
-    const flattened = original
-      .replace(/>\s*\n\s*</g, '><')  // hapus newline antar tag
-      .replace(/\s*\n\s*/g, " ")     // hapus newline sisa
-      .replace(/\s{2,}/g, " ");      // rapikan spasi ganda
+      // 💡 Hilangkan line-break antar tag agar tidak membuat baris baru
+      const flattened = original
+        .replace(/>\s*\n\s*</g, '><')  // hapus newline antar tag HTML
+        .replace(/\s*\n\s*/g, " ")     // hapus newline biasa
+        .replace(/\s{2,}/g, " ");      // rapikan spasi ganda
 
-    el.innerHTML = convertInlineMarkdown(flattened);
-  });
-}
+      el.innerHTML = convertInlineMarkdown(flattened);
+    });
+  }
 
   // === 5️⃣ Highlight semua blok kode ===
   async function enhanceCodeBlocks() {
@@ -155,11 +109,10 @@ function enhanceMarkdown() {
     });
   }
 
-  // Jalankan setelah DOM siap
+  // === 6️⃣ Jalankan setelah DOM siap ===
   document.addEventListener("DOMContentLoaded", async () => {
-    injectHighlightTheme();
     enhanceMarkdown();
     await enhanceCodeBlocks();
-    console.info("[markdown-enhancer-frijal.js] Markdown & Highlight siap digunakan.");
   });
+
 })();
