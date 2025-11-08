@@ -1,7 +1,7 @@
 /*!
- * markdown.js v15.0 — Sensitive Inline Detection
- * Deteksi bold/italic/list bahkan di teks panjang
- * NO XSS ESCAPING | Auto detect | Checkbox interaktif
+ * markdown.js v16.0 — Process All Elements
+ * Inline Markdown di <p>, <h3>, <li>, dll
+ * NO XSS ESCAPING | Auto detect | Checkbox
  */
 
 (function () {
@@ -13,21 +13,21 @@
   function injectCSS() {
     const style = document.createElement('style');
     style.textContent = `
-      .md-auto .md-link { color: #3498db; text-decoration: underline; }
-      .md-auto .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-      .md-auto .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-      .md-auto .md-table th, .md-auto .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
-      .md-auto ul, .md-auto ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
-      .md-auto li { margin: 0.2em 0; position: relative; padding-left: 1.8em; }
-      .md-auto .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; cursor: pointer; user-select: none; }
-      .md-auto .md-checkbox input { margin: 0; width: 1em; height: 1em; cursor: pointer; }
-      .md-auto .md-checkbox input:checked + span { text-decoration: line-through; opacity: 0.7; }
-      .md-auto pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
-      .md-auto code { white-space: pre-wrap; word-break: break-word; }
+      .md-processed .md-link { color: #3498db; text-decoration: underline; }
+      .md-processed .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+      .md-processed .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+      .md-processed .md-table th, .md-processed .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+      .md-processed ul, .md-processed ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
+      .md-processed li { margin: 0.2em 0; position: relative; padding-left: 1.8em; }
+      .md-processed .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; cursor: pointer; user-select: none; }
+      .md-processed .md-checkbox input { margin: 0; width: 1em; height: 1em; cursor: pointer; }
+      .md-processed .md-checkbox input:checked + span { text-decoration: line-through; opacity: 0.7; }
+      .md-processed pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
+      .md-processed code { white-space: pre-wrap; word-break: break-word; }
       @media (prefers-color-scheme: dark) {
-        .md-auto .md-inline { background: #34495e; color: #ecf0f1; }
-        .md-auto .md-table { border-color: #3b506b; }
-        .md-auto .md-table th, .md-auto .md-table td { border-color: #3b506b; }
+        .md-processed .md-inline { background: #34495e; color: #ecf0f1; }
+        .md-processed .md-table { border-color: #3b506b; }
+        .md-processed .md-table th, .md-processed .md-table td { border-color: #3b506b; }
       }
     `;
     if (!document.querySelector('style[data-md-css]')) {
@@ -82,200 +82,129 @@
   // === PROCESS INLINE (NO ESCAPE) ===
   function processInline(text) {
     return text
-      .replace(/$$ ([^ $$]+)\]$$ ([^)\s]+) $$/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
   }
 
-  // === DETEKSI MARKDOWN (LEBIH SENSITIF) ===
-  function isLikelyMarkdown(text) {
-    if (!text || text.length < 5) return false; // Turun dari 10 ke 5
-    const t = text.trim();
-    return (
-      /^#{1,6}\s/.test(t) ||
-      /^\s*[-*+]\s/.test(t) ||
-      /^\s*>\s/.test(t) ||
-      /```[\s\S]*```/.test(text) ||
-      /\[.*?\]\(.+?\)/.test(text) ||
-      /\*\*.*\*\*/.test(text) ||  // Tambah sensitif untuk bold
-      /\*.*\*/.test(text) ||      // Tambah sensitif untuk italic
+  // === DETEKSI MARKDOWN (SANGAT SENSITIF) ===
+  function hasMarkdownSyntax(text) {
+    return /[\*\[\]`|]/.test(text) && (
+      /\*\*.*\*\*/.test(text) ||
+      /\*.*\*/.test(text) ||
       /`[^`]+`/.test(text) ||
-      /^\s*\|.*\|/.test(t) && text.includes('\n') ||
+      /\[.*?\]\(.+?\)/.test(text) ||
       /- \[[ x]\]/.test(text) ||
-      t.includes('* ') && t.includes('**')  // Deteksi list + bold/italic di narasi
+      /\|.*\|/.test(text)
     );
   }
 
-  // === PARSE TABLE ===
-  function parseTable(lines) {
-    const rows = lines.map(l => l.trim()).filter(Boolean);
-    if (rows.length < 2) return null;
-    const clean = rows.filter(r => !/^[\s|:-]+$/.test(r.replace(/\|/g, '')));
-    if (clean.length < 1) return null;
-
-    const header = clean[0].split('|').filter(Boolean).map(h => `<th>${processCell(h.trim())}</th>`).join('');
-    const body = clean.slice(1).map(r =>
-      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${processCell(c.trim())}</td>`).join('') + '</tr>'
-    ).join('');
-    return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
-  }
-
-  // === PROCESS CELL (NO ESCAPE) ===
-  function processCell(text) {
-    const lines = text.split('\n');
-    const blocks = [];
-    let i = 0;
-    let stack = [];
-
-    const close = () => {
-      while (stack.length) {
-        const closed = stack.pop();
-        if (stack.length) stack[stack.length - 1].items.push(closed);
-        else blocks.push(closed);
-      }
-    };
-
-    while (i < lines.length) {
-      const line = lines[i];
-
-      if (line.trim().startsWith('```')) {
-        const lang = line.trim().slice(3).trim() || 'plaintext';
-        const code = [];
-        i++;
-        while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
-        i++;
-        blocks.push(`<pre><code class="language-${lang}">${code.join('\n').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`);
-        continue;
-      }
-
-      const cbMatch = line.match(/^(\s*)[-*+]\s+\[([\sx])\]\s+(.+)$/);
-      if (cbMatch) {
-        const indent = cbMatch[1].length;
-        const checked = cbMatch[2] === 'x';
-        const label = processInline(cbMatch[3]);
-        const id = genId();
-        const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
-        const li = `<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`;
-
-        const level = Math.floor(indent / 2);
-        while (stack.length > level) { const c = stack.pop().close(); if (stack.length) stack[stack.length-1].items.push(c); else blocks.push(c); }
-        if (stack.length === level) stack[stack.length-1].items.push(li);
-        else stack.push({ tag: 'ul', items: [li], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } });
-        i++;
-        continue;
-      }
-
-      const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
-      if (listMatch) {
-        const indent = listMatch[1].length;
-        const item = processInline(listMatch[2]);
-        const level = Math.floor(indent / 2);
-        while (stack.length > level) { const c = stack.pop().close(); if (stack.length) stack[stack.length-1].items.push(c); else blocks.push(c); }
-        const li = `<li>${item}</li>`;
-        if (stack.length === level) stack[stack.length-1].items.push(li);
-        else stack.push({ tag: level % 2 === 0 ? 'ul' : 'ol', items: [li], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } });
-        i++;
-        continue;
-      }
-
-      if (stack.length && !/^\s/.test(line)) close();
-      if (line.trim()) blocks.push(`<p>${processInline(line)}</p>`);
-      i++;
-    }
-    close();
-    return blocks.length ? blocks.join('') : processInline(text);
-  }
-
-  // === ENHANCE NODE (Dengan Partial Inline) ===
-  function enhanceNode(node) {
+  // === ENHANCE TEXT NODE ===
+  function enhanceTextNode(node) {
     if (node.dataset.mdProcessed) return;
-    if (node.closest('pre, code, script, style, .no-md')) return;
+    if (node.parentNode.closest('pre, code, script, style, .no-md')) return;
 
     const text = node.textContent;
-    if (!isLikelyMarkdown(text)) return;
+    if (!hasMarkdownSyntax(text)) return;
 
     const parent = node.parentNode;
-    if (parent.closest('h1,h2,h3,h4,h5,h6,ul,ol,table,blockquote')) return;
+    const processed = processInline(text);
 
-    const lines = text.split('\n');
-    const blocks = [];
-    let i = 0;
-    let hasCode = false;
+    if (processed === text) return; // Tidak ada perubahan
 
-    while (i < lines.length) {
-      const raw = lines[i];
-      const trimmed = raw.trim();
+    const span = document.createElement('span');
+    span.innerHTML = processed;
+    span.className = 'md-inline-content';
 
-      if (trimmed.startsWith('```')) {
-        const lang = trimmed.slice(3).trim() || 'plaintext';
-        const code = [];
-        i++;
-        while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
-        i++;
-        blocks.push(`<pre><code class="language-${lang}">${code.join('\n').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`);
-        hasCode = true;
-        continue;
+    parent.insertBefore(span, node);
+    parent.removeChild(node);
+  }
+
+  // === ENHANCE BLOCK ELEMENTS (untuk list, table, code block) ===
+  function enhanceBlockElements() {
+    // Hanya proses elemen yang belum diproses
+    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, div, span').forEach(el => {
+      if (el.dataset.mdBlockProcessed) return;
+      if (el.closest('pre, code')) return;
+
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.textContent.trim()) nodes.push(node);
       }
 
-      if (trimmed.includes('|') && /^\s*\|/.test(raw)) {
-        const tableLines = [raw];
-        i++;
-        while (i < lines.length && /^\s*\|/.test(lines[i])) { tableLines.push(lines[i]); i++; }
-        const table = parseTable(tableLines);
-        if (table) { blocks.push(table); continue; }
-        i--;
-      }
+      let hasCodeBlock = false;
+      nodes.forEach(n => {
+        const txt = n.textContent;
+        if (!/```|- \[|\]|\*\*|^\s*[-*+]\s/.test(txt)) return;
 
-      const heading = raw.match(/^(#{1,6})\s+(.+)$/);
-      if (heading) { blocks.push(`<h${heading[1].length}>${processInline(heading[2])}</h${heading[1].length}>`); i++; continue; }
+        const lines = txt.split('\n');
+        const blocks = [];
+        let i = 0;
 
-      if (/^\s*[-*+]\s/.test(raw)) {
-        const items = [];
-        while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
-          const item = lines[i].replace(/^\s*[-*+]\s+/, '');
-          const cb = item.match(/^\[([\sx])\]\s+(.+)$/);
-          if (cb) {
-            const checked = cb[1] === 'x';
-            const label = processInline(cb[2]);
-            const id = genId();
-            const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
-            items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`);
-          } else {
-            items.push(`<li>${processInline(item)}</li>`);
+        while (i < lines.length) {
+          const raw = lines[i];
+          const trimmed = raw.trim();
+
+          if (trimmed.startsWith('```')) {
+            const lang = trimmed.slice(3).trim() || 'plaintext';
+            const code = [];
+            i++;
+            while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
+            i++;
+            blocks.push(`<pre><code class="language-${lang}">${code.join('\n').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`);
+            hasCodeBlock = true;
+            continue;
           }
+
+          if (/^\s*[-*+]\s+\[([\sx])\]\s+/.test(raw)) {
+            const items = [];
+            while (i < lines.length && /^\s*[-*+]\s+\[([\sx])\]\s+/.test(lines[i])) {
+              const match = lines[i].match(/^\s*[-*+]\s+\[([\sx])\]\s+(.+)$/);
+              const checked = match[1] === 'x';
+              const label = processInline(match[2]);
+              const id = genId();
+              const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
+              items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`);
+              i++;
+            }
+            blocks.push(`<ul>${items.join('')}</ul>`);
+            continue;
+          }
+
+          if (/^\s*[-*+]\s+/.test(raw)) {
+            const items = [];
+            while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i])) {
+              const item = lines[i].replace(/^\s*[-*+]\s+/, '');
+              items.push(`<li>${processInline(item)}</li>`);
+              i++;
+            }
+            blocks.push(`<ul>${items.join('')}</ul>`);
+            continue;
+          }
+
+          if (trimmed) blocks.push(`<p>${processInline(raw)}</p>`);
           i++;
         }
-        blocks.push(`<ul>${items.join('')}</ul>`);
-        continue;
-      }
 
-      if (trimmed.startsWith('>')) {
-        blocks.push(`<blockquote>${processInline(trimmed.slice(1))}</blockquote>`);
-        i++;
-        continue;
-      }
-
-      // Partial inline: Selalu proses inline, bahkan jika baris biasa
-      if (trimmed) blocks.push(processInline(raw));  // Langsung inline, tanpa <p> wrapper
-      i++;
-    }
-
-    if (!blocks.length) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'md-auto';
-    wrapper.innerHTML = blocks.join('');
-    while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, node);
-    parent.removeChild(node);
-
-    if (hasCode) {
-      ensureHighlightJS().then(hljs => {
-        if (hljs) wrapper.querySelectorAll('pre code').forEach(hljs.highlightElement);
+        if (blocks.length) {
+          const div = document.createElement('div');
+          div.innerHTML = blocks.join('');
+          while (div.firstChild) el.insertBefore(div.firstChild, n);
+          el.removeChild(n);
+        }
       });
-    }
 
-    node.dataset.mdProcessed = 'true';
+      if (hasCodeBlock) {
+        ensureHighlightJS().then(hljs => {
+          if (hljs) el.querySelectorAll('pre code').forEach(hljs.highlightElement);
+        });
+      }
+
+      el.dataset.mdBlockProcessed = 'true';
+    });
   }
 
   // === ENHANCE ALL ===
@@ -283,6 +212,7 @@
     injectCSS();
     loadStates();
 
+    // 1. Proses inline di semua text node
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
@@ -293,22 +223,15 @@
     const nodes = [];
     let node;
     while (node = walker.nextNode()) {
-      if (node.textContent.trim() && !node.parentNode.closest('.md-auto')) {
-        nodes.push(node);
-      }
+      if (node.textContent.trim()) nodes.push(node);
     }
 
-    let hasCode = false;
-    nodes.forEach(n => {
-      if (enhanceNode(n)) hasCode = true;
-    });
+    nodes.forEach(enhanceTextNode);
 
-    if (hasCode) {
-      ensureHighlightJS().then(hljs => {
-        if (hljs) document.querySelectorAll('.md-auto pre code').forEach(hljs.highlightElement);
-      });
-    }
+    // 2. Proses block (list, code block, checkbox)
+    enhanceBlockElements();
 
+    // 3. Setup checkbox events
     document.addEventListener('change', e => {
       if (e.target.matches('input[type="checkbox"][id^="md-cb-"]')) {
         checkboxStates.set(e.target.id, e.target.checked);
@@ -324,18 +247,9 @@
     enhance();
   }
 
-  new MutationObserver(mutations => {
-    mutations.forEach(m => {
-      m.addedNodes.forEach(node => {
-        if (node.nodeType === 1) {
-          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-          let n;
-          while (n = walker.nextNode()) {
-            if (n.textContent.trim()) enhanceNode(n);
-          }
-        }
-      });
-    });
-  }).observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(enhance).observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 
 })();
