@@ -1,82 +1,128 @@
-name: 🛠️ Pemeliharaan Dependensi (Upgrade & Cleanup)
+name: 🛠️ Pemeliharaan & Update Highlight.js (Hybrid + Auto-Rollback)
 
 on:
-  # 1. Bisa dijalankan manual dari tab "Actions"
+  # Bisa dijalankan manual dari tab "Actions"
   workflow_dispatch:
-  
-  # 2. Dijalankan otomatis setiap bulan, tanggal 1, jam 2 UTC
+
+  # Dijalankan otomatis setiap bulan tanggal 9 jam 1 UTC
   schedule:
     - cron: '0 1 9 * *'
 
 jobs:
-  maintenance-pr:
+  maintenance:
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # Izin untuk commit/push ke branch
-      pull-requests: write  # Izin untuk membuat PR
+      contents: write
+      pull-requests: write
 
     steps:
-      - name: Checkout code
+      - name: 🧩 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: Install dependencies (untuk tools)
-        run: npm install # Install ncu dan depcheck dari devDependencies
-     
-      # --- BAGIAN 1: DARI WORKFLOW 'UPGRADE' ---
-      - name: 1. Upgrade dependencies (minor & patch)
+      # ---------------------------------------------------------
+      # BAGIAN 1: Pemeliharaan umum (Upgrade & Cleanup)
+      # ---------------------------------------------------------
+      - name: 📦 Install dependencies untuk tools
+        run: npm install
+
+      - name: 🆙 Upgrade dependencies (minor & patch)
         run: |
-          npm install -g npm-check-updates # Install ncu di runner
+          npm install -g npm-check-updates
           ncu -u --target minor
-          echo "Selesai upgrade minor/patch."
+          echo "✅ Dependensi minor/patch diperbarui."
 
-      # --- BAGIAN 2: DARI WORKFLOW 'CLEANUP' ---
-      - name: 2. Cleanup unused packages
+      - name: 🧹 Cleanup paket tidak terpakai
         run: |
-          echo "Menjalankan skrip cleanup..."
-          node ext/cleanup.js
+          echo "🧹 Membersihkan paket yang tidak digunakan..."
+          node ext/cleanup.js || echo "ℹ️ Tidak ada cleanup.js ditemukan, dilewati."
 
-      # --- BAGIAN 3: GABUNGAN UNTUK MEMBUAT PR ---
-      
-      # Cek apakah langkah 1 atau 2 menghasilkan perubahan
-      - name: Check for changes
+      # ---------------------------------------------------------
+      # BAGIAN 2: Update Highlight.js via NPM resmi
+      # ---------------------------------------------------------
+      - name: 📦 Install paket Highlight.js CDN Assets
+        run: |
+          npm install @highlightjs/cdn-assets@latest --save-dev
+          mkdir -p ext mini
+
+      - name: 📁 Salin file penting ke folder publik
+        run: |
+          echo "📁 Menyalin hasil NPM ke folder publik ext/"
+          cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/
+          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/
+          echo "✅ Penyalinan selesai."
+
+      - name: 🧾 Catat versi Highlight.js
+        run: |
+          HL_VERSION=$(npm list @highlightjs/cdn-assets | grep @highlightjs | awk -F@ '{print $3}')
+          DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "📄 Versi Highlight.js: $HL_VERSION"
+          echo "Highlight.js Version: $HL_VERSION" > mini/highlight-info.txt
+          echo "Updated on: $DATE" >> mini/highlight-info.txt
+
+      # ---------------------------------------------------------
+      # BAGIAN 3: Validasi & Auto-Rollback
+      # ---------------------------------------------------------
+      - name: 🔍 Validasi file hasil update
+        id: validate_files
+        run: |
+          if [[ -s ext/highlight.js && -s ext/github.min.css && -s ext/github-dark.min.css ]]; then
+            echo "✅ Semua file Highlight.js valid."
+            echo "ok=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ File Highlight.js tidak lengkap atau kosong."
+            echo "ok=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🔙 Rollback jika gagal
+        if: steps.validate_files.outputs.ok == 'false'
+        run: |
+          echo "⚠️ Melakukan rollback ke commit terakhir..."
+          git restore ext/
+          git restore mini/highlight-info.txt
+          echo "✅ Rollback selesai. Tidak ada perubahan disimpan."
+          exit 1
+
+      # ---------------------------------------------------------
+      # BAGIAN 4: Commit & Pull Request otomatis
+      # ---------------------------------------------------------
+      - name: 🧠 Cek apakah ada perubahan
         id: check_changes
         run: |
-          if [[ $(git status --porcelain package.json package-lock.json) ]]; then
-            echo "Perubahan terdeteksi."
+          if [[ $(git status --porcelain ext mini package.json package-lock.json) ]]; then
             echo "changes_detected=true" >> $GITHUB_OUTPUT
           else
-            echo "Tidak ada perubahan."
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      # Hanya jalankan test jika ada perubahan
-      - name: Run tests (if changes detected)
+      - name: 🧪 Jalankan build & test (jika ada perubahan)
         if: steps.check_changes.outputs.changes_detected == 'true'
         run: |
           npm run build --if-present
           npm test --if-present
 
-      # Buat PR jika ada perubahan
-      - name: Create Pull Request (if changes detected)
+      - name: 🔁 Buat Pull Request otomatis
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: chore/auto-maintenance-${{ github.run_id }}
-          title: 'chore: Upgrade (minor) & Cleanup Dependencies'
-          commit-message: 'chore: Upgrade (minor) & Cleanup Dependencies'
+          branch: chore/monthly-maintenance-${{ github.run_id }}
+          title: 'chore: Monthly Maintenance & Highlight.js Update'
+          commit-message: 'chore: Monthly maintenance, deps upgrade, and Highlight.js refresh'
           body: |
-            PR otomatis ini melakukan dua hal:
-            1.  **Upgrade:** Menggunakan `npm-check-updates` untuk dependensi minor/patch.
-            2.  **Cleanup:** Menjalankan `ext/cleanup.js` untuk menghapus paket yang tidak terpakai.
+            🔄 **Pembaruan Bulanan Otomatis**
+            
+            - Upgrade dependensi minor/patch
+            - Cleanup paket tidak terpakai
+            - Update Highlight.js (`@highlightjs/cdn-assets@latest`)
+            - Catatan versi tersimpan di `mini/highlight-info.txt`
 
-            - Build dan test sudah dijalankan di CI.
-            - Mohon review sebelum di-merge.
-          labels: dependencies, chore, automated pr
-          reviewers: frijal # Ganti dengan username GitHub Anda/tim
+            ✅ Build & validasi berhasil — siap direview.
+          labels: maintenance, dependencies, automated
+          reviewers: frijal
           draft: false
