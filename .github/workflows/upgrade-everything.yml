@@ -43,7 +43,11 @@ jobs:
       - name: 🧹 Cleanup unused packages
         run: |
           echo "🧽 Menjalankan skrip cleanup..."
-          node ext/cleanup.js || echo "⚠️ Tidak ada cleanup script."
+          if [ -f ext/cleanup.js ]; then
+            node ext/cleanup.js
+          else
+            echo "⚠️ File cleanup.js tidak ditemukan, dilewati."
+          fi
 
       # =============================
       # BAGIAN 3: Update Highlight.js
@@ -54,16 +58,19 @@ jobs:
           npm install @highlightjs/cdn-assets@latest --no-save
 
           mkdir -p ext mini
-          cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/
-          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/
+          cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
+          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/github.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/github-dark.min.css
 
           LATEST_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          echo "version=${LATEST_VER}" > mini/highlight-info.txt
-          echo "updated=${DATE_NOW}" >> mini/highlight-info.txt
-          echo "source=npm:@highlightjs/cdn-assets" >> mini/highlight-info.txt
+          {
+            echo "version=${LATEST_VER}"
+            echo "updated=${DATE_NOW}"
+            echo "source=npm:@highlightjs/cdn-assets"
+          } > mini/highlight-info.txt
+
           echo "✅ Highlight.js versi ${LATEST_VER} tersimpan di ext/"
 
       # =============================
@@ -72,7 +79,7 @@ jobs:
       - name: 🧪 Validasi hasil unduhan
         id: validate_files
         run: |
-          if [[ -s ext/highlight.min.js && -s ext/github.min.css && -s ext/github-dark.min.css ]]; then
+          if [[ -s ext/highlight.js && -s ext/github.min.css && -s ext/github-dark.min.css ]]; then
             echo "✅ Semua file Highlight.js valid."
             echo "ok=true" >> $GITHUB_OUTPUT
           else
@@ -87,15 +94,24 @@ jobs:
         if: steps.validate_files.outputs.ok == 'false'
         run: |
           echo "⚠️ Melakukan rollback ke commit terakhir..."
-          git restore ext/ || echo "ℹ️ Folder ext/ belum terdaftar di Git."
+          
+          # Cek dan pulihkan folder ext/
+          if git ls-files --error-unmatch ext >/dev/null 2>&1; then
+            git restore ext/
+            echo "✅ Folder ext/ dipulihkan."
+          else
+            echo "ℹ️ Folder ext/ belum terdaftar di Git."
+          fi
 
-          if git ls-files --error-unmatch mini/highlight-info.txt > /dev/null 2>&1; then
+          # Cek dan pulihkan mini/highlight-info.txt
+          if git ls-files --error-unmatch mini/highlight-info.txt >/dev/null 2>&1; then
             git restore mini/highlight-info.txt
+            echo "✅ File highlight-info.txt dipulihkan."
           else
             echo "ℹ️ File mini/highlight-info.txt belum ada di repo, dilewati."
           fi
 
-          echo "✅ Rollback selesai. Tidak ada perubahan disimpan."
+          echo "🚫 Rollback selesai. Workflow dihentikan."
           exit 1
 
       # =============================
@@ -133,7 +149,7 @@ jobs:
             1️⃣ **Upgrade Dependencies (minor/patch)** via `npm-check-updates`
             2️⃣ **Cleanup Packages** dengan `ext/cleanup.js`
             3️⃣ **Sinkronisasi Highlight.js** dari `@highlightjs/cdn-assets`
-            4️⃣ Otomatis rollback jika validasi file gagal
+            4️⃣ **Otomatis rollback** jika validasi file gagal
 
             🕐 Dibuat: ${{ github.event.repository.updated_at }}
           labels: dependencies, chore, automated pr
