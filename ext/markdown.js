@@ -31,7 +31,7 @@
 
     // Jika belum di-cache, muat dari CDN
     const script = document.createElement("script");
-    script.src = "/ext/highlight.min.js";
+    script.src = "/ext/highlight.js";
     script.defer = true;
     document.head.appendChild(script);
 
