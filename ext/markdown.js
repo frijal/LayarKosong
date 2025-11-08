@@ -1,7 +1,7 @@
 /*!
- * markdown.js v10.0 — Full Markdown Support
- * Checkbox, nested list, table, code block, inline
- * Otomatis inject CSS + highlight.js + checkbox styling
+ * markdown.js v9.0 — Full Nested List in Table
+ * Support: **bold**, *italic*, `code`, [link], ```code```, nested list, tabel Markdown
+ * Otomatis inject CSS + highlight.js
  */
 
 (function () {
@@ -15,18 +15,14 @@
       .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
       .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
       .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
-      .md-table ul, .md-table ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
-      .md-table li { margin: 0.2em 0; position: relative; padding-left: 1.5em; }
-      .md-table li::before { content: "•"; position: absolute; left: 0; color: #3498db; }
-      .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; }
-      .md-checkbox input { margin: 0; width: 1em; height: 1em; }
-      .md-table pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
+      .md-table ul, .md-table ol { margin: 0.5em 0; padding-left: 1.5em; }
+      .md-table li { margin: 0.2em 0; }
+      .md-table pre { margin: 0.5em 0; font-size: 0.85em; }
       .md-table code { white-space: pre-wrap; word-break: break-word; }
       @media (prefers-color-scheme: dark) {
         .md-inline { background: #34495e; color: #ecf0f1; }
         .md-table { border-color: #3b506b; }
         .md-table th, .md-table td { border-color: #3b506b; }
-        .md-table li::before { color: #f39c12; }
       }
     `;
     document.head.appendChild(style);
@@ -64,7 +60,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  // === PROCESS INLINE MARKDOWN (tanpa checkbox) ===
+  // === PROCESS INLINE MARKDOWN ===
   function processInline(text) {
     return text
       .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
@@ -89,23 +85,13 @@
     return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
-  // === PROCESS CELL: Support checkbox, nested list, code block ===
+  // === PROCESS CELL: Support nested list, code block, dll ===
   function processCell(text) {
     const lines = text.split('\n');
     const blocks = [];
     let i = 0;
+    let inList = null;
     let listStack = [];
-
-    const closeLists = () => {
-      while (listStack.length) {
-        const closed = listStack.pop();
-        if (listStack.length > 0) {
-          listStack[listStack.length - 1].items.push(closed);
-        } else {
-          blocks.push(closed);
-        }
-      }
-    };
 
     while (i < lines.length) {
       const line = lines[i];
@@ -124,40 +110,7 @@
         continue;
       }
 
-      // Checkbox list item: - [ ] Task or - [x] Done
-      const checkboxMatch = line.match(/^(\s*)[-*+]\s+\[([\sx])\]\s+(.+)$/);
-      if (checkboxMatch) {
-        const indent = checkboxMatch[1].length;
-        const checked = checkboxMatch[2] === 'x';
-        const label = processInline(escapeHTML(checkboxMatch[3]));
-
-        const level = Math.floor(indent / cytotoxicity2);
-        while (listStack.length > level) {
-          const closed = listStack.pop().close();
-          if (listStack.length > 0) {
-            listStack[listStack.length - 1].items.push(closed);
-          } else {
-            blocks.push(closed);
-          }
-        }
-
-        const li = `<li><label class="md-checkbox"><input type="checkbox" ${checked ? 'checked' : ''} disabled>${label}</label></li>`;
-
-        if (listStack.length === level) {
-          listStack[listStack.length - 1].items.push(li);
-        } else {
-          const newList = {
-            tag: 'ul',
-            items: [li],
-            close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; }
-          };
-          listStack.push(newList);
-        }
-        i++;
-        continue;
-      }
-
-      // Regular list item
+      // List: - item,  - subitem
       const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
       if (listMatch) {
         const indent = listMatch[1].length;
@@ -165,7 +118,7 @@
 
         const level = Math.floor(indent / 2);
         while (listStack.length > level) {
-          const closed = listStack.pop().close();
+          const closed = listStack.pop();
           if (listStack.length > 0) {
             listStack[listStack.length - 1].items.push(closed);
           } else {
@@ -173,34 +126,47 @@
           }
         }
 
-        const li = `<li>${itemText}</li>`;
+        const tag = level % 2 === 0 ? 'ul' : 'ol';
         if (listStack.length === level) {
-          listStack[listStack.length - 1].items.push(li);
+          listStack[listStack.length - 1].items.push(`<li>${itemText}</li>`);
         } else {
-          const newList = {
-            tag: level % 2 === 0 ? 'ul' : 'ol',
-            items: [li],
-            close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; }
-          };
+          const newList = { tag, items: [`<li>${itemText}</li>`], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } };
           listStack.push(newList);
         }
         i++;
         continue;
       }
 
-      // Close list if not indented
-      if (listStack.length > 0 && !/^\s/.test(line)) {
-        closeLists();
+      // Close list if line not indented
+      if (inList && !/^\s/.test(line)) {
+        while (listStack.length) {
+          const closed = listStack.pop().close();
+          if (listStack.length > 0) {
+            listStack[listStack.length - 1].items.push(closed);
+          } else {
+            blocks.push(closed);
+          }
+        }
+        inList = false;
       }
 
-      // Paragraph
+      // Paragraph or inline
       if (line.trim()) {
         blocks.push(`<p>${processInline(escapeHTML(line))}</p>`);
       }
       i++;
     }
 
-    closeLists();
+    // Close remaining lists
+    while (listStack.length) {
+      const closed = listStack.pop().close();
+      if (listStack.length > 0) {
+        listStack[listStack.length - 1].items.push(closed);
+      } else {
+        blocks.push(closed);
+      }
+    }
+
     return blocks.length > 0 ? blocks.join('') : processInline(escapeHTML(text));
   }
 
@@ -213,7 +179,6 @@
       /`[^`]+`/.test(text) ||
       /\[.*?\]\(.+?\)/.test(text) ||
       /```/.test(text) ||
-      /^\s*[-*+]\s+\[([\sx])\]\s+/.test(text) ||
       /^\s*[-*+]\s/.test(text.trim()) ||
       (text.includes('|') && text.includes('\n') && /^\s*\|/.test(text.trim()))
     );
@@ -282,14 +247,7 @@
         const items = [];
         while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
           const item = lines[i].replace(/^\s*[-*+]\s+/, '');
-          const checkbox = item.match(/^\[([\sx])\]\s+(.+)$/);
-          if (checkbox) {
-            const checked = checkbox[1] === 'x';
-            const label = processInline(escapeHTML(checkbox[2]));
-            items.push(`<li><label class="md-checkbox"><input type="checkbox" ${checked ? 'checked' : ''} disabled>${label}</label></li>`);
-          } else {
-            items.push(`<li>${processInline(escapeHTML(item))}</li>`);
-          }
+          items.push(`<li>${processInline(escapeHTML(item))}</li>`);
           i++;
         }
         blocks.push(`<ul>${items.join('')}</ul>`);
