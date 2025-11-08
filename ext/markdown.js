@@ -1,9 +1,9 @@
 /*!
- * nano-md.js — Markdown Lite Enhancer (Perfected Version)
+ * nano-md.js — Markdown Lite Enhancer (Versi Inline-Safe)
  * 🌿 Konversi Markdown sederhana → HTML dengan aman dan akurat
  * Otomatis muat highlight.js hanya jika ada <code>
  * Aman dari XSS, mendukung nested list, tabel, dan lebih akurat
- * Versi: 3.0.0 | Author: Frijal (Enhanced by Gemini AI)
+ * Versi: 3.1.0 | Author: Frijal (Enhanced by Gemini AI)
  */
 
 (function () {
@@ -15,8 +15,11 @@
         css: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
     };
 
-    // Elemen yang akan dipindai dan diproses.
-    const SELECTORS = "p, li, blockquote, .markdown, .markdown-body, .md"; 
+    // Elemen yang diproses:
+    // BLOCK: Untuk Markdown mentah, mengganti seluruh konten (mode lama)
+    const SELECTORS_BLOCK = ".markdown, .markdown-body, .md";
+    // INLINE: Untuk elemen HTML yang sudah ada (e.g., sel tabel), hanya memproses inline MD
+    const SELECTORS_INLINE = "td, th, p, li, blockquote, span.inline-md"; 
 
     // === UTILITAS KEAMANAN ===
     /** Melarikan diri (escape) dari string HTML mentah untuk keamanan XSS. */
@@ -52,6 +55,35 @@
         return hljsPromise;
     }
 
+    // === INLINE MARKDOWN (bold, italic, code, link) ===
+    function processInline(text) {
+        if (!text || typeof text !== 'string') return '';
+
+        // --- 1. Code `text` (Harus dilakukan pertama untuk melindungi kontennya)
+        text = text.replace(/`([^`]+)`/g, (m, code) => 
+            `<code class="md-inline">${escapeHTML(code)}</code>` // Escape isi code
+        );
+
+        // --- 2. Link [text](url)
+        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
+            const cleanLabel = processInline(label); // Proses inline di dalam label link
+            const cleanUrl = escapeHTML(url);
+            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="md-link">${cleanLabel}</a>`;
+        });
+        
+        // --- 3. HTML Escape untuk konten yang tersisa
+        // Lakukan escape pada teks sebelum diproses bold/italic agar simbol seperti '<' dinetralkan.
+        text = escapeHTML(text);
+
+        // --- 4. Bold **text**
+        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        
+        // --- 5. Italic *text*
+        text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+        
+        return text;
+    }
+
     // === PARSING MARKDOWN PER BARIS (AKURAT & AMAN) ===
     function parseMarkdownLines(lines) {
         const output = [];
@@ -70,9 +102,8 @@
         // Helper untuk menambahkan baris/blok ke output atau list saat ini
         const pushLine = (html) => {
             if (listStack.length) {
-                // Tambahkan sebagai bagian dari list item (meskipun ini kurang akurat untuk blok)
                 const current = listStack[listStack.length - 1];
-                current.items[current.items.length - 1] += html; // Append ke item list terakhir
+                current.items[current.items.length - 1] += html;
             } else {
                 output.push(html);
             }
@@ -85,7 +116,6 @@
             // --- CODE BLOCK (```) ---
             if (trimmed.startsWith('```')) {
                 if (inCodeBlock) {
-                    // Tutup Code Block
                     closeLists();
                     const code = codeLines.join('\n');
                     const langClass = codeLang ? `class="language-${codeLang}"` : '';
@@ -94,7 +124,6 @@
                     codeLang = '';
                     codeLines = [];
                 } else {
-                    // Buka Code Block
                     closeLists();
                     inCodeBlock = true;
                     codeLang = trimmed.slice(3).trim() || 'plaintext';
@@ -113,14 +142,12 @@
                 continue;
             }
 
-
             // --- TABEL ---
             if (trimmed.includes('|') && /^\s*\|.*\|\s*$/.test(line)) {
-                // Kumpulkan baris tabel hingga baris kosong
                 let tableLines = [line];
                 for (let j = i + 1; j < lines.length; j++) {
                     const next = lines[j];
-                    if (/^\s*\|.*\|\s*$/.test(next) || next.trim().match(/^[\s|:-]+$/)) { // Sertakan baris pemisah
+                    if (/^\s*\|.*\|\s*$/.test(next) || next.trim().match(/^[\s|:-]+$/)) { 
                         tableLines.push(next);
                         i = j;
                     } else {
@@ -135,12 +162,10 @@
                 }
             }
 
-
             // --- BLOCKQUOTE ---
             if (trimmed.startsWith('>')) {
                 closeLists();
                 const content = line.replace(/^>\s*/, '');
-                // Rekursif memproses konten blockquote
                 const nested = parseMarkdownLines([content]).join('');
                 output.push(`<blockquote>${nested}</blockquote>`);
                 continue;
@@ -151,23 +176,20 @@
             if (headingMatch) {
                 closeLists();
                 const level = headingMatch[1].length;
-                const text = processInline(headingMatch[2]); // Inline di heading
+                const text = processInline(headingMatch[2]);
                 output.push(`<h${level}>${text}</h${level}>`);
                 continue;
             }
 
             // --- LIST (nested support) ---
-            const listMatch = line.match(/^(\s*)([-*+]|\d+\.)\s+(.+)$/); // Mendukung Unordered & Ordered
+            const listMatch = line.match(/^(\s*)([-*+]|\d+\.)\s+(.+)$/);
             if (listMatch) {
                 const indent = listMatch[1].length;
                 const isOrdered = listMatch[2].endsWith('.');
                 const itemText = processInline(listMatch[3]); 
-
-                // Level list (setiap 2 spasi)
                 const level = Math.floor(indent / 2);
 
-                // Tutup list yang lebih dalam
-                while (listStack.length > level + 1) { 
+                while (listStack.length > level + 1) {
                     const closed = listStack.pop().close();
                     if (listStack.length) {
                         listStack[listStack.length - 1].items.push(closed);
@@ -176,12 +198,9 @@
                     }
                 }
 
-                // Periksa apakah list saat ini sudah ada di level yang tepat
                 if (listStack.length === level + 1) {
-                    // Tambahkan item ke list yang sudah ada
                     listStack[level].items.push(`<li>${itemText}</li>`);
                 } else {
-                    // Buka list baru
                     const tag = isOrdered ? '<ol>' : '<ul>';
                     const closer = isOrdered ? '</ol>' : '</ul>';
                     const newList = {
@@ -191,7 +210,6 @@
                         close() { return this.tag + this.items.join('') + this.closer; }
                     };
 
-                    // Tutup list yang lebih dangkal (jika ada) dan dorong ke output
                     while (listStack.length > level) {
                         const closed = listStack.pop().close();
                         if (listStack.length) {
@@ -208,8 +226,7 @@
 
             // --- PARAGRAF BIASA ---
             closeLists();
-            // PERBAIKAN: Selalu proses baris sebagai paragraf jika tidak cocok dengan yang lain
-            output.push(`<p>${processInline(line)}</p>`); 
+            output.push(`<p>${processInline(line)}</p>`);
         }
 
         // Tutup sisa list & code block di akhir
@@ -226,9 +243,8 @@
         const rows = lines.map(l => l.trim()).filter(Boolean);
         if (rows.length < 2) return null;
 
-        // Cari baris pemisah (misalnya |---|)
         const separatorIndex = rows.findIndex(r => r.match(/^[\s|:-]+$/));
-        if (separatorIndex === -1) return null; // Tabel tidak valid tanpa pemisah
+        if (separatorIndex === -1) return null;
 
         const headerRow = rows[0];
         const bodyRows = rows.slice(separatorIndex + 1);
@@ -246,45 +262,14 @@
         return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
     }
 
-    // === INLINE MARKDOWN (bold, italic, code, link) ===
-    function processInline(text) {
-        if (!text || typeof text !== 'string') return '';
-
-        // Pastikan konten di-escape sebelum inline processing, kecuali untuk sintaks Markdown yang diizinkan
-        // Kita hanya akan meng-escape konten TERTENTU (seperti URL/Label) di dalam fungsi replace
-        
-        // --- 1. Code `text` (Harus dilakukan pertama untuk melindungi kontennya)
-        text = text.replace(/`([^`]+)`/g, (m, code) => 
-            `<code class="md-inline">${escapeHTML(code)}</code>` // Escape isi code
-        );
-
-        // --- 2. Link [text](url)
-        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
-            const cleanLabel = processInline(label); // Proses inline di dalam label link
-            const cleanUrl = escapeHTML(url);
-            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="md-link">${cleanLabel}</a>`;
-        });
-        
-        // --- 3. HTML Escape untuk konten yang tersisa
-        text = escapeHTML(text);
-
-        // --- 4. Bold **text**
-        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-        
-        // --- 5. Italic *text*
-        text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
-        
-        return text;
-    }
-
-
-    // === ENHANCE ELEMENT ===
-    function enhanceElement(el) {
-        if (el.dataset.nanoMd === 'done') return;
+    // === ENHANCE BLOCK-LEVEL (Mode Default: Mengganti seluruh konten elemen target) ===
+    function enhanceBlockElement(el) {
+        // Menggunakan atribut data yang berbeda untuk menghindari konflik dengan inline-only
+        if (el.dataset.nanoMdBlock === 'done') return;
         if (el.classList.contains('no-md')) return;
 
         // Ambil teks mentah (Markdown)
-        const text = el.textContent || el.innerText; // el.textContent lebih aman dan disukai
+        const text = el.textContent || el.innerText;
         if (!text || !text.trim()) return;
 
         // Parse per baris
@@ -292,25 +277,48 @@
         const htmlLines = parseMarkdownLines(lines);
         let finalHTML = htmlLines.join('');
 
-        // Jika elemen target adalah <p> atau <li>, hapus pembungkus <p> yang tidak perlu
+        // Hapus pembungkus <p> jika elemen target adalah p, li, atau blockquote
         const tagName = el.tagName.toUpperCase();
         if ((tagName === 'P' || tagName === 'LI' || tagName === 'BLOCKQUOTE') && finalHTML.startsWith('<p>')) {
              finalHTML = finalHTML.replace(/^<p>(.*)<\/p>$/s, '$1');
         }
 
         el.innerHTML = finalHTML;
-        el.dataset.nanoMd = 'done';
+        el.dataset.nanoMdBlock = 'done';
+    }
+    
+    // === FUNGSI BARU: ENHANCE INLINE-ONLY (Hanya memproses bold, code, link di dalam HTML yang sudah ada) ===
+    function enhanceInlineOnly() {
+        document.querySelectorAll(SELECTORS_INLINE).forEach(el => {
+            // Gunakan atribut data yang berbeda untuk menghindari konflik dengan block-level
+            if (el.dataset.nanoMdInline === 'done' || el.classList.contains('no-md')) return;
+
+            // Ambil innerHTML saat ini (termasuk tag anak)
+            const originalHTML = el.innerHTML;
+            
+            // Jalankan HANYA fungsi processInline pada innerHTML
+            const finalHTML = processInline(originalHTML);
+
+            if (finalHTML !== originalHTML) {
+                el.innerHTML = finalHTML;
+            }
+
+            el.dataset.nanoMdInline = 'done';
+        });
     }
 
-    // === ENHANCE ALL ===
+    // === ENHANCE ALL (Menggabungkan kedua mode) ===
     function enhanceMarkdown() {
-        document.querySelectorAll(SELECTORS).forEach(enhanceElement);
+        // 1. Jalankan mode BLOCK-LEVEL (Mengubah Markdown mentah menjadi HTML block/list/table)
+        document.querySelectorAll(SELECTORS_BLOCK).forEach(enhanceBlockElement);
+        
+        // 2. Jalankan mode INLINE-ONLY (Memproses inline MD di dalam elemen struktural yang sudah ada, e.g., <td>)
+        enhanceInlineOnly();
     }
 
-    // === HIGHLIGHT CODE ===
+    // === HIGHLIGHT CODE === (Tidak berubah)
     async function highlightCodeBlocks() {
         if (!document.querySelector('pre code')) return;
-
         const hljs = await ensureHighlightJS();
         if (!hljs) return;
 
@@ -333,7 +341,6 @@
                 if (m.addedNodes.length) shouldEnhance = true;
             });
             if (shouldEnhance) {
-                // Gunakan setTimeout untuk menunggu proses DOM selesai sebelum enhance
                 setTimeout(() => {
                     enhanceMarkdown();
                     highlightCodeBlocks();
@@ -347,7 +354,7 @@
         });
     }
 
-    // === INIT ===
+    // === INIT & RUN ===
     function init() {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', run);
@@ -357,7 +364,7 @@
     }
 
     async function run() {
-        enhanceMarkdown();
+        enhanceMarkdown(); // Memanggil BLOCK & INLINE enhance
         await highlightCodeBlocks();
         observeMutations();
     }
