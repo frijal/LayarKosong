@@ -1,10 +1,7 @@
 name: 🛠️ Pemeliharaan Dependensi (Upgrade, Cleanup & Highlight.js Sync)
 
 on:
-  # 1️⃣ Bisa dijalankan manual dari tab "Actions"
   workflow_dispatch:
-  
-  # 2️⃣ Dijalankan otomatis setiap bulan, tanggal 9, jam 01:00 UTC (08:00 WIB)
   schedule:
     - cron: '0 1 9 * *'
 
@@ -25,118 +22,76 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: 📦 Install dependencies (untuk tools)
+      - name: 📦 Install dependencies
         run: npm install
 
-      # =============================
-      # BAGIAN 1: Upgrade Dependencies
-      # =============================
+      # Upgrade dependencies
       - name: 🔼 Upgrade dependencies (minor & patch)
         run: |
           npm install -g npm-check-updates
           ncu -u --target minor
           echo "✅ Upgrade selesai (minor/patch)."
 
-      # =============================
-      # BAGIAN 2: Cleanup
-      # =============================
+      # Cleanup
       - name: 🧹 Cleanup unused packages
         run: |
-          echo "🧽 Menjalankan skrip cleanup..."
           if [ -f ext/cleanup.js ]; then
             node ext/cleanup.js
           else
             echo "⚠️ File cleanup.js tidak ditemukan, dilewati."
           fi
 
-      # =============================
-      # BAGIAN 3: Update Highlight.js
-      # =============================
-      - name: 🌈 Ambil versi terbaru Highlight.js dari NPM
+      # Cek versi Highlight.js terbaru
+      - name: 🌈 Cek versi Highlight.js terbaru
+        id: check_hljs_version
         run: |
-          echo "📦 Menginstal paket @highlightjs/cdn-assets..."
-          npm install @highlightjs/cdn-assets@latest --no-save
+          LATEST_VER=$(npm view @highlightjs/cdn-assets version)
+          if [ -f mini/highlight-info.txt ]; then
+            CURRENT_VER=$(grep '^version=' mini/highlight-info.txt | cut -d'=' -f2)
+          else
+            CURRENT_VER=""
+          fi
+          echo "Versi saat ini: $CURRENT_VER, Versi terbaru: $LATEST_VER"
+          if [ "$CURRENT_VER" = "$LATEST_VER" ]; then
+            echo "skip_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip_update=false" >> $GITHUB_OUTPUT
+          fi
 
+      # Update Highlight.js jika perlu
+      - name: 🌈 Update Highlight.js
+        if: steps.check_hljs_version.outputs.skip_update == 'false'
+        run: |
+          npm install @highlightjs/cdn-assets@latest --no-save
           mkdir -p ext mini
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/github.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/github-dark.min.css
-
-          LATEST_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-
           {
-            echo "version=${LATEST_VER}"
+            echo "version=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")"
             echo "updated=${DATE_NOW}"
             echo "source=npm:@highlightjs/cdn-assets"
           } > mini/highlight-info.txt
+          echo "✅ Highlight.js diperbarui."
 
-          echo "✅ Highlight.js versi ${LATEST_VER} tersimpan di ext/"
-
-      # =============================
-      # BAGIAN 4: Validasi File
-      # =============================
-      - name: 🧪 Validasi hasil unduhan
-        id: validate_files
-        run: |
-          if [[ -s ext/highlight.js && -s ext/github.min.css && -s ext/github-dark.min.css ]]; then
-            echo "✅ Semua file Highlight.js valid."
-            echo "ok=true" >> $GITHUB_OUTPUT
-          else
-            echo "❌ File Highlight.js tidak lengkap atau kosong."
-            echo "ok=false" >> $GITHUB_OUTPUT
-          fi
-
-      # =============================
-      # BAGIAN 5: Auto-Rollback Aman
-      # =============================
-      - name: 🔙 Rollback jika gagal
-        if: steps.validate_files.outputs.ok == 'false'
-        run: |
-          echo "⚠️ Melakukan rollback ke commit terakhir..."
-          
-          # Cek dan pulihkan folder ext/
-          if git ls-files --error-unmatch ext >/dev/null 2>&1; then
-            git restore ext/
-            echo "✅ Folder ext/ dipulihkan."
-          else
-            echo "ℹ️ Folder ext/ belum terdaftar di Git."
-          fi
-
-          # Cek dan pulihkan mini/highlight-info.txt
-          if git ls-files --error-unmatch mini/highlight-info.txt >/dev/null 2>&1; then
-            git restore mini/highlight-info.txt
-            echo "✅ File highlight-info.txt dipulihkan."
-          else
-            echo "ℹ️ File mini/highlight-info.txt belum ada di repo, dilewati."
-          fi
-
-          echo "🚫 Rollback selesai. Workflow dihentikan."
-          exit 1
-
-      # =============================
-      # BAGIAN 6: Cek & Commit
-      # =============================
+      # Cek perubahan & commit
       - name: 🔍 Cek perubahan
         id: check_changes
         run: |
           if [[ $(git status --porcelain package.json package-lock.json ext mini) ]]; then
             echo "changes_detected=true" >> $GITHUB_OUTPUT
-            echo "📦 Ada perubahan yang siap di-commit."
           else
             echo "changes_detected=false" >> $GITHUB_OUTPUT
-            echo "📭 Tidak ada perubahan."
           fi
 
-      - name: 🧪 Jalankan build & test (jika ada perubahan)
+      - name: 🧪 Build & Test
         if: steps.check_changes.outputs.changes_detected == 'true'
         run: |
           npm run build --if-present
           npm test --if-present
 
-      # =============================
-      # BAGIAN 7: Buat Pull Request
-      # =============================
+      # Buat Pull Request
       - name: 📨 Create Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
@@ -146,12 +101,9 @@ jobs:
           commit-message: 'chore: Upgrade deps, cleanup, dan sinkronisasi Highlight.js'
           body: |
             PR otomatis ini mencakup:
-            1️⃣ **Upgrade Dependencies (minor/patch)** via `npm-check-updates`
-            2️⃣ **Cleanup Packages** dengan `ext/cleanup.js`
-            3️⃣ **Sinkronisasi Highlight.js** dari `@highlightjs/cdn-assets`
-            4️⃣ **Otomatis rollback** jika validasi file gagal
-
-            🕐 Dibuat: ${{ github.event.repository.updated_at }}
+            - Upgrade Dependencies
+            - Cleanup Packages
+            - Sinkronisasi Highlight.js (jika versi berbeda)
           labels: dependencies, chore, automated pr
           reviewers: frijal
           draft: false
