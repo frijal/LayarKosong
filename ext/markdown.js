@@ -1,112 +1,97 @@
 /*!
- * markdown-enhancer.js — Frijal edition (final)
- * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
- * - Mendukung elemen di dalam <table>, <header>, dan <a>
- * - Tidak membuat baris baru (<br>)
- * - Otomatis memuat highlight.js dengan tema adaptif (dark/light)
- * - Aman terhadap link dan struktur tabel
+ * markdown-enhancer-frijal.js — 🌿 Edisi Lengkap oleh Frijal
+ * Meningkatkan konten HTML dengan sintaks Markdown + highlight.js adaptif
+ * - Tidak mengubah atau menimpa tampilan <a>
+ * - Tema highlight otomatis mengikuti preferensi pengguna (dark/light)
+ * - Tanpa baris baru buatan (<br>)
+ * - Aman digunakan di <header>, <table>, maupun konten artikel
  */
 
 (async function () {
   // === 1️⃣ Muat highlight.js otomatis ===
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
-
     const script = document.createElement("script");
-    script.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js";
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js";
     script.defer = true;
     document.head.appendChild(script);
-
-    await new Promise((res) => (script.onload = res));
+    await new Promise(res => (script.onload = res));
     return window.hljs;
   }
 
-  // === 2️⃣ Terapkan tema highlight.js adaptif ===
-  function applyHighlightTheme() {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const existing = document.querySelector("link[data-hljs-theme]");
-    const hrefDark =
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css";
-    const hrefLight =
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
+  // === 2️⃣ Tambahkan gaya highlight.js (tanpa <a> style) ===
+  function injectHighlightTheme() {
+    if (document.getElementById("hljs-combined-style")) return;
 
-    const newHref = prefersDark ? hrefDark : hrefLight;
+    const style = document.createElement("style");
+    style.id = "hljs-combined-style";
+    style.textContent = `
+/* ==========================================================
+   Highlight.js Combined Theme (GitHub Light + Dark)
+   Versi tanpa styling <a>
+   ========================================================== */
 
-    if (existing) {
-      if (existing.href !== newHref) existing.href = newHref;
-    } else {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = newHref;
-      link.dataset.hljsTheme = "true";
-      document.head.appendChild(link);
-    }
+/* Blok kode highlight */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Warna dasar mode terang (GitHub Light) */
+:root {
+  --hljs-bg: #f6f8fa;
+  --hljs-text: #24292e;
+  --hljs-border: #d0d7de;
+}
+
+/* Warna dasar mode gelap (GitHub Dark) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --hljs-bg: #0d1117;
+    --hljs-text: #c9d1d9;
+    --hljs-border: #30363d;
+  }
+}
+
+/* Terapkan warna tema */
+pre code.hljs {
+  background-color: var(--hljs-bg) !important;
+  color: var(--hljs-text) !important;
+  border: 1px solid var(--hljs-border);
+}
+
+/* Inline code */
+code:not(.hljs) {
+  background-color: rgba(127, 127, 127, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+@media (prefers-color-scheme: dark) {
+  code:not(.hljs) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reset untuk header agar tidak rusak */
+header, header *, header strong, header span {
+  all: revert !important;
+}
+`;
+    document.head.appendChild(style);
   }
 
-  applyHighlightTheme();
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", applyHighlightTheme);
-
-  // === 3️⃣ CSS tambahan agar tampilan tetap rapi ===
-  const style = document.createElement("style");
-  style.textContent = `
-    a {
-      display: inline;
-      white-space: normal;
-      text-decoration: none;
-      color: var(--secondary-color, #0969da);
-      font-weight: inherit;
-      background: none;
-      border: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    pre, code {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      overflow-x: auto;
-      border-radius: 8px;
-      font-size: 0.95em;
-      line-height: 1.5;
-    }
-
-    p code {
-      display: inline;
-      padding: 2px 4px;
-      border-radius: 4px;
-      background-color: rgba(127,127,127,0.1);
-    }
-
-    header pre, header code {
-      background: none;
-      color: inherit;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1em 0;
-    }
-    th, td {
-      border: 1px solid rgba(128,128,128,0.3);
-      padding: 6px 10px;
-      text-align: left;
-    }
-    th {
-      font-weight: bold;
-      background: rgba(128,128,128,0.1);
-    }
-  `;
-  document.head.appendChild(style);
-
-  // === 4️⃣ Konversi Markdown → HTML ringan ===
+  // === 3️⃣ Konversi Markdown → HTML ringan ===
   function convertInlineMarkdown(text) {
     return text
-      .replace(/&gt;/g, ">")
+      .replace(/&gt;/g, ">") // normalisasi simbol
       // Heading
       .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
       .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
@@ -120,10 +105,7 @@
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
       .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
-      // Link
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener" class="text-blue-600 hover:underline">$1</a>')
-      // Lists
+      // List
       .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
       .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
       // Code block ```
@@ -132,60 +114,48 @@
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
       // Tabel sederhana
-      .replace(/((?:\|.*\|\n)+)/g, (tableMatch) => {
-        const rows = tableMatch.trim().split("\n").filter((r) => r.trim());
+      .replace(/((?:\|.*\|\n)+)/g, tableMatch => {
+        const rows = tableMatch.trim().split("\n").filter(r => r.trim());
         if (rows.length < 2) return tableMatch;
-        const header = rows[0]
-          .split("|")
-          .filter(Boolean)
-          .map((c) => `<th>${c.trim()}</th>`)
-          .join("");
-        const body = rows
-          .slice(2)
-          .map(
-            (r) =>
-              "<tr>" +
-              r
-                .split("|")
-                .filter(Boolean)
-                .map((c) => `<td>${c.trim()}</td>`)
-                .join("") +
-              "</tr>"
-          )
-          .join("");
+        const header = rows[0].split("|").filter(Boolean)
+          .map(c => `<th>${c.trim()}</th>`).join("");
+        const body = rows.slice(2).map(r =>
+          "<tr>" + r.split("|").filter(Boolean)
+          .map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
+        ).join("");
         return `<table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
       });
   }
 
-  // === 5️⃣ Proses elemen dengan Markdown (termasuk <header>, <a>, <td>) ===
+  // === 4️⃣ Proses semua elemen yang berisi Markdown ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, a, .markdown, .markdown-body";
-    document.querySelectorAll(selector).forEach((el) => {
+    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
+    document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
       if (el.querySelector("pre, code, table")) return;
 
       const original = el.innerHTML.trim();
       if (!original) return;
 
-      // Hapus line break agar tidak pecah baris
+      // Hapus line break agar tetap satu paragraf
       const singleLine = original.replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
       el.innerHTML = convertInlineMarkdown(singleLine);
     });
   }
 
-  // === 6️⃣ Aktifkan highlight ===
+  // === 5️⃣ Highlight semua blok kode ===
   async function enhanceCodeBlocks() {
     const hljs = await ensureHighlightJS();
-    document.querySelectorAll("pre code").forEach((el) => {
-      try {
-        hljs.highlightElement(el);
-      } catch {}
+    document.querySelectorAll("pre code").forEach(el => {
+      try { hljs.highlightElement(el); } catch {}
     });
   }
 
-  // === 7️⃣ Jalankan setelah DOM siap ===
+  // Jalankan setelah DOM siap
   document.addEventListener("DOMContentLoaded", async () => {
+    injectHighlightTheme();
     enhanceMarkdown();
     await enhanceCodeBlocks();
+    console.info("[markdown-enhancer-frijal.js] Markdown & Highlight siap digunakan.");
   });
 })();
