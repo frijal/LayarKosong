@@ -1,11 +1,11 @@
 /*!
- * markdown-enhancer.js (versi table+header-safe)
- * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
- * Sekarang bisa digunakan di dalam <table>, <tr>, <td>, dan <header>.
- * Otomatis memuat highlight.js bila perlu.
+ * markdown-enhancer.js (🧠 versi super lengkap by frijal)
+ * 🌿 Markdown → HTML otomatis di berbagai elemen.
+ * ✅ Bekerja di: <p>, <li>, <blockquote>, <td>, <th>, <header>, <a>
+ * ✅ Auto highlight.js (dark/light theme switch)
  */
 (async function () {
-  // 🔹 Muat highlight.js otomatis bila belum tersedia
+  // === 1️⃣ Muat highlight.js otomatis ===
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
 
@@ -14,16 +14,34 @@
     script.defer = true;
     document.head.appendChild(script);
 
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css";
-    document.head.appendChild(link);
-
     await new Promise(res => (script.onload = res));
     return window.hljs;
   }
 
-  // 🔹 Konversi inline & blok Markdown → HTML ringan
+  // === 2️⃣ Muat stylesheet highlight.js sesuai tema ===
+  function applyHighlightTheme() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const existing = document.querySelector("link[data-hljs-theme]");
+    const newHref = prefersDark
+      ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+      : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
+
+    if (existing) {
+      if (existing.href !== newHref) existing.href = newHref;
+    } else {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = newHref;
+      link.dataset.hljsTheme = "true";
+      document.head.appendChild(link);
+    }
+  }
+
+  // Jalankan saat awal dan bila user ubah tema sistem
+  applyHighlightTheme();
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
+
+  // === 3️⃣ Fungsi konversi Markdown → HTML ===
   function convertInlineMarkdown(text) {
     return text
       // Heading
@@ -42,7 +60,7 @@
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
       .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
 
-      // Links
+      // Markdown links
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
         '<a href="$2" target="_blank" rel="noopener" class="text-blue-600 hover:underline">$1</a>')
 
@@ -56,7 +74,7 @@
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
 
-      // Tables markdown sederhana → HTML
+      // Tables Markdown sederhana
       .replace(/((?:\|.*\|\n)+)/g, tableMatch => {
         const rows = tableMatch.trim().split("\n").filter(r => r.trim());
         if (rows.length < 2) return tableMatch;
@@ -70,15 +88,21 @@
       });
   }
 
-  // 🔹 Proses elemen-elemen yang berisi Markdown (termasuk header & table)
+  // === 4️⃣ Proses semua elemen yang mungkin berisi Markdown ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
+    const selector = "p, li, blockquote, td, th, header, a, .markdown, .markdown-body";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
 
-      // Hindari mengubah elemen yang sudah punya banyak anak HTML
-      if (el.children.length > 0 && !el.classList.contains("markdown")) return;
+      // Untuk <a>, pastikan hanya teks murni yang dikonversi
+      if (el.tagName === "A") {
+        if (el.querySelector("*")) return; // jangan ubah jika ada elemen anak lain
+        el.innerHTML = convertInlineMarkdown(el.textContent.trim());
+        return;
+      }
 
+      // Elemen biasa
+      if (el.children.length > 0 && !el.classList.contains("markdown")) return;
       const original = el.innerHTML.trim();
       if (!original) return;
 
@@ -86,7 +110,7 @@
     });
   }
 
-  // 🔹 Proses highlight untuk <pre><code>
+  // === 5️⃣ Proses highlight untuk <pre><code> ===
   async function enhanceCodeBlocks() {
     const hljs = await ensureHighlightJS();
     document.querySelectorAll("pre code").forEach(el => {
@@ -94,7 +118,7 @@
     });
   }
 
-  // 🔹 Jalankan setelah DOM siap
+  // === 6️⃣ Jalankan setelah DOM siap ===
   document.addEventListener("DOMContentLoaded", async () => {
     enhanceMarkdown();
     await enhanceCodeBlocks();
