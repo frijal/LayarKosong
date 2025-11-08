@@ -1,20 +1,30 @@
 /*!
- * markdown.js v6.0 — Zero-Touch Auto Markdown + CSS Inject
- * Otomatis deteksi Markdown, konversi, dan inject CSS
- * Aman untuk semua elemen HTML
+ * markdown.js v11.0 — Interactive & Persistent Checkboxes
+ * - [ ] -> <input type="checkbox"> (klik & simpan status)
+ * Nested list, table, code block, inline
+ * Otomatis inject CSS + highlight.js
  */
 
 (function () {
   'use strict';
 
-  // === INJECT CSS OTOMATIS ===
+  const STORAGE_KEY = 'markdown-checkbox-states';
+
+  // === INJECT CSS ===
   function injectCSS() {
     const style = document.createElement('style');
     style.textContent = `
       .md-link { color: #3498db; text-decoration: underline; }
       .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
       .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-      .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+      .md-table ul, .md-table ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
+      .md-table li { margin: 0.2em 0; position: relative; padding-left: 1.8em; }
+      .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; cursor: pointer; user-select: none; }
+      .md-checkbox input { margin: 0; width: 1em; height: 1em; cursor: pointer; }
+      .md-checkbox input:checked + span { text-decoration: line-through; opacity: 0.7; }
+      .md-table pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
+      .md-table code { white-space: pre-wrap; word-break: break-word; }
       @media (prefers-color-scheme: dark) {
         .md-inline { background: #34495e; color: #ecf0f1; }
         .md-table { border-color: #3b506b; }
@@ -24,7 +34,7 @@
     document.head.appendChild(style);
   }
 
-  // === MUAT HIGHLIGHT.JS ===
+  // === HIGHLIGHT.JS ===
   let hljsPromise = null;
   async function ensureHighlightJS() {
     if (hljsPromise) return hljsPromise;
@@ -46,21 +56,6 @@
     return hljsPromise;
   }
 
-  // === DETEKSI MARKDOWN ===
-  function isLikelyMarkdown(text) {
-    if (!text || text.length < 10) return false;
-    const trimmed = text.trim();
-    return (
-      /^#{1,6}\s/.test(trimmed) ||
-      /^\s*[-*+]\s/.test(trimmed) ||
-      /^\s*>\s/.test(trimmed) ||
-      /```[\s\S]*```/.test(text) ||
-      /\[.*?\]\(.+?\)/.test(text) ||
-      /\*\*.*\*\*/.test(text) ||
-      /^\s*\|.*\|/.test(trimmed) && text.includes('\n')
-    );
-  }
-
   // === ESCAPE HTML ===
   function escapeHTML(str) {
     return String(str)
@@ -71,7 +66,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  // === INLINE MARKDOWN ===
+  // === PROCESS INLINE MARKDOWN ===
   function processInline(text) {
     return text
       .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
@@ -80,20 +75,190 @@
       .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
   }
 
-  // === PARSE TABEL ===
-  function parseTable(lines) {
+  // === STORAGE: Simpan & baca status checkbox ===
+  const checkboxStates = new Map();
+  let saveTimeout = null;
+
+  function saveStates() {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      const data = {};
+      checkboxStates.forEach((checked, id) => {
+        data[id] = checked;
+      });
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }, 300);
+  }
+
+  function loadStates() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (data) {
+        const parsed = JSON.parse(data);
+        Object.entries(parsed).forEach(([id, checked]) => {
+          checkboxStates.set(id, checked);
+        });
+      }
+    } catch (e) {}
+  }
+
+  // === GENERATE UNIQUE ID ===
+  let checkboxCounter = 0;
+  function generateCheckboxId() {
+    return `md-cb-${++checkboxCounter}-${Date.now()}`;
+  }
+
+  // === PARSE MARKDOWN TABLE ===
+  function parseMarkdownTable(lines) {
     const rows = lines.map(l => l.trim()).filter(Boolean);
     if (rows.length < 2) return null;
 
     const cleanRows = rows.filter(r => !/^[\s|:-]+$/.test(r.replace(/\|/g, '')));
     if (cleanRows.length < 1) return null;
 
-    const header = cleanRows[0].split('|').filter(Boolean).map(h => `<th>${escapeHTML(h.trim())}</th>`).join('');
+    const header = cleanRows[0].split('|').filter(Boolean).map(h => `<th>${processCell(h.trim())}</th>`).join('');
     const body = cleanRows.slice(1).map(r =>
-      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${escapeHTML(c.trim())}</td>`).join('') + '</tr>'
+      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${processCell(c.trim())}</td>`).join('') + '</tr>'
     ).join('');
 
     return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+  }
+
+  // === PROCESS CELL: Checkbox interaktif + nested list ===
+  function processCell(text) {
+    const lines = text.split('\n');
+    const blocks = [];
+    let i = 0;
+    let listStack = [];
+
+    const closeLists = () => {
+      while (listStack.length) {
+        const closed = listStack.pop();
+        if (listStack.length > 0) {
+          listStack[listStack.length - 1].items.push(closed);
+        } else {
+          blocks.push(closed);
+        }
+      }
+    };
+
+    while (i < lines.length) {
+      const line = lines[i];
+
+      // Code block
+      if (line.trim().startsWith('```')) {
+        const lang = line.trim().slice(3).trim() || 'plaintext';
+        const codeLines = [];
+        i++;
+        while (i < lines.length && !lines[i].trim().startsWith('```')) {
+          codeLines.push(lines[i]);
+          i++;
+        }
+        i++;
+        blocks.push(`<pre><code class="language-${lang}">${escapeHTML(codeLines.join('\n'))}</code></pre>`);
+        continue;
+      }
+
+      // Checkbox: - [ ] Task
+      const checkboxMatch = line.match(/^(\s*)[-*+]\s+\[([\sx])\]\s+(.+)$/);
+      if (checkboxMatch) {
+        const indent = checkboxMatch[1].length;
+        const isChecked = checkboxMatch[2] === 'x';
+        const labelText = processInline(escapeHTML(checkboxMatch[3]));
+        const cbId = generateCheckboxId();
+
+        const level = Math.floor(indent / 2);
+        while (listStack.length > level) {
+          const closed = listStack.pop().close();
+          if (listStack.length > 0) {
+            listStack[listStack.length - 1].items.push(closed);
+          } else {
+            blocks.push(closed);
+          }
+        }
+
+        const checkedAttr = checkboxStates.has(cbId) ? (checkboxStates.get(cbId) ? 'checked' : '') : (isChecked ? 'checked' : '');
+        const li = `<li>
+          <label class="md-checkbox">
+            <input type="checkbox" id="${cbId}" ${checkedAttr}>
+            <span>${labelText}</span>
+          </label>
+        </li>`;
+
+        if (listStack.length === level) {
+          listStack[listStack.length - 1].items.push(li);
+        } else {
+          const newList = {
+            tag: 'ul',
+            items: [li],
+            close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; }
+          };
+          listStack.push(newList);
+        }
+        i++;
+        continue;
+      }
+
+      // Regular list
+      const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
+      if (listMatch) {
+        const indent = listMatch[1].length;
+        const itemText = processInline(escapeHTML(listMatch[2]));
+
+        const level = Math.floor(indent / 2);
+        while (listStack.length > level) {
+          const closed = listStack.pop().close();
+          if (listStack.length > 0) {
+            listStack[listStack.length - 1].items.push(closed);
+          } else {
+            blocks.push(closed);
+          }
+        }
+
+        const li = `<li>${itemText}</li>`;
+        if (listStack.length === level) {
+          listStack[listStack.length - 1].items.push(li);
+        } else {
+          const newList = {
+            tag: level % 2 === 0 ? 'ul' : 'ol',
+            items: [li],
+            close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; }
+          };
+          listStack.push(newList);
+        }
+        i++;
+        continue;
+      }
+
+      if (listStack.length > 0 && !/^\s/.test(line)) {
+        closeLists();
+      }
+
+      if (line.trim()) {
+        blocks.push(`<p>${processInline(escapeHTML(line))}</p>`);
+      }
+      i++;
+    }
+
+    closeLists();
+    return blocks.length > 0 ? blocks.join('') : processInline(escapeHTML(text));
+  }
+
+  // === DETEKSI MARKDOWN ===
+  function isLikelyMarkdown(text) {
+    if (!text || text.length < 5) return false;
+    return (
+      /\*\*.*\*\*/.test(text) ||
+      /\*.*\*/.test(text) ||
+      /`[^`]+`/.test(text) ||
+      /\[.*?\]\(.+?\)/.test(text) ||
+      /```/.test(text) ||
+      /^\s*[-*+]\s+\[([\sx])\]\s+/.test(text) ||
+      /^\s*[-*+]\s/.test(text.trim()) ||
+      (text.includes('|') && text.includes('\n') && /^\s*\|/.test(text.trim()))
+    );
   }
 
   // === PROSES TEXT NODE ===
@@ -114,7 +279,6 @@
       const rawLine = lines[i];
       const line = rawLine.trim();
 
-      // Code block
       if (line.startsWith('```')) {
         const lang = line.slice(3).trim() || 'plaintext';
         const codeLines = [];
@@ -129,7 +293,6 @@
         continue;
       }
 
-      // Tabel
       if (line.includes('|') && /^\s*\|/.test(rawLine)) {
         const tableLines = [rawLine];
         i++;
@@ -137,7 +300,7 @@
           tableLines.push(lines[i]);
           i++;
         }
-        const tableHTML = parseTable(tableLines);
+        const tableHTML = parseMarkdownTable(tableLines);
         if (tableHTML) {
           blocks.push(tableHTML);
           continue;
@@ -145,37 +308,42 @@
         i--;
       }
 
-      // Heading
       const heading = rawLine.match(/^(#{1,6})\s+(.+)$/);
       if (heading) {
         const level = heading[1].length;
-        blocks.push(`<h${level}>${escapeHTML(heading[2])}</h${level}>`);
+        blocks.push(`<h${level}>${processInline(escapeHTML(heading[2]))}</h${level}>`);
         i++;
         continue;
       }
 
-      // List
       if (/^\s*[-*+]\s/.test(rawLine)) {
         const items = [];
         while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
           const item = lines[i].replace(/^\s*[-*+]\s+/, '');
-          items.push(`<li>${processInline(item)}</li>`);
+          const checkbox = item.match(/^\[([\sx])\]\s+(.+)$/);
+          if (checkbox) {
+            const isChecked = checkbox[1] === 'x';
+            const labelText = processInline(escapeHTML(checkbox[2]));
+            const cbId = generateCheckboxId();
+            const checkedAttr = checkboxStates.has(cbId) ? (checkboxStates.get(cbId) ? 'checked' : '') : (isChecked ? 'checked' : '');
+            items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${cbId}" ${checkedAttr}><span>${labelText}</span></label></li>`);
+          } else {
+            items.push(`<li>${processInline(escapeHTML(item))}</li>`);
+          }
           i++;
         }
         blocks.push(`<ul>${items.join('')}</ul>`);
         continue;
       }
 
-      // Blockquote
       if (line.startsWith('>')) {
-        blocks.push(`<blockquote>${processInline(line.slice(1).trim())}</blockquote>`);
+        blocks.push(`<blockquote>${processInline(escapeHTML(line.slice(1).trim()))}</blockquote>`);
         i++;
         continue;
       }
 
-      // Paragraf
       if (line) {
-        blocks.push(`<p>${processInline(line)}</p>`);
+        blocks.push(`<p>${processInline(escapeHTML(rawLine))}</p>`);
       }
       i++;
     }
@@ -184,17 +352,33 @@
 
     const temp = document.createElement('div');
     temp.innerHTML = blocks.join('');
+    const parentNode = node.parentNode;
     while (temp.firstChild) {
-      parent.insertBefore(temp.firstChild, node);
+      parentNode.insertBefore(temp.firstChild, node);
     }
-    parent.removeChild(node);
+    parentNode.removeChild(node);
 
     return hasCodeBlock;
   }
 
+  // === SETUP CHECKBOX EVENTS ===
+  function setupCheckboxEvents() {
+    document.addEventListener('change', e => {
+      if (e.target.matches('input[type="checkbox"]')) {
+        const cb = e.target;
+        const id = cb.id;
+        if (id.startsWith('md-cb-')) {
+          checkboxStates.set(id, cb.checked);
+          saveStates();
+        }
+      }
+    }, true);
+  }
+
   // === ENHANCE ALL ===
   function enhance() {
-    injectCSS(); // Inject sekali saja
+    injectCSS();
+    loadStates();
 
     const walker = document.createTreeWalker(
       document.body,
@@ -223,6 +407,8 @@
         }
       });
     }
+
+    setupCheckboxEvents();
   }
 
   // === INIT ===
@@ -232,7 +418,6 @@
     enhance();
   }
 
-  // Observe dynamic content
   new MutationObserver(enhance).observe(document.body, {
     childList: true,
     subtree: true
