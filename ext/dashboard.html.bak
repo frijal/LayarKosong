@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Artikel</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      #categories {
+        display: flex;
+        gap: 20px;
+      }
+      .column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .category {
+        background: white;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .category h3 {
+        margin: 0 0 10px;
+        font-size: 1.1em;
+        background: #eee;
+        padding: 5px;
+        border-radius: 4px;
+      }
+      .item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-height: 50px;
+        border: 1px dashed #ccc;
+        padding: 6px;
+        border-radius: 4px;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        padding: 4px 6px;
+        border-radius: 4px;
+        cursor: grab;
+      }
+      .item img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      #downloadBtn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      #downloadBtn:hover {
+        background: #1976d2;
+      }
+      /* Context Menu */
+      #contextMenu {
+        font-family: sans-serif;
+        font-size: 14px;
+        min-width: 180px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: absolute;
+        display: none;
+        z-index: 1000;
+      }
+      #contextMenu div {
+        padding: 8px 12px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      #contextMenu div:hover {
+        background: #f0f0f0;
+      }
+      /* Search bar */
+      #searchContainer {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      #searchContainer input {
+        padding: 6px 10px;
+        width: 300px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      #searchContainer button {
+        margin-left: 5px;
+        padding: 6px 10px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      mark {
+        background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>📂 Dashboard Artikel</h1>
+
+    <div id="searchContainer"></div>
+
+    <div id="categories"></div>
+    <button id="downloadBtn">💾 Download artikel.json</button>
+
+    <!-- Panggil JS -->
+    <script type="module" src="/ext/dashboard.js"></script>
+  </body>
+</html>

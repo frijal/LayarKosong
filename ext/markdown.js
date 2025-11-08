@@ -31,7 +31,7 @@
 
     // Jika belum di-cache, muat dari CDN
     const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js";
+    script.src = "/ext/highlight.min.js";
     script.defer = true;
     document.head.appendChild(script);
 
@@ -45,8 +45,8 @@
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
     const newHref = prefersDark
-      ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-      : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
+      ? "/ext/styles/github-dark.min.css"
+      : "/ext/styles/github.min.css";
 
     if (existing) {
       if (existing.href !== newHref) existing.href = newHref;
