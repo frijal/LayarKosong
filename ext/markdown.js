@@ -1,11 +1,12 @@
 /*!
- * markdown-enhancer.js (🧠 versi super lengkap by frijal)
- * 🌿 Markdown → HTML otomatis di berbagai elemen.
- * ✅ Bekerja di: <p>, <li>, <blockquote>, <td>, <th>, <header>, <a>
- * ✅ Auto highlight.js (dark/light theme switch)
+ * markdown-enhancer.js (🌗 versi auto-theme)
+ * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
+ * - Bekerja di <table>, <tr>, <td>, <header>
+ * - Otomatis memuat highlight.js
+ * - Otomatis deteksi tema sistem (dark / light)
  */
 (async function () {
-  // === 1️⃣ Muat highlight.js otomatis ===
+  // 🔹 Muat highlight.js otomatis bila belum tersedia
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
 
@@ -18,7 +19,7 @@
     return window.hljs;
   }
 
-  // === 2️⃣ Muat stylesheet highlight.js sesuai tema ===
+  // 🔹 Muat stylesheet highlight.js sesuai tema user
   function applyHighlightTheme() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
@@ -37,11 +38,11 @@
     }
   }
 
-  // Jalankan saat awal dan bila user ubah tema sistem
+  // Jalankan deteksi tema awal + pantau perubahan sistem
   applyHighlightTheme();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
 
-  // === 3️⃣ Fungsi konversi Markdown → HTML ===
+  // 🔹 Konversi inline & blok Markdown → HTML ringan
   function convertInlineMarkdown(text) {
     return text
       // Heading
@@ -60,7 +61,7 @@
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
       .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
 
-      // Markdown links
+      // Links
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
         '<a href="$2" target="_blank" rel="noopener" class="text-blue-600 hover:underline">$1</a>')
 
@@ -74,7 +75,7 @@
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
 
-      // Tables Markdown sederhana
+      // Tables markdown sederhana → HTML
       .replace(/((?:\|.*\|\n)+)/g, tableMatch => {
         const rows = tableMatch.trim().split("\n").filter(r => r.trim());
         if (rows.length < 2) return tableMatch;
@@ -88,21 +89,13 @@
       });
   }
 
-  // === 4️⃣ Proses semua elemen yang mungkin berisi Markdown ===
+  // 🔹 Proses elemen yang mengandung Markdown
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, a, .markdown, .markdown-body";
+    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
-
-      // Untuk <a>, pastikan hanya teks murni yang dikonversi
-      if (el.tagName === "A") {
-        if (el.querySelector("*")) return; // jangan ubah jika ada elemen anak lain
-        el.innerHTML = convertInlineMarkdown(el.textContent.trim());
-        return;
-      }
-
-      // Elemen biasa
       if (el.children.length > 0 && !el.classList.contains("markdown")) return;
+
       const original = el.innerHTML.trim();
       if (!original) return;
 
@@ -110,7 +103,7 @@
     });
   }
 
-  // === 5️⃣ Proses highlight untuk <pre><code> ===
+  // 🔹 Proses highlight.js untuk <pre><code>
   async function enhanceCodeBlocks() {
     const hljs = await ensureHighlightJS();
     document.querySelectorAll("pre code").forEach(el => {
@@ -118,7 +111,7 @@
     });
   }
 
-  // === 6️⃣ Jalankan setelah DOM siap ===
+  // 🔹 Jalankan setelah DOM siap
   document.addEventListener("DOMContentLoaded", async () => {
     enhanceMarkdown();
     await enhanceCodeBlocks();
