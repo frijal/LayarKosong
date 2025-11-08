@@ -1,9 +1,8 @@
 /*!
- * nano-md.js — Markdown Lite Enhancer (Versi Inline-Safe)
- * 🌿 Konversi Markdown sederhana → HTML dengan aman dan akurat
- * Otomatis muat highlight.js hanya jika ada <code>
- * Aman dari XSS, mendukung nested list, tabel, dan lebih akurat
- * Versi: 3.1.0 | Author: Frijal (Enhanced by Gemini AI)
+ * nano-md.js — Markdown Lite Enhancer (Versi Classless & Inline-Safe)
+ * 🌿 Konversi Markdown ke HTML dengan aman dan akurat.
+ * Perubahan: Menghapus semua penambahan class HTML (md-inline, md-table, md-link).
+ * Versi: 3.2.0 | Author: Frijal (Enhanced by Gemini AI)
  */
 
 (function () {
@@ -15,11 +14,9 @@
         css: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
     };
 
-    // Elemen yang diproses:
-    // BLOCK: Untuk Markdown mentah, mengganti seluruh konten (mode lama)
-    const SELECTORS_BLOCK = ".markdown, .markdown-body, .md";
-    // INLINE: Untuk elemen HTML yang sudah ada (e.g., sel tabel), hanya memproses inline MD
-    const SELECTORS_INLINE = "td, th, p, li, blockquote, span.inline-md"; 
+    // Elemen yang akan diproses secara INLINE-ONLY (td, th, p, li, dst.)
+    // Dan juga target BLOCK-LEVEL (.markdown)
+    const SELECTORS_TARGET = "td, th, p, li, blockquote, .markdown, .markdown-body, .md"; 
 
     // === UTILITAS KEAMANAN ===
     /** Melarikan diri (escape) dari string HTML mentah untuk keamanan XSS. */
@@ -48,7 +45,7 @@
             script.src = HIGHLIGHT_CDN.js;
             script.defer = true;
             script.onload = () => resolve(window.hljs);
-            script.onerror = () => resolve(null); // Gagal muat
+            script.onerror = () => resolve(null);
             document.head.appendChild(script);
         });
 
@@ -59,20 +56,19 @@
     function processInline(text) {
         if (!text || typeof text !== 'string') return '';
 
-        // --- 1. Code `text` (Harus dilakukan pertama untuk melindungi kontennya)
+        // --- 1. Code `text` (TANPA CLASS)
         text = text.replace(/`([^`]+)`/g, (m, code) => 
-            `<code class="md-inline">${escapeHTML(code)}</code>` // Escape isi code
+            `<code>${escapeHTML(code)}</code>` // Dulu: <code class="md-inline">...</code>
         );
 
-        // --- 2. Link [text](url)
+        // --- 2. Link [text](url) (TANPA CLASS)
         text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
-            const cleanLabel = processInline(label); // Proses inline di dalam label link
+            const cleanLabel = processInline(label);
             const cleanUrl = escapeHTML(url);
-            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="md-link">${cleanLabel}</a>`;
+            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${cleanLabel}</a>`; // Dulu: class="md-link"
         });
         
         // --- 3. HTML Escape untuk konten yang tersisa
-        // Lakukan escape pada teks sebelum diproses bold/italic agar simbol seperti '<' dinetralkan.
         text = escapeHTML(text);
 
         // --- 4. Bold **text**
@@ -87,25 +83,14 @@
     // === PARSING MARKDOWN PER BARIS (AKURAT & AMAN) ===
     function parseMarkdownLines(lines) {
         const output = [];
-        let listStack = []; // Stack untuk nested list
+        let listStack = [];
         let inCodeBlock = false;
         let codeLang = '';
         let codeLines = [];
 
-        // Helper untuk menutup semua list yang terbuka
         const closeLists = () => {
             while (listStack.length) {
                 output.push(listStack.pop().close());
-            }
-        };
-
-        // Helper untuk menambahkan baris/blok ke output atau list saat ini
-        const pushLine = (html) => {
-            if (listStack.length) {
-                const current = listStack[listStack.length - 1];
-                current.items[current.items.length - 1] += html;
-            } else {
-                output.push(html);
             }
         };
 
@@ -251,6 +236,7 @@
 
         const parseCells = (row) => row.split('|').map(c => c.trim()).filter(Boolean);
 
+        // TANPA CLASS md-table
         const header = parseCells(headerRow).map(h => `<th>${processInline(h)}</th>`).join('');
         
         const body = bodyRows.map(r => {
@@ -259,25 +245,21 @@
             return `<tr>${tds}</tr>`;
         }).join('');
 
-        return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+        return `<table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`; // Dulu: <table class="md-table">
     }
 
-    // === ENHANCE BLOCK-LEVEL (Mode Default: Mengganti seluruh konten elemen target) ===
+    // === ENHANCE BLOCK-LEVEL (Mengganti seluruh konten elemen target) ===
     function enhanceBlockElement(el) {
-        // Menggunakan atribut data yang berbeda untuk menghindari konflik dengan inline-only
         if (el.dataset.nanoMdBlock === 'done') return;
         if (el.classList.contains('no-md')) return;
 
-        // Ambil teks mentah (Markdown)
         const text = el.textContent || el.innerText;
         if (!text || !text.trim()) return;
 
-        // Parse per baris
         const lines = text.split('\n');
         const htmlLines = parseMarkdownLines(lines);
         let finalHTML = htmlLines.join('');
 
-        // Hapus pembungkus <p> jika elemen target adalah p, li, atau blockquote
         const tagName = el.tagName.toUpperCase();
         if ((tagName === 'P' || tagName === 'LI' || tagName === 'BLOCKQUOTE') && finalHTML.startsWith('<p>')) {
              finalHTML = finalHTML.replace(/^<p>(.*)<\/p>$/s, '$1');
@@ -287,13 +269,18 @@
         el.dataset.nanoMdBlock = 'done';
     }
     
-    // === FUNGSI BARU: ENHANCE INLINE-ONLY (Hanya memproses bold, code, link di dalam HTML yang sudah ada) ===
+    // === ENHANCE INLINE-ONLY (Memproses inline MD di dalam HTML yang sudah ada) ===
     function enhanceInlineOnly() {
-        document.querySelectorAll(SELECTORS_INLINE).forEach(el => {
-            // Gunakan atribut data yang berbeda untuk menghindari konflik dengan block-level
+        // Hanya memproses elemen yang membutuhkan pemrosesan inline dan yang kontennya sudah ada.
+        document.querySelectorAll(SELECTORS_TARGET).forEach(el => {
             if (el.dataset.nanoMdInline === 'done' || el.classList.contains('no-md')) return;
+            
+            // Logika sederhana untuk membedakan mode:
+            // Jika elemen adalah BLOCK, biarkan mode Block yang menanganinya, kecuali jika sudah selesai.
+            if (el.tagName.toUpperCase() !== 'TD' && el.tagName.toUpperCase() !== 'TH' && el.dataset.nanoMdBlock === 'done') {
+                return;
+            }
 
-            // Ambil innerHTML saat ini (termasuk tag anak)
             const originalHTML = el.innerHTML;
             
             // Jalankan HANYA fungsi processInline pada innerHTML
@@ -309,10 +296,22 @@
 
     // === ENHANCE ALL (Menggabungkan kedua mode) ===
     function enhanceMarkdown() {
-        // 1. Jalankan mode BLOCK-LEVEL (Mengubah Markdown mentah menjadi HTML block/list/table)
-        document.querySelectorAll(SELECTORS_BLOCK).forEach(enhanceBlockElement);
+        // Pisahkan target BLOCK dari target INLINE-ONLY (td/th)
+        const blockTargets = document.querySelectorAll(SELECTORS_TARGET);
         
-        // 2. Jalankan mode INLINE-ONLY (Memproses inline MD di dalam elemen struktural yang sudah ada, e.g., <td>)
+        blockTargets.forEach(el => {
+            const tagName = el.tagName.toUpperCase();
+            
+            if (tagName === 'TD' || tagName === 'TH') {
+                // Selalu proses TD/TH dalam mode INLINE-ONLY (di bawah)
+                return;
+            } else if (el.classList.contains('markdown') || el.classList.contains('markdown-body') || el.classList.contains('md')) {
+                // Elemen ditandai sebagai kontainer Markdown mentah, proses sebagai BLOCK-LEVEL
+                enhanceBlockElement(el);
+            }
+        });
+
+        // Selalu jalankan mode INLINE-ONLY pada semua target yang mungkin (termasuk TD/TH dan elemen p/li/blockquote)
         enhanceInlineOnly();
     }
 
@@ -364,7 +363,7 @@
     }
 
     async function run() {
-        enhanceMarkdown(); // Memanggil BLOCK & INLINE enhance
+        enhanceMarkdown(); // Memanggil kedua mode enhance
         await highlightCodeBlocks();
         observeMutations();
     }
