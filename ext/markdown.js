@@ -1,25 +1,23 @@
 /*!
- * markdown-enhancer.js (🌗 versi auto-theme)
+ * markdown-enhancer.js — Frijal edition
  * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
- * - Bekerja di <table>, <tr>, <td>, <header>
- * - Otomatis memuat highlight.js
- * - Otomatis deteksi tema sistem (dark / light)
+ * - Mendukung elemen di dalam <table>, <header>, dan <a>
+ * - Tidak membuat baris baru (<br>)
+ * - Otomatis memuat highlight.js dengan tema adaptif (dark/light)
  */
 (async function () {
-  // 🔹 Muat highlight.js otomatis bila belum tersedia
+  // === 1️⃣ Muat highlight.js otomatis ===
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
-
     const script = document.createElement("script");
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js";
     script.defer = true;
     document.head.appendChild(script);
-
     await new Promise(res => (script.onload = res));
     return window.hljs;
   }
 
-  // 🔹 Muat stylesheet highlight.js sesuai tema user
+  // === 2️⃣ Terapkan tema highlight.js sesuai sistem ===
   function applyHighlightTheme() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
@@ -38,13 +36,13 @@
     }
   }
 
-  // Jalankan deteksi tema awal + pantau perubahan sistem
   applyHighlightTheme();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
 
-  // 🔹 Konversi inline & blok Markdown → HTML ringan
+  // === 3️⃣ Konversi Markdown → HTML ringan ===
   function convertInlineMarkdown(text) {
     return text
+      .replace(/&gt;/g, ">") // normalisasi simbol
       // Heading
       .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
       .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
@@ -52,30 +50,24 @@
       .replace(/^### (.*)$/gm, "<h3>$1</h3>")
       .replace(/^## (.*)$/gm, "<h2>$1</h2>")
       .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-
       // Blockquote
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
-
       // Bold, Italic, Code inline
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
       .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
-
-      // Links
+      // Link [teks](url)
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
         '<a href="$2" target="_blank" rel="noopener" class="text-blue-600 hover:underline">$1</a>')
-
       // Lists
       .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
       .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
-
-      // Code blocks ```
+      // Code block ```
       .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
         const language = lang || "plaintext";
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
-
-      // Tables markdown sederhana → HTML
+      // Tabel sederhana
       .replace(/((?:\|.*\|\n)+)/g, tableMatch => {
         const rows = tableMatch.trim().split("\n").filter(r => r.trim());
         if (rows.length < 2) return tableMatch;
@@ -89,21 +81,23 @@
       });
   }
 
-  // 🔹 Proses elemen yang mengandung Markdown
+  // === 4️⃣ Proses semua elemen yang berisi Markdown ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
+    const selector = "p, li, blockquote, td, th, header, a, .markdown, .markdown-body";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
-      if (el.children.length > 0 && !el.classList.contains("markdown")) return;
+      if (el.querySelector("pre, code, table")) return;
 
       const original = el.innerHTML.trim();
       if (!original) return;
 
-      el.innerHTML = convertInlineMarkdown(original);
+      // Hapus line break agar tetap satu paragraf
+      const singleLine = original.replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
+      el.innerHTML = convertInlineMarkdown(singleLine);
     });
   }
 
-  // 🔹 Proses highlight.js untuk <pre><code>
+  // === 5️⃣ Highlight semua blok kode ===
   async function enhanceCodeBlocks() {
     const hljs = await ensureHighlightJS();
     document.querySelectorAll("pre code").forEach(el => {
@@ -111,7 +105,7 @@
     });
   }
 
-  // 🔹 Jalankan setelah DOM siap
+  // Jalankan setelah DOM siap
   document.addEventListener("DOMContentLoaded", async () => {
     enhanceMarkdown();
     await enhanceCodeBlocks();
