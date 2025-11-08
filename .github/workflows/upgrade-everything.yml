@@ -1,4 +1,4 @@
-name: 🛠️ Pemeliharaan Dependensi (Upgrade, Cleanup & Highlight.js Sync)
+name: 🛠️ Pemeliharaan Dependensi (Super-Optimal)
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
         run: |
           npm install -g npm-check-updates
           ncu -u --target minor
-          echo "✅ Upgrade selesai (minor/patch)."
+          echo "✅ Upgrade dependencies selesai."
 
       # Cleanup
       - name: 🧹 Cleanup unused packages
@@ -41,8 +41,18 @@ jobs:
             echo "⚠️ File cleanup.js tidak ditemukan, dilewati."
           fi
 
+      # Cek perubahan dependencies
+      - name: 🔍 Cek perubahan dependencies
+        id: check_deps
+        run: |
+          if [[ $(git status --porcelain package.json package-lock.json) ]]; then
+            echo "deps_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "deps_changed=false" >> $GITHUB_OUTPUT
+          fi
+
       # Cek versi Highlight.js terbaru
-      - name: 🌈 Cek versi Highlight.js terbaru
+      - name: 🌈 Cek versi Highlight.js
         id: check_hljs_version
         run: |
           LATEST_VER=$(npm view @highlightjs/cdn-assets version)
@@ -53,15 +63,16 @@ jobs:
           fi
           echo "Versi saat ini: $CURRENT_VER, Versi terbaru: $LATEST_VER"
           if [ "$CURRENT_VER" = "$LATEST_VER" ]; then
-            echo "skip_update=true" >> $GITHUB_OUTPUT
+            echo "hljs_up_to_date=true" >> $GITHUB_OUTPUT
           else
-            echo "skip_update=false" >> $GITHUB_OUTPUT
+            echo "hljs_up_to_date=false" >> $GITHUB_OUTPUT
           fi
 
-      # Update Highlight.js jika perlu
-      - name: 🌈 Update Highlight.js
-        if: steps.check_hljs_version.outputs.skip_update == 'false'
+      # Update Highlight.js hanya jika perlu dan jika deps berubah
+      - name: 🌈 Update Highlight.js jika perlu
+        if: steps.check_deps.outputs.deps_changed == 'true' || steps.check_hljs_version.outputs.hljs_up_to_date == 'false'
         run: |
+          echo "📦 Menginstal @highlightjs/cdn-assets terbaru..."
           npm install @highlightjs/cdn-assets@latest --no-save
           mkdir -p ext mini
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
@@ -73,10 +84,10 @@ jobs:
             echo "updated=${DATE_NOW}"
             echo "source=npm:@highlightjs/cdn-assets"
           } > mini/highlight-info.txt
-          echo "✅ Highlight.js diperbarui."
+          echo "✅ Highlight.js diperbarui jika ada versi baru atau deps berubah."
 
-      # Cek perubahan & commit
-      - name: 🔍 Cek perubahan
+      # Cek perubahan semua (deps + Highlight.js)
+      - name: 🔍 Cek perubahan akhir
         id: check_changes
         run: |
           if [[ $(git status --porcelain package.json package-lock.json ext mini) ]]; then
@@ -85,13 +96,14 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
+      # Build & Test jika ada perubahan
       - name: 🧪 Build & Test
         if: steps.check_changes.outputs.changes_detected == 'true'
         run: |
           npm run build --if-present
           npm test --if-present
 
-      # Buat Pull Request
+      # Buat Pull Request jika ada perubahan
       - name: 📨 Create Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
@@ -101,9 +113,9 @@ jobs:
           commit-message: 'chore: Upgrade deps, cleanup, dan sinkronisasi Highlight.js'
           body: |
             PR otomatis ini mencakup:
-            - Upgrade Dependencies
+            - Upgrade Dependencies (minor/patch)
             - Cleanup Packages
-            - Sinkronisasi Highlight.js (jika versi berbeda)
+            - Sinkronisasi Highlight.js (hanya jika versi baru atau deps berubah)
           labels: dependencies, chore, automated pr
           reviewers: frijal
           draft: false
