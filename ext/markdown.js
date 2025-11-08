@@ -1,344 +1,375 @@
 /*!
- * markdown.js v13.0 — Auto Detect Markdown
- * TANPA class="md" | Aman untuk HTML lama
- * Checkbox interaktif + localStorage
- * Nested list, table, code block, inline
+ * nano-md.js — Markdown Lite Enhancer (Versi Inline-Safe)
+ * 🌿 Konversi Markdown sederhana → HTML dengan aman dan akurat
+ * Otomatis muat highlight.js hanya jika ada <code>
+ * Aman dari XSS, mendukung nested list, tabel, dan lebih akurat
+ * Versi: 3.1.0 | Author: Frijal (Enhanced by Gemini AI)
  */
 
 (function () {
-  'use strict';
+    'use strict';
 
-  const STORAGE_KEY = 'md-checkbox-states';
-
-  // === INJECT CSS ===
-  function injectCSS() {
-    const style = document.createElement('style');
-    style.textContent = `
-      .md-auto .md-link { color: #3498db; text-decoration: underline; }
-      .md-auto .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-      .md-auto .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-      .md-auto .md-table th, .md-auto .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
-      .md-auto ul, .md-auto ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
-      .md-auto li { margin: 0.2em 0; position: relative; padding-left: 1.8em; }
-      .md-auto .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; cursor: pointer; user-select: none; }
-      .md-auto .md-checkbox input { margin: 0; width: 1em; height: 1em; cursor: pointer; }
-      .md-auto .md-checkbox input:checked + span { text-decoration: line-through; opacity: 0.7; }
-      .md-auto pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
-      .md-auto code { white-space: pre-wrap; word-break: break-word; }
-      @media (prefers-color-scheme: dark) {
-        .md-auto .md-inline { background: #34495e; color: #ecf0f1; }
-        .md-auto .md-table { border-color: #3b506b; }
-        .md-auto .md-table th, .md-auto .md-table td { border-color: #3b506b; }
-      }
-    `;
-    if (!document.querySelector('style[data-md-css]')) {
-      style.dataset.mdCss = 'true';
-      document.head.appendChild(style);
-    }
-  }
-
-  // === HIGHLIGHT.JS ===
-  let hljsPromise = null;
-  async function ensureHighlightJS() {
-    if (hljsPromise) return hljsPromise;
-    if (window.hljs) return window.hljs;
-
-    hljsPromise = new Promise(resolve => {
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js';
-      script.onload = () => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css';
-        document.head.appendChild(link);
-        resolve(window.hljs);
-      };
-      script.onerror = () => resolve(null);
-      document.head.appendChild(script);
-    });
-    return hljsPromise;
-  }
-
-  // === STORAGE ===
-  const checkboxStates = new Map();
-  let saveTimeout = null;
-  function saveStates() {
-    if (saveTimeout) clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(() => {
-      const data = {};
-      checkboxStates.forEach((v, k) => data[k] = v);
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
-    }, 300);
-  }
-  function loadStates() {
-    try {
-      const data = localStorage.getItem(STORAGE_KEY);
-      if (data) Object.entries(JSON.parse(data)).forEach(([k, v]) => checkboxStates.set(k, v));
-    } catch (e) {}
-  }
-
-  let cbCounter = 0;
-  function genId() { return `md-cb-${++cbCounter}-${Date.now()}`; }
-
-  // === ESCAPE & INLINE ===
-  function escapeHTML(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-  function processInline(text) {
-    return text
-      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
-  }
-
-  // === DETEKSI MARKDOWN KUAT ===
-  function isLikelyMarkdown(text) {
-    if (!text || text.length < 10) return false;
-    const t = text.trim();
-    return (
-      /^#{1,6}\s/.test(t) ||
-      /^\s*[-*+]\s/.test(t) ||
-      /^\s*>\s/.test(t) ||
-      /```[\s\S]*```/.test(text) ||
-      /\[.*?\]\(.+?\)/.test(text) ||
-      /\*\*.*\*\*/.test(text) ||
-      /`[^`]+`/.test(text) ||
-      /^\s*\|.*\|/.test(t) && text.includes('\n') ||
-      /- \[[ x]\]/.test(text)
-    );
-  }
-
-  // === PARSE TABLE ===
-  function parseTable(lines) {
-    const rows = lines.map(l => l.trim()).filter(Boolean);
-    if (rows.length < 2) return null;
-    const clean = rows.filter(r => !/^[\s|:-]+$/.test(r.replace(/\|/g, '')));
-    if (clean.length < 1) return null;
-
-    const header = clean[0].split('|').filter(Boolean).map(h => `<th>${processCell(h.trim())}</th>`).join('');
-    const body = clean.slice(1).map(r =>
-      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${processCell(c.trim())}</td>`).join('') + '</tr>'
-    ).join('');
-    return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
-  }
-
-  // === PROCESS CELL ===
-  function processCell(text) {
-    const lines = text.split('\n');
-    const blocks = [];
-    let i = 0;
-    let stack = [];
-
-    const close = () => {
-      while (stack.length) {
-        const closed = stack.pop();
-        if (stack.length) stack[stack.length - 1].items.push(closed);
-        else blocks.push(closed);
-      }
+    // === KONFIGURASI ===
+    const HIGHLIGHT_CDN = {
+        js: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js",
+        css: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
     };
 
-    while (i < lines.length) {
-      const line = lines[i];
+    // Elemen yang diproses:
+    // BLOCK: Untuk Markdown mentah, mengganti seluruh konten (mode lama)
+    const SELECTORS_BLOCK = ".markdown, .markdown-body, .md";
+    // INLINE: Untuk elemen HTML yang sudah ada (e.g., sel tabel), hanya memproses inline MD
+    const SELECTORS_INLINE = "td, th, p, li, blockquote, span.inline-md"; 
 
-      if (line.trim().startsWith('```')) {
-        const lang = line.trim().slice(3).trim() || 'plaintext';
-        const code = [];
-        i++;
-        while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
-        i++;
-        blocks.push(`<pre><code class="language-${lang}">${escapeHTML(code.join('\n'))}</code></pre>`);
-        continue;
-      }
-
-      const cbMatch = line.match(/^(\s*)[-*+]\s+\[([\sx])\]\s+(.+)$/);
-      if (cbMatch) {
-        const indent = cbMatch[1].length;
-        const checked = cbMatch[2] === 'x';
-        const label = processInline(escapeHTML(cbMatch[3]));
-        const id = genId();
-        const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
-        const li = `<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`;
-
-        const level = Math.floor(indent / 2);
-        while (stack.length > level) { const c = stack.pop().close(); if (stack.length) stack[stack.length-1].items.push(c); else blocks.push(c); }
-        if (stack.length === level) stack[stack.length-1].items.push(li);
-        else stack.push({ tag: 'ul', items: [li], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } });
-        i++;
-        continue;
-      }
-
-      const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
-      if (listMatch) {
-        const indent = listMatch[1].length;
-        const item = processInline(escapeHTML(listMatch[2]));
-        const level = Math.floor(indent / 2);
-        while (stack.length > level) { const c = stack.pop().close(); if (stack.length) stack[stack.length-1].items.push(c); else blocks.push(c); }
-        const li = `<li>${item}</li>`;
-        if (stack.length === level) stack[stack.length-1].items.push(li);
-        else stack.push({ tag: level % 2 === 0 ? 'ul' : 'ol', items: [li], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } });
-        i++;
-        continue;
-      }
-
-      if (stack.length && !/^\s/.test(line)) close();
-      if (line.trim()) blocks.push(`<p>${processInline(escapeHTML(line))}</p>`);
-      i++;
+    // === UTILITAS KEAMANAN ===
+    /** Melarikan diri (escape) dari string HTML mentah untuk keamanan XSS. */
+    function escapeHTML(str) {
+        if (typeof str !== 'string') return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
     }
-    close();
-    return blocks.length ? blocks.join('') : processInline(escapeHTML(text));
-  }
 
-  // === ENHANCE SINGLE NODE ===
-  function enhanceNode(node) {
-    if (node.dataset.mdProcessed) return;
-    if (node.closest('pre, code, script, style, .no-md')) return;
+    // === MUAT HIGHLIGHT.JS SEKALI SAJA ===
+    let hljsPromise = null;
+    async function ensureHighlightJS() {
+        if (hljsPromise) return hljsPromise;
+        if (window.hljs) return Promise.resolve(window.hljs);
 
-    const text = node.textContent;
-    if (!isLikelyMarkdown(text)) return;
+        hljsPromise = new Promise((resolve) => {
+            // Muat CSS
+            const link = document.createElement('link');
+            link.rel = "stylesheet";
+            link.href = HIGHLIGHT_CDN.css;
+            document.head.appendChild(link);
 
-    // Pastikan parent bukan elemen yang sudah diformat
-    const parent = node.parentNode;
-    if (parent.closest('h1,h2,h3,h4,h5,h6,ul,ol,table,blockquote')) return;
+            // Muat JS
+            const script = document.createElement('script');
+            script.src = HIGHLIGHT_CDN.js;
+            script.defer = true;
+            script.onload = () => resolve(window.hljs);
+            script.onerror = () => resolve(null); // Gagal muat
+            document.head.appendChild(script);
+        });
 
-    const lines = text.split('\n');
-    const blocks = [];
-    let i = 0;
-    let hasCode = false;
+        return hljsPromise;
+    }
 
-    while (i < lines.length) {
-      const raw = lines[i];
-      const trimmed = raw.trim();
+    // === INLINE MARKDOWN (bold, italic, code, link) ===
+    function processInline(text) {
+        if (!text || typeof text !== 'string') return '';
 
-      if (trimmed.startsWith('```')) {
-        const lang = trimmed.slice(3).trim() || 'plaintext';
-        const code = [];
-        i++;
-        while (i < lines.length && !lines[i].trim().startsWith('```')) { code.push(lines[i]); i++; }
-        i++;
-        blocks.push(`<pre><code class="language-${lang}">${escapeHTML(code.join('\n'))}</code></pre>`);
-        hasCode = true;
-        continue;
-      }
+        // --- 1. Code `text` (Harus dilakukan pertama untuk melindungi kontennya)
+        text = text.replace(/`([^`]+)`/g, (m, code) => 
+            `<code class="md-inline">${escapeHTML(code)}</code>` // Escape isi code
+        );
 
-      if (trimmed.includes('|') && /^\s*\|/.test(raw)) {
-        const tableLines = [raw];
-        i++;
-        while (i < lines.length && /^\s*\|/.test(lines[i])) { tableLines.push(lines[i]); i++; }
-        const table = parseTable(tableLines);
-        if (table) { blocks.push(table); continue; }
-        i--;
-      }
+        // --- 2. Link [text](url)
+        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
+            const cleanLabel = processInline(label); // Proses inline di dalam label link
+            const cleanUrl = escapeHTML(url);
+            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="md-link">${cleanLabel}</a>`;
+        });
+        
+        // --- 3. HTML Escape untuk konten yang tersisa
+        // Lakukan escape pada teks sebelum diproses bold/italic agar simbol seperti '<' dinetralkan.
+        text = escapeHTML(text);
 
-      const heading = raw.match(/^(#{1,6})\s+(.+)$/);
-      if (heading) { blocks.push(`<h${heading[1].length}>${processInline(escapeHTML(heading[2]))}</h${heading[1].length}>`); i++; continue; }
+        // --- 4. Bold **text**
+        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        
+        // --- 5. Italic *text*
+        text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+        
+        return text;
+    }
 
-      if (/^\s*[-*+]\s/.test(raw)) {
-        const items = [];
-        while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
-          const item = lines[i].replace(/^\s*[-*+]\s+/, '');
-          const cb = item.match(/^\[([\sx])\]\s+(.+)$/);
-          if (cb) {
-            const checked = cb[1] === 'x';
-            const label = processInline(escapeHTML(cb[2]));
-            const id = genId();
-            const attr = checkboxStates.has(id) ? (checkboxStates.get(id) ? 'checked' : '') : (checked ? 'checked' : '');
-            items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${id}" ${attr}><span>${label}</span></label></li>`);
-          } else {
-            items.push(`<li>${processInline(escapeHTML(item))}</li>`);
-          }
-          i++;
+    // === PARSING MARKDOWN PER BARIS (AKURAT & AMAN) ===
+    function parseMarkdownLines(lines) {
+        const output = [];
+        let listStack = []; // Stack untuk nested list
+        let inCodeBlock = false;
+        let codeLang = '';
+        let codeLines = [];
+
+        // Helper untuk menutup semua list yang terbuka
+        const closeLists = () => {
+            while (listStack.length) {
+                output.push(listStack.pop().close());
+            }
+        };
+
+        // Helper untuk menambahkan baris/blok ke output atau list saat ini
+        const pushLine = (html) => {
+            if (listStack.length) {
+                const current = listStack[listStack.length - 1];
+                current.items[current.items.length - 1] += html;
+            } else {
+                output.push(html);
+            }
+        };
+
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            const trimmed = line.trim();
+
+            // --- CODE BLOCK (```) ---
+            if (trimmed.startsWith('```')) {
+                if (inCodeBlock) {
+                    closeLists();
+                    const code = codeLines.join('\n');
+                    const langClass = codeLang ? `class="language-${codeLang}"` : '';
+                    output.push(`<pre><code ${langClass}>${escapeHTML(code)}</code></pre>`);
+                    inCodeBlock = false;
+                    codeLang = '';
+                    codeLines = [];
+                } else {
+                    closeLists();
+                    inCodeBlock = true;
+                    codeLang = trimmed.slice(3).trim() || 'plaintext';
+                }
+                continue;
+            }
+
+            if (inCodeBlock) {
+                codeLines.push(line);
+                continue;
+            }
+            
+            // --- PARAGRAF KOSONG ---
+            if (trimmed === '') {
+                closeLists();
+                continue;
+            }
+
+            // --- TABEL ---
+            if (trimmed.includes('|') && /^\s*\|.*\|\s*$/.test(line)) {
+                let tableLines = [line];
+                for (let j = i + 1; j < lines.length; j++) {
+                    const next = lines[j];
+                    if (/^\s*\|.*\|\s*$/.test(next) || next.trim().match(/^[\s|:-]+$/)) { 
+                        tableLines.push(next);
+                        i = j;
+                    } else {
+                        break;
+                    }
+                }
+                const tableHTML = parseTable(tableLines);
+                if (tableHTML) {
+                    closeLists();
+                    output.push(tableHTML);
+                    continue;
+                }
+            }
+
+            // --- BLOCKQUOTE ---
+            if (trimmed.startsWith('>')) {
+                closeLists();
+                const content = line.replace(/^>\s*/, '');
+                const nested = parseMarkdownLines([content]).join('');
+                output.push(`<blockquote>${nested}</blockquote>`);
+                continue;
+            }
+
+            // --- HEADING (#) ---
+            const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+            if (headingMatch) {
+                closeLists();
+                const level = headingMatch[1].length;
+                const text = processInline(headingMatch[2]);
+                output.push(`<h${level}>${text}</h${level}>`);
+                continue;
+            }
+
+            // --- LIST (nested support) ---
+            const listMatch = line.match(/^(\s*)([-*+]|\d+\.)\s+(.+)$/);
+            if (listMatch) {
+                const indent = listMatch[1].length;
+                const isOrdered = listMatch[2].endsWith('.');
+                const itemText = processInline(listMatch[3]); 
+                const level = Math.floor(indent / 2);
+
+                while (listStack.length > level + 1) {
+                    const closed = listStack.pop().close();
+                    if (listStack.length) {
+                        listStack[listStack.length - 1].items.push(closed);
+                    } else {
+                        output.push(closed);
+                    }
+                }
+
+                if (listStack.length === level + 1) {
+                    listStack[level].items.push(`<li>${itemText}</li>`);
+                } else {
+                    const tag = isOrdered ? '<ol>' : '<ul>';
+                    const closer = isOrdered ? '</ol>' : '</ul>';
+                    const newList = {
+                        tag,
+                        closer,
+                        items: [`<li>${itemText}</li>`],
+                        close() { return this.tag + this.items.join('') + this.closer; }
+                    };
+
+                    while (listStack.length > level) {
+                        const closed = listStack.pop().close();
+                        if (listStack.length) {
+                            listStack[listStack.length - 1].items.push(closed);
+                        } else {
+                            output.push(closed);
+                        }
+                    }
+
+                    listStack.push(newList); 
+                }
+                continue;
+            }
+
+            // --- PARAGRAF BIASA ---
+            closeLists();
+            output.push(`<p>${processInline(line)}</p>`);
         }
-        blocks.push(`<ul>${items.join('')}</ul>`);
-        continue;
-      }
 
-      if (trimmed.startsWith('>')) {
-        blocks.push(`<blockquote>${processInline(escapeHTML(trimmed.slice(1)))}</blockquote>`);
-        i++;
-        continue;
-      }
-
-      if (trimmed) blocks.push(`<p>${processInline(escapeHTML(raw))}</p>`);
-      i++;
-    }
-
-    if (!blocks.length) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'md-auto';
-    wrapper.innerHTML = blocks.join('');
-    while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, node);
-    parent.removeChild(node);
-
-    if (hasCode) {
-      ensureHighlightJS().then(hljs => {
-        if (hljs) wrapper.querySelectorAll('pre code').forEach(hljs.highlightElement);
-      });
-    }
-
-    node.dataset.mdProcessed = 'true';
-  }
-
-  // === ENHANCE ALL ===
-  function enhance() {
-    injectCSS();
-    loadStates();
-
-    const walker = document.createTreeWalker(
-      document.body,
-      NodeFilter.SHOW_TEXT,
-      null,
-      false
-    );
-
-    const nodes = [];
-    let node;
-    while (node = walker.nextNode()) {
-      if (node.textContent.trim() && !node.parentNode.closest('.md-auto')) {
-        nodes.push(node);
-      }
-    }
-
-    let hasCode = false;
-    nodes.forEach(n => {
-      if (enhanceNode(n)) hasCode = true;
-    });
-
-    if (hasCode) {
-      ensureHighlightJS().then(hljs => {
-        if (hljs) document.querySelectorAll('.md-auto pre code').forEach(hljs.highlightElement);
-      });
-    }
-
-    // Setup checkbox events
-    document.addEventListener('change', e => {
-      if (e.target.matches('input[type="checkbox"][id^="md-cb-"]')) {
-        checkboxStates.set(e.target.id, e.target.checked);
-        saveStates();
-      }
-    }, true);
-  }
-
-  // === INIT ===
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhance);
-  } else {
-    enhance();
-  }
-
-  new MutationObserver(mutations => {
-    mutations.forEach(m => {
-      m.addedNodes.forEach(node => {
-        if (node.nodeType === 1) {
-          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-          let n;
-          while (n = walker.nextNode()) {
-            if (n.textContent.trim()) enhanceNode(n);
-          }
+        // Tutup sisa list & code block di akhir
+        if (inCodeBlock) {
+            output.push(`<pre><code>${escapeHTML(codeLines.join('\n'))}</code></pre>`);
         }
-      });
-    });
-  }).observe(document.body, { childList: true, subtree: true });
+        closeLists();
+
+        return output;
+    }
+
+    // === PARSE TABEL ===
+    function parseTable(lines) {
+        const rows = lines.map(l => l.trim()).filter(Boolean);
+        if (rows.length < 2) return null;
+
+        const separatorIndex = rows.findIndex(r => r.match(/^[\s|:-]+$/));
+        if (separatorIndex === -1) return null;
+
+        const headerRow = rows[0];
+        const bodyRows = rows.slice(separatorIndex + 1);
+
+        const parseCells = (row) => row.split('|').map(c => c.trim()).filter(Boolean);
+
+        const header = parseCells(headerRow).map(h => `<th>${processInline(h)}</th>`).join('');
+        
+        const body = bodyRows.map(r => {
+            const cells = parseCells(r);
+            const tds = cells.map(c => `<td>${processInline(c)}</td>`).join('');
+            return `<tr>${tds}</tr>`;
+        }).join('');
+
+        return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    // === ENHANCE BLOCK-LEVEL (Mode Default: Mengganti seluruh konten elemen target) ===
+    function enhanceBlockElement(el) {
+        // Menggunakan atribut data yang berbeda untuk menghindari konflik dengan inline-only
+        if (el.dataset.nanoMdBlock === 'done') return;
+        if (el.classList.contains('no-md')) return;
+
+        // Ambil teks mentah (Markdown)
+        const text = el.textContent || el.innerText;
+        if (!text || !text.trim()) return;
+
+        // Parse per baris
+        const lines = text.split('\n');
+        const htmlLines = parseMarkdownLines(lines);
+        let finalHTML = htmlLines.join('');
+
+        // Hapus pembungkus <p> jika elemen target adalah p, li, atau blockquote
+        const tagName = el.tagName.toUpperCase();
+        if ((tagName === 'P' || tagName === 'LI' || tagName === 'BLOCKQUOTE') && finalHTML.startsWith('<p>')) {
+             finalHTML = finalHTML.replace(/^<p>(.*)<\/p>$/s, '$1');
+        }
+
+        el.innerHTML = finalHTML;
+        el.dataset.nanoMdBlock = 'done';
+    }
+    
+    // === FUNGSI BARU: ENHANCE INLINE-ONLY (Hanya memproses bold, code, link di dalam HTML yang sudah ada) ===
+    function enhanceInlineOnly() {
+        document.querySelectorAll(SELECTORS_INLINE).forEach(el => {
+            // Gunakan atribut data yang berbeda untuk menghindari konflik dengan block-level
+            if (el.dataset.nanoMdInline === 'done' || el.classList.contains('no-md')) return;
+
+            // Ambil innerHTML saat ini (termasuk tag anak)
+            const originalHTML = el.innerHTML;
+            
+            // Jalankan HANYA fungsi processInline pada innerHTML
+            const finalHTML = processInline(originalHTML);
+
+            if (finalHTML !== originalHTML) {
+                el.innerHTML = finalHTML;
+            }
+
+            el.dataset.nanoMdInline = 'done';
+        });
+    }
+
+    // === ENHANCE ALL (Menggabungkan kedua mode) ===
+    function enhanceMarkdown() {
+        // 1. Jalankan mode BLOCK-LEVEL (Mengubah Markdown mentah menjadi HTML block/list/table)
+        document.querySelectorAll(SELECTORS_BLOCK).forEach(enhanceBlockElement);
+        
+        // 2. Jalankan mode INLINE-ONLY (Memproses inline MD di dalam elemen struktural yang sudah ada, e.g., <td>)
+        enhanceInlineOnly();
+    }
+
+    // === HIGHLIGHT CODE === (Tidak berubah)
+    async function highlightCodeBlocks() {
+        if (!document.querySelector('pre code')) return;
+        const hljs = await ensureHighlightJS();
+        if (!hljs) return;
+
+        document.querySelectorAll('pre code').forEach(block => {
+            try {
+                if (!block.classList.contains('hljs')) {
+                    hljs.highlightElement(block);
+                }
+            } catch (e) {
+                console.warn('Highlight.js error:', e);
+            }
+        });
+    }
+
+    // === OBSERVE PERUBAHAN DOM (untuk konten dinamis) ===
+    function observeMutations() {
+        const observer = new MutationObserver((mutations) => {
+            let shouldEnhance = false;
+            mutations.forEach(m => {
+                if (m.addedNodes.length) shouldEnhance = true;
+            });
+            if (shouldEnhance) {
+                setTimeout(() => {
+                    enhanceMarkdown();
+                    highlightCodeBlocks();
+                }, 50); 
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // === INIT & RUN ===
+    function init() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', run);
+        } else {
+            run();
+        }
+    }
+
+    async function run() {
+        enhanceMarkdown(); // Memanggil BLOCK & INLINE enhance
+        await highlightCodeBlocks();
+        observeMutations();
+    }
+
+    // Jalankan
+    init();
 
 })();
