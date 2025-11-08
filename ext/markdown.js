@@ -1,14 +1,11 @@
 /*!
- * markdown.js v11.0 — Interactive & Persistent Checkboxes
- * - [ ] -> <input type="checkbox"> (klik & simpan status)
- * Nested list, table, code block, inline
- * Otomatis inject CSS + highlight.js
+ * markdown.js v10.0 — Full Markdown Support
+ * Checkbox, nested list, table, code block, inline
+ * Otomatis inject CSS + highlight.js + checkbox styling
  */
 
 (function () {
   'use strict';
-
-  const STORAGE_KEY = 'markdown-checkbox-states';
 
   // === INJECT CSS ===
   function injectCSS() {
@@ -19,16 +16,17 @@
       .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
       .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
       .md-table ul, .md-table ol { margin: 0.5em 0; padding-left: 1.5em; list-style: none; }
-      .md-table li { margin: 0.2em 0; position: relative; padding-left: 1.8em; }
-      .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; cursor: pointer; user-select: none; }
-      .md-checkbox input { margin: 0; width: 1em; height: 1em; cursor: pointer; }
-      .md-checkbox input:checked + span { text-decoration: line-through; opacity: 0.7; }
+      .md-table li { margin: 0.2em 0; position: relative; padding-left: 1.5em; }
+      .md-table li::before { content: "•"; position: absolute; left: 0; color: #3498db; }
+      .md-checkbox { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.95em; }
+      .md-checkbox input { margin: 0; width: 1em; height: 1em; }
       .md-table pre { margin: 0.5em 0; font-size: 0.85em; overflow-x: auto; }
       .md-table code { white-space: pre-wrap; word-break: break-word; }
       @media (prefers-color-scheme: dark) {
         .md-inline { background: #34495e; color: #ecf0f1; }
         .md-table { border-color: #3b506b; }
         .md-table th, .md-table td { border-color: #3b506b; }
+        .md-table li::before { color: #f39c12; }
       }
     `;
     document.head.appendChild(style);
@@ -66,48 +64,13 @@
       .replace(/'/g, '&#39;');
   }
 
-  // === PROCESS INLINE MARKDOWN ===
+  // === PROCESS INLINE MARKDOWN (tanpa checkbox) ===
   function processInline(text) {
     return text
       .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
-  }
-
-  // === STORAGE: Simpan & baca status checkbox ===
-  const checkboxStates = new Map();
-  let saveTimeout = null;
-
-  function saveStates() {
-    if (saveTimeout) clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(() => {
-      const data = {};
-      checkboxStates.forEach((checked, id) => {
-        data[id] = checked;
-      });
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {}
-    }, 300);
-  }
-
-  function loadStates() {
-    try {
-      const data = localStorage.getItem(STORAGE_KEY);
-      if (data) {
-        const parsed = JSON.parse(data);
-        Object.entries(parsed).forEach(([id, checked]) => {
-          checkboxStates.set(id, checked);
-        });
-      }
-    } catch (e) {}
-  }
-
-  // === GENERATE UNIQUE ID ===
-  let checkboxCounter = 0;
-  function generateCheckboxId() {
-    return `md-cb-${++checkboxCounter}-${Date.now()}`;
   }
 
   // === PARSE MARKDOWN TABLE ===
@@ -126,7 +89,7 @@
     return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
-  // === PROCESS CELL: Checkbox interaktif + nested list ===
+  // === PROCESS CELL: Support checkbox, nested list, code block ===
   function processCell(text) {
     const lines = text.split('\n');
     const blocks = [];
@@ -161,15 +124,14 @@
         continue;
       }
 
-      // Checkbox: - [ ] Task
+      // Checkbox list item: - [ ] Task or - [x] Done
       const checkboxMatch = line.match(/^(\s*)[-*+]\s+\[([\sx])\]\s+(.+)$/);
       if (checkboxMatch) {
         const indent = checkboxMatch[1].length;
-        const isChecked = checkboxMatch[2] === 'x';
-        const labelText = processInline(escapeHTML(checkboxMatch[3]));
-        const cbId = generateCheckboxId();
+        const checked = checkboxMatch[2] === 'x';
+        const label = processInline(escapeHTML(checkboxMatch[3]));
 
-        const level = Math.floor(indent / 2);
+        const level = Math.floor(indent / cytotoxicity2);
         while (listStack.length > level) {
           const closed = listStack.pop().close();
           if (listStack.length > 0) {
@@ -179,13 +141,7 @@
           }
         }
 
-        const checkedAttr = checkboxStates.has(cbId) ? (checkboxStates.get(cbId) ? 'checked' : '') : (isChecked ? 'checked' : '');
-        const li = `<li>
-          <label class="md-checkbox">
-            <input type="checkbox" id="${cbId}" ${checkedAttr}>
-            <span>${labelText}</span>
-          </label>
-        </li>`;
+        const li = `<li><label class="md-checkbox"><input type="checkbox" ${checked ? 'checked' : ''} disabled>${label}</label></li>`;
 
         if (listStack.length === level) {
           listStack[listStack.length - 1].items.push(li);
@@ -201,7 +157,7 @@
         continue;
       }
 
-      // Regular list
+      // Regular list item
       const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
       if (listMatch) {
         const indent = listMatch[1].length;
@@ -232,10 +188,12 @@
         continue;
       }
 
+      // Close list if not indented
       if (listStack.length > 0 && !/^\s/.test(line)) {
         closeLists();
       }
 
+      // Paragraph
       if (line.trim()) {
         blocks.push(`<p>${processInline(escapeHTML(line))}</p>`);
       }
@@ -279,6 +237,7 @@
       const rawLine = lines[i];
       const line = rawLine.trim();
 
+      // Code block
       if (line.startsWith('```')) {
         const lang = line.slice(3).trim() || 'plaintext';
         const codeLines = [];
@@ -293,6 +252,7 @@
         continue;
       }
 
+      // Tabel Markdown
       if (line.includes('|') && /^\s*\|/.test(rawLine)) {
         const tableLines = [rawLine];
         i++;
@@ -308,6 +268,7 @@
         i--;
       }
 
+      // Heading
       const heading = rawLine.match(/^(#{1,6})\s+(.+)$/);
       if (heading) {
         const level = heading[1].length;
@@ -316,17 +277,16 @@
         continue;
       }
 
+      // List (top level)
       if (/^\s*[-*+]\s/.test(rawLine)) {
         const items = [];
         while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
           const item = lines[i].replace(/^\s*[-*+]\s+/, '');
           const checkbox = item.match(/^\[([\sx])\]\s+(.+)$/);
           if (checkbox) {
-            const isChecked = checkbox[1] === 'x';
-            const labelText = processInline(escapeHTML(checkbox[2]));
-            const cbId = generateCheckboxId();
-            const checkedAttr = checkboxStates.has(cbId) ? (checkboxStates.get(cbId) ? 'checked' : '') : (isChecked ? 'checked' : '');
-            items.push(`<li><label class="md-checkbox"><input type="checkbox" id="${cbId}" ${checkedAttr}><span>${labelText}</span></label></li>`);
+            const checked = checkbox[1] === 'x';
+            const label = processInline(escapeHTML(checkbox[2]));
+            items.push(`<li><label class="md-checkbox"><input type="checkbox" ${checked ? 'checked' : ''} disabled>${label}</label></li>`);
           } else {
             items.push(`<li>${processInline(escapeHTML(item))}</li>`);
           }
@@ -336,12 +296,14 @@
         continue;
       }
 
+      // Blockquote
       if (line.startsWith('>')) {
         blocks.push(`<blockquote>${processInline(escapeHTML(line.slice(1).trim()))}</blockquote>`);
         i++;
         continue;
       }
 
+      // Paragraph
       if (line) {
         blocks.push(`<p>${processInline(escapeHTML(rawLine))}</p>`);
       }
@@ -361,24 +323,9 @@
     return hasCodeBlock;
   }
 
-  // === SETUP CHECKBOX EVENTS ===
-  function setupCheckboxEvents() {
-    document.addEventListener('change', e => {
-      if (e.target.matches('input[type="checkbox"]')) {
-        const cb = e.target;
-        const id = cb.id;
-        if (id.startsWith('md-cb-')) {
-          checkboxStates.set(id, cb.checked);
-          saveStates();
-        }
-      }
-    }, true);
-  }
-
   // === ENHANCE ALL ===
   function enhance() {
     injectCSS();
-    loadStates();
 
     const walker = document.createTreeWalker(
       document.body,
@@ -407,8 +354,6 @@
         }
       });
     }
-
-    setupCheckboxEvents();
   }
 
   // === INIT ===
