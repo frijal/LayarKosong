@@ -31,7 +31,7 @@
 
     // Jika belum di-cache, muat dari CDN
     const script = document.createElement("script");
-    script.src = "/ext/highlight.js";
+    script.src = "ext/highlight.js";
     script.defer = true;
     document.head.appendChild(script);
 
@@ -45,8 +45,8 @@
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
     const newHref = prefersDark
-      ? "/ext/github-dark.min.css"
-      : "/ext/github.min.css";
+      ? "ext/github-dark.min.css"
+      : "ext/github.min.css";
 
     if (existing) {
       if (existing.href !== newHref) existing.href = newHref;
