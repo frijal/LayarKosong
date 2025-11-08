@@ -9,13 +9,13 @@
     if (window.hljs) return window.hljs;
 
     const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js";
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js";
     script.defer = true;
     document.head.appendChild(script);
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css";
+    link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github-dark.min.css";
     document.head.appendChild(link);
 
     await new Promise(res => (script.onload = res));
