@@ -1,15 +1,11 @@
 /*!
- * markdown-enhancer.js — Frijal edition (no CSS inject)
- * 🌿 Meningkatkan konten HTML yang berisi sintaks Markdown & blok kode.
- * - Mendukung elemen di dalam <table>, <header>, dan elemen lainnya
- * - Tidak membuat baris baru (<br>)
- * - Tidak memodifikasi <a>
- * - Otomatis memuat highlight.js dengan tema adaptif (dark/light)
+ * markdown-enhancer.js — versi revisi (fix newline after backtick)
+ * Tanpa inject CSS, tanpa modifikasi <a>, tanpa baris baru.
  */
 
 (async function () {
 
-  // === 1️⃣ Muat highlight.js otomatis ===
+  // === Muat highlight.js jika belum ada ===
   async function ensureHighlightJS() {
     if (window.hljs) return window.hljs;
     const script = document.createElement("script");
@@ -20,32 +16,30 @@
     return window.hljs;
   }
 
-  // === 2️⃣ Terapkan tema highlight.js sesuai sistem ===
+  // === Terapkan tema highlight.js otomatis ===
   function applyHighlightTheme() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const existing = document.querySelector("link[data-hljs-theme]");
-    const newHref = prefersDark
+    const href = prefersDark
       ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
       : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
 
-    if (existing) {
-      if (existing.href !== newHref) existing.href = newHref;
-    } else {
-      const link = document.createElement("link");
+    let link = document.querySelector("link[data-hljs-theme]");
+    if (!link) {
+      link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = newHref;
       link.dataset.hljsTheme = "true";
       document.head.appendChild(link);
     }
+    link.href = href;
   }
 
   applyHighlightTheme();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
 
-  // === 3️⃣ Konversi Markdown → HTML ringan ===
+  // === Markdown ringan ===
   function convertInlineMarkdown(text) {
     return text
-      .replace(/&gt;/g, ">") // normalisasi simbol
+      .replace(/&gt;/g, ">")
       // Heading
       .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
       .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
@@ -53,35 +47,29 @@
       .replace(/^### (.*)$/gm, "<h3>$1</h3>")
       .replace(/^## (.*)$/gm, "<h2>$1</h2>")
       .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-      // Blockquote
-      .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
-      // Bold, Italic, Code inline
+      // Bold & Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
-      .replace(/`([^`]+)`/g, '<code class="inline">$1</code>')
-      // Lists
-      .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
-      .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
-      // Code block ```
+      // === Fix Backtick ===
+      // Triple backtick blok
       .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
         const language = lang || "plaintext";
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
-      // Tabel sederhana
-      .replace(/((?:\|.*\|\n)+)/g, tableMatch => {
-        const rows = tableMatch.trim().split("\n").filter(r => r.trim());
-        if (rows.length < 2) return tableMatch;
-        const header = rows[0].split("|").filter(Boolean)
-          .map(c => `<th>${c.trim()}</th>`).join("");
-        const body = rows.slice(2).map(r =>
-          "<tr>" + r.split("|").filter(Boolean)
-          .map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
-        ).join("");
-        return `<table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
-      });
+      // Empat backtick
+      .replace(/````([\s\S]*?)````/g, (m, code) =>
+        `<pre><code class="language-plaintext">${code.trim()}</code></pre>`
+      )
+      // Inline backtick — tanpа baris baru
+      .replace(/`([^`]+?)`/g, (m, code) => {
+        return `<code class="inline" style="white-space:nowrap;">${code.trim()}</code>`;
+      })
+      // Daftar
+      .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
+      .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>");
   }
 
-  // === 4️⃣ Proses semua elemen yang berisi Markdown ===
+  // === Terapkan ke elemen ===
   function enhanceMarkdown() {
     const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
     document.querySelectorAll(selector).forEach(el => {
@@ -91,17 +79,16 @@
       const original = el.innerHTML.trim();
       if (!original) return;
 
-      // 💡 Hilangkan line-break antar tag agar tidak membuat baris baru
+      // 🔧 flatten newline tapi tidak hapus spasi antar kata
       const flattened = original
-        .replace(/>\s*\n\s*</g, '><')  // hapus newline antar tag HTML
-        .replace(/\s*\n\s*/g, " ")     // hapus newline biasa
-        .replace(/\s{2,}/g, " ");      // rapikan spasi ganda
+        .replace(/\r?\n+/g, " ")
+        .replace(/\s{2,}/g, " ");
 
       el.innerHTML = convertInlineMarkdown(flattened);
     });
   }
 
-  // === 5️⃣ Highlight semua blok kode ===
+  // === Jalankan highlight.js ===
   async function enhanceCodeBlocks() {
     const hljs = await ensureHighlightJS();
     document.querySelectorAll("pre code").forEach(el => {
@@ -109,7 +96,6 @@
     });
   }
 
-  // === 6️⃣ Jalankan setelah DOM siap ===
   document.addEventListener("DOMContentLoaded", async () => {
     enhanceMarkdown();
     await enhanceCodeBlocks();
