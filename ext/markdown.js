@@ -15,7 +15,7 @@
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css";
+    link.href = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark-dimmed.min.css";
     document.head.appendChild(link);
 
     await new Promise(res => (script.onload = res));
