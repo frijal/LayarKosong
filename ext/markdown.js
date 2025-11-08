@@ -1,6 +1,6 @@
 /*!
- * markdown.js v9.0 — Full Nested List in Table
- * Support: **bold**, *italic*, `code`, [link], ```code```, nested list, tabel Markdown
+ * markdown.js v8.0 — Full Fallback: Markdown Table to HTML
+ * Inline + Full Table + Code Block + Zero Touch
  * Otomatis inject CSS + highlight.js
  */
 
@@ -14,10 +14,8 @@
       .md-link { color: #3498db; text-decoration: underline; }
       .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
       .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-      .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
-      .md-table ul, .md-table ol { margin: 0.5em 0; padding-left: 1.5em; }
-      .md-table li { margin: 0.2em 0; }
-      .md-table pre { margin: 0.5em 0; font-size: 0.85em; }
+      .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      .md-table pre { margin: 0; font-size: 0.85em; }
       .md-table code { white-space: pre-wrap; word-break: break-word; }
       @media (prefers-color-scheme: dark) {
         .md-inline { background: #34495e; color: #ecf0f1; }
@@ -40,7 +38,7 @@
       script.onload = () => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-Abyss.min.css';
         document.head.appendChild(link);
         resolve(window.hljs);
       };
@@ -69,108 +67,24 @@
       .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
   }
 
-  // === PARSE MARKDOWN TABLE ===
+  // === PARSE MARKDOWN TABLE (fallback) ===
   function parseMarkdownTable(lines) {
     const rows = lines.map(l => l.trim()).filter(Boolean);
     if (rows.length < 2) return null;
 
+    // Abaikan baris pemisah
     const cleanRows = rows.filter(r => !/^[\s|:-]+$/.test(r.replace(/\|/g, '')));
     if (cleanRows.length < 1) return null;
 
-    const header = cleanRows[0].split('|').filter(Boolean).map(h => `<th>${processCell(h.trim())}</th>`).join('');
+    const header = cleanRows[0].split('|').filter(Boolean).map(h => `<th>${processInline(escapeHTML(h.trim()))}</th>`).join('');
     const body = cleanRows.slice(1).map(r =>
-      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${processCell(c.trim())}</td>`).join('') + '</tr>'
+      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${processInline(escapeHTML(c.trim()))}</td>`).join('') + '</tr>'
     ).join('');
 
     return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
-  // === PROCESS CELL: Support nested list, code block, dll ===
-  function processCell(text) {
-    const lines = text.split('\n');
-    const blocks = [];
-    let i = 0;
-    let inList = null;
-    let listStack = [];
-
-    while (i < lines.length) {
-      const line = lines[i];
-
-      // Code block
-      if (line.trim().startsWith('```')) {
-        const lang = line.trim().slice(3).trim() || 'plaintext';
-        const codeLines = [];
-        i++;
-        while (i < lines.length && !lines[i].trim().startsWith('```')) {
-          codeLines.push(lines[i]);
-          i++;
-        }
-        i++;
-        blocks.push(`<pre><code class="language-${lang}">${escapeHTML(codeLines.join('\n'))}</code></pre>`);
-        continue;
-      }
-
-      // List: - item,  - subitem
-      const listMatch = line.match(/^(\s*)[-*+]\s+(.+)$/);
-      if (listMatch) {
-        const indent = listMatch[1].length;
-        const itemText = processInline(escapeHTML(listMatch[2]));
-
-        const level = Math.floor(indent / 2);
-        while (listStack.length > level) {
-          const closed = listStack.pop();
-          if (listStack.length > 0) {
-            listStack[listStack.length - 1].items.push(closed);
-          } else {
-            blocks.push(closed);
-          }
-        }
-
-        const tag = level % 2 === 0 ? 'ul' : 'ol';
-        if (listStack.length === level) {
-          listStack[listStack.length - 1].items.push(`<li>${itemText}</li>`);
-        } else {
-          const newList = { tag, items: [`<li>${itemText}</li>`], close() { return `<${this.tag}>${this.items.join('')}</${this.tag}>`; } };
-          listStack.push(newList);
-        }
-        i++;
-        continue;
-      }
-
-      // Close list if line not indented
-      if (inList && !/^\s/.test(line)) {
-        while (listStack.length) {
-          const closed = listStack.pop().close();
-          if (listStack.length > 0) {
-            listStack[listStack.length - 1].items.push(closed);
-          } else {
-            blocks.push(closed);
-          }
-        }
-        inList = false;
-      }
-
-      // Paragraph or inline
-      if (line.trim()) {
-        blocks.push(`<p>${processInline(escapeHTML(line))}</p>`);
-      }
-      i++;
-    }
-
-    // Close remaining lists
-    while (listStack.length) {
-      const closed = listStack.pop().close();
-      if (listStack.length > 0) {
-        listStack[listStack.length - 1].items.push(closed);
-      } else {
-        blocks.push(closed);
-      }
-    }
-
-    return blocks.length > 0 ? blocks.join('') : processInline(escapeHTML(text));
-  }
-
-  // === DETEKSI MARKDOWN ===
+  // === DETEKSI MARKDOWN (termasuk tabel) ===
   function isLikelyMarkdown(text) {
     if (!text || text.length < 5) return false;
     return (
@@ -179,12 +93,11 @@
       /`[^`]+`/.test(text) ||
       /\[.*?\]\(.+?\)/.test(text) ||
       /```/.test(text) ||
-      /^\s*[-*+]\s/.test(text.trim()) ||
       (text.includes('|') && text.includes('\n') && /^\s*\|/.test(text.trim()))
     );
   }
 
-  // === PROSES TEXT NODE ===
+  // === PROSES SATU TEXT NODE ===
   function processTextNode(node) {
     const text = node.textContent;
     if (!isLikelyMarkdown(text)) return false;
@@ -193,7 +106,7 @@
     if (parent.closest('pre, code, script, style, .no-md')) return false;
     if (parent.tagName === 'CODE' || parent.tagName === 'PRE') return false;
 
-    const lines = text.split('\n');
+    const lines = text.split('\n').map(l => l);
     const blocks = [];
     let i = 0;
     let hasCodeBlock = false;
@@ -202,7 +115,7 @@
       const rawLine = lines[i];
       const line = rawLine.trim();
 
-      // Code block
+      // === CODE BLOCK ===
       if (line.startsWith('```')) {
         const lang = line.slice(3).trim() || 'plaintext';
         const codeLines = [];
@@ -217,7 +130,7 @@
         continue;
       }
 
-      // Tabel Markdown
+      // === TABEL MARKDOWN (fallback) ===
       if (line.includes('|') && /^\s*\|/.test(rawLine)) {
         const tableLines = [rawLine];
         i++;
@@ -230,10 +143,10 @@
           blocks.push(tableHTML);
           continue;
         }
-        i--;
+        i--; // rollback jika gagal
       }
 
-      // Heading
+      // === HEADING ===
       const heading = rawLine.match(/^(#{1,6})\s+(.+)$/);
       if (heading) {
         const level = heading[1].length;
@@ -242,7 +155,7 @@
         continue;
       }
 
-      // List (top level)
+      // === LIST ===
       if (/^\s*[-*+]\s/.test(rawLine)) {
         const items = [];
         while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
@@ -254,14 +167,14 @@
         continue;
       }
 
-      // Blockquote
+      // === BLOCKQUOTE ===
       if (line.startsWith('>')) {
         blocks.push(`<blockquote>${processInline(escapeHTML(line.slice(1).trim()))}</blockquote>`);
         i++;
         continue;
       }
 
-      // Paragraph
+      // === PARAGRAF / INLINE ONLY ===
       if (line) {
         blocks.push(`<p>${processInline(escapeHTML(rawLine))}</p>`);
       }
