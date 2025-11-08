@@ -128,20 +128,24 @@ header, header *, header strong, header span {
   }
 
   // === 4️⃣ Proses semua elemen yang berisi Markdown ===
-  function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
-    document.querySelectorAll(selector).forEach(el => {
-      if (el.classList.contains("no-md")) return;
-      if (el.querySelector("pre, code, table")) return;
+function enhanceMarkdown() {
+  const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body";
+  document.querySelectorAll(selector).forEach(el => {
+    if (el.classList.contains("no-md")) return;
+    if (el.querySelector("pre, code, table")) return;
 
-      const original = el.innerHTML.trim();
-      if (!original) return;
+    const original = el.innerHTML.trim();
+    if (!original) return;
 
-      // Hapus line break agar tetap satu paragraf
-      const singleLine = original.replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
-      el.innerHTML = convertInlineMarkdown(singleLine);
-    });
-  }
+    // 💡 Perbaikan utama: hapus line break di antara tag HTML juga
+    const flattened = original
+      .replace(/>\s*\n\s*</g, '><')  // hapus newline antar tag
+      .replace(/\s*\n\s*/g, " ")     // hapus newline sisa
+      .replace(/\s{2,}/g, " ");      // rapikan spasi ganda
+
+    el.innerHTML = convertInlineMarkdown(flattened);
+  });
+}
 
   // === 5️⃣ Highlight semua blok kode ===
   async function enhanceCodeBlocks() {
