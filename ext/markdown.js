@@ -1,375 +1,241 @@
 /*!
- * nano-md.js — Markdown Lite Enhancer (Versi Inline-Safe)
- * 🌿 Konversi Markdown sederhana → HTML dengan aman dan akurat
- * Otomatis muat highlight.js hanya jika ada <code>
- * Aman dari XSS, mendukung nested list, tabel, dan lebih akurat
- * Versi: 3.1.0 | Author: Frijal (Enhanced by Gemini AI)
+ * markdown.js v6.0 — Zero-Touch Auto Markdown + CSS Inject
+ * Otomatis deteksi Markdown, konversi, dan inject CSS
+ * Aman untuk semua elemen HTML
  */
 
 (function () {
-    'use strict';
+  'use strict';
 
-    // === KONFIGURASI ===
-    const HIGHLIGHT_CDN = {
-        js: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js",
-        css: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
-    };
+  // === INJECT CSS OTOMATIS ===
+  function injectCSS() {
+    const style = document.createElement('style');
+    style.textContent = `
+      .md-link { color: #3498db; text-decoration: underline; }
+      .md-inline { background: #f4f4f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+      .md-table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+      .md-table th, .md-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      @media (prefers-color-scheme: dark) {
+        .md-inline { background: #34495e; color: #ecf0f1; }
+        .md-table { border-color: #3b506b; }
+        .md-table th, .md-table td { border-color: #3b506b; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-    // Elemen yang diproses:
-    // BLOCK: Untuk Markdown mentah, mengganti seluruh konten (mode lama)
-    const SELECTORS_BLOCK = ".markdown, .markdown-body, .md";
-    // INLINE: Untuk elemen HTML yang sudah ada (e.g., sel tabel), hanya memproses inline MD
-    const SELECTORS_INLINE = "td, th, p, li, blockquote, span.inline-md"; 
+  // === MUAT HIGHLIGHT.JS ===
+  let hljsPromise = null;
+  async function ensureHighlightJS() {
+    if (hljsPromise) return hljsPromise;
+    if (window.hljs) return window.hljs;
 
-    // === UTILITAS KEAMANAN ===
-    /** Melarikan diri (escape) dari string HTML mentah untuk keamanan XSS. */
-    function escapeHTML(str) {
-        if (typeof str !== 'string') return '';
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
+    hljsPromise = new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js';
+      script.onload = () => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css';
+        document.head.appendChild(link);
+        resolve(window.hljs);
+      };
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+    });
+    return hljsPromise;
+  }
 
-    // === MUAT HIGHLIGHT.JS SEKALI SAJA ===
-    let hljsPromise = null;
-    async function ensureHighlightJS() {
-        if (hljsPromise) return hljsPromise;
-        if (window.hljs) return Promise.resolve(window.hljs);
+  // === DETEKSI MARKDOWN ===
+  function isLikelyMarkdown(text) {
+    if (!text || text.length < 10) return false;
+    const trimmed = text.trim();
+    return (
+      /^#{1,6}\s/.test(trimmed) ||
+      /^\s*[-*+]\s/.test(trimmed) ||
+      /^\s*>\s/.test(trimmed) ||
+      /```[\s\S]*```/.test(text) ||
+      /\[.*?\]\(.+?\)/.test(text) ||
+      /\*\*.*\*\*/.test(text) ||
+      /^\s*\|.*\|/.test(trimmed) && text.includes('\n')
+    );
+  }
 
-        hljsPromise = new Promise((resolve) => {
-            // Muat CSS
-            const link = document.createElement('link');
-            link.rel = "stylesheet";
-            link.href = HIGHLIGHT_CDN.css;
-            document.head.appendChild(link);
+  // === ESCAPE HTML ===
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
-            // Muat JS
-            const script = document.createElement('script');
-            script.src = HIGHLIGHT_CDN.js;
-            script.defer = true;
-            script.onload = () => resolve(window.hljs);
-            script.onerror = () => resolve(null); // Gagal muat
-            document.head.appendChild(script);
-        });
+  // === INLINE MARKDOWN ===
+  function processInline(text) {
+    return text
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code class="md-inline">$1</code>');
+  }
 
-        return hljsPromise;
-    }
+  // === PARSE TABEL ===
+  function parseTable(lines) {
+    const rows = lines.map(l => l.trim()).filter(Boolean);
+    if (rows.length < 2) return null;
 
-    // === INLINE MARKDOWN (bold, italic, code, link) ===
-    function processInline(text) {
-        if (!text || typeof text !== 'string') return '';
+    const cleanRows = rows.filter(r => !/^[\s|:-]+$/.test(r.replace(/\|/g, '')));
+    if (cleanRows.length < 1) return null;
 
-        // --- 1. Code `text` (Harus dilakukan pertama untuk melindungi kontennya)
-        text = text.replace(/`([^`]+)`/g, (m, code) => 
-            `<code class="md-inline">${escapeHTML(code)}</code>` // Escape isi code
-        );
+    const header = cleanRows[0].split('|').filter(Boolean).map(h => `<th>${escapeHTML(h.trim())}</th>`).join('');
+    const body = cleanRows.slice(1).map(r =>
+      '<tr>' + r.split('|').filter(Boolean).map(c => `<td>${escapeHTML(c.trim())}</td>`).join('') + '</tr>'
+    ).join('');
 
-        // --- 2. Link [text](url)
-        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
-            const cleanLabel = processInline(label); // Proses inline di dalam label link
-            const cleanUrl = escapeHTML(url);
-            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="md-link">${cleanLabel}</a>`;
-        });
-        
-        // --- 3. HTML Escape untuk konten yang tersisa
-        // Lakukan escape pada teks sebelum diproses bold/italic agar simbol seperti '<' dinetralkan.
-        text = escapeHTML(text);
+    return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+  }
 
-        // --- 4. Bold **text**
-        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-        
-        // --- 5. Italic *text*
-        text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
-        
-        return text;
-    }
+  // === PROSES TEXT NODE ===
+  function processTextNode(node) {
+    const text = node.textContent;
+    if (!isLikelyMarkdown(text)) return false;
 
-    // === PARSING MARKDOWN PER BARIS (AKURAT & AMAN) ===
-    function parseMarkdownLines(lines) {
-        const output = [];
-        let listStack = []; // Stack untuk nested list
-        let inCodeBlock = false;
-        let codeLang = '';
-        let codeLines = [];
+    const parent = node.parentNode;
+    if (parent.closest('pre, code, script, style, .no-md')) return false;
+    if (parent.tagName === 'CODE' || parent.tagName === 'PRE') return false;
 
-        // Helper untuk menutup semua list yang terbuka
-        const closeLists = () => {
-            while (listStack.length) {
-                output.push(listStack.pop().close());
-            }
-        };
+    const lines = text.split('\n');
+    const blocks = [];
+    let i = 0;
+    let hasCodeBlock = false;
 
-        // Helper untuk menambahkan baris/blok ke output atau list saat ini
-        const pushLine = (html) => {
-            if (listStack.length) {
-                const current = listStack[listStack.length - 1];
-                current.items[current.items.length - 1] += html;
-            } else {
-                output.push(html);
-            }
-        };
+    while (i < lines.length) {
+      const rawLine = lines[i];
+      const line = rawLine.trim();
 
-        for (let i = 0; i < lines.length; i++) {
-            let line = lines[i];
-            const trimmed = line.trim();
-
-            // --- CODE BLOCK (```) ---
-            if (trimmed.startsWith('```')) {
-                if (inCodeBlock) {
-                    closeLists();
-                    const code = codeLines.join('\n');
-                    const langClass = codeLang ? `class="language-${codeLang}"` : '';
-                    output.push(`<pre><code ${langClass}>${escapeHTML(code)}</code></pre>`);
-                    inCodeBlock = false;
-                    codeLang = '';
-                    codeLines = [];
-                } else {
-                    closeLists();
-                    inCodeBlock = true;
-                    codeLang = trimmed.slice(3).trim() || 'plaintext';
-                }
-                continue;
-            }
-
-            if (inCodeBlock) {
-                codeLines.push(line);
-                continue;
-            }
-            
-            // --- PARAGRAF KOSONG ---
-            if (trimmed === '') {
-                closeLists();
-                continue;
-            }
-
-            // --- TABEL ---
-            if (trimmed.includes('|') && /^\s*\|.*\|\s*$/.test(line)) {
-                let tableLines = [line];
-                for (let j = i + 1; j < lines.length; j++) {
-                    const next = lines[j];
-                    if (/^\s*\|.*\|\s*$/.test(next) || next.trim().match(/^[\s|:-]+$/)) { 
-                        tableLines.push(next);
-                        i = j;
-                    } else {
-                        break;
-                    }
-                }
-                const tableHTML = parseTable(tableLines);
-                if (tableHTML) {
-                    closeLists();
-                    output.push(tableHTML);
-                    continue;
-                }
-            }
-
-            // --- BLOCKQUOTE ---
-            if (trimmed.startsWith('>')) {
-                closeLists();
-                const content = line.replace(/^>\s*/, '');
-                const nested = parseMarkdownLines([content]).join('');
-                output.push(`<blockquote>${nested}</blockquote>`);
-                continue;
-            }
-
-            // --- HEADING (#) ---
-            const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
-            if (headingMatch) {
-                closeLists();
-                const level = headingMatch[1].length;
-                const text = processInline(headingMatch[2]);
-                output.push(`<h${level}>${text}</h${level}>`);
-                continue;
-            }
-
-            // --- LIST (nested support) ---
-            const listMatch = line.match(/^(\s*)([-*+]|\d+\.)\s+(.+)$/);
-            if (listMatch) {
-                const indent = listMatch[1].length;
-                const isOrdered = listMatch[2].endsWith('.');
-                const itemText = processInline(listMatch[3]); 
-                const level = Math.floor(indent / 2);
-
-                while (listStack.length > level + 1) {
-                    const closed = listStack.pop().close();
-                    if (listStack.length) {
-                        listStack[listStack.length - 1].items.push(closed);
-                    } else {
-                        output.push(closed);
-                    }
-                }
-
-                if (listStack.length === level + 1) {
-                    listStack[level].items.push(`<li>${itemText}</li>`);
-                } else {
-                    const tag = isOrdered ? '<ol>' : '<ul>';
-                    const closer = isOrdered ? '</ol>' : '</ul>';
-                    const newList = {
-                        tag,
-                        closer,
-                        items: [`<li>${itemText}</li>`],
-                        close() { return this.tag + this.items.join('') + this.closer; }
-                    };
-
-                    while (listStack.length > level) {
-                        const closed = listStack.pop().close();
-                        if (listStack.length) {
-                            listStack[listStack.length - 1].items.push(closed);
-                        } else {
-                            output.push(closed);
-                        }
-                    }
-
-                    listStack.push(newList); 
-                }
-                continue;
-            }
-
-            // --- PARAGRAF BIASA ---
-            closeLists();
-            output.push(`<p>${processInline(line)}</p>`);
+      // Code block
+      if (line.startsWith('```')) {
+        const lang = line.slice(3).trim() || 'plaintext';
+        const codeLines = [];
+        i++;
+        while (i < lines.length && !lines[i].trim().startsWith('```')) {
+          codeLines.push(lines[i]);
+          i++;
         }
+        i++;
+        blocks.push(`<pre><code class="language-${lang}">${escapeHTML(codeLines.join('\n'))}</code></pre>`);
+        hasCodeBlock = true;
+        continue;
+      }
 
-        // Tutup sisa list & code block di akhir
-        if (inCodeBlock) {
-            output.push(`<pre><code>${escapeHTML(codeLines.join('\n'))}</code></pre>`);
+      // Tabel
+      if (line.includes('|') && /^\s*\|/.test(rawLine)) {
+        const tableLines = [rawLine];
+        i++;
+        while (i < lines.length && /^\s*\|/.test(lines[i])) {
+          tableLines.push(lines[i]);
+          i++;
         }
-        closeLists();
-
-        return output;
-    }
-
-    // === PARSE TABEL ===
-    function parseTable(lines) {
-        const rows = lines.map(l => l.trim()).filter(Boolean);
-        if (rows.length < 2) return null;
-
-        const separatorIndex = rows.findIndex(r => r.match(/^[\s|:-]+$/));
-        if (separatorIndex === -1) return null;
-
-        const headerRow = rows[0];
-        const bodyRows = rows.slice(separatorIndex + 1);
-
-        const parseCells = (row) => row.split('|').map(c => c.trim()).filter(Boolean);
-
-        const header = parseCells(headerRow).map(h => `<th>${processInline(h)}</th>`).join('');
-        
-        const body = bodyRows.map(r => {
-            const cells = parseCells(r);
-            const tds = cells.map(c => `<td>${processInline(c)}</td>`).join('');
-            return `<tr>${tds}</tr>`;
-        }).join('');
-
-        return `<table class="md-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
-    }
-
-    // === ENHANCE BLOCK-LEVEL (Mode Default: Mengganti seluruh konten elemen target) ===
-    function enhanceBlockElement(el) {
-        // Menggunakan atribut data yang berbeda untuk menghindari konflik dengan inline-only
-        if (el.dataset.nanoMdBlock === 'done') return;
-        if (el.classList.contains('no-md')) return;
-
-        // Ambil teks mentah (Markdown)
-        const text = el.textContent || el.innerText;
-        if (!text || !text.trim()) return;
-
-        // Parse per baris
-        const lines = text.split('\n');
-        const htmlLines = parseMarkdownLines(lines);
-        let finalHTML = htmlLines.join('');
-
-        // Hapus pembungkus <p> jika elemen target adalah p, li, atau blockquote
-        const tagName = el.tagName.toUpperCase();
-        if ((tagName === 'P' || tagName === 'LI' || tagName === 'BLOCKQUOTE') && finalHTML.startsWith('<p>')) {
-             finalHTML = finalHTML.replace(/^<p>(.*)<\/p>$/s, '$1');
+        const tableHTML = parseTable(tableLines);
+        if (tableHTML) {
+          blocks.push(tableHTML);
+          continue;
         }
+        i--;
+      }
 
-        el.innerHTML = finalHTML;
-        el.dataset.nanoMdBlock = 'done';
-    }
-    
-    // === FUNGSI BARU: ENHANCE INLINE-ONLY (Hanya memproses bold, code, link di dalam HTML yang sudah ada) ===
-    function enhanceInlineOnly() {
-        document.querySelectorAll(SELECTORS_INLINE).forEach(el => {
-            // Gunakan atribut data yang berbeda untuk menghindari konflik dengan block-level
-            if (el.dataset.nanoMdInline === 'done' || el.classList.contains('no-md')) return;
+      // Heading
+      const heading = rawLine.match(/^(#{1,6})\s+(.+)$/);
+      if (heading) {
+        const level = heading[1].length;
+        blocks.push(`<h${level}>${escapeHTML(heading[2])}</h${level}>`);
+        i++;
+        continue;
+      }
 
-            // Ambil innerHTML saat ini (termasuk tag anak)
-            const originalHTML = el.innerHTML;
-            
-            // Jalankan HANYA fungsi processInline pada innerHTML
-            const finalHTML = processInline(originalHTML);
-
-            if (finalHTML !== originalHTML) {
-                el.innerHTML = finalHTML;
-            }
-
-            el.dataset.nanoMdInline = 'done';
-        });
-    }
-
-    // === ENHANCE ALL (Menggabungkan kedua mode) ===
-    function enhanceMarkdown() {
-        // 1. Jalankan mode BLOCK-LEVEL (Mengubah Markdown mentah menjadi HTML block/list/table)
-        document.querySelectorAll(SELECTORS_BLOCK).forEach(enhanceBlockElement);
-        
-        // 2. Jalankan mode INLINE-ONLY (Memproses inline MD di dalam elemen struktural yang sudah ada, e.g., <td>)
-        enhanceInlineOnly();
-    }
-
-    // === HIGHLIGHT CODE === (Tidak berubah)
-    async function highlightCodeBlocks() {
-        if (!document.querySelector('pre code')) return;
-        const hljs = await ensureHighlightJS();
-        if (!hljs) return;
-
-        document.querySelectorAll('pre code').forEach(block => {
-            try {
-                if (!block.classList.contains('hljs')) {
-                    hljs.highlightElement(block);
-                }
-            } catch (e) {
-                console.warn('Highlight.js error:', e);
-            }
-        });
-    }
-
-    // === OBSERVE PERUBAHAN DOM (untuk konten dinamis) ===
-    function observeMutations() {
-        const observer = new MutationObserver((mutations) => {
-            let shouldEnhance = false;
-            mutations.forEach(m => {
-                if (m.addedNodes.length) shouldEnhance = true;
-            });
-            if (shouldEnhance) {
-                setTimeout(() => {
-                    enhanceMarkdown();
-                    highlightCodeBlocks();
-                }, 50); 
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // === INIT & RUN ===
-    function init() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', run);
-        } else {
-            run();
+      // List
+      if (/^\s*[-*+]\s/.test(rawLine)) {
+        const items = [];
+        while (i < lines.length && /^\s*[-*+]\s/.test(lines[i])) {
+          const item = lines[i].replace(/^\s*[-*+]\s+/, '');
+          items.push(`<li>${processInline(item)}</li>`);
+          i++;
         }
+        blocks.push(`<ul>${items.join('')}</ul>`);
+        continue;
+      }
+
+      // Blockquote
+      if (line.startsWith('>')) {
+        blocks.push(`<blockquote>${processInline(line.slice(1).trim())}</blockquote>`);
+        i++;
+        continue;
+      }
+
+      // Paragraf
+      if (line) {
+        blocks.push(`<p>${processInline(line)}</p>`);
+      }
+      i++;
     }
 
-    async function run() {
-        enhanceMarkdown(); // Memanggil BLOCK & INLINE enhance
-        await highlightCodeBlocks();
-        observeMutations();
+    if (blocks.length === 0) return false;
+
+    const temp = document.createElement('div');
+    temp.innerHTML = blocks.join('');
+    while (temp.firstChild) {
+      parent.insertBefore(temp.firstChild, node);
+    }
+    parent.removeChild(node);
+
+    return hasCodeBlock;
+  }
+
+  // === ENHANCE ALL ===
+  function enhance() {
+    injectCSS(); // Inject sekali saja
+
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+
+    const nodes = [];
+    let node;
+    while (node = walker.nextNode()) {
+      if (node.textContent.trim()) nodes.push(node);
     }
 
-    // Jalankan
-    init();
+    let hasCodeBlock = false;
+    nodes.forEach(n => {
+      if (processTextNode(n)) hasCodeBlock = true;
+    });
+
+    if (hasCodeBlock) {
+      ensureHighlightJS().then(hljs => {
+        if (hljs) {
+          document.querySelectorAll('pre code').forEach(block => {
+            try { hljs.highlightElement(block); } catch {}
+          });
+        }
+      });
+    }
+  }
+
+  // === INIT ===
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhance);
+  } else {
+    enhance();
+  }
+
+  // Observe dynamic content
+  new MutationObserver(enhance).observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 
 })();
