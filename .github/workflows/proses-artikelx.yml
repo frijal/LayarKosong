@@ -15,10 +15,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repo
       - name: 🧭 Checkout repository
         uses: actions/checkout@v4
 
-      # 🔍 Ganti konten dasar
+      # 2️⃣ Pastikan Perl tersedia
+      - name: 🐪 Setup Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.36'
+
+      # 3️⃣ Jalankan localize-assets.pl untuk ganti CDN → lokal
+      - name: 🔧 Ganti CDN ke Lokal
+        run: |
+          chmod +x ext/gantifontshighlight.pl
+          perl ext/gantifontshighlight.pl --quiet --no-backup
+
+      # 4️⃣ Ganti konten dasar (meta, domain, icon, dll)
       - name: 🪄 Jalankan find-and-replace
         run: |
           shopt -s nullglob
@@ -37,11 +50,8 @@ jobs:
           done
           shopt -u nullglob
 
-      - name: 🔧 Ganti CDN ke Lokal
-        run: perl ext/gantifontshighlight.pl --no-backup --quiet
-
-      # 🔧 Inject meta via JS (opsional)
-      - name: 🧩 Inject meta & script
+      # 5️⃣ Inject meta via JS (opsional)
+      - name: 🧩 Inject meta & script tambahan
         run: |
           if [ -f ext/inject-meta.js ]; then
             node ext/inject-meta.js || true
@@ -49,8 +59,8 @@ jobs:
             echo "⚠️  Tidak ditemukan ext/inject-meta.js, lewati langkah ini."
           fi
 
-      # 🎨 Tambahkan CSS & elemen baru
-      - name: 🧱 Tambahkan CSS/JS & elemen tambahan
+      # 6️⃣ Tambahkan CSS, JS, dan elemen tambahan
+      - name: 🎨 Tambahkan CSS/JS & elemen tambahan
         run: |
           shopt -s nullglob
           echo "🧩 Menambahkan elemen tambahan ke file HTML..."
@@ -60,41 +70,31 @@ jobs:
             # 1️⃣ CSS marquee-url
             if ! grep -q '<link rel="stylesheet" href="/ext/marquee-url.css">' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />' "$file"
-            else
-              echo "⏭️  CSS marquee-url.css sudah ada."
             fi
 
             # 2️⃣ div iposbrowser
             if ! grep -q '<div id="iposbrowser"></div>' "$file"; then
               sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
-            else
-              echo "⏭️  div#iposbrowser sudah ada."
             fi
 
             # 3️⃣ floating search
             if ! grep -q 'class="search-floating-container"' "$file"; then
               sed -i '/<\/body>/i <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>' "$file"
-            else
-              echo "⏭️  search-floating-container sudah ada."
             fi
 
             # 4️⃣ related marquee + JS
             if ! grep -q 'id="related-marquee-section"' "$file"; then
               sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>' "$file"
-            else
-              echo "⏭️  related-marquee-section sudah ada."
             fi
 
             # 5️⃣ iposbrowser.js
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
               sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>' "$file"
-            else
-              echo "⏭️  iposbrowser.js sudah ada."
             fi
           done
           shopt -u nullglob
 
-      # 📦 Pindahkan hasil
+      # 7️⃣ Pindahkan hasil ke folder artikel/
       - name: 📂 Pindahkan ke folder artikel/
         run: |
           mkdir -p artikel
@@ -107,7 +107,7 @@ jobs:
           fi
           shopt -u nullglob
 
-      # 💾 Commit otomatis
+      # 8️⃣ Commit otomatis hasil akhirnya
       - name: 💾 Commit & Push perubahan
         run: |
           git config --global user.name "github-actions"
@@ -117,7 +117,7 @@ jobs:
             echo "✅ Tidak ada perubahan untuk dikomit."
           else
             git add artikelx artikel
-            git commit -m "🔄 Workflow: Proses & pindahkan artikel dari artikelx/"
+            git commit -m "🔄 Workflow: Proses ArtikelX + Localize Assets"
             git push
             echo "🚀 Perubahan berhasil dikirim."
           fi
