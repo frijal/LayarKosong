@@ -23,57 +23,53 @@ unless (@files) {
 }
 
 # Map: url-regex => replacement-path
-# Escape @ in patterns (use \@) and avoid interpolation issues by using qr//.
 my @MAP = (
+  # Font Awesome CSS
   { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i,       repl => '/ext/fontawesome.css' },
-  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css}i,                                   repl => '/ext/fontawesome.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/highlight\.min\.js}i,             repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i,          repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i,                          repl => '/ext/highlight.js' },
+  # Highlight.js JS
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/default\.min\.css}i,        repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i,     repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i,                    repl => '/ext/github.min.css' },
+  # Highlight.js CSS
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github\.min\.css}i,         repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i,      repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i,                    repl => '/ext/github.min.css' },
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github-dark\.min\.css}i,    repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
   { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i,               repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
 );
 
 sub replace_urls_in_string {
   my ($text_ref) = @_;
   my $count = 0;
 
-  # for each mapping, replace only the URL inside href="..." or src='...'
   foreach my $m (@MAP) {
     my $rx   = $m->{rx};
     my $repl = $m->{repl};
 
-    # pattern: (href|src) (optional spaces) = (quote) (URL matching $rx) (same quote)
-    # use e modifier to construct exact replacement preserving the quote char
+    # Replace only inside href="..." or src='...'
     while ( $$text_ref =~ s{
-        (                # $1 = attribute name: href or src
-          \b(?:href|src)\b
-        )
-        (\s*=\s*)         # $2 = equals with optional spaces
-        (['"])            # $3 = opening quote (' or ")
-        \s*               # optional whitespace
-        ($rx)             # $4 = the URL that matches the CDN pattern
-        \s*               # optional whitespace
-        \3                # closing quote same as opening
+        (\b(?:href|src)\b)       # $1 = attribute name
+        (\s*=\s*)                # $2 = equals + spaces
+        (['"])                    # $3 = quote
+        \s*                       # optional space
+        ($rx)                     # $4 = matched URL
+        \s*                       # optional space
+        \3                        # closing quote
       }{
-        # replacement code block: reconstruct attribute with same quote char and new URL
-        my $attr = $1; my $eq = $2; my $q = $3;
+        my ($attr,$eq,$q) = ($1,$2,$3);
         $attr . $eq . $q . $repl . $q;
-      }gexsi ) {
-      $count++;
-    }
+      }gexsi
+    ) { $count++; }
   }
 
   return $count;
@@ -89,7 +85,6 @@ foreach my $file (@files) {
   my $content = <$in>;
   close $in;
 
-  my $orig = $content;
   my $replaced = replace_urls_in_string(\$content);
 
   if ($replaced) {
