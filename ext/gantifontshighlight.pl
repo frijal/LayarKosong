@@ -20,24 +20,24 @@ GetOptions(
 # ===============================
 my %REPLACEMENTS = (
   # --- Font Awesome (semua CDN, semua versi)
-  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs|cdn\.jsdelivr\.net/npm/@fortawesome/fontawesome-free@[^/]+|use\.fontawesome\.com/releases/v[\d\.]+)/css/all\.min\.css["'][^>]*}i
-    => qq{href="/ext/fontawesome.css"},
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs|cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+|use\.fontawesome\.com/releases/v[\d\.]+)/css/all\.min\.css["'][^>]*}i
+    => 'href="/ext/fontawesome.css"',
 
-  # --- Highlight.js JS (semua sumber: Cloudflare, jsDelivr, npm)
-  qr{src=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js@[^/]+|gh/highlightjs/cdn-release@[^/]+/build))/highlight\.min\.js["'][^>]*}i
-    => qq{src="/ext/highlight.js"},
+  # --- Highlight.js JS (semua sumber)
+  qr{src=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/highlight\.min\.js["'][^>]*}i
+    => 'src="/ext/highlight.js"',
 
   # --- Highlight.js CSS (tema terang)
-  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js@[^/]+|gh/highlightjs/cdn-release@[^/]+/build))/styles/github\.min\.css["'][^>]*}i
-    => qq{href="/ext/github.min.css"},
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/github\.min\.css["'][^>]*}i
+    => 'href="/ext/github.min.css"',
 
   # --- Highlight.js CSS (tema gelap)
-  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js@[^/]+|gh/highlightjs/cdn-release@[^/]+/build))/styles/github-dark\.min\.css["'][^>]*}i
-    => qq{href="/ext/github-dark.min.css"},
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/github-dark\.min\.css["'][^>]*}i
+    => 'href="/ext/github-dark.min.css"',
 
   # --- Highlight.js CSS default (misalnya default.min.css)
-  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js@[^/]+|gh/highlightjs/cdn-release@[^/]+/build))/styles/default\.min\.css["'][^>]*}i
-    => qq{href="/ext/github-dark.min.css"},
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/default\.min\.css["'][^>]*}i
+    => 'href="/ext/github-dark.min.css"',
 );
 
 # ===============================
