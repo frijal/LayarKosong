@@ -37,6 +37,9 @@ jobs:
           done
           shopt -u nullglob
 
+      - name: 🔧 Ganti CDN ke Lokal
+        run: perl ext/gantifontshighlight.pl --no-backup --quiet
+
       # 🔧 Inject meta via JS (opsional)
       - name: 🧩 Inject meta & script
         run: |
