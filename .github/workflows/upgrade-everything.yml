@@ -39,6 +39,7 @@ jobs:
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
           mkdir -p ext mini
+          mkdir -p ext fontawesome-webfonts
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Highlight.js JS & CSS (CSS selalu dari CDN versi terbaru)
