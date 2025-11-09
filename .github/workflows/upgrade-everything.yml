@@ -47,7 +47,7 @@ jobs:
           curl -s -o ext/default.min.css https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$HLJS_LATEST/styles/default.min.css
 
           # Font Awesome
-          cp -r node_modules/@fortawesome/fontawesome-free/webfonts ext/fontawesome-webfonts
+          cp -r node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
 
