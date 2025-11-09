@@ -25,9 +25,9 @@ unless (@files) {
 # Map: url-regex => replacement-path
 my @MAP = (
   # Font Awesome CSS
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
+#  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+#  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+#  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
 
   # Highlight.js JS
   { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
