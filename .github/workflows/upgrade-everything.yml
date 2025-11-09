@@ -1,9 +1,9 @@
-name: 🛠️ Pemeliharaan Dependensi (Super-Optimal)
+name: 🧠 Pemeliharaan Dependensi (Ultra-Optimal)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 9 * *'
+    - cron: '0 1 9 * *' # setiap tanggal 9 pukul 01:00 UTC (08:00 WIB)
 
 jobs:
   maintenance-pr:
@@ -22,8 +22,15 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: 💾 Cache global NPM
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-cache-
+
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       # Upgrade dependencies
       - name: 🔼 Upgrade dependencies (minor & patch)
@@ -32,7 +39,7 @@ jobs:
           ncu -u --target minor
           echo "✅ Upgrade dependencies selesai."
 
-      # Cleanup
+      # Cleanup (opsional)
       - name: 🧹 Cleanup unused packages
         run: |
           if [ -f ext/cleanup.js ]; then
@@ -41,7 +48,7 @@ jobs:
             echo "⚠️ File cleanup.js tidak ditemukan, dilewati."
           fi
 
-      # Cek perubahan dependencies
+      # 🔍 Cek perubahan dependencies
       - name: 🔍 Cek perubahan dependencies
         id: check_deps
         run: |
@@ -51,42 +58,56 @@ jobs:
             echo "deps_changed=false" >> $GITHUB_OUTPUT
           fi
 
-      # Cek versi Highlight.js terbaru
-      - name: 🌈 Cek versi Highlight.js
-        id: check_hljs_version
+      # 🌈 Cek versi Highlight.js & Font Awesome
+      - name: 🧠 Cek versi Highlight.js & Font Awesome
+        id: check_assets
         run: |
-          LATEST_VER=$(npm view @highlightjs/cdn-assets version)
-          if [ -f mini/highlight-info.txt ]; then
-            CURRENT_VER=$(grep '^version=' mini/highlight-info.txt | cut -d'=' -f2)
-          else
-            CURRENT_VER=""
-          fi
-          echo "Versi saat ini: $CURRENT_VER, Versi terbaru: $LATEST_VER"
-          if [ "$CURRENT_VER" = "$LATEST_VER" ]; then
-            echo "hljs_up_to_date=true" >> $GITHUB_OUTPUT
-          else
-            echo "hljs_up_to_date=false" >> $GITHUB_OUTPUT
-          fi
+          mkdir -p mini
+          HLJS_LATEST=$(npm view @highlightjs/cdn-assets version)
+          FA_LATEST=$(npm view @fortawesome/fontawesome-free version)
 
-      # Update Highlight.js hanya jika perlu dan jika deps berubah
-      - name: 🌈 Update Highlight.js jika perlu
-        if: steps.check_deps.outputs.deps_changed == 'true' || steps.check_hljs_version.outputs.hljs_up_to_date == 'false'
+          HLJS_CURR=$(grep '^hljs=' mini/asset-info.txt 2>/dev/null | cut -d'=' -f2)
+          FA_CURR=$(grep '^fontawesome=' mini/asset-info.txt 2>/dev/null | cut -d'=' -f2)
+
+          echo "Highlight.js: current=${HLJS_CURR:-none}, latest=${HLJS_LATEST}"
+          echo "Font Awesome: current=${FA_CURR:-none}, latest=${FA_LATEST}"
+
+          echo "hljs_latest=$HLJS_LATEST" >> $GITHUB_OUTPUT
+          echo "hljs_current=$HLJS_CURR" >> $GITHUB_OUTPUT
+          echo "fa_latest=$FA_LATEST" >> $GITHUB_OUTPUT
+          echo "fa_current=$FA_CURR" >> $GITHUB_OUTPUT
+
+      # 🌈 Update asset jika perlu
+      - name: 🌈 Update Highlight.js & Font Awesome
+        if: steps.check_deps.outputs.deps_changed == 'true' || steps.check_assets.outputs.hljs_current != steps.check_assets.outputs.hljs_latest || steps.check_assets.outputs.fa_current != steps.check_assets.outputs.fa_latest
         run: |
-          echo "📦 Menginstal @highlightjs/cdn-assets terbaru..."
-          npm install @highlightjs/cdn-assets@latest --no-save
+          echo "📦 Menginstal Highlight.js & Font Awesome versi terbaru..."
+          npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
+
           mkdir -p ext mini
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
-          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/github.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/github-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
+          cp -r node_modules/@fortawesome/fontawesome-free/webfonts ext/fontawesome-webfonts
+          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
+
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           {
-            echo "version=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")"
+            echo "hljs=${{ steps.check_assets.outputs.hljs_latest }}"
+            echo "fontawesome=${{ steps.check_assets.outputs.fa_latest }}"
             echo "updated=${DATE_NOW}"
-            echo "source=npm:@highlightjs/cdn-assets"
-          } > mini/highlight-info.txt
-          echo "✅ Highlight.js diperbarui jika ada versi baru atau deps berubah."
+          } > mini/asset-info.txt
+          echo "✅ Assets diperbarui."
 
-      # Cek perubahan semua (deps + Highlight.js)
+      # 🧪 Audit & Lint
+      - name: 🧪 Audit & Lint
+        run: |
+          echo "🔎 Jalankan audit ringan & lint..."
+          npm audit --omit=dev || true
+          npm run lint --if-present
+          npm run test --if-present
+          echo "✅ Audit & Lint selesai."
+
+      # 🔍 Cek semua perubahan
       - name: 🔍 Cek perubahan akhir
         id: check_changes
         run: |
@@ -96,26 +117,23 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      # Build & Test jika ada perubahan
-      - name: 🧪 Build & Test
-        if: steps.check_changes.outputs.changes_detected == 'true'
-        run: |
-          npm run build --if-present
-          npm test --if-present
-
-      # Buat Pull Request jika ada perubahan
+      # 📨 Buat Pull Request jika ada perubahan
       - name: 📨 Create Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/auto-maintenance-${{ github.run_id }}
-          title: 'chore: Auto Maintenance (Deps + Highlight.js)'
-          commit-message: 'chore: Upgrade deps, cleanup, dan sinkronisasi Highlight.js'
+          title: 'chore: Auto Maintenance (Deps + Assets Sync)'
+          commit-message: 'chore: upgrade deps, cleanup, audit, dan sinkronisasi Highlight.js & Font Awesome'
           body: |
-            PR otomatis ini mencakup:
-            - Upgrade Dependencies (minor/patch)
+            🔧 **Pemeliharaan Otomatis Ultra-Optimal**
+            Perubahan yang tercakup:
+            - Upgrade Dependencies (minor & patch)
             - Cleanup Packages
-            - Sinkronisasi Highlight.js (hanya jika versi baru atau deps berubah)
-          labels: dependencies, chore, automated pr
+            - Audit keamanan & lint
+            - Sinkronisasi Highlight.js & Font Awesome
+            - Auto-skip jika tidak ada perubahan signifikan
+            _(Generated by GitHub Actions)_
+          labels: dependencies, chore, automated
           reviewers: frijal
           draft: false
