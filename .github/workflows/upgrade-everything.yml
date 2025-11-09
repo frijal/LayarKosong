@@ -39,7 +39,6 @@ jobs:
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
           mkdir -p ext mini
-          mkdir -p ext fontawesome-webfonts
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Highlight.js JS & CSS (CSS selalu dari CDN versi terbaru)
@@ -48,6 +47,7 @@ jobs:
           curl -s -o ext/default.min.css https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$HLJS_LATEST/styles/default.min.css
 
           # Font Awesome
+          mkdir -p ext/fontawesome-webfonts
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
