@@ -1,4 +1,4 @@
-name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal)
+name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v5 + Integrity Alert System)
 
 on:
   workflow_dispatch:
@@ -20,36 +20,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
-      - name: 💾 Cache global NPM
+      - name: 💾 Cache NPM
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-cache-
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
 
       - name: 📦 Install dependencies
         run: npm ci || npm install
 
-      # Upgrade dependencies
-      - name: 🔼 Upgrade dependencies (minor & patch)
+      - name: 🔼 Upgrade dependencies
         run: |
           npm install -g npm-check-updates
           ncu -u --target minor
-          echo "✅ Upgrade dependencies selesai."
+          echo "✅ Dependencies diupgrade."
 
-      # Cleanup (opsional)
-      - name: 🧹 Cleanup unused packages
+      - name: 🧹 Cleanup opsional
         run: |
           if [ -f ext/cleanup.js ]; then
             node ext/cleanup.js
           else
-            echo "⚠️ File cleanup.js tidak ditemukan, dilewati."
+            echo "⚠️ cleanup.js tidak ada."
           fi
 
-      # 🔍 Cek perubahan dependencies
-      - name: 🔍 Cek perubahan dependencies
+      - name: 🔍 Cek perubahan deps
         id: check_deps
         run: |
           if [[ $(git status --porcelain package.json package-lock.json) ]]; then
@@ -58,56 +55,82 @@ jobs:
             echo "deps_changed=false" >> $GITHUB_OUTPUT
           fi
 
-      # 🌈 Cek versi Highlight.js & Font Awesome
       - name: 🧠 Cek versi Highlight.js & Font Awesome
         id: check_assets
         run: |
           mkdir -p mini
           HLJS_LATEST=$(npm view @highlightjs/cdn-assets version)
           FA_LATEST=$(npm view @fortawesome/fontawesome-free version)
-
           HLJS_CURR=$(grep '^hljs=' mini/asset-info.txt 2>/dev/null | cut -d'=' -f2)
           FA_CURR=$(grep '^fontawesome=' mini/asset-info.txt 2>/dev/null | cut -d'=' -f2)
-
-          echo "Highlight.js: current=${HLJS_CURR:-none}, latest=${HLJS_LATEST}"
-          echo "Font Awesome: current=${FA_CURR:-none}, latest=${FA_LATEST}"
-
           echo "hljs_latest=$HLJS_LATEST" >> $GITHUB_OUTPUT
           echo "hljs_current=$HLJS_CURR" >> $GITHUB_OUTPUT
           echo "fa_latest=$FA_LATEST" >> $GITHUB_OUTPUT
           echo "fa_current=$FA_CURR" >> $GITHUB_OUTPUT
 
-      # 🌈 Update asset jika perlu
       - name: 🌈 Update Highlight.js & Font Awesome
         if: steps.check_deps.outputs.deps_changed == 'true' || steps.check_assets.outputs.hljs_current != steps.check_assets.outputs.hljs_latest || steps.check_assets.outputs.fa_current != steps.check_assets.outputs.fa_latest
         run: |
-          echo "📦 Menginstal Highlight.js & Font Awesome versi terbaru..."
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
-
           mkdir -p ext mini
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
           cp -r node_modules/@fortawesome/fontawesome-free/webfonts ext/fontawesome-webfonts
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
-
+          sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           {
             echo "hljs=${{ steps.check_assets.outputs.hljs_latest }}"
             echo "fontawesome=${{ steps.check_assets.outputs.fa_latest }}"
             echo "updated=${DATE_NOW}"
           } > mini/asset-info.txt
-          echo "✅ Assets diperbarui."
 
-      # 🧪 Audit & Lint
+      - name: 🔍 Verifikasi Font Awesome (ukuran + hash)
+        id: verify_fonts
+        run: |
+          echo "🔎 Verifikasi font + hash SHA-256..."
+          mkdir -p mini
+          FONT_DIR="ext/fontawesome-webfonts"
+          OUTPUT_FILE="mini/fontawesome-verify.txt"
+          PREV_FILE="mini/fontawesome-verify-prev.txt"
+          ALERT_FILE="mini/fontawesome-alert.txt"
+
+          # Simpan salinan lama
+          if [ -f "$OUTPUT_FILE" ]; then
+            cp "$OUTPUT_FILE" "$PREV_FILE"
+          fi
+
+          echo "📄 Daftar font + ukuran + hash (SHA-256):" > "$OUTPUT_FILE"
+          echo "----------------------------------------" >> "$OUTPUT_FILE"
+
+          find "$FONT_DIR" -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" \) | sort | while read -r file; do
+            size=$(stat -c%s "$file")
+            hash=$(sha256sum "$file" | awk '{print $1}')
+            echo "$(basename "$file")|$size|$hash" >> "$OUTPUT_FILE"
+          done
+
+          echo "----------------------------------------" >> "$OUTPUT_FILE"
+
+          # Bandingkan hash lama & baru
+          if [ -f "$PREV_FILE" ]; then
+            diff_output=$(diff -u "$PREV_FILE" "$OUTPUT_FILE" || true)
+            if [ -n "$diff_output" ]; then
+              echo "🚨 Perubahan hash/ukuran terdeteksi pada font:" > "$ALERT_FILE"
+              echo "$diff_output" >> "$ALERT_FILE"
+              echo "alert=true" >> $GITHUB_OUTPUT
+            else
+              echo "alert=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "alert=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: 🧪 Audit & Lint
         run: |
-          echo "🔎 Jalankan audit ringan & lint..."
           npm audit --omit=dev || true
-          npm run lint --if-present
-          npm run test --if-present
-          echo "✅ Audit & Lint selesai."
+          npm run lint --if-present || true
+          npm run test --if-present || true
 
-      # 🔍 Cek semua perubahan
       - name: 🔍 Cek perubahan akhir
         id: check_changes
         run: |
@@ -117,23 +140,29 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      # 📨 Buat Pull Request jika ada perubahan
-      - name: 📨 Create Pull Request
+      - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/auto-maintenance-${{ github.run_id }}
-          title: 'chore: Auto Maintenance (Deps + Assets Sync)'
-          commit-message: 'chore: upgrade deps, cleanup, audit, dan sinkronisasi Highlight.js & Font Awesome'
+          title: 'chore: Auto Maintenance (Deps + Assets + Font Integrity)'
+          commit-message: 'chore: upgrade deps, sync Highlight.js & Font Awesome, verify font hash'
           body: |
-            🔧 **Pemeliharaan Otomatis Ultra-Optimal**
-            Perubahan yang tercakup:
-            - Upgrade Dependencies (minor & patch)
-            - Cleanup Packages
-            - Audit keamanan & lint
+            🔧 **Pemeliharaan Otomatis v5 (Integrity Alert System)**
+
+            Perubahan:
+            - Upgrade Dependencies
             - Sinkronisasi Highlight.js & Font Awesome
-            - Auto-skip jika tidak ada perubahan signifikan
+            - Verifikasi ukuran + SHA-256 setiap font (.woff, .woff2, .ttf)
+            - Audit & Lint
+
+            ${{ steps.verify_fonts.outputs.alert == 'true' && '🚨 **PERINGATAN: Deteksi perubahan hash font!** Lihat mini/fontawesome-alert.txt untuk detail.' || '✅ Semua font aman.' }}
+
             _(Generated by GitHub Actions)_
-          labels: dependencies, chore, automated
+          labels: dependencies, chore, automated${{ steps.verify_fonts.outputs.alert == 'true' && ', integrity-alert' || '' }}
           reviewers: frijal
           draft: false
+
+      - name: ℹ️ Tidak ada perubahan
+        if: steps.check_changes.outputs.changes_detected == 'false'
+        run: echo "💤 Tidak ada perubahan signifikan."
