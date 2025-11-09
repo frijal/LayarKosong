@@ -1,107 +1,82 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
-use utf8;
 use File::Copy qw(copy);
-use File::Find;
+use Getopt::Long;
 
-# ============================================
-# ⚙️  Opsi CLI
-# ============================================
-my $base_dir   = '.';
-my $backup_ext = '.bak';
-my $no_backup  = 0;
-my $quiet      = 0;
+# ===============================
+# 🧩 Opsi CLI
+# ===============================
+my $quiet = 0;
+my $no_backup = 0;
 
-for (@ARGV) {
-    $no_backup = 1 if $_ eq '--no-backup';
-    $quiet     = 1 if $_ eq '--quiet';
-}
-
-# ============================================
-# 📁 Path Lokal
-# ============================================
-my $font_dir     = 'ext/fontawesome-webfonts';
-my $css_fa_local = '/ext/fontawesome.css';
-my $js_hl_local  = '/ext/highlight.js';
-my $css_hl_light = '/ext/github.min.css';
-my $css_hl_dark  = '/ext/github-dark.min.css';
-
-# ============================================
-# 🔁 Daftar pola penggantian CDN → Lokal
-# ============================================
-my %REPLACEMENTS = (
-    # Font Awesome
-    qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.]+/css/all\.min\.css} => $css_fa_local,
-    qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free@[^/]+/css/all\.min\.css} => $css_fa_local,
-    qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css} => $css_fa_local,
-
-    # Highlight.js (JS)
-    qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release@.*/build/highlight\.min\.js} => $js_hl_local,
-    qr{https://cdn\.jsdelivr\.net/npm/highlight\.js@[^/]+/highlight\.min\.js} => $js_hl_local,
-    qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/.*/highlight\.min\.js} => $js_hl_local,
-
-    # Highlight.js (CSS Light)
-    qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release@.*/build/styles/github\.min\.css} => $css_hl_light,
-    qr{https://cdn\.jsdelivr\.net/npm/highlight\.js@[^/]+/styles/github\.min\.css} => $css_hl_light,
-    qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/.*/styles/github\.min\.css} => $css_hl_light,
-
-    # Highlight.js (CSS Dark)
-    qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release@.*/build/styles/github-dark\.min\.css} => $css_hl_dark,
-    qr{https://cdn\.jsdelivr\.net/npm/highlight\.js@[^/]+/styles/github-dark\.min\.css} => $css_hl_dark,
-    qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/.*/styles/github-dark\.min\.css} => $css_hl_dark,
+GetOptions(
+  "quiet"      => \$quiet,
+  "no-backup"  => \$no_backup,
 );
 
-# ============================================
-# 🔍 Proses semua file HTML
-# ============================================
-my $total_changed = 0;
-my $total_files   = 0;
-find(\&process_html, $base_dir);
+# ===============================
+# 🔁 Peta penggantian CDN → lokal
+# ===============================
+my %REPLACEMENTS = (
+  # --- Font Awesome (semua CDN, semua versi)
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs|cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+|use\.fontawesome\.com/releases/v[\d\.]+)/css/all\.min\.css["'][^>]*}i
+    => 'href="/ext/fontawesome.css"',
 
-sub process_html {
-    return unless -f $_;
-    return unless /\.html?$/i;
-    $total_files++;
+  # --- Highlight.js JS (semua sumber)
+  qr{src=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/highlight\.min\.js["'][^>]*}i
+    => 'src="/ext/highlight.js"',
 
-    my $file = $File::Find::name;
-    open my $in, '<:encoding(UTF-8)', $file or do {
-        print "⚠️ Gagal baca $file: $!\n" unless $quiet;
-        return;
-    };
-    local $/;
-    my $html = <$in>;
-    close $in;
+  # --- Highlight.js CSS (tema terang)
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/github\.min\.css["'][^>]*}i
+    => 'href="/ext/github.min.css"',
 
-    my $changed = 0;
-    for my $pattern (keys %REPLACEMENTS) {
-        my $replacement = $REPLACEMENTS{$pattern};
-        my $num = ($html =~ s{$pattern}{$replacement}g);
-        $changed += $num if $num > 0;
-    }
+  # --- Highlight.js CSS (tema gelap)
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/github-dark\.min\.css["'][^>]*}i
+    => 'href="/ext/github-dark.min.css"',
 
-    if ($changed > 0) {
-        $total_changed += $changed;
+  # --- Highlight.js CSS default (misalnya default.min.css)
+  qr{href=["']https://(?:cdnjs\.cloudflare\.com/ajax/libs/highlight\.js|cdn\.jsdelivr\.net/(?:npm/highlight\.js\@[^/]+|gh/highlightjs/cdn-release\@[^/]+/build))/styles/default\.min\.css["'][^>]*}i
+    => 'href="/ext/github-dark.min.css"',
+);
 
-        unless ($no_backup) {
-            my $backup = "$file$backup_ext";
-            if (copy($file, $backup)) {
-                print "🗂️  Backup dibuat: $backup\n" unless $quiet;
-            } else {
-                print "⚠️  Gagal backup $file: $!\n" unless $quiet;
-            }
-        }
+# ===============================
+# 📁 Cari file HTML
+# ===============================
+my @files = glob("*.html artikelx/*.html artikel/*.html");
 
-        open my $out, '>:encoding(UTF-8)', $file or do {
-            print "⚠️ Gagal tulis $file: $!\n" unless $quiet;
-            return;
-        };
-        print $out $html;
-        close $out;
-
-        print "✅ Diperbarui: $file ($changed tautan diganti)\n" unless $quiet;
-    }
+if (!@files) {
+  print "⚠️  Tidak ada file HTML ditemukan.\n" unless $quiet;
+  exit 0;
 }
 
-print "\n🎯 Selesai! $total_files file diperiksa, $total_changed tautan diganti ke lokal\n"
-  unless $quiet;
+foreach my $file (@files) {
+  local $/ = undef;
+  open my $fh, "<:utf8", $file or next;
+  my $content = <$fh>;
+  close $fh;
+
+  my $changed = 0;
+
+  while (my ($regex, $replacement) = each %REPLACEMENTS) {
+    my $count = ($content =~ s/$regex/$replacement/gi);
+    $changed += $count if $count;
+  }
+
+  if ($changed > 0) {
+    unless ($no_backup) {
+      copy($file, "$file.bak");
+      print "🗂️  Backup dibuat: $file.bak\n" unless $quiet;
+    }
+
+    open my $out, ">:utf8", $file or next;
+    print $out $content;
+    close $out;
+
+    print "✅ $file — $changed tautan CDN diganti ke /ext lokal\n" unless $quiet;
+  } else {
+    print "⏭️  Tidak ada penggantian di $file\n" unless $quiet;
+  }
+}
+
+print "🎯 Selesai. Semua CDN kini diarahkan ke aset lokal.\n" unless $quiet;
