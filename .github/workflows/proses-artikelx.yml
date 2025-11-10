@@ -19,16 +19,15 @@ jobs:
       - name: 🧭 Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Perl (Menggunakan action resmi GitHub)
+      # 2️⃣ Setup Perl (MENGGUNAKAN ACTION YANG BENAR)
       - name: 📦 Setup Lingkungan Dasar Perl
-        uses: actions/setup-perl@v1
+        uses: perl-actions/setup-perl@v1 # KOREKSI: Namespace yang benar adalah perl-actions/
         with:
           perl-version: '5.36'
 
       # 2b. Instal modul yang dibutuhkan
       - name: 📥 Instal Modul Perl
         run: |
-          # Modul yang digunakan oleh skrip Anda
           cpanm Getopt::Long File::Copy
 
       # 3️⃣ Jalankan localize-assets.pl untuk ganti CDN → lokal
