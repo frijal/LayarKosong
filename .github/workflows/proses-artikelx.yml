@@ -11,118 +11,143 @@ permissions:
   contents: write
 
 jobs:
-  process_and_move_articles:
+  process_articles:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout repo
-      - name: 🧭 Checkout repository
+      # 1. Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # 2️⃣ Setup Perl (MENGGUNAKAN ACTION YANG BENAR)
-      - name: 📦 Setup Lingkungan Dasar Perl
-        uses: perl-actions/setup-perl@v1 # KOREKSI: Namespace yang benar adalah perl-actions/
+      # 2. Cache Perl
+      - name: Cache Perl
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.perl
+            ~/.cpan
+          key: perl-${{ runner.os }}-5.36-${{ hashFiles('ext/gantifontshighlight.pl') }}
+          restore-keys: |
+            perl-${{ runner.os }}-5.36-
+            perl-${{ runner.os }}-
+
+      # 3. Setup Perl
+      - name: Setup Perl
+        uses: shogo82148/actions-setup-perl@v1.30.0
         with:
           perl-version: '5.36'
 
-      # 2b. Instal modul yang dibutuhkan
-      - name: 📥 Instal Modul Perl
-        run: |
-          cpanm Getopt::Long File::Copy
+      # 4. Verify Perl
+      - name: Verify Perl
+        run: perl -v
 
-      # 3️⃣ Jalankan localize-assets.pl untuk ganti CDN → lokal
-      - name: 🔧 Ganti CDN ke Lokal
+      # 5. Localize Assets
+      - name: Localize Assets (gantifontshighlight.pl)
         run: |
+          set -euo pipefail
+          [[ -f ext/gantifontshighlight.pl ]] || { echo "ext/gantifontshighlight.pl tidak ditemukan!"; exit 1; }
           chmod +x ext/gantifontshighlight.pl
           perl ext/gantifontshighlight.pl --quiet --no-backup
 
-      # 4️⃣ Ganti konten dasar (meta, domain, icon, dll)
-      - name: 🪄 Jalankan find-and-replace
+      # 6. Replace Content (single perl)
+      - name: Replace Content (meta, domain, dll)
         run: |
+          set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            echo "🪄 Memproses $file"
-            perl -pi -w -e 's#</head>#<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>#g' "$file"
-            perl -pi -w -e 's#bak.xo.je#frijal.pages.dev#g' "$file"
-            perl -pi -w -e 's#https://frijal.pages.dev/assets/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
-            perl -pi -w -e 's#hhttps://frijal.pages.dev/apple-touch-icon.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g' "$file"
-            perl -pi -w -e 's#frijal_tw#frijal#g' "$file"
-            perl -pi -w -e 's#YOUR_FACEBOOK_APP_ID#1471267430691023#g' "$file"
-            perl -pi -w -e 's#nama_twitter_anda#frijal#g' "$file"
-            perl -pi -w -e 's#&copy;#🄯#g' "$file"
-            perl -pi -w -e 's#akun_twitter_kamu#frijal#g' "$file"
-            perl -pi -w -e 's/©/🄯/g' "$file"
+            [[ -f "$file" ]] || continue
+            echo "Memproses $file"
+            perl -i -wpe '
+              s#</head>#<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>#g;
+              s#bak\.xo\.je#frijal.pages.dev#g;
+              s#https://frijal\.pages\.dev/assets/apple-touch-icon\.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g;
+              s#hhttps://frijal\.pages\.dev/apple-touch-icon\.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g;
+              s#frijal_tw#frijal#g;
+              s#YOUR_FACEBOOK_APP_ID#1471267430691023#g;
+              s#nama_twitter_anda#frijal#g;
+              s#akun_twitter_kamu#frijal#g;
+              s#&copy;|©#©#g;
+            ' "$file"
           done
           shopt -u nullglob
 
-      # 5️⃣ Inject meta via JS (opsional)
-      - name: 🧩 Inject meta & script tambahan
+      # 7. Inject Meta via JS
+      - name: Inject Meta via JS
         run: |
-          if [ -f ext/inject-meta.js ]; then
-            node ext/inject-meta.js || true
+          set -euo pipefail
+          if [[ -f ext/inject-meta.js ]]; then
+            node --version && node ext/inject-meta.js || echo "Gagal jalankan inject-meta.js"
           else
-            echo "⚠️  Tidak ditemukan ext/inject-meta.js, lewati langkah ini."
+            echo "ext/inject-meta.js tidak ada, dilewati."
           fi
 
-      # 6️⃣ Tambahkan CSS, JS, dan elemen tambahan
-      - name: 🎨 Tambahkan CSS/JS & elemen tambahan
+      # 8. Add HTML Elements (SED INLINE, TIDAK PAKAI \)
+      - name: Add HTML Elements
         run: |
+          set -euo pipefail
           shopt -s nullglob
-          echo "🧩 Menambahkan elemen tambahan ke file HTML..."
           for file in artikelx/*.html; do
-            echo "🔧 Memproses: $file"
+            [[ -f "$file" ]] || continue
+            echo "Menambahkan elemen ke $file"
 
-            # 1️⃣ CSS marquee-url
+            # 1. CSS + RSS
             if ! grep -q '<link rel="stylesheet" href="/ext/marquee-url.css">' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />' "$file"
             fi
 
-            # 2️⃣ div iposbrowser
+            # 2. div iposbrowser
             if ! grep -q '<div id="iposbrowser"></div>' "$file"; then
               sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
             fi
 
-            # 3️⃣ floating search
+            # 3. floating search
             if ! grep -q 'class="search-floating-container"' "$file"; then
               sed -i '/<\/body>/i <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>' "$file"
             fi
 
-            # 4️⃣ related marquee + JS
+            # 4. related marquee
             if ! grep -q 'id="related-marquee-section"' "$file"; then
               sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>' "$file"
             fi
 
-            # 5️⃣ iposbrowser.js
+            # 5. JS scripts
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
               sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/disqus.js"></script>' "$file"
             fi
           done
           shopt -u nullglob
 
-      # 7️⃣ Pindahkan hasil ke folder artikel/
-      - name: 📂 Pindahkan ke folder artikel/
+      # 9. Move to artikel/
+      - name: Move to artikel/
         run: |
+          set -euo pipefail
           mkdir -p artikel
           shopt -s nullglob
-          if ls artikelx/*.html >/dev/null 2>&1; then
-            mv -f artikelx/*.html artikel/
-            echo "📦 File berhasil dipindahkan ke artikel/"
-          else
-            echo "⚠️  Tidak ada file HTML di artikelx/"
-          fi
+          files=(artikelx/*.html)
           shopt -u nullglob
 
-      # 8️⃣ Commit otomatis hasil akhirnya
-      - name: 💾 Commit & Push perubahan
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-          if git diff --quiet; then
-            echo "✅ Tidak ada perubahan untuk dikomit."
-          else
-            git add artikelx artikel
-            git commit -m "🔄 Workflow: Proses ArtikelX + Localize Assets"
-            git push
-            echo "🚀 Perubahan berhasil dikirim."
+          if [[ ${#files[@]} -eq 0 ]]; then
+            echo "Tidak ada file HTML di artikelx/"
+            exit 0
           fi
+
+          mv -f "${files[@]}" artikel/
+          echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
+
+      # 10. Commit & Push
+      - name: Commit & Push Changes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
+          git add artikelx artikel
+
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan untuk dikomit."
+            exit 0
+          fi
+
+          git commit -m "Proses ArtikelX: localize + enrich HTML"
+          git push origin main
+          echo "Perubahan berhasil dikirim!"
