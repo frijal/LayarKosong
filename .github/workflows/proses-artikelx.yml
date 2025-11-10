@@ -40,8 +40,8 @@ jobs:
           enable-modules-cache: false   # INI HILANGKAN WARNING 400
 
       # 4. Verify Perl
-      - name: Verify Perl
-        run: perl -v
+     # - name: Verify Perl
+      #  run: perl -v
 
       # 5. Localize Assets
       - name: Localize Assets (gantifontshighlight.pl)
