@@ -19,11 +19,17 @@ jobs:
       - name: 🧭 Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Pastikan Perl tersedia
-      - name: 🐪 Setup Perl
-        uses: shogo82148/actions-setup-perl@v1
+      # 2️⃣ Setup Perl (Menggunakan action resmi GitHub)
+      - name: 📦 Setup Lingkungan Dasar Perl
+        uses: actions/setup-perl@v1
         with:
           perl-version: '5.36'
+
+      # 2b. Instal modul yang dibutuhkan
+      - name: 📥 Instal Modul Perl
+        run: |
+          # Modul yang digunakan oleh skrip Anda
+          cpanm Getopt::Long File::Copy
 
       # 3️⃣ Jalankan localize-assets.pl untuk ganti CDN → lokal
       - name: 🔧 Ganti CDN ke Lokal
