@@ -1,4 +1,4 @@
-name: 🔄 Proses ArtikelX
+name: Proses ArtikelX
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Cache Perl
+      # 2. Cache Perl (binary + modules)
       - name: Cache Perl
         uses: actions/cache@v4
         with:
@@ -32,11 +32,12 @@ jobs:
             perl-${{ runner.os }}-5.36-
             perl-${{ runner.os }}-
 
-      # 3. Setup Perl
+      # 3. Setup Perl (NONAKTIFKAN CPAN CACHE)
       - name: Setup Perl
         uses: shogo82148/actions-setup-perl@v1.30.0
         with:
           perl-version: '5.36'
+          enable-modules-cache: false   # INI HILANGKAN WARNING 400
 
       # 4. Verify Perl
       - name: Verify Perl
@@ -50,8 +51,8 @@ jobs:
           chmod +x ext/gantifontshighlight.pl
           perl ext/gantifontshighlight.pl --quiet --no-backup
 
-      # 6. Replace Content (single perl)
-      - name: Replace Content (meta, domain, dll)
+      # 6. Replace Content (TANPA \ SAMA SEKALI)
+      - name: Replace Content (no backslash)
         run: |
           set -euo pipefail
           shopt -s nullglob
@@ -59,15 +60,16 @@ jobs:
             [[ -f "$file" ]] || continue
             echo "Memproses $file"
             perl -i -wpe '
-              s#</head>#<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>#g;
-              s#bak\.xo\.je#frijal.pages.dev#g;
-              s#https://frijal\.pages\.dev/assets/apple-touch-icon\.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g;
-              s#hhttps://frijal\.pages\.dev/apple-touch-icon\.png#https://frijal.pages.dev/ext/icons/apple-touch-icon.png#g;
-              s#frijal_tw#frijal#g;
-              s#YOUR_FACEBOOK_APP_ID#1471267430691023#g;
-              s#nama_twitter_anda#frijal#g;
-              s#akun_twitter_kamu#frijal#g;
-              s#&copy;|©#©#g;
+              s|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g;
+              s|bak[.]xo[.]je|frijal.pages.dev|g;
+              s|https://frijal[.]pages[.]dev/assets/apple-touch-icon[.]png|https://frijal.pages.dev/ext/icons/apple-touch-icon.png|g;
+              s|hhttps://frijal[.]pages[.]dev/apple-touch-icon[.]png|https://frijal.pages.dev/ext/icons/apple-touch-icon.png|g;
+              s|frijal_tw|frijal|g;
+              s|YOUR_FACEBOOK_APP_ID|1471267430691023|g;
+              s|nama_twitter_anda|frijal|g;
+              s|akun_twitter_kamu|frijal|g;
+              s|&copy;|🄯|g;
+              s|©|🄯|g;
             ' "$file"
           done
           shopt -u nullglob
@@ -82,7 +84,7 @@ jobs:
             echo "ext/inject-meta.js tidak ada, dilewati."
           fi
 
-      # 8. Add HTML Elements (SED INLINE, TIDAK PAKAI \)
+      # 8. Add HTML Elements (SED INLINE, TIDAK ADA \)
       - name: Add HTML Elements
         run: |
           set -euo pipefail
