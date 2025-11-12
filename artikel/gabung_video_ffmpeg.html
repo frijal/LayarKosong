@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Panduan lengkap cara menggabungkan semua file MP4 menjadi satu video menggunakan FFmpeg di Linux. Termasuk versi otomatis re-encode dan versi bisu tanpa suara.">
-  <meta name="keywords" content="ffmpeg, gabung video, shell script, linux, video bisu, mp4, command line">
+  <meta name="description" content="Panduan lengkap cara menggabungkan semua file MP4 menjadi satu video menggunakan FFmpeg di Linux. Termasuk versi otomatis re-encode dan versi tanpa suara tanpa suara.">
+  <meta name="keywords" content="ffmpeg, gabung video, shell script, linux, video tanpa suara, mp4, command line">
   <meta name="author" content="Fakhrul Rijal">
   <link rel="canonical" href="https://frijal.pages.dev/artikel/gabung_video_ffmpeg.html">
   <!-- Open Graph -->
   <meta property="og:title" content="Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)">
-  <meta property="og:description" content="Tutorial shell script lengkap untuk menggabungkan semua file video MP4 di Linux, dengan versi otomatis re-encode dan versi bisu tanpa suara.">
+  <meta property="og:description" content="Tutorial shell script lengkap untuk menggabungkan semua file video MP4 di Linux, dengan versi otomatis re-encode dan versi tanpa suara tanpa suara.">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/gabung_video_ffmpeg.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Fakhrul Rijal Pages">
@@ -175,7 +175,7 @@
   <header>
     <h1>💻 Menggabungkan Semua File MP4 di Linux dengan FFmpeg</h1>
 <div id="iposbrowser"></div>
-    <p>Berikut dua script shell praktis untuk menggabungkan video MP4 di Linux. Satunya versi standar, dan satunya lagi versi bisu (tanpa suara).</p>
+    <p>Berikut dua script shell praktis untuk menggabungkan video MP4 di Linux. Satunya versi standar, dan satunya lagi versi tanpa suara (tanpa suara).</p>
   </header>
   <main>
     <section>
@@ -226,18 +226,18 @@ echo "✨ Selesai!"
 echo "📽️ Video hasil: $OUTPUT"</code></pre>
     </section>
     <section>
-      <h2>🔇 Versi 2 — Script Bisu (gabung_video_ffmpeg_bisu.sh)</h2>
-      <p>Kalau kamu ingin hasil video tanpa suara, gunakan versi bisu ini.
+      <h2>🔇 Versi 2 — Script Bisu (gabung_video_ffmpeg_tanpa suara.sh)</h2>
+      <p>Kalau kamu ingin hasil video tanpa suara, gunakan versi tanpa suara ini.
       Ia akan otomatis menghapus semua track audio dari video dan tetap mendukung re-encode bila format beda.</p>
       <pre><button class="copy-btn">📋 Copy</button><code id="script2">#!/bin/bash
 # =========================================
-# Script: gabung_video_ffmpeg_bisu.sh
+# Script: gabung_video_ffmpeg_tanpa suara.sh
 # Fungsi: Menggabungkan semua file .mp4 menjadi satu video BISU (tanpa suara)
 # Fitur: Deteksi otomatis codec/resolusi — re-encode jika tidak seragam
 # Dibuat oleh: ChatGPT 🔇
 # =========================================
 set -e
-OUTPUT="${1:-hasil_gabungan_bisu.mp4}"
+OUTPUT="${1:-hasil_gabungan_tanpa suara.mp4}"
 rm -f daftar.txt temp_*.mp4
 echo "📂 Membuat daftar file .mp4..."
 FILES=( *.mp4 )
@@ -270,7 +270,7 @@ fi
 ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2>/dev/null || true
 echo "✨ Selesai!"
-echo "📽️ Video bisu hasil: $OUTPUT"</code></pre>
+echo "📽️ Video tanpa suara hasil: $OUTPUT"</code></pre>
     </section>
     <section>
       <h2>📘 Penutup</h2>
