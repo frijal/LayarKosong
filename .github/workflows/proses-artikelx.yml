@@ -22,7 +22,7 @@ jobs:
     
       # 3. Setup Perl (NONAKTIFKAN CPAN CACHE)
       - name: Setup Perl
-        uses: shogo82148/actions-setup-perl@v2
+        uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: '5.42'
           enable-modules-cache: false   # INI HILANGKAN WARNING 400
