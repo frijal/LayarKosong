@@ -4,25 +4,25 @@
   <!-- 🌐 Metadata SEO Lengkap -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi bisu (tanpa suara). Dilengkapi tombol copy dan desain responsif." />
-  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video bisu, Linux, terminal, shell script, tutorial" />
+  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa suara (tanpa suara). Dilengkapi tombol copy dan desain responsif." />
+  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa suara, Linux, terminal, shell script, tutorial" />
   <meta name="author" content="Fakhrul Rijal" />
 
   <!-- 🔗 Canonical -->
-  <link rel="canonical" href="https://frijal.pages.dev/artikel/gabung-video-bisu.html" />
+  <link rel="canonical" href="https://frijal.pages.dev/artikel/gabung-video-tanpa suara.html" />
 
   <!-- 🧭 Open Graph -->
   <meta property="og:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Bisu (Tanpa Suara)" />
-  <meta property="og:description" content="Script shell untuk Linux agar semua file .mp4 di folder bisa langsung digabung jadi satu video, lengkap dengan versi bisu tanpa suara. Didesain responsif dan siap pakai." />
-  <meta property="og:url" content="https://frijal.pages.dev/artikel/gabung-video-bisu.html" />
+  <meta property="og:description" content="Script shell untuk Linux agar semua file .mp4 di folder bisa langsung digabung jadi satu video, lengkap dengan versi tanpa suara tanpa suara. Didesain responsif dan siap pakai." />
+  <meta property="og:url" content="https://frijal.pages.dev/artikel/gabung-video-tanpa suara.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="https://frijal.pages.dev/img/gabung-video-bisu.webp" />
+  <meta property="og:image" content="https://frijal.pages.dev/img/gabung-video-tanpa suara.webp" />
 
   <!-- 🐦 Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Bisu" />
   <meta name="twitter:description" content="Script FFmpeg siap pakai untuk Linux: gabung semua file .mp4 jadi satu, dengan atau tanpa suara." />
-  <meta name="twitter:image" content="https://frijal.pages.dev/img/gabung-video-bisu.webp" />
+  <meta name="twitter:image" content="https://frijal.pages.dev/img/gabung-video-tanpa suara.webp" />
   <meta name="twitter:creator" content="@frijal" />
 
   <!-- 🎨 Favicon -->
@@ -166,7 +166,7 @@
     }
   </style>
 <meta property="og:image:alt" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Bisu">
-  <meta itemprop="image" content="https://frijal.pages.dev/img/gabung-video-bisu.webp">
+  <meta itemprop="image" content="https://frijal.pages.dev/img/gabung-video-tanpa suara.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
     <meta property="article:published_time" content="2025-10-27T09:49:02.418+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
@@ -177,7 +177,7 @@
 <div id="iposbrowser"></div>
     <p>
       Kadang kita punya banyak file video `.mp4` yang tersebar di satu folder, dan pengen langsung digabung jadi satu video utuh tanpa ribet.
-      Nah, di bawah ini ada dua script shell siap pakai untuk Linux: versi biasa dan versi bisu (tanpa suara).
+      Nah, di bawah ini ada dua script shell siap pakai untuk Linux: versi biasa dan versi tanpa suara (tanpa suara).
     </p>
   </header>
 
@@ -217,13 +217,13 @@ echo "✅ Video berhasil digabung: hasil_gabungan.mp4"
       <pre><code id="script2">
 #!/bin/bash
 # =========================================
-# Script: gabung_video_bisu.sh
+# Script: gabung_video_tanpa suara.sh
 # Fungsi: Menggabungkan semua file .mp4 menjadi satu video BISU (tanpa suara)
 # Fitur: Deteksi otomatis codec/resolusi — re-encode jika tidak seragam
 # =========================================
 
 set -e
-OUTPUT="${1:-hasil_gabungan_bisu.mp4}"
+OUTPUT="${1:-hasil_gabungan_tanpa suara.mp4}"
 rm -f daftar.txt temp_*.mp4
 
 FILES=( *.mp4 )
@@ -256,7 +256,7 @@ fi
 
 ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2>/dev/null || true
-echo "✨ Selesai! 📽️ Video bisu hasil: $OUTPUT"
+echo "✨ Selesai! 📽️ Video tanpa suara hasil: $OUTPUT"
       </code></pre>
       <button class="copy" onclick="copyCode('script2')">📋 Salin Script</button>
     </section>
