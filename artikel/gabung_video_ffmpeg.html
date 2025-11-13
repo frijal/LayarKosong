@@ -4,24 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Panduan lengkap cara menggabungkan semua file MP4 menjadi satu video menggunakan FFmpeg di Linux. Termasuk versi otomatis re-encode dan versi tanpa suara tanpa suara.">
-  <meta name="keywords" content="ffmpeg, gabung video, shell script, linux, video tanpa suara, mp4, command line">
+  <meta name="description" content="Panduan lengkap cara menggabungkan semua file MP4 menjadi satu video menggunakan FFmpeg di Linux. Termasuk versi otomatis re-encode dan versi tanpa-audio tanpa suara.">
+  <meta name="keywords" content="ffmpeg, gabung video, shell script, linux, video tanpa-audio, mp4, command line">
   <meta name="author" content="Fakhrul Rijal">
   <link rel="canonical" href="https://frijal.pages.dev/artikel/gabung_video_ffmpeg.html">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)">
-  <meta property="og:description" content="Tutorial shell script lengkap untuk menggabungkan semua file video MP4 di Linux, dengan versi otomatis re-encode dan versi tanpa suara tanpa suara.">
+  <meta property="og:description" content="Tutorial shell script lengkap untuk menggabungkan semua file video MP4 di Linux, dengan versi otomatis re-encode dan versi tanpa-audio tanpa suara.">
   <meta property="og:url" content="https://frijal.pages.dev/artikel/gabung_video_ffmpeg.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Fakhrul Rijal Pages">
   <meta property="og:image" content="https://frijal.pages.dev/img/gabung_video_ffmpeg.webp">
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)">
   <meta name="twitter:description" content="Script Linux praktis untuk menggabungkan semua video MP4 jadi satu, otomatis dan bisa tanpa suara.">
   <meta name="twitter:image" content="https://frijal.pages.dev/img/gabung_video_ffmpeg.webp">
+
   <title>Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)</title>
   <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
+
   <style>
     :root {
       --bg-light: #f9f9f9;
@@ -33,12 +37,14 @@
       --code-bg-dark: #1e1e1e;
       --radius: 12px;
     }
+
     body {
       margin: 0;
       font-family: "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
+
     @media (prefers-color-scheme: dark) {
       body {
         background: var(--bg-dark);
@@ -56,6 +62,7 @@
         background: #444;
       }
     }
+
     @media (prefers-color-scheme: light) {
       body {
         background: var(--bg-light);
@@ -73,35 +80,42 @@
         background: #ddd;
       }
     }
+
     header {
       text-align: center;
       padding: 2rem 1rem;
     }
+
     main {
       max-width: 1100px;
       margin: 0 auto;
       padding: 1.5rem;
     }
+
     h1 {
       font-size: 2.2rem;
       color: var(--accent);
     }
+
     h2 {
       margin-top: 2rem;
       color: var(--accent);
     }
+
     pre {
       border-radius: var(--radius);
       padding: 1rem;
       overflow-x: auto;
       position: relative;
     }
+
     code {
       font-family: "Fira Code", monospace;
       font-size: 0.95rem;
       display: block;
       white-space: pre;
     }
+
     .copy-btn {
       position: absolute;
       top: 8px;
@@ -113,19 +127,23 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+
     .copy-btn:active {
       transform: scale(0.95);
     }
+
     .icon {
       vertical-align: middle;
       margin-right: 6px;
     }
+
     .social {
       display: flex;
       gap: 10px;
       justify-content: center;
       margin-top: 2rem;
     }
+
     .social a {
       display: inline-flex;
       align-items: center;
@@ -135,19 +153,23 @@
       border-radius: 50%;
       transition: transform 0.3s;
     }
+
     .social a:hover {
       transform: scale(1.1);
     }
+
     .social img {
       width: 24px;
       height: 24px;
     }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
       opacity: 0.7;
     }
+
     .toast {
       position: fixed;
       bottom: 20px;
@@ -161,46 +183,54 @@
       transform: translateY(20px);
       transition: opacity 0.3s, transform 0.3s;
     }
+
     .toast.show {
       opacity: 1;
       transform: translateY(0);
     }
   </style>
-<meta property="og:image:alt" content="Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image:alt" content="Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Bisu)">
   <meta itemprop="image" content="https://frijal.pages.dev/img/gabung_video_ffmpeg.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
-    <meta property="article:published_time" content="2025-10-27T09:49:02.418+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+</head>
+
 <body>
   <header>
     <h1>💻 Menggabungkan Semua File MP4 di Linux dengan FFmpeg</h1>
 <div id="iposbrowser"></div>
-    <p>Berikut dua script shell praktis untuk menggabungkan video MP4 di Linux. Satunya versi standar, dan satunya lagi versi tanpa suara (tanpa suara).</p>
+    <p>Berikut dua script shell praktis untuk menggabungkan video MP4 di Linux. Satunya versi standar, dan satunya lagi versi tanpa-audio (tanpa suara).</p>
   </header>
+
   <main>
     <section>
       <h2>🧩 Versi 1 — Script Normal (gabung_video_ffmpeg.sh)</h2>
       <p>Script ini digunakan untuk menggabungkan semua file <code>.mp4</code> di folder menjadi satu video utuh.
       Script akan mendeteksi apakah semua file memiliki format sama (codec, resolusi, framerate).
       Jika berbeda, dia otomatis melakukan <em>re-encode</em> supaya hasilnya tetap mulus.</p>
+
       <pre><button class="copy-btn">📋 Copy</button><code id="script1">#!/bin/bash
 # =========================================
 # Script: gabung_video_ffmpeg.sh
 # Fungsi: Menggabungkan semua file .mp4 dalam folder ini menjadi satu video
 # Dibuat oleh: ChatGPT 😎
 # =========================================
+
 set -e
 OUTPUT="${1:-hasil_gabungan.mp4}"
 rm -f daftar.txt temp_*.mp4
+
 echo "📂 Membuat daftar file .mp4..."
 FILES=( *.mp4 )
+
 if [ ${#FILES[@]} -eq 0 ]; then
     echo "❌ Tidak ada file .mp4 ditemukan."
     exit 1
 fi
+
 REF="${FILES[0]}"
 REF_INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$REF")
 REENCODE_NEEDED=false
+
 for f in "${FILES[@]}"; do
     INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$f")
     if [ "$INFO" != "$REF_INFO" ]; then
@@ -208,6 +238,7 @@ for f in "${FILES[@]}"; do
         REENCODE_NEEDED=true
     fi
 done
+
 if [ "$REENCODE_NEEDED" = true ]; then
     echo "♻️ Format tidak seragam — re-encode ke H.264..."
     for f in "${FILES[@]}"; do
@@ -220,34 +251,43 @@ else
         echo "file '$PWD/$f'" >> daftar.txt
     done
 fi
+
 ffmpeg -f concat -safe 0 -i daftar.txt -c copy "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2>/dev/null || true
+
 echo "✨ Selesai!"
 echo "📽️ Video hasil: $OUTPUT"</code></pre>
     </section>
+
     <section>
-      <h2>🔇 Versi 2 — Script Bisu (gabung_video_ffmpeg_tanpa suara.sh)</h2>
-      <p>Kalau kamu ingin hasil video tanpa suara, gunakan versi tanpa suara ini.
+      <h2>🔇 Versi 2 — Script Bisu (gabung_video_ffmpeg_tanpa-audio.sh)</h2>
+      <p>Kalau kamu ingin hasil video tanpa suara, gunakan versi tanpa-audio ini.
       Ia akan otomatis menghapus semua track audio dari video dan tetap mendukung re-encode bila format beda.</p>
+
       <pre><button class="copy-btn">📋 Copy</button><code id="script2">#!/bin/bash
 # =========================================
-# Script: gabung_video_ffmpeg_tanpa suara.sh
+# Script: gabung_video_ffmpeg_tanpa-audio.sh
 # Fungsi: Menggabungkan semua file .mp4 menjadi satu video BISU (tanpa suara)
 # Fitur: Deteksi otomatis codec/resolusi — re-encode jika tidak seragam
 # Dibuat oleh: ChatGPT 🔇
 # =========================================
+
 set -e
-OUTPUT="${1:-hasil_gabungan_tanpa suara.mp4}"
+OUTPUT="${1:-hasil_gabungan_tanpa-audio.mp4}"
 rm -f daftar.txt temp_*.mp4
+
 echo "📂 Membuat daftar file .mp4..."
 FILES=( *.mp4 )
+
 if [ ${#FILES[@]} -eq 0 ]; then
     echo "❌ Tidak ditemukan file .mp4."
     exit 1
 fi
+
 REF="${FILES[0]}"
 REF_INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$REF")
 REENCODE_NEEDED=false
+
 for f in "${FILES[@]}"; do
     INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$f")
     if [ "$INFO" != "$REF_INFO" ]; then
@@ -255,6 +295,7 @@ for f in "${FILES[@]}"; do
         REENCODE_NEEDED=true
     fi
 done
+
 if [ "$REENCODE_NEEDED" = true ]; then
     echo "♻️ Re-encode semua video tanpa audio..."
     for f in "${FILES[@]}"; do
@@ -267,26 +308,34 @@ else
         echo "file '$PWD/$f'" >> daftar.txt
     done
 fi
+
 ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2>/dev/null || true
+
 echo "✨ Selesai!"
-echo "📽️ Video tanpa suara hasil: $OUTPUT"</code></pre>
+echo "📽️ Video tanpa-audio hasil: $OUTPUT"</code></pre>
     </section>
+
     <section>
       <h2>📘 Penutup</h2>
       <p>Dengan dua script di atas, kamu bisa menggabungkan semua file video di Linux secara otomatis, cepat, dan praktis.
       Mau ada suara atau tidak, semua bisa dikontrol cukup dengan menjalankan satu file <code>.sh</code>.
       Cocok untuk proyek dokumentasi, video laporan, atau kompilasi hasil rekaman. 🚀</p>
     </section>
-<section><div id="disqus_thread"></div></section>
-  </main>
+    <section>
+<div id="disqus_thread"></div></section>
+      </main>
+
   <footer>
     <p>🄯 2025 Fakhrul Rijal — Dibuat dengan ☕ dan FFmpeg.</p>
   </footer>
+
   <div class="toast" id="toast">✅ Script disalin ke clipboard!</div>
+
   <script>
     const buttons = document.querySelectorAll('.copy-btn');
     const toast = document.getElementById('toast');
+
     buttons.forEach((btn, index) => {
       btn.addEventListener('click', () => {
         const code = btn.nextElementSibling.innerText;
