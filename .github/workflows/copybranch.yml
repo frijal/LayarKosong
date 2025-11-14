@@ -5,7 +5,7 @@ on:
     workflows: ["☢️ Build and Generate Site Files"] # Pastikan NAMA workflow pertama SAMA PERSIS
     types: [completed] # Hanya berjalan jika workflow pertama SELESAI
   schedule:
-    - cron: '0 21 * * *' 
+    - cron: '0 15 * * *' 
   push:
     branches:
       - main  
