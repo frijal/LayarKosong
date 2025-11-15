@@ -136,8 +136,8 @@ export const Sitemap = {
 `  <url>
     <loc>${Util.escapeXml(`${CONFIG.baseUrl}/artikel/${file}`)}</loc>
     <lastmod>${Util.escapeXml(lastmod)}</lastmod>
-    <priority>${CONFIG.xmlPriority}</priority>
     <changefreq>${CONFIG.xmlChangeFreq}</changefreq>
+    <priority>${CONFIG.xmlPriority}</priority>
     <image:image>
       <image:loc>${Util.escapeXml(image)}</image:loc>
     </image:image>
