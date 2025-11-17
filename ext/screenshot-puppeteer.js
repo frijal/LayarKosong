@@ -1,13 +1,15 @@
-// server-screenshot.js
+// server-screenshot.js (REFINED & GH-ACTIONS SAFE)
+
 import fs from "fs";
 import path from "path";
 import express from "express";
 import puppeteer from "puppeteer";
 
-const ROOT_DIR = process.cwd();          // melayani seluruh repo
+const ROOT_DIR = process.cwd();
 const ARTIKEL_DIR = path.join(ROOT_DIR, "artikel");
 const IMG_DIR = path.join(ROOT_DIR, "img");
-const EXT = "webp";                      // bisa "jpeg"
+
+const EXT = "webp";
 const PORT = 3000;
 const BASE_URL = `http://localhost:${PORT}/artikel/`;
 
@@ -18,17 +20,16 @@ function startServer() {
   return new Promise((resolve, reject) => {
     const app = express();
 
-    // Cache statis ringan (opsional)
+    // Cache ringan
     app.use((req, res, next) => {
       res.set("Cache-Control", "public, max-age=60");
       next();
     });
 
-    // Layani semua file dari root repo (CSS/JS/img relatif akan ditemukan)
     app.use(express.static(ROOT_DIR));
 
     const server = app.listen(PORT, () => {
-      console.log(`[🌐] Server lokal berjalan di http://localhost:${PORT}`);
+      console.log(`[🌐] Local server ready at http://localhost:${PORT}`);
       resolve(server);
     });
 
@@ -36,47 +37,34 @@ function startServer() {
   });
 }
 
-async function takeScreenshot(url, outputPath) {
-  const browser = await puppeteer.launch({
-    headless: "new",
-    defaultViewport: { width: TARGET_WIDTH, height: TARGET_HEIGHT },
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
-  const page = await browser.newPage();
-
-  try {
-    const response = await page.goto(url, { waitUntil: "networkidle2", timeout: 45000 });
-    if (!response || response.status() !== 200) {
-      console.error(`[❌] Gagal memuat ${url} (status ${response?.status()})`);
-      return;
-    }
-
-    await page.screenshot({
-      path: outputPath,
-      type: EXT === "webp" ? "webp" : "jpeg",
-      quality: 90,
-    });
-    console.log(`[✅] Screenshot (${TARGET_WIDTH}x${TARGET_HEIGHT}) disimpan: ${outputPath}`);
-  } catch (err) {
-    console.error(`[⚠️] Gagal screenshot ${url}: ${err.message}`);
-  } finally {
-    await browser.close();
-  }
-}
-
 async function main() {
-  // Mulai server lokal
+  // Start local server
   const server = await startServer();
 
   try {
     if (!fs.existsSync(ARTIKEL_DIR)) {
-      console.error(`[FATAL] Folder 'artikel/' tidak ditemukan.`);
+      console.error("[FATAL] Folder 'artikel/' tidak ditemukan.");
       process.exit(1);
     }
-    if (!fs.existsSync(IMG_DIR)) fs.mkdirSync(IMG_DIR, { recursive: true });
+
+    fs.mkdirSync(IMG_DIR, { recursive: true });
 
     const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
     console.log(`🧭 Menemukan ${files.length} artikel...`);
+
+    // Launch browser sekali saja
+    const browser = await puppeteer.launch({
+      headless: "new",
+      defaultViewport: { width: TARGET_WIDTH, height: TARGET_HEIGHT },
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu",
+      ],
+    });
+
+    const page = await browser.newPage();
 
     for (const file of files) {
       const base = path.basename(file, ".html");
@@ -88,16 +76,39 @@ async function main() {
       }
 
       const url = `${BASE_URL}${base}.html`;
-      await takeScreenshot(url, output);
+      console.log(`[🔍] Rendering ${url}`);
 
-      // Delay ringan antar screenshot
-      await new Promise(r => setTimeout(r, 800));
+      try {
+        const response = await page.goto(url, {
+          waitUntil: ["load", "networkidle2"],
+          timeout: 45000,
+        });
+
+        if (!response || response.status() !== 200) {
+          console.error(`[❌] Status ${response?.status()} saat memuat ${url}`);
+          continue;
+        }
+
+        await page.screenshot({
+          path: output,
+          type: EXT,
+          quality: EXT === "webp" ? 90 : 90,
+        });
+
+        console.log(`[📸] Screenshot disimpan: ${output}`);
+      } catch (err) {
+        console.error(`[⚠️] Gagal screenshot ${url}: ${err.message}`);
+      }
+
+      await new Promise(r => setTimeout(r, 500));
     }
-    console.log("🎉 Semua screenshot selesai diproses!");
+
+    await browser.close();
+    console.log("🎉 Semua screenshot selesai!");
+
   } catch (err) {
     console.error(`[FATAL] ${err.message}`);
   } finally {
-    // Tutup server
     server.close(() => console.log("[🛑] Server lokal ditutup."));
   }
 }
