@@ -1,0 +1,134 @@
+name: Sitemap XML diagnostics
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sitemap-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Ensure sitemap exists
+        id: exists
+        run: |
+          FILE=${{ github.workspace }}/sitemap.xml
+          if [ ! -f "$FILE" ]; then
+            echo "sitemap_missing=true" >> $GITHUB_OUTPUT
+            echo "sitemap.xml not found at repo root" > report.txt
+            exit 0
+          fi
+          echo "sitemap_missing=false" >> $GITHUB_OUTPUT
+
+      - name: Install tools
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libxml2-utils curl od gawk grep perl iconv jq
+
+      - name: Prepare report file
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          rm -f sitemap-check.log report.txt
+          echo "Sitemap diagnostics run: $(date -u)" > report.txt
+          echo "" >> report.txt
+
+      - name: Check 1 - BOM / first bytes
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 1: First bytes (hex) ===" >> report.txt
+          head -c 4 sitemap.xml | od -An -t x1 | sed -E 's/^[[:space:]]+//' >> report.txt || echo "od failed" >> report.txt
+          echo "" >> report.txt
+
+      - name: Check 2 - xmllint well-formedness
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 2: xmllint well-formedness ===" >> report.txt
+          if xmllint --noout sitemap.xml 2> xmllint.err; then
+            echo "xmllint: OK (well-formed)" >> report.txt
+          else
+            echo "xmllint: ERRORS" >> report.txt
+            sed -n '1,200p' xmllint.err >> report.txt
+          fi
+          echo "" >> report.txt
+
+      - name: Check 3 - raw ampersand / bad entity usage
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 3: raw ampersand or invalid entity references ===" >> report.txt
+          # show lines with & not followed by known entities (amp|lt|gt|quot|apos|#digits|#xhex)
+          grep -n -P '&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)' sitemap.xml > amp_matches.txt || true
+          if [ -s amp_matches.txt ]; then
+            echo "Found potential raw ampersand occurrences:" >> report.txt
+            sed -n '1,200p' amp_matches.txt >> report.txt
+          else
+            echo "No raw ampersand patterns detected" >> report.txt
+          fi
+          echo "" >> report.txt
+
+      - name: Check 4 - non-UTF8 or control chars
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 4: encoding / non-UTF8 detection ===" >> report.txt
+          if iconv -f UTF-8 -t UTF-8 sitemap.xml -o /dev/null 2> iconv.err; then
+            echo "iconv: OK (valid UTF-8)" >> report.txt
+          else
+            echo "iconv: Encoding error detected" >> report.txt
+            sed -n '1,200p' iconv.err >> report.txt
+          fi
+          # list lines containing bytes outside printable ASCII range (quick hint)
+          perl -nle 'print $. .": ". $_ if /[^\x09\x0A\x0D\x20-\x7F]/' sitemap.xml | sed -n '1,200p' >> report.txt || true
+          echo "" >> report.txt
+
+      - name: Check 5 - long lines and stray '<' in text
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 5: long lines (>2000) and stray '<' in text nodes ===" >> report.txt
+          awk 'length($0)>2000{print NR ": len=" length($0)}' sitemap.xml | sed -n '1,200p' >> report.txt || true
+          # naive detection of '<' characters that are not start of tags (heuristic)
+          grep -nE '<[^/a-zA-Z?]' sitemap.xml | sed -n '1,200p' >> report.txt || true
+          echo "" >> report.txt
+
+      - name: Extract URLs for checking (loc and image:loc)
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 6: extract URLs to /tmp/sitemap.urls.txt ===" >> report.txt
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > /tmp/sitemap.loc.txt || true
+          grep -oP '(?<=<image:loc>)[^<]+' sitemap.xml > /tmp/sitemap.image-loc.txt || true
+          cat /tmp/sitemap.loc.txt /tmp/sitemap.image-loc.txt | sed '/^$/d' | sort -u > /tmp/sitemap.urls.txt || true
+          echo "Total unique URLs extracted: $(wc -l < /tmp/sitemap.urls.txt || echo 0)" >> report.txt
+          echo "" >> report.txt
+
+      - name: Check 6 - HTTP status and content-type for extracted URLs
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          echo "=== CHECK 6: HTTP status + content-type for each URL ===" >> report.txt
+          mkdir -p /tmp/sitemap-url-check
+          # test up to first 200 URLs to limit runtime; change number if needed
+          head -n 200 /tmp/sitemap.urls.txt | while read -r url; do
+            [ -z "$url" ] && continue
+            printf "\nURL: %s\n" "$url" >> /tmp/sitemap-url-check/results.txt
+            # follow redirects but show final status, final content-type and effective url
+            curl -sSI -L -m 20 -o /dev/null -w "HTTP_CODE:%{http_code} CONTENT_TYPE:%{content_type} EFFECTIVE_URL:%{url_effective}\n" "$url" >> /tmp/sitemap-url-check/results.txt || echo "curl failed for $url" >> /tmp/sitemap-url-check/results.txt
+          done
+          sed -n '1,500p' /tmp/sitemap-url-check/results.txt >> report.txt || true
+          echo "" >> report.txt
+
+      - name: Save full artifacts and report
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sitemap-check-report
+          path: |
+            report.txt
+            xmllint.err
+            amp_matches.txt
+            iconv.err
+            /tmp/sitemap.urls.txt
+            /tmp/sitemap-url-check/results.txt
+
+      - name: Final log (when sitemap missing)
+        if: steps.exists.outputs.sitemap_missing == 'true'
+        run: |
+          echo "sitemap.xml was not found at repo root. Put sitemap.xml at repo root and re-run this workflow."
