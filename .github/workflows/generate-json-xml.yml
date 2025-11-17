@@ -51,26 +51,26 @@ jobs:
         env:
           RSS_LIMIT: 30
 
-      - name: '5. Generate sitemap.txt'
+      - name: '5. Generate Sitemap Rekursif & Tambahkan URL Statis'
         run: |
-          echo "📝 Generating sitemap.txt..."
+          echo "📝 Memulai pembuatan sitemap.txt yang lengkap dan rekursif..."
           BASE_URL="https://frijal.pages.dev"
-          find artikel/ -name "*.html" | sed "s_\.html$__" | sed "s_^_$BASE_URL/_" > sitemap.txt
-          echo "$BASE_URL/" >> sitemap.txt
-          echo "$BASE_URL/search" >> sitemap.txt
-          echo "$BASE_URL/artikel" >> sitemap.txt
-          echo "$BASE_URL/disclaimer" >> sitemap.txt
-          echo "$BASE_URL/feed" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/multimedia-and-editing" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/linux-and-open-source" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/sejarah-and-religi" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/teknologi-web-ai-and-umum" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/catatan-and-opini-sosial" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/kuliner-gaya-hidup-and-kesehatan" >> sitemap.txt
-          # echo "$BASE_URL/artikel/-/lainnya" >> sitemap.txt
-          echo "✅ sitemap.txt generated."
-          echo "Isi sitemap.txt (5 baris pertama):"
-          head -n 5 sitemap.txt
+          SITEMAP_FILE="sitemap.txt"
+          # 1. GUNAKAN FIND UNTUK ARTIKEL (Membuat file baru/overwrite menggunakan operator >)
+          # Mencari semua file .html di artikel/ dan sub-direktori, hapus ekstensi (.html), tambahkan BASE_URL.
+          find artikel/ -name "*.html" | \
+              sed "s_\.html$__" | \
+              sed "s_^_$BASE_URL/_" > $SITEMAP_FILE
+          echo "Artikel rekursif dari artikel/ telah ditambahkan ke $SITEMAP_FILE."          
+          # 2. GUNAKAN ECHO UNTUK URL STATIS (Menambahkan ke file yang sudah ada/append menggunakan operator >>)
+          echo "🔄 Menambahkan URL halaman statis..."          
+          # URL Statis yang Ditemukan (URL yang seharusnya memiliki file .html di root)
+          echo "$BASE_URL/" >> $SITEMAP_FILE # Halaman utama (index.html)
+          echo "$BASE_URL/search" >> $SITEMAP_FILE
+          echo "$BASE_URL/artikel" >> $SITEMAP_FILE # Halaman index artikel
+          echo "$BASE_URL/disclaimer" >> $SITEMAP_FILE
+          echo "$BASE_URL/feed" >> $SITEMAP_FILE
+          echo "✅ Semua URL statis telah ditambahkan."
 
       - name: '6. Generate screenshots'
         run: |
