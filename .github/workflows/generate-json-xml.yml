@@ -54,20 +54,20 @@ jobs:
       - name: '5. Generate sitemap.txt'
         run: |
           echo "📝 Generating sitemap.txt..."
-          BASE_URL="https://frijal.pages.dev"          
-          ls artikel/*.html | sed "s_\.html$__" | sed "s_^_$BASE_URL/_" > sitemap.txt      
+          BASE_URL="https://frijal.pages.dev"
+          find artikel/ -name "*.html" | sed "s_\.html$__" | sed "s_^_$BASE_URL/_" > sitemap.txt
           echo "$BASE_URL/" >> sitemap.txt
           echo "$BASE_URL/search" >> sitemap.txt
           echo "$BASE_URL/artikel" >> sitemap.txt
           echo "$BASE_URL/disclaimer" >> sitemap.txt
           echo "$BASE_URL/feed" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/multimedia-and-editing" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/linux-and-open-source" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/sejarah-and-religi" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/teknologi-web-ai-and-umum" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/catatan-and-opini-sosial" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/kuliner-gaya-hidup-and-kesehatan" >> sitemap.txt
-          echo "$BASE_URL/artikel/-/lainnya" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/multimedia-and-editing" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/linux-and-open-source" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/sejarah-and-religi" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/teknologi-web-ai-and-umum" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/catatan-and-opini-sosial" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/kuliner-gaya-hidup-and-kesehatan" >> sitemap.txt
+          # echo "$BASE_URL/artikel/-/lainnya" >> sitemap.txt
           echo "✅ sitemap.txt generated."
           echo "Isi sitemap.txt (5 baris pertama):"
           head -n 5 sitemap.txt
