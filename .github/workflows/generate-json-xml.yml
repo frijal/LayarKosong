@@ -46,6 +46,7 @@ jobs:
       - name: '4. Generate artikel.json, sitemap.xml & RSS'
         run: |
           echo "📝 Generating site files..."
+          rm sitemap.xml sitemap.txt
           node ext/generator.js
           node ext/rss.js
         env:
