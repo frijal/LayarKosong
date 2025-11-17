@@ -17,7 +17,7 @@ on:
   # ⬇️ Pemicu 3 & 4: Manual dan Terjadwal (tetap ada)
   workflow_dispatch:  # Untuk menjalankan manual
   schedule:           # Untuk menjalankan terjadwal
-    - cron: '0 20 * * *' 
+    - cron: '0 20 * * *'  
 
 jobs:
   build:
@@ -51,15 +51,29 @@ jobs:
         env:
           RSS_LIMIT: 30
 
-      - name: '5. Generate screenshots'
+      # --- LANGKAH BARU DITAMBAHKAN DI SINI ---
+      - name: '5. Generate sitemap.txt'
+        run: |
+          echo "📝 Generating sitemap.txt..."
+          # Ganti URL ini jika domain utama Anda berbeda
+          BASE_URL="https://frijal.pages.dev"
+          
+          # Perintah ini mencari semua file .html di 'artikel/'
+          # lalu menambahkan BASE_URL di depannya, dan menyimpannya (overwrite) ke sitemap.txt
+          ls artikel/*.html | sed "s_^_$BASE_URL/_" > sitemap.txt
+          
+          echo "✅ sitemap.txt generated."
+
+      # --- LANGKAH SELANJUTNYA DINOMOR ULANG ---
+      - name: '6. Generate screenshots'
         run: |
           echo "📸 Generating screenshots (installing puppeteer)..."
           # Gunakan cache npm jika memungkinkan untuk puppeteer
           npm install puppeteer --no-save --cache .npm-cache --prefer-offline
           echo "Running screenshot script..."
-          node ext/screenshot-puppeteer.js         
-      
-      - name: '6. Commit and Push All Generated Files'
+          node ext/screenshot-puppeteer.js          
+        
+      - name: '7. Commit and Push All Generated Files'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -81,7 +95,7 @@ jobs:
           # Hanya commit jika ada perubahan yang di-stage
           if ! git diff --staged --quiet; then
             echo "⏳ Perubahan ditemukan. Melakukan commit..."
-            git commit -m "build: 🚀 img, html & json udah beres."
+            git commit -m "build: 🚀 img, html, txt & json udah beres."
 
             echo "🔃 Melakukan sinkronisasi sebelum push..."
             git pull --rebase origin main || { echo "⚠️ Gagal pull --rebase, mencoba push biasa"; git pull origin main; }
@@ -92,7 +106,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: '7. Show Published Links & Summary'
+      - name: '8. Show Published Links & Summary'
         if: always() 
         run: |
           echo "--- Summary ---"
@@ -100,6 +114,7 @@ jobs:
           echo "🔗 artikel.json: https://frijal.pages.dev/artikel.json"
           echo "🔗 sitemap.xml : https://frijal.pages.dev/sitemap.xml"
           echo "🔗 rss.xml     : https://frijal.pages.dev/rss.xml"
+          echo "🔗 sitemap.txt : https://frijal.pages.dev/sitemap.txt" # <-- DITAMBAHKAN DI SINI
           echo "📊 Jumlah konten saat ini:"
           COUNTHTML=$(ls artikel/*.html 2>/dev/null | wc -l || echo 0)
           echo "➡️  $COUNTHTML artikel (*.html) di folder artikel/"
