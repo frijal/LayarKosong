@@ -1,134 +1,143 @@
-name: Sitemap XML diagnostics
+name: Sitemap XML diagnostics and commit results
+
+permissions:
+  contents: write
 
 on:
   workflow_dispatch:
 
 jobs:
-  sitemap-check:
+  sitemap-check-and-commit:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (with write access)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Ensure sitemap exists
         id: exists
         run: |
-          FILE=${{ github.workspace }}/sitemap.xml
+          FILE="${{ github.workspace }}/sitemap.xml"
           if [ ! -f "$FILE" ]; then
             echo "sitemap_missing=true" >> $GITHUB_OUTPUT
-            echo "sitemap.xml not found at repo root" > report.txt
+            echo "sitemap.xml not found at repo root"
             exit 0
           fi
           echo "sitemap_missing=false" >> $GITHUB_OUTPUT
 
-      - name: Install tools
+      - name: Install required packages
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y libxml2-utils curl od gawk grep perl iconv jq
+          sudo apt-get install -y libxml2-utils curl od gawk grep perl iconv
 
-      - name: Prepare report file
+      - name: Prepare output folder sementara/
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          rm -f sitemap-check.log report.txt
-          echo "Sitemap diagnostics run: $(date -u)" > report.txt
-          echo "" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          rm -rf "$OUTDIR"
+          mkdir -p "$OUTDIR"
+          echo "Sitemap diagnostics run: $(date -u)" > "$OUTDIR/README.txt"
+          echo "Outputs saved under $OUTDIR" >> "$OUTDIR/README.txt"
+          ls -ld "$OUTDIR"
 
       - name: Check 1 - BOM / first bytes
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 1: First bytes (hex) ===" >> report.txt
-          head -c 4 sitemap.xml | od -An -t x1 | sed -E 's/^[[:space:]]+//' >> report.txt || echo "od failed" >> report.txt
-          echo "" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 1: First bytes (hex) ===" > "$OUTDIR/check-01-first-bytes.txt"
+          head -c 4 sitemap.xml | od -An -t x1 | sed -E 's/^[[:space:]]+//' >> "$OUTDIR/check-01-first-bytes.txt" || echo "od failed" >> "$OUTDIR/check-01-first-bytes.txt"
 
       - name: Check 2 - xmllint well-formedness
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 2: xmllint well-formedness ===" >> report.txt
-          if xmllint --noout sitemap.xml 2> xmllint.err; then
-            echo "xmllint: OK (well-formed)" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 2: xmllint well-formedness ===" > "$OUTDIR/check-02-xmllint.txt"
+          if xmllint --noout sitemap.xml 2> "$OUTDIR/xmllint.err"; then
+            echo "xmllint: OK (well-formed)" >> "$OUTDIR/check-02-xmllint.txt"
           else
-            echo "xmllint: ERRORS" >> report.txt
-            sed -n '1,200p' xmllint.err >> report.txt
+            echo "xmllint: ERRORS" >> "$OUTDIR/check-02-xmllint.txt"
+            sed -n '1,200p' "$OUTDIR/xmllint.err" >> "$OUTDIR/check-02-xmllint.txt"
           fi
-          echo "" >> report.txt
 
       - name: Check 3 - raw ampersand / bad entity usage
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 3: raw ampersand or invalid entity references ===" >> report.txt
-          # show lines with & not followed by known entities (amp|lt|gt|quot|apos|#digits|#xhex)
-          grep -n -P '&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)' sitemap.xml > amp_matches.txt || true
-          if [ -s amp_matches.txt ]; then
-            echo "Found potential raw ampersand occurrences:" >> report.txt
-            sed -n '1,200p' amp_matches.txt >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 3: raw ampersand or invalid entity references ===" > "$OUTDIR/check-03-ampersand.txt"
+          grep -n -P '&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)' sitemap.xml > "$OUTDIR/amp_matches.txt" || true
+          if [ -s "$OUTDIR/amp_matches.txt" ]; then
+            echo "Found potential raw ampersand occurrences:" >> "$OUTDIR/check-03-ampersand.txt"
+            sed -n '1,200p' "$OUTDIR/amp_matches.txt" >> "$OUTDIR/check-03-ampersand.txt"
           else
-            echo "No raw ampersand patterns detected" >> report.txt
+            echo "No raw ampersand patterns detected" >> "$OUTDIR/check-03-ampersand.txt"
           fi
-          echo "" >> report.txt
 
       - name: Check 4 - non-UTF8 or control chars
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 4: encoding / non-UTF8 detection ===" >> report.txt
-          if iconv -f UTF-8 -t UTF-8 sitemap.xml -o /dev/null 2> iconv.err; then
-            echo "iconv: OK (valid UTF-8)" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 4: encoding / non-UTF8 detection ===" > "$OUTDIR/check-04-encoding.txt"
+          if iconv -f UTF-8 -t UTF-8 sitemap.xml -o /dev/null 2> "$OUTDIR/iconv.err"; then
+            echo "iconv: OK (valid UTF-8)" >> "$OUTDIR/check-04-encoding.txt"
           else
-            echo "iconv: Encoding error detected" >> report.txt
-            sed -n '1,200p' iconv.err >> report.txt
+            echo "iconv: Encoding error detected" >> "$OUTDIR/check-04-encoding.txt"
+            sed -n '1,200p' "$OUTDIR/iconv.err" >> "$OUTDIR/check-04-encoding.txt"
           fi
-          # list lines containing bytes outside printable ASCII range (quick hint)
-          perl -nle 'print $. .": ". $_ if /[^\x09\x0A\x0D\x20-\x7F]/' sitemap.xml | sed -n '1,200p' >> report.txt || true
-          echo "" >> report.txt
+          perl -nle 'print $. .": ". $_ if /[^\x09\x0A\x0D\x20-\x7F]/' sitemap.xml | sed -n '1,200p' > "$OUTDIR/check-04-non-ascii-lines.txt" || true
 
       - name: Check 5 - long lines and stray '<' in text
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 5: long lines (>2000) and stray '<' in text nodes ===" >> report.txt
-          awk 'length($0)>2000{print NR ": len=" length($0)}' sitemap.xml | sed -n '1,200p' >> report.txt || true
-          # naive detection of '<' characters that are not start of tags (heuristic)
-          grep -nE '<[^/a-zA-Z?]' sitemap.xml | sed -n '1,200p' >> report.txt || true
-          echo "" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 5: long lines (>2000) and stray '<' in text nodes ===" > "$OUTDIR/check-05-lines.txt"
+          awk 'length($0)>2000{print NR ": len=" length($0)}' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
+          grep -nE '<[^/a-zA-Z?\!]' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
 
       - name: Extract URLs for checking (loc and image:loc)
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 6: extract URLs to /tmp/sitemap.urls.txt ===" >> report.txt
-          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > /tmp/sitemap.loc.txt || true
-          grep -oP '(?<=<image:loc>)[^<]+' sitemap.xml > /tmp/sitemap.image-loc.txt || true
-          cat /tmp/sitemap.loc.txt /tmp/sitemap.image-loc.txt | sed '/^$/d' | sort -u > /tmp/sitemap.urls.txt || true
-          echo "Total unique URLs extracted: $(wc -l < /tmp/sitemap.urls.txt || echo 0)" >> report.txt
-          echo "" >> report.txt
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 6: extract URLs to $OUTDIR/sitemap.urls.txt ===" > "$OUTDIR/check-06-extract.txt"
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.loc.txt" || true
+          grep -oP '(?<=<image:loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.image-loc.txt" || true
+          cat "$OUTDIR/sitemap.loc.txt" "$OUTDIR/sitemap.image-loc.txt" | sed '/^$/d' | sort -u > "$OUTDIR/sitemap.urls.txt" || true
+          echo "Total unique URLs extracted: $(wc -l < "$OUTDIR/sitemap.urls.txt" || echo 0)" >> "$OUTDIR/check-06-extract.txt"
 
       - name: Check 6 - HTTP status and content-type for extracted URLs
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          echo "=== CHECK 6: HTTP status + content-type for each URL ===" >> report.txt
-          mkdir -p /tmp/sitemap-url-check
-          # test up to first 200 URLs to limit runtime; change number if needed
-          head -n 200 /tmp/sitemap.urls.txt | while read -r url; do
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "=== CHECK 6: HTTP status + content-type for each URL ===" > "$OUTDIR/check-06-httpreport.txt"
+          mkdir -p "$OUTDIR/url-check"
+          head -n 200 "$OUTDIR/sitemap.urls.txt" | while read -r url; do
             [ -z "$url" ] && continue
-            printf "\nURL: %s\n" "$url" >> /tmp/sitemap-url-check/results.txt
-            # follow redirects but show final status, final content-type and effective url
-            curl -sSI -L -m 20 -o /dev/null -w "HTTP_CODE:%{http_code} CONTENT_TYPE:%{content_type} EFFECTIVE_URL:%{url_effective}\n" "$url" >> /tmp/sitemap-url-check/results.txt || echo "curl failed for $url" >> /tmp/sitemap-url-check/results.txt
+            printf "URL: %s\n" "$url" >> "$OUTDIR/url-check/results.txt"
+            curl -sSI -L -m 20 -o /dev/null -w "HTTP_CODE:%{http_code} CONTENT_TYPE:%{content_type} EFFECTIVE_URL:%{url_effective}\n" "$url" >> "$OUTDIR/url-check/results.txt" || echo "curl failed for $url" >> "$OUTDIR/url-check/results.txt"
           done
-          sed -n '1,500p' /tmp/sitemap-url-check/results.txt >> report.txt || true
-          echo "" >> report.txt
+          sed -n '1,500p' "$OUTDIR/url-check/results.txt" >> "$OUTDIR/check-06-httpreport.txt" || true
 
-      - name: Save full artifacts and report
+      - name: Show files created in sementara/
         if: steps.exists.outputs.sitemap_missing == 'false'
-        uses: actions/upload-artifact@v4
-        with:
-          name: sitemap-check-report
-          path: |
-            report.txt
-            xmllint.err
-            amp_matches.txt
-            iconv.err
-            /tmp/sitemap.urls.txt
-            /tmp/sitemap-url-check/results.txt
-
-      - name: Final log (when sitemap missing)
-        if: steps.exists.outputs.sitemap_missing == 'true'
         run: |
-          echo "sitemap.xml was not found at repo root. Put sitemap.xml at repo root and re-run this workflow."
+          OUTDIR="${{ github.workspace }}/sementara"
+          echo "Files written to $OUTDIR:"
+          ls -la "$OUTDIR"
+
+      - name: Commit & push temporary results if changed
+        if: steps.exists.outputs.sitemap_missing == 'false'
+        run: |
+          OUTDIR="${{ github.workspace }}/sementara"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A "$OUTDIR"
+          # commit only if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "sitemap-check: update diagnostics outputs" || true
+            git push origin HEAD:${{ github.ref_name }}
+          fi
