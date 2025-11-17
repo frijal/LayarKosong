@@ -53,7 +53,7 @@ injectLink('/ext/header.css', 'stylesheet');
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Ambil file header.html
   // Menggunakan root-relative path (/) untuk memastikan path selalu benar dari root domain
-  fetch('/ext/header.html')
+  fetch('/ext/header-logo-atas')
     .then((response) => {
       if (!response.ok) {
         // Jika file tidak ditemukan (error 404) atau error server
