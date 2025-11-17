@@ -1,11 +1,11 @@
 /*
-  =============================================================
-  HEADER LOADER (ALL-IN-ONE)
-  Skrip ini akan secara otomatis:
-  1. Memuat semua dependensi CSS (Font, Ikon, header.css) ke <head>.
-  2. Memuat header.html ke dalam <div id="header-placeholder">.
-  3. Menambahkan class 'header-dimuat' ke <body> untuk padding.
-  =============================================================
+ =============================================================
+ HEADER LOADER (ALL-IN-ONE)
+ Skrip ini akan secara otomatis:
+ 1. Memuat semua dependensi CSS (Font, Ikon, header.css) ke <head>.
+ 2. Memuat header.html ke dalam <div id="header-placeholder">.
+ 3. Menambahkan class 'header-dimuat' ke <body> untuk padding.
+ =============================================================
 */
 
 /**
@@ -25,7 +25,7 @@ function injectLink(href, rel, crossOrigin = null) {
 }
 
 // --- BAGIAN 1: INJEKSI CSS & FONT ---
-// (Ini berjalan segera, tidak perlu menunggu DOM)
+// (Menggunakan Root-Relative Path untuk keamanan)
 
 // 1. Muat Google Fonts (preconnect)
 injectLink('https://fonts.googleapis.com', 'preconnect');
@@ -38,24 +38,26 @@ injectLink(
 );
 
 // 3. Muat Font Awesome (ikon)
+// Menggunakan root-relative path
 injectLink(
-  'ext/fontawesome.css',
+  '/ext/fontawesome.css',
   'stylesheet'
 );
 
 // 4. Muat file header.css Anda
-//    Pastikan file ini ada di folder yang sama!
-injectLink('ext/header.css', 'stylesheet');
+// Menggunakan root-relative path
+injectLink('/ext/header.css', 'stylesheet');
 
 // --- BAGIAN 2: INJEKSI HTML & CLASS BODY ---
 // (Ini menunggu DOM siap)
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Ambil file header.html
-  fetch('ext/header.html')
+  // Menggunakan root-relative path (/) untuk memastikan path selalu benar dari root domain
+  fetch('/ext/header.html')
     .then((response) => {
       if (!response.ok) {
         // Jika file tidak ditemukan (error 404) atau error server
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} (Redirection/File Not Found)`);
       }
       return response.text();
     })
@@ -79,9 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (placeholder) {
         // Tampilkan pesan error di halaman agar mudah di-debug
         placeholder.innerHTML =
-          '<p style="color:red; text-align:center; padding: 2rem;">Oops! Gagal memuat header. Pastikan file header.html ada di folder yang sama.</p>';
+          '<p style="color:red; text-align:center; padding: 2rem;">[Error: Gagal memuat header.] Pastikan file <b>/ext/header.html</b> ada dan bisa diakses.</p>';
       }
     });
 });
-
-
