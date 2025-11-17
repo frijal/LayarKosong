@@ -1,4 +1,3 @@
-// ext/rss.js
 import fs from 'fs/promises';
 import path from 'path';
 import { DOMParser } from '@xmldom/xmldom';
@@ -49,16 +48,33 @@ async function loadSitemapMap() {
             const locElement = urls[i].getElementsByTagName('loc')[0];
             if (locElement) {
                 const loc = locElement.textContent;
-                const fileName = path.basename(loc);
-                map[fileName] = {
+                
+                // --- PERBAIKAN PENTING DI SINI ---
+                // Kita perlu mendapatkan nama file asli (misalnya, 'nama-file.html') 
+                // dari Pretty URL (misalnya, '.../nama-file').
+                // Kita asumsikan URL adalah: https://baseurl/artikel/nama-file
+                // Kita tahu nama file HTML pasti sama dengan bagian terakhir URL, 
+                // ditambah ekstensi '.html'.
+                let prettyFileName = path.basename(loc);
+                
+                // Karena artikel.json menggunakan nama file dengan ekstensi, 
+                // kita harus mengembalikan ekstensi tersebut untuk key maping.
+                if (!prettyFileName.endsWith('.html')) {
+                    prettyFileName += '.html';
+                }
+                // Jika URL adalah Pretty URL, prettyFileName akan menjadi 'nama-file.html'
+
+                map[prettyFileName] = {
                     lastmod: urls[i].getElementsByTagName('lastmod')[0]?.textContent || null,
                     imageLoc: urls[i].getElementsByTagName('image:loc')[0]?.textContent || null,
+                    // Kita juga simpan Pretty URL yang benar untuk digunakan nanti
+                    prettyLoc: loc, 
                 };
             }
         }
         return map;
-    } catch {
-        console.warn("⚠️ sitemap.xml tidak ditemukan, data tanggal dan gambar mungkin kurang akurat.");
+    } catch (e) {
+        console.warn(`⚠️ sitemap.xml tidak ditemukan atau error saat parsing. (${e.message}) Data tanggal dan gambar mungkin kurang akurat.`);
         return {};
     }
 }
@@ -73,7 +89,7 @@ async function generateAllFeeds() {
         await fs.access(artikelJsonPath);
         artikelData = JSON.parse(await fs.readFile(artikelJsonPath, 'utf8'));
     } catch {
-        console.error('❌ ERROR: File artikel.json tidak ditemukan.');
+        console.error('❌ ERROR: File artikel.json tidak ditemukan. Proses dibatalkan.');
         process.exit(1);
     }
     const sitemapMap = await loadSitemapMap();
@@ -86,12 +102,17 @@ async function generateAllFeeds() {
     let allItems = [];
     for (const articles of Object.values(artikelData)) {
         for (const arr of articles) {
-            const fileName = arr[IDX_FILE];
-            const sitemapInfo = sitemapMap[fileName];
+            const fileName = arr[IDX_FILE]; // Format: nama-file.html
+            // MENCARI DENGAN KEY YANG SAMA DENGAN ARTIKEL.JSON
+            const sitemapInfo = sitemapMap[fileName]; 
+            
             if (sitemapInfo) {
+                // Gunakan sitemapInfo.prettyLoc yang sudah kita simpan
+                const prettyUrl = sitemapInfo.prettyLoc; 
+
                 allItems.push({
                     title: arr[IDX_TITLE],
-                    loc: `https://frijal.pages.dev/artikel/${fileName}`,
+                    loc: prettyUrl, // Menggunakan Pretty URL
                     pubDate: new Date(sitemapInfo.lastmod).toUTCString(),
                     desc: arr[IDX_DESCRIPTION] || sanitizeTitle(arr[IDX_TITLE]),
                     category: Object.keys(artikelData).find(key => artikelData[key].includes(arr)),
@@ -106,7 +127,8 @@ async function generateAllFeeds() {
     const latestItems = allItems.slice(0, RSS_LIMIT);
 
     const mainItemsXml = latestItems.map(it => {
-        const enclosure = it.imageLoc ? `    <enclosure url="${it.imageLoc}" length="0" type="image/webp" />` : '';
+        // Enclosure type diubah ke 'image/*' untuk kompatibilitas yang lebih baik
+        const enclosure = it.imageLoc ? `    <enclosure url="${it.imageLoc}" length="0" type="image/jpeg" />` : ''; 
         return `    <item>
       <title><![CDATA[${it.title}]]></title>
       <link><![CDATA[${it.loc}]]></link>
@@ -138,6 +160,8 @@ ${mainItemsXml}
     // BAGIAN B: GENERATE RSS PER KATEGORI
     // ==========================================================
     console.log("\n🔄 Membuat feed untuk setiap kategori...");
+    
+    const categoryWritePromises = [];
 
     for (const [category, articles] of Object.entries(artikelData)) {
         const categorySlug = categoryToSlug(category);
@@ -145,12 +169,15 @@ ${mainItemsXml}
         
         let categoryItems = [];
         for (const arr of articles) {
-            const fileName = arr[IDX_FILE];
-            const sitemapInfo = sitemapMap[fileName];
+            const fileName = arr[IDX_FILE]; // Format: nama-file.html
+            const sitemapInfo = sitemapMap[fileName]; 
+            
             if (sitemapInfo) {
+                const prettyUrl = sitemapInfo.prettyLoc; 
+                
                 categoryItems.push({
                     title: arr[IDX_TITLE],
-                    loc: `https://frijal.pages.dev/artikel/${fileName}`,
+                    loc: prettyUrl, // Menggunakan Pretty URL
                     pubDate: new Date(sitemapInfo.lastmod).toUTCString(),
                     desc: arr[IDX_DESCRIPTION] || sanitizeTitle(arr[IDX_TITLE]),
                     imageLoc: arr[IDX_IMAGE],
@@ -162,7 +189,7 @@ ${mainItemsXml}
         categoryItems.sort((a, b) => b.dateObj - a.dateObj);
         
         const categoryItemsXml = categoryItems.map(it => {
-            const enclosure = it.imageLoc ? `<enclosure url="${it.imageLoc}" length="0" type="image/webp" />` : '';
+            const enclosure = it.imageLoc ? `<enclosure url="${it.imageLoc}" length="0" type="image/jpeg" />` : '';
             return `    <item>
       <title><![CDATA[${it.title}]]></title>
       <link><![CDATA[${it.loc}]]></link>
@@ -187,9 +214,13 @@ ${categoryItemsXml}
   </channel>
 </rss>`;
 
-        await fs.writeFile(categoryRssPath, categoryRss, 'utf8');
-        console.log(`✅ feed-${categorySlug}.xml berhasil dibuat (${categoryItems.length} item).`);
+        categoryWritePromises.push(
+            fs.writeFile(categoryRssPath, categoryRss, 'utf8')
+                .then(() => console.log(`✅ feed-${categorySlug}.xml berhasil dibuat (${categoryItems.length} item).`))
+        );
     }
+    
+    await Promise.all(categoryWritePromises);
     
     console.log("\n✨ Semua proses selesai!");
 }
