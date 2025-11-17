@@ -70,6 +70,8 @@ jobs:
           echo "$BASE_URL/search" >> $SITEMAP_FILE
           echo "$BASE_URL/disclaimer" >> $SITEMAP_FILE
           echo "$BASE_URL/feed" >> $SITEMAP_FILE
+          echo "$BASE_URL/img" >> $SITEMAP_FILE
+          echo "$BASE_URL/sitemap" >> $SITEMAP_FILE
           echo "✅ Semua URL statis telah ditambahkan."
 
       - name: '6. Generate screenshots'
