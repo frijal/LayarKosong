@@ -32,7 +32,7 @@ jobs:
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y libxml2-utils curl od gawk grep perl iconv
+          sudo apt-get install -y libxml2-utils curl gawk grep perl coreutils bsdutils libc-bin
 
       - name: Prepare output folder sementara/
         if: steps.exists.outputs.sitemap_missing == 'false'
