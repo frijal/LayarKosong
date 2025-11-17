@@ -67,7 +67,6 @@ jobs:
           # URL Statis yang Ditemukan (URL yang seharusnya memiliki file .html di root)
           echo "$BASE_URL/" >> $SITEMAP_FILE # Halaman utama (index.html)
           echo "$BASE_URL/search" >> $SITEMAP_FILE
-          echo "$BASE_URL/artikel" >> $SITEMAP_FILE # Halaman index artikel
           echo "$BASE_URL/disclaimer" >> $SITEMAP_FILE
           echo "$BASE_URL/feed" >> $SITEMAP_FILE
           echo "✅ Semua URL statis telah ditambahkan."
