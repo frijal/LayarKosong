@@ -165,8 +165,8 @@ ${entries.join("\n")}
 // ================================
 export const CategoryPages = {
   async generate(grouped) {
-    const kategoriDir = path.join(CONFIG.artikelDir, "-");
-    const templatePath = path.join(kategoriDir, "template-kategori.html");
+    const kategoriDir = path.join(CONFIG.artikelDir, '-');
+    const templatePath = path.join(kategoriDir, 'template-kategori.html');
 
     if (!(await FileIO.exists(templatePath))) return;
 
