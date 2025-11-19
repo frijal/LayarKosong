@@ -19,36 +19,38 @@ GetOptions(
 # files to scan (default)
 my @files = glob("*.html artikelx/*.html artikel/*.html");
 unless (@files) {
-  print "⚠️  Tidak ada file HTML ditemukan.\n" unless $quiet;
+  print "⚠️ Tidak ada file HTML ditemukan.\n" unless $quiet;
   exit 0;
 }
 
 ## 🗺️ REPLACEMENT MAP
 # Map: url-regex => replacement-path
+# NOTE: Regexes updated for better version matching (e.g., v6.0.0-beta3) and replacement strings are clean.
 my @MAP = (
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.\-a-z]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
+  # Font Awesome CSS (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.\-a-z]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
 
-  # Highlight.js JS (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  # Highlight.js JS (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
 
-  # Highlight.js CSS - default (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  # Highlight.js CSS - default (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
 
-  # Highlight.js CSS - github (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  # Highlight.js CSS - github (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
 
-  # Highlight.js CSS - github-dark (Updated: [\d\.\-a-z]+ dan perbaikan repl)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  # Highlight.js CSS - github-dark (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
 );
 
 ## 🔄 FUNCTION: URL Replacement
@@ -57,18 +59,18 @@ sub replace_urls_in_string {
   my $count = 0;
 
   foreach my $m (@MAP) {
-    my $rx   = $m->{rx};
-    my $repl = $m->{repl};
+    my $rx    = $m->{rx};
+    my $repl  = $m->{repl};
 
     # Replace only inside href="..." or src='...'
     while ( $$text_ref =~ s{
-        (\b(?:href|src)\b)       # $1 = attribute name
-        (\s*=\s*)                # $2 = equals + spaces
-        (['"])                   # $3 = quote
-        \s* # optional space
-        ($rx)                    # $4 = matched URL
-        \s* # optional space
-        \3                       # closing quote
+      (\b(?:href|src)\b)       # $1 = attribute name
+      (\s*=\s*)                # $2 = equals + spaces
+      (['"])                   # $3 = quote
+      \s* # optional space
+      ($rx)                    # $4 = matched URL
+      \s* # optional space
+      \3                       # closing quote
       }{
         my ($attr,$eq,$q) = ($1,$2,$3);
         $attr . $eq . $q . $repl . $q; # Replace URL with local path
@@ -86,14 +88,14 @@ sub clean_attributes {
 
     # Regex untuk menghapus atribut integrity, crossorigin, atau referrerpolicy, dengan atau tanpa nilai
     while ( $$content_ref =~ s{
-        \s+ # Match one or more leading spaces
-        (?:
-            integrity \s*=\s* (['"])[^'"]*?\1 | # integrity="value"
-            crossorigin \s*=\s* (['"])[^'"]*?\2 | # crossorigin="value"
-            referrerpolicy \s*=\s* (['"])[^'"]*?\3 | # referrerpolicy="value"
-            crossorigin | # Standalone crossorigin (e.g. <img crossorigin>)
-            referrerpolicy # Standalone referrerpolicy
-        )
+      \s+ # Match one or more leading spaces
+      (?:
+        integrity \s*=\s* (['"])[^'"]*?\1 | # integrity="value"
+        crossorigin \s*=\s* (['"])[^'"]*?\2 | # crossorigin="value"
+        referrerpolicy \s*=\s* (['"])[^'"]*?\3 | # referrerpolicy="value"
+        crossorigin | # Standalone crossorigin (e.g. <img crossorigin>)
+        referrerpolicy # Standalone referrerpolicy
+      )
     }{}gxsi
     ) { $clean_count++; }
 
@@ -148,7 +150,7 @@ foreach my $file (@files) {
 
     print "✅ Updated: $file $summary\n" unless $quiet;
   } else {
-    print "⏭️  No change: $file\n" unless $quiet;
+    print "⏭️ No change: $file\n" unless $quiet;
   }
 }
 
