@@ -26,28 +26,30 @@ unless (@files) {
 ## 🗺️ REPLACEMENT MAP
 # Map: url-regex => replacement-path
 my @MAP = (
-  # Font Awesome CSS
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
+  # Font Awesome CSS (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.\-a-z]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
 
-  # Highlight.js JS
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  # Highlight.js JS (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
 
-  # Highlight.js CSS
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  # Highlight.js CSS - default (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  # Highlight.js CSS - github (Updated: [\d\.\-a-z]+)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
 
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min\.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min\.css' },
+  # Highlight.js CSS - github-dark (Updated: [\d\.\-a-z]+ dan perbaikan repl)
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
 );
 
 ## 🔄 FUNCTION: URL Replacement
