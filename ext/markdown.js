@@ -78,7 +78,6 @@
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
       // Bold, Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      // ⏪ DIKEMBALIKAN: Menggunakan Regex versi sebelumnya, mempertahankan lookahead (?!\*)
       .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
       // Inline code (tidak bikin baris baru)
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
@@ -104,8 +103,8 @@
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    // Selektor sudah mencakup .alert dan .intro-alert
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .alert, .intro-alert";
+    // 🔥 PERBAIKAN: Menambahkan h1, h2, h3, h4, h5, h6 agar markdown di heading diproses
+    const selector = "p, li, blockquote, td, th, header, h1, h2, h3, h4, h5, h6, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
       // Pengecualian ini memastikan kode blok/tabel tetap utuh.
