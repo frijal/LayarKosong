@@ -78,7 +78,8 @@
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
       // Bold, Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/(^|[^*])\*(.*?)\*(?!\*)/g, "$1<em>$2</em>")
+      // 🔥 PERBAIKAN: Mengganti [^*] dengan (\W|^) untuk lebih akurat dalam mendeteksi batas kata/spasi sebelum teks miring
+      .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
       // Inline code (tidak bikin baris baru)
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
       // List
@@ -103,11 +104,12 @@
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    // 🔥 PERBAIKAN: Menambahkan .alert ke selector agar blok notifikasi dapat diproses
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .intro-alert, .alert";
+    // PERBAIKAN: Mencakup semua kelas alert untuk pemrosesan Markdown
+    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
-      if (el.querySelector("pre, code, table")) return;
+      // Pengecualian ini memastikan kode blok/tabel tetap utuh.
+      if (el.querySelector("pre, code, table")) return; 
 
       const original = el.innerHTML.trim();
       if (!original) return;
