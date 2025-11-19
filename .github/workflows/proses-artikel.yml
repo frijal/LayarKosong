@@ -80,4 +80,4 @@ jobs:
           commit_user_email: actions@github.com
           commit_author: GitHub Actions Bot <actions@github.com>
           # File/direktori yang dicommit (sesuaikan jika perlu)
-          files: artikel/
+          file_pattern: 'artikel/'
