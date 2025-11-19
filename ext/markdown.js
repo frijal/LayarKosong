@@ -78,9 +78,8 @@
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
       // Bold, Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      // 🔥 PERBAIKAN FINAL: Menghapus lookahead '(?!\*)' untuk mencegah konflik boundary.
-      // Teks Bold sudah diproses, jadi lookahead ini tidak diperlukan.
-      .replace(/(\W|^)\*([^*]+)\*/g, "$1<em>$2</em>")
+      // ⏪ DIKEMBALIKAN: Menggunakan Regex versi sebelumnya, mempertahankan lookahead (?!\*)
+      .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
       // Inline code (tidak bikin baris baru)
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
       // List
