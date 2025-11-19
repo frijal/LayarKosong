@@ -104,7 +104,7 @@
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
     // 🔥 PERBAIKAN: Menambahkan .alert ke selector agar blok notifikasi dapat diproses
-    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .alert";
+    const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .intro-alert, .alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
       if (el.querySelector("pre, code, table")) return;
