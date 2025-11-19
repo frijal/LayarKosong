@@ -26,7 +26,6 @@ unless (@files) {
 ## 🗺️ REPLACEMENT MAP
 # Map: url-regex => replacement-path
 my @MAP = (
-  # Font Awesome CSS (Updated: [\d\.\-a-z]+)
   { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.\-a-z]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
   { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
   { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
