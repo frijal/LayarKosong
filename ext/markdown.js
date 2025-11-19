@@ -78,8 +78,9 @@
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
       // Bold, Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      // 🔥 PERBAIKAN: Mengganti [^*] dengan (\W|^) untuk lebih akurat dalam mendeteksi batas kata/spasi sebelum teks miring
-      .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
+      // 🔥 PERBAIKAN FINAL: Menghapus lookahead '(?!\*)' untuk mencegah konflik boundary.
+      // Teks Bold sudah diproses, jadi lookahead ini tidak diperlukan.
+      .replace(/(\W|^)\*([^*]+)\*/g, "$1<em>$2</em>")
       // Inline code (tidak bikin baris baru)
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
       // List
@@ -104,7 +105,7 @@
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    // PERBAIKAN: Mencakup semua kelas alert untuk pemrosesan Markdown
+    // Selektor sudah mencakup .alert dan .intro-alert
     const selector = "p, li, blockquote, td, th, header, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
