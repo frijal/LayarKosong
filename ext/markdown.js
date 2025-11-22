@@ -95,7 +95,7 @@
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, h1, h2, h3, h4, h5, h6, .markdown, .markdown-body, .alert, .intro-alert";
+    const selector = "p, li, blockquote, td, th, header, .quote, h1, h2, h3, h4, h5, h6, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
       if (el.querySelector("pre, code, table")) return; 
