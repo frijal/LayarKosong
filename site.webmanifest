@@ -1,10 +1,12 @@
 {
-  "name": "Frijal Artikel",
+  "name": "Frijal - Jelajahi Artikel Teknologi & Religi",
   "short_name": "Frijal",
-  "start_url": "/",
+    "description": "Kumpulan artikel terbaru tentang Linux, Windows, Islam, dan tips karir.",
+    "start_url": "/?utm_source=pwa_homescreen",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0f172a",
+    "theme_color": "#26a69a",
+    "orientation": "portrait",
   "icons": [
     {
       "src": "ext/icons/icon-48x48.png",
@@ -51,5 +53,7 @@
       "sizes": "1024x1024",
       "type": "image/png"
     }
-  ]
+      ],
+    "lang": "id",
+    "categories": ["technology", "education", "lifestyle"]
 }
