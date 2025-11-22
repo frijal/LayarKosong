@@ -47,7 +47,7 @@ jobs:
       - name: Check 1 - BOM / first bytes
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 1: First bytes (hex) ===" > "$OUTDIR/check-01-first-bytes.txt"
           head -c 4 sitemap.xml | od -An -t x1 | sed -E 's/^[[:space:]]+//' >> "$OUTDIR/check-01-first-bytes.txt" || echo "od failed" >> "$OUTDIR/check-01-first-bytes.txt"
 
