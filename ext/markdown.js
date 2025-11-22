@@ -1,42 +1,37 @@
 /*!
- * markdown-enhancer.js — Frijal Smart Cached Edition
- * 🌿 Markdown ringan dengan pemuatan highlight.js hemat & cerdas.
- * - Tidak membuat baris baru pada inline code
- * - highlight.js dimuat hanya bila perlu, dan cache di localStorage
- * - Otomatis mengikuti tema sistem (dark/light)
- * - Tidak menginjeksi CSS tambahan
+ * markdown-enhancer.js — Frijal Fixed Edition
  */
 
 (async function () {
 
-  // === 1️⃣ Muat highlight.js hanya bila dibutuhkan dan belum di-cache ===
+  // === 1️⃣ Muat highlight.js (Browser Cache akan menangani efisiensi) ===
   async function loadHighlightJSIfNeeded() {
     const hasCodeBlocks = document.querySelector("pre code");
     if (!hasCodeBlocks) return null;
 
-    // Cek cache di localStorage
+    // Jika sudah ada di window, kembalikan langsung
     if (window.hljs) return window.hljs;
-    const alreadyLoaded = localStorage.getItem("hljsLoaded");
-    if (alreadyLoaded === "true") {
-      // Skip network load, tunggu hljs global jika sudah dimuat di halaman sebelumnya
-      return new Promise(resolve => {
-        const check = setInterval(() => {
-          if (window.hljs) {
-            clearInterval(check);
-            resolve(window.hljs);
-          }
-        }, 100);
-      });
+
+    // Cek apakah script tag sudah pernah kita suntikkan sebelumnya di sesi ini
+    // untuk menghindari duplikasi tag script
+    if (document.querySelector('script[src="/ext/highlight.js"]')) {
+        return new Promise(resolve => {
+            const check = setInterval(() => {
+                if (window.hljs) {
+                    clearInterval(check);
+                    resolve(window.hljs);
+                }
+            }, 100);
+        });
     }
 
-    // Jika belum di-cache, muat dari CDN
+    // Muat dari file (Gunakan Absolute Path "/")
     const script = document.createElement("script");
-    script.src = "ext/highlight.js";
+    script.src = "/ext/highlight.js"; // <-- PERBAIKAN PATH
     script.defer = true;
     document.head.appendChild(script);
 
     await new Promise(res => (script.onload = res));
-    localStorage.setItem("hljsLoaded", "true");
     return window.hljs;
   }
 
@@ -44,12 +39,16 @@
   function applyHighlightTheme() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
+    
+    // Gunakan Absolute Path "/"
     const newHref = prefersDark
-      ? "ext/github-dark.min.css"
-      : "ext/github.min.css";
+      ? "/ext/github-dark.min.css" // <-- PERBAIKAN PATH
+      : "/ext/github.min.css";     // <-- PERBAIKAN PATH
 
     if (existing) {
-      if (existing.href !== newHref) existing.href = newHref;
+      if (existing.href !== newHref && !existing.href.endsWith(newHref)) { 
+          existing.href = newHref;
+      }
     } else {
       const link = document.createElement("link");
       link.rel = "stylesheet";
@@ -67,29 +66,22 @@
   function convertInlineMarkdown(text) {
     return text
       .replace(/&gt;/g, ">")
-      // Heading
       .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
       .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
       .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
       .replace(/^### (.*)$/gm, "<h3>$1</h3>")
       .replace(/^## (.*)$/gm, "<h2>$1</h2>")
       .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-      // Blockquote
       .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
-      // Bold, Italic
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
-      // Inline code (tidak bikin baris baru)
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
-      // List
       .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
       .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
-      // Code block ```
       .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
         const language = lang || "plaintext";
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
-      // Table
       .replace(/((?:\|.*\|\n)+)/g, match => {
         const rows = match.trim().split("\n").filter(r => r.trim());
         if (rows.length < 2) return match;
@@ -103,11 +95,9 @@
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    // 🔥 PERBAIKAN: Menambahkan h1, h2, h3, h4, h5, h6 agar markdown di heading diproses
     const selector = "p, li, blockquote, td, th, header, h1, h2, h3, h4, h5, h6, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
-      // Pengecualian ini memastikan kode blok/tabel tetap utuh.
       if (el.querySelector("pre, code, table")) return; 
 
       const original = el.innerHTML.trim();
@@ -124,6 +114,9 @@
       el.style.display = "inline";
       el.style.whiteSpace = "nowrap";
       el.style.margin = "0";
+      // Tambahkan padding sedikit agar rapi
+      el.style.padding = "2px 4px"; 
+      el.style.borderRadius = "4px";
     });
   }
 
