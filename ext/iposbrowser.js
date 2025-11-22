@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 4. Set text color to black or white for best contrast
   function adjustTextColorBasedOnBackground(el) {
+    // [FIX UTAMA] Tambahkan pengecekan: Jika elemen tidak ada (null), stop fungsi.
+    if (!el) return;
+
     const bg = findBackgroundColor(el);
     const lum = relativeLuminance(parseRGB(bg));
     el.style.color = lum > 0.5 ? '#222' : '#eee';
@@ -99,14 +102,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const browser = detectBrowser();
   const os = detectOS();
   const geo = await fetchGeoIP();
-  
+   
   // [PERBAIKAN] Hapus variabel HTML yang tidak terpakai.
   let geoHTML = '<div class="info-item"><span></span></div>';
   if (geo) {
     const flag = geo.code
       ? `<img class="geo-flag" src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="${geo.country}" />`
       : '';
-    geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + ' - ' : ''}${geo.country} • ${geo.ip}</div>`; // Tag span penutup yang salah sudah dihapus
+    geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + ' - ' : ''}${geo.country} • ${geo.ip}</div>`;
   }
 
   target.innerHTML = `
@@ -116,13 +119,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       ${geoHTML}
     </div>`;
 
-  const infoBox = document.getElementById('ipos-browser-info');
-  adjustTextColorBasedOnBackground(infoBox);
+  // [FIX UTAMA] Gunakan querySelector & pastikan elemen ada sebelum diproses
+  const infoBox = target.querySelector('#ipos-browser-info');
+  
+  if (infoBox) {
+    adjustTextColorBasedOnBackground(infoBox);
 
-  new MutationObserver(() => adjustTextColorBasedOnBackground(infoBox)).observe(document.body, {
-    attributes: true,
-    attributeFilter: ['class', 'style']
-  });
+    new MutationObserver(() => adjustTextColorBasedOnBackground(infoBox)).observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+  } else {
+    console.warn("Elemen #ipos-browser-info gagal dirender.");
+  }
 });
 
 // 5. Inject CSS fallback + text-shadow halo
