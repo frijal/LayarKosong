@@ -37,7 +37,7 @@ jobs:
       - name: Prepare output folder sementara/
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           rm -rf "$OUTDIR"
           mkdir -p "$OUTDIR"
           echo "Sitemap diagnostics run: $(date -u)" > "$OUTDIR/README.txt"
@@ -54,7 +54,7 @@ jobs:
       - name: Check 2 - xmllint well-formedness
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 2: xmllint well-formedness ===" > "$OUTDIR/check-02-xmllint.txt"
           if xmllint --noout sitemap.xml 2> "$OUTDIR/xmllint.err"; then
             echo "xmllint: OK (well-formed)" >> "$OUTDIR/check-02-xmllint.txt"
@@ -66,7 +66,7 @@ jobs:
       - name: Check 3 - raw ampersand / bad entity usage
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 3: raw ampersand or invalid entity references ===" > "$OUTDIR/check-03-ampersand.txt"
           grep -n -P '&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)' sitemap.xml > "$OUTDIR/amp_matches.txt" || true
           if [ -s "$OUTDIR/amp_matches.txt" ]; then
@@ -79,7 +79,7 @@ jobs:
       - name: Check 4 - non-UTF8 or control chars
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 4: encoding / non-UTF8 detection ===" > "$OUTDIR/check-04-encoding.txt"
           if iconv -f UTF-8 -t UTF-8 sitemap.xml -o /dev/null 2> "$OUTDIR/iconv.err"; then
             echo "iconv: OK (valid UTF-8)" >> "$OUTDIR/check-04-encoding.txt"
@@ -92,7 +92,7 @@ jobs:
       - name: Check 5 - long lines and stray '<' in text
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 5: long lines (>2000) and stray '<' in text nodes ===" > "$OUTDIR/check-05-lines.txt"
           awk 'length($0)>2000{print NR ": len=" length($0)}' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
           grep -nE '<[^/a-zA-Z?\!]' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
@@ -100,7 +100,7 @@ jobs:
       - name: Extract URLs for checking (loc and image:loc)
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 6: extract URLs to $OUTDIR/sitemap.urls.txt ===" > "$OUTDIR/check-06-extract.txt"
           grep -oP '(?<=<loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.loc.txt" || true
           grep -oP '(?<=<image:loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.image-loc.txt" || true
@@ -110,7 +110,7 @@ jobs:
       - name: Check 6 - HTTP status and content-type for extracted URLs
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "=== CHECK 6: HTTP status + content-type for each URL ===" > "$OUTDIR/check-06-httpreport.txt"
           mkdir -p "$OUTDIR/url-check"
           head -n 200 "$OUTDIR/sitemap.urls.txt" | while read -r url; do
@@ -123,14 +123,14 @@ jobs:
       - name: Show files created in sementara/
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           echo "Files written to $OUTDIR:"
           ls -la "$OUTDIR"
 
       - name: Commit & push temporary results if changed
         if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
-          OUTDIR="${{ github.workspace }}/sementara"
+          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A "$OUTDIR"
