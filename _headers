@@ -1,21 +1,19 @@
-# 🛑 PRIORITAS TERTINGGI: SITEMAP MURNI XML
-/sitemap.xml
-  Content-Type: application/xml; charset=utf-8
-  X-Robots-Tag: index, follow
-
-# 🌐 Default untuk semua file HTML dan XML
+# 🌐 Aturan Global (Default)
 /*
   X-Robots-Tag: all
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
 
-# 🖼️ Gambar dan ikon statis (cache kuat + CORS)
+# 🖼️ Gambar, Ikon, dan Asset Statis (Cache Kuat: 7 Hari + CORS)
+# Pastikan semua asset yang jarang berubah menggunakan caching terkuat.
 /img/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=604800, immutable
 
-/logo.png
+/icon.png
   Cache-Control: public, max-age=604800, immutable
 
-/icon.png
+/logo.png
   Cache-Control: public, max-age=604800, immutable
 
 /favicon.ico
@@ -27,55 +25,109 @@
 /favicon.svg
   Cache-Control: public, max-age=604800, immutable
 
-# 📦 Ekstensi dan font (cache kuat + CORS)
+/thumbnail.jpg
+  Cache-Control: public, max-age=604800, immutable
+
+/thumbnail.png
+  Cache-Control: public, max-age=604800, immutable
+
+/thumbnail.webp
+  Cache-Control: public, max-age=604800, immutable
+
 /ext/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=604800, immutable
 
-# 📄 Artikel JSON (non-cache + CORS)
+/site.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=604800, immutable
+
+# 📄 Data Dinamis / JSON (Non-Cache + CORS)
+# Termasuk: /artikel.json
 /artikel.json
   Access-Control-Allow-Origin: *
   Cache-Control: no-store, must-revalidate
   Content-Type: application/json
 
-# 📁 Folder artikel (halaman bisa diindeks)
-/artikel
+# 🗺️ Sitemap dan RSS Feed (Non-Cache / Revalidate Tinggi)
+# Karena file-file ini dinamis, caching harus dihindari atau disingkat.
+# Menggunakan no-store memastikan bot selalu mendapatkan data terbaru.
+/rss.xml
   X-Robots-Tag: index, follow
+  Content-Type: application/rss+xml
+  Cache-Control: no-store, must-revalidate
 
-# 📜 Halaman utama dan navigasi
+/feed-*.xml
+  X-Robots-Tag: index, follow
+  Content-Type: application/rss+xml
+  Cache-Control: no-store, must-revalidate
+
+/sitemap.xml
+  X-Robots-Tag: index, follow
+  Content-Type: application/xml
+  Cache-Control: no-store, must-revalidate
+
+/sitemap.txt
+  X-Robots-Tag: index, follow
+  Content-Type: text/plain
+  Cache-Control: no-store, must-revalidate
+
+# 📜 Halaman HTML Utama (Cache Singkat: 1 Jam)
+# Termasuk: index.html, disclaimer.html, search.html, feed.html, sitemap.html, 404.html
 /index.html
   X-Robots-Tag: index, follow
-  
-# 📜 Halaman disclaimer
+  Cache-Control: public, max-age=3600
+
 /disclaimer.html
   X-Robots-Tag: index, follow
-  
-# 📜 Halaman search
+  Cache-Control: public, max-age=3600
+
 /search.html
   X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
 
 /feed.html
   X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
 
 /sitemap.html
   X-Robots-Tag: index, follow
-  
-/feed-*.xml
-  Content-Type: application/rss+xml
+  Cache-Control: public, max-age=3600
 
-/rss.xml
-  Content-Type: application/rss+xml
+/404.html
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=3600
 
-/ads.txt
-  Content-Type: text/plain
-  
-/Ads.txt
-  Content-Type: text/plain
+/img.html
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=3600
 
-/sitemap.txt
-  Content-Type: text/plain
+/artikel
+  X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
 
-# 🤖 Robots.txt tetap bisa diindeks
+# 🤖 File Verifikasi & Teknis
 /robots.txt
   X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600
 
+/ads.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
+
+/Ads.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
+
+/BingSiteAuth.xml
+  X-Robots-Tag: noindex
+  Content-Type: application/xml
+
+/google*.html
+  X-Robots-Tag: noindex
+
+/f8399d60e90d46a6945577b73ff3f778.txt
+  X-Robots-Tag: noindex
+
+/.nojekyll
+  X-Robots-Tag: noindex, nofollow
