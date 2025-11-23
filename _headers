@@ -80,11 +80,11 @@
 
 /disclaimer.html
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /search.html
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /feed.html
   X-Robots-Tag: index, follow
@@ -96,7 +96,7 @@
 
 /404.html
   X-Robots-Tag: noindex
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /img.html
   X-Robots-Tag: noindex
