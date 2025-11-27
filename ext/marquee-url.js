@@ -1,15 +1,3 @@
-/**
- * ===============================================================
- * SKRIP GABUNGAN v8.5 — Marquee, Floating Search, dan Navigasi
- * ===============================================================
- * ✅ Aman untuk Cloudflare Pages (Pretty URLs)
- * ✅ Fetch artikel.json hanya sekali + cache sessionStorage
- * ✅ Pencarian cepat, ringan, auto-hide + klik hasil = enter
- * ✅ Navigasi prev/next per kategori
- * ✅ Warna marquee adaptif (dark/light)
- * ===============================================================
- */
-
 (function () {
   'use strict';
 
