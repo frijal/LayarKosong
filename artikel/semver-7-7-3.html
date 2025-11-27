@@ -9,17 +9,17 @@
   <title>semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js</title>
   <meta name="description" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
   <meta name="keywords" content="semver, npm, Node.js, semantic versioning, versi, package.json, CI/CD, range, comparator, prerelease, inc, gt, satisfies">
-  <link rel="canonical" href="https://frijal.pages.dev/artikel/semver-7-7-3.html">
+  <link rel="canonical" href="https://dalam.web.id/artikel/semver-7-7-3.html">
 
   <!-- Favicon -->
-  <link rel="icon" href="https://frijal.pages.dev/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="https://frijal.pages.dev/icon.png">
+  <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js">
   <meta property="og:description" content="Paket semver untuk parsing, validasi, range matching, increment, dan komparasi versi. Lengkap dengan contoh dan tabel fitur.">
-  <meta property="og:url" content="https://frijal.pages.dev/artikel/semver-7-7-3.html">
+  <meta property="og:url" content="https://dalam.web.id/artikel/semver-7-7-3.html">
   <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLoHA4rueqN4D9TBDSWC9GsroBSVSvKjHy4TGInZ6ftu4MByzDn2O3Th1MULjbp4JFJeBNCJA9ZkV4ru565pFCBF-TJM-gpEtawY7pTjkYjl4_Yq2riip90JfTiMUjI1NevySS3okYU4dXJvqGSD1DlHta-e7ioXWvoOIZDVp6sCT9I6Yi0_XRSay46jQ/s1600/semver.webp">
   <meta property="og:site_name" content="Frijal">
   <meta property="article:author" content="Fakhrul">
@@ -35,7 +35,7 @@
   <meta name="twitter:creator" content="@frijal">
 
   <!-- Structured data (JSON-LD) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js","description":"Semver@7.7.3 adalah paket npm untuk parsing, validasi, range matching, increment, dan komparasi versi sesuai Semantic Versioning.","author":{"@type":"Person","name":"Fakhrul","image":"https://frijal.pages.dev/img/semver-7-7-3.webp"},"datePublished":"2025-10-27","dateModified":"2025-10-27","publisher":{"@type":"Organization","name":"Frijal","logo":{"@type":"ImageObject","url":"https://frijal.pages.dev/icon.png","image":"https://frijal.pages.dev/img/semver-7-7-3.webp"},"image":"https://frijal.pages.dev/img/semver-7-7-3.webp"},"mainEntityOfPage":"https://frijal.pages.dev/artikel/semver-7-7-3.html","image":"https://frijal.pages.dev/img/semver-7-7-3.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js","description":"Semver@7.7.3 adalah paket npm untuk parsing, validasi, range matching, increment, dan komparasi versi sesuai Semantic Versioning.","author":{"@type":"Person","name":"Fakhrul","image":"https://dalam.web.id/img/semver-7-7-3.webp"},"datePublished":"2025-10-27","dateModified":"2025-10-27","publisher":{"@type":"Organization","name":"Frijal","logo":{"@type":"ImageObject","url":"https://dalam.web.id/icon.png","image":"https://dalam.web.id/img/semver-7-7-3.webp"},"image":"https://dalam.web.id/img/semver-7-7-3.webp"},"mainEntityOfPage":"https://dalam.web.id/artikel/semver-7-7-3.html","image":"https://dalam.web.id/img/semver-7-7-3.webp"}</script>
 
   <!-- Styles: responsif, widescreen, auto dark/light, fullscreen-friendly -->
   <style>
@@ -222,15 +222,15 @@
     .fs-btn:hover { border-color: var(--accent); }
   </style>
 <meta property="og:image:alt" content="semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js">
-  <meta itemprop="image" content="https://frijal.pages.dev/img/semver-7-7-3.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+  <meta itemprop="image" content="https://dalam.web.id/img/semver-7-7-3.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
     <meta property="article:published_time" content="2025-10-27T14:34:09.896+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
   <div class="page">
     <header>
       <div class="nav">
-        <a class="logo" href="https://frijal.pages.dev" title="Frijal">
+        <a class="logo" href="https://dalam.web.id" title="Frijal">
           <!-- Logo minimal -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="9" stroke-width="2"></circle>
@@ -240,16 +240,16 @@
         </a>
         <!-- Ikon resmi sharing media sosial -->
         <div class="share">
-          <a class="icon-btn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fsemver-7-7-3.html" title="Bagikan ke Facebook">
+          <a class="icon-btn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdalam.web.id%2Fartikel%2Fsemver-7-7-3.html" title="Bagikan ke Facebook">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 9H16V6h-2.5a3.5 3.5 0 0 0-3.5 3.5V12H8v3h2v6h3v-6h2.1l.9-3H13.5V9Z"></path></svg>
           </a>
-          <a class="icon-btn" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fsemver-7-7-3.html&text=Panduan%20semver%407.7.3%20untuk%20Node.js" title="Bagikan ke X/Twitter">
+          <a class="icon-btn" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdalam.web.id%2Fartikel%2Fsemver-7-7-3.html&text=Panduan%20semver%407.7.3%20untuk%20Node.js" title="Bagikan ke X/Twitter">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 4l6.5 7.5L5.6 20H8l4.8-6.6L18.4 20H21l-7-8 6.3-8h-2.3l-5.5 7.5L9.2 4H5Z"></path></svg>
           </a>
-          <a class="icon-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fsemver-7-7-3.html&title=Panduan%20semver%407.7.3" title="Bagikan ke LinkedIn">
+          <a class="icon-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fdalam.web.id%2Fartikel%2Fsemver-7-7-3.html&title=Panduan%20semver%407.7.3" title="Bagikan ke LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 7.5A1.94 1.94 0 1 1 5 5.56 1.94 1.94 0 0 1 6.94 7.5ZM5.5 9h2.9v9H5.5zM10 9h2.6v1.3h.04a2.86 2.86 0 0 1 2.56-1.4c2.74 0 3.24 1.8 3.24 4.14V18H16v-4.1c0-1 0-2.2-1.34-2.2s-1.54 1.06-1.54 2.14V18H10z"></path></svg>
           </a>
-          <a class="icon-btn" target="_blank" rel="noopener" href="https://wa.me/?text=https%3A%2F%2Ffrijal.pages.dev%2Fartikel%2Fsemver-7-7-3.html" title="Bagikan ke WhatsApp">
+          <a class="icon-btn" target="_blank" rel="noopener" href="https://wa.me/?text=https%3A%2F%2Fdalam.web.id%2Fartikel%2Fsemver-7-7-3.html" title="Bagikan ke WhatsApp">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 0 0-7.7 13.4L3 21l4.7-1.2A9 9 0 1 0 12 3Zm4.9 12.7c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-1.5-.5-3.3-1.4-4.7-3.1-1.6-1.8-2-3.3-2.3-4.7-.2-.9.2-1.5.7-1.7.4-.2.8-.2 1.1 0l.4.3c.3.2.5.5.6.8.2.6-.3 1.1-.5 1.3-.2.2-.4.5-.3.9.1.4.5 1.3 1.6 2.3 1.1 1.1 2.1 1.4 2.5 1.6.4.2.7.2 1-.1.3-.3.7-.8 1.1-.7.4.1.9.4 1.3.7.4.3.6.7.6 1.1Z"></path></svg>
           </a>
         </div>

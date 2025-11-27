@@ -7,14 +7,14 @@
     <title>Otomatis "Ping" Search Engine via GitHub Actions | f-Page</title>
     <meta name="description" content="Cara otomatis memberitahu Google dan Bing setiap kali website Anda di-update menggunakan 'ping' sitemap di dalam workflow GitHub Actions. Percepat indexing konten baru!">
 
-    <link rel="canonical" href="https://frijal.pages.dev/artikel/github-actions-ping-search-engine.html" id="canonical-link">
+    <link rel="canonical" href="https://dalam.web.id/artikel/github-actions-ping-search-engine.html" id="canonical-link">
 
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%232088FF' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
 
     <meta property="og:title" content="Otomatis 'Ping' Search Engine dengan GitHub Actions | f-Page">
     <meta property="og:description" content="Cara otomatis memberitahu Google dan Bing setiap kali website di-update menggunakan 'ping' sitemap di GitHub Actions.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://frijal.pages.dev/artikel/github-actions-ping-search-engine.html">
+    <meta property="og:url" content="https://dalam.web.id/artikel/github-actions-ping-search-engine.html">
     <meta property="og:site_name" content="f-Page">
     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzuIOkm1EycgtACwmwIz97Q7EzyPD50mHfDS9Qy7DYFeLmMPRquYpeZ9xUt_aXM9hXwFzv1A5X7J904mWE1oIOyLT7HcftzfOFTNxmm7eHU9MCbLwDkQrEbyFrq_AYC9vsfmR2yxxkQ6ORLgwLJT-ZyFefizcEeV-vvkzrOKeyyOO1qelsgPxfY_olHuQ/s1600/Screenshot%20From%202025-10-23%2013-57-37.png">
     <meta property="og:image:width" content="1200">
@@ -199,8 +199,8 @@
             article p, article ul { font-size: 1rem; }
         }
     </style>
-<meta itemprop="image" content="https://frijal.pages.dev/img/github-actions-ping-search-engine.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+<meta itemprop="image" content="https://dalam.web.id/img/github-actions-ping-search-engine.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
     <meta property="article:published_time" content="2025-10-23T07:03:49.523+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 
@@ -231,7 +231,7 @@
                     <code>https://www.bing.com/ping?sitemap=[URL_LENGKAP_SITEMAP]</code>
                 </div>
 
-                <p>Kamu hanya perlu mengganti <code>[URL_LENGKAP_SITEMAP]</code> dengan alamat publik sitemap kamu, contohnya <code>https://frijal.pages.dev/sitemap.xml</code>.</p>
+                <p>Kamu hanya perlu mengganti <code>[URL_LENGKAP_SITEMAP]</code> dengan alamat publik sitemap kamu, contohnya <code>https://dalam.web.id/sitemap.xml</code>.</p>
 
                 <h2>Di Sinilah GitHub Actions Berperan 🚀</h2>
                 <p>Nah, di sinilah ide otomatisasi kamu jadi sangat berguna. Kita bisa membuat proses "ping" ini berjalan otomatis setiap kali kita selesai mempublikasikan konten baru. Cara terbaik dan termudah di GitHub adalah dengan **GitHub Actions**.</p>
@@ -258,12 +258,12 @@
       - name: 🔔 Ping Search Engines for Updates
         run: |
           # Ping sitemap utama
-          curl -s "https://www.google.com/ping?sitemap=https://frijal.pages.dev/sitemap.xml"
-          curl -s "https://www.bing.com/ping?sitemap=https://frijal.pages.dev/sitemap.xml"
+          curl -s "https://www.google.com/ping?sitemap=https://dalam.web.id/sitemap.xml"
+          curl -s "https://www.bing.com/ping?sitemap=https://dalam.web.id/sitemap.xml"
 
           # Ping RSS feed utama (opsional, tapi bagus)
-          curl -s "https://www.google.com/ping?sitemap=https://frijal.pages.dev/rss.xml"
-          curl -s "https://www.bing.com/ping?sitemap=https://frijal.pages.dev/rss.xml"
+          curl -s "https://www.google.com/ping?sitemap=https://dalam.web.id/rss.xml"
+          curl -s "https://www.bing.com/ping?sitemap=https://dalam.web.id/rss.xml"
 </code></pre>
                 </div>
                 <p><strong>Catatan kecil:</strong> Perintah <code>curl -s</code> menggunakan flag <code>-s</code> yang artinya "silent" (senyap), jadi log di GitHub Actions kamu tidak akan dipenuhi dengan output detail dari proses `curl`, membuatnya lebih bersih dan rapi.</p>

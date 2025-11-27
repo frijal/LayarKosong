@@ -143,11 +143,11 @@ ${enclosure}
     const mainRss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title><![CDATA[Frijal Artikel]]></title>
-    <link><![CDATA[https://frijal.pages.dev/]]></link>
+    <title><![CDATA[Layar Kosong]]></title>
+    <link><![CDATA[https://dalam.web.id/]]></link>
     <description><![CDATA[Feed ${RSS_LIMIT} artikel terbaru]]></description>
     <language>id-ID</language>
-    <atom:link href="https://frijal.pages.dev/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dalam.web.id/rss.xml" rel="self" type="application/rss+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${mainItemsXml}
   </channel>
@@ -204,11 +204,11 @@ ${enclosure}
         const categoryRss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title><![CDATA[${category} - Frijal Artikel]]></title>
-    <link><![CDATA[https://frijal.pages.dev/]]></link>
+    <title><![CDATA[${category} - Layar Kosong]]></title>
+    <link><![CDATA[https://dalam.web.id/]]></link>
     <description><![CDATA[Feed artikel terbaru untuk kategori ${category}]]></description>
     <language>id-ID</language>
-    <atom:link href="https://frijal.pages.dev/feed-${categorySlug}.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dalam.web.id/feed-${categorySlug}.xml" rel="self" type="application/rss+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${categoryItemsXml}
   </channel>

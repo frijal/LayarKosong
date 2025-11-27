@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 // --- Konfigurasi ---
 const targetFolder = './'; // '.' berarti folder saat ini.
-const baseUrl = 'https://frijal.pages.dev/img/'; // URL dasar untuk gambar
+const baseUrl = 'https://dalam.web.id/img/'; // URL dasar untuk gambar
 // --- Logika Skrip ---
 const isDryRun = process.argv.includes('--dry-run');
 if (isDryRun) {
