@@ -10,7 +10,7 @@
   <meta name="description" content="Workflow GitHub Actions yang membalik alur: cek perubahan terlebih dulu di daftar file terizinkan, baru jalankan rsync dan deploy ke branch site. Dengan penjelasan santai, opsi logging, dan contoh YAML siap pakai.">
 
   <!-- Canonical & page metadata -->
-  <link rel="canonical" href="https://frijal.pages.dev/artikel/build-deploy-clean-branch.html">
+  <link rel="canonical" href="https://dalam.web.id/artikel/build-deploy-clean-branch.html">
   <meta name="author" content="Fakhrul">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#10131A">
@@ -24,8 +24,8 @@
   <meta property="og:title" content="⚠️ Build and Deploy to Clean Branch — Alur Dibalik + Cek Perubahan Sebelum rsync">
   <meta property="og:description" content="Balik alur deploy: bandingkan dulu isi daftar file yang diizinkan dengan branch site. Kalau ada perubahan, baru rsync + deploy.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://frijal.pages.dev/artikel/build-deploy-clean-branch.html">
-  <meta property="og:image" content="https://frijal.pages.dev/img/build-deploy-clean-branch.webp">
+  <meta property="og:url" content="https://dalam.web.id/artikel/build-deploy-clean-branch.html">
+  <meta property="og:image" content="https://dalam.web.id/img/build-deploy-clean-branch.webp">
   <meta property="og:site_name" content="Frijal Docs">
   <meta property="article:section" content="DevOps">
   <meta property="article:author" content="Fakhrul">
@@ -34,12 +34,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="⚠️ Build and Deploy to Clean Branch — Alur Dibalik + Cek Perubahan Sebelum rsync">
   <meta name="twitter:description" content="Bandingkan dulu, deploy kemudian. Workflow aman, bersih, dan efisien dengan rsync --dry-run.">
-  <meta name="twitter:image" content="https://frijal.pages.dev/img/build-deploy-clean-branch.webp">
+  <meta name="twitter:image" content="https://dalam.web.id/img/build-deploy-clean-branch.webp">
   <meta name="twitter:site" content="@frijal">
   <meta name="twitter:creator" content="@frijal">
 
   <!-- Structured data (JSON-LD) untuk SEO -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Build and Deploy to Clean Branch — Alur Dibalik + Cek Perubahan Sebelum rsync","description":"Workflow GitHub Actions yang membandingkan perubahan sebelum rsync dan deploy ke branch site, plus penjelasan dan YAML siap pakai.","author":{"@type":"Person","name":"Fakhrul","image":"https://frijal.pages.dev/img/build-deploy-clean-branch.webp"},"publisher":{"@type":"Organization","name":"Frijal Docs","logo":{"@type":"ImageObject","url":"https://frijal.pages.dev/icon.png","image":"https://frijal.pages.dev/img/build-deploy-clean-branch.webp"},"image":"https://frijal.pages.dev/img/build-deploy-clean-branch.webp"},"datePublished":"2025-10-22","dateModified":"2025-10-22","mainEntityOfPage":{"@type":"WebPage","@id":"https://frijal.pages.dev/artikel/build-deploy-clean-branch.html","image":"https://frijal.pages.dev/img/build-deploy-clean-branch.webp"},"image":"https://frijal.pages.dev/img/build-deploy-clean-branch.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Build and Deploy to Clean Branch — Alur Dibalik + Cek Perubahan Sebelum rsync","description":"Workflow GitHub Actions yang membandingkan perubahan sebelum rsync dan deploy ke branch site, plus penjelasan dan YAML siap pakai.","author":{"@type":"Person","name":"Fakhrul","image":"https://dalam.web.id/img/build-deploy-clean-branch.webp"},"publisher":{"@type":"Organization","name":"Frijal Docs","logo":{"@type":"ImageObject","url":"https://dalam.web.id/icon.png","image":"https://dalam.web.id/img/build-deploy-clean-branch.webp"},"image":"https://dalam.web.id/img/build-deploy-clean-branch.webp"},"datePublished":"2025-10-22","dateModified":"2025-10-22","mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/build-deploy-clean-branch.html","image":"https://dalam.web.id/img/build-deploy-clean-branch.webp"},"image":"https://dalam.web.id/img/build-deploy-clean-branch.webp"}</script>
 
   <!-- Widescreen + Mobile-friendly CSS -->
   <style>
@@ -265,8 +265,8 @@
     }
   </style>
 <meta property="og:image:alt" content="Build and Deploy to Clean Branch — Alur Dibalik + Cek Perubahan Sebelum rsync ⚠️">
-  <meta itemprop="image" content="https://frijal.pages.dev/img/build-deploy-clean-branch.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://frijal.pages.dev/rss.xml" />
+  <meta itemprop="image" content="https://dalam.web.id/img/build-deploy-clean-branch.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
     <meta property="article:published_time" content="2025-10-22T11:53:56.613+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
@@ -434,7 +434,7 @@ jobs:
       </section>
       <footer class="site">
                <div style="margin-top:10px;">
-          🄯 2025 Frijal Docs — Artikel DevOps. Canonical: <a href="https://frijal.pages.dev/artikel/build-deploy-clean-branch.html">frijal.pages.dev/artikel/build-deploy-clean-branch.html</a>
+          🄯 2025 Frijal Docs — Artikel DevOps. Canonical: <a href="https://dalam.web.id/artikel/build-deploy-clean-branch.html">dalam.web.id/artikel/build-deploy-clean-branch.html</a>
         </div>
       </footer>
     </main>
