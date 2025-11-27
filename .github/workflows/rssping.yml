@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: 🔔 Ping Feeds ke Ping-o-Matic
         run: |
-          BASE_URL="https://frijal.pages.dev"
-          BLOG_TITLE="Frijal Pages" # Ganti jika perlu
+          BASE_URL="https://dalam.web.id"
+          BLOG_TITLE="Layar Kosong" # Ganti jika perlu
           FEEDS=(
             "feed-catatan-and-opini-sosial.xml"
             "feed-kuliner-gaya-hidup-and-kesehatan.xml"
@@ -39,7 +39,7 @@ jobs:
 
       - name: 📍 Ping Sitemap & Main RSS ke Google & Bing
         run: |
-          BASE_URL="https://frijal.pages.dev"
+          BASE_URL="https://dalam.web.id"
           SITEMAP_URL="$BASE_URL/sitemap.xml"
           RSS_URL="$BASE_URL/rss.xml"        
           echo "--- Pinging Bing Yandex ---"
