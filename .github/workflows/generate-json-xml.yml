@@ -54,7 +54,7 @@ jobs:
       - name: '5. Generate Sitemap Rekursif & Tambahkan URL Statis'
         run: |
           echo "📝 Memulai pembuatan sitemap.txt yang lengkap dan rekursif..."
-          BASE_URL="https://frijal.pages.dev"
+          BASE_URL="https://dalam.web.id"
           SITEMAP_FILE="sitemap.txt"
           # 1. GUNAKAN FIND UNTUK ARTIKEL (Membuat file baru/overwrite menggunakan operator >)
           # Mencari semua file .html di artikel/ dan sub-direktori, hapus ekstensi (.html), tambahkan BASE_URL.
@@ -119,10 +119,10 @@ jobs:
         run: |
           echo "--- Summary ---"
           echo "✅ File yang seharusnya di-generate:"
-          echo "🔗 artikel.json: https://frijal.pages.dev/artikel.json"
-          echo "🔗 sitemap.xml : https://frijal.pages.dev/sitemap.xml"
-          echo "🔗 rss.xml     : https://frijal.pages.dev/rss.xml"
-          echo "🔗 sitemap.txt : https://frijal.pages.dev/sitemap.txt" # <-- DITAMBAHKAN DI SINI
+          echo "🔗 artikel.json: https://dalam.web.id/artikel.json"
+          echo "🔗 sitemap.xml : https://dalam.web.id/sitemap.xml"
+          echo "🔗 rss.xml     : https://dalam.web.id/rss.xml"
+          echo "🔗 sitemap.txt : https://dalam.web.id/sitemap.txt" # <-- DITAMBAHKAN DI SINI
           echo "📊 Jumlah konten saat ini:"
           COUNTHTML=$(ls artikel/*.html 2>/dev/null | wc -l || echo 0)
           echo "➡️  $COUNTHTML artikel (*.html) di folder artikel/"
