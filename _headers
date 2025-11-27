@@ -34,9 +34,9 @@
 /thumbnail.webp
   Cache-Control: public, max-age=604800, immutable
 
-/ext/*
-  Access-Control-Allow-Origin: *
-  Cache-Control: public, max-age=604800, immutable
+# /ext/*
+#  Access-Control-Allow-Origin: *
+#  Cache-Control: public, max-age=604800, immutable
 
 /site.webmanifest
   Content-Type: application/manifest+json
