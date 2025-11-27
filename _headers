@@ -126,3 +126,10 @@
 
 /.nojekyll
   X-Robots-Tag: noindex, nofollow
+
+/*
+  Content-Security-Policy: default-src 'self'; \
+    frame-src 'self' https://www.youtube.com; \
+    connect-src 'self' https://www.youtube.com; \
+    script-src 'self'; \
+    style-src 'self' 'unsafe-inline';
