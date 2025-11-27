@@ -1,7 +1,8 @@
-# robots.txt untuk frijal.pages.dev
-# Versi Sederhana
+# robots.txt untuk dalam.web.id
+# Versi Sederhana (Aturan spesifik yang diintegrasikan ke blok User-Agent: * utama)
 
-User-agent: *
+# User-Agent: * sudah didefinisikan di blok Cloudflare
+# Aturan ini diasumsikan diletakkan di bawah 'Allow: /' dari blok pertama.
 
 # 🚫 BLOKIR folder development, sistem, dan sementara
 Disallow: /artikelx/
@@ -28,6 +29,3 @@ Allow: /artikel.json
 
 # ✅ Tautan ke peta situs (WAJIB URL LENGKAP)
 Sitemap: https://dalam.web.id/sitemap.xml
-Allow: /sitemap.xml
-Sitemap: https://dalam.web.id/sitemap.txt
-Allow: /sitemap.txt
