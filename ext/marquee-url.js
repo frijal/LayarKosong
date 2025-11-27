@@ -158,7 +158,7 @@
         e.preventDefault();
         const q = input.value.trim();
         if (q.length >= 3) {
-          window.location.href = `https://frijal.pages.dev/search?q=${encodeURIComponent(q)}`;
+          window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
         }
       }
     });
@@ -166,7 +166,7 @@
     results.addEventListener('click', () => {
       const q = input.value.trim();
       if (q.length >= 3) {
-        window.location.href = `https://frijal.pages.dev/search?q=${encodeURIComponent(q)}`;
+        window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
       }
     });
 
@@ -211,9 +211,9 @@
     nav.innerHTML = `
       <div class="nav-left"><a id="category-link" class="category-link"></a></div>
       <div class="nav-right">
-        <a href="https://frijal.pages.dev" title="Home" class="btn-emoji">🏠</a>
-        <a href="https://frijal.pages.dev/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
-        <a href="https://frijal.pages.dev/feed.html" title="Update harian" class="btn-emoji">📡</a>
+        <a href="https://dalam.web.id" title="Home" class="btn-emoji">🏠</a>
+        <a href="https://dalam.web.id/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
+        <a href="https://dalam.web.id/feed.html" title="Update harian" class="btn-emoji">📡</a>
         <a id="next-article" class="btn-emoji">⏩</a>
         <a id="prev-article" class="btn-emoji">⏪</a>
       </div>`;
@@ -288,4 +288,3 @@
 
   document.addEventListener('DOMContentLoaded', initializeApp);
 })();
-
