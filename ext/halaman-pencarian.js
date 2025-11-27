@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canonicalLink.href = `${window.location.origin}${window.location.pathname}?q=${encodeURIComponent(query)}`;
     } else if (queryTextSpan) {
         queryTextSpan.textContent = '(Tidak ada kata kunci)';
-        document.title = `Pencarian | f-Page`;
+        document.title = `Pencarian di Layar Kosong`;
         canonicalLink.href = `${window.location.origin}${window.location.pathname}`;
     }
 
