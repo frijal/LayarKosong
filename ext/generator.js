@@ -16,8 +16,8 @@ const CONFIG = {
   masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
   jsonOut: path.join(__dirname, '..', 'artikel.json'),
   xmlOut: path.join(__dirname, '..', 'sitemap.xml'),
-  baseUrl: 'https://frijal.pages.dev',
-  defaultThumbnail: 'https://frijal.pages.dev/thumbnail.webp',
+  baseUrl: 'https://dalam.web.id',
+  defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
   xmlPriority: '0.6',
   xmlChangeFreq: 'monthly',
 };
