@@ -71,7 +71,7 @@ jobs:
           counts[all]=$(find $TARGETS -maxdepth 1 -type f | wc -l)
           
           # Membuat Laporan Teks
-          PREFIX_ARTIKEL="https://frijal.pages.dev/artikel/"
+          PREFIX_ARTIKEL="https://dalam.web.id/artikel/"
           mkdir -p "$(dirname "$REPORT_PATH")"
           {
             echo "LAPORAN KONTEN: artikel & img ($DATE)"
