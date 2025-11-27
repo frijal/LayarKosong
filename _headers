@@ -67,16 +67,11 @@
   Content-Type: application/xml
   Cache-Control: no-store, must-revalidate
 
-/sitemap.txt
-  X-Robots-Tag: index, follow
-  Content-Type: text/plain
-  Cache-Control: no-store, must-revalidate
-
 # 📜 Halaman HTML Utama (Cache Singkat: 1 Jam)
 # Termasuk: index.html, disclaimer.html, search.html, feed.html, sitemap.html, 404.html
 /index.html
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /disclaimer.html
   X-Robots-Tag: index, follow
@@ -88,11 +83,11 @@
 
 /feed.html
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /sitemap.html
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /404.html
   X-Robots-Tag: noindex
@@ -100,11 +95,11 @@
 
 /img.html
   X-Robots-Tag: noindex
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 /artikel
   X-Robots-Tag: index, follow
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=604800
 
 # 🤖 File Verifikasi & Teknis
 /robots.txt
@@ -112,11 +107,11 @@
   Cache-Control: public, max-age=3600
 
 /ads.txt
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=604800
   Content-Type: text/plain
 
 /Ads.txt
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=604800
   Content-Type: text/plain
 
 /BingSiteAuth.xml
