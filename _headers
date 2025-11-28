@@ -23,8 +23,41 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Seluruh media dari luar (Cloudflare Pages hanya terapkan untuk URL absolut)
-https://*/*
+https://blogger.googleusercontent.com/*
   Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.blogspot.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.googleusercontent.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://i.imgur.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.pinimg.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://img.youtube.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.ytimg.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.cdninstagram.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.fbcdn.net/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 
 # File tertentu — cache panjang
 /404.html
@@ -103,9 +136,10 @@ https://*/*
 
 /*.css
   Cache-Control: public, max-age=259200
-  
+  Access-Control-Allow-Origin: *  
 /*.js
   Cache-Control: public, max-age=259200
+  Access-Control-Allow-Origin: *
 
 /robots.txt
   Cache-Control: public, max-age=259200
