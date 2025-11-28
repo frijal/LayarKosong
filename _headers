@@ -28,20 +28,35 @@ https://*/*
 
 # File tertentu — cache panjang
 /404.html
+  Cache-Control: public, max-age=31536000, immutable
 /disclaimer.html
+  Cache-Control: public, max-age=31536000, immutable
 /favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
 /favicon.png
+  Cache-Control: public, max-age=31536000, immutable
 /favicon.svg
+  Cache-Control: public, max-age=31536000, immutable
 /feed.html
+  Cache-Control: public, max-age=31536000, immutable
 /icon.png
+  Cache-Control: public, max-age=31536000, immutable
 /img.html
+  Cache-Control: public, max-age=31536000, immutable
 /logo.png
+  Cache-Control: public, max-age=31536000, immutable
 /search.html
+  Cache-Control: public, max-age=31536000, immutable
 /sitemap.html
+  Cache-Control: public, max-age=31536000, immutable
 /site.webmanifest
+  Cache-Control: public, max-age=31536000, immutable
 /thumbnail.jpg
+  Cache-Control: public, max-age=31536000, immutable
 /thumbnail.png
+  Cache-Control: public, max-age=31536000, immutable
 /thumbnail.webp
+  Cache-Control: public, max-age=31536000, immutable
 /ads.txt
   Cache-Control: public, max-age=31536000, immutable
 /Ads.txt
@@ -80,15 +95,15 @@ https://*/*
 # CACHE SINGKAT
 # =========================================================
 
-/artikel
-/artikel/*
-  Cache-Control: public, max-age=3600       # 1 jam
+/artikel/-/*.html
+  Cache-Control: public, max-age=259200     # 3 hari
 
 /img/*
-  Cache-Control: public, max-age=259200	    # 3 hari
+  Cache-Control: public, max-age=259200	    
 
 /*.css
   Cache-Control: public, max-age=259200
+  
 /*.js
   Cache-Control: public, max-age=259200
 
