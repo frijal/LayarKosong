@@ -1,54 +1,207 @@
-# Global
+# =========================================================
+# GLOBAL SECURITY (berlaku untuk semua file)
+# =========================================================
 /*
-  X-Robots-Tag: all
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
 
-# Gambar & Asset Statis → Tetap cache kuat (AMAN)
-# (Ini boleh dan malah bagus untuk performa)
-/img/*
-  Access-Control-Allow-Origin: *
-  Cache-Control: public, max-age=604800, immutable
-/icon.png
-/logo.png
-/favicon.ico
-/favicon.png
-/favicon.svg
-/thumbnail.jpg
-/thumbnail.png
-/thumbnail.webp
-/ext/*
-/site.webmanifest
-  Cache-Control: public, max-age=604800, immutable
-
-# HALAMAN HTML → WAJIB NO-CACHE supaya AdSense lihat versi terbaru!
+# =========================================================
+# HTML & HALAMAN DINAMIS → WAJIB NO-CACHE
+# =========================================================
 /*.html
   Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /index.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /disclaimer.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /search.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /feed.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /sitemap.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /404.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: noindex, follow
+
 /img.html
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
 /artikel
   Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
 
-# File dinamis → Tetap no-store
+/artikel/*
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Robots-Tag: index, follow
+
+# =========================================================
+# GAMBAR BLOGGER & GOOGLEUSERCONTENT → CACHE 1 TAHUN
+# =========================================================
+https://blogger.googleusercontent.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.blogspot.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.googleusercontent.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# =========================================================
+# GAMBAR EKSTERNAL → CACHE 1 TAHUN
+# =========================================================
+https://i.imgur.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.pinimg.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://img.youtube.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.ytimg.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.cdninstagram.com/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+https://*.fbcdn.net/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# =========================================================
+# ASSET STATIS LOKAL → CACHE 1 TAHUN
+# =========================================================
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/ext/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/favicon.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/favicon.svg
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/icon.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/site.webmanifest
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/thumbnail.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/thumbnail.png
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/thumbnail.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# =========================================================
+# FONT, CSS, & JS → CACHE PANJANG
+# =========================================================
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.otf
+  Cache-Control: public, max-age=31536000, immutable
+
+# =========================================================
+# FILE DINAMIS → NO CACHE
+# =========================================================
 /artikel.json
+  Cache-Control: no-store, must-revalidate
+  Access-Control-Allow-Origin: *
+
 /rss.xml
+  Cache-Control: no-store, must-revalidate
+  Access-Control-Allow-Origin: *
+
 /feed-*.xml
+  Cache-Control: no-store, must-revalidate
+  Access-Control-Allow-Origin: *
+
 /sitemap.xml
   Cache-Control: no-store, must-revalidate
+  Access-Control-Allow-Origin: *
 
-# File teknis → Boleh cache
+# =========================================================
+# FILE TEKNIS → CACHE SEDANG
+# =========================================================
 /robots.txt
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=86400
+
 /ads.txt
+  Cache-Control: public, max-age=604800
+  Content-Type: text/plain
+
 /Ads.txt
   Cache-Control: public, max-age=604800
+  Content-Type: text/plain
+
 /google*.html
+  Cache-Control: public, max-age=3600
+
 /BingSiteAuth.xml
-/f8399d60e90d46a6945577b73ff3f778.txt
+  Cache-Control: public, max-age=3600
+
 /.nojekyll
   Cache-Control: public, max-age=3600
+
