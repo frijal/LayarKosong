@@ -1,7 +1,7 @@
 # robots.txt untuk dalam.web.id
 # Versi Sederhana (Aturan spesifik yang diintegrasikan ke blok User-Agent: * utama)
 
-# User-Agent: * sudah didefinisikan di blok Cloudflare
+User-Agent: *
 # Aturan ini diasumsikan diletakkan di bawah 'Allow: /' dari blok pertama.
 
 # 🚫 BLOKIR folder development, sistem, dan sementara
