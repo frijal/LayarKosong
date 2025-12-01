@@ -51,6 +51,7 @@ jobs:
               s|YOUR_FACEBOOK_APP_ID|1471267430691023|g;
               s|nama_twitter_anda|frijal|g;
               s|akun_twitter_kamu|frijal|g;
+              s|YourTwitterHandle|frijal|g;
               s|&copy;|🄯|g;
               s|©|🄯|g;
             ' "$file"
