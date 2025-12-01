@@ -108,7 +108,8 @@ https://*.fbcdn.net/*
 
 /index.html
   Cache-Control: public, max-age=604800     # 7 hari
-
+/img/*
+  Cache-Control: public, max-age=604800	 
 /ext/*
   Cache-Control: public, max-age=604800
 
@@ -123,27 +124,20 @@ https://*.fbcdn.net/*
 /*.otf
   Cache-Control: public, max-age=604800
 
-
 # =========================================================
 # CACHE SINGKAT
 # =========================================================
 
 /artikel/-/*.html
   Cache-Control: public, max-age=259200     # 3 hari
-
-/img/*
-  Cache-Control: public, max-age=259200	    
-
 /*.css
   Cache-Control: public, max-age=259200
   Access-Control-Allow-Origin: *  
 /*.js
   Cache-Control: public, max-age=259200
   Access-Control-Allow-Origin: *
-
 /robots.txt
   Cache-Control: public, max-age=259200
-
 
 # =========================================================
 # TIDAK DI-CACHE
