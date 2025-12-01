@@ -52,8 +52,7 @@ jobs:
               s|nama_twitter_anda|frijal|g;
               s|akun_twitter_kamu|frijal|g;
               s|YourTwitterHandle|frijal|g;
-              s|Font Awesome 6 Free|Font Awesome 7 Free|g;
-              Font Awesome 6 Free
+              s/font-family:\s*([\'"])Font Awesome 6 Free\1/font-family: $1Font Awesome 7 Free$1/g;
               s|&copy;|🄯|g;
               s|©|🄯|g;
             ' "$file"
