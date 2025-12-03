@@ -1,69 +1,99 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Struktur Organisasi YVCI</title>
-</head>
-  <body>
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/d3-org-chart@3.1.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.js"></script>
-<div
-      class="chart-container"
-      style="height: auto; background-color: #fffeff"
-    ></div>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Struktur Organisasi YVCI - Fixed Auto Width</title>
+  </head>
 
-    <script>
-      var chart;
-      d3.csv(
-        // Pastikan ini mengarah ke file CSV Anda yang valid
-        'https://dalam.web.id/ext/yvciorg/data.csv'
-      ).then((dataFlattened) => {
-        chart = new d3.OrgChart()
-          .container('.chart-container')
-          .data(dataFlattened)
-          .rootMargin(100)
-          .nodeWidth((d) => 380)
-          .nodeHeight((d) => 214) // Tinggi node disesuaikan karena baris berkurang
-          .childrenMargin((d) => 170)
-          .compactMarginBetween((d) => 75)
-          .compactMarginPair((d) => 80)
-          .linkUpdate(function (d, i, arr) {
-            d3.select(this)
-              .attr('stroke', (d) =>
-                d.data._upToTheRootHighlighted ? '#152785' : 'lightgray'
-              )
-              .attr('stroke-width', (d) =>
-                d.data._upToTheRootHighlighted ? 5 : 1.5
-              )
-              .attr('stroke-dasharray', '4,4');
+  <body>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-org-chart@3.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.js"></script>
+    <div
+      class="chart-container"
+      style="height: 100vh; background-color: #fffeff"
+    ></div>
 
-            if (d.data._upToTheRootHighlighted) {
-              d3.select(this).raise();
-            }
-          })
-          .nodeContent(function (d, i, arr, state) {
-            const colors = [
-              '#6E6B6F', '#18A8B6', '#F45754', '#96C62C', '#BD7E16', '#802F74',
-            ];
-            const color = colors[d.depth % colors.length];
-            const imageDim = 160;
-            const lightCircleDim = 160;
-            const outsideCircleDim = 160;
+    <script>
+      // 1. Fungsi Helper Pengukur Teks (Menggunakan Font Arial agar konsisten)
+      function getTextWidth(text, font) {
+          const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+          const context = canvas.getContext("2d");
+          context.font = font;
+          const metrics = context.measureText(text || "");
+          return metrics.width;
+      }
 
-            // Hitung offset yang diperlukan agar semua lingkaran dan gambar berada di tengah
-            const imageOffset = (outsideCircleDim - imageDim) / 2;
-            const lightCircleOffset = (outsideCircleDim - lightCircleDim) / 2;
-            const baseMarginTop = -outsideCircleDim / 2; // -55px
+      var chart;
+      d3.csv(
+        'https://dalam.web.id/ext/yvciorg/data.csv'
+      ).then((dataFlattened) => {
+        chart = new d3.OrgChart()
+          .container('.chart-container')
+          .data(dataFlattened)
+          .rootMargin(90)
 
-            const rowHeight = 28;
-            const smallRowHeight = 20;
+          // 2. LOGIKA LEBAR DINAMIS (DIPERBAIKI)
+          .nodeWidth((d) => {
+             // Font harus sama persis dengan style di .nodeContent
+             const fontTitle = "bold 16px Arial";
+             const fontNormal = "16px Arial";
+             const fontSmall = "12px Arial";
+
+             // 1. Ukur Position (Jabatan)
+             const wPosition = getTextWidth(d.data.positionName, fontTitle);
+
+             // 2. Ukur baris Nama + ID
+             // Kita tambah extra 40px untuk jarak antar nama dan ID
+             const wNameRow = getTextWidth(d.data.name, fontNormal) + getTextWidth(d.data.id, fontNormal) + 10;
+
+             // 3. Ukur baris Chapter + Regional
+             const wFooter = getTextWidth("Chapter: " + d.data.chapter, fontSmall) + getTextWidth("Regional: " + d.data.regional, fontSmall) + 30;
+
+             // Cari yang terpanjang
+             const maxContent = Math.max(wPosition, wNameRow, wFooter);
+
+             // Tambahkan Safety Buffer 80px (agar tidak mepet kanan kiri)
+             const finalWidth = maxContent + 6;
+
+             // Batas minimal 320px (karena gambar Anda besar: 160px)
+             // Jika terlalu sempit, gambar akan terlihat aneh
+             return Math.max(320, finalWidth);
+          })
+
+          .nodeHeight((d) => 189)
+          .childrenMargin((d) => 100)
+          .compactMarginBetween((d) => 95)
+          .compactMarginPair((d) => 20)
+          .linkUpdate(function (d, i, arr) {
+            d3.select(this)
+              .attr('stroke', (d) => d.data._upToTheRootHighlighted ? '#152785' : 'lightgray')
+              .attr('stroke-width', (d) => d.data._upToTheRootHighlighted ? 5 : 1.5)
+              .attr('stroke-dasharray', '4,4');
+            if (d.data._upToTheRootHighlighted) {
+              d3.select(this).raise();
+            }
+          })
+          .nodeContent(function (d, i, arr, state) {
+            const colors = ['#6E6B6F', '#18A8B6', '#F45754', '#96C62C', '#BD7E16', '#802F74'];
+            const color = colors[d.depth % colors.length];
+
+            // Ukuran Gambar (Besar)
+            const imageDim = 160;
+            const outsideCircleDim = 160;
+            const lightCircleDim = 160; // Sedikit lebih kecil agar border terlihat
+
+            const imageOffset = (outsideCircleDim - imageDim) / 2;
+            const lightCircleOffset = (outsideCircleDim - lightCircleDim) / 2;
+            const baseMarginTop = -outsideCircleDim / 2; // Naik ke atas setengah lingkaran
+
+            const rowHeight = 28;
+            const smallRowHeight = 20;
+
+            // Gambar Validasi
+            const imageUrl = (d.data.imageUrl && d.data.imageUrl.trim() !== '') ? d.data.imageUrl : '';
 
             let imageContent = '';
-            const imageUrl = d.data.imageUrl;
-
-            if (imageUrl && imageUrl.trim() !== '') {
+            if (imageUrl) {
                  imageContent = `
                     <div style="background-color:${color};position:absolute;
                         margin-top:${baseMarginTop}px;
@@ -85,44 +115,73 @@
                  `;
             }
 
-            return `
-                <div style="background-color:white; position:absolute;width:${
-                  d.width
-                }px;height:${d.height}px;">
+            return `
+                <div style="background-color:white; position:absolute;width:${d.width}px;height:${d.height}px; font-family: Arial, sans-serif;">
 
-                    ${imageContent}                                         <div class="card" style="top:${
-                     outsideCircleDim / 2 + 10
-                   }px;position:absolute;width:${d.width}px; background-color:#3AB6E3;">
+                    ${imageContent}
 
-                        <div style="background-color:${color};height:${rowHeight}px;text-align:center;padding-top:10px;color:#ffffff;font-weight:bold;font-size:16px">
+                    <div class="card" style="top:${outsideCircleDim / 2 + 10}px; position:absolute; width:${d.width}px; background-color:#3AB6E3;">
+
+                        <div style="background-color:${color}; height:${rowHeight}px; text-align:center; padding-top:10px; color:#ffffff; font-weight:bold; font-size:16px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">
                             ${d.data.positionName}
                         </div>
 
-                        <div style="background-color:#f6f5f4; height:auto; padding: 5px 10px; color:#424142; font-size:16px; font-weight:bold; overflow: hidden; white-space: nowrap;">
-    <div style="float: right; text-align: left; color:#424142;">
-        ${d.data.id}
-    </div>
-    <div style="text-align: left; color: #18A8B6;">
+                       <div style="background-color:#f6f5f4;
+            padding: 8px 10px;
+            color:#424142;
+            font-size:16px;
+            font-weight:bold;
+            line-height: 1.2;
+            display: flex;
+            /* PERUBAHAN: Membuat konten berada di tengah */
+            justify-content: center;
+            align-items: center;
+            ">
+
+    <div style="color: #18A8B6;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                /* PERUBAHAN: Menghilangkan flex-grow: 1, hanya selebar konten */
+                flex-grow: 0;
+                /* Padding dihilangkan, diganti margin agar tersambung */
+                margin-right: 5px;
+                text-align: right;
+                ">
         ${d.data.name}
+    </div>
+
+    <div style="color:#424142;
+                text-align: left;
+                flex-shrink: 0;
+                margin-left: 5px;
+                ">
+        ${d.data.id}
     </div>
 </div>
 
-                        <div style="display: flex; background-color:#D3D3D3;height:${smallRowHeight}px; padding-top:5px; color:#424142; font-size:12px;">
-                            <div style="width: 50%; text-align: right; padding-right: 5px;">
-                                Chapter: ${d.data.chapter}
-                            </div>
-                            <div style="width: 50%; text-align: left; padding-left: 5px;">
-                                Regional: ${d.data.regional}
-                            </div>
-                        </div>
+                        <div style="display: flex;
+            background-color:#D3D3D3;
+            height:${smallRowHeight}px;
+            color:#424142;
+            font-size:12px;
+            /* Flexbox untuk Rata Tengah */
+            justify-content: center; /* Rata tengah horizontal */
+            align-items: center;    /* Rata tengah vertikal */
+            padding: 0 10px;        /* Padding agar tidak terlalu mepet, padding-top diganti padding */
+            ">
+    <div>
+        ${d.data.chapter} - ${d.data.regional}
+    </div>
+</div>
+                                                   </div>
 
-                   </div>
-               </div>
-          `;
-          })
-           .render();
-      });
-    </script>
-  </body>
-
+                    </div>
+                </div>
+            `;
+          })
+          .render();
+      });
+    </script>
+  </body>
 </html>
