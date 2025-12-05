@@ -104,7 +104,7 @@
 
         // Muat script IntenseDebate
         const s = document.createElement('script');
-        s.src = `https://www.intensedebate.com/js/genericCommentWrapperV3.js`;
+        s.src = `https://www.intensedebate.com/js/genericCommentWrapperV2.js`;
         s.setAttribute('data-timestamp', +new Date());
         (document.head || document.body).appendChild(s);
 
