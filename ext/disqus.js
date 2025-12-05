@@ -5,7 +5,8 @@
   e.style.display="none";
 
   const b=d.createElement("button");
-  b.style.cssText="padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background:none;cursor:pointer;margin-bottom:12px";
+b.style.cssText = "padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background-color:white;cursor:pointer;margin-bottom:12px";
+b.title = "Tombol Komentar";
 
   const c=d.createElement("span");
   c.className="disqus-comment-count";
