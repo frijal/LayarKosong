@@ -1,18 +1,18 @@
 /* =======================================================
-   IntenseDebate Ultimate Loader for <div id="comments">
-   Fitur:
-   - Lazy load ketika terlihat
+   IntenseDebate Ultimate Loader - Classic Compatible
+   (Tanpa auto id/post_url, 100% seperti script asli)
+   - Lazy load
    - Skeleton loading
-   - Dark / Light mode otomatis
-   - Fallback error + tombol Retry
-   - Auto post_id & post_url
+   - Dark/Light mode
+   - Error fallback
    ======================================================= */
 
-window.idcomments_acct = "23216ee06306d52db2925fa891e29ba3"; // ganti jika perlu
-window.idcomments_post_url = location.href;
-window.idcomments_post_id = btoa(location.pathname); // auto id unik dari URL
+// === Variabel original (WAJIB) ===
+var idcomments_acct = "23216ee06306d52db2925fa891e29ba3";
+var idcomments_post_id;
+var idcomments_post_url;
 
-// Loader eksternal JS
+// === Helper load script eksternal ===
 function loadScript(src) {
     return new Promise((resolve, reject) => {
         const s = document.createElement("script");
@@ -24,7 +24,7 @@ function loadScript(src) {
     });
 }
 
-// Skeleton loading
+// === Skeleton Loading ===
 function showSkeleton(el) {
     el.innerHTML = `
         <div id="id-skeleton" style="
@@ -48,8 +48,8 @@ function showSkeleton(el) {
     `;
 }
 
-// Fallback error
-function showError(el, retryFunction) {
+// === Error fallback ===
+function showError(el, retryFn) {
     el.innerHTML = `
         <div style="
             padding:15px;
@@ -59,7 +59,7 @@ function showError(el, retryFunction) {
             color:#a10000;
         ">
             ⚠ Komentar gagal dimuat.<br>
-            <button id="retry-comments" style="
+            <button id="retry-btn" style="
                 margin-top:10px;
                 padding:8px 12px;
                 background:#b10000;
@@ -71,56 +71,60 @@ function showError(el, retryFunction) {
         </div>
     `;
 
-    document.getElementById("retry-comments").onclick = retryFunction;
+    document.getElementById("retry-btn").onclick = retryFn;
 }
 
-// Dark/light mode otomatis
-function applyColorMode() {
+// === Dark/Light Mode ===
+function applyTheme() {
     const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.style.setProperty("--id-bg", dark ? "#333" : "#f2f2f2");
+    document.documentElement.style.setProperty(
+        "--id-bg",
+        dark ? "#333" : "#f2f2f2"
+    );
 }
 
-// MAIN
-async function initIntenseDebateComments() {
-    applyColorMode();
+// === MAIN LOADER ===
+async function loadIntenseDebate() {
+    applyTheme();
 
     const box = document.getElementById("comments");
     if (!box) return;
 
-    // Set skeleton loading
+    // Skeleton dulu
     showSkeleton(box);
 
-    // Tambahkan elemen wajib IntenseDebate
-    const titleSpan = document.createElement("span");
-    titleSpan.id = "IDCommentsPostTitle";
-    titleSpan.style.display = "none";
-    box.appendChild(titleSpan);
+    // Tambahkan <span> wajib IntenseDebate
+    const span = document.createElement("span");
+    span.id = "IDCommentsPostTitle";
+    span.style.display = "none";
+    box.appendChild(span);
 
-    // Lazy load saat terlihat
+    // Lazy load
     const observer = new IntersectionObserver(async (entries, obs) => {
         if (!entries[0].isIntersecting) return;
-
         obs.disconnect();
 
-        async function loadComments() {
+        async function startLoad() {
             try {
+                // === LOAD SCRIPT ASLI INTENSEDEBATE ===
                 await loadScript("https://www.intensedebate.com/js/genericCommentWrapperV2.js");
                 await loadScript("https://www.intensedebate.com/js/genericLinkWrapperV2.js");
 
-                // Hapus skeleton setelah loaded
+                // Hapus skeleton
                 const sk = document.getElementById("id-skeleton");
                 if (sk) sk.remove();
+
             } catch (err) {
-                console.error("IntenseDebate Error:", err);
-                showError(box, loadComments);
+                console.error("IntenseDebate error:", err);
+                showError(box, startLoad);
             }
         }
 
-        loadComments();
+        startLoad();
     });
 
     observer.observe(box);
 }
 
-initIntenseDebateComments();
+loadIntenseDebate();
 
