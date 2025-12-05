@@ -1,10 +1,12 @@
-// disqus.js
-(function() {
-  // Sisipkan CSS ke dalam <head>
+// disqus.js — versi eksternal final
+(function () {
+
+  /* ------------------------------------------------------------
+     1. Tambahkan CSS custom untuk tombol Disqus (aman & isolated)
+  ------------------------------------------------------------ */
   const style = document.createElement('style');
   style.textContent = `
     :root {
-      /* Light mode defaults */
       --warna-teks-tombol: #222;
       --warna-bg-tombol: #f5f5f5;
       --warna-border-tombol: #ccc;
@@ -12,7 +14,6 @@
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        /* Dark mode overrides */
         --warna-teks-tombol: #eee;
         --warna-bg-tombol: #333;
         --warna-border-tombol: #555;
@@ -24,80 +25,91 @@
       border: 1px solid var(--warna-border-tombol);
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 4px;
       color: var(--warna-teks-tombol);
-      font-size: inherit;
-      line-height: 1;
-      padding: 6px 10px;
+      font-size: 15px;
+      padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color .25s ease;
+      user-select: none;
+      margin-bottom: 12px;
     }
     .tombol-tanggapan:hover {
       background-color: var(--warna-hover-tombol);
     }
-    .jumlah-tanggapan {
-      margin-left: 4px;
-      font-weight: 500;
-    }
   `;
   document.head.appendChild(style);
 
-  // Buat tombol komentar
+
+  /* ------------------------------------------------------------
+     2. Cari elemen #disqus_thread (wajib)
+  ------------------------------------------------------------ */
+  const disqusDiv = document.getElementById('disqus_thread');
+  if (!disqusDiv) return;
+
+  disqusDiv.style.display = 'none';
+
+
+  /* ------------------------------------------------------------
+     3. Buat tombol komentar + counter
+  ------------------------------------------------------------ */
   const btn = document.createElement('button');
   btn.className = 'tombol-tanggapan';
-  btn.innerHTML = '💬&nbsp;';
+  btn.innerHTML = `💬`;
 
-  // Span untuk hitungan komentar
   const countSpan = document.createElement('span');
   countSpan.className = 'jumlah-tanggapan disqus-comment-count';
-  countSpan.dataset.disqusIdentifier = window.location.pathname;
+  countSpan.dataset.disqusIdentifier = location.pathname;
+
   btn.appendChild(countSpan);
 
-  // Sisipkan tombol sebelum kolom komentar
-  const disqusDiv = document.getElementById('disqus_thread');
-  if (disqusDiv) {
-    disqusDiv.style.display = 'none';
-    disqusDiv.parentNode.insertBefore(btn, disqusDiv);
+  // Sisipkan tombol sebelum Disqus
+  disqusDiv.parentNode.insertBefore(btn, disqusDiv);
+
+
+  /* ------------------------------------------------------------
+     4. Lazy-load count.js (tidak mengganggu render utama)
+  ------------------------------------------------------------ */
+  function loadCountScript() {
+    const sc = document.createElement('script');
+    sc.src = 'https://layarkosong.disqus.com/count.js';
+    sc.id = 'dsq-count-scr';
+    sc.async = true;
+    document.head.appendChild(sc);
   }
 
-  // Muat count.js saat idle (optimisasi)
-  function loadCountScript() {
-    const countScript = document.createElement('script');
-    countScript.src = 'https://layarkosong.disqus.com/count.js';
-    countScript.id = 'dsq-count-scr';
-    countScript.async = true;
-    document.head.appendChild(countScript);
-  }
   if ('requestIdleCallback' in window) {
     requestIdleCallback(loadCountScript);
   } else {
     setTimeout(loadCountScript, 200);
   }
 
-  // Fungsi untuk memuat embed Disqus saat tombol diklik
+
+  /* ------------------------------------------------------------
+     5. Load Disqus embed saat tombol ditekan
+  ------------------------------------------------------------ */
   let disqusLoaded = false;
+
   function loadDisqus() {
     if (disqusLoaded) return;
     disqusLoaded = true;
 
     window.disqus_config = function () {
-      this.page.url = window.location.href;
-      this.page.identifier = window.location.pathname;
+      this.page.url = location.href;
+      this.page.identifier = location.pathname;
     };
 
-    // Tampilkan langsung tanpa animasi
     disqusDiv.style.display = 'block';
 
-    // Muat embed.js
     const s = document.createElement('script');
     s.src = 'https://layarkosong.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (document.head || document.body).appendChild(s);
+    s.setAttribute('data-timestamp', Date.now());
+    (document.body || document.head).appendChild(s);
 
-    // Hilangkan tombol langsung tanpa animasi
     btn.remove();
   }
 
   btn.addEventListener('click', loadDisqus);
+
 })();
