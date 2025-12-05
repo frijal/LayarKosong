@@ -93,7 +93,7 @@
     function loadCountScript() {
         // Atur variabel global IntenseDebate untuk hitungan komentar
         window.idcomments_acct = ID_ACCT;
-        window.idcomments_post_id = ID_POST_ID;
+window.idcomments_post_id = ID_POST_ID.replace(/\//g, '_'); // <--- PENTING
         window.idcomments_post_url = ID_POST_URL;
         
         // Muat script resmi untuk hitungan komentar
