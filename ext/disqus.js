@@ -1,12 +1,20 @@
-// intensedebate.js (Versi modifikasi)
-(function() {
-    // ID akun IntenseDebate Anda
-    const INTENSEDEBATE_ACCOUNT = '4ec6353c15b32bc16bbd904daf2b11ca';
+// intensedebate_official_script.js
 
-    // ID elemen kontainer IntenseDebate
-    const ID_KONTEN_KOMENTAR = 'IDComments'; // IntenseDebate menggunakan ID ini secara default
+(function() {
+    // --- 1. Variabel Konfigurasi dari IntenseDebate ---
+    // ID Akun Intensedebate Anda
+    const ID_ACCT = '4ec6353c15b32bc16bbd904daf2b11ca';
     
-    // --- Langkah 1: Sisipkan CSS Tombol (Sama seperti sebelumnya) ---
+    // Variabel post ID dan URL IntenseDebate diatur ke nilai halaman saat ini
+    const ID_POST_URL = window.location.href;
+    const ID_POST_ID = window.location.pathname; 
+
+    // ID elemen kontainer IntenseDebate (IDComments adalah default)
+    const ID_KONTEN_KOMENTAR = 'IDComments'; 
+    // Catatan: Anda juga memiliki span id="IDCommentsPostTitle" di HTML Anda (disembunyikan oleh ID), 
+    // yang akan digunakan secara otomatis oleh skrip ID saat dimuat.
+
+    // --- 2. Sisipkan CSS Tombol (Tidak Berubah) ---
     const style = document.createElement('style');
     style.textContent = `
         :root {
@@ -46,71 +54,86 @@
             margin-left: 4px;
             font-weight: 500;
         }
+        .id_comment_link {
+            text-decoration: none;
+            color: inherit;
+        }
     `;
     document.head.appendChild(style);
 
-    // --- Langkah 2: Buat Tombol Komentar ---
+    // --- 3. Buat Tombol dan Kontainer Hitungan ---
+    // Di HTML Anda, pastikan Anda memiliki: <div id="IDComments">...</div>
+    const intenseDebateDiv = document.getElementById(ID_KONTEN_KOMENTAR);
+    if (!intenseDebateDiv) return;
+
+    // Sembunyikan kontainer IntenseDebate
+    intenseDebateDiv.style.display = 'none';
+
+    // Buat Tombol Komentar Utama
     const btn = document.createElement('button');
     btn.className = 'tombol-tanggapan';
     btn.innerHTML = '💬&nbsp;';
-
-    // Span untuk hitungan komentar
+    
+    // Kontainer Hitungan menggunakan IDCommentsLink agar dibaca oleh genericLinkWrapperV2.js
+    const countLink = document.createElement('a');
+    countLink.className = 'id_comment_link';
+    countLink.id = 'IDCommentsLink'; 
+    countLink.href = 'javascript:void(0);'; 
+    
     const countSpan = document.createElement('span');
     countSpan.className = 'jumlah-tanggapan';
-    // Catatan: IntenseDebate tidak menggunakan class 'disqus-comment-count',
-    // dan menghitung komentar biasanya dilakukan oleh script utamanya,
-    // atau memerlukan penyesuaian khusus jika menggunakan skema lazy load.
-    // Untuk saat ini, kita akan biarkan kosong.
-    btn.appendChild(countSpan);
+    countSpan.textContent = 'Tanggapan'; 
+    countLink.appendChild(countSpan);
+    
+    btn.appendChild(countLink);
+    intenseDebateDiv.parentNode.insertBefore(btn, intenseDebateDiv);
 
-    // Sisipkan tombol sebelum kolom komentar (Ganti disqus_thread menjadi IDComments)
-    const intenseDebateDiv = document.getElementById(ID_KONTEN_KOMENTAR);
-    if (intenseDebateDiv) {
-        // Sembunyikan kontainer IntenseDebate
-        intenseDebateDiv.style.display = 'none';
-        intenseDebateDiv.parentNode.insertBefore(btn, intenseDebateDiv);
+
+    // --- 4. Muat Skrip Hitungan (Link Wrapper) saat Idle ---
+    function loadCountScript() {
+        // Atur variabel global IntenseDebate untuk hitungan komentar
+        window.idcomments_acct = ID_ACCT;
+        window.idcomments_post_id = ID_POST_ID;
+        window.idcomments_post_url = ID_POST_URL;
+        
+        // Muat script resmi untuk hitungan komentar
+        const countScript = document.createElement('script');
+        countScript.src = 'https://www.intensedebate.com/js/genericLinkWrapperV2.js';
+        countScript.type = 'text/javascript';
+        countScript.async = true;
+        document.head.appendChild(countScript);
+    }
+    
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadCountScript);
     } else {
-        // Keluar jika kontainer utama tidak ditemukan
-        return;
+        setTimeout(loadCountScript, 200);
     }
 
-    // --- Langkah 3: Muat Skrip Hitungan (Count Script) ---
-    // IntenseDebate biasanya memuat script utamanya untuk menghitung komentar
-    // jika Anda menggunakannya di luar skema lazy load. Karena kita lazy load,
-    // bagian hitungan mungkin tidak berfungsi secara optimal tanpa modifikasi
-    // pada skrip bawaan IntenseDebate. Untuk sementara, kita skip bagian 'count.js' 
-    // dan langsung fokus ke pemuatan utama.
-
-    // --- Langkah 4: Fungsi untuk memuat IntenseDebate saat tombol diklik ---
+    // --- 5. Fungsi untuk memuat Embed Komentar saat tombol diklik ---
     let intenseDebateLoaded = false;
-    function loadIntenseDebate() {
+    function loadIntenseDebateEmbed() {
         if (intenseDebateLoaded) return;
         intenseDebateLoaded = true;
 
-        // **PENTING: Variabel Konfigurasi IntenseDebate**
-        // IntenseDebate menggunakan variabel global berbeda dari Disqus.
-        // Konfigurasi IntenseDebate biasanya diatur melalui objek global IDComments.
-        window.IDComments = {
-            // URL Halaman (Opsional, IntenseDebate biasanya mendeteksi secara otomatis)
-            page_url: window.location.href, 
-            // ID Akun Wajib
-            account: INTENSEDEBATE_ACCOUNT,
-            // ID Kontainer Komentar
-            code: ID_KONTEN_KOMENTAR, 
-        };
-        
         // Tampilkan kontainer
         intenseDebateDiv.style.display = 'block';
-
-        // Muat script IntenseDebate
+        
+        // Atur variabel global IntenseDebate untuk konten embed
+        window.idcomments_acct = ID_ACCT;
+        window.idcomments_post_id = ID_POST_ID;
+        window.idcomments_post_url = ID_POST_URL;
+        
+        // Muat script resmi untuk konten komentar
         const s = document.createElement('script');
-        s.src = `https://www.intensedebate.com/js/genericCommentWrapperV2.js`;
+        s.src = 'https://www.intensedebate.com/js/genericCommentWrapperV2.js'; 
+        
         s.setAttribute('data-timestamp', +new Date());
         (document.head || document.body).appendChild(s);
 
-        // Hilangkan tombol
+        // Hilangkan tombol setelah dimuat
         btn.remove();
     }
 
-    btn.addEventListener('click', loadIntenseDebate);
+    btn.addEventListener('click', loadIntenseDebateEmbed);
 })();
