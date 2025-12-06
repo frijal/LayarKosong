@@ -1,2 +1,128 @@
-const FB_APP_ID="700179713164663",COMMENT_URL=window.location.href,NUM_POSTS=5,el=(e,t={})=>{const n=document.createElement(e);for(let e in t)n.setAttribute(e,t[e]);return n};function renderFBWrapper(e){const t=el("button",{id:"fb-toggle-btn",style:"padding:6px 12px;margin:8px 0;background:#e4e6eb;border:0;border-radius:6px;cursor:pointer;font-size:14px;"});t.textContent="Sembunyikan Komentar";const n=el("div",{id:"fb-comments-box",style:"transition:height .3s ease;"}),o=el("iframe",{sandbox:"allow-scripts allow-same-origin",loading:"lazy",style:"display:none;"});o.srcdoc='<style>body{margin:0;padding:0;overflow:hidden}</style><script>new Image().src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/ogTVu1Sc3Z-.png";<\/script>',e.append(t,n,o),t.onclick=()=>{"none"===n.style.display?(n.style.display="block",t.textContent="Sembunyikan Komentar"):(n.style.display="none",t.textContent="Tampilkan Komentar")}}function loadFBSDK(){return new Promise(e=>{if(window.FB)return e();const t=document.createElement("script");t.async=!0,t.defer=!0,t.crossOrigin="anonymous",t.src=`https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=${FB_APP_ID}`,t.onload=e,document.body.appendChild(t)})}function renderComments(){const e=document.getElementById("fb-comments-box");e.innerHTML=`<div class="fb-comments" data-href="${COMMENT_URL}" data-width="100%" data-numposts="${NUM_POSTS}"></div><div style="margin-top:6px;font-size:14px;color:#555;"><span class="fb-comments-count" data-href="${COMMENT_URL}"></span> komentar</div>`,window.FB&&FB.XFBML.parse(e)}function initObserver(){const e=document.getElementById("comment");if(!e)return;renderFBWrapper(e);const t=new IntersectionObserver(async t=>{t[0].isIntersecting&&(t.disconnect(),await loadFBSDK(),renderComments())});t.observe(e)}document.addEventListener("DOMContentLoaded",initObserver);
+(function () {
+  const d = document, w = window;
 
+  const container = d.getElementById("comment");
+  if (!container) return;
+
+  /* -----------------------------------------
+     2. INITIAL HTML (hidden FB + collapse btn)
+  ------------------------------------------ */
+  container.innerHTML = `
+    <div id="fb-root"></div>
+
+    <div id="fb-thread" style="display:none; margin-bottom:12px;"></div>
+
+    <button id="fb-collapse-btn"
+      style="
+        display:none;
+        padding:6px 12px;
+        font-size:14px;
+        border:1px solid #ccc;
+        border-radius:6px;
+        background:white;
+        cursor:pointer;
+        margin-bottom:10px;
+      ">
+      Hide Comments ▲
+    </button>
+  `;
+
+  const thread = d.getElementById("fb-thread");
+  const collapseBtn = d.getElementById("fb-collapse-btn");
+
+
+  /* -----------------------------------------
+     3. LAZY FADE-IN AVATAR (iframe)
+  ------------------------------------------ */
+  const avatarCSS = d.createElement("style");
+  avatarCSS.textContent = `
+    #fb-thread iframe {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #fb-thread iframe.fb-loaded {
+      opacity: 1;
+    }
+  `;
+  d.head.appendChild(avatarCSS);
+
+
+  /* -----------------------------------------
+     4. LOAD FACEBOOK SDK
+  ------------------------------------------ */
+  function loadFacebookSDK(callback) {
+    const sdk = d.createElement("script");
+    sdk.async = true;
+    sdk.defer = true;
+    sdk.crossOrigin = "anonymous";
+    sdk.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=700179713164663";
+
+    sdk.onload = () => callback && callback();
+    d.body.appendChild(sdk);
+  }
+
+
+  /* -----------------------------------------
+     5. LOAD COMMENTS WHEN IN VIEWPORT
+  ------------------------------------------ */
+  function loadComments() {
+    if (thread.dataset.loaded) return;
+    thread.dataset.loaded = "1";
+
+    thread.style.display = "block";
+
+    thread.innerHTML = `
+      <div class="fb-comments"
+        data-href="${location.href}"
+        data-width="100%"
+        data-numposts="5"
+        data-lazy="true">
+      </div>
+    `;
+
+    loadFacebookSDK(() => {
+      collapseBtn.style.display = "inline-block";
+
+      const iframeCheck = setInterval(() => {
+        const fbIframe = thread.querySelector("iframe");
+        if (fbIframe) {
+          fbIframe.classList.add("fb-loaded");
+          clearInterval(iframeCheck);
+        }
+      }, 300);
+    });
+  }
+
+
+  /* -----------------------------------------
+     6. COLLAPSE BUTTON
+  ------------------------------------------ */
+  collapseBtn.onclick = function () {
+    if (thread.style.display === "none") {
+      thread.style.display = "block";
+      collapseBtn.innerHTML = "Hide Comments ▲";
+    } else {
+      thread.style.display = "none";
+      collapseBtn.innerHTML = "Show Comments ▼";
+    }
+  };
+
+
+  /* -----------------------------------------
+     7. INTERSECTION OBSERVER
+  ------------------------------------------ */
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadComments();
+          observer.disconnect();
+        }
+      });
+    },
+    { rootMargin: "180px" }
+  );
+
+  observer.observe(container);
+
+})();
