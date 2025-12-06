@@ -1,68 +1,59 @@
 (function () {
   const d = document;
+  const container = d.getElementById("pesbuk");
+  if (!container) return;
 
-  /* --------------------------------------------------
-     Target widget container
-  -------------------------------------------------- */
-  const box = d.getElementById("pesbuk");
-  if (!box) return;
-
-  /* --------------------------------------------------
-     Create fb-root automatically (only once)
-  -------------------------------------------------- */
+  // Create fb-root only once
   if (!d.getElementById("fb-root")) {
     const fbroot = d.createElement("div");
     fbroot.id = "fb-root";
     d.body.prepend(fbroot);
   }
 
-  /* --------------------------------------------------
-     Auto-detect URL from data-href or location.href
-  -------------------------------------------------- */
-  const url = box.dataset.href || location.href;
+  // Auto-detect URL
+  const url = container.dataset.href || location.href;
 
-  /* --------------------------------------------------
-     Fill LIKE + COMMENT widgets automatically
-  -------------------------------------------------- */
-  box.innerHTML = `
-    <!-- LIKE BUTTON -->
-    <div class="fb-like"
-         data-href="${url}"
-         data-layout="standard"
-         data-share="true"
-         style="margin-bottom:16px;">
-    </div>
-
-    <!-- COMMENT BOX -->
-    <div class="fb-comments"
-         data-href="${url}"
-         data-width="100%"
-         data-numposts="5">
-    </div>
+  // Hide container initially
+  container.innerHTML = `
+    <button id="fb-show-btn" style="
+      padding:6px 10px; font-size:14px;
+      border:1px solid #ccc; border-radius:6px;
+      background:white; cursor:pointer; margin-bottom:12px;
+    ">
+      Tampilkan Komentar Facebook
+    </button>
+    <div id="fb-comments-box" style="display:none;"></div>
   `;
 
-  /* --------------------------------------------------
-     Load Facebook SDK (only once)
-  -------------------------------------------------- */
-  function loadSDK() {
-    if (window.FB && FB.XFBML) {
-      FB.XFBML.parse(box);
-      return;
-    }
+  const btn = d.getElementById("fb-show-btn");
+  const box = d.getElementById("fb-comments-box");
 
+  function loadSDK(callback) {
+    if (window.FB && FB.XFBML) return callback && callback();
     const s = d.createElement("script");
     s.async = true;
     s.defer = true;
     s.crossOrigin = "anonymous";
-    s.src =
-      "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=700179713164663";
-
-    s.onload = () => {
-      if (window.FB && FB.XFBML) FB.XFBML.parse(box);
-    };
-
+    s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=700179713164663";
+    s.onload = () => callback && callback();
     d.body.appendChild(s);
   }
 
-  loadSDK();
+  btn.onclick = function () {
+    btn.style.display = "none"; // hide button
+    box.style.display = "block";
+
+    box.innerHTML = `
+      <div class="fb-comments"
+           data-href="${url}"
+           data-width="100%"
+           data-numposts="5">
+      </div>
+    `;
+
+    loadSDK(() => {
+      if (window.FB && FB.XFBML) FB.XFBML.parse(box);
+    });
+  };
 })();
+
