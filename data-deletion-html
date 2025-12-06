@@ -1,9 +1,189 @@
-Data Deletion Instructions
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Instruksi Penghapusan Data / Data Deletion — dalam.web.id</title>
+  <meta name="description" content="Instruksi bagaimana pengguna dapat meminta penghapusan data yang berhubungan dengan layanan di dalam.web.id — tersedia dalam bahasa Indonesia dan English.">
+  <link rel="canonical" href="https://dalam.web.id/data-deletion">
+  <meta name="robots" content="index,follow">
+  <style>
+    :root{--bg:#ffffff;--text:#111827;--muted:#6b7280;--accent:#0b74da}
+    @media (prefers-color-scheme:dark){:root{--bg:#0b1220;--text:#e6eef8;--muted:#9aa6b2}}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.6;margin:0;background:var(--bg);color:var(--text);padding:28px}
+    .container{max-width:900px;margin:0 auto}
+    header{display:flex;align-items:center;gap:14px}
+    h1{font-size:20px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 20px}
+    .lang-switch{margin-left:auto}
+    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:18px;margin-top:18px;border:1px solid rgba(0,0,0,0.04)}
+    h2{font-size:16px;margin-top:0}
+    code{background:#f3f4f6;padding:2px 6px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace}
+    pre{background:#0f1724;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
+    .muted{color:var(--muted)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    a.btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid rgba(0,0,0,0.06)}
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
+    .notice{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Instruksi Penghapusan Data / <span lang="en">Data Deletion Instructions</span></h1>
+        <p class="lead">Halaman ini menjelaskan cara pengguna dapat meminta penghapusan data yang terhubung dengan layanan di <strong>dalam.web.id</strong>. / This page explains how users can request deletion of data related to services on <strong>dalam.web.id</strong>.</p>
+      </div>
+      <div class="lang-switch">
+        <label class="muted">Bahasa / Language:</label>
+        <select id="lang" aria-label="Pilih bahasa" onchange="switchLang(this.value)">
+          <option value="id">Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </header>
 
-Jika Anda ingin meminta penghapusan data yang terkait dengan penggunaan aplikasi ini, 
-silakan kirim email ke sini@dalam.web.id. 
-Kami akan menghapus data Anda sepenuhnya dalam 24-48 jam.
+    <!-- Indonesian version -->
+    <section id="content-id" class="card">
+      <h2>Instruksi Penghapusan Data (Bahasa Indonesia)</h2>
+      <p>Kami menghormati hak privasi pengguna. Jika Anda ingin meminta penghapusan data yang terkait dengan penggunaan layanan kami di <strong>dalam.web.id</strong>, silakan ikuti petunjuk di bawah ini.</p>
 
-Aplikasi ini sendiri tidak menyimpan data pribadi secara langsung. 
-Setiap data yang dikumpulkan melalui Facebook Comments Plugin 
-dikelola sepenuhnya oleh Facebook.
+      <h3>Apa yang dapat Anda minta</h3>
+      <ul>
+        <li>Penghapusan komentar atau kontribusi yang Anda kirim melalui plugin/fitur UGC kami.</li>
+        <li>Penghapusan data profil singkat yang mungkin kami simpan (jika ada) seperti nama tampilan dan alamat email.</li>
+        <li>Penghapusan data teknis yang berkaitan dengan sesi atau aktivitas (jika dapat diidentifikasi).</li>
+      </ul>
+
+      <h3>Cara meminta penghapusan</h3>
+      <p>Ada <strong>3 cara</strong> untuk meminta penghapusan data:</p>
+      <ol>
+        <li>
+          <strong>Via email</strong>
+          <p>Kirim email ke <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a> dengan subjek: <code>Permintaan Penghapusan Data</code>. Sertakan informasi berikut (sebagian besar diperlukan untuk verifikasi):</p>
+          <ul>
+            <li>Nama yang digunakan (display name)</li>
+            <li>Alamat email yang terkait (jika ada)</li>
+            <li>URL halaman atau identifier entri (mis. URL artikel atau ID komentar)</li>
+            <li>Deskripsi singkat data yang ingin dihapus</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Via formulir web</strong>
+          <p>Kunjungi: <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a> dan isi formulir permintaan penghapusan. (Jika belum tersedia, gunakan opsi email.)</p>
+        </li>
+
+        <li>
+          <strong>Endpoint otomatis (Machine-readable)</strong>
+          <p>Untuk integrasi otomatis, kami menyediakan endpoint JSON (contoh) yang dapat dipanggil oleh layanan pihak ketiga atau admin:</p>
+          <pre><code>POST https://dalam.web.id/api/data-deletion-request
+Content-Type: application/json
+
+{
+  "identifier": "user@example.com",
+  "type": "email|comment_id|url",
+  "reason": "User requested deletion"
+}
+</code></pre>
+          <p>Respon contoh:</p>
+          <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+        </li>
+      </ol>
+
+      <h3>Proses & Waktu Penyelesaian</h3>
+      <p>Kami akan menanggapi permintaan Anda dalam <strong>24–72 jam kerja</strong>. Dalam kasus yang lebih kompleks (mis. penghapusan beberapa sumber data), waktu dapat lebih lama; kami akan menginformasikan estimasi tambahan melalui email.</p>
+
+      <h3>Verifikasi dan Bukti</h3>
+      <p>Untuk mencegah penghapusan tidak sah, kami mungkin meminta bukti kepemilikan atau kontrol atas data yang diminta untuk dihapus. Contoh bukti: email konfirmasi, screenshot profil, atau tautan URL yang menunjukkan keterkaitan Anda.</p>
+
+      <h3>Catatan tentang data yang dikelola pihak ketiga</h3>
+      <p>Beberapa data (mis. komentar via Facebook/Google/etc.) dikelola oleh layanan pihak ketiga. Untuk data yang sepenuhnya dikelola oleh pihak ketiga, kami akan membantu mengajukan permintaan tetapi penghapusan final mungkin perlu dilakukan melalui layanan tersebut.</p>
+
+      <h3>Kontak</h3>
+      <p>Untuk pertanyaan lanjutan, hubungi: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
+    </section>
+
+    <!-- English version -->
+    <section id="content-en" class="card" style="display:none">
+      <h2>Data Deletion Instructions (English)</h2>
+      <p>We respect user privacy. If you want to request deletion of data related to your use of services on <strong>dalam.web.id</strong>, please follow the instructions below.</p>
+
+      <h3>What you can request</h3>
+      <ul>
+        <li>Removal of comments or contributions you submitted via our plugin/UGC features.</li>
+        <li>Removal of profile data we may store (if any), such as display name and email address.</li>
+        <li>Removal of technical data related to sessions or activity (where identifiable).</li>
+      </ul>
+
+      <h3>How to request deletion</h3>
+      <p>There are <strong>3 ways</strong> to request deletion:</p>
+      <ol>
+        <li>
+          <strong>By email</strong>
+          <p>Send an email to <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a> with subject: <code>Data Deletion Request</code>. Include the following information (mostly required for verification):</p>
+          <ul>
+            <li>Display name used</li>
+            <li>Email address associated (if any)</li>
+            <li>Page URL or entry identifier (e.g. article URL or comment ID)</li>
+            <li>Short description of data to be deleted</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Via web form</strong>
+          <p>Visit: <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a> and fill out the deletion request form. (If not available, use the email option.)</p>
+        </li>
+
+        <li>
+          <strong>Automated endpoint (Machine-readable)</strong>
+          <p>For integrations, we offer a JSON endpoint example that third-party services or admins can call:</p>
+          <pre><code>POST https://dalam.web.id/api/data-deletion-request
+Content-Type: application/json
+
+{
+  "identifier": "user@example.com",
+  "type": "email|comment_id|url",
+  "reason": "User requested deletion"
+}
+</code></pre>
+          <p>Example response:</p>
+          <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+        </li>
+      </ol>
+
+      <h3>Process & Timeline</h3>
+      <p>We will respond to your request within <strong>24–72 business hours</strong>. For complex cases (e.g. deletion across multiple sources), additional time may be required — we will notify you by email with an updated estimate.</p>
+
+      <h3>Verification and Proof</h3>
+      <p>To prevent unauthorized deletions, we may request proof of ownership or control over the data being deleted. Examples: confirmation email, profile screenshots, or links showing your association.</p>
+
+      <h3>Notes about third-party managed data</h3>
+      <p>Some data (e.g. comments via Facebook/Google/etc.) may be managed by third-party services. For such data we will assist in making deletion requests, but final removal may require action by the third-party provider.</p>
+
+      <h3>Contact</h3>
+      <p>For further questions contact: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
+    </section>
+
+    <footer class="muted">
+      <p>Halaman ini dibuat untuk memenuhi persyaratan <strong>Data Deletion Information</strong> pada pengaturan aplikasi platform pihak ketiga (mis. Facebook). Pastikan URL ini dapat diakses via HTTPS dan tidak memblokir user-agent.</p>
+    </footer>
+  </div>
+
+  <script>
+    function switchLang(code){
+      document.getElementById('content-id').style.display = code === 'id' ? 'block' : 'none';
+      document.getElementById('content-en').style.display = code === 'en' ? 'block' : 'none';
+    }
+    // detect browser language (optional)
+    (function(){
+      try{
+        var lang = navigator.language || navigator.userLanguage || 'id';
+        if(lang.indexOf('en')===0) document.getElementById('lang').value='en';
+        else document.getElementById('lang').value='id';
+        switchLang(document.getElementById('lang').value);
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>
