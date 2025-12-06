@@ -2,7 +2,7 @@
 // Dibuat untuk pemuatan Metype secara lazy-loading, tanpa menghitung jumlah komentar.
 
 // --- KONFIGURASI METYPE ---
-const METYPE_ACCOUNT_ID = 'APP_ID_ANDA'; // <-- GANTI dengan Metype App Id Anda yang sebenarnya
+const METYPE_ACCOUNT_ID = '1004249'; // <-- GANTI dengan Metype App Id Anda yang sebenarnya
 const METYPE_HOST = 'https://www.metype.com/';
 const CONTAINER_ID = 'metype'; 
 
