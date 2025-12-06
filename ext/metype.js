@@ -1,10 +1,10 @@
 // File: /ext/metype.js
-// Dibuat untuk pemuatan Metype secara lazy-loading, tanpa menghitung jumlah komentar.
+// Menggunakan Account ID: 1004249
 
 // --- KONFIGURASI METYPE ---
-const METYPE_ACCOUNT_ID = '1004249'; // <-- GANTI dengan Metype App Id Anda yang sebenarnya
+const METYPE_ACCOUNT_ID = '1004249'; // <-- ID Metype Anda yang dikonfirmasi
 const METYPE_HOST = 'https://www.metype.com/';
-const CONTAINER_ID = 'metype'; 
+const CONTAINER_ID = 'metype'; // ID kontainer yang Anda gunakan: metype
 
 // Fungsi Antrian Global Metype (talktype)
 window.talktype = window.talktype || function(f) {
@@ -27,14 +27,14 @@ function loadMetypeSDK() {
 "requestIdleCallback" in window ? requestIdleCallback(loadMetypeSDK) : setTimeout(loadMetypeSDK, 200);
 
 
-// Logika Lazy-Loading Utama
+// Logika Lazy-Loading Utama (Memuat saat tombol diklik)
 (function() {
   const d = document, w = window, e = d.getElementById(CONTAINER_ID); 
   if (!e) return;
 
   e.style.display = "none";
 
-  // Buat tombol pemuat (menggantikan logika hitungan komentar)
+  // Buat tombol pemuat
   const b = d.createElement("button");
   b.style.cssText = "padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background-color:white;cursor:pointer;margin-bottom:12px";
   b.textContent = "Lihat Komentar"; 
