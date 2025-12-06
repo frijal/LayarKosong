@@ -1,69 +1,115 @@
-// File: /ext/metype.js
-// Menggunakan Account ID: 1004249
+(function () {
+    const d = document, w = window;
+    const wrap = d.getElementById("metype");
+    if (!wrap) return;
 
-// --- KONFIGURASI METYPE ---
-const METYPE_ACCOUNT_ID = '1004249'; // <-- ID Metype Anda yang dikonfirmasi
-const METYPE_HOST = 'https://www.metype.com/';
-const CONTAINER_ID = 'metype'; // ID kontainer yang Anda gunakan: metype
+    // sembunyikan widget dulu
+    wrap.style.display = "none";
 
-// Fungsi Antrian Global Metype (talktype)
-window.talktype = window.talktype || function(f) {
-  if (talktype.loaded)
-    f();
-  else
-    (talktype.q = talktype.q || []).push(arguments);
-};
+    // ----------------------------------------------------
+    // 1. Tombol pemicu (mirip seperti contoh Disqus)
+    // ----------------------------------------------------
+    const btn = d.createElement("button");
+    btn.style.cssText =
+        "padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background-color:white;cursor:pointer;margin-bottom:12px";
 
-// Fungsi untuk memuat Metype SDK secara asinkron
-function loadMetypeSDK() {
-  if (document.querySelector('script[src*="metype.js"]')) return;
-  const script = document.createElement('script');
-  script.src = METYPE_HOST + '/quintype-metype/assets/metype.js';
-  script.async = true;
-  document.head.appendChild(script);
-}
+    const count = d.createElement("span");
+    count.id = "metype-comment-count-text";
+    count.textContent = "Komentar…";
 
-// Panggil SDK Loader segera setelah DOM siap
-"requestIdleCallback" in window ? requestIdleCallback(loadMetypeSDK) : setTimeout(loadMetypeSDK, 200);
+    btn.appendChild(count);
+    wrap.parentNode.insertBefore(btn, wrap);
 
+    // ----------------------------------------------------
+    // 2. Load komentar count (ringan)
+    // ----------------------------------------------------
+    function loadCount() {
+        // Metype tidak punya count.js, jadi kita panggil iframe count mini
+        const url = encodeURIComponent(location.href);
+        const account = "1004249";
 
-// Logika Lazy-Loading Utama (Memuat saat tombol diklik)
-(function() {
-  const d = document, w = window, e = d.getElementById(CONTAINER_ID); 
-  if (!e) return;
+        fetch(`https://www.metype.com/api/v1/comments/count?account_id=${account}&url=${url}`)
+            .then(r => r.json())
+            .then(j => {
+                count.textContent = `${j.count || 0} Komentar`;
+            })
+            .catch(() => {
+                count.textContent = "Komentar";
+            });
+    }
 
-  e.style.display = "none";
+    "requestIdleCallback" in w
+        ? requestIdleCallback(loadCount)
+        : setTimeout(loadCount, 200);
 
-  // Buat tombol pemuat
-  const b = d.createElement("button");
-  b.style.cssText = "padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background-color:white;cursor:pointer;margin-bottom:12px";
-  b.textContent = "Lihat Komentar"; 
-  
-  e.parentNode.insertBefore(b,e);
+    // ----------------------------------------------------
+    // 3. Lazy-load Metype widget ketika tombol diklik
+    // ----------------------------------------------------
+    let loaded = false;
 
-  let L=0;
-  b.onclick=function(){
-    if(L)return;
-    L=1;
+    btn.onclick = function () {
+        if (loaded) return;
+        loaded = true;
 
-    e.style.display="block";
-    
-    // --- METYPE INITIATION LOGIC ---
-    talktype(function() {
-        // 1. Tentukan kontainer dan atur atribut wajib
-        e.className = 'iframe-container';
-        e.setAttribute('data-metype-account-id', METYPE_ACCOUNT_ID);
-        e.setAttribute('data-metype-host', METYPE_HOST);
-        
-        // 2. Tentukan URL Mapping (ID Permanen)
-        // Ambil dari data-metype-page-url di HTML, atau gunakan URL halaman saat ini
-        let pageUrl = e.getAttribute("data-metype-page-url") || w.location.href;
-        e.setAttribute('data-metype-page-url', pageUrl); 
-        
-        // 3. Render Widget
-        talktype.commentWidgetIframe(e);
-    });
+        // tampilkan widget container
+        wrap.style.display = "block";
 
-    b.remove(); // Hapus tombol
-  };
+        // isi container
+        wrap.innerHTML = `
+            <div id="metype-comments"
+                data-metype-account-id="1004249"
+                data-metype-host="https://www.metype.com/">
+            </div>
+
+            <div id="metype-reactions"
+                data-metype-account-id="1004249"
+                data-metype-host="https://www.metype.com/">
+            </div>
+
+            <div id="metype-contributions"
+                data-metype-account-id="1004249"
+                data-metype-host="https://www.metype.com/">
+            </div>
+        `;
+
+        // load script metype.js asli
+        const s = d.createElement("script");
+        s.src = "https://www.metype.com/quintype-metype/assets/metype.js";
+        s.async = true;
+        d.body.appendChild(s);
+
+        // setelah metype.js siap → pasang widget
+        window.talktype = window.talktype || function (f) {
+            if (talktype.loaded) f();
+            else (talktype.q = talktype.q || []).push(arguments);
+        };
+
+        talktype(function () {
+            const pageUrl = location.href;
+            const accountId = "1004249";
+            const host = "https://www.metype.com/";
+
+            // metadata minimal
+            const meta = { title: document.title, url: pageUrl };
+            talktype.pageMetadataSetter(accountId, pageUrl, meta, host);
+
+            // comments
+            const c = d.getElementById("metype-comments");
+            c.setAttribute("data-metype-page-url", pageUrl);
+            talktype.commentWidgetIframe(c);
+
+            // reactions
+            const r = d.getElementById("metype-reactions");
+            r.setAttribute("data-metype-page-url", pageUrl);
+            talktype.pageReactionsIframe(r);
+
+            // contributions
+            const u = d.getElementById("metype-contributions");
+            talktype.contributionWidgetIframe(u);
+        });
+
+        // hapus tombol
+        btn.remove();
+    };
 })();
+
