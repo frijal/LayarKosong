@@ -1,126 +1,66 @@
 (function () {
   const d = document;
 
-  /* -----------------------------------------------------------
-     CREATE fb-root ONLY ONCE (REQUIRED BY FACEBOOK)
-  ----------------------------------------------------------- */
+  // --- CREATE fb-root AUTOMATICALLY ---
   if (!d.getElementById("fb-root")) {
-    const fr = d.createElement("div");
-    fr.id = "fb-root";
-    d.body.prepend(fr);
+    const fbroot = d.createElement("div");
+    fbroot.id = "fb-root";
+    d.body.prepend(fbroot);
   }
 
-  /* -----------------------------------------------------------
-     WIDGET DEFINITIONS
-     define what each container ID should render
-  ----------------------------------------------------------- */
-  const widgetMap = {
-    like: (href) => `
+  // --- AUTO INSERT FB WIDGETS ---
+  const likeBox = d.getElementById("like");
+  const commentBox = d.getElementById("comment");
+
+  if (likeBox) {
+    likeBox.innerHTML = `
       <div class="fb-like"
-           data-href="${href}"
-           data-layout="standard"
-           data-share="true">
+        data-href="${location.href}"
+        data-layout="standard"
+        data-share="true">
       </div>
-    `,
-    comment: (href) => `
+    `;
+  }
+
+  if (commentBox) {
+    commentBox.innerHTML = `
       <div class="fb-comments"
-           data-href="${href}"
-           data-width="100%"
-           data-numposts="5"
-           data-lazy="true">
+        data-href="${location.href}"
+        data-width="100%"
+        data-numposts="5">
       </div>
-    `
-  };
+    `;
+  }
 
-  /* -----------------------------------------------------------
-     FIND ALL WIDGET CONTAINERS
-     (#like, #comment, PLUS any .fb-widget)
-  ----------------------------------------------------------- */
-  const containers = [];
-
-  Object.keys(widgetMap).forEach((key) => {
-    const el = d.getElementById(key);
-    if (el) containers.push(el);
-  });
-
-  containers.push(...d.querySelectorAll(".fb-widget"));
-
-  if (containers.length === 0) return;
-
-  /* -----------------------------------------------------------
-     LOAD FACEBOOK SDK (ONCE)
-  ----------------------------------------------------------- */
-  function loadFacebookSDK(cb) {
-    if (window.FB && FB.XFBML) return cb && cb();
+  // --- FACEBOOK SDK LOADER ---
+  function loadSDK(cb) {
+    if (window.FB && FB.XFBML) return cb();
 
     const s = d.createElement("script");
     s.async = true;
     s.defer = true;
     s.crossOrigin = "anonymous";
     s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=700179713164663";
-    s.onload = () => cb && cb();
+    s.onload = cb;
     d.body.appendChild(s);
   }
 
-  /* -----------------------------------------------------------
-     LAZY FADE-IN IFRAME STYLE
-  ----------------------------------------------------------- */
-  const fadeCSS = d.createElement("style");
-  fadeCSS.textContent = `
-    .fb-lazy iframe { 
-      opacity:0;
-      transition:opacity .4s ease;
-    }
-    .fb-lazy iframe.fb-loaded { 
-      opacity:1;
-    }
-  `;
-  d.head.appendChild(fadeCSS);
+  // --- LAZY LOAD (Observer) ---
+  const lazyTarget = likeBox || commentBox;
+  if (!lazyTarget) return;
 
-  /* -----------------------------------------------------------
-     RENDER WIDGET WHEN IN VIEWPORT
-  ----------------------------------------------------------- */
-  function renderWidget(el) {
-    if (el.dataset.loaded) return;
-    el.dataset.loaded = "1";
-
-    const id = el.id;
-    const href = el.dataset.href || location.href;
-
-    const template = widgetMap[id];
-    if (!template) return;
-
-    el.classList.add("fb-lazy");
-    el.innerHTML = template(href);
-
-    loadFacebookSDK(() => {
-      if (window.FB && FB.XFBML) FB.XFBML.parse(el);
-
-      /* fade-in */
-      const check = setInterval(() => {
-        const iframe = el.querySelector("iframe");
-        if (iframe) {
-          iframe.classList.add("fb-loaded");
-          clearInterval(check);
-        }
-      }, 200);
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        loadSDK(() => {
+          if (window.FB && FB.XFBML) {
+            FB.XFBML.parse(); // parses ALL widgets: like + comment
+          }
+        });
+        obs.disconnect();
+      }
     });
-  }
+  }, { rootMargin: "200px" });
 
-  /* -----------------------------------------------------------
-     INTERSECTION OBSERVER
-  ----------------------------------------------------------- */
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          renderWidget(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: "180px" }
-  );
-
-  containers.forEach((el) => observer.observe(el));
+  obs.observe(lazyTarget);
 })();
