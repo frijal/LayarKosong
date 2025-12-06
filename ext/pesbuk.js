@@ -4,7 +4,7 @@
   /* --------------------------------------------------
      Target widget container
   -------------------------------------------------- */
-  const box = d.getElementById("comment");
+  const box = d.getElementById("pesbuk");
   if (!box) return;
 
   /* --------------------------------------------------
