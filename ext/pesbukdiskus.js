@@ -1,6 +1,6 @@
 (function () {
   const d = document;
-  const container = d.getElementById("pesbukdisqus");
+  const container = d.getElementById("pesbukdiskus");
   if (!container) return;
 
   // --------------------------------------------------
