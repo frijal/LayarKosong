@@ -15,13 +15,13 @@
     <meta property="og:url" content="https://dalam.web.id/artikel/cloudflare-robots-txt-control.html">
     <meta property="og:site_name" content="Dalam Web ID">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.web">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
     <meta property="og:image:alt" content="Ilustrasi file robots.txt">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜">
     <meta name="twitter:description" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt.">
-    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.web">
+    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
 
     <link rel="stylesheet" href="/ext/fontawesome.css" />
 
@@ -161,7 +161,7 @@
         <p>Hai! Pengaturan yang Anda lihat ini merupakan kontrol klasik namun fundamental dalam dunia web. File `robots.txt` adalah semacam "papan pengumuman" di pintu masuk situs Anda yang memberi tahu semua *bot* yang berkunjung, termasuk *search engine* dan *AI training bots*, area mana saja yang boleh mereka jelajahi (*crawl*). Cloudflare hadir untuk mempermudah Anda mengelola file penting ini, terutama untuk isu AI saat ini.</p>
 
         <div class="image-container">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.web" alt="Ilustrasi file robots.txt di root domain">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp" alt="Ilustrasi file robots.txt di root domain">
             <p style="font-size:0.9em;">**Gambar:** File `robots.txt` berada di direktori *root* situs Anda, sebagai panduan pertama bagi semua *crawler*.</p>
         </div>
 
@@ -178,7 +178,7 @@
             <ul>
                 <li>**Apa yang Terjadi?** Cloudflare menyuntikkan teks kebijakan, tetapi **TIDAK** menyertakan perintah `Disallow` untuk memblokir bot apa pun.</li>
                 <li>**Intinya:** Ini adalah pernyataan etika dan kebijakan penggunaan. Semua *crawler* diizinkan masuk, tetapi mereka diberi tahu tentang kebijakan konten Anda (yang sayangnya, tidak semua bot patuh).</li>
-                <li>**Contoh Teks yang Disuntikkan (Ilustrasi):**
+                <li><b>Contoh ilustrasi Teks yang Disuntikkan:</b>
 <pre># Cloudflare Content Access Framework
 User-agent: *
 Allow: /</pre>
@@ -193,7 +193,7 @@ Allow: /</pre>
             <ul>
                 <li>**Apa yang Terjadi?** Cloudflare akan menambahkan baris `Disallow` yang secara spesifik menargetkan *User-Agent* yang diketahui digunakan oleh *AI training bots*.</li>
                 <li>**Intinya:** Ini adalah instruksi eksplisit untuk menolak akses bot AI. Bot dari perusahaan AI yang bertanggung jawab (yang menghormati `robots.txt`) akan mematuhi instruksi ini.</li>
-                <li>**Contoh Teks yang Disuntikkan (Ilustrasi):**
+                <li><b>Contoh ilustrasi Teks yang Disuntikkan:</b>
 <pre>User-agent: CCBot
 Disallow: /
 
