@@ -99,7 +99,7 @@ jobs:
 
             # 5. JS scripts
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
-              sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdisqus.js"></script>' "$file"
+              sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>' "$file"
             fi
           done
           shopt -u nullglob
