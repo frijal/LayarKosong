@@ -4,120 +4,73 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instruksi Penghapusan Data / Data Deletion — dalam.web.id</title>
-  <meta name="description" content="Cara meminta penghapusan data di dalam.web.id (bahasa Indonesia & English)">
+  <meta name="description" content="Cara meminta penghapusan data di dalam.web.id (Indonesia & English)">
   <link rel="canonical" href="https://dalam.web.id/data-deletion">
   <meta name="robots" content="index,follow">
 
   <style>
-    /* Reset minimal + tipografi bersih */
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 2rem 1rem;
-      background: #fff;
-      color: #1f2937;
-    }
+    :root { --bg: #ffffff; --text: #1f2937; --border: #e5e7eb; --muted: #64748b; --accent: #2563eb; }
     @media (prefers-color-scheme: dark) {
-      body { background: #0f172a; color: #e2e8f0; }
+      :root { --bg: #0f172a; --text: #e2e8f0; --border: #374151; --muted: #94a3b8; --accent: #60a5fa; }
     }
-
-    .container { max-width: 800px; margin: 0 auto; }
-
-    header { 
-      display: flex; 
-      flex-wrap: wrap; 
-      align-items: center; 
-      gap: 1rem; 
-      margin-bottom: 2rem; 
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text);
+           margin:0; padding:0; line-height:1.6; min-height:100vh; }
+    .sticky-header {
+      position:fixed; top:1rem; left:1rem; z-index:1000;
+      display:flex; align-items:center; gap:0.75rem;
+      background:var(--bg); padding:0.5rem 0.75rem; border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1); backdrop-filter:blur(8px);
+      border:1px solid var(--border); text-decoration:none; transition:all .2s;
     }
-    h1 { font-size: 1.4rem; margin: 0; }
-    .lead { 
-      margin: 0.5rem 0 1.5rem; 
-      color: #64748b; 
-      font-size: 0.95rem; 
+    .sticky-header:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+    .sticky-header img { width:40px; height:40px; }
+    .site-name { font-weight:700; font-size:1.35rem; color:var(--text); }
+    .lang-select {
+      position:fixed; top:1rem; right:1rem; z-index:1000;
+      background:var(--bg); padding:0.4rem 0.7rem; border:1px solid var(--border);
+      border-radius:8px; backdrop-filter:blur(8px);
     }
-    @media (prefers-color-scheme: dark) { .lead { color: #94a3b8; } }
-
-    select { 
-      padding: 0.4rem 0.6rem; 
-      border-radius: 6px; 
-      background: inherit; 
-      color: inherit; 
-      border: 1px solid #94a3b8; 
-    }
-
-    section { 
-      background: rgba(255,255,255,0.04); 
-      border: 1px solid #e5e7eb; 
-      border-radius: 10px; 
-      padding: 1.5rem; 
-      margin-bottom: 2rem; 
-    }
-    @media (prefers-color-scheme: dark) {
-      section { 
-        background: rgba(255,255,255,0.03); 
-        border-color: #374151; 
-      }
-    }
-
-    h2 { font-size: 1.25rem; margin: 1.5rem 0 1rem; }
-    h3 { font-size: 1.1rem; margin: 1.4rem 0 0.8rem; }
-
-    code, pre > code {
-      background: #f1f5f9; 
-      padding: 0.2rem 0.4rem; 
-      border-radius: 4px; 
-      font-size: 0.9em;
-    }
-    @media (prefers-color-scheme: dark) {
-      code, pre > code { background: #1e293b; }
-    }
-
-    pre {
-      background: #0f172a; 
-      color: #e2e8f0; 
-      padding: 1rem; 
-      border-radius: 8px; 
-      overflow-x: auto;
-      font-size: 0.9rem;
-    }
-    @media (prefers-color-scheme: dark) {
-      pre { background: #1e293b; }
-    }
-
-    a { color: #2563eb; }
-    @media (prefers-color-scheme: dark) { a { color: #60a5fa; } }
-
-    footer { 
-      font-size: 0.85rem; 
-      color: #64748b; 
-      margin-top: 3rem; 
-    }
-    @media (prefers-color-scheme: dark) { footer { color: #94a3b8; } }
+    select { background:transparent; color:var(--text); border:none; font-size:1rem; }
+    .main-content { max-width:800px; margin:0 auto; padding:7rem 1.5rem 4rem; }
+    h1 { font-size:1.8rem; margin-top:0; }
+    .lead { color:var(--muted); margin:1rem 0 2rem; }
+    section { background:rgba(255,255,255,0.04); border:1px solid var(--border);
+              border-radius:12px; padding:2rem; margin-bottom:2rem; }
+    h2 { font-size:1.5rem; margin:0 0 1rem; }
+    h3 { font-size:1.2rem; margin:1.8rem 0 0.8rem; }
+    code, pre>code { background:#f1f5f9; color:#1e40af; padding:0.2rem 0.4rem; border-radius:4px; font-size:0.9em; }
+    @media (prefers-color-scheme:dark) { code, pre>code { background:#1e293b; color:#93c5fd; } }
+    pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto;
+          font-size:0.9rem; margin:1rem 0; }
+    @media (prefers-color-scheme:dark) { pre { background:#1e293b; } }
+    a { color:var(--accent); text-decoration:underline; }
+    a:hover { opacity:0.8; }
+    ul, ol { padding-left:1.4rem; }
+    li { margin:0.5rem 0; }
+    footer { margin-top:4rem; color:var(--muted); font-size:0.9rem; text-align:center; }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>Instruksi Penghapusan Data / <span lang="en">Data Deletion Instructions</span></h1>
-        <p class="lead">
-          Cara meminta penghapusan data di <strong>dalam.web.id</strong> · 
-          How to request data deletion on <strong>dalam.web.id</strong>
-        </p>
-      </div>
-      <div>
-        <select id="lang" aria-label="Pilih bahasa" onchange="switchLang(this.value)">
-          <option value="id">Indonesia</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-    </header>
 
-    <!-- Indonesia -->
+  <a href="https://dalam.web.id" class="sticky-header" aria-label="Kembali ke dalam.web.id">
+    <img src="https://dalam.web.id/favicon.svg" alt="dalam.web.id">
+    <span class="site-name">dalam.web.id</span>
+  </a>
+
+  <div class="lang-select">
+    <select id="lang" onchange="switchLang(this.value)" aria-label="Pilih bahasa">
+      <option value="id">Bahasa Indonesia</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <div class="main-content">
+    <h1>Instruksi Penghapusan Data / Data Deletion Instructions</h1>
+    <p class="lead">
+      Cara meminta penghapusan data di <strong>dalam.web.id</strong> ·
+      How to request data deletion on <strong>dalam.web.id</strong>
+    </p>
+
     <section id="content-id">
       <h2>Instruksi Penghapusan Data</h2>
       <p>Kami menghormati privasi Anda. Berikut cara meminta penghapusan data yang terkait dengan layanan kami.</p>
@@ -133,23 +86,26 @@
       <ol>
         <li><strong>Email</strong><br>
             Kirim ke <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a><br>
-            Subjek: <code>Permintaan Penghapusan Data</code><br>
-            Sertakan: nama tampilan, email, URL/ID konten, dan keterangan singkat.
+            Subjek: <code>Permintaan Penghapusan Data</code>
         </li>
         <li><strong>Formulir web</strong><br>
-            <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a>
+            <a href="https://dalam.web.id/data-deletion-form"><strong>https://dalam.web.id/data-deletion-form</strong></a>
         </li>
         <li><strong>Endpoint API (machine-readable)</strong><br>
-            <pre><code>POST https://dalam.web.id/api/data-deletion-request
+            <pre><code>POST https://formspree.io/f/mwpwzylb
 Content-Type: application/json
-
 {
   "identifier": "user@example.com",
   "type": "email|comment_id|url",
   "reason": "User requested deletion"
 }</code></pre>
-            Contoh respon:<br>
-            <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+            Contoh respon otomatis:<br>
+            <pre><code>{
+  "status": "received",
+  "ticket": "DD-12345",
+  "estimated_completion": "2025-12-31T23:59:59Z"
+}</code></pre>
+            <small>Endpoint ini Valid.</small>
         </li>
       </ol>
 
@@ -160,61 +116,58 @@ Content-Type: application/json
       <p>Kami mungkin meminta bukti kepemilikan (email konfirmasi, screenshot, dll).</p>
 
       <h3>Data pihak ketiga</h3>
-      <p>Komentar via Facebook/Google dkk. tetap harus dihapus melalui platform masing-masing. Kami akan membantu mengarahkan.</p>
+      <p>Komentar via Facebook/Google dll. tetap harus dihapus melalui platform masing-masing. Kami akan membantu mengarahkan.</p>
 
       <p>Pertanyaan lebih lanjut: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
     </section>
 
-    <!-- English -->
+    <!-- Versi English (id="content-en") -->
     <section id="content-en" style="display:none">
       <h2>Data Deletion Instructions</h2>
       <p>We respect your privacy. Here’s how to request deletion of your data.</p>
-
       <h3>What can be deleted</h3>
       <ul>
         <li>Comments or contributions you submitted</li>
         <li>Profile data (display name, email)</li>
         <li>Identifiable technical/session data</li>
       </ul>
-
       <h3>How to request (3 options)</h3>
       <ol>
         <li><strong>Email</strong><br>
             Send to <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a><br>
-            Subject: <code>Data Deletion Request</code><br>
-            Include: display name, email, URL/ID of content, short description.
+            Subject: <code>Data Deletion Request</code>
         </li>
         <li><strong>Web form</strong><br>
-            <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a>
+            <a href="https://dalam.web.id/data-deletion-form"><strong>https://dalam.web.id/data-deletion-form</strong></a>
         </li>
         <li><strong>API endpoint (machine-readable)</strong><br>
-            <pre><code>POST https://dalam.web.id/api/data-deletion-request
+            <pre><code>POST https://formspree.io/f/mwpwzylb
 Content-Type: application/json
-
 {
   "identifier": "user@example.com",
   "type": "email|comment_id|url",
   "reason": "User requested deletion"
 }</code></pre>
-            Example response:<br>
-            <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+            Example automatic response:<br>
+            <pre><code>{
+  "status": "received",
+  "ticket": "DD-12345",
+  "estimated_completion": "2025-12-31T23:59:59Z"
+}</code></pre>
+            <small>This endpoint is Valid requirements.</small>
         </li>
       </ol>
-
       <h3>Process & timeline</h3>
       <p>Response within <strong>24–72 business hours</strong>. Complex cases will receive an updated estimate via email.</p>
-
       <h3>Verification</h3>
       <p>We may ask for proof of ownership (confirmation email, screenshots, etc.).</p>
-
       <h3>Third-party data</h3>
       <p>Comments made via Facebook/Google etc. must be deleted on those platforms. We will assist where possible.</p>
-
       <p>Questions: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
     </section>
 
     <footer>
-      Halaman ini dibuat untuk memenuhi persyaratan <strong>Data Deletion Information</strong> platform pihak ketiga (Facebook, Google, dsb.).
+      Halaman ini dibuat untuk memenuhi persyaratan <strong>Data Deletion Information</strong> platform pihak ketiga (Facebook, Google Play, App Store, dsb.).
     </footer>
   </div>
 
@@ -222,13 +175,11 @@ Content-Type: application/json
     function switchLang(val) {
       document.getElementById('content-id').style.display = val === 'id' ? 'block' : 'none';
       document.getElementById('content-en').style.display = val === 'en' ? 'block' : 'none';
+      localStorage.setItem('lang', val);
     }
-
-    // Deteksi bahasa browser saat halaman dimuat
-    const browserLang = (navigator.language || navigator.userLanguage || 'id').substring(0,2);
-    const defaultLang = browserLang === 'en' ? 'en' : 'id';
-    document.getElementById('lang').value = defaultLang;
-    switchLang(defaultLang);
+    const saved = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
+    document.getElementById('lang').value = saved;
+    switchLang(saved);
   </script>
 </body>
 </html>
