@@ -2,40 +2,114 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instruksi Penghapusan Data / Data Deletion — dalam.web.id</title>
-  <meta name="description" content="Instruksi bagaimana pengguna dapat meminta penghapusan data yang berhubungan dengan layanan di dalam.web.id — tersedia dalam bahasa Indonesia dan English.">
+  <meta name="description" content="Cara meminta penghapusan data di dalam.web.id (bahasa Indonesia & English)">
   <link rel="canonical" href="https://dalam.web.id/data-deletion">
   <meta name="robots" content="index,follow">
+
   <style>
-    :root{--bg:#ffffff;--text:#111827;--muted:#6b7280;--accent:#0b74da}
-    @media (prefers-color-scheme:dark){:root{--bg:#0b1220;--text:#e6eef8;--muted:#9aa6b2}}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.6;margin:0;background:var(--bg);color:var(--text);padding:28px}
-    .container{max-width:900px;margin:0 auto}
-    header{display:flex;align-items:center;gap:14px}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 20px}
-    .lang-switch{margin-left:auto}
-    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:18px;margin-top:18px;border:1px solid rgba(0,0,0,0.04)}
-    h2{font-size:16px;margin-top:0}
-    code{background:#f3f4f6;padding:2px 6px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace}
-    pre{background:#0f1724;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
-    .muted{color:var(--muted)}
-    .actions{display:flex;gap:8px;flex-wrap:wrap}
-    a.btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid rgba(0,0,0,0.06)}
-    footer{margin-top:28px;color:var(--muted);font-size:13px}
-    .notice{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px;border-radius:8px}
+    /* Reset minimal + tipografi bersih */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: #fff;
+      color: #1f2937;
+    }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0f172a; color: #e2e8f0; }
+    }
+
+    .container { max-width: 800px; margin: 0 auto; }
+
+    header { 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      gap: 1rem; 
+      margin-bottom: 2rem; 
+    }
+    h1 { font-size: 1.4rem; margin: 0; }
+    .lead { 
+      margin: 0.5rem 0 1.5rem; 
+      color: #64748b; 
+      font-size: 0.95rem; 
+    }
+    @media (prefers-color-scheme: dark) { .lead { color: #94a3b8; } }
+
+    select { 
+      padding: 0.4rem 0.6rem; 
+      border-radius: 6px; 
+      background: inherit; 
+      color: inherit; 
+      border: 1px solid #94a3b8; 
+    }
+
+    section { 
+      background: rgba(255,255,255,0.04); 
+      border: 1px solid #e5e7eb; 
+      border-radius: 10px; 
+      padding: 1.5rem; 
+      margin-bottom: 2rem; 
+    }
+    @media (prefers-color-scheme: dark) {
+      section { 
+        background: rgba(255,255,255,0.03); 
+        border-color: #374151; 
+      }
+    }
+
+    h2 { font-size: 1.25rem; margin: 1.5rem 0 1rem; }
+    h3 { font-size: 1.1rem; margin: 1.4rem 0 0.8rem; }
+
+    code, pre > code {
+      background: #f1f5f9; 
+      padding: 0.2rem 0.4rem; 
+      border-radius: 4px; 
+      font-size: 0.9em;
+    }
+    @media (prefers-color-scheme: dark) {
+      code, pre > code { background: #1e293b; }
+    }
+
+    pre {
+      background: #0f172a; 
+      color: #e2e8f0; 
+      padding: 1rem; 
+      border-radius: 8px; 
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      pre { background: #1e293b; }
+    }
+
+    a { color: #2563eb; }
+    @media (prefers-color-scheme: dark) { a { color: #60a5fa; } }
+
+    footer { 
+      font-size: 0.85rem; 
+      color: #64748b; 
+      margin-top: 3rem; 
+    }
+    @media (prefers-color-scheme: dark) { footer { color: #94a3b8; } }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
       <div>
         <h1>Instruksi Penghapusan Data / <span lang="en">Data Deletion Instructions</span></h1>
-        <p class="lead">Halaman ini menjelaskan cara pengguna dapat meminta penghapusan data yang terhubung dengan layanan di <strong>dalam.web.id</strong>. / This page explains how users can request deletion of data related to services on <strong>dalam.web.id</strong>.</p>
+        <p class="lead">
+          Cara meminta penghapusan data di <strong>dalam.web.id</strong> · 
+          How to request data deletion on <strong>dalam.web.id</strong>
+        </p>
       </div>
-      <div class="lang-switch">
-        <label class="muted">Bahasa / Language:</label>
+      <div>
         <select id="lang" aria-label="Pilih bahasa" onchange="switchLang(this.value)">
           <option value="id">Indonesia</option>
           <option value="en">English</option>
@@ -43,147 +117,118 @@
       </div>
     </header>
 
-    <!-- Indonesian version -->
-    <section id="content-id" class="card">
-      <h2>Instruksi Penghapusan Data (Bahasa Indonesia)</h2>
-      <p>Kami menghormati hak privasi pengguna. Jika Anda ingin meminta penghapusan data yang terkait dengan penggunaan layanan kami di <strong>dalam.web.id</strong>, silakan ikuti petunjuk di bawah ini.</p>
+    <!-- Indonesia -->
+    <section id="content-id">
+      <h2>Instruksi Penghapusan Data</h2>
+      <p>Kami menghormati privasi Anda. Berikut cara meminta penghapusan data yang terkait dengan layanan kami.</p>
 
-      <h3>Apa yang dapat Anda minta</h3>
+      <h3>Yang dapat diminta dihapus</h3>
       <ul>
-        <li>Penghapusan komentar atau kontribusi yang Anda kirim melalui plugin/fitur UGC kami.</li>
-        <li>Penghapusan data profil singkat yang mungkin kami simpan (jika ada) seperti nama tampilan dan alamat email.</li>
-        <li>Penghapusan data teknis yang berkaitan dengan sesi atau aktivitas (jika dapat diidentifikasi).</li>
+        <li>Komentar atau kontribusi yang Anda kirim</li>
+        <li>Data profil (nama tampilan, email)</li>
+        <li>Data teknis sesi yang dapat diidentifikasi</li>
       </ul>
 
-      <h3>Cara meminta penghapusan</h3>
-      <p>Ada <strong>3 cara</strong> untuk meminta penghapusan data:</p>
+      <h3>Cara mengajukan permintaan (3 opsi)</h3>
       <ol>
-        <li>
-          <strong>Via email</strong>
-          <p>Kirim email ke <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a> dengan subjek: <code>Permintaan Penghapusan Data</code>. Sertakan informasi berikut (sebagian besar diperlukan untuk verifikasi):</p>
-          <ul>
-            <li>Nama yang digunakan (display name)</li>
-            <li>Alamat email yang terkait (jika ada)</li>
-            <li>URL halaman atau identifier entri (mis. URL artikel atau ID komentar)</li>
-            <li>Deskripsi singkat data yang ingin dihapus</li>
-          </ul>
+        <li><strong>Email</strong><br>
+            Kirim ke <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a><br>
+            Subjek: <code>Permintaan Penghapusan Data</code><br>
+            Sertakan: nama tampilan, email, URL/ID konten, dan keterangan singkat.
         </li>
-
-        <li>
-          <strong>Via formulir web</strong>
-          <p>Kunjungi: <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a> dan isi formulir permintaan penghapusan. (Jika belum tersedia, gunakan opsi email.)</p>
+        <li><strong>Formulir web</strong><br>
+            <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a>
         </li>
-
-        <li>
-          <strong>Endpoint otomatis (Machine-readable)</strong>
-          <p>Untuk integrasi otomatis, kami menyediakan endpoint JSON (contoh) yang dapat dipanggil oleh layanan pihak ketiga atau admin:</p>
-          <pre><code>POST https://dalam.web.id/api/data-deletion-request
+        <li><strong>Endpoint API (machine-readable)</strong><br>
+            <pre><code>POST https://dalam.web.id/api/data-deletion-request
 Content-Type: application/json
 
 {
   "identifier": "user@example.com",
   "type": "email|comment_id|url",
   "reason": "User requested deletion"
-}
-</code></pre>
-          <p>Respon contoh:</p>
-          <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+}</code></pre>
+            Contoh respon:<br>
+            <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
         </li>
       </ol>
 
-      <h3>Proses & Waktu Penyelesaian</h3>
-      <p>Kami akan menanggapi permintaan Anda dalam <strong>24–72 jam kerja</strong>. Dalam kasus yang lebih kompleks (mis. penghapusan beberapa sumber data), waktu dapat lebih lama; kami akan menginformasikan estimasi tambahan melalui email.</p>
+      <h3>Proses & waktu</h3>
+      <p>Respon dalam <strong>24–72 jam kerja</strong>. Kasus kompleks akan kami beri estimasi tambahan via email.</p>
 
-      <h3>Verifikasi dan Bukti</h3>
-      <p>Untuk mencegah penghapusan tidak sah, kami mungkin meminta bukti kepemilikan atau kontrol atas data yang diminta untuk dihapus. Contoh bukti: email konfirmasi, screenshot profil, atau tautan URL yang menunjukkan keterkaitan Anda.</p>
+      <h3>Verifikasi</h3>
+      <p>Kami mungkin meminta bukti kepemilikan (email konfirmasi, screenshot, dll).</p>
 
-      <h3>Catatan tentang data yang dikelola pihak ketiga</h3>
-      <p>Beberapa data (mis. komentar via Facebook/Google/etc.) dikelola oleh layanan pihak ketiga. Untuk data yang sepenuhnya dikelola oleh pihak ketiga, kami akan membantu mengajukan permintaan tetapi penghapusan final mungkin perlu dilakukan melalui layanan tersebut.</p>
+      <h3>Data pihak ketiga</h3>
+      <p>Komentar via Facebook/Google dkk. tetap harus dihapus melalui platform masing-masing. Kami akan membantu mengarahkan.</p>
 
-      <h3>Kontak</h3>
-      <p>Untuk pertanyaan lanjutan, hubungi: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
+      <p>Pertanyaan lebih lanjut: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
     </section>
 
-    <!-- English version -->
-    <section id="content-en" class="card" style="display:none">
-      <h2>Data Deletion Instructions (English)</h2>
-      <p>We respect user privacy. If you want to request deletion of data related to your use of services on <strong>dalam.web.id</strong>, please follow the instructions below.</p>
+    <!-- English -->
+    <section id="content-en" style="display:none">
+      <h2>Data Deletion Instructions</h2>
+      <p>We respect your privacy. Here’s how to request deletion of your data.</p>
 
-      <h3>What you can request</h3>
+      <h3>What can be deleted</h3>
       <ul>
-        <li>Removal of comments or contributions you submitted via our plugin/UGC features.</li>
-        <li>Removal of profile data we may store (if any), such as display name and email address.</li>
-        <li>Removal of technical data related to sessions or activity (where identifiable).</li>
+        <li>Comments or contributions you submitted</li>
+        <li>Profile data (display name, email)</li>
+        <li>Identifiable technical/session data</li>
       </ul>
 
-      <h3>How to request deletion</h3>
-      <p>There are <strong>3 ways</strong> to request deletion:</p>
+      <h3>How to request (3 options)</h3>
       <ol>
-        <li>
-          <strong>By email</strong>
-          <p>Send an email to <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a> with subject: <code>Data Deletion Request</code>. Include the following information (mostly required for verification):</p>
-          <ul>
-            <li>Display name used</li>
-            <li>Email address associated (if any)</li>
-            <li>Page URL or entry identifier (e.g. article URL or comment ID)</li>
-            <li>Short description of data to be deleted</li>
-          </ul>
+        <li><strong>Email</strong><br>
+            Send to <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a><br>
+            Subject: <code>Data Deletion Request</code><br>
+            Include: display name, email, URL/ID of content, short description.
         </li>
-
-        <li>
-          <strong>Via web form</strong>
-          <p>Visit: <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a> and fill out the deletion request form. (If not available, use the email option.)</p>
+        <li><strong>Web form</strong><br>
+            <a href="https://dalam.web.id/data-deletion-form">https://dalam.web.id/data-deletion-form</a>
         </li>
-
-        <li>
-          <strong>Automated endpoint (Machine-readable)</strong>
-          <p>For integrations, we offer a JSON endpoint example that third-party services or admins can call:</p>
-          <pre><code>POST https://dalam.web.id/api/data-deletion-request
+        <li><strong>API endpoint (machine-readable)</strong><br>
+            <pre><code>POST https://dalam.web.id/api/data-deletion-request
 Content-Type: application/json
 
 {
   "identifier": "user@example.com",
   "type": "email|comment_id|url",
   "reason": "User requested deletion"
-}
-</code></pre>
-          <p>Example response:</p>
-          <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
+}</code></pre>
+            Example response:<br>
+            <pre><code>{ "status":"received", "ticket":"DD-2025-0001", "estimated_completion":"2025-12-08T12:00:00Z" }</code></pre>
         </li>
       </ol>
 
-      <h3>Process & Timeline</h3>
-      <p>We will respond to your request within <strong>24–72 business hours</strong>. For complex cases (e.g. deletion across multiple sources), additional time may be required — we will notify you by email with an updated estimate.</p>
+      <h3>Process & timeline</h3>
+      <p>Response within <strong>24–72 business hours</strong>. Complex cases will receive an updated estimate via email.</p>
 
-      <h3>Verification and Proof</h3>
-      <p>To prevent unauthorized deletions, we may request proof of ownership or control over the data being deleted. Examples: confirmation email, profile screenshots, or links showing your association.</p>
+      <h3>Verification</h3>
+      <p>We may ask for proof of ownership (confirmation email, screenshots, etc.).</p>
 
-      <h3>Notes about third-party managed data</h3>
-      <p>Some data (e.g. comments via Facebook/Google/etc.) may be managed by third-party services. For such data we will assist in making deletion requests, but final removal may require action by the third-party provider.</p>
+      <h3>Third-party data</h3>
+      <p>Comments made via Facebook/Google etc. must be deleted on those platforms. We will assist where possible.</p>
 
-      <h3>Contact</h3>
-      <p>For further questions contact: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
+      <p>Questions: <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a></p>
     </section>
 
-    <footer class="muted">
-      <p>Halaman ini dibuat untuk memenuhi persyaratan <strong>Data Deletion Information</strong> pada pengaturan aplikasi platform pihak ketiga (mis. Facebook). Pastikan URL ini dapat diakses via HTTPS dan tidak memblokir user-agent.</p>
+    <footer>
+      Halaman ini dibuat untuk memenuhi persyaratan <strong>Data Deletion Information</strong> platform pihak ketiga (Facebook, Google, dsb.).
     </footer>
   </div>
 
   <script>
-    function switchLang(code){
-      document.getElementById('content-id').style.display = code === 'id' ? 'block' : 'none';
-      document.getElementById('content-en').style.display = code === 'en' ? 'block' : 'none';
+    function switchLang(val) {
+      document.getElementById('content-id').style.display = val === 'id' ? 'block' : 'none';
+      document.getElementById('content-en').style.display = val === 'en' ? 'block' : 'none';
     }
-    // detect browser language (optional)
-    (function(){
-      try{
-        var lang = navigator.language || navigator.userLanguage || 'id';
-        if(lang.indexOf('en')===0) document.getElementById('lang').value='en';
-        else document.getElementById('lang').value='id';
-        switchLang(document.getElementById('lang').value);
-      }catch(e){}
-    })();
+
+    // Deteksi bahasa browser saat halaman dimuat
+    const browserLang = (navigator.language || navigator.userLanguage || 'id').substring(0,2);
+    const defaultLang = browserLang === 'en' ? 'en' : 'id';
+    document.getElementById('lang').value = defaultLang;
+    switchLang(defaultLang);
   </script>
 </body>
 </html>
