@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cara menjalankan aplikasi Windows (Microsoft 365, Adobe Creative Cloud) di Linux (KDE, GNOME) seolah-olah native menggunakan WinApps.">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="keywords" content="WinApps, Linux, Windows Apps, FreeRDP, KDE Plasma, GNOME, XFCE, Microsoft 365, Adobe CC, Docker, VM">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="WinApps: Menjalankan Aplikasi Windows Seolah Native di Linux">
+    <meta property="og:description" content="Panduan lengkap menjalankan Microsoft 365 & Adobe Creative Cloud langsung dari Linux menggunakan WinApps dan FreeRDP.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="article:author" content="https://dalam.web.id">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WinApps: Menjalankan Aplikasi Windows Seolah Native di Linux">
+    <meta name="twitter:description" content="Tutorial lengkap menjalankan software Windows di Linux secara seamless menggunakan WinApps.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+
+
+    <style>
+        /* CSS Variables for Auto Dark/Light Mode */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
+            --accent-color: #556ee6; /* Biru Ungu Khas Tech */
+            --accent-hover: #4758b9;
+            --link-color: #0984e3;
+            --header-bg: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-color: #dcdcdc;
+            --important-bg: #f8d7da;
+            --important-text: #721c24;
+            --note-bg: #d1ecf1;
+            --note-text: #0c5460;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1e2e;
+                --text-color: #cdd6f4;
+                --accent-color: #b7a9f8;
+                --accent-hover: #c9c1ff;
+                --link-color: #89dceb;
+                --header-bg: #181825;
+                --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
+                --border-color: #45475a;
+                --important-bg: #3d141e;
+                --important-text: #f06870;
+                --note-bg: #1a3c42;
+                --note-text: #96d3de;
+            }
+        }
+
+        /* Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 18px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Layout */
+        .main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: var(--accent-color); font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { font-size: 1.8rem; margin-top: 40px; }
+        h3 { font-size: 1.4rem; margin-top: 30px; }
+        p, li { margin-bottom: 15px; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; }
+        a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
+        a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+        /* Code & Pre Blocks */
+        code:not(pre code) {
+            background-color: var(--border-color);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: var(--card-shadow);
+            background: #282c34;
+        }
+        pre code.hljs {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            padding: 20px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        /* Alerts/Notes/Important */
+        .alert-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        .important-box {
+            background-color: var(--important-bg);
+            color: var(--important-text);
+            border-left: 5px solid var(--important-text);
+        }
+        .note-box {
+            background-color: var(--note-bg);
+            color: var(--note-text);
+            border-left: 5px solid var(--note-text);
+        }
+
+        /* Table (Community Tested Apps) */
+        .app-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .app-table td {
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            width: 25%; /* Membagi 4 kolom menjadi 25% */
+        }
+        .app-table img {
+            display: block;
+            margin: 0 auto 5px auto;
+        }
+        .app-table b { color: var(--accent-color); font-weight: 700; }
+        .app-table tr:nth-child(even) { background-color: rgba(var(--text-color), 0.05); }
+        @media (prefers-color-scheme: dark) {
+            .app-table tr:nth-child(even) { background-color: rgba(var(--text-color), 0.1); }
+        }
+
+        /* Centered Content (Banners, Demos) */
+        .center-content {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .center-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-icons a { font-size: 1.5rem; color: var(--text-color); }
+        .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .main-wrapper { padding: 20px; }
+            pre code.hljs { font-size: 0.8em; padding: 15px; }
+            .app-table td { width: 50%; display: inline-block; box-sizing: border-box; }
+            .app-table tr { display: flex; flex-wrap: wrap; }
+            .app-table tr td:nth-child(even) { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <header>
+        <h1><i class="fa-brands fa-windows"></i> <i class="fa-solid fa-arrow-right-arrow-left"></i> <i class="fa-brands fa-linux"></i> WinApps: Menjalankan Aplikasi Windows Seolah Native di Linux</h1>
+        <p>
+            <i class="fa-solid fa-calendar-days"></i> <strong>Tanggal Posting:</strong> 10 Desember 2025<br>
+        </p>
+    </header>
+
+   <div class="center-content">
+    <a href="https://github.com/winapps-org/winapps.git" target="_blank" rel="noopener noreferrer">
+        <img style="display:none;"
+             class="dark-mode-banner"
+             src="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/banner_dark.svg"
+             width="700"
+             alt="WinApps Banner Dark Mode">
+    </a>
+
+    <a href="https://github.com/winapps-org/winapps.git" target="_blank" rel="noopener noreferrer">
+        <img class="light-mode-banner"
+             src="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/banner_light.svg"
+             width="700"
+             alt="WinApps Banner Light Mode">
+    </a>
+</div>
+
+    <hr>
+
+    <section>
+        <p>
+            Bosku, kadang hidup itu rumit. Kita sudah nyaman di Linux dengan <code>KDE Plasma</code>, <code>GNOME</code>, atau <code>XFCE</code> yang gesit, tapi klien atau pekerjaan memaksa kita harus pakai aplikasi Windows seperti <a href="https://www.microsoft365.com/" target="_blank">Microsoft 365</a> atau <a href="https://www.adobe.com/creativecloud.html" target="_blank">Adobe Creative Cloud</a>. Pindah-pindah OS? Ribet kayak **Go Back To Door** yang nggak jelas mau ke mana!
+        </p>
+        <p>
+            Di sinilah <strong>WinApps</strong> muncul sebagai pahlawan super. Ia memungkinkan kamu menjalankan aplikasi Windows tersebut, terintegrasi mulus seolah-olah aplikasi itu memang native di Linux! Tampilan demonya bikin ngiler:
+        </p>
+
+        <div class="center-content">
+            <img src="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png" width="1000" alt="Demonstrasi Aplikasi Windows berjalan mulus di Linux.">
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-gears"></i> Mekanisme di Balik Keajaiban WinApps</h2>
+        <p>
+            Ini bukan sihir, Bosku, tapi teknik *geek* yang elegan! WinApps bekerja dengan cara yang cerdas dan bertahap:
+        </p>
+        <ol>
+            <li>Menjalankan Windows dalam sebuah Virtual Machine (VM) menggunakan <code>Docker</code>, <code>Podman</code>, atau <code>libvirt</code>.</li>
+            <li>Menginterogasi Windows untuk semua aplikasi yang terinstal.</li>
+            <li>Membuat *shortcut* atau pintasan ke aplikasi Windows yang terpilih di sistem operasi GNU/Linux host.</li>
+            <li>Menggunakan teknologi <a href="https://www.freerdp.com/" target="_blank"><code>FreeRDP</code></a> (fitur RemoteApp) sebagai *backend* untuk me-*render* aplikasi Windows secara terpisah, bersebelahan dengan aplikasi Linux native kamu.</li>
+        </ol>
+
+        <div class="tip-box alert-box note-box">
+            <i class="fa-solid fa-terminal"></i> **Intinya:** Windows berjalan di belakang layar, dan hanya jendela aplikasinya saja yang "diproyeksikan" ke desktop Linux kamu menggunakan protokol RDP. Canggih!
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-star"></i> Fitur Tambahan yang Bikin Ngopi Makin Nikmat</h2>
+        <ul>
+            <li>Direktori <code>/home</code> Linux kamu dapat diakses di dalam Windows via *mount* <code>\\tsclient\home</code>. Transfer file jadi gampang!</li>
+            <li>Integrasi dengan <code>Nautilus</code> (File Manager GNOME) yang memungkinkan kamu klik kanan file untuk membukanya dengan aplikasi Windows tertentu berdasarkan tipe MIME file-nya.</li>
+            <li>Ada <a href="https://github.com/winapps-org/WinApps-Launcher" target="_blank">widget taskbar resmi</a> yang memudahkan administrasi subsistem Windows dan meluncurkan aplikasi.</li>
+            <li>Link Microsoft Office (misalnya <code>ms-word://</code>) dari sistem host akan otomatis dibuka di subsistem Windows. (Psst, kamu mungkin butuh <a href="https://github.com/ray-lothian/UserAgent-Switcher/" target="_blank">User Agent Switcher</a> di browser agar opsi "Open in Desktop App" muncul di web Office).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-check-double"></i> Aplikasi yang Didukung</h2>
+        <p>
+            Kabar baiknya, **WinApps mendukung <u>*SEMUA*</u> aplikasi Windows.** Namun, dukungan tidak berlaku untuk sistem *anti-cheat* level kernel (misalnya Riot Vanguard).
+        </p>
+        <p>
+            Dukungan universal dicapai dengan:
+            <ol>
+                <li>Memindai aplikasi yang sudah diuji komunitas (daftar di bawah).</li>
+                <li>Memindai file <code>.exe</code> lain yang terdaftar dalam Windows Registry.</li>
+            </ol>
+        </p>
+        <p>
+            Aplikasi yang diuji komunitas mendapatkan ikon resolusi tinggi dan tipe MIME bawaan (seperti yang dibutuhkan **Biro Periklanan** untuk menangani format file tertentu). Ikon untuk aplikasi lain akan diambil dari file <code>.exe</code>-nya langsung.
+        </p>
+        <p>
+            <i class="fa-solid fa-hand-holding-heart"></i> Kontribusi (Pull Request) sangat dianjurkan untuk menambah daftar aplikasi yang diuji komunitas!
+        </p>
+
+        <h3>Daftar Aplikasi yang Sudah Diuji Komunitas</h3>
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/acrobat-x-pro/icon.svg" width="100" alt="Adobe Acrobat Pro"></td>
+                    <td><b>Adobe Acrobat Pro</b><br>(X)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_Acrobat_DC_logo_2020.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/aftereffects-cc/icon.svg" width="100" alt="Adobe After Effects"></td>
+                    <td><b>Adobe After Effects</b><br>(CC)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_After_Effects_CC_icon.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/audition-cc/icon.svg" width="100" alt="Adobe Audition"></td>
+                    <td><b>Adobe Audition</b><br>(CC)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Adobe_Audition_CC_icon_%282020%29.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/bridge-cs6/icon.svg" width="100" alt="Adobe Bridge"></td>
+                    <td><b>Adobe Bridge</b><br>(CS6, CC)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Adobe_Bridge_CC_icon.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/adobe-cc/icon.svg" width="100" alt="Adobe Creative Cloud"></td>
+                    <td><b>Adobe Creative Cloud</b><br>(CC)<br><i><a href="https://iconduck.com/icons/240218/adobe-creative-cloud" target="_blank">Icon</a> under <a href="https://iconduck.com/licenses/mit" target="_blank">MIT license</a>.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/illustrator-cc/icon.svg" width="100" alt="Adobe Illustrator"></td>
+                    <td><b>Adobe Illustrator</b><br>(CC)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_Illustrator_CC_icon.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/indesign-cc/icon.svg" width="100" alt="Adobe InDesign"></td>
+                    <td><b>Adobe InDesign</b><br>(CC)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_InDesign_CC_icon.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/lightroom-cc/icon.svg" width="100" alt="Adobe Lightroom"></td>
+                    <td><b>Adobe Lightroom</b><br>(CC)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_Photoshop_Lightroom_CC_logo.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/photoshop-cc/icon.svg" width="100" alt="Adobe Photoshop"></td>
+                    <td><b>Adobe Photoshop</b><br>(CS6, CC, 2022)<br><i><a href="https://commons.wikimedia.org/wiki/File:Adobe_Photoshop_CC_icon.svg" target="_blank">Icon</a> in Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/afdesign/icon.svg" width="100" alt="Affinity Designer 2"></td>
+                    <td><b>Affinity Designer 2</b><br><i><a href="https://commons.wikimedia.org/wiki/File:Affinity_Designer_V2_icon.svg" target="_blank">Icon</a> under CC-BY-SA 4.0 via Serif Ltd.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/afphoto/icon.svg" width="100" alt="Affinity Photo 2"></td>
+                    <td><b>Affinity Photo 2</b><br><i><a href="https://commons.wikimedia.org/wiki/File:Affinity_Photo_V2_icon.svg" target="_blank">Icon</a> under CC-BY-SA 4.0 via Serif Ltd.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/afpub/icon.svg" width="100" alt="Affinity Publisher 2"></td>
+                    <td><b>Affinity Publisher 2</b><br><i><a href="https://commons.wikimedia.org/wiki/File:Affinity_Publisher_V2_icon.svg" target="_blank">Icon</a> under CC-BY-SA 4.0 via Serif Ltd.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/affinity/icon.svg" width="100" alt="Affinity by Canva (v3)"></td>
+                    <td><b>Affinity by Canva (v3)</b><br><i><a href="https://commons.wikimedia.org/wiki/File:Affinity_(App)_Logo.svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/cmd/icon.svg" width="100" alt="Command Prompt"></td>
+                    <td><b>Command Prompt</b><br>(cmd.exe)<br><i><a href="https://github.com/microsoft/terminal/blob/main/res/terminal/Terminal.svg" target="_blank">Icon</a> under <a href="https://github.com/microsoft/terminal/blob/main/LICENSE" target="_blank">MIT license</a>.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/explorer/icon.svg" width="100" alt="File Explorer"></td>
+                    <td><b>File Explorer</b><br>(Windows Explorer)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_PowerToys-Logo_File_Explorer_Preview_02.svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/iexplorer/icon.svg" width="100" alt="Internet Explorer"></td>
+                    <td><b>Internet Explorer</b><br>(11)<br><i><a href="https://commons.wikimedia.org/wiki/File:Internet_Explorer_10%2B11_logo.svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/access/icon.svg" width="100" alt="Microsoft Access"></td>
+                    <td><b>Microsoft Access</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_Office_Access_(2025-present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/excel/icon.svg" width="100" alt="Microsoft Excel"></td>
+                    <td><b>Microsoft Excel</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_Office_Excel_(2025–present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/word/icon.svg" width="100" alt="Microsoft Word"></td>
+                    <td><b>Microsoft Word</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_Office_Word_(2025–present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/onenote/icon.svg" width="100" alt="Microsoft OneNote"></td>
+                    <td><b>Microsoft OneNote</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_OneNote_Icon_(2025_-_present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/outlook/icon.svg" width="100" alt="Microsoft Outlook"></td>
+                    <td><b>Microsoft Outlook</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_Outlook_Icon_(2025–present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/powerpoint/icon.svg" width="100" alt="Microsoft PowerPoint"></td>
+                    <td><b>Microsoft PowerPoint</b><br>(2016, 2019, o365)<br><i><a href="https://en.wikipedia.org/wiki/File:Microsoft_Office_PowerPoint_(2025–present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/publisher/icon.svg" width="100" alt="Microsoft Publisher"></td>
+                    <td><b>Microsoft Publisher</b><br>(2016, 2019, o365)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Microsoft_Office_Publisher_(2019-present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/visio/icon.svg" width="100" alt="Microsoft Visio"></td>
+                    <td><b>Microsoft Visio</b><br>(Standard/Pro. 2021, Plan 2)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Microsoft_Office_Visio_(2019).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/project/icon.svg" width="100" alt="Microsoft Project"></td>
+                    <td><b>Microsoft Project</b><br>(Standard/Pro. 2021, Plan 3/5)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Microsoft_Project_(2019–present).svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/visual-studio-pro/icon.svg" width="100" alt="Microsoft Visual Studio"></td>
+                    <td><b>Microsoft Visual Studio</b><br>(Comm./Pro./Ent. 2022)<br><i><a href="https://en.m.wikipedia.org/wiki/File:Visual_Studio_Icon_2022.svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/fusion-360/icon.svg" width="100" alt="Autodesk Fusion 360"></td>
+                    <td><b>Autodesk Fusion 360</b><br><i><a href="https://commons.wikimedia.org/wiki/File:Fusion360_Logo.svg" target="_blank">Icon</a> in the Public Domain.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/mirc/icon.svg" width="100" alt="mIRC"></td>
+                    <td><b>mIRC</b><br><i><a href="https://en.wikipedia.org/wiki/MIRC#/media/File:Mircnewlogo.png" target="_blank">Icon</a> in the Public Domain.</i></td>
+                </tr>
+                <tr>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/apps/powershell/icon.svg" width="100" alt="PowerShell"></td>
+                    <td><b>PowerShell</b><br><i><a href="https://iconduck.com/icons/102322/file-type-powershell" target="_blank">Icon</a> under <a href="https://iconduck.com/licenses/mit" target="_blank">MIT license</a>.</i></td>
+                    <td><img src="https://raw.githubusercontent.com/winapps-org/winapps/main/install/windows.svg" width="100" alt="Windows (Full RDP Session)"></td>
+                    <td><b>Windows</b><br>(Full RDP Session)<br><i>Icon in the Public Domain.</i></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-download"></i> Panduan Instalasi (Step-by-Step)</h2>
+
+        <h3>Step 1: Konfigurasi Windows VM</h3>
+        <p>
+            <code>Docker</code> dan <code>Podman</code> direkomendasikan karena memfasilitasi proses instalasi Windows yang otomatis. Namun, <code>libvirt</code> juga kompatibel, memberikan opsi kustomisasi VM yang lebih besar. Ketiga metode ini menggunakan *hypervisor* **KVM** untuk performa VM yang prima.
+        </p>
+        <ul>
+            <li>[Membuat Windows VM dengan <code>Docker</code> atau <code>Podman</code>](docs/docker.md)</li>
+            <li>[Membuat Windows VM dengan <code>libvirt</code>](docs/libvirt.md)</li>
+        </ul>
+        <p>
+            Jika kamu sudah punya VM Windows, kamu tetap perlu mengikuti [langkah konfigurasi akhir yang dijelaskan dalam dokumentasi <code>libvirt</code>](docs/libvirt.md#final-configuration-steps).
+        </p>
+
+        <h3>Step 2: Instalasi Dependencies</h3>
+        <p>Instal paket-paket yang diperlukan di Distro Linux kamu:</p>
+
+        <h4>Debian/Ubuntu:</h4>
+        <pre><code class="language-bash">sudo apt install -y curl dialog freerdp3-x11 git iproute2 libnotify-bin netcat-openbsd</code></pre>
+        <div class="note-box alert-box">
+            <i class="fa-solid fa-info-circle"></i> **CATATAN:** Di Debian 12 (_"bookworm"_), kamu mungkin perlu mengaktifkan repositori <code>backports</code> agar paket <code>freerdp3-x11</code> tersedia.
+        </div>
+
+        <h4>Arch Linux:</h4>
+        <pre><code class="language-bash">sudo pacman -Syu --needed -y curl dialog freerdp git iproute2 libnotify openbsd-netcat</code></pre>
+
+        <div class="note-box alert-box">
+            <i class="fa-solid fa-flag"></i> **PENTING FreeRDP:** WinApps memerlukan **FreeRDP versi 3 atau yang lebih baru**. Jika tidak tersedia, kamu bisa coba instal Flatpak-nya. Namun, jika ada masalah, kompilasi dari *source* adalah opsi terbaik!
+        </div>
+
+        <h3>Step 3: Buat File Konfigurasi WinApps</h3>
+        <p>Buat file konfigurasi di <code>~/.config/winapps/winapps.conf</code>. Ini adalah kunci agar koneksi RDP kamu aman dan berjalan dengan lancar:</p>
+
+        <pre><code class="language-bash">##################################
+#   WINAPPS CONFIGURATION FILE   #
+##################################
+
+# [WINDOWS USERNAME]
+RDP_USER="MyWindowsUser"
+
+# [WINDOWS PASSWORD]
+# CATATAN: FreeRDP v3.9.0 ke atas, HARUS menggunakan password
+RDP_PASS="MyWindowsPassword"
+
+# [WINDOWS IPV4 ADDRESS]
+# DEFAULT: '127.0.0.1' (untuk Docker/Podman)
+RDP_IP="127.0.0.1"
+
+# [WINAPPS BACKEND]
+# DEFAULT: 'docker' | VALID: 'docker', 'podman', 'libvirt', 'manual'
+WAFLAVOR="docker"
+
+# [DISPLAY SCALING FACTOR]
+# DEFAULT: '100' | VALID: '100', '140', '180'
+RDP_SCALE="100"
+
+# [ADDITIONAL FREERDP FLAGS & ARGUMENTS]
+RDP_FLAGS="/cert:tofu /sound /microphone +home-drive"
+
+# ... (Sertakan semua konfigurasi penting lainnya jika diperlukan) ...
+
+AUTOPAUSE="off"
+AUTOPAUSE_TIME="300"
+DEBUG="true"
+# ... (Configuration Timeouts, dll.) ...</code></pre>
+
+        <div class="important-box alert-box important-box">
+            <i class="fa-solid fa-lock"></i> **SANGAT PENTING!** Amankan file konfigurasi kamu agar password Windows kamu tidak bisa diakses orang lain (ini penting dalam etika **Human Resources Generalized**!):
+            <pre><code class="language-bash">chown $(whoami):$(whoami) ~/.config/winapps/winapps.conf
+chmod 600 ~/.config/winapps/winapps.conf</code></pre>
+            Pastikan juga <code>RDP_USER</code> dan <code>RDP_PASS</code> adalah *username* dan *password* Windows yang lengkap (bukan PIN).
+        </div>
+
+        <h3>Step 4: Test FreeRDP</h3>
+        <p>Uji koneksi RDP kamu. Ini adalah langkah krusial. Gunakan perintah yang relevan:</p>
+        <pre><code class="language-bash">xfreerdp3 /u:"MyWindowsUser" /p:"MyWindowsPassword" /v:127.0.0.1 /cert:tofu
+
+# Atau jika menggunakan Flatpak
+flatpak run --command=xfreerdp com.freerdp.FreeRDP /u:"MyWindowsUser" /p:"MyWindowsPassword" /v:127.0.0.1 /cert:tofu
+</code></pre>
+        <p>Jika desktop Windows muncul, konfigurasi RDP sudah sukses! Jika ada error sertifikat, hapus sertifikat lama di <code>~/.config/freerdp/server/</code> lalu coba lagi.</p>
+
+        <h3>Step 5: Jalankan Installer WinApps</h3>
+        <p>Dengan Windows masih menyala (On), jalankan installer:</p>
+        <pre><code class="language-bash">bash &lt;(curl https://raw.githubusercontent.com/winapps-org/winapps/main/setup.sh)</code></pre>
+        <div class="center-content">
+            <img src="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/installer.gif" width="1000" alt="Animasi WinApps Installer.">
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-wand-sparkles"></i> Menjalankan Aplikasi Secara Manual</h2>
+        <p>
+            Untuk aplikasi yang tidak terdeteksi otomatis, kamu bisa menggunakan mode manual.
+        </p>
+        <pre><code class="language-bash">winapps manual "C:\my\directory\executableNotInPath.exe"
+winapps manual executableInPath.exe</code></pre>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-cloud-arrow-up"></i> Update WinApps</h2>
+        <p>Untuk mengupdate, cukup jalankan:</p>
+        <ol>
+            <li>Jalankan <code>winapps-setup</code> untuk menghapus instalasi lama.</li>
+            <li>*Pull* perubahan terbaru dari repository GitHub.</li>
+            <li>Instal ulang dengan menjalankan <code>winapps-setup</code>.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-leaf"></i> Instalasi menggunakan Nix (Bagi Para Pecinta Fleksibilitas)</h2>
+        <p>Setelah mengikuti Step 1, kamu bisa menginstal WinApps melalui Nix:</p>
+
+        <h3>Menggunakan standalone Nix (Flakes)</h3>
+        <p>Pastikan Flakes aktif di <code>~/.config/nix/nix.conf</code>:</p>
+        <pre><code class="language-bash">experimental-features = nix-command flakes</code></pre>
+        <p>Kemudian:</p>
+        <pre><code class="language-bash">nix profile install github:winapps-org/winapps#winapps
+nix profile install github:winapps-org/winapps#winapps-launcher # opsional</code></pre>
+    </section>
+    <div id="pesbukdiskus"></div>
+    <footer>
+        <p>Artikel ini ditulis sambil ditemani **Kopi Susu** bahwa Windows dan Linux bisa akur.</p>
+        <p>Made with <i class="fa-solid fa-heart" style="color: #ff3860;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
+        <p><em>Go Back To Door & HR Generalized</em></p>
+
+        <div class="social-icons">
+            <a href="https://threads.net/frijal" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://linkedin.com/in/frijal" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/frijal" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://mastodon.social/@frijal" target="_blank" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+            <a href="https://t.me/frijal" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">&copy; 2025 Layar Kosong (dalam.web.id). Hati-hati menyebabkan kantuk.</p>
+    </footer>
+
+</div>
+
+<script>
+    // Logika untuk menampilkan banner Dark atau Light mode
+    const darkModeBanner = document.querySelector('.dark-mode-banner');
+    const lightModeBanner = document.querySelector('.light-mode-banner');
+
+    function checkMode() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Dark mode is active
+            if (darkModeBanner) {
+                darkModeBanner.style.display = 'block';
+            }
+            if (lightModeBanner) {
+                lightModeBanner.style.display = 'none';
+            }
+        } else {
+            // Light mode is active
+            if (darkModeBanner) {
+                darkModeBanner.style.display = 'none';
+            }
+            if (lightModeBanner) {
+                lightModeBanner.style.display = 'block';
+            }
+        }
+    }
+
+    // Run on load and whenever the color scheme changes
+    checkMode();
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addListener(checkMode);
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script>
+    // Initialize Highlight.js
+    hljs.highlightAll();
+</script>
+
+</body>
+</html>
