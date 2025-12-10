@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cara ampuh menghapus Copilot, Recall, dan semua fitur AI di Windows 11 Build 25H2+. Script otomatis untuk privasi dan performa maksimal.">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="keywords" content="Remove Windows AI, Disable Copilot, Hapus Recall Windows 11, Windows Debloat, Privasi Windows, PowerShell Script">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/remove-windows-ai.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/remove-windows-ai.html">
+    <meta property="og:title" content="Hapus Total Windows AI (Copilot & Recall) - Bersih Tuntas!">
+    <meta property="og:description" content="Script PowerShell sakti untuk membasmi bloatware AI di Windows 11. Kembalikan kendali PC ke tanganmu.">
+    <meta property="og:image" content="https://github.com/zoicware/RemoveWindowsAI/assets/118035521/33efb033-c935-416c-977d-777bb69a3737">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/remove-windows-ai.html">
+    <meta property="twitter:title" content="Hapus Total Windows AI">
+    <meta property="twitter:description" content="Jangan biarkan AI mengintip aktivitasmu. Hapus Copilot dan Recall sekarang juga.">
+    <meta property="twitter:image" content="https://github.com/zoicware/RemoveWindowsAI/assets/118035521/33efb033-c935-416c-977d-777bb69a3737">
+
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <title>Remove Windows AI: Hapus Copilot dan Recall</title>
+
+    <style>
+        /* CSS Variables for Auto Dark/Light Mode */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
+            --accent-color: #d63031; /* Merah agressive untuk "Remove" */
+            --accent-hover: #ff7675;
+            --link-color: #0984e3;
+            --header-bg: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-color: #dcdcdc;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1e2e;
+                --text-color: #cdd6f4;
+                --accent-color: #ff5252;
+                --accent-hover: #ff8a80;
+                --link-color: #89dceb;
+                --header-bg: #181825;
+                --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
+                --border-color: #45475a;
+                --warning-bg: #3e3218;
+                --warning-text: #ffda6a;
+            }
+        }
+
+        /* Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 18px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Layout - Widescreen 1 Column */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: var(--accent-color); font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { font-size: 1.8rem; margin-top: 40px; }
+        p, li { margin-bottom: 15px; }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
+        a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+        /* Code Blocks Style */
+        pre {
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: var(--card-shadow);
+            background: #282c34; /* Fallback */
+        }
+        pre code.hljs {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Alert/Warning Boxes */
+        .alert {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        /* Details / Spoiler */
+        details {
+            background: var(--header-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: var(--card-shadow);
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-color);
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-left: auto; transition: transform 0.2s; }
+        details[open] summary::after { transform: rotate(180deg); }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            display: inline-block;
+        }
+        .center-img { display: flex; justify-content: center; margin: 30px 0; }
+        .icon-img { width: 150px; height: auto; }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-logo { max-width: 150px; margin-bottom: 20px; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-logo:hover { opacity: 1; }
+        .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-icons a { font-size: 1.5rem; color: var(--text-color); }
+        .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .main-wrapper { padding: 20px; }
+            pre code.hljs { font-size: 0.8em; padding: 15px; }
+        }
+    </style>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image:alt" content="Remove Windows AI: Hapus Copilot dan Recall">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dalam.web.id/img/remove-windows-ai.webp">
+  <meta itemprop="image" content="https://dalam.web.id/img/remove-windows-ai.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+    <meta property="article:published_time" content="2025-12-10T17:06:27.402+00:00">
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <header>
+        <h1><i class="fa-brands fa-windows"></i> Remove Windows AI</h1>
+<div id="iposbrowser"></div>
+        <p>
+            <i class="fa-solid fa-user-shield"></i> <strong>Source:</strong> <a href="https://github.com/zoicware/RemoveWindowsAI" target="_blank">zoicware (GitHub)</a><br>
+            <i class="fa-solid fa-pen-nib"></i> <strong>Artikel oleh:</strong> Fakhrul Rijal
+        </p>
+    </header>
+
+    <section>
+        <div class="center-img">
+            <img src="https://github.com/zoicware/RemoveWindowsAI/assets/118035521/33efb033-c935-416c-977d-777bb69a3737" alt="AI Explorer Icon" class="icon-img">
+        </div>
+        <p>
+            Halo, sobat pengguna Windows! 👋 Merasa nggak sih kalau akhir-akhir ini Microsoft makin agresif menanamkan fitur AI di mana-mana?
+            Terutama di update Windows 11 build 25H2 dan yang akan datang. Rasanya kayak tamu tak diundang yang tiba-tiba masuk kamar dan nggak mau pergi.
+        </p>
+        <p>
+            Mulai dari <strong>Copilot</strong> yang nongol terus, sampai fitur <strong>Recall</strong> yang agak "seram" karena merekam aktivitas layar kita.
+            Buat kamu yang merasa privasi itu mahal harganya, atau sekadar pengen PC kamu ngebut tanpa beban <em>background process</em> yang nggak perlu,
+            saya punya solusinya. Ini adalah script "bersih-bersih" yang ampuh banget buat membasmi semua elemen AI tersebut sampai ke akar-akarnya.
+        </p>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-list-check"></i> Apa Saja yang Dihapus?</h2>
+        <p>Script ini nggak main-main, Bos. Dia bakal menyisir sistem kamu dan mematikan hal-hal berikut:</p>
+        <ul>
+            <li><i class="fa-solid fa-ban"></i> <strong>Registry Keys:</strong> Mematikan Copilot, Recall, Input Insights (yang suka ngintip ketikan kita), AI di Paint, dan Voice Access.</li>
+            <li><i class="fa-solid fa-shield-halved"></i> <strong>Cegah Install Ulang:</strong> Memasang paket khusus biar Windows Update nggak diem-diem install balik fitur AI-nya.</li>
+            <li><i class="fa-solid fa-eraser"></i> <strong>Hapus Appx Packages:</strong> Membuang aplikasi AI bawaan, termasuk yang katanya "Nonremovable".</li>
+            <li><i class="fa-solid fa-trash-can"></i> <strong>Pembersihan CBS Store:</strong> Menghapus paket AI yang tersembunyi di dalam sistem Component-Based Servicing.</li>
+            <li><i class="fa-solid fa-eye-slash"></i> <strong>Sembunyikan Pengaturan:</strong> Menghilangkan halaman "AI Components" dari Settings biar bersih.</li>
+            <li><i class="fa-solid fa-broom"></i> <strong>File Cleanup:</strong> Membersihkan sisa-sisa installer dan file sampah AI.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-terminal"></i> Cara Menggunakan (Gampang Banget!)</h2>
+
+        <div class="alert">
+            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Peringatan Penting:</strong><br>
+            Jangan jalankan script ini pakai PowerShell 7 (pwsh). Pastikan kamu pakai <strong>Windows PowerShell (versi 5.1)</strong> bawaan, dan jalankan sebagai <strong>Administrator</strong> biar lancar jaya.
+        </div>
+
+        <h3>1. Metode Paling Santai (Pakai UI)</h3>
+        <p>
+            Cara ini paling saya rekomendasikan. Tinggal copy perintah di bawah, paste di terminal PowerShell (Admin), lalu tekan Enter.
+            Nanti bakal muncul jendela menu (GUI) di mana kamu bisa klik-klik fitur mana yang mau dibuang. Praktis!
+        </p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1")))</code></pre>
+
+        <h3>2. Versi Link Pendek (Kalau Males Ngetik Panjang)</h3>
+        <p>Sama aja kayak di atas, cuma link-nya udah dipendekin pakai kutt.it biar nggak menuhin layar.</p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm 'https://kutt.it/RWAI')))</code></pre>
+
+        <details>
+            <summary><i class="fa-solid fa-image"></i> Intip Tampilan UI-nya (Klik di sini)</summary>
+            <div class="center-img">
+                <img src="https://github.com/user-attachments/assets/92499461-f0d3-40f3-94f6-6d7a0d49fc10" alt="Tampilan UI Remove Windows AI">
+            </div>
+            <p style="text-align: center; font-size: 0.9em; color: gray;">Tuh, tinggal centang-centang doang, gampang kan?</p>
+        </details>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-code"></i> Buat Para Suhu (Command Line Options)</h2>
+        <p>
+            Kalau kamu tipe yang "Sat set sat set" tanpa perlu klik-klik GUI, atau mau deploy ini ke banyak PC sekaligus,
+            kamu bisa pakai mode <em>Non-Interactive</em>. Berikut contekan perintahnya:
+        </p>
+
+        <p><strong>Hajar Semua (Hapus Semuanya Tanpa Kompromi):</strong></p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1"))) -nonInteractive -AllOptions</code></pre>
+
+        <p><strong>Hapus Bagian Tertentu Saja:</strong></p>
+        <p>Contoh di bawah ini cuma mematikan Registry Keys, menghapus kunci "Nudges" (iklan notifikasi), dan menghapus Appx Packages.</p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1"))) -nonInteractive -Options DisableRegKeys,RemoveNudgesKeys,RemoveAppxPackages</code></pre>
+
+        <p><strong>Mode Aman (Backup Mode):</strong></p>
+        <p>
+            Sangat disarankan buat kamu yang ragu-ragu. Perintah ini bakal bikin backup dulu sebelum eksekusi.
+            Jadi kalau ada apa-apa, bisa dikembalikan (revert).
+        </p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1"))) -nonInteractive -backupMode -AllOptions</code></pre>
+
+        <p><strong>Kembalikan Semuanya (Revert):</strong></p>
+        <p>Kangen sama AI? (Masa sih?). Kalau mau balikin lagi fiturnya, pakai perintah ini:</p>
+        <pre><code class="language-powershell">& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1"))) -nonInteractive -revertMode -AllOptions</code></pre>
+    </section>
+
+    <section>
+        <h2><i class="fa-brands fa-youtube"></i> Panduan Video & Info Tambahan</h2>
+        <p>
+            Script ini terus diupdate mengikuti perkembangan build Windows terbaru. Jadi kalau Microsoft nambah fitur aneh-aneh lagi,
+            cek update script-nya secara berkala ya.
+        </p>
+        <p>
+            Masih ada beberapa fitur AI bandel yang nggak bisa dihapus lewat script ini.
+            Kamu bisa cek panduan manualnya di <a href="https://github.com/zoicware/RemoveWindowsAI/blob/main/OtherAIFeatures.md" target="_blank">sini</a>.
+        </p>
+        <p>Mau liat tutorial versi videonya? Langsung meluncur ke YouTube:</p>
+        <a href="https://youtu.be/j5_eEBWGHFw" target="_blank" style="display: inline-block; background: #c4302b; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            <i class="fa-brands fa-youtube"></i> Tonton Video Tutorial
+        </a>
+    </section>
+
+    <section>
+        <h3 style="text-align: center; margin-top: 50px;"><i class="fa-solid fa-comments"></i> Diskusi Santai</h3>
+        <div id="pesbukdiskus"></div>
+    </section>
+
+    <footer>
+        <p>Made with <i class="fa-solid fa-coffee" style="color: #6f4e37;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
+        <p><em>Go Back To Door & HR Generalized</em></p>
+
+        <div class="social-icons">
+            <a href="https://threads.net/frijal" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://linkedin.com/in/frijal" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/frijal" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://mastodon.social/@frijal" target="_blank" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+            <a href="https://t.me/frijal" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Balikpapan. Hati-hati menyebabkan kantuk.</p>
+    </footer>
+
+</div>
+
+<script src="/ext/highlight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
+<script>
+    // Initialize Highlight.js
+    hljs.highlightAll();
+</script>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body>
+</html>
