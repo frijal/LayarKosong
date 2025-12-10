@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cara menjalankan aplikasi Windows (Microsoft 365, Adobe Creative Cloud) di Linux (KDE, GNOME) seolah-olah native menggunakan WinApps.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Primary Meta -->
+    <title>WinApps: Integrasi Aplikasi Windows di Linux (KDE, GNOME, XFCE)</title>
+    <meta name="description" content="Panduan lengkap menjalankan aplikasi Windows seperti Microsoft 365 dan Adobe Creative Cloud di Linux menggunakan WinApps. Integrasi seamless seolah-olah aplikasi native di KDE, GNOME, dan XFCE.">
+    <meta name="keywords" content="WinApps, Linux, Windows Apps, Microsoft 365, Adobe CC, FreeRDP, KDE Plasma, GNOME, XFCE, Docker, Virtual Machine">
     <meta name="author" content="Fakhrul Rijal">
-    <meta name="keywords" content="WinApps, Linux, Windows Apps, FreeRDP, KDE Plasma, GNOME, XFCE, Microsoft 365, Adobe CC, Docker, VM">
     <meta name="robots" content="index, follow">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.html">
+    <link rel="canonical" href="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.htm">
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:title" content="WinApps: Menjalankan Aplikasi Windows Seolah Native di Linux">
-    <meta property="og:description" content="Panduan lengkap menjalankan Microsoft 365 & Adobe Creative Cloud langsung dari Linux menggunakan WinApps dan FreeRDP.">
+    <meta property="og:description" content="Cara menjalankan Microsoft 365 & Adobe Creative Cloud langsung di Linux menggunakan WinApps dan FreeRDP.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.html">
+    <meta property="og:url" content="https://dalam.web.id/artikel/winapps-integrasi-windows-linux.htm">
     <meta property="og:image" content="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png">
     <meta property="og:site_name" content="Layar Kosong">
     <meta property="article:author" content="https://dalam.web.id">
@@ -26,16 +29,36 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WinApps: Menjalankan Aplikasi Windows Seolah Native di Linux">
-    <meta name="twitter:description" content="Tutorial lengkap menjalankan software Windows di Linux secara seamless menggunakan WinApps.">
+    <meta name="twitter:description" content="Tutorial lengkap menjalankan aplikasi Windows di Linux melalui WinApps. Dukungan Microsoft 365, Adobe CC, dan software lain.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png">
+    <meta name="twitter:site" content="@frijal">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-
-
-
+    <!-- Structured Data (SEO JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "WinApps: Integrasi Aplikasi Windows di Linux",
+      "alternativeHeadline": "Cara Menjalankan Microsoft 365 & Adobe CC di Linux",
+      "description": "Panduan lengkap menjalankan aplikasi Windows secara native-like di Linux menggunakan WinApps, FreeRDP dan VM Windows.",
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": "Fakhrul Rijal",
+        "url": "https://dalam.web.id"
+      },
+      "image": "https://raw.githubusercontent.com/winapps-org/winapps/main/docs/readme/demo.png",
+      "mainEntityOfPage": "https://dalam.web.id/artikel/winapps-integrasi-windows-linux.htm",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Layar Kosong",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dalam.web.id/favicon.ico"
+        }
+      }
+    }
+    </script>
     <style>
         /* CSS Variables for Auto Dark/Light Mode */
         :root {
