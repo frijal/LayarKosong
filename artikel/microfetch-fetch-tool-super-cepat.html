@@ -260,11 +260,11 @@
             <li>**Dependensi Minimalis** (Membuat *binary* ringan dan *portable*).</li>
             <li>**Binary Super Kecil**: Hanya sekitar **~370kb** saja! (Bahkan bisa **350kb** menggunakan Mold linker yang diaktifkan di paket Flake NixOS). <span style="opacity: 0.7;">[^1]</span></li>
             <li>**Logo Keren NixOS** (Sayangnya, distro lain... *inferior* katanya! 😂).</li>
-            <li>**Deteksi Info yang Handal**, termasuk:
+            <li><b>Deteksi Info yang Handal</b>, termasuk:
                 <ul>
                     <li>Hostname/Username, Kernel (Nama, Versi, Arsitektur), Current Shell (termasuk trimming path), Current Desktop (DE/WM/Compositor), Penggunaan/Total Memori, dan Penggunaan/Total Penyimpanan untuk direktori <code style="font-family: 'Fira Code', monospace;">/</code>.</li>
                 </ul>
-            <li>**Menghormati Spesifikasi** <a href="https://no-color.org/" target="_blank"><code>NO_COLOR</code></a>.</li>
+            <li><b>Menghormati Spesifikasi</b> <a href="https://no-color.org/" target="_blank"><code>NO_COLOR</code></a>.</li>
         </ul>
         <div class="note-box">
             <i class="fa-solid fa-clipboard"></i> <span style="font-size: 0.8em;">[^1]</span> Dengan Mold linker (aktif di paket Flake), ukuran binary turun menjadi ±350 KB, berkurang sekitar 20 KB.
@@ -283,7 +283,7 @@
             Microfetch dibuat dengan mengorbankan semua opsi kustomisasi yang disediakan oleh alat lain. Karena *fetch script* sudah menjadi semacam ritual inisiasi bagi pengguna Linux, dia memutuskan untuk membuatnya sendiri.
         </p>
         <div class="note-box">
-            <i class="fa-solid fa-puzzle-piece"></i> **Filosofi Rust:** Meskipun Rust dikenal dengan *dependency tree* yang besar dan waktu *build* yang lama, tim Microfetch berupaya keras menjaga dependensi minimal. Keuntungan menggunakan Rust adalah *tooling* yang luar biasa dan bahasa yang sangat kuat, memungkinkan Microfetch mencapai performa maksimum. Bahkan, Microfetch kini menggunakan **handwritten assembly** untuk optimasi di beberapa area! Tentu saja itu membuatnya lebih cepat.
+            <i class="fa-solid fa-puzzle-piece"></i> <p>**Filosofi Rust:** Meskipun Rust dikenal dengan *dependency tree* yang besar dan waktu *build* yang lama, tim Microfetch berupaya keras menjaga dependensi minimal. Keuntungan menggunakan Rust adalah *tooling* yang luar biasa dan bahasa yang sangat kuat, memungkinkan Microfetch mencapai performa maksimum. Bahkan, Microfetch kini menggunakan **handwritten assembly** untuk optimasi di beberapa area! Tentu saja itu membuatnya lebih cepat.</p>
         </div>
         <p>
             Singkatnya: Ini adalah *binary* kecil, sangat *opinionated*, berukuran pas, dan memiliki kecepatan yang **sangat mengganggu** (saking cepatnya). Ini bukan memecahkan masalah teknis yang sulit, melainkan sebuah tantangan yang diciptakan sendiri. Mirip seperti <a href="https://en.wikipedia.org/wiki/Rube_Goldberg_machine" target="_blank">Rube-Goldberg Machine</a>, sebuah solusi yang rumit untuk masalah yang sederhana.
@@ -368,11 +368,9 @@
         </p>
 
         <h3><i class="fa-solid fa-chart-line"></i> Profiling dan Alokasi</h3>
-        <p>
-            Untuk memastikan kecepatan yang konsisten, Microfetch menggunakan *tools* canggih:
-        </p>
+        <p>Untuk memastikan kecepatan yang konsisten, Microfetch menggunakan *tools* canggih:</p>
         <ul>
-            <li>**Benchmarking Fungsi Individual:** Menggunakan <a href="https://github.com/bheisler/criterion.rs" target="_blank">Criterion.rs</a>. Kamu bisa menjalankan <code style="font-family: 'Fira Code', monospace;">cargo bench</code> untuk mengukurnya.</li>
+            <li><b>Benchmarking Fungsi Individual:</b> Menggunakan <a href="https://github.com/bheisler/criterion.rs" target="_blank">Criterion.rs</a>. Kamu bisa menjalankan <code style="font-family: 'Fira Code', monospace;">cargo bench</code> untuk mengukurnya.</li>
             <li>**Profiling Alokasi dan Timing:** Menggunakan <a href="https://github.com/pawurb/hotpath" target="_blank">Hotpath</a>. Berkat Hotpath, tim Microfetch berhasil mengurangi alokasi sebesar **60%**!
         </ul>
 
@@ -381,16 +379,14 @@
 
         <h4>Cara Profiling (Alokasi Heap)</h4>
         <pre><code class="language-bash">HOTPATH_JSON=true cargo run --features=hotpath,hotpath-alloc</code></pre>
-        <p>
-            Output JSON dari perintah di atas bisa dianalisis dengan *tool* CLI <code style="font-family: 'Fira Code', monospace;">hotpath</code> untuk melihat metrik performa secara detail.
-        </p>
+        <p>Output JSON dari perintah di atas bisa dianalisis dengan *tool* CLI <code style="font-family: 'Fira Code', monospace;">hotpath</code> untuk melihat metrik performa secara detail.</p>
     </section>
 
     <section>
         <h2 id="installation"><i class="fa-solid fa-box-open"></i> Cara Instalasi (Khususnya Pengguna NixOS)</h2>
 
         <div class="note-box">
-            <i class="fa-solid fa-font"></i> **Catatan Penting Font:** Kamu wajib punya font yang sudah di-*patch* **Nerdfonts** dan *terminal emulator* kamu harus mendukungnya. Microfetch menggunakan *glyph* Nerdfonts secara *default*.
+            <i class="fa-solid fa-font"></i> <p>**Catatan Penting Font:** Kamu wajib punya font yang sudah di-*patch* **Nerdfonts** dan *terminal emulator* kamu harus mendukungnya. Microfetch menggunakan *glyph* Nerdfonts secara *default*.</p>
         </div>
 
         <p>Microfetch sudah tersedia dalam **nixpkgs**, membuatnya sangat mudah dipasang untuk pengguna NixOS:</p>
