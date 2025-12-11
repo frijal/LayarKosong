@@ -255,9 +255,7 @@
     <hr>
 
     <section>
-        <p>
-            Bosku, kadang hidup itu rumit. Kita sudah nyaman di Linux dengan <code>KDE Plasma</code>, <code>GNOME</code>, atau <code>XFCE</code> yang gesit, tapi klien atau pekerjaan memaksa kita harus pakai aplikasi Windows seperti <a href="https://www.microsoft365.com/" target="_blank">Microsoft 365</a> atau <a href="https://www.adobe.com/creativecloud.html" target="_blank">Adobe Creative Cloud</a>. Pindah-pindah OS? Ribet kayak **Go Back To Door** yang nggak jelas mau ke mana!
-        </p>
+        <p>Bosku, kadang hidup itu rumit. Kita sudah nyaman di Linux dengan <code>KDE Plasma</code>, <code>GNOME</code>, atau <code>XFCE</code> yang gesit, tapi klien atau pekerjaan memaksa kita harus pakai aplikasi Windows seperti <a href="https://www.microsoft365.com/" target="_blank">Microsoft 365</a> atau <a href="https://www.adobe.com/creativecloud.html" target="_blank">Adobe Creative Cloud</a>. Pindah-pindah OS? Ribet kayak **Go Back To Door** yang nggak jelas mau ke mana!</p>
         <p>
             Di sinilah <strong>WinApps</strong> muncul sebagai pahlawan super. Ia memungkinkan kamu menjalankan aplikasi Windows tersebut, terintegrasi mulus seolah-olah aplikasi itu memang native di Linux! Tampilan demonya bikin ngiler:
         </p>
@@ -276,7 +274,7 @@
             <li>Menjalankan Windows dalam sebuah Virtual Machine (VM) menggunakan <code>Docker</code>, <code>Podman</code>, atau <code>libvirt</code>.</li>
             <li>Menginterogasi Windows untuk semua aplikasi yang terinstal.</li>
             <li>Membuat *shortcut* atau pintasan ke aplikasi Windows yang terpilih di sistem operasi GNU/Linux host.</li>
-            <li>Menggunakan teknologi <a href="https://www.freerdp.com/" target="_blank"><code>FreeRDP</code></a> (fitur RemoteApp) sebagai *backend* untuk me-*render* aplikasi Windows secara terpisah, bersebelahan dengan aplikasi Linux native kamu.</li>
+            <li>Menggunakan teknologi <a href="https://www.freerdp.com/" target="_blank"><code>FreeRDP</code></a> (fitur RemoteApp) sebagai <em>backend</em> untuk me-<em>render</em> aplikasi Windows secara terpisah, bersebelahan dengan aplikasi Linux native kamu.</li>
         </ol>
 
         <div class="tip-box alert-box note-box">
@@ -287,7 +285,7 @@
     <section>
         <h2><i class="fa-solid fa-star"></i> Fitur Tambahan yang Bikin Ngopi Makin Nikmat</h2>
         <ul>
-            <li>Direktori <code>/home</code> Linux kamu dapat diakses di dalam Windows via *mount* <code>\\tsclient\home</code>. Transfer file jadi gampang!</li>
+            <li>Direktori <code>/home</code> Linux kamu dapat diakses di dalam Windows via <em>mount</em> <code>\\tsclient\home</code>. Transfer file jadi gampang!</li>
             <li>Integrasi dengan <code>Nautilus</code> (File Manager GNOME) yang memungkinkan kamu klik kanan file untuk membukanya dengan aplikasi Windows tertentu berdasarkan tipe MIME file-nya.</li>
             <li>Ada <a href="https://github.com/winapps-org/WinApps-Launcher" target="_blank">widget taskbar resmi</a> yang memudahkan administrasi subsistem Windows dan meluncurkan aplikasi.</li>
             <li>Link Microsoft Office (misalnya <code>ms-word://</code>) dari sistem host akan otomatis dibuka di subsistem Windows. (Psst, kamu mungkin butuh <a href="https://github.com/ray-lothian/UserAgent-Switcher/" target="_blank">User Agent Switcher</a> di browser agar opsi "Open in Desktop App" muncul di web Office).</li>
@@ -306,9 +304,7 @@
                 <li>Memindai file <code>.exe</code> lain yang terdaftar dalam Windows Registry.</li>
             </ol>
         </p>
-        <p>
-            Aplikasi yang diuji komunitas mendapatkan ikon resolusi tinggi dan tipe MIME bawaan (seperti yang dibutuhkan **Biro Periklanan** untuk menangani format file tertentu). Ikon untuk aplikasi lain akan diambil dari file <code>.exe</code>-nya langsung.
-        </p>
+        <p>Aplikasi yang diuji komunitas mendapatkan ikon resolusi tinggi dan tipe MIME bawaan (seperti yang dibutuhkan **Biro Periklanan** untuk menangani format file tertentu). Ikon untuk aplikasi lain akan diambil dari file <code>.exe</code>-nya langsung.</p>
         <p>
             <i class="fa-solid fa-hand-holding-heart"></i> Kontribusi (Pull Request) sangat dianjurkan untuk menambah daftar aplikasi yang diuji komunitas!
         </p>
@@ -419,9 +415,7 @@
         <h2><i class="fa-solid fa-download"></i> Panduan Instalasi (Step-by-Step)</h2>
 
         <h3>Step 1: Konfigurasi Windows VM</h3>
-        <p>
-            <code>Docker</code> dan <code>Podman</code> direkomendasikan karena memfasilitasi proses instalasi Windows yang otomatis. Namun, <code>libvirt</code> juga kompatibel, memberikan opsi kustomisasi VM yang lebih besar. Ketiga metode ini menggunakan *hypervisor* **KVM** untuk performa VM yang prima.
-        </p>
+        <p><code>Docker</code> dan <code>Podman</code> direkomendasikan karena memfasilitasi proses instalasi Windows yang otomatis. Namun, <code>libvirt</code> juga kompatibel, memberikan opsi kustomisasi VM yang lebih besar. Ketiga metode ini menggunakan *hypervisor* **KVM** untuk performa VM yang prima.</p>
         <ul>
             <li>[Membuat Windows VM dengan <code>Docker</code> atau <code>Podman</code>](docs/docker.md)</li>
             <li>[Membuat Windows VM dengan <code>libvirt</code>](docs/libvirt.md)</li>
@@ -436,7 +430,7 @@
         <h4>Debian/Ubuntu:</h4>
         <pre><code class="language-bash">sudo apt install -y curl dialog freerdp3-x11 git iproute2 libnotify-bin netcat-openbsd</code></pre>
         <div class="note-box alert-box">
-            <i class="fa-solid fa-info-circle"></i> **CATATAN:** Di Debian 12 (_"bookworm"_), kamu mungkin perlu mengaktifkan repositori <code>backports</code> agar paket <code>freerdp3-x11</code> tersedia.
+            <i class="fa-solid fa-info-circle"></i> <b>CATATAN:</b> Di Debian 12 (<em>"bookworm"</em>), kamu mungkin perlu mengaktifkan repositori <code>backports</code> agar paket <code>freerdp3-x11</code> tersedia.
         </div>
 
         <h4>Arch Linux:</h4>
@@ -483,10 +477,10 @@ DEBUG="true"
 # ... (Configuration Timeouts, dll.) ...</code></pre>
 
         <div class="important-box alert-box important-box">
-            <i class="fa-solid fa-lock"></i> **SANGAT PENTING!** Amankan file konfigurasi kamu agar password Windows kamu tidak bisa diakses orang lain (ini penting dalam etika **Human Resources Generalized**!):
+            <i class="fa-solid fa-lock"></i> <b>SANGAT PENTING!</b> Amankan file konfigurasi kamu agar password Windows kamu tidak bisa diakses orang lain:
             <pre><code class="language-bash">chown $(whoami):$(whoami) ~/.config/winapps/winapps.conf
 chmod 600 ~/.config/winapps/winapps.conf</code></pre>
-            Pastikan juga <code>RDP_USER</code> dan <code>RDP_PASS</code> adalah *username* dan *password* Windows yang lengkap (bukan PIN).
+            Pastikan juga <code>RDP_USER</code> dan <code>RDP_PASS</code> adalah <em>username</em> dan <em>password</em> Windows yang lengkap (bukan PIN).
         </div>
 
         <h3>Step 4: Test FreeRDP</h3>
@@ -538,8 +532,7 @@ nix profile install github:winapps-org/winapps#winapps-launcher # opsional</code
     </section>
     <div id="pesbukdiskus"></div>
     <footer>
-        <p>Artikel ini ditulis sambil ditemani **Kopi Susu** bahwa Windows dan Linux bisa akur.</p>
-        <p>Made with <i class="fa-solid fa-heart" style="color: #ff3860;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
+        <p>Artikel ini ditulis sambil ditemani **Kopi Susu** bahwa Windows dan Linux bisa akur. Made with <i class="fa-solid fa-heart" style="color: #ff3860;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
         <p><em>Go Back To Door & HR Generalized</em></p>
 
         <div class="social-icons">
