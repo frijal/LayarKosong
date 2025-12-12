@@ -1,97 +1,177 @@
-## 🌟 Lisensi UNLICENSE
+# Panduan Membuat Static Site dengan LayarKosong
 
-## 🇮🇩 Bahasa Indonesia (Terjemahan)
+Panduan lengkap untuk membuat static site menggunakan repository [LayarKosong](https://github.com/frijal/LayarKosong.git). Static site ini menggunakan sekumpulan file HTML yang digabungkan dan disimpan, lalu dipanggil menggunakan nama domain .Github.IO dari GitHub atau domain custom milikmu sendiri.
 
-<div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 15px; border-radius: 12px; border-left: 6px solid #fd7e14; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
-Ini adalah konten GRATIS yang dilepaskan ke domain publik. 🆓
+## Persiapan Awal
 
-Siapa pun bebas untuk <strong>menyalin, memodifikasi, menerbitkan, menggunakan, menjual, atau mendistribusikannya</strong>, baik dalam bentuk <strong>kode sumber atau apapun juga</strong>, untuk <strong>tujuan komersial atau non-komersial</strong>, tanpa batasan. 🔄
+### 1. Instalasi Git CLI
 
-Aku berikan <strong>seluruh hak cipta</strong> ketikan ini, ke <strong>domain publik</strong> untuk <strong>kepentingan publik</strong>.
-Ini merupakan <strong>tindakan nyata untuk melepaskan hak cipta sekarang dan di masa depan</strong>. ⚖️
+Pastikan sudah memasang aplikasi paket git-cli pada komputer atau laptop kamu. Berikut cara instalasinya untuk berbagai sistem operasi:
 
-<strong>SEGALA YANG ADA DISINI, DISEDIAKAN "APA ADANYA"</strong> tanpa jaminan apa pun.
-Aku <strong>tidak bertanggung jawab</strong> atas klaim, kerusakan, atau masalah lain yang mungkin saja bisa timbul, tentang segala isi, atau sesuatu apapun dari tempat ini. ⚠️
+#### Windows
+```bash
+# Download installer dari https://git-scm.com/download/win
+# Atau gunakan winget
+winget install --id Git.Git -e --source winget
+```
 
-<div align=center>
+#### macOS
+```bash
+# Menggunakan Homebrew
+brew install git
 
-![thumbnail](/thumbnail.webp)
+# Atau download installer dari https://git-scm.com/download/mac
+```
 
-</div>
+#### Linux
 
-## 📝 Ringkasan Penting ⬇️
+**Red Hat / CentOS**
+```bash
+sudo yum install git
+```
 
-<details>
-<summary>📊 Klik untuk melihat ringkasan interaktif</summary>
+**Fedora**
+```bash
+sudo dnf install git
+```
 
-<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+**Debian / Ubuntu / Linux Mint / MX Linux**
+```bash
+sudo apt update
+sudo apt install git
+```
 
-<div style="background: linear-gradient(90deg, #28a745, #85e085); padding: 12px; border-radius: 10px; font-weight: bold; color: white; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-🟢 Bebas Hak Cipta: Kode ini gratis dan tidak dibebani hak cipta. 🎉
-</div>
+**Arch Linux / CachyOS**
+```bash
+sudo pacman -S git
+```
 
-<div style="background: linear-gradient(90deg, #007BFF, #00d4ff); padding: 12px; border-radius: 10px; font-weight: bold; color: white; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-🌐 Bebas Digunakan Siapa Saja: Siapa pun boleh menyalin, memodifikasi, menerbitkan, menggunakan, menjual, atau mendistribusikan kode ini. 🤝
-</div>
+**NixOS**
+```nix
+# Tambahkan ke configuration.nix
+environment.systemPackages = with pkgs; [
+  git
+];
 
-<div style="background: linear-gradient(90deg, #ffc107, #ffec99); padding: 12px; border-radius: 10px; font-weight: bold; color: black; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-🎯 Untuk Segala Keperluan: Bisa digunakan untuk tujuan komersial atau non-komersial, tanpa batasan. 🚀
-</div>
+# Atau gunakan nix-shell
+nix-shell -p git
+```
 
-<div style="background: linear-gradient(90deg, #dc3545, #f8b0b0); padding: 12px; border-radius: 10px; font-weight: bold; color: white; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-⚠️ Tanpa Jaminan: Disediakan "APA ADANYA". Aku tidak bertanggung jawab atas klaim, kerusakan, atau jika ada terjadi sesuatu yang lainnya. ❌
-</div>
+### 2. Fork Repository
 
-</div>
+Pastikan kamu sudah punya akun GitHub, lalu lakukan Fork repository ini dengan lengkap, termasuk cabang branch yang bernama **"site"**:
 
-</details>
+🔗 [Fork LayarKosong Repository](https://github.com/frijal/LayarKosong/fork)
+
+### 3. Aktifkan GitHub Pages
+
+Setelah melakukan fork, ubah repository kamu menjadi Pages agar dapat diakses secara publik dan online:
+
+1. Masuk ke **Settings** repository kamu
+2. Pilih menu **Pages** di sidebar
+3. Pilih branch **site** sebagai source
+4. Klik **Save**
+
+Repository kamu sekarang bisa diakses di: `https://usernamekamu.github.io`
 
 ---
 
-## 🇬🇧 English (Original)
+## Tahap Produksi
 
-<details>
-<summary>📖 Klik untuk melihat teks asli (collapse)</summary>
+### 1. Persiapan Konten
 
-<div style="background: linear-gradient(135deg, #e0f7fa, #b2ebf2); padding: 15px; border-radius: 12px; border-left: 6px solid #007BFF; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
-This is free and unencumbered software released into the public domain. 🆓
+Bersihkan konten default dari repository:
 
-Anyone is free to <strong>copy, modify, publish, use, compile, sell, or distribute</strong> this software, either in source code form or as a compiled binary, for <strong>any purpose</strong>, commercial or non-commercial, and by any means. 🔄
+- **Hapus** semua isi dari folder `artikel/`
+- **Hapus** seluruh gambar dari dalam folder `img/`
 
-In jurisdictions that recognize copyright laws, the author(s) dedicate <strong>all copyright interest to the public domain</strong>. This is done <strong>for the benefit of the public</strong>, not heirs or successors. This dedication <strong>perpetually relinquishes all present and future rights</strong> under copyright law. ⚖️
+### 2. Aktifkan GitHub Actions
 
-<strong>THE SOFTWARE IS PROVIDED "AS IS"</strong> without warranty of any kind, express or implied. Authors are <strong>not liable</strong> for any claims, damages, or issues arising from the use of this software. ⚠️
+Secara otomatis, fitur Actions dan perintah workflow `.YAML` akan dimatikan pada repository hasil fork. Aktifkan kembali:
 
-</div>
+1. Masuk ke tab **Actions** di repository kamu
+2. Klik tombol hijau **"I understand my workflows, go ahead and enable them"**
+3. Aktifkan semua workflow yang tersedia
 
-</details>
+### 3. Upload Konten Pertama
+
+1. Masukkan file HTML baru ke dalam folder `artikelx/`
+2. Commit dan push perubahan ke GitHub
+
+### 4. Biarkan Automation Bekerja
+
+Action akan bekerja secara otomatis untuk:
+- Memindahkan file HTML dari folder `artikelx/` ke folder `artikel/`
+- Memproses dan mempublikasikan halaman
+
+### 5. Verifikasi Publikasi
+
+Setelah proses selesai, halaman pertama kamu telah terbit! Kamu bisa lanjutkan dengan artikel berikutnya menggunakan cara yang sama.
 
 ---
 
-## 🚀 Ringkasan Interaktif
+## Konfigurasi dan Penyesuaian
 
-<table style="width:100%; border-collapse: collapse; text-align: left; margin-top:10px;">
-<tr>
-<th style="padding: 8px; border-bottom: 2px solid #ccc;">Status</th>
-<th style="padding: 8px; border-bottom: 2px solid #ccc;">Penjelasan</th>
-</tr>
-<tr style="background: linear-gradient(90deg, #28a745, #85e085); color:white;" title="Bebas Hak Cipta 🎉">
-<td style="padding: 8px;">🟢 Bebas Hak Cipta</td>
-<td style="padding: 8px;">Gratis, tanpa hak cipta. 🎉</td>
-</tr>
-<tr style="background: linear-gradient(90deg, #007BFF, #00d4ff); color:white;" title="Digunakan Siapa Saja 🤝">
-<td style="padding: 8px;">🌍 Digunakan Siapa Saja</td>
-<td style="padding: 8px;">Untuk komersial/non-komersial 🤝</td>
-</tr>
-<tr style="background: linear-gradient(90deg, #ffc107, #ffec99); color:black;" title="Untuk Segala Keperluan 🚀">
-<td style="padding: 8px;">🎯 Untuk Segala Keperluan</td>
-<td style="padding: 8px;">Bebas digunakan untuk semua tujuan 🚀</td>
-</tr>
-<tr style="background: linear-gradient(90deg, #dc3545, #f8b0b0); color:white;" title="Tanpa Jaminan ❌">
-<td style="padding: 8px;">⚠️ Tanpa Jaminan</td>
-<td style="padding: 8px;">Aku tidak bertanggung jawab ❌</td>
-</tr>
-</table>
+Setelah berhasil testing dengan 1 file HTML, silakan lakukan penyesuaian property sesuai kebutuhan kamu:
+
+### File yang Perlu Disesuaikan
+
+Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` dan file-file berikut:
+
+- `BingSiteAuth.xml` - Verifikasi Bing Webmaster
+- `CODE_OF_CONDUCT.md` - Kode etik repository
+- `data-deletion-form.html` - Form penghapusan data
+- `data-deletion.html` - Halaman penghapusan data
+- `disclaimer.html` - Disclaimer situs
+- `disclaimer.md` - Disclaimer (markdown)
+- `favicon.ico` / `favicon.png` / `favicon.svg` - Icon situs
+- `feed.html` - RSS feed
+- `img.html` - Galeri gambar
+- `index.html` - Halaman utama
+- `robots.txt` - Instruksi untuk crawler
+- `search.html` - Halaman pencarian
+- `sitemap.html` - Peta situs
+- `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail sosial media
+
+### Checklist Konfigurasi
+
+- [ ] Ganti semua URL dari `dalam.web.id` ke domain kamu
+- [ ] Update informasi kontak dan metadata
+- [ ] Sesuaikan warna, logo, dan branding
+- [ ] Test semua link internal
+- [ ] Verifikasi sitemap dan robots.txt
+
+---
+
+## Domain Custom (Opsional)
+
+Jika ingin menggunakan domain custom:
+
+1. Tambahkan file `CNAME` di root repository
+2. Isi dengan nama domain kamu (contoh: `example.com`)
+3. Atur DNS di provider domain kamu:
+   - Tambahkan record A ke IP GitHub Pages
+   - Atau CNAME ke `username.github.io`
+
+---
+
+## Butuh Bantuan?
+
+Kalau ada kendala atau pertanyaan, jangan ragu untuk:
+
+💬 **Diskusi di GitHub**: [LayarKosong Discussions](https://github.com/frijal/LayarKosong/discussions)
+
+Mari kita ngobrol dan selesaikan bareng-bareng! 🚀
+
+---
+
+## Lisensi
+
+Silakan cek file `LICENSE` di repository untuk informasi lisensi.
+
+## Kontributor
+
+Terima kasih untuk semua yang telah berkontribusi pada proyek ini! 🙏
 
 ---
 
