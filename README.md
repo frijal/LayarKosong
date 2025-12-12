@@ -23,7 +23,7 @@ Buka terminal dan ketik perintah berikut (jika menggunakan Homebrew):
 brew install git
 ````
 
-### 🐧 Linux (Distro Spesifik)
+### 🐧 Linux
 
   * **Debian, Ubuntu, Linux Mint, MX Linux, Kali:**
     ```bash
