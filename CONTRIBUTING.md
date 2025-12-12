@@ -10,7 +10,7 @@ Sebelum memulai, mari kita pahami beberapa hal utama.
 
 Proyek ini menjunjung tinggi lingkungan yang terbuka, ramah, dan inklusif.
 
-  * Semua kontributor diharapkan membaca dan mematuhi **[CODE\_OF\_CONDUCT.md](https://www.google.com/search?q=CODE_OF_CONDUCT.md)**.
+  * Semua kontributor diharapkan membaca dan mematuhi **[CODE\_OF\_CONDUCT.md](CODE_OF_CONDUCT.md#kode-etik-contributor-covenant)**.
   * Kami percaya semua orang di sini berniat baik. Mari saling menghormati dan bersikap profesional.
   * Jika kamu melihat perilaku yang tidak sesuai, silakan laporkan melalui diskusi pribadi di GitHub.
 
