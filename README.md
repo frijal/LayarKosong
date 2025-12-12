@@ -118,20 +118,21 @@ Setelah berhasil testing dengan 1 file HTML, silakan lakukan penyesuaian propert
 
 Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` dan file-file berikut:
 
-- `BingSiteAuth.xml` - Verifikasi Bing Webmaster
-- `CODE_OF_CONDUCT.md` - Kode etik repository
-- `data-deletion-form.html` - Form penghapusan data
-- `data-deletion.html` - Halaman penghapusan data
-- `disclaimer.html` - Disclaimer situs
-- `disclaimer.md` - Disclaimer (markdown)
-- `favicon.ico` / `favicon.png` / `favicon.svg` - Icon situs
-- `feed.html` - RSS feed
-- `img.html` - Galeri gambar
-- `index.html` - Halaman utama
-- `robots.txt` - Instruksi untuk crawler
-- `search.html` - Halaman pencarian
-- `sitemap.html` - Peta situs
-- `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail sosial media
+- `404.html` - Halaman untuk tautan URL yang tidak ditemukan.
+- `BingSiteAuth.xml` - Verifikasi Bing Webmaster.
+- `CODE_OF_CONDUCT.md` - Kode etik repository.
+- `data-deletion-form.html` - Form penghapusan data.
+- `data-deletion.html` - Halaman penghapusan data.
+- `disclaimer.html` - Disclaimer situs.
+- `disclaimer.md` - Disclaimer (markdown).
+- `favicon.ico` / `favicon.png` / `favicon.svg` - Icon situs.
+- `feed.html` - Halaman RSS Feed Terbaru.
+- `img.html` - Galeri gambar.
+- `index.html` - Halaman utama.
+- `robots.txt` - Instruksi untuk crawler.
+- `search.html` - Halaman pencarian.
+- `sitemap.html` - Daftar Isi, Peta Situs .
+- `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail sosial media.
 
 ### Checklist Konfigurasi
 
