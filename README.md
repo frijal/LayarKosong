@@ -67,10 +67,10 @@ Pastikan kamu sudah punya akun GitHub, lalu lakukan Fork repository ini dengan l
 
 Setelah melakukan fork, ubah repository kamu menjadi Pages agar dapat diakses secara publik dan online:
 
-1. Masuk ke **Settings** repository kamu
-2. Pilih menu **Pages** di sidebar
-3. Pilih branch **site** sebagai source
-4. Klik **Save**
+1. Masuk ke **Settings** repository kamu.
+2. Pilih menu **Pages** di sidebar.
+3. Pilih branch **site** sebagai source.
+4. Klik **Save**.
 
 Repository kamu sekarang bisa diakses di: `https://usernamekamu.github.io`
 
@@ -89,20 +89,20 @@ Bersihkan konten default dari repository:
 
 Secara otomatis, fitur Actions dan perintah workflow `.YAML` akan dimatikan pada repository hasil fork. Aktifkan kembali:
 
-1. Masuk ke tab **Actions** di repository kamu
-2. Klik tombol hijau **"I understand my workflows, go ahead and enable them"**
-3. Aktifkan semua workflow yang tersedia
+1. Masuk ke tab **Actions** di repository kamu.
+2. Klik tombol hijau **"I understand my workflows, go ahead and enable them"**.
+3. Aktifkan semua workflow yang tersedia.
 
 ### 3. Upload Konten Pertama
 
 1. Masukkan file HTML baru ke dalam folder `artikelx/`
-2. Commit dan push perubahan ke GitHub
+2. Commit dan push perubahan ke GitHub.
 
 ### 4. Biarkan Automation Bekerja
 
 Action akan bekerja secara otomatis untuk:
 - Memindahkan file HTML dari folder `artikelx/` ke folder `artikel/`
-- Memproses dan mempublikasikan halaman
+- Memproses dan mempublikasikan halaman.
 
 ### 5. Verifikasi Publikasi
 
@@ -136,10 +136,10 @@ Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` d
 
 ### Checklist Konfigurasi
 
-- [ ] Ganti semua URL dari `dalam.web.id` ke domain kamu
-- [ ] Update informasi kontak dan metadata
-- [ ] Sesuaikan warna, logo, dan branding
-- [ ] Test semua link internal
+- [ ] Ganti semua URL dari `dalam.web.id` ke domain kamu.
+- [ ] Update informasi kontak dan metadata.
+- [ ] Sesuaikan warna, logo, dan branding.
+- [ ] Test semua link internal.
 - [ ] Verifikasi sitemap dan robots.txt
 
 ---
@@ -148,10 +148,10 @@ Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` d
 
 Jika ingin menggunakan domain custom:
 
-1. Tambahkan file `CNAME` di root repository
+1. Tambahkan file `CNAME` di root repository.
 2. Isi dengan nama domain kamu (contoh: `example.com`)
 3. Atur DNS di provider domain kamu:
-   - Tambahkan record A ke IP GitHub Pages
+   - Tambahkan record A ke IP GitHub Pages.
    - Atau CNAME ke `username.github.io`
 
 ---
@@ -172,7 +172,7 @@ Silakan cek file `LICENSE` di repository untuk informasi lisensi.
 
 ## Kontributor
 
-Terima kasih untuk semua yang telah berkontribusi pada proyek ini! 🙏
+Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 ---
 
