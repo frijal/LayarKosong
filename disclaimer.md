@@ -1,7 +1,56 @@
 ## 🌟 Lisensi: Konten Domain Publik (UNLICENSE)
 
-
 Ini adalah konten GRATIS yang sepenuhnya dilepaskan ke Domain Publik. Silakan gunakan, modifikasi, dan distribusikan secara Bebas.
+
+---
+
+### 🇮🇩 Isi Lisensi Resmi (Bahasa Indonesia)
+
+<div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 15px; border-radius: 12px; border-left: 6px solid #fd7e14; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
+Ini adalah konten GRATIS yang dilepaskan ke domain publik (Public Domain). 🆓
+
+Siapa pun bebas untuk <strong>menyalin, memodifikasi, menerbitkan, menggunakan, menjual, atau mendistribusikan</strong> konten ini (baik dalam bentuk <strong>kode sumber, tulisan, atau apapun juga</strong>), untuk <strong>tujuan komersial atau non-komersial</strong>, tanpa batasan. 🔄
+
+Aku berikan **seluruh hak cipta** dari karya ini, ke **domain publik** untuk **kepentingan publik**.
+Ini merupakan **tindakan nyata untuk melepaskan seluruh hak cipta sekarang dan di masa depan** (Perpetual Relinquishment). ⚖️
+
+<hr style="border-top: 1px dashed #fd7e14;">
+
+<h4 style="margin-top: 0; color: #dc3545;">⚠️ Peringatan Penting: Tanpa Jaminan</h4>
+
+**KONTEN INI DISEDIAKAN "APA ADANYA"** (*AS IS*) tanpa jaminan apa pun, baik tersurat maupun tersirat.
+
+Aku **tidak bertanggung jawab** atas klaim, kerusakan, kerugian, atau masalah lain yang mungkin timbul, yang berhubungan dengan penggunaan seluruh isi konten ini. ❌
+
+### 🇬🇧 English (The UNLICENSE Text)
+
+<details>
+<summary>📖 Klik untuk melihat teks asli UNLICENSE (Original)</summary>
+
+<div style="background: linear-gradient(135deg, #e0f7fa, #b2ebf2); padding: 15px; border-radius: 12px; border-left: 6px solid #007BFF; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
+This is free and unencumbered software released into the public domain. 🆓
+
+Anyone is free to **copy, modify, publish, use, compile, sell, or distribute** this software, either in source code form or as a compiled binary, for **any purpose**, commercial or non-commercial, and by any means. 🔄
+
+In jurisdictions that recognize copyright laws, the author(s) dedicate **all copyright interest to the public domain**. This is done **for the benefit of the public**, not heirs or successors. This dedication **perpetually relinquishes all present and future rights** under copyright law. ⚖️
+
+<hr style="border-top: 1px dashed #007BFF;">
+
+**THE SOFTWARE IS PROVIDED "AS IS"** without warranty of any kind, express or implied. The author(s) are **not liable** for any claims, damages, or issues arising from the use of this software. ⚠️
+</div>
+
+</details>
+
+---
+
+### 🚀 Ringkasan
+
+* **🟢 Bebas Hak Cipta:** Konten ini gratis, tanpa hak cipta. 🎉
+* **🌍 Bebas Digunakan Siapa Saja:** Siapa pun boleh menyalin, memodifikasi, dan mendistribusikan. 🤝
+* **🎯 Untuk Segala Keperluan:** Bisa digunakan untuk tujuan komersial atau non-komersial, tanpa batasan. 🚀
+* **⚠️ Tanpa Jaminan ("AS IS"):** Disediakan apa adanya. Aku tidak bertanggung jawab atas segala kerusakan atau masalah. ❌
+
+---
 
 <details>
 <summary>⚡ Klik untuk Status Teknis ⚙️</summary>
@@ -69,58 +118,3 @@ Ini adalah konten GRATIS yang sepenuhnya dilepaskan ke Domain Publik. Silakan gu
 [![Copilot](https://img.shields.io/badge/Copilot-Yes-purple?logo=github&logoColor=white)](#readme)
 
 </details>
-
----
-
-### 🇮🇩 Isi Lisensi Resmi (Bahasa Indonesia)
-
-<div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 15px; border-radius: 12px; border-left: 6px solid #fd7e14; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
-Ini adalah konten **GRATIS** yang dilepaskan ke **domain publik** (Public Domain). 🆓
-
-Siapa pun bebas untuk <strong>menyalin, memodifikasi, menerbitkan, menggunakan, menjual, atau mendistribusikan</strong> konten ini (baik dalam bentuk <strong>kode sumber, tulisan, atau apapun juga</strong>), untuk <strong>tujuan komersial atau non-komersial</strong>, tanpa batasan. 🔄
-
-Aku berikan **seluruh hak cipta** dari karya ini, ke **domain publik** untuk **kepentingan publik**.
-Ini merupakan **tindakan nyata untuk melepaskan seluruh hak cipta sekarang dan di masa depan** (Perpetual Relinquishment). ⚖️
-
-<hr style="border-top: 1px dashed #fd7e14;">
-
-<h4 style="margin-top: 0; color: #dc3545;">⚠️ Peringatan Penting: Tanpa Jaminan</h4>
-
-**KONTEN INI DISEDIAKAN "APA ADANYA"** (*AS IS*) tanpa jaminan apa pun, baik tersurat maupun tersirat.
-
-Aku **tidak bertanggung jawab** atas klaim, kerusakan, kerugian, atau masalah lain yang mungkin timbul, yang berhubungan dengan penggunaan seluruh isi konten ini. ❌
-
-<div align=center style="margin-top: 15px;">
-<img src="/thumbnail.webp" alt="Thumbnail Konten" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-</div>
-
-### 🇬🇧 English (The UNLICENSE Text)
-
-<details>
-<summary>📖 Klik untuk melihat teks asli UNLICENSE (Original)</summary>
-
-<div style="background: linear-gradient(135deg, #e0f7fa, #b2ebf2); padding: 15px; border-radius: 12px; border-left: 6px solid #007BFF; font-family: 'Segoe UI', sans-serif; margin-top:10px;">
-This is free and unencumbered software released into the public domain. 🆓
-
-Anyone is free to **copy, modify, publish, use, compile, sell, or distribute** this software, either in source code form or as a compiled binary, for **any purpose**, commercial or non-commercial, and by any means. 🔄
-
-In jurisdictions that recognize copyright laws, the author(s) dedicate **all copyright interest to the public domain**. This is done **for the benefit of the public**, not heirs or successors. This dedication **perpetually relinquishes all present and future rights** under copyright law. ⚖️
-
-<hr style="border-top: 1px dashed #007BFF;">
-
-**THE SOFTWARE IS PROVIDED "AS IS"** without warranty of any kind, express or implied. The author(s) are **not liable** for any claims, damages, or issues arising from the use of this software. ⚠️
-</div>
-
-</details>
-
----
-
-### 🚀 Ringkasan
-
-* **🟢 Bebas Hak Cipta:** Konten ini gratis, tanpa hak cipta. 🎉
-* **🌍 Bebas Digunakan Siapa Saja:** Siapa pun boleh menyalin, memodifikasi, dan mendistribusikan. 🤝
-* **🎯 Untuk Segala Keperluan:** Bisa digunakan untuk tujuan komersial atau non-komersial, tanpa batasan. 🚀
-* **⚠️ Tanpa Jaminan ("AS IS"):** Disediakan apa adanya. Aku tidak bertanggung jawab atas segala kerusakan atau masalah. ❌
-
----
