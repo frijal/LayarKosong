@@ -1,9 +1,9 @@
 ## 🌟 Lisensi: Konten Domain Publik (UNLICENSE)
 
-Ini adalah konten **GRATIS** yang sepenuhnya dilepaskan ke **Domain Publik**. Silakan gunakan, modifikasi, dan distribusikan dengan gembira! 🎉
+Ini adalah konten **GRATIS** yang sepenuhnya dilepaskan ke **Domain Publik**. Silakan gunakan, modifikasi, dan distribusikan secara Bebas.
 
 <details>
-<summary>⚡ Klik untuk Melihat Lencana dan Status Teknis ⚙️</summary>
+<summary>⚡ Klik untuk Status Teknis ⚙️</summary>
 
 ### 📊 Status:
 
@@ -62,6 +62,7 @@ Ini adalah konten **GRATIS** yang sepenuhnya dilepaskan ke **Domain Publik**. Si
 [![Gist](https://img.shields.io/badge/Gist-Available-black?logo=github&logoColor=white)](https://gist.github.com/frijal)
 
 **Dukungan AI:**
+
 [![Gemini](https://img.shields.io/badge/Gemini-Yes-blueviolet?logo=google&logoColor=white)](#readme)
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-Yes-blue?logo=openai&logoColor=white)](#readme)
 [![Copilot](https://img.shields.io/badge/Copilot-Yes-purple?logo=github&logoColor=white)](#readme)
