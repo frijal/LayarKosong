@@ -158,7 +158,7 @@ Ada kendala saat instalasi atau *workflow* macet? Jangan panik\! Langsung saja m
 
 ## Lisensi
 
-Silakan cek file [Lisensi](#lisensi--konten-domain-publik-unlicense) di repository untuk informasi lisensi.
+Silakan cek file [Lisensi](#https://github.com/frijal/LayarKosong?tab=Unlicense-1-ov-file#) di repository untuk informasi lisensi.
 
 ## Kontributor
 
