@@ -10,7 +10,7 @@ Sebelum memulai, mari kita pahami beberapa hal utama.
 
 Proyek ini menjunjung tinggi lingkungan yang terbuka, ramah, dan inklusif.
 
-  * Semua kontributor diharapkan membaca dan mematuhi **[CODE\_OF\_CONDUCT.md](CODE_OF_CONDUCT.md#kode-etik-contributor-covenant)**.
+  * Semua kontributor diharapkan membaca dan mematuhi **[CODE\_OF\_CONDUCT](CODE_OF_CONDUCT.md#kode-etik-contributor-covenant)**.
   * Kami percaya semua orang di sini berniat baik. Mari saling menghormati dan bersikap profesional.
   * Jika kamu melihat perilaku yang tidak sesuai, silakan laporkan melalui diskusi pribadi di GitHub.
 
@@ -24,7 +24,7 @@ Ada banyak cara untuk membantu, tidak hanya melalui kode\!
 
 Jika kamu menemukan kesalahan (bug) pada *workflow* otomatis, *template* HTML, atau tautan yang rusak:
 
-  * Gunakan tab **[Issues di GitHub](https://www.google.com/search?q=https://github.com/frijal/LayarKosong/issues)**.
+  * Gunakan tab **[Issues di GitHub](https://github.com/frijal/LayarKosong/issues)**.
   * Berikan deskripsi yang jelas dan langkah-langkah untuk mereproduksi *bug* tersebut (jika memungkinkan).
   * Gunakan label (`bug`) yang sesuai.
 
@@ -73,12 +73,8 @@ Karena **Layar Kosong** fokus pada publikasi konten HTML, kami menyambut baik ko
 
 ## 💰 Donasi (Opsional)
 
-Jika kamu ingin mendukung proyek ini tanpa berkontribusi kode/teks, kamu bisa memberikan donasi. (Tambahkan tautan Donasi/Ko-fi/Saweria jika ada).
+Jika kamu ingin mendukung halaman ini tanpa berkontribusi kode/teks, kamu bisa memberikan **[donasi](https://github.com/sponsors/frijal)**.
 
 -----
 
 Terima kasih banyak sudah membaca sampai sini\! Kami tunggu kontribusi kerenmu. Mari bangun *static site* yang lebih cepat dan efisien bersama\! 💪
-
-\<div align="center"\>
-\<i class="fa-solid fa-heart" style="color: \#dc3545; font-size: 20px; margin-top: 20px;"\>\</i\>
-\</div\>
