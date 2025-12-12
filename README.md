@@ -1,122 +1,114 @@
-# Panduan Membuat Static Site dengan LayarKosong
+# 🚀 Panduan Membuat Static Site dengan Layar Kosong
 
-Panduan lengkap untuk membuat static site menggunakan repository [LayarKosong](https://github.com/frijal/LayarKosong.git). Static site ini menggunakan sekumpulan file HTML yang digabungkan dan disimpan, lalu dipanggil menggunakan nama domain .Github.IO dari GitHub atau domain custom milikmu sendiri.
+Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat dan ringan menggunakan *repository* **Layar Kosong**.
 
-## Persiapan Awal
+Konsepnya sederhana: Kita hanya menggunakan sekumpulan file HTML yang digabungkan, disimpan, lalu dipanggil menggunakan domain **GitHub Pages** (biasanya `username.github.io`) atau domain kustom milikmu.
 
-### 1. Instalasi Git CLI
+---
 
-Pastikan sudah memasang aplikasi paket git-cli pada komputer atau laptop kamu. Berikut cara instalasinya untuk berbagai sistem operasi:
+## 🛠️ Tahap 1: Persiapan Lingkungan (Install Git)
 
-#### Windows
+Langkah pertama yang paling krusial: **Pastikan Git CLI sudah terpasang**. Berikut cara instalasinya di berbagai Sistem Operasi:
+
+### 🪟 Windows
+Unduh dan instal *installer* resmi dari [git-scm.com](https://git-scm.com/download/win). Tinggal "Next, Next, Finish"!
+atau bisa juga gunakan winget:
 ```bash
-# Download installer dari https://git-scm.com/download/win
-# Atau gunakan winget
 winget install --id Git.Git -e --source winget
 ```
 
-#### macOS
+### 🍎 macOS
+Buka terminal dan ketik perintah berikut (jika menggunakan Homebrew):
 ```bash
-# Menggunakan Homebrew
 brew install git
+````
 
-# Atau download installer dari https://git-scm.com/download/mac
-```
+### 🐧 Linux (Distro Spesifik)
 
-#### Linux
+  * **Debian, Ubuntu, Linux Mint, MX Linux, Kali:**
+    ```bash
+    sudo apt update
+    sudo apt install git
+    ```
+  * **Fedora, Red Hat (RHEL), CentOS, AlmaLinux:**
+    ```bash
+    sudo dnf install git
+    # atau untuk versi lama:
+    sudo yum install git
+    ```
+  * **Arch Linux, CachyOS, Manjaro, EndeavourOS:**
+    ```bash
+    sudo pacman -S git
+    ```
+  * **NixOS:**
+    Tambahkan `git` ke `environment.systemPackages` di `configuration.nix` atau jalankan:
+    ```bash
+    nix-env -i git
+    ```
+  * **OpenSUSE:**
+    ```bash
+    sudo zypper install git
+    ```
 
-**Red Hat / CentOS**
-```bash
-sudo yum install git
-```
+-----
 
-**Fedora**
-```bash
-sudo dnf install git
-```
+## 🧬 Tahap 2: Setup Repository (Fork & Clone)
 
-**Debian / Ubuntu / Linux Mint / MX Linux**
-```bash
-sudo apt update
-sudo apt install git
-```
+1.  **Punya Akun GitHub:** Pastikan kamu sudah login.
+2.  **Fork Repository:** Lakukan *Fork* pada repository ini agar masuk ke akunmu. Pastikan mencentang opsi untuk menyertakan **seluruh branch** (termasuk branch `site`).
+      * 👉 **[Klik di sini untuk Fork](https://github.com/frijal/LayarKosong/fork)**
+3.  **Aktifkan Pages:** Setelah berhasil di-fork:
+      * Masuk ke menu **Settings** \> **Pages**.
+      * Pada bagian "Source", pilih **Deploy from a branch**.
+      * Pilih branch `main` (atau `site` sesuai konfigurasi preferensimu) dan folder `/ (root)`.
+      * Klik **Save**. Situsmu sekarang akan mulai dibangun\!
 
-**Arch Linux / CachyOS**
-```bash
-sudo pacman -S git
-```
+Repository kamu sekarang bisa diakses secara online di: `https://usernamekamu.github.io`
 
-**NixOS**
-```nix
-# Tambahkan ke configuration.nix
-environment.systemPackages = with pkgs; [
-  git
-];
+-----
 
-# Atau gunakan nix-shell
-nix-shell -p git
-```
+## 🏗️ Tahap 3: Produksi (Membuat Konten)
 
-### 2. Fork Repository
+Sekarang saatnya bersih-bersih dan mulai mengisi kontenmu sendiri.
 
-Pastikan kamu sudah punya akun GitHub, lalu lakukan Fork repository ini dengan lengkap, termasuk cabang branch yang bernama **"site"**:
+### 1\. Bersihkan Konten Lama 🧹
 
-🔗 [Fork LayarKosong Repository](https://github.com/frijal/LayarKosong/fork)
+Hapus semua file contoh bawaan agar situsmu bersih:
 
-### 3. Aktifkan GitHub Pages
+  * Hapus semua isi di dalam folder `artikel/`.
+  * Hapus seluruh gambar di dalam folder `img/`.
 
-Setelah melakukan fork, ubah repository kamu menjadi Pages agar dapat diakses secara publik dan online:
+### 2\. Aktifkan GitHub Actions ⚡
 
-1. Masuk ke **Settings** repository kamu.
-2. Pilih menu **Pages** di sidebar.
-3. Pilih branch **site** sebagai source.
-4. Klik **Save**.
+Secara *default*, fitur keamanan GitHub akan mematikan *Actions* pada repository hasil fork.
 
-Repository kamu sekarang bisa diakses di: `https://usernamekamu.github.io`
+  * Masuk ke tab **Actions**.
+  * Klik tombol hijau bertuliskan **"I understand my workflows, go ahead and enable them"**.
 
----
+### 3\. Mulai Menulis (Workflow Otomatis) ✍️
 
-## Tahap Produksi
+Di sinilah keajaiban terjadi. Kamu tidak menaruh file langsung di folder publik, tapi melalui proses "masak" otomatis:
 
-### 1. Persiapan Konten
+1.  Buat file HTML artikel barumu.
+2.  Masukkan file tersebut ke dalam folder **`artikelx/`** (perhatikan akhiran 'x').
+3.  Lakukan *commit* dan *push*.
+4.  **Biarkan Action Bekerja:** Sistem otomatis (*workflow*) akan mendeteksi file baru, memprosesnya, dan memindahkannya dari `artikelx/` menuju folder `artikel/` yang siap tayang.
 
-Bersihkan konten default dari repository:
+🎉 **Selesai\!** Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya.
 
-- **Hapus** semua isi dari folder `artikel/`
-- **Hapus** seluruh gambar dari dalam folder `img/`
+-----
 
-### 2. Aktifkan GitHub Actions
+## 🎨 Tahap 4: Personalisasi & Konfigurasi
 
-Secara otomatis, fitur Actions dan perintah workflow `.YAML` akan dimatikan pada repository hasil fork. Aktifkan kembali:
+Setelah uji coba sukses, saatnya mengklaim situs ini menjadi milikmu sepenuhnya. Jangan lupa ubah data-data berikut agar SEO dan identitas situsmu benar.
 
-1. Masuk ke tab **Actions** di repository kamu.
-2. Klik tombol hijau **"I understand my workflows, go ahead and enable them"**.
-3. Aktifkan semua workflow yang tersedia.
+### 📂 Folder `ext/`
 
-### 3. Upload Konten Pertama
+Sesuaikan URL dan nama domain pada seluruh file konfigurasi di dalam folder ini.
 
-1. Masukkan file HTML baru ke dalam folder `artikelx/`
-2. Commit dan push perubahan ke GitHub.
+### 📄 isi File di dalam Root (Wajib Diubah)
 
-### 4. Biarkan Automation Bekerja
-
-Action akan bekerja secara otomatis untuk:
-- Memindahkan file HTML dari folder `artikelx/` ke folder `artikel/`
-- Memproses dan mempublikasikan halaman.
-
-### 5. Verifikasi Publikasi
-
-Setelah proses selesai, halaman pertama kamu telah terbit! Kamu bisa lanjutkan dengan artikel berikutnya menggunakan cara yang sama.
-
----
-
-## Konfigurasi dan Penyesuaian
-
-Setelah berhasil testing dengan 1 file HTML, silakan lakukan penyesuaian property sesuai kebutuhan kamu:
-
-### File yang Perlu Disesuaikan
-
-Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` dan file-file berikut:
+Edit dan sesuaikan informasi di file-file berikut yang ada di halaman utama (*root*):
 
 - `404.html` - Halaman untuk tautan URL yang tidak ditemukan.
 - `BingSiteAuth.xml` - Verifikasi Bing Webmaster.
@@ -134,7 +126,7 @@ Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` d
 - `sitemap.html` - Daftar Isi, Peta Situs .
 - `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` - Thumbnail sosial media.
 
-### Checklist Konfigurasi
+### 🙏 Checklist Konfigurasi
 
 - [ ] Ganti semua URL dari `dalam.web.id` ke domain kamu.
 - [ ] Update informasi kontak dan metadata.
@@ -142,9 +134,9 @@ Ubah nama domain dan alamat URL pada seluruh file konfigurasi di folder `ext/` d
 - [ ] Test semua link internal.
 - [ ] Verifikasi sitemap dan robots.txt
 
----
+-----
 
-## Domain Custom (Opsional)
+## Domain Custom (Opsional jika Ada)
 
 Jika ingin menggunakan domain custom:
 
@@ -152,23 +144,21 @@ Jika ingin menggunakan domain custom:
 2. Isi dengan nama domain kamu (contoh: `example.com`)
 3. Atur DNS di provider domain kamu:
    - Tambahkan record A ke IP GitHub Pages.
-   - Atau CNAME ke `username.github.io`
+   - Atau CNAME ke `usernamekamu.github.io`
 
----
+-----
 
-## Butuh Bantuan?
+## 💬 Butuh Bantuan?
 
-Kalau ada kendala atau pertanyaan, jangan ragu untuk:
+Ada kendala saat instalasi atau *workflow* macet? Jangan panik\! Langsung saja meluncur ke repository aslinya, kita ngobrol santai di sana.
 
-💬 **Diskusi di GitHub**: [LayarKosong Discussions](https://github.com/frijal/LayarKosong/discussions)
+👉 **[Diskusi di Repository LayarKosong](https://github.com/frijal/LayarKosong/discussions)**
 
-Mari kita ngobrol dan selesaikan bareng-bareng! 🚀
-
----
+-----
 
 ## Lisensi
 
-Silakan cek file `LICENSE` di repository untuk informasi lisensi.
+Silakan cek file [Lisensi](#lisensi--konten-domain-publik-unlicense) di repository untuk informasi lisensi.
 
 ## Kontributor
 
