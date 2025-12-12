@@ -2,7 +2,7 @@
 
 Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat dan ringan menggunakan *repository* **Layar Kosong**.
 
-Konsepnya sederhana: Kita hanya menggunakan sekumpulan file HTML yang digabungkan, disimpan, lalu dipanggil menggunakan domain **GitHub Pages** (biasanya `username.github.io`) atau domain kustom milikmu.
+Konsepnya sederhana: Kita hanya menggunakan sekumpulan file HTML yang digabungkan, disimpan, lalu dipanggil menggunakan domain **GitHub Pages** (biasanya `usernamekamu.github.io`) atau domain kustom milikmu.
 
 ---
 
