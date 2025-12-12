@@ -1,6 +1,6 @@
 ## 🤝 Panduan Kontribusi untuk Layar Kosong
 
-Selamat datang\! Kami sangat menghargai niatmu untuk berkontribusi pada halaman Layar Kosong, dan ini dibangun di atas semangat *Open Source* dan Public Domain, jadi **setiap kontribusi kecil pun sangat berharga**\!
+Selamat datang\! Kami sangat menghargai niatmu untuk berkontribusi pada halaman Layar Kosong, dan ini dibangun dengan semangat *Open Source* dan Public Domain, jadi **setiap kontribusi kecil pun sangat berharga**\!
 
 Sebelum memulai, mari kita pahami beberapa hal utama.
 
