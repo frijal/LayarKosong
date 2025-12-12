@@ -158,7 +158,7 @@
         <h3><i class="fas fa-bug"></i> Anomali yang Dicari Cloudflare</h3>
         <p>Bot sederhana sering kali gagal meniru *header* ini dengan sempurna, dan disitulah Cloudflare memergoki mereka:</p>
         <ul>
-            <li>**Header yang Hilang atau Tidak Lengkap:** Peramban sungguhan harus memiliki *header* standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika *header* ini hilang atau terlalu singkat, itu adalah tanda bahwa itu bukan peramban sungguhan.</li>
+            <li><b>Header yang Hilang atau Tidak Lengkap:</b> Peramban sungguhan harus memiliki <em>header</em> standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika <em>header</em> ini hilang atau terlalu singkat, maka adalah tanda bahwa itu bukan peramban sungguhan.</li>
             <li>**Format yang Salah (*Mal-Formed*):** Jika nilai *header* memiliki format yang secara teknis tidak mungkin ada (misalnya, *User-Agent* yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
             <li>**Ketidaksesuaian Logika:** Misalnya, *browser* menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta *header* tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku *browser* normal).</li>
         </ul>
