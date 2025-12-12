@@ -1,6 +1,7 @@
 ## 🌟 Lisensi: Konten Domain Publik (UNLICENSE)
 
-Ini adalah konten **GRATIS** yang sepenuhnya dilepaskan ke **Domain Publik**. Silakan gunakan, modifikasi, dan distribusikan secara Bebas.
+
+Ini adalah konten GRATIS yang sepenuhnya dilepaskan ke Domain Publik. Silakan gunakan, modifikasi, dan distribusikan secara Bebas.
 
 <details>
 <summary>⚡ Klik untuk Status Teknis ⚙️</summary>
@@ -115,9 +116,7 @@ In jurisdictions that recognize copyright laws, the author(s) dedicate **all cop
 
 ---
 
-### 🚀 Ringkasan Interaktif (Menggunakan Markdown Murni)
-
-Aku akan mengubah ringkasan interaktif berbentuk *table* kamu menjadi *list* dengan *emoji* dan *bolding* agar lebih mudah dibaca dan lebih cepat di-*render* di banyak platform Markdown:
+### 🚀 Ringkasan
 
 * **🟢 Bebas Hak Cipta:** Konten ini gratis, tanpa hak cipta. 🎉
 * **🌍 Bebas Digunakan Siapa Saja:** Siapa pun boleh menyalin, memodifikasi, dan mendistribusikan. 🤝
