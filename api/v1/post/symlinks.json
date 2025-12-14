@@ -1,0 +1,13 @@
+{
+  "id": "symlinks",
+  "title": "Membersihkan Symbolic Link Rusak dengan `symlinks` di Linux",
+  "slug": "symlinks.html",
+  "url": "https://dalam.web.id/artikel/symlinks.html",
+  "datePublished": "2025-09-15T03:00:00.000+00:00",
+  "summary": "Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Panduan membersihkan symbolic link atau shortcut yang rusak (dangling) menggunakan utilitas",
+  "customPromptHintManuallySet": false,
+  "imageUrl": "https://dalam.web.id/img/symlinks.webp",
+  "content_plain": "Membersihkan Symbolic Link dengan `symlinks` Tautan simbolik (*symbolic link*) atau *shortcut* sangat berguna, namun jika targetnya berpindah atau terhapus, tautan ini menjadi rusak (*dangling*) dan dapat mengacaukan sistem. Untuk merapikannya, kita bisa menggunakan utilitas symlinks di Linux. Instalasi dan Penggunaan Pertama, instal `symlinks` melalui manajer paket distro Anda (contoh untuk Debian/Ubuntu): sudo apt-get install symlinksCopy Setelah terpasang, Anda bisa menggunakan perintah berikut untuk mencari dan menghapus *symlink* yang rusak di direktori saat ini secara rekursif: # Opsi -d untuk menghapus symlink yang rusak\nsymlinks -d .Copy Gunakan perintah ini dengan hati-hati dan pastikan Anda berada di direktori yang benar. Menjalankannya di direktori root (/) dapat membersihkan seluruh sistem Anda."
+}
