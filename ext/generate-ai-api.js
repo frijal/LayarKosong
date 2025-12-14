@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI FINAL DAN TERKOREKSI: FIX INISIALISASI SDK + CACHING OPTIMASI
+// VERSI OPTIMASI PALING SEDERHANA: Caching Berdasarkan Konten Summary
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -30,7 +30,6 @@ if (!GEMINI_API_KEY) {
     console.log(`✅ Kunci API Ditemukan di ENV. Panjang: ${GEMINI_API_KEY.length} karakter.`);
 
     try {
-        // PERBAIKAN UTAMA: Menggunakan objek konfigurasi { apiKey: ... } 
         var ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
         console.log("✅ Inisialisasi GoogleGenAI berhasil dengan Kunci API.");
     } catch (e) {
@@ -42,6 +41,7 @@ if (!GEMINI_API_KEY) {
 
 // --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN AI ---
 async function generatePromptHint(content, title, summary) {
+    // Fungsi ini tidak perlu berubah
     if (!ai) return summary; 
 
     const prompt = `Anda adalah ahli Generative Engine Optimization (GEO). 
@@ -83,7 +83,9 @@ function flattenAndNormalizeData(metadata) {
             
             articles.forEach(articleArray => {
                 const [title, slug_html, img_url, date, summary, custom_prompt_hint] = articleArray;
-                const initial_prompt_hint = custom_prompt_hint || summary || null;
+                
+                // Jaga logika agar promptHint awal adalah summary jika tidak ada custom hint
+                const initial_prompt_hint = custom_prompt_hint || summary || null; 
                 const id = slug_html.replace('.html', ''); 
 
                 const postObject = {
@@ -110,6 +112,7 @@ function flattenAndNormalizeData(metadata) {
 
 // --- 6. FUNGSI PEMBERSIN KONTEN (CHEERIO) ---
 function extractCleanContent(slug_html) {
+    // Fungsi ini tidak perlu berubah
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     
     if (!fs.existsSync(htmlFilePath)) {
@@ -121,25 +124,15 @@ function extractCleanContent(slug_html) {
     const $ = load(htmlContent); 
 
     const junkSelectors = [
-        'script', 
-        'style',
-        'footer',
-        '#iposbrowser',
-        '#pesbukdiskus',
-        '.search-floating-container',
-        '#related-marquee-section'
+        'script', 'style','footer','#iposbrowser','#pesbukdiskus','.search-floating-container','#related-marquee-section'
     ];
 
-    junkSelectors.forEach(selector => {
-        $(selector).remove(); 
-    });
+    junkSelectors.forEach(selector => { $(selector).remove(); });
     
     const container = $('.container').first();
     let content_plain = container.text();
 
-    content_plain = content_plain
-        .replace(/\s\s+/g, ' ') 
-        .trim(); 
+    content_plain = content_plain.replace(/\s\s+/g, ' ').trim(); 
 
     return content_plain;
 }
@@ -149,11 +142,11 @@ function extractCleanContent(slug_html) {
 async function generateApiFiles() {
     console.log('--- Memulai Generasi L-K AI API (GEO Enabled) ---');
 
+    // ... (Logika inisialisasi direktori sama) ...
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
         console.log(`✅ Direktori API dibuat: ${OUTPUT_API_DIR}`);
     }
-    
     const singlePostDir = path.join(OUTPUT_API_DIR, 'post');
      if (!fs.existsSync(singlePostDir)) {
         fs.mkdirSync(singlePostDir, { recursive: true });
@@ -170,60 +163,64 @@ async function generateApiFiles() {
 
         for (const post of allPosts) {
             const cleanContent = extractCleanContent(post.slug);
-            const singlePostPath = path.join(singlePostDir, `${post.id}.json`); // Definisikan path di sini
-
+            const singlePostPath = path.join(singlePostDir, `${post.id}.json`); 
+            
             if (cleanContent) {
                 let shouldCallAI = true;
                 
-                // --- LOGIKA CACHING BARU ---
+                // --- LOGIKA CACHING KONTEN SEDERHANA ---
                 if (fs.existsSync(singlePostPath)) {
                     try {
                         const existingPost = JSON.parse(fs.readFileSync(singlePostPath, 'utf8'));
                         
-                        // Cek apakah promptHint sudah ada dan tidak kosong
-                        if (existingPost.promptHint && existingPost.promptHint.length > 5) { 
+                        // Perbandingan KUNCI: Cek apakah promptHint di cache SAMA DENGAN summary yang sudah dimuat.
+                        // Jika BEDA, berarti sudah dioptimasi AI atau diisi manual, jadi kita skip pemanggilan AI.
+                        if (existingPost.promptHint && existingPost.promptHint !== post.summary) { 
+                            // Muat data dari cache yang sudah dioptimasi
                             post.promptHint = existingPost.promptHint;
-                            post.customPromptHintManuallySet = existingPost.customPromptHintManuallySet || false; // Ambil status manual
+                            post.customPromptHintManuallySet = existingPost.customPromptHintManuallySet || false; 
+                            
                             shouldCallAI = false;
                             skippedCount++;
-                            console.log(`   ⏩ Prompt Hint ter-cache ditemukan, dilewati: ${post.title}`);
+                            console.log(`   ⏩ Prompt Hint ter-optimasi/manual ditemukan, dilewati: ${post.title}`);
                         }
                     } catch (e) {
-                        // Jika gagal parsing JSON cache, kita abaikan dan proses ulang
                         console.warn(`   ⚠️ Gagal membaca cache untuk ${post.title}. Memproses ulang.`);
                     }
                 }
-                // --- AKHIR LOGIKA CACHING BARU ---
+                // --- AKHIR LOGIKA CACHING KONTEN ---
                 
-                // HANYA PANGGIL AI JIKA BELUM TER-CACHE DAN AI BERHASIL DIINISIALISASI
+                // PANGGIL AI HANYA JIKA: Belum di-optimasi/masih berupa summary (shouldCallAI=true) DAN AI tersedia
                 if (shouldCallAI && ai) { 
                     console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
                     post.promptHint = newHint;
+                    // CATATAN: Jika AI gagal, newHint akan kembali ke summary, dan skrip akan mencoba lagi di run berikutnya!
                 } else if (post.customPromptHintManuallySet && shouldCallAI) {
-                    // Jika manual, tapi belum ada cache (kasus pertama kali)
                     console.log(`   ✅ Prompt Hint manual ditemukan, dilewati: ${post.title}`);
                 }
                 
                 post.content_plain = cleanContent;
 
                 // Tulis/Update JSON Single Post
-                fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
+                // Hapus customPromptHintManuallySet saat menulis JSON akhir jika tidak perlu di API
+                const { customPromptHintManuallySet, ...postForJson } = post;
+                fs.writeFileSync(singlePostPath, JSON.stringify(postForJson, null, 2));
                 
                 // Siapkan untuk Master List (Hapus Konten Penuh)
-                const { content_plain, customPromptHintManuallySet, ...summary } = post; 
+                const { content_plain, ...summary } = postForJson; 
                 summaryPosts.push(summary);
                 processedCount++;
             }
         }
 
-        // Tulis File JSON Daftar Artikel (Master List API)
+        // ... (Logika penulisan master list dan logging akhir) ...
         const masterListPath = path.join(OUTPUT_API_DIR, 'posts.json');
         fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
 
         console.log(`\n🎉 Proses Selesai!`);
         console.log(`Total Artikel diproses: ${processedCount}`);
-        console.log(`Total Artikel dilewati (Cache/Manual): ${skippedCount}`);
+        console.log(`Total Artikel dilewati (Cache/Optimized): ${skippedCount}`);
         console.log(`File API Utama dibuat di: ${masterListPath}`);
         console.log(`File Single Post API dibuat di: ${singlePostDir}`);
         console.log('\n--- Layar Kosong Anda Sekarang AI-Ready dan GEO-Optimized! ---');
