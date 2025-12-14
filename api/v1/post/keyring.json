@@ -1,0 +1,11 @@
+{
+  "id": "keyring",
+  "title": "KeyRing: Menyimpan Kata Sandi di Ubuntu",
+  "slug": "keyring.html",
+  "url": "https://dalam.web.id/artikel/keyring.html",
+  "datePublished": "2025-06-04T18:15:06.401+00:00",
+  "summary": "Panduan lengkap menggunakan aplikasi KeyRing di Ubuntu untuk menyimpan kata sandi jaringan, SSH, dan situs.",
+  "category": "🐧 Linux & Open Source",
+  "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWAVKSHaXnbrs0akwFYHU5NKq36WE5rUumtx8G2i_cNscjLk-WTG21L6HgtmNaPhoO9qKnBQODWxrUdBccDPiCpl_FT_eLnqA5P-q3dLaIlCIBAPWI1Axgx2Rk9uHOvj0XqAxbs5khttEr/s320/keyring.png",
+  "content_plain": "KeyRing: Menyimpan Kata Sandi di Ubuntu Apa itu KeyRing? Ini adalah sebuah aplikasi yang bertugas menyimpan seluruh kata sandi di mesin Ubuntu, termasuk koneksi jaringan nirkabel, SSH, dan situs internet. Sangat berguna bagi mereka yang sering lupa password. :) KeyRing tersedia hampir di semua distro Linux. Misal di BlankOn, jalankan seahorse untuk membuka jendela KeyRing. Mematikan KeyRing saat startup Buka Menu → System → Preferences → Startup Applications, lalu hapus centang pada: Certificate and Keyring Storage Secret Storage Service SSH Key Agent Jika masih bermasalah, gunakan terminal: cd .gnome2/keyrings/\nsudo rm *.keyring\nsudo reboot"
+}
