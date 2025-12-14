@@ -1,0 +1,54 @@
+name: 🤖 Auto-Generate LLMs.txt
+
+on:
+  # Jalankan setiap hari (contoh: Pukul 02:00 UTC)
+  schedule:
+    - cron: '0 2 * * *'
+  # Memungkinkan untuk menjalankan secara manual dari GitHub UI
+  workflow_dispatch:
+
+jobs:
+  generate_and_commit:
+    runs-on: ubuntu-latest
+    
+    # Penting: Beri izin (permissions) write pada contents agar bot bisa commit/push
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies (requests, bs4, html2text)
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 html2text
+
+      - name: Run LLMs file generation script
+        # Memanggil skrip Python yang sudah dibuat
+        run: python ext/generate_llms.py
+
+      - name: Commit and Push generated files
+        # Langkah ini akan melakukan commit file llms.txt dan llms-full.txt
+        run: |
+          # Konfigurasi identitas Bot
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Tambahkan file ke staging area
+          git add llms.txt llms-full.txt
+          
+          # Cek apakah ada perubahan yang perlu di-commit
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan pada llms.txt atau llms-full.txt. Melewati commit."
+          else
+            echo "Ada perubahan. Committing dan pushing..."
+            git commit -m "🤖 Docs: Auto-generate llms.txt and llms-full.txt"
+            git push
+            echo "✅ Commit dan Push sukses!"
+          fi
