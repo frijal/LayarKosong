@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- prettier-ignore -->
+  <!-- ===== Basic Meta ===== -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah</title>
-  <!-- Prism.js theme -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+
+<meta name="description" content="Panduan praktis batch resize foto menggunakan ImageMagick di Linux. Ubah ukuran banyak gambar sekaligus dan simpan hasilnya ke folder terpisah dengan aman.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="news_keywords" content="ImageMagick, batch resize foto, resize gambar massal, ImageMagick tutorial, Linux image processing, convert ImageMagick">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html">
+
+<!-- ===== Icons ===== -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="https://dalam.web.id/favicon.svg">
+<link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+
+<meta name="theme-color" content="#0f172a">
+
+<!-- ===== Open Graph ===== -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah">
+<meta property="og:description" content="Cara resize banyak foto sekaligus menggunakan ImageMagick dan menyimpannya ke folder terpisah tanpa merusak file asli.">
+<meta property="og:url" content="https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
+<meta property="og:image:alt" content="Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah">
+
+<!-- ===== Article Meta ===== -->
+<meta name="date" content="2025-09-28">
+<meta property="article:published_time" content="2025-09-28T08:00:00+08:00">
+<meta property="article:author" content="Fakhrul Rijal">
+<meta property="article:section" content="Multimedia & Linux">
+<meta property="article:tag" content="ImageMagick">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Fotografi">
+<meta property="article:tag" content="Command Line">
+
+<!-- ===== Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@frijal">
+<meta name="twitter:title" content="Batch Resize Foto dengan ImageMagick">
+<meta name="twitter:description" content="Resize banyak foto sekaligus pakai ImageMagick dan simpan hasilnya ke folder terpisah. Praktis, aman, dan CLI-friendly.">
+<meta name="twitter:image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
+
+<!-- ===== Structured Image Hint ===== -->
+<meta itemprop="image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
+
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
   <style>
 :root{
   --accent:#2d89ef;
@@ -90,12 +133,6 @@ body.dark .note{background:#0b2338;color:#cfe8ff}
   .toggle{padding:10px}
 }
   </style>
-<meta name="date" content="2025-09-28">
-  <meta property="og:image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
-  <meta property="og:image:alt" content="Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
-  <meta itemprop="image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
 <meta property="article:published_time" content="2025-09-16T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
