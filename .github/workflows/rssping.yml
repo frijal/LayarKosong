@@ -1,18 +1,59 @@
-name: Ping Feeds & Sitemap
+name: 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt
 
 on:
-  workflow_dispatch:    # Bisa dijalankan manual
+  workflow_dispatch:  # Bisa dijalankan manual
   schedule:
-    - cron: "0 6 * * *"    # Otomatis tiap hari jam 06:00 UTC (sekitar jam 14:00 WITA)
+    # Otomatis tiap hari jam 06:00 UTC (sekitar jam 14:00 WITA)
+    - cron: "0 6 * * *" 
 
 jobs:
-  ping:
+  generate_index:
+    # Job ini berfungsi untuk membuat file llms.txt dan memastikan nama penulisnya benar
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Izin untuk commit/push
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      # Tidak ada instalasi dependencies, karena skrip hanya menggunakan modul bawaan (ringan!)
+      
+      - name: ⚙️ Run LLMs Index generation script
+        # Pastikan ini adalah path yang benar ke generate_llms.py kamu
+        run: python ext/generate_llms.py
+
+      - name: 💾 Commit and Push generated files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          git add llms.txt
+          
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan pada llms.txt. Melewati commit."
+          else
+            echo "Ada perubahan. Committing dan pushing..."
+            git commit -m "🤖 Docs: Auto-generate llms.txt index"
+            git push
+            echo "✅ Commit dan Push sukses!"
+          fi
+
+  ping:
+    # Job ini bergantung pada Job 'generate_index' (agar proses file sudah selesai sebelum ping, jika ada perubahan)
+    needs: generate_index 
+    runs-on: ubuntu-latest
+    
     steps:
       - name: 🔔 Ping Feeds ke Ping-o-Matic
         run: |
           BASE_URL="https://dalam.web.id"
-          BLOG_TITLE="Layar Kosong" # Ganti jika perlu
+          BLOG_TITLE="Layar Kosong"
           FEEDS=(
             "feed-catatan-and-opini-sosial.xml"
             "feed-kuliner-gaya-hidup-and-kesehatan.xml"
@@ -28,7 +69,6 @@ jobs:
             FEED_URL="$BASE_URL/$feed_file"
             echo "Pinging: $FEED_URL"
             # Kirim request POST ke Ping-o-Matic
-            # -s (silent), -o /dev/null (buang output), -X POST (metode), -d (data payload)
             curl -s -o /dev/null -X POST \
               --data-urlencode "title=$BLOG_TITLE" \
               --data-urlencode "blogurl=$BASE_URL/" \
