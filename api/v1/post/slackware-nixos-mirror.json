@@ -1,0 +1,11 @@
+{
+  "id": "slackware-nixos-mirror",
+  "title": "Memilih Mirror Tercepat di Slackware & NixOS",
+  "slug": "slackware-nixos-mirror.html",
+  "url": "https://dalam.web.id/artikel/slackware-nixos-mirror.html",
+  "datePublished": "2025-10-14T18:15:06.422+00:00",
+  "summary": "",
+  "category": "🐧 Linux & Open Source",
+  "imageUrl": "https://dalam.web.id/img/slackware-nixos-mirror.webp",
+  "content_plain": "1. Slackware (slackpkg) Slackware menggunakan manajer paket slackpkg. Untuk memilih mirror, kita harus mengedit file /etc/slackpkg/mirrors dan memilih mirror terdekat. Copy\n# Buka daftar mirror Slackware\nsudo nano /etc/slackpkg/mirrors\n# Contoh: aktifkan mirror Indonesia (hapus tanda # di depan)\n# ftp://kartolo.sby.datautama.net.id/slackware/slackware64-15.0/\n# Simpan lalu update database slackpkg\nsudo slackpkg update gpg\nsudo slackpkg update 🔑 Tips: Pilih mirror yang resmi dari Slackware atau komunitas terpercaya agar tetap aman. 2. NixOS (nix.conf mirror) NixOS menggunakan sistem paket nix. Mirror bisa diatur dengan mengedit /etc/nix/nix.conf atau melalui configuration.nix. Copy\n# Edit file konfigurasi nix.conf\nsudo nano /etc/nix/nix.conf\n# Tambahkan mirror substituter (contoh: cache.nixos.org dan mirror lokal)\nsubstituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store\ntrusted-public-keys = cache.nixos.org-1:xxxxxxxxxxxxxx mirror.sjtu.edu.cn-1:yyyyyyyyyyyyyy\n# Simpan lalu jalankan\nsudo nix-channel --update\nnix-env -u 🌍 Untuk daftar mirror resmi NixOS, kunjungi nixos.org/mirrors. Kesimpulan Slackware → edit /etc/slackpkg/mirrors lalu update dengan slackpkg. NixOS → edit /etc/nix/nix.conf untuk menambahkan mirror substituter. Dengan mirror yang tepat, baik Slackware maupun NixOS bisa melakukan update dan instalasi paket lebih cepat 🚀."
+}

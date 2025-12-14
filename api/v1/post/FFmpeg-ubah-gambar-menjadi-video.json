@@ -1,0 +1,11 @@
+{
+  "id": "FFmpeg-ubah-gambar-menjadi-video",
+  "title": "FFmpeg Photo to Video Explanation",
+  "slug": "FFmpeg-ubah-gambar-menjadi-video.html",
+  "url": "https://dalam.web.id/artikel/FFmpeg-ubah-gambar-menjadi-video.html",
+  "datePublished": "2025-09-13T03:00:00.000+00:00",
+  "summary": "",
+  "category": "📸 Multimedia & Editing",
+  "imageUrl": "https://dalam.web.id/img/FFmpeg-ubah-gambar-menjadi-video.webp",
+  "content_plain": "FFmpeg: Mengubah Banyak Foto Menjadi Video Perintah berikut digunakan untuk menggabungkan banyak foto menjadi sebuah video menggunakan FFmpeg: ffmpeg -framerate 1/5 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p out4.mp4 Copy Penjelasan Perintah -framerate 1/5: Menentukan kecepatan frame video. Angka 1/5 berarti setiap gambar ditampilkan selama 5 detik. -pattern_type glob: Memberitahu FFmpeg untuk menggunakan pola file (wildcard) seperti '*.png'. -i '*.png': Input file yang dipilih, semua file PNG di folder saat ini. -c:v libx264: Codec video yang digunakan adalah H.264, populer dan kompatibel luas. -pix_fmt yuv420p: Format piksel video agar kompatibel dengan banyak pemutar video. out4.mp4: Nama file video output yang dihasilkan."
+}
