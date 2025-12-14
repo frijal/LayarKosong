@@ -1,7 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// FUNGSIONALITAS: Mengubah konten statis HTML ke API JSON 
-//                  dan menghasilkan 'promptHint' menggunakan AI.
+// VERSI FINAL: GEO Enabled + FIX Otentikasi GitHub Actions
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -10,10 +9,8 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url'; 
 import { load } from 'cheerio'; 
 import { GoogleGenAI } from '@google/genai'; 
-import * as dotenv from 'dotenv'; 
 
-// Load environment variables dari file .env (berguna untuk pengujian lokal)
-dotenv.config(); 
+// CATATAN: dotenv telah dihapus dari sini untuk mencegah konflik di lingkungan CI/CD.
 
 // --- 2. PATH RESOLUTION & KONFIGURASI ---
 const __filename = fileURLToPath(import.meta.url);
@@ -25,22 +22,30 @@ const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel');
 const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); 
 const DOMAIN_BASE_URL = 'https://dalam.web.id'; 
 
-// --- 3. SETUP GEMINI API ---
+// --- 3. SETUP GEMINI API & DEBUGGING KUNCI ---
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY; 
 
 if (!GEMINI_API_KEY) {
-    console.warn("⚠️ PERINGATAN: GEMINI_API_KEY tidak ditemukan. 'promptHint' tidak akan di-generate AI.");
+    console.warn("⚠️ PERINGATAN: GEMINI_API_KEY tidak ditemukan di ENV. 'promptHint' akan menggunakan Summary sebagai fallback.");
+    var ai = null;
+} else {
+    // 💥 DEBUGGING KRUSIAL: Membuktikan skrip melihat ENV var dari Actions
+    console.log(`✅ Kunci API Ditemukan di ENV. Panjang: ${GEMINI_API_KEY.length} karakter.`);
+
+    // Menggunakan pola inisialisasi yang disarankan untuk lingkungan CI/CD:
+    // Kita memasukkan kunci, tetapi jika gagal, SDK akan mencari process.env.GEMINI_API_KEY.
+    // Dengan kunci yang eksplisit di konstruktor, SDK *seharusnya* tidak jatuh ke ADC.
+    try {
+        var ai = new GoogleGenAI(GEMINI_API_KEY);
+    } catch (e) {
+        console.error("❌ GAGAL inisialisasi GoogleGenAI dengan kunci yang tersedia:", e.message);
+        var ai = null;
+    }
 }
 
-const ai = GEMINI_API_KEY ? new GoogleGenAI(GEMINI_API_KEY) : null; 
 
 // --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN AI ---
-/**
- * Memanggil Gemini untuk menghasilkan prompt hint yang dioptimalkan untuk GEO.
- * @returns {Promise<string>} String berisi pertanyaan dipisahkan titik koma.
- */
 async function generatePromptHint(content, title, summary) {
-    // Jika AI tidak terinisialisasi, fallback ke summary
     if (!ai) return summary; 
 
     const prompt = `Anda adalah ahli Generative Engine Optimization (GEO). 
@@ -49,7 +54,7 @@ async function generatePromptHint(content, title, summary) {
 
                     JUDUL: ${title}
                     SUMMARY: ${summary}
-                    KONTEN UTAMA: ${content.substring(0, 1000)}... // Batasi input konten untuk efisiensi
+                    KONTEN UTAMA: ${content.substring(0, 1000)}...
 
                     Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
 
@@ -62,13 +67,13 @@ async function generatePromptHint(content, title, summary) {
             }
         });
 
-        // Hapus karakter yang tidak diinginkan seperti kutip di awal/akhir
         const hint = response.text.trim().replace(/^['"]|['"]$/g, ''); 
         return hint;
 
     } catch (error) {
+        // Log Error dan Fallback
         console.error(`❌ ERROR memanggil Gemini untuk artikel ${title}: ${error.message}`);
-        // Jika gagal, kembalikan summary sebagai fallback
+        // Fallback ke summary jika panggilan API gagal (misalnya, karena otentikasi atau rate limit)
         return summary; 
     }
 }
@@ -83,12 +88,9 @@ function flattenAndNormalizeData(metadata) {
             const articles = metadata[category];
             
             articles.forEach(articleArray => {
-                // Menerima 5 atau 6 elemen dari artikel.json
                 const [title, slug_html, img_url, date, summary, custom_prompt_hint] = articleArray;
 
-                // Tentukan promptHint awal (fallback ke summary jika tidak ada input manual)
                 const initial_prompt_hint = custom_prompt_hint || summary || null;
-                
                 const id = slug_html.replace('.html', ''); 
 
                 const postObject = {
@@ -99,9 +101,7 @@ function flattenAndNormalizeData(metadata) {
                     datePublished: date,
                     summary: summary,
                     category: category,
-                    // Kita akan overwrite ini dengan hasil AI jika custom_prompt_hint kosong
                     promptHint: initial_prompt_hint, 
-                    // Flag ini menandakan apakah penulis sudah mengisi manual (GEO)
                     customPromptHintManuallySet: !!custom_prompt_hint, 
                     imageUrl: img_url,
                 };
@@ -111,7 +111,6 @@ function flattenAndNormalizeData(metadata) {
     }
     
     allPosts.sort((a, b) => new Date(b.datePublished) - new Date(a.datePublished));
-
     return allPosts;
 }
 
@@ -128,7 +127,6 @@ function extractCleanContent(slug_html) {
     const htmlContent = fs.readFileSync(htmlFilePath, 'utf8');
     const $ = load(htmlContent); 
 
-    // Selektor untuk elemen yang tidak relevan/junk
     const junkSelectors = [
         'script', 
         'style',
@@ -143,9 +141,7 @@ function extractCleanContent(slug_html) {
         $(selector).remove(); 
     });
     
-    // Asumsi konten yang relevan ada di dalam .container
     const container = $('.container').first();
-    
     let content_plain = container.text();
 
     content_plain = content_plain
@@ -185,12 +181,12 @@ async function generateApiFiles() {
             const cleanContent = extractCleanContent(post.slug);
             
             if (cleanContent) {
-                // HANYA PANGGIL AI JIKA PROMPT HINT BELUM DIISI MANUAL
-                if (!post.customPromptHintManuallySet) { 
+                // HANYA PANGGIL AI JIKA PROMPT HINT BELUM DIISI MANUAL DAN AI ADA
+                if (!post.customPromptHintManuallySet && ai) { 
                     console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
                     post.promptHint = newHint;
-                } else {
+                } else if (post.customPromptHintManuallySet) {
                     console.log(`   ✅ Prompt Hint manual ditemukan, dilewati: ${post.title}`);
                 }
                 
@@ -201,7 +197,7 @@ async function generateApiFiles() {
                 fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
                 
                 // ---- B. Siapkan Objek Ringkasan (Hapus Konten Penuh) ----
-                const { content_plain, ...summary } = post; 
+                const { content_plain, customPromptHintManuallySet, ...summary } = post; // Hapus flag debugging juga
 
                 summaryPosts.push(summary);
                 processedCount++;
@@ -226,7 +222,6 @@ async function generateApiFiles() {
 }
 
 // --- JALANKAN SKRIP ---
-// Panggil fungsi utama dan tangani error top-level
 generateApiFiles().catch(error => {
     console.error('Fatal error during asynchronous execution:', error);
     process.exit(1);
