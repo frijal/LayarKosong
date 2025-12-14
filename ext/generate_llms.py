@@ -9,34 +9,51 @@ import re
 DOMAIN = "https://dalam.web.id" 
 CONTENT_SELECTOR = 'body' 
 
-# 🔥 TAMBAHKAN USER-AGENT UNTUK MENGHINDARI 403 ERROR 🔥
+# HEADERS untuk menghindari 403 Forbidden dari server/WAF
 HEADERS = {
-    # Menyamar sebagai User-Agent Chrome 120 (Harapannya tidak diblokir oleh Cloudflare/WAF)
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
     'Accept-Language': 'en-US,en;q=0.5'
 }
 # --- END KONFIGURASI ---
 
-# (Fungsi get_urls_ dari kode sebelumnya di sini. Aku hanya tambahkan try-except untuk sitemap.xml dan artikel.json agar lebih tangguh)
+def ensure_html_extension(url):
+    """Memastikan URL berakhiran .html jika belum ada, dan hanya berlaku di path /artikel/."""
+    # Cari path setelah domain, contoh: /artikel/nama-artikel
+    path = url.replace(DOMAIN, '')
+    
+    # Hanya proses yang ada di folder artikel dan belum ada ekstensi
+    if '/artikel/' in path and not path.lower().endswith('.html'):
+        # Cek kalau ada query parameter (misal ?v=123)
+        if '?' in url:
+            base_url, query = url.split('?', 1)
+            return f"{base_url}.html?{query}"
+        else:
+            return f"{url}.html"
+    return url
 
 def get_urls_from_sitemap_txt(url):
-    """Membaca daftar URL dari sitemap.txt dan memfilter hanya URL artikel."""
+    """Membaca daftar URL dari sitemap.txt, memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
+    urls = set()
     try:
         response = requests.get(url, timeout=10, headers=HEADERS)
-        urls = [line.strip() for line in response.text.splitlines() if line.strip() and '/artikel/' in line]
-        return set(urls) 
+        for line in response.text.splitlines():
+            url_found = line.strip()
+            if url_found and '/artikel/' in url_found:
+                # 🔥 Modifikasi: Terapkan penambahan .html 🔥
+                urls.add(ensure_html_extension(url_found))
+        return urls
     except Exception as e:
         print(f"❌ Error membaca sitemap.txt: {e}")
         return set()
 
 def get_urls_from_sitemap_xml(url):
-    """Membaca daftar URL dari sitemap.xml dan memfilter hanya URL artikel."""
+    """Membaca daftar URL dari sitemap.xml, memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
     urls = set()
     try:
         response = requests.get(url, timeout=10, headers=HEADERS)
-        response.raise_for_status() # Cek status request
-        # 🚨 PENANGANAN ERROR PARSING XML 🚨
+        response.raise_for_status() 
+        
         try:
             root = ET.fromstring(response.content)
             namespace = {'sitemap': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
@@ -44,7 +61,8 @@ def get_urls_from_sitemap_xml(url):
             for loc_element in root.findall('sitemap:url/sitemap:loc', namespace):
                 url_found = loc_element.text
                 if url_found and '/artikel/' in url_found:
-                    urls.add(url_found)
+                    # 🔥 Modifikasi: Terapkan penambahan .html 🔥
+                    urls.add(ensure_html_extension(url_found))
         except ET.ParseError as e:
             print(f"❌ Error parsing sitemap.xml (XML rusak): {e}. Melanjutkan tanpa data XML.")
         return urls
@@ -53,19 +71,26 @@ def get_urls_from_sitemap_xml(url):
         return set()
 
 def get_urls_from_artikel_json(url):
-    """Membaca daftar URL dari artikel.json."""
+    """Membaca daftar URL dari artikel.json, memastikan URL yang terbentuk memiliki ekstensi .html (dengan penanganan error parsing)."""
     urls = set()
     try:
         response = requests.get(url, timeout=10, headers=HEADERS)
-        response.raise_for_status() # Cek status request
-        # 🚨 PENANGANAN ERROR PARSING JSON 🚨
+        response.raise_for_status() 
+        
         try:
             data = response.json()
             for item in data:
                 if len(item) > 1:
                     path = item[1]
+                    
+                    # Cek apakah path sudah berakhiran .html (ini hanya untuk path, belum full URL)
+                    if not path.lower().endswith('.html'):
+                        path = f"{path}.html"
+                    
                     full_url = f"{DOMAIN}/artikel/{path}"
-                    urls.add(full_url)
+                    
+                    # Tidak perlu ensure_html_extension lagi karena sudah di-force di level path
+                    urls.add(full_url) 
         except json.JSONDecodeError as e:
              print(f"❌ Error parsing artikel.json (JSON rusak/kosong): {e}. Melanjutkan tanpa data JSON.")
         return urls
@@ -73,12 +98,9 @@ def get_urls_from_artikel_json(url):
         print(f"❌ Error membaca artikel.json: {e}")
         return set()
 
-
-# --- FUNGSI CRAWL YANG DIMODIFIKASI ---
 def crawl_and_convert(url, h):
-    """Mengambil URL, membersihkan body, dan mengkonversi ke Markdown."""
+    """Mengambil URL, membersihkan body secara agresif, dan mengkonversi ke Markdown."""
     try:
-        # 🔥 Tambahkan headers di sini 🔥
         response = requests.get(url, timeout=15, headers=HEADERS) 
         response.raise_for_status() 
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -86,20 +108,24 @@ def crawl_and_convert(url, h):
         content_element = soup.find(CONTENT_SELECTOR)
         
         if content_element:
+            
             # BLACKLIST PEMBUANGAN ELEMEN NON-KONTEN (Sama seperti sebelumnya)
-            JUNK_TAGS = ['nav', 'aside', 'form', 'script', 'style', 'header', 'footer', 'comment', 'iframe']
+            JUNK_TAGS = ['nav', 'aside', 'form', 'script', 'style', 'header', 'footer', 'comment', 'iframe', 'noscript', 'img', 'svg']
             JUNK_SELECTORS = [
-                re.compile(r'sidebar|menu|nav|footer|header|ad|comment|social|related|meta', re.I) # Tambahkan 'related' dan 'meta'
+                re.compile(r'sidebar|menu|nav|footer|header|ad|comment|social|related|meta|promo|breadcrumb|skip', re.I) 
             ]
             
+            # Eksekusi Pembuangan Tag
             for junk_tag in JUNK_TAGS:
                 for junk in content_element.find_all(junk_tag):
                     junk.decompose()
             
+            # Eksekusi Pembuangan Class/ID
             for selector in JUNK_SELECTORS:
                 for element in content_element.find_all(lambda tag: tag.has_attr('class') and selector.search(' '.join(tag['class'])) or tag.has_attr('id') and selector.search(tag['id'])):
                     element.decompose()
             
+            # Konversi ke Markdown
             markdown_text = h.handle(str(content_element))
             
             title = soup.title.string if soup.title else url
@@ -113,12 +139,10 @@ def crawl_and_convert(url, h):
             return None, None
 
     except requests.exceptions.RequestException as e:
-        # Sekarang error 403 akan ditangkap di sini
         print(f"❌ Error request untuk {url}: {e}")
     except Exception as e:
         print(f"❌ Error memproses {url}: {e}")
     return None, None
-# --- END MODIFIKASI FUNGSI CRAWL ---
 
 
 def main():
@@ -141,8 +165,6 @@ def main():
         print("❌ Tidak ada URL artikel yang ditemukan. Skrip dihentikan.")
         return
 
-    # ... (Sisa fungsi main() untuk generating files llms.txt dan llms-full.txt tidak perlu diubah) ...
-    
     full_content = []
     llms_index = [
         "# Layar Kosong (dalam.web.id) - LLM Index\n\n",
@@ -162,6 +184,7 @@ def main():
             llms_index.append(f"* [{title}]({url})")
 
     # 3. Output File
+    
     with open('llms-full.txt', 'w', encoding='utf-8') as f:
         f.write("".join(full_content))
     print("✅ llms-full.txt berhasil dibuat.")
@@ -174,7 +197,6 @@ def main():
     print("✅ llms.txt berhasil dibuat.")
     
     print("\nProses generate file selesai. Selanjutnya akan di-commit oleh GitHub Actions.")
-
 
 if __name__ == "__main__":
     main()
