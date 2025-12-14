@@ -1,19 +1,16 @@
 // --- IMPORT (Menggantikan require) ---
-import * as fs from 'node:fs'; // Menggunakan import dengan namespace
-import * as path from 'node:path'; // Menggunakan import dengan namespace
-import { fileURLToPath } from 'node:url'; // Diperlukan untuk __dirname
-import cheerio from 'cheerio'; // Import default dari cheerio
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url'; 
+// PERBAIKAN: Import hanya fungsi 'load' yang dibutuhkan dari cheerio
+import { load } from 'cheerio'; 
 
 // --- PATH RESOLUTION (Pengganti __dirname) ---
-// Mendapatkan path file saat ini dari URL (import.meta.url)
 const __filename = fileURLToPath(import.meta.url);
-// Mendapatkan direktori file saat ini
 const __dirname = path.dirname(__filename);
-// Menentukan root proyek (satu tingkat di atas 'ext')
 const PROJECT_ROOT = path.resolve(__dirname, '..'); 
 
 // --- KONFIGURASI ---
-// Semua path sekarang menggunakan PROJECT_ROOT sebagai basis
 const INPUT_METADATA_FILE = path.join(PROJECT_ROOT, 'artikel.json'); 
 const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel'); 
 const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); 
@@ -63,7 +60,8 @@ function extractCleanContent(slug_html) {
     }
     
     const htmlContent = fs.readFileSync(htmlFilePath, 'utf8');
-    const $ = cheerio.load(htmlContent);
+    // PERBAIKAN: Menggunakan fungsi load() secara langsung
+    const $ = load(htmlContent); 
 
     const junkSelectors = [
         'script', 
