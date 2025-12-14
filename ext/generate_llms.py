@@ -139,7 +139,7 @@ def main():
     # 3. Template Index File (llms.txt)
     llms_index = [
         "# Layar Kosong (dalam.web.id) - LLM Index\n\n",
-        f"> Lokasi: {DOMAIN} | Konten LLM Index oleh {os.environ.get('USER', 'Frijal')}\n\n", 
+        f"> Lokasi: {DOMAIN} | Konten LLM Index oleh Fakhrul Rijal\n\n",
         "Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong yang telah diformat Markdown untuk memudahkan Large Language Models (LLMs) dalam membaca dan memahami isi situs ini.\n\n",
         "## Artikel (Index, Ringkasan, dan Gambar Utama)\n"
     ]
