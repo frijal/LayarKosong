@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trik Sat Set! Cara Gampang Konversi PDF ke Gambar (JPG/PNG) Tanpa Ribet – Layar Kosong</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="robots" content="index, follow">
+
+<meta name="description" content="Stop cara lama! Temukan trik untuk mengubah file PDF Anda menjadi gambar beresolusi tinggi (JPG, PNG) dalam hitungan detik. Panduan lengkap anti-ribet untuk semua pengguna!">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/ubah-pdf-menjadi-gambar.html">
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+<meta property="og:title" content="Trik Sat Set! Cara Gampang Konversi PDF ke Gambar (JPG/PNG) Tanpa Ribet">
+<meta property="og:url" content="https://dalam.web.id/artikel/ubah-pdf-menjadi-gambar.html">
+<meta property="og:description" content="Stop cara lama! Temukan trik untuk mengubah file PDF Anda menjadi gambar beresolusi tinggi (JPG, PNG) dalam hitungan detik. Panduan lengkap anti-ribet untuk semua pengguna!">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:image" content="https://dalam.web.id/img/ubah-pdf-menjadi-gambar.webp">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@frijal">
+<meta name="twitter:creator" content="@frijal">
+<meta name="twitter:title" content="Trik Sat Set! Cara Gampang Konversi PDF ke Gambar (JPG/PNG) Tanpa Ribet">
+<meta name="twitter:description" content="Gak perlu ribet dan nunggu lama lagi. Cek panduan trik konversi PDF ke JPG/PNG yang super gampang di sini! #PDF #TipsTeknologi">
+<meta name="twitter:image" content="https://dalam.web.id/img/ubah-pdf-menjadi-gambar.webp">
+
+<meta name="author" content="Fakhrul Rijal">
+<meta name="keywords" content="konversi pdf ke gambar, pdf to image, pdf ke jpg, pdf ke png, cara mudah konversi pdf, trik sat set pdf">
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0f0f0; color: #333; text-align: center; padding: 20px; }
+    h1 { color: #F7931D; } /* Warna jingga ala YVCI */
+    #upload-section { margin-bottom: 20px; }
+    #result { display: none; }
+    .image-preview { margin: 10px; display: inline-block; }
+    .image-preview img { max-width: 200px; border: 1px solid #939597; } /* Abu-abu ala diamond */
+    button { background-color: #F7931D; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    button:hover { background-color: #d87a1a; }
+    a { color: #6D6E70; text-decoration: none; }
+  </style>
+  <!-- Load pdf.js from CDN - versi stabil -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.338/pdf.min.js"></script>
+</head>
+<body>
+  <h1>Konversi PDF ke Gambar Per Halaman - Kualitas 100% Tinggi! 🏍️💨</h1>
+  <p>Upload PDF kamu (misalnya GSMYVCI.pdf), klik Convert, dan dapatkan PNG high-res per halaman. Scale 4x buat detail tajam!</p>
+
+  <div id="upload-section">
+    <input type="file" id="pdf-upload" accept=".pdf">
+    <button id="convert-btn">Convert PDF ke Gambar!</button>
+  </div>
+
+  <div id="result">
+    <h2>Hasil Konversi:</h2>
+    <div id="images-container"></div>
+  </div>
+
+  <script>
+    // Disable worker pdf.js untuk hindari cross-origin issues
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.338/pdf.worker.min.js';
+
+    const convertBtn = document.getElementById('convert-btn');
+    const pdfUpload = document.getElementById('pdf-upload');
+    const imagesContainer = document.getElementById('images-container');
+    const resultDiv = document.getElementById('result');
+
+    convertBtn.addEventListener('click', async () => {
+      const file = pdfUpload.files[0];
+      if (!file) {
+        alert('Upload PDF dulu, bro!');
+        return;
+      }
+
+      const fileReader = new FileReader();
+      fileReader.onload = async (ev) => {
+        const typedarray = new Uint8Array(ev.target.result);
+
+        try {
+          const loadingTask = pdfjsLib.getDocument(typedarray);
+          const pdf = await loadingTask.promise;
+          const numPages = pdf.numPages;
+
+          imagesContainer.innerHTML = ''; // Clear previous
+          resultDiv.style.display = 'block';
+
+          for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+            const page = await pdf.getPage(pageNum);
+            const scale = 4; // Scale tinggi buat kualitas 100% res
+            const viewport = page.getViewport({ scale });
+
+            // Buat canvas hidden per page
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            // Render page ke canvas
+            await page.render({ canvasContext: context, viewport }).promise;
+
+            // Convert ke PNG (lossless, quality max)
+            const imgData = canvas.toDataURL('image/png');
+
+            // Tampilkan preview dan download link
+            const previewDiv = document.createElement('div');
+            previewDiv.className = 'image-preview';
+            const img = document.createElement('img');
+            img.src = imgData;
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imgData;
+            downloadLink.download = `page_${pageNum}.png`;
+            downloadLink.textContent = `Download Halaman ${pageNum}`;
+
+            previewDiv.appendChild(img);
+            previewDiv.appendChild(downloadLink);
+            imagesContainer.appendChild(previewDiv);
+          }
+
+          alert('Selesai! Download gambar-gambarnya ya, bro. Solid seperti diamond YVCI! 💎');
+        } catch (error) {
+          console.error(error);
+          alert('Ada error nih: ' + error.message);
+        }
+      };
+      fileReader.readAsArrayBuffer(file);
+    });
+  </script>
+  <div id="pesbukdiskus"></div>
+</body>
+</html>
