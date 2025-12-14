@@ -5,31 +5,32 @@ import xml.etree.ElementTree as ET
 import json
 import re
 
-# --- KONFIGURASI ---
-DOMAIN = "https://dalam.web.id"
-# Elemen HTML tempat konten artikel berada (sangat penting!)
-# Sesuaikan ini dengan struktur HTML Layar Kosong kamu.
-CONTENT_SELECTOR = 'article' # Contoh: Kita asumsikan konten utama ada di tag <article>
+# --- KONFIGURASI PENTING ---
+DOMAIN = "https://dalam.web.id" 
+# KRUSIAL: Selector HTML akan disetel ke 'body' untuk mengambil semua konten
+CONTENT_SELECTOR = 'body' 
 # --- END KONFIGURASI ---
 
+# Fungsi pengambil URL (get_urls_from_sitemap_txt, get_urls_from_sitemap_xml, get_urls_from_artikel_json)
+# Tidak perlu diubah, biarkan tetap seperti kode sebelumnya.
+# ... (Sisipkan kembali fungsi get_urls_ dari kode sebelumnya di sini) ...
+
 def get_urls_from_sitemap_txt(url):
-    """Membaca daftar URL dari sitemap.txt."""
+    """Membaca daftar URL dari sitemap.txt dan memfilter hanya URL artikel."""
     try:
         response = requests.get(url, timeout=10)
-        # Pisahkan baris dan filter URL yang berada di folder 'artikel/'
         urls = [line.strip() for line in response.text.splitlines() if line.strip() and '/artikel/' in line]
-        return set(urls) # Gunakan set untuk menghindari duplikasi
+        return set(urls) 
     except Exception as e:
-        print(f"Error membaca sitemap.txt: {e}")
+        print(f"❌ Error membaca sitemap.txt: {e}")
         return set()
 
 def get_urls_from_sitemap_xml(url):
-    """Membaca daftar URL dari sitemap.xml."""
+    """Membaca daftar URL dari sitemap.xml dan memfilter hanya URL artikel."""
     urls = set()
     try:
         response = requests.get(url, timeout=10)
         root = ET.fromstring(response.content)
-        # Namespace untuk tag <loc>
         namespace = {'sitemap': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
         
         for loc_element in root.findall('sitemap:url/sitemap:loc', namespace):
@@ -38,7 +39,7 @@ def get_urls_from_sitemap_xml(url):
                 urls.add(url_found)
         return urls
     except Exception as e:
-        print(f"Error membaca sitemap.xml: {e}")
+        print(f"❌ Error membaca sitemap.xml: {e}")
         return set()
 
 def get_urls_from_artikel_json(url):
@@ -50,88 +51,91 @@ def get_urls_from_artikel_json(url):
         
         for item in data:
             if len(item) > 1:
-                # Kolom kedua adalah path file HTML (contoh: hadits-ahmad-9157-larangan-takhbib.html)
-                # Kita perlu ubah ini jadi URL lengkap yang bisa di-crawl
                 path = item[1]
-                # Asumsi semua file di JSON ada di folder 'artikel/'
                 full_url = f"{DOMAIN}/artikel/{path}"
                 urls.add(full_url)
         return urls
     except Exception as e:
-        print(f"Error membaca artikel.json: {e}")
+        print(f"❌ Error membaca artikel.json: {e}")
         return set()
 
+# --- FUNGSI KRUSIAL YANG DIMODIFIKASI ---
 def crawl_and_convert(url, h):
-    """Mengambil URL, membersihkan, dan mengkonversi ke Markdown."""
+    """Mengambil URL, membersihkan body, dan mengkonversi ke Markdown."""
     try:
         response = requests.get(url, timeout=15)
-        response.raise_for_status() # Raise error for bad status codes
+        response.raise_for_status() 
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        # 1. Cari elemen konten utama
+        # 1. Targetkan body
         content_element = soup.find(CONTENT_SELECTOR)
         
-        if not content_element:
-            # Fallback jika selector utama gagal
-            content_element = soup.find('div', class_=re.compile('(post|article|content)')) or soup.find('main')
-
         if content_element:
-            # 2. Pembersihan 'Sampah' HTML di dalam konten
-            # Hapus nav, aside, form, script, style, element iklan yang sering mengganggu
-            for junk in content_element.find_all(['nav', 'aside', 'form', 'script', 'style', 'header', 'footer']):
-                junk.decompose()
+            
+            # 2. BLACKLIST PEMBUANGAN ELEMEN NON-KONTEN
+            
+            # Tag umum yang harus dibuang
+            JUNK_TAGS = ['nav', 'aside', 'form', 'script', 'style', 'header', 'footer', 'comment', 'iframe']
+            # Class/ID yang pasti berisi sampah (Iklan, Navigasi, dll.)
+            JUNK_SELECTORS = [
+                re.compile(r'sidebar|menu|nav|footer|header|ad|comment|social', re.I) 
+            ]
+            
+            # Eksekusi Pembuangan Tag
+            for junk_tag in JUNK_TAGS:
+                for junk in content_element.find_all(junk_tag):
+                    junk.decompose()
+            
+            # Eksekusi Pembuangan Class/ID
+            for selector in JUNK_SELECTORS:
+                for element in content_element.find_all(lambda tag: tag.has_attr('class') and selector.search(' '.join(tag['class'])) or tag.has_attr('id') and selector.search(tag['id'])):
+                    element.decompose()
             
             # 3. Konversi ke Markdown
             markdown_text = h.handle(str(content_element))
             
-            # Ambil Judul
             title = soup.title.string if soup.title else url
+            
+            # Hapus baris kosong berlebihan dan bersihkan spasi
+            markdown_text = re.sub(r'\n\s*\n', '\n\n', markdown_text).strip()
             
             return title, markdown_text
         
         else:
-            print(f"Peringatan: Konten utama ('{CONTENT_SELECTOR}') tidak ditemukan di {url}. Skip.")
+            print(f"⚠️ Peringatan: Body tidak ditemukan di {url}. Skip.")
             return None, None
 
-    except requests.exceptions.HTTPError as errh:
-        print(f"HTTP Error for {url}: {errh}")
-    except requests.exceptions.ConnectionError as errc:
-        print(f"Error Connecting for {url}: {errc}")
-    except requests.exceptions.Timeout as errt:
-        print(f"Timeout Error for {url}: {errt}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error request untuk {url}: {e}")
     except Exception as e:
-        print(f"Error memproses {url}: {e}")
+        print(f"❌ Error memproses {url}: {e}")
     return None, None
-
+# --- END MODIFIKASI FUNGSI KRUSIAL ---
 
 def main():
     # Inisialisasi html2text
     h = html2text.HTML2Text()
     h.ignore_links = False
-    h.body_width = 0 # Jangan batasi lebar baris
+    h.body_width = 0 
     
-    # 1. Kumpulkan semua URL dari 3 sumber
-    print("Mengumpulkan URL dari sitemap.txt...")
-    urls_txt = get_urls_from_sitemap_txt(f"{DOMAIN}/sitemap.txt")
+    # 1. Kumpulkan semua URL
+    all_article_urls = set()
+    all_article_urls.update(get_urls_from_sitemap_txt(f"{DOMAIN}/sitemap.txt"))
+    all_article_urls.update(get_urls_from_sitemap_xml(f"{DOMAIN}/sitemap.xml"))
+    all_article_urls.update(get_urls_from_artikel_json(f"{DOMAIN}/artikel.json"))
     
-    print("Mengumpulkan URL dari sitemap.xml...")
-    urls_xml = get_urls_from_sitemap_xml(f"{DOMAIN}/sitemap.xml")
-    
-    print("Mengumpulkan URL dari artikel.json...")
-    urls_json = get_urls_from_artikel_json(f"{DOMAIN}/artikel.json")
-
-    # Gabungkan dan ambil yang unik
-    all_article_urls = urls_txt.union(urls_xml).union(urls_json)
-    print(f"✅ Total {len(all_article_urls)} URL artikel unik ditemukan.")
+    print(f"✅ Total {len(all_article_urls)} URL artikel unik ditemukan untuk diproses.")
     
     if not all_article_urls:
         print("❌ Tidak ada URL artikel yang ditemukan. Skrip dihentikan.")
         return
 
     full_content = []
-    llms_index = ["# Layar Kosong (dalam.web.id) - LLM Index\n\n"]
-    llms_index.append(f"Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong (Fakhrul Rijal) yang telah dibersihkan ke format Markdown.\n\n")
-    llms_index.append("## Tautan Artikel Bersih\n")
+    llms_index = [
+        "# Layar Kosong (dalam.web.id) - LLM Index\n\n",
+        "Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong (Fakhrul Rijal) yang telah diformat Markdown untuk memudahkan Large Language Models (LLMs) dalam membaca dan memahami isi situs ini.\n\n",
+        "## Tautan Artikel Bersih\n"
+    ]
 
     # 2. Proses Crawling dan Konversi
     for url in sorted(list(all_article_urls)):
@@ -161,7 +165,7 @@ def main():
         f.write("\n".join(llms_index))
     print("✅ llms.txt berhasil dibuat.")
     
-    print("\nPastikan kedua file diupload ke root domain kamu: https://dalam.web.id/llms.txt")
+    print("\nProses generate file selesai. Selanjutnya akan di-commit oleh GitHub Actions.")
 
 if __name__ == "__main__":
     main()
