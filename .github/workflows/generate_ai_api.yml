@@ -1,57 +1,42 @@
 name: Generate Layar Kosong AI API (Manual/Scheduled)
 
-# --------------------------
-# 1. TRIGGERS (Pemicu)
-# --------------------------
 on:
-  # Memungkinkan eksekusi manual dari tab 'Actions' di GitHub
   workflow_dispatch:
-  
-  # Menjalankan secara terjadwal
   schedule:
-    # "0 19 * * *" berarti setiap hari pada pukul 19:00 UTC.
-    # Catatan: Waktu ini sama dengan pukul 03:00 WITA (Waktu Balikpapan/UTC+8)
     - cron: "0 19 * * *" 
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Izin ini PENTING agar workflow bisa commit file yang digenerate
+      contents: write
       
     steps:
-    # 1. Checkout Kode Repository
     - name: Checkout Repository Code
       uses: actions/checkout@v4
-      # Setting ini penting karena kita akan commit kembali
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    # 2. Setup Lingkungan Node.js
     - name: Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
-        node-version: '20' # Menggunakan versi Node.js yang stabil
+        node-version: '20'
         cache: 'npm'
 
-    # 3. Instal Dependencies (Cheerio)
+    # 3. Instal Dependencies (Menggunakan package.json)
+    # Langkah ini akan menginstal Cheerio secara otomatis
     - name: Install Node Dependencies
-      # Karena kita tidak menggunakan package.json, kita instal Cheerio manual
-      run: npm install cheerio
+      run: npm install 
 
-    # 4. Jalankan Skrip API Generator
+    # 4. Jalankan Skrip API Generator (Script sudah ESM)
     - name: Run AI API Generator Script
-      # Skrip ada di folder 'ext/'
-      run: node ext/generate-ai-api.js
+      run: node ext/generate-ai-api.js 
 
-    # 5. Commit dan Push File JSON yang Baru Dibuat
-    # File JSON yang baru dibuat (di folder api/v1/) harus di-commit agar tersedia
+    # 5. Commit dan Push File JSON yang Baru Dibuat (Menggunakan 'file_pattern')
     - name: Commit & Push Generated API Files
-      # Menggunakan action pihak ketiga untuk auto-commit
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        # Commit hanya folder output API
+        # Mengatasi warning sebelumnya
         file_pattern: 'api/v1/' 
         commit_message: "🤖 CI: Generate and update AI API files"
-        # Push hasilnya kembali ke branch yang sama (main/master)
         branch: ${{ github.ref_name }}
