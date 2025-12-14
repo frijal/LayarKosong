@@ -24,31 +24,35 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies (requests, bs4, html2text)
+      - name: Install dependencies (hanya yang diperlukan)
+        # 🔥 Hapus requests, beautifulsoup4, dan html2text. Hanya perlu tool dasar (requests untuk file statis masih perlu, jadi kita biarkan saja kalau nanti ada perubahan, tapi kita hapus yang tidak perlu).
+        # Karena di script terakhir kita sudah hapus 'requests' dll, kita bisa hapus installasi ini!
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 html2text
+          # Tidak perlu instalasi lain (requests, bs4, html2text) karena skrip sekarang beroperasi secara lokal.
+          echo "Tidak ada instalasi dependencies tambahan."
 
       - name: Run LLMs file generation script
-        # Memanggil skrip Python yang sudah dibuat
+        # Pastikan ini adalah path yang benar ke generate_llms.py kamu
         run: python ext/generate_llms.py
 
       - name: Commit and Push generated files
-        # Langkah ini akan melakukan commit file llms.txt dan llms-full.txt
         run: |
           # Konfigurasi identitas Bot
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Tambahkan file ke staging area
-          git add llms.txt llms-full.txt
+          # 🔥 Hapus llms-full.txt dari git add karena skrip tidak lagi membuatnya.
+          git add llms.txt
           
           # Cek apakah ada perubahan yang perlu di-commit
+          # Perhatikan: git diff --staged tidak perlu tahu nama file spesifik jika file lain juga bisa ditambahkan.
           if git diff --staged --quiet; then
-            echo "Tidak ada perubahan pada llms.txt atau llms-full.txt. Melewati commit."
+            echo "Tidak ada perubahan pada llms.txt. Melewati commit."
           else
+            # 🔥 Pesan commit juga disesuaikan
             echo "Ada perubahan. Committing dan pushing..."
-            git commit -m "🤖 Docs: Auto-generate llms.txt and llms-full.txt"
+            git commit -m "🤖 Docs: Auto-generate llms.txt index"
             git push
             echo "✅ Commit dan Push sukses!"
           fi
