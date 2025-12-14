@@ -1,0 +1,11 @@
+{
+  "id": "usb-bootable-ubuntu",
+  "title": "Membuat USB Bootable Ubuntu Tanpa USB Creator",
+  "slug": "usb-bootable-ubuntu.html",
+  "url": "https://dalam.web.id/artikel/usb-bootable-ubuntu.html",
+  "datePublished": "2025-09-15T03:00:00.000+00:00",
+  "summary": "Panduan membuat USB bootable Ubuntu tanpa aplikasi USB Creator, hanya dengan menggunakan perintah",
+  "category": "🐧 Linux & Open Source",
+  "imageUrl": "https://dalam.web.id/img/usb-bootable-ubuntu.webp",
+  "content_plain": "Membuat USB Bootable Ubuntu Tanpa USB Creator Umumnya, Ubuntu menyediakan aplikasi USB Creator karena file ISO-nya tidak selalu menyertakan fitur Hybrid ISO. Namun, jika Anda menggunakan distro lain atau ingin cara yang lebih universal, perintah dd adalah solusinya. Menggunakan Perintah `dd` Jika file ISO Linux Anda sudah berjenis *Hybrid ISO* (seperti Fedora atau rilis Ubuntu modern), Anda bisa membuat USB bootable langsung dari terminal menggunakan perintah dd. Pastikan Anda sangat berhati-hati saat menentukan nama perangkat USB (misalnya /dev/sdb) agar tidak salah format hard disk utama. # Ganti 'ubuntu.iso' dengan nama file Anda\n# Ganti '/dev/sdX' dengan path USB Anda (cek dengan 'lsblk')\nsudo dd if=ubuntu.iso of=/dev/sdX bs=4M status=progress oflag=syncCopy Diskusi & Jaga Data Pribadi Tetap Aman."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cara-instal-paru-arch",
+  "title": "Cara Instal dan Pakai Paru di Arch Linux, Manjaro, dan Distro Arch Lain",
+  "slug": "cara-instal-paru-arch.html",
+  "url": "https://dalam.web.id/artikel/cara-instal-paru-arch.html",
+  "datePublished": "2025-08-17T06:06:53.232+00:00",
+  "summary": "Langkah-langkah lengkap dan santai cara instalasi dan penggunaan AUR Helper Paru di luar CachyOS, termasuk Arch Linux murni, Manjaro, dan EndeavourOS.",
+  "category": "🐧 Linux & Open Source",
+  "imageUrl": "https://dalam.web.id/img/cara-instal-paru-arch.webp",
+  "content_plain": "Betul sekali! Paru adalah **tool** yang sangat serbaguna. Meskipun sering dibahas dalam konteks CachyOS, perlu dicatat bahwa Paru tidak terikat hanya pada CachyOS. Pada dasarnya, Paru adalah AUR Helper (Arch User Repository Helper) yang berfungsi sebagai antarmuka canggih di atas Pacman. Jadi, selama sistem operasi Anda menggunakan Pacman dan memiliki akses ke AUR, Paru akan berfungsi dengan sempurna! Ketergantungan pada Ekosistem Arch Kunci penggunaan Paru terletak pada dua pilar utama ekosistem Arch: Pacman: Paru mengandalkan Pacman sebagai manajer paket dasar. AUR (Arch User Repository): Paru mempermudah Anda menginstal paket dari repositori komunitas ini. Karena kedua pilar ini hadir di semua distro berbasis Arch, Paru otomatis kompatibel dengan semuanya. Distro Arch Mana Saja yang Bisa Pakai Paru? Anda bisa menginstal dan menikmati kemudahan Paru di hampir semua distribusi Linux berbasis Arch. Beberapa contoh populer: Arch Linux Asli Manjaro EndeavourOS BlackArch ArcoLinux Semua Turunan Arch Lainnya Paru Tetap Konsisten Lintas Distro Meskipun Anda berganti distro Arch, cara kerja Paru tetap sama. Saat Anda mengetik paru -Syu: Repositori Resmi: Paru memanggil Pacman untuk mengambil paket dari *mirror* distro yang sedang Anda gunakan. AUR: Paru akan mengambil skrip dari AUR dan mengkompilasinya, karena AUR adalah sumber yang sama untuk semua distro Arch. Jadi, jika Anda sudah nyaman menggunakan Paru, jangan ragu untuk membawanya ke distro Arch favorit Anda yang lain!"
+}
