@@ -1,54 +1,87 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- Meta dasar -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan</title>
-  <meta name="description" content="Gnome 3 memiliki fitur perekam layar tersembunyi yang dapat diaktifkan dengan shortcut Ctrl+Shift+Alt+R, tanpa perlu aplikasi tambahan." />
-  <link rel="canonical" href="https://dalam.web.id/artikel/rekam-desktop-gnome3.html" />
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>" />
-  <meta name="theme-color" content="#3584e4" />
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan" />
-  <meta name="twitter:description" content="Gnome 3 memiliki fitur perekam layar tersembunyi yang dapat diaktifkan dengan shortcut Ctrl+Shift+Alt+R." />
-  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png" />
-  <!-- JSON-LD: Article -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan",
-    "description": "Tutorial singkat untuk menggunakan fitur perekam layar tersembunyi di Gnome 3 dengan shortcut keyboard.",
-    "inLanguage": "id-ID",
-    "author": { "@type": "Person", "name": "Frijal" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Frijal's Blog",
-      "logo": { "@type": "ImageObject", "url": "https://dalam.web.id/favicon.svg" }
-    },
-    "image": ["https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png"],
-    "datePublished": "2011-11-05",
-    "dateModified": "2025-10-15",
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dalam.web.id/artikel/rekam-desktop-gnome3.html" }
-  }
-  </script>
-  <!-- JSON-LD: Breadcrumb -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},
-      {"@type":"ListItem","position":2,"name":"Artikel","item":"https://dalam.web.id/artikel/"},
-      {"@type":"ListItem","position":3,"name":"Rekam Desktop Gnome 3","item":"https://dalam.web.id/artikel/rekam-desktop-gnome3.html"}
-    ]
-  }
-  </script>
+<!-- ===== Basic Meta ===== -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <!-- CSS: Disesuaikan untuk 1 Kolom -->
+<title>Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan</title>
+
+<meta name="description" content="Panduan menggunakan fitur perekam layar bawaan Gnome 3 tanpa aplikasi tambahan. Aktifkan dengan shortcut Ctrl+Shift+Alt+R secara praktis.">
+<meta name="news_keywords" content="Gnome 3, rekam layar Linux, screen recorder Gnome, perekam layar bawaan, shortcut Gnome, Linux desktop">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/rekam-desktop-gnome3.html" />
+
+<!-- ===== Favicon ===== -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="https://dalam.web.id/favicon.svg">
+<link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+
+<meta name="theme-color" content="#3584e4" />
+
+<!-- ===== Open Graph ===== -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan">
+<meta property="og:description" content="Gnome 3 punya fitur perekam layar tersembunyi yang bisa dipakai tanpa install aplikasi tambahan.">
+<meta property="og:url" content="https://dalam.web.id/artikel/rekam-desktop-gnome3.html">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png">
+<meta property="og:image:alt" content="Rekam Desktop di Gnome 3 tanpa aplikasi tambahan">
+
+<!-- ===== Article Meta ===== -->
+<meta name="date" content="2025-10-15">
+<meta property="article:published_time" content="2011-11-05T08:00:00+08:00">
+<meta property="article:modified_time" content="2025-10-15T09:00:00+08:00">
+<meta property="article:author" content="Fakhrul Rijal">
+<meta property="article:section" content="Linux Desktop">
+<meta property="article:tag" content="Gnome">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Screen Recording">
+<meta property="article:tag" content="Tutorial">
+
+<!-- ===== Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@frijal">
+<meta name="twitter:title" content="Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan">
+<meta name="twitter:description" content="Tutorial singkat menggunakan fitur perekam layar tersembunyi di Gnome 3 tanpa aplikasi tambahan.">
+<meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png">
+
+<!-- ===== Structured Image Hint ===== -->
+<meta itemprop="image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png">
+
+<!-- ===== Schema.org JSON-LD ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan",
+  "description": "Panduan menggunakan fitur perekam layar tersembunyi di Gnome 3 dengan shortcut keyboard.",
+  "inLanguage": "id-ID",
+  "author": {
+    "@type": "Person",
+    "name": "Fakhrul Rijal"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Layar Kosong",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dalam.web.id/favicon.svg"
+    }
+  },
+  "image": [
+    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjW8aXZOTDFpV4DNYyLNH0nVo_U-WWCNOJTdhnkeQ5YwbvDyzzfMLcaUqkRRxFsn2Ew4DymXOYWV8U4ImYcmi8gKzTSvCqAlyJUB2TZqWyzdo8S-MzPDFEDGlbmUE8sVMoTMRVIdbJYmOq/s1600/Screenshot-at-2011-11-05-104143.png"
+  ],
+  "datePublished": "2011-11-05",
+  "dateModified": "2025-10-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dalam.web.id/artikel/rekam-desktop-gnome3.html"
+  }
+}
+</script>
+
   <style>
     :root{
       --bg: #0b0b14;
