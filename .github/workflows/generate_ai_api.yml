@@ -50,7 +50,7 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         # Commit hanya folder output API
-        files: 'api/v1/' 
+        file_pattern: 'api/v1/' 
         commit_message: "🤖 CI: Generate and update AI API files"
         # Push hasilnya kembali ke branch yang sama (main/master)
         branch: ${{ github.ref_name }}
