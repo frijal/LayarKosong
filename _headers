@@ -157,5 +157,12 @@ https://*.fbcdn.net/*
 
 /sitemap.xml
   Cache-Control: no-store, no-cache, must-revalidate
+  
 /sitemap.txt
+  Cache-Control: no-store, no-cache, must-revalidate
+  
+/api/v1/posts.json
+  Cache-Control: no-store, no-cache, must-revalidate
+
+/api/v1/post/*.json
   Cache-Control: no-store, no-cache, must-revalidate
