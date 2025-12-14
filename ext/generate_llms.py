@@ -1,200 +1,172 @@
-import requests
-from bs4 import BeautifulSoup
-import html2text
 import xml.etree.ElementTree as ET
 import json
 import re
+import os # Import os untuk operasi file dasar
 
 # --- KONFIGURASI PENTING ---
+# DOMAIN tetap digunakan untuk mengkonstruksi URL di output llms.txt
 DOMAIN = "https://dalam.web.id" 
-CONTENT_SELECTOR = 'body' 
-
-# HEADERS untuk menghindari 403 Forbidden dari server/WAF
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.5'
-}
 # --- END KONFIGURASI ---
+
 
 def ensure_html_extension(url):
     """Memastikan URL berakhiran .html jika belum ada, dan hanya berlaku di path /artikel/."""
-    # Cari path setelah domain, contoh: /artikel/nama-artikel
+    # Fungsi ini tetap dipertahankan untuk membersihkan URL dari sitemap/xml jika ada yang aneh
     path = url.replace(DOMAIN, '')
     
-    # Hanya proses yang ada di folder artikel dan belum ada ekstensi
-    if '/artikel/' in path and not path.lower().endswith('.html'):
-        # Cek kalau ada query parameter (misal ?v=123)
-        if '?' in url:
-            base_url, query = url.split('?', 1)
-            return f"{base_url}.html?{query}"
-        else:
-            return f"{url}.html"
+    # Hanya proses yang ada di folder artikel
+    if '/artikel/' in path:
+        if not path.lower().endswith('.html'):
+            if '?' in url:
+                base_url, query = url.split('?', 1)
+                return f"{base_url}.html?{query}"
+            else:
+                return f"{url}.html"
     return url
 
-def get_urls_from_sitemap_txt(url):
-    """Membaca daftar URL dari sitemap.txt, memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
+def get_urls_from_sitemap_txt(file_path):
+    """Membaca daftar URL dari sitemap.txt (lokal), memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
     urls = set()
     try:
-        response = requests.get(url, timeout=10, headers=HEADERS)
-        for line in response.text.splitlines():
-            url_found = line.strip()
+        # 🔥 Membaca file lokal
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                url_found = line.strip()
+                # Kita asumsikan URL dari sitemap.txt sudah lengkap, kita hanya membersihkan yang aneh
+                if url_found and '/artikel/' in url_found:
+                    urls.add(ensure_html_extension(url_found))
+        return urls
+    except FileNotFoundError:
+        print(f"❌ File sitemap.txt tidak ditemukan di jalur: {file_path}")
+        return set()
+    except Exception as e:
+        print(f"❌ Error membaca {file_path}: {e}")
+        return set()
+
+def get_urls_from_sitemap_xml(file_path):
+    """Membaca daftar URL dari sitemap.xml (lokal), memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
+    urls = set()
+    try:
+        # 🔥 Membaca file lokal dan parsing XML
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        namespace = {'sitemap': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        
+        for loc_element in root.findall('sitemap:url/sitemap:loc', namespace):
+            url_found = loc_element.text
             if url_found and '/artikel/' in url_found:
-                # 🔥 Modifikasi: Terapkan penambahan .html 🔥
                 urls.add(ensure_html_extension(url_found))
         return urls
+    except FileNotFoundError:
+        print(f"❌ File sitemap.xml tidak ditemukan di jalur: {file_path}")
+        return set()
+    except ET.ParseError as e:
+        print(f"❌ Error parsing {file_path} (XML rusak): {e}. Melanjutkan tanpa data XML.")
+        return set()
     except Exception as e:
-        print(f"❌ Error membaca sitemap.txt: {e}")
+        print(f"❌ Error membaca {file_path}: {e}")
         return set()
 
-def get_urls_from_sitemap_xml(url):
-    """Membaca daftar URL dari sitemap.xml, memfilter hanya URL artikel, dan menambahkan .html jika perlu."""
-    urls = set()
+
+def get_index_data_from_artikel_json(file_path):
+    """
+    Membaca artikel.json (lokal). 
+    Mengembalikan List string yang sudah diformat Markdown untuk indexing di llms.txt, 
+    termasuk Judul, URL, Ringkasan, dan URL Gambar.
+    """
+    index_list = []
     try:
-        response = requests.get(url, timeout=10, headers=HEADERS)
-        response.raise_for_status() 
-        
-        try:
-            root = ET.fromstring(response.content)
-            namespace = {'sitemap': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        # 🔥 Membaca file lokal dan parsing JSON
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
             
-            for loc_element in root.findall('sitemap:url/sitemap:loc', namespace):
-                url_found = loc_element.text
-                if url_found and '/artikel/' in url_found:
-                    # 🔥 Modifikasi: Terapkan penambahan .html 🔥
-                    urls.add(ensure_html_extension(url_found))
-        except ET.ParseError as e:
-            print(f"❌ Error parsing sitemap.xml (XML rusak): {e}. Melanjutkan tanpa data XML.")
-        return urls
-    except Exception as e:
-        print(f"❌ Error membaca sitemap.xml: {e}")
-        return set()
-
-def get_urls_from_artikel_json(url):
-    """Membaca daftar URL dari artikel.json, memastikan URL yang terbentuk memiliki ekstensi .html (dengan penanganan error parsing)."""
-    urls = set()
-    try:
-        response = requests.get(url, timeout=10, headers=HEADERS)
-        response.raise_for_status() 
-        
-        try:
-            data = response.json()
-            for item in data:
-                if len(item) > 1:
+        # JSON artikel.json kamu adalah Dict of Lists (kategori -> list artikel)
+        for category, articles in data.items():
+            for item in articles:
+                # Memastikan data memiliki minimal 5 kolom (0:Judul, 1:Path, 2:Gambar, 3:Tanggal, 4:Ringkasan)
+                if len(item) >= 5: 
+                    title = item[0]
                     path = item[1]
+                    image_url = item[2] 
+                    summary = item[4] 
                     
-                    # Cek apakah path sudah berakhiran .html (ini hanya untuk path, belum full URL)
+                    # Pastikan path berakhiran .html
                     if not path.lower().endswith('.html'):
                         path = f"{path}.html"
                     
                     full_url = f"{DOMAIN}/artikel/{path}"
                     
-                    # Tidak perlu ensure_html_extension lagi karena sudah di-force di level path
-                    urls.add(full_url) 
-        except json.JSONDecodeError as e:
-             print(f"❌ Error parsing artikel.json (JSON rusak/kosong): {e}. Melanjutkan tanpa data JSON.")
-        return urls
-    except Exception as e:
-        print(f"❌ Error membaca artikel.json: {e}")
-        return set()
-
-def crawl_and_convert(url, h):
-    """Mengambil URL, membersihkan body secara agresif, dan mengkonversi ke Markdown."""
-    try:
-        response = requests.get(url, timeout=15, headers=HEADERS) 
-        response.raise_for_status() 
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        content_element = soup.find(CONTENT_SELECTOR)
+                    # Format Index: - [Judul](URL): Ringkasan [IMAGE_URL: URL_GAMBAR]
+                    # Kita juga bisa menambahkan kategori sebagai metadata!
+                    index_item = f"- [{title}]({full_url}): {summary} [IMAGE_URL: {image_url}] [KATEGORI: {category}]"
+                    index_list.append(index_item)
         
-        if content_element:
-            
-            # BLACKLIST PEMBUANGAN ELEMEN NON-KONTEN (Sama seperti sebelumnya)
-            JUNK_TAGS = ['nav', 'aside', 'form', 'script', 'style', 'header', 'footer', 'comment', 'iframe', 'noscript', 'img', 'svg']
-            JUNK_SELECTORS = [
-                re.compile(r'sidebar|menu|nav|footer|header|ad|comment|social|related|meta|promo|breadcrumb|skip', re.I) 
-            ]
-            
-            # Eksekusi Pembuangan Tag
-            for junk_tag in JUNK_TAGS:
-                for junk in content_element.find_all(junk_tag):
-                    junk.decompose()
-            
-            # Eksekusi Pembuangan Class/ID
-            for selector in JUNK_SELECTORS:
-                for element in content_element.find_all(lambda tag: tag.has_attr('class') and selector.search(' '.join(tag['class'])) or tag.has_attr('id') and selector.search(tag['id'])):
-                    element.decompose()
-            
-            # Konversi ke Markdown
-            markdown_text = h.handle(str(content_element))
-            
-            title = soup.title.string if soup.title else url
-            
-            markdown_text = re.sub(r'\n\s*\n', '\n\n', markdown_text).strip()
-            
-            return title, markdown_text
-        
-        else:
-            print(f"⚠️ Peringatan: Body tidak ditemukan di {url}. Skip.")
-            return None, None
-
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error request untuk {url}: {e}")
+        return index_list
+    
+    except FileNotFoundError:
+        print(f"❌ File artikel.json tidak ditemukan di jalur: {file_path}")
+        return []
+    except json.JSONDecodeError as e:
+         print(f"❌ Error parsing {file_path} (JSON rusak/kosong): {e}. Melanjutkan tanpa data JSON.")
+         return []
     except Exception as e:
-        print(f"❌ Error memproses {url}: {e}")
-    return None, None
-
+        print(f"❌ Error membaca {file_path}: {e}")
+        return []
 
 def main():
-    h = html2text.HTML2Text()
-    h.ignore_links = False
-    h.body_width = 0 
     
-    # 1. Kumpulkan semua URL
-    all_article_urls = set()
-    print("Mencari URL dari sitemap.txt...")
-    all_article_urls.update(get_urls_from_sitemap_txt(f"{DOMAIN}/sitemap.txt"))
-    print("Mencari URL dari sitemap.xml...")
-    all_article_urls.update(get_urls_from_sitemap_xml(f"{DOMAIN}/sitemap.xml"))
-    print("Mencari URL dari artikel.json...")
-    all_article_urls.update(get_urls_from_artikel_json(f"{DOMAIN}/artikel.json"))
+    # 💥 Menggunakan Path File Lokal
+    SITEMAP_TXT_PATH = 'sitemap.txt'
+    SITEMAP_XML_PATH = 'sitemap.xml'
+    ARTIKEL_JSON_PATH = 'artikel.json'
     
-    print(f"✅ Total {len(all_article_urls)} URL artikel unik ditemukan untuk diproses.")
     
-    if not all_article_urls:
-        print("❌ Tidak ada URL artikel yang ditemukan. Skrip dihentikan.")
-        return
-
-    full_content = []
+    # 1. Kumpulkan semua URL dari sitemap 
+    sitemap_urls = set()
+    print(f"Membaca URL dari file lokal {SITEMAP_TXT_PATH}...")
+    sitemap_urls.update(get_urls_from_sitemap_txt(SITEMAP_TXT_PATH))
+    
+    print(f"Membaca URL dari file lokal {SITEMAP_XML_PATH}...")
+    sitemap_urls.update(get_urls_from_sitemap_xml(SITEMAP_XML_PATH))
+    
+    # 2. Ambil data Index yang kaya dari JSON
+    print(f"Membaca dan memformat Index dari file lokal {ARTIKEL_JSON_PATH}...")
+    json_index_data = get_index_data_from_artikel_json(ARTIKEL_JSON_PATH)
+    
+    print(f"✅ Total {len(sitemap_urls)} URL dari sitemap, dan {len(json_index_data)} item dari artikel.json.")
+    
+    
+    # 3. Template Index File (llms.txt)
     llms_index = [
         "# Layar Kosong (dalam.web.id) - LLM Index\n\n",
-        "Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong (Fakhrul Rijal) yang telah diformat Markdown untuk memudahkan Large Language Models (LLMs) dalam membaca dan memahami isi situs ini.\n\n",
-        "## Tautan Artikel Bersih\n"
+        f"> Lokasi: {DOMAIN} | Konten LLM Index oleh {os.environ.get('USER', 'Frijal')}\n\n", 
+        "Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong yang telah diformat Markdown untuk memudahkan Large Language Models (LLMs) dalam membaca dan memahami isi situs ini.\n\n",
+        "## Artikel (Index, Ringkasan, dan Gambar Utama)\n"
     ]
-
-    # 2. Proses Crawling dan Konversi
-    for url in sorted(list(all_article_urls)):
-        title, markdown_text = crawl_and_convert(url, h)
-        
-        if markdown_text:
-            full_content.append(f"\n--- START OF DOCUMENT: {title} ({url}) ---\n\n")
-            full_content.append(markdown_text)
-            full_content.append(f"\n--- END OF DOCUMENT: {title} ({url}) ---\n\n")
-
-            llms_index.append(f"* [{title}]({url})")
-
-    # 3. Output File
     
-    with open('llms-full.txt', 'w', encoding='utf-8') as f:
-        f.write("".join(full_content))
-    print("✅ llms-full.txt berhasil dibuat.")
+    # Tambahkan data indeks yang sudah diformat dari JSON
+    llms_index.extend(json_index_data)
 
-    llms_index.append("\n\n## Versi Penuh (Semua Konten Gabungan)\n")
-    llms_index.append(f"* Link ke semua konten gabungan: {DOMAIN}/llms-full.txt")
+    # 4. Tambahkan sitemap URL yang tidak ada di JSON
+    json_urls = {re.search(r'\((.*?)\)', item).group(1) for item in json_index_data if re.search(r'\((.*?)\)', item)}
+
+    extra_urls = sitemap_urls - json_urls
+    if extra_urls:
+        llms_index.append("\n\n## URL Tambahan (Dari Sitemap, Tanpa Ringkasan Lengkap)\n")
+        for url in sorted(list(extra_urls)):
+             llms_index.append(f"* {url}")
+        print(f"⚠️ Ditemukan {len(extra_urls)} URL di sitemap yang tidak ada di artikel.json. Ditambahkan sebagai daftar polos.")
+
+
+    # 5. Output llms.txt
+    
+    llms_index.append("\n\n---\n\n## Catatan\n")
+    llms_index.append("* Format Index Utama: [Judul Artikel](URL): Ringkasan [IMAGE_URL: URL_GAMBAR] [KATEGORI: Nama Kategori]")
+    llms_index.append("* File ini dibuat dari file statis (sitemap/json) proyek lokal, tidak melalui proses crawling (scraping) individual.")
     
     with open('llms.txt', 'w', encoding='utf-8') as f:
         f.write("\n".join(llms_index))
-    print("✅ llms.txt berhasil dibuat.")
+    print("✅ llms.txt berhasil dibuat dari file statis.")
     
     print("\nProses generate file selesai. Selanjutnya akan di-commit oleh GitHub Actions.")
 
