@@ -3,40 +3,46 @@ name: Generate Layar Kosong AI API (Manual/Scheduled)
 on:
   workflow_dispatch:
   schedule:
+    # 0 19 * * * (Jadwal ini berarti pukul 19:00 UTC, atau 03:00 WITA)
     - cron: "0 19 * * *" 
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     permissions:
+      # Membutuhkan write permission untuk langkah commit
       contents: write
       
     steps:
-    - name: Checkout Repository Code
+    - name: 1. Checkout Repository Code
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Setup Node.js Environment
+    - name: 2. Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
+        # Mengaktifkan NPM caching untuk mempercepat instalasi dependency
+        cache: 'npm' 
 
-    # 3. Instal Dependencies (Menggunakan package.json)
-    # Langkah ini akan menginstal Cheerio secara otomatis
-    - name: Install Node Dependencies
+    # 3. Instal Dependencies (@google/genai, cheerio, dll.)
+    - name: 3. Install Node Dependencies
       run: npm install 
 
-    # 4. Jalankan Skrip API Generator (Script sudah ESM)
-    - name: Run AI API Generator Script
+    # 4. Jalankan Skrip API Generator (Script sudah Async + Gemini)
+    - name: 4. Run AI API Generator Script
+      # Kita kirimkan GEMINI_API_KEY ke skrip Node.js sebagai environment variable
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: node ext/generate-ai-api.js 
 
     # 5. Commit dan Push File JSON yang Baru Dibuat (Menggunakan 'file_pattern')
-    - name: Commit & Push Generated API Files
+    - name: 5. Commit & Push Generated API Files
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        # Mengatasi warning sebelumnya
-        file_pattern: 'api/v1/' 
+        # Commit hanya folder yang di-generate
+        file_pattern: 'api/v1/'
         commit_message: "🤖 CI: Generate and update AI API files"
+        # Memastikan commit di branch yang sedang aktif
         branch: ${{ github.ref_name }}
