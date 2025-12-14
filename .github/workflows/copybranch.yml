@@ -11,7 +11,7 @@ on:
       - main  
   # ⬇️ Tambahkan filter paths di sini
     paths:
-      - 'artikel.json'            # File spesifik di root
+      - 'artikel.json'      # File spesifik di root
       - '_redirects'        # File spesifik di root
       - '_headers'          # File spesifik di root
       - '*.html'            # File HTML di root
@@ -61,6 +61,7 @@ jobs:
           rsync -a --delete \
             --include='artikel/***' \
             --include='ext/***' \
+            --include='api/***' \
             --include='img/***' \
             --include='artikel.json' \
             --include='_redirects' \
