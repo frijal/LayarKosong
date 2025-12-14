@@ -174,7 +174,7 @@
         <p>Hai Sobat Layar Kosong! Setelah kemarin kita berpetualang di dunia JavaScript *client-side* yang penuh drama, sekarang kita kembali ke jalur yang lebih pasti: **Command Line**! ✨</p>
             </header>
     <hr>
-<p>Jika kamu mencari solusi konversi PDF ke gambar yang hasilnya **terjamin 100% akurat**, memiliki kontrol penuh atas resolusi (DPI), dan kecepatan yang *gila*, maka kamu wajib kenalan dengan **Poppler Utilities**. Alat utamanya? Tentu saja, <code>pdftoppm</code>!</p>
+<p>Jika kamu mencari solusi konversi PDF ke gambar yang hasilnya <b>terjamin 100% akurat</b>, memiliki kontrol penuh atas resolusi (DPI), dan kecepatan yang <em>gila</em>, maka kamu wajib kenalan dengan <b>Poppler Utilities</b>. Alat utamanya? Tentu saja, <code>pdftoppm</code>!</p>
         <p>Metode ini sempurna untuk kamu yang sering mengolah dokumen besar dan mengutamakan kualitas, tanpa perlu khawatir soal privasi karena semua proses dilakukan di komputer **lokal** kamu. Yuk, kita bedah langkah-langkahnya!</p>
     <section>
         <h2><i class="fas fa-download"></i> Langkah 1: Instalasi Poppler Utilities</h2>
@@ -187,7 +187,7 @@
             <li><strong><i class="fab fa-apple"></i> Pengguna macOS (dengan Homebrew):</strong> Buka Terminal dan ketik:
                 <pre><code class="language-bash">brew install poppler</code></pre>
             </li>
-            <li><strong><i class="fab fa-windows"></i> <p>Pengguna Windows:</strong> Sedikit lebih rumit, kamu bisa menginstal **Chocolatey** terlebih dahulu (manajer paket seperti Homebrew) dan kemudian menginstal Poppler melalui paketnya. Atau, cari paket Poppler yang sudah di-kompilasi (.zip) dan tambahkan ke <code>PATH</code> sistemmu.</p></li>
+            <li><strong><i class="fab fa-windows"></i> Pengguna Windows:</strong> Sedikit lebih rumit, kamu bisa menginstal <b>Chocolatey</b> terlebih dahulu (manajer paket seperti Homebrew) dan kemudian menginstal Poppler melalui paketnya. Atau, cari paket Poppler yang sudah di-kompilasi (.zip) dan tambahkan ke <code>PATH</code> sistemmu.</li>
         </ul>
         <p>Setelah instalasi, uji dengan mengetik <code>pdftoppm -v</code>. Jika muncul versi, berarti kamu siap lanjut!</p>
     </section>
@@ -202,7 +202,7 @@
         <pre><code class="language-bash">pdftoppm -png -r 300 [nama_file_input].pdf [nama_file_output_prefix]</code></pre>
 
         <h3>Contoh Nyata Konversi PNG (300 DPI)</h3>
-        <p>Misalnya, file PDF kamu bernama **<code>Dokumen Rahasia.pdf</code>**:</p>
+        <p>Misalnya, file PDF kamu bernama <b>code>Dokumen Rahasia.pdf</code></b><:</p>
         <pre><code class="language-bash">pdftoppm -png -r 300 "Dokumen Rahasia.pdf" hasil_png</code></pre>
         <p>Setelah perintah dieksekusi, Poppler akan membuat file-file seperti <code>hasil_png-01.png</code>, <code>hasil_png-02.png</code>, dan seterusnya, di folder yang sama.</p><p>**Resolusi 300 DPI** ini membuat gambar outputmu 4 hingga 5 kali lebih detail daripada hasil *screenshot* biasa. Mantap kan? 😉</p>
 
