@@ -1,21 +1,87 @@
 <!doctype html>
 <html lang="id">
 <head>
+<!-- ===== Basic Meta ===== -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Pembersihan Otomatis Dependencies (Non-Interaktif)</title>
-<meta name="description" content="Panduan lengkap menjalankan pembersihan otomatis dependencies dan reinstall Node.js package secara non-interaktif di proyek GitHub Pages menggunakan workflow atau terminal.">
-<link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
+
+<meta name="description" content="Panduan lengkap menjalankan pembersihan otomatis dependencies dan reinstall Node.js package secara non-interaktif, cocok untuk GitHub Pages dan GitHub Actions.">
+<meta name="news_keywords" content="cleanup dependencies, npm ci, node_modules, GitHub Actions, non-interaktif, CI/CD, GitHub Pages, Node.js">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
 <link rel="canonical" href="https://dalam.web.id/artikel/cleanup-auto.html">
-<!-- Open Graph -->
-<meta property="og:title" content="Pembersihan Otomatis Dependencies (Non-Interaktif)">
-<meta property="og:description" content="Cara otomatis membersihkan dependencies yang tidak digunakan dan melakukan reinstall di proyek GitHub Pages.">
+
+<!-- ===== Favicon ===== -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="https://dalam.web.id/favicon.svg">
+<link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+
+<meta name="theme-color" content="#24292f">
+
+<!-- ===== Open Graph ===== -->
 <meta property="og:type" content="article">
+<meta property="og:title" content="Pembersihan Otomatis Dependencies (Non-Interaktif)">
+<meta property="og:description" content="Cara otomatis membersihkan dependencies dan reinstall package Node.js tanpa prompt, ideal untuk workflow CI/CD.">
 <meta property="og:url" content="https://dalam.web.id/artikel/cleanup-auto.html">
-<!-- Twitter Card -->
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:image" content="https://dalam.web.id/img/cleanup-auto.webp">
+<meta property="og:image:alt" content="Pembersihan otomatis dependencies Node.js secara non-interaktif">
+
+<!-- ===== Article Meta ===== -->
+<meta name="date" content="2025-09-28">
+<meta property="article:published_time" content="2025-09-28T09:00:00+08:00">
+<meta property="article:modified_time" content="2025-09-28T09:00:00+08:00">
+<meta property="article:author" content="Fakhrul Rijal">
+<meta property="article:section" content="DevOps & Automation">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="GitHub Actions">
+<meta property="article:tag" content="CI/CD">
+<meta property="article:tag" content="Automation">
+
+<!-- ===== Twitter Card ===== -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@frijal">
 <meta name="twitter:title" content="Pembersihan Otomatis Dependencies (Non-Interaktif)">
-<meta name="twitter:description" content="Pembersihan dependencies otomatis tanpa prompt, cocok untuk GitHub Actions.">
+<meta name="twitter:description" content="Pembersihan dependencies Node.js tanpa prompt, aman untuk GitHub Actions dan CI/CD.">
+<meta name="twitter:image" content="https://dalam.web.id/img/cleanup-auto.webp">
+
+<!-- ===== Structured Image Hint ===== -->
+<meta itemprop="image" content="https://dalam.web.id/img/cleanup-auto.webp">
+
+<!-- ===== Schema.org JSON-LD ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Pembersihan Otomatis Dependencies (Non-Interaktif)",
+  "description": "Panduan pembersihan otomatis dependencies dan reinstall Node.js package secara non-interaktif untuk workflow CI/CD.",
+  "inLanguage": "id-ID",
+  "author": {
+    "@type": "Person",
+    "name": "Fakhrul Rijal"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Layar Kosong",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dalam.web.id/favicon.svg"
+    }
+  },
+  "image": [
+    "https://dalam.web.id/img/cleanup-auto.webp"
+  ],
+  "datePublished": "2025-09-28",
+  "dateModified": "2025-09-28",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dalam.web.id/artikel/cleanup-auto.html"
+  }
+}
+</script>
+
 <!-- Prism.js CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.min.css">
 <script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.min.js" defer></script>
