@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI FINAL: GEO Enabled + FIX Otentikasi GitHub Actions
+// VERSI FINAL DAN TERKOREKSI: FIX INISIALISASI SDK
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -9,8 +9,6 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url'; 
 import { load } from 'cheerio'; 
 import { GoogleGenAI } from '@google/genai'; 
-
-// CATATAN: dotenv telah dihapus dari sini untuk mencegah konflik di lingkungan CI/CD.
 
 // --- 2. PATH RESOLUTION & KONFIGURASI ---
 const __filename = fileURLToPath(import.meta.url);
@@ -29,14 +27,13 @@ if (!GEMINI_API_KEY) {
     console.warn("⚠️ PERINGATAN: GEMINI_API_KEY tidak ditemukan di ENV. 'promptHint' akan menggunakan Summary sebagai fallback.");
     var ai = null;
 } else {
-    // 💥 DEBUGGING KRUSIAL: Membuktikan skrip melihat ENV var dari Actions
     console.log(`✅ Kunci API Ditemukan di ENV. Panjang: ${GEMINI_API_KEY.length} karakter.`);
 
-    // Menggunakan pola inisialisasi yang disarankan untuk lingkungan CI/CD:
-    // Kita memasukkan kunci, tetapi jika gagal, SDK akan mencari process.env.GEMINI_API_KEY.
-    // Dengan kunci yang eksplisit di konstruktor, SDK *seharusnya* tidak jatuh ke ADC.
     try {
-        var ai = new GoogleGenAI(GEMINI_API_KEY);
+        // PERBAIKAN UTAMA: Menggunakan objek konfigurasi { apiKey: ... } 
+        // Ini adalah cara yang benar dan paling stabil untuk inisialisasi SDK.
+        var ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+        console.log("✅ Inisialisasi GoogleGenAI berhasil dengan Kunci API.");
     } catch (e) {
         console.error("❌ GAGAL inisialisasi GoogleGenAI dengan kunci yang tersedia:", e.message);
         var ai = null;
@@ -71,9 +68,7 @@ async function generatePromptHint(content, title, summary) {
         return hint;
 
     } catch (error) {
-        // Log Error dan Fallback
         console.error(`❌ ERROR memanggil Gemini untuk artikel ${title}: ${error.message}`);
-        // Fallback ke summary jika panggilan API gagal (misalnya, karena otentikasi atau rate limit)
         return summary; 
     }
 }
@@ -89,7 +84,6 @@ function flattenAndNormalizeData(metadata) {
             
             articles.forEach(articleArray => {
                 const [title, slug_html, img_url, date, summary, custom_prompt_hint] = articleArray;
-
                 const initial_prompt_hint = custom_prompt_hint || summary || null;
                 const id = slug_html.replace('.html', ''); 
 
@@ -156,7 +150,6 @@ function extractCleanContent(slug_html) {
 async function generateApiFiles() {
     console.log('--- Memulai Generasi L-K AI API (GEO Enabled) ---');
 
-    // 1. Persiapan Direktori Output
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
         console.log(`✅ Direktori API dibuat: ${OUTPUT_API_DIR}`);
@@ -167,7 +160,6 @@ async function generateApiFiles() {
         fs.mkdirSync(singlePostDir, { recursive: true });
     }
 
-    // 2. Baca dan Ratakan Metadata
     try {
         const rawMetadata = JSON.parse(fs.readFileSync(INPUT_METADATA_FILE, 'utf8'));
         const allPosts = flattenAndNormalizeData(rawMetadata);
@@ -176,12 +168,11 @@ async function generateApiFiles() {
         const summaryPosts = [];
         let processedCount = 0;
 
-        // 3. Loop Artikel untuk Generasi Konten Penuh (Menggunakan for...of karena ASYNC)
         for (const post of allPosts) {
             const cleanContent = extractCleanContent(post.slug);
             
             if (cleanContent) {
-                // HANYA PANGGIL AI JIKA PROMPT HINT BELUM DIISI MANUAL DAN AI ADA
+                // HANYA PANGGIL AI JIKA PROMPT HINT BELUM DIISI MANUAL DAN AI BERHASIL DIINISIALISASI
                 if (!post.customPromptHintManuallySet && ai) { 
                     console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
@@ -192,19 +183,15 @@ async function generateApiFiles() {
                 
                 post.content_plain = cleanContent;
 
-                // ---- A. Tulis File JSON Konten Penuh (Single Post API) ----
                 const singlePostPath = path.join(singlePostDir, `${post.id}.json`);
                 fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
                 
-                // ---- B. Siapkan Objek Ringkasan (Hapus Konten Penuh) ----
-                const { content_plain, customPromptHintManuallySet, ...summary } = post; // Hapus flag debugging juga
-
+                const { content_plain, customPromptHintManuallySet, ...summary } = post; 
                 summaryPosts.push(summary);
                 processedCount++;
             }
         }
 
-        // 4. Tulis File JSON Daftar Artikel (Master List API)
         const masterListPath = path.join(OUTPUT_API_DIR, 'posts.json');
         fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
 
