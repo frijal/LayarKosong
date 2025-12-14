@@ -2,10 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
+// --- PERBAIKAN PATH KRITIS ---
+// Dapatkan path absolut ke direktori root proyek (satu level di atas 'ext')
+const PROJECT_ROOT = path.resolve(__dirname, '..'); 
+
 // --- KONFIGURASI ---
-const INPUT_METADATA_FILE = path.join(__dirname, 'artikel.json'); // Path ke file metadata Anda
-const INPUT_ARTICLES_DIR = path.join(__dirname, 'artikel'); // Folder berisi file HTML
-const OUTPUT_API_DIR = path.join(__dirname, 'api', 'v1'); // Folder output API
+// Semua path sekarang menggunakan PROJECT_ROOT sebagai basis
+const INPUT_METADATA_FILE = path.join(PROJECT_ROOT, 'artikel.json'); // Path ke file metadata Anda
+const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel'); // Folder berisi file HTML
+const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); // Folder output API
 const DOMAIN_BASE_URL = 'https://dalam.web.id'; // Domain Anda
 
 // --- FUNGSI PEMERSATU DATA (FLATTENING) ---
@@ -49,6 +54,7 @@ function flattenAndNormalizeData(metadata) {
 
 // --- FUNGSI PEMBERSIN KONTEN (CHEERIO BLACKLIST) ---
 function extractCleanContent(slug_html) {
+    // Path file input sekarang sudah benar
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     
     if (!fs.existsSync(htmlFilePath)) {
@@ -94,6 +100,7 @@ function generateApiFiles() {
     console.log('--- Memulai Generasi L-K AI API ---');
 
     // 1. Persiapan Direktori Output
+    // Output API akan dibuat di PROJECT_ROOT/api/v1
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
         console.log(`✅ Direktori API dibuat: ${OUTPUT_API_DIR}`);
@@ -106,48 +113,54 @@ function generateApiFiles() {
     }
 
     // 2. Baca dan Ratakan Metadata
-    const rawMetadata = JSON.parse(fs.readFileSync(INPUT_METADATA_FILE, 'utf8'));
-    const allPosts = flattenAndNormalizeData(rawMetadata);
-    console.log(`✅ Metadata ${allPosts.length} artikel telah dibaca.`);
+    try {
+        const rawMetadata = JSON.parse(fs.readFileSync(INPUT_METADATA_FILE, 'utf8'));
+        const allPosts = flattenAndNormalizeData(rawMetadata);
+        console.log(`✅ Metadata ${allPosts.length} artikel telah dibaca.`);
 
-    // Data untuk file ringkasan posts.json
-    const summaryPosts = [];
-    let processedCount = 0;
+        // Data untuk file ringkasan posts.json
+        const summaryPosts = [];
+        let processedCount = 0;
 
-    // 3. Loop Artikel untuk Generasi Konten Penuh
-    allPosts.forEach(post => {
-        const cleanContent = extractCleanContent(post.slug);
-        
-        if (cleanContent) {
-            // Tambahkan konten murni ke objek post lengkap
-            post.content_plain = cleanContent;
-
-            // ---- A. Tulis File JSON Konten Penuh (Single Post API) ----
-            const singlePostPath = path.join(singlePostDir, `${post.id}.json`);
-            fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
+        // 3. Loop Artikel untuk Generasi Konten Penuh
+        allPosts.forEach(post => {
+            const cleanContent = extractCleanContent(post.slug);
             
-            // ---- B. Siapkan Objek Ringkasan (Hapus Konten Penuh) ----
-            const summary = {...post}; // Copy objek
-            delete summary.content_plain; // Hapus konten murni dari ringkasan
+            if (cleanContent) {
+                // Tambahkan konten murni ke objek post lengkap
+                post.content_plain = cleanContent;
 
-            summaryPosts.push(summary);
-            processedCount++;
-        }
-    });
+                // ---- A. Tulis File JSON Konten Penuh (Single Post API) ----
+                const singlePostPath = path.join(singlePostDir, `${post.id}.json`);
+                fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
+                
+                // ---- B. Siapkan Objek Ringkasan (Hapus Konten Penuh) ----
+                // Menggunakan destructuring assignment untuk copy objek (ES6+)
+                const { content_plain, ...summary } = post; 
 
-    // 4. Tulis File JSON Daftar Artikel (Master List API)
-    const masterListPath = path.join(OUTPUT_API_DIR, 'posts.json');
-    fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
+                summaryPosts.push(summary);
+                processedCount++;
+            }
+        });
 
-    console.log(`\n🎉 Proses Selesai!`);
-    console.log(`Total Artikel diproses: ${processedCount}`);
-    console.log(`File API Utama dibuat di: ${masterListPath}`);
-    console.log(`File Single Post API dibuat di: ${singlePostDir}`);
-    console.log('\n--- Layar Kosong Anda Sekarang AI-Ready! ---');
+        // 4. Tulis File JSON Daftar Artikel (Master List API)
+        const masterListPath = path.join(OUTPUT_API_DIR, 'posts.json');
+        fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
+
+        console.log(`\n🎉 Proses Selesai!`);
+        console.log(`Total Artikel diproses: ${processedCount}`);
+        console.log(`File API Utama dibuat di: ${masterListPath}`);
+        console.log(`File Single Post API dibuat di: ${singlePostDir}`);
+        console.log('\n--- Layar Kosong Anda Sekarang AI-Ready! ---');
+        
+    } catch (error) {
+        console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
+        console.error(error.message);
+        process.exit(1); // Keluar dengan kode error agar GitHub Action gagal
+    }
 }
 
 
 // --- JALANKAN SKRIP ---
-
-// Instalasi Cheerio jika belum: npm install cheerio
+// Pastikan pustaka cheerio sudah diinstal: npm install cheerio
 generateApiFiles();
