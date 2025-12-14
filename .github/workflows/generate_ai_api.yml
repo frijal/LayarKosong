@@ -17,13 +17,15 @@ jobs:
     - name: 1. Checkout Repository Code
       uses: actions/checkout@v4
       with:
+        # Token harus disetel agar push ke branch yang sama diperbolehkan
         token: ${{ secrets.GITHUB_TOKEN }}
+        # Fetch-depth 0 diperlukan jika Anda ingin melakukan pull/rebase yang andal
+        fetch-depth: 0 
 
     - name: 2. Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        # Mengaktifkan NPM caching untuk mempercepat instalasi dependency
         cache: 'npm' 
 
     # 3. Instal Dependencies (@google/genai, cheerio, dll.)
@@ -37,12 +39,41 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: node ext/generate-ai-api.js 
 
-    # 5. Commit dan Push File JSON yang Baru Dibuat (Menggunakan 'file_pattern')
-    - name: 5. Commit & Push Generated API Files
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        # Commit hanya folder yang di-generate
-        file_pattern: 'api/v1/'
-        commit_message: "🤖 CI: Generate and update AI API files"
-        # Memastikan commit di branch yang sedang aktif
-        branch: ${{ github.ref_name }}
+    # 5. COMMIT DAN PUSH FILE JSON YANG BARU DIBUAT (MENGGANTIKAN ACTION EKSTERNAL)
+    - name: 5. Commit & Push Generated API Files (Native Git)
+      run: |
+        # 1. Konfigurasi Bot
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # 2. Stage HANYA folder api/v1/
+        git add api/v1/
+        
+        # 3. Pengecekan Perubahan (Optimasi: Cek apakah ada yang di-stage)
+        if git diff --staged --quiet; then
+          echo "✅ Tidak ada perubahan yang ditemukan di api/v1/. Commit dilewati."
+          exit 0
+        fi
+        
+        # 4. Commit dan Push
+        echo "⏳ Perubahan ditemukan di api/v1/. Melakukan commit..."
+        
+        # Commit
+        git commit -m "build(ci): 🤖 Generate and update AI API files"
+        
+        # Sinkronisasi (Opsional, tapi dianjurkan untuk mencegah push rejected)
+        echo "🔃 Melakukan sinkronisasi sebelum push..."
+        git pull --rebase origin main || { 
+          echo "⚠️ Gagal pull --rebase, mencoba pull biasa"; 
+          git pull origin main; 
+        }
+        
+        # Push
+        echo "🚀 Mendorong perubahan ke server..."
+        git push origin main
+      env:
+        # GITHUB_TOKEN tidak perlu disetel eksplisit di sini karena sudah ada di 'with: token:' di langkah 1,
+        # dan actions/checkout@v4 sudah menggunakan GITHUB_TOKEN secara default,
+        # tetapi menyediakannya di sini terkadang lebih eksplisit.
+        # Catatan: Variabel GITHUB_TOKEN bersifat otomatis dan sudah diizinkan oleh permissions: write.
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
