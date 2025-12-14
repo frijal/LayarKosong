@@ -1,32 +1,35 @@
-const fs = require('fs');
-const path = require('path');
-const cheerio = require('cheerio');
+// --- IMPORT (Menggantikan require) ---
+import * as fs from 'node:fs'; // Menggunakan import dengan namespace
+import * as path from 'node:path'; // Menggunakan import dengan namespace
+import { fileURLToPath } from 'node:url'; // Diperlukan untuk __dirname
+import cheerio from 'cheerio'; // Import default dari cheerio
 
-// --- PERBAIKAN PATH KRITIS ---
-// Dapatkan path absolut ke direktori root proyek (satu level di atas 'ext')
+// --- PATH RESOLUTION (Pengganti __dirname) ---
+// Mendapatkan path file saat ini dari URL (import.meta.url)
+const __filename = fileURLToPath(import.meta.url);
+// Mendapatkan direktori file saat ini
+const __dirname = path.dirname(__filename);
+// Menentukan root proyek (satu tingkat di atas 'ext')
 const PROJECT_ROOT = path.resolve(__dirname, '..'); 
 
 // --- KONFIGURASI ---
 // Semua path sekarang menggunakan PROJECT_ROOT sebagai basis
-const INPUT_METADATA_FILE = path.join(PROJECT_ROOT, 'artikel.json'); // Path ke file metadata Anda
-const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel'); // Folder berisi file HTML
-const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); // Folder output API
-const DOMAIN_BASE_URL = 'https://dalam.web.id'; // Domain Anda
+const INPUT_METADATA_FILE = path.join(PROJECT_ROOT, 'artikel.json'); 
+const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel'); 
+const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); 
+const DOMAIN_BASE_URL = 'https://dalam.web.id'; 
 
 // --- FUNGSI PEMERSATU DATA (FLATTENING) ---
 function flattenAndNormalizeData(metadata) {
     const allPosts = [];
     
-    // Looping melalui setiap Kategori (key) dalam objek metadata
     for (const category in metadata) {
         if (Object.hasOwnProperty.call(metadata, category)) {
             const articles = metadata[category];
             
-            // Looping melalui setiap Array Artikel (value)
             articles.forEach(articleArray => {
                 const [title, slug_html, img_url, date, summary] = articleArray;
                 
-                // Menghapus ekstensi .html dari slug
                 const id = slug_html.replace('.html', ''); 
 
                 const postObject = {
@@ -38,14 +41,12 @@ function flattenAndNormalizeData(metadata) {
                     summary: summary,
                     category: category,
                     imageUrl: img_url,
-                    // content_plain akan ditambahkan di langkah berikutnya
                 };
                 allPosts.push(postObject);
             });
         }
     }
     
-    // Sortir berdasarkan tanggal (terbaru ke terlama)
     allPosts.sort((a, b) => new Date(b.datePublished) - new Date(a.datePublished));
 
     return allPosts;
@@ -54,7 +55,6 @@ function flattenAndNormalizeData(metadata) {
 
 // --- FUNGSI PEMBERSIN KONTEN (CHEERIO BLACKLIST) ---
 function extractCleanContent(slug_html) {
-    // Path file input sekarang sudah benar
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     
     if (!fs.existsSync(htmlFilePath)) {
@@ -65,7 +65,6 @@ function extractCleanContent(slug_html) {
     const htmlContent = fs.readFileSync(htmlFilePath, 'utf8');
     const $ = cheerio.load(htmlContent);
 
-    // Selector Blacklist: Elemen yang pasti BUKAN konten artikel utama
     const junkSelectors = [
         'script', 
         'style',
@@ -76,17 +75,14 @@ function extractCleanContent(slug_html) {
         '#related-marquee-section'
     ];
 
-    // Hapus elemen Blacklist dari dokumen
     junkSelectors.forEach(selector => {
         $(selector).remove(); 
     });
     
-    // Ambil teks murni dari elemen container utama
     const container = $('.container').first();
     
     let content_plain = container.text();
 
-    // Normalisasi Teks: Hapus spasi, baris baru, dan tab yang berlebihan
     content_plain = content_plain
         .replace(/\s\s+/g, ' ') 
         .trim(); 
@@ -100,13 +96,11 @@ function generateApiFiles() {
     console.log('--- Memulai Generasi L-K AI API ---');
 
     // 1. Persiapan Direktori Output
-    // Output API akan dibuat di PROJECT_ROOT/api/v1
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
         console.log(`✅ Direktori API dibuat: ${OUTPUT_API_DIR}`);
     }
     
-    // Persiapan folder untuk single post API
     const singlePostDir = path.join(OUTPUT_API_DIR, 'post');
      if (!fs.existsSync(singlePostDir)) {
         fs.mkdirSync(singlePostDir, { recursive: true });
@@ -118,7 +112,6 @@ function generateApiFiles() {
         const allPosts = flattenAndNormalizeData(rawMetadata);
         console.log(`✅ Metadata ${allPosts.length} artikel telah dibaca.`);
 
-        // Data untuk file ringkasan posts.json
         const summaryPosts = [];
         let processedCount = 0;
 
@@ -127,7 +120,6 @@ function generateApiFiles() {
             const cleanContent = extractCleanContent(post.slug);
             
             if (cleanContent) {
-                // Tambahkan konten murni ke objek post lengkap
                 post.content_plain = cleanContent;
 
                 // ---- A. Tulis File JSON Konten Penuh (Single Post API) ----
@@ -135,7 +127,6 @@ function generateApiFiles() {
                 fs.writeFileSync(singlePostPath, JSON.stringify(post, null, 2));
                 
                 // ---- B. Siapkan Objek Ringkasan (Hapus Konten Penuh) ----
-                // Menggunakan destructuring assignment untuk copy objek (ES6+)
                 const { content_plain, ...summary } = post; 
 
                 summaryPosts.push(summary);
@@ -156,11 +147,9 @@ function generateApiFiles() {
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
         console.error(error.message);
-        process.exit(1); // Keluar dengan kode error agar GitHub Action gagal
+        process.exit(1); 
     }
 }
 
-
 // --- JALANKAN SKRIP ---
-// Pastikan pustaka cheerio sudah diinstal: npm install cheerio
 generateApiFiles();
