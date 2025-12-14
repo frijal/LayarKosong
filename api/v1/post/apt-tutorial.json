@@ -7,7 +7,6 @@
   "summary": "Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/apt-tutorial.webp",
   "content_plain": "Tutorial APT (Advanced Package Tool) APT adalah manajer paket bawaan untuk sistem operasi Debian dan turunannya (seperti Ubuntu). Dengan APT, Anda bisa dengan mudah mencari, menginstal, menghapus, dan mengelola aplikasi langsung dari terminal. 1. Memperbarui Sistem Selalu mulai dengan memperbarui daftar paket Anda untuk memastikan Anda mendapatkan versi terbaru. sudo apt update && sudo apt upgrade -yCopy 2. Mencari dan Menginstal Aplikasi Gunakan apt search untuk menemukan nama paket dan apt install untuk memasangnya. # Mencari aplikasi (contoh: htop)\napt search htop # Menginstal aplikasi\nsudo apt install htop -yCopy 3. Menghapus Aplikasi dan Membersihkan Sistem Gunakan apt remove untuk menghapus aplikasi dan autoremove serta clean untuk membersihkan file sisa. # Menghapus aplikasi\nsudo apt remove htop -y # Menghapus paket yang tidak lagi diperlukan\nsudo apt autoremove -y # Membersihkan cache paket\nsudo apt cleanCopy Diskusi & Jaga Data Pribadi Tetap Aman."
 }

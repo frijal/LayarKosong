@@ -7,7 +7,6 @@
   "summary": "Skrip bash",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Skrip bash",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/arch-debian-quick-mirror.webp",
   "content_plain": "Skrip quick-mirror.sh: Optimasi Mirror Debian & Arch Skrip quick-mirror.sh ini dirancang untuk memilih mirror tercepat secara otomatis pada sistem operasi Debian/Ubuntu dan Arch Linux. Ini sangat berguna untuk mempercepat proses unduh dan pembaruan paket. ⚠️ Jalankan skrip ini dengan hak akses sudo karena akan mengubah file konfigurasi sistem. Kode Skrip #!/bin/bash\n# quick-mirror.sh - Pilih mirror tercepat untuk Debian/Ubuntu atau Arch\n# Penggunaan: sudo ./quick-mirror.sh [debian|arch]\nMODE=\"$1\"\nif [ \"$MODE\" = \"debian\" ]; then echo \"Mode Debian/Ubuntu dipilih...\" sudo apt update sudo apt install -y netselect-apt sudo netselect-apt stable sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak sudo mv sources.list /etc/apt/sources.list sudo apt update\nelif [ \"$MODE\" = \"arch\" ]; then echo \"Mode Arch Linux dipilih...\" sudo pacman -S --noconfirm reflector sudo reflector --country \"Indonesia\" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist sudo pacman -Syyu\nelse echo \"Penggunaan tidak valid.\" echo \"Contoh: $0 debian\" echo \"atau: $0 arch\"\nfiCopy"
 }

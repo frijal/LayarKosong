@@ -7,7 +7,6 @@
   "summary": "Pelajari cara memeriksa kondisi, kapasitas, dan status baterai laptop di Linux menggunakan perintah command line seperti upower, acpi, dan lainnya.",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Pelajari cara memeriksa kondisi, kapasitas, dan status baterai laptop di Linux menggunakan perintah command line seperti upower, acpi, dan lainnya.",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.webp",
   "content_plain": "Memeriksa Kondisi Baterai di Linux Linux menyediakan beberapa utilitas command line yang sangat berguna untuk memeriksa kondisi baterai laptop Anda. Ini memungkinkan Anda melihat detail seperti kapasitas, status pengisian, dan kesehatan baterai secara keseluruhan. 1. Menggunakan upower upower adalah alat standar untuk manajemen daya. Ini memberikan informasi yang sangat detail. # Menampilkan info detail baterai (ganti BAT0 jika perlu)\nupower -i /org/freedesktop/UPower/devices/battery_BAT0Copy 2. Menggunakan acpi acpi adalah perintah yang lebih sederhana untuk mendapatkan status baterai dengan cepat. # Menampilkan status dan persentase baterai\nacpi -VCopy 3. Mengakses File Sistem /sys Anda juga bisa melihat informasi baterai secara langsung dari file sistem yang disediakan oleh kernel Linux. # Menampilkan persentase kapasitas baterai\ncat /sys/class/power_supply/BAT0/capacity\n# Menampilkan status (misal: Charging, Discharging)\ncat /sys/class/power_supply/BAT0/statusCopy Diskusi & Jaga Data Pribadi Tetap Aman."
 }

@@ -7,7 +7,6 @@
   "summary": "Skrip bash",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Skrip bash",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/debian-mirror.webp",
   "content_plain": "Skrip debian-mirror.sh: Pilih Mirror Tercepat Skrip debian-mirror.sh ini akan membantu Anda memilih mirror repository tercepat untuk sistem operasi Debian/Ubuntu menggunakan utilitas netselect-apt. Proses ini dapat mempercepat waktu unduh saat melakukan update atau instalasi paket. ⚠️ Jalankan skrip dengan sudo karena akan mengubah file /etc/apt/sources.list. Kode Skrip #!/bin/bash\n# debian-mirror.sh - Otomatis pilih mirror tercepat untuk Debian/Ubuntu\nset -e\necho \"[INFO] Memperbarui daftar paket & menginstal netselect-apt...\"\nsudo apt update\nsudo apt install -y netselect-apt\necho \"[INFO] Menjalankan netselect-apt untuk rilis 'stable'...\"\nsudo netselect-apt stable\necho \"[INFO] Mem-backup sources.list yang lama...\"\nsudo cp /etc/apt/sources.list /etc/apt/sources.list.bak\necho \"[INFO] Mengganti sources.list dengan hasil mirror tercepat...\"\nsudo mv sources.list /etc/apt/sources.list\necho \"[INFO] Memperbarui daftar paket dari mirror baru...\"\nsudo apt update\necho \"[SELESAI] Mirror tercepat berhasil dipasang!\"Copy"
 }

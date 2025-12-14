@@ -7,7 +7,6 @@
   "summary": "Panduan langkah demi langkah untuk memperbaiki GRUB bootloader secara manual di Debian/Ubuntu menggunakan Live USB dan chroot.",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Panduan langkah demi langkah untuk memperbaiki GRUB bootloader secara manual di Debian/Ubuntu menggunakan Live USB dan chroot.",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/fix-grub-manual.webp",
   "content_plain": "Perbaikan Manual GRUB Bootloader Jika GRUB rusak atau hilang, Anda bisa memperbaikinya secara manual menggunakan Live USB. Cara ini memberi Anda kontrol penuh atas setiap langkah yang dilakukan pada sistem. Langkah-Langkah Perbaikan Boot ke Live USB Debian/Ubuntu dan buka terminal. Cari partisi root Linux Anda dengan perintah: sudo fdisk -lCopy Mount partisi tersebut (ganti /dev/sda1 sesuai partisi Anda): sudo mount /dev/sda1 /mntCopy Bind direktori sistem yang penting: for i in /dev /proc /sys; do sudo mount --bind $i /mnt$i; doneCopy Masuk ke lingkungan chroot: sudo chroot /mntCopy Instal ulang GRUB ke disk (bukan partisi): grub-install /dev/sda\nupdate-grubCopy Keluar, unmount, dan reboot: exit\nsudo umount /mnt/{dev,proc,sys}\nsudo umount /mnt\nsudo rebootCopy"
 }

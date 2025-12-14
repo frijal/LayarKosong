@@ -7,7 +7,6 @@
   "summary": "Skrip bash sederhana untuk memilih mirror Arch Linux tercepat secara otomatis menggunakan",
   "category": "🐧 Linux & Open Source",
   "promptHint": "Skrip bash sederhana untuk memilih mirror Arch Linux tercepat secara otomatis menggunakan",
-  "customPromptHintManuallySet": false,
   "imageUrl": "https://dalam.web.id/img/arch-mirror.webp",
   "content_plain": "Skrip arch-mirror.sh: Pilih Mirror Tercepat Skrip arch-mirror.sh ini menggunakan utilitas reflector untuk secara otomatis memilih mirror tercepat untuk sistem Arch Linux Anda. Proses ini penting untuk mempercepat unduhan paket dan pembaruan sistem. ⚠️ Jalankan skrip ini dengan hak akses sudo karena akan mengubah file konfigurasi sistem di /etc/pacman.d/mirrorlist. Kode Skrip #!/bin/bash\n# arch-mirror.sh - Pilih mirror Arch Linux tercepat secara otomatis\nset -e\necho \"[INFO] Memastikan 'reflector' terinstal...\"\nsudo pacman -Sy --noconfirm reflector\necho \"[INFO] Mem-backup mirrorlist yang ada...\"\nsudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak\necho \"[INFO] Mencari 10 mirror terbaru dan tercepat...\"\nsudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist\necho \"[INFO] Menyinkronkan ulang database paket...\"\nsudo pacman -Syy\necho \"[SELESAI] Mirrorlist telah diperbarui dengan server tercepat!\"Copy"
 }
