@@ -1,0 +1,12 @@
+{
+  "id": "paru-software-nonresmi",
+  "title": "Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)",
+  "slug": "paru-software-nonresmi.html",
+  "url": "https://dalam.web.id/artikel/paru-software-nonresmi.html",
+  "datePublished": "2025-10-06T06:06:53.376+00:00",
+  "summary": "Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.",
+  "imageUrl": "https://dalam.web.id/img/paru-software-nonresmi.webp",
+  "content_plain": "Betul sekali! Inilah fungsi utama Paru yang sebenarnya. Paru memang dirancang untuk memasang perangkat lunak yang berada di luar repositori resmi Pacman, yaitu dari AUR (Arch User Repository). Jadi, jika ada perangkat lunak yang tidak muncul saat Anda menggunakan sudo pacman -S, Paru adalah alat yang akan membantu Anda mencarinya, mengunduh, mengkompilasi, dan menginstalnya dari AUR. Apa Itu AUR? AUR adalah gudang repositori besar berisi PKGBUILD (skrip instalasi) yang dikelola oleh komunitas Arch Linux. Paket-paket ini biasanya meliputi: Aplikasi Populer: Misalnya Spotify, Google Chrome, Visual Studio Code. Versi Pengembangan: Versi beta atau git dari sebuah program. Perangkat Lunak Khusus: Driver atau program yang lebih spesifik. Peran Paru dalam Menjembatani AUR Sebelum ada AUR Helper seperti Paru, menginstal dari AUR adalah pekerjaan manual yang cukup merepotkan. Paru mengotomatisasi seluruh proses tersebut. Saat Anda menggunakan paru -S [nama-software], Paru akan: Mencari paket di repositori resmi dan AUR. Jika ditemukan di AUR, Paru akan mengunduh kode sumbernya. Menampilkan PKGBUILD (skrip instalasi) untuk Anda periksa (Penting!). Mengkompilasi paket dan menginstal semua dependensi yang dibutuhkan secara otomatis. Dengan Paru, instalasi dari AUR terasa semudah dari repositori resmi. Peringatan Penting: Keamanan AUR Perlu diingat bahwa perangkat lunak dari AUR dikelola oleh komunitas, bukan oleh pengembang resmi distro Anda. Perhatikan hal berikut: Tinjau PKGBUILD: Selalu baca dan tinjau skrip yang ditampilkan Paru sebelum menyetujui proses kompilasi untuk memastikan tidak ada kode berbahaya. Pahami Dependensi: Paket AUR mungkin memiliki dependensi yang rumit. Paru akan membantu mengurusnya, tetapi pastikan Anda mengerti apa yang diinstal. Jaga Data Pribadi Tetap Aman."
+}

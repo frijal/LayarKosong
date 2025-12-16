@@ -1,0 +1,12 @@
+{
+  "id": "docs-linux-mirror",
+  "title": "Panduan Mirror Linux Lintas Distro",
+  "slug": "docs-linux-mirror.html",
+  "url": "https://dalam.web.id/artikel/docs-linux-mirror.html",
+  "datePublished": "2025-07-24T03:00:00.000+00:00",
+  "summary": "",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "",
+  "imageUrl": "https://dalam.web.id/img/docs-linux-mirror.webp",
+  "content_plain": "📊 Ringkasan Perbandingan Tool Mirror Distro Tool/Paket Keterangan Singkat Debian / Ubuntu netselect-apt Memilih mirror tercepat & membuat sources.list baru. Arch Linux reflector Menyusun ulang mirrorlist berdasarkan kecepatan. Fedora dnf-fastestmirror Plugin DNF untuk memilih mirror tercepat otomatis. openSUSE zypper Mengelola mirror resmi dengan zypper ar/mr. Slackware slackpkg Mirror dipilih manual melalui file /etc/slackpkg/mirrors. NixOS nix.conf Substituters ditambahkan ke /etc/nix/nix.conf. 🐧 Debian / Ubuntu ⬇ DownloadCopy#!/bin/bash\nsudo apt install -y netselect-apt\nsudo netselect-apt stable 💡 Petunjuk: Jalankan skrip, lalu file sources.list baru akan dibuat. Reboot tidak wajib, cukup jalankan sudo apt update. 🟦 Arch Linux ⬇ DownloadCopy#!/bin/bash\nsudo pacman -S reflector --noconfirm\nsudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist 💡 Petunjuk: Setelah update mirrorlist, jalankan sudo pacman -Syy. Tidak perlu reboot. 🟠 Fedora ⬇ DownloadCopy#!/bin/bash\nsudo dnf install -y dnf-plugins-core\necho \"fastestmirror=True\" | sudo tee -a /etc/dnf/dnf.conf 💡 Petunjuk: Mirror tercepat otomatis digunakan setiap kali jalankan dnf. Tidak perlu reboot. 🟢 openSUSE ⬇ DownloadCopy#!/bin/bash\nsudo zypper mr -da\nsudo zypper ar -f https://download.opensuse.org/distribution/leap/15.5/repo/oss/ repo-oss 💡 Petunjuk: Gunakan zypper ref untuk refresh setelah mengganti mirror. Tidak perlu reboot. 🔵 Slackware ⬇ DownloadCopy#!/bin/bash\nsudo nano /etc/slackpkg/mirrors\n# Pilih mirror terdekat, lalu jalankan:\nsudo slackpkg update gpg\nsudo slackpkg update 💡 Petunjuk: Mirror dipilih manual. Setelah itu jalankan slackpkg update. Reboot tidak diperlukan. ❄️ NixOS ⬇ DownloadCopy#!/bin/bash\necho 'substituters = https://cache.nixos.org https://mirror.example.org' | sudo tee -a /etc/nix/nix.conf\nsudo systemctl restart nix-daemon 💡 Petunjuk: Setelah menambahkan substituter baru, jalankan ulang daemon Nix. Reboot tidak wajib."
+}

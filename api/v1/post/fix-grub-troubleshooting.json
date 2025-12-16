@@ -1,0 +1,12 @@
+{
+  "id": "fix-grub-troubleshooting",
+  "title": "Troubleshooting GRUB Bootloader (Debian & Turunannya)",
+  "slug": "fix-grub-troubleshooting.html",
+  "url": "https://dalam.web.id/artikel/fix-grub-troubleshooting.html",
+  "datePublished": "2025-09-14T03:00:00.000+00:00",
+  "summary": "Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.",
+  "imageUrl": "https://dalam.web.id/img/fix-grub-troubleshooting.webp",
+  "content_plain": "Troubleshooting GRUB Bootloader Terkadang, setelah menjalankan update-grub, sistem masih gagal booting. Berikut adalah beberapa langkah tambahan untuk mengatasi masalah pada GRUB di Debian/Ubuntu. 1. Perbaikan untuk Sistem UEFI Jika sistem Anda menggunakan UEFI, pastikan partisi EFI (biasanya /dev/sda1) ter-mount dengan benar di dalam chroot sebelum menginstal GRUB. # Mount partisi EFI Anda\nsudo mount /dev/sda1 /mnt/boot/efi\n# Instal ulang GRUB untuk UEFI\ngrub-install --target=x86_64-efi --efi-directory=/boot/efi\nupdate-grubCopy 2. Gunakan Boot-Repair (Alternatif Mudah) Jika perbaikan manual terasa rumit, utilitas Boot-Repair dapat mendeteksi dan memperbaiki sebagian besar masalah GRUB secara otomatis. Jalankan dari Live USB Ubuntu. sudo add-apt-repository ppa:yannubuntu/boot-repair\nsudo apt update\nsudo apt install -y boot-repair && boot-repairCopy 3. Cek Mode Boot & File Sistem Pastikan mode boot di BIOS/UEFI Anda (Legacy vs UEFI) konsisten dengan cara OS diinstal. Jika GRUB masih gagal membaca kernel, periksa integritas file sistem dengan fsck. # Ganti sda1 dengan partisi root Anda\nsudo fsck -f /dev/sda1Copy"
+}

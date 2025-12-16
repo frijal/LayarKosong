@@ -1,0 +1,12 @@
+{
+  "id": "fix-grub-auto",
+  "title": "Perbaikan Otomatis GRUB Bootloader (Debian & Turunannya)",
+  "slug": "fix-grub-auto.html",
+  "url": "https://dalam.web.id/artikel/fix-grub-auto.html",
+  "datePublished": "2025-09-14T03:00:00.000+00:00",
+  "summary": "Skrip bash",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Skrip bash",
+  "imageUrl": "https://dalam.web.id/img/fix-grub-auto.webp",
+  "content_plain": "Perbaikan Otomatis GRUB Bootloader Jika GRUB Bootloader rusak, sistem Debian atau turunannya tidak akan bisa booting. Skrip ini akan melakukan proses mount → chroot → reinstall GRUB secara otomatis. Pastikan Anda tahu disk target yang benar (misalnya /dev/sda). Skrip Otomatis (fix-grub.sh) #!/bin/bash\n# fix-grub.sh - Skrip perbaikan GRUB otomatis\n# Peringatan: Pastikan disk target sudah benar!\nDISK=\"$1\"\nif [ -z \"$DISK\" ]; then echo \"Penggunaan: sudo $0 /dev/sdX\" exit 1\nfi\nmount \"${DISK}1\" /mnt\nfor i in /dev /proc /sys; do mount --bind \"$i\" \"/mnt$i\"; done\nchroot /mnt grub-install \"$DISK\"\nchroot /mnt update-grub\nfor i in /sys /proc /dev; do umount \"/mnt$i\"; done\numount /mnt\necho \"GRUB berhasil diperbaiki. Silakan reboot.\"\nCopy Cara Menggunakan Simpan skrip di atas sebagai fix-grub.sh. Boot ke Live USB Debian/Ubuntu dan buka terminal. Beri izin eksekusi: chmod +x fix-grub.sh Jalankan dengan nama disk Anda: sudo ./fix-grub.sh /dev/sda"
+}

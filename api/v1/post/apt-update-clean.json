@@ -1,0 +1,12 @@
+{
+  "id": "apt-update-clean",
+  "title": "Skrip Otomatis Update & Clean APT di Debian/Ubuntu",
+  "slug": "apt-update-clean.html",
+  "url": "https://dalam.web.id/artikel/apt-update-clean.html",
+  "datePublished": "2025-07-16T03:00:00.000+00:00",
+  "summary": "Skrip bash sederhana untuk mengotomatisasi pembaruan dan pembersihan paket APT di sistem Debian/Ubuntu, membuat perawatan sistem lebih mudah.",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Skrip bash sederhana untuk mengotomatisasi pembaruan dan pembersihan paket APT di sistem Debian/Ubuntu, membuat perawatan sistem lebih mudah.",
+  "imageUrl": "https://dalam.web.id/img/apt-update-clean.webp",
+  "content_plain": "Skrip Otomatis Update & Clean APT Berikut adalah skrip shell sederhana untuk memudahkan proses pembaruan dan pembersihan paket yang tidak terpakai di sistem berbasis Debian/Ubuntu. ⚠️ Catatan: Skrip ini membutuhkan akses sudo. Pastikan Anda menjalankannya dengan hak akses root atau sebagai user dengan izin sudo. Skrip Lengkap #!/bin/bash\n# Skrip untuk otomatis update & clean sistem APT echo \"=== Memperbarui daftar paket ===\"\nsudo apt update -y echo \"=== Meng-upgrade paket terpasang ===\"\nsudo apt upgrade -y echo \"=== Menghapus paket yang tidak diperlukan lagi ===\"\nsudo apt autoremove -y echo \"=== Membersihkan cache APT ===\"\nsudo apt autoclean -y\nsudo apt clean -y echo \"=== Selesai! Sistem sudah diperbarui dan dibersihkan. ===\"\nCopy"
+}
