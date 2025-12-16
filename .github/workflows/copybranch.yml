@@ -12,6 +12,7 @@ on:
   # ⬇️ Tambahkan filter paths di sini
     paths:
       - 'artikel.json'      # File spesifik di root
+      - 'llms.md'           # File spesifik di root
       - '_redirects'        # File spesifik di root
       - '_headers'          # File spesifik di root
       - '*.html'            # File HTML di root
