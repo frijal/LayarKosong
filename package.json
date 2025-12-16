@@ -7,8 +7,6 @@
   "scripts": {
     "start": "node ext/rss.js",
     "screenshot": "node ext/screenshot-puppeteer.js",
-    "generate": "node ext/grok-generate-ai-api.js",
-    "dev": "node --watch ext/grok-generate-ai-api.js",
     "check-deps": "depcheck"
   },
   "repository": {
