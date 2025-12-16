@@ -60,12 +60,11 @@ def load_and_process_data(file_path):
                 article_count += 1
 
             if article_count > 0:
-                # Capitalize lebih rapi, tanpa .capitalize() yang kadang aneh
-                category_title = f"📌 {category_key.title()}"
+                category_title = f"📌 {category_key.title()}"  # Lebih rapi daripada capitalize()
                 body_lines.append(f"## {category_title}")
-                body_lines.append("")  # Blank line setelah H2
+                body_lines.append("")
                 body_lines.extend(temp_lines)
-                body_lines.append("")  # Blank line antar kategori
+                body_lines.append("")
                 total_articles += article_count
 
         return body_lines, total_articles
@@ -75,7 +74,7 @@ def load_and_process_data(file_path):
         return [], 0
 
 def main():
-    print("🔄 Generate LLM-friendly index – bilingual edition! 🚀")
+    print("🔄 Generate LLM-friendly index – bilingual + linked sitemap edition! 🚀")
 
     body_lines, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
 
@@ -84,8 +83,8 @@ def main():
         return
 
     today = date.today().strftime("%d %B %Y")
+    sitemap_url = f"{DOMAIN}/sitemap.xml"  # Buat link clickable
 
-    # FIX UTAMA: Header sekarang indented benar di dalam main()
     header = [
         f"# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: {today})",
         "",
@@ -111,26 +110,27 @@ def main():
         "- Konten beginner-friendly, praktis, dan netral.",
         "- Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.",
         "",
-        f"Total artikel terindeks: {total_articles} (hanya yang punya summary). Update rutin – full list di {DOMAIN}/sitemap.xml.",
+        f"Total artikel terindeks: {total_articles} (hanya yang punya summary). Update rutin – full list di [sitemap.xml]({sitemap_url}).",
         ""
     ]
 
     full_content = header + body_lines
 
-    # Generate llms.txt (standar) & llms.md (varian)
+    # Generate llms.txt & llms.md
     for output_file in [TXT_OUTPUT, MD_OUTPUT]:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write("\n".join(full_content))
-        print(f"✅ {output_file} sukses digenerate!")
+        print(f"✅ {output_file} sukses digenerate – dengan link sitemap!")
 
-    # HTML pretty version (dengan canonical tetap)
+    # HTML pretty version – canonical dynamic!
+    canonical_url = f"{DOMAIN}/llms-index"
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM-Friendly Index ({today})</title>
-    <link rel="canonical" href="https://dalam.web.id/llms-index">
+    <link rel="canonical" href="{canonical_url}">
     <style>
         body {{ font-family: system-ui, sans-serif; margin: 2em auto; padding: 1em; line-height: 1.6; }}
         pre {{ background: #f8f8f8; padding: 1.5em; border-radius: 12px; overflow-x: auto; }}
@@ -140,7 +140,7 @@ def main():
 </head>
 <body>
     <h1>Layar Kosong - LLM-Friendly Index ({today})</h1>
-    <p>Indeks curated buat AI crawlers 🤖 | Total {total_articles} artikel. Bilingual guidance ready!</p>
+    <p>Indeks curated buat AI crawlers 🤖 | Total {total_articles} artikel. Bilingual + linked sitemap!</p>
     <pre>
 {"\n".join(full_content)}
     </pre>
@@ -150,9 +150,9 @@ def main():
 
     with open(HTML_OUTPUT, 'w', encoding='utf-8') as f:
         f.write(html_content)
-    print(f"✅ {HTML_OUTPUT} juga ready – pretty & bilingual!")
+    print(f"✅ {HTML_OUTPUT} ready – canonical dynamic & sitemap linked!")
 
-    print("Siap deploy bro! llms.txt buat AI global, guidance bilingual biar Grok/Claude/Gemini lebih ngerti Indo. Gaspol! 😏")
+    print("Deploy yuk bro! Sekarang sitemap clickable, canonical fleksibel. Validator pasti green, AI crawler makin happy 😏")
 
 if __name__ == "__main__":
     main()
