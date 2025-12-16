@@ -110,6 +110,28 @@
     "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh355dBg7-wMnvGFFqT0VtL3piI7d_-jxIFJOBq5qEXrvEe01uhpkHQvemthO095_TJDKDyGNzJ9C9McyITA5Ju_8g9yJ5f3oLejJTBeY3T0xskLobW7_iockisS1ZTwgL-AzLRCWd5s-NjU4NqNEK01qxKD6cksqg9SXjLSgZ6ZiEnkJlD1tnoKRu2vm8/s1600/vixionhonda.webp"
   },
   {
+    "id": "fix-cachyos-boot",
+    "title": "Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT",
+    "slug": "fix-cachyos-boot.html",
+    "url": "https://dalam.web.id/artikel/fix-cachyos-boot.html",
+    "datePublished": "2025-12-08T03:26:11.547+00:00",
+    "summary": "Panduan lengkap memperbaiki error Updating systemd-boot entries dan unknown filesystem type vfat di CachyOS atau Arch Linux akibat kernel mismatch.",
+    "category": "🐧 Linux & Open Source",
+    "promptHint": "Kenapa error update bootloader CachyOS muncul?; Bagaimana cara memperbaiki error \"unknown filesystem type vfat\" di CachyOS?; Apa penyebab error \"unknown filesystem type vfat\" saat mount partisi boot di CachyOS?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWGE_9DU3NC-XZVvNWns0tHZ1mQwb4Cepk4lTRp_D32QqH_Z8CetEtUwuQTVhxV_oZCo6XinIMtFHc42q5FI5CgK5XYytMEUlRfTfHdZudce1fRFgt2CzcoQGhkjKMOVQJsZH6ZQy1-kZd2gbJ8Et33REREdgYXw0peSJgc6UNQvc3MfyTPpCMiBy2ZRs/s1600/ErrorBootloader.webp"
+  },
+  {
+    "id": "analisis-sukses-cachyos-boot",
+    "title": "Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl & Pacman)",
+    "slug": "analisis-sukses-cachyos-boot.html",
+    "url": "https://dalam.web.id/artikel/analisis-sukses-cachyos-boot.html",
+    "datePublished": "2025-12-08T03:26:11.531+00:00",
+    "summary": "Analisis mendalam hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!",
+    "category": "🐧 Linux & Open Source",
+    "promptHint": "Apakah CachyOS sudah stabil sekarang?; Masalah apa saja yang teratasi di CachyOS?; Perintah apa yang jadi kunci perbaikan bootloader CachyOS?; Apa yang terjadi pada partisi EFI setelah perbaikan?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6z4vQRPeljtV4a18oHR-7YaA4kxFqWYt-pzNeG5nQmZe2THSTspZT62x6POcpWP7mg_TrPA_CnuZ83rR2xBGexeDYmac5sslFyWOqp4tE5auuwowYY4sfS1fB1lC7dIswY3iLnuO8KCia7lS9qS4e7lZ-YV9UnPXUirfOxtWspygUc5uF2MgeD8ZM7fY/s1600/KernelMismatch.webp"
+  },
+  {
     "id": "schema-validation-static-site",
     "title": "Apakah Schema Validation Penting untuk Static Site?",
     "slug": "schema-validation-static-site.html",
@@ -154,6 +176,17 @@
     "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp"
   },
   {
+    "id": "analisis-ram-dmidecode",
+    "title": "Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡",
+    "slug": "analisis-ram-dmidecode.html",
+    "url": "https://dalam.web.id/artikel/analisis-ram-dmidecode.html",
+    "datePublished": "2025-12-07T08:41:41.324+00:00",
+    "summary": "Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.",
+    "category": "🐧 Linux & Open Source",
+    "promptHint": "Perintah apa untuk cek RAM di laptop saya?; Bagaimana cara tahu tipe RAM saya?; Berapa kapasitas RAM yang terpasang?; Kenapa dmidecode akurat untuk info RAM?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh039DqQVNWSf6LYEMM0AWBAN1OLtoFz6zSTeScSeD8-2KB-kQ2v30EkEBCkoyEVDb66ZjR6NaFm3dJJNp87bWBOG7BNnhshB6R4aKEo3xPlsDgr9E-nrF-YglCxXijS7dpiUKQfqpozoXcki4u2rSy_htvHd8YJLzv7Aw8EPs1qJJbMDek_pkxp8mhIX4/s1600/sodimmdimm.webp"
+  },
+  {
     "id": "bahaya-lisan-hadis-tirmidzi-ibnu-majah",
     "title": "Bahaya Lisan dan Kunci Surga: Penjelasan Hadis Tirmidzi 2616 & Ibnu Majah 3973",
     "slug": "bahaya-lisan-hadis-tirmidzi-ibnu-majah.html",
@@ -163,5 +196,71 @@
     "category": "📚 Sejarah & Religi",
     "promptHint": "Hadis Tirmidzi 2616 dan Ibnu Majah 3973 itu dari sahabat siapa?; Mu'adz bin Jabal bertanya apa kepada Rasulullah?; Apa saja inti pesan Hadis Tirmidzi 2616?; Hadis ini sering disebut sebagai apa?",
     "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiftl8g7HnPEps97jFiWzrFqeHidfKA9GUnsPG1UC56HND4VZTdTXH4k9vcSkyM37jjucr1Osf0tqzyh1Hc-5nKIKcRGqUpzNWHSdmKKP2VwkKT2a7eNQUVFP14TaapuloMy0-i9I0Ps1_522CRGYqz1ySk6CaLpN4ppCtHR-SSlKYX8F9y6Ptr_gZLGCI/s1600/1.webp"
+  },
+  {
+    "id": "rekor-ddos-29tbps-aisuru-botnet",
+    "title": "Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie!",
+    "slug": "rekor-ddos-29tbps-aisuru-botnet.html",
+    "url": "https://dalam.web.id/artikel/rekor-ddos-29tbps-aisuru-botnet.html",
+    "datePublished": "2025-12-05T18:44:39.214+00:00",
+    "summary": "Cloudflare baru saja memblokir serangan DDoS terbesar sepanjang sejarah: 29,7 Tbps dari botnet AISURU yang punya hingga 4 juta perangkat terinfeksi. Serangan ini cuma bertahan 69 detik tapi bikin dunia cybersecurity heboh!",
+    "category": "🖥️ Teknologi Web, AI & Umum",
+    "promptHint": "Berapa rekor serangan DDoS terbesar di dunia?; Siapa yang memblokir serangan DDoS 29,7 Tbps itu?; Apa nama botnet yang melakukan serangan DDoS terbesar?; Berapa banyak perangkat yang dikendalikan botnet AISURU?; Berapa lama serangan DDoS terbesar itu berlangsung?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgF59hge_kQ1cKDtFbkWE359GYZcnrmSgmAGPLa4s-BN8md0YIwgyxQSXPwemGCYhOsSwnX2lEp2xzgzc-XVxx7zSII2X44RduTaYu4pgNn7Ab-3LtPYBjjQbC8wIE7G2tDd5kzf594DGf1RSuR4VNzFl5C4v3kQtFltZZbKyvYGEsDqOkheOVkk4Gp7AKQ/s1600/LARGEST-DDOS.jpg"
+  },
+  {
+    "id": "apa-itu-linux-sebenarnya",
+    "title": "Apa Itu Linux Sebenarnya? Penjelasan Santai Buat Yang Baru Mau Nyemplung!",
+    "slug": "apa-itu-linux-sebenarnya.html",
+    "url": "https://dalam.web.id/artikel/apa-itu-linux-sebenarnya.html",
+    "datePublished": "2025-12-05T18:44:39.159+00:00",
+    "summary": "Bingung bedain Linux, kernel, sama distro? Santai bro, sini aku jelasin dari nol sampe ngerti beneran. Cocok buat yang baru mau cobain Linux di 2025-2026!",
+    "category": "🐧 Linux & Open Source",
+    "promptHint": "Apa itu Linux sebenarnya?; Apa bedanya Linux sama distro kayak Ubuntu?; Apa fungsi utama kernel Linux?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqX2xyLmkljYZNjVEHvb3U_tJIjJeRYKo3UrSZkWmeh0fly-WKzj42aXhKIBJdQ197pJDLJDw35MEMuLzbeFvgDL2JJjxK5KnciJkORg7nb3lUqiVf7s8ro-m-XxWKxMlimr0_dg_OQ1OZO4DR7JOryaoONryHeZxnsxUP3K1TqHccC0oCP9Ofw2QM0BE/s1600/086-wallpaper.jpg"
+  },
+  {
+    "id": "perubahan-git-3-0-main-default",
+    "title": "🎉 Perubahan Besar di Git 3.0: 'main' Jadi Default, Selamat Tinggal 'master'!",
+    "slug": "perubahan-git-3-0-main-default.html",
+    "url": "https://dalam.web.id/artikel/perubahan-git-3-0-main-default.html",
+    "datePublished": "2025-12-03T15:17:13.710+00:00",
+    "summary": "Mulai Git 3.0, branch main akan menjadi nama branch default yang baru, menggantikan master. Peningkatan keamanan SHA-256 dan optimasi kinerja juga hadir. Pelajari semua perubahannya di sini!",
+    "category": "🖥️ Teknologi Web, AI & Umum",
+    "promptHint": "Git versi berapa yang ganti 'master' jadi 'main'?; Nama branch default baru di Git 3.0 itu apa?; Branch apa yang diganti di Git 3.0?; Kenapa Git mengubah nama branch default?; Apa lagi perubahan di Git 3.0?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRg9YOJEgxGG_yYHUcYgGmf3rPt0wugSTdmXtQ0X6BYKRwbbIJuw1CqvvHNjrsmrXoMj2WblIxkmuWcjacLXksFfpcL8XTwBkEbGQtsGibZamJiJJYYfaQWJwyqQjN_XQNo1G9mxEmW6OPhbFx21q5rsIn4-0ah5xZ58dNWOaUsoGC2Bls1C8tLCmb2hk/s1600/master-to-main-banner.webp"
+  },
+  {
+    "id": "amankan-git-server-dari-bot",
+    "title": "Wajib Blokir Bot di Server Git Self-Hosted: Lindungi Kode dari AI Scraper",
+    "slug": "amankan-git-server-dari-bot.html",
+    "url": "https://dalam.web.id/artikel/amankan-git-server-dari-bot.html",
+    "datePublished": "2025-12-01T20:07:34.282+00:00",
+    "summary": "Mengapa server Git self-hosted Anda panas terus? Jawabannya: bot AI! Pelajari cara memblokir crawler jahat (termasuk dari cloud provider) untuk mengamankan kode Anda.",
+    "category": "🖥️ Teknologi Web, AI & Umum",
+    "promptHint": "Kenapa server Git self-hosted saya panas terus?; Apa yang wajib saya lakukan di server Git self-hosted?; Kenapa bot harus diblokir keras di Git?; Apa untungnya pakai server Git self-hosted?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMD0Y6exuXH4zVnXrmVdQH4AMLd1p6r9jW4jofy9BuQgye7EFAV7Hkg0rHWTZz1xOYribD1bPRHsxVk5B4P_mMX84jcNc2UIuEWIhyOfnQApsczQkzmV8FoHGEOWnnPf9-rPEX03ge21wqYUuCzYehPsCDw0Z-qfxPJYV9ER8mqhCuh2g7fKoK5pe7GOk/s1600/seranganbot.webp"
+  },
+  {
+    "id": "adab-menasehati-publik",
+    "title": "Adab Menasihati di Depan Umum: Kapan Boleh dan Kenapa Sebaiknya Rahasia? | Bendera Putih",
+    "slug": "adab-menasehati-publik.html",
+    "url": "https://dalam.web.id/artikel/adab-menasehati-publik.html",
+    "datePublished": "2025-12-01T16:14:19.390+00:00",
+    "summary": "Mengupas tuntas etika menasihati menurut ajaran Islam dan para ulama. Pelajari hukumnya, alasannya, dan kapan pengecualian dibolehkan agar nasihat diterima dengan baik.",
+    "category": "📚 Sejarah & Religi",
+    "promptHint": "Kenapa menasihati orang sebaiknya empat mata?; Apa hukum dasar menasihati dalam ajaran Islam?; Nasihat itu sebenarnya apa sih?; Mengapa menasihati di depan umum tidak dianjurkan?",
+    "imageUrl": "https://dalam.web.id/img/adab-menasehati-publik.webp"
+  },
+  {
+    "id": "mx-linux-25-plasma-vs-ubuntu",
+    "title": "Kenapa MX Linux 25 Plasma Wajib Gantikan Ubuntu Kamu? 🚀",
+    "slug": "mx-linux-25-plasma-vs-ubuntu.html",
+    "url": "https://dalam.web.id/artikel/mx-linux-25-plasma-vs-ubuntu.html",
+    "datePublished": "2025-12-01T14:57:30.583+00:00",
+    "summary": "Pindah dari Ubuntu? MX Linux 25",
+    "category": "🐧 Linux & Open Source",
+    "promptHint": "Kenapa MX Linux 25 Plasma wajib gantikan Ubuntu?; Saya ingin pindah dari Ubuntu, apa rekomendasinya?; Apa itu MX Linux 25 Plasma?",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0czvIS4zo56weYNRVL6xG3rQ6gJDjhyphenhyphen5yDBrwgTlRNhtUpuBcGa8G0FGKAlx5xw3oING-zcMVrKw50uNZglpj6fdPpVikAWU8LYWTeuq-3WI7r6StPuxzZdcTebsxAYSjIk1eUD_etZkbORhIzGhSiZudxaaLKRjmypIFDYtgsyBZmqwwT4Alychg3eA/s1600/MX-Linux.webp"
   }
 ]
