@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "type": "module",
   "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator dengan Google Gemini",
-  "main": "index.js",
   "scripts": {
     "start": "node ext/rss.js",
     "screenshot": "node ext/screenshot-puppeteer.js",
