@@ -62,7 +62,7 @@ jobs:
           rsync -a --delete \
             --include='artikel/***' \
             --include='ext/***' \
-            --include='api/***' \
+            --include='.well-known/***' \
             --include='img/***' \
             --include='artikel.json' \
             --include='llms.md' \
