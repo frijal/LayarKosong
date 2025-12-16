@@ -37,6 +37,15 @@ jobs:
       # Kita kirimkan GEMINI_API_KEY ke skrip Node.js sebagai environment variable
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
+        GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
+        GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
+        GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
+        GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
+        GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
+        GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
+          # Kamu bisa daftar sampai KEY20 di sini, 
+          # kalau di Secrets kosong, script akan otomatis mengabaikannya.
       run: node ext/generate-ai-api.js 
 
     # 5. COMMIT DAN PUSH FILE JSON YANG BARU DIBUAT (MENGGANTIKAN ACTION EKSTERNAL)
