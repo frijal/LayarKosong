@@ -85,7 +85,7 @@ def main():
 
     today = date.today().strftime("%d %B %Y")
 
-   header = [
+header = [
     f"# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: {today})",
     "",
     f"Situs: {DOMAIN} | Penulis: Fakhrul Rijal dari Balikpapan, Kalimantan Timur 🇮🇩",
