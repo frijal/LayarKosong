@@ -36,7 +36,7 @@ jobs:
           GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
           # Tambahin sampai GEMINI_API_KEY19 kalo perlu 20 keys buat quota Gemini
           # Contoh: GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
-        run: npm run ext/grok-generate-ai-api.js   # Pastiin di package.json ada script "generate": "node ext/generate-ai-api.js"
+        run: node ext/grok-generate-ai-api.js   # Pastiin di package.json ada script "generate": "node ext/generate-ai-api.js"
 
       - name: Commit and push changes if any
         run: |
