@@ -115,26 +115,31 @@ def main():
         print(f"✅ {output_file} sukses digenerate!")
 
     # HTML pretty version tetep ada
-    html_content = f"""<!DOCTYPE html>
+html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layar Kosong - LLM-Friendly Index ({today})</title>
-    <style>
-        body {{ font-family: system-ui, sans-serif; max-width: 900px; margin: 2em auto; padding: 1em; line-height: 1.6; }}
-        pre {{ background: #f8f8f8; padding: 1.5em; border-radius: 12px; overflow-x: auto; }}
-        a {{ color: #0066cc; }}
-        @media (prefers-color-scheme: dark) {{ body {{ background: #111; color: #eee; }} pre {{ background: #222; }} }}
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Kosong - LLM-Friendly Index ({today})</title>
+    <style>
+        body {{ 
+            font-family: system-ui, sans-serif; 
+            margin: 2em 0; /* Margin atas bawah 2em, samping 0 */
+            padding: 1em; 
+            line-height: 1.6; 
+        }}
+        pre {{ background: #f8f8f8; padding: 1.5em; border-radius: 12px; overflow-x: auto; }}
+        a {{ color: #0066cc; }}
+        @media (prefers-color-scheme: dark) {{ body {{ background: #111; color: #eee; }} pre {{ background: #222; }} }}
+    </style>
 </head>
 <body>
-    <h1>Layar Kosong - LLM-Friendly Index ({today})</h1>
-    <p>Indeks curated buat AI crawlers 🤖 | Total {total_articles} artikel.</p>
-    <pre>
+    <h1>Layar Kosong - LLM-Friendly Index ({today})</h1>
+    <p>Indeks curated buat AI crawlers 🤖 | Total {total_articles} artikel.</p>
+    <pre>
 {"\n".join(full_content)}
-    </pre>
-    <p><a href="{DOMAIN}/">← Kembali ke blog utama</a></p>
+    </pre>
+    <p><a href="{DOMAIN}/">← Kembali ke blog utama</a></p>
 </body>
 </html>"""
 
