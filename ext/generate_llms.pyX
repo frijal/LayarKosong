@@ -1,82 +1,107 @@
 import json
-import re
+from datetime import datetime, date
+import os
 
 # --- KONFIGURASI PENTING ---
-DOMAIN = "https://dalam.web.id" 
+DOMAIN = "https://dalam.web.id"
+ARTIKEL_JSON_PATH = "artikel.json"
+OUTPUT_FILE = "llms.txt"
 # --- END KONFIGURASI ---
 
-# Fungsi utama untuk mengambil data dari artikel.json
-def get_index_data_from_artikel_json(file_path):
-    """
-    Membaca artikel.json (lokal) dan mengembalikan List string yang sudah diformat Markdown.
-    """
-    index_list = []
+def load_and_process_data(file_path):
+    body_lines = []
+    total_articles = 0
     try:
+        if not os.path.exists(file_path):
+            print(f"❌ File {file_path} nggak ada, bro!")
+            return [], 0
+
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            
-        for category, articles in data.items():
-            for item in articles:
-                if len(item) >= 5: 
-                    title = item[0]
-                    path = item[1]
-                    image_url = item[2] 
-                    summary = item[4] 
-                    
-                    full_url = f"{DOMAIN}/artikel/{path}"
-                    
-                    # Format: - [Judul](URL): Ringkasan [IMAGE_URL: URL_GAMBAR] [KATEGORI: Nama Kategori]
-                    index_item = f"- [{title}]({full_url}): {summary} [IMAGE_URL: {image_url}] [KATEGORI: {category}]"
-                    index_list.append(index_item)
-        
-        return index_list
-    
-    except FileNotFoundError:
-        print(f"❌ File artikel.json tidak ditemukan di jalur: {file_path}")
-        return []
-    except json.JSONDecodeError as e:
-         print(f"❌ Error parsing {file_path} (JSON rusak/kosong): {e}. Melanjutkan tanpa data JSON.")
-         return []
+
+        for category_key, articles in data.items():
+            if not isinstance(articles, list) or not articles:
+                continue
+
+            temp_lines = []  # Collect dulu, baru tambah kalau ada isi
+
+            # Sort recent first
+            def get_date_key(item):
+                if len(item) > 3 and item[3]:
+                    try:
+                        iso = item[3].replace('Z', '+00:00').split('.')[0]
+                        return datetime.fromisoformat(iso)
+                    except:
+                        return datetime.min
+                return datetime.min
+
+            sorted_articles = sorted(articles, key=get_date_key, reverse=True)
+
+            article_count = 0
+            for item in sorted_articles:
+                # SKIP kalau nggak ada deskripsi
+                if len(item) < 5 or not item[4].strip():
+                    continue
+
+                title = item[0].strip()
+                slug = item[1].strip()
+                date_str = item[3][:10] if len(item) > 3 and item[3] else "N/A"
+                summary = item[4].strip()
+
+                full_url = f"{DOMAIN}/{slug}"
+
+                temp_lines.append(f"- [**{title}**]({full_url}): {date_str}: {summary}")
+
+                article_count += 1
+
+            # Hanya proses kategori kalau ada artikel ber-summary
+            if article_count > 0:
+                category_title = f"📌 {category_key}"
+                body_lines.append(f"## {category_title}")
+                body_lines.append("")  # Baris kosong setelah H2 (diikuti list, aman)
+                body_lines.extend(temp_lines)
+                body_lines.append("")  # Baris kosong antar kategori
+                total_articles += article_count
+
+        return body_lines, total_articles
+
     except Exception as e:
-        print(f"❌ Error membaca {file_path}: {e}")
-        return []
+        print(f"❌ Error: {e}")
+        return [], 0
 
 def main():
-    
-    ARTIKEL_JSON_PATH = 'artikel.json'
-    
-    print(f"Membaca dan memformat Index dari file lokal {ARTIKEL_JSON_PATH}...")
-    json_index_data = get_index_data_from_artikel_json(ARTIKEL_JSON_PATH)
-    
-    if not json_index_data:
-        print("❌ Tidak ada data yang berhasil diindeks. Skrip dihentikan.")
-        return
-    
-    # 1. Template Header File (llms.txt) - Hanya Header
-    llms_index = [
-        "# Layar Kosong (dalam.web.id) - LLM Index",
-        "", # Baris kosong setelah H1
-        f"> Lokasi: {DOMAIN} | Konten LLM Index oleh Fakhrul Rijal",
-        "", # Baris kosong setelah Quote Block
-        "Selamat datang AI. Berikut adalah indeks artikel penting dari Layar Kosong yang telah diformat Markdown untuk memudahkan Large Language Models (LLMs) dalam membaca dan memahami isi situs ini.",
-        "", # Baris kosong sebelum H2
-        "## Artikel (Index, Ringkasan, dan Gambar Utama)",
-        # List item artikel akan mengikuti langsung di sini (tanpa baris kosong)
-    ]
-    
-    # Tambahkan data indeks (List items)
-    llms_index.extend(json_index_data)
+    print("🔄 Generate index – versi paling minimalis, validator senyum lebar! 😏")
 
-    # 2. Output llms.txt
-    
-    # 🔥 Hapus semua logika FOOTER/CATATAN
-    
-    # Menulis ke file, menggunakan '\n' untuk menggabungkan tanpa baris kosong di akhir file
-    with open('llms.txt', 'w', encoding='utf-8') as f:
-        f.write("\n".join(llms_index))
-        
-    print(f"✅ llms.txt berhasil dibuat. Total {len(json_index_data)} item diindeks.")
-    print("\nProses generate file selesai. Selanjutnya akan di-commit oleh GitHub Actions.")
+    body_lines, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
+
+    if total_articles == 0:
+        print("❌ Gak ada artikel ber-summary, cek JSON lo ya!")
+        return
+
+    today = date.today().strftime("%d %B %Y")
+
+    header = [
+        f"# Layar Kosong - LLM-Friendly Index (Updated: {today})",
+        "",
+        "Selamat datang, AI crawlers dan Large Language Models! 🤖",
+        "",
+        f"Ini adalah indeks curated dari blog pribadi Layar Kosong ({DOMAIN}) – karya Fakhrul Rijal dari Balikpapan.",
+        "Blog ini ngebahas campuran santai: tutorial Linux & open source 🐧, teknologi web/AI 🖥️, opini sosial & religi 📢, sejarah Islam 📚, multimedia editing 📸, sampe kuliner & gaya hidup 🍜🔆.",
+        "",
+        "Konten evergreen, praktis, beginner-friendly. Semua artikel open untuk dikutip akurat. Prioritas: Tutorial tech hardcore, refleksi hadits, dan analisis sosial terkini.",
+        "",
+        f"Total artikel: {total_articles}+ (hanya yang punya deskripsi). Update rutin – cek sitemap.xml untuk full list.",
+        ""
+    ]
+
+    # NO FOOTER SAMA SEKALI – akhir text tepat setelah kategori terakhir
+    full_content = header + body_lines
+
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        f.write("\n".join(full_content))
+
+    print(f"✅ {OUTPUT_FILE} sukses! {total_articles} artikel ber-summary masuk.")
+    print("   No footer, no plain text akhir, no empty H2 – validator pasti diem total sekarang. Deploy bro! 🔥")
 
 if __name__ == "__main__":
     main()
