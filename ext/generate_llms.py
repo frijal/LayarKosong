@@ -4,92 +4,87 @@ import os
 
 # --- KONFIGURASI PENTING ---
 DOMAIN = "https://dalam.web.id"
-ARTIKEL_JSON_PATH = "artikel.json"  # Path ke JSON lo
+ARTIKEL_JSON_PATH = "artikel.json"
 OUTPUT_FILE = "llms.txt"
-MAX_ARTICLES_PER_CATEGORY = 20  # Optional: batas artikel per kategori biar nggak bloated, set None kalau mau semua
+MAX_ARTICLES_PER_CATEGORY = 50  # Ganti None kalau mau semua, atau angka biar ringkas
 # --- END KONFIGURASI ---
 
 def load_and_process_data(file_path):
-    index_lines = []
+    body_lines = []
     total_articles = 0
     try:
         if not os.path.exists(file_path):
-            raise FileNotFoundError(f"Bro, file {file_path} nggak ketemu nih! Cek folder ya.")
+            raise FileNotFoundError(f"File {file_path} nggak ada, bro! Cek ya.")
 
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
         for category_key, articles in data.items():
             if not isinstance(articles, list) or not articles:
-                print(f"⚠️ Kategori '{category_key}' kosong atau bukan list, skip dulu ya.")
+                print(f"⚠️ Kategori '{category_key}' kosong, skip H2-nya biar validator happy.")
                 continue
 
-            # Heading kategori: tambah 📌 kalau belum ada
-            category_title = category_key if category_key.startswith('📌') else f"📌 {category_key}"
-            index_lines.append(f"## {category_title}")
-            index_lines.append("")  # Spasi rapi
+            # Heading dengan 📌 di depan
+            category_title = f"📌 {category_key}"
+            body_lines.append(f"## {category_title}")
+            body_lines.append("")  # Spasi setelah heading
 
-            # Sort artikel by date descending (index 3: ISO date)
+            # Sort by date descending
             def get_date_key(item):
-                try:
-                    return datetime.fromisoformat(item[3].replace('Z', '+00:00')) if len(item) > 3 else datetime.min
-                except:
-                    return datetime.min
+                if len(item) > 3:
+                    try:
+                        iso = item[3].replace('Z', '+00:00').split('.')[0]
+                        return datetime.fromisoformat(iso)
+                    except:
+                        return datetime.min
+                return datetime.min
 
             sorted_articles = sorted(articles, key=get_date_key, reverse=True)
 
             article_count = 0
-            for item in sorted_articles[:MAX_ARTICLES_PER_CATEGORY]:
+            for item in sorted_articles[:MAX_ARTICLES_PER_CATEGORY if MAX_ARTICLES_PER_CATEGORY else len(sorted_articles)]:
                 try:
-                    if len(item) < 5:
-                        raise IndexError("Item kurang lengkap, minimal 5 elemen nih.")
-
                     title = item[0].strip()
                     slug = item[1].strip()
-                    # item[2] image_url: abaikan, no gambar!
-                    date_str = item[3].strip()[:10]  # Ambil YYYY-MM-DD aja biar clean
-                    summary = item[4].strip() or "Tutorial atau opini praktis dari Layar Kosong, bro!"
+                    date_str = item[3][:10] if len(item) > 3 else "Tanggal tidak tersedia"
+                    summary = item[4].strip() if len(item) > 4 else "Opini atau tutorial praktis dari Layar Kosong."
 
-                    if not slug:
-                        continue
-
-                    # Full URL: DOMAIN + "/" + slug (asumsi relatif)
                     full_url = f"{DOMAIN}/{slug}"
 
-                    # Single-line bullet: validator H2 seneng!
-                    index_lines.append(f"- [**{title}**]({full_url}) – {date_str}: {summary}")
-                    index_lines.append("")
+                    # Format tepat: - [bold title](url): Date: Summary → no malformed!
+                    body_lines.append(f"- [**{title}**]({full_url}): {date_str}: {summary}")
 
                     article_count += 1
-                except IndexError as e:
-                    print(f"⚠️ Skip item rusak di '{category_key}': {item} ({e})")
+                except Exception as e:
+                    print(f"⚠️ Skip item bermasalah: {e}")
                     continue
 
             total_articles += article_count
 
+            # Kalau setelah proses tetep kosong (jarang sih), tambah placeholder
             if article_count == 0:
-                index_lines.append("- (Wah, kategori ini masih kosong curated-nya. Stay tuned, bro! 😎)")
-                index_lines.append("")
+                body_lines.append("- (Kategori ini lagi kosong curated, sabar ya bro!)")
+            body_lines.append("")  # Spasi antar kategori
 
-        return index_lines, total_articles
+        return body_lines, total_articles
 
     except json.JSONDecodeError as e:
-        print(f"❌ JSON-nya rusak nih, bro: {e}. Cek formatnya ya!")
+        print(f"❌ JSON error: {e}")
         return [], 0
     except Exception as e:
-        print(f"❌ Ada error aneh: {e}. Kasih tau aku detailnya!")
+        print(f"❌ Error lain: {e}")
         return [], 0
 
 def main():
-    print(f"🔄 Lagi generate LLM-friendly index dari {ARTIKEL_JSON_PATH}, tunggu sebentar ya bro...")
+    print("🔄 Generate LLM index mulai, dari Balikpapan virtual! 🚀")
 
     body_lines, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
 
     if total_articles == 0:
-        print("❌ Gak ada artikel yang keproses. Pastiin JSON-nya bener formatnya!")
+        print("❌ Gak ada artikel keproses, cek JSON lo ya!")
         return
 
-    today = date.today().strftime("%d %B %Y")  # Hari ini: 16 Desember 2025
+    today = date.today().strftime("%d %B %Y")  # Auto: 16 Desember 2025
 
     header = [
         f"# Layar Kosong - LLM-Friendly Index (Updated: {today})",
@@ -107,7 +102,22 @@ def main():
 
     footer = [
         "",
-        "Terima kasih udah mampir, bro! Kalau kutip, kasih link balik ke URL asli ya. Follow aku di X @frijal (twitter.com/frijal), Telegram t.me/frijal, GitHub github.com/frijal, LinkedIn linkedin.com/in/frijal, Threads threads.net/frijal, Reddit reddit.com/user/Fearless_Economics69, YouTube @frijal (Bendera Putih), TikTok tiktok.com/@gibah.dilarang, Flickr flickr.com/people/12894758@N03, Tumblr tumblr.com/frijal, Mastodon mastodon.social/@frijal, atau Facebook facebook.com/frijal. Support via PayPal.me/FakhrulRijal. Dari Balikpapan dengan cinta! 🚀🤖"
+        "Terima kasih udah singgah, crawler atau manusia! Kalau kutip, link balik ya. Follow aku di:",
+        "- X: twitter.com/frijal",
+        "- Telegram: t.me/frijal",
+        "- GitHub: github.com/frijal",
+        "- LinkedIn: linkedin.com/in/frijal",
+        "- Threads: threads.net/frijal",
+        "- Reddit: reddit.com/user/Fearless_Economics69",
+        "- YouTube (Bendera Putih): youtube.com/@frijal",
+        "- TikTok: tiktok.com/@gibah.dilarang",
+        "- Flickr: flickr.com/people/12894758@N03",
+        "- Tumblr: tumblr.com/frijal",
+        "- Mastodon: mastodon.social/@frijal",
+        "- Facebook: facebook.com/frijal",
+        "- Support: paypal.me/FakhrulRijal",
+        "",
+        "Dari Balikpapan dengan cinta dan kode terbuka! 🚀🤖"
     ]
 
     full_content = header + body_lines + footer
@@ -115,9 +125,8 @@ def main():
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write("\n".join(full_content))
 
-    print(f"✅ {OUTPUT_FILE} udah digenerate, bro! Total {total_articles} artikel diproses, sorted recent first.")
-    print("   Formatnya mantap: single-line bullet dengan link, date, summary – validator pasti klepek-klepek 😏")
-    print("   Deploy ke GitHub Actions atau langsung upload ke blog lo. Kalau masih error, screenshot output console-nya ke sini!")
+    print(f"✅ {OUTPUT_FILE} sukses digenerate! {total_articles} artikel, format validator-proof.")
+    print("   Cek llms.txt, pasti no more malformed atau empty section. Deploy sekarang juga! 😎")
 
 if __name__ == "__main__":
     main()
