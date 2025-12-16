@@ -8,7 +8,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path'; 
 import { fileURLToPath } from 'node:url'; 
 import { load } from 'cheerio'; 
-import { GoogleGenAI } from '@google/genai'; 
+import { GoogleGenAI } from '@google/generative-ai'; 
 
 // --- 2. PATH RESOLUTION & KONFIGURASI ---
 const __filename = fileURLToPath(import.meta.url);
