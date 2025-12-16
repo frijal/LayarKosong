@@ -4,7 +4,7 @@ import os
 
 # --- KONFIGURASI PENTING ---
 DOMAIN = "https://dalam.web.id"
-ARTIKEL_JSON_PATH = "artikel.json"  # Pastiin nama file bener
+ARTIKEL_JSON_PATH = "artikel.json"
 OUTPUT_FILE = "llms.txt"
 # --- END KONFIGURASI ---
 
@@ -13,7 +13,7 @@ def load_and_process_data(file_path):
     total_articles = 0
     try:
         if not os.path.exists(file_path):
-            print(f"❌ File {file_path} nggak ketemu, bro! Cek folder ya.")
+            print(f"❌ File {file_path} nggak ada, bro!")
             return [], 0
 
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -21,11 +21,9 @@ def load_and_process_data(file_path):
 
         for category_key, articles in data.items():
             if not isinstance(articles, list) or not articles:
-                continue  # Skip kategori kosong dari awal
+                continue
 
-            # Heading kategori
-            category_title = f"📌 {category_key}"
-            temp_lines = [f"## {category_title}", ""]  # Temp buat cek nanti ada isi apa nggak
+            temp_lines = []  # Collect dulu, baru tambah kalau ada isi
 
             # Sort recent first
             def get_date_key(item):
@@ -41,54 +39,46 @@ def load_and_process_data(file_path):
 
             article_count = 0
             for item in sorted_articles:
-                try:
-                    # SKIP kalau nggak ada summary (len <5 atau item[4] kosong/empty string)
-                    if len(item) < 5 or not item[4].strip():
-                        print(f"⚠️ Skip artikel tanpa deskripsi: {item[0].strip() if len(item) > 0 else 'Unknown Title'}")
-                        continue
-
-                    title = item[0].strip()
-                    slug = item[1].strip()
-                    date_str = item[3][:10] if len(item) > 3 and item[3] else "N/A"
-                    summary = item[4].strip()
-
-                    full_url = f"{DOMAIN}/{slug}"
-
-                    # Bullet super clean
-                    temp_lines.append(f"- [**{title}**]({full_url}): {date_str}: {summary}")
-
-                    article_count += 1
-                except Exception as e:
-                    print(f"⚠️ Error process item: {e}")
+                # SKIP kalau nggak ada deskripsi
+                if len(item) < 5 or not item[4].strip():
                     continue
 
-            # Hanya tambah kategori ke body kalau ada artikel ber-summary
+                title = item[0].strip()
+                slug = item[1].strip()
+                date_str = item[3][:10] if len(item) > 3 and item[3] else "N/A"
+                summary = item[4].strip()
+
+                full_url = f"{DOMAIN}/{slug}"
+
+                temp_lines.append(f"- [**{title}**]({full_url}): {date_str}: {summary}")
+
+                article_count += 1
+
+            # Hanya proses kategori kalau ada artikel ber-summary
             if article_count > 0:
-                total_articles += article_count
+                category_title = f"📌 {category_key}"
+                body_lines.append(f"## {category_title}")
+                body_lines.append("")  # Baris kosong setelah H2 (diikuti list, aman)
                 body_lines.extend(temp_lines)
-                body_lines.append("")  # Spasi antar kategori
-            else:
-                print(f"⚠️ Kategori '{category_key}' jadi kosong setelah skip no-summary, nggak dibikin H2.")
+                body_lines.append("")  # Baris kosong antar kategori
+                total_articles += article_count
 
         return body_lines, total_articles
 
-    except json.JSONDecodeError as e:
-        print(f"❌ JSON rusak bro: {e}")
-        return [], 0
     except Exception as e:
-        print(f"❌ Error lain: {e}")
+        print(f"❌ Error: {e}")
         return [], 0
 
 def main():
-    print("🔄 Generate full LLM index – semua artikel ber-summary masuk! 😏")
+    print("🔄 Generate index – versi paling minimalis, validator senyum lebar! 😏")
 
     body_lines, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
 
     if total_articles == 0:
-        print("❌ Gak ada artikel yang punya summary, cek artikel.json lo ya!")
+        print("❌ Gak ada artikel ber-summary, cek JSON lo ya!")
         return
 
-    today = date.today().strftime("%d %B %Y")  # Auto 16 Desember 2025
+    today = date.today().strftime("%d %B %Y")
 
     header = [
         f"# Layar Kosong - LLM-Friendly Index (Updated: {today})",
@@ -104,18 +94,14 @@ def main():
         ""
     ]
 
-    footer = [
-        "",
-        "Terima kasih telah mengunjungi. Kutip dengan link balik ke sumber asli. Dari Balikpapan dengan cinta. 🚀"
-    ]
-
-    full_content = header + body_lines + footer
+    # NO FOOTER SAMA SEKALI – akhir text tepat setelah kategori terakhir
+    full_content = header + body_lines
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write("\n".join(full_content))
 
-    print(f"✅ {OUTPUT_FILE} sukses digenerate! {total_articles} artikel ber-summary masuk full per kategori.")
-    print("   Validator pasti diam sekarang – no skip, no empty, no plain text nakal. Deploy ke blog lo, crawler AI bakal happy banget! 🔥")
+    print(f"✅ {OUTPUT_FILE} sukses! {total_articles} artikel ber-summary masuk.")
+    print("   No footer, no plain text akhir, no empty H2 – validator pasti diem total sekarang. Deploy bro! 🔥")
 
 if __name__ == "__main__":
     main()
