@@ -64,6 +64,7 @@ jobs:
             --include='ext/***' \
             --include='.well-known/***' \
             --include='img/***' \
+            --include='api/***' \
             --include='artikel.json' \
             --include='llms.md' \
             --include='_redirects' \
