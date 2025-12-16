@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Hard Caching (Skip jika JSON sudah ada) & Output index.json
+// FITUR: Multi-Key Rotation, Hard Caching, & Index.json Output
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -20,55 +20,100 @@ const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel');
 const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1');
 const DOMAIN_BASE_URL = 'https://dalam.web.id';
 
-// --- 3. SETUP GEMINI API & DEBUGGING KUNCI ---
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// --- 3. KEY ROTATION SETUP (MULTI-KEYS) ---
+const apiKeys = [];
 
-if (!GEMINI_API_KEY) {
-    console.warn("⚠️ PERINGATAN: GEMINI_API_KEY tidak ditemukan di ENV. 'promptHint' akan menggunakan Summary sebagai fallback.");
-    var ai = null;
-} else {
-    console.log(`✅ Kunci API Ditemukan di ENV. Panjang: ${GEMINI_API_KEY.length} karakter.`);
+// 3a. Ambil kunci standar
+if (process.env.GEMINI_API_KEY) {
+    apiKeys.push(process.env.GEMINI_API_KEY);
+}
 
-    try {
-        var ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-        console.log("✅ Inisialisasi GoogleGenAI berhasil dengan Kunci API.");
-    } catch (e) {
-        console.error("❌ GAGAL inisialisasi GoogleGenAI dengan kunci yang tersedia:", e.message);
-        var ai = null;
+// 3b. Ambil kunci bernomor (GEMINI_API_KEY1 s/d GEMINI_API_KEY20)
+for (let i = 1; i <= 20; i++) {
+    const key = process.env[`GEMINI_API_KEY${i}`];
+    if (key) {
+        apiKeys.push(key);
     }
 }
 
+// Global pointer untuk melacak kunci mana yang sedang aktif
+let currentKeyIndex = 0;
 
-// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN AI ---
-async function generatePromptHint(content, title, summary) {
-    if (!ai) return summary;
+if (apiKeys.length === 0) {
+    console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY (atau variannya) ditemukan di ENV. Mode fallback summary.");
+} else {
+    console.log(`✅ ${apiKeys.length} Kunci API berhasil dimuat. Siap untuk rotasi otomatis!`);
+}
 
-    const prompt = `Anda adalah ahli Generative Engine Optimization (GEO).
-    Tugas Anda adalah membuat satu string singkat yang berisi 3-5 pertanyaan yang paling mungkin ditanyakan oleh pengguna kepada AI, yang jawabannya persis ada di dalam konten ini.
-    Gunakan gaya bahasa percakapan. Pisahkan setiap pertanyaan/frasa dengan titik koma (;).
-
-    JUDUL: ${title}
-    SUMMARY: ${summary}
-    KONTEN UTAMA: ${content.substring(0, 1000)}...
-
-    Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
-
-    try {
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: [{ role: "user", parts: [{ text: prompt }] }],
-            config: {
-                temperature: 0.1,
-            }
-        });
-
-        const hint = response.text.trim().replace(/^['"]|['"]$/g, '');
-        return hint;
-
-    } catch (error) {
-        console.error(`❌ ERROR memanggil Gemini untuk artikel ${title}: ${error.message}`);
-        return summary;
+// Helper untuk mendapatkan instance AI dengan kunci yang aktif saat ini
+function getCurrentAI() {
+    if (apiKeys.length === 0) return null;
+    // Pastikan index tidak out of bounds (looping kembali ke 0 jika perlu, atau stop)
+    if (currentKeyIndex >= apiKeys.length) {
+        console.warn("⚠️ Semua kunci API telah habis/limit!");
+        return null;
     }
+    return new GoogleGenAI({ apiKey: apiKeys[currentKeyIndex] });
+}
+
+
+// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI KUNCI ---
+async function generatePromptHint(content, title, summary) {
+    // Loop retry: Mencoba kunci saat ini, jika gagal pindah ke kunci berikutnya
+    // Batas loop adalah sisa jumlah kunci yang tersedia
+    let attempts = 0;
+    const maxAttempts = apiKeys.length;
+
+    while (attempts < maxAttempts) {
+        const ai = getCurrentAI();
+
+        if (!ai) {
+            console.warn("   ⚠️ Tidak ada client AI tersedia (Keys exhausted).");
+            return summary;
+        }
+
+        const prompt = `Anda adalah ahli Generative Engine Optimization (GEO).
+        Tugas Anda adalah membuat satu string singkat yang berisi 3-5 pertanyaan yang paling mungkin ditanyakan oleh pengguna kepada AI, yang jawabannya persis ada di dalam konten ini.
+        Gunakan gaya bahasa percakapan. Pisahkan setiap pertanyaan/frasa dengan titik koma (;).
+
+        JUDUL: ${title}
+        SUMMARY: ${summary}
+        KONTEN UTAMA: ${content.substring(0, 1000)}...
+
+        Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
+
+        try {
+            // console.log(`   🔌 Menggunakan Key Index: ${currentKeyIndex + 1} (${apiKeys[currentKeyIndex].substring(0,5)}...)`);
+
+            const response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                config: { temperature: 0.1 }
+            });
+
+            const hint = response.text.trim().replace(/^['"]|['"]$/g, '');
+            return hint; // SUKSES! Keluar dari fungsi
+
+        } catch (error) {
+            // Analisis Error
+            const errorMsg = error.message.toLowerCase();
+            const isQuotaError = errorMsg.includes("429") || errorMsg.includes("quota") || errorMsg.includes("resource exhausted");
+
+            if (isQuotaError) {
+                console.warn(`   ⚠️ Key Index ${currentKeyIndex + 1} LIMIT/EXPIRED. Beralih ke kunci berikutnya...`);
+                currentKeyIndex++; // Pindah ke kunci berikutnya secara permanen untuk sesi ini
+                attempts++;
+                // Loop 'while' akan mengulang dengan kunci baru
+            } else {
+                // Jika error lain (misal 500 server error atau bad request), mungkin tidak perlu ganti kunci, tapi kita skip artikel ini
+                console.error(`   ❌ Error non-quota pada artikel ${title}: ${error.message}`);
+                return summary; // Fallback ke summary
+            }
+        }
+    }
+
+    console.error("   ❌ Semua kunci API gagal untuk artikel ini.");
+    return summary;
 }
 
 
@@ -137,7 +182,7 @@ function extractCleanContent(slug_html) {
 
 // --- 7. FUNGSI UTAMA: MENJALANKAN GENERASI API (ASYNC) ---
 async function generateApiFiles() {
-    console.log('--- Memulai Generasi L-K AI API (GEO Enabled) ---');
+    console.log('--- Memulai Generasi L-K AI API (Multi-Key Support) ---');
 
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
@@ -171,13 +216,10 @@ async function generateApiFiles() {
 
                     summaryPosts.push(summaryData);
                     skippedCount++;
-                    // Uncomment baris bawah jika ingin melihat log skip
-                    // console.log(`⏩ File sudah ada, dilewati: ${post.title}`);
                     continue; // <--- PENTING: Lanjut ke artikel berikutnya, jangan proses AI/HTML lagi
 
                 } catch (e) {
                     console.warn(`⚠️ File JSON rusak untuk ${post.title}, akan dibuat ulang.`);
-                    // Jika gagal baca JSON (rusak/kosong), biarkan lanjut ke bawah untuk generate ulang
                 }
             }
             // --- END LOGIKA CEK EKSISTENSI ---
@@ -186,8 +228,8 @@ async function generateApiFiles() {
             const cleanContent = extractCleanContent(post.slug);
 
             if (cleanContent) {
-                // Selalu panggil AI karena ini file baru
-                if (ai) {
+                // Panggil AI (Function ini sekarang sudah support multi-key rotation)
+                if (apiKeys.length > 0) {
                     console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
                     post.promptHint = newHint;
@@ -207,17 +249,15 @@ async function generateApiFiles() {
         }
 
         // --- TULIS FILE INDEX UTAMA ---
-        // Ganti nama dari posts.json ke index.json
         const masterListPath = path.join(OUTPUT_API_DIR, 'index.json');
 
-        // Tulis file HANYA jika proses loop selesai dengan aman
         fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
 
         console.log(`\n🎉 Proses Selesai!`);
         console.log(`Total Artikel diproses baru: ${processedCount}`);
         console.log(`Total Artikel dilewati (sudah ada): ${skippedCount}`);
+        console.log(`Sisa Key Index Aktif: ${currentKeyIndex + 1} dari ${apiKeys.length}`);
         console.log(`File Index Utama dibuat di: ${masterListPath}`);
-        console.log('\n--- Layar Kosong Anda Sekarang AI-Ready dan GEO-Optimized! ---');
 
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
