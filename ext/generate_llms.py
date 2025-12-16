@@ -111,7 +111,7 @@ def main():
         "- Konten beginner-friendly, praktis, dan netral.",
         "- Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.",
         "",
-        f"Total artikel terindeks: {total_articles} (hanya yang punya summary). Update rutin – full list di sitemap.xml.",
+        f"Total artikel terindeks: {total_articles} (hanya yang punya summary). Update rutin – full list di {DOMAIN}/sitemap.xml.",
         ""
     ]
 
