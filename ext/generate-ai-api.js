@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Multi-Key Rotation, Llms.txt Sebagai Whitelist Wajib, & Hanya Output yang Berhasil
+// VERSI: Multi-Key & Multi-Model Rotation, Llms.txt Whitelist
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -21,45 +21,66 @@ const INPUT_LLMS_FILE = path.join(PROJECT_ROOT, 'llms.txt');
 const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); 
 const DOMAIN_BASE_URL = 'https://dalam.web.id'; 
 
-// --- 3. KEY ROTATION SETUP (MULTI-KEYS) ---
-const apiKeys = [];
+// --- 3. KEY & MODEL ROTATION SETUP ---
 
+// Daftar Model yang akan digunakan secara rotasi
+const MODELS_TO_ROTATE = [
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash-tts",
+    "gemini-robotics-er-1.5-preview",
+    "gemma-3-12b",
+    "gemma-3-1b",
+    "gemma-3-27b",
+    "gemma-3-2b",
+    "gemma-3-4b",
+    "gemini-2.5-flash-native-audio-dialog"
+];
+
+let currentModelIndex = 0; // Global pointer untuk model
+
+// Daftar Kunci API
+const apiKeys = [];
 if (process.env.GEMINI_API_KEY) {
     apiKeys.push(process.env.GEMINI_API_KEY);
 }
-
 for (let i = 1; i <= 20; i++) {
     const key = process.env[`GEMINI_API_KEY${i}`];
     if (key) {
         apiKeys.push(key);
     }
 }
-
-let currentKeyIndex = 0;
+let currentKeyIndex = 0; // Global pointer untuk kunci
 
 if (apiKeys.length === 0) {
-    console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Hanya artikel LLMS.TXT dengan Prompt Hint manual/cache yang akan diproses.");
+    console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Mode fallback/manual.");
 } else {
-    console.log(`✅ ${apiKeys.length} Kunci API berhasil dimuat. Siap untuk rotasi otomatis!`);
+    console.log(`✅ ${apiKeys.length} Kunci API dimuat. Model tersedia: ${MODELS_TO_ROTATE.length}.`);
 }
 
 function getCurrentAI() {
     if (apiKeys.length === 0) return null;
     if (currentKeyIndex >= apiKeys.length) {
-        console.warn("⚠️ Semua kunci API telah habis/limit!");
         return null;
     }
     return new GoogleGenAI({ apiKey: apiKeys[currentKeyIndex] });
 }
 
+function getNextModel() {
+    const model = MODELS_TO_ROTATE[currentModelIndex % MODELS_TO_ROTATE.length];
+    currentModelIndex = (currentModelIndex + 1) % MODELS_TO_ROTATE.length;
+    return model;
+}
 
-// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI KUNCI ---
+
+// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI KUNCI DAN MODEL ---
 async function generatePromptHint(content, title, summary) {
     let attempts = 0;
     const maxAttempts = apiKeys.length; 
 
     while (attempts < maxAttempts) {
         const ai = getCurrentAI();
+        const model = getNextModel(); // <-- AMBIL MODEL BERIKUTNYA
         
         if (!ai) {
             return summary; 
@@ -76,8 +97,10 @@ async function generatePromptHint(content, title, summary) {
                         Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
 
         try {
+            console.log(`   🔌 Key Index ${currentKeyIndex + 1} | Model: ${model}`);
+            
             const response = await ai.models.generateContent({
-                model: "gemini-2.5-flash", 
+                model: model, // <-- GUNAKAN MODEL ROTASI
                 contents: [{ role: "user", parts: [{ text: prompt }] }],
                 config: { temperature: 0.1 }
             });
@@ -90,12 +113,18 @@ async function generatePromptHint(content, title, summary) {
             const isQuotaError = errorMsg.includes("429") || errorMsg.includes("quota") || errorMsg.includes("resource exhausted");
 
             if (isQuotaError) {
-                console.warn(`   ⚠️ Key Index ${currentKeyIndex + 1} LIMIT/EXPIRED. Beralih ke kunci berikutnya...`);
-                currentKeyIndex++; 
+                console.warn(`   ⚠️ Key Index ${currentKeyIndex + 1} LIMIT/EXPIRED. Beralih kunci & mencoba lagi...`);
+                currentKeyIndex++; // Pindah ke kunci berikutnya
                 attempts++;
+                // Model sudah otomatis di-rotate di awal loop/fungsi
             } else {
-                console.error(`   ❌ Error non-quota pada artikel ${title}: ${error.message}`);
-                return summary; 
+                console.error(`   ❌ Error non-quota/model ${model} pada artikel ${title}: ${error.message}`);
+                // Jika error non-quota (misal model not found atau error server), kita tetap coba key berikutnya dan model berikutnya.
+                currentKeyIndex++;
+                attempts++;
+                
+                // Jika semua key habis, ini akan mengembalikan summary
+                if (currentKeyIndex >= apiKeys.length) return summary; 
             }
         }
     }
@@ -107,6 +136,7 @@ async function generatePromptHint(content, title, summary) {
 
 // --- 5. FUNGSI PEMERSATU DATA (FLATTENING) ---
 function flattenAndNormalizeData(metadata) {
+    // Fungsi ini tidak berubah
     const allPosts = [];
     
     for (const category in metadata) {
@@ -140,6 +170,7 @@ function flattenAndNormalizeData(metadata) {
 
 // --- 6. FUNGSI PEMBERSIN KONTEN (CHEERIO) ---
 function extractCleanContent(slug_html) {
+    // Fungsi ini tidak berubah
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     if (!fs.existsSync(htmlFilePath)) {
         console.error(`File tidak ditemukan: ${htmlFilePath}`);
@@ -169,7 +200,7 @@ function getLlmsWhitelistedSlugs() {
         const content = fs.readFileSync(INPUT_LLMS_FILE, 'utf8');
         const whitelistedSlugs = new Set();
         
-        // Regex diperkuat untuk menangkap SLUG (Group 3)
+        // Regex untuk menangkap SLUG (Group 3)
         const articleRegex = /-\s*\[\*\*(.*?)\*\*\]\((.*?\/artikel\/(.*?)\.html)\):\s*(.*?)\s*—\s*(.*)/;
         
         const lines = content.split('\n');
@@ -195,7 +226,7 @@ function getLlmsWhitelistedSlugs() {
 
 // --- 8. FUNGSI UTAMA: MENJALANKAN GENERASI API (ASYNC) ---
 async function generateApiFiles() {
-    console.log('--- Memulai Generasi L-K AI API (Multi-Key Support & Whitelist) ---');
+    console.log('--- Memulai Generasi L-K AI API (Multi-Key & Model Rotation) ---');
 
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
@@ -208,7 +239,7 @@ async function generateApiFiles() {
     try {
         const rawMetadata = JSON.parse(fs.readFileSync(INPUT_METADATA_FILE, 'utf8'));
         const allPosts = flattenAndNormalizeData(rawMetadata);
-        const whitelistedSlugs = getLlmsWhitelistedSlugs(); // <-- AMBIL DAFTAR WHITELIST
+        const whitelistedSlugs = getLlmsWhitelistedSlugs(); 
         
         console.log(`✅ Metadata ${allPosts.length} artikel telah dibaca.`);
 
@@ -224,7 +255,6 @@ async function generateApiFiles() {
                 skippedNotWhitelistedCount++;
                 continue; 
             }
-            // --- END Cek Whitelist ---
 
             const singlePostPath = path.join(singlePostDir, `${post.id}.json`); 
             
@@ -232,7 +262,6 @@ async function generateApiFiles() {
             if (fs.existsSync(singlePostPath)) {
                 try {
                     const existingPostData = JSON.parse(fs.readFileSync(singlePostPath, 'utf8'));
-                    // Jika ada data JSON, ambil hintnya untuk dimasukkan ke index.json
                     const { content_plain, ...summaryData } = existingPostData;
                     summaryPosts.push(summaryData);
                     cachedCount++;
@@ -244,7 +273,7 @@ async function generateApiFiles() {
 
             // --- LOGIKA B: FILE PERLU DIBUAT/DIPROSES ULANG (WHITELISTED ONLY) ---
             const cleanContent = extractCleanContent(post.slug);
-            let finalPromptHint = post.promptHint; // Default: dari artikel.json
+            let finalPromptHint = post.promptHint; 
             let generatedByAI = false;
             let isManual = post.customPromptHintManuallySet; 
 
@@ -259,14 +288,13 @@ async function generateApiFiles() {
                         finalPromptHint = newHint; 
                         generatedByAI = true;
                     } else {
-                        console.log(`   ⚠️ Hint gagal di-generate AI, akan diperlakukan sebagai GAGAL.`);
+                        console.log(`   ⚠️ Hint gagal di-generate AI (atau sama dengan summary).`);
                     }
                 } else if (isManual) {
                     console.log(`   ✅ Prompt Hint manual ditemukan, dilewati AI.`);
                 }
                 
                 // 2. Cek Kondisi Keberhasilan (Hanya ditulis jika berhasil)
-                // Berhasil jika: Manual set di artikel.json, ATAU AI berhasil generate
                 const isSuccessful = isManual || generatedByAI;
 
                 if (isSuccessful) {
@@ -283,7 +311,7 @@ async function generateApiFiles() {
                     
                 } else {
                     // KONDISI GAGAL: AI GAGAL (dan tidak ada hint manual)
-                    console.log(`   ❌ Gagal mendapatkan Prompt Hint (tidak manual & AI gagal): ${post.title}. DILOMPATI dari index.`);
+                    console.log(`   ❌ Gagal mendapatkan Prompt Hint: ${post.title}. DILOMPATI dari index.`);
                 }
             }
         }
@@ -303,6 +331,7 @@ async function generateApiFiles() {
         console.log(`Total Artikel di artikel.json dilewati (bukan di llms.txt): ${skippedNotWhitelistedCount}`);
         console.log(`Total Artikel Sukses di Index: ${summaryPosts.length}`);
         console.log(`Sisa Key Index Aktif: ${currentKeyIndex + 1} dari ${apiKeys.length}`);
+        console.log(`Model Rotation Index Akhir: ${currentModelIndex}`);
         
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
