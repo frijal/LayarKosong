@@ -121,6 +121,7 @@ def main():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM-Friendly Index ({today})</title>
+    <link rel="canonical" href="https://dalam.web.id/llms-index">
     <style>
         body {{ font-family: system-ui, sans-serif; margin: 2em 0; padding: 1em; line-height: 1.6; }}
         pre {{ background: #f8f8f8; padding: 1.5em; border-radius: 12px; overflow-x: auto; }}
