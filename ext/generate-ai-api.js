@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Rotasi Total (Key x Model), Llms.txt Whitelist
+// VERSI: Rotasi Cerdas & Early Exit
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -53,10 +53,16 @@ const TOTAL_KEYS = apiKeys.length;
 const TOTAL_MODELS = MODELS_TO_ROTATE.length;
 const TOTAL_COMBINATIONS = TOTAL_KEYS * TOTAL_MODELS;
 
+// --- DAFTAR BLACKLIST GLOBAL (LEARNED ROTATION) ---
+// Set untuk melacak Key atau Model yang gagal pada artikel SEBELUMNYA
+const failedKeys = new Set();
+const failedModels = new Set();
+// --- END BLACKLIST ---
+
 if (TOTAL_KEYS === 0) {
     console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Mode fallback/manual.");
 } else {
-    console.log(`✅ ${TOTAL_KEYS} Kunci API dimuat & ${TOTAL_MODELS} Model. Total ${TOTAL_COMBINATIONS} Kombinasi rotasi tersedia.`);
+    console.log(`✅ ${TOTAL_KEYS} Kunci API dimuat & ${TOTAL_MODELS} Model. Rotasi Cerdas Aktif.`);
 }
 
 // Fungsi untuk membuat instance AI dengan kunci tertentu
@@ -64,45 +70,51 @@ function getAIInstance(key) {
     return new GoogleGenAI({ apiKey: key });
 }
 
-// Helper untuk mendapatkan kombinasi berikutnya
-let currentCombinationIndex = 0;
+// Helper untuk mendapatkan kombinasi berikutnya yang TIDAK ADA DI BLACKLIST
+function getNextCombination(currentIndex) {
+    
+    // Iterasi melalui semua kombinasi yang mungkin, dimulai dari currentIndex
+    for (let i = currentIndex; i < TOTAL_COMBINATIONS; i++) {
+        
+        const keyIndex = i % TOTAL_KEYS;
+        const modelIndex = Math.floor(i / TOTAL_KEYS) % TOTAL_MODELS;
+        
+        const key = apiKeys[keyIndex];
+        const model = MODELS_TO_ROTATE[modelIndex];
 
-function getNextCombination() {
-    if (TOTAL_KEYS === 0) return { ai: null, model: null, keyIndex: -1, modelIndex: -1 };
-    if (currentCombinationIndex >= TOTAL_COMBINATIONS) {
-        console.warn("⚠️ Semua kombinasi kunci dan model telah diuji!");
-        return { ai: null, model: null, keyIndex: -1, modelIndex: -1 };
+        // Cek Blacklist: HANYA ambil kombinasi yang sehat
+        if (!failedKeys.has(key) && !failedModels.has(model)) {
+            return { 
+                ai: getAIInstance(key), 
+                model: model, 
+                keyIndex: keyIndex, 
+                modelIndex: modelIndex,
+                newIndex: i + 1 // Index kombinasi berikutnya yang akan dicoba
+            };
+        }
     }
-
-    const keyIndex = currentCombinationIndex % TOTAL_KEYS;
-    const modelIndex = Math.floor(currentCombinationIndex / TOTAL_KEYS) % TOTAL_MODELS;
     
-    const key = apiKeys[keyIndex];
-    const model = MODELS_TO_ROTATE[modelIndex];
-    
-    currentCombinationIndex++;
-
-    return { 
-        ai: getAIInstance(key), 
-        model: model, 
-        keyIndex: keyIndex, 
-        modelIndex: modelIndex
-    };
+    // Jika semua kombinasi (yang tersisa) sudah diuji atau di-blacklist
+    return { ai: null, model: null, keyIndex: -1, modelIndex: -1, newIndex: TOTAL_COMBINATIONS };
 }
 
 
-// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI TOTAL ---
+// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI CERDAS & EARLY EXIT ---
 async function generatePromptHint(content, title, summary) {
     
-    // Reset index kombinasi untuk setiap artikel baru
-    currentCombinationIndex = 0; 
+    let currentCombinationIndex = 0; // Mulai dari awal untuk setiap artikel
 
     while (currentCombinationIndex < TOTAL_COMBINATIONS) {
         
-        const { ai, model, keyIndex, modelIndex } = getNextCombination();
+        const combination = getNextCombination(currentCombinationIndex);
+        
+        const { ai, model, keyIndex, newIndex } = combination;
+        currentCombinationIndex = newIndex; // Update index untuk iterasi berikutnya
         
         if (!ai) {
-            return summary; 
+            // Early Exit: Jika tidak ada kombinasi sehat tersisa yang dapat dicoba.
+            console.error(`   ❌ EARLY EXIT: Tidak ada kombinasi kunci/model sehat tersisa untuk artikel ini.`);
+            break; 
         }
 
         const prompt = `Anda adalah ahli Generative Engine Optimization (GEO). 
@@ -116,7 +128,7 @@ async function generatePromptHint(content, title, summary) {
                         Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
 
         try {
-            console.log(`   ⏳ Kombinasi ${currentCombinationIndex} dari ${TOTAL_COMBINATIONS}: Key Index ${keyIndex + 1} | Model: ${model}`);
+            console.log(`   ⏳ Coba: Key ${keyIndex + 1} | Model: ${model}`);
             
             const response = await ai.models.generateContent({
                 model: model, 
@@ -129,18 +141,22 @@ async function generatePromptHint(content, title, summary) {
 
         } catch (error) {
             const errorMsg = error.message.toLowerCase();
+            const currentKey = apiKeys[keyIndex];
+            
             const isQuotaError = errorMsg.includes("429") || errorMsg.includes("quota") || errorMsg.includes("resource exhausted");
 
             if (isQuotaError) {
-                console.warn(`   ⚠️ GAGAL KUOTA pada Kombinasi ${currentCombinationIndex}. Mencoba kombinasi berikutnya...`);
+                console.warn(`   ⚠️ GAGAL KUOTA: Key Index ${keyIndex + 1} di-blacklist untuk sisa artikel.`);
+                failedKeys.add(currentKey); // Blacklist Kunci
             } else {
-                console.error(`   ❌ Error non-quota/model ${model} pada Kombinasi ${currentCombinationIndex}: ${error.message}. Mencoba kombinasi berikutnya...`);
+                console.error(`   ❌ ERROR MODEL/NON-QUOTA: Model ${model} di-blacklist untuk sisa artikel: ${error.message}`);
+                failedModels.add(model); // Blacklist Model
             }
-            // Loop akan terus berjalan ke kombinasi berikutnya secara otomatis
+            // Loop akan secara otomatis beralih ke kombinasi berikutnya yang tidak ada di blacklist
         }
     }
 
-    console.error(`   ❌ Semua ${TOTAL_COMBINATIONS} kombinasi kunci/model gagal untuk artikel ini.`);
+    // Jika loop berakhir tanpa return (berarti terjadi Early Exit atau semua gagal), kembalikan summary lama.
     return summary;
 }
 
@@ -235,7 +251,7 @@ function getLlmsWhitelistedSlugs() {
 
 // --- 8. FUNGSI UTAMA: MENJALANKAN GENERASI API (ASYNC) ---
 async function generateApiFiles() {
-    console.log('--- Memulai Generasi L-K AI API (Multi-Key & Model Rotation) ---');
+    console.log('--- Memulai Generasi L-K AI API (Rotasi Cerdas & Early Exit) ---');
 
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
@@ -256,6 +272,7 @@ async function generateApiFiles() {
         let processedCount = 0;
         let cachedCount = 0;
         let skippedNotWhitelistedCount = 0;
+        let skippedFailedCount = 0;
 
         for (const post of allPosts) {
             
@@ -297,7 +314,9 @@ async function generateApiFiles() {
                         finalPromptHint = newHint; 
                         generatedByAI = true;
                     } else {
-                        console.log(`   ⚠️ Hint gagal di-generate AI (atau sama dengan summary).`);
+                        // Jika hint sama dengan summary lama, berarti semua kombinasi gagal/Early Exit
+                        console.log(`   ⚠️ Hint gagal di-generate AI (atau sama dengan summary lama).`);
+                        skippedFailedCount++;
                     }
                 } else if (isManual) {
                     console.log(`   ✅ Prompt Hint manual ditemukan, dilewati AI.`);
@@ -339,6 +358,10 @@ async function generateApiFiles() {
         console.log(`Total Artikel dilewati (cache JSON): ${cachedCount}`);
         console.log(`Total Artikel di artikel.json dilewati (bukan di llms.txt): ${skippedNotWhitelistedCount}`);
         console.log(`Total Artikel Sukses di Index: ${summaryPosts.length}`);
+        console.log(`Total Artikel DILOMPATI karena GAGAL AI/Key: ${skippedFailedCount}`);
+        console.log(`\nREKAP KEGAGALAN PERMANEN (Blacklisted untuk proses selanjutnya):`);
+        console.log(`Keys Gagal (Blacklisted): ${failedKeys.size} ${failedKeys.size > 0 ? `[${Array.from(failedKeys).map((_, i) => i+1).join(', ')}]` : ''}`);
+        console.log(`Models Gagal (Blacklisted): ${failedModels.size} ${failedModels.size > 0 ? `[${Array.from(failedModels).join(', ')}]` : ''}`);
         
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
