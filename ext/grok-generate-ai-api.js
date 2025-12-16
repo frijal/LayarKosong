@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// FIXED VERSION – CI SAFE, GEMINI SDK SAFE, GEO READY
+// CI STRICT + AUTO KEY ROTATION + FAIL FAST
 // =========================================================
 
 import fs from 'node:fs';
@@ -20,50 +20,69 @@ const INPUT_LLMS_FILE = path.join(ROOT, 'llms.txt');
 const OUTPUT_API_DIR = path.join(ROOT, 'api', 'v1');
 const DOMAIN_BASE_URL = 'https://dalam.web.id';
 
-// --- API KEY ROTATION ---
+// --- API KEYS ---
 const apiKeys = [
   process.env.GEMINI_API_KEY,
-  ...Array.from({ length: 20 }, (_, i) => process.env[`GEMINI_API_KEY${i + 1}`])
+...Array.from({ length: 20 }, (_, i) => process.env[`GEMINI_API_KEY${i + 1}`])
 ].filter(Boolean);
 
 let currentKeyIndex = 0;
 
 function getAI() {
-  if (!apiKeys.length || currentKeyIndex >= apiKeys.length) return null;
+  if (!apiKeys.length) {
+    throw new Error('TIDAK ADA GEMINI_API_KEY TERSEDIA');
+  }
+  if (currentKeyIndex >= apiKeys.length) {
+    throw new Error('SEMUA GEMINI_API_KEY TELAH HABIS');
+  }
   return new GoogleGenerativeAI(apiKeys[currentKeyIndex]);
 }
 
-// --- PROMPT GENERATOR ---
+// --- PROMPT GENERATOR (ROTASI + STRICT) ---
 async function generatePromptHint(content, title, summary) {
-  const ai = getAI();
-
-  // Fallback TANPA AI = tetap sukses
-  if (!ai) {
-    const questions = content.match(/[^.!?]*\?/g)?.slice(0, 3) || [];
-    if (questions.length) return questions.join('; ');
-    return `Apa itu ${title}?; ${summary}`;
-  }
-
   const prompt = `
-Buat 3–5 pertanyaan alami (pisahkan dengan ;) yang jawabannya ADA di konten ini.
+  Buat 3–5 pertanyaan alami (pisahkan dengan ;) yang jawabannya ADA di konten ini.
 
-Judul: ${title}
-Ringkasan: ${summary}
-Konten:
-${content.slice(0, 1500)}
-`;
+  Judul: ${title}
+  Ringkasan: ${summary}
+  Konten:
+  ${content.slice(0, 1500)}
+  `;
 
-  try {
-    const model = ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
-    const result = await model.generateContent(prompt);
-    return result.response.text().trim();
-  } catch (err) {
-    if (/quota|429|exhausted/i.test(err.message)) {
-      currentKeyIndex++;
-      return generatePromptHint(content, title, summary);
+  while (currentKeyIndex < apiKeys.length) {
+    const ai = getAI();
+
+    try {
+      const model = ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
+      const result = await model.generateContent(prompt);
+      return result.response.text().trim();
+    } catch (err) {
+      const status = err.status || err?.cause?.status;
+      const message = err.message || String(err);
+
+      console.error('❌ GEMINI ERROR');
+      console.error(`   Key     : ${currentKeyIndex + 1}/${apiKeys.length}`);
+      console.error(`   Status  : ${status ?? 'unknown'}`);
+      console.error(`   Message : ${message}`);
+
+      // 🔁 ROTASI KEY HANYA UNTUK ERROR RETRYABLE
+      const isRetryable =
+      status === 429 ||
+      /quota|exhausted/i.test(message);
+
+      if (isRetryable) {
+        console.warn('🔁 Quota hit, rotasi ke key berikutnya...');
+        currentKeyIndex++;
+        continue;
+      }
+
+      // 🚫 ERROR LAIN (503, overload, dll) = FATAL
+      throw err;
     }
-    throw err;
   }
+
+  // Jika loop habis
+  throw new Error('SEMUA GEMINI_API_KEY GAGAL DIGUNAKAN');
 }
 
 // --- METADATA FLATTEN ---
@@ -73,6 +92,7 @@ function flatten(metadata) {
   for (const category in metadata) {
     for (const item of metadata[category]) {
       const [title, slug, img, date, summary, manualHint] = item;
+
       const post = {
         id: slug.replace('.html', ''),
         title,
@@ -106,12 +126,14 @@ function extractContent(slug) {
 
   const $ = load(fs.readFileSync(file, 'utf8'));
   $('script,style,footer').remove();
+
   return $('.container').text().replace(/\s+/g, ' ').trim();
 }
 
 // --- LLMS WHITELIST ---
 function getWhitelist() {
   if (!fs.existsSync(INPUT_LLMS_FILE)) return new Set();
+
   const text = fs.readFileSync(INPUT_LLMS_FILE, 'utf8');
   return new Set(
     [...text.matchAll(/\/artikel\/(.*?)\.html/g)].map(m => m[1])
@@ -132,6 +154,7 @@ async function run() {
     if (!whitelist.has(post.id)) continue;
 
     const out = path.join(OUTPUT_API_DIR, 'post', `${post.id}.json`);
+
     if (fs.existsSync(out)) {
       index.push(JSON.parse(fs.readFileSync(out)));
       continue;
@@ -141,7 +164,11 @@ async function run() {
     if (!content) continue;
 
     if (!post.isManual) {
-      post.promptHint = await generatePromptHint(content, post.title, post.summary);
+      post.promptHint = await generatePromptHint(
+        content,
+        post.title,
+        post.summary
+      );
     }
 
     const data = { ...post, content_plain: content };
@@ -154,13 +181,15 @@ async function run() {
 
   fs.writeFileSync(
     path.join(OUTPUT_API_DIR, 'index.json'),
-    JSON.stringify(index, null, 2)
+                   JSON.stringify(index, null, 2)
   );
 
   console.log(`✔ Generated ${index.length} API entries`);
 }
 
+// --- FAIL FAST ENTRYPOINT ---
 run().catch(err => {
+  console.error('❌ FATAL PIPELINE ERROR');
   console.error(err);
   process.exit(1);
 });
