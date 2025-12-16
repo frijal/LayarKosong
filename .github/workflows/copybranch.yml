@@ -65,6 +65,7 @@ jobs:
             --include='api/***' \
             --include='img/***' \
             --include='artikel.json' \
+            --include='llms.md' \
             --include='_redirects' \
             --include='_headers' \
             --include='*.html' \
