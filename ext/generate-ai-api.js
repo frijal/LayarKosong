@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Multi-Key & Multi-Model Rotation, Llms.txt Whitelist
+// VERSI: Rotasi Total (Key x Model), Llms.txt Whitelist
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -23,7 +23,7 @@ const DOMAIN_BASE_URL = 'https://dalam.web.id';
 
 // --- 3. KEY & MODEL ROTATION SETUP ---
 
-// Daftar Model yang akan digunakan secara rotasi
+// Daftar Model yang akan digunakan
 const MODELS_TO_ROTATE = [
     "gemini-2.5-flash",
     "gemini-2.5-flash-lite",
@@ -37,9 +37,7 @@ const MODELS_TO_ROTATE = [
     "gemini-2.5-flash-native-audio-dialog"
 ];
 
-let currentModelIndex = 0; // Global pointer untuk model
-
-// Daftar Kunci API
+// Daftar Kunci API (Maksimal 20 Kunci)
 const apiKeys = [];
 if (process.env.GEMINI_API_KEY) {
     apiKeys.push(process.env.GEMINI_API_KEY);
@@ -50,37 +48,58 @@ for (let i = 1; i <= 20; i++) {
         apiKeys.push(key);
     }
 }
-let currentKeyIndex = 0; // Global pointer untuk kunci
 
-if (apiKeys.length === 0) {
+const TOTAL_KEYS = apiKeys.length;
+const TOTAL_MODELS = MODELS_TO_ROTATE.length;
+const TOTAL_COMBINATIONS = TOTAL_KEYS * TOTAL_MODELS;
+
+if (TOTAL_KEYS === 0) {
     console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Mode fallback/manual.");
 } else {
-    console.log(`✅ ${apiKeys.length} Kunci API dimuat. Model tersedia: ${MODELS_TO_ROTATE.length}.`);
+    console.log(`✅ ${TOTAL_KEYS} Kunci API dimuat & ${TOTAL_MODELS} Model. Total ${TOTAL_COMBINATIONS} Kombinasi rotasi tersedia.`);
 }
 
-function getCurrentAI() {
-    if (apiKeys.length === 0) return null;
-    if (currentKeyIndex >= apiKeys.length) {
-        return null;
+// Fungsi untuk membuat instance AI dengan kunci tertentu
+function getAIInstance(key) {
+    return new GoogleGenAI({ apiKey: key });
+}
+
+// Helper untuk mendapatkan kombinasi berikutnya
+let currentCombinationIndex = 0;
+
+function getNextCombination() {
+    if (TOTAL_KEYS === 0) return { ai: null, model: null, keyIndex: -1, modelIndex: -1 };
+    if (currentCombinationIndex >= TOTAL_COMBINATIONS) {
+        console.warn("⚠️ Semua kombinasi kunci dan model telah diuji!");
+        return { ai: null, model: null, keyIndex: -1, modelIndex: -1 };
     }
-    return new GoogleGenAI({ apiKey: apiKeys[currentKeyIndex] });
+
+    const keyIndex = currentCombinationIndex % TOTAL_KEYS;
+    const modelIndex = Math.floor(currentCombinationIndex / TOTAL_KEYS) % TOTAL_MODELS;
+    
+    const key = apiKeys[keyIndex];
+    const model = MODELS_TO_ROTATE[modelIndex];
+    
+    currentCombinationIndex++;
+
+    return { 
+        ai: getAIInstance(key), 
+        model: model, 
+        keyIndex: keyIndex, 
+        modelIndex: modelIndex
+    };
 }
 
-function getNextModel() {
-    const model = MODELS_TO_ROTATE[currentModelIndex % MODELS_TO_ROTATE.length];
-    currentModelIndex = (currentModelIndex + 1) % MODELS_TO_ROTATE.length;
-    return model;
-}
 
-
-// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI KUNCI DAN MODEL ---
+// --- 4. FUNGSI PEMBUAT PROMPT HINT DENGAN ROTASI TOTAL ---
 async function generatePromptHint(content, title, summary) {
-    let attempts = 0;
-    const maxAttempts = apiKeys.length; 
+    
+    // Reset index kombinasi untuk setiap artikel baru
+    currentCombinationIndex = 0; 
 
-    while (attempts < maxAttempts) {
-        const ai = getCurrentAI();
-        const model = getNextModel(); // <-- AMBIL MODEL BERIKUTNYA
+    while (currentCombinationIndex < TOTAL_COMBINATIONS) {
+        
+        const { ai, model, keyIndex, modelIndex } = getNextCombination();
         
         if (!ai) {
             return summary; 
@@ -97,46 +116,37 @@ async function generatePromptHint(content, title, summary) {
                         Contoh Output: Apa itu GEO?; Apa perbedaan SEO dan GEO?; Strategi komunikasi di era AI generatif.`;
 
         try {
-            console.log(`   🔌 Key Index ${currentKeyIndex + 1} | Model: ${model}`);
+            console.log(`   ⏳ Kombinasi ${currentCombinationIndex} dari ${TOTAL_COMBINATIONS}: Key Index ${keyIndex + 1} | Model: ${model}`);
             
             const response = await ai.models.generateContent({
-                model: model, // <-- GUNAKAN MODEL ROTASI
+                model: model, 
                 contents: [{ role: "user", parts: [{ text: prompt }] }],
                 config: { temperature: 0.1 }
             });
 
             const hint = response.text.trim().replace(/^['"]|['"]$/g, ''); 
-            return hint; 
+            return hint; // SUKSES!
 
         } catch (error) {
             const errorMsg = error.message.toLowerCase();
             const isQuotaError = errorMsg.includes("429") || errorMsg.includes("quota") || errorMsg.includes("resource exhausted");
 
             if (isQuotaError) {
-                console.warn(`   ⚠️ Key Index ${currentKeyIndex + 1} LIMIT/EXPIRED. Beralih kunci & mencoba lagi...`);
-                currentKeyIndex++; // Pindah ke kunci berikutnya
-                attempts++;
-                // Model sudah otomatis di-rotate di awal loop/fungsi
+                console.warn(`   ⚠️ GAGAL KUOTA pada Kombinasi ${currentCombinationIndex}. Mencoba kombinasi berikutnya...`);
             } else {
-                console.error(`   ❌ Error non-quota/model ${model} pada artikel ${title}: ${error.message}`);
-                // Jika error non-quota (misal model not found atau error server), kita tetap coba key berikutnya dan model berikutnya.
-                currentKeyIndex++;
-                attempts++;
-                
-                // Jika semua key habis, ini akan mengembalikan summary
-                if (currentKeyIndex >= apiKeys.length) return summary; 
+                console.error(`   ❌ Error non-quota/model ${model} pada Kombinasi ${currentCombinationIndex}: ${error.message}. Mencoba kombinasi berikutnya...`);
             }
+            // Loop akan terus berjalan ke kombinasi berikutnya secara otomatis
         }
     }
 
-    console.error("   ❌ Semua kunci API gagal untuk artikel ini.");
+    console.error(`   ❌ Semua ${TOTAL_COMBINATIONS} kombinasi kunci/model gagal untuk artikel ini.`);
     return summary;
 }
 
 
 // --- 5. FUNGSI PEMERSATU DATA (FLATTENING) ---
 function flattenAndNormalizeData(metadata) {
-    // Fungsi ini tidak berubah
     const allPosts = [];
     
     for (const category in metadata) {
@@ -170,7 +180,6 @@ function flattenAndNormalizeData(metadata) {
 
 // --- 6. FUNGSI PEMBERSIN KONTEN (CHEERIO) ---
 function extractCleanContent(slug_html) {
-    // Fungsi ini tidak berubah
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     if (!fs.existsSync(htmlFilePath)) {
         console.error(`File tidak ditemukan: ${htmlFilePath}`);
@@ -280,8 +289,8 @@ async function generateApiFiles() {
             if (cleanContent) {
                 
                 // 1. Panggil AI HANYA jika Keys tersedia DAN belum di-set manual
-                if (apiKeys.length > 0 && !isManual) { 
-                    console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
+                if (TOTAL_KEYS > 0 && !isManual) { 
+                    console.log(`   ⏳ Mulai mencari Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
                     
                     if (newHint !== post.summary) {
@@ -330,8 +339,6 @@ async function generateApiFiles() {
         console.log(`Total Artikel dilewati (cache JSON): ${cachedCount}`);
         console.log(`Total Artikel di artikel.json dilewati (bukan di llms.txt): ${skippedNotWhitelistedCount}`);
         console.log(`Total Artikel Sukses di Index: ${summaryPosts.length}`);
-        console.log(`Sisa Key Index Aktif: ${currentKeyIndex + 1} dari ${apiKeys.length}`);
-        console.log(`Model Rotation Index Akhir: ${currentModelIndex}`);
         
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
