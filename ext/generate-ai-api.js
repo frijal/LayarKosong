@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Multi-Key Rotation, Hard Caching, & Hanya Output yang Berhasil
+// VERSI: Multi-Key Rotation, Llms.txt Sebagai Whitelist Wajib, & Hanya Output yang Berhasil
 // =========================================================
 
 // --- 1. IMPORT & SETUP ---
@@ -17,18 +17,17 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 const INPUT_METADATA_FILE = path.join(PROJECT_ROOT, 'artikel.json'); 
 const INPUT_ARTICLES_DIR = path.join(PROJECT_ROOT, 'artikel'); 
+const INPUT_LLMS_FILE = path.join(PROJECT_ROOT, 'llms.txt'); 
 const OUTPUT_API_DIR = path.join(PROJECT_ROOT, 'api', 'v1'); 
 const DOMAIN_BASE_URL = 'https://dalam.web.id'; 
 
 // --- 3. KEY ROTATION SETUP (MULTI-KEYS) ---
 const apiKeys = [];
 
-// 3a. Ambil kunci standar
 if (process.env.GEMINI_API_KEY) {
     apiKeys.push(process.env.GEMINI_API_KEY);
 }
 
-// 3b. Ambil kunci bernomor (GEMINI_API_KEY1 s/d GEMINI_API_KEY20)
 for (let i = 1; i <= 20; i++) {
     const key = process.env[`GEMINI_API_KEY${i}`];
     if (key) {
@@ -36,16 +35,14 @@ for (let i = 1; i <= 20; i++) {
     }
 }
 
-// Global pointer untuk melacak kunci mana yang sedang aktif
 let currentKeyIndex = 0;
 
 if (apiKeys.length === 0) {
-    console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Hanya artikel dengan Prompt Hint manual yang akan diproses.");
+    console.warn("⚠️ PERINGATAN: Tidak ada GEMINI_API_KEY ditemukan. Hanya artikel LLMS.TXT dengan Prompt Hint manual/cache yang akan diproses.");
 } else {
     console.log(`✅ ${apiKeys.length} Kunci API berhasil dimuat. Siap untuk rotasi otomatis!`);
 }
 
-// Helper untuk mendapatkan instance AI dengan kunci yang aktif saat ini
 function getCurrentAI() {
     if (apiKeys.length === 0) return null;
     if (currentKeyIndex >= apiKeys.length) {
@@ -65,7 +62,7 @@ async function generatePromptHint(content, title, summary) {
         const ai = getCurrentAI();
         
         if (!ai) {
-            return summary; // Jika tidak ada kunci, kembalikan summary
+            return summary; 
         }
 
         const prompt = `Anda adalah ahli Generative Engine Optimization (GEO). 
@@ -86,7 +83,7 @@ async function generatePromptHint(content, title, summary) {
             });
 
             const hint = response.text.trim().replace(/^['"]|['"]$/g, ''); 
-            return hint; // SUKSES!
+            return hint; 
 
         } catch (error) {
             const errorMsg = error.message.toLowerCase();
@@ -98,7 +95,7 @@ async function generatePromptHint(content, title, summary) {
                 attempts++;
             } else {
                 console.error(`   ❌ Error non-quota pada artikel ${title}: ${error.message}`);
-                return summary; // Fallback ke summary
+                return summary; 
             }
         }
     }
@@ -110,9 +107,8 @@ async function generatePromptHint(content, title, summary) {
 
 // --- 5. FUNGSI PEMERSATU DATA (FLATTENING) ---
 function flattenAndNormalizeData(metadata) {
-    // Fungsi ini tidak berubah
     const allPosts = [];
-    // ... (Logika flatten dan sort sama) ...
+    
     for (const category in metadata) {
         if (Object.hasOwnProperty.call(metadata, category)) {
             const articles = metadata[category];
@@ -144,7 +140,6 @@ function flattenAndNormalizeData(metadata) {
 
 // --- 6. FUNGSI PEMBERSIN KONTEN (CHEERIO) ---
 function extractCleanContent(slug_html) {
-    // Fungsi ini tidak berubah
     const htmlFilePath = path.join(INPUT_ARTICLES_DIR, slug_html);
     if (!fs.existsSync(htmlFilePath)) {
         console.error(`File tidak ditemukan: ${htmlFilePath}`);
@@ -163,9 +158,44 @@ function extractCleanContent(slug_html) {
 }
 
 
-// --- 7. FUNGSI UTAMA: MENJALANKAN GENERASI API (ASYNC) ---
+// --- 7. FUNGSI PEMBACA LLMS.TXT (UNTUK WHITELIST SLUG) ---
+function getLlmsWhitelistedSlugs() {
+    if (!fs.existsSync(INPUT_LLMS_FILE)) {
+        console.warn("⚠️ File llms.txt tidak ditemukan. TIDAK ADA artikel yang akan diproses.");
+        return new Set();
+    }
+
+    try {
+        const content = fs.readFileSync(INPUT_LLMS_FILE, 'utf8');
+        const whitelistedSlugs = new Set();
+        
+        // Regex diperkuat untuk menangkap SLUG (Group 3)
+        const articleRegex = /-\s*\[\*\*(.*?)\*\*\]\((.*?\/artikel\/(.*?)\.html)\):\s*(.*?)\s*—\s*(.*)/;
+        
+        const lines = content.split('\n');
+        let parsedCount = 0;
+        for (const line of lines) {
+            const match = line.match(articleRegex);
+            if (match) {
+                const slug = match[3].trim(); 
+                if (slug) {
+                    whitelistedSlugs.add(slug);
+                    parsedCount++;
+                }
+            }
+        }
+        console.log(`✅ ${parsedCount} artikel diizinkan (whitelisted) berdasarkan llms.txt.`);
+        return whitelistedSlugs;
+    } catch (error) {
+        console.error("❌ Gagal membaca atau mem-parsing llms.txt:", error.message);
+        return new Set();
+    }
+}
+
+
+// --- 8. FUNGSI UTAMA: MENJALANKAN GENERASI API (ASYNC) ---
 async function generateApiFiles() {
-    console.log('--- Memulai Generasi L-K AI API (Multi-Key Support) ---');
+    console.log('--- Memulai Generasi L-K AI API (Multi-Key Support & Whitelist) ---');
 
     if (!fs.existsSync(OUTPUT_API_DIR)) {
         fs.mkdirSync(OUTPUT_API_DIR, { recursive: true });
@@ -178,73 +208,82 @@ async function generateApiFiles() {
     try {
         const rawMetadata = JSON.parse(fs.readFileSync(INPUT_METADATA_FILE, 'utf8'));
         const allPosts = flattenAndNormalizeData(rawMetadata);
+        const whitelistedSlugs = getLlmsWhitelistedSlugs(); // <-- AMBIL DAFTAR WHITELIST
+        
         console.log(`✅ Metadata ${allPosts.length} artikel telah dibaca.`);
 
         const summaryPosts = [];
         let processedCount = 0;
-        let skippedCount = 0;
+        let cachedCount = 0;
+        let skippedNotWhitelistedCount = 0;
 
         for (const post of allPosts) {
+            
+            // --- LOGIKA UTAMA: Cek Whitelist Wajib ---
+            if (!whitelistedSlugs.has(post.id)) {
+                skippedNotWhitelistedCount++;
+                continue; 
+            }
+            // --- END Cek Whitelist ---
+
             const singlePostPath = path.join(singlePostDir, `${post.id}.json`); 
             
             // --- LOGIKA A: FILE SUDAH ADA (CACHING) ---
             if (fs.existsSync(singlePostPath)) {
                 try {
                     const existingPostData = JSON.parse(fs.readFileSync(singlePostPath, 'utf8'));
+                    // Jika ada data JSON, ambil hintnya untuk dimasukkan ke index.json
                     const { content_plain, ...summaryData } = existingPostData;
                     summaryPosts.push(summaryData);
-                    skippedCount++;
-                    continue; // Lanjut ke artikel berikutnya
+                    cachedCount++;
+                    continue; 
                 } catch (e) {
-                    console.warn(`⚠️ File JSON rusak untuk ${post.title}, akan dibuat ulang.`);
-                    // Jika rusak, lanjut ke bawah untuk proses ulang
+                    console.warn(`⚠️ File JSON rusak untuk ${post.title} (WHITELISTED), akan dibuat ulang.`);
                 }
             }
-            // --- END LOGIKA A ---
 
-            // --- LOGIKA B: FILE PERLU DIBUAT/DIPROSES ULANG ---
+            // --- LOGIKA B: FILE PERLU DIBUAT/DIPROSES ULANG (WHITELISTED ONLY) ---
             const cleanContent = extractCleanContent(post.slug);
-            let finalPromptHint = post.promptHint;
+            let finalPromptHint = post.promptHint; // Default: dari artikel.json
             let generatedByAI = false;
+            let isManual = post.customPromptHintManuallySet; 
 
             if (cleanContent) {
-                // 1. Panggil AI HANYA jika Keys tersedia DAN bukan hint manual
-                if (apiKeys.length > 0 && !post.customPromptHintManuallySet) { 
+                
+                // 1. Panggil AI HANYA jika Keys tersedia DAN belum di-set manual
+                if (apiKeys.length > 0 && !isManual) { 
                     console.log(`   ⏳ Membuat Prompt Hint AI untuk: ${post.title}`);
                     const newHint = await generatePromptHint(cleanContent, post.title, post.summary);
                     
                     if (newHint !== post.summary) {
-                        finalPromptHint = newHint; // Update hint jika AI sukses
+                        finalPromptHint = newHint; 
                         generatedByAI = true;
                     } else {
-                        // Jika AI gagal/error, finalPromptHint tetap summary
                         console.log(`   ⚠️ Hint gagal di-generate AI, akan diperlakukan sebagai GAGAL.`);
                     }
-                } else if (post.customPromptHintManuallySet) {
+                } else if (isManual) {
                     console.log(`   ✅ Prompt Hint manual ditemukan, dilewati AI.`);
                 }
                 
-                // 2. Cek Kondisi Keberhasilan
-                // Sukses jika: Manual set, ATAU AI berhasil membuat hint baru
-                const isSuccessful = post.customPromptHintManuallySet || generatedByAI;
+                // 2. Cek Kondisi Keberhasilan (Hanya ditulis jika berhasil)
+                // Berhasil jika: Manual set di artikel.json, ATAU AI berhasil generate
+                const isSuccessful = isManual || generatedByAI;
 
                 if (isSuccessful) {
                     // Penulisan File (HANYA JIKA SUKSES)
                     post.promptHint = finalPromptHint; 
                     post.content_plain = cleanContent;
 
-                    // Tulis JSON Single Post
                     const { customPromptHintManuallySet, ...postForJson } = post;
                     fs.writeFileSync(singlePostPath, JSON.stringify(postForJson, null, 2));
                     
-                    // Siapkan untuk Master List
                     const { content_plain, ...summary } = postForJson; 
                     summaryPosts.push(summary);
                     processedCount++;
                     
                 } else {
                     // KONDISI GAGAL: AI GAGAL (dan tidak ada hint manual)
-                    console.log(`   ❌ Gagal mendapatkan Prompt Hint (tidak manual & AI gagal): ${post.title}. DILOMPATI.`);
+                    console.log(`   ❌ Gagal mendapatkan Prompt Hint (tidak manual & AI gagal): ${post.title}. DILOMPATI dari index.`);
                 }
             }
         }
@@ -252,14 +291,18 @@ async function generateApiFiles() {
         // --- TULIS FILE INDEX UTAMA ---
         const masterListPath = path.join(OUTPUT_API_DIR, 'index.json');
         
-        // Tulis file HANYA jika proses loop selesai dengan aman
-        fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
+        if (summaryPosts.length > 0) {
+            fs.writeFileSync(masterListPath, JSON.stringify(summaryPosts, null, 2));
+        } else {
+            console.warn('⚠️ Tidak ada artikel yang berhasil diproses. File index.json TIDAK DIBUAT.');
+        }
 
         console.log(`\n🎉 Proses Selesai!`);
-        console.log(`Total Artikel diproses & ditulis: ${processedCount}`);
-        console.log(`Total Artikel dilewati (cache/manual): ${skippedCount}`);
+        console.log(`Total Artikel diproses & ditulis (baru): ${processedCount}`);
+        console.log(`Total Artikel dilewati (cache JSON): ${cachedCount}`);
+        console.log(`Total Artikel di artikel.json dilewati (bukan di llms.txt): ${skippedNotWhitelistedCount}`);
+        console.log(`Total Artikel Sukses di Index: ${summaryPosts.length}`);
         console.log(`Sisa Key Index Aktif: ${currentKeyIndex + 1} dari ${apiKeys.length}`);
-        console.log(`File Index Utama dibuat di: ${masterListPath}`);
         
     } catch (error) {
         console.error('\n❌ ERROR FATAL SAAT MENJALANKAN SKRIP:');
