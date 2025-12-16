@@ -54,7 +54,7 @@ ${content.slice(0, 1500)}
 `;
 
   try {
-    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
     const result = await model.generateContent(prompt);
     return result.response.text().trim();
   } catch (err) {
