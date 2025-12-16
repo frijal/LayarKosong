@@ -53,7 +53,7 @@ def load_and_process_data(file_path):
                 date_str = item[3][:10] if len(item) > 3 and item[3] else "N/A"
                 summary = item[4].strip()
 
-                full_url = f"{DOMAIN}/{slug}"
+                full_url = f"{DOMAIN}/artikel/{slug}"
 
                 temp_lines.append(f"- [**{title}**]({full_url}): {date_str} — {summary}")
 
