@@ -1,128 +1,286 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- Basic SEO -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂</title>
-    <meta name="description" content="Panduan santai dan interaktif seputar perintah du di Linux. Cek penggunaan disk, tips opsi -h -s -a, dan script untuk menangani hardlink.">
+
     <link rel="canonical" href="https://dalam.web.id/artikel/du-linux-panduan.html">
-    <!-- Favicon & Theme -->
-    <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
-    <meta name="theme-color" content="#00cec9">
-    <!-- Open Graph -->
-    <meta property="og:title" content="📂 Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk">
-    <meta property="og:description" content="Panduan santai & interaktif perintah du Linux. Tips opsi -h -s -a, dan script untuk menangani hardlink.">
+    <meta name="description" content="Cara menggunakan perintah du di Linux untuk cek ukuran file dan folder secara akurat. Tips opsi -h -s -a, masalah hardlink, dan skrip Perl untuk hasil presisi.">
+    <meta name="news_keywords" content="Linux, Command Line, Disk Usage, du command, Tutorial Linux, Sysadmin, Balikpapan Tech">
+    <meta name="prompthint" content="Panduan teknis penggunaan command du pada terminal Linux untuk memantau kapasitas penyimpanan disk secara efektif.">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <meta property="og:title" content="Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂">
+    <meta property="og:description" content="Lagi bingung Hardisk penuh? Pelajari cara cek folder mana yang paling rakus memori pakai perintah du di Linux. Lengkap dengan trik script akurasi tinggi!">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikel/du-linux-panduan.html">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg">
-    <!-- Twitter Card -->
+
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="📂 Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk">
-    <meta name="twitter:description" content="Panduan santai & interaktif perintah du Linux. Tips opsi -h -s -a, dan script untuk menangani hardlink.">
+    <meta name="twitter:site" content="@frijal">
+    <meta name="twitter:title" content="Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk">
+    <meta name="twitter:description" content="Cek penggunaan disk di Linux jadi lebih gampang pakai perintah du. Simak tips praktisnya di sini!">
     <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg">
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk",
-      "image": ["https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"],
-      "author": { "@type": "Person", "name": "frijal" },
-      "publisher": { "@type": "Organization", "name": "dalam.web.id" },
-      "datePublished": "2025-09-26",
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dalam.web.id/artikel/du-linux-panduan.html" }
-    }
-    </script>
-    <!-- Prism.js CSS for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
-    <!-- Styles: 1 kolom, dark theme -->
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk","image":["https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"],"author":{"@type":"Person","name":"Fakhrul Rijal","image":"https://dalam.web.id/img/du-linux-panduan.webp"},"publisher":{"@type":"Organization","name":"Layar Kosong","logo":{"@type":"ImageObject","url":"https://dalam.web.id/favicon.ico","image":"https://dalam.web.id/img/du-linux-panduan.webp"},"image":"https://dalam.web.id/img/du-linux-panduan.webp"},"datePublished":"2025-09-26","dateModified":"2025-12-18"}</script>
+
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #181f27;
-            --fg: #f8fafc;
-            --muted: #a8b0bb;
+            /* Light Mode Default */
+            --bg: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
             --accent: #00cec9;
-            --accent-2: #81ecec;
-            --card: #232f3e;
-            --border: #394a54;
-            --shadow: 0 10px 30px rgba(0,0,0,.35);
-            --maxw: 900px;
+            --card: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --maxw: 1100px;
         }
-        html, body {
-            background: var(--bg); color: var(--fg);
-            font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0; scroll-behavior: smooth;
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --text: #f1f5f9;
+                --muted: #94a3b8;
+                --accent: #81ecec;
+                --card: #1e293b;
+                --border: #334155;
+            }
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 8px; }
-        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
-        header.site {
-            padding: 24px 20px 8px; border-bottom: 1px solid var(--border);
-            background: #121820;
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; padding: 0;
+            line-height: 1.8;
+            transition: 0.3s ease;
         }
-        .brand { display: flex; align-items: center; gap: 12px; font-weight: bold; font-size: 1.2rem; }
-        main { display: flex; justify-content: center; padding: 28px 16px 60px; }
-        .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; }
-        article h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
-        article h2 { font-size: clamp(22px, 3vw, 28px); margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 18px; font-size: 1.1rem; }
-        .share-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 24px 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #334155; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #475569; }
-        ul { margin: 10px 0 10px 18px; }
-        figure { margin: 1.5rem 0; text-align: center; }
-        figure img { cursor: zoom-in; max-width: 200px; background: #111a; padding: 1rem; }
-        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
-        .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
-        pre[class*="language-"] { position: relative; padding: 1.25rem 1rem; border-radius: 8px; margin-top: 1rem; }
-        code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #475569; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent); }
-        footer.site { padding: 20px; color: var(--muted); border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
+
+        /* Widescreen 1-Column Layout */
+        .container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 40px 0 20px;
+            letter-spacing: -1px;
+        }
+
+        .meta-info {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        article { font-size: 1.15rem; }
+
+        .lead {
+            font-size: 1.4rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 60px;
+            color: var(--accent);
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 40px;
+        }
+
+        p { margin-bottom: 24px; }
+
+        .tips-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        ul { margin-bottom: 30px; }
+        li { margin-bottom: 12px; }
+
+        code:not(pre code) {
+            background: var(--card);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+        }
+
+        pre {
+            background: var(--code-bg) !important;
+            padding: 25px !important;
+            border-radius: 16px !important;
+            position: relative;
+            margin: 30px 0 !important;
+            font-size: 1rem !important;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+
+        .copy-btn:hover { transform: scale(1.05); }
+
+        figure {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 300px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        figcaption {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        #pesbukdiskus {
+            margin-top: 80px;
+            padding: 40px;
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px dashed var(--border);
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+        }
+
+        /* Mobile Optimized */
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 2.2rem; }
+            .lead { font-size: 1.2rem; }
+            article { font-size: 1.05rem; }
+        }
     </style>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image:alt" content="Panduan Lengkap du di Linux: Cek Pemakaian Ruang Disk 📂">
+  <meta itemprop="image" content="https://dalam.web.id/img/du-linux-panduan.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-    <meta property="article:published_time" content="2025-05-09T23:20:38.179+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+</head>
 <body>
-    <div class="wrap">
-        <header class="site">
-            <div class="brand">📂 dalam.web.id</div>
-        </header>
-        <main>
-            <div class="col">
-                <article>
-                    <h1>Panduan Perintah <code>du</code> di Linux: Cek Pemakaian Ruang Disk</h1>
+
+<div class="container">
+    <header>
+        <a href="https://dalam.web.id" class="brand">
+            <i class="fa-solid fa-folder-open"></i> Layar Kosong
+        </a>
+    </header>
+
+    <main>
+        <div class="meta-info">
+            <span><i class="fa-solid fa-calendar-day"></i> 26 September 2025</span>
+            <span><i class="fa-solid fa-user-pen"></i> Fakhrul Rijal</span>
+            <span><i class="fa-solid fa-location-dot"></i> Balikpapan</span>
+        </div>
+
+        <h1>Panduan Perintah <code>du</code> di Linux: Cara Cek Pemakaian Ruang Disk 📂</h1>
 <div id="iposbrowser"></div>
-                    <p class="lead">Di Linux, untuk mengetahui berapa banyak ruang yang dipakai file atau folder, kita tidak bisa sekadar klik kanan. Untungnya ada <code>du</code> (disk usage), tool ajaib untuk memeriksa ukuran file/direktori lewat command line.</p>
-                    <h2>Opsi Paling Populer</h2>
-                    <p>Berikut adalah beberapa kombinasi opsi <code>du</code> yang paling sering digunakan:</p>
-                    <ul>
-                        <li><code>-h</code> &rarr; <strong>Human-readable</strong>, menampilkan ukuran dalam format yang mudah dibaca (KB, MB, GB).</li>
-                        <li><code>-s</code> &rarr; <strong>Summarize</strong>, hanya menampilkan total ukuran, tanpa rincian subfolder.</li>
-                        <li><code>-a</code> &rarr; <strong>All</strong>, menampilkan ukuran setiap file individual selain direktori.</li>
-                    </ul>
-                    <h2>Contoh Penggunaan Praktis</h2>
-                    <h3>Cek Ukuran Total Direktori Saat Ini</h3>
-                    <pre class="language-bash"><code id="code1">du -sh .</code><button class="copy-btn" data-target="code1">Salin</button></pre>
-                    <h3>Cek Ukuran Setiap Folder di Dalamnya</h3>
-                    <pre class="language-bash"><code id="code2">du -sh *</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-                    <figure>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Tux Mascot">
-                        <figcaption style="font-size: 0.9em; color: var(--muted); margin-top: 0.5rem;">Tux, teman setia pengguna terminal!</figcaption>
-                    </figure>
-                    <h2>Keterbatasan: Masalah Hard Link</h2>
-                    <p>Perintah <code>du</code> standar dapat memberikan hasil yang kurang akurat jika sistem file Anda mengandung <strong>hard link</strong>. Hard link memungkinkan satu file untuk muncul di banyak lokasi tanpa memakan ruang ekstra. Akibatnya, <code>du</code> bisa menghitung ukuran file yang sama berulang kali.</p>
-                    <h2>Solusi dengan Skrip Perl</h2>
-                    <p>Untuk mendapatkan hasil yang lebih presisi, Anda bisa menggunakan skrip Perl berikut. Skrip ini melacak nomor <em>inode</em> setiap file untuk memastikan hard link tidak dihitung ganda.</p>
-                    <pre class="language-perl"><code id="code3">#!/usr/bin/perl -w
+
+        <article>
+            <p class="lead">Pernah merasa hardisk tiba-tiba penuh padahal merasa nggak download apa-apa? Di Linux, kita punya teman setia bernama <code>du</code> (Disk Usage) untuk melacak siapa "pelaku" utamanya.</p>
+
+            <p>Halo sobat tech! Kalau kamu sering berkutat di terminal, pasti pernah ngalamin momen panik pas dapet notifikasi <em>"Disk Space Low"</em>. Berbeda dengan Windows atau Mac yang tinggal klik kanan "Properties", di terminal Linux kita harus sedikit lebih elegan pakai perintah <code>du</code>. Tool ini fungsinya sederhana: menghitung berapa besar ruang yang dimakan oleh file atau folder kamu sampai ke akar-akarnya.</p>
+
+            <h2><i class="fa-solid fa-gears"></i> Opsi Paling Populer yang Wajib Kamu Tahu</h2>
+            <p>Jujur aja, kalau cuma ngetik <code>du</code> doang, terminal bakal muntah angka-angka aneh yang susah dibaca (itu hitungannya per block, lho). Biar lebih manusiawi, kita perlu bantuan beberapa opsi sakti ini:</p>
+
+            <div class="tips-box">
+                <ul>
+                    <li><i class="fa-solid fa-check color-accent"></i> <strong><code>-h</code> (Human-readable):</strong> Ini opsi paling wajib. Ukuran folder bakal muncul dalam format KB, MB, atau GB. Jauh lebih enak dilihat mata daripada deretan angka jutaan.</li>
+                    <li><i class="fa-solid fa-check color-accent"></i> <strong><code>-s</code> (Summarize):</strong> Kalau kamu cuma pengen tahu total ukuran folder "Foto" tanpa mau lihat rincian ribuan file di dalamnya, pakai opsi ini.</li>
+                    <li><i class="fa-solid fa-check color-accent"></i> <strong><code>-a</code> (All):</strong> Kebalikan dari summarize, ini bakal nampilin ukuran setiap file satu per satu.</li>
+                    <li><i class="fa-solid fa-check color-accent"></i> <strong><code>-c</code> (Total):</strong> Menambahkan baris paling bawah yang berisi total keseluruhan dari semua folder yang dicek.</li>
+                </ul>
+            </div>
+
+            <h2><i class="fa-solid fa-terminal"></i> Contoh Penggunaan Praktis</h2>
+
+            <h3>1. Cek Ukuran Total Folder Saat Ini</h3>
+            <p>Misalnya kamu lagi di dalam folder proyek dan pengen tahu berapa total ukurannya secara keseluruhan:</p>
+            <pre><code class="language-bash">du -sh .</code><button class="copy-btn">SALIN</button></pre>
+
+            <h3>2. Intip Ukuran Tiap Sub-folder</h3>
+            <p>Nah, kalau mau cari tahu folder mana yang paling rakus makan tempat di direktori saat ini, gunakan bintang (asterisk):</p>
+            <pre><code class="language-bash">du -sh *</code><button class="copy-btn">SALIN</button></pre>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Tux Mascot">
+                <figcaption>Tux selalu siap nemenin kamu ngoprek di Balikpapan!</figcaption>
+            </figure>
+
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> Masalah Klasik: Jebakan Hard Link</h2>
+            <p>Tahu nggak? Ternyata <code>du</code> itu bisa "ketipu". Kalau di sistem file kamu banyak terdapat <strong>hard link</strong> (satu file yang punya banyak nama/lokasi tapi sebenernya cuma satu data di disk), <code>du</code> standar kemungkinan besar bakal ngitung file itu berkali-kali.</p>
+            <p>Hasilnya? Laporan penggunaan disk jadi bengkak dan nggak akurat. Ini sering terjadi kalau kamu pakai tool backup kayak <em>Rsnapshot</em> atau sistem snapshot lainnya.</p>
+
+            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Solusi Akurat dengan Skrip Perl</h2>
+            <p>Biar nggak ketipu sama hard link, kita bisa pakai skrip cerdas yang melacak nomor <em>inode</em>. Skrip ini bakal mastiin kalau satu file fisik cuma dihitung satu kali aja, seberapa banyak pun nama panggilannya di terminal.</p>
+
+            <pre><code class="language-perl">#!/usr/bin/perl -w
+# Skrip Cek Disk Akurat - Layar Kosong
 use strict;
 my %hash;
 my $total_blocks = 0;
 my @todo = @ARGV; push(@todo, '.') unless @todo;
+
 foreach my $fn (@todo) {
   my($inode,$nlinks,$blocks) = (lstat($fn))[1,3,12];
   if (-d _) {
@@ -138,52 +296,46 @@ foreach my $fn (@todo) {
   }
   $total_blocks += $blocks;
 }
+
+print "Hasil Perhitungan:\n";
 print "$total_blocks blocks\n";
-print int($total_blocks / 2 + .5), "K\n";</code><button class="copy-btn" data-target="code3">Salin</button></pre>
-                    <p>Simpan skrip di atas sebagai file (misalnya `du_accurate.pl`), berikan izin eksekusi (`chmod +x du_accurate.pl`), lalu jalankan di direktori target. Hasilnya akan jauh lebih akurat.</p>
-                    <div id="pesbukdiskus"></div>
-                </article>
-            </div>
-                    </main>
-        <footer class="site">
-            <small>🄯 2025 dalam.web.id · Semoga disk Anda tetap lega!</small>
-        </footer>
-    </div>
-    <div class="lightbox" id="lightbox">
-        <img id="lightbox-img" alt="Gambar diperbesar">
-    </div>
-    <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #394a54; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    <!-- Prism.js Core for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <script>
-    (function(){
-        const toast = document.getElementById('toast');
-        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        document.querySelectorAll('figure img').forEach(el => {
-            el.addEventListener('click', () => {
-                lbImg.src = el.src;
-                lb.classList.add('open');
+print int($total_blocks / 2 + .5), " KB (Estimasi Presisi)\n";</code><button class="copy-btn">SALIN</button></pre>
+
+            <p>Cara pakainya simpel: simpan kodenya jadi <code>cek_disk.pl</code>, kasih izin jalan dengan <code>chmod +x cek_disk.pl</code>, terus tinggal panggil deh di folder yang mau dicek. Hasilnya bakal jauh lebih jujur daripada perasaan mantan!</p>
+                <p style="text-align: center;">Punya tips terminal Linux lainnya? Atau ada perintah favorit yang sering kamu pakai di Balikpapan?</p>
+
+            <div id="pesbukdiskus"></div>
+        </article>
+    </main>
+
+    <footer>
+        <p>🄯 2025 <a href="https://dalam.web.id" style="color: inherit; font-weight: bold;">Layar Kosong</a> - Fakhrul Rijal</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Dibuat dengan ❤️ di Balikpapan untuk komunitas Open Source Indonesia.</p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-perl.min.js"></script>
+
+<script>
+    // Copy to Clipboard Function
+    document.querySelectorAll('.copy-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const code = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'BERHASIL!';
+                button.style.background = '#00cec9';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                }, 2000);
             });
         });
-        function closeLb(){ lb.classList.remove('open'); }
-        lb.addEventListener('click', closeLb);
-        window.addEventListener('keydown', (e) => {
-            if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
-        });
-        document.querySelectorAll('.copy-btn').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-                const targetId = btn.getAttribute('data-target');
-                const codeEl = document.getElementById(targetId);
-                if (codeEl) {
-                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
-                }
-            });
-        });
-    })();
-    </script>
+    });
+</script>
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
