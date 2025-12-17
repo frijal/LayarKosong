@@ -1,4 +1,4 @@
-name: Sitemap XML diagnostics and commit results
+name: Sitemap XML Fixer and Diagnostics
 
 permissions:
   contents: write
@@ -7,137 +7,75 @@ on:
   workflow_dispatch:
 
 jobs:
-  sitemap-check-and-commit:
+  sitemap-fix-and-diagnose:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository (with write access)
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true
-
-      - name: Ensure sitemap exists
-        id: exists
-        run: |
-          FILE="${{ github.workspace }}/sitemap.xml"
-          if [ ! -f "$FILE" ]; then
-            echo "sitemap_missing=true" >> $GITHUB_OUTPUT
-            echo "sitemap.xml not found at repo root"
-            exit 0
-          fi
-          echo "sitemap_missing=false" >> $GITHUB_OUTPUT
 
       - name: Install required packages
-        if: steps.exists.outputs.sitemap_missing == 'false'
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y libxml2-utils curl gawk grep perl coreutils bsdutils libc-bin
+          sudo apt-get install -y libxml2-utils sed grep
 
-      - name: Prepare output folder sementara/
-        if: steps.exists.outputs.sitemap_missing == 'false'
+      - name: 🛠 STEP 1: Auto-Fix Common XML Errors
         run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          rm -rf "$OUTDIR"
+          FILE="sitemap.xml"
+          if [ -f "$FILE" ]; then
+            echo "Memperbaiki karakter ampersand ilegal..."
+            # Mengganti '&' yang tidak ter-escape menjadi '&amp;' menggunakan regex
+            sed -i -E 's/&(?!(amp|lt|gt|quot|apos);)/&amp;/g' "$FILE"
+            
+            echo "Menghapus karakter kontrol non-printable..."
+            tr -d '\000-\010\013\014\016-\037' < "$FILE" > "$FILE.tmp" && mv "$FILE.tmp" "$FILE"
+            
+            echo "Memastikan file menggunakan UTF-8 tanpa BOM..."
+            sed -i '1s/^\xef\xbb\xbf//' "$FILE"
+          fi
+
+      - name: 🔍 STEP 2: Validate Schema Video & Images
+        run: |
+          OUTDIR="${{ github.workspace }}/debug-gsc"
           mkdir -p "$OUTDIR"
-          echo "Sitemap diagnostics run: $(date -u)" > "$OUTDIR/README.txt"
-          echo "Outputs saved under $OUTDIR" >> "$OUTDIR/README.txt"
-          ls -ld "$OUTDIR"
-
-      - name: Check 1 - BOM / first bytes
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 1: First bytes (hex) ===" > "$OUTDIR/check-01-first-bytes.txt"
-          head -c 4 sitemap.xml | od -An -t x1 | sed -E 's/^[[:space:]]+//' >> "$OUTDIR/check-01-first-bytes.txt" || echo "od failed" >> "$OUTDIR/check-01-first-bytes.txt"
-
-      - name: Check 2 - xmllint well-formedness
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 2: xmllint well-formedness ===" > "$OUTDIR/check-02-xmllint.txt"
-          if xmllint --noout sitemap.xml 2> "$OUTDIR/xmllint.err"; then
-            echo "xmllint: OK (well-formed)" >> "$OUTDIR/check-02-xmllint.txt"
-          else
-            echo "xmllint: ERRORS" >> "$OUTDIR/check-02-xmllint.txt"
-            sed -n '1,200p' "$OUTDIR/xmllint.err" >> "$OUTDIR/check-02-xmllint.txt"
+          
+          echo "=== Laporan Validasi Video ===" > "$OUTDIR/video-report.txt"
+          
+          # Cek apakah tag video:thumbnail_loc ada dan memiliki format gambar yang benar
+          grep -oP '(?<=<video:thumbnail_loc>)[^<]+' sitemap.xml > "$OUTDIR/thumbnails.txt" || true
+          if [ -s "$OUTDIR/thumbnails.txt" ]; then
+             while read -r thumb; do
+               if [[ ! "$thumb" =~ \.(jpg|jpeg|png|webp)$ ]]; then
+                 echo "PERINGATAN: Format thumbnail tidak standar: $thumb" >> "$OUTDIR/video-report.txt"
+               fi
+             done < "$OUTDIR/thumbnails.txt"
           fi
 
-      - name: Check 3 - raw ampersand / bad entity usage
-        if: steps.exists.outputs.sitemap_missing == 'false'
+      - name: 🌐 STEP 3: Deep Link & Thumbnail Checker (Status 200)
         run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 3: raw ampersand or invalid entity references ===" > "$OUTDIR/check-03-ampersand.txt"
-          grep -n -P '&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[0-9a-fA-F]+;)' sitemap.xml > "$OUTDIR/amp_matches.txt" || true
-          if [ -s "$OUTDIR/amp_matches.txt" ]; then
-            echo "Found potential raw ampersand occurrences:" >> "$OUTDIR/check-03-ampersand.txt"
-            sed -n '1,200p' "$OUTDIR/amp_matches.txt" >> "$OUTDIR/check-03-ampersand.txt"
-          else
-            echo "No raw ampersand patterns detected" >> "$OUTDIR/check-03-ampersand.txt"
-          fi
+          OUTDIR="${{ github.workspace }}/debug-gsc"
+          echo "=== HTTP Status Check (Limit 50 URLs) ===" >> "$OUTDIR/video-report.txt"
+          
+          # Ambil 50 URL pertama untuk dicek statusnya (menghindari rate limit)
+          grep -oP '(?<=<loc>)[^<]+' sitemap.xml | head -n 50 > "$OUTDIR/urls-to-check.txt"
+          while read -r url; do
+            status=$(curl -o /dev/null -s -w "%{http_code}" -L --max-time 10 "$url")
+            if [ "$status" != "200" ]; then
+              echo "ERROR $status: $url" >> "$OUTDIR/video-report.txt"
+            fi
+          done < "$OUTDIR/urls-to-check.txt"
 
-      - name: Check 4 - non-UTF8 or control chars
-        if: steps.exists.outputs.sitemap_missing == 'false'
+      - name: 🚀 STEP 4: Commit Fixes and Reports
         run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 4: encoding / non-UTF8 detection ===" > "$OUTDIR/check-04-encoding.txt"
-          if iconv -f UTF-8 -t UTF-8 sitemap.xml -o /dev/null 2> "$OUTDIR/iconv.err"; then
-            echo "iconv: OK (valid UTF-8)" >> "$OUTDIR/check-04-encoding.txt"
-          else
-            echo "iconv: Encoding error detected" >> "$OUTDIR/check-04-encoding.txt"
-            sed -n '1,200p' "$OUTDIR/iconv.err" >> "$OUTDIR/check-04-encoding.txt"
-          fi
-          perl -nle 'print $. .": ". $_ if /[^\x09\x0A\x0D\x20-\x7F]/' sitemap.xml | sed -n '1,200p' > "$OUTDIR/check-04-non-ascii-lines.txt" || true
-
-      - name: Check 5 - long lines and stray '<' in text
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 5: long lines (>2000) and stray '<' in text nodes ===" > "$OUTDIR/check-05-lines.txt"
-          awk 'length($0)>2000{print NR ": len=" length($0)}' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
-          grep -nE '<[^/a-zA-Z?\!]' sitemap.xml | sed -n '1,200p' >> "$OUTDIR/check-05-lines.txt" || true
-
-      - name: Extract URLs for checking (loc and image:loc)
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 6: extract URLs to $OUTDIR/sitemap.urls.txt ===" > "$OUTDIR/check-06-extract.txt"
-          grep -oP '(?<=<loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.loc.txt" || true
-          grep -oP '(?<=<image:loc>)[^<]+' sitemap.xml > "$OUTDIR/sitemap.image-loc.txt" || true
-          cat "$OUTDIR/sitemap.loc.txt" "$OUTDIR/sitemap.image-loc.txt" | sed '/^$/d' | sort -u > "$OUTDIR/sitemap.urls.txt" || true
-          echo "Total unique URLs extracted: $(wc -l < "$OUTDIR/sitemap.urls.txt" || echo 0)" >> "$OUTDIR/check-06-extract.txt"
-
-      - name: Check 6 - HTTP status and content-type for extracted URLs
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "=== CHECK 6: HTTP status + content-type for each URL ===" > "$OUTDIR/check-06-httpreport.txt"
-          mkdir -p "$OUTDIR/url-check"
-          head -n 200 "$OUTDIR/sitemap.urls.txt" | while read -r url; do
-            [ -z "$url" ] && continue
-            printf "URL: %s\n" "$url" >> "$OUTDIR/url-check/results.txt"
-            curl -sSI -L -m 20 -o /dev/null -w "HTTP_CODE:%{http_code} CONTENT_TYPE:%{content_type} EFFECTIVE_URL:%{url_effective}\n" "$url" >> "$OUTDIR/url-check/results.txt" || echo "curl failed for $url" >> "$OUTDIR/url-check/results.txt"
-          done
-          sed -n '1,500p' "$OUTDIR/url-check/results.txt" >> "$OUTDIR/check-06-httpreport.txt" || true
-
-      - name: Show files created in sementara/
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
-          echo "Files written to $OUTDIR:"
-          ls -la "$OUTDIR"
-
-      - name: Commit & push temporary results if changed
-        if: steps.exists.outputs.sitemap_missing == 'false'
-        run: |
-          OUTDIR="${{ github.workspace }}/sementara/sitemap"
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A "$OUTDIR"
-          # commit only if there are changes
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add sitemap.xml debug-gsc/
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "Tidak ada perubahan yang perlu di-commit."
           else
-            git commit -m "sitemap-check: update diagnostics outputs" || true
-            git push origin HEAD:${{ github.ref_name }}
+            git commit -m "Fix: Auto-repair sitemap.xml & update GSC debug report"
+            git push
           fi
