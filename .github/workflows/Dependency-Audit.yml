@@ -1,7 +1,7 @@
 name: 🛡️ Full Audit, Inspector & Auto-Fix
 
 on:
-  workflow_dispatch: # Hanya dapat dijalankan secara manual dari UI GitHub Actions
+  workflow_dispatch: 
 
 jobs:
   comprehensive-check:
@@ -28,7 +28,7 @@ jobs:
       - name: Create Audit Directory
         run: mkdir -p sementara/audit
 
-      # --- BAGIAN 1: INSPECTOR (VALIDASI KODE) ---
+      # --- BAGIAN 1: INSPECTOR ---
       
       - name: 📝 List Files in ext/
         run: |
@@ -44,37 +44,24 @@ jobs:
             fi
           done
 
-      - name: 🔒 Basic Secret Leak Detection
-        run: |
-          echo "Memeriksa potensi kebocoran API Key di folder ext..."
-          grep -rnE "(key|token|secret|password) *= *['\"][a-zA-Z0-9_-]+['\"]" ext/ && {
-            echo "⚠️ PERINGATAN: Ditemukan hardcoded secret! Segera pindahkan ke .env."
-          } || echo "✅ Tidak ada hardcoded secret yang mencolok."
-
-      # --- BAGIAN 2: AUTO-FIX & CLEANUP ---
+      # --- BAGIAN 2: AUTO-FIX ---
 
       - name: 🛠️ Run Dependency Fixer
         run: |
           if [ -f ext/dependency-fixer.sh ]; then
-            echo "🚀 Menjalankan Fixer dari folder ext..."
             chmod +x ext/dependency-fixer.sh
             ./ext/dependency-fixer.sh
-          else
-            echo "⚠️ ext/dependency-fixer.sh tidak ditemukan, melewati perbaikan."
           fi
 
       # --- BAGIAN 3: AUDIT & REPORTING ---
 
-      - name: 🕵️ Trace node-domexception & node-fetch
+      - name: 🕵️ Trace node-fetch Residuals
         run: |
           DATE=$(date +'%Y-%m-%d')
-          echo "--- Dependency Trace: node-domexception ---" > sementara/audit/trace_deprecated_$DATE.txt
-          npm ls node-domexception >> sementara/audit/trace_deprecated_$DATE.txt || true
-          
           echo "--- Penggunaan node-fetch di ext/ ---" > sementara/audit/node_fetch_usage_$DATE.txt
           grep -rn "node-fetch" ext/ >> sementara/audit/node_fetch_usage_$DATE.txt || echo "Tidak ditemukan node-fetch." >> sementara/audit/node_fetch_usage_$DATE.txt
 
-      - name: Audit Node.js (Unused Packages)
+      - name: Audit Node.js
         run: |
           DATE=$(date +'%Y-%m-%d')
           if [ -f package.json ]; then
@@ -91,12 +78,20 @@ jobs:
       - name: Audit Python Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
-          if [ -f sementara/audit/requirements.txt ]; then
+          # PERBAIKAN: Mencari requirements.txt di root atau di folder audit kamu
+          REQ_FILE=""
+          if [ -f "requirements.txt" ]; then REQ_FILE="requirements.txt"; 
+          elif [ -f "sementara/audit/requirements.txt" ]; then REQ_FILE="sementara/audit/requirements.txt"; fi
+
+          if [ ! -z "$REQ_FILE" ]; then
+            echo "🔎 Menggunakan file: $REQ_FILE"
             pip install pip-check-reqs
             echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
-            cat sementara/audit/requirements.txt >> sementara/audit/python_pip_list_$DATE.txt
+            cat "$REQ_FILE" >> sementara/audit/python_pip_list_$DATE.txt
             echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
             pip-extra-reqs . >> sementara/audit/python_unused_$DATE.txt || true
+          else
+            echo "Skip Python audit: requirements.txt tidak ditemukan di root maupun folder audit."
           fi
 
       # --- BAGIAN 4: FINALIZE ---
@@ -105,12 +100,10 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
           git add sementara/audit/*.txt package.json package-lock.json
-          
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: full audit & inspect - $(date +'%Y-%m-%d')"
+            git commit -m "chore: manual audit & fix - $(date +'%Y-%m-%d')"
             git push
           fi
