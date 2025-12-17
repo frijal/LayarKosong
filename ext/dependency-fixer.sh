@@ -7,9 +7,9 @@ if [ -f package.json ]; then
     echo "🆙 Mencoba upgrade fetch-blob secara manual..."
     npm install fetch-blob@latest --save || true
 
-    # 2. Re-install node-fetch untuk sinkronisasi
-    echo "🆙 Refreshing node-fetch..."
-    npm install node-fetch@latest --save
+    # 2. Pastikan node-fetch benar-benar didepak
+    echo "🧹 Menghapus node-fetch yang sudah tidak diperlukan..."
+    npm uninstall node-fetch --save
 
     # 3. Gunakan NPM Overrides (Fitur ampuh NPM v8+)
     # Ini akan memaksa semua paket yang minta node-domexception untuk diam (atau diabaikan)
