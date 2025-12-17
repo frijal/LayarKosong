@@ -1,22 +1,88 @@
-- name: Upgrade & Sync to @google/genai (Latest)
+name: Audit & Unused Package Detection
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Create Audit Directory
+        run: mkdir -p audit
+
+      - name: Upgrade & Sync to @google/genai (Latest)
         run: |
-          echo "Upgrading to the latest Generative AI SDK..."
+          echo "Upgrading to the latest Generative AI SDK and fixing missing packages..."
           
           if [ -f package.json ]; then
-            # 1. Hapus paket lama dan install yang baru (@google/genai)
+            # 1. Hapus paket lama (generative-ai) dan install yang baru (genai)
+            # Sekalian install node-fetch dan playwright yang terdeteksi 'missing' sebelumnya
             npm uninstall @google/generative-ai
             npm install @google/genai node-fetch playwright
             
-            # 2. Pastikan semua kode di folder ext/ pakai import yang benar
-            # Kita arahkan semua agar panggil @google/genai
+            # 2. Sinkronisasi Kode: Ganti semua import lama ke yang baru di folder ext/
+            # Ini akan mencari @google/generative-ai DAN @google/genai (jika ada typo) 
+            # lalu memastikan semuanya seragam merujuk ke @google/genai
             find ext/ -type f -name "*.js" -exec sed -i 's/@google\/generative-ai/@google\/genai/g' {} +
+            echo "Sync completed."
           fi
 
       - name: Audit & Check Unused Node.js Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
           if [ -f package.json ]; then
+            echo "--- Full Package List ---" > audit/npm_full_list_$DATE.txt
+            npm list --depth=0 >> audit/npm_full_list_$DATE.txt || true
+            
             echo "--- Unused Dependencies (via depcheck) ---" > audit/npm_unused_$DATE.txt
-            # Sekarang depcheck harusnya happy karena nama di kode & package.json sudah sinkron
+            # depcheck sekarang akan mengecek folder ext/ dengan nama paket yang sudah sinkron
             npx depcheck . --json=false --skip-missing=true >> audit/npm_unused_$DATE.txt || true
           fi
+
+      - name: Audit & Check Unused Python Packages
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          if [ -f requirements.txt ]; then
+            pip install pip-check-reqs
+            
+            echo "--- Full Pip List ---" > audit/python_pip_list_$DATE.txt
+            cat requirements.txt >> audit/python_pip_list_$DATE.txt
+            
+            echo "--- Unused Requirements (via pip-extra-reqs) ---" > audit/python_unused_$DATE.txt
+            pip-extra-reqs . >> audit/python_unused_$DATE.txt || true
+          fi
+
+      - name: Commit and Push Audit Results & Fixes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Daftarkan semua file yang mungkin berubah
+          git add audit/*.txt package.json package-lock.json ext/*.js
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: upgrade @google/genai, fix missing deps & audit - $(date +'%Y-%m-%d')"
+            git push
+          fiplaywrightplaywrightplaywright
