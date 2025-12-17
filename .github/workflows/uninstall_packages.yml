@@ -19,33 +19,42 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # --- NODE.JS SECTION ---
       - name: Setup Node.js
+        if: hashFiles('package.json') != ''
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
+      - name: Node.js Prep & Uninstall
+        if: hashFiles('package.json') != ''
+        run: |
+          echo "Processing Node.js packages..."
+          npm install --package-lock-only || true
+          npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
+          npm prune
+
+      # --- PYTHON SECTION (AUTO-SKIP LOGIC) ---
+      # Kita cek dulu apakah ada file python, kalau nggak ada, step di bawah bakal di-skip total
+      - name: Check if Python files exist
+        id: check_python
+        run: |
+          if [ -f requirements.txt ] || [ -f pyproject.toml ]; then
+            echo "has_python=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_python=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Python
+        if: steps.check_python.outputs.has_python == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-          cache: 'pip'
-
-      # --- PERBAIKAN: SYNC DULU SEBELUM AUDIT ---
-      - name: Node.js Prep & Uninstall
-        run: |
-          echo "Syncing dependencies to avoid ELSPROBLEMS..."
-          if [ -f package.json ]; then
-            # Pakai --legacy-peer-deps jika repo kamu punya konflik versi yang ketat
-            npm install --package-lock-only || true
-            
-            # Eksekusi Uninstall
-            echo "Target eksekusi Node.js: ${{ github.event.inputs.packages_to_remove }}"
-            npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
-            npm prune
-          fi
+          cache: 'pip' # Sekarang aman karena sudah dipastikan filenya ada
 
       - name: Python Uninstall
+        if: steps.check_python.outputs.has_python == 'true'
         run: |
           PACKAGES="${{ github.event.inputs.packages_to_remove }}"
           if [ -f requirements.txt ]; then
@@ -55,34 +64,28 @@ jobs:
           fi
           pip uninstall -y $PACKAGES || true
 
-      # --- AUDIT SETELAH BERSIH-BERSIH ---
-      - name: Final Audit Report
+      # --- FINAL LOGGING & COMMIT ---
+      - name: Generate Audit Report
         run: |
           DATE=$(date +'%Y-%m-%d')
           mkdir -p sementara/audit
+          echo "Universal Cleanup Report ($DATE)" > sementara/audit/cleanup_$DATE.txt
+          echo "Input: ${{ github.event.inputs.packages_to_remove }}" >> sementara/audit/cleanup_$DATE.txt
           
           if [ -f package.json ]; then
-            echo "--- Full Package List (After Fix) ---" > sementara/audit/npm_full_list_$DATE.txt
-            # Pakai || true supaya kalau tetap ada warning, workflow tidak mati
-            npm list --depth=0 >> sementara/audit/npm_full_list_$DATE.txt || true
-            
-            echo "--- Unused Dependencies Report ($DATE) ---" > sementara/audit/npm_unused_$DATE.txt
-            # Kita jalankan depcheck dan rapikan JSON-nya
-            npx depcheck . --json --skip-missing=true | jq '{
-              "PAKET_MENGANGGUR": .dependencies,
-              "PAKET_YANG_DIGUNAKAN": .using
-            }' >> sementara/audit/npm_unused_$DATE.txt || true
+            echo "--- Unused Node Audit ---" >> sementara/audit/cleanup_$DATE.txt
+            npx depcheck . --json --skip-missing=true | jq '{PAKET_MENGANGGUR: .dependencies}' >> sementara/audit/cleanup_$DATE.txt || true
           fi
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json package-lock.json requirements.txt sementara/audit/*.txt
+          git add .
           
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "Nothing to commit"
           else
-            git commit -m "chore: universal cleanup & fix sync [${{ github.event.inputs.packages_to_remove }}]"
+            git commit -m "chore: universal cleanup [${{ github.event.inputs.packages_to_remove }}]"
             git push
           fi
