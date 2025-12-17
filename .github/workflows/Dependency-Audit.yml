@@ -99,37 +99,36 @@ jobs:
       # ======================
       # SUMMARY
             # ======================
-      # DEPENDENCY SMELL RANKING
-      # ======================
-      
+      # DEPENDENCY SMELL RANKING (FIXED)
       - name: Rank smelliest dependencies
         run: |
+          set -e
+
           echo "RANK | SCORE | DEPENDENCY | LAST TOUCH | STATUS" > sementara/dependency-smell-ranking.txt
           echo "-------------------------------------------------------" >> sementara/dependency-smell-ranking.txt
 
           TODAY=$(date +%s)
-
           rank=1
 
           # ---------- NODE ----------
           if [ -f package.json ]; then
-            node - <<'EOF'
+            node <<'EOF' > sementara/node-smell-raw.txt
             const fs = require('fs');
 
             const unused = fs.existsSync('sementara/node-unused.json')
-              ? JSON.parse(fs.readFileSync('sementara/node-unused.json'))
+              ? JSON.parse(fs.readFileSync('sementara/node-unused.json', 'utf8'))
               : { dependencies: [], devDependencies: [] };
 
-            const pkg = JSON.parse(fs.readFileSync('package.json'));
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
             const deps = {
-              ...pkg.dependencies,
-              ...pkg.devDependencies
+              ...(pkg.dependencies || {}),
+              ...(pkg.devDependencies || {})
             };
 
             const isDev = (name) => pkg.devDependencies && pkg.devDependencies[name];
             const isUnused = (name) =>
-              unused.dependencies.includes(name) || unused.devDependencies.includes(name);
+              unused.dependencies?.includes(name) || unused.devDependencies?.includes(name);
 
             for (const dep of Object.keys(deps)) {
               let score = 0;
@@ -150,51 +149,55 @@ jobs:
                 status.push('EXPERIMENT');
               }
 
-              console.log(`${score}|${dep}|${status.join(',')}`);
+              console.log(`${score}|${dep}|${status.join(',') || 'OK'}`);
             }
-            EOF > sementara/node-smell-raw.txt
+            EOF
           fi
 
           # ---------- PYTHON ----------
-          if [ -f requirements.txt ]; then
-            if [ -f sementara/python-unused.json ]; then
-              jq -r '.unused[]' sementara/python-unused.json | while read dep; do
-                echo "50|$dep|UNUSED" >> sementara/python-smell-raw.txt
-              done
-            fi
+          if [ -f requirements.txt ] && [ -f sementara/python-unused.json ]; then
+            jq -r '.unused[]' sementara/python-unused.json \
+              | awk '{print "50|" $1 "|UNUSED"}' \
+              > sementara/python-smell-raw.txt
           fi
 
-          # ---------- LAST TOUCH ----------
-          touch sementara/_ranking.tmp
+          # ---------- COMBINE ----------
+          cat sementara/*-smell-raw.txt 2>/dev/null > sementara/_smell-all.txt || true
 
-          for dep in $(cut -d'|' -f2 sementara/*-smell-raw.txt | sort -u); do
-            last_date=$(git log -1 --format="%ad" --date=short -- package.json requirements.txt composer.json go.mod 2>/dev/null | head -n1)
+          # ---------- LAST TOUCH & SCORING ----------
+          > sementara/_ranking.tmp
+
+          for dep in $(cut -d'|' -f2 sementara/_smell-all.txt | sort -u); do
+            last_date=$(git log -1 --format="%ad" --date=short -- \
+              package.json requirements.txt composer.json go.mod 2>/dev/null | head -n1)
+
+            extra=0
             if [ -n "$last_date" ]; then
               last_ts=$(date -d "$last_date" +%s)
               age_days=$(( (TODAY - last_ts) / 86400 ))
 
-              extra=0
-              if [ "$age_days" -gt 730 ]; then extra=35;
-              elif [ "$age_days" -gt 365 ]; then extra=25;
+              if [ "$age_days" -gt 730 ]; then extra=35
+              elif [ "$age_days" -gt 365 ]; then extra=25
               fi
             else
-              extra=20
               last_date="unknown"
+              extra=20
             fi
 
-            base_score=$(grep "|$dep|" sementara/*-smell-raw.txt | awk -F'|' '{s+=$1} END {print s}')
+            base_score=$(grep "|$dep|" sementara/_smell-all.txt | awk -F'|' '{s+=$1} END {print s}')
             total=$((base_score + extra))
 
             echo "$total|$dep|$last_date" >> sementara/_ranking.tmp
           done
 
           sort -rn sementara/_ranking.tmp | while IFS='|' read score dep date; do
-            printf "%-4s | %-5s | %-18s | %-11s | BAU\n" "$rank" "$score" "$dep" "$date" \
+            printf "%-4s | %-5s | %-18s | %-11s | BAU\n" \
+              "$rank" "$score" "$dep" "$date" \
               >> sementara/dependency-smell-ranking.txt
             rank=$((rank+1))
           done
-
       # ======================
+
       - name: Show summary
         run: |
           echo "===== TEMP FOLDER ====="
