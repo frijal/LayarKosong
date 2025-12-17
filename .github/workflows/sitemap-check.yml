@@ -21,7 +21,7 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y libxml2-utils sed grep
 
-      - name: 🛠 STEP 1: Auto-Fix Common XML Errors
+      - name: 🛠 STEP 1 - Auto Fix Common XML Errors
         run: |
           FILE="sitemap.xml"
           if [ -f "$FILE" ]; then
@@ -36,7 +36,7 @@ jobs:
             sed -i '1s/^\xef\xbb\xbf//' "$FILE"
           fi
 
-      - name: 🔍 STEP 2: Validate Schema Video & Images
+      - name: 🔍 STEP 2 - Validate Schema Video & Images
         run: |
           OUTDIR="${{ github.workspace }}/debug-gsc"
           mkdir -p "$OUTDIR"
@@ -53,7 +53,7 @@ jobs:
              done < "$OUTDIR/thumbnails.txt"
           fi
 
-      - name: 🌐 STEP 3: Deep Link & Thumbnail Checker (Status 200)
+      - name: 🌐 STEP 3 - Deep Link & Thumbnail Checker (Status 200)
         run: |
           OUTDIR="${{ github.workspace }}/debug-gsc"
           echo "=== HTTP Status Check (Limit 50 URLs) ===" >> "$OUTDIR/video-report.txt"
@@ -67,7 +67,7 @@ jobs:
             fi
           done < "$OUTDIR/urls-to-check.txt"
 
-      - name: 🚀 STEP 4: Commit Fixes and Reports
+      - name: 🚀 STEP 4 - Commit Fixes and Reports
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
