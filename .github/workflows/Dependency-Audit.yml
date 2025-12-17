@@ -1,62 +1,69 @@
-name: 🕵️ Audit Repo & Paket Berat
+name: Audit & Unused Package Detection
 
 on:
-  workflow_dispatch: # Kita jalankan manual aja biar gak spamming tiap push
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  analyze:
+  audit:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Buat Folder Output
-        run: mkdir -p sementara/audit
-
-      # 1. CEK FISIK (Disk Usage)
-      # Ini buat nyari tau folder mana yang ukurannya raksasa
-      - name: 💾 Cek Ukuran Folder (Top 20 Terbesar)
-        run: |
-          echo "=== TOP 20 FOLDER TERBESAR ===" > sementara/audit/laporan-disk.txt
-          echo "Dihitung pada: $(date)" >> sementara/audit/laporan-disk.txt
-          echo "-----------------------------------" >> sementara/audit/laporan-disk.txt
-          # du -h untuk human readable, sort -hr untuk urutkan dari terbesar
-          du -h . --max-depth=3 --exclude=.git | sort -hr | head -n 20 >> sementara/audit/laporan-disk.txt
-          cat sementara/audit/laporan-disk.txt
-
-      # 2. AUDIT NODE.JS (Jika pakai JS/TS)
-      - name: 📦 Setup Node (Jika ada package.json)
-        if: hashFiles('package.json') != ''
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: 🕵️ Audit NPM (List & Unused)
-        if: hashFiles('package.json') != ''
-        run: |
-          echo "Menginstall dependencies..."
-          npm install --force # Install dulu biar bisa diaudit
-          
-          echo "=== SEMUA PAKET TERPASANG ===" > sementara/audit/npm-installed.txt
-          npm list --all --depth=0 >> sementara/audit/npm-installed.txt
-          
-          echo "=== MENCARI PAKET TIDAK TERPAKAI (DEPCHECK) ===" > sementara/audit/npm-unused.txt
-          # Menggunakan npx depcheck tanpa install global
-          # Tool ini sakti buat nyari bloatware di JS
-          npx depcheck >> sementara/audit/npm-unused.txt || true
-
-      # 3. AUDIT PYTHON (Jika pakai Python)
-      - name: 🐍 Audit Python (Jika ada requirements.txt)
-        if: hashFiles('requirements.txt') != ''
-        run: |
-          pip install -r requirements.txt
-          echo "=== PAKET PYTHON TERPASANG ===" > sementara/audit/python-installed.txt
-          pip freeze >> sementara/audit/python-installed.txt
-
-      # 4. UPLOAD HASIL
-      # Karena ini jalan di cloud (runner), kita harus download hasilnya
-      - name: 📤 Upload Hasil Audit
-        uses: actions/upload-artifact@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          name: laporan-audit-repo
-          path: sementara/audit/
+          python-version: '3.x'
+
+      - name: Create Audit Directory
+        run: mkdir -p audit
+
+      - name: Audit & Check Unused Node.js Packages
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          if [ -f package.json ]; then
+            echo "--- Full Package List ---" > audit/npm_full_list_$DATE.txt
+            npm list --depth=0 >> audit/npm_full_list_$DATE.txt || true
+            
+            echo "--- Unused Dependencies (via depcheck) ---" > audit/npm_unused_$DATE.txt
+            npx depcheck --json=false >> audit/npm_unused_$DATE.txt || true
+          fi
+
+      - name: Audit & Check Unused Python Packages
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          if [ -f requirements.txt ]; then
+            pip install pip-check-reqs
+            
+            echo "--- Full Pip List ---" > audit/python_pip_list_$DATE.txt
+            cat requirements.txt >> audit/python_pip_list_$DATE.txt
+            
+            echo "--- Unused Requirements (via pip-extra-reqs) ---" > audit/python_unused_$DATE.txt
+            # pip-extra-reqs mencari paket di requirements yang tidak di-import di code
+            pip-extra-reqs . >> audit/python_unused_$DATE.txt || true
+          fi
+
+      - name: Commit and Push Audit Results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add audit/*.txt
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: audit unused packages - $(date +'%Y-%m-%d')"
+            git push
+          fi
