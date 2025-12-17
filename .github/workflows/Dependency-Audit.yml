@@ -45,7 +45,6 @@ jobs:
         run: |
           DATE=$(date +'%Y-%m-%d')
           if [ -f package.json ]; then
-            # Pastikan dependencies terpasang minimal untuk audit
             npm install --package-lock-only || true
             
             echo "--- Full Package List ---" > sementara/audit/npm_full_list_$DATE.txt
@@ -67,6 +66,13 @@ jobs:
           echo "--- Dependency Trace: node-domexception ---" > sementara/audit/trace_deprecated_$DATE.txt
           npm ls node-domexception >> sementara/audit/trace_deprecated_$DATE.txt || true
 
+      - name: 🔍 Cari Penggunaan node-fetch di Folder ext/
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          echo "--- File yang menggunakan node-fetch ---" > sementara/audit/node_fetch_usage_$DATE.txt
+          # -r (recursive), -n (line number)
+          grep -rn "node-fetch" ext/ >> sementara/audit/node_fetch_usage_$DATE.txt || echo "Tidak ditemukan penggunaan node-fetch." >> sementara/audit/node_fetch_usage_$DATE.txt
+
       - name: Audit & Check Unused Python Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
@@ -85,7 +91,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Tambahkan semua hasil audit dan perubahan package.json
           git add sementara/audit/*.txt package.json package-lock.json
           
           if git diff --staged --quiet; then
