@@ -1,28 +1,23 @@
 #!/bin/bash
 
-echo "🚀 Memulai Operasi Dependency Fixer Spesifik..."
+echo "🚀 Operasi Pembersihan Akar (Anti node-domexception)..."
 
 if [ -f package.json ]; then
-    # 1. Paksa upgrade fetch-blob ke versi terbaru (siapa tahu mereka sudah buang domexception)
-    echo "🆙 Mencoba upgrade fetch-blob secara manual..."
-    npm install fetch-blob@latest --save || true
+    # 1. Hapus secara paksa dari package.json dan node_modules
+    echo "🧹 Menghapus node-fetch dan sisa-sisanya..."
+    npm uninstall node-fetch fetch-blob node-domexception --save
 
-    # 2. Pastikan node-fetch benar-benar didepak
-    echo "🧹 Menghapus node-fetch yang sudah tidak diperlukan..."
-    npm uninstall node-fetch --save
+    # 2. Paksa NPM untuk membangun ulang silsilah tanpa paket lama
+    echo "🔄 Rebuilding package-lock.json..."
+    rm -rf node_modules package-lock.json
+    npm install --package-lock-only
 
-    # 3. Gunakan NPM Overrides (Fitur ampuh NPM v8+)
-    # Ini akan memaksa semua paket yang minta node-domexception untuk diam (atau diabaikan)
-    echo "🛠️ Menerapkan overrides pada package.json..."
-    npx npm-add-override node-domexception@1.0.0 "node-domexception@npm:empty-package" || echo "Manual override needed"
-
-    # 4. Bersihkan sisa-sisa
-    echo "🧹 Cleanup..."
-    npm prune
-    npm audit fix
+    # 3. Bersihkan cache yang mungkin masih menyimpan metadata lama
+    echo "🧼 Cleaning npm cache..."
+    npm cache clean --force
     
-    echo "✨ Selesai! Coba cek audit lagi nanti."
+    echo "✨ Selesai! Seharusnya warning deprecated sudah hilang."
 else
-    echo "❌ package.json tidak ada."
+    echo "❌ package.json tidak ditemukan."
     exit 1
 fi
