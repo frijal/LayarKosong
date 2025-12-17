@@ -1,0 +1,5 @@
+--- File yang menggunakan node-fetch ---
+ext/rapikan-cloudflare.js:1:import fetch from "node-fetch";
+ext/dependency-fixer.sh:10:    # 2. Re-install node-fetch untuk sinkronisasi
+ext/dependency-fixer.sh:11:    echo "🆙 Refreshing node-fetch..."
+ext/dependency-fixer.sh:12:    npm install node-fetch@latest --save
