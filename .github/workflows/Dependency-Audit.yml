@@ -81,77 +81,75 @@ jobs:
         run: |
           echo "### CI Slimming" > sementara/ci-slimming.txt
 
-          # Node: remove devDependencies
           if [ -f package.json ]; then
             echo "Removing Node devDependencies..." >> sementara/ci-slimming.txt
             npm prune --omit=dev || true
           fi
 
-          # Python: remove build tools
           echo "Removing Python build tools..." >> sementara/ci-slimming.txt
           pip uninstall -y pipdeptree pip-check-unused wheel setuptools || true
 
-          # System cleanup
           echo "Cleaning system packages..." >> sementara/ci-slimming.txt
           sudo apt-get autoremove -y >> sementara/ci-slimming.txt
           sudo apt-get clean >> sementara/ci-slimming.txt
 
       # ======================
-      # SUMMARY
-            # ======================
-      # DEPENDENCY SMELL RANKING (FIXED)
+      # DEPENDENCY SMELL RANKING (SAFE)
+      # ======================
       - name: Rank smelliest dependencies
         run: |
           set -e
 
-          echo "RANK | SCORE | DEPENDENCY | LAST TOUCH | STATUS" > sementara/dependency-smell-ranking.txt
-          echo "-------------------------------------------------------" >> sementara/dependency-smell-ranking.txt
+          echo "RANK | SCORE | DEPENDENCY | LAST TOUCH | STATUS" \
+            > sementara/dependency-smell-ranking.txt
+          echo "-------------------------------------------------------" \
+            >> sementara/dependency-smell-ranking.txt
 
           TODAY=$(date +%s)
           rank=1
 
           # ---------- NODE ----------
           if [ -f package.json ]; then
-            node <<'EOF' > sementara/node-smell-raw.txt
-            const fs = require('fs');
+            cat <<'EOF' | node > sementara/node-smell-raw.txt
+const fs = require('fs');
 
-            const unused = fs.existsSync('sementara/node-unused.json')
-              ? JSON.parse(fs.readFileSync('sementara/node-unused.json', 'utf8'))
-              : { dependencies: [], devDependencies: [] };
+const unused = fs.existsSync('sementara/node-unused.json')
+  ? JSON.parse(fs.readFileSync('sementara/node-unused.json', 'utf8'))
+  : { dependencies: [], devDependencies: [] };
 
-            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
-            const deps = {
-              ...(pkg.dependencies || {}),
-              ...(pkg.devDependencies || {})
-            };
+const deps = {
+  ...(pkg.dependencies || {}),
+  ...(pkg.devDependencies || {})
+};
 
-            const isDev = (name) => pkg.devDependencies && pkg.devDependencies[name];
-            const isUnused = (name) =>
-              unused.dependencies?.includes(name) || unused.devDependencies?.includes(name);
+const isDev = (name) => pkg.devDependencies && pkg.devDependencies[name];
+const isUnused = (name) =>
+  unused.dependencies?.includes(name) || unused.devDependencies?.includes(name);
 
-            for (const dep of Object.keys(deps)) {
-              let score = 0;
-              let status = [];
+for (const dep of Object.keys(deps)) {
+  let score = 0;
+  let status = [];
 
-              if (isUnused(dep)) {
-                score += 50;
-                status.push('UNUSED');
-              }
+  if (isUnused(dep)) {
+    score += 50;
+    status.push('UNUSED');
+  }
 
-              if (isDev(dep)) {
-                score += 10;
-                status.push('DEV');
-              }
+  if (isDev(dep)) {
+    score += 10;
+    status.push('DEV');
+  }
 
-              if (/test|mock|debug|sample|demo/i.test(dep)) {
-                score += 5;
-                status.push('EXPERIMENT');
-              }
+  if (/test|mock|debug|sample|demo/i.test(dep)) {
+    score += 5;
+    status.push('EXPERIMENT');
+  }
 
-              console.log(`${score}|${dep}|${status.join(',') || 'OK'}`);
-            }
-            EOF
+  console.log(`${score}|${dep}|${status.join(',') || 'OK'}`);
+}
+EOF
           fi
 
           # ---------- PYTHON ----------
@@ -162,7 +160,8 @@ jobs:
           fi
 
           # ---------- COMBINE ----------
-          cat sementara/*-smell-raw.txt 2>/dev/null > sementara/_smell-all.txt || true
+          cat sementara/*-smell-raw.txt 2>/dev/null \
+            > sementara/_smell-all.txt || true
 
           # ---------- LAST TOUCH & SCORING ----------
           > sementara/_ranking.tmp
@@ -184,9 +183,10 @@ jobs:
               extra=20
             fi
 
-            base_score=$(grep "|$dep|" sementara/_smell-all.txt | awk -F'|' '{s+=$1} END {print s}')
-            total=$((base_score + extra))
+            base_score=$(grep "|$dep|" sementara/_smell-all.txt \
+              | awk -F'|' '{s+=$1} END {print s}')
 
+            total=$((base_score + extra))
             echo "$total|$dep|$last_date" >> sementara/_ranking.tmp
           done
 
@@ -196,8 +196,10 @@ jobs:
               >> sementara/dependency-smell-ranking.txt
             rank=$((rank+1))
           done
-      # ======================
 
+      # ======================
+      # SUMMARY
+      # ======================
       - name: Show summary
         run: |
           echo "===== TEMP FOLDER ====="
