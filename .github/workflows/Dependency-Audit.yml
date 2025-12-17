@@ -1,13 +1,10 @@
-name: Audit, Detection & Auto-Fix
+name: 🛡️ Full Audit, Inspector & Auto-Fix
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  workflow_dispatch: 
 
 jobs:
-  audit-and-fix:
+  comprehensive-check:
     runs-on: ubuntu-latest
     
     permissions:
@@ -31,70 +28,86 @@ jobs:
       - name: Create Audit Directory
         run: mkdir -p sementara/audit
 
+      # --- BAGIAN 1: INSPECTOR ---
+      
+      - name: 📝 List Files in ext/
+        run: |
+          echo "--- Isi Folder ext ---"
+          ls -R ext/
+
+      - name: 🧠 AI Script Syntax Check
+        run: |
+          echo "Memeriksa validitas syntax JavaScript di folder ext..."
+          for file in ext/*.js; do
+            if [ -f "$file" ]; then
+              node --check "$file" && echo "✅ $file: Syntax OK" || exit 1
+            fi
+          done
+
+      # --- BAGIAN 2: AUTO-FIX ---
+
       - name: 🛠️ Run Dependency Fixer
         run: |
           if [ -f ext/dependency-fixer.sh ]; then
-            echo "🚀 Menjalankan Fixer dari folder ext..."
             chmod +x ext/dependency-fixer.sh
             ./ext/dependency-fixer.sh
-          else
-            echo "⚠️ ext/dependency-fixer.sh tidak ditemukan, melewati langkah ini."
           fi
 
-      - name: Audit & Check Unused Node.js Packages
+      # --- BAGIAN 3: AUDIT & REPORTING ---
+
+      - name: 🕵️ Trace node-fetch Residuals
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          echo "--- Penggunaan node-fetch di ext/ ---" > sementara/audit/node_fetch_usage_$DATE.txt
+          grep -rn "node-fetch" ext/ >> sementara/audit/node_fetch_usage_$DATE.txt || echo "Tidak ditemukan node-fetch." >> sementara/audit/node_fetch_usage_$DATE.txt
+
+      - name: Audit Node.js
         run: |
           DATE=$(date +'%Y-%m-%d')
           if [ -f package.json ]; then
-            # Hapus step npm install --package-lock-only di sini 
-            # karena sudah ditangani oleh dependency-fixer.sh
-            
             echo "--- Full Package List ---" > sementara/audit/npm_full_list_$DATE.txt
-            # Gunakan --invalid-fatal=false agar workflow tidak berhenti jika ada warning kecil
             npm list --depth=0 || true >> sementara/audit/npm_full_list_$DATE.txt
             
-            echo "--- Unused Dependencies Report ($DATE) ---" > sementara/audit/npm_unused_$DATE.txt
+            echo "--- Unused Dependencies Report ---" > sementara/audit/npm_unused_$DATE.txt
             npx depcheck . --json --skip-missing=true | jq '{
               "PAKET_MENGANGGUR": .dependencies,
               "PAKET_YANG_DIGUNAKAN": .using
             }' >> sementara/audit/npm_unused_$DATE.txt || true
           fi
 
-      - name: 🕵️ Trace Deprecated node-domexception
+      - name: Audit Python Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
-          echo "--- Dependency Trace: node-domexception ---" > sementara/audit/trace_deprecated_$DATE.txt
-          npm ls node-domexception >> sementara/audit/trace_deprecated_$DATE.txt || true
-
-      - name: 🔍 Cari Penggunaan node-fetch di Folder ext/
-        run: |
-          DATE=$(date +'%Y-%m-%d')
-          echo "--- File yang menggunakan node-fetch ---" > sementara/audit/node_fetch_usage_$DATE.txt
-          # -r (recursive), -n (line number)
-          grep -rn "node-fetch" ext/ >> sementara/audit/node_fetch_usage_$DATE.txt || echo "Tidak ditemukan penggunaan node-fetch." >> sementara/audit/node_fetch_usage_$DATE.txt
-
-      - name: Audit & Check Unused Python Packages
-        run: |
-          DATE=$(date +'%Y-%m-%d')
-          if [ -f requirements.txt ]; then
-            pip install pip-check-reqs
-            echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
-            cat requirements.txt >> sementara/audit/python_pip_list_$DATE.txt
-            echo "--- Unused Requirements (via pip-extra-reqs) ---" > sementara/audit/python_unused_$DATE.txt
-            pip-extra-reqs . >> sementara/audit/python_unused_$DATE.txt || true
-          else
-            echo "Skip Python audit: requirements.txt not found."
+          
+          # Cari lokasi requirements.txt secara dinamis
+          if [ -f "requirements.txt" ]; then 
+            REQ_PATH="requirements.txt"
+          elif [ -f "sementara/audit/requirements.txt" ]; then 
+            REQ_PATH="sementara/audit/requirements.txt"
           fi
 
-      - name: Commit and Push Audit Results & Fixes
+          if [ ! -z "$REQ_PATH" ]; then
+            echo "🔎 Menggunakan file: $REQ_PATH"
+            pip install pip-check-reqs
+            
+            echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
+            cat "$REQ_PATH" >> sementara/audit/python_pip_list_$DATE.txt
+            
+            echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
+            # PERBAIKAN UTAMA: Tambahkan flag --requirements agar pip-extra-reqs tahu lokasinya
+            pip-extra-reqs . --requirements "$REQ_PATH" >> sementara/audit/python_unused_$DATE.txt || true
+          else
+            echo "Skip Python audit: requirements.txt tidak ditemukan."
+          fi
+
+      - name: Commit and Push Results
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
           git add sementara/audit/*.txt package.json package-lock.json
-          
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: auto-fix deps trace & audit - $(date +'%Y-%m-%d')"
+            git commit -m "chore: manual audit & fix - $(date +'%Y-%m-%d')"
             git push
           fi
