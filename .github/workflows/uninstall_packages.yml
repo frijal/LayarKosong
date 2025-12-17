@@ -19,7 +19,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # --- SETUP ENVIRONMENTS ---
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,65 +31,58 @@ jobs:
           python-version: '3.x'
           cache: 'pip'
 
-      # --- NODE.JS UNINSTALL ---
-      - name: Node.js Uninstall
+      # --- PERBAIKAN: SYNC DULU SEBELUM AUDIT ---
+      - name: Node.js Prep & Uninstall
         run: |
-          echo "Memeriksa paket Node.js: ${{ github.event.inputs.packages_to_remove }}"
+          echo "Syncing dependencies to avoid ELSPROBLEMS..."
           if [ -f package.json ]; then
-            npm install --package-lock-only
+            # Pakai --legacy-peer-deps jika repo kamu punya konflik versi yang ketat
+            npm install --package-lock-only || true
+            
+            # Eksekusi Uninstall
+            echo "Target eksekusi Node.js: ${{ github.event.inputs.packages_to_remove }}"
             npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
             npm prune
-            echo "Proses Node.js selesai."
           fi
 
-      # --- PYTHON UNINSTALL ---
       - name: Python Uninstall
         run: |
-          echo "Memeriksa paket Python: ${{ github.event.inputs.packages_to_remove }}"
           PACKAGES="${{ github.event.inputs.packages_to_remove }}"
-          
-          # Bersihkan requirements.txt
           if [ -f requirements.txt ]; then
             for pkg in $PACKAGES; do
               sed -i "/^${pkg}==/d; /^${pkg}>=/d; /^${pkg}$/d" requirements.txt
             done
           fi
-
-          # Bersihkan pyproject.toml
-          if [ -f pyproject.toml ]; then
-            for pkg in $PACKAGES; do
-              sed -i "/\"${pkg}\"/d; /'${pkg}'/d" pyproject.toml
-            done
-          fi
-
-          # Uninstall dari environment runner
           pip uninstall -y $PACKAGES || true
 
-      # --- LOGGING & AUDIT ---
-      - name: Generate Audit Log
+      # --- AUDIT SETELAH BERSIH-BERSIH ---
+      - name: Final Audit Report
         run: |
           DATE=$(date +'%Y-%m-%d')
           mkdir -p sementara/audit
-          LOG_FILE="sementara/audit/cleanup_report_$DATE.txt"
           
-          echo "Audit Log Penghapusan ($DATE)" > $LOG_FILE
-          echo "---------------------------" >> $LOG_FILE
-          echo "User Input: ${{ github.event.inputs.packages_to_remove }}" >> $LOG_FILE
-          echo "Lokasi: Balikpapan, ID" >> $LOG_FILE
-          echo "Status: Job completed" >> $LOG_FILE
+          if [ -f package.json ]; then
+            echo "--- Full Package List (After Fix) ---" > sementara/audit/npm_full_list_$DATE.txt
+            # Pakai || true supaya kalau tetap ada warning, workflow tidak mati
+            npm list --depth=0 >> sementara/audit/npm_full_list_$DATE.txt || true
+            
+            echo "--- Unused Dependencies Report ($DATE) ---" > sementara/audit/npm_unused_$DATE.txt
+            # Kita jalankan depcheck dan rapikan JSON-nya
+            npx depcheck . --json --skip-missing=true | jq '{
+              "PAKET_MENGANGGUR": .dependencies,
+              "PAKET_YANG_DIGUNAKAN": .using
+            }' >> sementara/audit/npm_unused_$DATE.txt || true
+          fi
 
-      # --- COMMIT CHANGES ---
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Add all possible modified files
-          git add package.json package-lock.json requirements.txt pyproject.toml sementara/audit/*.txt
+          git add package.json package-lock.json requirements.txt sementara/audit/*.txt
           
           if git diff --staged --quiet; then
-            echo "Tidak ada perubahan yang dilakukan."
+            echo "No changes to commit"
           else
-            git commit -m "chore: universal uninstall [${{ github.event.inputs.packages_to_remove }}] - $(date +'%Y-%m-%d')"
+            git commit -m "chore: universal cleanup & fix sync [${{ github.event.inputs.packages_to_remove }}]"
             git push
           fi
