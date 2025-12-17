@@ -21,19 +21,25 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y libxml2-utils sed grep
 
-      - name: 🛠 STEP 1 - Auto Fix Common XML Errors
+      - name: 🛠 STEP 1 - Auto-Fix Common XML Errors
         run: |
           FILE="sitemap.xml"
           if [ -f "$FILE" ]; then
-            echo "Memperbaiki karakter ampersand ilegal..."
-            # Mengganti '&' yang tidak ter-escape menjadi '&amp;' menggunakan regex
-            sed -i -E 's/&(?!(amp|lt|gt|quot|apos);)/&amp;/g' "$FILE"
+            echo "Memperbaiki karakter ampersand ilegal menggunakan Perl..."
+            # Perl mendukung negative lookahead (?!...) dengan sempurna
+            perl -i -pe 's/&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/&amp;/g' "$FILE"
             
             echo "Menghapus karakter kontrol non-printable..."
-            tr -d '\000-\010\013\014\016-\037' < "$FILE" > "$FILE.tmp" && mv "$FILE.tmp" "$FILE"
+            # Menggunakan perl untuk menghapus karakter kontrol agar lebih konsisten
+            perl -i -pe 's/[\x00-\x08\x0B\x0C\x0E-\x1F]//g' "$FILE"
             
             echo "Memastikan file menggunakan UTF-8 tanpa BOM..."
-            sed -i '1s/^\xef\xbb\xbf//' "$FILE"
+            # Menghapus Byte Order Mark (BOM) jika ada
+            perl -i -pe 's/^\xEF\xBB\xBF//' "$FILE"
+            
+            echo "Selesai memperbaiki $FILE"
+          else
+            echo "File $FILE tidak ditemukan, melewati langkah ini."
           fi
 
       - name: 🔍 STEP 2 - Validate Schema Video & Images
