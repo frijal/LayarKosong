@@ -1,34 +1,28 @@
 #!/bin/bash
 
-# =================================================================
-# Dependency Fixer - Layar Kosong
-# Fungsi: Memaksa upgrade paket yang menarik dependensi deprecated
-# =================================================================
-
-echo "🚀 Memulai Operasi Dependency Fixer..."
+echo "🚀 Memulai Operasi Dependency Fixer Spesifik..."
 
 if [ -f package.json ]; then
-    echo "🔍 Mencari induk dari node-domexception..."
-    
-    # Mencari paket utama yang menggunakan node-domexception
-    # Kita ambil level tertinggi di pohon dependensi
-    PARENT_PKG=$(npm ls node-domexception --depth=1 --json 2>/dev/null | jq -r '.dependencies | keys[0]' 2>/dev/null)
+    # 1. Paksa upgrade fetch-blob ke versi terbaru (siapa tahu mereka sudah buang domexception)
+    echo "🆙 Mencoba upgrade fetch-blob secara manual..."
+    npm install fetch-blob@latest --save || true
 
-    if [ ! -z "$PARENT_PKG" ] && [ "$PARENT_PKG" != "null" ]; then
-        echo "🚨 Terdeteksi: '$PARENT_PKG' adalah pihak yang menarik node-domexception."
-        echo "🆙 Mencoba melakukan force upgrade pada $PARENT_PKG..."
-        npm install "$PARENT_PKG@latest" --save
-    else
-        echo "✅ Tidak ditemukan induk langsung yang mencurigakan."
-    fi
+    # 2. Re-install node-fetch untuk sinkronisasi
+    echo "🆙 Refreshing node-fetch..."
+    npm install node-fetch@latest --save
 
-    # Langkah Tambahan: Audit Fix & Prune
-    echo "🧹 Melakukan pembersihan sisa-sisa paket..."
-    npm audit fix --force || true
+    # 3. Gunakan NPM Overrides (Fitur ampuh NPM v8+)
+    # Ini akan memaksa semua paket yang minta node-domexception untuk diam (atau diabaikan)
+    echo "🛠️ Menerapkan overrides pada package.json..."
+    npx npm-add-override node-domexception@1.0.0 "node-domexception@npm:empty-package" || echo "Manual override needed"
+
+    # 4. Bersihkan sisa-sisa
+    echo "🧹 Cleanup..."
     npm prune
+    npm audit fix
     
-    echo "✨ Selesai! package-lock.json telah diperbarui."
+    echo "✨ Selesai! Coba cek audit lagi nanti."
 else
-    echo "❌ Error: package.json tidak ditemukan di root!"
+    echo "❌ package.json tidak ada."
     exit 1
 fi
