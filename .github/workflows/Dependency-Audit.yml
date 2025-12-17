@@ -33,16 +33,12 @@ jobs:
       - name: Upgrade & Sync to @google/genai (Latest)
         run: |
           echo "Upgrading to the latest Generative AI SDK and fixing missing packages..."
-          
           if [ -f package.json ]; then
-            # 1. Hapus paket lama (generative-ai) dan install yang baru (genai)
-            # Sekalian install node-fetch dan playwright yang terdeteksi 'missing' sebelumnya
-            npm uninstall @google/generative-ai
+            # Hapus yang lama, install yang baru & yang missing
+            npm uninstall @google/generative-ai || true
             npm install @google/genai node-fetch playwright
             
-            # 2. Sinkronisasi Kode: Ganti semua import lama ke yang baru di folder ext/
-            # Ini akan mencari @google/generative-ai DAN @google/genai (jika ada typo) 
-            # lalu memastikan semuanya seragam merujuk ke @google/genai
+            # Sinkronisasi pemanggilan di folder ext/
             find ext/ -type f -name "*.js" -exec sed -i 's/@google\/generative-ai/@google\/genai/g' {} +
             echo "Sync completed."
           fi
@@ -55,7 +51,6 @@ jobs:
             npm list --depth=0 >> audit/npm_full_list_$DATE.txt || true
             
             echo "--- Unused Dependencies (via depcheck) ---" > audit/npm_unused_$DATE.txt
-            # depcheck sekarang akan mengecek folder ext/ dengan nama paket yang sudah sinkron
             npx depcheck . --json=false --skip-missing=true >> audit/npm_unused_$DATE.txt || true
           fi
 
@@ -77,7 +72,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Daftarkan semua file yang mungkin berubah
+          # Pastikan semua file perubahan masuk stage
           git add audit/*.txt package.json package-lock.json ext/*.js
           
           if git diff --staged --quiet; then
@@ -85,4 +80,4 @@ jobs:
           else
             git commit -m "chore: upgrade @google/genai, fix missing deps & audit - $(date +'%Y-%m-%d')"
             git push
-          fiplaywrightplaywrightplaywright
+          fi
