@@ -1,0 +1,213 @@
+name: Dependency Audit + Blame + CI Slimming
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare temp folder
+        run: mkdir -p sementara
+
+      # ======================
+      # DEPENDENCY BLAME
+      # ======================
+      - name: Detect last touch (git blame / log)
+        run: |
+          echo "### Dependency Last Touch Report" > sementara/dependency-last-touch.txt
+          echo >> sementara/dependency-last-touch.txt
+
+          for file in package.json package-lock.json requirements.txt composer.json composer.lock go.mod go.sum; do
+            if [ -f "$file" ]; then
+              echo "## $file" >> sementara/dependency-last-touch.txt
+              git log -1 --format="Last commit: %h | %an | %ad" --date=short -- "$file" \
+                >> sementara/dependency-last-touch.txt
+              echo >> sementara/dependency-last-touch.txt
+            fi
+          done
+
+      # ======================
+      # NODE.JS
+      # ======================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies (with dev)
+        if: hashFiles('package.json') != ''
+        run: npm install
+
+      - name: Detect unused Node dependencies
+        if: hashFiles('package.json') != ''
+        run: |
+          npx depcheck --json > sementara/node-unused.json || true
+          npx depcheck || true
+
+      # ======================
+      # PYTHON
+      # ======================
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        if: hashFiles('requirements.txt') != ''
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pipdeptree pip-check-unused
+
+      - name: Detect unused Python packages
+        if: hashFiles('requirements.txt') != ''
+        run: |
+          pip-check-unused --format json > sementara/python-unused.json || true
+          pip-check-unused || true
+
+      # ======================
+      # CI SLIMMING
+      # ======================
+      - name: CI slimming – remove build-only dependencies
+        run: |
+          echo "### CI Slimming" > sementara/ci-slimming.txt
+
+          # Node: remove devDependencies
+          if [ -f package.json ]; then
+            echo "Removing Node devDependencies..." >> sementara/ci-slimming.txt
+            npm prune --omit=dev || true
+          fi
+
+          # Python: remove build tools
+          echo "Removing Python build tools..." >> sementara/ci-slimming.txt
+          pip uninstall -y pipdeptree pip-check-unused wheel setuptools || true
+
+          # System cleanup
+          echo "Cleaning system packages..." >> sementara/ci-slimming.txt
+          sudo apt-get autoremove -y >> sementara/ci-slimming.txt
+          sudo apt-get clean >> sementara/ci-slimming.txt
+
+      # ======================
+      # SUMMARY
+            # ======================
+      # DEPENDENCY SMELL RANKING
+      # ======================
+      
+      - name: Rank smelliest dependencies
+        run: |
+          echo "RANK | SCORE | DEPENDENCY | LAST TOUCH | STATUS" > sementara/dependency-smell-ranking.txt
+          echo "-------------------------------------------------------" >> sementara/dependency-smell-ranking.txt
+
+          TODAY=$(date +%s)
+
+          rank=1
+
+          # ---------- NODE ----------
+          if [ -f package.json ]; then
+            node - <<'EOF'
+            const fs = require('fs');
+
+            const unused = fs.existsSync('sementara/node-unused.json')
+              ? JSON.parse(fs.readFileSync('sementara/node-unused.json'))
+              : { dependencies: [], devDependencies: [] };
+
+            const pkg = JSON.parse(fs.readFileSync('package.json'));
+
+            const deps = {
+              ...pkg.dependencies,
+              ...pkg.devDependencies
+            };
+
+            const isDev = (name) => pkg.devDependencies && pkg.devDependencies[name];
+            const isUnused = (name) =>
+              unused.dependencies.includes(name) || unused.devDependencies.includes(name);
+
+            for (const dep of Object.keys(deps)) {
+              let score = 0;
+              let status = [];
+
+              if (isUnused(dep)) {
+                score += 50;
+                status.push('UNUSED');
+              }
+
+              if (isDev(dep)) {
+                score += 10;
+                status.push('DEV');
+              }
+
+              if (/test|mock|debug|sample|demo/i.test(dep)) {
+                score += 5;
+                status.push('EXPERIMENT');
+              }
+
+              console.log(`${score}|${dep}|${status.join(',')}`);
+            }
+            EOF > sementara/node-smell-raw.txt
+          fi
+
+          # ---------- PYTHON ----------
+          if [ -f requirements.txt ]; then
+            if [ -f sementara/python-unused.json ]; then
+              jq -r '.unused[]' sementara/python-unused.json | while read dep; do
+                echo "50|$dep|UNUSED" >> sementara/python-smell-raw.txt
+              done
+            fi
+          fi
+
+          # ---------- LAST TOUCH ----------
+          touch sementara/_ranking.tmp
+
+          for dep in $(cut -d'|' -f2 sementara/*-smell-raw.txt | sort -u); do
+            last_date=$(git log -1 --format="%ad" --date=short -- package.json requirements.txt composer.json go.mod 2>/dev/null | head -n1)
+            if [ -n "$last_date" ]; then
+              last_ts=$(date -d "$last_date" +%s)
+              age_days=$(( (TODAY - last_ts) / 86400 ))
+
+              extra=0
+              if [ "$age_days" -gt 730 ]; then extra=35;
+              elif [ "$age_days" -gt 365 ]; then extra=25;
+              fi
+            else
+              extra=20
+              last_date="unknown"
+            fi
+
+            base_score=$(grep "|$dep|" sementara/*-smell-raw.txt | awk -F'|' '{s+=$1} END {print s}')
+            total=$((base_score + extra))
+
+            echo "$total|$dep|$last_date" >> sementara/_ranking.tmp
+          done
+
+          sort -rn sementara/_ranking.tmp | while IFS='|' read score dep date; do
+            printf "%-4s | %-5s | %-18s | %-11s | BAU\n" "$rank" "$score" "$dep" "$date" \
+              >> sementara/dependency-smell-ranking.txt
+            rank=$((rank+1))
+          done
+
+      # ======================
+      - name: Show summary
+        run: |
+          echo "===== TEMP FOLDER ====="
+          ls -lh sementara
+          echo
+          echo "===== LAST TOUCH ====="
+          cat sementara/dependency-last-touch.txt
+          echo
+          echo "===== NODE UNUSED ====="
+          [ -f sementara/node-unused.json ] && cat sementara/node-unused.json || true
+          echo
+          echo "===== PYTHON UNUSED ====="
+          [ -f sementara/python-unused.json ] && cat sementara/python-unused.json || true
+          echo
+          echo "===== CI SLIMMING LOG ====="
+          cat sementara/ci-slimming.txt
