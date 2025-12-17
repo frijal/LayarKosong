@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       packages_to_remove:
-        description: 'Masukkan nama paket yang ingin di-uninstall (pisahkan dengan spasi, contoh: playwright lodash)'
+        description: 'Masukkan nama paket (contoh: playwright requests)'
         required: true
-        default: 'playwright'
+        default: ''
 
 jobs:
-  uninstall:
+  uninstall-process:
     runs-on: ubuntu-latest
     
     permissions:
@@ -19,41 +19,78 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # --- SETUP ENVIRONMENTS ---
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: "npm"
+          cache: 'npm'
 
-      - name: Uninstall Selected Packages
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      # --- NODE.JS UNINSTALL ---
+      - name: Node.js Uninstall
         run: |
-          echo "Target eksekusi: ${{ github.event.inputs.packages_to_remove }}"
-          
+          echo "Memeriksa paket Node.js: ${{ github.event.inputs.packages_to_remove }}"
           if [ -f package.json ]; then
-            # Menjalankan perintah uninstall sesuai input user
-            npm uninstall ${{ github.event.inputs.packages_to_remove }}
-            echo "Berhasil menghapus paket dari Node.js."
-          else
-            echo "File package.json tidak ditemukan, melewati proses."
+            npm install --package-lock-only
+            npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
+            npm prune
+            echo "Proses Node.js selesai."
           fi
 
-      - name: Cleanup Audit Files (Optional)
+      # --- PYTHON UNINSTALL ---
+      - name: Python Uninstall
         run: |
-          # Opsional: Tandai di folder audit kalau hari ini ada penghapusan
+          echo "Memeriksa paket Python: ${{ github.event.inputs.packages_to_remove }}"
+          PACKAGES="${{ github.event.inputs.packages_to_remove }}"
+          
+          # Bersihkan requirements.txt
+          if [ -f requirements.txt ]; then
+            for pkg in $PACKAGES; do
+              sed -i "/^${pkg}==/d; /^${pkg}>=/d; /^${pkg}$/d" requirements.txt
+            done
+          fi
+
+          # Bersihkan pyproject.toml
+          if [ -f pyproject.toml ]; then
+            for pkg in $PACKAGES; do
+              sed -i "/\"${pkg}\"/d; /'${pkg}'/d" pyproject.toml
+            done
+          fi
+
+          # Uninstall dari environment runner
+          pip uninstall -y $PACKAGES || true
+
+      # --- LOGGING & AUDIT ---
+      - name: Generate Audit Log
+        run: |
           DATE=$(date +'%Y-%m-%d')
           mkdir -p sementara/audit
-          echo "Paket berikut telah di-uninstall: ${{ github.event.inputs.packages_to_remove }}" > sementara/audit/last_cleanup_$DATE.txt
+          LOG_FILE="sementara/audit/cleanup_report_$DATE.txt"
+          
+          echo "Audit Log Penghapusan ($DATE)" > $LOG_FILE
+          echo "---------------------------" >> $LOG_FILE
+          echo "User Input: ${{ github.event.inputs.packages_to_remove }}" >> $LOG_FILE
+          echo "Lokasi: Balikpapan, ID" >> $LOG_FILE
+          echo "Status: Job completed" >> $LOG_FILE
 
+      # --- COMMIT CHANGES ---
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add package.json package-lock.json sementara/audit/*.txt
+          # Add all possible modified files
+          git add package.json package-lock.json requirements.txt pyproject.toml sementara/audit/*.txt
           
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan yang dilakukan."
           else
-            git commit -m "chore: uninstall unused packages (${{ github.event.inputs.packages_to_remove }})"
+            git commit -m "chore: universal uninstall [${{ github.event.inputs.packages_to_remove }}] - $(date +'%Y-%m-%d')"
             git push
           fi
