@@ -1,18 +1,7 @@
 name: 🛡️ Full Audit, Inspector & Auto-Fix
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'ext/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'sementara/audit/requirements.txt'
-  pull_request:
-    paths:
-      - 'ext/**'
+  workflow_dispatch: # Hanya dapat dijalankan secara manual dari UI GitHub Actions
 
 jobs:
   comprehensive-check:
@@ -58,7 +47,6 @@ jobs:
       - name: 🔒 Basic Secret Leak Detection
         run: |
           echo "Memeriksa potensi kebocoran API Key di folder ext..."
-          # Mencari pola string yang mencurigakan tapi bukan dari env
           grep -rnE "(key|token|secret|password) *= *['\"][a-zA-Z0-9_-]+['\"]" ext/ && {
             echo "⚠️ PERINGATAN: Ditemukan hardcoded secret! Segera pindahkan ke .env."
           } || echo "✅ Tidak ada hardcoded secret yang mencolok."
@@ -103,10 +91,10 @@ jobs:
       - name: Audit Python Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
-          if [ -f requirements.txt ]; then
+          if [ -f sementara/audit/requirements.txt ]; then
             pip install pip-check-reqs
             echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
-            cat requirements.txt >> sementara/audit/python_pip_list_$DATE.txt
+            cat sementara/audit/requirements.txt >> sementara/audit/python_pip_list_$DATE.txt
             echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
             pip-extra-reqs . >> sementara/audit/python_unused_$DATE.txt || true
           fi
@@ -114,8 +102,6 @@ jobs:
       # --- BAGIAN 4: FINALIZE ---
 
       - name: Commit and Push Results
-        # Hanya commit jika di branch main untuk menghindari loop di pull request
-        if: github.ref == 'refs/heads/main'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
