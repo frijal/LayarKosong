@@ -78,23 +78,27 @@ jobs:
       - name: Audit Python Packages
         run: |
           DATE=$(date +'%Y-%m-%d')
-          # PERBAIKAN: Mencari requirements.txt di root atau di folder audit kamu
-          REQ_FILE=""
-          if [ -f "requirements.txt" ]; then REQ_FILE="requirements.txt"; 
-          elif [ -f "sementara/audit/requirements.txt" ]; then REQ_FILE="sementara/audit/requirements.txt"; fi
-
-          if [ ! -z "$REQ_FILE" ]; then
-            echo "🔎 Menggunakan file: $REQ_FILE"
-            pip install pip-check-reqs
-            echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
-            cat "$REQ_FILE" >> sementara/audit/python_pip_list_$DATE.txt
-            echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
-            pip-extra-reqs . >> sementara/audit/python_unused_$DATE.txt || true
-          else
-            echo "Skip Python audit: requirements.txt tidak ditemukan di root maupun folder audit."
+          
+          # Cari lokasi requirements.txt secara dinamis
+          if [ -f "requirements.txt" ]; then 
+            REQ_PATH="requirements.txt"
+          elif [ -f "sementara/audit/requirements.txt" ]; then 
+            REQ_PATH="sementara/audit/requirements.txt"
           fi
 
-      # --- BAGIAN 4: FINALIZE ---
+          if [ ! -z "$REQ_PATH" ]; then
+            echo "🔎 Menggunakan file: $REQ_PATH"
+            pip install pip-check-reqs
+            
+            echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
+            cat "$REQ_PATH" >> sementara/audit/python_pip_list_$DATE.txt
+            
+            echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
+            # PERBAIKAN UTAMA: Tambahkan flag --requirements agar pip-extra-reqs tahu lokasinya
+            pip-extra-reqs . --requirements "$REQ_PATH" >> sementara/audit/python_unused_$DATE.txt || true
+          else
+            echo "Skip Python audit: requirements.txt tidak ditemukan."
+          fi
 
       - name: Commit and Push Results
         run: |
