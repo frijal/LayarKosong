@@ -1,4 +1,4 @@
 --- File yang menggunakan node-fetch ---
 ext/rapikan-cloudflare.js:1:// import fetch from "node-fetch";
-ext/dependency-fixer.sh:7:    echo "🧹 Menghapus node-fetch dan sisa-sisanya..."
+ext/dependency-fixer.sh:7:    echo "🧹 Menghapus node-fetch dan cache terkait..."
 ext/dependency-fixer.sh:8:    npm uninstall node-fetch fetch-blob node-domexception --save
