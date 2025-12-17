@@ -1,0 +1,59 @@
+name: Custom Package Uninstaller
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages_to_remove:
+        description: 'Masukkan nama paket yang ingin di-uninstall (pisahkan dengan spasi, contoh: playwright lodash)'
+        required: true
+        default: 'playwright'
+
+jobs:
+  uninstall:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: "npm"
+
+      - name: Uninstall Selected Packages
+        run: |
+          echo "Target eksekusi: ${{ github.event.inputs.packages_to_remove }}"
+          
+          if [ -f package.json ]; then
+            # Menjalankan perintah uninstall sesuai input user
+            npm uninstall ${{ github.event.inputs.packages_to_remove }}
+            echo "Berhasil menghapus paket dari Node.js."
+          else
+            echo "File package.json tidak ditemukan, melewati proses."
+          fi
+
+      - name: Cleanup Audit Files (Optional)
+        run: |
+          # Opsional: Tandai di folder audit kalau hari ini ada penghapusan
+          DATE=$(date +'%Y-%m-%d')
+          mkdir -p sementara/audit
+          echo "Paket berikut telah di-uninstall: ${{ github.event.inputs.packages_to_remove }}" > sementara/audit/last_cleanup_$DATE.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add package.json package-lock.json sementara/audit/*.txt
+          
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan yang dilakukan."
+          else
+            git commit -m "chore: uninstall unused packages (${{ github.event.inputs.packages_to_remove }})"
+            git push
+          fi
