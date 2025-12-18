@@ -1,28 +1,25 @@
 name: ☢️ Build and Generate Site Files
 
 on:
-  # ⬇️ Pemicu 1 Berjalan jika ada push ke main yang mengubah *.html di artikel/
   push:
     branches: ['main']
     paths:
-      - 'artikel/*.html' # Pemicu ini diaktifkan kembali
+      - 'artikel/*.html'
 
-  # ⬇️ Pemicu 2 Berjalan setelah Workflow 'Proses ArtikelX' selesai
   workflow_run:
-    workflows: ["🔄 Proses ArtikelX"] # Pastikan NAMA workflow pertama SAMA PERSIS
-    types:
-      - completed # Hanya berjalan jika workflow pertama SELESAI
-    branches: ['main'] # Hanya berjalan jika workflow pertama dijalankan di branch main
+    workflows: ["🔄 Proses ArtikelX"]
+    types: [completed]
+    branches: ['main']
 
-  # ⬇️ Pemicu 3 & 4: Manual dan Terjadwal (tetap ada)
-  workflow_dispatch:  # Untuk menjalankan manual
-  schedule:           # Untuk menjalankan terjadwal
-    - cron: '0 20 * * *'  
+  workflow_dispatch:
+  schedule:
+    - cron: '0 20 * * *'
 
 jobs:
   build:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+
     permissions:
       contents: write
 
@@ -30,9 +27,8 @@ jobs:
       - name: '1. Checkout Repository'
         uses: actions/checkout@v4
         with:
-          # Pastikan mengambil commit terbaru
-          ref: ${{ github.ref }} 
-          fetch-depth: 0 
+          ref: ${{ github.ref }}
+          fetch-depth: 0
 
       - name: '2. Setup Node.js'
         uses: actions/setup-node@v4
@@ -43,47 +39,37 @@ jobs:
       - name: '3. Install Dependencies'
         run: npm ci
 
-      - name: '4. Generate artikel.json, sitemap.xml & RSS'
-        run: |
-          echo "📝 Generating site files..."
-          node ext/generator.js
-          node ext/rss.js
+      - name: '4️⃣ Generate artikel.json & RSS'
+        run: npm run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
-      - name: '5. Generate Sitemap Rekursif & Tambahkan URL Statis'
+      - name: '5️⃣ Generate Sitemap Rekursif & URL Statis'
         run: |
-          echo "📝 Memulai pembuatan sitemap.txt yang lengkap dan rekursif..."
+          echo "📝 Membuat sitemap.txt..."
           BASE_URL="https://dalam.web.id"
           SITEMAP_FILE="sitemap.txt"
-          # 1. GUNAKAN FIND UNTUK ARTIKEL (Membuat file baru/overwrite menggunakan operator >)
-          # Mencari semua file .html di artikel/ dan sub-direktori, hapus ekstensi (.html), tambahkan BASE_URL.
-          find artikel/ -name "*.html" | \
-          sed 's_\.html$__' | \
-          sed "s_^_$BASE_URL/_" > $SITEMAP_FILE
-          echo "Artikel rekursif dari artikel/ telah ditambahkan ke $SITEMAP_FILE."          
-          # 2. GUNAKAN ECHO UNTUK URL STATIS (Menambahkan ke file yang sudah ada/append menggunakan operator >>)
-          echo "🔄 Menambahkan URL halaman statis..."          
-          # URL Statis yang Ditemukan (URL yang seharusnya memiliki file .html di root)
-          echo "$BASE_URL/" >> $SITEMAP_FILE # Halaman utama (index.html)
-          echo "$BASE_URL/search" >> $SITEMAP_FILE
-          echo "$BASE_URL/disclaimer" >> $SITEMAP_FILE
-          echo "$BASE_URL/feed" >> $SITEMAP_FILE
-          echo "$BASE_URL/img" >> $SITEMAP_FILE
-          echo "$BASE_URL/sitemap" >> $SITEMAP_FILE
-          echo "$BASE_URL/data-deletion-form" >> $SITEMAP_FILE
-          echo "$BASE_URL/data-deletion" >> $SITEMAP_FILE
-          echo "✅ Semua URL statis telah ditambahkan."
 
-      - name: '6. Generate screenshots'
-        run: |
-          echo "📸 Generating screenshots (installing puppeteer)..."
-          # Gunakan cache npm jika memungkinkan untuk puppeteer
-          npm install puppeteer --no-save --cache .npm-cache --prefer-offline
-          echo "Running screenshot script..."
-          node ext/screenshot-puppeteer.js          
-        
-      - name: '7. Commit and Push All Generated Files'
+          find artikel/ -name "*.html" \
+            | sed 's_\.html$__' \
+            | sed "s_^_$BASE_URL/_" > "$SITEMAP_FILE"
+
+          echo "$BASE_URL/" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/img" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/search" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
+
+          echo "✅ sitemap.txt selesai"
+
+      - name: '6️⃣ Generate Screenshots'
+        run: npm run ci-screenshot
+
+      - name: '7️⃣ Commit and Push Generated Files'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -91,47 +77,23 @@ jobs:
           git add .
 
           if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan file yang di-generate, tidak perlu commit."
-            # Jika dipicu oleh push, kita tidak ingin menghentikan workflow di sini
-            # karena mungkin langkah deploy selanjutnya perlu berjalan meskipun file generated tidak berubah.
-            # Jika dipicu oleh workflow_run/schedule/dispatch dan tidak ada perubahan, aman untuk keluar.
+            echo "✅ Tidak ada perubahan file."
             if [[ "${{ github.event_name }}" != "push" ]]; then
-              exit 0 
-            else
-              echo "Workflow dipicu oleh push, melanjutkan meskipun tidak ada file generated baru."
+              exit 0
             fi
           fi
 
-          # Hanya commit jika ada perubahan yang di-stage
-          if ! git diff --staged --quiet; then
-            echo "⏳ Perubahan ditemukan. Melakukan commit..."
-            git commit -m "build: 🚀 img, html, txt & json udah beres."
-
-            echo "🔃 Melakukan sinkronisasi sebelum push..."
-            git pull --rebase origin main || { echo "⚠️ Gagal pull --rebase, mencoba push biasa"; git pull origin main; }
-            
-            echo "🚀 Mendorong perubahan ke server..."
-            git push origin main
-          fi
+          git commit -m "build: 🚀 generate site assets"
+          git pull --rebase origin main || git pull origin main
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: '8. Show Published Links & Summary'
-        if: always() 
+
+      - name: '8️⃣ Summary'
+        if: always()
         run: |
-          echo "--- Summary ---"
-          echo "✅ File yang seharusnya di-generate:"
+          echo "✅ Build selesai"
           echo "🔗 artikel.json: https://dalam.web.id/artikel.json"
-          echo "🔗 sitemap.xml : https://dalam.web.id/sitemap.xml"
           echo "🔗 rss.xml     : https://dalam.web.id/rss.xml"
-          echo "🔗 sitemap.txt : https://dalam.web.id/sitemap.txt" # <-- DITAMBAHKAN DI SINI
-          echo "📊 Jumlah konten saat ini:"
-          COUNTHTML=$(ls artikel/*.html 2>/dev/null | wc -l || echo 0)
-          echo "➡️  $COUNTHTML artikel (*.html) di folder artikel/"
-          COUNTWEBP=$(ls img/*.webp 2>/dev/null | wc -l || echo 0)
-          echo "➡️  $COUNTWEBP cover (*.webp) di folder img/"
-          # Tampilkan info pemicu
+          echo "🔗 sitemap.txt : https://dalam.web.id/sitemap.txt"
           echo "Triggered by: ${{ github.event_name }}"
-          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            echo "Workflow run conclusion: ${{ github.event.workflow_run.conclusion }}"
-          fi
