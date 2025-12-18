@@ -1,12 +1,12 @@
 name: 🛡️ Full Audit, Inspector & Auto-Fix
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   comprehensive-check:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
 
@@ -14,100 +14,129 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      # --------------------
+      # SETUP RUNTIME
+      # --------------------
+      - name: Setup Node.js (LTS + native fetch)
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: "npm"
+          cache: npm
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
+      # --------------------
+      # INSTALL DEPENDENCIES
+      # --------------------
+      - name: Install Node.js Dependencies (package.json)
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      # --------------------
+      # PREPARE WORKDIR
+      # --------------------
       - name: Create Audit Directory
         run: mkdir -p sementara/audit
 
-      # --- BAGIAN 1: INSPECTOR ---
-      
+      # ====================
+      # BAGIAN 1: INSPECTOR
+      # ====================
       - name: 📝 List Files in ext/
         run: |
           echo "--- Isi Folder ext ---"
-          ls -R ext/
+          ls -R ext/ || true
 
-      - name: 🧠 AI Script Syntax Check
+      - name: 🧠 JavaScript Syntax Check (Node 20)
         run: |
-          echo "Memeriksa validitas syntax JavaScript di folder ext..."
+          echo "Memeriksa syntax JavaScript di ext/..."
           for file in ext/*.js; do
             if [ -f "$file" ]; then
-              node --check "$file" && echo "✅ $file: Syntax OK" || exit 1
+              node --check "$file"
+              echo "✅ $file: OK"
             fi
           done
 
-      # --- BAGIAN 2: AUTO-FIX ---
-
-      - name: 🛠️ Run Dependency Fixer
+      # ====================
+      # BAGIAN 2: AUTO-FIX
+      # ====================
+      - name: 🛠️ Run Dependency Fixer (optional)
         run: |
           if [ -f ext/dependency-fixer.sh ]; then
             chmod +x ext/dependency-fixer.sh
             ./ext/dependency-fixer.sh
+          else
+            echo "ℹ️ dependency-fixer.sh tidak ditemukan, skip."
           fi
 
-      # --- BAGIAN 3: AUDIT & REPORTING ---
-
+      # ====================
+      # BAGIAN 3: AUDIT & REPORT
+      # ====================
       - name: 🕵️ Trace node-fetch Residuals
         run: |
           DATE=$(date +'%Y-%m-%d')
-          echo "--- Penggunaan node-fetch di ext/ ---" > sementara/audit/node_fetch_usage_$DATE.txt
-          grep -rn "node-fetch" ext/ >> sementara/audit/node_fetch_usage_$DATE.txt || echo "Tidak ditemukan node-fetch." >> sementara/audit/node_fetch_usage_$DATE.txt
+          REPORT="sementara/audit/node_fetch_usage_$DATE.txt"
 
-      - name: Audit Node.js
+          echo "--- Scan node-fetch (legacy) ---" > "$REPORT"
+          grep -RIn "node-fetch" . || echo "✅ node-fetch tidak ditemukan" >> "$REPORT"
+
+      - name: 📦 Node.js Dependency Audit
         run: |
           DATE=$(date +'%Y-%m-%d')
-          if [ -f package.json ]; then
-            echo "--- Full Package List ---" > sementara/audit/npm_full_list_$DATE.txt
-            npm list --depth=0 || true >> sementara/audit/npm_full_list_$DATE.txt
-            
-            echo "--- Unused Dependencies Report ---" > sementara/audit/npm_unused_$DATE.txt
-            npx depcheck . --json --skip-missing=true | jq '{
-              "PAKET_MENGANGGUR": .dependencies,
-              "PAKET_YANG_DIGUNAKAN": .using
+
+          echo "--- Top-Level Dependencies ---" > sementara/audit/npm_list_$DATE.txt
+          npm list --depth=0 >> sementara/audit/npm_list_$DATE.txt || true
+
+          echo "--- Unused Dependency Report ---" > sementara/audit/npm_unused_$DATE.txt
+          npx depcheck . --json \
+            | jq '{
+              UNUSED_DEPENDENCIES: .dependencies,
+              UNUSED_DEV_DEPENDENCIES: .devDependencies,
+              USED_FILES: .using
             }' >> sementara/audit/npm_unused_$DATE.txt || true
-          fi
 
-      - name: Audit Python Packages
+      - name: 🐍 Python Dependency Audit
         run: |
           DATE=$(date +'%Y-%m-%d')
-          
-          # Cari lokasi requirements.txt secara dinamis
-          if [ -f "requirements.txt" ]; then 
+
+          REQ_PATH=""
+          if [ -f requirements.txt ]; then
             REQ_PATH="requirements.txt"
-          elif [ -f "sementara/audit/requirements.txt" ]; then 
+          elif [ -f sementara/audit/requirements.txt ]; then
             REQ_PATH="sementara/audit/requirements.txt"
           fi
 
-          if [ ! -z "$REQ_PATH" ]; then
-            echo "🔎 Menggunakan file: $REQ_PATH"
+          if [ -n "$REQ_PATH" ]; then
             pip install pip-check-reqs
-            
-            echo "--- Full Pip List ---" > sementara/audit/python_pip_list_$DATE.txt
-            cat "$REQ_PATH" >> sementara/audit/python_pip_list_$DATE.txt
-            
-            echo "--- Unused Requirements ---" > sementara/audit/python_unused_$DATE.txt
-            # PERBAIKAN UTAMA: Tambahkan flag --requirements agar pip-extra-reqs tahu lokasinya
+
+            echo "--- Python Requirements ---" > sementara/audit/python_requirements_$DATE.txt
+            cat "$REQ_PATH" >> sementara/audit/python_requirements_$DATE.txt
+
+            echo "--- Unused Python Packages ---" > sementara/audit/python_unused_$DATE.txt
             pip-extra-reqs . --requirements "$REQ_PATH" >> sementara/audit/python_unused_$DATE.txt || true
           else
-            echo "Skip Python audit: requirements.txt tidak ditemukan."
+            echo "ℹ️ requirements.txt tidak ditemukan, skip Python audit."
           fi
 
+      # ====================
+      # COMMIT RESULT
+      # ====================
       - name: Commit and Push Results
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sementara/audit/*.txt package.json package-lock.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add sementara/audit/*.txt package.json package-lock.json || true
+
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "ℹ️ Tidak ada perubahan"
           else
-            git commit -m "chore: manual audit & fix - $(date +'%Y-%m-%d')"
+            git commit -m "chore(audit): full inspector & dependency audit $(date +'%Y-%m-%d')"
             git push
           fi
