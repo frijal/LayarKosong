@@ -41,10 +41,10 @@ jobs:
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
           echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      - name: 4. Buat Laporan Markdown Visual dengan Emoji
+      - name: 4. Buat Laporan Markdown Visual dengan Emoji & Folder Path
         id: counts
         run: |
-          echo "📊 Membuat laporan markdown dengan emoji & histogram global proporsional..."
+          echo "📊 Membuat laporan markdown dengan emoji & histogram global proporsional (menampilkan subfolder)..."
           DATE=$(date +'%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
@@ -52,7 +52,6 @@ jobs:
           FOLDERS=("artikel" "img" "ext" "api")
           MAX_BLOCKS=20
 
-          # Peta emoji per ekstensi
           declare -A ext_emoji=(
             [html]="🌐"
             [webp]="🖼️"
@@ -70,13 +69,16 @@ jobs:
             [ico]="🔑"
           )
 
-          # Hitung semua ekstensi global dulu
           declare -A global_ext_count
+          declare -A global_ext_folders
           max_global_count=0
+
+          # Hitung ekstensi global dan simpan folder path
           for folder in "${FOLDERS[@]}"; do
             while IFS= read -r file; do
               ext="${file##*.}"
               global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+              global_ext_folders[$ext]+="${file%/*} "
             done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null)
           done
 
@@ -93,15 +95,17 @@ jobs:
             for folder in "${FOLDERS[@]}"; do
               echo "## Folder: $folder"
               echo ""
-              echo "| Jenis File | Jumlah | Histogram |"
-              echo "|-----------:|-------:|-----------|"
+              echo "| Jenis File | Jumlah | Histogram | Lokasi File |"
+              echo "|-----------:|-------:|-----------|-------------|"
 
               declare -A folder_ext_count
+              declare -A folder_ext_paths
               folder_total=0
 
               while IFS= read -r file; do
                 ext="${file##*.}"
                 folder_ext_count[$ext]=$(( ${folder_ext_count[$ext]:-0} + 1 ))
+                folder_ext_paths[$ext]+="${file%/*} "
               done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null)
 
               for ext in $(printf "%s\n" "${!folder_ext_count[@]}" | sort); do
@@ -110,12 +114,15 @@ jobs:
                 blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
                 histogram=$(printf '▇%.0s' $(seq 1 $blocks))
                 emoji=${ext_emoji[$ext]:-📁}
-                printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
+                # Hapus duplikat folder path
+                folders_unique=$(echo "${folder_ext_paths[$ext]}" | tr ' ' '\n' | sort -u | tr '\n' ',' | sed 's/,$//')
+                printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folders_unique"
               done
 
-              printf "| **TOTAL** | %6d | |\n" "$folder_total"
+              printf "| **TOTAL** | %6d | | |\n" "$folder_total"
               echo ""
               unset folder_ext_count
+              unset folder_ext_paths
 
               # Kesesuaian .webp & .html di img
               if [ "$folder" == "img" ]; then
@@ -138,44 +145,20 @@ jobs:
               total_global=$((total_global + folder_total))
             done
 
-            # Ringkasan global
             echo "## Ringkasan Keseluruhan"
             echo ""
-            echo "| Jenis File | Jumlah | Histogram |"
-            echo "|-----------:|-------:|-----------|"
+            echo "| Jenis File | Jumlah | Histogram | Lokasi File |"
+            echo "|-----------:|-------:|-----------|-------------|"
             for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
               count=${global_ext_count[$ext]}
               blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
               histogram=$(printf '▇%.0s' $(seq 1 $blocks))
               emoji=${ext_emoji[$ext]:-📁}
-              printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
+              folders_unique=$(echo "${global_ext_folders[$ext]}" | tr ' ' '\n' | sort -u | tr '\n' ',' | sed 's/,$//')
+              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folders_unique"
             done
-            printf "| **TOTAL** | %6d | |\n" "$total_global"
+            printf "| **TOTAL** | %6d | | |\n" "$total_global"
 
           } > "$REPORT_PATH"
 
           cat "$REPORT_PATH"
-
-      - name: 5. Rotasi Laporan Lama
-        run: |
-          files=(mini/*-laporan_konten.md)
-          if [ ${#files[@]} -gt 7 ]; then
-            echo "🗑️ Menghapus laporan lama..."
-            rm -f "${files[@]:7}"
-          fi
-
-      - name: 6. Commit Semua Perubahan Sekaligus
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
-          git add img/ mini/ ext/ api/
-          if ! git diff --staged --quiet; then
-            echo "📝 Perubahan ditemukan, membuat commit..."
-            git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" \
-              --author="frijal <5477182+frijal@users.noreply.github.com>"
-            git pull origin main --rebase
-            git push
-          else
-            echo "✅ Tidak ada perubahan baru untuk di-commit."
-          fi
