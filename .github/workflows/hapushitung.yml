@@ -49,24 +49,21 @@ jobs:
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
           echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      # 5. Hitung File & Buat Laporan Markdown per Folder
+      # 5. Hitung File & Buat Laporan Markdown per Folder + Periksa Kecocokan Nama
       - name: 5. Hitung File & Buat Laporan Markdown
         id: counts
         run: |
-          echo "📊 Membuat laporan markdown per folder..."
+          echo "📊 Membuat laporan markdown per folder dengan kesesuaian file..."
           DATE=$(date +'%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
 
-          # Folder dan ekstensi yang dihitung
           FOLDERS=("artikel" "img")
-          EXTENSIONS=("html" "webp" "png")
+          EXTENSIONS=("html" "webp")
 
           {
             echo "# Laporan Konten Harian ($DATE)"
             echo ""
-
-            # Ringkasan per folder
             echo "## Ringkasan File per Folder"
             echo ""
             for folder in "${FOLDERS[@]}"; do
@@ -81,6 +78,25 @@ jobs:
               done
               printf "| %-10s | %-6s |\n" "TOTAL" "$total"
               echo ""
+
+              # Periksa kecocokan nama file html <-> webp
+              if [ "$folder" == "artikel" ]; then
+                echo "### Kecocokan HTML <-> WEBP"
+                echo "| File HTML | File WEBP | Cocok |"
+                echo "|-----------|-----------|-------|"
+                for html_file in artikel/*.html; do
+                  [ -e "$html_file" ] || continue
+                  base="${html_file##*/}"
+                  base="${base%.html}"
+                  webp_file="img/${base}.webp"
+                  if [ -f "$webp_file" ]; then
+                    printf "| %-9s | %-9s | ✅ |\n" "$base.html" "$base.webp"
+                  else
+                    printf "| %-9s | %-9s | ❌ |\n" "$base.html" "tidak ada"
+                  fi
+                done
+                echo ""
+              fi
             done
 
             # Ringkasan keseluruhan
@@ -94,15 +110,6 @@ jobs:
               total_all=$((total_all + count))
             done
             printf "| %-10s | %-6s |\n" "TOTAL" "$total_all"
-            echo ""
-
-            # Daftar URL artikel
-            echo "## URL File HTML"
-            PREFIX="https://dalam.web.id/artikel/"
-            find "artikel" -maxdepth 1 -type f -iname "*.html" 2>/dev/null \
-              | sed "s|^artikel/|$PREFIX|g" | sort | while read url; do
-                echo "- $url"
-              done
           } > "$REPORT_PATH"
 
           cat "$REPORT_PATH"
