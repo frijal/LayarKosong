@@ -1,27 +1,54 @@
 #!/bin/bash
+set -e
 
-echo "🚀 Operasi Pembersihan Akar (Anti node-domexception & ELSPROBLEMS)..."
+echo "🧹 Dependency Sanitizer (CI-safe, lockfile-aware)"
 
-if [ -f package.json ]; then
-    # 1. Hapus paksa paket yang bermasalah dan induknya
-    echo "🧹 Menghapus node-fetch dan cache terkait..."
-    npm uninstall node-fetch fetch-blob node-domexception --save
-
-    # 2. Hapus total file pengunci lama dan folder bayangan
-    echo "🔄 Resetting Dependency Tree..."
-    rm -rf node_modules package-lock.json
-    
-    # 3. Re-install SEBENARNYA (bukan cuma lock-only) agar depcheck tidak error
-    # Kita pakai --no-audit biar cepat
-    echo "📦 Re-installing fresh dependencies..."
-    npm install --no-audit
-
-    # 4. Bersihkan cache npm
-    echo "🧼 Cleaning npm cache..."
-    npm cache clean --force
-    
-    echo "✨ Selesai! Silsilah sekarang harusnya bersih."
-else
-    echo "❌ package.json tidak ditemukan."
-    exit 1
+if [ ! -f package.json ]; then
+  echo "❌ package.json tidak ditemukan."
+  exit 1
 fi
+
+# ----------------------------
+# 1. Daftar legacy package
+# ----------------------------
+LEGACY_PKGS=(
+  node-fetch
+  fetch-blob
+  node-domexception
+)
+
+echo "🔎 Memeriksa legacy dependencies..."
+
+FOUND=0
+for pkg in "${LEGACY_PKGS[@]}"; do
+  if npm ls "$pkg" >/dev/null 2>&1; then
+    echo "⚠️  Ditemukan: $pkg"
+    FOUND=1
+  fi
+done
+
+if [ "$FOUND" -eq 0 ]; then
+  echo "✅ Tidak ada legacy dependency terdeteksi."
+  exit 0
+fi
+
+# ----------------------------
+# 2. Hapus dari node_modules saja
+# ----------------------------
+echo "🧼 Menghapus legacy dependency dari node_modules..."
+rm -rf node_modules/node-fetch \
+       node_modules/fetch-blob \
+       node_modules/node-domexception || true
+
+# ----------------------------
+# 3. Re-install SESUAI lockfile
+# ----------------------------
+echo "📦 Re-sync dependency tree (lockfile-aware)..."
+
+if [ -f package-lock.json ]; then
+  npm ci --no-audit
+else
+  npm install --no-audit
+fi
+
+echo "✨ Sanitasi dependency selesai dengan aman."
