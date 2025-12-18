@@ -1,7 +1,7 @@
 name: 🔆 Pengecekan & Laporan Konten Harian
 on:
   schedule:
-    - cron: '0 21 * * *'  # setiap hari pukul 21:00 UTC
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
 jobs:
@@ -22,15 +22,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # 3. Generate Screenshots via NPM Script
-      - name: 3. Generate Missing Screenshots
-        run: |
-          echo "📸 Menjalankan screenshot..."
-          npm ci
-          npm run ci-screenshot
-
-      # 4. Cleanup Orphan .webp Images
-      - name: 4. Cari dan Hapus Gambar Orphan (.webp)
+      - name: 3. Cleanup Orphan .webp Images
         id: cleanup_step
         run: |
           echo "🧹 Membersihkan gambar orphan (.webp)..."
@@ -49,55 +41,83 @@ jobs:
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
           echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      # 5. Hitung File & Buat Laporan Markdown Lengkap
-      - name: 5. Buat Laporan Markdown Lengkap
+      - name: 4. Buat Laporan Markdown Visual dengan Emoji
         id: counts
         run: |
-          echo "📊 Membuat laporan markdown lengkap..."
+          echo "📊 Membuat laporan markdown dengan emoji & histogram global proporsional..."
           DATE=$(date +'%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
 
-          # Folder utama
           FOLDERS=("artikel" "img" "ext" "api")
-          
-          # Mulai laporan
+          MAX_BLOCKS=20
+
+          # Peta emoji per ekstensi
+          declare -A ext_emoji=(
+            [html]="🌐"
+            [webp]="🖼️"
+            [png]="🖼️"
+            [jpg]="🖼️"
+            [jpeg]="🖼️"
+            [txt]="📄"
+            [sh]="💻"
+            [js]="📜"
+            [css]="🎨"
+            [json]="🗂️"
+            [svg]="✏️"
+            [py]="🐍"
+            [pl]="📌"
+            [ico]="🔑"
+          )
+
+          # Hitung semua ekstensi global dulu
+          declare -A global_ext_count
+          max_global_count=0
+          for folder in "${FOLDERS[@]}"; do
+            while IFS= read -r file; do
+              ext="${file##*.}"
+              global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+            done < <(find "$folder" -maxdepth 1 -type f 2>/dev/null)
+          done
+
+          for c in "${global_ext_count[@]}"; do
+            [ $c -gt $max_global_count ] && max_global_count=$c
+          done
+          [ $max_global_count -eq 0 ] && max_global_count=1
+
           {
             echo "# Laporan Konten Harian ($DATE)"
             echo ""
-
             total_global=0
-            declare -A global_ext_count
 
             for folder in "${FOLDERS[@]}"; do
               echo "## Folder: $folder"
               echo ""
-              echo "| Jenis File | Jumlah |"
-              echo "|-----------:|-------:|"
+              echo "| Jenis File | Jumlah | Histogram |"
+              echo "|-----------:|-------:|-----------|"
 
-              # Hitung semua ekstensi dalam folder
+              declare -A folder_ext_count
               folder_total=0
+
               while IFS= read -r file; do
                 ext="${file##*.}"
-                global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
                 folder_ext_count[$ext]=$(( ${folder_ext_count[$ext]:-0} + 1 ))
               done < <(find "$folder" -maxdepth 1 -type f 2>/dev/null)
 
-              # Tampilkan tabel folder
-              for ext in "${!folder_ext_count[@]}"; do
+              for ext in $(printf "%s\n" "${!folder_ext_count[@]}" | sort); do
                 count=${folder_ext_count[$ext]}
-                printf "| %-10s | %6d |\n" "$ext" "$count"
                 folder_total=$((folder_total + count))
+                blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
+                histogram=$(printf '▇%.0s' $(seq 1 $blocks))
+                emoji=${ext_emoji[$ext]:-📁}
+                printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
               done
 
-              printf "| %-10s | %6d |\n" "TOTAL" "$folder_total"
+              printf "| **TOTAL** | %6d | |\n" "$folder_total"
               echo ""
-
-              # Reset folder count array
               unset folder_ext_count
-              declare -A folder_ext_count
 
-              # Cek kesesuaian .webp & .html di img
+              # Kesesuaian .webp & .html di img
               if [ "$folder" == "img" ]; then
                 MATCH_COUNT=0
                 MISMATCH_COUNT=0
@@ -118,23 +138,25 @@ jobs:
               total_global=$((total_global + folder_total))
             done
 
-            # Ringkasan keseluruhan
+            # Ringkasan global
             echo "## Ringkasan Keseluruhan"
             echo ""
-            echo "| Jenis File | Jumlah |"
-            echo "|-----------:|-------:|"
-            for ext in "${!global_ext_count[@]}"; do
+            echo "| Jenis File | Jumlah | Histogram |"
+            echo "|-----------:|-------:|-----------|"
+            for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
               count=${global_ext_count[$ext]}
-              printf "| %-10s | %6d |\n" "$ext" "$count"
+              blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
+              histogram=$(printf '▇%.0s' $(seq 1 $blocks))
+              emoji=${ext_emoji[$ext]:-📁}
+              printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
             done
-            printf "| %-10s | %6d |\n" "TOTAL" "$total_global"
+            printf "| **TOTAL** | %6d | |\n" "$total_global"
 
           } > "$REPORT_PATH"
 
           cat "$REPORT_PATH"
 
-      # 6. Rotasi Laporan Lama
-      - name: 6. Rotasi Laporan Lama
+      - name: 5. Rotasi Laporan Lama
         run: |
           files=(mini/*-laporan_konten.md)
           if [ ${#files[@]} -gt 7 ]; then
@@ -142,8 +164,7 @@ jobs:
             rm -f "${files[@]:7}"
           fi
 
-      # 7. Commit Semua Perubahan Sekaligus
-      - name: 7. Commit All Changes
+      - name: 6. Commit Semua Perubahan Sekaligus
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
