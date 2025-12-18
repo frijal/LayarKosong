@@ -77,26 +77,7 @@ jobs:
                 total=$((total + count))
               done
               printf "| %-10s | %-6s |\n" "TOTAL" "$total"
-              echo ""
-
-              # Periksa kecocokan nama file html <-> webp
-              if [ "$folder" == "artikel" ]; then
-                echo "### Kecocokan HTML <-> WEBP"
-                echo "| File HTML | File WEBP | Cocok |"
-                echo "|-----------|-----------|-------|"
-                for html_file in artikel/*.html; do
-                  [ -e "$html_file" ] || continue
-                  base="${html_file##*/}"
-                  base="${base%.html}"
-                  webp_file="img/${base}.webp"
-                  if [ -f "$webp_file" ]; then
-                    printf "| %-9s | %-9s | ✅ |\n" "$base.html" "$base.webp"
-                  else
-                    printf "| %-9s | %-9s | ❌ |\n" "$base.html" "tidak ada"
-                  fi
-                done
-                echo ""
-              fi
+              echo ""              
             done
 
             # Ringkasan keseluruhan
