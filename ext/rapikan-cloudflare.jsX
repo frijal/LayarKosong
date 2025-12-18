@@ -32,19 +32,19 @@ async function main() {
 
   const json = await res.json();
 
-  if (!json.success || !Array.isArray(json.result)) {
-    console.error("❌ API Error:", json.errors ?? "Response tidak valid");
+  if (!json.success) {
+    console.error("❌ API Error:", json.errors);
     process.exit(1);
   }
 
-  const deployments = json.result;
-  const previews = deployments.filter(d => d.production === false);
+  const deployments = json.result ?? [];
+  const previews = deployments.filter(d => !d.production);
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
   console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
 
-  for (const { id } of previews) {
-    await deleteDeployment(accountId, projectName, token, id);
+  for (const d of previews) {
+    await deleteDeployment(accountId, projectName, token, d.id);
   }
 
   console.log("✅ Selesai! Semua preview dihapus.");
@@ -62,7 +62,7 @@ async function deleteDeployment(accountId, projectName, token, id) {
   });
 
   if (!res.ok) {
-    console.error(`❌ HTTP Error hapus ${id}:`, res.status, res.statusText);
+    console.error(`❌ HTTP Error hapus ${id}:`, res.status);
     return;
   }
 
