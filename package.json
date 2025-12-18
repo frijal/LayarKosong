@@ -6,9 +6,9 @@
 
   "scripts": {
     "generate-rss": "node ext/rss.js",
-    "ci-generate": "node ext/generator.js && node ext/rss.js",
+    "ci-generate-xml-rss": "node ext/generator.js && node ext/rss.js",
     "ci-screenshot": "node ext/screenshot-puppeteer.js",
-    "ci-all": "npm run ci-generate && npm run ci-screenshot",
+    "ci-all": "npm run ci-generate-xml-rss && npm run ci-screenshot",
     "check-deps": "depcheck"
   },
 
