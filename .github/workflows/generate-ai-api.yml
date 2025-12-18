@@ -34,7 +34,6 @@ jobs:
     # 4. Jalankan AI API Generator via NPM Script
     - name: Run AI API Generator
       env:
-        # Semua kunci GEMINI, yang kosong akan diabaikan oleh skrip
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
         GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
@@ -64,16 +63,13 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-        # Stage hanya folder api/v1
         git add api/v1/
 
-        # Cek perubahan
         if git diff --staged --quiet; then
           echo "✅ Tidak ada perubahan di api/v1/. Commit dilewati."
           exit 0
         fi
 
-        # Commit & Push
         git commit -m "build(ci): 🤖 Generate and update AI API files"
         echo "🔃 Sinkronisasi dengan branch main..."
         git pull --rebase origin main || git pull origin main
