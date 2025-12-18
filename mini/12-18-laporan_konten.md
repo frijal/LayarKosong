@@ -2,76 +2,76 @@
 
 ## Folder: artikel
 
-| Jenis File | Jumlah | Histogram |
-|-----------:|-------:|-----------|
-| 🌐 html     |    724 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
-| 🔑 ico      |      1 | ▇ |
-| 📜 js       |      2 | ▇ |
-| 🗂️ json     |      1 | ▇ |
-| 📌 pl       |      1 | ▇ |
-| 🖼️ png      |     34 | ▇ |
-| 💻 sh       |      4 | ▇ |
-| ✏️ svg      |      1 | ▇ |
-| 📄 txt      |      5 | ▇ |
-| **TOTAL** |    773 | |
+| Jenis File | Jumlah | Histogram | Lokasi File |
+|-----------:|-------:|-----------|-------------|
+| 🌐 html     |    724 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,artikel,artikel/- |
+| 🔑 ico      |      1 | ▇ | ,artikel |
+| 📜 js       |      2 | ▇ | ,artikel |
+| 🗂️ json     |      1 | ▇ | ,artikel |
+| 📌 pl       |      1 | ▇ | ,artikel |
+| 🖼️ png      |     34 | ▇ | ,artikel |
+| 💻 sh       |      4 | ▇ | ,artikel |
+| ✏️ svg      |      1 | ▇ | ,artikel |
+| 📄 txt      |      5 | ▇ | ,artikel |
+| **TOTAL** |    773 | | |
 
 ## Folder: img
 
-| Jenis File | Jumlah | Histogram |
-|-----------:|-------:|-----------|
-| 📁 img/jurukunci |      1 | ▇ |
-| 🖼️ png      |      1 | ▇ |
-| 🖼️ webp     |    716 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
-| **TOTAL** |    718 | |
+| Jenis File | Jumlah | Histogram | Lokasi File |
+|-----------:|-------:|-----------|-------------|
+| 📁 img/jurukunci |      1 | ▇ | ,img |
+| 🖼️ png      |      1 | ▇ | ,img |
+| 🖼️ webp     |    716 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,img |
+| **TOTAL** |    718 | | |
 
 **Kesesuaian .webp & .html**: 716 cocok, 0 orphan
 
 ## Folder: ext
 
-| Jenis File | Jumlah | Histogram |
-|-----------:|-------:|-----------|
-| 🎨 css      |     15 | ▇ |
-| 🌐 html     |      4 | ▇ |
-| 🔑 ico      |      1 | ▇ |
-| 📜 js       |     37 | ▇▇ |
-| 📁 jsX      |      5 | ▇ |
-| 📌 pl       |      1 | ▇ |
-| 🖼️ png      |     31 | ▇ |
-| 🐍 py       |      1 | ▇ |
-| 📁 pyX      |      1 | ▇ |
-| 💻 sh       |      5 | ▇ |
-| ✏️ svg      |      3 | ▇ |
-| 📄 txt      |      3 | ▇ |
-| 📁 woff2    |      4 | ▇ |
-| **TOTAL** |    111 | |
+| Jenis File | Jumlah | Histogram | Lokasi File |
+|-----------:|-------:|-----------|-------------|
+| 🎨 css      |     15 | ▇ | ,ext |
+| 🌐 html     |      4 | ▇ | ,ext |
+| 🔑 ico      |      1 | ▇ | ,ext/icons |
+| 📜 js       |     37 | ▇▇ | ,ext,ext/icons |
+| 📁 jsX      |      5 | ▇ | ,ext |
+| 📌 pl       |      1 | ▇ | ,ext |
+| 🖼️ png      |     31 | ▇ | ,ext/icons |
+| 🐍 py       |      1 | ▇ | ,ext |
+| 📁 pyX      |      1 | ▇ | ,ext |
+| 💻 sh       |      5 | ▇ | ,ext |
+| ✏️ svg      |      3 | ▇ | ,ext/icons |
+| 📄 txt      |      3 | ▇ | ,ext |
+| 📁 woff2    |      4 | ▇ | ,ext/fontawesome-webfonts |
+| **TOTAL** |    111 | | |
 
 ## Folder: api
 
-| Jenis File | Jumlah | Histogram |
-|-----------:|-------:|-----------|
-| 📁 api/jurukunci |      1 | ▇ |
-| 🗂️ json     |     75 | ▇▇▇ |
-| **TOTAL** |     76 | |
+| Jenis File | Jumlah | Histogram | Lokasi File |
+|-----------:|-------:|-----------|-------------|
+| 📁 api/jurukunci |      1 | ▇ | ,api |
+| 🗂️ json     |     75 | ▇▇▇ | ,api/v1,api/v1/post |
+| **TOTAL** |     76 | | |
 
 ## Ringkasan Keseluruhan
 
-| Jenis File | Jumlah | Histogram |
-|-----------:|-------:|-----------|
-| 📁 api/jurukunci |      1 | ▇ |
-| 🎨 css      |     15 | ▇ |
-| 🌐 html     |    728 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
-| 🔑 ico      |      2 | ▇ |
-| 📁 img/jurukunci |      1 | ▇ |
-| 📜 js       |     39 | ▇▇ |
-| 📁 jsX      |      5 | ▇ |
-| 🗂️ json     |     76 | ▇▇▇ |
-| 📌 pl       |      2 | ▇ |
-| 🖼️ png      |     66 | ▇▇ |
-| 🐍 py       |      1 | ▇ |
-| 📁 pyX      |      1 | ▇ |
-| 💻 sh       |      9 | ▇ |
-| ✏️ svg      |      4 | ▇ |
-| 📄 txt      |      8 | ▇ |
-| 🖼️ webp     |    716 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
-| 📁 woff2    |      4 | ▇ |
-| **TOTAL** |   1678 | |
+| Jenis File | Jumlah | Histogram | Lokasi File |
+|-----------:|-------:|-----------|-------------|
+| 📁 api/jurukunci |      1 | ▇ | ,api |
+| 🎨 css      |     15 | ▇ | ,ext |
+| 🌐 html     |    728 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,artikel,artikel/-,ext |
+| 🔑 ico      |      2 | ▇ | ,artikel,ext/icons |
+| 📁 img/jurukunci |      1 | ▇ | ,img |
+| 📜 js       |     39 | ▇▇ | ,artikel,ext,ext/icons |
+| 📁 jsX      |      5 | ▇ | ,ext |
+| 🗂️ json     |     76 | ▇▇▇ | ,api/v1,api/v1/post,artikel |
+| 📌 pl       |      2 | ▇ | ,artikel,ext |
+| 🖼️ png      |     66 | ▇▇ | ,artikel,ext/icons,img |
+| 🐍 py       |      1 | ▇ | ,ext |
+| 📁 pyX      |      1 | ▇ | ,ext |
+| 💻 sh       |      9 | ▇ | ,artikel,ext |
+| ✏️ svg      |      4 | ▇ | ,artikel,ext/icons |
+| 📄 txt      |      8 | ▇ | ,artikel,ext |
+| 🖼️ webp     |    716 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,img |
+| 📁 woff2    |      4 | ▇ | ,ext/fontawesome-webfonts |
+| **TOTAL** |   1678 | | |
