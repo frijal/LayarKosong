@@ -1,4 +1,4 @@
-# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 17 December 2025)
+# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 18 December 2025)
 
 Situs: https://dalam.web.id | Penulis: Fakhrul Rijal dari Balikpapan, Kalimantan Timur 🇮🇩
 
@@ -22,10 +22,12 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 689 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 694 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 🖥️ Teknologi Web, Ai & Umum
 
+- [**Panduan Lengkap Cornerstone Content: Fondasi SEO Website Kamu**](https://dalam.web.id/artikel/apa-itu-cornerstone-content.html): 2025-12-17 — Pelajari apa itu cornerstone content dan mengapa strategi ini sangat krusial untuk meningkatkan peringkat SEO website Anda di Google.
+- [**Command warp-cli register Salah? Ini yang Bener di 2025 + Cara Sukses!**](https://dalam.web.id/artikel/warp-cli-registration-new-2025.html): 2025-12-17 — Eh bro, command warp-cli register error? Ternyata sekarang pakai warp-cli registration new! Penjelasan lengkap + langkah sukses yang kamu coba sendiri di Debian 13 Balikpapan. GitHub langsung ngebut pakai WARP!
 - [**Panduan Lengkap Automasi PR: Peter Evans vs GitHub CLI - Dalam Web ID**](https://dalam.web.id/artikel/panduan-automasi-pr-github-peter-evans.html): 2025-12-17 — Perbandingan mendalam automasi Pull Request menggunakan peter-evans dan GitHub CLI, lengkap dengan simulasi error handling di GitHub Actions.
 - [**Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions - Dalam Web ID**](https://dalam.web.id/artikel/cara-kerja-github-workflow-maintenance.html): 2025-12-17 — Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.
 - [**Mengenal Jenis Domain: TLD, gTLD, ccTLD, SLD, dan 3LD**](https://dalam.web.id/artikel/mengenal-jenis-domain-name.html): 2025-12-16 — Panduan lengkap mengenal jenis domain TLD, gTLD, ccTLD, SLD, dan 3LD. Dibahas santai, praktis, dan relevan untuk pemilik website.
@@ -418,6 +420,9 @@ Total artikel terindeks: 689 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 🐧 Linux & Open Source
 
+- [**Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) – Update 2025!**](https://dalam.web.id/artikel/instal-cloudflare-warp-linux-2025.html): 2025-12-17 — Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!
+- [**Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap!**](https://dalam.web.id/artikel/github-lambat-firefox-debian.html): 2025-12-17 — Penjelasan santai kenapa GitHub sering lambat dibuka pake Firefox ESR di Debian, terutama dari Indonesia seperti Balikpapan. Plus solusi praktis biar loadingnya ngebut lagi.
+- [**GitHub Lambat Pakai MyRepublic di Debian 13? Ini Penyebab & Solusi Lengkap!**](https://dalam.web.id/artikel/github-lambat-myrepublic-debian-13.html): 2025-12-17 — Penjelasan santai kenapa GitHub loading lambat banget kalau pakai ISP MyRepublic di Debian 13 (Trixie), terutama dari Balikpapan. Solusi praktis dari ganti DNS sampai VPN biar koneksi ngebut lagi.
 - [**BunsenLabs Boron — Distro Linux Ringan yang Masih Memukau**](https://dalam.web.id/artikel/bunsenlabs-boron.html): 2025-12-11 — BunsenLabs Linux Boron: penerus CrunchBang yang tetap minimal, cepat, dan elegan. Ulasan lengkap tentang keunggulan, performa, perangkat lunak bawaan, dan siapa yang cocok memakainya.
 - [**GNU, Debian, dan Cinnamon: Mencari Kedamaian di Tengah Hutan Digital | Layar Kosong**](https://dalam.web.id/artikel/linux-debian-cinnamon-kedamaian.html): 2025-12-11 — Menggali kombinasi ideal Linux, GNU, Debian, dan Cinnamon sebagai lingkungan operasi sumber terbuka (FLOSS) yang menawarkan stabilitas, keandalan, dan antarmuka yang ramah pengguna. Solusi bagi yang mencari ketenangan digital.
 - [**Menguak Misteri Usia Distro Linux**](https://dalam.web.id/artikel/usia-instalasi-linux.html): 2025-12-10 — Cara cerdas menghitung usia instalasi Distro Linux (Arch, Ubuntu, Fedora, dll.) menggunakan script Bash/Python dan metadata filesystem ext2/3/4.
