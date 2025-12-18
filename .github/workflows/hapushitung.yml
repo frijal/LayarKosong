@@ -41,10 +41,10 @@ jobs:
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
           echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      - name: 4. Buat Laporan Markdown Compact dengan Folder Path
+      - name: 4. Buat Laporan Markdown Folder-First
         id: counts
         run: |
-          echo "📊 Membuat laporan markdown dengan folder/subfolder dan emoji & histogram global proporsional..."
+          echo "📊 Membuat laporan markdown dengan folder/subfolder duluan & emoji..."
           DATE=$(date +'%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
@@ -70,19 +70,16 @@ jobs:
           )
 
           declare -A global_ext_count
-          declare -A global_ext_folders
+          declare -A folder_path_files
           max_global_count=0
 
-          # Hitung ekstensi global & folder path dari tiap file
-          for folder in "${FOLDERS[@]}"; do
-            while IFS= read -r file; do
-              ext="${file##*.}"
-              global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
-              # simpan path folder relatif
-              dir_path=$(dirname "$file")
-              global_ext_folders[$ext]+="${dir_path} "
-            done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null)
-          done
+          # Scan semua folder/subfolder dan simpan file per folder path
+          while IFS= read -r file; do
+            dir_path=$(dirname "$file")
+            ext="${file##*.}"
+            folder_path_files["$dir_path"]+="$ext "
+            global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+          done < <(find "${FOLDERS[@]}" -maxdepth 5 -type f 2>/dev/null)
 
           for c in "${global_ext_count[@]}"; do
             [ $c -gt $max_global_count ] && max_global_count=$c
@@ -94,73 +91,46 @@ jobs:
             echo ""
             total_global=0
 
-            for folder in "${FOLDERS[@]}"; do
-              echo "## Folder: $folder"
+            # Laporan per folder/subfolder
+            for folder_path in $(printf "%s\n" "${!folder_path_files[@]}" | sort); do
+              echo "## Folder/Subfolder: $folder_path"
               echo ""
-              echo "| Jenis File | Jumlah | Histogram | Folder/Subfolder |"
-              echo "|-----------:|-------:|-----------|-----------------|"
+              echo "| Folder/Subfolder | Jenis File | Jumlah | Histogram |"
+              echo "|-----------------|-----------:|-------:|-----------|"
 
-              declare -A folder_ext_count
-              declare -A folder_ext_paths
+              declare -A file_count
+              for ext in ${folder_path_files[$folder_path]}; do
+                file_count[$ext]=$(( ${file_count[$ext]:-0} + 1 ))
+              done
+
               folder_total=0
-
-              while IFS= read -r file; do
-                ext="${file##*.}"
-                folder_ext_count[$ext]=$(( ${folder_ext_count[$ext]:-0} + 1 ))
-                dir_path=$(dirname "$file")
-                folder_ext_paths[$ext]+="${dir_path} "
-              done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null)
-
-              for ext in $(printf "%s\n" "${!folder_ext_count[@]}" | sort); do
-                count=${folder_ext_count[$ext]}
+              for ext in $(printf "%s\n" "${!file_count[@]}" | sort); do
+                count=${file_count[$ext]}
                 folder_total=$((folder_total + count))
                 blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
                 histogram=$(printf '▇%.0s' $(seq 1 $blocks))
                 emoji=${ext_emoji[$ext]:-📁}
-                # Ambil folder/subfolder unik
-                folder_unique=$(echo "${folder_ext_paths[$ext]}" | tr ' ' '\n' | sort -u | tr '\n' ',' | sed 's/,$//')
-                printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
+                printf "| %s | %s %-8s | %6d | %s |\n" "$folder_path" "$emoji" "$ext" "$count" "$histogram"
               done
 
-              printf "| **TOTAL** | %6d | | |\n" "$folder_total"
+              printf "| **TOTAL** |  | %6d | |\n" "$folder_total"
               echo ""
-              unset folder_ext_count
-              unset folder_ext_paths
-
-              # Kesesuaian .webp & .html di img
-              if [ "$folder" == "img" ]; then
-                MATCH_COUNT=0
-                MISMATCH_COUNT=0
-                for webp_file in img/*.webp; do
-                  [ -e "$webp_file" ] || continue
-                  slug="${webp_file##*/}"
-                  slug="${slug%.webp}"
-                  if [ -f "artikel/${slug}.html" ]; then
-                    MATCH_COUNT=$((MATCH_COUNT + 1))
-                  else
-                    MISMATCH_COUNT=$((MISMATCH_COUNT + 1))
-                  fi
-                done
-                echo "**Kesesuaian .webp & .html**: $MATCH_COUNT cocok, $MISMATCH_COUNT orphan"
-                echo ""
-              fi
-
               total_global=$((total_global + folder_total))
             done
 
-            echo "## Ringkasan Keseluruhan"
+            # Ringkasan global per ekstensi
+            echo "## Ringkasan Ekstensi Global"
             echo ""
-            echo "| Jenis File | Jumlah | Histogram | Folder/Subfolder |"
-            echo "|-----------:|-------:|-----------|-----------------|"
+            echo "| Jenis File | Jumlah | Histogram |"
+            echo "|-----------:|-------:|-----------|"
             for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
               count=${global_ext_count[$ext]}
               blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
               histogram=$(printf '▇%.0s' $(seq 1 $blocks))
               emoji=${ext_emoji[$ext]:-📁}
-              folder_unique=$(echo "${global_ext_folders[$ext]}" | tr ' ' '\n' | sort -u | tr '\n' ',' | sed 's/,$//')
-              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
+              printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
             done
-            printf "| **TOTAL** | %6d | | |\n" "$total_global"
+            printf "| **TOTAL** | %6d | |\n" "$total_global"
 
           } > "$REPORT_PATH"
 
