@@ -2,8 +2,8 @@
 
 ## Folder: artikel
 
-| Jenis File | Jumlah | Histogram | Lokasi File |
-|-----------:|-------:|-----------|-------------|
+| Jenis File | Jumlah | Histogram | Folder/Subfolder |
+|-----------:|-------:|-----------|-----------------|
 | 🌐 html     |    724 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,artikel,artikel/- |
 | 🔑 ico      |      1 | ▇ | ,artikel |
 | 📜 js       |      2 | ▇ | ,artikel |
@@ -17,8 +17,8 @@
 
 ## Folder: img
 
-| Jenis File | Jumlah | Histogram | Lokasi File |
-|-----------:|-------:|-----------|-------------|
+| Jenis File | Jumlah | Histogram | Folder/Subfolder |
+|-----------:|-------:|-----------|-----------------|
 | 📁 img/jurukunci |      1 | ▇ | ,img |
 | 🖼️ png      |      1 | ▇ | ,img |
 | 🖼️ webp     |    716 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,img |
@@ -28,8 +28,8 @@
 
 ## Folder: ext
 
-| Jenis File | Jumlah | Histogram | Lokasi File |
-|-----------:|-------:|-----------|-------------|
+| Jenis File | Jumlah | Histogram | Folder/Subfolder |
+|-----------:|-------:|-----------|-----------------|
 | 🎨 css      |     15 | ▇ | ,ext |
 | 🌐 html     |      4 | ▇ | ,ext |
 | 🔑 ico      |      1 | ▇ | ,ext/icons |
@@ -47,16 +47,16 @@
 
 ## Folder: api
 
-| Jenis File | Jumlah | Histogram | Lokasi File |
-|-----------:|-------:|-----------|-------------|
+| Jenis File | Jumlah | Histogram | Folder/Subfolder |
+|-----------:|-------:|-----------|-----------------|
 | 📁 api/jurukunci |      1 | ▇ | ,api |
 | 🗂️ json     |     75 | ▇▇▇ | ,api/v1,api/v1/post |
 | **TOTAL** |     76 | | |
 
 ## Ringkasan Keseluruhan
 
-| Jenis File | Jumlah | Histogram | Lokasi File |
-|-----------:|-------:|-----------|-------------|
+| Jenis File | Jumlah | Histogram | Folder/Subfolder |
+|-----------:|-------:|-----------|-----------------|
 | 📁 api/jurukunci |      1 | ▇ | ,api |
 | 🎨 css      |     15 | ▇ | ,ext |
 | 🌐 html     |    728 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,artikel,artikel/-,ext |
