@@ -9,9 +9,7 @@
     "ci-generate-xml-rss": "node ext/generator.js && node ext/rss.js",
     "ci-screenshot": "node ext/screenshot-puppeteer.js",
     "ci-fix-meta-image": "node ext/inject-meta.js",
-    "ci-all": "npm run ci-generate-xml-rss && npm run ci-fix-meta-image && npm run ci-screenshot"
-}
-
+    "ci-all": "npm run ci-generate-xml-rss && npm run ci-fix-meta-image && npm run ci-screenshot",
     "check-deps": "depcheck"
   },
 
