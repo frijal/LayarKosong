@@ -49,48 +49,86 @@ jobs:
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
           echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      # 5. Hitung File & Buat Laporan Markdown per Folder + Periksa Kecocokan Nama
-      - name: 5. Hitung File & Buat Laporan Markdown
+      # 5. Hitung File & Buat Laporan Markdown Lengkap
+      - name: 5. Buat Laporan Markdown Lengkap
         id: counts
         run: |
-          echo "📊 Membuat laporan markdown per folder dengan kesesuaian file..."
+          echo "📊 Membuat laporan markdown lengkap..."
           DATE=$(date +'%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
 
-          FOLDERS=("artikel" "img")
-          EXTENSIONS=("html" "webp")
-
+          # Folder utama
+          FOLDERS=("artikel" "img" "ext" "api")
+          
+          # Mulai laporan
           {
             echo "# Laporan Konten Harian ($DATE)"
             echo ""
-            echo "## Ringkasan File per Folder"
-            echo ""
+
+            total_global=0
+            declare -A global_ext_count
+
             for folder in "${FOLDERS[@]}"; do
-              echo "### $folder"
+              echo "## Folder: $folder"
+              echo ""
               echo "| Jenis File | Jumlah |"
-              echo "|------------|--------|"
-              total=0
-              for ext in "${EXTENSIONS[@]}"; do
-                count=$(find "$folder" -maxdepth 1 -type f -iname "*.$ext" 2>/dev/null | wc -l)
-                printf "| %-10s | %-6s |\n" "$ext" "$count"
-                total=$((total + count))
+              echo "|-----------:|-------:|"
+
+              # Hitung semua ekstensi dalam folder
+              folder_total=0
+              while IFS= read -r file; do
+                ext="${file##*.}"
+                global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+                folder_ext_count[$ext]=$(( ${folder_ext_count[$ext]:-0} + 1 ))
+              done < <(find "$folder" -maxdepth 1 -type f 2>/dev/null)
+
+              # Tampilkan tabel folder
+              for ext in "${!folder_ext_count[@]}"; do
+                count=${folder_ext_count[$ext]}
+                printf "| %-10s | %6d |\n" "$ext" "$count"
+                folder_total=$((folder_total + count))
               done
-              printf "| %-10s | %-6s |\n" "TOTAL" "$total"
-              echo ""              
+
+              printf "| %-10s | %6d |\n" "TOTAL" "$folder_total"
+              echo ""
+
+              # Reset folder count array
+              unset folder_ext_count
+              declare -A folder_ext_count
+
+              # Cek kesesuaian .webp & .html di img
+              if [ "$folder" == "img" ]; then
+                MATCH_COUNT=0
+                MISMATCH_COUNT=0
+                for webp_file in img/*.webp; do
+                  [ -e "$webp_file" ] || continue
+                  slug="${webp_file##*/}"
+                  slug="${slug%.webp}"
+                  if [ -f "artikel/${slug}.html" ]; then
+                    MATCH_COUNT=$((MATCH_COUNT + 1))
+                  else
+                    MISMATCH_COUNT=$((MISMATCH_COUNT + 1))
+                  fi
+                done
+                echo "**Kesesuaian .webp & .html**: $MATCH_COUNT cocok, $MISMATCH_COUNT orphan"
+                echo ""
+              fi
+
+              total_global=$((total_global + folder_total))
             done
 
             # Ringkasan keseluruhan
             echo "## Ringkasan Keseluruhan"
+            echo ""
             echo "| Jenis File | Jumlah |"
-            echo "|------------|--------|"
-            total_all=0
-            for ext in "${EXTENSIONS[@]}"; do
-              count=$(find "${FOLDERS[@]}" -type f -iname "*.$ext" 2>/dev/null | wc -l)
-              printf "| %-10s | %-6s |\n" "$ext" "$count"
-              total_all=$((total_all + count))
+            echo "|-----------:|-------:|"
+            for ext in "${!global_ext_count[@]}"; do
+              count=${global_ext_count[$ext]}
+              printf "| %-10s | %6d |\n" "$ext" "$count"
             done
-            printf "| %-10s | %-6s |\n" "TOTAL" "$total_all"
+            printf "| %-10s | %6d |\n" "TOTAL" "$total_global"
+
           } > "$REPORT_PATH"
 
           cat "$REPORT_PATH"
@@ -102,7 +140,6 @@ jobs:
           if [ ${#files[@]} -gt 7 ]; then
             echo "🗑️ Menghapus laporan lama..."
             rm -f "${files[@]:7}"
-          fi
 
       # 7. Commit Semua Perubahan Sekaligus
       - name: 7. Commit All Changes
@@ -110,7 +147,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
-          git add img/ mini/
+          git add img/ mini/ ext/ api/
           if ! git diff --staged --quiet; then
             echo "📝 Perubahan ditemukan, membuat commit..."
             git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" \
