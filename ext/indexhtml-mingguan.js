@@ -103,7 +103,7 @@ function populateWeekFilter(articles) {
             // Gunakan 'T12:00:00Z' untuk menghindari masalah timezone saat parsing
             const weekStartDate = new Date(weekStartISO + 'T12:00:00Z');
             const weekNum = getWeekNumber(weekStartDate);
-            weekMap.set(weekStartISO, `Minggu ${weekNum} (Mulai ${formatDateForDisplay(weekStartDate)})`);
+            weekMap.set(weekStartISO, `dari ${formatDateForDisplay(weekStartDate)}, pada minggu ke- ${weekNum}`);
         }
     });
 
@@ -254,7 +254,7 @@ function updateFilterInfo(articlesToShow) {
     const tahun = tahunMatch ? tahunMatch[1] : '?';
 
     // Format string sesuai permintaan
-    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke-${minggu}, tahun ${tahun} dengan jumlah ${jumlah} judul.`;
+    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke-${minggu}, di tahun ${tahun} dengan jumlah ${jumlah} judul.`;
 }
 
 /**
