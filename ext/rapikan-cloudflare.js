@@ -38,16 +38,32 @@ async function main() {
   }
 
   const deployments = json.result;
-  const previews = deployments.filter(d => d.production === false);
+
+  /**
+   * LOGIKA AMAN:
+   * - production === false  (perilaku lama)
+   * - production undefined  (fallback lama)
+   * - environment === "preview" (fallback baru)
+   */
+  const previews = deployments.filter(d =>
+    d.production === false ||
+    typeof d.production === "undefined" ||
+    d.environment === "preview"
+  );
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
   console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
+
+  if (previews.length === 0) {
+    console.log("ℹ Tidak ada preview yang memenuhi kriteria penghapusan");
+    return;
+  }
 
   for (const { id } of previews) {
     await deleteDeployment(accountId, projectName, token, id);
   }
 
-  console.log("✅ Selesai! Semua preview dihapus.");
+  console.log("✅ Selesai! Semua preview diproses.");
 }
 
 async function deleteDeployment(accountId, projectName, token, id) {
