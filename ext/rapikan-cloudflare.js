@@ -39,20 +39,21 @@ async function main() {
 
   const deployments = json.result;
 
-  /**
-   * LOGIKA AMAN:
-   * - production === false  (perilaku lama)
-   * - production undefined  (fallback lama)
-   * - environment === "preview" (fallback baru)
-   */
-  const previews = deployments.filter(d =>
-    d.production === false ||
-    typeof d.production === "undefined" ||
-    d.environment === "preview"
-  );
+  const previews = deployments
+    .filter(d =>
+      d.production === false ||
+      typeof d.production === "undefined" ||
+      d.environment === "preview"
+    )
+    // paling lama → paling baru
+    .sort((a, b) => {
+      const ta = new Date(a.created_on || a.created_at).getTime();
+      const tb = new Date(b.created_on || b.created_at).getTime();
+      return ta - tb;
+    });
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-  console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
+  console.log(`🗑 Preview yang akan dihapus (urut lama → baru): ${previews.length}`);
 
   if (previews.length === 0) {
     console.log("ℹ Tidak ada preview yang memenuhi kriteria penghapusan");
@@ -63,7 +64,7 @@ async function main() {
     await deleteDeployment(accountId, projectName, token, id);
   }
 
-  console.log("✅ Selesai! Semua preview diproses.");
+  console.log("✅ Selesai! Semua preview diproses dari yang paling lama.");
 }
 
 async function deleteDeployment(accountId, projectName, token, id) {
