@@ -44,6 +44,8 @@ jobs:
         GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
         GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
         GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
+        GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
+        GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
           # Kamu bisa daftar sampai KEY20 di sini, 
           # kalau di Secrets kosong, script akan otomatis mengabaikannya.
       run: node ext/generate-ai-api.js 
@@ -81,8 +83,4 @@ jobs:
         echo "🚀 Mendorong perubahan ke server..."
         git push origin main
       env:
-        # GITHUB_TOKEN tidak perlu disetel eksplisit di sini karena sudah ada di 'with: token:' di langkah 1,
-        # dan actions/checkout@v4 sudah menggunakan GITHUB_TOKEN secara default,
-        # tetapi menyediakannya di sini terkadang lebih eksplisit.
-        # Catatan: Variabel GITHUB_TOKEN bersifat otomatis dan sudah diizinkan oleh permissions: write.
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
