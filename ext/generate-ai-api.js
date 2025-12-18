@@ -138,7 +138,7 @@ async function generatePromptHint(content, title, summary) {
 
         const ai = getAIInstance(key);
         const prompt = `Anda adalah ahli Generative Engine Optimization (GEO).
-        Buat string singkat 3-5 pertanyaan dari konten ini.
+        Buat string singkat 1-3 pertanyaan dari konten ini.
         Pisahkan dengan titik koma (;).
         JUDUL: ${title}
         SUMMARY: ${summary}
