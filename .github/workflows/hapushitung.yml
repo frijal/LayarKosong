@@ -1,124 +1,127 @@
 name: 🔆 Pengecekan & Laporan Konten Harian
 on:
   schedule:
-    # Berjalan setiap hari pukul 21:00 UTC
-    - cron: '0 21 * * *'
-  workflow_dispatch: # Bisa dijalankan manual
+    - cron: '0 21 * * *'  # setiap hari pukul 21:00 UTC
+  workflow_dispatch:
 
 jobs:
-  # SEMUA TUGAS SEKARANG DIGABUNGKAN KE DALAM SATU JOB TUNGGAL
   maintenance_and_reporting:
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: '1. Checkout Repository'
+      - name: 1. Checkout Repository
         uses: actions/checkout@v4
         with:
-          # fetch-depth: 0 diperlukan agar cleanup bisa membandingkan history
           fetch-depth: 0
 
-      - name: '2. Setup Node.js (untuk Puppeteer)'
+      - name: 2. Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # --- LANGKAH 1 (BARU): GENERATE SCREENSHOTS ---
-      - name: '3. Generate Missing Screenshots'
+      # 3. Generate Screenshots via NPM Script
+      - name: 3. Generate Missing Screenshots
         run: |
-          echo "📸 Memasang Puppeteer dan membuat screenshot..."
-          npm install puppeteer --no-save
-          node ext/screenshot-puppeteer.js
+          echo "📸 Menjalankan screenshot..."
+          npm ci
+          npm run ci-screenshot
 
-      # --- LANGKAH 2 (BARU): CLEANUP ORPHAN IMAGES ---
-      - name: '4. Cari dan Hapus Gambar Orphan'
+      # 4. Cleanup Orphan .webp Images
+      - name: 4. Cari dan Hapus Gambar Orphan (.webp)
         id: cleanup_step
         run: |
-          echo "🧹 Memulai proses pembersihan gambar orphan..."
+          echo "🧹 Membersihkan gambar orphan (.webp)..."
           DELETED_COUNT=0
           mkdir -p img
-          shopt -s nullglob
-          for webp_file in img/*.webp; do
-            base_name=$(basename "$webp_file" .webp)
-            html_file="artikel/${base_name}.html"
-            if [ ! -f "$html_file" ]; then
-              echo "-> Orphan Ditemukan: '$webp_file' tidak memiliki artikel. Menghapus..."
-              # `git rm` akan langsung men-stage penghapusan untuk commit nanti
-              git rm -f "$webp_file"
+          for file in img/*.webp; do
+            [ -e "$file" ] || continue
+            slug="${file##*/}"
+            slug="${slug%.webp}"
+            if [ ! -f "artikel/${slug}.html" ]; then
+              echo "-> Orphan ditemukan: $file, menghapus..."
+              git rm -f "$file"
               DELETED_COUNT=$((DELETED_COUNT + 1))
             fi
           done
-          shopt -u nullglob
-          echo "🧹 Proses selesai. Total gambar orphan dihapus: $DELETED_COUNT"
           echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
+          echo "🧹 Total orphan .webp dihapus: $DELETED_COUNT"
 
-      # --- LANGKAH 3 (BARU): COUNT & REPORT ---
-      - name: '5. Hitung File & Buat Laporan (Berdasarkan Kondisi Terbaru)'
+      # 5. Hitung File & Buat Laporan Markdown per Folder
+      - name: 5. Hitung File & Buat Laporan Markdown
         id: counts
         run: |
-          echo "📊 Menghitung file setelah screenshot dan cleanup..."
-          TARGETS="artikel img"
+          echo "📊 Membuat laporan markdown per folder..."
           DATE=$(date +'%m-%d')
-          REPORT_PATH="mini/${DATE}-laporan_konten.txt"
-          
-          # Menghitung file
-          declare -A counts
-          for ext in html webp png; do
-            counts[$ext]=$(find $TARGETS -maxdepth 1 -type f -iname "*.$ext" | wc -l)
-          done
-          counts[all]=$(find $TARGETS -maxdepth 1 -type f | wc -l)
-          
-          # Membuat Laporan Teks
-          PREFIX_ARTIKEL="https://dalam.web.id/artikel/"
-          mkdir -p "$(dirname "$REPORT_PATH")"
+          REPORT_PATH="mini/${DATE}-laporan_konten.md"
+          mkdir -p mini
+
+          # Folder yang akan dihitung
+          FOLDERS=("artikel" "img")
+          EXTENSIONS=("html" "webp" "png")
+
+          # Mulai laporan
           {
-            echo "LAPORAN KONTEN: artikel & img ($DATE)"
-            echo "================================="
-            echo "Total File: ${counts[all]}"
-            echo "HTML=${counts[html]}, webp=${counts[webp]}, PNG=${counts[png]}"
+            echo "# Laporan Konten Harian ($DATE)"
             echo ""
-            echo "Ringkasan per ekstensi:"
-            find $TARGETS -maxdepth 1 -type f -print | sed 's/.*\.//' | sort | uniq -c | sort -nr
+            echo "## Ringkasan File per Folder"
             echo ""
-            echo "URL File HTML:"
-            find "artikel" -maxdepth 1 -type f -iname "*.html" | sed "s|^artikel/|$PREFIX_ARTIKEL|g" | sort
+            for folder in "${FOLDERS[@]}"; do
+              echo "### $folder"
+              echo "| Jenis File | Jumlah |"
+              echo "|------------|--------|"
+              total=0
+              for ext in "${EXTENSIONS[@]}"; do
+                count=$(find "$folder" -maxdepth 1 -type f -iname "*.$ext" 2>/dev/null | wc -l)
+                printf "| %-10s | %-6s |\n" "$ext" "$count"
+                total=$((total + count))
+              done
+              printf "| %-10s | %-6s |\n" "TOTAL" "$total"
+              echo ""
+            done
+
+            # Ringkasan keseluruhan
+            echo "## Ringkasan Keseluruhan"
+            echo "| Jenis File | Jumlah |"
+            echo "|------------|--------|"
+            total_all=0
+            for ext in "${EXTENSIONS[@]}"; do
+              count=$(find "${FOLDERS[@]}" -type f -iname "*.$ext" 2>/dev/null | wc -l)
+              printf "| %-10s | %-6s |\n" "$ext" "$count"
+              total_all=$((total_all + count))
+            done
+            printf "| %-10s | %-6s |\n" "TOTAL" "$total_all"
+            echo ""
+            echo "## URL File HTML"
+            PREFIX="https://dalam.web.id/artikel/"
+            find "artikel" -maxdepth 1 -type f -iname "*.html" 2>/dev/null | sed "s|^artikel/|$PREFIX|g" | sort | while read url; do
+              echo "- $url"
+            done
           } > "$REPORT_PATH"
-          echo "Laporan berhasil dibuat di $REPORT_PATH"
           cat "$REPORT_PATH"
 
-      - name: '6. Rotasi Laporan Lama'
+      # 6. Rotasi Laporan Lama
+      - name: 6. Rotasi Laporan Lama
         run: |
-          mkdir -p mini
-          mapfile -t files < <(ls -1t mini/*-laporan_*.txt 2>/dev/null)
-          if ((${#files[@]} > 7)); then
+          files=(mini/*-laporan_konten.md)
+          if [ ${#files[@]} -gt 7 ]; then
             echo "🗑️ Menghapus laporan lama..."
-            printf '%s\n' "${files[@]:7}" | xargs rm -f
+            rm -f "${files[@]:7}"
           fi
 
-      - name: '7. Hapus File Sementara'
-        run: rm -rf tmp/ __pycache__/
-
-      # --- LANGKAH FINAL: SATU COMMIT UNTUK SEMUA PERUBAHAN ---
-      - name: '8. Commit All Changes (Screenshots, Cleanups, Reports)'
+      # 7. Commit Semua Perubahan Sekaligus
+      - name: 7. Commit All Changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          
-          # Tambahkan semua potensi perubahan: gambar baru, laporan baru, dan penghapusan gambar.
+
           git add img/ mini/
-          
-          # Commit hanya jika ada perubahan yang terdeteksi di staging area
           if ! git diff --staged --quiet; then
-            echo "📝 Menemukan perubahan, membuat satu commit..."
+            echo "📝 Perubahan ditemukan, membuat commit..."
             git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" --author="frijal <5477182+frijal@users.noreply.github.com>"
-            
-            echo "🔄 Mengambil perubahan terbaru dari remote..."
             git pull origin main --rebase
-            
-            echo "🚀 Mendorong perubahan ke repository..."
             git push
           else
             echo "✅ Tidak ada perubahan baru untuk di-commit."
-          fi
