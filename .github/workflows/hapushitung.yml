@@ -58,14 +58,15 @@ jobs:
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
 
-          # Folder yang akan dihitung
+          # Folder dan ekstensi yang dihitung
           FOLDERS=("artikel" "img")
           EXTENSIONS=("html" "webp" "png")
 
-          # Mulai laporan
           {
             echo "# Laporan Konten Harian ($DATE)"
             echo ""
+
+            # Ringkasan per folder
             echo "## Ringkasan File per Folder"
             echo ""
             for folder in "${FOLDERS[@]}"; do
@@ -94,12 +95,16 @@ jobs:
             done
             printf "| %-10s | %-6s |\n" "TOTAL" "$total_all"
             echo ""
+
+            # Daftar URL artikel
             echo "## URL File HTML"
             PREFIX="https://dalam.web.id/artikel/"
-            find "artikel" -maxdepth 1 -type f -iname "*.html" 2>/dev/null | sed "s|^artikel/|$PREFIX|g" | sort | while read url; do
-              echo "- $url"
-            done
+            find "artikel" -maxdepth 1 -type f -iname "*.html" 2>/dev/null \
+              | sed "s|^artikel/|$PREFIX|g" | sort | while read url; do
+                echo "- $url"
+              done
           } > "$REPORT_PATH"
+
           cat "$REPORT_PATH"
 
       # 6. Rotasi Laporan Lama
@@ -120,8 +125,10 @@ jobs:
           git add img/ mini/
           if ! git diff --staged --quiet; then
             echo "📝 Perubahan ditemukan, membuat commit..."
-            git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" --author="frijal <5477182+frijal@users.noreply.github.com>"
+            git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" \
+              --author="frijal <5477182+frijal@users.noreply.github.com>"
             git pull origin main --rebase
             git push
           else
             echo "✅ Tidak ada perubahan baru untuk di-commit."
+          fi
