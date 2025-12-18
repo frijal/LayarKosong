@@ -45,7 +45,7 @@ jobs:
         id: counts
         run: |
           echo "📊 Membuat laporan markdown dengan folder/subfolder dan emoji & histogram global..."
-          DATE=$(date +'%m-%d-%y')
+          DATE=$(date +'%m-%d-%yy')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           mkdir -p mini
 
