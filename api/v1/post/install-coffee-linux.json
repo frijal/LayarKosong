@@ -1,0 +1,12 @@
+{
+  "id": "install-coffee-linux",
+  "title": "Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕",
+  "slug": "install-coffee-linux.html",
+  "url": "https://dalam.web.id/artikel/install-coffee-linux.html",
+  "datePublished": "2025-12-10T17:06:27.372+00:00",
+  "summary": "Tutorial lengkap install paket coffee di berbagai distro Linux pake perintah sudo apt, dnf, pacman. Santai aja, sambil ngopi beneran juga boleh.",
+  "category": "🐧 Linux & Open Source",
+  "promptHint": "Apa pesan utama dari artikel tentang instalasi 'coffee' di Linux?; Apakah paket 'coffee' benar-benar ada untuk diinstal menggunakan perintah seperti `apt` atau `dnf`?; Mengapa perintah instalasi 'coffee' di berbagai distro Linux selalu menghasilkan error?",
+  "imageUrl": "https://dalam.web.id/img/install-coffee-linux.webp",
+  "content_plain": "Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕☕☕ Yaelah, malam ini lagi lembur ngejar deadline? Mata udah sekarat, tapi tugas belum kelar? Tenang bro, Linux punya solusi canggih buat kamu semua: install coffee langsung di terminal! Gak perlu ke warung, cukup ketik perintah aja, langsung semangat lagi! 1. Buat Pengguna Debian / Ubuntu / Mint / Pop!_OS sudo apt update && sudo apt install coffee -y Abiess… langsung ada notif “E: Unable to locate package coffee” — ya iyalah, mana ada paket coffee beneran 2. Buat Fedora, RHEL, AlmaLinux, Rocky Linux sudo dnf install coffee Hasilnya? Sama aja, “No match for argument: coffee”. Sabar ya bro, kopi beneran gak di-repo 3. Buat Arch Linux, Manjaro, EndeavourOS sudo pacman -Syu sudo pacman -S coffee Arch user biasa bangga banget sih… tapi kali ini tetep error juga: “error: target not found: coffee”. I use Arch btw Catatan penting: Perintah-perintah di atas beneran gak ada paketnya. Ini cuma meme klasik Linux yang udah turun-temurun dari jaman dinosaurus. Jangan sampe beneran percaya trus ngotot nanya di forum “kenapa coffee gak bisa diinstall?” Solusi Beneran Biar Gak Ngantuk Bangun dari kursi → ke dapur Rebus air → tuang kopi sachet → aduk Minum sambil buka YouTube 5 menit Ulangi langkah 1-3 sampe deadline kelar Kalo kamu malah tambah ngantuk, berarti kamu udah jadi Linux user sejati"
+}
