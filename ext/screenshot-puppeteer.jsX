@@ -1,5 +1,5 @@
 // server-screenshot.js
-// CI-safe, package.json-aligned, deterministic
+// (REFINED & GH-ACTIONS SAFE)
 
 import fs from "fs";
 import path from "path";
@@ -11,7 +11,7 @@ const ARTIKEL_DIR = path.join(ROOT_DIR, "artikel");
 const IMG_DIR = path.join(ROOT_DIR, "img");
 
 const EXT = "webp";
-const PORT = Number(process.env.PORT) || 4173;
+const PORT = 3000;
 const BASE_URL = `http://localhost:${PORT}/artikel/`;
 
 const TARGET_WIDTH = 1200;
@@ -29,7 +29,7 @@ function startServer() {
     app.use(express.static(ROOT_DIR));
 
     const server = app.listen(PORT, () => {
-      console.log(`[🌐] Server lokal aktif di http://localhost:${PORT}`);
+      console.log(`[🌐] Local server ready at http://localhost:${PORT}`);
       resolve(server);
     });
 
@@ -38,30 +38,24 @@ function startServer() {
 }
 
 async function main() {
-  if (!fs.existsSync(ARTIKEL_DIR)) {
-    throw new Error("Folder 'artikel/' tidak ditemukan.");
-  }
-
-  fs.mkdirSync(IMG_DIR, { recursive: true });
-
-  const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
-  console.log(`🧭 ${files.length} artikel ditemukan`);
-
-  if (files.length === 0) {
-    console.log("ℹ️ Tidak ada artikel untuk diproses");
-    return;
-  }
-
+  // Start local server
   const server = await startServer();
 
-  let browser;
   try {
-    browser = await puppeteer.launch({
+    if (!fs.existsSync(ARTIKEL_DIR)) {
+      console.error("[FATAL] Folder 'artikel/' tidak ditemukan.");
+      process.exit(1);
+    }
+
+    fs.mkdirSync(IMG_DIR, { recursive: true });
+
+    const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
+    console.log(`🧭 Menemukan ${files.length} artikel...`);
+
+    // Launch browser sekali saja
+    const browser = await puppeteer.launch({
       headless: "new",
-      defaultViewport: {
-        width: TARGET_WIDTH,
-        height: TARGET_HEIGHT,
-      },
+      defaultViewport: { width: TARGET_WIDTH, height: TARGET_HEIGHT },
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -77,12 +71,12 @@ async function main() {
       const output = path.join(IMG_DIR, `${base}.${EXT}`);
 
       if (fs.existsSync(output)) {
-        console.log(`[⏭️] Skip ${output}`);
+        console.log(`[⏭️] Lewati ${output} (sudah ada)`);
         continue;
       }
 
       const url = `${BASE_URL}${base}.html`;
-      console.log(`[🔍] Render ${url}`);
+      console.log(`[🔍] Rendering ${url}`);
 
       try {
         const response = await page.goto(url, {
@@ -91,33 +85,32 @@ async function main() {
         });
 
         if (!response || response.status() !== 200) {
-          console.warn(`[⚠️] Status ${response?.status()} untuk ${url}`);
+          console.error(`[❌] Status ${response?.status()} saat memuat ${url}`);
           continue;
         }
 
         await page.screenshot({
           path: output,
           type: EXT,
-          quality: 90,
+          quality: EXT === "webp" ? 90 : 90,
         });
 
-        console.log(`[📸] Disimpan: ${output}`);
+        console.log(`[📸] Screenshot disimpan: ${output}`);
       } catch (err) {
-        console.error(`[❌] Gagal ${url}: ${err.message}`);
+        console.error(`[⚠️] Gagal screenshot ${url}: ${err.message}`);
       }
 
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 500));
     }
 
-    console.log("🎉 Screenshot selesai");
+    await browser.close();
+    console.log("🎉 Semua screenshot selesai!");
 
+  } catch (err) {
+    console.error(`[FATAL] ${err.message}`);
   } finally {
-    if (browser) await browser.close();
-    server.close(() => console.log("[🛑] Server dihentikan"));
+    server.close(() => console.log("[🛑] Server lokal ditutup."));
   }
 }
 
-main().catch(err => {
-  console.error(`[FATAL] ${err.message}`);
-  process.exit(1);
-});
+main();
