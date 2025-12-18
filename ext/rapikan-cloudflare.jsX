@@ -32,39 +32,22 @@ async function main() {
 
   const json = await res.json();
 
-  if (!json.success || !Array.isArray(json.result)) {
-    console.error("❌ API Error:", json.errors ?? "Response tidak valid");
+  if (!json.success) {
+    console.error("❌ API Error:", json.errors);
     process.exit(1);
   }
 
-  const deployments = json.result;
-
-  const previews = deployments
-    .filter(d =>
-      d.production === false ||
-      typeof d.production === "undefined" ||
-      d.environment === "preview"
-    )
-    // paling lama → paling baru
-    .sort((a, b) => {
-      const ta = new Date(a.created_on || a.created_at).getTime();
-      const tb = new Date(b.created_on || b.created_at).getTime();
-      return ta - tb;
-    });
+  const deployments = json.result ?? [];
+  const previews = deployments.filter(d => !d.production);
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-  console.log(`🗑 Preview yang akan dihapus (urut lama → baru): ${previews.length}`);
+  console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
 
-  if (previews.length === 0) {
-    console.log("ℹ Tidak ada preview yang memenuhi kriteria penghapusan");
-    return;
+  for (const d of previews) {
+    await deleteDeployment(accountId, projectName, token, d.id);
   }
 
-  for (const { id } of previews) {
-    await deleteDeployment(accountId, projectName, token, id);
-  }
-
-  console.log("✅ Selesai! Semua preview diproses dari yang paling lama.");
+  console.log("✅ Selesai! Semua preview dihapus.");
 }
 
 async function deleteDeployment(accountId, projectName, token, id) {
@@ -79,7 +62,7 @@ async function deleteDeployment(accountId, projectName, token, id) {
   });
 
   if (!res.ok) {
-    console.error(`❌ HTTP Error hapus ${id}:`, res.status, res.statusText);
+    console.error(`❌ HTTP Error hapus ${id}:`, res.status);
     return;
   }
 
