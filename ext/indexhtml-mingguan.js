@@ -92,7 +92,7 @@ function populateCategoryFilter(jsonData) {
  */
 function populateWeekFilter(articles) {
     const weekSelect = document.getElementById('week-filter');
-    weekSelect.innerHTML = '<option value="all">Semua Minggu</option>'; // Reset
+    weekSelect.innerHTML = '<option value="all">Semua Artikel</option>'; // Reset
 
     const weekMap = new Map();
 
@@ -103,7 +103,7 @@ function populateWeekFilter(articles) {
             // Gunakan 'T12:00:00Z' untuk menghindari masalah timezone saat parsing
             const weekStartDate = new Date(weekStartISO + 'T12:00:00Z');
             const weekNum = getWeekNumber(weekStartDate);
-            weekMap.set(weekStartISO, `dari ${formatDateForDisplay(weekStartDate)}, pada minggu ke- ${weekNum}`);
+            weekMap.set(weekStartISO, `dari ${formatDateForDisplay(weekStartDate)}, pada minggu ke-${weekNum}`);
         }
     });
 
@@ -149,11 +149,11 @@ function renderDefaultView(allArticles, jsonData) {
     defaultView.innerHTML = ''; // Hapus "Memuat..."
 
     // 1. Dapatkan 30 artikel terbaru
-    const top30Articles = allArticles.slice(0, 30);
+    const top30Articles = allArticles.slice(0, 6);
     const top30Urls = new Set(top30Articles.map(a => a.url)); // Set untuk cek duplikat
 
     // Render 30 terbaru
-    defaultView.innerHTML += '<h2>30 Artikel Terbaru</h2>';
+    defaultView.innerHTML += '<h2>48 Artikel Terbaru</h2>';
     const top30Grid = document.createElement('div');
     top30Grid.className = 'article-grid';
     renderArticles(top30Articles, top30Grid);
