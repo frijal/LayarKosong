@@ -1,31 +1,30 @@
-name: Delete Preview Deployments
+name: Delete Cloudflare Preview Deployments
 
 on:
-  workflow_dispatch:    # bisa dijalankan manual lewat GitHub Actions
+  workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *" # opsional: hapus setiap hari jam 03:00 UTC
+    - cron: "0 3 * * *" # setiap hari jam 03:00 UTC
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-    - name: Install dependencies
-      run: npm install node-fetch@3 dotenv
+      - name: Install dependencies (lockfile-based)
+        run: npm ci
 
-    - name: Run cleanup script
-      env:
-        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
-        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      run: |
-        node ext/rapikan-cloudflare.js
+      - name: Run cleanup script
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: node ext/rapikan-cloudflare.js
