@@ -140,6 +140,7 @@ jobs:
           if [ ${#files[@]} -gt 7 ]; then
             echo "🗑️ Menghapus laporan lama..."
             rm -f "${files[@]:7}"
+          fi
 
       # 7. Commit Semua Perubahan Sekaligus
       - name: 7. Commit All Changes
