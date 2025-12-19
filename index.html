@@ -11,8 +11,6 @@
     <meta name="publisher" content="Layar Kosong" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://dalam.web.id/" />
-    <link rel="stylesheet" href="ext/indexhtml.css" />
-    <link rel="stylesheet" href="ext/marquee-url.css">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dalam.web.id/" />
     <meta property="og:title" content="Galeri Artikel Layar Kosong: Teknologi, Linux, Religi, dan Karir" />
@@ -31,13 +29,17 @@
     <link rel="manifest" href="https://dalam.web.id/site.webmanifest" />
     <link rel="icon" href="https://dalam.web.id/favicon.ico" sizes="any" />
     <link rel="icon" href="https://dalam.web.id/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png" />
-    <meta name="theme-color" content="#26a69a" />
-    <meta name="color-scheme" content="light dark" />
+    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png" />    
     <meta name="yandex-verification" content="8ba05f5f00d79c5a" />
     <meta name="google-site-verification" content="zFwmztf9lBRLshQXrDEz_fneZIrtpHzOhAN1Xi62c-s" />
     <link rel="alternate" type="application/rss+xml" title="RSS Feed Layar Kosong" href="https://dalam.web.id/rss.xml" />
+    <meta name="theme-color" content="#26a69a" />
+    <meta name="color-scheme" content="light dark" />
     <script src="/ext/header.js"></script>
+    <script src="/ext/indexhtml-mingguan.js"></script>
+    <script defer src="/ext/marquee-url.js"></script>
+    <link rel="stylesheet" href="/ext/indexhtml.css" />
+    <link rel="stylesheet" href="/ext/marquee-url.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,240 +62,7 @@
       ]
     }
     </script>
-    <style>a:link,
-a:visited {
-  color: inherit;       /* atau warna spesifik seperti black, #333, dll */
-  text-decoration: none;
-}
-
-/* CSS Reset dan Tema Dark/Light Otomatis */
-        :root {
-            /* Tema Light (Default) */
-            --bg-color: #f9f9f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --header-color: #111111;
-            --meta-color: #666666;
-            --shadow-color: rgba(0, 0, 0, 0.08);
-            --border-color: #eeeeee;
-            --accent-color: #007bff;
-            --accent-light: #f0f6ff;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            /* Tema Dark Otomatis */
-            :root {
-                --bg-color: #121212;
-                --card-bg: #1e1e1e;
-                --text-color: #eeeeee;
-                --header-color: #ffffff;
-                --meta-color: #999999;
-                --shadow-color: rgba(255, 255, 255, 0.05);
-                --border-color: #333333;
-                --accent-color: #58a6ff;
-                --accent-light: #222a36;
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Layout Utama Widescreen */
-        body {
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px; /* Lebih lebar untuk landing page */
-            padding: 2rem;
-        }
-
-        /* Header dan Filter */
-        .page-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1.5rem;
-        }
-
-        .page-header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--header-color);
-        }
-
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap; /* Responsif di mobile */
-        }
-
-        .filters select {
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            min-width: 220px;
-        }
-        
-        /* [BARU] Info detail filter */
-        .filter-info-text {
-            text-align: center;
-            margin-top: 1.5rem; /* Memberi jarak dari dropdown */
-            font-size: 0.95rem;
-            color: var(--meta-color);
-            background-color: var(--accent-light);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            width: 100%;
-            max-width: 600px; /* Batasi lebar di desktop */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Grid Artikel */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Kartu Artikel */
-        .article-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            overflow: hidden;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px var(--shadow-color);
-        }
-
-        .article-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--border-color); /* Fallback jika gambar error */
-        }
-
-        .card-content {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; /* Membuat konten mengisi sisa ruang */
-        }
-
-        .card-content h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--header-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .card-meta {
-            font-size: 0.85rem;
-            color: var(--meta-color);
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .card-meta .category {
-            background-color: var(--accent-light);
-            color: var(--accent-color);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        
-        .card-meta .date {
-            white-space: nowrap;
-        }
-
-        .card-description {
-            font-size: 0.95rem;
-            flex-grow: 1; /* Dorong meta-bawah ke bawah */
-        }
-
-        /* Judul Seksi */
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--header-color);
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        /* Loading & No Results */
-        .message {
-            font-size: 1.2rem;
-            color: var(--meta-color);
-            text-align: center;
-            padding: 3rem;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-        }
-
-        /* Utility classes */
-        .hidden {
-            display: none;
-        }
-
-        /* Responsif */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            .filters {
-                flex-direction: column;
-            }
-            .filters select {
-                width: 100%;
-            }
-            .article-grid {
-                grid-template-columns: 1fr; /* 1 kolom di mobile */
-            }
-            .filter-info-text {
-                width: 100%;
-            }
-        }
-    </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+   <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
   <div id="header-placeholder"></div>
     <div class="container">
@@ -309,18 +78,13 @@ a:visited {
             </div>
             <p id="filter-info" class="filter-info-text hidden"></p>
         </header>
-
         <main id="article-container">
             <div id="default-view">
                 <p class="message" id="loading-message">Memuat artikel...</p>
                 </div>
-
             <div id="filtered-view" class="article-grid hidden">
                 </div>
         </main>
     </div>
-
-<script src="/ext/indexhtml-mingguan.js"></script>
-</script><script defer src="/ext/marquee-url.js"></script>
 </body>
 </html>
