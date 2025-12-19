@@ -21,9 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 2. Jalankan Inisialisasi
         initFilters();
         renderDefault();
-        initFloatingSearch(data); // Inisialisasi fitur cari dari Mas Frijal
         
-        // 3. Pasang Event Listeners (PENTING: Pastikan ID sesuai di HTML)
+        // 3. Pasang Event Listeners
         document.getElementById('filter-year').addEventListener('change', handleYearChange);
         document.getElementById('filter-month').addEventListener('change', applyFilters);
         document.getElementById('filter-category').addEventListener('change', applyFilters);
@@ -48,7 +47,7 @@ function renderGrid(articles, container) {
         card.setAttribute('title', `Baca: ${a.title}`);
         card.innerHTML = `
             <div class="card-image-wrapper">
-                <img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/320x180?text=Layar+Kosong'">
+                <img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
             </div>
             <div class="card-content">
                 <div class="card-meta">
@@ -153,8 +152,9 @@ function renderDefault() {
    ========================================== */
 function resetAllFilters() {
     document.getElementById('filter-year').value = 'all';
-    document.getElementById('filter-month').value = 'all';
-    document.getElementById('filter-month').disabled = true;
+    const monthSelect = document.getElementById('filter-month');
+    monthSelect.value = 'all';
+    monthSelect.disabled = true;
     
     updateCategoryDropdown(allArticles);
     document.getElementById('filter-category').value = 'all';
@@ -162,8 +162,6 @@ function resetAllFilters() {
     document.getElementById('filter-info').classList.add('hidden');
     document.getElementById('default-view').classList.remove('hidden');
     document.getElementById('filtered-view').classList.add('hidden');
-    
-    console.log("Filter Dropdown direset! Kolom cari aman.");
 }
 
 /* ==========================================
