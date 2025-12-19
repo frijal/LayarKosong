@@ -165,7 +165,7 @@ function createCardElement(article) {
     img.src = article.image;
     img.alt = article.title;
     img.loading = 'lazy';
-    img.onerror = function() { this.src = 'https://via.placeholder.com/320x180?text=No+Image'; };
+    img.onerror = function() { this.src = '/thumbnail.webp'; };
 
     const content = document.createElement('div');
     content.className = 'card-content';
