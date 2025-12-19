@@ -207,9 +207,26 @@ function applyFilters() {
 
     updateFilterInfo(filtered);
     
-    // Render hasil filter ke dalam grid
+    // Render hasil filter
     filteredView.innerHTML = '';
-    const filterSection = createSectionElement('Hasil Filter', filtered);
+    
+    // Kita buat container section khusus untuk hasil filter
+    const filterSection = document.createElement('section');
+    filterSection.className = 'category-section';
+    
+    const h2 = document.createElement('h2');
+    h2.textContent = 'Hasil Filter Artikel';
+    filterSection.appendChild(h2);
+
+    // Grid khusus yang kita paksa 3 kolom (lewat class tambahan .grid-3-col)
+    const grid = document.createElement('div');
+    grid.className = 'article-grid grid-3-col'; 
+    
+    filtered.forEach(article => {
+        grid.appendChild(createCardElement(article));
+    });
+
+    filterSection.appendChild(grid);
     filteredView.appendChild(filterSection);
 }
 
