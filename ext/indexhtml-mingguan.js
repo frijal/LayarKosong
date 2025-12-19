@@ -254,7 +254,7 @@ function updateFilterInfo(articlesToShow) {
     const tahun = tahunMatch ? tahunMatch[1] : '?';
 
     // Format string sesuai permintaan
-    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke-${minggu}, di tahun ${tahun} dengan jumlah ${jumlah} judul.`;
+    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke- ${minggu}, di tahun ${tahun} dengan jumlah ${jumlah} judul.`;
 }
 
 /**
