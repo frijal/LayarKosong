@@ -1,7 +1,6 @@
 /**
  * File: js/index.js
- * Deskripsi: Skrip canggih untuk memuat, memfilter, dan mempercantik
- * daftar artikel di index.html (Layar Kosong).
+ * Sinkronisasi dengan CSS Layar Kosong (Modern Dark/Light Mode)
  */
 
 document.addEventListener('DOMContentLoaded', main);
@@ -10,7 +9,7 @@ let allArticles = [];
 let originalJsonData = {}; 
 
 async function main() {
-    const container = document.getElementById('article-container');
+    const defaultView = document.getElementById('default-view');
     const loadingMessage = document.getElementById('loading-message');
 
     try {
@@ -26,9 +25,8 @@ async function main() {
         // Render tampilan awal
         renderDefaultView(allArticles, originalJsonData);
 
-        // Efek transisi halus saat loading selesai
-        loadingMessage.style.opacity = '0';
-        setTimeout(() => loadingMessage.classList.add('hidden'), 300);
+        // Hilangkan loading
+        if (loadingMessage) loadingMessage.classList.add('hidden');
 
         // Event Listeners
         document.getElementById('category-filter').addEventListener('change', handleCategoryChange);
@@ -36,7 +34,9 @@ async function main() {
 
     } catch (error) {
         console.error("Error:", error);
-        loadingMessage.innerHTML = `<p class="error-msg">Gagal memuat data. Coba refresh halaman.</p>`;
+        if (defaultView) {
+            defaultView.innerHTML = `<p style="text-align:center; color:var(--text-muted);">Gagal memuat artikel. Periksa koneksi atau file artikel.json.</p>`;
+        }
     }
 }
 
@@ -45,11 +45,8 @@ function processArticles(jsonData) {
     for (const [category, articleList] of Object.entries(jsonData)) {
         articleList.forEach(article => {
             articles.push({
-                title: article[0],
-                url: article[1],
-                image: article[2],
-                date: new Date(article[3]),
-                description: article[4],
+                title: article[0], url: article[1], image: article[2],
+                date: new Date(article[3]), description: article[4],
                 category: category
             });
         });
@@ -57,8 +54,11 @@ function processArticles(jsonData) {
     return articles.sort((a, b) => b.date - a.date);
 }
 
+// Mengisi dropdown Kategori
 function populateCategoryFilter(jsonData) {
     const categorySelect = document.getElementById('category-filter');
+    if(!categorySelect) return;
+    
     Object.keys(jsonData).sort().forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -67,18 +67,20 @@ function populateCategoryFilter(jsonData) {
     });
 }
 
+// Mengisi dropdown Minggu (Fix Regex Bug)
 function populateWeekFilter(articles) {
     const weekSelect = document.getElementById('week-filter');
-    weekSelect.innerHTML = '<option value="all">Semua Minggu</option>'; 
+    if(!weekSelect) return;
 
+    weekSelect.innerHTML = '<option value="all">Semua Minggu</option>'; 
     const weekMap = new Map();
+
     articles.forEach(article => {
         const weekStartISO = getWeekStartDate(article.date);
         if (!weekMap.has(weekStartISO)) {
             const weekStartDate = new Date(weekStartISO + 'T12:00:00Z');
             const weekNum = getWeekNumber(weekStartDate);
-            // Format label yang konsisten
-            weekMap.set(weekStartISO, `dari ${formatDateForDisplay(weekStartDate)}, pada minggu ke-${weekNum}`);
+            weekMap.set(weekStartISO, `dari ${formatDateForDisplay(weekStartDate)}, minggu ke-${weekNum}`);
         }
     });
 
@@ -102,42 +104,85 @@ function handleCategoryChange() {
     applyFilters();
 }
 
+/**
+ * Render Tampilan Utama
+ * Sesuai dengan CSS: Menggunakan <section class="category-section">
+ */
 function renderDefaultView(allArticles, jsonData) {
     const defaultView = document.getElementById('default-view');
+    if(!defaultView) return;
     defaultView.innerHTML = ''; 
 
-    // 1. Top Section (Highlight)
+    // 1. Section Terbaru (Limit 6)
     const top6Articles = allArticles.slice(0, 6);
     const top6Urls = new Set(top6Articles.map(a => a.url));
 
-    const sectionTitle = document.createElement('h2');
-    sectionTitle.textContent = 'Terbaru di Layar Kosong';
-    sectionTitle.className = 'section-title fade-in';
-    defaultView.appendChild(sectionTitle);
+    const latestSection = createSectionElement('Terbaru ✨', top6Articles);
+    defaultView.appendChild(latestSection);
 
-    const top6Grid = document.createElement('div');
-    top6Grid.className = 'article-grid';
-    renderArticles(top6Articles, top6Grid);
-    defaultView.appendChild(top6Grid);
-
-    // 2. Per Kategori
-    for (const category of Object.keys(jsonData).sort()) {
-        const otherArticles = allArticles
+    // 2. Section Per Kategori (Limit 6 per kategori)
+    Object.keys(jsonData).sort().forEach(category => {
+        const catArticles = allArticles
             .filter(a => a.category === category && !top6Urls.has(a.url))
             .slice(0, 6);
 
-        if (otherArticles.length > 0) {
-            const catTitle = document.createElement('h2');
-            catTitle.innerHTML = `Lainnya di <span class="highlight-text">${category}</span>`;
-            catTitle.className = 'section-title fade-in';
-            defaultView.appendChild(catTitle);
-
-            const categoryGrid = document.createElement('div');
-            categoryGrid.className = 'article-grid';
-            renderArticles(otherArticles, categoryGrid);
-            defaultView.appendChild(categoryGrid);
+        if (catArticles.length > 0) {
+            const catSection = createSectionElement(category, catArticles);
+            defaultView.appendChild(catSection);
         }
-    }
+    });
+}
+
+/**
+ * Helper untuk membuat Section sesuai CSS Mas Frijal
+ */
+function createSectionElement(title, articles) {
+    const section = document.createElement('section');
+    section.className = 'category-section';
+    
+    const h2 = document.createElement('h2');
+    h2.textContent = title;
+    section.appendChild(h2);
+
+    const grid = document.createElement('div');
+    grid.className = 'article-grid';
+    
+    articles.forEach(article => {
+        grid.appendChild(createCardElement(article));
+    });
+
+    section.appendChild(grid);
+    return section;
+}
+
+function createCardElement(article) {
+    const card = document.createElement('a');
+    card.className = 'article-card';
+    card.href = `artikel/${article.url}`;
+
+    // Area Gambar (Sesuai request 320x180 via CSS)
+    const img = document.createElement('img');
+    img.src = article.image;
+    img.alt = article.title;
+    img.loading = 'lazy';
+    img.onerror = function() { this.src = 'https://via.placeholder.com/320x180?text=No+Image'; };
+
+    const content = document.createElement('div');
+    content.className = 'card-content';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = article.title;
+
+    const p = document.createElement('p');
+    p.textContent = article.description;
+
+    content.appendChild(h3);
+    content.appendChild(p);
+    
+    card.appendChild(img);
+    card.appendChild(content);
+
+    return card;
 }
 
 function applyFilters() {
@@ -149,133 +194,53 @@ function applyFilters() {
     if (categoryValue === 'all' && weekValue === 'all') {
         defaultView.classList.remove('hidden');
         filteredView.classList.add('hidden');
-        filteredView.innerHTML = '';
-        updateFilterInfo([]); 
+        updateFilterInfo([]);
         return;
     }
 
     defaultView.classList.add('hidden');
     filteredView.classList.remove('hidden');
 
-    let filteredArticles = allArticles;
-    if (categoryValue !== 'all') filteredArticles = filteredArticles.filter(a => a.category === categoryValue);
-    if (weekValue !== 'all') filteredArticles = filteredArticles.filter(a => getWeekStartDate(a.date) === weekValue);
+    let filtered = allArticles;
+    if (categoryValue !== 'all') filtered = filtered.filter(a => a.category === categoryValue);
+    if (weekValue !== 'all') filtered = filtered.filter(a => getWeekStartDate(a.date) === weekValue);
 
-    updateFilterInfo(filteredArticles);
-    renderArticles(filteredArticles, filteredView);
+    updateFilterInfo(filtered);
+    
+    // Render hasil filter ke dalam grid
+    filteredView.innerHTML = '';
+    const filterSection = createSectionElement('Hasil Filter', filtered);
+    filteredView.appendChild(filterSection);
 }
 
 function updateFilterInfo(articlesToShow) {
     const infoElement = document.getElementById('filter-info');
     const weekSelect = document.getElementById('week-filter');
-    
+    if(!infoElement) return;
+
     if (weekSelect.value === 'all') {
         infoElement.classList.add('hidden');
         return;
     }
 
     infoElement.classList.remove('hidden');
-    
     if (articlesToShow.length === 0) {
-        infoElement.innerHTML = '<span class="warning-text">Tidak ada artikel ditemukan untuk periode ini.</span>';
+        infoElement.textContent = 'Tidak ada artikel untuk periode ini.';
         return;
     }
 
     const dates = articlesToShow.map(a => a.date.getTime());
-    const minDate = formatDateForDisplay(new Date(Math.min(...dates)));
-    const maxDate = formatDateForDisplay(new Date(Math.max(...dates)));
-
-    const selectedText = weekSelect.options[weekSelect.selectedIndex].text;
+    const minD = formatDateForDisplay(new Date(Math.min(...dates)));
+    const maxD = formatDateForDisplay(new Date(Math.max(...dates)));
     
-    // REGEX FIX SUDAH DITERAPKAN DI SINI
-    const mingguMatch = selectedText.match(/minggu ke-(\d+)/);
-    const tahunMatch = selectedText.match(/(\d{4})/);
-    const minggu = mingguMatch ? mingguMatch[1] : '?';
-    const tahun = tahunMatch ? tahunMatch[1] : '?';
+    const text = weekSelect.options[weekSelect.selectedIndex].text;
+    const mMatch = text.match(/minggu ke-(\d+)/);
+    const tMatch = text.match(/(\d{4})/);
 
-    infoElement.innerHTML = `
-        Terdapat <strong>${articlesToShow.length} judul</strong> artikel yang diunggah antara 
-        <strong>${minDate}</strong> s.d. <strong>${maxDate}</strong> 
-        (Minggu ke-${minggu}, Tahun ${tahun}).
-    `;
+    infoElement.innerHTML = `Terdeteksi <b>${articlesToShow.length} judul</b> dari tanggal ${minD} s.d ${maxD} (Minggu ke-${mMatch ? mMatch[1] : '?'}, ${tMatch ? tMatch[1] : ''})`;
 }
 
-function renderArticles(articles, container) {
-    container.innerHTML = ''; 
-    if (articles.length === 0) {
-        container.innerHTML = '<div class="empty-state">Artikel tidak ditemukan 😔</div>';
-        return;
-    }
-
-    const fragment = document.createDocumentFragment();
-    
-    // Kita gunakan index 'i' untuk mengatur delay animasi
-    articles.forEach((article, i) => {
-        const card = createCardElement(article, i);
-        fragment.appendChild(card);
-    });
-    container.appendChild(fragment);
-}
-
-function createCardElement(article, index) {
-    const card = document.createElement('a');
-    card.className = 'article-card';
-    card.href = `artikel/${article.url}`;
-    
-    // Style animasi: Staggered delay (kartu muncul berurutan)
-    // Delay maksimal dibatasi agar tidak terlalu lama menunggu
-    const delay = Math.min(index * 50, 500); 
-    card.style.animationDelay = `${delay}ms`;
-
-    // Buat slug kategori untuk class CSS warna-warni (misal: "cat-ekonomi")
-    const categorySlug = 'cat-' + article.category.toLowerCase().replace(/\s+/g, '-');
-
-    // Image dengan handling error
-    const imgWrapper = document.createElement('div');
-    imgWrapper.className = 'card-image-wrapper';
-    
-    const img = document.createElement('img');
-    img.src = article.image;
-    img.alt = article.title;
-    img.loading = 'lazy';
-    img.onerror = function() { 
-        this.src = '/thumbnail.webp'; // Gambar cadangan
-    };
-    imgWrapper.appendChild(img);
-
-    const content = document.createElement('div');
-    content.className = 'card-content';
-
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    
-    // Tambahkan class kategori spesifik
-    meta.innerHTML = `
-        <span class="category ${categorySlug}">${article.category}</span>
-        <span class="date">${formatDateForDisplay(article.date)}</span>
-    `;
-
-    const title = document.createElement('h3');
-    title.textContent = article.title;
-
-    const description = document.createElement('p');
-    description.className = 'card-description';
-    // Potong deskripsi biar rapi (opsional, kalau CSS line-clamp gagal)
-    description.textContent = article.description.length > 120 
-        ? article.description.substring(0, 120) + '...' 
-        : article.description;
-
-    content.appendChild(meta);
-    content.appendChild(title);
-    content.appendChild(description);
-
-    card.appendChild(imgWrapper);
-    card.appendChild(content);
-
-    return card;
-}
-
-// --- Helpers ---
+// --- Native Helpers ---
 function getWeekStartDate(d) {
     const date = new Date(d.getTime());
     const day = date.getUTCDay();
@@ -294,7 +259,5 @@ function getWeekNumber(d) {
 }
 
 function formatDateForDisplay(date) {
-    return date.toLocaleDateString('id-ID', {
-        day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC'
-    });
+    return date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
