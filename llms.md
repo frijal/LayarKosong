@@ -1,4 +1,4 @@
-# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 18 December 2025)
+# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 19 December 2025)
 
 Situs: https://dalam.web.id | Penulis: Fakhrul Rijal dari Balikpapan, Kalimantan Timur 🇮🇩
 
@@ -22,10 +22,15 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 694 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 708 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 🖥️ Teknologi Web, Ai & Umum
 
+- [**React2Shell (CVE-2025-55182): Kerentanan Kritis di React & Next.js**](https://dalam.web.id/artikel/react2shell-cve-2025-55182.html): 2025-12-18 — Penjelasan lengkap dan santai tentang React2Shell (CVE-2025-55182), kerentanan RCE kritis di React Server Components dan Next.js yang lagi heboh di akhir 2025. Skor CVSS 10.0, eksploitasi massal, cara cek & fix!
+- [**Jurnal Teknologi & AI: Edisi Oktober 2025 | Layar Kosong**](https://dalam.web.id/artikel/jurnal1-oktober-2025.html): 2025-12-18 — Rangkuman mendalam Oktober 2025: Analisis dampak AI pada HR & IT, kumpulan skrip otomatisasi GitHub Actions, Node.js tools, hingga sejarah kelam Windows XP.
+- [**Update Teknologi & AI Juni 2025 | Layar Kosong**](https://dalam.web.id/artikel/1update-juni-2025.html): 2025-12-18 — Rangkuman artikel teknologi bulan Juni 2025: Strategi Branching GitHub, SSH3, Thunderbird Exchange, hingga integrasi AI untuk UMKM.
+- [**Arsip Lengkap Teknologi & AI Agustus 2025 | Layar Kosong**](https://dalam.web.id/artikel/1agustus-2025-lengkap.html): 2025-12-18 — Daftar lengkap 15 artikel teknologi Agustus 2025: Solusi Git SSH, Review Claude vs ChatGPT, Panduan EULA, dan Tools AI untuk UMKM.
+- [**Arsip Teknologi & AI - Mei 2025 | Layar Kosong**](https://dalam.web.id/artikel/1arsip-mei-2025.html): 2025-12-18 — Kumpulan artikel teknologi web, panduan GitHub CLI, privasi AI Meta, hingga nostalgia Linux edisi Mei 2025 di Layar Kosong.
 - [**Panduan Lengkap Cornerstone Content: Fondasi SEO Website Kamu**](https://dalam.web.id/artikel/apa-itu-cornerstone-content.html): 2025-12-17 — Pelajari apa itu cornerstone content dan mengapa strategi ini sangat krusial untuk meningkatkan peringkat SEO website Anda di Google.
 - [**Command warp-cli register Salah? Ini yang Bener di 2025 + Cara Sukses!**](https://dalam.web.id/artikel/warp-cli-registration-new-2025.html): 2025-12-17 — Eh bro, command warp-cli register error? Ternyata sekarang pakai warp-cli registration new! Penjelasan lengkap + langkah sukses yang kamu coba sendiri di Debian 13 Balikpapan. GitHub langsung ngebut pakai WARP!
 - [**Panduan Lengkap Automasi PR: Peter Evans vs GitHub CLI - Dalam Web ID**](https://dalam.web.id/artikel/panduan-automasi-pr-github-peter-evans.html): 2025-12-17 — Perbandingan mendalam automasi Pull Request menggunakan peter-evans dan GitHub CLI, lengkap dengan simulasi error handling di GitHub Actions.
@@ -381,6 +386,7 @@ Total artikel terindeks: 694 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 📢 Catatan & Opini Sosial
 
+- [**Update Teknologi & Git September 2025 | Layar Kosong**](https://dalam.web.id/artikel/1update-september-2025.html): 2025-12-18 — Rangkuman artikel September 2025: Solusi Git Merge Conflict, Rahasia GitHub Actions, Optimasi Windows 11 CPU Lawas, dan 200+ Badge GitHub.
 - [**Larangan Merusak Rumah Tangga (Takhbib): Hadits Ahmad 9157 | Layar Kosong**](https://dalam.web.id/artikel/hadits-ahmad-9157-larangan-takhbib.html): 2025-12-11 — Penjelasan mendalam Hadits Riwayat Ahmad No. 9157 tentang larangan keras merusak hubungan suami istri (takhbib). Hukum, bahaya, dan dampak merusak rumah tangga orang lain dalam Islam.
 - [**Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati**](https://dalam.web.id/artikel/qanaah-kekayaan-hati-keberuntungan.html): 2025-12-11 — Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 - [**H. Jusuf Kalla: Mengapa Beliau Pantas Menerima Nobel Perdamaian dan Kemanusiaan | Layar Kosong**](https://dalam.web.id/artikel/jusuf-kalla-nobel-perdamaian.html): 2025-12-11 — Opini tentang kiprah H. Jusuf Kalla, mantan Wapres RI, sebagai tokoh perdamaian sejati, mulai dari konflik Poso, Ambon, Mindanao, hingga perannya di PMI dan Aceh. Layak dinobatkan sebagai penerima Hadiah Nobel Perdamaian.
@@ -420,6 +426,13 @@ Total artikel terindeks: 694 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 🐧 Linux & Open Source
 
+- [**Rangkuman Tematik Linux Mei 2025 - Layar Kosong**](https://dalam.web.id/artikel/rangkuman-tematik-linux-mei-2025.html): 2025-12-18 — Koleksi artikel Linux Mei 2025 yang dikelompokkan berdasarkan tema: Distro, Terminal, Desktop, hingga Sejarah.
+- [**Jurnal Linux & Open Source: Edisi September 2025 | Layar Kosong**](https://dalam.web.id/artikel/jurnal-oss-september-2025.html): 2025-12-18 — Arsip lengkap September 2025: Panduan migrasi Windows ke Linux, perbaikan GRUB Bootloader, solusi WiFi Realtek, hingga ulasan distro CachyOS dan MX Linux.
+- [**Arsip Lengkap Linux & Open Source Agustus 2025 - Layar Kosong**](https://dalam.web.id/artikel/arsip-linux-agustus-2025.html): 2025-12-18 — Eksplorasi 12 artikel Linux Agustus 2025: Solusi error Git SSH di semua distro, optimasi CachyOS dengan Paru, hingga tips hardware ASUS ROG di Linux.
+- [**Arsip Linux & Open Source Juli 2025 - Layar Kosong**](https://dalam.web.id/artikel/arsip-linux-juli-2025.html): 2025-12-18 — Kumpulan panduan teknis Linux Juli 2025: Dari skrip otomatisasi mirror repository, tutorial APT, hingga teknik isolasi sistem menggunakan CHROOT.
+- [**Arsip Lengkap Linux & Open Source Juni 2025 - Layar Kosong**](https://dalam.web.id/artikel/arsip-linux-juni-2025.html): 2025-12-18 — Daftar lengkap 26 artikel Linux & Open Source Juni 2025. Dari tutorial terminal, sejarah BlankOn, hingga pergerakan komunitas di Kutai Kartanegara.
+- [**Arsip Lengkap 28 Artikel Linux November 2025 - Layar Kosong**](https://dalam.web.id/artikel/arsip-linux-oss-november-2025.html): 2025-12-18 — Koleksi lengkap 28 artikel Linux & Open Source November 2025. Membahas migrasi Windows ke Linux, keamanan sistem, hingga nostalgia distro lokal BlankOn Suroboyo.
+- [**Arsip 50 Artikel Linux Oktober 2025 - Layar Kosong**](https://dalam.web.id/artikel/arsip-linuxoss-oktober-2025.html): 2025-12-18 — Edisi spesial Oktober 2025: 50 artikel Linux & Open Source mulai dari perbaikan sistem Arch Linux, update Ubuntu 25.10, hingga nostalgia komunitas di Balikpapan.
 - [**Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) – Update 2025!**](https://dalam.web.id/artikel/instal-cloudflare-warp-linux-2025.html): 2025-12-17 — Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!
 - [**Mengapa GitHub Lambat di Firefox ESR Debian? Solusi Lengkap!**](https://dalam.web.id/artikel/github-lambat-firefox-debian.html): 2025-12-17 — Penjelasan santai kenapa GitHub sering lambat dibuka pake Firefox ESR di Debian, terutama dari Indonesia seperti Balikpapan. Plus solusi praktis biar loadingnya ngebut lagi.
 - [**GitHub Lambat Pakai MyRepublic di Debian 13? Ini Penyebab & Solusi Lengkap!**](https://dalam.web.id/artikel/github-lambat-myrepublic-debian-13.html): 2025-12-17 — Penjelasan santai kenapa GitHub loading lambat banget kalau pakai ISP MyRepublic di Debian 13 (Trixie), terutama dari Balikpapan. Solusi praktis dari ganti DNS sampai VPN biar koneksi ngebut lagi.
@@ -684,6 +697,7 @@ Total artikel terindeks: 694 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 🔆 Lainnya
 
+- [**Jurnal Teknologi: Edisi November 2025 | Layar Kosong**](https://dalam.web.id/artikel/jurnal2-november-2025.html): 2025-12-18 — Rangkuman November 2025: Bahaya tema Blogspot gratis, persiapan migrasi ke Linux pasca Windows 10 EOL, trojan Android baru, dan analisis dampak AI pada kognisi.
 - [**Jambore Vixion dengan Sponsor Honda 😱 Heboh**](https://dalam.web.id/artikel/heboh-jambore-vixion-disponsori-honda.html): 2025-12-09 — Kehebohan terjadi saat Jambore Yamaha Vixion se-Kalimantan justru disponsori oleh Honda. Dalam artikel ini kita bahas kronologi, reaksi bikers, dan alasan kenapa hal ini jadi topik panas di dunia permotoran.
 - [**PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan**](https://dalam.web.id/artikel/pph-pasal-23-atas-bunga-pinjaman.html): 2025-12-04 — Penjelasan lengkap PPh Pasal 23 atas bunga pinjaman: tarif 15%, siapa yang wajib memotong, pengecualian (bunga bank, obligasi, dll), contoh perhitungan, dan dasar hukum terbaru 2025.
 - [**Refleksi Kepemimpinan: Mengemban Amanah Umat di Tengah Sanjungan Publik ✨**](https://dalam.web.id/artikel/refleksi-kepemimpinan-amanah-umat.html): 2025-12-01 — Sebuah refleksi mendalam tentang kepemimpinan dalam Persyarikatan, pentingnya merealisasikan persepsi publik yang positif, dan sikap terhadap amanah jabatan yang diberikan umat.
