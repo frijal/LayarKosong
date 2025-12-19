@@ -1,249 +1,95 @@
-/* 1. CSS Reset & Global Links */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a:link, a:visited {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* 2. Variabel Tema (Dark Mode Utama) */
 :root {
-  --bg-page: #0f172a;
-  --bg-section: #1e293b;
-  --bg-card: #283447;
-  --text-primary: #e2e8f0;
-  --text-secondary: #818cf8; 
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  --accent-light: rgba(129, 140, 248, 0.1);
+    --bg-page: #0f172a;
+    --bg-section: #1e293b;
+    --bg-card: #283447;
+    --text-primary: #e2e8f0;
+    --text-secondary: #818cf8;
+    --border-color: #334155;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Tema Light Otomatis */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-page: #f1f5f9;
-    --bg-section: #ffffff;
-    --bg-card: #f8fafc;
-    --text-primary: #1e293b;
-    --text-secondary: #4f46e5; 
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    --accent-light: #f0f6ff;
-  }
-}
-
-/* 3. Base Layout */
-html { scroll-behavior: smooth; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: var(--bg-page);
-  color: var(--text-primary);
-  line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
-  display: flex;
-  justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
 .container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
-/* 4. Header & Filter Styles */
 .page-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
 }
 
-.page-header h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-primary);
+h2 {
+    color: var(--text-secondary);
+    border-left: 4px solid var(--text-secondary);
+    padding-left: 15px;
+    margin: 2rem 0 1.5rem;
 }
 
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.filters select {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  background-color: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  cursor: pointer;
-  min-width: 220px;
-  outline: none;
-}
-
-.filter-info-text {
-  text-align: center;
-  margin: 1.5rem auto 0;
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  background-color: var(--accent-light);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  max-width: 700px;
-}
-
-/* 5. Section & Grid */
-section.category-section {
-  background-color: var(--bg-section);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 25px;
-  margin-bottom: 40px;
-}
-
-section.category-section h2 {
-  font-size: 1.8rem;
-  color: var(--text-secondary);
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 10px;
-  margin-bottom: 25px;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
+/* Grid System: Horizontal 3 Kartu per baris */
 .article-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 3rem;
 }
 
-/* Class khusus untuk hasil filter (3 kolom horizontal) */
-.grid-3-col {
-  grid-template-columns: repeat(3, 1fr) !important;
-}
-
-/* 6. Kartu Artikel */
 .article-card {
-  background-color: var(--bg-card);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Agar tinggi kartu sama dalam satu baris */
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .article-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
 }
 
 .article-card img {
-  width: 100%;
-  height: 180px; /* Sesuai request: 320x180 ratio */
-  object-fit: cover;
-  border-bottom: 1px solid var(--border-color);
-  background-color: #333;
+    width: 100%;
+    height: 180px; /* Rasio 320x180 */
+    object-fit: cover;
 }
 
 .card-content {
-  padding: 1.25rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+    padding: 1.25rem;
 }
 
 .card-content h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
-  color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.card-meta {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-  display: flex;
-  justify-content: space-between;
+.card-content p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.card-description {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* 7. Quick Navigation & Footer */
-#quick-nav {
-  position: fixed;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.nav-button {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  background: var(--bg-section);
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: var(--shadow);
-  transition: all 0.2s;
-}
-
-.nav-button:hover {
-  transform: scale(1.1);
-  color: var(--text-secondary);
-}
-
-.page-footer {
-  padding: 40px 20px;
-  text-align: center;
-  font-size: 14px;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-color);
-}
-
-/* 8. Responsivitas */
-@media (max-width: 1024px) {
-  .grid-3-col {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
+/* Responsif untuk HP */
 @media (max-width: 768px) {
-  .article-grid, .grid-3-col {
-    grid-template-columns: 1fr !important;
-  }
-  .page-header h1 { font-size: 2rem; }
-  .container { padding: 1rem; }
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
 }
-
-.hidden { display: none !important; }
