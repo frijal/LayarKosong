@@ -25,6 +25,87 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (e) { console.error("Data error", e); }
 });
 
+// --- FUNGSI DARI MAS FRIJAL ---
+function floatingSearchResults(query, data) {
+    const container = document.querySelector('.floating-results-container');
+    if (!container) return;
+    container.innerHTML = '';
+    container.style.display = 'none';
+    const q = query.trim().toLowerCase();
+    if (q.length < 3) return;
+
+    let hits = 0;
+    for (const cat in data) {
+        for (const item of data[cat]) {
+            // Index 0: Judul, Index 4: Deskripsi
+            const txt = [item[0], item[4]].filter(Boolean).join(' ');
+            const m = txt.toLowerCase().match(new RegExp(q, 'g'));
+            if (m) hits += m.length;
+        }
+    }
+
+    container.innerHTML = hits
+        ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang “<strong>${query}</strong>”</div>`
+        : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata “<strong>${query}</strong>”</div>`;
+    container.style.display = 'block';
+}
+
+function initFloatingSearch(allData) {
+    const wrap = document.querySelector('.search-floating-container');
+    const input = document.getElementById('floatingSearchInput');
+    const clear = wrap?.querySelector('.clear-button');
+    const results = wrap?.querySelector('.floating-results-container');
+    if (!wrap || !input || !clear || !results) return;
+
+    input.addEventListener('input', () => {
+        const v = input.value.trim();
+        clear.style.display = v.length ? 'block' : 'none';
+        floatingSearchResults(v, allData);
+    });
+
+    clear.addEventListener('click', () => {
+        input.value = '';
+        clear.style.display = 'none';
+        results.style.display = 'none';
+        input.focus();
+    });
+
+    // Navigasi ke pencarian asli Layar Kosong
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const q = input.value.trim();
+            if (q.length >= 3) {
+                window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
+            }
+        }
+    });
+
+    results.addEventListener('click', () => {
+        const q = input.value.trim();
+        if (q.length >= 3) {
+            window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) results.style.display = 'none';
+    });
+}
+
+// Fungsi tambahan untuk reset juga membersihkan kolom search
+function resetAllFilters() {
+    // ... (Logika reset dropdown yang sudah ada) ...
+    
+    // Tambahan untuk reset search
+    const input = document.getElementById('floatingSearchInput');
+    if(input) input.value = '';
+    document.querySelector('.floating-results-container').style.display = 'none';
+    document.querySelector('.clear-button').style.display = 'none';
+    
+    applyFilters(); // Kembali ke tampilan default
+}
+
 function renderGrid(articles, container) {
     container.innerHTML = '';
     articles.forEach(a => {
@@ -183,6 +264,7 @@ function resetAllFilters() {
     // Reset kategori ke seluruh data
     updateCategoryDropdown(allArticles);
     document.getElementById('filter-category').value = 'all';
+
     document.getElementById('filter-info').classList.add('hidden');
     document.getElementById('default-view').classList.remove('hidden');
     document.getElementById('filtered-view').classList.add('hidden');
