@@ -180,6 +180,9 @@ h2 {
     text-align: center;
 }
 
+.hidden {
+    display: none !important;
+}
 /* =================================================
    5. ARTICLE GRID & CARDS
    ================================================= */
@@ -314,10 +317,10 @@ h2 {
             color: var(--text-secondary);
         }
 
-      /*  footer a {
+        footer a {
             color: var(--link-color);
             margin: 0 0.5rem;
-        } */
+        } 
 
         .footer-links {
             margin-top: 1rem;
