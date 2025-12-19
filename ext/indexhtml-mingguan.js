@@ -239,7 +239,7 @@ function createCardElement(article, index) {
     img.alt = article.title;
     img.loading = 'lazy';
     img.onerror = function() { 
-        this.src = 'https://via.placeholder.com/400x250?text=Layar+Kosong'; // Gambar cadangan
+        this.src = '/thumbnail.webp'; // Gambar cadangan
     };
     imgWrapper.appendChild(img);
 
