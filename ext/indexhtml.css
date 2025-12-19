@@ -140,16 +140,12 @@ h2 {
 
 /* Article Card */
 .article-grid a.article-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    cursor: pointer; /* Menandakan bisa diklik */
 }
 
 .article-card:hover {
