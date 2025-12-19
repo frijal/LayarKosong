@@ -149,21 +149,21 @@ function renderDefaultView(allArticles, jsonData) {
     defaultView.innerHTML = ''; // Hapus "Memuat..."
 
     // 1. Dapatkan 30 artikel terbaru
-    const top30Articles = allArticles.slice(0, 6);
-    const top30Urls = new Set(top30Articles.map(a => a.url)); // Set untuk cek duplikat
+    const top6Articles = allArticles.slice(0, 6);
+    const top6Urls = new Set(top6Articles.map(a => a.url)); // Set untuk cek duplikat
 
     // Render 30 terbaru
     defaultView.innerHTML += '<h2>48 Artikel Terbaru</h2>';
-    const top30Grid = document.createElement('div');
-    top30Grid.className = 'article-grid';
-    renderArticles(top30Articles, top30Grid);
-    defaultView.appendChild(top30Grid);
+    const top6Grid = document.createElement('div');
+    top6Grid.className = 'article-grid';
+    renderArticles(top6Articles, top6Grid);
+    defaultView.appendChild(top6Grid);
 
     // 2. Render "Artikel Lainnya" per kategori
     for (const category of Object.keys(jsonData).sort()) {
         const otherArticles = allArticles
             .filter(a => a.category === category)      // Filter per kategori
-            .filter(a => !top30Urls.has(a.url))  // Hapus yang sudah ada di top 30
+            .filter(a => !top6Urls.has(a.url))  // Hapus yang sudah ada di top 30
             .slice(0, 6);                           // Ambil 6 teratas
 
         if (otherArticles.length > 0) {
@@ -254,7 +254,7 @@ function updateFilterInfo(articlesToShow) {
     const tahun = tahunMatch ? tahunMatch[1] : '?';
 
     // Format string sesuai permintaan
-    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke- ${minggu}, di tahun ${tahun} dengan jumlah ${jumlah} judul.`;
+    infoElement.textContent = `Seluruh artikel ini di upload pada tanggal ${startDate} sampai ${endDate}, minggu ke-${Minggu}, di tahun ${tahun} dengan jumlah ${jumlah} judul.`;
 }
 
 /**
