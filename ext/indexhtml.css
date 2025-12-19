@@ -130,6 +130,36 @@ h2 {
     text-align: center;
 }
 
+.btn-reset {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: var(--bg-card); /* Ikuti warna dropdown */
+    color: var(--text-secondary); /* Gunakan warna aksen indigo/ungu */
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.btn-reset:hover {
+    background: var(--text-secondary);
+    color: white;
+    border-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-reset:active {
+    transform: translateY(0);
+}
+
+/* Responsif untuk HP agar tombol tidak berantakan */
+@media (max-width: 768px) {
+    .btn-reset {
+        width: 100%;
+    }
+}
+
 /* Article Grid (3 Columns) */
 .article-grid {
     display: grid;
