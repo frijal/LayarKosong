@@ -224,18 +224,76 @@ function renderDefault() {
 
 function renderGrid(articles, container) {
     container.innerHTML = '';
+    
+    if (articles.length === 0) {
+        container.innerHTML = '<div class="message">Tidak ada artikel yang ditemukan.</div>';
+        return;
+    }
+
     articles.forEach(a => {
+        // Membuat elemen link sebagai pembungkus utama kartu (SEO Friendly)
         const card = document.createElement('a');
         card.className = 'article-card';
-        card.href = `artikel/${a.url}`;
+        
+        // Pastikan path URL benar. Jika file artikel ada di folder /artikel/
+        card.href = `artikel/${a.url}`; 
+        
+        // Tambahkan title attribute untuk SEO extra
+        card.setAttribute('title', `Baca selengkapnya: ${a.title}`);
+
+        // Gunakan template literal untuk isi kartu
         card.innerHTML = `
-            <img src="${a.image}" alt="${a.title}" onerror="this.src='https://via.placeholder.com/320x180?text=Layar+Kosong'">
+            <div class="card-image-wrapper">
+                <img src="${a.image}" 
+                     alt="${a.title}" 
+                     loading="lazy" 
+                     onerror="this.src='https://via.placeholder.com/320x180?text=Layar+Kosong'">
+            </div>
             <div class="card-content">
-                <div class="card-meta"><small>${a.category}</small> | <small>${a.date.toLocaleDateString('id-ID')}</small></div>
+                <div class="card-meta">
+                    <span class="category">${a.category}</span>
+                    <span class="date">${a.date.toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'})}</span>
+                </div>
                 <h3>${a.title}</h3>
                 <p class="card-description">${a.desc}</p>
             </div>
         `;
+        
         container.appendChild(card);
     });
 }
+
+// Opsional: Mendeteksi perubahan mode secara realtime lewat JS
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    const newColorScheme = event.matches ? "dark" : "light";
+});
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// 1. Cek pilihan tersimpan di LocalStorage
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    body.classList.add(currentTheme);
+}
+
+// 2. Fungsi Klik Toggle
+themeToggle.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+        body.classList.replace('dark-mode', 'light-mode');
+        localStorage.setItem('theme', 'light-mode');
+    } else if (body.classList.contains('light-mode')) {
+        body.classList.replace('light-mode', 'dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    } else {
+        // Jika belum ada class (masih ikut sistem), cek preferensi sistem
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (isDark) {
+            body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light-mode');
+        } else {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+    }
+});
