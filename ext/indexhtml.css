@@ -93,3 +93,56 @@ h2 {
         grid-template-columns: 1fr;
     }
 }
+
+.filter-wrapper {
+    background: var(--bg-section);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dropdown-group select {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.hidden { display: none !important; }
+
+/* Filter info text ala Layar Kosong */
+.filter-info-text {
+    background: var(--accent-light);
+    color: var(--text-secondary);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+}
