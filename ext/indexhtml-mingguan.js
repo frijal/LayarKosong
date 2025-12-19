@@ -4,8 +4,10 @@ let articlesByCat = {};
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('artikel.json');
-        articlesByCat = await response.json();
+        const data = await response.json();
+        articlesByCat = data;
         
+        // 1. Proses data untuk keperluan Filter
         for (const cat in articlesByCat) {
             articlesByCat[cat].forEach(item => {
                 allArticles.push({
@@ -16,105 +18,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         allArticles.sort((a, b) => b.date - a.date);
 
+        // 2. Jalankan Inisialisasi
         initFilters();
         renderDefault();
+        initFloatingSearch(data); // Inisialisasi fitur cari dari Mas Frijal
         
+        // 3. Pasang Event Listeners (PENTING: Pastikan ID sesuai di HTML)
         document.getElementById('filter-year').addEventListener('change', handleYearChange);
         document.getElementById('filter-month').addEventListener('change', applyFilters);
         document.getElementById('filter-category').addEventListener('change', applyFilters);
+        
+        const btnReset = document.getElementById('btn-reset');
+        if(btnReset) {
+            btnReset.addEventListener('click', resetAllFilters);
+        }
+
     } catch (e) { console.error("Data error", e); }
 });
 
-// --- FUNGSI DARI MAS FRIJAL ---
-function floatingSearchResults(query, data) {
-    const container = document.querySelector('.floating-results-container');
-    if (!container) return;
-    container.innerHTML = '';
-    container.style.display = 'none';
-    const q = query.trim().toLowerCase();
-    if (q.length < 3) return;
-
-    let hits = 0;
-    for (const cat in data) {
-        for (const item of data[cat]) {
-            // Index 0: Judul, Index 4: Deskripsi
-            const txt = [item[0], item[4]].filter(Boolean).join(' ');
-            const m = txt.toLowerCase().match(new RegExp(q, 'g'));
-            if (m) hits += m.length;
-        }
-    }
-
-    container.innerHTML = hits
-        ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang “<strong>${query}</strong>”</div>`
-        : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata “<strong>${query}</strong>”</div>`;
-    container.style.display = 'block';
-}
-
-function initFloatingSearch(allData) {
-    const wrap = document.querySelector('.search-floating-container');
-    const input = document.getElementById('floatingSearchInput');
-    const clear = wrap?.querySelector('.clear-button');
-    const results = wrap?.querySelector('.floating-results-container');
-    if (!wrap || !input || !clear || !results) return;
-
-    input.addEventListener('input', () => {
-        const v = input.value.trim();
-        clear.style.display = v.length ? 'block' : 'none';
-        floatingSearchResults(v, allData);
-    });
-
-    clear.addEventListener('click', () => {
-        input.value = '';
-        clear.style.display = 'none';
-        results.style.display = 'none';
-        input.focus();
-    });
-
-    // Navigasi ke pencarian asli Layar Kosong
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const q = input.value.trim();
-            if (q.length >= 3) {
-                window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
-            }
-        }
-    });
-
-    results.addEventListener('click', () => {
-        const q = input.value.trim();
-        if (q.length >= 3) {
-            window.location.href = `https://dalam.web.id/search?q=${encodeURIComponent(q)}`;
-        }
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!wrap.contains(e.target)) results.style.display = 'none';
-    });
-}
-
-// Fungsi tambahan untuk reset juga membersihkan kolom search
-function resetAllFilters() {
-    // ... (Logika reset dropdown yang sudah ada) ...
-    
-    // Tambahan untuk reset search
-    const input = document.getElementById('floatingSearchInput');
-    if(input) input.value = '';
-    document.querySelector('.floating-results-container').style.display = 'none';
-    document.querySelector('.clear-button').style.display = 'none';
-    
-    applyFilters(); // Kembali ke tampilan default
-}
-
+/* ==========================================
+   LOGIKA FILTER & GRID
+   ========================================== */
 function renderGrid(articles, container) {
     container.innerHTML = '';
     articles.forEach(a => {
-        // SELURUH KARTU ADALAH LINK (<a>)
         const card = document.createElement('a');
         card.className = 'article-card';
         card.href = `artikel/${a.url}`; 
         card.setAttribute('title', `Baca: ${a.title}`);
-
         card.innerHTML = `
             <div class="card-image-wrapper">
                 <img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/320x180?text=Layar+Kosong'">
@@ -132,108 +63,68 @@ function renderGrid(articles, container) {
     });
 }
 
-// ... (Fungsi initFilters, handleYearChange, applyFilters, renderDefault tetap sama seperti sebelumnya) ...
-
 function initFilters() {
     const yearSelect = document.getElementById('filter-year');
-    
-    // Isi Tahun Unik dari data
     const years = [...new Set(allArticles.map(a => a.date.getFullYear()))].sort((a,b) => b-a);
     yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
     years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
-
-    // Inisialisasi dropdown kategori pertama kali
     updateCategoryDropdown(allArticles);
 }
 
 function handleYearChange() {
     const year = document.getElementById('filter-year').value;
     const monthSelect = document.getElementById('filter-month');
-    
     monthSelect.innerHTML = '<option value="all">Semua Bulan</option>';
     
     if (year === 'all') {
         monthSelect.disabled = true;
-        // Jika tahun direset, kategori tampilkan semua yang ada di data
         updateCategoryDropdown(allArticles);
     } else {
         monthSelect.disabled = false;
-        
-        // Filter artikel berdasarkan tahun terpilih untuk cari bulan & kategori yang tersedia
         const filteredByYear = allArticles.filter(a => a.date.getFullYear().toString() === year);
-        
-        // Update Dropdown Bulan (Cascading)
         const availableMonths = [...new Set(filteredByYear.map(a => a.date.getMonth()))].sort((a,b) => a-b);
         const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-        
         availableMonths.forEach(m => {
             monthSelect.innerHTML += `<option value="${m}">${monthNames[m]}</option>`;
         });
-
-        // Update Dropdown Kategori (Cascading berdasarkan Tahun)
         updateCategoryDropdown(filteredByYear);
     }
     applyFilters();
 }
 
-// Fungsi baru untuk Cascading Kategori
 function updateCategoryDropdown(dataSumber) {
     const catSelect = document.getElementById('filter-category');
-    const selectedCat = catSelect.value; // Simpan pilihan user sementara
-    
-    // Ambil kategori unik dari data yang sudah difilter tahun/bulan
+    const selectedCat = catSelect.value;
     const availableCats = [...new Set(dataSumber.map(a => a.category))].sort();
-    
     catSelect.innerHTML = '<option value="all">Semua Kategori</option>';
     availableCats.forEach(c => {
         catSelect.innerHTML += `<option value="${c}">${c}</option>`;
     });
-
-    // Kembalikan pilihan user jika kategori tersebut masih tersedia di list baru
-    if (availableCats.includes(selectedCat)) {
-        catSelect.value = selectedCat;
-    }
+    if (availableCats.includes(selectedCat)) catSelect.value = selectedCat;
 }
 
 function applyFilters() {
     const year = document.getElementById('filter-year').value;
     const month = document.getElementById('filter-month').value;
     const cat = document.getElementById('filter-category').value;
-
     const isFilterActive = year !== 'all' || month !== 'all' || cat !== 'all';
     
-    const defView = document.getElementById('default-view');
-    const filView = document.getElementById('filtered-view');
-    const filGrid = document.getElementById('filtered-grid');
+    document.getElementById('default-view').classList.toggle('hidden', isFilterActive);
+    document.getElementById('filtered-view').classList.toggle('hidden', !isFilterActive);
 
-    if (!isFilterActive) {
-        defView.classList.remove('hidden');
-        filView.classList.add('hidden');
-        return;
+    if (isFilterActive) {
+        const filtered = allArticles.filter(a => {
+            const matchYear = year === 'all' || a.date.getFullYear().toString() === year;
+            const matchMonth = month === 'all' || a.date.getMonth().toString() === month;
+            const matchCat = cat === 'all' || a.category === cat;
+            return matchYear && matchMonth && matchCat;
+        });
+        renderGrid(filtered, document.getElementById('filtered-grid'));
+        
+        const info = document.getElementById('filter-info');
+        info.classList.remove('hidden');
+        info.innerHTML = `Ditemukan <strong>${filtered.length}</strong> artikel.`;
     }
-
-    defView.classList.add('hidden');
-    filView.classList.remove('hidden');
-
-    // Proses filtering final
-    const filtered = allArticles.filter(a => {
-        const matchYear = year === 'all' || a.date.getFullYear().toString() === year;
-        const matchMonth = month === 'all' || a.date.getMonth().toString() === month;
-        const matchCat = cat === 'all' || a.category === cat;
-        return matchYear && matchMonth && matchCat;
-    });
-
-    // Jika user sedang pilih bulan, kita persempit lagi kategori yang muncul di dropdown
-    if (month !== 'all') {
-        const filteredByMonth = allArticles.filter(a => 
-            a.date.getFullYear().toString() === year && 
-            a.date.getMonth().toString() === month
-        );
-        updateCategoryDropdown(filteredByMonth);
-    }
-
-    renderGrid(filtered, filGrid);
-    updateFilterInfo(filtered.length);
 }
 
 function renderDefault() {
@@ -241,6 +132,7 @@ function renderDefault() {
     renderGrid(top6, document.getElementById('global-grid'));
     const displayedUrls = new Set(top6.map(a => a.url));
     const container = document.getElementById('category-sections');
+    container.innerHTML = '';
     
     Object.keys(articlesByCat).sort().forEach(c => {
         const catArticles = allArticles.filter(a => a.category === c && !displayedUrls.has(a.url)).slice(0, 6);
@@ -256,27 +148,32 @@ function renderDefault() {
     });
 }
 
+/* ==========================================
+   TOMBOL RESET (KHUSUS DROPDOWN)
+   ========================================== */
 function resetAllFilters() {
     document.getElementById('filter-year').value = 'all';
     document.getElementById('filter-month').value = 'all';
     document.getElementById('filter-month').disabled = true;
     
-    // Reset kategori ke seluruh data
     updateCategoryDropdown(allArticles);
     document.getElementById('filter-category').value = 'all';
 
     document.getElementById('filter-info').classList.add('hidden');
     document.getElementById('default-view').classList.remove('hidden');
     document.getElementById('filtered-view').classList.add('hidden');
+    
+    console.log("Filter Dropdown direset! Kolom cari aman.");
 }
 
-// Logika Dark Mode
+/* ==========================================
+   TEMA DARK MODE
+   ========================================== */
 const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-if (localStorage.getItem('theme')) body.classList.add(localStorage.getItem('theme'));
+if (localStorage.getItem('theme')) document.body.classList.add(localStorage.getItem('theme'));
 themeToggle.addEventListener('click', () => {
-    const newTheme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
-    body.classList.remove('light-mode', 'dark-mode');
-    body.classList.add(newTheme);
+    const newTheme = document.body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add(newTheme);
     localStorage.setItem('theme', newTheme);
 });
