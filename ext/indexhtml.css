@@ -305,16 +305,36 @@ h2 {
 /* =================================================
    7. FOOTER & UTILITIES
    ================================================= */
-.page-footer {
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-    margin-top: 2rem;
-}
+/* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
 
-.hidden { display: none !important; }
+      /*  footer a {
+            color: var(--link-color);
+            margin: 0 0.5rem;
+        } */
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-icon {
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-icon:hover {
+            transform: scale(1.2);
+        }
 
 /* =================================================
    8. RESPONSIVE DESIGN
