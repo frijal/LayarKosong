@@ -153,6 +153,65 @@ h2 {
     transform: translateY(0);
 }
 
+.search-floating-container {
+    position: relative;
+    flex: 2; /* Beri ruang lebih luas dibanding dropdown */
+    min-width: 250px;
+}
+
+#floatingSearchInput {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    outline: none;
+    font-size: 0.95rem;
+}
+
+#floatingSearchInput:focus {
+    border-color: var(--text-secondary);
+}
+
+.clear-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 2;
+}
+
+.floating-results-container {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease;
+}
+
+.floating-results-container:hover {
+    border-color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Responsif untuk HP agar tombol tidak berantakan */
 @media (max-width: 768px) {
     .btn-reset {
