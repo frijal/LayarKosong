@@ -188,8 +188,8 @@ h2 {
    ================================================= */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 320px);
-    gap: 25px;
+grid-template-columns: repeat(3, 380px); /* Kunci di 380px agar tidak melar */
+    gap: 30px;
     margin-bottom: 3rem;
     justify-content: center; /* Supaya grid-nya rapi di tengah halaman */
 }
@@ -214,8 +214,8 @@ h2 {
 }
 
 .card-image-wrapper {
-    width: 320px;
-    height: 180px;
+    width: 380px;
+    height: 214px;
     overflow: hidden;
     background-color: var(--border-color);
 }
@@ -393,12 +393,24 @@ h2 {
 /* =================================================
    8. RESPONSIVE DESIGN
    ================================================= */
+@media (max-width: 1200px) {
+    .article-grid {
+        grid-template-columns: repeat(auto-fit, 380px);
+        gap: 20px; /* Kurangi gap sedikit di layar medium */
+    }
+}
+
 @media (max-width: 1024px) {
     .article-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
     .article-grid { grid-template-columns: 1fr; }
+    .card-image-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9; /* Jaga rasio tetap 16:9 di layar apa pun */
+    }
     .site-tagline { display: none; }
     .page-header { padding: 2.5rem 1rem 2rem; margin-bottom: 2rem; }
     .page-header h1 { font-size: 2rem; }
