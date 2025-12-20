@@ -188,12 +188,14 @@ h2 {
    ================================================= */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Lebih responsif */
+    grid-template-columns: repeat(auto-fill, 320px);
     gap: 25px;
     margin-bottom: 3rem;
+    justify-content: center; /* Supaya grid-nya rapi di tengah halaman */
 }
 
 .article-grid a.article-card {
+    width: 320px; /* Kunci lebar kartu */
     text-decoration: none;
     color: inherit;
     display: flex;
@@ -212,7 +214,7 @@ h2 {
 }
 
 .card-image-wrapper {
-    width: 100%;
+    width: 320px;
     height: 180px;
     overflow: hidden;
     background-color: var(--border-color);
