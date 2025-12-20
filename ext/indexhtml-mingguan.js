@@ -44,7 +44,7 @@ function renderGrid(articles, container) {
         const card = document.createElement('a');
         card.className = 'article-card';
         card.href = `artikel/${a.url}`; 
-        card.setAttribute('title', `Baca: ${a.title}`);
+        card.setAttribute('title', `${a.title}`);
         card.innerHTML = `
             <div class="card-image-wrapper">
                 <img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
