@@ -41,7 +41,7 @@
   <meta name="twitter:creator" content="@frijal">
 
   <!-- JSON-LD (MINIFIED) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Editor Artikel JSON Pro","description":"Editor artikel berbasis JSON untuk mengelola konten web teknologi, AI, dan Linux.","author":{"@type":"Person","name":"Fakhrul Rijal","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"publisher":{"@type":"Organization","name":"Layar Kosong","logo":{"@type":"ImageObject","url":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuCwcUXOGMh1PyxfkJYMHi1Ql7TgTu6cmbaitB3qbAhbpoTvrDe5whfsbou_yn3xomjGodI61vudn5MzW57g9fIwslKs03pIuvuhoXJbDcBkAPoR-17TfohSQlLSbt_pcCITzJLu5SUh-7G1jPn9XkWysfsIRlGongesoYqwsrQaZ4sSAvMIZ5VH-8KA/s1600/editorjson.webp","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/editor-artikel-json-pro.html","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Editor Artikel JSON Pro","description":"Editor artikel berbasis JSON untuk mengelola konten web teknologi, AI, dan Linux.","author":{"@type":"Person","name":"Fakhrul Rijal","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"publisher":{"@type":"Organization","name":"Layar Kosong","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/editor-artikel-json-pro.html","image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"},"image":"https://dalam.web.id/img/editor-artikel-json-pro.webp"}</script>
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
@@ -229,20 +229,24 @@
 
 <div class="container">
     <header class="app-header">
-        <div class="app-title">
-            <h1><i class="fa-solid fa-layer-group"></i> Editor Artikel</h1>
-<div id="iposbrowser"></div>
-        </div>
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Cari artikel..." oninput="handleSearch()">
-        </div>
-        <div class="toolbar">
-            <label for="fileInput" class="btn-label"><i class="fa-solid fa-folder-open"></i> Buka JSON</label>
-            <input type="file" id="fileInput" accept=".json">
-            <button onclick="downloadJSON()" class="btn-primary"><i class="fa-solid fa-save"></i> Simpan</button>
-        </div>
-    </header>
+    <div class="app-title">
+        <h1><i class="fa-solid fa-layer-group"></i> Editor Artikel</h1>
+    </div>
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="cari artikel..." oninput="handleSearch()">
+    </div>
+    <div class="toolbar" style="display:flex; gap:10px; flex-wrap: wrap;">
+        <input type="text" id="jsonUrlInput" placeholder="Masukkan URL .json (https://...)" 
+               style="padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--input-bg); color: white; min-width: 250px;">
+        <button onclick="fetchJSONFromUrl()" id="loadUrlBtn" class="btn-primary" style="background-color: #2196f3;">
+            <i class="fa-solid fa-cloud-download"></i> Load URL</button>        
+        <span style="border-left: 1px solid #444; margin: 0 5px;"></span>
+        <label for="fileInput" class="btn-label"><i class="fa-solid fa-folder-open"></i> Buka JSON</label>
+        <input type="file" id="fileInput" accept=".json">
+        <button onclick="downloadJSON()" class="btn-primary"><i class="fa-solid fa-save"></i> Simpan</button>
+    </div>
+</header>
    <section class="instruction-box">
         <h3><i class="fa-solid fa-circle-info"></i> Panduan Penggunaan Editor</h3>
         <p>Editor ini dirancang untuk mengelola database artikel berbasis file <code>.json</code> secara offline/online. Anda bisa menambah, mengubah, atau menghapus entri artikel dengan antarmuka visual yang modern.</p>
@@ -320,21 +324,66 @@
     let selectedArticles = []; // Format: {cat, originalIndex}
 
     // 1. File Handling
-    document.getElementById('fileInput').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                globalData = JSON.parse(e.target.result);
-                selectedArticles = [];
-                updateBulkBar();
-                renderUI(globalData);
-                showNotif("✅ Database dimuat!");
-            } catch (err) { alert("JSON Error!"); }
-        };
-        reader.readAsText(file);
-    });
+   // --- Fungsi Baru: Load JSON dari URL ---
+async function fetchJSONFromUrl() {
+    const urlInput = document.getElementById('jsonUrlInput');
+    const loadBtn = document.getElementById('loadUrlBtn');
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        alert("Masukkan URL file .json dulu bosku!");
+        return;
+    }
+
+    // UI Loading state
+    loadBtn.disabled = true;
+    loadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memuat...';
+
+    try {
+        const response = await fetch(url, { cache: 'no-store' });
+        
+        if (!response.ok) {
+            throw new Error(`Gagal mengambil data: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        // Validasi apakah formatnya sesuai dengan Editor Artikel (Object, bukan Array)
+        if (typeof data !== 'object' || Array.isArray(data)) {
+            throw new Error("Format JSON tidak sesuai. Harus format Object (Kategori: [Array Artikel]).");
+        }
+
+        globalData = data;
+        selectedArticles = [];
+        updateBulkBar();
+        renderUI(globalData);
+        showNotif("✅ Database dari URL berhasil dimuat!");
+        
+    } catch (err) {
+        console.error(err);
+        alert(`Waduh, Gagal! \nError: ${err.message} \n\nPastikan URL benar dan server mengizinkan CORS.`);
+    } finally {
+        loadBtn.disabled = false;
+        loadBtn.innerHTML = '<i class="fa-solid fa-cloud-download"></i> Load URL';
+    }
+}
+
+// --- Modifikasi File Input (Tetap dipertahankan) ---
+document.getElementById('fileInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            globalData = JSON.parse(e.target.result);
+            selectedArticles = [];
+            updateBulkBar();
+            renderUI(globalData);
+            showNotif("✅ Database lokal dimuat!");
+        } catch (err) { alert("JSON Error!"); }
+    };
+    reader.readAsText(file);
+});
 
     // 2. Render UI
     function renderUI(dataToRender, query = "") {
