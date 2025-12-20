@@ -306,38 +306,96 @@ h2 {
 }
 
 /* =================================================
-   7. FOOTER & UTILITIES
+   7. FOOTER
    ================================================= */
-/* Footer */
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            border-top: 2px solid var(--border-color);
-            text-align: center;
-            color: var(--text-secondary);
-        }
+.page-footer {
+    background: var(--bg-section);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 1rem 1.5rem;
+    margin-top: 4rem;
+    color: var(--text-primary);
+}
 
-        footer a {
-            color: var(--link-color);
-            margin: 0 0.5rem;
-        } 
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    text-align: left;
+}
 
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+.footer-section h3 {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        .footer-icon {
-            font-size: 1.5rem;
-            transition: transform 0.2s ease;
-        }
+.footer-section p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
 
-        .footer-icon:hover {
-            transform: scale(1.2);
-        }
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--text-secondary);
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 1.4rem;
+}
+
+.footer-social a {
+    color: var(--text-muted);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--text-secondary);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+}
 
 /* =================================================
    8. RESPONSIVE DESIGN
