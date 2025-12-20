@@ -128,6 +128,7 @@ function applyFilters() {
 
 function renderDefault() {
     // 1. Ambil 6 artikel terbaru secara global
+    // allArticles sudah disort (b.date - a.date) di DOMContentLoaded, jadi ini sudah aman.
     const top6 = allArticles.slice(0, 6);
     renderGrid(top6, document.getElementById('global-grid'));
     
@@ -135,31 +136,36 @@ function renderDefault() {
     const container = document.getElementById('category-sections');
     container.innerHTML = '';
     
-    // 2. Tentukan urutan kategori berdasarkan tanggal artikel terbarunya
+    // 2. Cari tanggal artikel paling gres di setiap kategori untuk menentukan urutan section
     const categoryOrder = Object.keys(articlesByCat).map(catName => {
-        // Cari semua artikel di kategori ini
-        const items = allArticles.filter(a => a.category === catName);
-        // Ambil tanggal paling baru (karena allArticles sudah di-sort di awal, 
-        // kita bisa ambil yang pertama ketemu atau gunakan Math.max)
-        const latestDate = items.length > 0 ? items[0].date : new Date(0);
+        const itemsInCategory = allArticles.filter(a => a.category === catName);
+        // Karena allArticles sudah disort menurun, maka itemsInCategory[0] adalah yang terbaru
+        const latestDate = itemsInCategory.length > 0 ? itemsInCategory[0].date : new Date(0);
         return { name: catName, latestDate };
     });
 
-    // 3. Urutkan kategori: yang punya artikel terbaru di atas
+    // 3. Urutkan section kategorinya: yang ada update terbaru muncul paling atas
     categoryOrder.sort((a, b) => b.latestDate - a.latestDate);
 
-    // 4. Render berdasarkan urutan tersebut
+    // 4. Render setiap section
     categoryOrder.forEach(cat => {
         const c = cat.name;
-        // Filter artikel untuk section ini (kecuali yang sudah masuk di Top 6 Terbaru)
-        const catArticles = allArticles.filter(a => a.category === c && !displayedUrls.has(a.url)).slice(0, 6);
+        
+        // Ambil artikel untuk kategori ini yang belum muncul di Top 6 Terbaru
+        // PENTING: Kita filter dari allArticles karena allArticles sudah terjamin urutannya (Desc)
+        const catArticles = allArticles
+            .filter(a => a.category === c && !displayedUrls.has(a.url))
+            .slice(0, 6);
         
         if (catArticles.length > 0) {
             const sec = document.createElement('section');
             sec.innerHTML = `<h2>${c}</h2>`;
             const grid = document.createElement('div');
             grid.className = 'article-grid';
+            
+            // Render grid dengan artikel yang sudah pasti terurut terbaru -> lama
             renderGrid(catArticles, grid);
+            
             sec.appendChild(grid);
             container.appendChild(sec);
         }
