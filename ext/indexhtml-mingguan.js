@@ -127,14 +127,33 @@ function applyFilters() {
 }
 
 function renderDefault() {
+    // 1. Ambil 6 artikel terbaru secara global
     const top6 = allArticles.slice(0, 6);
     renderGrid(top6, document.getElementById('global-grid'));
+    
     const displayedUrls = new Set(top6.map(a => a.url));
     const container = document.getElementById('category-sections');
     container.innerHTML = '';
     
-    Object.keys(articlesByCat).sort().forEach(c => {
+    // 2. Tentukan urutan kategori berdasarkan tanggal artikel terbarunya
+    const categoryOrder = Object.keys(articlesByCat).map(catName => {
+        // Cari semua artikel di kategori ini
+        const items = allArticles.filter(a => a.category === catName);
+        // Ambil tanggal paling baru (karena allArticles sudah di-sort di awal, 
+        // kita bisa ambil yang pertama ketemu atau gunakan Math.max)
+        const latestDate = items.length > 0 ? items[0].date : new Date(0);
+        return { name: catName, latestDate };
+    });
+
+    // 3. Urutkan kategori: yang punya artikel terbaru di atas
+    categoryOrder.sort((a, b) => b.latestDate - a.latestDate);
+
+    // 4. Render berdasarkan urutan tersebut
+    categoryOrder.forEach(cat => {
+        const c = cat.name;
+        // Filter artikel untuk section ini (kecuali yang sudah masuk di Top 6 Terbaru)
         const catArticles = allArticles.filter(a => a.category === c && !displayedUrls.has(a.url)).slice(0, 6);
+        
         if (catArticles.length > 0) {
             const sec = document.createElement('section');
             sec.innerHTML = `<h2>${c}</h2>`;
