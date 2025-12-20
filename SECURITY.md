@@ -60,7 +60,6 @@ Dependensi pihak ketiga dipantau secara berkala untuk mendeteksi kerentanan yang
 ## 🙏 Apresiasi
 
 Kami menghargai kontribusi komunitas dalam menjaga keamanan proyek ini.  
-Pelapor yang bertanggung jawab **tidak akan dikenakan tindakan hukum**.
 
 </details>
 
@@ -121,6 +120,5 @@ Third-party dependencies are monitored regularly for known vulnerabilities.
 ## 🙏 Acknowledgements
 
 We appreciate responsible disclosure and community contributions.  
-Responsible reporters **will not face legal action**.
 
 </details>
