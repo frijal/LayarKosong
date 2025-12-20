@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // 3. Pasang Event Listeners
         document.getElementById('filter-year').addEventListener('change', handleYearChange);
-        document.getElementById('filter-month').addEventListener('change', applyFilters);
+        document.getElementById('filter-month').addEventListener('change', handleMonthChange); // Pakai fungsi baru
         document.getElementById('filter-category').addEventListener('change', applyFilters);
         
         const btnReset = document.getElementById('btn-reset');
@@ -65,64 +65,105 @@ function renderGrid(articles, container) {
 function initFilters() {
     const yearSelect = document.getElementById('filter-year');
     const years = [...new Set(allArticles.map(a => a.date.getFullYear()))].sort((a,b) => b-a);
+    
     yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
     years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
-    updateCategoryDropdown(allArticles);
+    
+    // Pastikan dropdown bawahnya mati total saat awal
+    document.getElementById('filter-month').disabled = true;
+    document.getElementById('filter-category').disabled = true;
 }
 
 function handleYearChange() {
     const year = document.getElementById('filter-year').value;
     const monthSelect = document.getElementById('filter-month');
-    monthSelect.innerHTML = '<option value="all">Semua Bulan</option>';
+    const catSelect = document.getElementById('filter-category');
     
+    // Reset dropdown di bawahnya
+    monthSelect.innerHTML = '<option value="all">Semua Bulan</option>';
+    catSelect.innerHTML = '<option value="all">Semua Kategori</option>';
+    catSelect.disabled = true;
+
     if (year === 'all') {
         monthSelect.disabled = true;
-        updateCategoryDropdown(allArticles);
+        monthSelect.value = 'all';
     } else {
         monthSelect.disabled = false;
         const filteredByYear = allArticles.filter(a => a.date.getFullYear().toString() === year);
         const availableMonths = [...new Set(filteredByYear.map(a => a.date.getMonth()))].sort((a,b) => a-b);
         const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        
         availableMonths.forEach(m => {
             monthSelect.innerHTML += `<option value="${m}">${monthNames[m]}</option>`;
         });
-        updateCategoryDropdown(filteredByYear);
+    }
+    applyFilters();
+}
+
+// Fungsi baru untuk menangani perubahan Bulan
+function handleMonthChange() {
+    const year = document.getElementById('filter-year').value;
+    const month = document.getElementById('filter-month').value;
+    const catSelect = document.getElementById('filter-category');
+
+    if (month === 'all') {
+        catSelect.innerHTML = '<option value="all">Semua Kategori</option>';
+        catSelect.disabled = true;
+        catSelect.value = 'all';
+    } else {
+        catSelect.disabled = false;
+        // Ambil artikel yang sesuai dengan Tahun DAN Bulan pilihan
+        const filteredData = allArticles.filter(a => 
+            a.date.getFullYear().toString() === year && 
+            a.date.getMonth().toString() === month
+        );
+        
+        // Update isi dropdown kategori hanya yang ada isinya di bulan tersebut
+        updateCategoryDropdown(filteredData);
     }
     applyFilters();
 }
 
 function updateCategoryDropdown(dataSumber) {
     const catSelect = document.getElementById('filter-category');
-    const selectedCat = catSelect.value;
     const availableCats = [...new Set(dataSumber.map(a => a.category))].sort();
+    
     catSelect.innerHTML = '<option value="all">Semua Kategori</option>';
     availableCats.forEach(c => {
         catSelect.innerHTML += `<option value="${c}">${c}</option>`;
     });
-    if (availableCats.includes(selectedCat)) catSelect.value = selectedCat;
 }
 
 function applyFilters() {
     const year = document.getElementById('filter-year').value;
     const month = document.getElementById('filter-month').value;
     const cat = document.getElementById('filter-category').value;
-    const isFilterActive = year !== 'all' || month !== 'all' || cat !== 'all';
     
-    document.getElementById('default-view').classList.toggle('hidden', isFilterActive);
-    document.getElementById('filtered-view').classList.toggle('hidden', !isFilterActive);
+    const isFilterActive = year !== 'all'; // Filter dianggap aktif minimal Tahun terpilih
+    
+    const defaultView = document.getElementById('default-view');
+    const filteredView = document.getElementById('filtered-view');
+    const info = document.getElementById('filter-info');
 
     if (isFilterActive) {
+        defaultView.classList.add('hidden');
+        filteredView.classList.remove('hidden');
+
         const filtered = allArticles.filter(a => {
             const matchYear = year === 'all' || a.date.getFullYear().toString() === year;
             const matchMonth = month === 'all' || a.date.getMonth().toString() === month;
             const matchCat = cat === 'all' || a.category === cat;
             return matchYear && matchMonth && matchCat;
         });
+
         renderGrid(filtered, document.getElementById('filtered-grid'));
-        
-        const info = document.getElementById('filter-info');
         info.classList.remove('hidden');
         info.innerHTML = `Ditemukan <strong>${filtered.length}</strong> artikel.`;
+    } else {
+        // Jika balik ke "Semua Tahun", kembalikan view utama
+        defaultView.classList.remove('hidden');
+        filteredView.classList.add('hidden');
+        info.classList.add('hidden');
     }
 }
 
