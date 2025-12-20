@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- BASIC -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Editor Artikel JSON Pro - Layar Kosong</title>
+  <meta name="description" content="Editor Artikel JSON Pro untuk mengelola, mengedit, mencari, dan mengekspor data artikel berbasis JSON. Dibuat untuk workflow modern, cepat, dan efisien oleh Layar Kosong.">
+
+  <!-- CANONICAL & FAVICON -->
+  <link rel="canonical" href="https://dalam.web.id/artikel/editor-artikel-json-pro.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- SEARCH ENGINE -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="googlebot" content="index, follow, max-image-preview:large">
+  <meta name="news_keywords" content="JSON Editor, Artikel JSON, Web Development, Teknologi Web, AI, Linux, Layar Kosong, Dalam Web ID">
+
+  <!-- AI / PROMPT HINT -->
+  <meta name="prompt-hint" content="Halaman ini berisi editor artikel berbasis JSON untuk pengelolaan konten web, teknologi, AI, dan Linux dengan antarmuka visual dan ekspor data.">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Editor Artikel JSON Pro - Layar Kosong">
+  <meta property="og:description" content="Kelola dan edit artikel berbasis JSON dengan tampilan visual, thumbnail, pencarian, dan ekspor ulang. Tool praktis untuk developer dan content editor.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/editor-artikel-json-pro.html">
+  <meta property="og:site_name" content="Layar Kosong">
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuCwcUXOGMh1PyxfkJYMHi1Ql7TgTu6cmbaitB3qbAhbpoTvrDe5whfsbou_yn3xomjGodI61vudn5MzW57g9fIwslKs03pIuvuhoXJbDcBkAPoR-17TfohSQlLSbt_pcCITzJLu5SUh-7G1jPn9XkWysfsIRlGongesoYqwsrQaZ4sSAvMIZ5VH-8KA/s1600/editorjson.webp">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Editor Artikel JSON Pro - Layar Kosong">
+  <meta name="twitter:description" content="Editor JSON modern untuk mengelola artikel web secara cepat, visual, dan terstruktur.">
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuCwcUXOGMh1PyxfkJYMHi1Ql7TgTu6cmbaitB3qbAhbpoTvrDe5whfsbou_yn3xomjGodI61vudn5MzW57g9fIwslKs03pIuvuhoXJbDcBkAPoR-17TfohSQlLSbt_pcCITzJLu5SUh-7G1jPn9XkWysfsIRlGongesoYqwsrQaZ4sSAvMIZ5VH-8KA/s1600/editorjson.webp">
+  <meta name="twitter:site" content="@frijal">
+  <meta name="twitter:creator" content="@frijal">
+
+  <!-- JSON-LD (MINIFIED) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Editor Artikel JSON Pro","description":"Editor artikel berbasis JSON untuk mengelola konten web teknologi, AI, dan Linux.","author":{"@type":"Person","name":"Fakhrul Rijal"},"publisher":{"@type":"Organization","name":"Layar Kosong","logo":{"@type":"ImageObject","url":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuCwcUXOGMh1PyxfkJYMHi1Ql7TgTu6cmbaitB3qbAhbpoTvrDe5whfsbou_yn3xomjGodI61vudn5MzW57g9fIwslKs03pIuvuhoXJbDcBkAPoR-17TfohSQlLSbt_pcCITzJLu5SUh-7G1jPn9XkWysfsIRlGongesoYqwsrQaZ4sSAvMIZ5VH-8KA/s1600/editorjson.webp"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/editor-artikel-json-pro.html"}}
+  </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-color: #4caf50;
+            --accent-hover: #43a047;
+            --danger-color: #ef5350;
+            --input-bg: #2d2d2d;
+            --border-color: #333;
+            --code-bg: #000000;
+            --selection-color: #2196f3;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 100px; /* Space for bulk bar */
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+  /* CSS TAMBAHAN UNTUK INSTRUKSI */
+        .instruction-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+        .instruction-box h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .instruction-box ul {
+            padding-left: 20px;
+        }
+        .instruction-box li {
+            margin-bottom: 8px;
+        }
+          .json-example {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            display: block;
+            white-space: pre-wrap;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            color: #81c784; /* Warna hijau code */
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        code {
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffb74d;
+        }
+        /* HEADER & SEARCH */
+        .app-header {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .app-title h1 { margin: 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .search-box { flex: 1; min-width: 300px; position: relative; }
+        .search-box input {
+            width: 90%; padding: 12px 15px 12px 45px;
+            background: var(--bg-color); border: 1px solid var(--border-color);
+            border-radius: 8px; color: #fff; font-size: 1rem;
+        }
+        .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+                .toolbar { display: flex; gap: 10px; }
+
+        /* BUTTONS */
+         button, .btn-label {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        button:hover, .btn-label:hover { background-color: #3d3d3d; border-color: #666; }
+
+        .btn-primary { background-color: var(--accent-color); border: none; color: #fff; }
+        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-danger { background-color: #c62828; border: none; color: #fff; }
+        .btn-danger:hover { background-color: var(--danger-color); }
+
+        input[type="file"] { display: none; }
+
+        /* GRID & CARDS */
+        .category-section { margin-bottom: 40px; }
+        .cat-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; overflow: hidden; position: relative;
+            display: flex; flex-direction: column; transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); border-color: #555; }
+
+        /* CHECKBOX STYLING */
+        .card-checkbox-wrapper {
+            position: absolute; top: 10px; right: 10px; z-index: 10;
+            background: rgba(0,0,0,0.6); padding: 5px; border-radius: 4px;
+            backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .card-checkbox { width: 20px; height: 20px; cursor: pointer; accent-color: var(--selection-color); }
+
+        .card-img-wrapper { height: 180px; background: #000; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .card-body { padding: 15px; flex: 1; }
+        .card-title { font-size: 1.1rem; font-weight: 700; margin: 8px 0; }
+        .card-url { font-size: 0.75rem; color: var(--accent-color); font-family: monospace; }
+        .card-footer { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border-color); }
+        .card-btn {
+            background: transparent; border: none; border-radius: 0; padding: 12px 5px;
+            justify-content: center; color: var(--text-muted); font-size: 0.85rem;
+        }
+        .card-btn:hover { background: #333; color: #fff; }
+        .card-btn.copy:hover { background: rgba(33, 150, 243, 0.2); color: #2196f3; }
+        .card-btn.edit:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .card-btn.delete:hover { background: rgba(239, 83, 80, 0.2); color: var(--danger-color); }
+
+        /* BULK ACTION BAR */
+        #bulkActionBar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150px);
+            background: #2196f3; color: white; padding: 15px 30px;
+            border-radius: 50px; display: flex; align-items: center; gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #bulkActionBar.show { transform: translateX(-50%) translateY(0); }
+        .bulk-count { font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 20px; }
+
+        /* MODAL & NOTIF */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+        .modal-content { background: var(--card-bg); width: 90%; max-width: 600px; padding: 30px; border-radius: 12px; }
+        #notification { position: fixed; bottom: 30px; right: 30px; background: var(--accent-color); color: white; padding: 15px 25px; border-radius: 8px; transform: translateY(100px); transition: transform 0.3s; z-index: 2000; }
+        #notification.show { transform: translateY(0); }
+        .highlight { background: rgba(76, 175, 80, 0.3); }
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="app-header">
+        <div class="app-title">
+            <h1><i class="fa-solid fa-layer-group"></i> Editor Artikel</h1>
+        </div>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Cari artikel..." oninput="handleSearch()">
+        </div>
+        <div class="toolbar">
+            <label for="fileInput" class="btn-label"><i class="fa-solid fa-folder-open"></i> Buka JSON</label>
+            <input type="file" id="fileInput" accept=".json">
+            <button onclick="downloadJSON()" class="btn-primary"><i class="fa-solid fa-save"></i> Simpan</button>
+        </div>
+    </header>
+   <section class="instruction-box">
+        <h3><i class="fa-solid fa-circle-info"></i> Panduan Penggunaan Editor</h3>
+        <p>Editor ini dirancang untuk mengelola database artikel berbasis file <code>.json</code> secara offline/online. Anda bisa menambah, mengubah, atau menghapus entri artikel dengan antarmuka visual yang modern.</p>
+
+        <ul>
+            <li><strong>Import:</strong> Gunakan tombol <code>Buka JSON</code> untuk memuat file artikel Anda.</li>
+            <li><strong>Struktur:</strong> Script ini mengelola JSON dengan format <strong>Object of Arrays</strong>, di mana tiap key adalah nama kategori, dan isinya adalah array yang menampung data artikel.</li>
+            <li><strong>Data Artikel:</strong> Setiap artikel diwakili oleh array flat dengan urutan: <code>[Judul, Nama File, Link Gambar, ISO Timestamp, Deskripsi]</code>.</li>
+            <li><strong>Export:</strong> Setelah selesai mengedit, tekan tombol <code>Simpan</code> untuk mengunduh file JSON terbaru.</li>
+        </ul>
+
+        <p><strong>Contoh Format JSON yang bisa diubah dan dihasilkan oleh halaman ini:</strong></p>
+        <code class="json-example">{
+  "🖥️ Teknologi": [
+    [
+      "Judul Artikel",
+      "slug-artikel.html",
+      "https://link-gambar.com/foto.webp",
+      "2025-12-20T10:00:00+00:00",
+      "Ringkasan deskripsi artikel yang akan tampil di halaman depan."
+    ]
+  ]
+}</code>
+    </section>
+    <div id="mainContent">
+        <div class="empty-state" style="text-align:center; padding:100px; opacity:0.5;">
+            <i class="fa-solid fa-file-circle-plus" style="font-size: 4rem;"></i>
+            <h3>Siap bekerja? Buka file JSON dulu ya.</h3>
+        </div>
+    </div>
+</div>
+
+<div id="bulkActionBar">
+    <div class="bulk-count"><span id="selectedCount">0</span> Terpilih</div>
+    <div style="display:flex; gap:10px;">
+        <button onclick="bulkExportTxt()" class="btn-info"><i class="fa-solid fa-file-export"></i> Ekspor .txt (Slug)</button>
+        <button onclick="bulkDelete()" class="btn-danger" style="background:#b71c1c;"><i class="fa-solid fa-trash"></i> Hapus Massal</button>
+        <button onclick="clearSelection()" style="background:rgba(255,255,255,0.2); border:none;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+</div>
+
+<div id="modalEditor" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Edit Artikel</h2>
+        <form id="editForm" onsubmit="saveArticle(event)">
+            <input type="hidden" id="editCat"><input type="hidden" id="editIdx">
+            <div style="margin-bottom:15px">
+                <label style="display:block; margin-bottom:5px">Judul</label>
+                <input type="text" id="inpTitle" style="width:100%; padding:10px; background:#333; border:1px solid #44; color:white; border-radius:5px;" required>
+            </div>
+            <div style="margin-bottom:15px">
+                <label style="display:block; margin-bottom:5px">URL / Slug</label>
+                <input type="text" id="inpUrl" style="width:100%; padding:10px; background:#333; border:1px solid #44; color:white; border-radius:5px;" required>
+            </div>
+             <div style="margin-bottom:15px">
+                <label style="display:block; margin-bottom:5px">URL Gambar</label>
+                <input type="text" id="inpImg" style="width:100%; padding:10px; background:#333; border:1px solid #44; color:white; border-radius:5px;" required>
+            </div>
+            <div style="margin-bottom:15px">
+                <label style="display:block; margin-bottom:5px">Deskripsi</label>
+                <textarea id="inpDesc" style="width:100%; height:80px; padding:10px; background:#333; border:1px solid #44; color:white; border-radius:5px;" required></textarea>
+            </div>
+            <div style="text-align:right">
+                <button type="button" onclick="closeModal()">Batal</button>
+                <button type="submit" class="btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="notification"></div>
+
+<script>
+    let globalData = {};
+    let selectedArticles = []; // Format: {cat, originalIndex}
+
+    // 1. File Handling
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                globalData = JSON.parse(e.target.result);
+                selectedArticles = [];
+                updateBulkBar();
+                renderUI(globalData);
+                showNotif("✅ Database dimuat!");
+            } catch (err) { alert("JSON Error!"); }
+        };
+        reader.readAsText(file);
+    });
+
+    // 2. Render UI
+    function renderUI(dataToRender, query = "") {
+        const container = document.getElementById('mainContent');
+        container.innerHTML = '';
+
+        Object.keys(dataToRender).sort().forEach(cat => {
+            const articles = dataToRender[cat];
+            if (articles.length === 0) return;
+
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            section.innerHTML = `<div class="cat-header"><h2>${cat} <span style="font-size:0.8rem; opacity:0.5;">(${articles.length})</span></h2></div>`;
+
+            const grid = document.createElement('div');
+            grid.className = 'grid';
+
+            articles.forEach((art, idx) => {
+                const [title, url, img, date, desc] = art;
+                const isChecked = selectedArticles.some(s => s.cat === cat && s.idx === idx);
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-checkbox-wrapper">
+                        <input type="checkbox" class="card-checkbox"
+                            ${isChecked ? 'checked' : ''}
+                            onchange="toggleSelect('${cat}', ${idx}, this.checked)">
+                    </div>
+                    <div class="card-img-wrapper"><img src="${img}" class="card-img" onerror="this.src='/thumnail.webp'"></div>
+                    <div class="card-body">
+                        <div class="card-title">${title}</div>
+                        <div class="card-url">${url}</div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn edit" onclick="openEditor('${cat}', ${idx})"><i class="fa-solid fa-pen"></i> Ubah</button>
+                        <button class="card-btn delete" onclick="deleteArticle('${cat}', ${idx})"><i class="fa-solid fa-trash"></i> Hapus</button>
+                        <button class="card-btn copy" onclick="copyToClipboard('${url}')"><i class="fa-solid fa-copy"></i> Salin</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            section.appendChild(grid);
+            container.appendChild(section);
+        });
+    }
+
+    // 3. Selection Logic
+    function toggleSelect(cat, idx, isChecked) {
+        if (isChecked) {
+            selectedArticles.push({ cat, idx });
+        } else {
+            selectedArticles = selectedArticles.filter(s => !(s.cat === cat && s.idx === idx));
+        }
+        updateBulkBar();
+    }
+
+    function updateBulkBar() {
+        const bar = document.getElementById('bulkActionBar');
+        const countSpan = document.getElementById('selectedCount');
+        countSpan.innerText = selectedArticles.length;
+
+        if (selectedArticles.length > 0) {
+            bar.classList.add('show');
+        } else {
+            bar.classList.remove('show');
+        }
+    }
+
+    function clearSelection() {
+        selectedArticles = [];
+        updateBulkBar();
+        renderUI(globalData);
+    }
+
+    // 4. Bulk Actions
+    function bulkDelete() {
+        if (!confirm(`Hapus ${selectedArticles.length} artikel yang dipilih?`)) return;
+
+        // Sort selection descending agar index tidak berantakan saat dihapus
+        const sortedSelection = [...selectedArticles].sort((a, b) => b.idx - a.idx);
+
+        sortedSelection.forEach(item => {
+            globalData[item.cat].splice(item.idx, 1);
+        });
+
+        selectedArticles = [];
+        updateBulkBar();
+        renderUI(globalData);
+        showNotif(`🗑️ ${sortedSelection.length} Artikel dihapus secara massal.`);
+    }
+
+    function bulkExportTxt() {
+        let txtContent = "DAFTAR SLUG/URL ARTIKEL\n======================\n\n";
+
+        selectedArticles.forEach(item => {
+            const art = globalData[item.cat][item.idx];
+            txtContent += `${art[1]}\n`; // art[1] adalah URL/Slug
+        });
+
+        const blob = new Blob([txtContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `daftar_slug_${new Date().getTime()}.txt`;
+        link.click();
+        showNotif("📂 File .txt berhasil diunduh.");
+    }
+
+    // 5. Utilities (Search, Editor, Notif)
+    function handleSearch() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = {};
+        for (const [cat, arts] of Object.entries(globalData)) {
+            const matches = arts.filter(a => a[0].toLowerCase().includes(q) || a[1].toLowerCase().includes(q));
+            if (matches.length > 0) filtered[cat] = matches;
+        }
+        renderUI(filtered, q);
+    }
+
+    function openEditor(cat, idx) {
+        const art = globalData[cat][idx];
+        document.getElementById('editCat').value = cat;
+        document.getElementById('editIdx').value = idx;
+        document.getElementById('inpTitle').value = art[0];
+        document.getElementById('inpUrl').value = art[1];
+        document.getElementById('inpImg').value = art[2];
+        document.getElementById('inpDesc').value = art[4];
+        document.getElementById('modalEditor').style.display = 'flex';
+    }
+
+    function saveArticle(e) {
+        e.preventDefault();
+        const cat = document.getElementById('editCat').value;
+        const idx = document.getElementById('editIdx').value;
+        globalData[cat][idx] = [
+            document.getElementById('inpTitle').value,
+            document.getElementById('inpUrl').value,
+            document.getElementById('inpImg').value,
+            globalData[cat][idx][3], // Keep date
+            document.getElementById('inpDesc').value
+        ];
+        closeModal();
+        renderUI(globalData);
+        showNotif("💾 Tersimpan!");
+    }
+
+    function deleteArticle(cat, idx) {
+        if(confirm('Hapus?')) {
+            globalData[cat].splice(idx, 1);
+            renderUI(globalData);
+        }
+    }
+
+       function updatePreview() {
+        const url = document.getElementById('inpImg').value;
+        const img = document.getElementById('imgPreview');
+        const err = document.getElementById('imgError');
+        if (url) {
+            img.src = url;
+            img.style.display = 'inline-block';
+            img.onerror = () => { img.style.display='none'; err.style.display='block'; };
+            img.onload = () => { err.style.display='none'; };
+        } else {
+            img.style.display = 'none';
+            err.style.display = 'none';
+        }
+    }
+    function closeModal() { document.getElementById('modalEditor').style.display = 'none'; }
+
+    function showNotif(msg) {
+        const n = document.getElementById('notification');
+        n.innerText = msg; n.classList.add('show');
+        setTimeout(() => n.classList.remove('show'), 3000);
+    }
+
+    function downloadJSON() {
+        const blob = new Blob([JSON.stringify(globalData, null, 2)], {type: "application/json"});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = "artikel_updated.json";
+        a.click();
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+        showNotif("📋 Copied: " + text);
+    }
+</script>
+
+</body>
+</html>
