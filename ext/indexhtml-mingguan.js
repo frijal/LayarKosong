@@ -41,20 +41,20 @@ function getOptimizedImage(src) {
     // A. BLOGGER / GOOGLE
     if (src.includes('blogger.googleusercontent.com')) {
         let cleanSrc = src.split('=')[0].split('?')[0];
-        return `${cleanSrc}=w320-h180-p-k-no-nu`;
+        return `${cleanSrc}=w380-h214-p-k-no-nu`;
     }
 
     // B. YOUTUBE
     if (src.includes('img.youtube.com')) {
         const videoIdMatch = src.match(/\/vi\/([^\/]+)\//);
         if (videoIdMatch) {
-            return `https://img.youtube.com/vi/${videoIdMatch[1]}/mqdefault.jpg`;
+            return `https://img.youtube.com/vi/${videoIdMatch[1]}/hqdefault.jpg`;
         }
     }
 
     // C. WORDPRESS CDN
     if (src.includes('wp.com')) {
-        return `${src}?resize=320,180`;
+        return `${src}?resize=380,214`;
     }
 
     // D. DOMAIN SENDIRI (dalam.web.id)
@@ -79,8 +79,8 @@ function renderGrid(articles, container) {
                 <img src="${optimizedSrc}"
                      alt="${a.title}"
                      loading="lazy"
-                     width="320"
-                     height="180"
+                     width="380"
+                     height="214"
                      style="object-fit: cover;"
                      onerror="this.src='/thumbnail.webp'">
             </div>
