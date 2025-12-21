@@ -6,7 +6,9 @@ on:
     types: [completed] # Hanya berjalan jika workflow pertama SELESAI
   push:
     branches:
-      - main      
+      - main
+    paths:
+      - 'api/v1/post/*.json'
   workflow_dispatch:
 
 # 🔑 WAJIB: izin write ke repository
