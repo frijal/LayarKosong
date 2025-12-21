@@ -237,26 +237,52 @@ if (out !== html) {
 }
 
 /* ================== REPORT ================== */
+function qualityBadge(percent) {
+  if (percent >= 90) return "🟢 High";
+  if (percent >= 70) return "🟡 Medium";
+  return "🔴 Low";
+}
 
 function generateReport(r) {
   const avg = Math.round(
-    r.quality.reduce((a,b)=>a+b.percent,0)/(r.quality.length||1)
+    r.quality.reduce((a, b) => a + b.percent, 0) / (r.quality.length || 1)
   );
 
-  let md = `# Audit Inject HTML (Strict)\n\n`;
-  md += `Tanggal: ${r.date}\n\n`;
+  const sorted = [...r.quality].sort((a, b) => {
+    if (b.percent !== a.percent) return b.percent - a.percent;
+    return a.file.localeCompare(b.file);
+  });
+
+  const high = sorted.filter(x => x.percent >= 90);
+  const medium = sorted.filter(x => x.percent >= 70 && x.percent < 90);
+  const low = sorted.filter(x => x.percent < 70);
+
+  let md = `# 📊 Audit Inject HTML (Strict)\n\n`;
+  md += `**Tanggal Audit:** ${r.date}\n\n`;
+
+  md += `## Ringkasan\n\n`;
   md += `| Item | Jumlah |\n|---|---|\n`;
-  md += `| Total | ${r.total} |\n`;
+  md += `| Total HTML | ${r.total} |\n`;
   md += `| Updated | ${r.updated.length} |\n`;
   md += `| No Change | ${r.noChange.length} |\n`;
   md += `| Skip JSON | ${r.skippedJson.length} |\n`;
   md += `| Skip Schema | ${r.skippedSchema.length} |\n`;
-  md += `| Avg Quality | ${avg}% |\n\n`;
+  md += `| Rata-rata Quality | ${avg}% |\n\n`;
 
-  md += `## Quality Detail\n\n| File | Score |\n|---|---|\n`;
-  r.quality.forEach(q=>{
-    md += `| ${q.file} | ${q.score}/${q.max} (${q.percent}%) |\n`;
-  });
+  const section = (title, data) => {
+    if (!data.length) return "";
+    let s = `## ${title}\n\n`;
+    s += `| Status | File | Score |\n|---|---|---|\n`;
+    data.forEach(q => {
+      s += `| ${qualityBadge(q.percent)} | ${q.file} | ${q.score}/${q.max} (${q.percent}%) |\n`;
+    });
+    s += `\n`;
+    return s;
+  };
+
+  md += section("🟢 High Quality (≥ 90%)", high);
+  md += section("🟡 Medium Quality (70–89%)", medium);
+  md += section("🔴 Low Quality (< 70%)", low);
 
   return md;
 }
