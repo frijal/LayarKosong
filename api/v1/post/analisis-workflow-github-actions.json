@@ -6,7 +6,9 @@
   "published_at": "2025-10-23T07:03:49.508+00:00",
   "url": "https://dalam.web.id/artikel/analisis-workflow-github-actions.html",
   "image": "https://dalam.web.id/img/analisis-workflow-github-actions.webp",
-  "content": "Ngoprek Workflow GitHub Actions Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Nggak Boros Waktu!",
+  "content": {
+    "text": "1 Pemicu (Triggers) Workflow ini bakal \"bangun\" dan jalan otomatis kalo salah satu dari dua hal ini kejadian: Ada yang nge-push commit baru ke branch main. Ada yang ngeklik tombol \"Run workflow\" manual di tab Actions GitHub. on: push: branches: - main workflow_dispatch:"
+  },
   "meta": {
     "summary": "Penjelasan mendalam tentang workflow GitHub Actions untuk build dan deploy ke branch",
     "keywords": [],

@@ -6,7 +6,9 @@
   "published_at": "2025-06-04T18:15:06.410+00:00",
   "url": "https://dalam.web.id/artikel/mengubah-format-gambar.html",
   "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4plrIZN7XWwHE-H8sc81qshP12EzBLwgat2ZWKHBoBr3DnYGwBeUjAlBkFfK_H1ImgnfI0STp4cgiFTsEKoDg3ye8NGElqV6GJJIKltBrx1iJm5xXTOug8bp1-QzUlRXI9kMEvkjJXH2q/s1600/Logo_Imagemagick.png",
-  "content": "Mengubah Format Gambar Massal dengan ImageMagick Jika Anda memiliki ratusan gambar yang harus diunggah ke website, ukurannya sering kali terlalu besar. Dengan ImageMagick, kita bisa mengubah format gambar secara massal agar lebih ringan. Contoh Perintah mogrify -format jpg *.png Salin Perintah Penjelasan mogrify → perintah utama agar ImageMagick bekerja. -format → menentukan format tujuan. jpg → contoh format hasil (bisa diganti png, webp, dll). *.png → semua file dengan format PNG di direktori aktif.",
+  "content": {
+    "text": "Mengubah Format Gambar Massal dengan ImageMagick Jika Anda memiliki ratusan gambar yang harus diunggah ke website, ukurannya sering kali terlalu besar. Dengan ImageMagick, kita bisa mengubah format gambar secara massal agar lebih ringan. Contoh Perintah mogrify -format jpg *.png Salin Perintah Penjelasan mogrify → perintah utama agar ImageMagick bekerja. -format → menentukan format tujuan. jpg → contoh format hasil (bisa diganti png, webp, dll). *.png → semua file dengan format PNG di direktori aktif."
+  },
   "meta": {
     "summary": "Panduan lengkap mengubah format gambar secara massal menggunakan ImageMagick di Linux. Praktis, cepat, dengan contoh perintah mogrify.",
     "keywords": [],

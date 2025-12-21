@@ -6,7 +6,9 @@
   "published_at": "2025-07-24T03:00:00.000+00:00",
   "url": "https://dalam.web.id/artikel/fedora-mirror.html",
   "image": "https://dalam.web.id/img/fedora-mirror.webp",
-  "content": "Skrip fedora-mirror.sh: Aktifkan Mirror Tercepat Fedora menggunakan dnf sebagai manajer paket. Untuk mempercepat update dan instalasi, kita bisa mengaktifkan plugin fastestmirror yang akan otomatis memilih server mirror tercepat. Skrip berikut akan melakukannya untuk Anda. ⚠️ Jalankan dengan sudo karena skrip ini akan mengubah file konfigurasi sistem di /etc/dnf/dnf.conf. Kode Skrip #!/bin/bash # fedora-mirror.sh - Mengaktifkan mirror DNF tercepat di Fedora set -e echo \"[INFO] Mem-backup konfigurasi DNF...\" sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak echo \"[INFO] Mengaktifkan 'fastestmirror' di /etc/dnf/dnf.conf...\" if ! grep -q \"fastestmirror=True\" /etc/dnf/dnf.conf; then echo \"fastestmirror=True\" | sudo tee -a /etc/dnf/dnf.conf fi echo \"[INFO] Membersihkan cache DNF...\" sudo dnf clean all echo \"[SELESAI] Plugin 'fastestmirror' berhasil diaktifkan!\"Copy Diskusi & Jaga Data Pribadi Tetap Aman.",
+  "content": {
+    "text": "Fedora menggunakan dnf sebagai manajer paket. Untuk mempercepat update dan instalasi, kita bisa mengaktifkan plugin fastestmirror yang akan otomatis memilih server mirror tercepat. Skrip berikut akan melakukannya untuk Anda. ⚠️ Jalankan dengan sudo karena skrip ini akan mengubah file konfigurasi sistem di /etc/dnf/dnf.conf. Kode Skrip #!/bin/bash # fedora-mirror.sh - Mengaktifkan mirror DNF tercepat di Fedora set -e echo \"[INFO] Mem-backup konfigurasi DNF...\" sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak echo \"[INFO] Mengaktifkan 'fastestmirror' di /etc/dnf/dnf.conf...\" if ! grep -q \"fastestmirror=True\" /etc/dnf/dnf.conf; then echo \"fastestmirror=True\" | sudo tee -a /etc/dnf/dnf.conf fi echo \"[INFO] Membersihkan cache DNF...\" sudo dnf clean all echo \"[SELESAI] Plugin 'fastestmirror' berhasil diaktifkan!\"Copy Diskusi & Jaga Data Pribadi Tetap Aman."
+  },
   "meta": {
     "summary": "Skrip bash sederhana untuk mengaktifkan plugin",
     "keywords": [],
