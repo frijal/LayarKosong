@@ -1,729 +1,732 @@
-# Audit Inject HTML (Strict)
+# 📊 Audit Inject HTML (Strict)
 
-Tanggal: 2025-12-21T17:41:52.962Z
+**Tanggal Audit:** 2025-12-21T17:48:14.647Z
+
+## Ringkasan
 
 | Item | Jumlah |
 |---|---|
-| Total | 734 |
+| Total HTML | 734 |
 | Updated | 1 |
 | No Change | 711 |
 | Skip JSON | 22 |
 | Skip Schema | 0 |
-| Avg Quality | 51% |
+| Rata-rata Quality | 51% |
 
-## Quality Detail
+## 🔴 Low Quality (< 70%)
 
-| File | Score |
-|---|---|
-| 10-kalimat-muslim.html | 4/8 (50%) |
-| 100-perintah-allah-dalam-quran.html | 4/8 (50%) |
-| 1011nabi-yaakub-yusuf.html | 4/8 (50%) |
-| 12-jenis-domain-id.html | 4/8 (50%) |
-| 12nabi-ayub.html | 4/8 (50%) |
-| 13nabi-shuaib.html | 4/8 (50%) |
-| 1415nabi-musa-harun.html | 4/8 (50%) |
-| 16nabi-zulkifli.html | 4/8 (50%) |
-| 17nabi-daud.html | 4/8 (50%) |
-| 18nabi-sulaiman.html | 4/8 (50%) |
-| 19nabi-ilyas.html | 4/8 (50%) |
-| 1agustus-2025-lengkap.html | 5/8 (63%) |
-| 1arsip-mei-2025.html | 5/8 (63%) |
-| 1nabi-adam.html | 4/8 (50%) |
-| 1update-juni-2025.html | 5/8 (63%) |
-| 1update-september-2025.html | 5/8 (63%) |
-| 20nabi-ilyasa.html | 4/8 (50%) |
-| 21nabi-yunus.html | 4/8 (50%) |
-| 2223nabi-zakaria-yahya.html | 4/8 (50%) |
-| 24nabi-isa.html | 4/8 (50%) |
-| 25nabi-muhammad.html | 4/8 (50%) |
-| 2nabi-idris.html | 4/8 (50%) |
-| 33-pertanyaan-tauhid-untuk-anak.html | 4/8 (50%) |
-| 3nabi-nuh.html | 4/8 (50%) |
-| 40-tahun-excel-sejarah-spreadsheet.html | 4/8 (50%) |
-| 4nabi-hud.html | 4/8 (50%) |
-| 5g-fwa-open-ran-indonesia.html | 4/8 (50%) |
-| 5nabi-saleh.html | 4/8 (50%) |
-| 6nabi-ibrahim.html | 4/8 (50%) |
-| 7nabi-luth.html | 4/8 (50%) |
-| 8nabi-ismail.html | 4/8 (50%) |
-| 9nabi-ishak.html | 4/8 (50%) |
-| Cara-Memotong-Gambar-dengan-ImageMagick.html | 4/8 (50%) |
-| Desktop-GNOME.html | 4/8 (50%) |
-| FFmpeg-split-video-durasi-otomatis.html | 4/8 (50%) |
-| Kalkulator-Laundry-Berkah.html | 4/8 (50%) |
-| Penaklukan-Persia.html | 4/8 (50%) |
-| Skrip-Otomatis-ChRoot.html | 4/8 (50%) |
-| Susah-Tidur.html | 4/8 (50%) |
-| Windows-11-lebih-ringan-untuk-CPU-lawas.html | 4/8 (50%) |
-| abdurrahman-ad-dakhil-andalusia.html | 4/8 (50%) |
-| abdurrahman-bin-auf-pedagang-dermawan.html | 4/8 (50%) |
-| abu-thalhah.html | 4/8 (50%) |
-| abu-thalib.html | 4/8 (50%) |
-| adab-berdoa.html | 4/8 (50%) |
-| adab-menasehati-publik.html | 4/8 (50%) |
-| adab-tata-cara-minum-dalam-islam.html | 5/8 (63%) |
-| ai-gantikan-hr-it.html | 4/8 (50%) |
-| ai-tangki-duluan.html | 4/8 (50%) |
-| akidah-lima-alasan.html | 4/8 (50%) |
-| aku-cinta-indonesia.html | 4/8 (50%) |
-| album-thumbnail-json-generator.html | 4/8 (50%) |
-| alias-linux.html | 5/8 (63%) |
-| amanah-indra-al-isra-36-kritis-berkemajuan.html | 5/8 (63%) |
-| amankan-git-server-dari-bot.html | 4/8 (50%) |
-| amazon-phk-ai-brutal.html | 4/8 (50%) |
-| ambil-thumbnail-youtube.html | 4/8 (50%) |
-| amr-bin-al-ash.html | 4/8 (50%) |
-| anak-raja-vs-adab-malik-badri.html | 5/8 (63%) |
-| analisis-kasus-ira-puspadewi.html | 4/8 (50%) |
-| analisis-ram-dmidecode.html | 4/8 (50%) |
-| analisis-skrip-generator-konten-nodejs.html | 4/8 (50%) |
-| analisis-sukses-cachyos-boot.html | 4/8 (50%) |
-| analisis-workflow-github-actions.html | 4/8 (50%) |
-| anas-bin-malik.html | 4/8 (50%) |
-| angkringan-jogja.html | 4/8 (50%) |
-| antix-linux-review.html | 4/8 (50%) |
-| apa-itu-cornerstone-content.html | 5/8 (63%) |
-| apa-itu-linux-sebenarnya.html | 4/8 (50%) |
-| apa-itu-pkgbuild.html | 4/8 (50%) |
-| apa-itu-swdkllj-asuransi-kecelakaan-stnk.html | 4/8 (50%) |
-| apa-itu-tajdid.html | 4/8 (50%) |
-| apt-debian-history.html | 4/8 (50%) |
-| apt-tutorial.html | 4/8 (50%) |
-| apt-update-clean.html | 4/8 (50%) |
-| arch-debian-quick-mirror.html | 4/8 (50%) |
-| arch-mirror.html | 4/8 (50%) |
-| archlinux-issues-index.html | 4/8 (50%) |
-| armoury-crate-linux-alternatif.html | 4/8 (50%) |
-| arsip-linux-agustus-2025.html | 5/8 (63%) |
-| arsip-linux-juli-2025.html | 5/8 (63%) |
-| arsip-linux-juni-2025.html | 5/8 (63%) |
-| arsip-linux-oss-november-2025.html | 5/8 (63%) |
-| arsip-linuxoss-oktober-2025.html | 5/8 (63%) |
-| arti-peringatan-apt-policy-reject-signature.html | 4/8 (50%) |
-| ashim-bin-tsabit-uhud.html | 4/8 (50%) |
-| audio-visualizer.html | 4/8 (50%) |
-| audit-kinerja-bukan-cari-salah.html | 5/8 (63%) |
-| aur-explained.html | 4/8 (50%) |
-| auto-upgrade-all-npm-packages.html | 4/8 (50%) |
-| axel-download.html | 4/8 (50%) |
-| bacaan-dalam-shalat.html | 4/8 (50%) |
-| badui-kencing-di-masjid.html | 4/8 (50%) |
-| baghdad-kota-cahaya.html | 4/8 (50%) |
-| bahasa-indonesia-unesco-samarkand.html | 4/8 (50%) |
-| bahaya-hasad-dalam-islam.html | 4/8 (50%) |
-| bahaya-lisan-hadis-tirmidzi-ibnu-majah.html | 4/8 (50%) |
-| bahaya-marah-islam-medis.html | 4/8 (50%) |
-| bahaya-penjilat-dalam-institusi.html | 5/8 (63%) |
-| bahaya-perpecahan-menjaga-lisan-ukhuwah.html | 4/8 (50%) |
-| bahaya-tema-blogspot-gratis.html | 4/8 (50%) |
-| bahtera-nuh-mukjizat.html | 4/8 (50%) |
-| balikpapan-1900-wajah-asli.html | 4/8 (50%) |
-| barqa-tripoli-baqt-nubia.html | 4/8 (50%) |
-| bekerja-dalam-islam.html | 4/8 (50%) |
-| belajar-perintah-curl.html | 4/8 (50%) |
-| berapa-banyak-disk-dan-partisi-ter-mount.html | 4/8 (50%) |
-| bersih-pip-cache.html | 4/8 (50%) |
-| bikin-edit-json-komposisi-kategori-elemen.html | 4/8 (50%) |
-| bilal-bin-rabah-budak-bintang-iman.html | 4/8 (50%) |
-| biskuit-linux-itu-nyata.html | 4/8 (50%) |
-| blankon-9-suroboyo.html | 4/8 (50%) |
-| blokir-situs-anak.html | 4/8 (50%) |
-| bootable-Linux-menggunakan-USB-Flash.html | 4/8 (50%) |
-| branches-di-github.html | 4/8 (50%) |
-| broadcom-wireless-fedora.html | 4/8 (50%) |
-| bsd-kisah-berkeley.html | 4/8 (50%) |
-| bug-tracker-islam.html | 4/8 (50%) |
-| build-deploy-clean-branch.html | 4/8 (50%) |
-| build-workflow.html | 5/8 (63%) |
-| bukalapak-berbagi-2017.html | 4/8 (50%) |
-| bumbu-pecel-kacang.html | 4/8 (50%) |
-| bunsenlabs-boron.html | 4/8 (50%) |
-| buruk-sangka-menggunjing.html | 4/8 (50%) |
-| cachyos-paru-gagal-update.html | 4/8 (50%) |
-| cachyos-paru-update.html | 4/8 (50%) |
-| cachyos-paru-upgrade-cepat.html | 4/8 (50%) |
-| canva-magic-studio-desain-ai.html | 4/8 (50%) |
-| cara-aktifkan-branch-protection.html | 4/8 (50%) |
-| cara-autostart-skrip-di-ubuntu.html | 4/8 (50%) |
-| cara-dihormati-tanpa-jabatan.html | 4/8 (50%) |
-| cara-instal-paru-arch.html | 4/8 (50%) |
-| cara-kerja-github-workflow-maintenance.html | 5/8 (63%) |
-| cara-mematikan-laptop-yang-benar.html | 4/8 (50%) |
-| cara-membuat-api-cloudflare.html | 4/8 (50%) |
-| cara-mudah-menyelesaikan-psikotes.html | 4/8 (50%) |
-| catatan-harian-wanita.html | 4/8 (50%) |
-| cek-paket-global-npm.html | 4/8 (50%) |
-| chatgpt-asisten-virtual-umkm.html | 4/8 (50%) |
-| chatgpt-command-mode.html | 4/8 (50%) |
-| chatgpt-terbaik-umum.html | 4/8 (50%) |
-| chroot-tutorial.html | 4/8 (50%) |
-| claude-ai-terbaik.html | 4/8 (50%) |
-| cleanup-auto.html | 5/8 (63%) |
-| cleanup-comparison.html | 4/8 (50%) |
-| cleanup-dependencies.html | 4/8 (50%) |
-| cleanup-doc.html | 4/8 (50%) |
-| cleanup-guide.html | 4/8 (50%) |
-| cleanup-series.html | 4/8 (50%) |
-| cleanup-tools.html | 4/8 (50%) |
-| cleanup.html | 4/8 (50%) |
-| cloudflare-ai-bot-control.html | 4/8 (50%) |
-| cloudflare-api.html | 4/8 (50%) |
-| cloudflare-browser-integrity-check.html | 4/8 (50%) |
-| cloudflare-robots-txt-control.html | 4/8 (50%) |
-| cloudflare-schema-validation.html | 4/8 (50%) |
-| compiz-profil-instan.html | 4/8 (50%) |
-| conky-bahasa-indonesia.html | 5/8 (63%) |
-| copy-ai-konten-otomatis.html | 4/8 (50%) |
-| cycle-ubuntu-fedora.html | 4/8 (50%) |
-| daftar-alternatif-windows-linux.html | 4/8 (50%) |
-| dampak-ai-pada-pikiran.html | 4/8 (50%) |
-| dd-hdd-copy.html | 4/8 (50%) |
-| debian-meme-analysis.html | 4/8 (50%) |
-| debian-mirror.html | 4/8 (50%) |
-| debian-post-install-2025.html | 4/8 (50%) |
-| debion-linux-timor-leste.html | 4/8 (50%) |
-| deploy-checklist.html | 4/8 (50%) |
-| desktop-blankon-compiz.html | 4/8 (50%) |
-| dikira-halal-ternyata-haram-cantik.html | 4/8 (50%) |
-| distribusi-os-linux-ringan.html | 4/8 (50%) |
-| dna-muhammadiyah.html | 4/8 (50%) |
-| drama-beras-uea-medan.html | 5/8 (63%) |
-| drauger-os-linux-gaming.html | 4/8 (50%) |
-| du-linux-panduan.html | 5/8 (63%) |
-| e-bpkb-resmi-berlaku.html | 4/8 (50%) |
-| e-ktam-masa.html | 4/8 (50%) |
-| editor-artikel-json-pro.html | 5/8 (63%) |
-| editor-json-artikel-mingguan.html | 4/8 (50%) |
-| efisiensi-ubuntu.html | 4/8 (50%) |
-| ekspedisi-ifriqiyah.html | 4/8 (50%) |
-| eula-guide.html | 4/8 (50%) |
-| evolusi-browser-engine.html | 4/8 (50%) |
-| evolusi-mesin-browser.html | 4/8 (50%) |
-| evolusi-recruiter-ai.html | 4/8 (50%) |
-| faq-ai-umkm.html | 4/8 (50%) |
-| fckgw-windows-xp.html | 4/8 (50%) |
-| fedora-gnome-tutup-aplikasi.html | 5/8 (63%) |
-| fedora-mirror.html | 4/8 (50%) |
-| fedora-multimedia-codec.html | 4/8 (50%) |
-| fedora-multimedia.html | 4/8 (50%) |
-| fedora-opensuse-auto-mirror-selection.html | 4/8 (50%) |
-| fedora15-networkmanager-fix.html | 4/8 (50%) |
-| ffmpeg-guide.html | 4/8 (50%) |
-| ffmpeg-panduan-interaktif.html | 4/8 (50%) |
-| ffmpeg-rekam-desktop-ffmpeg.html | 4/8 (50%) |
-| filantropi-muhammadiyah.html | 5/8 (63%) |
-| file-manager-linux.html | 4/8 (50%) |
-| file-permission.html | 4/8 (50%) |
-| firefox-esr-debian-repos.html | 4/8 (50%) |
-| firefox-mascot-kit.html | 4/8 (50%) |
-| firefox-ubuntu-ram.html | 4/8 (50%) |
-| fix-cachyos-boot.html | 4/8 (50%) |
-| fix-cannot-resolve-dependencies.html | 4/8 (50%) |
-| fix-database-corrupted.html | 4/8 (50%) |
-| fix-database-is-locked.html | 4/8 (50%) |
-| fix-git-ssh-arch.html | 4/8 (50%) |
-| fix-git-ssh-debian.html | 4/8 (50%) |
-| fix-git-ssh-fedora.html | 4/8 (50%) |
-| fix-git-ssh-index.html | 4/8 (50%) |
-| fix-git-ssh-macos.html | 4/8 (50%) |
-| fix-git-ssh-slackware.html | 4/8 (50%) |
-| fix-git-ssh-windows.html | 4/8 (50%) |
-| fix-glibc-version-too-old.html | 4/8 (50%) |
-| fix-gpg-key-error.html | 4/8 (50%) |
-| fix-gpg-no-data.html | 4/8 (50%) |
-| fix-grub-auto.html | 4/8 (50%) |
-| fix-grub-manual.html | 4/8 (50%) |
-| fix-grub-troubleshooting.html | 4/8 (50%) |
-| fix-kernel-panic-archlinux.html | 4/8 (50%) |
-| fix-key-expired-archlinux.html | 4/8 (50%) |
-| fix-local-newer-archlinux.html | 4/8 (50%) |
-| fix-mirror-not-synced.html | 4/8 (50%) |
-| fix-pacman-broken-systemd.html | 4/8 (50%) |
-| fix-pacman-database-locked.html | 4/8 (50%) |
-| fix-pacman-gpg-keyring.html | 4/8 (50%) |
-| fix-partial-upgrade-error.html | 4/8 (50%) |
-| fix-signature-unknown-trust.html | 4/8 (50%) |
-| flatpak-flathub-santai.html | 4/8 (50%) |
-| flatpak-linux.html | 4/8 (50%) |
-| fotografi-privasi-hak-potret.html | 4/8 (50%) |
-| gabung-pdf.html | 4/8 (50%) |
-| gabung-video-ffmpeg.html | 4/8 (50%) |
-| gabung-video-tanpa-audio.html | 4/8 (50%) |
-| gaya-hijab-berkendara-motor.html | 4/8 (50%) |
-| gcos-2009-ngoprek-spg-ubuntu-jogja.html | 4/8 (50%) |
-| gemini-ai-terbaik.html | 4/8 (50%) |
-| gemini-asisten-virtual-umkm.html | 4/8 (50%) |
-| geo-lahir-seo-mati.html | 4/8 (50%) |
-| gh-force-clean.html | 4/8 (50%) |
-| gh-force-merge.html | 4/8 (50%) |
-| gh-force-tools-index.html | 4/8 (50%) |
-| git-cek-branch-merged.html | 4/8 (50%) |
-| git-clean-merged-branches.html | 4/8 (50%) |
-| git-fetch-vs-pull.html | 4/8 (50%) |
-| git-merge-conflict.html | 4/8 (50%) |
-| git-merge-squash-rebase.html | 4/8 (50%) |
-| git-passive-branch-merge.html | 4/8 (50%) |
-| git-prevent-auto-merge-request.html | 4/8 (50%) |
-| git-repo-size-reduction.html | 4/8 (50%) |
-| github-actions-find-replace.html | 4/8 (50%) |
-| github-actions-permissions-security.html | 4/8 (50%) |
-| github-actions-ping-feeds.html | 4/8 (50%) |
-| github-actions-ping-search-engine.html | 4/8 (50%) |
-| github-actions-workflow-permissions.html | 4/8 (50%) |
-| github-badges.html | 5/8 (63%) |
-| github-cli-force-merge.html | 4/8 (50%) |
-| github-cli-guide.html | 4/8 (50%) |
-| github-cli-lengkap.html | 4/8 (50%) |
-| github-commit-sign-off-dco.html | 4/8 (50%) |
-| github-lambat-firefox-debian.html | 5/8 (63%) |
-| github-lambat-myrepublic-debian-13.html | 5/8 (63%) |
-| github-pr-workflow-settings.html | 4/8 (50%) |
-| github-webhooks.html | 4/8 (50%) |
-| gitignore-nodejs-standar.html | 4/8 (50%) |
-| gnome-49.html | 4/8 (50%) |
-| google-code-exporter.html | 4/8 (50%) |
-| google-veo-ai.html | 4/8 (50%) |
-| gorilla-glass-s2.html | 4/8 (50%) |
-| grammarly-ai-writing-assistant.html | 4/8 (50%) |
-| grand-tjokro-balikpapan-2017.html | 4/8 (50%) |
-| grub-recovery-bundle.html | 4/8 (50%) |
-| gui-package-managers-comparison.html | 4/8 (50%) |
-| gui-package-managers.html | 4/8 (50%) |
-| hadis-muslim-1598-riba.html | 4/8 (50%) |
-| hadits-ahmad-9157-larangan-takhbib.html | 4/8 (50%) |
-| hak-kekayaan-intelektual-dalam-islam.html | 4/8 (50%) |
-| haki-dalam-islam.html | 4/8 (50%) |
-| handbrake-preset-custom.html | 4/8 (50%) |
-| hapus-os-ilegal-aman.html | 4/8 (50%) |
-| hasad-adalah-penyakit-hati.html | 4/8 (50%) |
-| heboh-jambore-vixion-disponsori-honda.html | 5/8 (63%) |
-| hidup-bahagia.html | 4/8 (50%) |
-| hidup-bukan-sekedar-eksistensi-tapi-pengabdian.html | 4/8 (50%) |
-| hijab-yang-berkeadaban.html | 4/8 (50%) |
-| hijrah-habasyah.html | 4/8 (50%) |
-| history-of-linux-project.html | 4/8 (50%) |
-| hittin.html | 4/8 (50%) |
-| hst-oss.html | 4/8 (50%) |
-| hukum-mendengarkan-aib.html | 4/8 (50%) |
-| hukum-mengucapkan-rip.html | 4/8 (50%) |
-| hukum-pajak-dalam-islam.html | 4/8 (50%) |
-| hukum-perayaan-hari-kelahiran-dalam-islam.html | 4/8 (50%) |
-| hukum-pinjaman-online.html | 4/8 (50%) |
-| ibnu-batutah.html | 4/8 (50%) |
-| imagemagick-guide.html | 4/8 (50%) |
-| imagemagick-konversi-png-ke-jpg-massal.html | 4/8 (50%) |
-| imagemagick-paksa-rasio-16-9.html | 4/8 (50%) |
-| imam-al-ghazali.html | 4/8 (50%) |
-| instal-cloudflare-warp-linux-2025.html | 5/8 (63%) |
-| install-coffee-linux.html | 4/8 (50%) |
-| install-sabily.html | 4/8 (50%) |
-| install-virtualbox-4-ubuntu.html | 4/8 (50%) |
-| insya-allah-janji.html | 4/8 (50%) |
-| integritas-lisan.html | 4/8 (50%) |
-| internet-archive-menang-bertahan-kalah-di-sistem.html | 4/8 (50%) |
-| inti-sari-kdrt.html | 4/8 (50%) |
-| iptv-linux.html | 4/8 (50%) |
-| islam-bukan-prasmanan.html | 4/8 (50%) |
-| islam-indonesia-merdeka-ramadhan.html | 4/8 (50%) |
-| istighfar-keajaiban.html | 4/8 (50%) |
-| istighfar-kunci-keberkahan-dan-rezeki.html | 4/8 (50%) |
-| istighfar-kunci-rezeki.html | 4/8 (50%) |
-| iwan-fals-bangunlah-putra-putri-pertiwi.html | 4/8 (50%) |
-| jagung-godog-gerimis.html | 4/8 (50%) |
-| jangan-andalkan-satu-ai.html | 4/8 (50%) |
-| jangan-crying-baby-linux.html | 4/8 (50%) |
-| jangan-suka-ngumpat.html | 4/8 (50%) |
-| jangan-taruh-semua-telur-satu-keranjang.html | 4/8 (50%) |
-| janganlah-sombong.html | 4/8 (50%) |
-| jasper-ai-content-writer.html | 4/8 (50%) |
-| jenis-instalasi-linux.html | 4/8 (50%) |
-| jumat.html | 4/8 (50%) |
-| jurnal-oss-september-2025.html | 5/8 (63%) |
-| jurnal1-oktober-2025.html | 5/8 (63%) |
-| jurnal2-november-2025.html | 5/8 (63%) |
-| jusuf-kalla-nobel-perdamaian.html | 4/8 (50%) |
-| kacamata-dunia-akhirat.html | 4/8 (50%) |
-| kalau-itu-aib-maka-tutuplah.html | 4/8 (50%) |
-| kan-bisa-belajar-ngapain-bayar.html | 4/8 (50%) |
-| kasih-ibu-kediri.html | 4/8 (50%) |
-| kasus-ira-puspadewi-bumn.html | 4/8 (50%) |
-| kate-editor-teks-pengganti-ide.html | 4/8 (50%) |
-| keamanan-linux-vs-windows.html | 4/8 (50%) |
-| kecilkan-var-log-debian.html | 4/8 (50%) |
-| kejujuran-bisnis.html | 4/8 (50%) |
-| kekaisaran-mongol.html | 4/8 (50%) |
-| kekuasaan-jadi-dagangan.html | 4/8 (50%) |
-| kenangan-ponsel-lama.html | 4/8 (50%) |
-| kenapa-ada-folder-npm-cache.html | 4/8 (50%) |
-| kenapa-pakai-setup-node-github-actions.html | 4/8 (50%) |
-| kenapa-pindah-ke-linux.html | 4/8 (50%) |
-| kenapa-tidak-boker-harian.html | 4/8 (50%) |
-| kereta-api-di-terminal-sl.html | 4/8 (50%) |
-| kerja-halal.html | 4/8 (50%) |
-| kerupuk-tolak-miskin.html | 4/8 (50%) |
-| kesehatan-pencernaan-boker.html | 4/8 (50%) |
-| kesimpulan-ai-umkm.html | 4/8 (50%) |
-| kesultanan-utsmaniyah.html | 4/8 (50%) |
-| keunggulan-dan-kekurangan-Desktop-KDE.html | 4/8 (50%) |
-| keutamaan-membela-kehormatan-saudara.html | 4/8 (50%) |
-| keutamaan-mendidik-anak-perempuan.html | 4/8 (50%) |
-| keutamaan-salam.html | 4/8 (50%) |
-| keyring.html | 4/8 (50%) |
-| kisah-al-khwarizmi.html | 4/8 (50%) |
-| kisah-cinta-google-maps.html | 4/8 (50%) |
-| kisah-jenderal-soedirman.html | 4/8 (50%) |
-| kisah-keluarga-sahabat-abu-dujanah.html | 5/8 (63%) |
-| kisah-migrasi-oss-kutai.html | 4/8 (50%) |
-| kisah-qarun.html | 4/8 (50%) |
-| kisah-sebarubuntu-2014.html | 4/8 (50%) |
-| koleksi-tools-wajib-coba.html | 4/8 (50%) |
-| kompres-pdf-ghostscript.html | 4/8 (50%) |
-| komunikasi-keluarga-digital.html | 4/8 (50%) |
-| konfigurasi-git-email-noreply.html | 4/8 (50%) |
-| konsumsi-daya-firefox-vs-esr.html | 4/8 (50%) |
-| konversi-m4a-ke-ogg.html | 4/8 (50%) |
-| konversi-pdf-lokal-poppler.html | 4/8 (50%) |
-| kpli-balikpapan-rilis-party-ubuntu-1604.html | 4/8 (50%) |
-| kpli-balikpapan.html | 4/8 (50%) |
-| kreativitas-satlantas-grobogan.html | 4/8 (50%) |
-| kubuntu-11-10.html | 4/8 (50%) |
-| kurangi-cahaya-ketika-tidur.html | 4/8 (50%) |
-| kutai-kartanegara-oss-2010.html | 4/8 (50%) |
-| laporan-validasi-html-seo.html | 4/8 (50%) |
-| laptop-pertama-osborne1.html | 4/8 (50%) |
-| larangan-cas-powerbank-di-kereta.html | 4/8 (50%) |
-| larangan-ghibah.html | 4/8 (50%) |
-| larangan-jilbab-1980-1990.html | 4/8 (50%) |
-| libreoffice-alternatif-gratis-microsoft-office.html | 4/8 (50%) |
-| libreoffice-font-fix.html | 4/8 (50%) |
-| linus-torvalds-linux.html | 4/8 (50%) |
-| linux-bersama.html | 4/8 (50%) |
-| linux-dan-unix-posix.html | 4/8 (50%) |
-| linux-debian-cinnamon-kedamaian.html | 4/8 (50%) |
-| linux-file-system-santai.html | 4/8 (50%) |
-| linux-keamanan.html | 4/8 (50%) |
-| linux-mint-22-2-upgrade-step.html | 4/8 (50%) |
-| linux-mint-juara-stabilitas.html | 4/8 (50%) |
-| linux-package-manager-formal.html | 4/8 (50%) |
-| linux-package-manager.html | 4/8 (50%) |
-| linux-repo-guide.html | 5/8 (63%) |
-| linux-tanpa-terminal.html | 4/8 (50%) |
-| linux-vs-windows-updates.html | 4/8 (50%) |
-| lir-sepo-asepah-samun-wedhatama.html | 5/8 (63%) |
-| lirik-pulang-nostalgia.html | 4/8 (50%) |
-| lisan-dijaga-neraka.html | 4/8 (50%) |
-| lisensi-perangkat-lunak.html | 4/8 (50%) |
-| lts-vs-rolling-release.html | 4/8 (50%) |
-| lumen5-video-maker-ai.html | 4/8 (50%) |
-| mageia9-review.html | 4/8 (50%) |
-| main-branch-protection.html | 4/8 (50%) |
-| main-branch-unprotected.html | 4/8 (50%) |
-| makan-untuk-hidup-hidup-untuk-makan.html | 4/8 (50%) |
-| makna-az-zumar-53.html | 4/8 (50%) |
-| manajer-kata-sandi-firefox.html | 4/8 (50%) |
-| manfaat-kurma.html | 4/8 (50%) |
-| marie-muhammad-mr-clean.html | 4/8 (50%) |
-| masa-penuh-fitnah.html | 4/8 (50%) |
-| masalah-pendidikan-indonesia.html | 4/8 (50%) |
-| masyitoh.html | 4/8 (50%) |
-| mate-vs-xfce-laptop-tua.html | 4/8 (50%) |
-| matikan-ai-firefox.html | 4/8 (50%) |
-| maulid-kajian-lengkap.html | 4/8 (50%) |
-| maulid-nabi.html | 4/8 (50%) |
-| maulid-outline-slides.html | 4/8 (50%) |
-| maulid-perbandingan.html | 4/8 (50%) |
-| maulid-ringkas.html | 4/8 (50%) |
-| maulid-slides.html | 4/8 (50%) |
-| maulid-timeline.html | 4/8 (50%) |
-| mburu-uceng-kelangan-deleg.html | 5/8 (63%) |
-| mehmed-ii-al-fatih.html | 4/8 (50%) |
-| melawan-algoritma-emosi.html | 4/8 (50%) |
-| memahami-ikon-github-actions.html | 4/8 (50%) |
-| memahami-kdrt-lebih-dalam.html | 4/8 (50%) |
-| memahami-npm-audit-vulnerability.html | 4/8 (50%) |
-| memahami-rating-distro-linux.html | 4/8 (50%) |
-| membagikan-aplikasi-debian-dengan-dpkg-repack.html | 4/8 (50%) |
-| membedah-hasil-apt-audit-lengkap.html | 4/8 (50%) |
-| membedah-hasil-apt-audit.html | 4/8 (50%) |
-| membersihkan-junk-files-dan-driver-lama-windows.html | 4/8 (50%) |
-| membuat-album-json.html | 4/8 (50%) |
-| membuat-git-orphan-branch.html | 4/8 (50%) |
-| memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.html | 4/8 (50%) |
-| memilih-desktop-environment.html | 4/8 (50%) |
-| memilih-distro-linux.html | 4/8 (50%) |
-| memilih-golput.html | 4/8 (50%) |
-| menepis-gelap-menyambut-terang.html | 4/8 (50%) |
-| mengambil-gambar-dari-pdf.html | 4/8 (50%) |
-| mengapa-banyak-branch.html | 4/8 (50%) |
-| mengatasi-error-git-push-non-fast-forward.html | 4/8 (50%) |
-| mengelola-lisan.html | 4/8 (50%) |
-| mengenal-jenis-domain-name.html | 5/8 (63%) |
-| menggabungkan-pdf-dengan-pdftk.html | 4/8 (50%) |
-| menggabungkan-pdf-pdftk.html | 4/8 (50%) |
-| mengganti-kata-dengan-perl.html | 4/8 (50%) |
-| mengubah-format-gambar.html | 4/8 (50%) |
-| mengubah-gambar-ke-pdf-imagemagick.html | 4/8 (50%) |
-| menjalankan-rencana.html | 4/8 (50%) |
-| menonaktifkan-koneksi-otomatis-firefox.html | 4/8 (50%) |
-| menyambut-tahun-baru-hijriyah.html | 4/8 (50%) |
-| merapikan-google-drive-2025.html | 4/8 (50%) |
-| meta-opt-out.html | 4/8 (50%) |
-| metode-wanita.html | 4/8 (50%) |
-| mewarnai-video-hitamhputih-deoldify-ffmpeg.html | 4/8 (50%) |
-| microfetch-fetch-tool-super-cepat.html | 4/8 (50%) |
-| microsoft-365-update-2026.html | 4/8 (50%) |
-| migrasi-linux-drive-ntfs-aman.html | 4/8 (50%) |
-| migrasi-windows-ke-linux.html | 4/8 (50%) |
-| migrasi-windows-linux.html | 4/8 (50%) |
-| minuman-bantu-pencernaan.html | 4/8 (50%) |
-| mount-ntfs-caja.html | 4/8 (50%) |
-| mudahnya-wanita-masuk-surga.html | 4/8 (50%) |
-| multi-distro-docs.html | 4/8 (50%) |
-| multi-video-youtube-gallery.html | 4/8 (50%) |
-| musa-bin-nusayr.html | 4/8 (50%) |
-| mushaf-utsman.html | 4/8 (50%) |
-| mx-linux-25-infinity-beta.html | 4/8 (50%) |
-| mx-linux-25-plasma-vs-ubuntu.html | 4/8 (50%) |
-| nabi-ilyasa.html | 4/8 (50%) |
-| nabi-isa.html | 4/8 (50%) |
-| nabi-zakaria.html | 4/8 (50%) |
-| nasihat-imam-syafii-tentang-sunnah.html | 4/8 (50%) |
-| natty-release-party-SMKN3.html | 4/8 (50%) |
-| ngopi-ben-ra-edan.html | 4/8 (50%) |
-| niat-cpns.html | 4/8 (50%) |
-| niri.html | 4/8 (50%) |
-| nixos-mirror.html | 4/8 (50%) |
-| noreferrer-tanpa-target-blank.html | 4/8 (50%) |
-| noreferrer-tanpa-target.html | 4/8 (50%) |
-| noreferrer.html | 4/8 (50%) |
-| notion-ai-productivity-partner.html | 4/8 (50%) |
-| ojol-parkir-balikpapan.html | 4/8 (50%) |
-| open-document-converter.html | 4/8 (50%) |
-| open-source-indonesia.html | 4/8 (50%) |
-| open-source.html | 4/8 (50%) |
-| optimasi-workflow-harian-github-actions.html | 4/8 (50%) |
-| oss-di-sekolah.html | 4/8 (50%) |
-| oss-kutai.html | 4/8 (50%) |
-| oss-sekolah.html | 4/8 (50%) |
-| pahlawan-islam.html | 4/8 (50%) |
-| pajak-link-facebook.html | 5/8 (63%) |
-| paket-debian-manual-install.html | 4/8 (50%) |
-| panduan-automasi-pr-github-peter-evans.html | 5/8 (63%) |
-| panduan-instalasi-arch-linux.html | 4/8 (50%) |
-| panduan-interaktif-ffmpeg.html | 4/8 (50%) |
-| panduan-kontribusi-layar-kosong.html | 4/8 (50%) |
-| panduan-layar-kosong.html | 4/8 (50%) |
-| panduan-lengkap-shalat-lail.html | 4/8 (50%) |
-| panduan-robots-txt.html | 4/8 (50%) |
-| panduan-skrip-fix-html.html | 4/8 (50%) |
-| panel-untuk-githubpages.html | 4/8 (50%) |
-| paru-lintas-distro.html | 4/8 (50%) |
-| paru-software-nonresmi.html | 4/8 (50%) |
-| pasang-ubuntu-aspire-2930z.html | 4/8 (50%) |
-| password-generator-bikin-kata-sandi.html | 4/8 (50%) |
-| pemasangan-ubuntu-10-10.html | 4/8 (50%) |
-| pembaruan-otomatis-fedora.html | 4/8 (50%) |
-| pemisah-json-mingguan-offline.html | 4/8 (50%) |
-| penaklukan-mesir.html | 4/8 (50%) |
-| pengalaman-kde-linux.html | 4/8 (50%) |
-| pengaturan-posisi-json.html | 4/8 (50%) |
-| pengecekan-dan-laporan-konten-harian.html | 4/8 (50%) |
-| pengecekan-laporan-konten-harian.html | 4/8 (50%) |
-| pengganti-google-code.html | 4/8 (50%) |
-| penjelasan-generate-gitignore-js.html | 4/8 (50%) |
-| penjelasan-generate-icons-js.html | 4/8 (50%) |
-| penjelasan-lengkap-tentang-sahabat.html | 4/8 (50%) |
-| penjelasan-markdown-js.html | 4/8 (50%) |
-| penjelasan-workflow-upgrade-everything-yml.html | 4/8 (50%) |
-| pentingnya-tahun-hijriyah.html | 4/8 (50%) |
-| penurunan-kognitif-di-era-medsos.html | 4/8 (50%) |
-| penurunan-kognitif-era-medsos.html | 4/8 (50%) |
-| penurunan-kognitif.html | 4/8 (50%) |
-| penyebaran-islam-india.html | 4/8 (50%) |
-| peramban-ringan-linux-terbaik.html | 4/8 (50%) |
-| peran-ai-bantu-umkm-bersaing.html | 4/8 (50%) |
-| peran-hr-it-cepat-tergantikan-ai.html | 4/8 (50%) |
-| perbaikan-foto-ala-national-geographic.html | 4/8 (50%) |
-| perbaiki-grub-rescue.html | 4/8 (50%) |
-| perbedaan-firefox-esr-vs-biasa.html | 4/8 (50%) |
-| peresmian-bandara-sepinggan.html | 4/8 (50%) |
-| perintah-teks.html | 4/8 (50%) |
-| perjalanan-ubuntu-jogja-gcos.html | 4/8 (50%) |
-| perjanjian-madinah.html | 4/8 (50%) |
-| perlukah-pakai-cpanel.html | 4/8 (50%) |
-| perniagaan-paling-jitu.html | 4/8 (50%) |
-| perplexity-ai-riset-terkini.html | 4/8 (50%) |
-| pertempuran-yarmuk-yerusalem.html | 4/8 (50%) |
-| perubahan-git-3-0-main-default.html | 4/8 (50%) |
-| pesan-imam-syafii-belajar.html | 4/8 (50%) |
-| piagam-madinah.html | 5/8 (63%) |
-| pictory-ai-video-marketing.html | 4/8 (50%) |
-| pijat-sakit-kepala.html | 4/8 (50%) |
-| pindah-dari-chrome.html | 4/8 (50%) |
-| pindah-floorp-ke-vivaldi.html | 4/8 (50%) |
-| pindah-ke-linux-pemula.html | 4/8 (50%) |
-| pindah-ke-linux-tanpa-terminal.html | 4/8 (50%) |
-| pip-cache-bersih.html | 4/8 (50%) |
-| poac-perencanaan-partisipatif.html | 4/8 (50%) |
-| pola-hidup-sehat-untuk-usus.html | 4/8 (50%) |
-| pola-tidur-nabi-sains.html | 4/8 (50%) |
-| polemik-sayyidina-shalawat.html | 4/8 (50%) |
-| posisi-muhammadiyah-terhadap-mazhab.html | 4/8 (50%) |
-| ppdb-sktm-palsu.html | 4/8 (50%) |
-| pph-pasal-23-atas-bunga-pinjaman.html | 5/8 (63%) |
-| preset-lightroom-xmp-natgeo-monokrom-sepia.html | 4/8 (50%) |
-| presto-yum.html | 4/8 (50%) |
-| produk-dairy-dan-alternatif.html | 4/8 (50%) |
-| pt-badak-ngl.html | 4/8 (50%) |
-| pusat-instalasi-linux.html | 4/8 (50%) |
-| qanaah-kekayaan-hati-keberuntungan.html | 4/8 (50%) |
-| qordoba-kilau-peradaban-andalusia.html | 4/8 (50%) |
-| queen-annes-revenge.html | 4/8 (50%) |
-| quickbooks-ai-keuangan-umkm.html | 4/8 (50%) |
-| qunut-atau-tidak-qunut.html | 4/8 (50%) |
-| rahmah-adab-dan-rasa.html | 4/8 (50%) |
-| rangkuman-akhir-pencernaan-sehat.html | 4/8 (50%) |
-| rangkuman-tematik-linux-mei-2025.html | 5/8 (63%) |
-| rating-distro-linux.html | 4/8 (50%) |
-| react2shell-cve-2025-55182.html | 5/8 (63%) |
-| read-the-f-manual.html | 4/8 (50%) |
-| realtek-rtl8723be.html | 4/8 (50%) |
-| recursive-http-album-viewer-json.html | 4/8 (50%) |
-| recursive-image-album-viewer.html | 4/8 (50%) |
-| refind-cachyos-theme.html | 4/8 (50%) |
-| refleksi-kepemimpinan-amanah-umat.html | 5/8 (63%) |
-| refresh-codespaces-browser-github.html | 4/8 (50%) |
-| refresh-codespaces-browser.html | 4/8 (50%) |
-| refresh-desktop.html | 4/8 (50%) |
-| rekam-desktop-gnome3.html | 5/8 (63%) |
-| rekam-layar-ffmpeg.html | 5/8 (63%) |
-| rekor-ddos-29tbps-aisuru-botnet.html | 4/8 (50%) |
-| remove-old-kernels.html | 4/8 (50%) |
-| remove-windows-ai.html | 4/8 (50%) |
-| rescuezilla-panduan.html | 4/8 (50%) |
-| rev-linux.html | 4/8 (50%) |
-| revolusi-dapur-dme.html | 4/8 (50%) |
-| ringkasan-minggu-12.html | 4/8 (50%) |
-| ringkasan-minggu-13.html | 4/8 (50%) |
-| ringkasan-minggu-14.html | 4/8 (50%) |
-| ringkasan-minggu-15.html | 4/8 (50%) |
-| ringkasan-minggu-16.html | 4/8 (50%) |
-| ringkasan-minggu-17.html | 4/8 (50%) |
-| ringkasan-minggu-18.html | 4/8 (50%) |
-| ringkasan-minggu-19.html | 4/8 (50%) |
-| ringkasan-windows-vs-linux.html | 4/8 (50%) |
-| rsync-a-vs-delete.html | 4/8 (50%) |
-| rumus-dan-tata-cara-touring-sepeda-motor.html | 5/8 (63%) |
-| saad-bin-abi-waqash.html | 4/8 (50%) |
-| saat-anak-menjadi-ujian-ulasan.html | 4/8 (50%) |
-| sabar-dalam-rumah-tangga.html | 4/8 (50%) |
-| sabar-menghadapi-ghibah.html | 4/8 (50%) |
-| saf-shalat.html | 4/8 (50%) |
-| said-bin-zaid-sahabat-surga.html | 4/8 (50%) |
-| salman-al-farisi-pencari-cahaya.html | 4/8 (50%) |
-| samba-server-config.html | 4/8 (50%) |
-| saudi-whoosh-kereta-cepat.html | 4/8 (50%) |
-| schema-validation-static-site.html | 4/8 (50%) |
-| sejarah-blankon.html | 4/8 (50%) |
-| sejarah-cachyos.html | 4/8 (50%) |
-| sejarah-kerajaan-seljuk.html | 4/8 (50%) |
-| sejarah-linux.html | 4/8 (50%) |
-| sejarah-mx-linux.html | 4/8 (50%) |
-| sejarah-singkat-yogyakarta.html | 4/8 (50%) |
-| selamat-ulang-tahun-vim-33-tahun.html | 4/8 (50%) |
-| sembelit.html | 4/8 (50%) |
-| semver-7-7-3.html | 4/8 (50%) |
-| shalahuddin-yerusalem.html | 4/8 (50%) |
-| shutdown-windows-cepat.html | 4/8 (50%) |
-| siapa-mahram-kita.html | 4/8 (50%) |
-| sikat-gigi-aduk.html | 4/8 (50%) |
-| silaturahmi-vs-silaturahim.html | 4/8 (50%) |
-| skrip-otomatis-chroot-linux.html | 4/8 (50%) |
-| sktm-mendadak-miskin.html | 5/8 (63%) |
-| smkn7-samarinda-linux-community.html | 4/8 (50%) |
-| solaris.html | 4/8 (50%) |
-| solusi-audio-easyeffects-ubuntu.html | 4/8 (50%) |
-| solusi-libreoffice-lambat-jaringan.html | 5/8 (63%) |
-| solusi-login-loop-debian.html | 4/8 (50%) |
-| solusi-mic-fedora-15.html | 4/8 (50%) |
-| solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html | 4/8 (50%) |
-| ssh-linux.html | 4/8 (50%) |
-| ssh3-evolusi-keamanan.html | 4/8 (50%) |
-| stop-piracy-retro.html | 4/8 (50%) |
-| strategi-branching-github.html | 4/8 (50%) |
-| struktur-berkas-direktori-linux.html | 4/8 (50%) |
-| suara-hati-foss-kaltim-pemilukada.html | 4/8 (50%) |
-| sudah-jauh-banget-generasi-kita.html | 4/8 (50%) |
-| sudo-tanpa-password.html | 4/8 (50%) |
-| sultan-murad-iii.html | 4/8 (50%) |
-| sumur-rumah-madinah.html | 4/8 (50%) |
-| susu-dan-pencernaan.html | 4/8 (50%) |
-| symlinks.html | 4/8 (50%) |
-| synaptic-shortcuts.html | 4/8 (50%) |
-| tabayun-era-digital.html | 4/8 (50%) |
-| tabut-ketenangan-thalut-jalut.html | 4/8 (50%) |
-| tahun-percakapan-linux.html | 4/8 (50%) |
-| tar-di-linux.html | 4/8 (50%) |
-| target-blank-vs-empty.html | 4/8 (50%) |
-| thalhah-bin-ubaidillah-sahabat-perisai-nabi.html | 4/8 (50%) |
-| thunderbird-exchange-144.html | 4/8 (50%) |
-| tidak-boker-tiap-hari.html | 4/8 (50%) |
-| tidio-chatbot-ai.html | 4/8 (50%) |
-| tips-cooling-laptop-amd.html | 4/8 (50%) |
-| tips-hemat-baterai-firefox.html | 4/8 (50%) |
-| tips-melancarkan-pencernaan.html | 4/8 (50%) |
-| tools-ai-untuk-umkm.html | 4/8 (50%) |
-| training-baris-perintah-linux.html | 4/8 (50%) |
-| tren-masa-depan-ai-umkm.html | 4/8 (50%) |
-| tubuh-butuh-reset.html | 4/8 (50%) |
-| tutorial-menyatukan-film.html | 4/8 (50%) |
-| uang-alias-duit.html | 4/8 (50%) |
-| ubah-gabung.html | 4/8 (50%) |
-| ubah-suara-ubuntu-stereo.html | 4/8 (50%) |
-| ubahpotong.html | 4/8 (50%) |
-| ubuntu-1010-maverick.html | 4/8 (50%) |
-| ubuntu-25-10-beta.html | 4/8 (50%) |
-| ubuntu-25-10-startup-applications.html | 4/8 (50%) |
-| ubuntu-2604-resolute-raccoon-fitur.html | 4/8 (50%) |
-| ubuntu-di-bontang.html | 5/8 (63%) |
-| ubuntu-jogja-gcos-2009-celana-batik.html | 4/8 (50%) |
-| ubuntu-jogja-juara-foss-gcos-2009.html | 4/8 (50%) |
-| ubuntu-not-responding.html | 4/8 (50%) |
-| ubuntu-vs-windows-2010.html | 4/8 (50%) |
-| ubuntu-wsl-pro.html | 4/8 (50%) |
-| uhud.html | 4/8 (50%) |
-| uji-kecepatan-internet-dari-terminal.html | 4/8 (50%) |
-| ujian-nasional-catatan-video.html | 4/8 (50%) |
-| umar-bin-khattab.html | 4/8 (50%) |
-| unboxing-respiro-jne-balikpapan.html | 4/8 (50%) |
-| uninstall-paket-global-npm.html | 4/8 (50%) |
-| unlicense-domain-publik.html | 5/8 (63%) |
-| upgrade-online-10-04.html | 4/8 (50%) |
-| uqbah-bin-nafi.html | 4/8 (50%) |
-| usb-bootable-ubuntu.html | 4/8 (50%) |
-| usia-instalasi-linux.html | 4/8 (50%) |
-| utsman-bin-affan.html | 5/8 (63%) |
-| ventoy-install-linux.html | 4/8 (50%) |
-| ventoy-multi-boot-usb-drag-drop.html | 4/8 (50%) |
-| vlc-rotate.html | 4/8 (50%) |
-| waktu-sangat-terbatas.html | 5/8 (63%) |
-| warp-cli-registration-new-2025.html | 5/8 (63%) |
-| waspada-kejahatan-phishing.html | 4/8 (50%) |
-| waspada-sturnus-trojan-android.html | 4/8 (50%) |
-| watermark-imagemagick.html | 4/8 (50%) |
-| website-dari-json.html | 4/8 (50%) |
-| whoosh-vs-saudi-land-bridge.html | 4/8 (50%) |
-| wifi-gratis-taman-bekapai-balikpapan.html | 4/8 (50%) |
-| wigo-balikpapan.html | 4/8 (50%) |
-| windows-10-eol-linux.html | 4/8 (50%) |
-| wine-bukan-emulator.html | 4/8 (50%) |
-| winget-instal-20-aplikasi.html | 4/8 (50%) |
-| workflow-cloudflare.html | 4/8 (50%) |
-| workflow-perbaikan-foto-ala-national-geographic.html | 4/8 (50%) |
-| xfce-desktop-environment.html | 4/8 (50%) |
-| xpenguins.html | 4/8 (50%) |
-| xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html | 4/8 (50%) |
-| yvci-balikpapan-balas-budi-polantas.html | 4/8 (50%) |
-| zaid-bin-tsabit-penjaga-quran.html | 4/8 (50%) |
-| zorin-os-18-beta.html | 4/8 (50%) |
-| zsync-blankon.html | 4/8 (50%) |
+| Status | File | Score |
+|---|---|---|
+| 🔴 Low | 1agustus-2025-lengkap.html | 5/8 (63%) |
+| 🔴 Low | 1arsip-mei-2025.html | 5/8 (63%) |
+| 🔴 Low | 1update-juni-2025.html | 5/8 (63%) |
+| 🔴 Low | 1update-september-2025.html | 5/8 (63%) |
+| 🔴 Low | adab-tata-cara-minum-dalam-islam.html | 5/8 (63%) |
+| 🔴 Low | alias-linux.html | 5/8 (63%) |
+| 🔴 Low | amanah-indra-al-isra-36-kritis-berkemajuan.html | 5/8 (63%) |
+| 🔴 Low | anak-raja-vs-adab-malik-badri.html | 5/8 (63%) |
+| 🔴 Low | apa-itu-cornerstone-content.html | 5/8 (63%) |
+| 🔴 Low | arsip-linux-agustus-2025.html | 5/8 (63%) |
+| 🔴 Low | arsip-linux-juli-2025.html | 5/8 (63%) |
+| 🔴 Low | arsip-linux-juni-2025.html | 5/8 (63%) |
+| 🔴 Low | arsip-linux-oss-november-2025.html | 5/8 (63%) |
+| 🔴 Low | arsip-linuxoss-oktober-2025.html | 5/8 (63%) |
+| 🔴 Low | audit-kinerja-bukan-cari-salah.html | 5/8 (63%) |
+| 🔴 Low | bahaya-penjilat-dalam-institusi.html | 5/8 (63%) |
+| 🔴 Low | build-workflow.html | 5/8 (63%) |
+| 🔴 Low | cara-kerja-github-workflow-maintenance.html | 5/8 (63%) |
+| 🔴 Low | cleanup-auto.html | 5/8 (63%) |
+| 🔴 Low | conky-bahasa-indonesia.html | 5/8 (63%) |
+| 🔴 Low | drama-beras-uea-medan.html | 5/8 (63%) |
+| 🔴 Low | du-linux-panduan.html | 5/8 (63%) |
+| 🔴 Low | editor-artikel-json-pro.html | 5/8 (63%) |
+| 🔴 Low | fedora-gnome-tutup-aplikasi.html | 5/8 (63%) |
+| 🔴 Low | filantropi-muhammadiyah.html | 5/8 (63%) |
+| 🔴 Low | github-badges.html | 5/8 (63%) |
+| 🔴 Low | github-lambat-firefox-debian.html | 5/8 (63%) |
+| 🔴 Low | github-lambat-myrepublic-debian-13.html | 5/8 (63%) |
+| 🔴 Low | heboh-jambore-vixion-disponsori-honda.html | 5/8 (63%) |
+| 🔴 Low | instal-cloudflare-warp-linux-2025.html | 5/8 (63%) |
+| 🔴 Low | jurnal-oss-september-2025.html | 5/8 (63%) |
+| 🔴 Low | jurnal1-oktober-2025.html | 5/8 (63%) |
+| 🔴 Low | jurnal2-november-2025.html | 5/8 (63%) |
+| 🔴 Low | kisah-keluarga-sahabat-abu-dujanah.html | 5/8 (63%) |
+| 🔴 Low | linux-repo-guide.html | 5/8 (63%) |
+| 🔴 Low | lir-sepo-asepah-samun-wedhatama.html | 5/8 (63%) |
+| 🔴 Low | mburu-uceng-kelangan-deleg.html | 5/8 (63%) |
+| 🔴 Low | mengenal-jenis-domain-name.html | 5/8 (63%) |
+| 🔴 Low | pajak-link-facebook.html | 5/8 (63%) |
+| 🔴 Low | panduan-automasi-pr-github-peter-evans.html | 5/8 (63%) |
+| 🔴 Low | piagam-madinah.html | 5/8 (63%) |
+| 🔴 Low | pph-pasal-23-atas-bunga-pinjaman.html | 5/8 (63%) |
+| 🔴 Low | rangkuman-tematik-linux-mei-2025.html | 5/8 (63%) |
+| 🔴 Low | react2shell-cve-2025-55182.html | 5/8 (63%) |
+| 🔴 Low | refleksi-kepemimpinan-amanah-umat.html | 5/8 (63%) |
+| 🔴 Low | rekam-desktop-gnome3.html | 5/8 (63%) |
+| 🔴 Low | rekam-layar-ffmpeg.html | 5/8 (63%) |
+| 🔴 Low | rumus-dan-tata-cara-touring-sepeda-motor.html | 5/8 (63%) |
+| 🔴 Low | sktm-mendadak-miskin.html | 5/8 (63%) |
+| 🔴 Low | solusi-libreoffice-lambat-jaringan.html | 5/8 (63%) |
+| 🔴 Low | ubuntu-di-bontang.html | 5/8 (63%) |
+| 🔴 Low | unlicense-domain-publik.html | 5/8 (63%) |
+| 🔴 Low | utsman-bin-affan.html | 5/8 (63%) |
+| 🔴 Low | waktu-sangat-terbatas.html | 5/8 (63%) |
+| 🔴 Low | warp-cli-registration-new-2025.html | 5/8 (63%) |
+| 🔴 Low | 10-kalimat-muslim.html | 4/8 (50%) |
+| 🔴 Low | 100-perintah-allah-dalam-quran.html | 4/8 (50%) |
+| 🔴 Low | 1011nabi-yaakub-yusuf.html | 4/8 (50%) |
+| 🔴 Low | 12-jenis-domain-id.html | 4/8 (50%) |
+| 🔴 Low | 12nabi-ayub.html | 4/8 (50%) |
+| 🔴 Low | 13nabi-shuaib.html | 4/8 (50%) |
+| 🔴 Low | 1415nabi-musa-harun.html | 4/8 (50%) |
+| 🔴 Low | 16nabi-zulkifli.html | 4/8 (50%) |
+| 🔴 Low | 17nabi-daud.html | 4/8 (50%) |
+| 🔴 Low | 18nabi-sulaiman.html | 4/8 (50%) |
+| 🔴 Low | 19nabi-ilyas.html | 4/8 (50%) |
+| 🔴 Low | 1nabi-adam.html | 4/8 (50%) |
+| 🔴 Low | 20nabi-ilyasa.html | 4/8 (50%) |
+| 🔴 Low | 21nabi-yunus.html | 4/8 (50%) |
+| 🔴 Low | 2223nabi-zakaria-yahya.html | 4/8 (50%) |
+| 🔴 Low | 24nabi-isa.html | 4/8 (50%) |
+| 🔴 Low | 25nabi-muhammad.html | 4/8 (50%) |
+| 🔴 Low | 2nabi-idris.html | 4/8 (50%) |
+| 🔴 Low | 33-pertanyaan-tauhid-untuk-anak.html | 4/8 (50%) |
+| 🔴 Low | 3nabi-nuh.html | 4/8 (50%) |
+| 🔴 Low | 40-tahun-excel-sejarah-spreadsheet.html | 4/8 (50%) |
+| 🔴 Low | 4nabi-hud.html | 4/8 (50%) |
+| 🔴 Low | 5g-fwa-open-ran-indonesia.html | 4/8 (50%) |
+| 🔴 Low | 5nabi-saleh.html | 4/8 (50%) |
+| 🔴 Low | 6nabi-ibrahim.html | 4/8 (50%) |
+| 🔴 Low | 7nabi-luth.html | 4/8 (50%) |
+| 🔴 Low | 8nabi-ismail.html | 4/8 (50%) |
+| 🔴 Low | 9nabi-ishak.html | 4/8 (50%) |
+| 🔴 Low | abdurrahman-ad-dakhil-andalusia.html | 4/8 (50%) |
+| 🔴 Low | abdurrahman-bin-auf-pedagang-dermawan.html | 4/8 (50%) |
+| 🔴 Low | abu-thalhah.html | 4/8 (50%) |
+| 🔴 Low | abu-thalib.html | 4/8 (50%) |
+| 🔴 Low | adab-berdoa.html | 4/8 (50%) |
+| 🔴 Low | adab-menasehati-publik.html | 4/8 (50%) |
+| 🔴 Low | ai-gantikan-hr-it.html | 4/8 (50%) |
+| 🔴 Low | ai-tangki-duluan.html | 4/8 (50%) |
+| 🔴 Low | akidah-lima-alasan.html | 4/8 (50%) |
+| 🔴 Low | aku-cinta-indonesia.html | 4/8 (50%) |
+| 🔴 Low | album-thumbnail-json-generator.html | 4/8 (50%) |
+| 🔴 Low | amankan-git-server-dari-bot.html | 4/8 (50%) |
+| 🔴 Low | amazon-phk-ai-brutal.html | 4/8 (50%) |
+| 🔴 Low | ambil-thumbnail-youtube.html | 4/8 (50%) |
+| 🔴 Low | amr-bin-al-ash.html | 4/8 (50%) |
+| 🔴 Low | analisis-kasus-ira-puspadewi.html | 4/8 (50%) |
+| 🔴 Low | analisis-ram-dmidecode.html | 4/8 (50%) |
+| 🔴 Low | analisis-skrip-generator-konten-nodejs.html | 4/8 (50%) |
+| 🔴 Low | analisis-sukses-cachyos-boot.html | 4/8 (50%) |
+| 🔴 Low | analisis-workflow-github-actions.html | 4/8 (50%) |
+| 🔴 Low | anas-bin-malik.html | 4/8 (50%) |
+| 🔴 Low | angkringan-jogja.html | 4/8 (50%) |
+| 🔴 Low | antix-linux-review.html | 4/8 (50%) |
+| 🔴 Low | apa-itu-linux-sebenarnya.html | 4/8 (50%) |
+| 🔴 Low | apa-itu-pkgbuild.html | 4/8 (50%) |
+| 🔴 Low | apa-itu-swdkllj-asuransi-kecelakaan-stnk.html | 4/8 (50%) |
+| 🔴 Low | apa-itu-tajdid.html | 4/8 (50%) |
+| 🔴 Low | apt-debian-history.html | 4/8 (50%) |
+| 🔴 Low | apt-tutorial.html | 4/8 (50%) |
+| 🔴 Low | apt-update-clean.html | 4/8 (50%) |
+| 🔴 Low | arch-debian-quick-mirror.html | 4/8 (50%) |
+| 🔴 Low | arch-mirror.html | 4/8 (50%) |
+| 🔴 Low | archlinux-issues-index.html | 4/8 (50%) |
+| 🔴 Low | armoury-crate-linux-alternatif.html | 4/8 (50%) |
+| 🔴 Low | arti-peringatan-apt-policy-reject-signature.html | 4/8 (50%) |
+| 🔴 Low | ashim-bin-tsabit-uhud.html | 4/8 (50%) |
+| 🔴 Low | audio-visualizer.html | 4/8 (50%) |
+| 🔴 Low | aur-explained.html | 4/8 (50%) |
+| 🔴 Low | auto-upgrade-all-npm-packages.html | 4/8 (50%) |
+| 🔴 Low | axel-download.html | 4/8 (50%) |
+| 🔴 Low | bacaan-dalam-shalat.html | 4/8 (50%) |
+| 🔴 Low | badui-kencing-di-masjid.html | 4/8 (50%) |
+| 🔴 Low | baghdad-kota-cahaya.html | 4/8 (50%) |
+| 🔴 Low | bahasa-indonesia-unesco-samarkand.html | 4/8 (50%) |
+| 🔴 Low | bahaya-hasad-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | bahaya-lisan-hadis-tirmidzi-ibnu-majah.html | 4/8 (50%) |
+| 🔴 Low | bahaya-marah-islam-medis.html | 4/8 (50%) |
+| 🔴 Low | bahaya-perpecahan-menjaga-lisan-ukhuwah.html | 4/8 (50%) |
+| 🔴 Low | bahaya-tema-blogspot-gratis.html | 4/8 (50%) |
+| 🔴 Low | bahtera-nuh-mukjizat.html | 4/8 (50%) |
+| 🔴 Low | balikpapan-1900-wajah-asli.html | 4/8 (50%) |
+| 🔴 Low | barqa-tripoli-baqt-nubia.html | 4/8 (50%) |
+| 🔴 Low | bekerja-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | belajar-perintah-curl.html | 4/8 (50%) |
+| 🔴 Low | berapa-banyak-disk-dan-partisi-ter-mount.html | 4/8 (50%) |
+| 🔴 Low | bersih-pip-cache.html | 4/8 (50%) |
+| 🔴 Low | bikin-edit-json-komposisi-kategori-elemen.html | 4/8 (50%) |
+| 🔴 Low | bilal-bin-rabah-budak-bintang-iman.html | 4/8 (50%) |
+| 🔴 Low | biskuit-linux-itu-nyata.html | 4/8 (50%) |
+| 🔴 Low | blankon-9-suroboyo.html | 4/8 (50%) |
+| 🔴 Low | blokir-situs-anak.html | 4/8 (50%) |
+| 🔴 Low | bootable-Linux-menggunakan-USB-Flash.html | 4/8 (50%) |
+| 🔴 Low | branches-di-github.html | 4/8 (50%) |
+| 🔴 Low | broadcom-wireless-fedora.html | 4/8 (50%) |
+| 🔴 Low | bsd-kisah-berkeley.html | 4/8 (50%) |
+| 🔴 Low | bug-tracker-islam.html | 4/8 (50%) |
+| 🔴 Low | build-deploy-clean-branch.html | 4/8 (50%) |
+| 🔴 Low | bukalapak-berbagi-2017.html | 4/8 (50%) |
+| 🔴 Low | bumbu-pecel-kacang.html | 4/8 (50%) |
+| 🔴 Low | bunsenlabs-boron.html | 4/8 (50%) |
+| 🔴 Low | buruk-sangka-menggunjing.html | 4/8 (50%) |
+| 🔴 Low | cachyos-paru-gagal-update.html | 4/8 (50%) |
+| 🔴 Low | cachyos-paru-update.html | 4/8 (50%) |
+| 🔴 Low | cachyos-paru-upgrade-cepat.html | 4/8 (50%) |
+| 🔴 Low | canva-magic-studio-desain-ai.html | 4/8 (50%) |
+| 🔴 Low | cara-aktifkan-branch-protection.html | 4/8 (50%) |
+| 🔴 Low | cara-autostart-skrip-di-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | cara-dihormati-tanpa-jabatan.html | 4/8 (50%) |
+| 🔴 Low | cara-instal-paru-arch.html | 4/8 (50%) |
+| 🔴 Low | cara-mematikan-laptop-yang-benar.html | 4/8 (50%) |
+| 🔴 Low | cara-membuat-api-cloudflare.html | 4/8 (50%) |
+| 🔴 Low | Cara-Memotong-Gambar-dengan-ImageMagick.html | 4/8 (50%) |
+| 🔴 Low | cara-mudah-menyelesaikan-psikotes.html | 4/8 (50%) |
+| 🔴 Low | catatan-harian-wanita.html | 4/8 (50%) |
+| 🔴 Low | cek-paket-global-npm.html | 4/8 (50%) |
+| 🔴 Low | chatgpt-asisten-virtual-umkm.html | 4/8 (50%) |
+| 🔴 Low | chatgpt-command-mode.html | 4/8 (50%) |
+| 🔴 Low | chatgpt-terbaik-umum.html | 4/8 (50%) |
+| 🔴 Low | chroot-tutorial.html | 4/8 (50%) |
+| 🔴 Low | claude-ai-terbaik.html | 4/8 (50%) |
+| 🔴 Low | cleanup-comparison.html | 4/8 (50%) |
+| 🔴 Low | cleanup-dependencies.html | 4/8 (50%) |
+| 🔴 Low | cleanup-doc.html | 4/8 (50%) |
+| 🔴 Low | cleanup-guide.html | 4/8 (50%) |
+| 🔴 Low | cleanup-series.html | 4/8 (50%) |
+| 🔴 Low | cleanup-tools.html | 4/8 (50%) |
+| 🔴 Low | cleanup.html | 4/8 (50%) |
+| 🔴 Low | cloudflare-ai-bot-control.html | 4/8 (50%) |
+| 🔴 Low | cloudflare-api.html | 4/8 (50%) |
+| 🔴 Low | cloudflare-browser-integrity-check.html | 4/8 (50%) |
+| 🔴 Low | cloudflare-robots-txt-control.html | 4/8 (50%) |
+| 🔴 Low | cloudflare-schema-validation.html | 4/8 (50%) |
+| 🔴 Low | compiz-profil-instan.html | 4/8 (50%) |
+| 🔴 Low | copy-ai-konten-otomatis.html | 4/8 (50%) |
+| 🔴 Low | cycle-ubuntu-fedora.html | 4/8 (50%) |
+| 🔴 Low | daftar-alternatif-windows-linux.html | 4/8 (50%) |
+| 🔴 Low | dampak-ai-pada-pikiran.html | 4/8 (50%) |
+| 🔴 Low | dd-hdd-copy.html | 4/8 (50%) |
+| 🔴 Low | debian-meme-analysis.html | 4/8 (50%) |
+| 🔴 Low | debian-mirror.html | 4/8 (50%) |
+| 🔴 Low | debian-post-install-2025.html | 4/8 (50%) |
+| 🔴 Low | debion-linux-timor-leste.html | 4/8 (50%) |
+| 🔴 Low | deploy-checklist.html | 4/8 (50%) |
+| 🔴 Low | desktop-blankon-compiz.html | 4/8 (50%) |
+| 🔴 Low | Desktop-GNOME.html | 4/8 (50%) |
+| 🔴 Low | dikira-halal-ternyata-haram-cantik.html | 4/8 (50%) |
+| 🔴 Low | distribusi-os-linux-ringan.html | 4/8 (50%) |
+| 🔴 Low | dna-muhammadiyah.html | 4/8 (50%) |
+| 🔴 Low | drauger-os-linux-gaming.html | 4/8 (50%) |
+| 🔴 Low | e-bpkb-resmi-berlaku.html | 4/8 (50%) |
+| 🔴 Low | e-ktam-masa.html | 4/8 (50%) |
+| 🔴 Low | editor-json-artikel-mingguan.html | 4/8 (50%) |
+| 🔴 Low | efisiensi-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | ekspedisi-ifriqiyah.html | 4/8 (50%) |
+| 🔴 Low | eula-guide.html | 4/8 (50%) |
+| 🔴 Low | evolusi-browser-engine.html | 4/8 (50%) |
+| 🔴 Low | evolusi-mesin-browser.html | 4/8 (50%) |
+| 🔴 Low | evolusi-recruiter-ai.html | 4/8 (50%) |
+| 🔴 Low | faq-ai-umkm.html | 4/8 (50%) |
+| 🔴 Low | fckgw-windows-xp.html | 4/8 (50%) |
+| 🔴 Low | fedora-mirror.html | 4/8 (50%) |
+| 🔴 Low | fedora-multimedia-codec.html | 4/8 (50%) |
+| 🔴 Low | fedora-multimedia.html | 4/8 (50%) |
+| 🔴 Low | fedora-opensuse-auto-mirror-selection.html | 4/8 (50%) |
+| 🔴 Low | fedora15-networkmanager-fix.html | 4/8 (50%) |
+| 🔴 Low | ffmpeg-guide.html | 4/8 (50%) |
+| 🔴 Low | ffmpeg-panduan-interaktif.html | 4/8 (50%) |
+| 🔴 Low | ffmpeg-rekam-desktop-ffmpeg.html | 4/8 (50%) |
+| 🔴 Low | FFmpeg-split-video-durasi-otomatis.html | 4/8 (50%) |
+| 🔴 Low | file-manager-linux.html | 4/8 (50%) |
+| 🔴 Low | file-permission.html | 4/8 (50%) |
+| 🔴 Low | firefox-esr-debian-repos.html | 4/8 (50%) |
+| 🔴 Low | firefox-mascot-kit.html | 4/8 (50%) |
+| 🔴 Low | firefox-ubuntu-ram.html | 4/8 (50%) |
+| 🔴 Low | fix-cachyos-boot.html | 4/8 (50%) |
+| 🔴 Low | fix-cannot-resolve-dependencies.html | 4/8 (50%) |
+| 🔴 Low | fix-database-corrupted.html | 4/8 (50%) |
+| 🔴 Low | fix-database-is-locked.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-arch.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-debian.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-fedora.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-index.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-macos.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-slackware.html | 4/8 (50%) |
+| 🔴 Low | fix-git-ssh-windows.html | 4/8 (50%) |
+| 🔴 Low | fix-glibc-version-too-old.html | 4/8 (50%) |
+| 🔴 Low | fix-gpg-key-error.html | 4/8 (50%) |
+| 🔴 Low | fix-gpg-no-data.html | 4/8 (50%) |
+| 🔴 Low | fix-grub-auto.html | 4/8 (50%) |
+| 🔴 Low | fix-grub-manual.html | 4/8 (50%) |
+| 🔴 Low | fix-grub-troubleshooting.html | 4/8 (50%) |
+| 🔴 Low | fix-kernel-panic-archlinux.html | 4/8 (50%) |
+| 🔴 Low | fix-key-expired-archlinux.html | 4/8 (50%) |
+| 🔴 Low | fix-local-newer-archlinux.html | 4/8 (50%) |
+| 🔴 Low | fix-mirror-not-synced.html | 4/8 (50%) |
+| 🔴 Low | fix-pacman-broken-systemd.html | 4/8 (50%) |
+| 🔴 Low | fix-pacman-database-locked.html | 4/8 (50%) |
+| 🔴 Low | fix-pacman-gpg-keyring.html | 4/8 (50%) |
+| 🔴 Low | fix-partial-upgrade-error.html | 4/8 (50%) |
+| 🔴 Low | fix-signature-unknown-trust.html | 4/8 (50%) |
+| 🔴 Low | flatpak-flathub-santai.html | 4/8 (50%) |
+| 🔴 Low | flatpak-linux.html | 4/8 (50%) |
+| 🔴 Low | fotografi-privasi-hak-potret.html | 4/8 (50%) |
+| 🔴 Low | gabung-pdf.html | 4/8 (50%) |
+| 🔴 Low | gabung-video-ffmpeg.html | 4/8 (50%) |
+| 🔴 Low | gabung-video-tanpa-audio.html | 4/8 (50%) |
+| 🔴 Low | gaya-hijab-berkendara-motor.html | 4/8 (50%) |
+| 🔴 Low | gcos-2009-ngoprek-spg-ubuntu-jogja.html | 4/8 (50%) |
+| 🔴 Low | gemini-ai-terbaik.html | 4/8 (50%) |
+| 🔴 Low | gemini-asisten-virtual-umkm.html | 4/8 (50%) |
+| 🔴 Low | geo-lahir-seo-mati.html | 4/8 (50%) |
+| 🔴 Low | gh-force-clean.html | 4/8 (50%) |
+| 🔴 Low | gh-force-merge.html | 4/8 (50%) |
+| 🔴 Low | gh-force-tools-index.html | 4/8 (50%) |
+| 🔴 Low | git-cek-branch-merged.html | 4/8 (50%) |
+| 🔴 Low | git-clean-merged-branches.html | 4/8 (50%) |
+| 🔴 Low | git-fetch-vs-pull.html | 4/8 (50%) |
+| 🔴 Low | git-merge-conflict.html | 4/8 (50%) |
+| 🔴 Low | git-merge-squash-rebase.html | 4/8 (50%) |
+| 🔴 Low | git-passive-branch-merge.html | 4/8 (50%) |
+| 🔴 Low | git-prevent-auto-merge-request.html | 4/8 (50%) |
+| 🔴 Low | git-repo-size-reduction.html | 4/8 (50%) |
+| 🔴 Low | github-actions-find-replace.html | 4/8 (50%) |
+| 🔴 Low | github-actions-permissions-security.html | 4/8 (50%) |
+| 🔴 Low | github-actions-ping-feeds.html | 4/8 (50%) |
+| 🔴 Low | github-actions-ping-search-engine.html | 4/8 (50%) |
+| 🔴 Low | github-actions-workflow-permissions.html | 4/8 (50%) |
+| 🔴 Low | github-cli-force-merge.html | 4/8 (50%) |
+| 🔴 Low | github-cli-guide.html | 4/8 (50%) |
+| 🔴 Low | github-cli-lengkap.html | 4/8 (50%) |
+| 🔴 Low | github-commit-sign-off-dco.html | 4/8 (50%) |
+| 🔴 Low | github-pr-workflow-settings.html | 4/8 (50%) |
+| 🔴 Low | github-webhooks.html | 4/8 (50%) |
+| 🔴 Low | gitignore-nodejs-standar.html | 4/8 (50%) |
+| 🔴 Low | gnome-49.html | 4/8 (50%) |
+| 🔴 Low | google-code-exporter.html | 4/8 (50%) |
+| 🔴 Low | google-veo-ai.html | 4/8 (50%) |
+| 🔴 Low | gorilla-glass-s2.html | 4/8 (50%) |
+| 🔴 Low | grammarly-ai-writing-assistant.html | 4/8 (50%) |
+| 🔴 Low | grand-tjokro-balikpapan-2017.html | 4/8 (50%) |
+| 🔴 Low | grub-recovery-bundle.html | 4/8 (50%) |
+| 🔴 Low | gui-package-managers-comparison.html | 4/8 (50%) |
+| 🔴 Low | gui-package-managers.html | 4/8 (50%) |
+| 🔴 Low | hadis-muslim-1598-riba.html | 4/8 (50%) |
+| 🔴 Low | hadits-ahmad-9157-larangan-takhbib.html | 4/8 (50%) |
+| 🔴 Low | hak-kekayaan-intelektual-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | haki-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | handbrake-preset-custom.html | 4/8 (50%) |
+| 🔴 Low | hapus-os-ilegal-aman.html | 4/8 (50%) |
+| 🔴 Low | hasad-adalah-penyakit-hati.html | 4/8 (50%) |
+| 🔴 Low | hidup-bahagia.html | 4/8 (50%) |
+| 🔴 Low | hidup-bukan-sekedar-eksistensi-tapi-pengabdian.html | 4/8 (50%) |
+| 🔴 Low | hijab-yang-berkeadaban.html | 4/8 (50%) |
+| 🔴 Low | hijrah-habasyah.html | 4/8 (50%) |
+| 🔴 Low | history-of-linux-project.html | 4/8 (50%) |
+| 🔴 Low | hittin.html | 4/8 (50%) |
+| 🔴 Low | hst-oss.html | 4/8 (50%) |
+| 🔴 Low | hukum-mendengarkan-aib.html | 4/8 (50%) |
+| 🔴 Low | hukum-mengucapkan-rip.html | 4/8 (50%) |
+| 🔴 Low | hukum-pajak-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | hukum-perayaan-hari-kelahiran-dalam-islam.html | 4/8 (50%) |
+| 🔴 Low | hukum-pinjaman-online.html | 4/8 (50%) |
+| 🔴 Low | ibnu-batutah.html | 4/8 (50%) |
+| 🔴 Low | imagemagick-guide.html | 4/8 (50%) |
+| 🔴 Low | imagemagick-konversi-png-ke-jpg-massal.html | 4/8 (50%) |
+| 🔴 Low | imagemagick-paksa-rasio-16-9.html | 4/8 (50%) |
+| 🔴 Low | imam-al-ghazali.html | 4/8 (50%) |
+| 🔴 Low | install-coffee-linux.html | 4/8 (50%) |
+| 🔴 Low | install-sabily.html | 4/8 (50%) |
+| 🔴 Low | install-virtualbox-4-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | insya-allah-janji.html | 4/8 (50%) |
+| 🔴 Low | integritas-lisan.html | 4/8 (50%) |
+| 🔴 Low | internet-archive-menang-bertahan-kalah-di-sistem.html | 4/8 (50%) |
+| 🔴 Low | inti-sari-kdrt.html | 4/8 (50%) |
+| 🔴 Low | iptv-linux.html | 4/8 (50%) |
+| 🔴 Low | islam-bukan-prasmanan.html | 4/8 (50%) |
+| 🔴 Low | islam-indonesia-merdeka-ramadhan.html | 4/8 (50%) |
+| 🔴 Low | istighfar-keajaiban.html | 4/8 (50%) |
+| 🔴 Low | istighfar-kunci-keberkahan-dan-rezeki.html | 4/8 (50%) |
+| 🔴 Low | istighfar-kunci-rezeki.html | 4/8 (50%) |
+| 🔴 Low | iwan-fals-bangunlah-putra-putri-pertiwi.html | 4/8 (50%) |
+| 🔴 Low | jagung-godog-gerimis.html | 4/8 (50%) |
+| 🔴 Low | jangan-andalkan-satu-ai.html | 4/8 (50%) |
+| 🔴 Low | jangan-crying-baby-linux.html | 4/8 (50%) |
+| 🔴 Low | jangan-suka-ngumpat.html | 4/8 (50%) |
+| 🔴 Low | jangan-taruh-semua-telur-satu-keranjang.html | 4/8 (50%) |
+| 🔴 Low | janganlah-sombong.html | 4/8 (50%) |
+| 🔴 Low | jasper-ai-content-writer.html | 4/8 (50%) |
+| 🔴 Low | jenis-instalasi-linux.html | 4/8 (50%) |
+| 🔴 Low | jumat.html | 4/8 (50%) |
+| 🔴 Low | jusuf-kalla-nobel-perdamaian.html | 4/8 (50%) |
+| 🔴 Low | kacamata-dunia-akhirat.html | 4/8 (50%) |
+| 🔴 Low | kalau-itu-aib-maka-tutuplah.html | 4/8 (50%) |
+| 🔴 Low | Kalkulator-Laundry-Berkah.html | 4/8 (50%) |
+| 🔴 Low | kan-bisa-belajar-ngapain-bayar.html | 4/8 (50%) |
+| 🔴 Low | kasih-ibu-kediri.html | 4/8 (50%) |
+| 🔴 Low | kasus-ira-puspadewi-bumn.html | 4/8 (50%) |
+| 🔴 Low | kate-editor-teks-pengganti-ide.html | 4/8 (50%) |
+| 🔴 Low | keamanan-linux-vs-windows.html | 4/8 (50%) |
+| 🔴 Low | kecilkan-var-log-debian.html | 4/8 (50%) |
+| 🔴 Low | kejujuran-bisnis.html | 4/8 (50%) |
+| 🔴 Low | kekaisaran-mongol.html | 4/8 (50%) |
+| 🔴 Low | kekuasaan-jadi-dagangan.html | 4/8 (50%) |
+| 🔴 Low | kenangan-ponsel-lama.html | 4/8 (50%) |
+| 🔴 Low | kenapa-ada-folder-npm-cache.html | 4/8 (50%) |
+| 🔴 Low | kenapa-pakai-setup-node-github-actions.html | 4/8 (50%) |
+| 🔴 Low | kenapa-pindah-ke-linux.html | 4/8 (50%) |
+| 🔴 Low | kenapa-tidak-boker-harian.html | 4/8 (50%) |
+| 🔴 Low | kereta-api-di-terminal-sl.html | 4/8 (50%) |
+| 🔴 Low | kerja-halal.html | 4/8 (50%) |
+| 🔴 Low | kerupuk-tolak-miskin.html | 4/8 (50%) |
+| 🔴 Low | kesehatan-pencernaan-boker.html | 4/8 (50%) |
+| 🔴 Low | kesimpulan-ai-umkm.html | 4/8 (50%) |
+| 🔴 Low | kesultanan-utsmaniyah.html | 4/8 (50%) |
+| 🔴 Low | keunggulan-dan-kekurangan-Desktop-KDE.html | 4/8 (50%) |
+| 🔴 Low | keutamaan-membela-kehormatan-saudara.html | 4/8 (50%) |
+| 🔴 Low | keutamaan-mendidik-anak-perempuan.html | 4/8 (50%) |
+| 🔴 Low | keutamaan-salam.html | 4/8 (50%) |
+| 🔴 Low | keyring.html | 4/8 (50%) |
+| 🔴 Low | kisah-al-khwarizmi.html | 4/8 (50%) |
+| 🔴 Low | kisah-cinta-google-maps.html | 4/8 (50%) |
+| 🔴 Low | kisah-jenderal-soedirman.html | 4/8 (50%) |
+| 🔴 Low | kisah-migrasi-oss-kutai.html | 4/8 (50%) |
+| 🔴 Low | kisah-qarun.html | 4/8 (50%) |
+| 🔴 Low | kisah-sebarubuntu-2014.html | 4/8 (50%) |
+| 🔴 Low | koleksi-tools-wajib-coba.html | 4/8 (50%) |
+| 🔴 Low | kompres-pdf-ghostscript.html | 4/8 (50%) |
+| 🔴 Low | komunikasi-keluarga-digital.html | 4/8 (50%) |
+| 🔴 Low | konfigurasi-git-email-noreply.html | 4/8 (50%) |
+| 🔴 Low | konsumsi-daya-firefox-vs-esr.html | 4/8 (50%) |
+| 🔴 Low | konversi-m4a-ke-ogg.html | 4/8 (50%) |
+| 🔴 Low | konversi-pdf-lokal-poppler.html | 4/8 (50%) |
+| 🔴 Low | kpli-balikpapan-rilis-party-ubuntu-1604.html | 4/8 (50%) |
+| 🔴 Low | kpli-balikpapan.html | 4/8 (50%) |
+| 🔴 Low | kreativitas-satlantas-grobogan.html | 4/8 (50%) |
+| 🔴 Low | kubuntu-11-10.html | 4/8 (50%) |
+| 🔴 Low | kurangi-cahaya-ketika-tidur.html | 4/8 (50%) |
+| 🔴 Low | kutai-kartanegara-oss-2010.html | 4/8 (50%) |
+| 🔴 Low | laporan-validasi-html-seo.html | 4/8 (50%) |
+| 🔴 Low | laptop-pertama-osborne1.html | 4/8 (50%) |
+| 🔴 Low | larangan-cas-powerbank-di-kereta.html | 4/8 (50%) |
+| 🔴 Low | larangan-ghibah.html | 4/8 (50%) |
+| 🔴 Low | larangan-jilbab-1980-1990.html | 4/8 (50%) |
+| 🔴 Low | libreoffice-alternatif-gratis-microsoft-office.html | 4/8 (50%) |
+| 🔴 Low | libreoffice-font-fix.html | 4/8 (50%) |
+| 🔴 Low | linus-torvalds-linux.html | 4/8 (50%) |
+| 🔴 Low | linux-bersama.html | 4/8 (50%) |
+| 🔴 Low | linux-dan-unix-posix.html | 4/8 (50%) |
+| 🔴 Low | linux-debian-cinnamon-kedamaian.html | 4/8 (50%) |
+| 🔴 Low | linux-file-system-santai.html | 4/8 (50%) |
+| 🔴 Low | linux-keamanan.html | 4/8 (50%) |
+| 🔴 Low | linux-mint-22-2-upgrade-step.html | 4/8 (50%) |
+| 🔴 Low | linux-mint-juara-stabilitas.html | 4/8 (50%) |
+| 🔴 Low | linux-package-manager-formal.html | 4/8 (50%) |
+| 🔴 Low | linux-package-manager.html | 4/8 (50%) |
+| 🔴 Low | linux-tanpa-terminal.html | 4/8 (50%) |
+| 🔴 Low | linux-vs-windows-updates.html | 4/8 (50%) |
+| 🔴 Low | lirik-pulang-nostalgia.html | 4/8 (50%) |
+| 🔴 Low | lisan-dijaga-neraka.html | 4/8 (50%) |
+| 🔴 Low | lisensi-perangkat-lunak.html | 4/8 (50%) |
+| 🔴 Low | lts-vs-rolling-release.html | 4/8 (50%) |
+| 🔴 Low | lumen5-video-maker-ai.html | 4/8 (50%) |
+| 🔴 Low | mageia9-review.html | 4/8 (50%) |
+| 🔴 Low | main-branch-protection.html | 4/8 (50%) |
+| 🔴 Low | main-branch-unprotected.html | 4/8 (50%) |
+| 🔴 Low | makan-untuk-hidup-hidup-untuk-makan.html | 4/8 (50%) |
+| 🔴 Low | makna-az-zumar-53.html | 4/8 (50%) |
+| 🔴 Low | manajer-kata-sandi-firefox.html | 4/8 (50%) |
+| 🔴 Low | manfaat-kurma.html | 4/8 (50%) |
+| 🔴 Low | marie-muhammad-mr-clean.html | 4/8 (50%) |
+| 🔴 Low | masa-penuh-fitnah.html | 4/8 (50%) |
+| 🔴 Low | masalah-pendidikan-indonesia.html | 4/8 (50%) |
+| 🔴 Low | masyitoh.html | 4/8 (50%) |
+| 🔴 Low | mate-vs-xfce-laptop-tua.html | 4/8 (50%) |
+| 🔴 Low | matikan-ai-firefox.html | 4/8 (50%) |
+| 🔴 Low | maulid-kajian-lengkap.html | 4/8 (50%) |
+| 🔴 Low | maulid-nabi.html | 4/8 (50%) |
+| 🔴 Low | maulid-outline-slides.html | 4/8 (50%) |
+| 🔴 Low | maulid-perbandingan.html | 4/8 (50%) |
+| 🔴 Low | maulid-ringkas.html | 4/8 (50%) |
+| 🔴 Low | maulid-slides.html | 4/8 (50%) |
+| 🔴 Low | maulid-timeline.html | 4/8 (50%) |
+| 🔴 Low | mehmed-ii-al-fatih.html | 4/8 (50%) |
+| 🔴 Low | melawan-algoritma-emosi.html | 4/8 (50%) |
+| 🔴 Low | memahami-ikon-github-actions.html | 4/8 (50%) |
+| 🔴 Low | memahami-kdrt-lebih-dalam.html | 4/8 (50%) |
+| 🔴 Low | memahami-npm-audit-vulnerability.html | 4/8 (50%) |
+| 🔴 Low | memahami-rating-distro-linux.html | 4/8 (50%) |
+| 🔴 Low | membagikan-aplikasi-debian-dengan-dpkg-repack.html | 4/8 (50%) |
+| 🔴 Low | membedah-hasil-apt-audit-lengkap.html | 4/8 (50%) |
+| 🔴 Low | membedah-hasil-apt-audit.html | 4/8 (50%) |
+| 🔴 Low | membersihkan-junk-files-dan-driver-lama-windows.html | 4/8 (50%) |
+| 🔴 Low | membuat-album-json.html | 4/8 (50%) |
+| 🔴 Low | membuat-git-orphan-branch.html | 4/8 (50%) |
+| 🔴 Low | memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.html | 4/8 (50%) |
+| 🔴 Low | memilih-desktop-environment.html | 4/8 (50%) |
+| 🔴 Low | memilih-distro-linux.html | 4/8 (50%) |
+| 🔴 Low | memilih-golput.html | 4/8 (50%) |
+| 🔴 Low | menepis-gelap-menyambut-terang.html | 4/8 (50%) |
+| 🔴 Low | mengambil-gambar-dari-pdf.html | 4/8 (50%) |
+| 🔴 Low | mengapa-banyak-branch.html | 4/8 (50%) |
+| 🔴 Low | mengatasi-error-git-push-non-fast-forward.html | 4/8 (50%) |
+| 🔴 Low | mengelola-lisan.html | 4/8 (50%) |
+| 🔴 Low | menggabungkan-pdf-dengan-pdftk.html | 4/8 (50%) |
+| 🔴 Low | menggabungkan-pdf-pdftk.html | 4/8 (50%) |
+| 🔴 Low | mengganti-kata-dengan-perl.html | 4/8 (50%) |
+| 🔴 Low | mengubah-format-gambar.html | 4/8 (50%) |
+| 🔴 Low | mengubah-gambar-ke-pdf-imagemagick.html | 4/8 (50%) |
+| 🔴 Low | menjalankan-rencana.html | 4/8 (50%) |
+| 🔴 Low | menonaktifkan-koneksi-otomatis-firefox.html | 4/8 (50%) |
+| 🔴 Low | menyambut-tahun-baru-hijriyah.html | 4/8 (50%) |
+| 🔴 Low | merapikan-google-drive-2025.html | 4/8 (50%) |
+| 🔴 Low | meta-opt-out.html | 4/8 (50%) |
+| 🔴 Low | metode-wanita.html | 4/8 (50%) |
+| 🔴 Low | mewarnai-video-hitamhputih-deoldify-ffmpeg.html | 4/8 (50%) |
+| 🔴 Low | microfetch-fetch-tool-super-cepat.html | 4/8 (50%) |
+| 🔴 Low | microsoft-365-update-2026.html | 4/8 (50%) |
+| 🔴 Low | migrasi-linux-drive-ntfs-aman.html | 4/8 (50%) |
+| 🔴 Low | migrasi-windows-ke-linux.html | 4/8 (50%) |
+| 🔴 Low | migrasi-windows-linux.html | 4/8 (50%) |
+| 🔴 Low | minuman-bantu-pencernaan.html | 4/8 (50%) |
+| 🔴 Low | mount-ntfs-caja.html | 4/8 (50%) |
+| 🔴 Low | mudahnya-wanita-masuk-surga.html | 4/8 (50%) |
+| 🔴 Low | multi-distro-docs.html | 4/8 (50%) |
+| 🔴 Low | multi-video-youtube-gallery.html | 4/8 (50%) |
+| 🔴 Low | musa-bin-nusayr.html | 4/8 (50%) |
+| 🔴 Low | mushaf-utsman.html | 4/8 (50%) |
+| 🔴 Low | mx-linux-25-infinity-beta.html | 4/8 (50%) |
+| 🔴 Low | mx-linux-25-plasma-vs-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | nabi-ilyasa.html | 4/8 (50%) |
+| 🔴 Low | nabi-isa.html | 4/8 (50%) |
+| 🔴 Low | nabi-zakaria.html | 4/8 (50%) |
+| 🔴 Low | nasihat-imam-syafii-tentang-sunnah.html | 4/8 (50%) |
+| 🔴 Low | natty-release-party-SMKN3.html | 4/8 (50%) |
+| 🔴 Low | ngopi-ben-ra-edan.html | 4/8 (50%) |
+| 🔴 Low | niat-cpns.html | 4/8 (50%) |
+| 🔴 Low | niri.html | 4/8 (50%) |
+| 🔴 Low | nixos-mirror.html | 4/8 (50%) |
+| 🔴 Low | noreferrer-tanpa-target-blank.html | 4/8 (50%) |
+| 🔴 Low | noreferrer-tanpa-target.html | 4/8 (50%) |
+| 🔴 Low | noreferrer.html | 4/8 (50%) |
+| 🔴 Low | notion-ai-productivity-partner.html | 4/8 (50%) |
+| 🔴 Low | ojol-parkir-balikpapan.html | 4/8 (50%) |
+| 🔴 Low | open-document-converter.html | 4/8 (50%) |
+| 🔴 Low | open-source-indonesia.html | 4/8 (50%) |
+| 🔴 Low | open-source.html | 4/8 (50%) |
+| 🔴 Low | optimasi-workflow-harian-github-actions.html | 4/8 (50%) |
+| 🔴 Low | oss-di-sekolah.html | 4/8 (50%) |
+| 🔴 Low | oss-kutai.html | 4/8 (50%) |
+| 🔴 Low | oss-sekolah.html | 4/8 (50%) |
+| 🔴 Low | pahlawan-islam.html | 4/8 (50%) |
+| 🔴 Low | paket-debian-manual-install.html | 4/8 (50%) |
+| 🔴 Low | panduan-instalasi-arch-linux.html | 4/8 (50%) |
+| 🔴 Low | panduan-interaktif-ffmpeg.html | 4/8 (50%) |
+| 🔴 Low | panduan-kontribusi-layar-kosong.html | 4/8 (50%) |
+| 🔴 Low | panduan-layar-kosong.html | 4/8 (50%) |
+| 🔴 Low | panduan-lengkap-shalat-lail.html | 4/8 (50%) |
+| 🔴 Low | panduan-robots-txt.html | 4/8 (50%) |
+| 🔴 Low | panduan-skrip-fix-html.html | 4/8 (50%) |
+| 🔴 Low | panel-untuk-githubpages.html | 4/8 (50%) |
+| 🔴 Low | paru-lintas-distro.html | 4/8 (50%) |
+| 🔴 Low | paru-software-nonresmi.html | 4/8 (50%) |
+| 🔴 Low | pasang-ubuntu-aspire-2930z.html | 4/8 (50%) |
+| 🔴 Low | password-generator-bikin-kata-sandi.html | 4/8 (50%) |
+| 🔴 Low | pemasangan-ubuntu-10-10.html | 4/8 (50%) |
+| 🔴 Low | pembaruan-otomatis-fedora.html | 4/8 (50%) |
+| 🔴 Low | pemisah-json-mingguan-offline.html | 4/8 (50%) |
+| 🔴 Low | penaklukan-mesir.html | 4/8 (50%) |
+| 🔴 Low | Penaklukan-Persia.html | 4/8 (50%) |
+| 🔴 Low | pengalaman-kde-linux.html | 4/8 (50%) |
+| 🔴 Low | pengaturan-posisi-json.html | 4/8 (50%) |
+| 🔴 Low | pengecekan-dan-laporan-konten-harian.html | 4/8 (50%) |
+| 🔴 Low | pengecekan-laporan-konten-harian.html | 4/8 (50%) |
+| 🔴 Low | pengganti-google-code.html | 4/8 (50%) |
+| 🔴 Low | penjelasan-generate-gitignore-js.html | 4/8 (50%) |
+| 🔴 Low | penjelasan-generate-icons-js.html | 4/8 (50%) |
+| 🔴 Low | penjelasan-lengkap-tentang-sahabat.html | 4/8 (50%) |
+| 🔴 Low | penjelasan-markdown-js.html | 4/8 (50%) |
+| 🔴 Low | penjelasan-workflow-upgrade-everything-yml.html | 4/8 (50%) |
+| 🔴 Low | pentingnya-tahun-hijriyah.html | 4/8 (50%) |
+| 🔴 Low | penurunan-kognitif-di-era-medsos.html | 4/8 (50%) |
+| 🔴 Low | penurunan-kognitif-era-medsos.html | 4/8 (50%) |
+| 🔴 Low | penurunan-kognitif.html | 4/8 (50%) |
+| 🔴 Low | penyebaran-islam-india.html | 4/8 (50%) |
+| 🔴 Low | peramban-ringan-linux-terbaik.html | 4/8 (50%) |
+| 🔴 Low | peran-ai-bantu-umkm-bersaing.html | 4/8 (50%) |
+| 🔴 Low | peran-hr-it-cepat-tergantikan-ai.html | 4/8 (50%) |
+| 🔴 Low | perbaikan-foto-ala-national-geographic.html | 4/8 (50%) |
+| 🔴 Low | perbaiki-grub-rescue.html | 4/8 (50%) |
+| 🔴 Low | perbedaan-firefox-esr-vs-biasa.html | 4/8 (50%) |
+| 🔴 Low | peresmian-bandara-sepinggan.html | 4/8 (50%) |
+| 🔴 Low | perintah-teks.html | 4/8 (50%) |
+| 🔴 Low | perjalanan-ubuntu-jogja-gcos.html | 4/8 (50%) |
+| 🔴 Low | perjanjian-madinah.html | 4/8 (50%) |
+| 🔴 Low | perlukah-pakai-cpanel.html | 4/8 (50%) |
+| 🔴 Low | perniagaan-paling-jitu.html | 4/8 (50%) |
+| 🔴 Low | perplexity-ai-riset-terkini.html | 4/8 (50%) |
+| 🔴 Low | pertempuran-yarmuk-yerusalem.html | 4/8 (50%) |
+| 🔴 Low | perubahan-git-3-0-main-default.html | 4/8 (50%) |
+| 🔴 Low | pesan-imam-syafii-belajar.html | 4/8 (50%) |
+| 🔴 Low | pictory-ai-video-marketing.html | 4/8 (50%) |
+| 🔴 Low | pijat-sakit-kepala.html | 4/8 (50%) |
+| 🔴 Low | pindah-dari-chrome.html | 4/8 (50%) |
+| 🔴 Low | pindah-floorp-ke-vivaldi.html | 4/8 (50%) |
+| 🔴 Low | pindah-ke-linux-pemula.html | 4/8 (50%) |
+| 🔴 Low | pindah-ke-linux-tanpa-terminal.html | 4/8 (50%) |
+| 🔴 Low | pip-cache-bersih.html | 4/8 (50%) |
+| 🔴 Low | poac-perencanaan-partisipatif.html | 4/8 (50%) |
+| 🔴 Low | pola-hidup-sehat-untuk-usus.html | 4/8 (50%) |
+| 🔴 Low | pola-tidur-nabi-sains.html | 4/8 (50%) |
+| 🔴 Low | polemik-sayyidina-shalawat.html | 4/8 (50%) |
+| 🔴 Low | posisi-muhammadiyah-terhadap-mazhab.html | 4/8 (50%) |
+| 🔴 Low | ppdb-sktm-palsu.html | 4/8 (50%) |
+| 🔴 Low | preset-lightroom-xmp-natgeo-monokrom-sepia.html | 4/8 (50%) |
+| 🔴 Low | presto-yum.html | 4/8 (50%) |
+| 🔴 Low | produk-dairy-dan-alternatif.html | 4/8 (50%) |
+| 🔴 Low | pt-badak-ngl.html | 4/8 (50%) |
+| 🔴 Low | pusat-instalasi-linux.html | 4/8 (50%) |
+| 🔴 Low | qanaah-kekayaan-hati-keberuntungan.html | 4/8 (50%) |
+| 🔴 Low | qordoba-kilau-peradaban-andalusia.html | 4/8 (50%) |
+| 🔴 Low | queen-annes-revenge.html | 4/8 (50%) |
+| 🔴 Low | quickbooks-ai-keuangan-umkm.html | 4/8 (50%) |
+| 🔴 Low | qunut-atau-tidak-qunut.html | 4/8 (50%) |
+| 🔴 Low | rahmah-adab-dan-rasa.html | 4/8 (50%) |
+| 🔴 Low | rangkuman-akhir-pencernaan-sehat.html | 4/8 (50%) |
+| 🔴 Low | rating-distro-linux.html | 4/8 (50%) |
+| 🔴 Low | read-the-f-manual.html | 4/8 (50%) |
+| 🔴 Low | realtek-rtl8723be.html | 4/8 (50%) |
+| 🔴 Low | recursive-http-album-viewer-json.html | 4/8 (50%) |
+| 🔴 Low | recursive-image-album-viewer.html | 4/8 (50%) |
+| 🔴 Low | refind-cachyos-theme.html | 4/8 (50%) |
+| 🔴 Low | refresh-codespaces-browser-github.html | 4/8 (50%) |
+| 🔴 Low | refresh-codespaces-browser.html | 4/8 (50%) |
+| 🔴 Low | refresh-desktop.html | 4/8 (50%) |
+| 🔴 Low | rekor-ddos-29tbps-aisuru-botnet.html | 4/8 (50%) |
+| 🔴 Low | remove-old-kernels.html | 4/8 (50%) |
+| 🔴 Low | remove-windows-ai.html | 4/8 (50%) |
+| 🔴 Low | rescuezilla-panduan.html | 4/8 (50%) |
+| 🔴 Low | rev-linux.html | 4/8 (50%) |
+| 🔴 Low | revolusi-dapur-dme.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-12.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-13.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-14.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-15.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-16.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-17.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-18.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-minggu-19.html | 4/8 (50%) |
+| 🔴 Low | ringkasan-windows-vs-linux.html | 4/8 (50%) |
+| 🔴 Low | rsync-a-vs-delete.html | 4/8 (50%) |
+| 🔴 Low | saad-bin-abi-waqash.html | 4/8 (50%) |
+| 🔴 Low | saat-anak-menjadi-ujian-ulasan.html | 4/8 (50%) |
+| 🔴 Low | sabar-dalam-rumah-tangga.html | 4/8 (50%) |
+| 🔴 Low | sabar-menghadapi-ghibah.html | 4/8 (50%) |
+| 🔴 Low | saf-shalat.html | 4/8 (50%) |
+| 🔴 Low | said-bin-zaid-sahabat-surga.html | 4/8 (50%) |
+| 🔴 Low | salman-al-farisi-pencari-cahaya.html | 4/8 (50%) |
+| 🔴 Low | samba-server-config.html | 4/8 (50%) |
+| 🔴 Low | saudi-whoosh-kereta-cepat.html | 4/8 (50%) |
+| 🔴 Low | schema-validation-static-site.html | 4/8 (50%) |
+| 🔴 Low | sejarah-blankon.html | 4/8 (50%) |
+| 🔴 Low | sejarah-cachyos.html | 4/8 (50%) |
+| 🔴 Low | sejarah-kerajaan-seljuk.html | 4/8 (50%) |
+| 🔴 Low | sejarah-linux.html | 4/8 (50%) |
+| 🔴 Low | sejarah-mx-linux.html | 4/8 (50%) |
+| 🔴 Low | sejarah-singkat-yogyakarta.html | 4/8 (50%) |
+| 🔴 Low | selamat-ulang-tahun-vim-33-tahun.html | 4/8 (50%) |
+| 🔴 Low | sembelit.html | 4/8 (50%) |
+| 🔴 Low | semver-7-7-3.html | 4/8 (50%) |
+| 🔴 Low | shalahuddin-yerusalem.html | 4/8 (50%) |
+| 🔴 Low | shutdown-windows-cepat.html | 4/8 (50%) |
+| 🔴 Low | siapa-mahram-kita.html | 4/8 (50%) |
+| 🔴 Low | sikat-gigi-aduk.html | 4/8 (50%) |
+| 🔴 Low | silaturahmi-vs-silaturahim.html | 4/8 (50%) |
+| 🔴 Low | skrip-otomatis-chroot-linux.html | 4/8 (50%) |
+| 🔴 Low | Skrip-Otomatis-ChRoot.html | 4/8 (50%) |
+| 🔴 Low | smkn7-samarinda-linux-community.html | 4/8 (50%) |
+| 🔴 Low | solaris.html | 4/8 (50%) |
+| 🔴 Low | solusi-audio-easyeffects-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | solusi-login-loop-debian.html | 4/8 (50%) |
+| 🔴 Low | solusi-mic-fedora-15.html | 4/8 (50%) |
+| 🔴 Low | solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html | 4/8 (50%) |
+| 🔴 Low | ssh-linux.html | 4/8 (50%) |
+| 🔴 Low | ssh3-evolusi-keamanan.html | 4/8 (50%) |
+| 🔴 Low | stop-piracy-retro.html | 4/8 (50%) |
+| 🔴 Low | strategi-branching-github.html | 4/8 (50%) |
+| 🔴 Low | struktur-berkas-direktori-linux.html | 4/8 (50%) |
+| 🔴 Low | suara-hati-foss-kaltim-pemilukada.html | 4/8 (50%) |
+| 🔴 Low | sudah-jauh-banget-generasi-kita.html | 4/8 (50%) |
+| 🔴 Low | sudo-tanpa-password.html | 4/8 (50%) |
+| 🔴 Low | sultan-murad-iii.html | 4/8 (50%) |
+| 🔴 Low | sumur-rumah-madinah.html | 4/8 (50%) |
+| 🔴 Low | Susah-Tidur.html | 4/8 (50%) |
+| 🔴 Low | susu-dan-pencernaan.html | 4/8 (50%) |
+| 🔴 Low | symlinks.html | 4/8 (50%) |
+| 🔴 Low | synaptic-shortcuts.html | 4/8 (50%) |
+| 🔴 Low | tabayun-era-digital.html | 4/8 (50%) |
+| 🔴 Low | tabut-ketenangan-thalut-jalut.html | 4/8 (50%) |
+| 🔴 Low | tahun-percakapan-linux.html | 4/8 (50%) |
+| 🔴 Low | tar-di-linux.html | 4/8 (50%) |
+| 🔴 Low | target-blank-vs-empty.html | 4/8 (50%) |
+| 🔴 Low | thalhah-bin-ubaidillah-sahabat-perisai-nabi.html | 4/8 (50%) |
+| 🔴 Low | thunderbird-exchange-144.html | 4/8 (50%) |
+| 🔴 Low | tidak-boker-tiap-hari.html | 4/8 (50%) |
+| 🔴 Low | tidio-chatbot-ai.html | 4/8 (50%) |
+| 🔴 Low | tips-cooling-laptop-amd.html | 4/8 (50%) |
+| 🔴 Low | tips-hemat-baterai-firefox.html | 4/8 (50%) |
+| 🔴 Low | tips-melancarkan-pencernaan.html | 4/8 (50%) |
+| 🔴 Low | tools-ai-untuk-umkm.html | 4/8 (50%) |
+| 🔴 Low | training-baris-perintah-linux.html | 4/8 (50%) |
+| 🔴 Low | tren-masa-depan-ai-umkm.html | 4/8 (50%) |
+| 🔴 Low | tubuh-butuh-reset.html | 4/8 (50%) |
+| 🔴 Low | tutorial-menyatukan-film.html | 4/8 (50%) |
+| 🔴 Low | uang-alias-duit.html | 4/8 (50%) |
+| 🔴 Low | ubah-gabung.html | 4/8 (50%) |
+| 🔴 Low | ubah-suara-ubuntu-stereo.html | 4/8 (50%) |
+| 🔴 Low | ubahpotong.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-1010-maverick.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-25-10-beta.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-25-10-startup-applications.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-2604-resolute-raccoon-fitur.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-jogja-gcos-2009-celana-batik.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-jogja-juara-foss-gcos-2009.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-not-responding.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-vs-windows-2010.html | 4/8 (50%) |
+| 🔴 Low | ubuntu-wsl-pro.html | 4/8 (50%) |
+| 🔴 Low | uhud.html | 4/8 (50%) |
+| 🔴 Low | uji-kecepatan-internet-dari-terminal.html | 4/8 (50%) |
+| 🔴 Low | ujian-nasional-catatan-video.html | 4/8 (50%) |
+| 🔴 Low | umar-bin-khattab.html | 4/8 (50%) |
+| 🔴 Low | unboxing-respiro-jne-balikpapan.html | 4/8 (50%) |
+| 🔴 Low | uninstall-paket-global-npm.html | 4/8 (50%) |
+| 🔴 Low | upgrade-online-10-04.html | 4/8 (50%) |
+| 🔴 Low | uqbah-bin-nafi.html | 4/8 (50%) |
+| 🔴 Low | usb-bootable-ubuntu.html | 4/8 (50%) |
+| 🔴 Low | usia-instalasi-linux.html | 4/8 (50%) |
+| 🔴 Low | ventoy-install-linux.html | 4/8 (50%) |
+| 🔴 Low | ventoy-multi-boot-usb-drag-drop.html | 4/8 (50%) |
+| 🔴 Low | vlc-rotate.html | 4/8 (50%) |
+| 🔴 Low | waspada-kejahatan-phishing.html | 4/8 (50%) |
+| 🔴 Low | waspada-sturnus-trojan-android.html | 4/8 (50%) |
+| 🔴 Low | watermark-imagemagick.html | 4/8 (50%) |
+| 🔴 Low | website-dari-json.html | 4/8 (50%) |
+| 🔴 Low | whoosh-vs-saudi-land-bridge.html | 4/8 (50%) |
+| 🔴 Low | wifi-gratis-taman-bekapai-balikpapan.html | 4/8 (50%) |
+| 🔴 Low | wigo-balikpapan.html | 4/8 (50%) |
+| 🔴 Low | windows-10-eol-linux.html | 4/8 (50%) |
+| 🔴 Low | Windows-11-lebih-ringan-untuk-CPU-lawas.html | 4/8 (50%) |
+| 🔴 Low | wine-bukan-emulator.html | 4/8 (50%) |
+| 🔴 Low | winget-instal-20-aplikasi.html | 4/8 (50%) |
+| 🔴 Low | workflow-cloudflare.html | 4/8 (50%) |
+| 🔴 Low | workflow-perbaikan-foto-ala-national-geographic.html | 4/8 (50%) |
+| 🔴 Low | xfce-desktop-environment.html | 4/8 (50%) |
+| 🔴 Low | xpenguins.html | 4/8 (50%) |
+| 🔴 Low | xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html | 4/8 (50%) |
+| 🔴 Low | yvci-balikpapan-balas-budi-polantas.html | 4/8 (50%) |
+| 🔴 Low | zaid-bin-tsabit-penjaga-quran.html | 4/8 (50%) |
+| 🔴 Low | zorin-os-18-beta.html | 4/8 (50%) |
+| 🔴 Low | zsync-blankon.html | 4/8 (50%) |
+
