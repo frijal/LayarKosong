@@ -5,6 +5,18 @@ import path from "path";
 
 const HTML_DIR = "artikel";
 const JSON_DIR = "api/v1/post";
+const REPORT_FILE = "AuditInjectHTML-20251221.md";
+
+/* ================== REPORT STATE ================== */
+
+const report = {
+  date: new Date(),
+  total: 0,
+  updated: [],
+  nochange: [],
+  skipped: [],
+  quality: []
+};
 
 /* ================== UTIL DASAR ================== */
 
@@ -43,7 +55,7 @@ function validateSchema(json, slug) {
   req("meta", "object");
 
   if (errors.length) {
-    console.warn(`⚠ SCHEMA INVALID (${slug}): ${errors.join(", ")}`);
+    report.skipped.push({ file: `${slug}.html`, reason: errors.join(", ") });
     return false;
   }
   return true;
@@ -128,7 +140,7 @@ function normalizeHeadWhitespace(html) {
   }
 
   let head = cleaned.join("\n")
-    .replace(/<head[^>]*>\s*\n+/i, match => match.replace(/\n+/, "\n"))
+    .replace(/<head[^>]*>\s*\n+/i, m => m.replace(/\n+/, "\n"))
     .replace(/\n+\s*<\/head>/i, "\n</head>");
 
   return html.replace(m[0], head);
@@ -148,21 +160,23 @@ function qualityScore(html) {
     /name="ai:summary"/i
   ];
   const score = checks.filter(r => r.test(html)).length;
-  return { score, max: checks.length };
+  return {
+    score,
+    max: checks.length,
+    percent: Math.round((score / checks.length) * 100)
+  };
 }
 
 /* ================== INJECT STRICT ================== */
 
 function injectStrict(html, json) {
   let out = html;
-  let changed = false;
   const meta = json.meta || {};
 
   const injectMeta = (name, val) => {
     if (!val || extractMeta(out, name) === val) return;
     out = remove(out, new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>\\s*`, "gi"));
     out = out.replace("</head>", `<meta name="${name}" content="${esc(val)}">\n</head>`);
-    changed = true;
   };
 
   if (meta.summary) {
@@ -185,7 +199,6 @@ function injectStrict(html, json) {
 <meta property="og:url" content="${json.url}">
 </head>`
     );
-    changed = true;
   }
 
   if (extractMeta(out, "twitter:title") !== json.title) {
@@ -198,7 +211,6 @@ function injectStrict(html, json) {
 <meta name="twitter:image" content="${json.image || ""}">
 </head>`
     );
-    changed = true;
   }
 
   if (!hasJSONLDArticle(out)) {
@@ -220,10 +232,9 @@ ${JSON.stringify({
 </script>
 </head>`
     );
-    changed = true;
   }
 
-  return { out, changed };
+  return out;
 }
 
 /* ================== MAIN LOOP ================== */
@@ -231,36 +242,87 @@ ${JSON.stringify({
 for (const file of fs.readdirSync(HTML_DIR)) {
   if (!file.endsWith(".html")) continue;
 
+  report.total++;
+
   const slug = file.replace(".html", "");
   const htmlPath = path.join(HTML_DIR, file);
   const jsonPath = path.join(JSON_DIR, `${slug}.json`);
 
   if (!fs.existsSync(jsonPath)) {
-    console.log(`SKIP (JSON missing): ${file}`);
+    report.skipped.push({ file, reason: "JSON missing" });
     continue;
   }
 
   const html = fs.readFileSync(htmlPath, "utf8");
   const json = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
-  if (!validateSchema(json, slug)) {
-    console.log(`SKIP (schema invalid): ${file}`);
-    continue;
-  }
+  if (!validateSchema(json, slug)) continue;
 
-  let { out } = injectStrict(html, json);
-
+  let out = injectStrict(html, json);
   out = strictPostDeduplicator(out);
   out = canonicalSanityCheck(out, json.url);
   out = normalizeHeadWhitespace(out);
 
   const q = qualityScore(out);
-  console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
+  report.quality.push({ file, ...q });
 
   if (out !== html) {
     fs.writeFileSync(htmlPath, out);
-    console.log(`UPDATED (strict): ${file}`);
+    report.updated.push({ file, q });
   } else {
-    console.log(`NO CHANGE: ${file}`);
+    report.nochange.push({ file, q });
   }
 }
+
+/* ================== GENERATE REPORT ================== */
+
+function generateReport(r) {
+  const hi = r.quality.filter(x => x.percent >= 90).length;
+  const mid = r.quality.filter(x => x.percent >= 70 && x.percent < 90).length;
+  const low = r.quality.filter(x => x.percent < 70).length;
+
+  let md = `# 📊 Audit Inject HTML (Strict Mode)
+
+Tanggal: ${r.date.toLocaleString("id-ID")}
+
+---
+
+## Ringkasan
+
+- Total diperiksa: **${r.total}**
+- Diperbarui: **${r.updated.length}**
+- Tidak berubah: **${r.nochange.length}**
+- Dilewati: **${r.skipped.length}**
+
+---
+
+## Distribusi Kualitas
+
+| Kategori | Jumlah |
+|--------|-------|
+| ≥ 90% | ${hi} |
+| 70–89% | ${mid} |
+| < 70% | ${low} |
+
+---
+
+## Detail
+
+### UPDATED
+${r.updated.map(x => `- ${x.file} (${x.q.score}/${x.q.max})`).join("\n")}
+
+### NO CHANGE
+${r.nochange.map(x => `- ${x.file} (${x.q.score}/${x.q.max})`).join("\n")}
+
+### SKIPPED
+${r.skipped.map(x => `- ${x.file} (${x.reason})`).join("\n")}
+
+---
+
+_Audit otomatis oleh GitHub Actions._
+`;
+
+  fs.writeFileSync(REPORT_FILE, md);
+}
+
+generateReport(report);
