@@ -218,9 +218,12 @@ for (const file of fs.readdirSync(HTML_DIR)) {
   }
 
   let { out, changed } = injectStrict(html, json);
+  
+out = strictPostDeduplicator(out);
+out = canonicalSanityCheck(out, json.url);
+out = normalizeHeadWhitespace(out);
 
-  out = strictPostDeduplicator(out);
-  out = canonicalSanityCheck(out, json.url);
+
 
   const q = qualityScore(out);
   console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
@@ -231,4 +234,24 @@ for (const file of fs.readdirSync(HTML_DIR)) {
   } else {
     console.log(`NO CHANGE: ${file}`);
   }
+}
+
+function normalizeHeadWhitespace(html) {
+  const m = html.match(/<head[\s\S]*?<\/head>/i);
+  if (!m) return html;
+
+  let head = m[0];
+
+  // 1. Hapus spasi kosong berlebihan (lebih dari 2 newline)
+  head = head.replace(/\n{3,}/g, "\n\n");
+
+  // 2. Hapus newline tepat sebelum </head>
+  head = head.replace(/\n+\s*<\/head>/i, "\n</head>");
+
+  // 3. Hapus newline tepat setelah <head>
+  head = head.replace(/<head[^>]*>\s*\n+/i, match =>
+    match.replace(/\n+/, "\n")
+  );
+
+  return html.replace(m[0], head);
 }
