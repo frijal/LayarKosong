@@ -6,11 +6,14 @@
   "published_at": "2025-02-12T00:31:19.954+00:00",
   "url": "https://dalam.web.id/artikel/mengambil-gambar-dari-pdf.html",
   "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.png",
-  "content_plain": "Terkadang kita ingin menyimpan semua gambar yang ada dalam sebuah dokumen PDF. Dengan bantuan perintah pdfimages, hal ini dapat dilakukan dengan mudah. Perintah ini merupakan bagian dari paket poppler-utils di Linux. Perintah Dasar pdfimages -j file.pdf nama-gambarnya Opsi -j digunakan untuk menjaga kualitas gambar dengan format JPEG. Hasilnya, semua gambar dari file.pdf akan diekstrak menjadi file gambar dengan awalan nama-gambarnya. Instalasi poppler-utils sudo apt install poppler-utils Contoh File Uji Anda dapat mencoba dengan file PDF berikut: Perintah Teks (download dari Google Drive).",
+  "content": {
+    "text": "Terkadang kita ingin menyimpan semua gambar yang ada dalam sebuah dokumen PDF. Dengan bantuan perintah pdfimages, hal ini dapat dilakukan dengan mudah. Perintah ini merupakan bagian dari paket poppler-utils di Linux. Perintah Dasar pdfimages -j file.pdf nama-gambarnya Opsi -j digunakan untuk menjaga kualitas gambar dengan format JPEG. Hasilnya, semua gambar dari file.pdf akan diekstrak menjadi file gambar dengan awalan nama-gambarnya. Instalasi poppler-utils sudo apt install poppler-utils Contoh File Uji Anda dapat mencoba dengan file PDF berikut: Perintah Teks (download dari Google Drive).",
+    "html": "<p>\n      <img src=\"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.png\" alt=\"Ikon PDF\" style=\"float:left; margin:0 1em 1em 0;\">\n      Terkadang kita ingin menyimpan semua gambar yang ada dalam sebuah dokumen PDF. Dengan bantuan perintah <b>pdfimages</b>, hal ini dapat dilakukan dengan mudah.\n      Perintah ini merupakan bagian dari paket <b>poppler-utils</b> di Linux.\n    </p>\n    <h2>Perintah Dasar</h2>\n    <pre><code class=\"language-bash\">pdfimages -j file.pdf nama-gambarnya</code></pre>\n    <p>\n      Opsi <code>-j</code> digunakan untuk menjaga kualitas gambar dengan format JPEG.\n      Hasilnya, semua gambar dari <code>file.pdf</code> akan diekstrak menjadi file gambar dengan awalan <code>nama-gambarnya</code>.\n    </p>\n    <h2>Instalasi poppler-utils</h2>\n    <pre><code class=\"language-bash\">sudo apt install poppler-utils</code></pre>\n    <h2>Contoh File Uji</h2>\n    <p>\n      Anda dapat mencoba dengan file PDF berikut:\n      <a href=\"https://drive.google.com/file/d/1m_3d-8-kglxH1c6Dof01E9tjhSa-Tdny/view?usp=sharing\" target=\"_blank\">Perintah Teks (download dari Google Drive)</a>.\n    </p>\n    <div id=\"pesbukdiskus\"></div>"
+  },
   "meta": {
     "summary": "Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.",
-    "prompt_hint": "Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.",
     "keywords": [],
-    "topics": []
+    "topics": [],
+    "prompt_hint": "Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils."
   }
 }
