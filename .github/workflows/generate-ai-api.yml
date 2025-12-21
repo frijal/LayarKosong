@@ -3,7 +3,7 @@ name: Generate Layar Kosong AI API
 on:
   workflow_dispatch:
   schedule:
-    # Set jadwal otomatis, misal setiap hari pukul 03:00 WITA (UTC+8 → 19:00 UTC)
+    # Set sesuai WITA, misal 03:00 WITA = 19:00 UTC
     - cron: "0 19 * * *"
 
 jobs:
@@ -13,61 +13,61 @@ jobs:
       contents: write
 
     steps:
-      # 1. Checkout repository
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    # 1. Checkout repository
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
+    # 2. Setup Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
 
-      # 3. Install dependencies
-      - name: Install Node Dependencies
-        run: npm ci
+    # 3. Install dependencies
+    - name: Install Node Dependencies
+      run: npm ci
 
-      # 4. Jalankan AI API Generator
-      - name: Run AI API Generator
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
-          GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
-          GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
-          GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
-          GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
-          GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
-          GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
-          GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
-          GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
-          GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
-          GEMINI_API_KEY11: ${{ secrets.GEMINI_API_KEY11 }}
-        run: npm run generate-ai-api
+    # 4. Jalankan AI API Generator
+    - name: Run AI API Generator
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
+        GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
+        GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
+        GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
+        GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
+        GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
+        GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
+        GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
+        GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
+        GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
+      run: npm run generate-ai-api
 
-      # 5. Commit & Push JSON + LogAI.md jika ada perubahan
-      - name: Commit & Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    # 5. Commit & Push JSON + LogAI.md jika ada perubahan
+    - name: Commit & Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add api/v1/ mini/*.md
+        git add api/v1/ mini/
 
-          if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan. Commit dilewati."
-            exit 0
-          fi
+        if git diff --staged --quiet; then
+          echo "✅ Tidak ada perubahan. Commit dilewati."
+          exit 0
+        fi
 
-          COMMIT_MSG="🤖 Generate and update AI API files & LogAI"
-          git commit -m "$COMMIT_MSG"
+        git commit -m "build(ci): 🤖 Update AI API JSON & LogAI.md"
+        echo "🔃 Pull latest main..."
+        git pull --rebase origin main || git pull origin main
+        echo "🚀 Push changes..."
+        git push origin main
 
-          # Push ke branch utama
-          git pull --rebase origin main || git pull origin main
-          git push origin main
-
-          # Buat tag Git otomatis
-          TAG_NAME="logai-$(date +'%Y%m%d-%H%M%S')"
-          git tag "$TAG_NAME"
-          git push origin "$TAG_NAME"
+        # 6. Tambahkan Tag Git otomatis
+        TAG_NAME="logai-$(date +'%Y%m%d-%H%M%S')"
+        git tag $TAG_NAME
+        git push origin $TAG_NAME
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
