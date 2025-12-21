@@ -1,30 +1,34 @@
 // =========================================================
-// SCRIPT: ext/generate-ai-api.js
-// VERSI: Final Full Update AI Metadata + LogAI Highlight
+// ext/generate-ai-api.js
+// FINAL FULL: Node.js 20+ + glob ESM + LogAI highlight perubahan
 // =========================================================
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { load } from 'cheerio';
 import { GoogleGenAI } from '@google/genai';
-import glob from 'glob';
-import { promisify } from 'util';
-const globP = promisify(glob);
+import { glob } from 'glob';
 
 // ================= PATH =================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
+
+const META_FILE = path.join(ROOT, 'artikel.json');
+const HTML_DIR = path.join(ROOT, 'artikel');
+const LLMS_FILE = path.join(ROOT, 'llms.txt');
 const API_DIR = path.join(ROOT, 'api/v1');
 const POST_DIR = path.join(API_DIR, 'post');
-const MINI_DIR = path.join(ROOT, 'mini');
+const LOG_DIR = path.join(ROOT, 'mini');
 const BASE_URL = 'https://dalam.web.id';
 
 // ================= LOGGER =================
+const logLines = [];
 const log = {
-  i: m => console.log(`ℹ️  ${m}`),
-  w: m => console.warn(`⚠️  ${m}`),
-  e: m => console.error(`❌ ${m}`)
+  i: m => { console.log(`ℹ️ ${m}`); logLines.push(`ℹ️ ${m}`); },
+  w: m => { console.warn(`⚠️ ${m}`); logLines.push(`⚠️ ${m}`); },
+  e: m => { console.error(`❌ ${m}`); logLines.push(`❌ ${m}`); }
 };
 
 // ================= MODELS & KEYS =================
@@ -51,105 +55,193 @@ function getAI(key) {
   return new GoogleGenAI({ apiKey: key });
 }
 
-// ================= HELPERS =================
-function highlightDiff(oldArr=[], newArr=[]) {
-  const added = newArr.filter(x => !oldArr.includes(x));
-  const removed = oldArr.filter(x => !newArr.includes(x));
-  return newArr.map(k=>added.includes(k)?`**${k}**`:removed.includes(k)?`~~${k}~~`:k);
+// ================= CHEERIO CLEAN =================
+async function extractContent(file) {
+  try {
+    const html = await fs.readFile(path.join(HTML_DIR, file), 'utf8');
+    const $ = load(html);
+
+    ['script','style','nav','footer','aside','noscript','#iposbrowser','#pesbukdiskus','.search-floating-container','#related-marquee-section'].forEach(s => $(s).remove());
+
+    const root =
+      $('article').first().length ? $('article').first()
+      : $('.container').first().length ? $('.container').first()
+      : $('body');
+
+    const text = root.text().replace(/\s+/g,' ').trim();
+    const htmlClean = root.html()?.trim() || '';
+    return { text, html: htmlClean };
+  } catch {
+    log.w(`Gagal baca HTML: ${file}`);
+    return null;
+  }
 }
 
-function highlightTextChange(oldText='', newText='') {
-  return oldText !== newText ? `**UPDATED** → ${newText}` : newText;
-}
+// ================= AI EXTRACTION =================
+async function aiExtractMeta(text, title) {
+  if (!text || text.length < 300) return null;
 
-// ================= AI GENERATORS =================
-async function aiGenerateMetadata(text, title) {
-  if (!text || text.length < 300) return { summary:'', prompt_hint:'', keywords:[], topics:[] };
   for (const { key, model } of combinations) {
     if (failedKeys.has(key) || failedModels.has(model)) continue;
     try {
       const ai = getAI(key);
       const prompt = `
-Kembalikan JSON valid:
+Kembalikan JSON VALID:
 {
   "summary": "maks 2 kalimat",
-  "prompt_hint": "1-3 pertanyaan singkat",
-  "keywords": ["5-10 kata"],
-  "topics": ["maks 5 topik"]
+  "keywords": ["2-5 kata"],
+  "topics": ["maks 3 topik"],
+  "prompt_hint": "1-3 pertanyaan singkat"
 }
+
 Judul: ${title}
 Konten:
 """${text.slice(0,8000)}"""
 `;
       const res = await ai.models.generateContent({
         model,
-        contents: [{ role:"user", parts:[{ text: prompt }] }],
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
         config: { temperature: 0.2 }
       });
       return JSON.parse(res.text);
-    } catch(e) {
+    } catch (e) {
       const msg = e.message.toLowerCase();
       msg.includes('quota') ? failedKeys.add(key) : failedModels.add(model);
     }
   }
-  return { summary:'', prompt_hint:'', keywords:[], topics:[] };
+  return null;
 }
 
-// ================= MAIN =================
-async function main() {
-  await fs.mkdir(MINI_DIR, { recursive: true });
-  log.i("Memulai update metadata AI dan LogAI...");
+// ================= LLMS WHITELIST =================
+async function loadWhitelist() {
+  try {
+    const txt = await fs.readFile(LLMS_FILE,'utf8');
+    return new Set([...txt.matchAll(/artikel\/(.*?)\.html/g)].map(m=>m[1]));
+  } catch {
+    log.w("llms.txt tidak ditemukan → semua artikel dilewati");
+    return new Set();
+  }
+}
 
-  const dateStr = new Date().toISOString().slice(0,10);
-  const logFile = path.join(MINI_DIR, `${dateStr}-LogAI.md`);
-  let logMd = `# LogAI - ${dateStr}\n\n`;
+// =================== UTILS ===================
+function diffArray(oldArr=[], newArr=[]) {
+  const added = newArr.filter(x => !oldArr.includes(x));
+  const removed = oldArr.filter(x => !newArr.includes(x));
+  return { added, removed };
+}
 
-  const files = await globP(path.join(POST_DIR,'*.json'));
+// =================== MAIN ===================
+async function generate() {
+  log.i("Generate AI API (FINAL FULL) + LogAI");
 
-  for (const file of files) {
-    const data = JSON.parse(await fs.readFile(file,'utf8'));
+  await fs.mkdir(POST_DIR, { recursive:true });
+  await fs.mkdir(LOG_DIR, { recursive:true });
 
-    const oldSummary = data.meta.summary || '';
-    const oldPromptHint = data.meta.prompt_hint || '';
-    const oldKeywords = data.meta.keywords || [];
-    const oldTopics = data.meta.topics || [];
+  const meta = JSON.parse(await fs.readFile(META_FILE,'utf8'));
+  const whitelist = await loadWhitelist();
+  const index = [];
 
-    // generate metadata baru via AI
-    const aiMeta = await aiGenerateMetadata(data.content?.text || '', data.title);
+  const logFileName = `${new Date().toISOString().split('T')[0]}-LogAI.md`;
+  const logFilePath = path.join(LOG_DIR, logFileName);
+  let logMd = `# LogAI - ${new Date().toLocaleString()}\n\n`;
 
-    const newSummary = aiMeta.summary || oldSummary;
-    const newPromptHint = aiMeta.prompt_hint || oldPromptHint;
-    const newKeywords = aiMeta.keywords || oldKeywords;
-    const newTopics = aiMeta.topics || oldTopics;
+  for (const [category, items] of Object.entries(meta)) {
+    for (const [title, file, image, date, desc] of items) {
+      const id = file.replace('.html','');
+      if (!whitelist.has(id)) continue;
 
-    // highlight perubahan
-    const summaryDiff = highlightTextChange(oldSummary, newSummary);
-    const promptHintDiff = highlightTextChange(oldPromptHint, newPromptHint);
-    const keywordsDiff = highlightDiff(oldKeywords, newKeywords);
-    const topicsDiff = highlightDiff(oldTopics, newTopics);
+      const outFile = path.join(POST_DIR, `${id}.json`);
 
-    // update cache
-    data.meta.summary = newSummary;
-    data.meta.prompt_hint = newPromptHint;
-    data.meta.keywords = newKeywords;
-    data.meta.topics = newTopics;
-    await fs.writeFile(file, JSON.stringify(data,null,2));
+      let oldData = null;
+      if (await fs.access(outFile).then(()=>true).catch(()=>false)) {
+        oldData = JSON.parse(await fs.readFile(outFile,'utf8'));
+      }
 
-    // log markdown per artikel
-    logMd += `## [${data.title}](${data.url})\n`;
-    logMd += `| Metadata | Sebelumnya | Terbaru |\n|---|---|---|\n`;
-    logMd += `| Summary | ${oldSummary} | ${summaryDiff} |\n`;
-    logMd += `| Prompt Hint | ${oldPromptHint} | ${promptHintDiff} |\n`;
-    logMd += `| Keywords | ${oldKeywords.join(', ')} | ${keywordsDiff.join(', ')} |\n`;
-    logMd += `| Topics | ${oldTopics.join(', ')} | ${topicsDiff.join(', ')} |\n\n`;
+      const content = await extractContent(file);
+      if (!content) continue;
+
+      let aiMeta = await aiExtractMeta(content.text, title);
+
+      const summary = aiMeta?.summary || desc || (oldData?.meta.summary || '');
+      const prompt_hint = aiMeta?.prompt_hint || (oldData?.meta.prompt_hint || desc || '');
+      const keywords = aiMeta?.keywords || oldData?.meta.keywords || [];
+      const topics = aiMeta?.topics || oldData?.meta.topics || [];
+
+      const post = {
+        id,
+        slug: id,
+        title,
+        category,
+        published_at: date,
+        url: `${BASE_URL}/artikel/${file}`,
+        image,
+        content,
+        meta: { summary, prompt_hint, keywords, topics }
+      };
+
+      await fs.writeFile(outFile, JSON.stringify(post,null,2));
+
+      index.push({
+        id,
+        title,
+        category,
+        date,
+        image,
+        excerpt: summary,
+        endpoint: `/api/v1/post/${id}.json`
+      });
+
+      // ===== Log Markdown per artikel =====
+      if (oldData) {
+        const kwDiff = diffArray(oldData.meta.keywords, keywords);
+        const tpDiff = diffArray(oldData.meta.topics, topics);
+        const sumChanged = summary !== oldData.meta.summary;
+        const hintChanged = prompt_hint !== oldData.meta.prompt_hint;
+
+        if(sumChanged || hintChanged || kwDiff.added.length || kwDiff.removed.length || tpDiff.added.length || tpDiff.removed.length) {
+          logMd += `## ${title} (${id})\n\n`;
+          if(sumChanged) logMd += `- Summary updated: "${oldData.meta.summary}" → "${summary}"\n`;
+          if(hintChanged) logMd += `- Prompt_hint updated: "${oldData.meta.prompt_hint}" → "${prompt_hint}"\n`;
+
+          // Tabel Keywords
+          logMd += `| Keywords Sebelumnya | Keywords Sekarang |\n| --- | --- |\n`;
+          const maxKW = Math.max(oldData.meta.keywords.length, keywords.length);
+          for(let i=0;i<maxKW;i++){
+            const oldKW = oldData.meta.keywords[i] || '';
+            const newKW = keywords[i] || '';
+            const oldStr = kwDiff.removed.includes(oldKW) ? `~~${oldKW}~~` : oldKW;
+            const newStr = kwDiff.added.includes(newKW) ? `**${newKW}**` : newKW;
+            logMd += `| ${oldStr} | ${newStr} |\n`;
+          }
+
+          // Tabel Topics
+          logMd += `\n| Topics Sebelumnya | Topics Sekarang |\n| --- | --- |\n`;
+          const maxTP = Math.max(oldData.meta.topics.length, topics.length);
+          for(let i=0;i<maxTP;i++){
+            const oldTP = oldData.meta.topics[i] || '';
+            const newTP = topics[i] || '';
+            const oldStr = tpDiff.removed.includes(oldTP) ? `~~${oldTP}~~` : oldTP;
+            const newStr = tpDiff.added.includes(newTP) ? `**${newTP}**` : newTP;
+            logMd += `| ${oldStr} | ${newStr} |\n`;
+          }
+
+          logMd += `\n`;
+        }
+      }
+    }
   }
 
-  await fs.writeFile(logFile, logMd);
-  log.i(`Selesai. LogAI disimpan: ${logFile}`);
+  // ==================== Write Index JSON ====================
+  index.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  await fs.writeFile(path.join(API_DIR,'index.json'), JSON.stringify(index,null,2));
+
+  // ==================== Write Log Markdown ====================
+  await fs.writeFile(logFilePath, logMd);
+  log.i(`Selesai. Index: ${index.length} artikel, LogAI: ${logFilePath}`);
 }
 
-// ================= RUN =================
-main().catch(e=>{
+// ==================== RUN SCRIPT ====================
+generate().catch(e=>{
   log.e(e.message);
   process.exit(1);
 });
