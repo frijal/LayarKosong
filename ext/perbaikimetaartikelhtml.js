@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const HTML_DIR = "artikel";
-const JSON_DIR = "api/post";
+const JSON_DIR = "api/v1/post";
 
 function esc(str = "") {
   return str.replace(/"/g, "&quot;");
