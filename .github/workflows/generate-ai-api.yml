@@ -1,9 +1,16 @@
-name: Generate Layar Kosong AI API + LogAI
+name: Generate Layar Kosong AI API + LogAI (Full Log & Metadata)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 19 * * *"  # 03:00 WITA
+    - cron: "0 19 * * *" # 03:00 WITA
+
+env:
+  NODE_VERSION: '20'
+  API_JSON_DIR: 'api/v1'
+  LOGAI_DIR: 'mini'
+  LOGAI_FILE: '2025-12-21-LogAI.md'
+  DOMAIN: 'https://dalam.web.id'
 
 jobs:
   generate:
@@ -12,71 +19,67 @@ jobs:
       contents: write
 
     steps:
-      # 1. Checkout kode repository
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      # 1. Checkout repository
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       # 3. Install dependencies
-      - name: Install Dependencies
-        run: npm ci
+      - run: npm ci
 
-      # 4. Jalankan AI API Generator
+      # 4. Run AI API Generator with full debug/logging
       - name: Run AI API Generator
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
-          GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
-          GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
-          GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
-          GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
-          GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
-          GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
-          GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
-          GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
-          GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
-          GEMINI_API_KEY11: ${{ secrets.GEMINI_API_KEY11 }}
-          GEMINI_API_KEY12: ${{ secrets.GEMINI_API_KEY12 }}
-          GEMINI_API_KEY13: ${{ secrets.GEMINI_API_KEY13 }}
-          GEMINI_API_KEY14: ${{ secrets.GEMINI_API_KEY14 }}
-          GEMINI_API_KEY15: ${{ secrets.GEMINI_API_KEY15 }}
-          GEMINI_API_KEY16: ${{ secrets.GEMINI_API_KEY16 }}
-          GEMINI_API_KEY17: ${{ secrets.GEMINI_API_KEY17 }}
-          GEMINI_API_KEY18: ${{ secrets.GEMINI_API_KEY18 }}
-          GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
-          GEMINI_API_KEY20: ${{ secrets.GEMINI_API_KEY20 }}
+          GEMINI_API_KEYS: |
+            ${{ secrets.GEMINI_API_KEY1 }}
+            ${{ secrets.GEMINI_API_KEY2 }}
+            ${{ secrets.GEMINI_API_KEY3 }}
+            ${{ secrets.GEMINI_API_KEY4 }}
+            ${{ secrets.GEMINI_API_KEY5 }}
+            ${{ secrets.GEMINI_API_KEY6 }}
+            ${{ secrets.GEMINI_API_KEY7 }}
+            ${{ secrets.GEMINI_API_KEY8 }}
+            ${{ secrets.GEMINI_API_KEY9 }}
+            ${{ secrets.GEMINI_API_KEY10 }}
+            ${{ secrets.GEMINI_API_KEY11 }}
+            ${{ secrets.GEMINI_API_KEY12 }}
+            ${{ secrets.GEMINI_API_KEY13 }}
+            ${{ secrets.GEMINI_API_KEY14 }}
+            ${{ secrets.GEMINI_API_KEY15 }}
+            ${{ secrets.GEMINI_API_KEY16 }}
+            ${{ secrets.GEMINI_API_KEY17 }}
+            ${{ secrets.GEMINI_API_KEY18 }}
+            ${{ secrets.GEMINI_API_KEY19 }}
+            ${{ secrets.GEMINI_API_KEY20 }}
         run: npm run generate-ai-api
 
-      # 5. Commit & Push perubahan jika ada
+      # 5. Commit & push changes if any
       - name: Commit & Push JSON + LogAI
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add api/v1/ mini/
+          git add ${{ env.API_JSON_DIR }}/ ${{ env.LOGAI_DIR }}/
 
           if git diff --cached --quiet; then
             echo "✅ Tidak ada perubahan. Commit dilewati."
             exit 0
           fi
 
-          git commit -m "build(ci): 🤖 Update AI API JSON & LogAI.md"
-
+          git commit -m "build(ci): 🤖 Update AI API JSON & LogAI.md with metadata changes"
           git pull --rebase origin main || git pull origin main
           git push origin main
 
-      # 6. Tambahkan tag Git otomatis
-      - name: Create Git Tag
+      # 6. Create Git Tag incrementally
+      - name: Auto Git Tag
         run: |
-          # Gunakan format YYYYMMDD.1, increment jika tag sudah ada
           DATE_TAG=$(date -u +"%Y%m%d")
           LAST_TAG=$(git tag --list "${DATE_TAG}.*" --sort=-v:refname | head -n1)
           if [ -z "$LAST_TAG" ]; then
