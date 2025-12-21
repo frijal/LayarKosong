@@ -116,6 +116,32 @@ function qualityScore(html) {
   return { score, max: rules.length, percent: Math.round(score/rules.length*100) };
 }
 
+/* ================== PERIKSA KONDISI ================== */
+
+function isHtmlAlreadyCompliant(html, json) {
+  const meta = json.meta || {};
+
+  const same = (a,b) =>
+    String(a||"").trim() === String(b||"").trim();
+
+  if (!same(extractProp(html,"og:title"), json.title)) return false;
+  if (!same(extractMeta(html,"description"), meta.summary)) return false;
+  if (!html.includes(`rel="canonical"`) || !html.includes(json.url)) return false;
+  if (!same(extractProp(html,"og:image"), json.image)) return false;
+  if (!same(
+    extractMeta(html,"news_keywords"),
+    normalizeToString(meta.keywords)
+  )) return false;
+
+  // JSON-LD Article sanity
+  if (!/"@type"\s*:\s*"Article"/i.test(html)) return false;
+  if (!new RegExp(`"headline"\\s*:\\s*"${json.title.replace(/"/g,'\\"')}"`).test(html))
+    return false;
+
+  return true;
+}
+
+
 /* ================== INJECT STRICT ================== */
 
 function injectStrict(html, json) {
@@ -187,10 +213,27 @@ for (const file of fs.readdirSync(HTML_DIR)) {
     continue;
   }
 
-  let out = injectStrict(html,json);
-  out = strictPostDeduplicator(out);
-  out = canonicalSanityCheck(out,json.url);
-  out = normalizeHeadWhitespace(out);
+  if (isHtmlAlreadyCompliant(html, json)) {
+  const q = qualityScore(html);
+  report.quality.push({ file, ...q });
+  report.noChange.push(file);
+  continue; // ⬅️ BENAR-BENAR SKIP
+}
+
+let out = injectStrict(html, json);
+out = strictPostDeduplicator(out);
+out = canonicalSanityCheck(out, json.url);
+out = normalizeHeadWhitespace(out);
+
+const q = qualityScore(out);
+report.quality.push({ file, ...q });
+
+if (out !== html) {
+  fs.writeFileSync(htmlPath, out);
+  report.updated.push(file);
+} else {
+  report.noChange.push(file);
+}
 
   const q = qualityScore(out);
   report.quality.push({ file, ...q });
