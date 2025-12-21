@@ -1,12 +1,65 @@
 import fs from "fs";
 import path from "path";
 
+/* ================== KONFIG ================== */
+
 const HTML_DIR = "artikel";
 const JSON_DIR = "api/v1/post";
 
+/* ================== UTIL DASAR ================== */
+
 function esc(str = "") {
-  return str.replace(/"/g, "&quot;");
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;");
 }
+
+function normalizeToArray(val) {
+  if (!val) return [];
+  if (Array.isArray(val)) return val.map(v => String(v).trim()).filter(Boolean);
+  if (typeof val === "string") return [val.trim()];
+  if (typeof val === "object") return Object.values(val).map(v => String(v).trim()).filter(Boolean);
+  return [];
+}
+
+function normalizeToString(val, joiner = " | ") {
+  return normalizeToArray(val).join(joiner);
+}
+
+/* ================== SCHEMA VALIDATOR (NO LIB) ================== */
+
+function validateSchema(json, slug) {
+  const errors = [];
+
+  function req(field, type) {
+    if (!(field in json)) {
+      errors.push(`missing field: ${field}`);
+    } else if (type && typeof json[field] !== type) {
+      errors.push(`invalid type: ${field} should be ${type}`);
+    }
+  }
+
+  req("title", "string");
+  req("url", "string");
+  req("published_at", "string");
+  req("meta", "object");
+
+  if (json.meta) {
+    if (json.meta.summary && typeof json.meta.summary !== "string") {
+      errors.push("meta.summary must be string");
+    }
+  }
+
+  if (errors.length) {
+    console.warn(`⚠ SCHEMA INVALID (${slug}):`, errors.join("; "));
+    return false;
+  }
+
+  return true;
+}
+
+/* ================== HTML PARSER MINI ================== */
 
 function extractMeta(html, name) {
   const re = new RegExp(
@@ -30,102 +83,64 @@ function hasJSONLDArticle(html) {
   return /"@type"\s*:\s*"Article"/i.test(html);
 }
 
-function removeTag(html, regex) {
+function remove(html, regex) {
   return html.replace(regex, "");
 }
 
-function inject(html, json) {
+/* ================== INJECTOR STRICT ================== */
+
+function injectStrict(html, json) {
+  let out = html;
+  let changed = false;
   const meta = json.meta || {};
-  let modified = html;
-  let injected = false;
 
-  /* ===== DESCRIPTION + AI SUMMARY ===== */
+  function injectMeta(name, value) {
+    const current = extractMeta(out, name);
+    if (current === value) return;
+
+    out = remove(out, new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>\\s*`, "gi"));
+    out = out.replace(
+      "</head>",
+      `<meta name="${name}" content="${esc(value)}">\n</head>`
+    );
+    changed = true;
+  }
+
+  /* === BASIC SEO === */
   if (meta.summary) {
-    const current = extractMeta(modified, "description");
-    if (current !== meta.summary) {
-      modified = removeTag(
-        modified,
-        /<meta[^>]+name=["']description["'][^>]*>\s*/gi
-      );
-      modified = modified.replace(
-        "</head>",
-        `<meta name="description" content="${esc(meta.summary)}">\n<meta name="ai:summary" content="${esc(meta.summary)}">\n</head>`
-      );
-      injected = true;
-    }
+    injectMeta("description", meta.summary);
+    injectMeta("ai:summary", meta.summary);
   }
 
-  /* ===== KEYWORDS ===== */
-  if (meta.keywords?.length) {
-    const val = meta.keywords.join(", ");
-    const current = extractMeta(modified, "news_keywords");
-    if (current !== val) {
-      modified = removeTag(
-        modified,
-        /<meta[^>]+name=["']news_keywords["'][^>]*>\s*/gi
-      );
-      modified = modified.replace(
-        "</head>",
-        `<meta name="news_keywords" content="${esc(val)}">\n</head>`
-      );
-      injected = true;
-    }
-  }
+  /* === KEYWORDS / TOPICS / PROMPT === */
+  const keywords = normalizeToString(meta.keywords, ", ");
+  const topics = normalizeToString(meta.topics, ", ");
+  const prompts = normalizeToString(meta.prompt_hint, " | ");
 
-  /* ===== TOPICS ===== */
-  if (meta.topics?.length) {
-    const val = meta.topics.join(", ");
-    const current = extractMeta(modified, "ai:topics");
-    if (current !== val) {
-      modified = removeTag(
-        modified,
-        /<meta[^>]+name=["']ai:topics["'][^>]*>\s*/gi
-      );
-      modified = modified.replace(
-        "</head>",
-        `<meta name="ai:topics" content="${esc(val)}">\n</head>`
-      );
-      injected = true;
-    }
-  }
+  if (keywords) injectMeta("news_keywords", keywords);
+  if (topics) injectMeta("ai:topics", topics);
+  if (prompts) injectMeta("ai:prompt_hint", prompts);
 
-  /* ===== PROMPT HINT ===== */
-  if (meta.prompt_hint?.length) {
-    const val = meta.prompt_hint.join(" | ");
-    const current = extractMeta(modified, "ai:prompt_hint");
-    if (current !== val) {
-      modified = removeTag(
-        modified,
-        /<meta[^>]+name=["']ai:prompt_hint["'][^>]*>\s*/gi
-      );
-      modified = modified.replace(
-        "</head>",
-        `<meta name="ai:prompt_hint" content="${esc(val)}">\n</head>`
-      );
-      injected = true;
-    }
-  }
-
-  /* ===== OPEN GRAPH ===== */
-  if (extractProperty(modified, "og:title") !== json.title) {
-    modified = removeTag(modified, /<meta[^>]+property=["']og:[^>]+>\s*/gi);
-    modified = modified.replace(
+  /* === OPEN GRAPH === */
+  if (extractProperty(out, "og:title") !== json.title) {
+    out = remove(out, /<meta[^>]+property=["']og:[^>]+>\\s*/gi);
+    out = out.replace(
       "</head>",
       `
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(json.title)}">
 <meta property="og:description" content="${esc(meta.summary || "")}">
 <meta property="og:image" content="${json.image || ""}">
-<meta property="og:url" content="${json.url || ""}">
+<meta property="og:url" content="${json.url}">
 </head>`
     );
-    injected = true;
+    changed = true;
   }
 
-  /* ===== TWITTER CARD ===== */
-  if (extractMeta(modified, "twitter:title") !== json.title) {
-    modified = removeTag(modified, /<meta[^>]+name=["']twitter:[^>]+>\s*/gi);
-    modified = modified.replace(
+  /* === TWITTER CARD === */
+  if (extractMeta(out, "twitter:title") !== json.title) {
+    out = remove(out, /<meta[^>]+name=["']twitter:[^>]+>\\s*/gi);
+    out = out.replace(
       "</head>",
       `
 <meta name="twitter:card" content="summary_large_image">
@@ -134,15 +149,12 @@ function inject(html, json) {
 <meta name="twitter:image" content="${json.image || ""}">
 </head>`
     );
-    injected = true;
+    changed = true;
   }
 
-  /* ===== JSON-LD ARTICLE ===== */
-  if (!hasJSONLDArticle(modified)) {
-    modified = removeTag(
-      modified,
-      /<script[^>]+application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi
-    );
+  /* === JSON-LD ARTICLE === */
+  if (!hasJSONLDArticle(out)) {
+    out = remove(out, /<script[^>]+application\/ld\+json[^>]*>[\\s\\S]*?<\\/script>\\s*/gi);
 
     const schema = {
       "@context": "https://schema.org",
@@ -152,21 +164,21 @@ function inject(html, json) {
       articleSection: json.category,
       mainEntityOfPage: json.url,
       image: json.image,
-      keywords: meta.keywords || [],
+      keywords: normalizeToArray(meta.keywords),
       description: meta.summary || ""
     };
 
-    modified = modified.replace(
+    out = out.replace(
       "</head>",
       `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n</head>`
     );
-    injected = true;
+    changed = true;
   }
 
-  return { modified, injected };
+  return { out, changed };
 }
 
-/* ================= MAIN LOOP ================= */
+/* ================== MAIN ================== */
 
 for (const file of fs.readdirSync(HTML_DIR)) {
   if (!file.endsWith(".html")) continue;
@@ -183,15 +195,15 @@ for (const file of fs.readdirSync(HTML_DIR)) {
   const html = fs.readFileSync(htmlPath, "utf8");
   const json = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
-  if (!json.meta) {
-    console.log(`SKIP (JSON meta missing): ${file}`);
+  if (!validateSchema(json, slug)) {
+    console.log(`SKIP (schema invalid): ${file}`);
     continue;
   }
 
-  const { modified, injected } = inject(html, json);
+  const { out, changed } = injectStrict(html, json);
 
-  if (injected && modified !== html) {
-    fs.writeFileSync(htmlPath, modified);
+  if (changed && out !== html) {
+    fs.writeFileSync(htmlPath, out);
     console.log(`UPDATED (strict): ${file}`);
   } else {
     console.log(`NO CHANGE: ${file}`);
