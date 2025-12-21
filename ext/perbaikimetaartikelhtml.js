@@ -6,7 +6,7 @@ import path from "path";
 const HTML_DIR = "artikel";
 const JSON_DIR = "api/v1/post";
 const REPORT_FILE =
-  `AuditInjectHTML-${new Date().toISOString().slice(0,10).replace(/-/g,"")}.md`;
+  `mini/AuditInjectHTML-${new Date().toISOString().slice(0,10).replace(/-/g,"")}.md`;
 
 /* ================== REPORT STATE ================== */
 
