@@ -6,10 +6,7 @@
   "published_at": "2025-10-23T07:03:49.508+00:00",
   "url": "https://dalam.web.id/artikel/analisis-workflow-github-actions.html",
   "image": "https://dalam.web.id/img/analisis-workflow-github-actions.webp",
-  "content": {
-    "text": "1 Pemicu (Triggers) Workflow ini bakal \"bangun\" dan jalan otomatis kalo salah satu dari dua hal ini kejadian: Ada yang nge-push commit baru ke branch main. Ada yang ngeklik tombol \"Run workflow\" manual di tab Actions GitHub. on: push: branches: - main workflow_dispatch:",
-    "html": "<div class=\"flex items-center mb-4\">\n                        <span class=\"flex-shrink-0 bg-indigo-500 text-white rounded-full h-8 w-8 md:h-10 md:w-10 flex items-center justify-center font-bold text-lg md:text-xl mr-4\">1</span>\n                        <h3 class=\"text-xl md:text-2xl font-bold text-gray-900\">Pemicu (Triggers)</h3>\n                    </div>\n                    <p class=\"text-gray-700 mb-4 text-base md:text-lg\">\n                        Workflow ini bakal \"bangun\" dan jalan otomatis kalo salah satu dari dua hal ini kejadian:\n                    </p>\n                    <ul class=\"list-disc list-inside mb-4 text-gray-700 text-base md:text-lg\">\n                        <li>Ada yang nge-<strong>push</strong> commit baru ke branch <code class=\"bg-gray-100 p-1 rounded text-sm\">main</code>.</li>\n                        <li>Ada yang <strong>ngeklik tombol \"Run workflow\"</strong> manual di tab Actions GitHub.</li>\n                    </ul>\n                    <pre class=\"bg-gray-900 text-white p-4 rounded-lg overflow-x-auto\"><code class=\"language-yaml\">on:\n  push:\n    branches:\n      - main\n  workflow_dispatch:</code></pre>"
-  },
+  "content": "Ngoprek Workflow GitHub Actions Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Nggak Boros Waktu!",
   "meta": {
     "summary": "Penjelasan mendalam tentang workflow GitHub Actions untuk build dan deploy ke branch",
     "keywords": [],
