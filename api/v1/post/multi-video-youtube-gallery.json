@@ -1,0 +1,19 @@
+{
+  "id": "multi-video-youtube-gallery",
+  "slug": "multi-video-youtube-gallery",
+  "title": "Multi Video YouTube dengan Thumbnail Gallery",
+  "category": "📸 Multimedia & Editing",
+  "published_at": "2025-03-26T12:38:48.555+00:00",
+  "url": "https://dalam.web.id/artikel/multi-video-youtube-gallery.html",
+  "image": "https://dalam.web.id/img/multi-video-youtube-gallery.webp",
+  "content": {
+    "text": "Multi Video YouTube dengan Thumbnail Gallery Masukkan beberapa URL video YouTube (pisahkan dengan enter), pilih rasio, klik tombol untuk generate. Klik thumbnail atau video untuk fullscreen & navigasi panah/swipe. Pilih rasio: 16:9 4:3 1:1 (persegi) Validasi & Generate Semua Script Embed Siap-Tempel Tutup ❮ ❯",
+    "html": "<main>\n<h2>Multi Video YouTube dengan Thumbnail Gallery</h2>\n<p>Masukkan beberapa URL video YouTube (pisahkan dengan enter), pilih rasio, klik tombol untuk generate. Klik thumbnail atau video untuk fullscreen &amp; navigasi panah/swipe.</p>\n<textarea id=\"ytUrls\" placeholder=\"https://www.youtube.com/watch?v=xxxx\nhttps://youtu.be/yyyyy\"></textarea>\n<label for=\"ratio\">Pilih rasio:</label>\n<select id=\"ratio\">\n<option value=\"56.25\">16:9</option>\n<option value=\"75\">4:3</option>\n<option value=\"100\">1:1 (persegi)</option>\n</select>\n<button id=\"validateBtn\">Validasi &amp; Generate Semua</button>\n<div class=\"msg\" id=\"message\"></div>\n<div class=\"video-container\" id=\"previewContainer\" style=\"padding-bottom:56.25%;\">\n  <iframe id=\"preview\" allowfullscreen=\"\" loading=\"lazy\"></iframe>\n</div>\n<div class=\"gallery\" id=\"gallery\"></div>\n<h3>Script Embed Siap-Tempel</h3>\n<textarea id=\"embedCode\" readonly=\"\" placeholder=\"Kode embed akan muncul di sini...\"></textarea>\n\n</main>\n<!-- Lightbox -->\n<div class=\"lightbox\" id=\"lightbox\">\n  <button class=\"lb-close\" id=\"lbClose\">Tutup</button>\n  <button class=\"lb-nav lb-prev\" id=\"lbPrev\">❮</button>\n  <button class=\"lb-nav lb-next\" id=\"lbNext\">❯</button>\n  <iframe id=\"lbFrame\" allowfullscreen=\"\"></iframe>\n</div>"
+  },
+  "meta": {
+    "summary": "Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Cek dan buat embed banyak video YouTube responsif. Gallery thumbnail, preview, lightbox fullscreen dengan navigasi panah dan swipe mobile."
+  }
+}

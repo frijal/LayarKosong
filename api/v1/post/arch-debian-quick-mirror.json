@@ -1,0 +1,19 @@
+{
+  "id": "arch-debian-quick-mirror",
+  "slug": "arch-debian-quick-mirror",
+  "title": "quick-mirror.sh — Skrip Pilih Mirror Debian & Arch",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-07-16T03:00:00.000+00:00",
+  "url": "https://dalam.web.id/artikel/arch-debian-quick-mirror.html",
+  "image": "https://dalam.web.id/img/arch-debian-quick-mirror.webp",
+  "content": {
+    "text": "Skrip quick-mirror.sh ini dirancang untuk memilih mirror tercepat secara otomatis pada sistem operasi Debian/Ubuntu dan Arch Linux. Ini sangat berguna untuk mempercepat proses unduh dan pembaruan paket. ⚠️ Jalankan skrip ini dengan hak akses sudo karena akan mengubah file konfigurasi sistem. Kode Skrip #!/bin/bash # quick-mirror.sh - Pilih mirror tercepat untuk Debian/Ubuntu atau Arch # Penggunaan: sudo ./quick-mirror.sh [debian|arch] MODE=\"$1\" if [ \"$MODE\" = \"debian\" ]; then echo \"Mode Debian/Ubuntu dipilih...\" sudo apt update sudo apt install -y netselect-apt sudo netselect-apt stable sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak sudo mv sources.list /etc/apt/sources.list sudo apt update elif [ \"$MODE\" = \"arch\" ]; then echo \"Mode Arch Linux dipilih...\" sudo pacman -S --noconfirm reflector sudo reflector --country \"Indonesia\" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist sudo pacman -Syyu else echo \"Penggunaan tidak valid.\" echo \"Contoh: $0 debian\" echo \"atau: $0 arch\" fiCopy",
+    "html": "<p>Skrip <code>quick-mirror.sh</code> ini dirancang untuk memilih mirror tercepat secara otomatis pada sistem operasi <strong>Debian/Ubuntu</strong> dan <strong>Arch Linux</strong>. Ini sangat berguna untuk mempercepat proses unduh dan pembaruan paket.</p>\n            <div class=\"note\">⚠️ Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file konfigurasi sistem.</div>\n            <section class=\"gallery\">\n                <img loading=\"lazy\" src=\"https://dalam.web.id/img/arch-debian-quick-mirror.webp\" alt=\"Logo Debian dan Arch Linux\">\n            </section>\n            <section>\n                <h2>Kode Skrip</h2>\n                <pre><code id=\"bashCode\">#!/bin/bash\n# quick-mirror.sh - Pilih mirror tercepat untuk Debian/Ubuntu atau Arch\n# Penggunaan: sudo ./quick-mirror.sh [debian|arch]\nMODE=\"$1\"\nif [ \"$MODE\" = \"debian\" ]; then\n    echo \"Mode Debian/Ubuntu dipilih...\"\n    sudo apt update\n    sudo apt install -y netselect-apt\n    sudo netselect-apt stable\n    sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak\n    sudo mv sources.list /etc/apt/sources.list\n    sudo apt update\nelif [ \"$MODE\" = \"arch\" ]; then\n    echo \"Mode Arch Linux dipilih...\"\n    sudo pacman -S --noconfirm reflector\n    sudo reflector --country \"Indonesia\" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist\n    sudo pacman -Syyu\nelse\n    echo \"Penggunaan tidak valid.\"\n    echo \"Contoh: $0 debian\"\n    echo \"atau: $0 arch\"\nfi</code><button class=\"copy-btn\" onclick=\"copyCode()\">Copy</button></pre>\n            </section>"
+  },
+  "meta": {
+    "summary": "Skrip bash",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Skrip bash"
+  }
+}

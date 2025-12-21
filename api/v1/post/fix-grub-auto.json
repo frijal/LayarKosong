@@ -1,0 +1,19 @@
+{
+  "id": "fix-grub-auto",
+  "slug": "fix-grub-auto",
+  "title": "Perbaikan Otomatis GRUB Bootloader (Debian & Turunannya)",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-09-14T03:00:00.000+00:00",
+  "url": "https://dalam.web.id/artikel/fix-grub-auto.html",
+  "image": "https://dalam.web.id/img/fix-grub-auto.webp",
+  "content": {
+    "text": "Jika GRUB Bootloader rusak, sistem Debian atau turunannya tidak akan bisa booting. Skrip ini akan melakukan proses mount → chroot → reinstall GRUB secara otomatis. Pastikan Anda tahu disk target yang benar (misalnya /dev/sda). Skrip Otomatis (fix-grub.sh) #!/bin/bash # fix-grub.sh - Skrip perbaikan GRUB otomatis # Peringatan: Pastikan disk target sudah benar! DISK=\"$1\" if [ -z \"$DISK\" ]; then echo \"Penggunaan: sudo $0 /dev/sdX\" exit 1 fi mount \"${DISK}1\" /mnt for i in /dev /proc /sys; do mount --bind \"$i\" \"/mnt$i\"; done chroot /mnt grub-install \"$DISK\" chroot /mnt update-grub for i in /sys /proc /dev; do umount \"/mnt$i\"; done umount /mnt echo \"GRUB berhasil diperbaiki. Silakan reboot.\" Copy Cara Menggunakan Simpan skrip di atas sebagai fix-grub.sh. Boot ke Live USB Debian/Ubuntu dan buka terminal. Beri izin eksekusi: chmod +x fix-grub.sh Jalankan dengan nama disk Anda: sudo ./fix-grub.sh /dev/sda",
+    "html": "<p>Jika GRUB Bootloader rusak, sistem Debian atau turunannya tidak akan bisa booting. Skrip ini akan melakukan proses <strong>mount → chroot → reinstall GRUB</strong> secara otomatis. Pastikan Anda tahu disk target yang benar (misalnya <code>/dev/sda</code>).</p>\n\n            <section class=\"gallery\">\n                <img loading=\"lazy\" src=\"https://dalam.web.id/img/fix-grub-auto.webp\" alt=\"Terminal Linux yang sedang menjalankan skrip perbaikan GRUB\">\n            </section>\n\n            <section>\n                <h2>Skrip Otomatis (<code>fix-grub.sh</code>)</h2>\n                <pre><code id=\"code1\">#!/bin/bash\n# fix-grub.sh - Skrip perbaikan GRUB otomatis\n# Peringatan: Pastikan disk target sudah benar!\nDISK=\"$1\"\nif [ -z \"$DISK\" ]; then\n  echo \"Penggunaan: sudo $0 /dev/sdX\"\n  exit 1\nfi\nmount \"${DISK}1\" /mnt\nfor i in /dev /proc /sys; do mount --bind \"$i\" \"/mnt$i\"; done\nchroot /mnt grub-install \"$DISK\"\nchroot /mnt update-grub\nfor i in /sys /proc /dev; do umount \"/mnt$i\"; done\numount /mnt\necho \"GRUB berhasil diperbaiki. Silakan reboot.\"\n</code><button class=\"copy-btn\" onclick=\"copyCode('code1')\">Copy</button></pre>\n            </section>\n\n            <section>\n                <h2>Cara Menggunakan</h2>\n                 <ol>\n                    <li>Simpan skrip di atas sebagai <code>fix-grub.sh</code>.</li>\n                    <li>Boot ke Live USB Debian/Ubuntu dan buka terminal.</li>\n                    <li>Beri izin eksekusi: <code>chmod +x fix-grub.sh</code></li>\n                    <li>Jalankan dengan nama disk Anda: <code>sudo ./fix-grub.sh /dev/sda</code></li>\n                </ol>\n            </section>\n            <section class=\"social-sharing\">\n                \n            </section>"
+  },
+  "meta": {
+    "summary": "Skrip bash",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Skrip bash"
+  }
+}

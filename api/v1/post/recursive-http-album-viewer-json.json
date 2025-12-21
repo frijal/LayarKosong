@@ -1,0 +1,19 @@
+{
+  "id": "recursive-http-album-viewer-json",
+  "slug": "recursive-http-album-viewer-json",
+  "title": "Recursive HTTP Album Viewer (via JSON)",
+  "category": "🖥️ Teknologi Web, AI & Umum",
+  "published_at": "2025-10-25T13:28:45.354+00:00",
+  "url": "https://dalam.web.id/artikel/recursive-http-album-viewer-json.html",
+  "image": "https://dalam.web.id/img/recursive-http-album-viewer-json.webp",
+  "content": {
+    "text": "Recursive HTTP Album Viewer Masukkan URL ke file album.json Anda: Muat Album Alat ini akan memuat daftar gambar dari file .json yang ada di server Anda. Pastikan file .json Anda berisi array string path gambar, contoh: [\"foto1.jpg\", \"subfolder/foto2.png\"] 📋 Salin Galeri Album (0)",
+    "html": "<h1>Recursive HTTP Album Viewer</h1>\n\n        <div class=\"controls\">\n            <label for=\"jsonUrlInput\" style=\"display:block; margin-bottom: 10px; font-weight: 600;\">Masukkan URL ke file <code>album.json</code> Anda:</label>\n            <div class=\"url-loader\">\n                <input type=\"text\" id=\"jsonUrlInput\" placeholder=\"https://situs-anda.com/path/ke/album.json\">\n                <button id=\"loadAlbumBtn\">Muat Album</button>\n            </div>\n        </div>\n        <div id=\"welcomeMessage\" class=\"welcome-message\">\n            <p>Alat ini akan memuat daftar gambar dari file <code>.json</code> yang ada di server Anda.</p>\n            <p style=\"font-size: 0.9rem; color: #999;\">Pastikan file <code>.json</code> Anda berisi array string path gambar, contoh: <br><code>[\"foto1.jpg\", \"subfolder/foto2.png\"]</code></p>\n        </div>\n        <div id=\"viewerArea\" class=\"viewer-area\" style=\"display: none;\">\n            <div class=\"main-display-wrapper\">\n                <figure class=\"display-area\">\n                    <img id=\"imageDisplay\" src=\"\" alt=\"Gambar yang dipilih\">\n                    <div class=\"caption-wrapper\">\n                        <figcaption id=\"imageCaption\"></figcaption>\n                        <button id=\"copyBtn\" title=\"Salin Lokasi\" disabled=\"\">📋 Salin</button>\n                    </div>\n                </figure>\n                <div id=\"actionButtonContainer\" class=\"action-button-container\">\n                    </div>\n            </div>\n            <div class=\"album-grid-wrapper\">\n                <h2>Galeri Album (<span id=\"imageCount\">0</span>)</h2>\n                <div id=\"albumGrid\" class=\"album-grid\">\n                    </div>\n            </div>\n        </div>"
+  },
+  "meta": {
+    "summary": "Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif."
+  }
+}

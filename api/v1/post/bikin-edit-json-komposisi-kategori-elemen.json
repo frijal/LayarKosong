@@ -1,0 +1,19 @@
+{
+  "id": "bikin-edit-json-komposisi-kategori-elemen",
+  "slug": "bikin-edit-json-komposisi-kategori-elemen",
+  "title": "Buat Edit JSON Komposisi Blok Kategori & Elemen",
+  "category": "🖥️ Teknologi Web, AI & Umum",
+  "published_at": "2025-10-25T05:51:04.726+00:00",
+  "url": "https://dalam.web.id/artikel/bikin-edit-json-komposisi-kategori-elemen.html",
+  "image": "https://dalam.web.id/img/bikin-edit-json-komposisi-kategori-elemen.webp",
+  "content": {
+    "text": "Editor JSON Blok Kategori dan Elemen 1. Muat Data (Opsional) Muat file JSON yang ada untuk mengedit atau menambah kategori. Muat file data_kategori.json: 2. Edit atau Buat Kategori Pilih Kategori yang Ada atau Ketik Nama Baru: Data Elemen untuk Kategori Terpilih + Tambah Elemen Baru Generate & Download Updated JSON",
+    "html": "<h1>Editor JSON Blok Kategori dan Elemen</h1>\n\n\n  <div class=\"card\">\n    <h2>1. Muat Data (Opsional)</h2>\n    <p>Muat file JSON yang ada untuk mengedit atau menambah kategori.</p>\n    <label for=\"loadJsonFile\">Muat file <code>data_kategori.json</code>:</label>\n    <input type=\"file\" id=\"loadJsonFile\" accept=\"application/json\">\n  </div>\n\n  <div class=\"card\">\n    <h2>2. Edit atau Buat Kategori</h2>\n    <div>\n      <label for=\"categoryName\">Pilih Kategori yang Ada atau Ketik Nama Baru:</label>\n      <input type=\"text\" id=\"categoryName\" list=\"categoryList\" placeholder=\"Pilih atau ketik nama kategori...\">\n      <datalist id=\"categoryList\"></datalist>\n    </div>\n\n    <div class=\"category-block\">\n      <h3>Data Elemen untuk Kategori Terpilih</h3>\n      <div id=\"elementsContainer\" class=\"elements-list\">\n        </div>\n      <button id=\"addElementBtn\">+ Tambah Elemen Baru</button>\n    </div>\n\n    <button id=\"generateJsonBtn\">\n      Generate &amp; Download Updated JSON\n    </button>\n  </div>"
+  },
+  "meta": {
+    "summary": "Edit dan buat file JSON untuk komposisi blok kategori dan elemen secara mudah. Solusi pengelolaan data yang efisien, praktis, dan terpadu.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Edit dan buat file JSON untuk komposisi blok kategori dan elemen secara mudah. Solusi pengelolaan data yang efisien, praktis, dan terpadu."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "recursive-image-album-viewer",
+  "slug": "recursive-image-album-viewer",
+  "title": "Recursive Image Album Viewer",
+  "category": "🔆 Lainnya",
+  "published_at": "2025-10-25T13:28:45.354+00:00",
+  "url": "https://dalam.web.id/artikel/recursive-image-album-viewer.html",
+  "image": "https://dalam.web.id/img/recursive-image-album-viewer.webp",
+  "content": {
+    "text": "Recursive Image Album Viewer 📁 Buka Folder Album Pilih folder yang berisi gambar. Subfolder akan otomatis terbaca. Silakan pilih folder berisi gambar untuk memulai... 📋 Salin Galeri Album (0)",
+    "html": "<h1>Recursive Image Album Viewer</h1>\n\n        <div class=\"controls\">\n            <button id=\"openFolderBtn\">📁 Buka Folder Album</button>\n\n            <input type=\"file\" id=\"folderInput\" webkitdirectory=\"\" multiple=\"\" hidden=\"\">\n            <p class.note\"=\"\" style=\"font-size: 0.9rem; margin: 10px 0 0 0; color: #777;\">Pilih folder yang berisi gambar. Subfolder akan otomatis terbaca.</p>\n        </div>\n        <div id=\"welcomeMessage\" class=\"welcome-message\">\n            <p>Silakan pilih folder berisi gambar untuk memulai...</p>\n        </div>\n        <div id=\"viewerArea\" class=\"viewer-area\" style=\"display: none;\">\n            <div class=\"main-display-wrapper\">\n                <figure class=\"display-area\">\n                    <img id=\"imageDisplay\" src=\"\" alt=\"Gambar yang dipilih\">\n                    <div class=\"caption-wrapper\">\n                        <figcaption id=\"imageCaption\"></figcaption>\n                        <button id=\"copyBtn\" title=\"Salin Lokasi\" disabled=\"\">📋 Salin</button>\n                    </div>\n                </figure>\n                <div id=\"actionButtonContainer\" class=\"action-button-container\">\n                    </div>\n            </div>\n            <div class=\"album-grid-wrapper\">\n                <h2>Galeri Album (<span id=\"imageCount\">0</span>)</h2>\n                <div id=\"albumGrid\" class=\"album-grid\">\n                    </div>\n            </div>\n        </div>"
+  },
+  "meta": {
+    "summary": "Recursive Image Album Viewer adalah alat untuk menampilkan album gambar secara hierarkis dan interaktif. Mendukung navigasi folder, thumbnail, dan tampilan responsif.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Recursive Image Album Viewer adalah alat untuk menampilkan album gambar secara hierarkis dan interaktif. Mendukung navigasi folder, thumbnail, dan tampilan responsif."
+  }
+}

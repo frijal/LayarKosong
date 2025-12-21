@@ -1,0 +1,19 @@
+{
+  "id": "apt-update-clean",
+  "slug": "apt-update-clean",
+  "title": "Skrip Otomatis Update & Clean APT di Debian/Ubuntu",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-07-16T03:00:00.000+00:00",
+  "url": "https://dalam.web.id/artikel/apt-update-clean.html",
+  "image": "https://dalam.web.id/img/apt-update-clean.webp",
+  "content": {
+    "text": "Berikut adalah skrip shell sederhana untuk memudahkan proses pembaruan dan pembersihan paket yang tidak terpakai di sistem berbasis Debian/Ubuntu. ⚠️ Catatan: Skrip ini membutuhkan akses sudo. Pastikan Anda menjalankannya dengan hak akses root atau sebagai user dengan izin sudo. Skrip Lengkap #!/bin/bash # Skrip untuk otomatis update & clean sistem APT echo \"=== Memperbarui daftar paket ===\" sudo apt update -y echo \"=== Meng-upgrade paket terpasang ===\" sudo apt upgrade -y echo \"=== Menghapus paket yang tidak diperlukan lagi ===\" sudo apt autoremove -y echo \"=== Membersihkan cache APT ===\" sudo apt autoclean -y sudo apt clean -y echo \"=== Selesai! Sistem sudah diperbarui dan dibersihkan. ===\" Copy",
+    "html": "<p>Berikut adalah skrip shell sederhana untuk memudahkan proses pembaruan dan pembersihan paket yang tidak terpakai di sistem berbasis Debian/Ubuntu.</p>\n            <div class=\"note\">⚠️ <strong>Catatan:</strong> Skrip ini membutuhkan akses <code>sudo</code>. Pastikan Anda menjalankannya dengan hak akses root atau sebagai user dengan izin sudo.</div>\n\n            <section class=\"gallery\">\n                <img loading=\"lazy\" src=\"https://dalam.web.id/img/apt-update-clean.webp\" alt=\"Terminal Linux menjalankan skrip pembaruan APT\">\n            </section>\n\n            <section>\n                <h2>Skrip Lengkap</h2>\n                <pre><code id=\"bashCode\">#!/bin/bash\n# Skrip untuk otomatis update &amp; clean sistem APT\n\necho \"=== Memperbarui daftar paket ===\"\nsudo apt update -y\n\necho \"=== Meng-upgrade paket terpasang ===\"\nsudo apt upgrade -y\n\necho \"=== Menghapus paket yang tidak diperlukan lagi ===\"\nsudo apt autoremove -y\n\necho \"=== Membersihkan cache APT ===\"\nsudo apt autoclean -y\nsudo apt clean -y\n\necho \"=== Selesai! Sistem sudah diperbarui dan dibersihkan. ===\"\n</code><button class=\"copy-btn\" onclick=\"copyCode()\">Copy</button></pre>\n            </section>"
+  },
+  "meta": {
+    "summary": "Skrip bash sederhana untuk mengotomatisasi pembaruan dan pembersihan paket APT di sistem Debian/Ubuntu, membuat perawatan sistem lebih mudah.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Skrip bash sederhana untuk mengotomatisasi pembaruan dan pembersihan paket APT di sistem Debian/Ubuntu, membuat perawatan sistem lebih mudah."
+  }
+}

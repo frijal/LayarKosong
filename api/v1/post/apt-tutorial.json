@@ -1,0 +1,19 @@
+{
+  "id": "apt-tutorial",
+  "slug": "apt-tutorial",
+  "title": "Tutorial APT (Advanced Package Tool) di Debian/Ubuntu",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-07-16T03:00:00.000+00:00",
+  "url": "https://dalam.web.id/artikel/apt-tutorial.html",
+  "image": "https://dalam.web.id/img/apt-tutorial.webp",
+  "content": {
+    "text": "APT adalah manajer paket bawaan untuk sistem operasi Debian dan turunannya (seperti Ubuntu). Dengan APT, Anda bisa dengan mudah mencari, menginstal, menghapus, dan mengelola aplikasi langsung dari terminal. 1. Memperbarui Sistem Selalu mulai dengan memperbarui daftar paket Anda untuk memastikan Anda mendapatkan versi terbaru. sudo apt update && sudo apt upgrade -yCopy 2. Mencari dan Menginstal Aplikasi Gunakan apt search untuk menemukan nama paket dan apt install untuk memasangnya. # Mencari aplikasi (contoh: htop) apt search htop # Menginstal aplikasi sudo apt install htop -yCopy 3. Menghapus Aplikasi dan Membersihkan Sistem Gunakan apt remove untuk menghapus aplikasi dan autoremove serta clean untuk membersihkan file sisa. # Menghapus aplikasi sudo apt remove htop -y # Menghapus paket yang tidak lagi diperlukan sudo apt autoremove -y # Membersihkan cache paket sudo apt cleanCopy Diskusi & Jaga Data Pribadi Tetap Aman.",
+    "html": "<p>APT adalah manajer paket bawaan untuk sistem operasi Debian dan turunannya (seperti Ubuntu). Dengan APT, Anda bisa dengan mudah mencari, menginstal, menghapus, dan mengelola aplikasi langsung dari terminal.</p>\n\n            <section class=\"gallery\">\n                <img loading=\"lazy\" src=\"https://dalam.web.id/img/apt-tutorial.webp\" alt=\"Logo Debian dan Ubuntu\">\n            </section>\n\n            <section>\n                <h2>1. Memperbarui Sistem</h2>\n                <p>Selalu mulai dengan memperbarui daftar paket Anda untuk memastikan Anda mendapatkan versi terbaru.</p>\n                <pre><code id=\"code1\">sudo apt update &amp;&amp; sudo apt upgrade -y</code><button class=\"copy-btn\" onclick=\"copyCode('code1')\">Copy</button></pre>\n            </section>\n\n            <section>\n                <h2>2. Mencari dan Menginstal Aplikasi</h2>\n                <p>Gunakan <code>apt search</code> untuk menemukan nama paket dan <code>apt install</code> untuk memasangnya.</p>\n                <pre><code id=\"code2\"># Mencari aplikasi (contoh: htop)\napt search htop\n\n# Menginstal aplikasi\nsudo apt install htop -y</code><button class=\"copy-btn\" onclick=\"copyCode('code2')\">Copy</button></pre>\n            </section>\n\n            <section>\n                <h2>3. Menghapus Aplikasi dan Membersihkan Sistem</h2>\n                <p>Gunakan <code>apt remove</code> untuk menghapus aplikasi dan <code>autoremove</code> serta <code>clean</code> untuk membersihkan file sisa.</p>\n                <pre><code id=\"code3\"># Menghapus aplikasi\nsudo apt remove htop -y\n\n# Menghapus paket yang tidak lagi diperlukan\nsudo apt autoremove -y\n\n# Membersihkan cache paket\nsudo apt clean</code><button class=\"copy-btn\" onclick=\"copyCode('code3')\">Copy</button></pre>\n            </section>\n\n            <section>\n            </section>\n\n            <h2>Diskusi &amp; Jaga Data Pribadi Tetap Aman.</h2>"
+  },
+  "meta": {
+    "summary": "Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Tutorial lengkap APT (Advanced Package Tool) untuk sistem Debian/Ubuntu: cara install, update, menghapus, dan membersihkan paket dari terminal."
+  }
+}
