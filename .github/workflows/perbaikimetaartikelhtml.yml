@@ -1,4 +1,4 @@
-name: Audit & Inject Article Metadata (Strict)
+name: Audit Report & Inject Article Metadata (Strict)
 
 on:
   workflow_run:
@@ -11,40 +11,47 @@ on:
       - 'api/v1/post/*.json'
   workflow_dispatch:
 
-# 🔑 WAJIB: izin write ke repository
 permissions:
   contents: write
 
 jobs:
-  audit:
+  inject-and-audit:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-       # with:
-        #  fetch-depth: 0
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: "20"
 
-      - name: Run strict HTML injector
-        run: node ext/perbaikimetaartikelhtml.js
-
-      - name: Commit changes (if any)
+      - name: Run Strict HTML Inject + Audit
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions@users.noreply.github.com"
+          node ext/perbaikimetaartikelhtml.js
 
-          git add artikel mini
-          git status --short
-          
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "auto: strict inject article metadata"
-            git push
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add api/v1/ mini/
+
+          if git diff --staged --quiet; then
+            echo "✅ Tidak ada perubahan. Commit dilewati."
+            exit 0
           fi
+
+          git commit -m "build(ci): 🤖 Update AI API JSON & AuditInjectHTML"
+          echo "🔃 Pull latest main..."
+          git pull --rebase origin main || git pull origin main
+          echo "🚀 Push changes..."
+          git push origin main
+
+          # Tambahkan Tag Git otomatis
+          TAG_NAME="audit-$(date +'%Y%m%d-%H%M%S')"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
