@@ -27,55 +27,41 @@ function normalizeToString(val, joiner = " | ") {
   return normalizeToArray(val).join(joiner);
 }
 
-/* ================== SCHEMA VALIDATOR (NO LIB) ================== */
+/* ================== SCHEMA VALIDATOR ================== */
 
 function validateSchema(json, slug) {
   const errors = [];
 
-  function req(field, type) {
-    if (!(field in json)) {
-      errors.push(`missing field: ${field}`);
-    } else if (type && typeof json[field] !== type) {
-      errors.push(`invalid type: ${field} should be ${type}`);
-    }
-  }
+  const req = (f, t) => {
+    if (!(f in json)) errors.push(`missing ${f}`);
+    else if (t && typeof json[f] !== t) errors.push(`invalid ${f}`);
+  };
 
   req("title", "string");
   req("url", "string");
   req("published_at", "string");
   req("meta", "object");
 
-  if (json.meta) {
-    if (json.meta.summary && typeof json.meta.summary !== "string") {
-      errors.push("meta.summary must be string");
-    }
-  }
-
   if (errors.length) {
-    console.warn(`⚠ SCHEMA INVALID (${slug}):`, errors.join("; "));
+    console.warn(`⚠ SCHEMA INVALID (${slug}): ${errors.join(", ")}`);
     return false;
   }
-
   return true;
 }
 
-/* ================== HTML PARSER MINI ================== */
+/* ================== HTML MINI ================== */
 
 function extractMeta(html, name) {
-  const re = new RegExp(
-    `<meta[^>]+name=["']${name}["'][^>]+content=["']([^"']*)`,
-    "i"
+  const m = html.match(
+    new RegExp(`<meta[^>]+name=["']${name}["'][^>]+content=["']([^"']*)`, "i")
   );
-  const m = html.match(re);
   return m ? m[1].trim() : null;
 }
 
 function extractProperty(html, prop) {
-  const re = new RegExp(
-    `<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']*)`,
-    "i"
+  const m = html.match(
+    new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']*)`, "i")
   );
-  const m = html.match(re);
   return m ? m[1].trim() : null;
 }
 
@@ -87,47 +73,81 @@ function remove(html, regex) {
   return html.replace(regex, "");
 }
 
-/* ================== INJECTOR STRICT ================== */
+/* ================== DEDUPLICATOR ================== */
+
+function dedupeMetaByKey(html, attr, prefix) {
+  const re = new RegExp(`<meta\\s+${attr}="${prefix}[^"]*"[^>]*>`, "gi");
+  const found = html.match(re);
+  if (!found || found.length <= 1) return html;
+
+  const last = found[found.length - 1];
+  html = html.replace(re, "");
+  return html.replace(/<\/head>/i, `${last}\n</head>`);
+}
+
+function strictPostDeduplicator(html) {
+  let out = html;
+  out = dedupeMetaByKey(out, "property", "og:");
+  out = dedupeMetaByKey(out, "name", "twitter:");
+  out = dedupeMetaByKey(out, "property", "article:");
+  return out;
+}
+
+function canonicalSanityCheck(html, expectedUrl) {
+  const re = /<link\s+rel=["']canonical["'][^>]*>/gi;
+  const found = html.match(re);
+  if (!found || found.length <= 1) return html;
+
+  const valid = found.find(l => l.includes(expectedUrl));
+  if (!valid) return html;
+
+  html = html.replace(re, "");
+  return html.replace(/<\/head>/i, `${valid}\n</head>`);
+}
+
+function qualityScore(html) {
+  const checks = [
+    /<meta name="description"/i,
+    /<link rel="canonical"/i,
+    /property="og:title"/i,
+    /property="og:image"/i,
+    /name="twitter:card"/i,
+    /application\/ld\+json/i,
+    /name="news_keywords"/i,
+    /name="ai:summary"/i
+  ];
+  const score = checks.filter(r => r.test(html)).length;
+  return { score, max: checks.length };
+}
+
+/* ================== INJECT STRICT ================== */
 
 function injectStrict(html, json) {
   let out = html;
   let changed = false;
   const meta = json.meta || {};
 
-  function injectMeta(name, value) {
-    const current = extractMeta(out, name);
-    if (current === value) return;
-
+  const injectMeta = (name, val) => {
+    if (!val || extractMeta(out, name) === val) return;
     out = remove(out, new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>\\s*`, "gi"));
-    out = out.replace(
-      "</head>",
-      `<meta name="${name}" content="${esc(value)}">\n</head>`
-    );
+    out = out.replace("</head>", `<meta name="${name}" content="${esc(val)}">\n</head>`);
     changed = true;
-  }
+  };
 
-  /* === BASIC SEO === */
   if (meta.summary) {
     injectMeta("description", meta.summary);
     injectMeta("ai:summary", meta.summary);
   }
 
-  /* === KEYWORDS / TOPICS / PROMPT === */
-  const keywords = normalizeToString(meta.keywords, ", ");
-  const topics = normalizeToString(meta.topics, ", ");
-  const prompts = normalizeToString(meta.prompt_hint, " | ");
+  injectMeta("news_keywords", normalizeToString(meta.keywords, ", "));
+  injectMeta("ai:topics", normalizeToString(meta.topics, ", "));
+  injectMeta("ai:prompt_hint", normalizeToString(meta.prompt_hint, " | "));
 
-  if (keywords) injectMeta("news_keywords", keywords);
-  if (topics) injectMeta("ai:topics", topics);
-  if (prompts) injectMeta("ai:prompt_hint", prompts);
-
-  /* === OPEN GRAPH === */
   if (extractProperty(out, "og:title") !== json.title) {
     out = remove(out, /<meta[^>]+property=["']og:[^>]+>\\s*/gi);
     out = out.replace(
       "</head>",
-      `
-<meta property="og:type" content="article">
+      `<meta property="og:type" content="article">
 <meta property="og:title" content="${esc(json.title)}">
 <meta property="og:description" content="${esc(meta.summary || "")}">
 <meta property="og:image" content="${json.image || ""}">
@@ -137,13 +157,11 @@ function injectStrict(html, json) {
     changed = true;
   }
 
-  /* === TWITTER CARD === */
   if (extractMeta(out, "twitter:title") !== json.title) {
     out = remove(out, /<meta[^>]+name=["']twitter:[^>]+>\\s*/gi);
     out = out.replace(
       "</head>",
-      `
-<meta name="twitter:card" content="summary_large_image">
+      `<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(json.title)}">
 <meta name="twitter:description" content="${esc(meta.summary || "")}">
 <meta name="twitter:image" content="${json.image || ""}">
@@ -152,28 +170,24 @@ function injectStrict(html, json) {
     changed = true;
   }
 
-  /* === JSON-LD ARTICLE === */
   if (!hasJSONLDArticle(out)) {
-out = remove(
-  out,
-  /<script[^>]+application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi
-);
-
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: json.title,
-      datePublished: json.published_at,
-      articleSection: json.category,
-      mainEntityOfPage: json.url,
-      image: json.image,
-      keywords: normalizeToArray(meta.keywords),
-      description: meta.summary || ""
-    };
-
+    out = remove(out, /<script[^>]+application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi);
     out = out.replace(
       "</head>",
-      `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n</head>`
+      `<script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: json.title,
+  datePublished: json.published_at,
+  articleSection: json.category,
+  mainEntityOfPage: json.url,
+  image: json.image,
+  keywords: normalizeToArray(meta.keywords),
+  description: meta.summary || ""
+}, null, 2)}
+</script>
+</head>`
     );
     changed = true;
   }
@@ -181,7 +195,7 @@ out = remove(
   return { out, changed };
 }
 
-/* ================== MAIN ================== */
+/* ================== MAIN LOOP ================== */
 
 for (const file of fs.readdirSync(HTML_DIR)) {
   if (!file.endsWith(".html")) continue;
@@ -203,98 +217,18 @@ for (const file of fs.readdirSync(HTML_DIR)) {
     continue;
   }
 
-  const { out, changed } = injectStrict(html, json);
+  let { out, changed } = injectStrict(html, json);
 
-  if (changed && out !== html) {
+  out = strictPostDeduplicator(out);
+  out = canonicalSanityCheck(out, json.url);
+
+  const q = qualityScore(out);
+  console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
+
+  if (out !== html) {
     fs.writeFileSync(htmlPath, out);
     console.log(`UPDATED (strict): ${file}`);
   } else {
     console.log(`NO CHANGE: ${file}`);
   }
 }
-
-/* ================== HELPER ================== */
-
-function dedupeMetaByKey(html, attr, prefix) {
-  const re = new RegExp(
-    `<meta\\s+${attr}="${prefix}[^"]*"[^>]*>`,
-    "gi"
-  );
-
-  const matches = html.match(re);
-  if (!matches || matches.length <= 1) return html;
-
-  // ambil meta terakhir (hasil inject paling akhir)
-  const last = matches[matches.length - 1];
-
-  // hapus semua
-  html = html.replace(re, "");
-
-  // sisipkan satu versi final sebelum </head>
-  html = html.replace(/<\/head>/i, `${last}\n</head>`);
-
-  return html;
-}
-
-function strictPostDeduplicator(html) {
-  let out = html;
-
-  // Open Graph
-  out = dedupeMetaByKey(out, "property", "og:");
-
-  // Twitter Card
-  out = dedupeMetaByKey(out, "name", "twitter:");
-
-  // Article namespace
-  out = dedupeMetaByKey(out, "property", "article:");
-
-  return out;
-}
-
-function canonicalSanityCheck(html, expectedUrl) {
-  const re = /<link\s+rel=["']canonical["'][^>]*>/gi;
-  const found = html.match(re);
-
-  if (!found || found.length <= 1) return html;
-
-  const valid = found.find(l => l.includes(expectedUrl));
-  if (!valid) return html; // jangan nekat
-
-  html = html.replace(re, "");
-  html = html.replace(/<\/head>/i, `${valid}\n</head>`);
-
-  return html;
-}
-
-function qualityScore(html) {
-  let score = 0;
-  const checks = [
-    /<meta name="description"/i,
-    /<link rel="canonical"/i,
-    /property="og:title"/i,
-    /property="og:image"/i,
-    /name="twitter:card"/i,
-    /application\/ld\+json/i,
-    /name="news_keywords"/i,
-    /name="ai:summary"/i
-  ];
-
-  checks.forEach(r => {
-    if (r.test(html)) score += 1;
-  });
-
-  return {
-    score,
-    max: checks.length,
-    percent: Math.round((score / checks.length) * 100)
-  };
-}
-
-out = strictPostDeduplicator(out);
-
-// optional
-out = canonicalSanityCheck(out, data.url);
-
-// quality log
-const q = qualityScore(out);
-console.log(`[QUALITY] ${file} → ${q.score}/${q.max} (${q.percent}%)`);
