@@ -233,17 +233,7 @@ if (out !== html) {
   report.updated.push(file);
 } else {
   report.noChange.push(file);
-}
-
-  const q = qualityScore(out);
-  report.quality.push({ file, ...q });
-
-  if (out !== html) {
-    fs.writeFileSync(htmlPath,out);
-    report.updated.push(file);
-  } else {
-    report.noChange.push(file);
-  }
+}  
 }
 
 /* ================== REPORT ================== */
