@@ -4,9 +4,9 @@ import path from "path";
 /* ================== KONFIG ================== */
 
 const JSON_DIR = "api/v1/post";
-const OUT_DIR = "mini";
+const OUT_DIR = "api/v1/topic-cluster";
 const DATE = new Date().toISOString().slice(0,10).replace(/-/g,"");
-const OUT_FILE = path.join(OUT_DIR, `topic-clusters-${DATE}.json`);
+const OUT_FILE = path.join(OUT_DIR, `topic-cluster-${DATE}.json`);
 
 /* ================== UTIL ================== */
 
