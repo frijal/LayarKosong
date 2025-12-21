@@ -8,17 +8,6 @@ const JSON_DIR = "api/v1/post";
 const REPORT_FILE =
   `AuditInjectHTML-${new Date().toISOString().slice(0,10).replace(/-/g,"")}.md`;
 
-/* ================== REPORT STATE ================== */
-
-const report = {
-  date: new Date(),
-  total: 0,
-  updated: [],
-  nochange: [],
-  skipped: [],
-  quality: []
-};
-
 /* ================== UTIL DASAR ================== */
 
 function esc(str = "") {
