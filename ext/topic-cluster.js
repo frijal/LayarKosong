@@ -5,15 +5,17 @@ import path from "path";
 
 const JSON_DIR = "api/v1/post";
 const OUT_DIR = "api/v1/topic-cluster";
+
 const DATE = new Date().toISOString().slice(0,10).replace(/-/g,"");
 const OUT_FILE = path.join(OUT_DIR, `topic-cluster-${DATE}.json`);
+const OUT_LATEST = "api/v1/topic-cluster.json";
 
 /* ================== UTIL ================== */
 
 function norm(str="") {
   return String(str)
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s]/gu,"") // hapus emoji/simbol
+    .replace(/[^\p{L}\p{N}\s]/gu,"")
     .replace(/\s+/g," ")
     .trim();
 }
@@ -39,7 +41,7 @@ for (const file of fs.readdirSync(JSON_DIR)) {
   if (!file.endsWith(".json")) continue;
 
   const json = JSON.parse(
-    fs.readFileSync(path.join(JSON_DIR,file),"utf8")
+    fs.readFileSync(path.join(JSON_DIR, file), "utf8")
   );
 
   if (!json.slug || !json.meta) continue;
@@ -70,29 +72,35 @@ function clusterKey(topic) {
   return topic.replace(/\s+/g,"-");
 }
 
-for (let i=0; i<articles.length; i++) {
+for (let i = 0; i < articles.length; i++) {
   const a = articles[i];
   if (assigned.has(a.slug)) continue;
 
-  // seed cluster dari topik pertama
-  const seedTopic = a.topics[0] || a.keywords[0];
+  // seed cluster: topic → keyword → skip
+  const seedTopic =
+    a.topics.length ? a.topics[0] :
+    a.keywords.length ? a.keywords[0] :
+    null;
+
   if (!seedTopic) continue;
 
   const key = clusterKey(seedTopic);
 
-  clusters[key] = {
-    label: seedTopic,
-    articles: []
-  };
+  if (!clusters[key]) {
+    clusters[key] = {
+      label: seedTopic,
+      articles: []
+    };
+  }
 
-  for (let j=i; j<articles.length; j++) {
+  for (let j = i; j < articles.length; j++) {
     const b = articles[j];
     if (assigned.has(b.slug)) continue;
 
     const commonTopics = intersect(a.topics, b.topics).length;
     const commonKeywords = intersect(a.keywords, b.keywords).length;
 
-    const score = commonTopics * 3 + commonKeywords;
+    const score = (commonTopics * 3) + commonKeywords;
 
     if (score >= 3) {
       clusters[key].articles.push({
@@ -108,26 +116,39 @@ for (let i=0; i<articles.length; i++) {
 
 /* ================== SORT & CLEAN ================== */
 
+// sort artikel per cluster
 Object.values(clusters).forEach(c => {
   c.articles.sort((a,b)=>b.score-a.score);
+});
+
+// hapus cluster kecil (noise)
+Object.keys(clusters).forEach(k => {
+  if (clusters[k].articles.length < 2) {
+    delete clusters[k];
+  }
 });
 
 /* ================== OUTPUT ================== */
 
 if (!fs.existsSync(OUT_DIR)) {
-  fs.mkdirSync(OUT_DIR,{recursive:true});
+  fs.mkdirSync(OUT_DIR, { recursive: true });
 }
 
-fs.writeFileSync(
-  OUT_FILE,
-  JSON.stringify({
-    generated_at: new Date().toISOString(),
-    total_articles: articles.length,
-    total_clusters: Object.keys(clusters).length,
-    clusters
-  }, null, 2)
-);
+const output = {
+  generated_at: new Date().toISOString(),
+  total_articles: articles.length,
+  total_clusters: Object.keys(clusters).length,
+  clusters
+};
 
-console.log(`✔ Topic clustering generated: ${OUT_FILE}`);
+// arsip harian
+fs.writeFileSync(OUT_FILE, JSON.stringify(output, null, 2));
+
+// latest (dipakai API / HTML)
+fs.writeFileSync(OUT_LATEST, JSON.stringify(output, null, 2));
+
+console.log(`✔ Topic clustering generated`);
+console.log(`• Arsip  : ${OUT_FILE}`);
+console.log(`• Latest : ${OUT_LATEST}`);
 console.log(`• Artikel: ${articles.length}`);
 console.log(`• Cluster: ${Object.keys(clusters).length}`);
