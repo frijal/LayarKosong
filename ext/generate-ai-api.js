@@ -1,6 +1,6 @@
 // =========================================================
 // ext/generate-ai-api.js
-// Refactor: Hybrid Content Intelligence API Generator
+// Refactor: Hybrid Content Intelligence API Generator (Safe & Compatible)
 // =========================================================
 
 import fs from 'node:fs/promises';
@@ -61,7 +61,8 @@ async function extractContent(file) {
     const html = await fs.readFile(path.join(HTML_DIR, file), 'utf8');
     const $ = load(html);
 
-    ['script','style','nav','footer','aside','noscript'].forEach(s => $(s).remove());
+    ['script','style','nav','footer','aside','noscript','#iposbrowser','#pesbukdiskus','.search-floating-container','#related-marquee-section']
+      .forEach(s => $(s).remove());
 
     const root =
       $('article').first().length ? $('article').first()
@@ -130,7 +131,7 @@ async function loadWhitelist() {
 
 /* ================= MAIN ================= */
 async function generate() {
-  log.i("Generate AI API (Hybrid)");
+  log.i("Generate AI API (Hybrid, Safe Mode)");
 
   await fs.mkdir(POST_DIR, { recursive:true });
 
@@ -144,18 +145,25 @@ async function generate() {
       if (!whitelist.has(id)) continue;
 
       const outFile = path.join(POST_DIR, `${id}.json`);
+
+      // ================= CACHE SAFE =================
       if (await fs.access(outFile).then(()=>true).catch(()=>false)) {
-        const cached = JSON.parse(await fs.readFile(outFile,'utf8'));
-        index.push({
-          id,
-          title,
-          category,
-          date,
-          image,
-          excerpt: cached.meta.summary,
-          endpoint: `/api/v1/post/${id}.json`
-        });
-        continue;
+        try {
+          const cached = JSON.parse(await fs.readFile(outFile,'utf8'));
+          const cachedMeta = cached.meta || {};
+          index.push({
+            id,
+            title,
+            category,
+            date,
+            image,
+            excerpt: cachedMeta.summary || desc || '',
+            endpoint: `/api/v1/post/${id}.json`
+          });
+          continue;
+        } catch (e) {
+          log.w(`Cache corrupt: ${id}, akan regenerate.`);
+        }
       }
 
       const content = await extractContent(file);
@@ -181,6 +189,7 @@ async function generate() {
       };
 
       await fs.writeFile(outFile, JSON.stringify(post,null,2));
+
       index.push({
         id,
         title,
