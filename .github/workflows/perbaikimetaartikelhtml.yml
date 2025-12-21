@@ -2,6 +2,8 @@ name: Audit & Inject Article Metadata (Strict)
 
 on:
   push:
+    branches:
+      - main  
     paths:
       - "api/post/**/*.json"
   workflow_dispatch:
