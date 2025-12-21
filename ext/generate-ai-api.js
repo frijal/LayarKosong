@@ -1,16 +1,13 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Final Full Update AI Metadata + LogAI Highlight
+// VERSI: Optimized Native Node v20 (No External Glob)
 // =========================================================
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GoogleGenAI } from '@google/genai';
-// import glob from 'glob';
-// import { promisify } from 'util';
-// const globP = promisify(glob);
-import { glob } from 'node:fs/promises';
+
 // ================= PATH =================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,11 +25,13 @@ const log = {
 };
 
 // ================= MODELS & KEYS =================
+// Disesuaikan ke versi model yang sudah stabil/tersedia publik
 const MODELS = [
+  "gemini-1.5-flash",
+  "gemini-1.5-flash-8b",
   "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
-  "gemma-3-4b",
-  "gemma-3-12b"
+  "gemini-3-pro-preview",
+  "gemini-2.0-flash-exp"
 ];
 
 const apiKeys = Object.keys(process.env)
@@ -48,14 +47,14 @@ const combinations = [];
 apiKeys.forEach(key => MODELS.forEach(model => combinations.push({ key, model })));
 
 function getAI(key) {
-  return new GoogleGenAI({ apiKey: key });
+  return new GoogleGenAI(key); // Syntax terbaru @google/genai langsung masukkan key
 }
 
 // ================= HELPERS =================
 function highlightDiff(oldArr=[], newArr=[]) {
   const added = newArr.filter(x => !oldArr.includes(x));
   const removed = oldArr.filter(x => !newArr.includes(x));
-  return newArr.map(k=>added.includes(k)?`**${k}**`:removed.includes(k)?`~~${k}~~`:k);
+  return newArr.map(k => added.includes(k) ? `**${k}**` : removed.includes(k) ? `~~${k}~~` : k);
 }
 
 function highlightTextChange(oldText='', newText='') {
@@ -65,31 +64,39 @@ function highlightTextChange(oldText='', newText='') {
 // ================= AI GENERATORS =================
 async function aiGenerateMetadata(text, title) {
   if (!text || text.length < 300) return { summary:'', prompt_hint:'', keywords:[], topics:[] };
+  
   for (const { key, model } of combinations) {
     if (failedKeys.has(key) || failedModels.has(model)) continue;
+    
     try {
-      const ai = getAI(key);
+      const genAI = getAI(key);
+      const modelInstance = genAI.getGenerativeModel({ model });
+      
       const prompt = `
-Kembalikan JSON valid:
+Kembalikan JSON valid (tanpa markdown code block):
 {
   "summary": "maks 2 kalimat",
   "prompt_hint": "1-3 pertanyaan singkat",
-  "keywords": ["5-10 kata"],
-  "topics": ["maks 5 topik"]
+  "keywords": ["1-5 kata"],
+  "topics": ["maks 3 topik"]
 }
 Judul: ${title}
 Konten:
 """${text.slice(0,8000)}"""
 `;
-      const res = await ai.models.generateContent({
-        model,
-        contents: [{ role:"user", parts:[{ text: prompt }] }],
-        config: { temperature: 0.2 }
-      });
-      return JSON.parse(res.text);
+      const result = await modelInstance.generateContent(prompt);
+      const response = await result.response;
+      const cleanJson = response.text().replace(/```json|```/g, "").trim();
+      return JSON.parse(cleanJson);
+      
     } catch(e) {
       const msg = e.message.toLowerCase();
-      msg.includes('quota') ? failedKeys.add(key) : failedModels.add(model);
+      log.w(`Gagal dengan ${model}: ${msg}`);
+      if (msg.includes('quota') || msg.includes('429')) {
+        failedKeys.add(key);
+      } else {
+        failedModels.add(model);
+      }
     }
   }
   return { summary:'', prompt_hint:'', keywords:[], topics:[] };
@@ -104,49 +111,66 @@ async function main() {
   const logFile = path.join(MINI_DIR, `${dateStr}-LogAI.md`);
   let logMd = `# LogAI - ${dateStr}\n\n`;
 
-//  const files = await globP(path.join(POST_DIR,'*.json'));
-const files = [];
-for await (const file of glob(path.join(POST_DIR, '*.json'))) {
-    files.push(file);
-}
+  // MENGGUNAKAN NATIVE READDIR (Node v20 Compatible)
+  let files = [];
+  try {
+    const allFiles = await fs.readdir(POST_DIR);
+    files = allFiles
+      .filter(f => f.endsWith('.json'))
+      .map(f => path.join(POST_DIR, f));
+  } catch (err) {
+    log.e(`Gagal membaca folder POST_DIR: ${err.message}`);
+    return;
+  }
 
-///
+  log.i(`Ditemukan ${files.length} file JSON untuk diproses.`);
+
   for (const file of files) {
-    const data = JSON.parse(await fs.readFile(file,'utf8'));
+    try {
+      const rawData = await fs.readFile(file, 'utf8');
+      const data = JSON.parse(rawData);
 
-    const oldSummary = data.meta.summary || '';
-    const oldPromptHint = data.meta.prompt_hint || '';
-    const oldKeywords = data.meta.keywords || [];
-    const oldTopics = data.meta.topics || [];
+      // Pastikan objek meta ada
+      if (!data.meta) data.meta = {};
 
-    // generate metadata baru via AI
-    const aiMeta = await aiGenerateMetadata(data.content?.text || '', data.title);
+      const oldSummary = data.meta.summary || '';
+      const oldPromptHint = data.meta.prompt_hint || '';
+      const oldKeywords = data.meta.keywords || [];
+      const oldTopics = data.meta.topics || [];
 
-    const newSummary = aiMeta.summary || oldSummary;
-    const newPromptHint = aiMeta.prompt_hint || oldPromptHint;
-    const newKeywords = aiMeta.keywords || oldKeywords;
-    const newTopics = aiMeta.topics || oldTopics;
+      // Generate metadata via AI
+      const aiMeta = await aiGenerateMetadata(data.content?.text || '', data.title);
 
-    // highlight perubahan
-    const summaryDiff = highlightTextChange(oldSummary, newSummary);
-    const promptHintDiff = highlightTextChange(oldPromptHint, newPromptHint);
-    const keywordsDiff = highlightDiff(oldKeywords, newKeywords);
-    const topicsDiff = highlightDiff(oldTopics, newTopics);
+      const newSummary = aiMeta.summary || oldSummary;
+      const newPromptHint = aiMeta.prompt_hint || oldPromptHint;
+      const newKeywords = aiMeta.keywords || oldKeywords;
+      const newTopics = aiMeta.topics || oldTopics;
 
-    // update cache
-    data.meta.summary = newSummary;
-    data.meta.prompt_hint = newPromptHint;
-    data.meta.keywords = newKeywords;
-    data.meta.topics = newTopics;
-    await fs.writeFile(file, JSON.stringify(data,null,2));
+      // Update data
+      data.meta.summary = newSummary;
+      data.meta.prompt_hint = newPromptHint;
+      data.meta.keywords = newKeywords;
+      data.meta.topics = newTopics;
+      
+      await fs.writeFile(file, JSON.stringify(data, null, 2));
 
-    // log markdown per artikel
-    logMd += `## [${data.title}](${data.url})\n`;
-    logMd += `| Metadata | Sebelumnya | Terbaru |\n|---|---|---|\n`;
-    logMd += `| Summary | ${oldSummary} | ${summaryDiff} |\n`;
-    logMd += `| Prompt Hint | ${oldPromptHint} | ${promptHintDiff} |\n`;
-    logMd += `| Keywords | ${oldKeywords.join(', ')} | ${keywordsDiff.join(', ')} |\n`;
-    logMd += `| Topics | ${oldTopics.join(', ')} | ${topicsDiff.join(', ')} |\n\n`;
+      // Highlight perubahan untuk LogAI
+      const summaryDiff = highlightTextChange(oldSummary, newSummary);
+      const promptHintDiff = highlightTextChange(oldPromptHint, newPromptHint);
+      const keywordsDiff = highlightDiff(oldKeywords, newKeywords);
+      const topicsDiff = highlightDiff(oldTopics, newTopics);
+
+      logMd += `## [${data.title}](${data.url})\n`;
+      logMd += `| Metadata | Sebelumnya | Terbaru |\n|---|---|---|\n`;
+      logMd += `| Summary | ${oldSummary} | ${summaryDiff} |\n`;
+      logMd += `| Prompt Hint | ${oldPromptHint} | ${promptHintDiff} |\n`;
+      logMd += `| Keywords | ${oldKeywords.join(', ')} | ${keywordsDiff.join(', ')} |\n`;
+      logMd += `| Topics | ${oldTopics.join(', ')} | ${topicsDiff.join(', ')} |\n\n`;
+      
+      log.i(`Berhasil memproses: ${path.basename(file)}`);
+    } catch (err) {
+      log.e(`Error pada file ${file}: ${err.message}`);
+    }
   }
 
   await fs.writeFile(logFile, logMd);
@@ -154,8 +178,7 @@ for await (const file of glob(path.join(POST_DIR, '*.json'))) {
 }
 
 // ================= RUN =================
-main().catch(e=>{
-  log.e(e.message);
+main().catch(e => {
+  log.e(e.stack);
   process.exit(1);
 });
-
