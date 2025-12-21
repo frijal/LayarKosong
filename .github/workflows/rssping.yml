@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Bisa dijalankan manual
   schedule:
     # Otomatis tiap hari jam 06:00 UTC (sekitar jam 14:00 WITA)
-    - cron: "0 6 * * *" 
+    - cron: "0 7 * * *" 
 
 jobs:
   generate_index:
