@@ -27,11 +27,10 @@ const log = {
 // ================= MODELS & KEYS =================
 // Disesuaikan ke versi model yang sudah stabil/tersedia publik
 const MODELS = [
-  "gemini-1.5-flash",
-  "gemini-1.5-flash-8b",
-  "gemini-2.5-flash",
-  "gemini-3-pro-preview",
-  "gemini-2.0-flash-exp"
+ "gemini-2.5-flash",
+  "gemini-2.5-flash-lite",
+  "gemma-3-4b",
+  "gemma-3-12b"
 ];
 
 const apiKeys = Object.keys(process.env)
