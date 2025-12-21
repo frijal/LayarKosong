@@ -1,9 +1,9 @@
-name: Generate Layar Kosong AI API + LogAI + Git Tag
+name: Generate Layar Kosong AI API (Final Full)
 
 on:
   workflow_dispatch:
   schedule:
-    # 0 19 * * * = 19:00 UTC, 03:00 WITA
+    # 19:00 UTC = 03:00 WITA
     - cron: "0 19 * * *"
 
 jobs:
@@ -31,8 +31,8 @@ jobs:
     - name: Install Node Dependencies
       run: npm ci
 
-    # 4. Jalankan AI API Generator final full
-    - name: Run AI API Generator + LogAI
+    # 4. Jalankan AI API Generator
+    - name: Run AI API Generator
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
@@ -55,36 +55,32 @@ jobs:
         GEMINI_API_KEY18: ${{ secrets.GEMINI_API_KEY18 }}
         GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
         GEMINI_API_KEY20: ${{ secrets.GEMINI_API_KEY20 }}
-      run: |
-        npm run generate-ai-api
+      run: npm run generate-ai-api
 
-    # 5. Commit, Push, dan Tag hanya jika ada perubahan
-    - name: Commit, Push & Tag Generated Files
+    # 5. Commit, Push, dan Tag jika ada perubahan
+    - name: Commit & Push Updated API & LogAI
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
         git add api/v1/ mini/
 
-        # Cek perubahan
         if git diff --staged --quiet; then
           echo "✅ Tidak ada perubahan di api/v1/ atau mini/. Commit dilewati."
           exit 0
         fi
 
-        # Commit perubahan
-        git commit -m "build(ci): 🤖 Update AI API files + LogAI"
+        git commit -m "build(ci): 🤖 Update AI API & LogAI [ci skip]"
 
-        # Sinkronisasi dengan branch main
+        # Pull rebase untuk aman
         git pull --rebase origin main || git pull origin main
 
         # Push commit
         git push origin main
 
-        # Buat tag Git otomatis
-        TAG_NAME="ai-update-$(date +'%Y%m%d-%H%M%S')"
+        # Buat tag otomatis
+        TAG_NAME="v$(date +'%Y%m%d-%H%M')"
         git tag $TAG_NAME
         git push origin $TAG_NAME
-        echo "🚀 Push selesai dengan tag: $TAG_NAME"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
