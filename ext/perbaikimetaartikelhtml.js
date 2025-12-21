@@ -19,7 +19,8 @@ function normalizeToArray(val) {
   if (!val) return [];
   if (Array.isArray(val)) return val.map(v => String(v).trim()).filter(Boolean);
   if (typeof val === "string") return [val.trim()];
-  if (typeof val === "object") return Object.values(val).map(v => String(v).trim()).filter(Boolean);
+  if (typeof val === "object")
+    return Object.values(val).map(v => String(v).trim()).filter(Boolean);
   return [];
 }
 
@@ -31,7 +32,6 @@ function normalizeToString(val, joiner = " | ") {
 
 function validateSchema(json, slug) {
   const errors = [];
-
   const req = (f, t) => {
     if (!(f in json)) errors.push(`missing ${f}`);
     else if (t && typeof json[f] !== t) errors.push(`invalid ${f}`);
@@ -93,6 +93,8 @@ function strictPostDeduplicator(html) {
   return out;
 }
 
+/* ================== CANONICAL SANITY ================== */
+
 function canonicalSanityCheck(html, expectedUrl) {
   const re = /<link\s+rel=["']canonical["'][^>]*>/gi;
   const found = html.match(re);
@@ -104,6 +106,35 @@ function canonicalSanityCheck(html, expectedUrl) {
   html = html.replace(re, "");
   return html.replace(/<\/head>/i, `${valid}\n</head>`);
 }
+
+/* ================== PATCH v3.2 — HEAD NORMALIZER ================== */
+
+function normalizeHeadWhitespace(html) {
+  const m = html.match(/<head[^>]*>[\s\S]*?<\/head>/i);
+  if (!m) return html;
+
+  const lines = m[0].split("\n");
+  const cleaned = [];
+  let empty = 0;
+
+  for (const line of lines) {
+    if (line.trim() === "") {
+      empty++;
+      if (empty <= 1) cleaned.push("");
+    } else {
+      empty = 0;
+      cleaned.push(line);
+    }
+  }
+
+  let head = cleaned.join("\n")
+    .replace(/<head[^>]*>\s*\n+/i, match => match.replace(/\n+/, "\n"))
+    .replace(/\n+\s*<\/head>/i, "\n</head>");
+
+  return html.replace(m[0], head);
+}
+
+/* ================== QUALITY SCORE ================== */
 
 function qualityScore(html) {
   const checks = [
@@ -217,13 +248,11 @@ for (const file of fs.readdirSync(HTML_DIR)) {
     continue;
   }
 
-  let { out, changed } = injectStrict(html, json);
-  
-out = strictPostDeduplicator(out);
-out = canonicalSanityCheck(out, json.url);
-out = normalizeHeadWhitespace(out);
+  let { out } = injectStrict(html, json);
 
-
+  out = strictPostDeduplicator(out);
+  out = canonicalSanityCheck(out, json.url);
+  out = normalizeHeadWhitespace(out);
 
   const q = qualityScore(out);
   console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
@@ -234,24 +263,4 @@ out = normalizeHeadWhitespace(out);
   } else {
     console.log(`NO CHANGE: ${file}`);
   }
-}
-
-function normalizeHeadWhitespace(html) {
-  const m = html.match(/<head[\s\S]*?<\/head>/i);
-  if (!m) return html;
-
-  let head = m[0];
-
-  // 1. Hapus spasi kosong berlebihan (lebih dari 2 newline)
-  head = head.replace(/\n{3,}/g, "\n\n");
-
-  // 2. Hapus newline tepat sebelum </head>
-  head = head.replace(/\n+\s*<\/head>/i, "\n</head>");
-
-  // 3. Hapus newline tepat setelah <head>
-  head = head.replace(/<head[^>]*>\s*\n+/i, match =>
-    match.replace(/\n+/, "\n")
-  );
-
-  return html.replace(m[0], head);
 }
