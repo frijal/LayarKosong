@@ -1,4 +1,4 @@
-name: Generate Layar Kosong AI API (Manual/Scheduled)
+name: Generate Layar Kosong AI API + LogAI + Git Tag
 
 on:
   workflow_dispatch:
@@ -31,8 +31,8 @@ jobs:
     - name: Install Node Dependencies
       run: npm ci
 
-    # 4. Jalankan AI API Generator via NPM Script
-    - name: Run AI API Generator
+    # 4. Jalankan AI API Generator final full
+    - name: Run AI API Generator + LogAI
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
@@ -56,31 +56,35 @@ jobs:
         GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
         GEMINI_API_KEY20: ${{ secrets.GEMINI_API_KEY20 }}
       run: |
-        # Tentukan tanggal hari ini untuk nama file log
-        export TODAY=$(date -u +%Y-%m-%d)
-        export LOG_FILE="mini/${TODAY}-LogAI.md"
+        npm run generate-ai-api
 
-        # Jalankan generator dan simpan log ke file
-        npm run generate-ai-api | tee $LOG_FILE
-
-    # 5. Commit & Push hasil API JSON + LogAI jika ada perubahan
-    - name: Commit & Push Generated Files
+    # 5. Commit, Push, dan Tag hanya jika ada perubahan
+    - name: Commit, Push & Tag Generated Files
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
         git add api/v1/ mini/
 
-        # Cek apakah ada perubahan staged
+        # Cek perubahan
         if git diff --staged --quiet; then
           echo "✅ Tidak ada perubahan di api/v1/ atau mini/. Commit dilewati."
           exit 0
         fi
 
-        git commit -m "build(ci): 🤖 Generate/update AI API files + LogAI"
-        echo "🔃 Sinkronisasi dengan branch main..."
+        # Commit perubahan
+        git commit -m "build(ci): 🤖 Update AI API files + LogAI"
+
+        # Sinkronisasi dengan branch main
         git pull --rebase origin main || git pull origin main
-        echo "🚀 Push perubahan ke server..."
+
+        # Push commit
         git push origin main
+
+        # Buat tag Git otomatis
+        TAG_NAME="ai-update-$(date +'%Y%m%d-%H%M%S')"
+        git tag $TAG_NAME
+        git push origin $TAG_NAME
+        echo "🚀 Push selesai dengan tag: $TAG_NAME"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
