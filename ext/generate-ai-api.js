@@ -33,8 +33,9 @@ function log(msg){ console.log(msg); logMsgs.push(msg.replace(/`/g,'')); }
 const MODELS = [
   "gemini-2.5-flash",
   "gemini-2.5-flash-lite",
-  "gemini-2.5-flash-tts",
   "gemini-robotics-er-1.5-preview",
+  "gemini-2.5-flash-tts",
+  "gemini-3-flash",
   "gemma-3-12b",
   "gemma-3-1b",
   "gemma-3-27b",
