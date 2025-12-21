@@ -7,10 +7,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GoogleGenAI } from '@google/genai';
-import glob from 'glob';
-import { promisify } from 'util';
-const globP = promisify(glob);
-
+// import glob from 'glob';
+// import { promisify } from 'util';
+// const globP = promisify(glob);
+import { glob } from 'node:fs/promises';
 // ================= PATH =================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -104,8 +104,13 @@ async function main() {
   const logFile = path.join(MINI_DIR, `${dateStr}-LogAI.md`);
   let logMd = `# LogAI - ${dateStr}\n\n`;
 
-  const files = await globP(path.join(POST_DIR,'*.json'));
+//  const files = await globP(path.join(POST_DIR,'*.json'));
+const files = [];
+for await (const file of glob(path.join(POST_DIR, '*.json'))) {
+    files.push(file);
+}
 
+///
   for (const file of files) {
     const data = JSON.parse(await fs.readFile(file,'utf8'));
 
