@@ -5,73 +5,55 @@ import path from "path";
 
 const HTML_DIR = "artikel";
 const JSON_DIR = "api/v1/post";
+const REPORT_FILE =
+  `mini/AuditInjectHTML-${new Date().toISOString().slice(0,10).replace(/-/g,"")}.md`;
 
-/* ================== UTIL DASAR ================== */
+/* ================== REPORT STATE ================== */
 
-function esc(str = "") {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/"/g, "&quot;")
-    .replace(/</g, "&lt;");
-}
+const report = {
+  date: new Date().toISOString(),
+  total: 0,
+  updated: [],
+  noChange: [],
+  skippedJson: [],
+  skippedSchema: [],
+  quality: []
+};
 
-function normalizeToArray(val) {
-  if (!val) return [];
-  if (Array.isArray(val)) return val.map(v => String(v).trim()).filter(Boolean);
-  if (typeof val === "string") return [val.trim()];
-  if (typeof val === "object") return Object.values(val).map(v => String(v).trim()).filter(Boolean);
-  return [];
-}
+/* ================== UTIL ================== */
 
-function normalizeToString(val, joiner = " | ") {
-  return normalizeToArray(val).join(joiner);
-}
+const esc = (s="") =>
+  String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+
+const normalizeToArray = v =>
+  !v ? [] :
+  Array.isArray(v) ? v.map(x=>String(x).trim()).filter(Boolean) :
+  typeof v === "object" ? Object.values(v).map(x=>String(x).trim()).filter(Boolean) :
+  [String(v).trim()];
+
+const normalizeToString = (v, j=", ") => normalizeToArray(v).join(j);
 
 /* ================== SCHEMA VALIDATOR ================== */
 
-function validateSchema(json, slug) {
-  const errors = [];
-
-  const req = (f, t) => {
-    if (!(f in json)) errors.push(`missing ${f}`);
-    else if (t && typeof json[f] !== t) errors.push(`invalid ${f}`);
-  };
-
-  req("title", "string");
-  req("url", "string");
-  req("published_at", "string");
-  req("meta", "object");
-
-  if (errors.length) {
-    console.warn(`⚠ SCHEMA INVALID (${slug}): ${errors.join(", ")}`);
-    return false;
-  }
-  return true;
-}
-
-/* ================== HTML MINI ================== */
-
-function extractMeta(html, name) {
-  const m = html.match(
-    new RegExp(`<meta[^>]+name=["']${name}["'][^>]+content=["']([^"']*)`, "i")
+function validateSchema(json) {
+  return (
+    json &&
+    typeof json.title === "string" &&
+    typeof json.url === "string" &&
+    typeof json.published_at === "string" &&
+    typeof json.meta === "object"
   );
-  return m ? m[1].trim() : null;
 }
 
-function extractProperty(html, prop) {
-  const m = html.match(
-    new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']*)`, "i")
-  );
-  return m ? m[1].trim() : null;
-}
+/* ================== HTML HELPERS ================== */
 
-function hasJSONLDArticle(html) {
-  return /"@type"\s*:\s*"Article"/i.test(html);
-}
+const extractMeta = (h,n) =>
+  (h.match(new RegExp(`<meta[^>]+name=["']${n}["'][^>]+content=["']([^"']*)`,"i"))||[])[1];
 
-function remove(html, regex) {
-  return html.replace(regex, "");
-}
+const extractProp = (h,p) =>
+  (h.match(new RegExp(`<meta[^>]+property=["']${p}["'][^>]+content=["']([^"']*)`,"i"))||[])[1];
+
+const remove = (h,r) => h.replace(r,"");
 
 /* ================== DEDUPLICATOR ================== */
 
@@ -79,156 +61,172 @@ function dedupeMetaByKey(html, attr, prefix) {
   const re = new RegExp(`<meta\\s+${attr}="${prefix}[^"]*"[^>]*>`, "gi");
   const found = html.match(re);
   if (!found || found.length <= 1) return html;
-
-  const last = found[found.length - 1];
-  html = html.replace(re, "");
-  return html.replace(/<\/head>/i, `${last}\n</head>`);
+  const last = found.pop();
+  return html.replace(re,"").replace(/<\/head>/i,`${last}\n</head>`);
 }
 
-function strictPostDeduplicator(html) {
-  let out = html;
-  out = dedupeMetaByKey(out, "property", "og:");
-  out = dedupeMetaByKey(out, "name", "twitter:");
-  out = dedupeMetaByKey(out, "property", "article:");
-  return out;
-}
+const strictPostDeduplicator = h =>
+  dedupeMetaByKey(
+    dedupeMetaByKey(
+      dedupeMetaByKey(h,"property","og:"),
+      "name","twitter:"
+    ),
+    "property","article:"
+  );
 
-function canonicalSanityCheck(html, expectedUrl) {
+/* ================== CANONICAL SANITY ================== */
+
+function canonicalSanityCheck(html, url) {
   const re = /<link\s+rel=["']canonical["'][^>]*>/gi;
   const found = html.match(re);
   if (!found || found.length <= 1) return html;
-
-  const valid = found.find(l => l.includes(expectedUrl));
-  if (!valid) return html;
-
-  html = html.replace(re, "");
-  return html.replace(/<\/head>/i, `${valid}\n</head>`);
+  const valid = found.find(x => x.includes(url));
+  return valid
+    ? html.replace(re,"").replace(/<\/head>/i,`${valid}\n</head>`)
+    : html;
 }
 
+/* ================== WHITESPACE NORMALIZER ================== */
+
+function normalizeHeadWhitespace(html) {
+  const m = html.match(/<head[\s\S]*?<\/head>/i);
+  if (!m) return html;
+  const cleaned = m[0]
+    .split("\n")
+    .filter((l,i,a)=>!(l.trim()==="" && a[i-1]?.trim()===""))
+    .join("\n")
+    .replace(/\n{3,}/g,"\n\n");
+  return html.replace(m[0], cleaned);
+}
+
+/* ================== QUALITY ================== */
+
 function qualityScore(html) {
-  const checks = [
-    /<meta name="description"/i,
-    /<link rel="canonical"/i,
+  const rules = [
+    /name="description"/i,
+    /rel="canonical"/i,
     /property="og:title"/i,
     /property="og:image"/i,
     /name="twitter:card"/i,
-    /application\/ld\+json/i,
-    /name="news_keywords"/i,
-    /name="ai:summary"/i
+    /ld\+json/i,
+    /news_keywords/i,
+    /ai:summary/i
   ];
-  const score = checks.filter(r => r.test(html)).length;
-  return { score, max: checks.length };
+  const score = rules.filter(r=>r.test(html)).length;
+  return { score, max: rules.length, percent: Math.round(score/rules.length*100) };
 }
 
 /* ================== INJECT STRICT ================== */
 
 function injectStrict(html, json) {
   let out = html;
-  let changed = false;
   const meta = json.meta || {};
 
-  const injectMeta = (name, val) => {
-    if (!val || extractMeta(out, name) === val) return;
-    out = remove(out, new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>\\s*`, "gi"));
-    out = out.replace("</head>", `<meta name="${name}" content="${esc(val)}">\n</head>`);
-    changed = true;
+  const inject = (n,v) => {
+    if (!v || extractMeta(out,n)===v) return;
+    out = remove(out,new RegExp(`<meta[^>]+name=["']${n}["'][^>]*>\\s*`,"gi"));
+    out = out.replace("</head>",`<meta name="${n}" content="${esc(v)}">\n</head>`);
   };
 
-  if (meta.summary) {
-    injectMeta("description", meta.summary);
-    injectMeta("ai:summary", meta.summary);
-  }
+  inject("description", meta.summary);
+  inject("ai:summary", meta.summary);
+  inject("news_keywords", normalizeToString(meta.keywords));
+  inject("ai:topics", normalizeToString(meta.topics));
+  inject("ai:prompt_hint", normalizeToString(meta.prompt_hint," | "));
 
-  injectMeta("news_keywords", normalizeToString(meta.keywords, ", "));
-  injectMeta("ai:topics", normalizeToString(meta.topics, ", "));
-  injectMeta("ai:prompt_hint", normalizeToString(meta.prompt_hint, " | "));
-
-  if (extractProperty(out, "og:title") !== json.title) {
-    out = remove(out, /<meta[^>]+property=["']og:[^>]+>\\s*/gi);
-    out = out.replace(
-      "</head>",
-      `<meta property="og:type" content="article">
+  if (extractProp(out,"og:title") !== json.title) {
+    out = remove(out,/<meta[^>]+property=["']og:[^>]+>\\s*/gi);
+    out = out.replace("</head>",
+`<meta property="og:type" content="article">
 <meta property="og:title" content="${esc(json.title)}">
-<meta property="og:description" content="${esc(meta.summary || "")}">
-<meta property="og:image" content="${json.image || ""}">
+<meta property="og:description" content="${esc(meta.summary||"")}">
+<meta property="og:image" content="${json.image||""}">
 <meta property="og:url" content="${json.url}">
-</head>`
-    );
-    changed = true;
+</head>`);
   }
 
-  if (extractMeta(out, "twitter:title") !== json.title) {
-    out = remove(out, /<meta[^>]+name=["']twitter:[^>]+>\\s*/gi);
-    out = out.replace(
-      "</head>",
-      `<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(json.title)}">
-<meta name="twitter:description" content="${esc(meta.summary || "")}">
-<meta name="twitter:image" content="${json.image || ""}">
-</head>`
-    );
-    changed = true;
+  if (!/ld\+json/i.test(out)) {
+    out = remove(out,/<script[^>]*ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi);
+    out = out.replace("</head>",
+`<script type="application/ld+json">${JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"Article",
+  headline:json.title,
+  datePublished:json.published_at,
+  mainEntityOfPage:json.url,
+  image:json.image,
+  keywords:normalizeToArray(meta.keywords),
+  description:meta.summary||""
+})}</script>
+</head>`);
   }
 
-  if (!hasJSONLDArticle(out)) {
-    out = remove(out, /<script[^>]+application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi);
-    out = out.replace(
-      "</head>",
-      `<script type="application/ld+json">
-${JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: json.title,
-  datePublished: json.published_at,
-  articleSection: json.category,
-  mainEntityOfPage: json.url,
-  image: json.image,
-  keywords: normalizeToArray(meta.keywords),
-  description: meta.summary || ""
-}, null, 2)}
-</script>
-</head>`
-    );
-    changed = true;
-  }
-
-  return { out, changed };
+  return out;
 }
 
-/* ================== MAIN LOOP ================== */
+/* ================== MAIN ================== */
 
 for (const file of fs.readdirSync(HTML_DIR)) {
   if (!file.endsWith(".html")) continue;
+  report.total++;
 
-  const slug = file.replace(".html", "");
-  const htmlPath = path.join(HTML_DIR, file);
-  const jsonPath = path.join(JSON_DIR, `${slug}.json`);
+  const slug = file.replace(".html","");
+  const htmlPath = path.join(HTML_DIR,file);
+  const jsonPath = path.join(JSON_DIR,`${slug}.json`);
 
   if (!fs.existsSync(jsonPath)) {
-    console.log(`SKIP (JSON missing): ${file}`);
+    report.skippedJson.push(file);
     continue;
   }
 
-  const html = fs.readFileSync(htmlPath, "utf8");
-  const json = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  const html = fs.readFileSync(htmlPath,"utf8");
+  const json = JSON.parse(fs.readFileSync(jsonPath,"utf8"));
 
-  if (!validateSchema(json, slug)) {
-    console.log(`SKIP (schema invalid): ${file}`);
+  if (!validateSchema(json)) {
+    report.skippedSchema.push(file);
     continue;
   }
 
-  let { out, changed } = injectStrict(html, json);
-
+  let out = injectStrict(html,json);
   out = strictPostDeduplicator(out);
-  out = canonicalSanityCheck(out, json.url);
+  out = canonicalSanityCheck(out,json.url);
+  out = normalizeHeadWhitespace(out);
 
   const q = qualityScore(out);
-  console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
+  report.quality.push({ file, ...q });
 
   if (out !== html) {
-    fs.writeFileSync(htmlPath, out);
-    console.log(`UPDATED (strict): ${file}`);
+    fs.writeFileSync(htmlPath,out);
+    report.updated.push(file);
   } else {
-    console.log(`NO CHANGE: ${file}`);
+    report.noChange.push(file);
   }
 }
+
+/* ================== REPORT ================== */
+
+function generateReport(r) {
+  const avg = Math.round(
+    r.quality.reduce((a,b)=>a+b.percent,0)/(r.quality.length||1)
+  );
+
+  let md = `# Audit Inject HTML (Strict)\n\n`;
+  md += `Tanggal: ${r.date}\n\n`;
+  md += `| Item | Jumlah |\n|---|---|\n`;
+  md += `| Total | ${r.total} |\n`;
+  md += `| Updated | ${r.updated.length} |\n`;
+  md += `| No Change | ${r.noChange.length} |\n`;
+  md += `| Skip JSON | ${r.skippedJson.length} |\n`;
+  md += `| Skip Schema | ${r.skippedSchema.length} |\n`;
+  md += `| Avg Quality | ${avg}% |\n\n`;
+
+  md += `## Quality Detail\n\n| File | Score |\n|---|---|\n`;
+  r.quality.forEach(q=>{
+    md += `| ${q.file} | ${q.score}/${q.max} (${q.percent}%) |\n`;
+  });
+
+  return md;
+}
+
+fs.writeFileSync(REPORT_FILE, generateReport(report));
+console.log(`✔ Report generated: ${REPORT_FILE}`);

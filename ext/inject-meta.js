@@ -35,25 +35,6 @@ async function processFile(filePath) {
   const titleMatch = html.match(/<title>(.*?)<\/title>/i);
   const altText = titleMatch ? titleMatch[1].trim() : base;
 
-  /* ========= 1) JSON-LD ========= */
-  html = html.replace(
-    /<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi,
-                      (match, jsonText) => {
-                        try {
-                          const data = JSON.parse(jsonText);
-                          Array.isArray(data)
-                          ? data.forEach((o) => fixImageRecursive(o, img))
-                          : fixImageRecursive(data, img);
-
-                          return `<script type="application/ld+json">${JSON.stringify(
-                            data,
-                          )}</script>`;
-                        } catch {
-                          return match;
-                        }
-                      },
-  );
-
   /* ========= 2) META TAGS ========= */
   const meta = [];
 
