@@ -40,7 +40,7 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
 
           git status
-          git add artikel/ AuditInjectHTML-*.md || true
+          git add artikel/*.html mini/AuditInjectHTML-*.md || true
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
