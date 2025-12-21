@@ -1,29 +1,45 @@
-name: perbaiki meta artikel.html
+name: Audit & Inject Article Metadata (Strict)
 
 on:
   push:
     paths:
-      - "api/post/**/*.json"      
+      - "api/post/**/*.json"
   workflow_dispatch:
+
+# 🔑 WAJIB: izin write ke repository
+permissions:
+  contents: write
 
 jobs:
   audit:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - run: node ext/perbaikimetaartikelhtml.js
+      - name: Run strict audit & inject
+        run: node ext/perbaikimetaartikelhtml.js
 
-      - run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+      - name: Commit changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@users.noreply.github.com"
+
+          git status
           git add artikel/*.html
-          git diff --cached --quiet || git commit -m "auto: audit & inject article metadata"
 
-      - run: git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto: strict inject article metadata"
+            git push
+          fi
