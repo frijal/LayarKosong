@@ -1,9 +1,9 @@
-name: Generate Layar Kosong AI API + LogAI
+name: Generate Layar Kosong AI API (Final)
 
 on:
   workflow_dispatch:
   schedule:
-    # 19:00 UTC = 03:00 WITA
+    # Setiap hari jam 03:00 WITA / 19:00 UTC
     - cron: "0 19 * * *"
 
 jobs:
@@ -13,71 +13,72 @@ jobs:
       contents: write
 
     steps:
-      # 1. Checkout repository
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+    # 1. Checkout repository
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+    # 2. Setup Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
 
-      # 3. Install dependencies
-      - name: Install Node Dependencies
-        run: npm ci
+    # 3. Install dependencies
+    - name: Install Node Dependencies
+      run: npm ci
 
-      # 4. Run AI API Generator
-      - name: Run AI API Generator
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
-          GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
-          GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
-          GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
-          GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
-          GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
-          GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
-          GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
-          GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
-          GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
-          GEMINI_API_KEY11: ${{ secrets.GEMINI_API_KEY11 }}
-          GEMINI_API_KEY12: ${{ secrets.GEMINI_API_KEY12 }}
-          GEMINI_API_KEY13: ${{ secrets.GEMINI_API_KEY13 }}
-          GEMINI_API_KEY14: ${{ secrets.GEMINI_API_KEY14 }}
-          GEMINI_API_KEY15: ${{ secrets.GEMINI_API_KEY15 }}
-          GEMINI_API_KEY16: ${{ secrets.GEMINI_API_KEY16 }}
-          GEMINI_API_KEY17: ${{ secrets.GEMINI_API_KEY17 }}
-          GEMINI_API_KEY18: ${{ secrets.GEMINI_API_KEY18 }}
-          GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
-          GEMINI_API_KEY20: ${{ secrets.GEMINI_API_KEY20 }}
-        run: npm run generate-ai-api
+    # 4. Jalankan AI API Generator
+    - name: Run AI API Generator
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        GEMINI_API_KEY1: ${{ secrets.GEMINI_API_KEY1 }}
+        GEMINI_API_KEY2: ${{ secrets.GEMINI_API_KEY2 }}
+        GEMINI_API_KEY3: ${{ secrets.GEMINI_API_KEY3 }}
+        GEMINI_API_KEY4: ${{ secrets.GEMINI_API_KEY4 }}
+        GEMINI_API_KEY5: ${{ secrets.GEMINI_API_KEY5 }}
+        GEMINI_API_KEY6: ${{ secrets.GEMINI_API_KEY6 }}
+        GEMINI_API_KEY7: ${{ secrets.GEMINI_API_KEY7 }}
+        GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
+        GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
+        GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
+        GEMINI_API_KEY11: ${{ secrets.GEMINI_API_KEY11 }}
+        GEMINI_API_KEY12: ${{ secrets.GEMINI_API_KEY12 }}
+        GEMINI_API_KEY13: ${{ secrets.GEMINI_API_KEY13 }}
+        GEMINI_API_KEY14: ${{ secrets.GEMINI_API_KEY14 }}
+        GEMINI_API_KEY15: ${{ secrets.GEMINI_API_KEY15 }}
+        GEMINI_API_KEY16: ${{ secrets.GEMINI_API_KEY16 }}
+        GEMINI_API_KEY17: ${{ secrets.GEMINI_API_KEY17 }}
+        GEMINI_API_KEY18: ${{ secrets.GEMINI_API_KEY18 }}
+        GEMINI_API_KEY19: ${{ secrets.GEMINI_API_KEY19 }}
+        GEMINI_API_KEY20: ${{ secrets.GEMINI_API_KEY20 }}
+      run: npm run generate-ai-api
 
-      # 5. Commit & push changes jika ada
-      - name: Commit & Push API JSON & LogAI
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    # 5. Commit & Push perubahan JSON & LogAI
+    - name: Commit & Push Generated Files
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add api/v1/ mini/
+        git add api/v1/ mini/
 
-          if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan di api/v1/ atau mini/. Commit dilewati."
-            exit 0
-          fi
+        if git diff --cached --quiet; then
+          echo "✅ Tidak ada perubahan di api/v1/ atau mini/. Commit dilewati."
+          exit 0
+        fi
 
-          git commit -m "build(ci): 🤖 Update AI API & LogAI"
+        git commit -m "build(ci): 🤖 Update AI API & LogAI"
 
-          echo "🔃 Sinkronisasi dengan branch main..."
-          git pull --rebase origin main || git pull origin main
-          echo "🚀 Push perubahan ke server..."
-          git push origin main
+        # Tambahkan tag Git otomatis
+        TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+        git tag -a "ai-update-${TIMESTAMP}" -m "Update AI API & LogAI ${TIMESTAMP}"
 
-          # Tambahkan tag Git otomatis
-          TAG_NAME="logai-$(date +'%Y-%m-%d')"
-          git tag -a "$TAG_NAME" -m "Update AI API & LogAI ${TAG_NAME}"
-          git push origin "$TAG_NAME"
+        echo "🔃 Sinkronisasi dengan branch main..."
+        git pull --rebase origin main || git pull origin main
+
+        echo "🚀 Push perubahan dan tag ke server..."
+        git push origin main --tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
