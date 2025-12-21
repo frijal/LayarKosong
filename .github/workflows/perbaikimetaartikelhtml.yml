@@ -45,8 +45,6 @@ jobs:
           fi
 
           git commit -m "build(ci): 🤖 Update AI API JSON & AuditInjectHTML"
-          echo "🔃 Pull latest main..."
-          git pull --rebase origin main || git pull origin main
           echo "🚀 Push changes..."
           git push origin main
 
