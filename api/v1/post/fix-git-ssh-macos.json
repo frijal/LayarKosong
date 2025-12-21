@@ -1,0 +1,18 @@
+{
+  "id": "fix-git-ssh-macos",
+  "slug": "fix-git-ssh-macos",
+  "title": "Perbaiki Error “cannot run ssh” di Git — macOS",
+  "category": "🖥️ Teknologi Web, AI & Umum",
+  "published_at": "2025-08-25T04:53:51.214+00:00",
+  "url": "https://dalam.web.id/artikel/fix-git-ssh-macos.html",
+  "image": "https://dalam.web.id/img/fix-git-ssh-macos.webp",
+  "content": {
+    "text": "Perbaiki Error “cannot run ssh” di Git (macOS) Cara memperbaiki error Git yang gagal menjalankan SSH di Terminal macOS. error: cannot run ssh: No such file or directory fatal: unable to fork Error ini biasanya muncul kalau macOS belum punya ssh yang terdeteksi di PATH, atau Git kamu diinstal tanpa Xcode Command Line Tools. 🧩 1. Cek SSH di macOS Buka Terminal, lalu jalankan: which ssh Kalau muncul seperti ini: /usr/bin/ssh berarti SSH sudah ada. Kalau tidak muncul, lanjut ke langkah berikut. ⚙️ 2. Instal Command Line Tools macOS membutuhkan paket Xcode Command Line Tools agar Git dan SSH berfungsi penuh. Jalankan perintah ini: xcode-select --install 💡 3. Jika Kamu Pakai Homebrew Kalau Git diinstal lewat Homebrew, pastikan openssh juga ikut terinstal: brew install openssh Lalu pastikan PATH mengarah ke folder Homebrew: echo $PATH Jika perlu, tambahkan ke shell config kamu (~/.zshrc atau ~/.bash_profile): export PATH=\"/usr/local/bin:/usr/local/sbin:$PATH\" 🧠 4. Cek Integrasi Git dengan SSH Untuk memastikan Git mengenali SSH, jalankan: GIT_SSH_COMMAND=\"ssh -v\" git fetch Jika muncul log debug SSH tanpa error “cannot run ssh”, berarti sudah aman. 🔧 5. Script Otomatis Kamu bisa gunakan script kecil ini untuk mengecek dan memperbaiki otomatis di macOS: #!/bin/bash # fix-git-ssh-macos.sh echo \"🔍 Mengecek instalasi SSH dan Git di macOS...\" if ! command -v ssh >/dev/null; then echo \"⚙️ Menginstal Xcode Command Line Tools...\" xcode-select --install else echo \"✅ SSH sudah ada di sistem.\" fi if ! command -v git >/dev/null; then echo \"⚙️ Menginstal Git melalui Homebrew...\" if ! command -v brew >/dev/null; then echo \"❌ Homebrew belum terinstal. Instal dulu di https://brew.sh\" else brew install git fi else echo \"✅ Git sudah terinstal.\" fi ssh -V git --version echo \"✅ Semua komponen siap digunakan untuk Git SSH!\" Tunggu hingga selesai. Setelah itu, cek ulang: git --version ssh -V Kalau dua-duanya muncul, berarti sistem sudah lengkap. 🎉"
+  },
+  "meta": {
+    "summary": "Panduan lengkap memperbaiki error Git",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan lengkap memperbaiki error Git"
+  }
+}

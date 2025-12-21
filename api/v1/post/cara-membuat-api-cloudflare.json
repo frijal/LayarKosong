@@ -1,0 +1,18 @@
+{
+  "id": "cara-membuat-api-cloudflare",
+  "slug": "cara-membuat-api-cloudflare",
+  "title": "Cara Membuat API Cloudflare",
+  "category": "🖥️ Teknologi Web, AI & Umum",
+  "published_at": "2025-10-26T18:18:01.828+00:00",
+  "url": "https://dalam.web.id/artikel/cara-membuat-api-cloudflare.html",
+  "image": "https://dalam.web.id/img/cara-membuat-api-cloudflare.webp",
+  "content": {
+    "text": "Cara Membuat API Cloudflare Sering pusing harus bolak-balik buka dashboard Cloudflare cuma buat hapus cache, ubah DNS, atau deploy project? Tenang, ada cara otomatisnya pakai Cloudflare API Token. Ini dia panduan lengkap dan santainya, langkah demi langkah. 1️⃣ Langkah 1 – Masuk ke Halaman API Tokens Pertama-tama, langsung aja meluncur ke dashboard Cloudflare kamu, tepatnya di bagian API Token. Kamu bisa klik link ini buat pintasan: https://dash.cloudflare.com/profile/api-tokens Nanti di halaman itu, cari dan klik tombol biru yang tulisannya “Create Token”. 2️⃣ Langkah 2 – Pilih Jenis Token Di sini, Cloudflare ngasih banyak pilihan. Biar gampang dan aman, kamu bisa pakai template yang udah ada. Misalnya, kalau cuma buat hapus cache (purge), pilih aja “Zone: Cache Purge”. Tapi kalau butuh yang lebih spesifik, kamu bisa pilih \"Create Custom Token\". Ini contoh setting izin (permission) yang sering dipakai: Permissions (Izin): - Zone → Cache Purge → Edit (Untuk hapus cache) - Zone → Zone → Read (Untuk baca info zona) Kalau mau juga sekalian ubah DNS otomatis (misalnya buat ganti IP): - Zone → DNS → Edit (Untuk edit data DNS) 3️⃣ Langkah 3 – Buat dan Simpan Token (PENTING!) Setelah atur semua izin dan klik \"Create Token\", Cloudflare bakal ngasih kamu satu kode API yang panjang banget. Kayak gini contohnya: CF_API_TOKEN = 1a2b3c4d5e6f7g8h9iJkLmNoPqRsTuVwXyZ... PERHATIAN: Langsung salin (copy) dan simpan token ini di tempat yang aman (kayak password manager). Token ini cuma bakal muncul SATU KALI AJA. Kalau halaman ini kamu refresh atau tutup, tokennya hilang selamanya dan kamu harus bikin baru lagi. 4️⃣ Langkah 4 – Simpan Token di GitHub Secrets Nah, token ini paling sering dipakai buat otomatisasi di GitHub Actions. Biar aman, jangan taruh tokennya langsung di kode kamu. Simpan di \"Secrets\". Masuk ke repositori GitHub kamu, terus ke: Settings → Secrets and variables → Actions → New repository secret Lalu isi formulirnya: Name: CF_API_TOKEN Value: tempel_token_rahasia_kamu_di_sini 5️⃣ Langkah 5 – Tes Token (Biar Yakin) Mau mastiin tokennya berfungsi? Kamu bisa tes pakai curl di terminal kamu. Ganti <TOKEN_KAMU> dengan token yang tadi kamu salin: curl -X GET \"https://api.cloudflare.com/client/v4/user/tokens/verify\" \\ -H \"Authorization: Bearer <TOKEN_KAMU>\" \\ -H \"Content-Type: application/json\" Kalau balasannya ada \"success\": true, selamat! 🎉 Token kamu aktif dan siap dipakai buat otomatisasi. Gampang, 'kan? Bermanfaat? Bagikan! Kalau panduan ini ngebantu, jangan ragu buat bagikan ke teman-teman kamu yang mungkin juga butuh."
+  },
+  "meta": {
+    "summary": "Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token."
+  }
+}

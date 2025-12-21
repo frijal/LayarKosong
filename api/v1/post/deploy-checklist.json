@@ -1,0 +1,18 @@
+{
+  "id": "deploy-checklist",
+  "slug": "deploy-checklist",
+  "title": "Deploy Checklist — Panduan Sebelum Mengirim ke Github dan Cloudflare Pages ✅",
+  "category": "🖥️ Teknologi Web, AI & Umum",
+  "published_at": "2025-10-23T07:03:49.515+00:00",
+  "url": "https://dalam.web.id/artikel/deploy-checklist.html",
+  "image": "https://dalam.web.id/img/deploy-checklist.webp",
+  "content": {
+    "text": "Checklist ini berguna banget biar kamu gak lupa hal-hal penting sebelum situs tayang ke publik. Yuk, periksa satu per satu dengan santai tapi teliti: 🔹 1. File Publik Wajib Ada [ ] index.html [ ] 404.html [ ] robots.txt [ ] sitemap.xml dan variasinya [ ] rss.xml / feed-*.xml [ ] favicon.* (ico/png/svg) [ ] site.webmanifest [ ] Folder publik: artikel/, img/, ext/ [ ] File verifikasi search engine (Google/Bing) bila perlu 🔹 2. Pastikan File Sensitif Tidak Ikut [ ] .env, API key, credential → tidak ada di repo [ ] node_modules/, package.json → exclude [ ] Draft atau eksperimen: artikelx/, sementara/ → exclude [ ] Skrip internal seperti replace-meta-images.sh → exclude 🔹 3. Validasi Ignore & Config [ ] .gitignore → pastikan filter file sensitif [ ] .wranglerignore → filter file non-publik [ ] wrangler.toml → pastikan direktori output benar 🔹 4. Cek Build Lokal [ ] Jalankan build/test lokal (kalau pakai framework) [ ] Buka index.html di browser → periksa link & gambar [ ] Pastikan tidak ada broken link 🔹 5. Deploy & Verifikasi [ ] Commit & Push ke GitHub [ ] Cloudflare Pages build & deploy otomatis [ ] Cek URL publik: /, /sitemap.xml, /artikel/ 🔹 6. Opsional: Bersihkan Deploy Lama [ ] Hapus deploy lama bila mengandung file sensitif [ ] Rotasi credential (API key/token) bila sempat bocor Checklist ini dibuat dengan semangat open-source. Jangan lupa minum kopi dulu ☕ sebelum tekan tombol deploy biar gak salah folder 😄."
+  },
+  "meta": {
+    "summary": "Checklist cepat sebelum push ke GitHub dan deploy ke Cloudflare Pages. Pastikan semua file publik, konfigurasi, dan keamanan sudah siap sebelum online.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Checklist cepat sebelum push ke GitHub dan deploy ke Cloudflare Pages. Pastikan semua file publik, konfigurasi, dan keamanan sudah siap sebelum online."
+  }
+}

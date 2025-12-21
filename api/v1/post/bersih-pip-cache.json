@@ -1,0 +1,18 @@
+{
+  "id": "bersih-pip-cache",
+  "slug": "bersih-pip-cache",
+  "title": "Skrip Shell Bersih Cache pip di Linux",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-10-03T11:14:58.926+00:00",
+  "url": "https://dalam.web.id/artikel/bersih-pip-cache.html",
+  "image": "https://dalam.web.id/img/bersih-pip-cache.webp",
+  "content": {
+    "text": "🐧 Skrip Shell untuk Membersihkan Cache pip di Linux Cache pip bisa membengkak seiring waktu. Supaya lebih praktis, kita bisa bikin skrip shell sederhana untuk membersihkannya secara otomatis. 📜 Isi Skrip Simpan kode berikut sebagai bersih-pip-cache.sh: #!/bin/bash echo \"🧹 Membersihkan cache pip...\" if ! command -v pip &> /dev/null; then echo \"❌ pip tidak ditemukan. Pastikan Python dan pip sudah terinstal.\" exit 1 fi echo \"📦 Info cache pip sebelum dibersihkan:\" pip cache info pip cache purge echo \"✅ Cache pip telah dibersihkan.\" pip cache info ▶️ Cara Menjalankan Beri izin eksekusi: chmod +x bersih-pip-cache.sh Jalankan manual: ./bersih-pip-cache.sh ⏰ Jalankan Otomatis via cron Edit cron dengan crontab -e lalu tambahkan baris ini untuk membersihkan cache setiap Senin jam 09:00: 0 9 * * 1 /path/to/bersih-pip-cache.sh >> ~/.log/bersih-pip.log 2>&1 👉 Log hasil pembersihan akan tersimpan di ~/.log/bersih-pip.log. ⚠️ Catatan Skrip ini hanya menghapus cache, tidak mengganggu paket Python yang sudah terinstal. Setelah cache dibersihkan, pip akan mengunduh ulang paket jika dibutuhkan."
+  },
+  "meta": {
+    "summary": "Panduan membuat skrip shell sederhana untuk membersihkan cache pip secara otomatis di Linux. Bisa dijalankan manual atau dijadwalkan via cron.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan membuat skrip shell sederhana untuk membersihkan cache pip secara otomatis di Linux. Bisa dijalankan manual atau dijadwalkan via cron."
+  }
+}

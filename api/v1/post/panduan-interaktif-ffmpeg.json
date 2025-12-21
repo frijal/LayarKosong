@@ -1,0 +1,18 @@
+{
+  "id": "panduan-interaktif-ffmpeg",
+  "slug": "panduan-interaktif-ffmpeg",
+  "title": "Panduan Interaktif FFmpeg Visual: Audio &amp; Video",
+  "category": "📸 Multimedia & Editing",
+  "published_at": "2025-06-02T23:20:38.199+00:00",
+  "url": "https://dalam.web.id/artikel/panduan-interaktif-ffmpeg.html",
+  "image": "https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp",
+  "content": {
+    "text": "Selamat Datang! 👋 Panduan interaktif FFmpeg visual untuk audio & video. Pilih topik di menu sebelah kiri. Tiap blok menampilkan diagram visual proses dan tombol \"Salin\" untuk menyalin perintah. Jaga Data Pribadi Tetap Aman Facebook Twitter WhatsApp Ubah Format Audio MP3 → OGG 🎵input.mp3 → ffmpeg -i input.mp3 output.ogg → 🎶output.ogg Salin ffmpeg -i input.mp3 output.ogg Batch Convert Audio 📁folder/*.mp3 → for f in *.mp3; do ffmpeg -i \"$f\" \"${f%.mp3}.ogg\"; done → 📁folder/*.ogg Salin for f in *.mp3; do ffmpeg -i \"$f\" \"${f%.mp3}.ogg\"; done WAV → MP3 🎵 input.wav → ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3 → 🎶 output.mp3 Salin ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3 Normalize Audio 🎵 input.mp3 → ffmpeg -i input.mp3 -af \"loudnorm\" output.mp3 → 🎶 output.mp3 (normalized) Salin ffmpeg -i input.mp3 -af \"loudnorm\" output.mp3 Trim Video 🎬 input.mp4 → ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4 → 🎬 output.mp4 (trimmed) Salin ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4 Resize Video 🎬 input.mp4 → ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4 → 🎬 output.mp4 (resized) Salin ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4 Extract Audio 🎬 input.mp4 → ffmpeg -i input.mp4 -q:a 0 -map a output.mp3 → 🎵 output.mp3 Salin ffmpeg -i input.mp4 -q:a 0 -map a output.mp3 Convert MP4 → WebM 🎬 input.mp4 → ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm → 🎬 output.webm Salin ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm Batch Convert Video 📁 folder/*.mov → for f in *.mov; do ffmpeg -i \"$f\" -c:v libx264 -c:a aac \"${f%.mov}.mp4\"; done → 📁 folder/*.mp4 Salin for f in *.mov; do ffmpeg -i \"$f\" -c:v libx264 -c:a aac \"${f%.mov}.mp4\"; done 🄯 2025 Command Line Guides | Konten Interaktif"
+  },
+  "meta": {
+    "summary": "Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "fix-git-ssh-fedora",
+  "slug": "fix-git-ssh-fedora",
+  "title": "Perbaiki Error “cannot run ssh” di Git — Fedora, RHEL, CentOS",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-08-25T04:53:51.214+00:00",
+  "url": "https://dalam.web.id/artikel/fix-git-ssh-fedora.html",
+  "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-S51RisVByRabdmidU7f5HsJUHOWx8ztdA-TCnwPeUP6y-d-x-Qh5gobl_YT5Qw8qyRfnu5tbE6S2BtAiMtwYcn69bp0SCD0viDNLAd2KJez84_nubGjf21b1tYcrZxPWMGtG-NbOeSDUSjkKF8Q1si-6oaw2RYi-SG8a0tXXQqGy3iEdXG9H1Wx2_pk/s1600/Screenshot_20251012_073023.png",
+  "content": {
+    "text": "Perbaiki Error “cannot run ssh” di Git (Fedora / RHEL / CentOS) Kalau kamu pakai Fedora, RHEL, CentOS, atau turunannya, terus nemu pesan error ini saat git fetch: error: cannot run ssh: No such file or directory fatal: unable to fork Tenang aja — ini error umum yang muncul karena Git nggak nemuin executable SSH di sistem kamu. Biasanya karena paket openssh-clients belum terinstal. 🧩 Penyebab Utama OpenSSH belum diinstal — Fedora dan RHEL memisahkan paket server dan client. PATH tidak mengenali lokasi ssh — misal kamu jalankan dari chroot, container minimal, atau sistem custom. ⚙️ Solusi untuk Fedora / RHEL / CentOS Untuk Fedora dan RHEL 8+, gunakan perintah dnf berikut: sudo dnf install -y openssh-clients Untuk versi lama CentOS atau RHEL 7, pakai: sudo yum install -y openssh-clients 💡 Script Otomatis: fix-git-ssh-fedora.sh Biar praktis, kamu bisa simpan script berikut untuk otomatis memperbaiki error di Fedora dan RHEL family: #!/usr/bin/env bash # fix-git-ssh-fedora.sh set -e echo \"🔍 Mengecek apakah openssh-clients sudah terinstal...\" if ! rpm -q openssh-clients &>/dev/null; then if command -v dnf >/dev/null 2>&1; then echo \"📦 Menginstal openssh-clients dengan dnf...\" sudo dnf install -y openssh-clients else echo \"📦 Menginstal openssh-clients dengan yum...\" sudo yum install -y openssh-clients fi else echo \"✅ openssh-clients sudah terinstal.\" fi if ! command -v ssh >/dev/null; then echo \"❌ ssh tidak ditemukan di PATH.\" echo \"PATH: $PATH\" exit 1 fi ssh -V echo \"✅ SSH siap digunakan untuk Git!\" Simpan script di file fix-git-ssh-fedora.sh, lalu jalankan: chmod +x fix-git-ssh-fedora.sh ./fix-git-ssh-fedora.sh Kemudian pastikan binary ssh sudah terdeteksi: which ssh ssh -V Kalau muncul versi seperti OpenSSH_8.x dan lokasi /usr/bin/ssh, berarti aman 🎉"
+  },
+  "meta": {
+    "summary": "Panduan memperbaiki error Git",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan memperbaiki error Git"
+  }
+}

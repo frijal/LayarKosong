@@ -1,0 +1,18 @@
+{
+  "id": "fix-database-is-locked",
+  "slug": "fix-database-is-locked",
+  "title": "Memperbaiki Error “Database is Locked” di Arch Linux",
+  "category": "🐧 Linux & Open Source",
+  "published_at": "2025-10-13T21:14:36.029+00:00",
+  "url": "https://dalam.web.id/artikel/fix-database-is-locked.html",
+  "image": "https://dalam.web.id/img/fix-database-is-locked.webp",
+  "content": {
+    "text": "📦 Memperbaiki Error “Database is Locked” Panduan santai untuk memperbaiki error database is locked yang sering muncul saat update atau instalasi paket di Arch Linux dan turunannya. ⚠️ Contoh Pesan Error error: could not lock database: File exists if you're sure a package manager is not already running, you can remove /var/lib/pacman/db.lck error: failed to synchronize all databases Error ini muncul karena pacman sedang dikunci oleh proses lain — bisa karena update belum selesai, sistem mati mendadak, atau ada proses pacman/par u yang masih berjalan di background. 🧭 Langkah Aman Memperbaiki 1️⃣ Cek Apakah Ada Proses Pacman yang Aktif ps aux | grep pacman Kalau masih ada proses pacman atau paru yang aktif, biarkan sampai selesai atau hentikan dengan hati-hati: sudo kill -9 <PID> 2️⃣ Hapus File Lock Jika tidak ada proses aktif, hapus file pengunci manual: sudo rm /var/lib/pacman/db.lck File ini hanya menandakan bahwa pacman sedang digunakan. Menghapusnya aman jika tidak ada pacman lain yang sedang berjalan. 3️⃣ Jalankan Sinkronisasi Ulang sudo pacman -Syyu Ini memastikan database dan paket kembali tersinkron setelah file lock dihapus. 4️⃣ Jika Masalah Terjadi Berulang Pastikan tidak menjalankan dua terminal pacman/paru bersamaan. Hindari mematikan sistem di tengah proses update. Periksa service otomatis seperti reflector atau pamac (jika terpasang) yang bisa mengunci database di background. 💡 Tips Tambahan Kamu bisa menambahkan alias kecil di ~/.bashrc untuk memeriksa file lock: alias paclock='sudo lsof /var/lib/pacman/db.lck' Gunakan paclock untuk memeriksa apakah database sedang dikunci dan oleh proses apa. ✅ Kesimpulan Error “database is locked” hanyalah mekanisme keamanan bawaan pacman untuk mencegah dua proses menulis database bersamaan. Hapus file db.lck hanya jika kamu yakin tidak ada proses pacman lain yang aktif."
+  },
+  "meta": {
+    "summary": "Panduan lengkap mengatasi error",
+    "keywords": [],
+    "topics": [],
+    "prompt_hint": "Panduan lengkap mengatasi error"
+  }
+}
