@@ -212,3 +212,89 @@ for (const file of fs.readdirSync(HTML_DIR)) {
     console.log(`NO CHANGE: ${file}`);
   }
 }
+
+/* ================== HELPER ================== */
+
+function dedupeMetaByKey(html, attr, prefix) {
+  const re = new RegExp(
+    `<meta\\s+${attr}="${prefix}[^"]*"[^>]*>`,
+    "gi"
+  );
+
+  const matches = html.match(re);
+  if (!matches || matches.length <= 1) return html;
+
+  // ambil meta terakhir (hasil inject paling akhir)
+  const last = matches[matches.length - 1];
+
+  // hapus semua
+  html = html.replace(re, "");
+
+  // sisipkan satu versi final sebelum </head>
+  html = html.replace(/<\/head>/i, `${last}\n</head>`);
+
+  return html;
+}
+
+function strictPostDeduplicator(html) {
+  let out = html;
+
+  // Open Graph
+  out = dedupeMetaByKey(out, "property", "og:");
+
+  // Twitter Card
+  out = dedupeMetaByKey(out, "name", "twitter:");
+
+  // Article namespace
+  out = dedupeMetaByKey(out, "property", "article:");
+
+  return out;
+}
+
+function canonicalSanityCheck(html, expectedUrl) {
+  const re = /<link\s+rel=["']canonical["'][^>]*>/gi;
+  const found = html.match(re);
+
+  if (!found || found.length <= 1) return html;
+
+  const valid = found.find(l => l.includes(expectedUrl));
+  if (!valid) return html; // jangan nekat
+
+  html = html.replace(re, "");
+  html = html.replace(/<\/head>/i, `${valid}\n</head>`);
+
+  return html;
+}
+
+function qualityScore(html) {
+  let score = 0;
+  const checks = [
+    /<meta name="description"/i,
+    /<link rel="canonical"/i,
+    /property="og:title"/i,
+    /property="og:image"/i,
+    /name="twitter:card"/i,
+    /application\/ld\+json/i,
+    /name="news_keywords"/i,
+    /name="ai:summary"/i
+  ];
+
+  checks.forEach(r => {
+    if (r.test(html)) score += 1;
+  });
+
+  return {
+    score,
+    max: checks.length,
+    percent: Math.round((score / checks.length) * 100)
+  };
+}
+
+out = strictPostDeduplicator(out);
+
+// optional
+out = canonicalSanityCheck(out, data.url);
+
+// quality log
+const q = qualityScore(out);
+console.log(`[QUALITY] ${file} → ${q.score}/${q.max} (${q.percent}%)`);
