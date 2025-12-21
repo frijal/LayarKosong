@@ -94,7 +94,65 @@
             position: relative;
         }
         .command::before {
-            content: '$';
+            content: '
+<body>
+    <header class="hero">
+        <div>
+            <h1>Mic Fedora 15 Kamu Bisu? <br>Sini, Kita Bisikin Solusinya!</h1>
+<div id="iposbrowser"></div>
+        </div>
+    </header>
+    <main class="container">
+        <article>
+            <p>Pernah gak sih, lagi semangat mau Skype-an atau Google Hangout, eh... mic-nya malah gak kedeteksi di Fedora 15? Bikin bete banget, kan? Udah coba segala cara tapi suara tetep gak masuk. Tenang, kamu gak sendirian, dan solusinya ternyata gampang banget!</p>
+            <p>Gak perlu install driver aneh-aneh atau pusing bongkar pasang konfigurasi. Cukup satu jurus andalan di terminal.</p>
+            <h2>Langkah Ajaib di Terminal</h2>
+            <p>Buka terminal kesayanganmu (Ctrl+Alt+T biasanya), lalu ketik atau copy-paste perintah sakti di bawah ini:</p>
+            <div class="command"><code>alsamixer -c0 -Vcapture</code></div>
+            <p>Setelah kamu tekan Enter, akan muncul tampilan seperti ini di terminal kamu. Mungkin warnanya beda, tapi isinya mirip-mirip.</p>
+            <div class="gallery">
+                <a href="javascript:void(0);" onclick="openLightbox()">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.png" alt="Tampilan Alsamixer Capture" loading="lazy">
+                </a>
+            </div>
+            <p>Perhatikan bagian <strong>Internal Mic</strong>. Kemungkinan besar volumenya masih rendah atau bahkan di posisi nol. Nah, ini dia biang keroknya!</p>
+            <p>Gunakan tombol panah <strong>atas (↑)</strong> di keyboard untuk menaikkan volumenya sampai mentok. Pastikan juga statusnya tidak "Mute". Kalau ada tulisan "MM", tekan tombol <strong>'M'</strong> untuk meng-unmute-nya menjadi "OO".</p>
+            <p>Kalau sudah, tekan tombol <strong>Esc</strong> untuk keluar. <em>Voila!</em> Coba tes mikrofonmu sekarang. Insya Allah sudah bisa berfungsi normal dan kamu siap kembali berkomunikasi di dunia maya. Selamat mencoba! 😉</p><div id="pesbukdiskus"></div>
+        </article>
+    </main>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.png" alt="Tampilan Alsamixer Capture Diperbesar">
+    </div>
+    <script>
+        // Lightbox Control Functions
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        function openLightbox() {
+            lightbox.style.display = 'flex';
+        }
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+        // Copy Code to Clipboard
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling;
+            const codeText = codeBlock.innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        }
+    </script>
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body>
+</html>;
             position: absolute;
             left: 10px;
             color: #888;
@@ -211,7 +269,8 @@
   "description": "Cara mudah dan cepat memperbaiki microphone yang tidak berfungsi di Fedora 15. Cukup satu perintah di terminal, dan mic kamu siap untuk Skype dan Google Hangout."
 }
 </script>
-<meta property="og:image:alt" content="Mic Gak Nyala di Fedora 15? Ini Dia Solusi Simpelnya!">
+
+<meta property="og:url" content="https://dalam.web.id/artikel/solusi-mic-fedora-15.html">
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWlcYNHVF4_bhKCVkCkSKhUd23zEvuqryn7pyaC4rts1cM0tsKYBAgceNQKDZiQkw4ZTeAS403ghyphenhyphenUZTHrP-WfInswMY8HWhE4kHOcAFw5nrlO-OlMQcWJWvV9UUTDu5TYnY7jbt_qUSeH/s1600/Screenshot-fr@kurang-gawean-2.png">
 </head>
 <body>
