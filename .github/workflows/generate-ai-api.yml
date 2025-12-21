@@ -44,6 +44,7 @@ jobs:
         GEMINI_API_KEY8: ${{ secrets.GEMINI_API_KEY8 }}
         GEMINI_API_KEY9: ${{ secrets.GEMINI_API_KEY9 }}
         GEMINI_API_KEY10: ${{ secrets.GEMINI_API_KEY10 }}
+        GEMINI_API_KEY11: ${{ secrets.GEMINI_API_KEY11 }}
       run: npm run generate-ai-api
 
     # 5. Commit & Push changes JSON + LogAI.md
