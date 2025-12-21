@@ -60,9 +60,7 @@ jobs:
         fi
 
         git commit -m "build(ci): 🤖 Update AI API JSON & LogAI.md"
-        echo "🔃 Pull latest main..."
-        git pull --rebase origin main || git pull origin main
-        echo "🚀 Push changes..."
+        echo "🔃 Pull latest main..."        
         git push origin main
 
         # 6. Tambahkan Tag Git otomatis
