@@ -154,7 +154,10 @@ function injectStrict(html, json) {
 
   /* === JSON-LD ARTICLE === */
   if (!hasJSONLDArticle(out)) {
-    out = remove(out, /<script[^>]+application\/ld\+json[^>]*>[\\s\\S]*?<\\/script>\\s*/gi);
+out = remove(
+  out,
+  /<script[^>]+application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi
+);
 
     const schema = {
       "@context": "https://schema.org",
