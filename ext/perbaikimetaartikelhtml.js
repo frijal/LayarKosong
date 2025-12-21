@@ -5,7 +5,8 @@ import path from "path";
 
 const HTML_DIR = "artikel";
 const JSON_DIR = "api/v1/post";
-const REPORT_FILE = "AuditInjectHTML-20251221.md";
+const REPORT_FILE =
+  `AuditInjectHTML-${new Date().toISOString().slice(0,10).replace(/-/g,"")}.md`;
 
 /* ================== REPORT STATE ================== */
 
@@ -237,6 +238,16 @@ ${JSON.stringify({
   return out;
 }
 
+const report = {
+  date: new Date().toISOString(),
+  total: 0,
+  updated: [],
+  noChange: [],
+  skippedJson: [],
+  skippedSchema: [],
+  quality: []
+};
+
 /* ================== MAIN LOOP ================== */
 
 for (const file of fs.readdirSync(HTML_DIR)) {
@@ -249,28 +260,43 @@ for (const file of fs.readdirSync(HTML_DIR)) {
   const jsonPath = path.join(JSON_DIR, `${slug}.json`);
 
   if (!fs.existsSync(jsonPath)) {
-    report.skipped.push({ file, reason: "JSON missing" });
+    report.skippedJson.push(file);
+    console.log(`SKIP (JSON missing): ${file}`);
     continue;
   }
 
   const html = fs.readFileSync(htmlPath, "utf8");
   const json = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 
-  if (!validateSchema(json, slug)) continue;
+  if (!validateSchema(json, slug)) {
+    report.skippedSchema.push(file);
+    console.log(`SKIP (schema invalid): ${file}`);
+    continue;
+  }
 
-  let out = injectStrict(html, json);
+  let { out } = injectStrict(html, json);
+
   out = strictPostDeduplicator(out);
   out = canonicalSanityCheck(out, json.url);
   out = normalizeHeadWhitespace(out);
 
   const q = qualityScore(out);
-  report.quality.push({ file, ...q });
+  report.quality.push({
+    file,
+    score: q.score,
+    max: q.max,
+    percent: Math.round((q.score / q.max) * 100)
+  });
+
+  console.log(`[QUALITY] ${file} → ${q.score}/${q.max}`);
 
   if (out !== html) {
     fs.writeFileSync(htmlPath, out);
-    report.updated.push({ file, q });
+    report.updated.push(file);
+    console.log(`UPDATED (strict): ${file}`);
   } else {
-    report.nochange.push({ file, q });
+    report.noChange.push(file);
+    console.log(`NO CHANGE: ${file}`);
   }
 }
 
@@ -326,3 +352,56 @@ _Audit otomatis oleh GitHub Actions._
 }
 
 generateReport(report);
+function generateReport(r) {
+  const avg =
+    r.quality.reduce((a, b) => a + b.percent, 0) /
+    (r.quality.length || 1);
+
+  let md = `# Audit Inject HTML\n\n`;
+
+  md += `**Tanggal Audit:** ${r.date}\n\n`;
+
+  md += `## Ringkasan\n\n`;
+  md += `| Item | Jumlah |\n`;
+  md += `|------|--------|\n`;
+  md += `| Total HTML diperiksa | ${r.total} |\n`;
+  md += `| Updated | ${r.updated.length} |\n`;
+  md += `| No Change | ${r.noChange.length} |\n`;
+  md += `| Skip (JSON missing) | ${r.skippedJson.length} |\n`;
+  md += `| Skip (Schema invalid) | ${r.skippedSchema.length} |\n`;
+  md += `| Rata-rata Quality | ${Math.round(avg)}% |\n\n`;
+
+  md += `## Quality Score per Artikel\n\n`;
+  md += `| File | Score | Persen |\n`;
+  md += `|------|-------|--------|\n`;
+
+  r.quality.forEach(q => {
+    md += `| ${q.file} | ${q.score}/${q.max} | ${q.percent}% |\n`;
+  });
+
+  if (r.updated.length) {
+    md += `\n## Artikel Diperbarui\n\n`;
+    r.updated.forEach(f => md += `- ${f}\n`);
+  }
+
+  if (r.noChange.length) {
+    md += `\n## Artikel Sudah Lengkap\n\n`;
+    r.noChange.forEach(f => md += `- ${f}\n`);
+  }
+
+  if (r.skippedJson.length) {
+    md += `\n## Dilewati (JSON Tidak Ditemukan)\n\n`;
+    r.skippedJson.forEach(f => md += `- ${f}\n`);
+  }
+
+  if (r.skippedSchema.length) {
+    md += `\n## Dilewati (Schema Invalid)\n\n`;
+    r.skippedSchema.forEach(f => md += `- ${f}\n`);
+  }
+
+  return md;
+}
+
+fs.writeFileSync(REPORT_FILE, generateReport(report));
+console.log(`\n📄 Audit report generated: ${REPORT_FILE}`);
+
