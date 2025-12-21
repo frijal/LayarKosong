@@ -1,6 +1,6 @@
 // =========================================================
 // SCRIPT: ext/generate-ai-api.js
-// VERSI: Update Metadata AI + LogAI Highlight Markdown
+// VERSI: Final Full Update AI Metadata + LogAI Highlight
 // =========================================================
 
 import fs from 'node:fs/promises';
@@ -58,8 +58,13 @@ function highlightDiff(oldArr=[], newArr=[]) {
   return newArr.map(k=>added.includes(k)?`**${k}**`:removed.includes(k)?`~~${k}~~`:k);
 }
 
-async function aiGenerateKeywordsTopics(text, title) {
-  if (!text || text.length < 300) return { keywords: [], topics: [] };
+function highlightTextChange(oldText='', newText='') {
+  return oldText !== newText ? `**UPDATED** → ${newText}` : newText;
+}
+
+// ================= AI GENERATORS =================
+async function aiGenerateMetadata(text, title) {
+  if (!text || text.length < 300) return { summary:'', prompt_hint:'', keywords:[], topics:[] };
   for (const { key, model } of combinations) {
     if (failedKeys.has(key) || failedModels.has(model)) continue;
     try {
@@ -67,6 +72,8 @@ async function aiGenerateKeywordsTopics(text, title) {
       const prompt = `
 Kembalikan JSON valid:
 {
+  "summary": "maks 2 kalimat",
+  "prompt_hint": "1-3 pertanyaan singkat",
   "keywords": ["5-10 kata"],
   "topics": ["maks 5 topik"]
 }
@@ -85,7 +92,7 @@ Konten:
       msg.includes('quota') ? failedKeys.add(key) : failedModels.add(model);
     }
   }
-  return { keywords: [], topics: [] };
+  return { summary:'', prompt_hint:'', keywords:[], topics:[] };
 }
 
 // ================= MAIN =================
@@ -101,18 +108,29 @@ async function main() {
 
   for (const file of files) {
     const data = JSON.parse(await fs.readFile(file,'utf8'));
+
+    const oldSummary = data.meta.summary || '';
+    const oldPromptHint = data.meta.prompt_hint || '';
     const oldKeywords = data.meta.keywords || [];
     const oldTopics = data.meta.topics || [];
 
-    const aiMeta = await aiGenerateKeywordsTopics(data.content?.text || '', data.title);
-    const newKeywords = aiMeta.keywords || [];
-    const newTopics = aiMeta.topics || [];
+    // generate metadata baru via AI
+    const aiMeta = await aiGenerateMetadata(data.content?.text || '', data.title);
+
+    const newSummary = aiMeta.summary || oldSummary;
+    const newPromptHint = aiMeta.prompt_hint || oldPromptHint;
+    const newKeywords = aiMeta.keywords || oldKeywords;
+    const newTopics = aiMeta.topics || oldTopics;
 
     // highlight perubahan
+    const summaryDiff = highlightTextChange(oldSummary, newSummary);
+    const promptHintDiff = highlightTextChange(oldPromptHint, newPromptHint);
     const keywordsDiff = highlightDiff(oldKeywords, newKeywords);
     const topicsDiff = highlightDiff(oldTopics, newTopics);
 
     // update cache
+    data.meta.summary = newSummary;
+    data.meta.prompt_hint = newPromptHint;
     data.meta.keywords = newKeywords;
     data.meta.topics = newTopics;
     await fs.writeFile(file, JSON.stringify(data,null,2));
@@ -120,6 +138,8 @@ async function main() {
     // log markdown per artikel
     logMd += `## [${data.title}](${data.url})\n`;
     logMd += `| Metadata | Sebelumnya | Terbaru |\n|---|---|---|\n`;
+    logMd += `| Summary | ${oldSummary} | ${summaryDiff} |\n`;
+    logMd += `| Prompt Hint | ${oldPromptHint} | ${promptHintDiff} |\n`;
     logMd += `| Keywords | ${oldKeywords.join(', ')} | ${keywordsDiff.join(', ')} |\n`;
     logMd += `| Topics | ${oldTopics.join(', ')} | ${topicsDiff.join(', ')} |\n\n`;
   }
