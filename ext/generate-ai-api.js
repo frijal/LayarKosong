@@ -1,6 +1,6 @@
 // =========================================================
-// ext/generate-ai-api.js
-// Final Full: AI Metadata Update + LogAI Markdown
+// SCRIPT: ext/generate-ai-api.js
+// FINAL: Full AI Metadata Updater + Log Gemini API
 // =========================================================
 
 import fs from 'node:fs/promises';
@@ -8,31 +8,34 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'cheerio';
 import { GoogleGenAI } from '@google/genai';
-import { glob } from 'glob';
+import glob from 'glob';
 
+// ==================== SETUP PATH ========================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname,'..');
 
-const META_FILE = path.join(ROOT,'artikel.json');
-const HTML_DIR = path.join(ROOT,'artikel');
-const LLMS_FILE = path.join(ROOT,'llms.txt');
-const API_DIR = path.join(ROOT,'api/v1');
-const POST_DIR = path.join(API_DIR,'post');
+const INPUT_METADATA_FILE = path.join(ROOT,'artikel.json');
+const INPUT_LLMS_FILE = path.join(ROOT,'llms.txt');
+const POST_DIR = path.join(ROOT,'api/v1/post');
 const LOG_DIR = path.join(ROOT,'mini');
 const BASE_URL = 'https://dalam.web.id';
 
-await fs.mkdir(POST_DIR,{recursive:true});
-await fs.mkdir(LOG_DIR,{recursive:true});
-
+// ==================== LOGGER ============================
 const log = {
-  i: m => console.log(`ℹ️  ${m}`),
-  w: m => console.warn(`⚠️ ${m}`),
-  e: m => console.error(`❌ ${m}`)
+    i: m=>console.log(`ℹ️ ${m}`),
+    w: m=>console.warn(`⚠️ ${m}`),
+    e: m=>console.error(`❌ ${m}`)
 };
 
-// ================= Models & API Keys =================
-const MODELS = ["gemini-2.5-flash","gemini-2.5-flash-lite","gemma-3-4b","gemma-3-12b"];
+// ==================== ROTASI MODEL & KEY =================
+const MODELS = [
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemma-3-4b",
+    "gemma-3-12b"
+];
+
 const apiKeys = Object.keys(process.env)
   .filter(k=>k.startsWith('GEMINI_API_KEY'))
   .map(k=>process.env[k])
@@ -43,174 +46,191 @@ if(!apiKeys.length) log.w("Tidak ada GEMINI_API_KEY, AI dimatikan.");
 const failedKeys = new Set();
 const failedModels = new Set();
 const combinations = [];
-apiKeys.forEach(key=>MODELS.forEach(model=>combinations.push({key,model})));
+apiKeys.forEach(key => MODELS.forEach(model=>combinations.push({key,model})));
 
-function getAI(key){ return new GoogleGenAI({apiKey:key}); }
-
-// ================= Cheerio =================
-async function extractContent(file){
-  try{
-    const html = await fs.readFile(path.join(HTML_DIR,file),'utf8');
-    const $ = load(html);
-    ['script','style','footer','nav','aside','noscript'].forEach(s=>$(s).remove());
-    const root = $('article').first().length? $('article').first() : $('.container').first().length? $('.container').first() : $('body');
-    const text = root.text().replace(/\s+/g,' ').trim();
-    return text;
-  }catch(e){ log.w(`Gagal baca HTML: ${file}`); return null; }
+// ==================== CHEERIO CLEAN =====================
+async function extractContent(file) {
+    try {
+        const html = await fs.readFile(path.join(ROOT,'artikel',file),'utf8');
+        const $ = load(html);
+        ['script','style','footer','#iposbrowser','#pesbukdiskus','.search-floating-container','#related-marquee-section'].forEach(sel=>$(sel).remove());
+        const root = $('.container').first().length ? $('.container').first() : $('.main').first().length ? $('.main').first() : $('body');
+        const text = root.text().replace(/\s+/g,' ').trim();
+        return text;
+    } catch {
+        log.w(`Gagal membaca/membersihkan konten: ${file}`);
+        return null;
+    }
 }
 
-// ================= AI Extraction =================
-async function aiExtract(text,title){
-  if(!text || text.length<300) return null;
-  for(const {key,model} of combinations){
-    if(failedKeys.has(key)||failedModels.has(model)) continue;
-    try{
-      const ai = getAI(key);
-      const prompt = `
-Kembalikan JSON VALID:
+// ==================== LLMS WHITELIST ====================
+async function loadWhitelist() {
+    try {
+        const txt = await fs.readFile(INPUT_LLMS_FILE,'utf8');
+        return new Set([...txt.matchAll(/artikel\/(.*?)\.html/g)].map(m=>m[1]));
+    } catch {
+        log.w("llms.txt tidak ditemukan → semua artikel dilewati");
+        return new Set();
+    }
+}
+
+// ==================== GEMINI AI ==========================
+async function aiExtract(text,title) {
+    if(!text || text.length<300) return null;
+    for(const {key,model} of combinations){
+        if(failedKeys.has(key) || failedModels.has(model)) continue;
+        try {
+            const ai = new GoogleGenAI({apiKey:key});
+            const prompt = `
+JSON VALID:
 {
-  "summary": "maks 2 kalimat",
-  "keywords": ["1-5 kata"],
-  "topics": ["maks 3 topik"],
-  "prompt_hint": "1-3 pertanyaan singkat"
+"summary":"maks 2 kalimat",
+"keywords":["2-5 kata"],
+"topics":["maks 3 topik"],
+"prompt_hint":"1-3 pertanyaan singkat"
 }
 Judul: ${title}
 Konten:
 """${text.slice(0,8000)}"""
 `;
-      const res = await ai.models.generateContent({
-        model,
-        contents:[{role:"user",parts:[{text:prompt}]}],
-        config:{temperature:0.2}
-      });
-      return JSON.parse(res.text);
-    }catch(e){
-      const msg=e.message.toLowerCase();
-      msg.includes('quota')?failedKeys.add(key):failedModels.add(model);
-    }
-  }
-  return null;
-}
-
-// ================= Whitelist =================
-async function loadWhitelist(){
-  try{
-    const txt = await fs.readFile(LLMS_FILE,'utf8');
-    return new Set([...txt.matchAll(/artikel\/(.*?)\.html/g)].map(m=>m[1]));
-  }catch{ log.w("llms.txt tidak ditemukan"); return new Set(); }
-}
-
-// ================= Utility Highlight =================
-function diffArray(oldArr=[],newArr=[]){
-  const removed = oldArr.filter(k=>!newArr.includes(k));
-  const added = newArr.filter(k=>!oldArr.includes(k));
-  const res = newArr.map(k=>added.includes(k)? `**${k}**` : k);
-  removed.forEach(k=>res.push(`~~${k}~~`));
-  return res;
-}
-
-// ================= MAIN =================
-async function generate(){
-  log.i("Generate AI API + LogAI Markdown");
-
-  const meta = JSON.parse(await fs.readFile(META_FILE,'utf8'));
-  const whitelist = await loadWhitelist();
-  const index = [];
-  const logEntries = [];
-
-  for(const [cat,items] of Object.entries(meta)){
-    for(const [title,file,image,date,desc] of items){
-      const id = file.replace('.html','');
-      if(!whitelist.has(id)) continue;
-
-      const outFile = path.join(POST_DIR,`${id}.json`);
-      let oldData=null;
-      if(await fs.access(outFile).then(()=>true).catch(()=>false)){
-        oldData = JSON.parse(await fs.readFile(outFile,'utf8'));
-      }
-
-      const content = await extractContent(file);
-      if(!content) continue;
-
-      const ai = apiKeys.length? await aiExtract(content,title) : null;
-
-      const newSummary = oldData?.meta?.summary||ai?.summary||desc||'';
-      const newPromptHint = oldData?.meta?.prompt_hint||ai?.prompt_hint||desc||'';
-      const newKeywords = ai?.keywords||oldData?.meta?.keywords||[];
-      const newTopics = ai?.topics||oldData?.meta?.topics||[];
-
-      // Save JSON
-      const post = {
-        id,
-        slug:id,
-        title,
-        category:cat,
-        published_at:date,
-        url:`${BASE_URL}/artikel/${file}`,
-        image,
-        content_plain:content,
-        meta:{
-          summary:newSummary,
-          prompt_hint:newPromptHint,
-          keywords:newKeywords,
-          topics:newTopics
+            const res = await ai.models.generateContent({
+                model,
+                contents:[{role:"user",parts:[{text:prompt}]}],
+                config:{temperature:0.1}
+            });
+            const parsed = JSON.parse(res.text);
+            apiLog.successCount++;
+            apiLog.details.push({title,keyIndex:apiKeys.indexOf(key)+1,model,status:"✅ Success",message:""});
+            return parsed;
+        } catch(e){
+            const msg = e.message.toLowerCase();
+            apiLog.failCount++;
+            if(msg.includes("quota")||msg.includes("429")) failedKeys.add(key);
+            else failedModels.add(model);
+            apiLog.details.push({title,keyIndex:apiKeys.indexOf(key)+1,model,status:"❌ Fail",message:e.message});
         }
-      };
-      await fs.writeFile(outFile,JSON.stringify(post,null,2));
-
-      index.push({
-        id,title,category:cat,date,image,excerpt:newSummary,endpoint:`/api/v1/post/${id}.json`
-      });
-
-      // Prepare Markdown log if changed
-      const changed = (
-        newSummary!==oldData?.meta?.summary ||
-        newPromptHint!==oldData?.meta?.prompt_hint ||
-        JSON.stringify(newKeywords)!==JSON.stringify(oldData?.meta?.keywords) ||
-        JSON.stringify(newTopics)!==JSON.stringify(oldData?.meta?.topics)
-      );
-
-      if(changed){
-        logEntries.push({id,title,category:cat,date,oldData,post});
-      }
     }
-  }
-
-  // Write index.json
-  await fs.writeFile(path.join(API_DIR,'index.json'),JSON.stringify(index,null,2));
-
-  // Write LogAI Markdown
-  const today = new Date().toISOString().slice(0,10);
-  const logFile = path.join(LOG_DIR,`${today}-LogAI.md`);
-  let md = `# LogAI - Layar Kosong\n**Tanggal:** ${today}\n**Jumlah Artikel Diproses:** ${index.length}\n\n`;
-
-  if(logEntries.length===0){
-    md += "Tidak ada perubahan metadata.\n";
-  } else {
-    md += "## Artikel yang diperbarui\n\n";
-    for(const e of logEntries){
-      md += `### ${e.title} (${e.id})\n**Kategori:** ${e.category}\n**Tanggal Publikasi:** ${e.date}\n\n`;
-
-      md += `#### Summary\n\`Sebelumnya:\` ${e.oldData?.meta?.summary||''}\n\`Baru:\` ${e.post.meta.summary}\n\n`;
-      md += `#### Prompt Hint\n\`Sebelumnya:\` ${e.oldData?.meta?.prompt_hint||''}\n\`Baru:\` ${e.post.meta.prompt_hint}\n\n`;
-
-      const kwOld = e.oldData?.meta?.keywords||[];
-      const kwNew = e.post.meta.keywords||[];
-      const tpOld = e.oldData?.meta?.topics||[];
-      const tpNew = e.post.meta.topics||[];
-
-      const kwDiff = diffArray(kwOld,kwNew).join(', ');
-      const tpDiff = diffArray(tpOld,tpNew).join(', ');
-
-      md += `#### Metadata AI\n| Field | Sebelumnya | Baru |\n|-------|------------|-----|\n`;
-      md += `| Keywords | ${kwOld.join(', ')} | ${kwDiff} |\n`;
-      md += `| Topics   | ${tpOld.join(', ')} | ${tpDiff} |\n\n`;
-    }
-  }
-
-  await fs.writeFile(logFile,md);
-  log.i(`Selesai. LogAI: ${logFile}`);
+    return null;
 }
 
-generate().catch(e=>{ log.e(e.message); process.exit(1); });
+// ==================== GEMINI API LOG =====================
+const apiLog = {successCount:0,failCount:0,failedKeys:new Set(),failedModels:new Set(),details:[]};
+
+// ==================== UTILS =============================
+function highlightArrayDiff(oldArr=[],newArr=[]){
+    const added = newArr.filter(x=>!oldArr.includes(x)).map(x=>`**${x}**`);
+    const removed = oldArr.filter(x=>!newArr.includes(x)).map(x=>`~~${x}~~`);
+    const kept = oldArr.filter(x=>newArr.includes(x));
+    return [...kept,...added,...removed];
+}
+
+// ==================== MAIN =============================
+async function generate() {
+    log.i("Memulai Generasi AI API...");
+
+    await fs.mkdir(POST_DIR,{recursive:true});
+    await fs.mkdir(LOG_DIR,{recursive:true});
+
+    const meta = JSON.parse(await fs.readFile(INPUT_METADATA_FILE,'utf8'));
+    const whitelist = await loadWhitelist();
+
+    const globFiles = glob.sync(path.join(POST_DIR,'*.json'));
+    const oldJsonMap = {};
+    for(const f of globFiles){
+        const j = JSON.parse(await fs.readFile(f,'utf8'));
+        oldJsonMap[j.id]=j;
+    }
+
+    const index = [];
+    const changes = [];
+    let totalArticles=0;
+
+    for(const [category,items] of Object.entries(meta)){
+        for(const [title,file,img,date,desc] of items){
+            const id=file.replace('.html','');
+            if(!whitelist.has(id)) continue;
+            totalArticles++;
+
+            const postPath = path.join(POST_DIR,`${id}.json`);
+            const cleanContent = await extractContent(file);
+            if(!cleanContent) continue;
+
+            const oldJson = oldJsonMap[id] || {};
+            const ai = apiKeys.length ? await aiExtract(cleanContent,title) : null;
+
+            const summary = (oldJson?.meta?.summary || desc || ai?.summary || "").trim();
+            const prompt_hint = oldJson?.meta?.prompt_hint || ai?.prompt_hint || desc || "";
+            const keywords = ai?.keywords || oldJson?.meta?.keywords || [];
+            const topics = ai?.topics || oldJson?.meta?.topics || [];
+
+            const post = {
+                id,
+                slug:id,
+                title,
+                category,
+                published_at:date,
+                url:`${BASE_URL}/artikel/${file}`,
+                content:cleanContent,
+                meta:{summary,keywords,topics,prompt_hint}
+            };
+
+            await fs.writeFile(postPath,JSON.stringify(post,null,2));
+
+            index.push({
+                id,title,category,date,image:img,excerpt:summary,endpoint:`/api/v1/post/${id}.json`
+            });
+
+            // ==== catat perubahan metadata ====
+            const oldMeta = oldJson?.meta || {summary:"",keywords:[],topics:[],prompt_hint:""};
+            if(JSON.stringify(oldMeta)!==JSON.stringify(post.meta)){
+                changes.push({
+                    title,
+                    old:oldMeta,
+                    new:post.meta,
+                    keywordsDiff:highlightArrayDiff(oldMeta.keywords,post.meta.keywords),
+                    topicsDiff:highlightArrayDiff(oldMeta.topics,post.meta.topics)
+                });
+            }
+        }
+    }
+
+    // ==================== tulis index.json ==================
+    index.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    await fs.writeFile(path.join(ROOT,'api/v1/index.json'),JSON.stringify(index,null,2));
+
+    // ==================== tulis log Markdown ==================
+    const today = new Date().toISOString().split('T')[0];
+    const logFile = path.join(LOG_DIR,`${today}-LogAI.md`);
+
+    let md=`# LogAI - Layar Kosong\n\nTanggal: ${today}\nJumlah Artikel Diproses: ${totalArticles}\n\n`;
+
+    md+=`## Gemini API Report\n- ✅ Berhasil: ${apiLog.successCount}\n- ❌ Gagal: ${apiLog.failCount}\n`;
+    if(apiLog.failedKeys.size) md+=`- Keys Blacklisted: ${[...apiLog.failedKeys].join(', ')}\n`;
+    if(apiLog.failedModels.size) md+=`- Models Blacklisted: ${[...apiLog.failedModels].join(', ')}\n\n`;
+
+    md+=`| Artikel | Key Index | Model | Status | Pesan |\n|---------|----------|-------|--------|-------|\n`;
+    for(const d of apiLog.details){
+        md+=`| ${d.title} | ${d.keyIndex} | ${d.model} | ${d.status} | ${d.message.replace(/\|/g,'\\|')} |\n`;
+    }
+
+    if(changes.length){
+        md+=`\n## Perubahan Metadata Artikel\n`;
+        for(const c of changes){
+            md+=`### ${c.title}\n| Field | Lama | Baru |\n|-------|------|-----|\n`;
+            md+=`| summary | ${c.old.summary} | ${c.new.summary} |\n`;
+            md+=`| keywords | ${c.keywordsDiff.join(', ')} | |\n`;
+            md+=`| topics | ${c.topicsDiff.join(', ')} | |\n`;
+            md+=`| prompt_hint | ${c.old.prompt_hint} | ${c.new.prompt_hint} |\n`;
+        }
+    } else md+=`\nTidak ada perubahan metadata.\n`;
+
+    await fs.writeFile(logFile,md,'utf8');
+    log.i(`Selesai. Index: ${index.length} artikel, log tersimpan di ${logFile}`);
+}
+
+// ==================== RUN SCRIPT ==========================
+generate().catch(e=>{
+    log.e(e.message);
+    process.exit(1);
+});
 
