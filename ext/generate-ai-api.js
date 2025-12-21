@@ -47,7 +47,7 @@ const combinations = [];
 apiKeys.forEach(key => MODELS.forEach(model => combinations.push({ key, model })));
 
 function getAI(key) {
-  return new GoogleGenAI(key); // Syntax terbaru @google/genai langsung masukkan key
+return new GoogleGenAI({ apiKey: key });
 }
 
 // ================= HELPERS =================
