@@ -116,6 +116,32 @@ function qualityScore(html) {
   return { score, max: rules.length, percent: Math.round(score/rules.length*100) };
 }
 
+/* ================== PERIKSA KONDISI ================== */
+
+function isHtmlAlreadyCompliant(html, json) {
+  const meta = json.meta || {};
+
+  const same = (a,b) =>
+    String(a||"").trim() === String(b||"").trim();
+
+  if (!same(extractProp(html,"og:title"), json.title)) return false;
+  if (!same(extractMeta(html,"description"), meta.summary)) return false;
+  if (!html.includes(`rel="canonical"`) || !html.includes(json.url)) return false;
+  if (!same(extractProp(html,"og:image"), json.image)) return false;
+  if (!same(
+    extractMeta(html,"news_keywords"),
+    normalizeToString(meta.keywords)
+  )) return false;
+
+  // JSON-LD Article sanity
+  if (!/"@type"\s*:\s*"Article"/i.test(html)) return false;
+  if (!new RegExp(`"headline"\\s*:\\s*"${json.title.replace(/"/g,'\\"')}"`).test(html))
+    return false;
+
+  return true;
+}
+
+
 /* ================== INJECT STRICT ================== */
 
 function injectStrict(html, json) {
@@ -187,43 +213,76 @@ for (const file of fs.readdirSync(HTML_DIR)) {
     continue;
   }
 
-  let out = injectStrict(html,json);
-  out = strictPostDeduplicator(out);
-  out = canonicalSanityCheck(out,json.url);
-  out = normalizeHeadWhitespace(out);
-
-  const q = qualityScore(out);
+  if (isHtmlAlreadyCompliant(html, json)) {
+  const q = qualityScore(html);
   report.quality.push({ file, ...q });
+  report.noChange.push(file);
+  continue; // ⬅️ BENAR-BENAR SKIP
+}
 
-  if (out !== html) {
-    fs.writeFileSync(htmlPath,out);
-    report.updated.push(file);
-  } else {
-    report.noChange.push(file);
-  }
+let out = injectStrict(html, json);
+out = strictPostDeduplicator(out);
+out = canonicalSanityCheck(out, json.url);
+out = normalizeHeadWhitespace(out);
+
+const q = qualityScore(out);
+report.quality.push({ file, ...q });
+
+if (out !== html) {
+  fs.writeFileSync(htmlPath, out);
+  report.updated.push(file);
+} else {
+  report.noChange.push(file);
+}  
 }
 
 /* ================== REPORT ================== */
+function qualityBadge(percent) {
+  if (percent >= 90) return "🟢 High";
+  if (percent >= 70) return "🟡 Medium";
+  return "🔴 Low";
+}
 
 function generateReport(r) {
   const avg = Math.round(
-    r.quality.reduce((a,b)=>a+b.percent,0)/(r.quality.length||1)
+    r.quality.reduce((a, b) => a + b.percent, 0) / (r.quality.length || 1)
   );
 
-  let md = `# Audit Inject HTML (Strict)\n\n`;
-  md += `Tanggal: ${r.date}\n\n`;
+  const sorted = [...r.quality].sort((a, b) => {
+    if (b.percent !== a.percent) return b.percent - a.percent;
+    return a.file.localeCompare(b.file);
+  });
+
+  const high = sorted.filter(x => x.percent >= 90);
+  const medium = sorted.filter(x => x.percent >= 70 && x.percent < 90);
+  const low = sorted.filter(x => x.percent < 70);
+
+  let md = `# 📊 Audit Inject HTML (Strict)\n\n`;
+  md += `**Tanggal Audit:** ${r.date}\n\n`;
+
+  md += `## Ringkasan\n\n`;
   md += `| Item | Jumlah |\n|---|---|\n`;
-  md += `| Total | ${r.total} |\n`;
+  md += `| Total HTML | ${r.total} |\n`;
   md += `| Updated | ${r.updated.length} |\n`;
   md += `| No Change | ${r.noChange.length} |\n`;
   md += `| Skip JSON | ${r.skippedJson.length} |\n`;
   md += `| Skip Schema | ${r.skippedSchema.length} |\n`;
-  md += `| Avg Quality | ${avg}% |\n\n`;
+  md += `| Rata-rata Quality | ${avg}% |\n\n`;
 
-  md += `## Quality Detail\n\n| File | Score |\n|---|---|\n`;
-  r.quality.forEach(q=>{
-    md += `| ${q.file} | ${q.score}/${q.max} (${q.percent}%) |\n`;
-  });
+  const section = (title, data) => {
+    if (!data.length) return "";
+    let s = `## ${title}\n\n`;
+    s += `| Status | File | Score |\n|---|---|---|\n`;
+    data.forEach(q => {
+      s += `| ${qualityBadge(q.percent)} | ${q.file} | ${q.score}/${q.max} (${q.percent}%) |\n`;
+    });
+    s += `\n`;
+    return s;
+  };
+
+  md += section("🟢 High Quality (≥ 90%)", high);
+  md += section("🟡 Medium Quality (70–89%)", medium);
+  md += section("🔴 Low Quality (< 70%)", low);
 
   return md;
 }
