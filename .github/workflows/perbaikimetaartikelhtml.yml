@@ -1,6 +1,9 @@
 name: Audit & Inject Article Metadata (Strict)
 
 on:
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"] # Pastikan NAMA workflow pertama SAMA PERSIS
+    types: [completed] # Hanya berjalan jika workflow pertama SELESAI
   push:
     branches:
       - main  
