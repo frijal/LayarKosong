@@ -54,6 +54,23 @@
   transform: translateY(0);
 }
 
+.related-articles a:hover {
+  background: light-dark(#eef4ff, #263238);
+  border-color: light-dark(#c5d8ff, #455a64);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.related-articles li span.badge {
+  display: inline-block;
+  background: #f7931d;
+  color: #fff;
+  font-size: .7rem;
+  padding: 0 .4rem;
+  border-radius: 6px;
+  margin-left: .4rem;
+}
+
 @media (max-width: 600px) {
   .related-articles ul {
     grid-template-columns: 1fr; /* satu kolom di mobile */
