@@ -53,3 +53,15 @@
 .related-articles a:active {
   transform: translateY(0);
 }
+
+@media (max-width: 600px) {
+  .related-articles ul {
+    grid-template-columns: 1fr; /* satu kolom di mobile */
+    gap: .5rem;
+  }
+
+  .related-articles a {
+    font-size: .9rem;
+    padding: .5rem .6rem;
+  }
+}
