@@ -379,10 +379,6 @@ function getLatestDateInCategory(items){
   return max;
 }
 
-/* ========== KLIK JUDUL ========== */
-const BASE_POST_URL = "/artikel/"; 
-
-
 /* ================= RENDER ================= */
 function render(){
   const q=searchInput.value.toLowerCase();
@@ -430,15 +426,7 @@ function render(){
           onerror="this.style.display='none'">`:""}
 
         <div>
-	  ${viewState.title?`
-  <div class="title">
-    <a href="${BASE_POST_URL}${esc(slug)}"
-       target="_blank"
-       rel="noopener noreferrer">
-      <strong>${esc(title)}</strong>
-    </a>
-  </div>`:""}
-
+          ${viewState.title?`<strong>${esc(title)}</strong>`:""}
           ${viewState.slug?`<div class="slug">${esc(slug)}</div>`:""}
           ${viewState.date?`<div class="date">${fmtDate(date)}</div>`:""}
           ${viewState.desc?`<div class="desc">${esc(desc||"")}</div>`:""}
@@ -481,11 +469,10 @@ function exportSlug(){
   const out=[...selectedSlugs].join("\n");
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([out],{type:"text/plain"}));
-  a.download="ubahtanggal.txt";
+  a.download="slug_terpilih.txt";
   a.click();
 }
 </script>
-
 
 </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
