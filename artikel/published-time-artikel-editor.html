@@ -32,7 +32,7 @@
 
     <link rel="icon" href="/favicon.ico">
 
-<style>
+    <style>
 body{
   font-family:system-ui,-apple-system,sans-serif;
   max-width:960px;
@@ -67,16 +67,20 @@ small{color:#555}
 
 <body>
 
-<h1>Strict ISO Date Batch Editor</h1>
+<h1>Paranoid ISO Year–Month Editor</h1>
 <div id="iposbrowser"></div>
 <small>
 ✔ Cari literal <code>"YYYY-MM-DDT</code><br>
-✔ Ganti tanggal saja (jam & timezone aman)<br>
-✔ Hanya file di <code>ubahtanggal.txt</code>
+✔ Ubah <strong>tahun & bulan saja</strong><br>
+✔ Mode paranoid: banyak kombinasi → tetap dipaksa seragam<br>
+✔ Meta dibuat otomatis jika tidak ada
 </small>
 
-<label>Tanggal Baru (YYYY-MM-DD)</label>
-<input id="dateInput" placeholder="2025-12-31">
+<label>Tahun Baru (YYYY)</label>
+<input id="yearInput" placeholder="2026">
+
+<label>Bulan Baru (MM)</label>
+<input id="monthInput" placeholder="03">
 
 <div style="margin-top:12px">
   <button id="pickFolder">Pilih Folder HTML</button>
@@ -108,58 +112,67 @@ const logBox=document.getElementById("log");
 const diffBox=document.getElementById("diffBox");
 const log=m=>logBox.textContent+=m+"\n";
 
-/* STRICT: harus ada "YYYY-MM-DDT */
-const STRICT_REGEX = /"\d{4}-\d{2}-\d{2}T/g;
+/* STRICT + PARANOID */
+const ISO_REGEX = /"(\d{4})-(\d{2})-(\d{2}T)/g;
 
-/* ===== PICKERS ===== */
+/* waktu lokal sistem */
+function systemISO(Y,M){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,"0");
+  const tz=-d.getTimezoneOffset();
+  const sign=tz>=0?"+":"-";
+  const hh=pad(Math.floor(Math.abs(tz)/60));
+  const mm=pad(Math.abs(tz)%60);
+  return `"${Y}-${M}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${sign}${hh}:${mm}"`;
+}
+
+/* PICKERS */
 pickFolder.onclick=async()=>{
   if(window.showDirectoryPicker){
     try{
       folderHandle=await showDirectoryPicker();
       fallbackFiles=[];
-      log("✔ Folder dipilih (API)");
+      log("✔ Folder dipilih");
       return;
     }catch{}
   }
   folderFallback.click();
 };
-
 folderFallback.onchange=e=>{
   fallbackFiles=[...e.target.files];
   folderHandle=null;
-  log(`✔ Folder fallback (${fallbackFiles.length} file)`);
+  log(`✔ Folder fallback (${fallbackFiles.length})`);
 };
 
 pickList.onclick=async()=>{
   if(window.showOpenFilePicker){
     try{
-      [listHandle]=await showOpenFilePicker({
-        types:[{accept:{"text/plain":[".txt"]}}]
-      });
+      [listHandle]=await showOpenFilePicker({types:[{accept:{"text/plain":[".txt"]}}]});
       listFile=null;
-      log("✔ ubahtanggal.txt dipilih (API)");
+      log("✔ ubahtanggal.txt dipilih");
       return;
     }catch{}
   }
   listFallback.click();
 };
-
 listFallback.onchange=e=>{
   listFile=e.target.files[0];
   listHandle=null;
   log("✔ ubahtanggal.txt dipilih (fallback)");
 };
 
-/* ===== PREVIEW ===== */
+/* PREVIEW */
 preview.onclick=async()=>{
   diffBox.innerHTML="";
   logBox.textContent="";
   changes=[];
   allowedFiles.clear();
 
-  const newDate=dateInput.value.trim();
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(newDate)){
-    alert("Format tanggal harus YYYY-MM-DD");
+  const Y=yearInput.value.trim();
+  const M=monthInput.value.trim();
+
+  if(!/^\d{4}$/.test(Y)||!/^\d{2}$/.test(M)||+M<1||+M>12){
+    alert("Tahun / bulan tidak valid");
     return;
   }
 
@@ -172,9 +185,7 @@ preview.onclick=async()=>{
     ? await (await listHandle.getFile()).text()
     : await listFile.text();
 
-  txt.split(/\r?\n/)
-     .map(v=>v.trim())
-     .filter(Boolean)
+  txt.split(/\r?\n/).map(v=>v.trim()).filter(Boolean)
      .forEach(f=>allowedFiles.add(f));
 
   for(const name of allowedFiles){
@@ -190,29 +201,30 @@ preview.onclick=async()=>{
         html=await file.text();
       }
 
-      if(!STRICT_REGEX.test(html)){
-        log(`⚠ Pola tidak ditemukan: ${name}`);
-        continue;
+      const matches=[...html.matchAll(ISO_REGEX)];
+
+      let newHtml=html;
+      if(matches.length){
+        const combos=new Set(matches.map(m=>`${m[1]}-${m[2]}`));
+        if(combos.size>1){
+          log(`⚠ ${name}: ${combos.size} kombinasi → dipaksa seragam`);
+        }
+        newHtml=html.replace(ISO_REGEX,`"${Y}-${M}-$3`);
+      }else{
+        log(`➕ ${name}: meta tidak ada → disuntik`);
+        newHtml=html.replace(
+          /<\/head>/i,
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+          `  <meta property="article:published_time" content=${systemISO(Y,M)}>\n<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>`
+        );
       }
-
-      const beforeMatches=[...html.matchAll(STRICT_REGEX)]
-        .map(m=>m[0]);
-
-      const newHtml=html.replace(
-        STRICT_REGEX,
-        `"${newDate}T`
-      );
-
-      const afterMatches=[...newHtml.matchAll(STRICT_REGEX)]
-        .map(m=>m[0]);
 
       changes.push({name,html:newHtml});
 
       diffBox.innerHTML+=`
 <div class="diff">
 <strong>${name}</strong><br>
-<del>${beforeMatches[0]}</del><br>
-<ins>"${newDate}T</ins>
+<ins>→ Tahun-Bulan diseragamkan ke ${Y}-${M}</ins>
 </div>`;
     }catch{
       log(`✖ Gagal proses: ${name}`);
@@ -222,16 +234,10 @@ preview.onclick=async()=>{
   log(`Preview selesai (${changes.length} file)`);
 };
 
-/* ===== APPLY ===== */
+/* APPLY */
 apply.onclick=async()=>{
-  if(!changes.length){
-    alert("Tidak ada perubahan untuk diterapkan");
-    return;
-  }
-
-  if(!confirm("Yakin menerapkan perubahan ke file?")){
-    return;
-  }
+  if(!changes.length){alert("Tidak ada perubahan");return;}
+  if(!confirm("Terapkan perubahan (mode paranoid)?")) return;
 
   for(const f of changes){
     try{
