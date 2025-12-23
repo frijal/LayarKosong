@@ -123,6 +123,14 @@ button.primary{background:var(--accent);border:none;color:#fff}
   color:var(--muted)
 }
 
+.item .title a{
+  color: inherit;
+  text-decoration: none;
+}
+.item .title a:hover{
+  text-decoration: underline;
+}
+
 /* ---------- Instruction Box ---------- */
 .instruction-box{
   background:var(--card);
@@ -379,6 +387,10 @@ function getLatestDateInCategory(items){
   return max;
 }
 
+/* ================= klik judul ================= */
+const BASE_POST_URL = "/artikel/";
+
+
 /* ================= RENDER ================= */
 function render(){
   const q=searchInput.value.toLowerCase();
@@ -426,8 +438,15 @@ function render(){
           onerror="this.style.display='none'">`:""}
 
         <div>
-          ${viewState.title?`<strong>${esc(title)}</strong>`:""}
-          ${viewState.slug?`<div class="slug">${esc(slug)}</div>`:""}
+${viewState.title?`
+  <div class="title">
+    <a href="${BASE_POST_URL}${esc(slug)}"
+       target="_blank"
+       rel="noopener noreferrer">
+      <strong>${esc(title)}</strong>
+    </a>
+  </div>`:""}
+        ${viewState.slug?`<div class="slug">${esc(slug)}</div>`:""}
           ${viewState.date?`<div class="date">${fmtDate(date)}</div>`:""}
           ${viewState.desc?`<div class="desc">${esc(desc||"")}</div>`:""}
         </div>`;
