@@ -44,30 +44,30 @@ jobs:
         env:
           RSS_LIMIT: 30
 
-      - name: '5️⃣ Generate Sitemap Rekursif & URL Statis'
-        run: |
-          echo "📝 Membuat sitemap.txt..."
-          BASE_URL="https://dalam.web.id"
-          SITEMAP_FILE="sitemap.txt"
+  #    - name: '5️⃣ Generate Sitemap Rekursif & URL Statis'
+   #     run: |
+    #      echo "📝 Membuat sitemap.txt..."
+     #     BASE_URL="https://dalam.web.id"
+      #    SITEMAP_FILE="sitemap.txt"
 
-          find artikel/ -name "*.html" \
-            | sed 's_\.html$__' \
-            | sed "s_^_$BASE_URL/_" > "$SITEMAP_FILE"
+    #      find artikel/ -name "*.html" \
+    #        | sed 's_\.html$__' \
+    #        | sed "s_^_$BASE_URL/_" > "$SITEMAP_FILE"
 
-          echo "$BASE_URL/" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/img" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/search" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/img" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/search" >> "$SITEMAP_FILE"
+    #      echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
+     #     echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
 
-          echo "✅ sitemap.txt selesai"
+      #    echo "✅ sitemap.txt selesai"
 
-      - name: '6️⃣ Generate Screenshots'
-        run: npm run ci-screenshot
+  #    - name: '6️⃣ Generate Screenshots'
+  #      run: npm run ci-screenshot
 
       - name: '7️⃣ Commit and Push Generated Files'
         run: |
