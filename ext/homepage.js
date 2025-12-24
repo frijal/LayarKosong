@@ -13,7 +13,7 @@
   async function loadData() {
     try {
       // Mengambil file artikel.json
-      const response = await fetch('artikel.json');
+      const response = await fetch('./artikel.json');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
