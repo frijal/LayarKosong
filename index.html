@@ -292,6 +292,12 @@
     color: inherit;
 }
 
+.card-category {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
 /* Footer sejajar */
 .card-footer {
     margin-top: auto;
@@ -314,9 +320,16 @@
 
 /* Hover efek */
 .card-link:hover .card-title {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card:hover .card-readmore {
+  text-decoration: none;
+}
     </style>
 <body>
 
