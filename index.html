@@ -625,27 +625,71 @@ function renderSidebar() {
         });
     }
 
-    function renderArchives() {
-        const years = [...new Set(allData.map(i => i.date.getFullYear()))];
-        const ySelect = document.getElementById('yearFilter');
-        years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
-        
-        const mSelect = document.getElementById('monthFilter');
-        const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-        months.forEach((m, i) => mSelect.innerHTML += `<option value="${i}">${m}</option>`);
-    }
+function renderArchives() {
+    const years = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
+    const ySelect = document.getElementById('yearFilter');
 
-    function runFilters() {
-        const y = document.getElementById('yearFilter').value;
-        const m = document.getElementById('monthFilter').value;
-        
-        displayedData = allData.filter(i => {
-            const matchY = y ? i.date.getFullYear() == y : true;
-            const matchM = m !== "" ? i.date.getMonth() == m : true;
-            return matchY && matchM;
+    // Reset dan isi Tahun
+    ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
+    years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
+
+    // Pastikan dropdown bulan di-reset di awal
+    updateMonthDropdown();
+}
+
+function updateMonthDropdown() {
+    const ySelect = document.getElementById('yearFilter');
+    const mSelect = document.getElementById('monthFilter');
+    const selectedYear = ySelect.value;
+    const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+    mSelect.innerHTML = '<option value="">Semua Bulan</option>';
+
+    if (selectedYear) {
+        // Cari bulan apa saja yang ada di tahun terpilih
+        const availableMonths = [...new Set(
+            allData
+                .filter(i => i.date.getFullYear() == selectedYear)
+                .map(i => i.date.getMonth())
+        )].sort((a, b) => a - b);
+
+        availableMonths.forEach(m => {
+            mSelect.innerHTML += `<option value="${m}">${monthsName[m]}</option>`;
         });
-        renderFeed(true);
+        mSelect.disabled = false;
+    } else {
+        mSelect.disabled = true; // Matikan bulan jika tahun belum dipilih
     }
+}
+
+function runFilters() {
+    const ySelect = document.getElementById('yearFilter');
+    const mSelect = document.getElementById('monthFilter');
+
+    // Jika fungsi ini dipicu oleh perubahan TAHUN (bukan bulan)
+    // Kita cek melalui event.target jika perlu, atau simpelnya:
+    // Selalu update dropdown bulan setiap kali filter jalan (selama tahun ada)
+
+    const y = ySelect.value;
+    const m = mSelect.value;
+
+    displayedData = allData.filter(i => {
+        const matchY = y ? i.date.getFullYear() == y : true;
+        const matchM = m !== "" ? i.date.getMonth() == m : true;
+        return matchY && matchM;
+    });
+
+    renderFeed(true);
+    renderSidebar(); // Agar sidebar juga tetap sinkron tanpa duplikat
+}
+
+// Tambahkan event listener khusus untuk cascading
+document.getElementById('yearFilter').addEventListener('change', () => {
+    updateMonthDropdown(); // Update list bulan dulu
+    runFilters();          // Baru jalankan filter data
+});
+
+document.getElementById('monthFilter').addEventListener('change', runFilters);
 
     function filterByCat(cat, el) {
         document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
