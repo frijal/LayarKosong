@@ -570,7 +570,7 @@ async function fetchData() {
         </h3>
 
         <p class="card-excerpt">
-            ${item.summary.substring(0, 180)}...
+            ${item.summary.substring(0, 200)}...
         </p>
 
         <div class="card-footer">
@@ -590,23 +590,33 @@ async function fetchData() {
         });
     }
 
-    function renderSidebar() {
-        const side = document.getElementById('sidebarRandom');
-        side.innerHTML = '';
-        const randoms = [...allData].sort(() => 0.5 - Math.random()).slice(0, 5);
-        
-        randoms.forEach(item => {
-            side.innerHTML += `
-                <div class="mini-item">
-                    <img src="${item.img}" class="mini-thumb">
-                    <div class="mini-text">
-                        <h4><a href="${item.url}" style="text-decoration:none; color:inherit;">${item.title.substring(0, 50)}...</a></h4>
-                        <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
-                    </div>
+function renderSidebar() {
+    const side = document.getElementById('sidebarRandom');
+    side.innerHTML = '';
+
+    // 1. Ambil daftar judul yang sedang tampil di Feed Utama (Grid Kiri)
+    const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
+
+    // 2. Filter allData: Hanya ambil artikel yang judulnya TIDAK ADA di displayedTitles
+    const availableForSidebar = allData.filter(item => !displayedTitles.includes(item.title));
+
+    // 3. Acak sisa artikel tersebut dan ambil 5
+    const randoms = [...availableForSidebar]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
+
+    randoms.forEach(item => {
+        side.innerHTML += `
+            <div class="mini-item" style="animation: fadeIn 0.5s ease">
+                <img src="${item.img}" class="mini-thumb" onerror="this.src='https://via.placeholder.com/70'">
+                <div class="mini-text">
+                    <h4><a href="${item.url}" style="text-decoration:none; color:inherit;">${item.title.substring(0, 50)}...</a></h4>
+                    <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
                 </div>
-            `;
-        });
-    }
+            </div>
+        `;
+    });
+}
 
     function renderCategories() {
         const cats = [...new Set(allData.map(i => i.category))];
@@ -649,6 +659,7 @@ async function fetchData() {
     document.getElementById('loadMore').onclick = () => {
         limit += 6;
         renderFeed();
+        renderSidebar();
     };
 
     fetchData();
