@@ -394,7 +394,7 @@
 <header>
     <div class="container nav-box">
         <div class="logo">Layar <span>Kosong</span></div>
-        <input type="text" id="searchInput" class="search-bar" placeholder="Cari berita seru...">
+        <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
     </div>
 </header>
 
@@ -403,7 +403,7 @@
 
     <div class="toolbar">
         <div class="pills" id="categoryPills">
-            <div class="pill active" onclick="filterByCat('All')">Semua</div>
+            <div class="pill active" onclick="filterByCat('All')">Kategori</div>
         </div>
         <div class="archive-box">
             <select id="yearFilter"><option value="">Tahun</option></select>
@@ -584,8 +584,7 @@ async function fetchData() {
              </div>
     </a>
 </div>
-
-                </div>
+</div>
             `;
         });
     }
@@ -608,7 +607,7 @@ function renderSidebar() {
     randoms.forEach(item => {
         side.innerHTML += `
             <div class="mini-item" style="animation: fadeIn 0.5s ease">
-                <img src="${item.img}" class="mini-thumb" onerror="this.src='https://via.placeholder.com/70'">
+                <img src="${item.img}" class="mini-thumb" onerror="this.src='thumbnail.webp'">
                 <div class="mini-text">
                     <h4><a href="${item.url}" style="text-decoration:none; color:inherit;">${item.title.substring(0, 50)}...</a></h4>
                     <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
