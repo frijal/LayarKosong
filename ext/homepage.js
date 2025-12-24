@@ -1,244 +1,210 @@
-// --- STATE MANAGEMENT ---
-let allArticles = [];
-let filteredArticles = [];
-let currentPage = 1;
-const itemsPerPage = 10;
+let allData = [];
+let displayedData = [];
+let limit = 6;
 
-// --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
-  loadData(); // Panggil fungsi loadData, bukan langsung render
-});
-
-// --- LOAD DATA FROM JSON FILE ---
-async function loadData() {
+async function fetchData() {
   try {
-    // Mengambil file artikel.json
-    const response = await fetch('artikel.json');
+    const res = await fetch('artikel.json');
+    const data = await res.json();
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // Kosongkan array sebelum mengisi (menghindari duplikasi saat refresh)
+    allData = [];
+
+    // Flatten data dari kategori JSON
+    for (const cat in data) {
+      data[cat].forEach(item => {
+        allData.push({
+          category: cat,
+          title: item[0],
+          // Menambahkan folder 'artikel/' sebelum slug file .html
+          url: 'artikel/' + item[1],
+          img: item[2],
+          date: new Date(item[3]),
+                     summary: item[4]
+        });
+      });
     }
 
-    // Konversi teks file menjadi Objek JavaScript
-    const jsonData = await response.json();
+    // Sort terbaru (berdasarkan tanggal)
+    allData.sort((a, b) => b.date - a.date);
+    displayedData = [...allData];
 
-    // Setelah data didapat, jalankan proses normalisasi dan render
-    normalizeData(jsonData);
-    setupFilters();
-    setupArchive();
-    renderHero();
-    renderGrid(true);
-    renderSidebar();
-
-    // Setup Search Listener
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      const keyword = e.target.value.toLowerCase();
-      filteredArticles = allArticles.filter(art =>
-      art.title.toLowerCase().includes(keyword) ||
-      art.summary.toLowerCase().includes(keyword)
-      );
-      renderGrid(true);
-    });
-
-    // Setup Load More Listener
-    document.getElementById('loadMoreBtn').addEventListener('click', () => {
-      currentPage++;
-      renderGrid(false);
-    });
-
-  } catch (error) {
-    console.error("Gagal memuat artikel.json:", error);
-    document.getElementById('newsGrid').innerHTML =
-    `<p style="grid-column: 1/-1; text-align: center; color: red;">
-    Gagal memuat data artikel. Pastikan Anda menjalankan ini menggunakan Local Server (bukan double-click file).
-    <br>Error: ${error.message}
-    </p>`;
+    initSite();
+  } catch (e) {
+    console.error("Gagal ambil data", e);
+    document.getElementById('newsFeed').innerHTML = "<p>Gagal memuat konten. Pastikan file JSON tersedia.</p>";
   }
 }
 
-// --- DATA PROCESSING ---
-// Perhatikan: fungsi ini sekarang menerima parameter 'data'
-function normalizeData(data) {
-  for (const [category, articles] of Object.entries(data)) {
-    articles.forEach(item => {
-      const originalLink = item[1] || '';
+function initSite() {
+  renderHero();
+  renderCategories();
+  renderArchives();
+  renderSidebar();
+  renderFeed();
 
-      allArticles.push({
-        category: category,
-        title: item[0],
-        link: `/artikel/${originalLink.replace(/^\/+/, '')}`,
-                       thumbnail: item[2],
-                       date: new Date(item[3]),
-                       dateStr: item[3],
-                       summary: item[4]
-      });
-    });
-  }
+  // Search Logic
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const val = e.target.value.toLowerCase();
+    displayedData = allData.filter(i => i.title.toLowerCase().includes(val));
+    renderFeed(true);
+  });
 
-  // Sort by Date Descending
-  allArticles.sort((a, b) => b.date - a.date);
-  filteredArticles = [...allArticles];
+  // Archive Change
+  document.getElementById('yearFilter').onchange = runFilters;
+  document.getElementById('monthFilter').onchange = runFilters;
 }
 
-// --- RENDER HERO SECTION (FEATURED) ---
 function renderHero() {
-  const hero = document.getElementById('hero-section');
-  const featured = allArticles[0]; // Pick newest as featured
-
-  // Remove skeleton class
-  hero.classList.remove('skeleton');art.thumbnail
-  hero.style.backgroundImage = `url('${featured.thumbnail}')`;
-
-  hero.innerHTML = `
+  const h = allData[0];
+  const el = document.getElementById('hero');
+  el.classList.remove('skeleton');
+  el.style.backgroundImage = `url('${h.img}')`;
+  el.innerHTML = `
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-  <span class="hero-badge">${featured.category}</span>
-  <h1 style="font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">${featured.title}</h1>
-  <p style="font-size: 1.1rem; margin-bottom: 1.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">${featured.summary.substring(0, 150)}...</p>
-  <a href="${featured.link}" class="btn btn-primary">Baca Selengkapnya</a>
+  <span class="hero-cat">${h.category}</span>
+  <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0;">${h.title}</h1>
+  <p>${h.summary}</p>
+  <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">Baca Sekarang</a>
   </div>
   `;
 }
 
-// --- RENDER GRID ---
-function renderGrid(reset = false) {
-  const grid = document.getElementById('newsGrid');
-  const btn = document.getElementById('loadMoreBtn');
+function renderFeed(reset = false) {
+  if(reset) limit = 6;
+  const container = document.getElementById('newsFeed');
+  container.innerHTML = '';
 
-  if (reset) {
-    grid.innerHTML = '';
-    currentPage = 1;
+  const items = displayedData.slice(0, limit);
+  items.forEach(item => {
+    container.innerHTML += `
+    <div class="card" style="animation: fadeIn 0.5s ease">
+    <img src="${item.img}" class="card-img" alt="img" onerror="this.src='https://via.placeholder.com/300x180'">
+    <div class="card-body">
+    <small style="color:var(--primary); font-weight:bold">${item.category}</small>
+    <h3 class="card-title">${item.title}</h3>
+    <p class="card-excerpt">${item.summary.substring(0, 100)}...</p>
+    <a href="${item.url}" style="color:var(--primary); font-weight:600; text-decoration:none; font-size:0.9rem;">Baca Selengkapnya →</a>
+    </div>
+    </div>
+    `;
+  });
+}
+
+function renderSidebar() {
+  const side = document.getElementById('sidebarRandom');
+  side.innerHTML = '';
+  const randoms = [...allData].sort(() => 0.5 - Math.random()).slice(0, 5);
+
+  randoms.forEach(item => {
+    side.innerHTML += `
+    <div class="mini-item">
+    <img src="${item.img}" class="mini-thumb">
+    <div class="mini-text">
+    <h4><a href="${item.url}" style="text-decoration:none; color:inherit;">${item.title.substring(0, 50)}...</a></h4>
+    <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
+    </div>
+    </div>
+    `;
+  });
+}
+
+function renderCategories() {
+  const cats = [...new Set(allData.map(i => i.category))];
+  const container = document.getElementById('categoryPills');
+  cats.forEach(c => {
+    container.innerHTML += `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`;
+  });
+}
+
+function renderArchives() {
+  const years = [...new Set(allData.map(i => i.date.getFullYear()))];
+  const ySelect = document.getElementById('yearFilter');
+  years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
+
+  const mSelect = document.getElementById('monthFilter');
+  const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  months.forEach((m, i) => mSelect.innerHTML += `<option value="${i}">${m}</option>`);
+}
+
+function runFilters() {
+  const y = document.getElementById('yearFilter').value;
+  const m = document.getElementById('monthFilter').value;
+
+  displayedData = allData.filter(i => {
+    const matchY = y ? i.date.getFullYear() == y : true;
+    const matchM = m !== "" ? i.date.getMonth() == m : true;
+    return matchY && matchM;
+  });
+  renderFeed(true);
+}
+
+function filterByCat(cat, el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  if(el) el.classList.add('active');
+
+  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
+  renderFeed(true);
+}
+
+document.getElementById('loadMore').onclick = () => {
+  limit += 6;
+  renderFeed();
+};
+
+fetchData();
+
+function showToast(message) {
+  // Buat container jika belum ada
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
   }
 
-  const start = (currentPage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  const pageData = filteredArticles.slice(start, end);
+  // Buat elemen toast
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
 
-  if (pageData.length === 0 && reset) {
-    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Tidak ada artikel ditemukan.</p>';
-    btn.style.display = 'none';
+  container.appendChild(toast);
+
+  // Hilangkan toast otomatis setelah 3 detik
+  setTimeout(() => {
+    toast.classList.add('toast-hide');
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
+
+function sendToWA() {
+  const name = document.getElementById('contact-name').value;
+  const email = document.getElementById('contact-email').value;
+  const message = document.getElementById('contact-message').value;
+
+  // Validasi sederhana: Nama dan Pesan wajib diisi
+  if(!name || !message) {
+    alert("Nama dan Pesan jangan dikosongkan ya, Bosku!");
     return;
   }
 
-  pageData.forEach((art, index) => {
-    const card = document.createElement('div');
-    card.className = 'card skeleton'; // Start with skeleton state
-    card.innerHTML = `
-    <div class="card-img-wrapper">
-    <img src="${art.thumbnail}" alt="${art.title}" class="card-img" onload="this.closest('.card').classList.remove('skeleton')">
-    </div>
-    <div class="card-body">
-    <div class="card-meta">${art.category}</div>
-    <h3 class="card-title"><a href="${art.link}">${art.title}</a></h3>
-    <p class="card-excerpt">${art.summary}</p>
-    <div class="card-footer">
-    <span>${art.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-    </div>
-    </div>
-    `;
+  // Ganti dengan nomor WhatsApp kamu (format 62...)
+  const noWA = "6281578163858";
 
-    // Staggered animation effect
-    setTimeout(() => {
-      grid.appendChild(card);
-    }, index * 50);
-  });
+  // Menyusun format pesan WhatsApp
+  const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Pesan:* ${message}`;
 
-  // Manage Load More Button
-  if (end >= filteredArticles.length) {
-    btn.style.display = 'none';
-  } else {
-    btn.style.display = 'inline-block';
-  }
-}
+  // Panggil notifikasi Toast (fungsi showToast ada di chat sebelumnya)
+  showToast("Membuka WhatsApp... Pesan siap dikirim!");
 
-// --- SETUP CATEGORY FILTERS ---
-function setupFilters() {
-  const container = document.getElementById('categoryContainer');
-  const categories = [...new Set(allArticles.map(a => a.category))];
+  // Jeda 1 detik agar user bisa lihat notifikasi suksesnya dulu
+  setTimeout(() => {
+    window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
 
-  categories.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.className = 'pill';
-    btn.textContent = cat;
-    btn.onclick = () => filterArticles(cat, btn);
-    container.appendChild(btn);
-  });
-}
-
-function filterArticles(category, element) {
-  // Update active state
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  if(element) element.classList.add('active');
-  else document.querySelector('.pill').classList.add('active'); // "All" button
-
-  if (category === 'all') {
-    filteredArticles = [...allArticles];
-  } else {
-    filteredArticles = allArticles.filter(a => a.category === category);
-  }
-  renderGrid(true);
-}
-
-// --- SETUP ARCHIVE DROPDOWNS ---
-function setupArchive() {
-  const yearSelect = document.getElementById('yearSelect');
-  const monthSelect = document.getElementById('monthSelect');
-
-  const years = [...new Set(allArticles.map(a => a.date.getFullYear()))].sort((a,b) => b-a);
-
-  years.forEach(y => {
-    const opt = document.createElement('option');
-    opt.value = y;
-    opt.textContent = y;
-    yearSelect.appendChild(opt);
-  });
-
-  // Populate months (Standard 1-12)
-  const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-  monthNames.forEach((m, i) => {
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = m;
-    monthSelect.appendChild(opt);
-  });
-
-  const handleArchiveFilter = () => {
-    const y = yearSelect.value;
-    const m = monthSelect.value;
-
-    filteredArticles = allArticles.filter(a => {
-      const matchYear = y ? a.date.getFullYear() == y : true;
-      const matchMonth = m !== "" ? a.date.getMonth() == m : true;
-      return matchYear && matchMonth;
-    });
-    renderGrid(true);
-  };
-
-  yearSelect.addEventListener('change', handleArchiveFilter);
-  monthSelect.addEventListener('change', handleArchiveFilter);
-}
-
-// --- RENDER SIDEBAR (RANDOM / TRENDING) ---
-function renderSidebar() {
-  const container = document.getElementById('sidebarList');
-  container.innerHTML = ''; // Bersihkan konten lama jika ada
-
-  // 1. Buat salinan array (agar urutan asli di allArticles tidak berantakan)
-  // 2. Acak urutannya
-  // 3. Ambil 5 item pertama
-  const randomArticles = [...allArticles]
-  .sort(() => 0.10 - Math.random())
-  .slice(0, 10);
-
-  randomArticles.forEach(art => {
-    const div = document.createElement('div');
-    div.className = 'mini-card';
-    div.innerHTML = `
-    <img src="${art.thumbnail}" class="mini-thumb" alt="thumb" loading="lazy">
-    <div class="mini-info">
-    <h4><a href="${art.link}">${art.title.substring(0, 45)}...</a></h4>
-    <span>${art.date.toLocaleDateString('id-ID', { month: 'short', day: 'numeric' })}</span>
-    </div>
-    `;
-    container.appendChild(div);
-  });
+    // Bersihkan input setelah berhasil
+    document.getElementById('contact-name').value = "";
+    document.getElementById('contact-email').value = "";
+    document.getElementById('contact-message').value = "";
+  }, 1200);
 }
