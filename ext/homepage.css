@@ -1,0 +1,410 @@
+/* --- CSS VARIABLES & THEME --- */
+:root {
+  --primary: #3584e4;
+  --secondary: #ffbf00; /* Amber */
+  --bg-body: #f8f9fa;
+  --bg-card: #ffffff;
+  --text-main: #2c3e50;
+  --text-muted: #6c757d;
+  --border-color: #e9ecef;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --border-color: #333333;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* --- RESET & TYPOGRAPHY --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+a { text-decoration: none; color: inherit; transition: color 0.2s; }
+ul { list-style: none; }
+
+/* --- LAYOUT UTILITIES --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: #2a6bbd; transform: translateY(-2px); }
+.btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+.btn-outline:hover { background: var(--primary); color: white; }
+
+/* --- HEADER --- */
+header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 0;
+}
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+.logo span { color: var(--secondary); }
+.search-box {
+  position: relative;
+}
+.search-input {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-body);
+  color: var(--text-main);
+  width: 200px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  margin: 2rem 0;
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 400px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+.hero-content {
+  position: relative;
+  padding: 2rem;
+  color: white;
+  z-index: 1;
+  max-width: 800px;
+}
+.hero-badge {
+  background: var(--secondary);
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* --- FILTERS & ARCHIVE --- */
+.filters {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.cat-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill {
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.pill.active { background: var(--primary); color: white; border-color: var(--primary); }
+.archive-select {
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+/* --- MAIN GRID LAYOUT --- */
+.main-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* --- NEWS CARD --- */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.card-img-wrapper {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.card:hover .card-img { transform: scale(1.05); }
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.card-meta {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.card-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+.card-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --- SIDEBAR --- */
+/* --- SIDEBAR --- */
+aside {
+  /* Membuat sidebar tetap melayang */
+  position: -webkit-sticky; /* Untuk Safari */
+  position: sticky;
+  top: 90px; /* Jarak dari header (sesuaikan dengan tinggi header Anda) */
+
+  /* Penting: Agar sidebar tidak memanjang mengikuti tinggi konten utama */
+  height: fit-content;
+  align-self: start;
+}
+
+.sidebar-section {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--secondary);
+  padding-left: 10px;
+}
+.mini-card {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+.mini-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.mini-info h4 { font-size: 0.9rem; line-height: 1.3; }
+.mini-info span { font-size: 0.75rem; color: var(--text-muted); }
+
+/* --- SKELETON LOADER --- */
+.skeleton {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(110deg, #333 8%, #444 18%, #333 33%);
+  }
+}
+@keyframes shine {
+  to { background-position-x: -200%; }
+}
+.card.loading .card-img, .card.loading .card-title, .card.loading .card-excerpt {
+  color: transparent;
+  background-color: #ccc; /* Fallback */
+}
+
+/* --- CONTACT FORM --- */
+.contact-section {
+  background: var(--bg-card);
+  padding: 3rem;
+  border-radius: var(--radius);
+  text-align: center;
+  margin-bottom: 3rem;
+  border: 1px solid var(--border-color);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+.full-width { grid-column: 1 / -1; }
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-body);
+  color: var(--text-main);
+}
+
+/* =================================================
+ *  7. FOOTER
+ *  ================================================= */
+.page-footer {
+  /* Background dihapus agar transparan/menyatu */
+  padding: 4rem 1.5rem 2rem;
+  margin-top: 5rem;
+  color: var(--text-primary);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  /* Ubah menjadi 3 kolom agar teks keamanan, link, dan sosmed berjajar rapi */
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  align-items: center; /* Menjaga semua elemen sejajar di tengah secara vertikal */
+}
+
+.footer-section h3 {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Lebih renggang agar elegan */
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.footer-section p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Link Mendatar & Tanpa Garis Bawah */
+.footer-links {
+  justify-content: center;
+}
+
+.footer-links a {
+  text-decoration: none !important;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-secondary);
+}
+
+/* Media Sosial */
+.footer-social {
+  justify-content: flex-end;
+}
+
+.footer-social a {
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  text-decoration: none !important;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--text-secondary);
+  transform: translateY(-3px);
+}
+
+/* Garis Tipis Pemisah Copyright */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color); /* Hanya garis tipis di bawah */
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .main-content { grid-template-columns: 1fr; }
+  .hero { height: 300px; }
+}
+@media (max-width: 600px) {
+  .nav-wrapper { flex-direction: column; gap: 1rem; }
+  .search-input { width: 100%; }
+  .news-grid { grid-template-columns: 1fr; }
+}
