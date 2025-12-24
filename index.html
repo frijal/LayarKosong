@@ -3,20 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Layar Kosong — Arsip Artikel</title>
+<title>Layar Kosong</title>
 
-<!-- =========================
-     SEO & SCHEMA.ORG
-========================= -->
 <script type="application/ld+json" id="schema"></script>
 
 <style>
-/* =========================
-   RESET & THEME
-========================= */
+/* ================= RESET + THEME ================= */
 :root{
   --bg:#f6f7f9;
-  --card:#ffffff;
+  --card:#fff;
   --text:#111;
   --muted:#666;
   --accent:#2563eb;
@@ -30,7 +25,6 @@
     --accent:#60a5fa;
   }
 }
-
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -38,37 +32,23 @@ body{
   background:var(--bg);
   color:var(--text);
 }
+a{color:inherit;text-decoration:none}
 
-/* =========================
-   HERO
-========================= */
-.hero{
-  padding:3rem 1rem;
-  text-align:center;
+/* ================= NAV ================= */
+nav{
+  display:flex;
+  gap:1rem;
+  padding:1rem;
+  background:var(--card);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
+
+/* ================= HERO ================= */
+.hero{text-align:center;padding:2.5rem 1rem}
 .hero h1{margin:0;font-size:2.2rem}
 .hero p{color:var(--muted)}
 
-/* =========================
-   FILTERS
-========================= */
-.filters{
-  display:grid;
-  gap:.75rem;
-  padding:1rem;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-}
-.filters input,.filters select{
-  padding:.6rem .7rem;
-  border-radius:10px;
-  border:1px solid #ccc;
-  background:var(--card);
-  color:var(--text);
-}
-
-/* =========================
-   GRID & CARD
-========================= */
+/* ================= GRID ================= */
 .grid{
   display:grid;
   gap:1.2rem;
@@ -83,35 +63,28 @@ body{
   display:flex;
   flex-direction:column;
 }
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-}
-.card-body{
+.card img{width:100%;height:160px;object-fit:cover}
+.card-body{padding:1rem;display:flex;flex-direction:column;gap:.4rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.card h2{font-size:1rem;margin:.2rem 0}
+.read{margin-top:auto;color:var(--accent);font-weight:600}
+
+/* ================= FILTER ================= */
+.filters{
+  display:grid;
+  gap:.75rem;
   padding:1rem;
-  display:flex;
-  flex-direction:column;
-  gap:.4rem;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 }
-.meta{
-  font-size:.8rem;
-  color:var(--muted);
-}
-.card h2{
-  font-size:1rem;
-  margin:.2rem 0;
-}
-.read{
-  margin-top:auto;
-  text-decoration:none;
-  color:var(--accent);
-  font-weight:600;
+.filters input,.filters select{
+  padding:.6rem;
+  border-radius:10px;
+  border:1px solid #ccc;
+  background:var(--card);
+  color:var(--text);
 }
 
-/* =========================
-   PAGINATION
-========================= */
+/* ================= PAGINATION ================= */
 .pagination{
   display:flex;
   gap:.5rem;
@@ -124,26 +97,16 @@ body{
   border:0;
   background:var(--card);
   cursor:pointer;
-  color:var(--text);
 }
 .pagination button.active{
   background:var(--accent);
   color:#fff;
 }
 
-/* =========================
-   ARCHIVE VISUAL
-========================= */
-.archive{
-  max-width:900px;
-  margin:2rem auto;
-  padding:1rem;
-}
+/* ================= ARCHIVE ================= */
+.archive{max-width:900px;margin:2rem auto;padding:1rem}
 .year{margin-bottom:1.5rem}
-.year h3{
-  margin:.5rem 0;
-  border-bottom:2px solid var(--muted);
-}
+.year h3{border-bottom:2px solid var(--muted)}
 .months{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
@@ -153,214 +116,223 @@ body{
   background:var(--card);
   padding:.6rem;
   border-radius:10px;
-  cursor:pointer;
   text-align:center;
-  font-size:.9rem;
-}
-.month span{
-  display:block;
-  font-size:.75rem;
-  color:var(--muted);
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer{
-  text-align:center;
-  padding:2rem;
-  color:var(--muted);
-  font-size:.85rem;
-}
+/* ================= ARTICLE ================= */
+.post{max-width:760px;margin:2rem auto;padding:1rem}
+.post img{width:100%;border-radius:16px}
+.post h1{margin:.5rem 0}
+footer{text-align:center;padding:2rem;color:var(--muted)}
 </style>
 </head>
 
 <body>
 
-<header class="hero">
-  <h1>Layar Kosong</h1>
-  <p>Arsip artikel — cepat, ringan, dan interaktif</p>
-</header>
+<nav>
+  <a href="/">Beranda</a>
+  <a href="/artikel">Arsip</a>
+</nav>
 
-<section class="filters">
-  <input id="search" type="search" placeholder="Cari judul…">
-  <select id="category"><option value="">Semua kategori</option></select>
-  <select id="year"><option value="">Semua tahun</option></select>
-  <select id="month"><option value="">Semua bulan</option></select>
-</section>
-
-<main class="grid" id="grid"></main>
-<div class="pagination" id="pagination"></div>
-
-<section class="archive" id="archive"></section>
-
-<footer>
-  Dibangun dari JSON • Client-Side Rendering
-</footer>
+<div id="app"></div>
+<footer>Offline-ready • JSON-driven</footer>
 
 <script>
-/* =========================
-   CONFIG
-========================= */
-const JSON_URL = "artikel.json";   // ganti jika Blogger
-const PER_PAGE = 12;
+/* ================= CONFIG ================= */
+const JSON_URL="artikel.json";
+const PER_PAGE=12;
 
-/* =========================
-   STATE
-========================= */
-let all=[],filtered=[];
-let page=1;
+/* ================= STATE ================= */
+let all=[],archiveMap={},filtered=[],page=1;
 
-/* =========================
-   LOAD DATA
-========================= */
-fetch(JSON_URL).then(r=>r.json()).then(json=>{
-  all = Object.entries(json).flatMap(([cat,items]) =>
+/* ================= INDEXEDDB ================= */
+const DB="artikelDB";
+function openDB(){
+  return new Promise(res=>{
+    const r=indexedDB.open(DB,1);
+    r.onupgradeneeded=e=>{
+      e.target.result.createObjectStore("data");
+    };
+    r.onsuccess=e=>res(e.target.result);
+  });
+}
+async function cacheGet(){
+  const db=await openDB();
+  return new Promise(r=>{
+    const t=db.transaction("data");
+    const g=t.objectStore("data").get("json");
+    g.onsuccess=()=>r(g.result);
+  });
+}
+async function cacheSet(data){
+  const db=await openDB();
+  const t=db.transaction("data","readwrite");
+  t.objectStore("data").put(data,"json");
+}
+
+/* ================= LOAD DATA ================= */
+(async()=>{
+  let data=await cacheGet();
+  if(!data){
+    const r=await fetch(JSON_URL);
+    data=await r.json();
+    cacheSet(data);
+  }
+  all=Object.entries(data).flatMap(([cat,items])=>
     items.map(i=>({
-      title:i[0],
-      slug:i[1],
-      image:i[2],
-      date:new Date(i[3]),
-      excerpt:i[4],
-      category:cat
+      title:i[0],slug:i[1],image:i[2],
+      date:new Date(i[3]),excerpt:i[4],category:cat
     }))
   ).sort((a,b)=>b.date-a.date);
+  buildArchiveMap();
+  router();
+})();
 
-  initFilters();
-  applyFilter();
-  buildArchive();
-  buildSchema();
-});
-
-/* =========================
-   FILTER INIT
-========================= */
-function initFilters(){
-  const cat=new Set(),year=new Set();
-  all.forEach(a=>{
-    cat.add(a.category);
-    year.add(a.date.getFullYear());
-  });
-  cat.forEach(c=>category.add(new Option(c,c)));
-  [...year].sort((a,b)=>b-a).forEach(y=>yearSelect.add(new Option(y,y)));
-  [...Array(12).keys()].forEach(m=>month.add(new Option(m+1,m)));
-}
-
-/* =========================
-   FILTER LOGIC
-========================= */
-["search","category","year","month"].forEach(id=>{
-  document.getElementById(id).oninput=()=>{
-    page=1; applyFilter();
-  };
-});
-
-function applyFilter(){
-  const q=search.value.toLowerCase();
-  filtered = all.filter(a=>
-    (!q || a.title.toLowerCase().includes(q)) &&
-    (!category.value || a.category===category.value) &&
-    (!year.value || a.date.getFullYear()==year.value) &&
-    (!month.value || a.date.getMonth()==month.value)
-  );
-  render();
-}
-
-/* =========================
-   RENDER + PAGINATION
-========================= */
-function render(){
-  grid.innerHTML="";
-  const start=(page-1)*PER_PAGE;
-  const slice=filtered.slice(start,start+PER_PAGE);
-
-  slice.forEach(a=>{
-    grid.insertAdjacentHTML("beforeend",`
-      <article class="card">
-        <img loading="lazy" src="${a.image}">
-        <div class="card-body">
-          <div class="meta">${a.category} · ${a.date.toLocaleDateString("id-ID")}</div>
-          <h2>${a.title}</h2>
-          <p>${a.excerpt}</p>
-          <a class="read" href="/${a.slug}">Baca →</a>
-        </div>
-      </article>
-    `);
-  });
-
-  renderPagination();
-}
-
-function renderPagination(){
-  pagination.innerHTML="";
-  const pages=Math.ceil(filtered.length/PER_PAGE);
-  for(let i=1;i<=pages;i++){
-    const b=document.createElement("button");
-    b.textContent=i;
-    if(i===page) b.className="active";
-    b.onclick=()=>{page=i;render();scrollTo(0,0);}
-    pagination.appendChild(b);
-  }
-}
-
-/* =========================
-   ARCHIVE VISUAL
-========================= */
-function buildArchive(){
-  const map={};
+/* ================= ARCHIVE PRE-RENDER ================= */
+function buildArchiveMap(){
+  archiveMap={};
   all.forEach(a=>{
     const y=a.date.getFullYear();
-    const m=a.date.getMonth();
-    map[y]??={};
-    map[y][m]??=[];
-    map[y][m].push(a);
-  });
-
-  archive.innerHTML="";
-  Object.keys(map).sort((a,b)=>b-a).forEach(y=>{
-    const yEl=document.createElement("div");
-    yEl.className="year";
-    yEl.innerHTML=`<h3>${y}</h3>`;
-    const mEl=document.createElement("div");
-    mEl.className="months";
-
-    Object.keys(map[y]).sort((a,b)=>b-a).forEach(m=>{
-      const d=document.createElement("div");
-      d.className="month";
-      d.innerHTML=`
-        ${new Date(y,m).toLocaleString("id-ID",{month:"long"})}
-        <span>${map[y][m].length} artikel</span>
-      `;
-      d.onclick=()=>{
-        year.value=y;
-        month.value=m;
-        page=1;
-        applyFilter();
-        scrollTo(0,0);
-      };
-      mEl.appendChild(d);
-    });
-
-    yEl.appendChild(mEl);
-    archive.appendChild(yEl);
+    const m=a.date.getMonth()+1;
+    archiveMap[y]??={};
+    archiveMap[y][m]??=[];
+    archiveMap[y][m].push(a);
   });
 }
 
-/* =========================
-   SCHEMA.ORG ItemList
-========================= */
-function buildSchema(){
-  const itemList = all.slice(0,50).map((a,i)=>({
-    "@type":"ListItem",
-    "position":i+1,
-    "url":location.origin+"/"+a.slug,
-    "name":a.title
-  }));
+/* ================= ROUTER ================= */
+function router(){
+  const p=location.pathname.replace(/\/+$/,"").split("/").filter(Boolean);
+  if(!p.length) return renderHome();
+  if(p[0]==="artikel"){
+    if(p.length===1) return renderArchive();
+    if(p.length===3) return renderArchive(p[1],p[2]);
+    if(p.length===2) return renderArticle(p[1]);
+  }
+  app.innerHTML="<h2 style='padding:2rem'>404</h2>";
+}
+window.addEventListener("popstate",router);
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a");
+  if(a&&a.origin===location.origin){
+    e.preventDefault();
+    history.pushState({}, "", a.href);
+    router();
+  }
+});
 
-  document.getElementById("schema").textContent = JSON.stringify({
+/* ================= HOMEPAGE ================= */
+function renderHome(){
+  const map={},out=[];
+  for(const a of all){
+    map[a.category]??=0;
+    if(map[a.category]<4 && out.length<28){
+      map[a.category]++; out.push(a);
+    }
+  }
+  app.innerHTML=`
+    <section class="hero">
+      <h1>Layar Kosong</h1>
+      <p>Artikel terbaru</p>
+    </section>
+    <section class="grid">
+      ${out.map(card).join("")}
+    </section>
+  `;
+  buildItemListSchema(out);
+}
+
+/* ================= ARCHIVE ================= */
+function renderArchive(y=null,m=null){
+  filtered=y?archiveMap[y]?.[m]||[]:all;
+  page=1;
+  app.innerHTML=`
+    ${filterHTML()}
+    <section class="grid" id="grid"></section>
+    <div class="pagination" id="pagination"></div>
+    <section class="archive">${archiveHTML()}</section>
+  `;
+  renderPage();
+  buildItemListSchema(filtered);
+}
+
+/* ================= ARTICLE ================= */
+function renderArticle(slug){
+  const a=all.find(x=>x.slug===slug);
+  if(!a) return app.innerHTML="<h2>404</h2>";
+  app.innerHTML=`
+    <article class="post">
+      <h1>${a.title}</h1>
+      <div class="meta">${a.category} · ${a.date.toLocaleDateString("id-ID")}</div>
+      <img src="${a.image}">
+      <p>${a.excerpt}</p>
+    </article>
+  `;
+  buildArticleSchema(a);
+}
+
+/* ================= RENDER HELPERS ================= */
+function card(a){
+  return `
+    <article class="card">
+      <img loading="lazy" src="${a.image}">
+      <div class="card-body">
+        <div class="meta">${a.category} · ${a.date.toLocaleDateString("id-ID")}</div>
+        <h2>${a.title}</h2>
+        <a class="read" href="/artikel/${a.slug}">Baca →</a>
+      </div>
+    </article>`;
+}
+function renderPage(){
+  const s=(page-1)*PER_PAGE;
+  grid.innerHTML=filtered.slice(s,s+PER_PAGE).map(card).join("");
+  pagination.innerHTML="";
+  const p=Math.ceil(filtered.length/PER_PAGE);
+  for(let i=1;i<=p;i++){
+    pagination.innerHTML+=`<button class="${i===page?"active":""}"
+      onclick="page=${i};renderPage()">${i}</button>`;
+  }
+}
+function archiveHTML(){
+  return Object.keys(archiveMap).sort((a,b)=>b-a).map(y=>`
+    <div class="year"><h3>${y}</h3>
+      <div class="months">
+        ${Object.keys(archiveMap[y]).map(m=>`
+          <a class="month" href="/artikel/${y}/${m}">
+            ${new Date(y,m-1).toLocaleString("id-ID",{month:"long"})}
+            <span>${archiveMap[y][m].length} artikel</span>
+          </a>`).join("")}
+      </div>
+    </div>`).join("");
+}
+
+/* ================= SCHEMA ================= */
+function buildItemListSchema(list){
+  schema.textContent=JSON.stringify({
     "@context":"https://schema.org",
     "@type":"ItemList",
-    "itemListElement":itemList
+    "itemListElement":list.map((a,i)=>({
+      "@type":"ListItem","position":i+1,
+      "url":location.origin+"/artikel/"+a.slug,"name":a.title
+    }))
+  });
+}
+function buildArticleSchema(a){
+  schema.textContent=JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":a.title,
+    "image":a.image,
+    "datePublished":a.date.toISOString(),
+    "articleSection":a.category,
+    "breadcrumb":{
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Beranda","item":location.origin+"/"},
+        {"@type":"ListItem","position":2,"name":a.category,"item":location.origin+"/artikel"},
+        {"@type":"ListItem","position":3,"name":a.title}
+      ]
+    }
   });
 }
 </script>
