@@ -282,6 +282,41 @@
             .main-grid { grid-template-columns: 1fr; }
             .hero { height: 350px; }
         }
+
+        /* CARD CLICKABLE */
+.card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Footer sejajar */
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+/* Tanggal */
+.card-date {
+    color: var(--text-muted);
+}
+
+/* Read more */
+.card-readmore {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Hover efek */
+.card-link:hover .card-title {
+    text-decoration: underline;
+}
+
     </style>
 <body>
 
@@ -453,12 +488,36 @@ async function fetchData() {
             container.innerHTML += `
                 <div class="card" style="animation: fadeIn 0.5s ease">
                     <img src="${item.img}" class="card-img" alt="img" onerror="this.src='https://via.placeholder.com/300x180'">
-                    <div class="card-body">
-                        <small style="color:var(--primary); font-weight:bold">${item.category}</small>
-                        <h3 class="card-title">${item.title}</h3>
-                        <p class="card-excerpt">${item.summary.substring(0, 100)}...</p>
-                        <a href="${item.url}" style="color:var(--primary); font-weight:600; text-decoration:none; font-size:0.9rem;">Baca Selengkapnya →</a>
-                    </div>
+                   <div class="card-body">
+    <a href="${item.url}" class="card-link">
+        <small style="color:var(--primary); font-weight:bold">
+            ${item.category}
+        </small>
+
+        <h3 class="card-title">
+            ${item.title}
+        </h3>
+
+        <p class="card-excerpt">
+            ${item.summary.substring(0, 100)}...
+        </p>
+
+        <div class="card-footer">
+            <time class="card-date" datetime="${item.date.toISOString()}">
+                ${item.date.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                })}
+            </time>
+
+            <span class="card-readmore">
+                Baca Selengkapnya →
+            </span>
+        </div>
+    </a>
+</div>
+
                 </div>
             `;
         });
