@@ -1,179 +1,277 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layar Kosong - Blog Santai dari Balikpapan</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
-header { text-align: center; padding: 20px; background: #007bff; color: white; }
-#search-section { margin: 20px 0; text-align: center; }
-#search-input, select, button { padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; }
-.article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-.article-card { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.article-card img { width: 100%; height: auto; border-radius: 5px; }
-.article-card h3 { margin: 10px 0; }
-.article-card p { font-size: 14px; color: #666; }
-.article-card a { text-decoration: none; color: #007bff; }
-footer { text-align: center; margin-top: 40px; padding: 10px; background: #eee; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Daftar Artikel</title>
+<style>
+  :root{
+    --gap:16px;
+    --card-radius:12px;
+    --bg:#f5f7fb;
+    --card-bg:#ffffff;
+    --muted:#6b7280;
+    --accent:#0ea5a4;
+    --max-width:1200px;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#0f172a;background:var(--bg);}
+  .container{max-width:var(--max-width);margin:28px auto;padding:0 16px;}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  h1{font-size:1.25rem;margin:0}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .control{display:flex;gap:8px;align-items:center;background:#fff;padding:8px;border-radius:10px;box-shadow:0 1px 2px rgba(15,23,42,0.04)}
+  .control input[type="search"], .control select{
+    border:0;outline:0;background:transparent;font-size:0.95rem;padding:6px 4px;
+  }
+  .control button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+  .meta-row{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:0.85rem}
+  .articles-grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+  .card{background:var(--card-bg);border-radius:var(--card-radius);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(12,18,31,0.06);transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(12,18,31,0.12)}
+  .card .thumb{width:100%;height:160px;overflow:hidden;background:#e6eef0}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .body{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .title{font-weight:600;color:#0f172a;font-size:1rem;line-height:1.25}
+  .title mark{background:linear-gradient(90deg,#fff3b0,#ffd6a5);padding:0 2px;border-radius:3px}
+  .category{display:inline-block;background:#eef7f7;color:#065f5b;padding:6px 8px;border-radius:999px;font-size:0.78rem}
+  .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px;border-top:1px solid #f1f5f9}
+  .read-more{background:transparent;border:0;color:var(--accent);font-weight:600;cursor:pointer}
+  .results-info{color:var(--muted);font-size:0.9rem;margin-bottom:8px}
+  .pagination{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .page-btn{background:#fff;border:1px solid #e6eef0;padding:6px 10px;border-radius:8px;cursor:pointer}
+  /* Responsive tweaks */
+  @media (max-width:720px){
+    .card .thumb{height:180px}
+  }
+  @media (max-width:520px){
+    header{flex-direction:column;align-items:flex-start;gap:12px}
+    .controls{width:100%}
+    .control{flex:1;min-width:0}
+    .articles-grid{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
+  <div class="container">
     <header>
-        <h1>Layar Kosong</h1>
-        <p>Blog opini, tech, dan cerita hidup dari Frijal di Balikpapan. Yuk, santai sambil baca!</p>
+      <div>
+        <h1>Arsip Artikel</h1>
+        <div class="meta-row" style="margin-top:6px">Menampilkan artikel dari file JSON; gunakan filter untuk menemukan artikel</div>
+      </div>
+      <div class="controls" aria-hidden="false">
+        <div class="control" style="min-width:220px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.6"><path d="M21 21l-4.35-4.35" stroke="#111827" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#111827" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="q" type="search" placeholder="Cari judul..." aria-label="Cari judul" />
+        </div>
+
+        <div class="control">
+          <select id="cat" aria-label="Filter kategori">
+            <option value="">Semua kategori</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <select id="year" aria-label="Filter tahun">
+            <option value="">Semua tahun</option>
+          </select>
+          <select id="month" aria-label="Filter bulan">
+            <option value="">Semua bulan</option>
+            <option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+            <option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+            <option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+            <option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <button id="reset">Reset</button>
+        </div>
+      </div>
     </header>
 
-    <!-- Fitur Pencarian -->
-    <section id="search-section">
-        <input type="text" id="search-input" placeholder="Cari judul atau kategori...">
-        <select id="year-filter">
-            <option value="">Semua Tahun</option>
-            <!-- JS akan isi ini dynamically -->
-        </select>
-        <select id="month-filter">
-            <option value="">Semua Bulan</option>
-            <!-- JS akan isi ini dynamically -->
-        </select>
-        <select id="category-filter">
-            <option value="">Semua Kategori</option>
-            <!-- JS akan isi ini dynamically -->
-        </select>
-        <button id="search-btn">Cari</button>
-    </section>
+    <div class="results-info" id="resultsInfo">Memuat artikel...</div>
 
-    <!-- Daftar Artikel Terbaru -->
-    <section id="latest-articles">
-        <h2>Artikel Terbaru</h2>
-        <div id="latest-container" class="article-grid"></div>
-    </section>
+    <section id="grid" class="articles-grid" aria-live="polite"></section>
 
-    <!-- Section per Kategori -->
-    <section id="categories">
-        <!-- JS akan render section ini -->
-    </section>
+    <div class="pagination" id="pagination"></div>
+  </div>
 
-    <footer>
-        <p>Follow me: <a href="https://twitter.com/frijal">Twitter</a> | <a href="https://github.com/frijal">GitHub</a> | <a href="https://dalam.web.id">Blog</a></p>
-        <p>Powered by xAI Grok – Santai aja, bro!</p>
-    </footer>
+<script>
+/* ====== Konfigurasi ====== */
+const JSON_PATH = 'artikel.json'; // ganti jika nama file berbeda
+const PAGE_SIZE = 24; // jumlah kartu per halaman (ubah sesuai kebutuhan)
+const DEBOUNCE_MS = 300;
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    fetch('artikel.json') // Ganti path jika beda
-        .then(response => response.json())
-        .then(data => {
-            // Gabung semua artikel jadi satu array flat, tambah kategori ke setiap item
-            let allArticles = [];
-            Object.keys(data).forEach(category => {
-                data[category].forEach(article => {
-                    allArticles.push({
-                        title: article[0],
-                        slug: article[1],
-                        image: article[2],
-                        date: new Date(article[3]), // Parse tanggal
-                        desc: article[4],
-                        category: category
-                    });
-                });
-            });
+/* ====== State ====== */
+let articles = []; // seluruh data
+let filtered = []; // hasil filter
+let currentPage = 1;
 
-            // Sort descending by date
-            allArticles.sort((a, b) => b.date - a.date);
+/* ====== Util ====== */
+function debounce(fn, ms){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), ms); }; }
+function formatDate(iso){ const d=new Date(iso); if(isNaN(d)) return ''; return d.toLocaleDateString('id-ID',{year:'numeric',month:'short',day:'numeric'}); }
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
 
-            // Render Artikel Terbaru (top 10)
-            renderLatest(allArticles.slice(0, 10));
+/* ====== Load JSON ====== */
+async function loadArticles(){
+  try{
+    const res = await fetch(JSON_PATH);
+    if(!res.ok) throw new Error('Gagal memuat JSON: '+res.status);
+    const data = await res.json();
+    // Pastikan data berupa array objek
+    articles = Array.isArray(data) ? data : (data.articles || []);
+    initFilters();
+    applyFilters();
+  }catch(err){
+    document.getElementById('resultsInfo').textContent = 'Error memuat data: ' + err.message;
+    console.error(err);
+  }
+}
 
-            // Render per Kategori
-            renderCategories(data);
+/* ====== Inisialisasi filter (kategori, tahun) ====== */
+function initFilters(){
+  const cats = new Set();
+  const years = new Set();
+  articles.forEach(a=>{
+    if(a.category) cats.add(a.category);
+    const d = new Date(a.published_at || a.publishedAt || a.date);
+    if(!isNaN(d)) years.add(d.getFullYear());
+  });
+  const catSel = document.getElementById('cat');
+  Array.from(cats).sort().forEach(c=>{
+    const opt = document.createElement('option'); opt.value=c; opt.textContent=c; catSel.appendChild(opt);
+  });
+  const yearSel = document.getElementById('year');
+  Array.from(years).sort((a,b)=>b-a).forEach(y=>{
+    const opt = document.createElement('option'); opt.value=y; opt.textContent=y; yearSel.appendChild(opt);
+  });
+}
 
-            // Isi Dropdown Filter
-            populateFilters(allArticles);
+/* ====== Render grid ====== */
+function renderGrid(list){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  if(list.length === 0){
+    document.getElementById('resultsInfo').textContent = 'Tidak ada artikel yang cocok.';
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+  const start = (currentPage-1)*PAGE_SIZE;
+  const pageItems = list.slice(start, start+PAGE_SIZE);
+  pageItems.forEach(a=>{
+    const card = document.createElement('article');
+    card.className = 'card';
+    const imgUrl = a.image || a.thumbnail || a.featured_image || '';
+    const published = a.published_at || a.publishedAt || a.date || '';
+    const title = a.title || a.judul || 'Tanpa judul';
+    const url = a.url || a.link || a.slug || '#';
+    const category = a.category || a.kategori || '';
+    // highlight kata pencarian
+    const q = (document.getElementById('q').value || '').trim().toLowerCase();
+    const titleHtml = q ? highlight(title, q) : escapeHtml(title);
 
-            // Event Listener untuk Search
-            document.getElementById('search-btn').addEventListener('click', () => searchArticles(allArticles));
-        })
-        .catch(error => console.error('Error loading JSON:', error));
+    card.innerHTML = `
+      <div class="thumb">
+        <img loading="lazy" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(title)}" onerror="this.style.opacity=.6;this.style.objectFit='contain'"/>
+      </div>
+      <div class="body">
+        <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <div class="title">${titleHtml}</div>
+            <div class="meta-row" style="margin-top:4px">
+              <span>${formatDate(published)}</span>
+              ${category ? `<span style="margin-left:6px">•</span><span class="category" style="margin-left:6px">${escapeHtml(category)}</span>` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="read-more" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Baca</a>
+          <div style="color:var(--muted);font-size:0.85rem">${a.read_time ? escapeHtml(a.read_time) : ''}</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById('resultsInfo').textContent = `Menampilkan ${list.length} hasil — halaman ${currentPage} dari ${Math.ceil(list.length/PAGE_SIZE)}`;
+  renderPagination(list.length);
+}
+
+/* ====== Highlight kata pencarian di judul ====== */
+function highlight(text, q){
+  if(!q) return escapeHtml(text);
+  const safe = escapeHtml(text);
+  const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'ig');
+  return safe.replace(re, m => `<mark>${m}</mark>`);
+}
+
+/* ====== Pagination ====== */
+function renderPagination(total){
+  const pages = Math.ceil(total / PAGE_SIZE);
+  const container = document.getElementById('pagination');
+  container.innerHTML = '';
+  if(pages <= 1) return;
+  const prev = document.createElement('button'); prev.className='page-btn'; prev.textContent='‹ Prev';
+  prev.disabled = currentPage === 1;
+  prev.onclick = ()=>{ if(currentPage>1){ currentPage--; applyFilters(); window.scrollTo({top:0,behavior:'smooth'}); } };
+  container.appendChild(prev);
+
+  // show up to 7 page buttons with current in center
+  const range = 3;
+  const start = Math.max(1, currentPage - range);
+  const end = Math.min(pages, currentPage + range);
+  for(let i=start;i<=end;i++){
+    const b = document.createElement('button'); b.className='page-btn'; b.textContent = i;
+    if(i===currentPage){ b.style.fontWeight='700'; b.style.borderColor='var(--accent)'; }
+    b.onclick = ()=>{ currentPage = i; applyFilters(); window.scrollTo({top:0,behavior:'smooth'}); };
+    container.appendChild(b);
+  }
+
+  const next = document.createElement('button'); next.className='page-btn'; next.textContent='Next ›';
+  next.disabled = currentPage === pages;
+  next.onclick = ()=>{ if(currentPage<pages){ currentPage++; applyFilters(); window.scrollTo({top:0,behavior:'smooth'}); } };
+  container.appendChild(next);
+}
+
+/* ====== Apply filters ====== */
+function applyFilters(){
+  const q = (document.getElementById('q').value || '').trim().toLowerCase();
+  const cat = document.getElementById('cat').value;
+  const year = document.getElementById('year').value;
+  const month = document.getElementById('month').value;
+
+  filtered = articles.filter(a=>{
+    const title = (a.title || a.judul || '').toString().toLowerCase();
+    const category = (a.category || a.kategori || '').toString();
+    const date = new Date(a.published_at || a.publishedAt || a.date || '');
+    const matchesQ = !q || title.includes(q);
+    const matchesCat = !cat || category === cat;
+    const matchesYear = !year || (!isNaN(date) && date.getFullYear().toString() === year);
+    const matchesMonth = !month || (!isNaN(date) && (date.getMonth()+1).toString() === month);
+    return matchesQ && matchesCat && matchesYear && matchesMonth;
+  });
+
+  // reset page if current page out of range
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  if(currentPage > pages) currentPage = 1;
+  renderGrid(filtered);
+}
+
+/* ====== Events ====== */
+const debouncedApply = debounce(()=>{ currentPage = 1; applyFilters(); }, DEBOUNCE_MS);
+document.getElementById('q').addEventListener('input', debouncedApply);
+document.getElementById('cat').addEventListener('change', ()=>{ currentPage=1; applyFilters(); });
+document.getElementById('year').addEventListener('change', ()=>{ currentPage=1; applyFilters(); });
+document.getElementById('month').addEventListener('change', ()=>{ currentPage=1; applyFilters(); });
+document.getElementById('reset').addEventListener('click', ()=>{
+  document.getElementById('q').value=''; document.getElementById('cat').value=''; document.getElementById('year').value=''; document.getElementById('month').value='';
+  currentPage = 1; applyFilters();
 });
 
-function renderCard(article) {
-    return `
-        <div class="article-card">
-            <img src="${article.image}" alt="${article.title}">
-            <h3><a href="https://dalam.web.id/${article.slug}">${article.title}</a></h3>
-            <p>${article.desc}</p>
-            <small>${article.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</small>
-        </div>
-    `;
-}
-
-function renderLatest(articles) {
-    const container = document.getElementById('latest-container');
-    container.innerHTML = articles.map(renderCard).join('');
-}
-
-function renderCategories(data) {
-    const categoriesSection = document.getElementById('categories');
-    Object.keys(data).forEach(category => {
-        const section = document.createElement('section');
-        section.innerHTML = `<h2>${category}</h2><div class="article-grid">${data[category].map(article => renderCard({
-            title: article[0], slug: article[1], image: article[2], date: new Date(article[3]), desc: article[4], category
-        })).join('')}</div>`;
-        categoriesSection.appendChild(section);
-    });
-}
-
-function populateFilters(articles) {
-    const years = [...new Set(articles.map(a => a.date.getFullYear()))].sort((a, b) => b - a);
-    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const categories = [...new Set(articles.map(a => a.category))];
-
-    const yearSelect = document.getElementById('year-filter');
-    years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    });
-
-    const monthSelect = document.getElementById('month-filter');
-    months.forEach((month, index) => {
-        const option = document.createElement('option');
-        option.value = index + 1; // Bulan 1-12
-        option.textContent = month;
-        monthSelect.appendChild(option);
-    });
-
-    const catSelect = document.getElementById('category-filter');
-    categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        catSelect.appendChild(option);
-    });
-}
-
-function searchArticles(allArticles) {
-    const query = document.getElementById('search-input').value.toLowerCase();
-    const year = document.getElementById('year-filter').value;
-    const month = document.getElementById('month-filter').value;
-    const category = document.getElementById('category-filter').value;
-
-    let filtered = allArticles;
-
-    if (query) filtered = filtered.filter(a => a.title.toLowerCase().includes(query) || a.category.toLowerCase().includes(query));
-    if (year) filtered = filtered.filter(a => a.date.getFullYear() == year);
-    if (month) filtered = filtered.filter(a => a.date.getMonth() + 1 == month);
-    if (category) filtered = filtered.filter(a => a.category === category);
-
-    // Render hasil pencarian di section terbaru (atau buat section baru kalo mau)
-    document.getElementById('latest-articles').innerHTML = '<h2>Hasil Pencarian</h2><div id="latest-container" class="article-grid"></div>';
-    renderLatest(filtered); // Reuse function render
-
-    // Kosongkan categories biar fokus ke hasil
-    document.getElementById('categories').innerHTML = '';
-}
+/* ====== Fallback untuk dataset besar ======
+   Jika dataset sangat besar, pertimbangkan server-side filtering/pagination.
+   Di sini kita tetap memuat semua data di klien; jika file > ~5000 item, pindah ke API. */
+window.addEventListener('load', loadArticles);
 </script>
 </body>
 </html>
