@@ -228,18 +228,6 @@ header {
 }
 
 /* --- SIDEBAR --- */
-/* --- SIDEBAR --- */
-aside {
-  /* Membuat sidebar tetap melayang */
-  position: -webkit-sticky; /* Untuk Safari */
-  position: sticky;
-  top: 90px; /* Jarak dari header (sesuaikan dengan tinggi header Anda) */
-
-  /* Penting: Agar sidebar tidak memanjang mengikuti tinggi konten utama */
-  height: fit-content;
-  align-self: start;
-}
-
 .sidebar-section {
   background: var(--bg-card);
   padding: 1.5rem;
@@ -247,7 +235,6 @@ aside {
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
 }
-
 .sidebar-title {
   font-size: 1.2rem;
   margin-bottom: 1rem;
@@ -268,6 +255,19 @@ aside {
 }
 .mini-info h4 { font-size: 0.9rem; line-height: 1.3; }
 .mini-info span { font-size: 0.75rem; color: var(--text-muted); }
+
+/* --- SIDEBAR --- */
+aside {
+  /* Membuat sidebar tetap melayang */
+  position: -webkit-sticky; /* Untuk Safari */
+  position: sticky;
+  top: 90px; /* Jarak dari header (sesuaikan dengan tinggi header Anda) */
+
+  /* Penting: Agar sidebar tidak memanjang mengikuti tinggi konten utama */
+  height: fit-content;
+  align-self: start;
+}
+
 
 /* --- SKELETON LOADER --- */
 .skeleton {
@@ -315,87 +315,24 @@ input, textarea {
   color: var(--text-main);
 }
 
-/* =================================================
- *  7. FOOTER
- *  ================================================= */
-.page-footer {
-  /* Background dihapus agar transparan/menyatu */
-  padding: 4rem 1.5rem 2rem;
-  margin-top: 5rem;
-  color: var(--text-primary);
+/* --- FOOTER --- */
+footer {
+  background: #111;
+  color: #fff;
+  padding: 3rem 0;
+  margin-top: 4rem;
 }
-
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
   display: grid;
-  /* Ubah menjadi 3 kolom agar teks keamanan, link, dan sosmed berjajar rapi */
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  align-items: center; /* Menjaga semua elemen sejajar di tengah secara vertikal */
 }
-
-.footer-section h3 {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px; /* Lebih renggang agar elegan */
-  font-weight: 700;
-  opacity: 0.8;
-}
-
-.footer-section p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-}
-
-/* Link Mendatar & Tanpa Garis Bawah */
-.footer-links {
-  justify-content: center;
-}
-
-.footer-links a {
-  text-decoration: none !important;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--text-secondary);
-}
-
-/* Media Sosial */
-.footer-social {
-  justify-content: flex-end;
-}
-
-.footer-social a {
-  color: var(--text-muted);
-  font-size: 1.3rem;
-  text-decoration: none !important;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.footer-social a:hover {
-  color: var(--text-secondary);
-  transform: translateY(-3px);
-}
-
-/* Garis Tipis Pemisah Copyright */
 .footer-bottom {
-  max-width: 1200px;
-  margin: 4rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border-color); /* Hanya garis tipis di bawah */
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  opacity: 0.7;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  color: #888;
 }
 
 /* --- RESPONSIVE --- */
