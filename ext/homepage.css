@@ -254,6 +254,13 @@ aside {
   border-left: 4px solid var(--secondary);
   padding-left: 10px;
 }
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .mini-card {
   display: flex;
   gap: 10px;
