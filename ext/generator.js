@@ -75,22 +75,37 @@ function fixTitleOneLine(content) {
 }
 
 function extractImage(content) {
-  const ogMatch = content.match(
-    /<meta[^>]+property=["']og:image["'][^>]+content=["'](.*?)["']/i,
-  );
-  if (ogMatch && ogMatch[1]) {
-    const src = ogMatch[1].trim();
-    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
-    if (validExt.test(src.split('?')[0])) return src;
-  }
+  const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
 
+  const extractFromMeta = (property, attr = 'property') => {
+    const regex = new RegExp(
+      `<meta[^>]+${attr}=["']${property}["'][^>]+content=["'](.*?)["']`,
+      'i'
+    );
+    const match = content.match(regex);
+    if (match && match[1]) {
+      const src = match[1].trim();
+      if (validExt.test(src.split('?')[0])) return src;
+    }
+    return null;
+  };
+
+  // 1. Open Graph
+  const ogImage = extractFromMeta('og:image');
+  if (ogImage) return ogImage;
+
+  // 2. Twitter Card
+  const twitterImage = extractFromMeta('twitter:image', 'name');
+  if (twitterImage) return twitterImage;
+
+  // 3. First <img> in body
   const imgMatch = content.match(/<img[^>]+src=["'](.*?)["']/i);
   if (imgMatch && imgMatch[1]) {
     const src = imgMatch[1].trim();
-    const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
     if (validExt.test(src.split('?')[0])) return src;
   }
 
+  // 4. Default fallback
   return CONFIG.defaultThumbnail;
 }
 
