@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+  <head>
+   <meta charset="UTF-8" />
+<title>Generator .desktop Autostart Aplikasi Linux</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Buat file .desktop autostart di Linux dengan mudah menggunakan Generator .desktop Autostart. Panduan lengkap, cepat, dan praktis untuk setup aplikasi yang berjalan otomatis saat login." />
+<meta name="news_keywords" content="Linux, .desktop, Autostart, Generator, Startup Apps, Tutorial Linux, Setup Autostart, File .desktop" />
+<link rel="canonical" href="https://dalam.web.id/artikel/generator-desktop-autostart-linux.html" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="Generator .desktop Autostart" />
+<meta property="og:description" content="Buat file .desktop autostart di Linux dengan mudah menggunakan Generator .desktop Autostart. Panduan lengkap, cepat, dan praktis untuk setup aplikasi yang berjalan otomatis saat login." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dalam.web.id/artikel/generator-desktop-autostart-linux.html" />
+<meta property="og:image" content="https://dalam.web.id/img/generator-desktop-autostart-linux.webp" />
+<meta property="og:image:alt" content="Generator .desktop Autostart" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Generator .desktop Autostart" />
+<meta name="twitter:description" content="Buat file .desktop autostart di Linux dengan mudah menggunakan Generator .desktop Autostart. Panduan lengkap, cepat, dan praktis untuk setup aplikasi yang berjalan otomatis saat login." />
+<meta name="twitter:image" content="https://dalam.web.id/img/generator-desktop-autostart-linux.webp" />
+<meta name="twitter:site" content="@frijal" />
+
+<!-- Schema.org / Google+ -->
+<meta itemprop="name" content="Generator .desktop Autostart" />
+<meta itemprop="description" content="Buat file .desktop autostart di Linux dengan mudah menggunakan Generator .desktop Autostart. Panduan lengkap, cepat, dan praktis untuk setup aplikasi yang berjalan otomatis saat login." />
+<meta itemprop="image" content="https://dalam.web.id/img/generator-desktop-autostart-linux.webp" />
+
+<!-- Artikel Published Date -->
+<meta property="article:published_time" content="2025-06-04T18:15:06.393+00:00" />
+
+     <style>
+      body {
+        background: #0e1117;
+        color: #e0e4ea;
+        font-family: 'Inter', sans-serif;
+        padding: 20px;
+        max-width: 720px;
+        margin: auto;
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      label {
+        display: block;
+        margin-top: 14px;
+        font-weight: 600;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 6px;
+        border-radius: 6px;
+        border: 1px solid #2c313c;
+        background: #1a1f27;
+        color: #e0e4ea;
+        font-size: 14px;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 16px;
+        background: #59d1ff;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      pre {
+        background: #1a1f27;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 20px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        border: 1px solid #2c313c;
+      }
+
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+  <body>
+    <h1>🎛️ Generator File <code>.desktop</code> untuk Autostart</h1>
+<div id="iposbrowser"></div>
+    
+    <div class="container">
+      <label for="name">Nama Aplikasi</label>
+      <input type="text" id="name" placeholder="Contoh: Backup Otomatis" />
+      <label for="comment">Jaga Data Pribadi Tetap Aman. (opsional)</label>
+      <input
+        type="text"
+        id="comment"
+        placeholder="Contoh: Menjalankan skrip backup saat login"
+      />
+      <label for="exec">Perintah / Path Skrip</label>
+      <input
+        type="text"
+        id="exec"
+        placeholder="Contoh: /home/fakhrul/scripts/backup.sh --daily"
+      />
+      <label for="terminal">Jalankan di Terminal?</label>
+      <select id="terminal">
+        <option value="false">Tidak</option>
+        <option value="true">Ya</option>
+      </select>
+      <label for="enabled">Autostart Aktif?</label>
+      <select id="enabled">
+        <option value="true">Ya</option>
+        <option value="false">Tidak</option>
+      </select>
+      <button onclick="generateDesktop()">🔧 Buat File .desktop</button>
+      <pre id="output" aria-label="Hasil file .desktop"></pre>
+    </div>
+
+    <script>
+      // Fungsi JS dipindahkan keluar dari DOMContentLoaded ganda
+      document.addEventListener("DOMContentLoaded", () => {
+        function generateDesktop() {
+          const name = document.getElementById('name').value.trim();
+          const comment = document.getElementById('comment').value.trim();
+          const exec = document.getElementById('exec').value.trim();
+          const terminal = document.getElementById('terminal').value;
+          const enabled = document.getElementById('enabled').value;
+
+          const output = `[Desktop Entry]
+Type=Application
+Version=1.0
+Name=${name || 'Autostart App'}
+Comment=${comment || 'Autostart via .desktop'}
+Exec=${exec || '/path/to/script.sh'}
+StartupNotify=false
+Terminal=${terminal}
+X-GNOME-Autostart-enabled=${enabled}`;
+
+          document.getElementById('output').textContent = output;
+        }
+
+        // Expose function globally so button can call it (if needed outside DOMContentLoaded)
+        window.generateDesktop = generateDesktop;
+      });
+    </script>
+<div id="pesbukdiskus"></div>
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+
+
+  </body>
+</html>
