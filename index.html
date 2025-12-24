@@ -391,7 +391,7 @@ async function fetchData() {
                         title: item[0],
                         // Menambahkan folder 'artikel/' sebelum slug file .html
                         url: 'artikel/' + item[1], 
-                        img: 'img/' + item[2],
+                        img: item[2],
                         date: new Date(item[3]),
                         summary: item[4]
                     });
