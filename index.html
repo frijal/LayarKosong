@@ -544,7 +544,7 @@ async function fetchData() {
                 <span class="hero-cat">${h.category}</span>
                 <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0;">${h.title}</h1>
                 <p>${h.summary}</p>
-                <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">Baca Sekarang</a>
+                <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">dimana isinya?</a>
             </div>
         `;
     }
@@ -558,7 +558,7 @@ async function fetchData() {
         items.forEach(item => {
             container.innerHTML += `
                 <div class="card" style="animation: fadeIn 0.5s ease">
-                    <img src="${item.img}" class="card-img" alt="img" onerror="this.src='https://via.placeholder.com/300x180'">
+                    <img src="${item.img}" class="card-img" alt="img" onerror="this.src='thumbnail.webp'">
                    <div class="card-body">
     <a href="${item.url}" class="card-link">
         <small style="color:var(--primary); font-weight:bold">
@@ -577,15 +577,11 @@ async function fetchData() {
             <time class="card-date" datetime="${item.date.toISOString()}">
                 ${item.date.toLocaleDateString('id-ID', {
                     day: '2-digit',
-                    month: 'short',
+                    month: 'long',
                     year: 'numeric'
                 })}
             </time>
-
-            <span class="card-readmore">
-                Baca Selengkapnya →
-            </span>
-        </div>
+             </div>
     </a>
 </div>
 
