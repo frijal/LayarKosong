@@ -77,37 +77,36 @@ function fixTitleOneLine(content) {
 function extractImage(content) {
   const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
 
-  const extractFromMeta = (property, attr = 'property') => {
-    const regex = new RegExp(
-      `<meta[^>]+${attr}=["']${property}["'][^>]+content=["'](.*?)["']`,
-      'i'
-    );
-    const match = content.match(regex);
-    if (match && match[1]) {
-      const src = match[1].trim();
-      if (validExt.test(src.split('?')[0])) return src;
-    }
-    return null;
-  };
+  const metas = [...content.matchAll(
+    /<meta\s+[^>]*(?:name|property)=["']([^"']+)["'][^>]*content=["']([^"']+)["'][^>]*>/gi
+  )];
 
-  // 1. Open Graph
-  const ogImage = extractFromMeta('og:image');
-  if (ogImage) return ogImage;
-
-  // 2. Twitter Card
-  const twitterImage = extractFromMeta('twitter:image', 'name');
-  if (twitterImage) return twitterImage;
-
-  // 3. First <img> in body
-  const imgMatch = content.match(/<img[^>]+src=["'](.*?)["']/i);
-  if (imgMatch && imgMatch[1]) {
-    const src = imgMatch[1].trim();
-    if (validExt.test(src.split('?')[0])) return src;
+  const metaMap = {};
+  for (const [, key, value] of metas) {
+    metaMap[key.toLowerCase()] = value.trim();
   }
 
-  // 4. Default fallback
+  // PRIORITAS YANG REALISTIS
+  const candidates = [
+    metaMap['twitter:image'],
+    metaMap['og:image'],
+  ];
+
+  for (const src of candidates) {
+    if (src && validExt.test(src.split('?')[0])) {
+      return src;
+    }
+  }
+
+  // Fallback: first <img>
+  const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (imgMatch && validExt.test(imgMatch[1].split('?')[0])) {
+    return imgMatch[1];
+  }
+
   return CONFIG.defaultThumbnail;
 }
+
 
 function formatJsonOutput(obj) {
   return JSON.stringify(obj, null, 2)
