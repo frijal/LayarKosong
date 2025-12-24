@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Kosong - Blog Santai dari Balikpapan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
+header { text-align: center; padding: 20px; background: #007bff; color: white; }
+#search-section { margin: 20px 0; text-align: center; }
+#search-input, select, button { padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; }
+.article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.article-card { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.article-card img { width: 100%; height: auto; border-radius: 5px; }
+.article-card h3 { margin: 10px 0; }
+.article-card p { font-size: 14px; color: #666; }
+.article-card a { text-decoration: none; color: #007bff; }
+footer { text-align: center; margin-top: 40px; padding: 10px; background: #eee; }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Layar Kosong</h1>
+        <p>Blog opini, tech, dan cerita hidup dari Frijal di Balikpapan. Yuk, santai sambil baca!</p>
+    </header>
+
+    <!-- Fitur Pencarian -->
+    <section id="search-section">
+        <input type="text" id="search-input" placeholder="Cari judul atau kategori...">
+        <select id="year-filter">
+            <option value="">Semua Tahun</option>
+            <!-- JS akan isi ini dynamically -->
+        </select>
+        <select id="month-filter">
+            <option value="">Semua Bulan</option>
+            <!-- JS akan isi ini dynamically -->
+        </select>
+        <select id="category-filter">
+            <option value="">Semua Kategori</option>
+            <!-- JS akan isi ini dynamically -->
+        </select>
+        <button id="search-btn">Cari</button>
+    </section>
+
+    <!-- Daftar Artikel Terbaru -->
+    <section id="latest-articles">
+        <h2>Artikel Terbaru</h2>
+        <div id="latest-container" class="article-grid"></div>
+    </section>
+
+    <!-- Section per Kategori -->
+    <section id="categories">
+        <!-- JS akan render section ini -->
+    </section>
+
+    <footer>
+        <p>Follow me: <a href="https://twitter.com/frijal">Twitter</a> | <a href="https://github.com/frijal">GitHub</a> | <a href="https://dalam.web.id">Blog</a></p>
+        <p>Powered by xAI Grok – Santai aja, bro!</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    fetch('artikel.json') // Ganti path jika beda
+        .then(response => response.json())
+        .then(data => {
+            // Gabung semua artikel jadi satu array flat, tambah kategori ke setiap item
+            let allArticles = [];
+            Object.keys(data).forEach(category => {
+                data[category].forEach(article => {
+                    allArticles.push({
+                        title: article[0],
+                        slug: article[1],
+                        image: article[2],
+                        date: new Date(article[3]), // Parse tanggal
+                        desc: article[4],
+                        category: category
+                    });
+                });
+            });
+
+            // Sort descending by date
+            allArticles.sort((a, b) => b.date - a.date);
+
+            // Render Artikel Terbaru (top 10)
+            renderLatest(allArticles.slice(0, 10));
+
+            // Render per Kategori
+            renderCategories(data);
+
+            // Isi Dropdown Filter
+            populateFilters(allArticles);
+
+            // Event Listener untuk Search
+            document.getElementById('search-btn').addEventListener('click', () => searchArticles(allArticles));
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+});
+
+function renderCard(article) {
+    return `
+        <div class="article-card">
+            <img src="${article.image}" alt="${article.title}">
+            <h3><a href="https://dalam.web.id/${article.slug}">${article.title}</a></h3>
+            <p>${article.desc}</p>
+            <small>${article.date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</small>
+        </div>
+    `;
+}
+
+function renderLatest(articles) {
+    const container = document.getElementById('latest-container');
+    container.innerHTML = articles.map(renderCard).join('');
+}
+
+function renderCategories(data) {
+    const categoriesSection = document.getElementById('categories');
+    Object.keys(data).forEach(category => {
+        const section = document.createElement('section');
+        section.innerHTML = `<h2>${category}</h2><div class="article-grid">${data[category].map(article => renderCard({
+            title: article[0], slug: article[1], image: article[2], date: new Date(article[3]), desc: article[4], category
+        })).join('')}</div>`;
+        categoriesSection.appendChild(section);
+    });
+}
+
+function populateFilters(articles) {
+    const years = [...new Set(articles.map(a => a.date.getFullYear()))].sort((a, b) => b - a);
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const categories = [...new Set(articles.map(a => a.category))];
+
+    const yearSelect = document.getElementById('year-filter');
+    years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    });
+
+    const monthSelect = document.getElementById('month-filter');
+    months.forEach((month, index) => {
+        const option = document.createElement('option');
+        option.value = index + 1; // Bulan 1-12
+        option.textContent = month;
+        monthSelect.appendChild(option);
+    });
+
+    const catSelect = document.getElementById('category-filter');
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        catSelect.appendChild(option);
+    });
+}
+
+function searchArticles(allArticles) {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const year = document.getElementById('year-filter').value;
+    const month = document.getElementById('month-filter').value;
+    const category = document.getElementById('category-filter').value;
+
+    let filtered = allArticles;
+
+    if (query) filtered = filtered.filter(a => a.title.toLowerCase().includes(query) || a.category.toLowerCase().includes(query));
+    if (year) filtered = filtered.filter(a => a.date.getFullYear() == year);
+    if (month) filtered = filtered.filter(a => a.date.getMonth() + 1 == month);
+    if (category) filtered = filtered.filter(a => a.category === category);
+
+    // Render hasil pencarian di section terbaru (atau buat section baru kalo mau)
+    document.getElementById('latest-articles').innerHTML = '<h2>Hasil Pencarian</h2><div id="latest-container" class="article-grid"></div>';
+    renderLatest(filtered); // Reuse function render
+
+    // Kosongkan categories biar fokus ke hasil
+    document.getElementById('categories').innerHTML = '';
+}
+</script>
+</body>
+</html>
