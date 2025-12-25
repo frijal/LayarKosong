@@ -75,16 +75,16 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg-body); 
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
             color: var(--text-main);
             transition: 0.3s ease;
             line-height: 1.6;
         }
 
         .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
-        
+
         /* HEADER & GLASS EFFECT */
         header {
             position: sticky; top: 0; z-index: 1000;
@@ -97,7 +97,7 @@
         .logo { text-decoration: none; font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
         .logo span { color: var(--secondary); }
         .logo:hover { opacity: 0.9; text-decoration: none; }
-        
+
         .search-bar {
             background: var(--bg-body);
             border: 1px solid var(--border);
@@ -127,8 +127,8 @@
             align-items: center; justify-content: space-between;
         }
         .pills { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-        .pill { 
-            padding: 8px 18px; border-radius: 20px; background: var(--bg-card); 
+        .pill {
+            padding: 8px 18px; border-radius: 20px; background: var(--bg-card);
             border: 1px solid var(--border); cursor: pointer; white-space: nowrap;
             transition: 0.3s; font-size: 0.9rem;
         }
@@ -145,7 +145,7 @@
 
         /* ARTICLE CARDS */
         .news-feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .card { 
+        .card {
             background: var(--bg-card); border-radius: 15px; overflow: hidden;
             border: 1px solid var(--border); transition: 0.3s;
             display: flex; flex-direction: column;
@@ -155,11 +155,11 @@
         .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
         .card-excerpt { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; }
-        
+
         /* SIDEBAR STICKY */
         aside { position: sticky; top: 90px; height: fit-content; }
-        .sidebar-box { 
-            background: var(--bg-card); padding: 20px; border-radius: 15px; 
+        .sidebar-box {
+            background: var(--bg-card); padding: 20px; border-radius: 15px;
             border: 1px solid var(--border); margin-bottom: 25px;
         }
         .sidebar-title { font-family: 'Montserrat'; margin-bottom: 20px; border-left: 4px solid var(--primary); padding-left: 10px; }
@@ -212,7 +212,7 @@
 .toast-hide {
     opacity: 0;
 }
-        
+
 /* --- FOOTER 2 KOLOM INTEGRATED --- */
 .page-footer {
     background: var(--bg-card);
@@ -519,19 +519,6 @@
     outline: none;
 }
 
-#resetArchive {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0 5px;
-    transition: transform 0.2s;
-}
-
-#resetArchive:hover {
-    transform: scale(1.2);
-}
-
 .search-wrapper {
     position: relative;
     display: flex;
@@ -572,16 +559,14 @@
 
         <div class="header-tools">
             <div class="archive-box-header">
-                <button id="resetArchive" class="clear-btn" title="Reset Filter" style="display: none; margin-right: 5px;">🔄</button>
-
                 <select id="yearFilter"><option value="">Tahun</option></select>
                 <select id="monthFilter" disabled><option value="">Bulan</option></select>
             </div>
 
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
-                <button id="clearSearch" class="clear-btn">❌</button>
-            </div>
+<div class="search-wrapper">
+    <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
+    <button id="clearSearch" class="clear-btn">❌</button>
+</div>
         </div>
     </div>
 </header>
@@ -614,11 +599,11 @@
            <div class="contact-card">
     <h3>Hubungi Kami</h3>
     <p style="font-size: 0.8rem; margin-bottom: 10px;">Kirim saran atau kerjasama</p>
-    
+
     <input type="text" id="contact-name" placeholder="Nama" required>
     <input type="email" id="contact-email" placeholder="Email" required>
     <textarea id="contact-message" placeholder="Pesan" required></textarea>
-    
+
     <button type="button" onclick="sendToWA()" class="pill" style="width:100%; background: var(--secondary); color:black; font-weight:bold; margin-top:10px; border:none; cursor:pointer;">
         Kirim ke WhatsApp
     </button>
@@ -663,7 +648,7 @@ async function fetchData() {
         try {
             const res = await fetch('artikel.json');
             const data = await res.json();
-            
+
             // Kosongkan array sebelum mengisi (menghindari duplikasi saat refresh)
             allData = [];
 
@@ -674,14 +659,14 @@ async function fetchData() {
                         category: cat,
                         title: item[0],
                         // Menambahkan folder 'artikel/' sebelum slug file .html
-                        url: 'artikel/' + item[1], 
+                        url: 'artikel/' + item[1],
                         img: item[2],
                         date: new Date(item[3]),
                         summary: item[4]
                     });
                 });
             }
-            
+
             // Sort terbaru (berdasarkan tanggal)
             allData.sort((a, b) => b.date - a.date);
             displayedData = [...allData];
@@ -699,14 +684,13 @@ async function fetchData() {
         renderArchives();
         renderSidebar();
         renderFeed();
-        
+
 // Search Logic
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
     const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearSearch');
 const heroSection = document.getElementById('hero');
-}
 
 searchInput.addEventListener('input', (e) => {
     const val = e.target.value;
@@ -787,7 +771,7 @@ function runSearch(keyword) {
         if(reset) limit = 6;
         const container = document.getElementById('newsFeed');
         container.innerHTML = '';
-        
+
         const items = displayedData.slice(0, limit);
         items.forEach(item => {
             container.innerHTML += `
@@ -903,31 +887,9 @@ function runFilters() {
     const ySelect = document.getElementById('yearFilter');
     const mSelect = document.getElementById('monthFilter');
     const heroSection = document.getElementById('hero');
-    const resetArchiveBtn = document.getElementById('resetArchive');
 
     const y = ySelect.value;
     const m = mSelect.value;
-
-    // Fungsi untuk Reset Total Arsip
-resetArchiveBtn.addEventListener('click', () => {
-    yearSelect.value = "";
-    monthSelect.value = "";
-    monthSelect.disabled = true;
-    resetArchiveBtn.style.display = 'none';
-    heroSection.style.display = 'flex'; // Hero muncul lagi
-
-        if (y !== "") {
-        heroSection.style.display = 'none';
-        resetArchiveBtn.style.display = 'block'; // Munculkan tombol 🏠
-    } else {
-        heroSection.style.display = 'flex';
-        resetArchiveBtn.style.display = 'none'; // Sembunyikan jika di posisi "Tahun"
-    }
-
-    displayedData = [...allData]; // Kembalikan semua data
-    renderFeed(true);
-    renderSidebar();
-});
 
     // --- LOGIKA SEMBUNYIKAN HERO ---
     if (y !== "") {
@@ -960,7 +922,7 @@ document.getElementById('monthFilter').addEventListener('change', runFilters);
     function filterByCat(cat, el) {
         document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
         if(el) el.classList.add('active');
-        
+
         displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
         renderFeed(true);
     }
@@ -972,7 +934,7 @@ document.getElementById('monthFilter').addEventListener('change', runFilters);
     };
 
     fetchData();
-    
+
     function showToast(message) {
     // Buat container jika belum ada
     let container = document.getElementById('toast-container');
@@ -986,7 +948,7 @@ document.getElementById('monthFilter').addEventListener('change', runFilters);
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
-    
+
     container.appendChild(toast);
 
     // Hilangkan toast otomatis setelah 3 detik
@@ -1000,7 +962,7 @@ function sendToWA() {
     const name = document.getElementById('contact-name').value;
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-message').value;
-    
+
     // Validasi sederhana: Nama dan Pesan wajib diisi
     if(!name || !message) {
         alert("Nama dan Pesan jangan dikosongkan ya, Bosku!");
@@ -1008,18 +970,18 @@ function sendToWA() {
     }
 
     // Ganti dengan nomor WhatsApp kamu (format 62...)
-    const noWA = "6281578163858"; 
-    
+    const noWA = "6281578163858";
+
     // Menyusun format pesan WhatsApp
     const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Pesan:* ${message}`;
-    
+
     // Panggil notifikasi Toast (fungsi showToast ada di chat sebelumnya)
     showToast("Membuka WhatsApp... Pesan siap dikirim!");
 
     // Jeda 1 detik agar user bisa lihat notifikasi suksesnya dulu
     setTimeout(() => {
         window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
-        
+
         // Bersihkan input setelah berhasil
         document.getElementById('contact-name').value = "";
         document.getElementById('contact-email').value = "";
