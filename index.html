@@ -386,7 +386,59 @@
     letter-spacing: 0.3px;
 }
 
+/* --- CUSTOM TOOLTIP --- */
+.mini-text h4 {
+    position: relative;
+    cursor: help;
+}
 
+/* Kotak Tooltip */
+.mini-text h4::after {
+    content: attr(data-tooltip); /* Mengambil teks dari atribut data-tooltip */
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: var(--bg-card);
+    color: var(--text-main);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    width: 220px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--primary);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+/* Panah Tooltip */
+.mini-text h4::before {
+    content: '';
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--primary);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+/* Efek Hover */
+.mini-text h4:hover::after,
+.mini-text h4:hover::before {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
 
     </style>
 <body>
@@ -593,23 +645,26 @@ function renderSidebar() {
     const side = document.getElementById('sidebarRandom');
     side.innerHTML = '';
 
-    // 1. Ambil daftar judul yang sedang tampil di Feed Utama (Grid Kiri)
     const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
-
-    // 2. Filter allData: Hanya ambil artikel yang judulnya TIDAK ADA di displayedTitles
     const availableForSidebar = allData.filter(item => !displayedTitles.includes(item.title));
 
-    // 3. Acak sisa artikel tersebut dan ambil 5
     const randoms = [...availableForSidebar]
         .sort(() => 0.5 - Math.random())
         .slice(0, 5);
 
     randoms.forEach(item => {
+        // Membersihkan summary dari tanda petik agar tidak merusak HTML
+        const cleanSummary = item.summary.replace(/"/g, '&quot;');
+
         side.innerHTML += `
             <div class="mini-item" style="animation: fadeIn 0.5s ease">
                 <img src="${item.img}" class="mini-thumb" onerror="this.src='thumbnail.webp'">
                 <div class="mini-text">
-                    <h4><a href="${item.url}" style="text-decoration:none; color:inherit;">${item.title.substring(0, 50)}...</a></h4>
+                    <h4 data-tooltip="${cleanSummary}">
+                        <a href="${item.url}" style="text-decoration:none; color:inherit;">
+                            ${item.title.substring(0, 50)}...
+                        </a>
+                    </h4>
                     <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
                 </div>
             </div>
