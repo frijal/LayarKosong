@@ -94,8 +94,9 @@
             padding: 15px 0;
         }
         .nav-box { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
+        .logo { text-decoration: none; font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
         .logo span { color: var(--secondary); }
+        .logo:hover { opacity: 0.9; text-decoration: none; }
         
         .search-bar {
             background: var(--bg-body);
@@ -507,7 +508,7 @@
 
 <header>
     <div class="container nav-box">
-        <div class="logo">Layar <span>Kosong</span></div>
+        <a href="https://dalam.web.id/" class="logo" title="Beranda" rel="home">Layar <span>Kosong</span></a>
 
         <div class="header-tools">
             <div class="archive-box-header">
