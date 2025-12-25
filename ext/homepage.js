@@ -120,7 +120,7 @@ function renderHero() {
   <span class="hero-cat">${h.category}</span>
   <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0;">${h.title}</h1>
   <p>${h.summary}</p>
-  <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">dimana isinya?</a>
+  <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">${h.title}</a>
   </div>
   `;
 }
@@ -148,7 +148,7 @@ function renderFeed(reset = false) {
   items.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
-    <img src="${item.img}" class="card-img" alt="img" onerror="this.src='thumbnail.webp'">
+    <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='thumbnail.webp'">
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <small style="color:var(--primary); font-weight:bold">
@@ -221,7 +221,7 @@ function renderSidebar() {
     onerror="this.src='thumbnail.webp'">
     <div class="mini-text">
     <h4 data-tooltip="${cleanSummary}">
-    <a href="${item.url}" style="text-decoration:none; color:inherit;">
+    <a href="${item.url}" title="${cleanTitle}" style="text-decoration:none; color:inherit;">
     ${item.title.substring(0, 50)}...
     </a>
     </h4>
