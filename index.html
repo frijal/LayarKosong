@@ -249,14 +249,17 @@
 /* Sosmed di Kiri */
 .footer-social {
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-direction: row; /* Paksa sejajar ke samping */
+    flex-wrap: nowrap;   /* Jangan biarkan ikon turun ke baris baru di desktop */
+    gap: 15px;           /* Jarak antar ikon */
+    align-items: center;
     font-size: 1.8rem;
 }
 
 .footer-social a {
     color: var(--text-muted);
     transition: 0.3s ease;
+    display: inline-flex; /* Memastikan ikon di dalam link terpusat */
 }
 
 .footer-social a:hover {
@@ -297,6 +300,12 @@
 }
 
 /* --- MOBILE RESPONSIVE --- */
+@media (min-width: 1101px) {
+    .footer-social {
+        justify-content: flex-start; /* Rata kiri di desktop sesuai layout 2 kolom */
+    }
+}
+
 @media (max-width: 1100px) {
     .footer-content {
         grid-template-columns: 1fr;
