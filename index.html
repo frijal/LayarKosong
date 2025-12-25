@@ -886,14 +886,21 @@ function updateMonthDropdown() {
 function runFilters() {
     const ySelect = document.getElementById('yearFilter');
     const mSelect = document.getElementById('monthFilter');
-
-    // Jika fungsi ini dipicu oleh perubahan TAHUN (bukan bulan)
-    // Kita cek melalui event.target jika perlu, atau simpelnya:
-    // Selalu update dropdown bulan setiap kali filter jalan (selama tahun ada)
+    const heroSection = document.getElementById('hero');
 
     const y = ySelect.value;
     const m = mSelect.value;
 
+    // --- LOGIKA SEMBUNYIKAN HERO ---
+    if (y !== "") {
+        // Jika tahun dipilih, sembunyikan hero agar hasil filter naik ke atas
+        heroSection.style.display = 'none';
+    } else {
+        // Jika filter direset ke "Tahun", tampilkan hero lagi
+        heroSection.style.display = 'flex';
+    }
+
+    // Jalankan filter data
     displayedData = allData.filter(i => {
         const matchY = y ? i.date.getFullYear() == y : true;
         const matchM = m !== "" ? i.date.getMonth() == m : true;
@@ -901,7 +908,7 @@ function runFilters() {
     });
 
     renderFeed(true);
-    renderSidebar(); // Agar sidebar juga tetap sinkron tanpa duplikat
+    renderSidebar();
 }
 
 // Tambahkan event listener khusus untuk cascading
