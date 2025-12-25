@@ -535,36 +535,6 @@
     .nav-box { flex-direction: column; gap: 15px; }
     .header-tools { width: 100%; justify-content: space-between; }
     .search-wrapper { flex-grow: 1; }
-    .footer-content {
-        grid-template-columns: 1fr; /* Paksa jadi 1 kolom tunggal */
-        gap: 30px; /* Jarak antar tumpukan lebih rapat */
-        text-align: center; /* Di mobile semua rata tengah agar simetris */
-    }
-
-    .footer-section {
-        text-align: center;
-    }
-
-    .footer-links {
-        align-items: center;
-        gap: 15px;
-        flex-direction: row; /* Di mobile link boleh berjejer horizontal atau tetap kolom */
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-social {
-        justify-content: center; /* Icon sosial ke tengah */
-    }
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 50px;
-    padding: 25px 20px 0;
-    border-top: 1px solid var(--border);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
 }
 
     </style>
@@ -633,21 +603,6 @@
     <div class="footer-content">
         <div class="footer-section">
             <p>Mari Kita Jaga Supaya Data Pribadi Tetap Aman.</p>
-        </div>
-
-        <div class="footer-section">
-            <div class="footer-links">
-                <a href="/feed.html">RSS Feed</a> 
-                <a href="/sitemap.html">Peta Situs</a> 
-                <a href="https://frijal.github.io" target="_blank">Kartu Nama</a> 
-                <a href="/disclaimer.html" target="_blank">Disclaimer</a>
-            </div>
-        </div>
-
-<footer class="page-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <p>Mari Kita Jaga Supaya Data Pribadi Tetap Aman.</p>
             <div class="footer-social">
                 <a href="https://facebook.com/frijal" title="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://github.com/frijal" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-github"></i></a>
@@ -662,7 +617,7 @@
             <div class="footer-links">
                 <a href="/feed.html">RSS Feed</a>
                 <a href="/sitemap.html">Peta Situs</a>
-                <a href="https://frijal.github.io" target="_blank" rel="noopener noreferrer">Kartu Nama</a>
+                <a href="https://frijal.github.io" target="_blank">Kartu Nama</a>
                 <a href="/disclaimer.html" target="_blank">Disclaimer</a>
             </div>
             <div class="footer-copyright">
@@ -671,7 +626,6 @@
         </div>
     </div>
 </footer>
-
 <script>
     let allData = [];
     let displayedData = [];
