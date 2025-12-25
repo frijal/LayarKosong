@@ -211,7 +211,7 @@
     opacity: 0;
 }
         
-        /* --- NEW FOOTER STYLES --- */
+/* --- NEW FOOTER STYLES --- */
 .page-footer {
     background: var(--bg-card);
     border-top: 1px solid var(--border);
@@ -228,15 +228,22 @@
     padding: 0 20px;
 }
 
+.footer-section {
+    text-align: center; /* Semua teks di section rata tengah */
+}
+
 .footer-section p {
     font-size: 0.95rem;
     color: var(--text-main);
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .footer-links {
     display: flex;
+    justify-content: center; /* Link rata tengah horizontal */
     gap: 15px;
+    flex-wrap: wrap; /* Biar responsive di mobile */
 }
 
 .footer-links a {
@@ -253,13 +260,15 @@
 
 .footer-social {
     display: flex;
-    gap: 15px;
+    justify-content: center; /* Icon sosial rata tengah */
+    gap: 20px; /* Gap lebih lebar biar lega */
     font-size: 1.5rem;
+    margin-top: 15px;
 }
 
 .footer-social a {
     color: var(--text-muted);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .footer-social a:hover {
