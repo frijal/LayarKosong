@@ -260,17 +260,20 @@
     color: var(--text-muted);
     transition: 0.3s ease;
     display: inline-flex; /* Memastikan ikon di dalam link terpusat */
+    text-decoration: none;
 }
 
 .footer-social a:hover {
     color: var(--primary);
     transform: translateY(-5px);
+    text-decoration: none;
 }
 
 /* Link di Kanan */
 .footer-links {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Paksa sejajar ke samping */
+    flex-wrap: nowrap;   /* Jangan biarkan ikon turun ke baris baru di desktop */
     gap: 12px;
 }
 
@@ -303,6 +306,7 @@
 @media (min-width: 1101px) {
     .footer-social {
         justify-content: flex-start; /* Rata kiri di desktop sesuai layout 2 kolom */
+        text-decoration: none;
     }
 }
 
