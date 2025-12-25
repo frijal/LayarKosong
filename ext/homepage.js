@@ -130,14 +130,10 @@ function renderFeed(reset = false) {
   const container = document.getElementById('newsFeed');
   container.innerHTML = '';
 
-  // Ambil judul yang sedang tampil di Hero (artikel paling baru)
-  // Kita cek apakah hero sedang tampil (display != 'none')
   const heroSection = document.getElementById('hero');
   const isHeroVisible = heroSection && heroSection.style.display !== 'none';
   const heroTitle = allData.length > 0 ? allData[0].title : null;
 
-  // Filter items agar tidak menyertakan artikel yang ada di hero
-  // HANYA jika hero sedang tampil (tidak dalam mode search/filter)
   const items = displayedData
   .filter(item => {
     if (isHeroVisible && item.title === heroTitle) return false;
@@ -151,9 +147,20 @@ function renderFeed(reset = false) {
     <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='thumbnail.webp'">
     <div class="card-body">
     <a href="${item.url}" class="card-link">
-    <small style="color:var(--primary); font-weight:bold">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">
     ${item.category}
     </small>
+
+    <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
+    ${item.date.toLocaleDateString('id-ID', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    })}
+    </time>
+    </div>
 
     <h3 class="card-title">
     ${item.title}
@@ -162,16 +169,6 @@ function renderFeed(reset = false) {
     <p class="card-excerpt">
     ${item.summary.substring(0, 200)}...
     </p>
-
-    <div class="card-footer">
-    <time class="card-date" datetime="${item.date.toISOString()}">
-    ${item.date.toLocaleDateString('id-ID', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    })}
-    </time>
-    </div>
     </a>
     </div>
     </div>
