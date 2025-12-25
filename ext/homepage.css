@@ -442,7 +442,7 @@
   transform: translateX(-50%) scale(1);
 }
 
-/* Styling Header Baru */
+/* --- HEADER TOOLS RESPONSIVE --- */
 .header-tools {
   display: flex;
   align-items: center;
@@ -488,6 +488,28 @@
 
 @media (max-width: 768px) {
   .nav-box { flex-direction: column; gap: 15px; }
-  .header-tools { width: 100%; justify-content: space-between; }
-  .search-wrapper { flex-grow: 1; }
+  ..header-tools {
+    flex-direction: column; /* Membuat filter dan search bertumpuk vertikal */
+    align-items: stretch;   /* Membuat elemen melebar memenuhi lebar layar */
+    width: 100%;
+    gap: 12px;              /* Jarak antar tumpukan */
+  }
+
+  .archive-box-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Tahun dan Bulan bagi dua sejajar di mobile */
+    width: 100%;
+  }
+
+  .archive-box-header select {
+    width: 100%; /* Dropdown memenuhi kolom grid */
+  }
+
+  .search-wrapper {
+    width: 100%; /* Kolom pencarian melebar penuh */
+  }
+
+  .search-bar {
+    width: 100%; /* Input search memenuhi container */
+  }
 }

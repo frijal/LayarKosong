@@ -126,11 +126,25 @@ function renderHero() {
 }
 
 function renderFeed(reset = false) {
-  if(reset) limit = 6;
+  if (reset) limit = 6;
   const container = document.getElementById('newsFeed');
   container.innerHTML = '';
 
-  const items = displayedData.slice(0, limit);
+  // Ambil judul yang sedang tampil di Hero (artikel paling baru)
+  // Kita cek apakah hero sedang tampil (display != 'none')
+  const heroSection = document.getElementById('hero');
+  const isHeroVisible = heroSection && heroSection.style.display !== 'none';
+  const heroTitle = allData.length > 0 ? allData[0].title : null;
+
+  // Filter items agar tidak menyertakan artikel yang ada di hero
+  // HANYA jika hero sedang tampil (tidak dalam mode search/filter)
+  const items = displayedData
+  .filter(item => {
+    if (isHeroVisible && item.title === heroTitle) return false;
+    return true;
+  })
+  .slice(0, limit);
+
   items.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
@@ -169,15 +183,32 @@ function renderSidebar() {
   const side = document.getElementById('sidebarRandom');
   side.innerHTML = '';
 
-  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
-  const availableForSidebar = allData.filter(item => !displayedTitles.includes(item.title));
+  // 1. Ambil judul yang ada di Hero (jika Hero sedang tampil)
+  const heroSection = document.getElementById('hero');
+  const isHeroVisible = heroSection && heroSection.style.display !== 'none';
+  const heroTitle = (allData.length > 0 && isHeroVisible) ? allData[0].title : null;
 
+  // 2. Ambil semua judul yang saat ini tampil di Feed Utama
+  // Sesuai logika renderFeed, kita ambil judul dari displayedData berdasarkan limit
+  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
+
+  // 3. Filter data untuk Sidebar:
+  // - Tidak boleh ada di Feed Utama
+  // - Tidak boleh ada di Hero (jika Hero aktif)
+  const availableForSidebar = allData.filter(item => {
+    const isNotDuplicateInFeed = !displayedTitles.includes(item.title);
+    const isNotDuplicateInHero = item.title !== heroTitle;
+
+    return isNotDuplicateInFeed && isNotDuplicateInHero;
+  });
+
+  // 4. Acak dan ambil 5 artikel
   const randoms = [...availableForSidebar]
   .sort(() => 0.5 - Math.random())
   .slice(0, 5);
 
+  // 5. Render ke HTML
   randoms.forEach(item => {
-    // Membersihkan summary dari tanda petik agar tidak merusak HTML
     const cleanSummary = item.summary.replace(/"/g, '&quot;');
 
     side.innerHTML += `
