@@ -209,11 +209,16 @@ function renderSidebar() {
 
   // 5. Render ke HTML
   randoms.forEach(item => {
+    // Membersihkan summary dan title dari tanda petik agar HTML tidak pecah
     const cleanSummary = item.summary.replace(/"/g, '&quot;');
+    const cleanTitle = item.title.replace(/"/g, '&quot;');
 
     side.innerHTML += `
     <div class="mini-item" style="animation: fadeIn 0.5s ease">
-    <img src="${item.img}" class="mini-thumb" onerror="this.src='thumbnail.webp'">
+    <img src="${item.img}"
+    class="mini-thumb"
+    alt="${cleanTitle}"
+    onerror="this.src='thumbnail.webp'">
     <div class="mini-text">
     <h4 data-tooltip="${cleanSummary}">
     <a href="${item.url}" style="text-decoration:none; color:inherit;">
