@@ -1,4 +1,4 @@
-name: Ganti Teks dalam File
+name: Ganti Teks dalam File (via PR)
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
         required: false
         default: '<h1><a href="/" style="text-decoration: none; color: inherit;">'
       search2:
-        description: "Set 2: Teks dicari (Opsional - Kosongkan jika tidak pakai)"
+        description: "Set 2: Teks dicari (Opsional)"
         required: false
         default: "</h1>"
       replace2:
@@ -30,6 +30,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write # Wajib ada untuk bikin PR
 
 jobs:
   replace-process:
@@ -43,10 +44,8 @@ jobs:
       - name: "Eksekusi Penggantian Teks"
         shell: bash
         env:
-          # Set Pertama
           S1: ${{ github.event.inputs.search }}
           R1: ${{ github.event.inputs.replace }}
-          # Set Kedua
           S2: ${{ github.event.inputs.search2 }}
           R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
@@ -55,9 +54,10 @@ jobs:
           
           for g in "${GLOBS[@]}"; do
             echo "📂 Scanning file: $g"
-            find "$TARGET" -type f -path "$TARGET/$g" 2>/dev/null | while read -r file; do
+            # Perbaikan find: menggunakan -wholename agar globbing jalan dengan benar
+            find "$TARGET" -type f -wholename "$g" 2>/dev/null | while read -r file; do
               
-              # PROSES SET 1 (UTAMA)
+              # PROSES SET 1
               if [[ -n "$S1" ]]; then
                 if [[ "$S1" == ^* ]]; then
                   CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file"
@@ -68,7 +68,7 @@ jobs:
                 fi
               fi
 
-              # PROSES SET 2 (OPSIONAL)
+              # PROSES SET 2
               if [[ -n "$S2" ]]; then
                 if [[ "$S2" == ^* ]]; then
                   CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
@@ -83,10 +83,29 @@ jobs:
             done
           done
 
-      - name: "Commit dan Push Perubahan"
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "chore: double mass update content" || echo "No changes"
-          git push
+      - name: "Create Pull Request"
+        uses: peter-evans/create-pull-request@v5
+        with:
+          # Disarankan pakai GITHUB_TOKEN bawaan saja jika tidak butuh trigger workflow lain
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: mass update content (Set 1: ${{ github.event.inputs.search }})"
+          branch: "fix/mass-replace-${{ github.run_id }}" # Branch unik tiap kali jalan
+          delete-branch: true
+          title: "Mass Replace: ${{ github.event.inputs.search }}"
+          body: |
+            ## 📝 Deskripsi Perubahan
+            Melakukan penggantian teks otomatis pada folder `${{ github.event.inputs.folder }}`.
+
+            ### Set 1:
+            - **Cari:** `${{ github.event.inputs.search }}`
+            - **Ganti:** `${{ github.event.inputs.replace }}`
+
+            ### Set 2 (Jika diisi):
+            - **Cari:** `${{ github.event.inputs.search2 }}`
+            - **Ganti:** `${{ github.event.inputs.replace2 }}`
+
+            ---
+            *Otomatis dibuat oleh GitHub Actions.*
+          labels: |
+            automated-pr
+            content-update
