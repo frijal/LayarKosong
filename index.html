@@ -217,14 +217,14 @@
 .page-footer {
     background: var(--bg-card);
     border-top: 1px solid var(--border);
-    padding: 60px 0 30px; /* Padding atas lebih lega */
+    padding: 60px 0 20px;
     margin-top: 50px;
 }
 
 .footer-content {
     display: grid;
-    /* Desktop: 3 kolom sejajar (1.5 bagian untuk tagline agar lebih luas, sisanya 1 bagian) */
-    grid-template-columns: 1.5fr 1fr 1fr;
+    /* Desktop: 3 kolom dengan proporsi yang pas */
+    grid-template-columns: 1.2fr 1fr 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -233,20 +233,22 @@
 }
 
 .footer-section {
-    text-align: left; /* Desktop rata kiri agar terlihat profesional */
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-section p {
     font-size: 1rem;
     color: var(--text-main);
     font-weight: 600;
-    margin-bottom: 0;
     line-height: 1.5;
+    margin: 0;
 }
 
+/* Link Navigasi */
 .footer-links {
     display: flex;
-    flex-direction: column; /* Desktop link berjejer ke bawah */
+    flex-direction: column;
     gap: 12px;
 }
 
@@ -254,24 +256,26 @@
     color: var(--text-muted);
     font-size: 0.9rem;
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    width: fit-content;
 }
 
 .footer-links a:hover {
     color: var(--primary);
-    transform: translateX(5px); /* Geser ke kanan sedikit saat hover */
+    transform: translateX(5px);
 }
 
+/* Sosial Media */
 .footer-social {
     display: flex;
-    justify-content: flex-start; /* Sejajar kiri di desktop */
-    gap: 18px;
+    flex-wrap: wrap;
+    gap: 15px;
     font-size: 1.6rem;
 }
 
 .footer-social a {
     color: var(--text-muted);
-    transition: 0.3s ease;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .footer-social a:hover {
@@ -279,6 +283,40 @@
     transform: translateY(-5px);
 }
         
+/* --- RESPONSIVE LOGIC: MOBILE (1100px kebawah agar sinkron dengan Toolbar) --- */
+@media (max-width: 1100px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* Menjadi satu kolom */
+        gap: 35px;
+        text-align: center;
+    }
+
+    .footer-section {
+        align-items: center; /* Rata tengah semua elemen di mobile */
+    }
+
+    .footer-links {
+        flex-direction: row; /* Di mobile links berjejer kesamping agar hemat ruang */
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+/* Bagian Hak Cipta */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding: 25px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .main-grid { grid-template-columns: 1fr; }
@@ -514,7 +552,6 @@
     .footer-social {
         justify-content: center; /* Icon sosial ke tengah */
     }
-}
 
 .footer-bottom {
     text-align: center;
