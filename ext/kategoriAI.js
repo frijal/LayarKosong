@@ -1,0 +1,168 @@
+import fs from 'fs';
+import path from 'path';
+import process from 'process';
+
+// Konfigurasi Kategori
+const CATEGORIES = ["Sistem Terbuka", "Olah Media", "Jejak Sejarah", "Gaya Hidup", "Opini Sosial", "Warta Tekno"];
+
+// Ambil API Keys dari Environment Secrets GitHub
+const API_KEYS = process.env.GEMINI_KEYS 
+  ? process.env.GEMINI_KEYS.split(',').map(k => k.trim()).filter(k => k !== "") 
+  : [];
+
+const JSON_PATH = path.join(process.cwd(), 'artikel.json');
+const OUTPUT_PATH = path.join(process.cwd(), 'ext/titleToCategory.js');
+
+/**
+ * Membaca data dari file .js lama agar tidak memproses ulang judul yang sudah dikategorikan.
+ */
+function getExistingData() {
+  if (!fs.existsSync(OUTPUT_PATH)) return null;
+  try {
+    const content = fs.readFileSync(OUTPUT_PATH, 'utf8');
+    // Mencari array categories di dalam file .js menggunakan regex
+    const jsonMatch = content.match(/const categories = (\[[\s\S]*?\]);/);
+    return jsonMatch ? JSON.parse(jsonMatch[1]) : null;
+  } catch (e) {
+    console.warn("⚠️ Gagal membaca data lama, mulai dari nol.");
+    return null;
+  }
+}
+
+/**
+ * Fungsi untuk memanggil API Gemini
+ */
+async function askGemini(title, apiKey) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const prompt = `Klasifikasikan judul artikel ini ke dalam salah satu kategori: ${CATEGORIES.join(", ")}. 
+  Jawab HANYA dengan NAMA KATEGORI. Jika tidak yakin, jawab "Lainnya".
+  Judul: "${title}"`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`API Error: ${response.status} - ${errorData.error?.message || 'Unknown'}`);
+  }
+
+  const data = await response.json();
+  let result = data.candidates[0].content.parts[0].text.trim().replace(/[*_#]/g, '');
+  
+  const match = CATEGORIES.find(c => result.toLowerCase().includes(c.toLowerCase()));
+  return match || "Lainnya";
+}
+
+/**
+ * Fungsi Utama
+ */
+async function main() {
+  console.log("🚀 Memulai proses klasifikasi AI untuk Layar Kosong...");
+
+  if (!fs.existsSync(JSON_PATH)) {
+    console.error("❌ Error: File artikel.json tidak ditemukan!");
+    process.exit(1);
+  }
+
+  if (API_KEYS.length === 0) {
+    console.error("❌ Error: GEMINI_KEYS tidak ditemukan di environment!");
+    process.exit(1);
+  }
+
+  const rawData = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
+  const firstKey = Object.keys(rawData)[0];
+  const articles = rawData[firstKey];
+
+  const oldData = getExistingData();
+  let processedData = {};
+  let seenKeywords = new Set();
+
+  // Inisialisasi Kategori (termasuk "Lainnya")
+  [...CATEGORIES, "Lainnya"].forEach(c => processedData[c] = new Set());
+
+  // Muat data lama jika ada
+  if (oldData) {
+    console.log("📚 Memuat memori dari ext/titleToCategory.js...");
+    oldData.forEach(cat => {
+      cat.keywords.forEach(kw => {
+        if (processedData[cat.name]) {
+          processedData[cat.name].add(kw);
+          seenKeywords.add(kw);
+        }
+      });
+    });
+  }
+
+  let currentKeyIndex = 0;
+
+  for (let i = 0; i < articles.length; i++) {
+    const title = articles[i][0]; // Ambil judul dari index 0
+    const words = title.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 3);
+    
+    // Cek apakah ada kata kunci dalam judul yang sudah masuk database
+    const isAlreadyKnown = words.some(w => seenKeywords.has(w));
+
+    if (isAlreadyKnown) {
+      console.log(`[${i + 1}/${articles.length}] ⏩ Skip: "${title.substring(0, 35)}..."`);
+      continue;
+    }
+
+    let success = false;
+    while (!success && currentKeyIndex < API_KEYS.length) {
+      try {
+        console.log(`[${i + 1}/${articles.length}] 🤖 AI: ${title.substring(0, 45)}`);
+        const result = await askGemini(title, API_KEYS[currentKeyIndex]);
+        
+        if (processedData[result]) {
+          words.forEach(w => {
+            if (!seenKeywords.has(w)) {
+              processedData[result].add(w);
+              seenKeywords.add(w);
+            }
+          });
+        }
+        success = true;
+        console.log(`   -> Masuk: ${result}`);
+      } catch (err) {
+        console.warn(`⚠️ API Key ${currentKeyIndex + 1} bermasalah, mencoba key berikutnya...`);
+        currentKeyIndex++;
+        await new Promise(r => setTimeout(r, 1500));
+      }
+    }
+    await new Promise(r => setTimeout(r, 1000)); // Delay agar tidak kena rate limit
+  }
+
+  // Bangun struktur final
+  const finalCategories = Object.keys(processedData)
+    .filter(name => processedData[name].size > 0)
+    .map(name => ({
+      name: name,
+      keywords: Array.from(processedData[name]).sort()
+    }));
+
+  const finalScript = `// Generated by Gemini AI for Layar Kosong
+const categories = ${JSON.stringify(finalCategories, null, 2)};
+
+export function titleToCategory(title) {
+  const t = title.toLowerCase();
+  const found = categories.find(cat =>
+    cat.keywords.some(k => t.includes(k))
+  );
+  return found ? found.name : "Lainnya";
+}`;
+
+  if (!fs.existsSync(path.dirname(OUTPUT_PATH))) {
+    fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
+  }
+  
+  fs.writeFileSync(OUTPUT_PATH, finalScript);
+  console.log(`\n✅ BERHASIL! File diperbarui di: ${OUTPUT_PATH}`);
+}
+
+main().catch(err => {
+  console.error("❌ Fatal Error:", err);
+  process.exit(1);
+});
