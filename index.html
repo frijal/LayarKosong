@@ -217,35 +217,37 @@
 .page-footer {
     background: var(--bg-card);
     border-top: 1px solid var(--border);
-    padding: 50px 0 20px;
+    padding: 60px 0 30px; /* Padding atas lebih lega */
     margin-top: 50px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    /* Desktop: 3 kolom sejajar (1.5 bagian untuk tagline agar lebih luas, sisanya 1 bagian) */
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    align-items: start;
 }
 
 .footer-section {
-    text-align: center; /* Semua teks di section rata tengah */
+    text-align: left; /* Desktop rata kiri agar terlihat profesional */
 }
 
 .footer-section p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-main);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    line-height: 1.5;
 }
 
 .footer-links {
     display: flex;
-    justify-content: center; /* Link rata tengah horizontal */
-    gap: 15px;
-    flex-wrap: wrap; /* Biar responsive di mobile */
+    flex-direction: column; /* Desktop link berjejer ke bawah */
+    gap: 12px;
 }
 
 .footer-links a {
@@ -257,15 +259,14 @@
 
 .footer-links a:hover {
     color: var(--primary);
-    padding-left: 5px;
+    transform: translateX(5px); /* Geser ke kanan sedikit saat hover */
 }
 
 .footer-social {
     display: flex;
-    justify-content: center; /* Icon sosial rata tengah */
-    gap: 20px; /* Gap lebih lebar biar lega */
-    font-size: 1.5rem;
-    margin-top: 15px;
+    justify-content: flex-start; /* Sejajar kiri di desktop */
+    gap: 18px;
+    font-size: 1.6rem;
 }
 
 .footer-social a {
@@ -275,16 +276,7 @@
 
 .footer-social a:hover {
     color: var(--primary);
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    transform: translateY(-5px);
 }
         
         /* RESPONSIVE */
@@ -501,6 +493,37 @@
     .nav-box { flex-direction: column; gap: 15px; }
     .header-tools { width: 100%; justify-content: space-between; }
     .search-wrapper { flex-grow: 1; }
+    .footer-content {
+        grid-template-columns: 1fr; /* Paksa jadi 1 kolom tunggal */
+        gap: 30px; /* Jarak antar tumpukan lebih rapat */
+        text-align: center; /* Di mobile semua rata tengah agar simetris */
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-links {
+        align-items: center;
+        gap: 15px;
+        flex-direction: row; /* Di mobile link boleh berjejer horizontal atau tetap kolom */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-social {
+        justify-content: center; /* Icon sosial ke tengah */
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding: 25px 20px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
 }
 
     </style>
@@ -822,7 +845,7 @@ function updateMonthDropdown() {
     const selectedYear = ySelect.value;
     const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 
-    mSelect.innerHTML = '<option value="">Semua Bulan</option>';
+    mSelect.innerHTML = '<option value="">Bulan</option>';
 
     if (selectedYear) {
         // Cari bulan apa saja yang ada di tahun terpilih
