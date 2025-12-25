@@ -106,6 +106,7 @@
 
         /* FEATURED HERO */
         .hero {
+            transition: opacity 0.3s ease, transform 0.3s ease;
             margin: 30px 0; border-radius: 20px; overflow: hidden;
             position: relative; height: 450px; display: flex; align-items: flex-end;
             background-size: cover; background-position: center;
@@ -506,7 +507,7 @@
 <footer class="page-footer">
     <div class="footer-content">
         <div class="footer-section">
-            <p>Pelan Kiri, Mari Kita Jaga Supaya Data Pribadi Tetap Aman.</p>
+            <p>Mari Kita Jaga Supaya Data Pribadi Tetap Aman.</p>
         </div>
 
         <div class="footer-section">
@@ -581,12 +582,29 @@ async function fetchData() {
         renderSidebar();
         renderFeed();
         
-        // Search Logic
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            displayedData = allData.filter(i => i.title.toLowerCase().includes(val));
-            renderFeed(true);
-        });
+// Search Logic
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const val = e.target.value.toLowerCase();
+    const heroSection = document.getElementById('hero');
+
+    // Logika Otomatis Sembunyikan Hero
+    if (val.length > 0) {
+        // Jika ada teks di kolom pencarian, sembunyikan hero
+        heroSection.style.display = 'none';
+    } else {
+        // Jika kolom pencarian kosong, tampilkan kembali hero
+        heroSection.style.display = 'flex'; // atau 'block' sesuai CSS awal
+    }
+
+    // Filter data seperti biasa
+    displayedData = allData.filter(i =>
+        i.title.toLowerCase().includes(val) ||
+        i.summary.toLowerCase().includes(val)
+    );
+
+    renderFeed(true);
+    renderSidebar(); // Pastikan sidebar juga terupdate tanpa duplikat
+});
 
         // Archive Change
         document.getElementById('yearFilter').onchange = runFilters;
