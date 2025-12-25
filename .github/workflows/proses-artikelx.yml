@@ -71,10 +71,10 @@ jobs:
           shopt -u nullglob
 
       # 7. Inject Meta Image + JSON-LD (via npm script)
-      - name: Inject Meta Image & JSON-LD
-        run: |
-          set -euo pipefail
-          npm run ci-fix-meta-image
+    #  - name: Inject Meta Image & JSON-LD
+     #   run: |
+      #    set -euo pipefail
+       #   npm run ci-fix-meta-image
 
       # 8. Add HTML Elements (SED INLINE, TIDAK ADA \)
       - name: Add HTML Elements
