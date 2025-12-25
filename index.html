@@ -449,13 +449,77 @@
     transform: translateX(-50%) scale(1);
 }
 
+/* Styling Header Baru */
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.archive-box-header {
+    display: flex;
+    gap: 8px;
+}
+
+.archive-box-header select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none; /* Tetap sembunyi jika input kosong */
+    font-size: 0.9rem; /* Ukuran disesuaikan agar pas dengan bar pencarian */
+    padding: 0;
+    line-height: 1;
+    filter: grayscale(1); /* Membuatnya sedikit lebih menyatu (opsional) */
+    transition: 0.2s;
+}
+
+.clear-btn:hover {
+    filter: grayscale(0); /* Merah menyala saat kursor di atasnya */
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .nav-box { flex-direction: column; gap: 15px; }
+    .header-tools { width: 100%; justify-content: space-between; }
+    .search-wrapper { flex-grow: 1; }
+}
+
     </style>
 <body>
 
 <header>
     <div class="container nav-box">
         <div class="logo">Layar <span>Kosong</span></div>
-        <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
+
+        <div class="header-tools">
+            <div class="archive-box-header">
+                <select id="yearFilter"><option value="">Tahun</option></select>
+                <select id="monthFilter" disabled><option value="">Bulan</option></select>
+            </div>
+
+<div class="search-wrapper">
+    <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
+    <button id="clearSearch" class="clear-btn">❌</button>
+</div>
+        </div>
     </div>
 </header>
 
@@ -465,10 +529,6 @@
     <div class="toolbar">
         <div class="pills" id="categoryPills">
             <div class="pill active" onclick="filterByCat('All')">Kategori</div>
-        </div>
-        <div class="archive-box">
-            <select id="yearFilter"><option value="">Tahun</option></select>
-            <select id="monthFilter"><option value="">Bulan</option></select>
         </div>
     </div>
 
@@ -585,7 +645,44 @@ async function fetchData() {
 // Search Logic
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
-    const heroSection = document.getElementById('hero');
+    const searchInput = document.getElementById('searchInput');
+const clearBtn = document.getElementById('clearSearch');
+const heroSection = document.getElementById('hero');
+
+searchInput.addEventListener('input', (e) => {
+    const val = e.target.value;
+
+    // Tampilkan/Sembunyikan tombol X
+    clearBtn.style.display = val.length > 0 ? 'block' : 'none';
+
+    // Sembunyikan Hero jika sedang mencari
+    heroSection.style.display = val.length > 0 ? 'none' : 'flex';
+
+    // Jalankan filter
+    runSearch(val.toLowerCase());
+});
+
+clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    clearBtn.style.display = 'none';
+    heroSection.style.display = 'flex';
+
+    // Reset data ke awal
+    displayedData = [...allData];
+    renderFeed(true);
+    renderSidebar();
+    searchInput.focus();
+});
+
+function runSearch(keyword) {
+    displayedData = allData.filter(i =>
+        i.title.toLowerCase().includes(keyword) ||
+        i.summary.toLowerCase().includes(keyword)
+    );
+    renderFeed(true);
+    renderSidebar();
+}
+
 
     // Logika Otomatis Sembunyikan Hero
     if (val.length > 0) {
