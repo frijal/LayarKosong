@@ -519,6 +519,18 @@
     outline: none;
 }
 
+#resetArchive {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0 5px;
+    transition: transform 0.2s;
+}
+
+#resetArchive:hover {
+    transform: scale(1.2);
+}
 .search-wrapper {
     position: relative;
     display: flex;
@@ -559,14 +571,16 @@
 
         <div class="header-tools">
             <div class="archive-box-header">
+                <button id="resetArchive" class="clear-btn" title="Reset Filter" style="display: none; margin-right: 5px;">🔄</button>
+
                 <select id="yearFilter"><option value="">Tahun</option></select>
                 <select id="monthFilter" disabled><option value="">Bulan</option></select>
             </div>
 
-<div class="search-wrapper">
-    <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
-    <button id="clearSearch" class="clear-btn">❌</button>
-</div>
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
+                <button id="clearSearch" class="clear-btn">❌</button>
+            </div>
         </div>
     </div>
 </header>
@@ -691,6 +705,46 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
     const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearSearch');
 const heroSection = document.getElementById('hero');
+const yearSelect = document.getElementById('yearFilter');
+const monthSelect = document.getElementById('monthFilter');
+const resetArchiveBtn = document.getElementById('resetArchive');
+const heroSection = document.getElementById('hero');
+
+// Fungsi untuk Reset Total Arsip
+resetArchiveBtn.addEventListener('click', () => {
+    yearSelect.value = "";
+    monthSelect.value = "";
+    monthSelect.disabled = true;
+    resetArchiveBtn.style.display = 'none';
+    heroSection.style.display = 'flex'; // Hero muncul lagi
+
+    displayedData = [...allData]; // Kembalikan semua data
+    renderFeed(true);
+    renderSidebar();
+});
+
+// Update fungsi runFilters agar tombol reset muncul/sembunyi
+function runFilters() {
+    const y = yearSelect.value;
+    const m = monthSelect.value;
+
+    if (y !== "") {
+        heroSection.style.display = 'none';
+        resetArchiveBtn.style.display = 'block'; // Munculkan tombol 🔄
+    } else {
+        heroSection.style.display = 'flex';
+        resetArchiveBtn.style.display = 'none'; // Sembunyikan jika di posisi "Tahun"
+    }
+
+    displayedData = allData.filter(i => {
+        const matchY = y ? i.date.getFullYear() == y : true;
+        const matchM = m !== "" ? i.date.getMonth() == m : true;
+        return matchY && matchM;
+    });
+
+    renderFeed(true);
+    renderSidebar();
+}
 
 searchInput.addEventListener('input', (e) => {
     const val = e.target.value;
