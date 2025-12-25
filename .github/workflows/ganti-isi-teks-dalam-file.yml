@@ -4,21 +4,29 @@ on:
   workflow_dispatch:
     inputs:
       search:
-        description: "Teks yang dicari. Gunakan ^ untuk awal baris, $ untuk akhir baris. Contoh: ' | Layar Kosong$'"
+        description: "Set 1: Teks yang dicari (Wajib)"
         required: true
-        default: ' | Layar Kosong$'
+        default: "<h1>"
       replace:
-        description: 'Teks pengganti (kosongkan jika ingin menghapus teks tersebut)'
+        description: "Set 1: Teks pengganti"
         required: false
-        default: ''
+        default: '<h1><a href="/" style="text-decoration: none; color: inherit;">'
+      search2:
+        description: "Set 2: Teks dicari (Opsional - Kosongkan jika tidak pakai)"
+        required: false
+        default: "</h1>"
+      replace2:
+        description: "Set 2: Teks pengganti (Opsional)"
+        required: false
+        default: "</a></h1>"
       folder:
-        description: 'Folder target (Contoh: content atau . untuk semua)'
+        description: "Folder target"
         required: false
-        default: '.'
+        default: "."
       globs:
-        description: 'Ekstensi file (pisahkan dengan koma)'
+        description: "Ekstensi file (koma-separated)"
         required: false
-        default: '**/*.html,**/*.txt,**/*.md'
+        default: "**/*.html,**/*.txt,**/*.md"
 
 permissions:
   contents: write
@@ -27,57 +35,58 @@ jobs:
   replace-process:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout Repository'
+      - name: "Checkout Repository"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 'Eksekusi Penggantian Teks'
+      - name: "Eksekusi Penggantian Teks"
         shell: bash
         env:
-          RAW_SEARCH: ${{ github.event.inputs.search }}
-          RAW_REPLACE: ${{ github.event.inputs.replace }}
+          # Set Pertama
+          S1: ${{ github.event.inputs.search }}
+          R1: ${{ github.event.inputs.replace }}
+          # Set Kedua
+          S2: ${{ github.event.inputs.search2 }}
+          R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
         run: |
-          # Membaca input globs menjadi array
-          IFS=',' read -ra GLOBS <<< '${{ github.event.inputs.globs }}'
+          IFS="," read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
           
-          echo "🔍 Memulai pencarian untuk: $RAW_SEARCH"
-          echo "🔄 Mengganti menjadi: $RAW_REPLACE"
-
-          for g in '${GLOBS[@]}'; do
-            echo "📂 Scanning file dengan pola: $g"
-            
-            # Find file sesuai folder dan pola
+          for g in "${GLOBS[@]}"; do
+            echo "📂 Scanning file: $g"
             find "$TARGET" -type f -path "$TARGET/$g" 2>/dev/null | while read -r file; do
               
-              if [[ "$RAW_SEARCH" == ^* ]]; then
-                # MODE AWAL BARIS: Misal '^  '
-                # Menghapus karakter ^ di variabel untuk diolah Perl
-                CLEAN_S="${RAW_SEARCH#^}"
-                echo "  ✏️  Modifikasi Awal Baris: $file"
-                perl -i -pe "s#^\Q$CLEAN_S\E#$RAW_REPLACE#g" "$file"
-
-              elif [[ "$RAW_SEARCH" == *\$ ]]; then
-                # MODE AKHIR BARIS: Misal ' | Layar Kosong$'
-                # Menghapus karakter $ di variabel untuk diolah Perl
-                CLEAN_S="${RAW_SEARCH%\$}"
-                echo "  ✏️  Modifikasi Akhir Baris: $file"
-                perl -i -pe "s#\Q$CLEAN_S\E\$#$RAW_REPLACE#g" "$file"
-
-              else
-                # MODE TEKS BIASA: Cari di posisi mana saja
-                echo "  ✏️  Modifikasi Teks Biasa: $file"
-                perl -i -pe "s#\Q$RAW_SEARCH\E#$RAW_REPLACE#g" "$file"
+              # PROSES SET 1 (UTAMA)
+              if [[ -n "$S1" ]]; then
+                if [[ "$S1" == ^* ]]; then
+                  CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file"
+                elif [[ "$S1" == *\$ ]]; then
+                  CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file"
+                else
+                  perl -i -pe "s#\Q$S1\E#$R1#g" "$file"
+                fi
               fi
+
+              # PROSES SET 2 (OPSIONAL)
+              if [[ -n "$S2" ]]; then
+                if [[ "$S2" == ^* ]]; then
+                  CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
+                elif [[ "$S2" == *\$ ]]; then
+                  CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R2#g" "$file"
+                else
+                  perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
+                fi
+              fi
+              
+              echo "  ✏️  Processed: $file"
             done
           done
 
-      - name: 'Commit dan Push Perubahan'
+      - name: "Commit dan Push Perubahan"
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          # Pesan commit sederhana agar tidak error karena karakter spesial
-          git commit -m 'chore: content mass update via workflow' || echo 'Tidak ada perubahan yang ditemukan'
+          git commit -m "chore: double mass update content" || echo "No changes"
           git push
