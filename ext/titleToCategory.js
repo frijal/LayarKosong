@@ -1,41 +1,40 @@
-// titleToCategory.js
 const categories = [
   {
-  name: "🐧 Linux & Open Source",
+    name: "Sistem Terbuka",
+    keywords: [
+      "apt", "arch", "aur", "bash", "blankon", "bootable", "bsd", "btrfs", "cachyos", "chroot", "compiz", "conky", "cooling", "debian", "desktop", "distro", "dotfiles", "dpkg", "ext4", "fedora", "flatpak", "floorp", "foss", "garuda", "glibc", "gnome", "grub", "hyprland", "kde", "kernel", "komunitas", "kpli", "linux", "lts", "mageia", "mirror", "mx-linux", "nano", "nixos", "open source", "opensuse", "oss", "pacman", "partition", "paru", "perl", "repo", "rescuezilla", "rev", "root", "rsync", "sebarubuntu", "shell", "slackware", "snap", "solaris", "sudo", "systemd", "tar", "ubuntu", "ubuntu party", "usb", "ventoy", "vim", "wayland", "xfce", "yum", "zorin", "zsync"
+    ]
+  },
+{
+  name: "Olah Media",
   keywords: [
-  "apt", "arch", "aur", "blankon", "bootable", "bsd", "cachyos", "chroot", "compiz", "conky", "cooling", "debian", "desktop", "distro", "dpkg", "fedora", "foss", "garuda", "gnome", "grub", "kde", "kernel", "komunitas", "kpli", "linux", "lts", "mageia", "mirror", "mx-linux", "nixos", "open source", "opensuse", "oss", "pacman", "paru", "perl", "repo", "rescuezilla", "rsync", "sebarubuntu", "slackware", "solaris", "tar", "ubuntu", "ubuntu party", "usb", "ventoy", "xfce", "yum", "zorin", "zsync"
+    "audio", "av1", "batch-rename", "bitrate", "canvas", "codec", "compress", "convert", "deoldify", "dpi", "durasi", "exif", "excel", "ffmpeg", "film", "format", "foto", "framerate", "gabung", "gambar", "ghostscript", "gimp", "grayscale", "h264", "h265", "handbrake", "imagemagick", "iptv", "kompres", "layers", "libreoffice", "metadata", "mewarnai", "mkv", "mp3", "mp4", "multimedia", "ocr", "ogg", "openoffice", "pdftk", "png", "potong", "preset", "rekam", "recursive", "resize", "scan", "split", "spreadsheet", "srt", "subtitle", "svg", "transcribe", "vector", "video", "vlc", "watermark", "webp"
   ]
 },
-  {
-  name: "📸 Multimedia & Editing",
+{
+  name: "Jejak Sejarah",
   keywords: [
-  "audio", "codec", "convert", "deoldify", "durasi", "ffmpeg", "film", "format", "foto", "gabung", "libreoffice", "openoffice", "gambar", "ghostscript", "gimp", "handbrake", "imagemagick", "iptv", "kompres", "mewarnai", "mp3", "multimedia", "spreadsheet", "excel", "ogg", "pdf", "pdftk", "potong", "preset", "rekam", "resize", "scan", "split", "video", "vlc", "watermark", "webp"
+    "adab", "akidah", "al-andalus", "andalusia", "aqidah", "ayub", "baghdad", "bahtera", "baitul-hikmah", "barqa", "bilal", "daulah", "doa", "fatih", "fatwa", "fiqh", "fitnah", "ghibah", "hadis", "haki", "halal", "haram", "hijab", "hijrah", "hijriyah", "hittin", "hukum", "ibnu batutah", "ikhlas", "imam", "iman", "islam", "istighfar", "isra", "janji", "jumat", "khalifah", "khwarizmi", "madinah", "madyan", "masjid", "masyitoh", "maulid", "mesir", "muamalah", "muhammadiyah", "mukjizat", "murad", "musa", "mushaf", "muslim", "nabi", "nuh", "pahlawan", "penaklukan", "perjanjian", "persia", "pertempuran", "piagam", "quran", "qunut", "ramadhan", "risalah", "sabar", "saf", "sahabat", "salam", "salman", "sejarah", "seljuk", "shalat", "shalahuddin", "sirah", "sombong", "sunnah", "surga", "syariat", "tabayun", "tabi'in", "tabut", "tauhid", "tawadhu", "uhud", "umar", "utsman", "utsmaniyah", "yaqub", "yarmuk", "yerusalem", "yusuf", "zaid"
   ]
 },
-  {
-    name: "📚 Sejarah & Religi",
-    keywords: [
-    "adab", "akidah", "andalusia", "aqidah", "baghdad", "bahtera", "barqa", "bilal", "doa", "fatih", "fiqh", "fitnah", "ghibah", "hadis", "haki", "halal", "haram", "hijab", "hijrah", "hijriyah", "hittin", "hukum", "ibnu batutah", "iman", "imam", "islam", "istighfar", "janji", "jumat", "khwarizmi", "madinah", "masjid", "masyitoh", "maulid", "mesir", "muhammadiyah", "mukjizat", "murad", "musa", "muslim", "mushaf", "nabi", "nuh", "pahlawan", "penaklukan", "perjanjian", "pertempuran", "persia", "piagam", "quran", "qunut", "ramadhan", "risalah", "sabar", "saf", "sahabat", "salam", "salman", "sejarah", "seljuk", "shalat", "shalahuddin", "syariat", "sombong", "sunnah", "surga", "tabut", "tabayun", "tauhid", "uhud", "umar", "utsman", "utsmaniyah", "yarmuk", "yerusalem", "zaid"
-    ]
-  },
-  {
-    name: "🍜 Kuliner, Gaya Hidup & Kesehatan",
-    keywords: [
-    "angkringan", "bahagia", "bali", "bandara", "bekapai", "berkendara", "boker", "camilan", "gaya hidup", "gerimis", "hotel", "jagung", "jogja", "kesehatan", "kopi", "kerupuk", "kuliner", "kurma", "laundry", "metode", "minuman", "motor", "niat", "ngopi", "obat", "ojol", "pecel", "pencernaan", "pijat", "psikotes", "respiro", "sakit", "sembelit", "sikat", "susu", "tidur", "touring", "unboxing", "wanita", "wisata"
-    ]
-  },
-  {
-    name: "📢 Catatan & Opini Sosial",
-    keywords: [
-    "aci", "adaro", "artikel", "bisnis", "bukalapak", "catatan", "cpns", "cuti", "duit", "ekspedisi", "fenomena", "foss kaltim", "golput", "grobogan", "harian", "ibu", "indonesia", "iwan fals", "jatos", "jne", "kasih", "kejujuran", "kerja", "kota", "kopdar", "kreativitas", "nostalgia", "opini", "organisasi", "peradaban", "perencanaan", "perusahaan", "perjalanan", "poac", "ppdb", "produktifitas", "pt", "rencana", "renungan", "sktm", "sosial", "uang", "ujian nasional"
-    ]
-  },
-  {
-    name: "🖥️ Teknologi Web, AI & Umum",
-    keywords: [
-    "ai", "amd", "baterai", "wine", "bootloader", "branch", "browser", "build", "canva", "chatgpt", "claude", "cleanup", "cli", "codespaces", "cpu", "curl", "eula", "gemini", "git", "github", "gorilla glass", "grammarly", "hdd", "head", "header", "html", "jasper", "jaringan", "javascript", "js", "keyring", "laptop", "learning", "lisensi", "meta", "mic", "notion", "npm", "optimasi", "osborne1", "phishing", "piracy", "push", "quickbooks", "refresh", "robots.txt", "samba", "shutdown", "software", "ssh", "ssd", "terminal", "tidio", "tools", "virtualbox", "web", "wifi", "windows", "winget", "workflow", "yml", "yaml"
-    ]
-  }
+{
+  name: "Gaya Hidup",
+  keywords: [
+    "angkringan", "arabica", "bahagia", "bali", "bandara", "bekapai", "berkendara", "boker", "camilan", "detox", "diet", "e-bpkb", "gaul", "gaya hidup", "gejala", "gerimis", "herbal", "hobi", "hotel", "jagung", "jajanan", "jogja", "kafein", "kesehatan", "kopi", "kerupuk", "kuliner", "kurma", "laundry", "lifestyle", "metode", "minuman", "motor", "ngopi", "niat", "nutrisi", "obat", "ojol", "parkir", "pecel", "pencernaan", "pijat", "psikotes", "resep", "respiro", "robusta", "sakit", "seduh", "sembelit", "service", "sikat", "sparepart", "staycation", "susu", "tidur", "touring", "unboxing", "vixion", "wanita", "wisata"
+  ]
+},
+{
+  name: "Opini Sosial",
+  keywords: [
+    "aci", "adaro", "amanah", "artikel", "audit", "bisnis", "budaya", "bukalapak", "catatan", "cpns", "cuti", "duit", "ekonomi", "ekspedisi", "etika", "facebook", "fenomena", "foss kaltim", "golput", "grobogan", "harian", "hormat", "ibu", "indonesia", "integritas", "iwan fals", "jatos", "jne", "kasih", "kebijakan", "kejujuran", "kepemimpinan", "kerja", "kinerja", "kolom", "kopdar", "korporasi", "kota", "kreativitas", "kritik", "masyarakat", "nostalgia", "opini", "organisasi", "pajak", "pemerintah", "penjilat", "perencanaan", "perjalanan", "perusahaan", "poac", "politik", "ppdb", "produktifitas", "pt", "rencana", "renungan", "sktm", "sosial", "subsidi", "uang", "ujian nasional", "umkm", "viral", "whoosh"
+  ]
+},
+{
+  name: "Warta Tekno",
+  keywords: [
+    "ai", "amd", "android", "api", "automation", "backend", "baterai", "benchmarking", "blogspot", "bootloader", "branch", "browser", "build", "canva", "chatgpt", "claude", "cleanup", "cloudflare", "codespaces", "cpu", "curl", "cyber-security", "deep-learning", "dns", "domain", "drive", "encryption", "endpoint", "eula", "firefox", "frontend", "fullstack", "gadget", "gemini", "git", "github", "gitignore", "gorilla glass", "grammarly", "hardware", "hdd", "head", "header", "hosting", "html", "iot", "javascript", "jasper", "jaringan", "json", "js", "kate", "keyring", "laptop", "learning", "lisensi", "llm", "markdown", "meta", "mic", "microsoft exchange", "notion", "npm", "optimasi", "osborne1", "overclock", "pdf", "phishing", "piracy", "powerbank", "prompt", "pwa", "push", "quickbooks", "refresh", "robots.txt", "samba", "schema", "security", "shutdown", "software", "ssh", "ssh3", "ssd", "ssl", "static site", "sturnus", "tema", "thermal-paste", "thunderbird", "tidio", "tools", "trojan", "virtualbox", "vivaldi", "web", "website", "wifi", "windows", "winget", "wine", "workflow", "yaml", "yml"
+  ]
+}
 ];
 
 export function titleToCategory(title) {
@@ -43,5 +42,5 @@ export function titleToCategory(title) {
   const found = categories.find(cat =>
     cat.keywords.some(k => t.includes(k))
   );
-  return found ? found.name : "🔆 Lainnya";
+  return found ? found.name : "Lainnya";
 }
