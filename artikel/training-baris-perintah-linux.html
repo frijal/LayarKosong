@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+<!DOCTYPE html><html lang="id"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Training Baris Perintah Linux - Panduan Lengkap</title>
   <!-- Basic SEO -->
-  <meta name="description" content="Panduan lengkap step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi." />
-  <link rel="canonical" href="https://dalam.web.id/artikel/training-baris-perintah-linux.html" />
+  <meta name="description" content="Panduan lengkap step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi.">
+  <link rel="canonical" href="https://dalam.web.id/artikel/training-baris-perintah-linux.html">
   <!-- Open Graph -->
 
   <!-- Twitter Card -->
 
   <!-- Favicon -->
-  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" type="image/svg+xml" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" type="image/svg+xml">
   <!-- Prism.js (highlighting) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer=""></script>
   <style>
     :root{
       --accent:#0b5ed7;
@@ -158,25 +156,25 @@
   <!-- JSON-LD Article & Breadcrumb -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Training Baris Perintah Linux — Panduan Lengkap","author":{"@type":"Person","name":"Fakhrul Rijal","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"},"publisher":{"@type":"Organization","name":"Belajar Linux","logo":{"@type":"ImageObject","url":"https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"},"image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"},"datePublished":"2025-09-15","mainEntityOfPage":"https://dalam.web.id/artikel/training-baris-perintah-linux.html","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"},{"@type":"ListItem","position":2,"name":"Linux","item":"https://dalam.web.id/sitemap.html","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"},{"@type":"ListItem","position":3,"name":"Training Command Line","item":"https://dalam.web.id/artikel/training-baris-perintah-linux.html","image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"}],"image":"https://dalam.web.id/img/training-baris-perintah-linux.webp"}</script>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-06-10T23:20:38.207+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan lengkap step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan lengkap step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi.">
 <meta name="ai:prompt_hint" content="Panduan lengkap step-by-step belajar command line Linux: pengertian, man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv (rename/move), shortcut terminal, dan penutup. Disertai contoh, opsi umum, tips, dan ilustrasi.">
 
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/training-baris-perintah-linux.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/training-baris-perintah-linux.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/training-baris-perintah-linux.webp">
   <meta property="og:image:alt" content="Training Baris Perintah Linux - Panduan Lengkap">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/training-baris-perintah-linux.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Training Baris Perintah Linux - Panduan Lengkap"></head>
 <body>
   <!-- Topbar with TOC -->
   <div class="topbar" role="banner">
     <div class="container">
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux Logo">
         <div>
           <div class="title">Training Command Line Linux</div>
           <div style="font-size:0.85rem;color:var(--muted)">Panduan lengkap: 17 halaman</div>
@@ -209,7 +207,7 @@
       <div class="hero-left">
         <h1 id="hero-title">Training Baris Perintah (Command Line) Linux — 17 Halaman</h1>
 <div id="iposbrowser"></div>
-        <p class="meta">Panduan ringkas & mendalam untuk pemula: arti, fungsi, opsi, contoh, dan praktik terbaik setiap perintah.</p>
+        <p class="meta">Panduan ringkas &amp; mendalam untuk pemula: arti, fungsi, opsi, contoh, dan praktik terbaik setiap perintah.</p>
         <div class="share" aria-label="Jaga Data Pribadi Tetap Aman">
           <button onclick="share('facebook')">Facebook</button>
           <button onclick="share('twitter')">Twitter/X</button>
@@ -218,8 +216,8 @@
         </div>
       </div>
       <div class="hero-right">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglX4i-lQ03mcJVvH0hziERuGy5Gx_FYiK0jfr4dMCb3FNPrqN-pdbhuTY39Rdjlq8w26qYn_z33Zmz8nAygJgpGC3FtWROll3q8xoGIIxBsEEYSVdNfd1noVAHicaZYS04kADxzSpyO5FDBkqcFAolZ2gh6HObpSOhQuPfEs2Afu-WX4hEq20Jb_f93oE/s1600/xterm.png" alt="Terminal icon" width="140" />
-        <div style="color:var(--muted);font-size:0.9rem;margin-top:8px">Belajar perintah dasar & lanjutan</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglX4i-lQ03mcJVvH0hziERuGy5Gx_FYiK0jfr4dMCb3FNPrqN-pdbhuTY39Rdjlq8w26qYn_z33Zmz8nAygJgpGC3FtWROll3q8xoGIIxBsEEYSVdNfd1noVAHicaZYS04kADxzSpyO5FDBkqcFAolZ2gh6HObpSOhQuPfEs2Afu-WX4hEq20Jb_f93oE/s1600/xterm.png" alt="Terminal icon" width="140">
+        <div style="color:var(--muted);font-size:0.9rem;margin-top:8px">Belajar perintah dasar &amp; lanjutan</div>
       </div>
     </header>
     <!-- Page 1 -->
@@ -240,7 +238,7 @@
           </ul>
         </div>
         <div>
-          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglX4i-lQ03mcJVvH0hziERuGy5Gx_FYiK0jfr4dMCb3FNPrqN-pdbhuTY39Rdjlq8w26qYn_z33Zmz8nAygJgpGC3FtWROll3q8xoGIIxBsEEYSVdNfd1noVAHicaZYS04kADxzSpyO5FDBkqcFAolZ2gh6HObpSOhQuPfEs2Afu-WX4hEq20Jb_f93oE/s1600/xterm.png" alt="Terminal illustration" />
+          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglX4i-lQ03mcJVvH0hziERuGy5Gx_FYiK0jfr4dMCb3FNPrqN-pdbhuTY39Rdjlq8w26qYn_z33Zmz8nAygJgpGC3FtWROll3q8xoGIIxBsEEYSVdNfd1noVAHicaZYS04kADxzSpyO5FDBkqcFAolZ2gh6HObpSOhQuPfEs2Afu-WX4hEq20Jb_f93oE/s1600/xterm.png" alt="Terminal illustration">
         </div>
       </div>
     </section>
@@ -252,7 +250,7 @@
         Command line (CLI) adalah antarmuka teks yang menerima perintah, mengeksekusi, lalu menampilkan hasil.
         Contohnya: membuka terminal dan mengetik perintah seperti <span class="kbd">ls</span>, <span class="kbd">cd</span>, atau menjalankan skrip.
       </p>
-      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAQbWOq5VHxgr0KU8ZPzjUZqVjBsQJS9wDnuo1m2dAHf67zF0WVlwhQNhyphenhyphen8Ng5aR673fYhmOXpqWrKE5GpK6WdcXXXZI192uNSXHqBQJbVw9gjan7yQRiF8zei8ZR_7yfROTblKTNzsxwGV8_FzNtDQ5TNNSKgcKHFL4P9Y-KCzISnNWcBFD0Ev8JZrEY/s1600/mlterm.png" alt="Ilustrasi command line" />
+      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAQbWOq5VHxgr0KU8ZPzjUZqVjBsQJS9wDnuo1m2dAHf67zF0WVlwhQNhyphenhyphen8Ng5aR673fYhmOXpqWrKE5GpK6WdcXXXZI192uNSXHqBQJbVw9gjan7yQRiF8zei8ZR_7yfROTblKTNzsxwGV8_FzNtDQ5TNNSKgcKHFL4P9Y-KCzISnNWcBFD0Ev8JZrEY/s1600/mlterm.png" alt="Ilustrasi command line">
     </section>
     <!-- Page 3: man -->
     <section id="page-3" class="card" aria-labelledby="h3">
@@ -271,7 +269,7 @@
         <li><b>EXAMPLES</b> – contoh pemakaian</li>
         <li><b>SEE ALSO</b> – referensi terkait</li>
       </ol>
-      <p><strong>Perintah & contoh</strong></p>
+      <p><strong>Perintah &amp; contoh</strong></p>
       <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">man ls
 man -k copy   # cari topik (apropos)</code></pre>
       <p><strong>Tips</strong></p>
@@ -305,15 +303,15 @@ cd -        # kembali ke direktori sebelumnya</code></pre>
         <li>Gunakan tab-completion (tekan <kbd>Tab</kbd>) untuk menyelesaikan nama direktori dengan cepat.</li>
         <li>Untuk navigasi di skrip, gunakan <code>pushd</code>/<code>popd</code> untuk stack direktori.</li>
       </ul>
-      <img class="illustration" src="https://i.ytimg.com/vi/00sDqK1K2xA/maxresdefault.jpg" alt="Contoh cd" />
+      <img class="illustration" src="https://i.ytimg.com/vi/00sDqK1K2xA/maxresdefault.jpg" alt="Contoh cd">
     </section>
     <!-- Page 5: ls -->
     <section id="page-5" class="card" aria-labelledby="h5">
       <h2 id="h5">5 — Perintah <code>ls</code> (Listing)</h2>
       <p class="meta">Fungsi: menampilkan isi direktori.</p>
-      <p><strong>Penjelasan lengkap & opsi umum</strong></p>
+      <p><strong>Penjelasan lengkap &amp; opsi umum</strong></p>
       <ul>
-        <li><code>ls</code> → tampilkan file & folder singkat.</li>
+        <li><code>ls</code> → tampilkan file &amp; folder singkat.</li>
         <li><code>ls -l</code> → long listing: menampilkan izin, pemilik, ukuran, tanggal, nama.</li>
         <li><code>ls -a</code> → sertakan file tersembunyi (dotfiles).</li>
         <li><code>ls -h</code> → human readable sizes (1K, 234M).</li>
@@ -331,13 +329,13 @@ ls -Rt</code></pre>
         <li>Angka kedua: jumlah link/hardlinks.</li>
         <li>Ukuran dalam byte (kecuali jika gunakan -h).</li>
       </ul>
-      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfHxlGH_E5HjnRwECpQtBehSUKIYjsuZp3dX1V9H48OREAuxN8M9FcufmdR4QS_sIBQAAvRW_DIoZcuq_BAH-kuIT2lD6GLbIglFmwGGTJG8gX5NoHGXQfcjx8TnNVnMvD3PgG5hoYpiYvAvbV976ULxilNlxMTPMtJ3e5L0sLFdMfXi-IrnR6FkwH5pI/s1600/LS-LH-Command-Image.png" alt="Output ls -l" />
+      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfHxlGH_E5HjnRwECpQtBehSUKIYjsuZp3dX1V9H48OREAuxN8M9FcufmdR4QS_sIBQAAvRW_DIoZcuq_BAH-kuIT2lD6GLbIglFmwGGTJG8gX5NoHGXQfcjx8TnNVnMvD3PgG5hoYpiYvAvbV976ULxilNlxMTPMtJ3e5L0sLFdMfXi-IrnR6FkwH5pI/s1600/LS-LH-Command-Image.png" alt="Output ls -l">
     </section>
     <!-- Page 6: mkdir -->
     <section id="page-6" class="card" aria-labelledby="h6">
       <h2 id="h6">6 — Perintah <code>mkdir</code> (Make Directory)</h2>
       <p class="meta">Fungsi: membuat direktori baru.</p>
-      <p><strong>Penjelasan & opsi</strong></p>
+      <p><strong>Penjelasan &amp; opsi</strong></p>
       <ul>
         <li><code>mkdir nama_direktori</code> → membuat satu direktori.</li>
         <li><code>mkdir -p path/ke/direktori</code> → buat semua parent yang hilang (no error jika sudah ada).</li>
@@ -367,7 +365,7 @@ ln -s /path/to/asli.txt symlink.txt</code></pre>
       <p><strong>Catatan</strong></p>
       <ul>
         <li>Tidak semua filesystem mengizinkan hard link ke direktori (untuk keamanan).</li>
-        <li>Symlink berguna untuk versi konfigurasi atau pengalihan path (contoh: /usr/bin/python -> /usr/bin/python3).</li>
+        <li>Symlink berguna untuk versi konfigurasi atau pengalihan path (contoh: /usr/bin/python -&gt; /usr/bin/python3).</li>
       </ul>
     </section>
     <!-- Page 8: pwd -->
@@ -396,7 +394,7 @@ pwd -P   # physical (follow symlinks)</code></pre>
       <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">cp file1.txt file2.txt
 cp -r folder1 backup/folder1
 cp -a /etc/skel /backup/skel</code></pre>
-      <p><strong>Tips & catatan</strong></p>
+      <p><strong>Tips &amp; catatan</strong></p>
       <ul>
         <li>Untuk sinkronisasi antar folder besar, <code>rsync -av</code> biasanya lebih efisien daripada <code>cp</code>.</li>
         <li>Perhatikan ownership saat menyalin ke lokasi root — gunakan <code>sudo</code> bila perlu.</li>
@@ -410,7 +408,7 @@ cp -a /etc/skel /backup/skel</code></pre>
       <ul>
         <li><code>rm file</code></li>
         <li><code>rm -i file</code> → minta konfirmasi</li>
-        <li><code>rm -r dir/</code> → hapus rekursif (folder & isinya)</li>
+        <li><code>rm -r dir/</code> → hapus rekursif (folder &amp; isinya)</li>
         <li><code>rm -f</code> → paksa tanpa konfirmasi</li>
         <li><code>rm -rf</code> → kombinasi sangat berbahaya (use with care)</li>
       </ul>
@@ -458,7 +456,7 @@ command | less</code></pre>
     <section id="page-13" class="card" aria-labelledby="h13">
       <h2 id="h13">13 — Perintah <code>touch</code></h2>
       <p class="meta">Fungsi: membuat file kosong atau memperbarui timestamp.</p>
-      <p><strong>Contoh & opsi</strong></p>
+      <p><strong>Contoh &amp; opsi</strong></p>
       <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">touch file_baru.txt       # buat file kosong
 touch -c file.txt           # tidak membuat jika tidak ada
 touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
@@ -474,7 +472,7 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
       <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">mv lama.txt baru.txt    # rename file</code></pre>
       <p><strong>Catatan</strong></p>
       <ul>
-        <li>Jika sumber & tujuan berada pada filesystem yang sama, <code>mv</code> melakukan rename (efisien).</li>
+        <li>Jika sumber &amp; tujuan berada pada filesystem yang sama, <code>mv</code> melakukan rename (efisien).</li>
         <li>Gunakan <code>-i</code> untuk mencegah overwrite tanpa konfirmasi.</li>
     </ul>
     </section>
@@ -482,12 +480,12 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
       <h2 id="h15">15 — Perintah <code>mv</code> (Move)</h2>
       <p class="meta">Fungsi: memindahkan file/direktori ke lokasi lain.</p>
       <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">mv file.txt /home/user/Documents/    # move file</code></pre>
-      <p><strong>Catatan & implikasi</strong></p>
+      <p><strong>Catatan &amp; implikasi</strong></p>
       <ul>
         <li>Jika memindahkan antar filesystem, operasi bisa berupa copy + delete — perhatikan permission.</li>
         <li>Use <code>mv -v</code> untuk mode verbose.</li>
       </ul>
-      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxowrADPqsSz0383Brvlf-wp1LXowc5_3C6JNdN_lEdfF4sNTdNpwHxxaG2sBtTUbx-EuwDT6GNC8hJv9dXQJmb7ZNHrRCGLkbUzyTXbBEs656RNuN2kyxAR1EO0amWrez2ILZk3PhaVNoB0uVCfHJL9-LALrDyR5Ysbj-Dji-oB6TvnrUUObMLyIL4lI/s1600/moving-files-in-linux.png" alt="mv example" />
+      <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxowrADPqsSz0383Brvlf-wp1LXowc5_3C6JNdN_lEdfF4sNTdNpwHxxaG2sBtTUbx-EuwDT6GNC8hJv9dXQJmb7ZNHrRCGLkbUzyTXbBEs656RNuN2kyxAR1EO0amWrez2ILZk3PhaVNoB0uVCfHJL9-LALrDyR5Ysbj-Dji-oB6TvnrUUObMLyIL4lI/s1600/moving-files-in-linux.png" alt="mv example">
     </section>
     <!-- Page 16: shortcuts with images -->
     <section id="page-16" class="card" aria-labelledby="h16">
@@ -503,21 +501,21 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
       </ul>
       <div class="grid-2" style="margin-top:12px">
         <div>
-          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimCdk2O3QQcUnGYXybp3mOgoMsbAqx4bupo71mkyg4NciiWiB0XSqvkHF5eP_elScu9aVozoLYw478DyyQRkZiOPDxWwM0IiMbhE0O-UWhwAssrcIMOjgRZgHr_Qg-zMiQNrHS0-cW1tfOh6FwCluao67fag_bAzg6RK0e42HNeiVpKwTiOimMZvoFu3M/s1600/ctrlc.png" alt="Ctrl+C terminate" />
+          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimCdk2O3QQcUnGYXybp3mOgoMsbAqx4bupo71mkyg4NciiWiB0XSqvkHF5eP_elScu9aVozoLYw478DyyQRkZiOPDxWwM0IiMbhE0O-UWhwAssrcIMOjgRZgHr_Qg-zMiQNrHS0-cW1tfOh6FwCluao67fag_bAzg6RK0e42HNeiVpKwTiOimMZvoFu3M/s1600/ctrlc.png" alt="Ctrl+C terminate">
           <p style="color:var(--muted);font-size:0.9rem;text-align:center">Contoh Ctrl+C: menghentikan proses berjalan</p>
         </div>
         <div>
-          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfIL6Gt2N2pJ8yEd23wPnMhk-NE73n-oU84i-GniugkLF2YPuLBD0SOQKhb4JvlnOGSMhdAG9xn7jh9XyEd1OrTk_bIeP2IucOyVPcfdlTAzKtF6s66RLXuFI6fSH89Ld68r_Q5WF61viRDIfWNpm-R8gDAlNf3bJ7V-W8-2IyqPN8CbB27csAr5VdYbE/s1600/ctrlz.png" alt="Ctrl+Z suspend" />
+          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfIL6Gt2N2pJ8yEd23wPnMhk-NE73n-oU84i-GniugkLF2YPuLBD0SOQKhb4JvlnOGSMhdAG9xn7jh9XyEd1OrTk_bIeP2IucOyVPcfdlTAzKtF6s66RLXuFI6fSH89Ld68r_Q5WF61viRDIfWNpm-R8gDAlNf3bJ7V-W8-2IyqPN8CbB27csAr5VdYbE/s1600/ctrlz.png" alt="Ctrl+Z suspend">
           <p style="color:var(--muted);font-size:0.9rem;text-align:center">Contoh Ctrl+Z: proses disuspend</p>
         </div>
       </div>
       <div class="grid-2" style="margin-top:12px">
         <div>
-          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfuHXmcgQc4Sw6y0E6PwqzHkdKgXj4ZvB1-KhihbInoQ877Xr0fF8eqZ5fi4OtNYRZ7fj0Q0hxXQZ28hzDtHByMuX1Ykzssvbzdx3-QVEx5KJIr72DGmM661TtlUTbmrPAixFQsHBXl7OLpzdPYUYqp7YDYM9Rj-NxzNkNEc3bYdO42jbSQMHgUq-Ffqo/s1600/ctrll.gif" alt="Ctrl+L clear" />
+          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfuHXmcgQc4Sw6y0E6PwqzHkdKgXj4ZvB1-KhihbInoQ877Xr0fF8eqZ5fi4OtNYRZ7fj0Q0hxXQZ28hzDtHByMuX1Ykzssvbzdx3-QVEx5KJIr72DGmM661TtlUTbmrPAixFQsHBXl7OLpzdPYUYqp7YDYM9Rj-NxzNkNEc3bYdO42jbSQMHgUq-Ffqo/s1600/ctrll.gif" alt="Ctrl+L clear">
           <p style="color:var(--muted);font-size:0.9rem;text-align:center">Ctrl+L membersihkan layar (clear)</p>
         </div>
         <div>
-          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwAnM1FQU3xJ0eMUNcVOCsKS11NC430nWiw2H883Ob6dP_Q-Y6Az0Bp5t1kqWjfro9LCB136V_EtghvcaRJcJEZcyQfXPJLZThAWRhsGN9EZOueG1SHxPnqDb9Q8DS43bmy4-YnznJeNuymMmqSkgunFKquX0UuX-TiWwDKmsJGBfXjeu1YABLlX_2N7s/s1600/ctrlu.gif" alt="Ctrl+U clear line" />
+          <img class="illustration" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwAnM1FQU3xJ0eMUNcVOCsKS11NC430nWiw2H883Ob6dP_Q-Y6Az0Bp5t1kqWjfro9LCB136V_EtghvcaRJcJEZcyQfXPJLZThAWRhsGN9EZOueG1SHxPnqDb9Q8DS43bmy4-YnznJeNuymMmqSkgunFKquX0UuX-TiWwDKmsJGBfXjeu1YABLlX_2N7s/s1600/ctrlu.gif" alt="Ctrl+U clear line">
           <p style="color:var(--muted);font-size:0.9rem;text-align:center">Ctrl+U menghapus teks sebelum kursor</p>
         </div>
       </div>
@@ -526,7 +524,7 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
     <!-- Page 17: penutup -->
     <section id="page-17" class="card" aria-labelledby="h17">
       <h2 id="h17">17 — Penutup</h2>
-      <p class="meta">Ringkasan & saran praktik.</p>
+      <p class="meta">Ringkasan &amp; saran praktik.</p>
       <p>
         Menguasai perintah-perintah dasar di atas (man, cd, ls, mkdir, ln, pwd, cp, rm, more, less, touch, mv, beserta shortcut) akan membuat Anda lebih siap bekerja di lingkungan Linux.
         Latihan teratur dan membaca <code>man</code> adalah kunci — <em>RTMF</em> (Read The Fantastic Manual).
@@ -540,7 +538,7 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
       <div>
         🄯 2025 — Panduan Linux CLI • dibuat oleh Fakhrul Rijal
       </div>
-    </footer>
+    </div></footer>
   <!-- Scripts: copy, share, browser/os icons, IP fetch -->
   <script>
     // Robust copy function: find nearest code block in the same pre
@@ -561,7 +559,7 @@ touch -t 202509150830 file.txt  # set waktu modifikasi</code></pre>
     }
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

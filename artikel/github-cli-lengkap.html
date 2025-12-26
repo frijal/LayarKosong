@@ -1,15 +1,13 @@
-<!doctype html>
-<html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Panduan GitHub CLI Lengkap</title>
-<meta name="description" content="Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode." />
-<meta name="keywords" content="GitHub CLI, gh, command line, tutorial, commit, push, branch, pull request, fork, merge, release, issue, repo" />
-<link rel="canonical" href="https://dalam.web.id/artikel/github-cli-lengkap.html" />
-<link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon" />
+<meta name="description" content="Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode.">
+<meta name="keywords" content="GitHub CLI, gh, command line, tutorial, commit, push, branch, pull request, fork, merge, release, issue, repo">
+<link rel="canonical" href="https://dalam.web.id/artikel/github-cli-lengkap.html">
+<link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
 
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com" defer=""></script>
 <style>
 body { font-family: Inter, sans-serif; }
 .active-nav { background-color: #e5e7eb; color: #111827; font-weight: 600; }
@@ -25,20 +23,20 @@ body { font-family: Inter, sans-serif; }
 
 </style>
 
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-05-17T23:20:38.184+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode.">
 <meta name="ai:prompt_hint" content="Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Panduan GitHub CLI Lengkap","datePublished":"2025-05-17T23:20:38.184+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/github-cli-lengkap.html","image":"https://dalam.web.id/img/github-cli-lengkap.webp","keywords":[],"description":"Panduan interaktif GitHub CLI untuk login, clone repo, commit, push, pull request, branch, issue, fork, merge, release, dan workflow lengkap lainnya. Lengkap dengan diagram dan tombol salin kode."}</script>
 
 <meta name="twitter:image" content="https://dalam.web.id/img/github-cli-lengkap.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/github-cli-lengkap.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-cli-lengkap.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-cli-lengkap.webp">
   <meta property="og:image:alt" content="Panduan GitHub CLI Lengkap">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/github-cli-lengkap.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Panduan GitHub CLI Lengkap"></head>
 <body class="bg-gray-50 text-gray-800">
 
 <div class="flex flex-col md:flex-row min-h-screen">
@@ -52,7 +50,7 @@ body { font-family: Inter, sans-serif; }
 <ul class="space-y-1">
 <li><a href="#login" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Login</a></li>
 <li><a href="#clone" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Clone Repo</a></li>
-<li><a href="#commit" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Commit & Push</a></li>
+<li><a href="#commit" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Commit &amp; Push</a></li>
 </ul>
 </div>
 <div>
@@ -64,7 +62,7 @@ body { font-family: Inter, sans-serif; }
 <li><a href="#fork" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Fork</a></li>
 <li><a href="#merge" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Merge</a></li>
 <li><a href="#release" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Release</a></li>
-<li><a href="#watch-star" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Watch & Star</a></li>
+<li><a href="#watch-star" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Watch &amp; Star</a></li>
 </ul>
 </div>
 </nav>
@@ -88,7 +86,7 @@ body { font-family: Inter, sans-serif; }
 <div class="diagram-box">
 <div class="diagram-step">gh auth login</div>
 <div class="diagram-arrow">→</div>
-<div class="diagram-step">Pilih akun & metode</div>
+<div class="diagram-step">Pilih akun &amp; metode</div>
 <div class="diagram-arrow">→</div>
 <div class="diagram-step">Login berhasil</div>
 </div>
@@ -112,7 +110,7 @@ body { font-family: Inter, sans-serif; }
 
 <template id="commit-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold mb-2">Commit & Push</h2>
+<h2 class="text-2xl font-bold mb-2">Commit &amp; Push</h2>
 <div class="diagram-box">
 <div class="diagram-step">git add .</div>
 <div class="diagram-arrow">→</div>
@@ -123,24 +121,24 @@ body { font-family: Inter, sans-serif; }
 <div class="code-block"><button class="copy-btn">Salin</button><pre><code>git add .
 git commit -m "Pesan"
 git push</code></pre></div>
-</template>
+</div></template>
 
 <!-- Template lanjutan: PR, Branch, Issue, Fork, Merge, Release, Watch/Star -->
-<template id="pr-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Pull Request</h2><div class="diagram-box"><div class="diagram-step">gh pr create --title "Judul" --body "Deskripsi"</div><div class="diagram-arrow">→</div><div class="diagram-step">PR dibuat</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh pr create --title "Judul" --body "Deskripsi"</code></pre></div></template>
+<template id="pr-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Pull Request</h2><div class="diagram-box"><div class="diagram-step">gh pr create --title "Judul" --body "Deskripsi"</div><div class="diagram-arrow">→</div><div class="diagram-step">PR dibuat</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh pr create --title "Judul" --body "Deskripsi"</code></pre></div></div></template>
 
-<template id="branch-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Branch</h2><div class="diagram-box"><div class="diagram-step">git checkout -b feature</div><div class="diagram-arrow">→</div><div class="diagram-step">Bekerja di branch baru</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>git checkout -b feature</code></pre></div></template>
+<template id="branch-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Branch</h2><div class="diagram-box"><div class="diagram-step">git checkout -b feature</div><div class="diagram-arrow">→</div><div class="diagram-step">Bekerja di branch baru</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>git checkout -b feature</code></pre></div></div></template>
 
-<template id="issue-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Issue</h2><div class="diagram-box"><div class="diagram-step">gh issue create --title "Bug" --body "Deskripsi"</div><div class="diagram-arrow">→</div><div class="diagram-step">Issue dibuat</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh issue create --title "Bug" --body "Deskripsi"</code></pre></div></template>
+<template id="issue-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Issue</h2><div class="diagram-box"><div class="diagram-step">gh issue create --title "Bug" --body "Deskripsi"</div><div class="diagram-arrow">→</div><div class="diagram-step">Issue dibuat</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh issue create --title "Bug" --body "Deskripsi"</code></pre></div></div></template>
 
-<template id="fork-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Fork Repository</h2><div class="diagram-box"><div class="diagram-step">gh repo fork username/repo --clone=true</div><div class="diagram-arrow">→</div><div class="diagram-step">Fork & Clone</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh repo fork username/repo --clone=true</code></pre></div></template>
+<template id="fork-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Fork Repository</h2><div class="diagram-box"><div class="diagram-step">gh repo fork username/repo --clone=true</div><div class="diagram-arrow">→</div><div class="diagram-step">Fork &amp; Clone</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh repo fork username/repo --clone=true</code></pre></div></div></template>
 
 <template id="merge-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Merge Branch</h2><div class="diagram-box"><div class="diagram-step">git checkout main</div><div class="diagram-arrow">→</div><div class="diagram-step">git merge feature</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>git checkout main
-git merge feature</code></pre></div></template>
+git merge feature</code></pre></div></div></template>
 
-<template id="release-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Release</h2><div class="diagram-box"><div class="diagram-step">gh release create v1.0.0 file.zip --title "v1.0.0"</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh release create v1.0.0 file.zip --title "v1.0.0"</code></pre></div></template>
+<template id="release-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Release</h2><div class="diagram-box"><div class="diagram-step">gh release create v1.0.0 file.zip --title "v1.0.0"</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh release create v1.0.0 file.zip --title "v1.0.0"</code></pre></div></div></template>
 
-<template id="watch-star-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Watch & Star</h2><div class="diagram-box"><div class="diagram-step">gh repo watch username/repo</div><div class="diagram-arrow">→</div><div class="diagram-step">gh repo star username/repo</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh repo watch username/repo
-gh repo star username/repo</code></pre></div></template>
+<template id="watch-star-content"><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="text-2xl font-bold mb-2">Watch &amp; Star</h2><div class="diagram-box"><div class="diagram-step">gh repo watch username/repo</div><div class="diagram-arrow">→</div><div class="diagram-step">gh repo star username/repo</div></div><div class="code-block"><button class="copy-btn">Salin</button><pre><code>gh repo watch username/repo
+gh repo star username/repo</code></pre></div></div></template>
 
 <!-- Facebook Comm<div id="pesbukdiskus"></div>ents -->
 
@@ -198,9 +196,10 @@ document.getElementById("content-display").addEventListener("click",e=>{
 
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 
 
-</body>
-</html>
+
+
+</body></html>

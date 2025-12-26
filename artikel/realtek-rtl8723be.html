@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux</title>
@@ -10,7 +8,7 @@
     <meta name="theme-color" content="#0b2530">
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux","author":{"@type":"Person","name":"Fakhrul","image":"https://dalam.web.id/img/realtek-rtl8723be.webp"},"image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.png","datePublished":"2025-09-22","publisher":{"@type":"Organization","name":"Frijal","image":"https://dalam.web.id/img/realtek-rtl8723be.webp"}}</script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
     <style>
         :root {
             --bg: #0f172a;
@@ -60,19 +58,19 @@
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-06-10T23:20:38.202+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
 <meta name="ai:prompt_hint" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
 
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.png">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/realtek-rtl8723be.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/realtek-rtl8723be.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/realtek-rtl8723be.webp">
   <meta property="og:image:alt" content="Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/realtek-rtl8723be.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux"></head>
 <body>
     <div class="wrap">
         <header class="site">
@@ -91,7 +89,7 @@
                     <p>Intinya adalah kita akan meng-clone repositori driver dari GitHub, lalu menjalankan skrip instalasi yang sudah disediakan. Proses ini akan mengompilasi dan memasang modul kernel yang tepat untuk perangkat Anda.</p>
                     <h3>1. Siapkan Alat Build</h3>
                     <p>Pertama, pastikan semua paket yang diperlukan untuk kompilasi sudah terinstal.</p>
-                    <pre class="language-bash"><code id="code1">sudo apt update && sudo apt install -y build-essential git dkms linux-headers-$(uname -r)</code><button class="copy-btn" data-target="code1">Salin</button></pre>
+                    <pre class="language-bash"><code id="code1">sudo apt update &amp;&amp; sudo apt install -y build-essential git dkms linux-headers-$(uname -r)</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <h3>2. Unduh dan Instal Driver</h3>
                     <p>Selanjutnya, unduh repositori driver, masuk ke direktorinya, dan jalankan skrip instalasi.</p>
                     <pre class="language-bash"><code id="code2">git clone https://github.com/tarunbatra/fixRTL8723BE
@@ -117,8 +115,8 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #1e3a45; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
@@ -148,7 +146,7 @@ sudo ./install.sh</code><button class="copy-btn" data-target="code2">Salin</butt
     })();
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

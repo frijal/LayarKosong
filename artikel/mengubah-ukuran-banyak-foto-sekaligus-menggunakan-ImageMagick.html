@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
   <!-- ===== Basic Meta ===== -->
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah</title>
@@ -33,7 +31,7 @@
 <meta name="date" content="2025-09-28">
 <meta property="article:published_time" content="2011-03-28T08:00:00+08:00">
 <meta property="article:author" content="Fakhrul Rijal">
-<meta property="article:section" content="Multimedia & Linux">
+<meta property="article:section" content="Multimedia &amp; Linux">
 <meta property="article:tag" content="ImageMagick">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Fotografi">
@@ -49,7 +47,7 @@
 <!-- ===== Structured Image Hint ===== -->
 <meta itemprop="image" content="https://dalam.web.id/img/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.webp">
 
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
   <style>
 :root{
   --accent:#2d89ef;
@@ -133,8 +131,8 @@ body.dark .note{background:#0b2338;color:#cfe8ff}
   .toggle{padding:10px}
 }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta property="article:published_time" content="2011-03-16T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta property="article:published_time" content="2011-03-16T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
   <header>
 <h1>Batch Resize Foto dengan ImageMagick — Simpan Hasil ke Folder Terpisah</h1>
@@ -142,7 +140,7 @@ body.dark .note{background:#0b2338;color:#cfe8ff}
   </header>
   <main>
 <section>
-  <h2>Pendahuluan (singkat & mudah)</h2>
+  <h2>Pendahuluan (singkat &amp; mudah)</h2>
   <p>Kalau kamu punya banyak foto di satu folder dan ingin mengubah ukurannya sekaligus — misalnya membuat versi web (lebar 800px) — tapi tetap mau menyimpan foto asli di folder asal, ImageMagick sangat cocok untuk tugas ini. Di bawah ada beberapa metode: perintah cepat (single directory), skrip rekursif (memproses subfolder), dan contoh untuk Windows PowerShell.</p>
   <p class="note"><strong>Catatan penting:</strong>
   Jangan gunakan <code>mogrify</code> tanpa opsi <code>-path</code> jika kamu ingin menyimpan salinan; <code>mogrify</code> defaultnya <em>menimpa</em> file asli. Gunakan <code>-path</code> atau pakai loop dengan <code>magick</code> (alias <code>convert</code> di versi lama).</p>
@@ -176,7 +174,7 @@ done</code></pre>
   <p class="small">Kelebihan: bisa mengubah ekstensi, menambahkan opsi per-file, atau memproses hanya tipe tertentu.</p>
 </section>
 <section>
-  <h2>Metode 3 — Rekursif: proses subfolder & simpan struktur (Linux/macOS)</h2>
+  <h2>Metode 3 — Rekursif: proses subfolder &amp; simpan struktur (Linux/macOS)</h2>
   <p>Jika folder berisi subfolder dan kamu ingin mempertahankan struktur (mis. <code>photos/2023/</code> → <code>resized/2023/</code>), gunakan kombinasi <code>find</code> + <code>magick</code>:</p>
   <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # rekursif-resize.sh
@@ -196,11 +194,11 @@ done</code></pre>
   <h2>Metode 4 — Contoh: hanya mengubah gambar yang lebih besar dari ukuran target</h2>
   <p>Gunakan operator <code>&gt;</code> di argumen resize agar gambar yang lebih kecil dari target tidak diperbesar:</p>
   <pre><button class="copy-btn">Copy</button><code class="language-bash"># contoh singkat
-magick mogrify -path ../resized -resize 800x800\> -strip -quality 85 *.jpg</code></pre>
+magick mogrify -path ../resized -resize 800x800\&gt; -strip -quality 85 *.jpg</code></pre>
   <p class="small">Perhatikan backslash <code>\</code> untuk menghindari interpretasi shell pada tanda <code>&gt;</code>. Di banyak shell, menuliskan argumen sebagai <code>"800x800&gt;"</code> juga aman.</p>
 </section>
 <section>
-  <h2>Contoh Skrip Lengkap (Linux) — simpan & jalankan</h2>
+  <h2>Contoh Skrip Lengkap (Linux) — simpan &amp; jalankan</h2>
   <p>Simpan contoh berikut sebagai <code>batch-resize.sh</code>, beri izin eksekusi, lalu jalankan di folder foto:</p>
   <pre><button class="copy-btn">Copy</button><code class="language-bash">#!/bin/bash
 # batch-resize.sh
@@ -237,7 +235,7 @@ Get-ChildItem -Path $src -Recurse -File -Include *.jpg,*.jpeg,*.png | ForEach-Ob
   <p class="small">Sesuaikan variable <code>$src</code> dan <code>$dst</code> sebelum menjalankan.</p>
 </section>
 <section>
-  <h2>Tips & Troubleshooting</h2>
+  <h2>Tips &amp; Troubleshooting</h2>
   <ul>
 <li>Periksa versi ImageMagick: <code>magick -version</code> (pastikan binary bernama <code>magick</code> atau gunakan <code>convert</code> untuk versi lama).</li>
 <li>Jika file memiliki spasi, selalu bungkus path dengan tanda kutip: <code>"path/file name.jpg"</code>.</li>
@@ -254,16 +252,16 @@ mkdir -p ../resized
 magick mogrify -path ../resized -resize 800x -strip -quality 85 *.jpg</code></pre>
   <p class="note">Atau pakai skrip rekursif jika ada banyak subfolder — contoh skrip sudah diberikan di atas.</p>
 </section>
-<section.<div id="pesbukdiskus"></div></section>
-  </main>
+<section.<div id="pesbukdiskus">
+  </section.<div></main>
   <button class="toggle" id="themeBtn">🌙</button>
   <footer>
 🄯 2025 Tutorial — Batch Resize dengan ImageMagick • Pastikan backup sebelum memproses banyak file
   </footer>
   <!-- Prism.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js" defer=""></script>
   <script>
 // Copy buttons
 document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -291,7 +289,8 @@ themeBtn.addEventListener('click', () => {
 });
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
