@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { load } from 'cheerio';
 import { glob } from 'glob';
+import path from 'path';
 
 async function fixSEO() {
   const files = await glob('artikel/*.html');
@@ -9,7 +10,32 @@ async function fixSEO() {
     let content = fs.readFileSync(file, 'utf8');
     const $ = load(content);
     let changed = false;
+    const title = $('title').text() || 'Layar Kosong';
+    
+// --- FITUR AUTO-IMAGE-ALT ---
+    $('img').each((i, el) => {
+      const alt = $(el).attr('alt');
+      const src = $(el).attr('src');
 
+      // Cek jika alt tidak ada, kosong, atau hanya berisi spasi
+      if (!alt || alt.trim() === "") {
+        let newAlt = "";
+        
+        if (src) {
+          // Ambil nama file dari src, misal: "pemandangan-balikpapan.jpg" -> "pemandangan balikpapan"
+          const fileName = path.basename(src, path.extname(src));
+          newAlt = fileName.replace(/[-_]/g, ' ');
+        } else {
+          newAlt = `Gambar untuk ${title}`;
+        }    
+
+// Set alt text baru: "Nama File - Judul Artikel" agar SEO makin kuat
+        $(el).attr('alt', `${newAlt} - ${title}`);
+        changed = true;
+        console.log(`📸 Fixed Alt Image di ${file}: ${newAlt}`);
+      }
+    });
+    
     // 1. Pastikan tag dasar ada
     if ($('html').length === 0) continue; // Skip jika bukan file HTML lengkap
 
