@@ -5,10 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '**.html'
-      - '_headers'
-      - '_redirects'
-      - '*.webmanifest'
+      - 'artikel/*.html'
   workflow_dispatch:
 
 jobs:
