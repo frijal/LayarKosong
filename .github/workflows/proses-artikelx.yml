@@ -58,9 +58,7 @@ jobs:
             perl -i -wpe '
               s|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g;
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
-              s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
-              s|<h1>|<h1><a href="/" style="text-decoration: none; color: inherit;">|g;
-              s|</h1>|</a></h1>|g;              
+              s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
               s|nama_twitter_anda|frijal|g;
               s|akun_twitter_kamu|frijal|g;
               s|YourTwitterHandle|frijal|g;
