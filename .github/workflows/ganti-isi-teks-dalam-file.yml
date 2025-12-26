@@ -6,23 +6,23 @@ on:
       search:
         description: "Set 1: Teks yang dicari (Wajib)"
         required: true
-        default: "<h1>"
+        default: ""
       replace:
         description: "Set 1: Teks pengganti"
         required: false
-        default: '<h1><a href="/" style="text-decoration: none; color: inherit;">'
+        default: ''
       search2:
         description: "Set 2: Teks dicari (Opsional)"
         required: false
-        default: "</h1>"
+        default: ""
       replace2:
         description: "Set 2: Teks pengganti (Opsional)"
         required: false
-        default: "</a></h1>"
+        default: ""
       folder:
         description: "Folder target"
         required: false
-        default: "."
+        default: ""
       globs:
         description: "Ekstensi file (koma-separated)"
         required: false
