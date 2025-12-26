@@ -83,23 +83,23 @@ async function fixSEO() {
 
     // --- 5. SOCIAL MEDIA SHARE BUTTONS (Otomatis) ---
     // Hapus share lama jika ada agar tidak duplikat
-    $('.share-buttons-auto').remove();
+//    $('.share-buttons-auto').remove();
 
-    const shareHtml = `
-    <div class="share-buttons-auto" style="margin: 2rem 0; padding: 1rem; border-top: 1px solid #eee;">
-      <p style="font-weight: bold; margin-bottom: 10px;">Bagikan artikel ini:</p>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <a href="https://wa.me/?text=${encodeURIComponent(title + ' ' + finalArticleUrl)}" target="_blank" style="background:#25d366; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1877f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-facebook"></i> Facebook</a>
-        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1da1f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-x-twitter"></i> X-Twitter</a>
-        <a href="https://t.me/share/url?url=${encodeURIComponent(finalArticleUrl)}&text=${encodeURIComponent(title)}" target="_blank" style="background:#0088cc; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-      </div>
-    </div>`;
+  //  const shareHtml = `
+//    <div class="share-buttons-auto" style="margin: 2rem 0; padding: 1rem; border-top: 1px solid #eee;">
+//      <p style="font-weight: bold; margin-bottom: 10px;">Bagikan artikel ini:</p>
+//      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+//        <a href="https://wa.me/?text=${encodeURIComponent(title + ' ' + finalArticleUrl)}" target="_blank" style="background:#25d366; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+//        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1877f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-facebook"></i> Facebook</a>
+//        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1da1f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-x-twitter"></i> X-Twitter</a>
+//        <a href="https://t.me/share/url?url=${encodeURIComponent(finalArticleUrl)}&text=${encodeURIComponent(title)}" target="_blank" style="background:#0088cc; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
+//      </div>
+//    </div>`;
 
     // Letakkan di akhir elemen <article>, <main>, atau sebelum <footer>
-    if ($('article').length) $('article').append(shareHtml);
-    else if ($('main').length) $('main').append(shareHtml);
-    else $('body').append(shareHtml);
+//    if ($('article').length) $('article').append(shareHtml);
+//    else if ($('main').length) $('main').append(shareHtml);
+//    else $('body').append(shareHtml);
 
     // --- 6. UPDATE META TAG & SEO ---
     const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
