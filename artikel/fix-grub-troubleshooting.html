@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Troubleshooting GRUB Bootloader (Debian & Turunannya)</title>
+    <title>Troubleshooting GRUB Bootloader (Debian &amp; Turunannya)</title>
     <meta name="description" content="Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.">
     <meta name="keywords" content="grub, bootloader, perbaiki grub, grub rescue, debian, ubuntu, linux, uefi, boot-repair, troubleshooting linux">
     <meta name="author" content="Frijal">
@@ -35,18 +33,18 @@
         .copy-btn { position: absolute; top: 8px; right: 8px; background: #005f73; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
     </style>
 <meta itemprop="image" content="https://dalam.web.id/img/fix-grub-troubleshooting.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.">
 <meta name="ai:prompt_hint" content="Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Troubleshooting GRUB Bootloader (Debian & Turunannya)","datePublished":"2025-09-14T03:00:00.000+00:00","articleSection":"🐧 Linux & Open Source","mainEntityOfPage":"https://dalam.web.id/artikel/fix-grub-troubleshooting.html","image":"https://dalam.web.id/img/fix-grub-troubleshooting.webp","keywords":[],"description":"Panduan troubleshooting GRUB bootloader di Debian/Ubuntu. Pelajari cara memperbaiki masalah UEFI, cek UUID, menggunakan Boot-Repair, dan reinstall kernel."}</script>
 
 <meta name="twitter:image" content="https://dalam.web.id/img/fix-grub-troubleshooting.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/fix-grub-troubleshooting.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/fix-grub-troubleshooting.webp">
-  <meta property="og:image:alt" content="Troubleshooting GRUB Bootloader (Debian & Turunannya)">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/fix-grub-troubleshooting.webp">
+  <meta property="og:image:alt" content="Troubleshooting GRUB Bootloader (Debian &amp; Turunannya)">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Troubleshooting GRUB Bootloader (Debian &amp; Turunannya)"></head>
 <body>
 
     <main class="container">
@@ -75,11 +73,11 @@ update-grub</code><button class="copy-btn" onclick="copyCode('code1')">Copy</but
                 <p>Jika perbaikan manual terasa rumit, utilitas <strong>Boot-Repair</strong> dapat mendeteksi dan memperbaiki sebagian besar masalah GRUB secara otomatis. Jalankan dari Live USB Ubuntu.</p>
                 <pre><code id="code2">sudo add-apt-repository ppa:yannubuntu/boot-repair
 sudo apt update
-sudo apt install -y boot-repair && boot-repair</code><button class="copy-btn" onclick="copyCode('code2')">Copy</button></pre>
+sudo apt install -y boot-repair &amp;&amp; boot-repair</code><button class="copy-btn" onclick="copyCode('code2')">Copy</button></pre>
             </section>
 
             <section>
-                <h2>3. Cek Mode Boot & File Sistem</h2>
+                <h2>3. Cek Mode Boot &amp; File Sistem</h2>
                 <p>Pastikan mode boot di BIOS/UEFI Anda (Legacy vs UEFI) konsisten dengan cara OS diinstal. Jika GRUB masih gagal membaca kernel, periksa integritas file sistem dengan <code>fsck</code>.</p>
                 <pre><code id="code3"># Ganti sda1 dengan partisi root Anda
 sudo fsck -f /dev/sda1</code><button class="copy-btn" onclick="copyCode('code3')">Copy</button></pre>
@@ -92,8 +90,8 @@ sudo fsck -f /dev/sda1</code><button class="copy-btn" onclick="copyCode('code3')
         </article>
     </main>
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" />
+        <span class="lightbox-close">×</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar untuk Troubleshooting GRUB Bootloader (Debian &amp; Turunannya) - Troubleshooting GRUB Bootloader (Debian &amp; Turunannya)">
     </div>
 
     <script>
@@ -135,7 +133,7 @@ sudo fsck -f /dev/sda1</code><button class="copy-btn" onclick="copyCode('code3')
         });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

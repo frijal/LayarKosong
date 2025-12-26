@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <!-- Basic SEO -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB</title>
-    <meta name="description" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB." />
-    <link rel="canonical" href="https://dalam.web.id/artikel/hapus-os-ilegal-aman.html" />
+    <meta name="description" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/hapus-os-ilegal-aman.html">
     <!-- Favicon & Theme -->
-    <link rel="icon" href="https://dalam.web.id/favicon.ico" />
-    <meta name="theme-color" content="#F97316" />
+    <link rel="icon" href="https://dalam.web.id/favicon.ico">
+    <meta name="theme-color" content="#F97316">
     <!-- Open Graph -->
 
     <!-- Twitter Card -->
@@ -17,7 +15,7 @@
     <!-- JSON-LD -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB","author":{"@type":"Person","name":"Kontributor Komunitas Linux","image":"https://dalam.web.id/img/hapus-os-ilegal-aman.webp"},"image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.jpg","datePublished":"2014-02-10","publisher":{"@type":"Organization","name":"Frijal","image":"https://dalam.web.id/img/hapus-os-ilegal-aman.webp"}}</script>
     <!-- Prism.js CSS for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet">
     <!-- Styles: 1 kolom, light theme -->
     <style>
         :root {
@@ -68,19 +66,19 @@
         .copy-btn:hover { background: var(--accent); color: white; }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-05-17T23:20:38.185+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
 <meta name="ai:prompt_hint" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
 
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.jpg">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/hapus-os-ilegal-aman.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/hapus-os-ilegal-aman.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/hapus-os-ilegal-aman.webp">
   <meta property="og:image:alt" content="Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/hapus-os-ilegal-aman.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB"></head>
 <body>
     <div class="wrap">
         <header class="site">
@@ -171,7 +169,7 @@ sudo grub-install /dev/sda</code><button class="copy-btn" data-target="code2">Sa
     })();
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

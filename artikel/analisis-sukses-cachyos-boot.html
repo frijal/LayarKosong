@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl & Pacman)</title>
+    <title>Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl &amp; Pacman)</title>
     <meta name="description" content="Analisis mendalam hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!">
     <link rel="canonical" href="https://dalam.web.id/artikel/analisis-sukses-cachyos-boot.html">
     <link rel="icon" href="/favicon.ico">
@@ -167,10 +165,10 @@
             body { font-size: 16px; }
         }
     </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
 
   <meta itemprop="image" content="https://dalam.web.id/img/analisis-sukses-cachyos-boot.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-12-08T03:26:11.531+00:00">
 <meta name="ai:summary" content="Analisis mendalam hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!">
 <meta name="ai:prompt_hint" content="Analisis mendalam hasil eksekusi bootctl install dan pacman setelah reboot yang sukses memperbaiki error systemd-boot dan VFAT di CachyOS. Sistem kini stabil!">
@@ -180,10 +178,10 @@
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6z4vQRPeljtV4a18oHR-7YaA4kxFqWYt-pzNeG5nQmZe2THSTspZT62x6POcpWP7mg_TrPA_CnuZ83rR2xBGexeDYmac5sslFyWOqp4tE5auuwowYY4sfS1fB1lC7dIswY3iLnuO8KCia7lS9qS4e7lZ-YV9UnPXUirfOxtWspygUc5uF2MgeD8ZM7fY/s1600/KernelMismatch.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/analisis-sukses-cachyos-boot.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/analisis-sukses-cachyos-boot.webp">
-  <meta property="og:image:alt" content="Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl & Pacman)">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/analisis-sukses-cachyos-boot.webp">
+  <meta property="og:image:alt" content="Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl &amp; Pacman)">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Berhasil! Analisis Output Perbaikan Bootloader CachyOS (bootctl &amp; Pacman)"></head>
 <body>
 
     <div class="container">
@@ -206,8 +204,7 @@
             <h2>1. Analisis `sudo bootctl install` <i class="fa-solid fa-terminal"></i></h2>
             <p>Perintah ini adalah kunci sukses pertama. Ini yang terjadi:</p>
 
-            <pre>
-<span class="success-highlight">> sudo bootctl install</span>
+            <pre><span class="success-highlight">&gt; sudo bootctl install</span>
 <span class="success-highlight">Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/systemd/systemd-bootx64.efi".</span>
 <span class="success-highlight">Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/BOOT/BOOTX64.EFI".</span>
 <span class="warning-highlight">⚠ Mount point '/boot' which backs the random seed file is world accessible, which is a security hole! ⚠</span>
@@ -226,19 +223,18 @@
             <h2>2. Analisis `sudo pacman -S linux-cachyos...` <i class="fa-solid fa-rocket"></i></h2>
             <p>Ini adalah langkah yang memastikan kernel kamu (dan semua file pendukungnya) benar-benar diperbarui ke partisi EFI yang sudah diperbaiki. Ini adalah momen krusial yang sebelumnya gagal total!</p>
 
-            <pre>
-(1/2) reinstalling linux-cachyos...
+            <pre>(1/2) reinstalling linux-cachyos...
 (2/2) reinstalling linux-cachyos-headers...
 :: Running post-transaction hooks...
 (4/7) Updating linux initcpios...
-==> Building image from preset: /etc/mkinitcpio.d/linux-cachyos.preset: 'default'
-  -> -k /boot/vmlinuz-linux-cachyos -g /boot/initramfs-linux-cachyos.img
-==> Starting build: '6.18.0-3-cachyos'
+==&gt; Building image from preset: /etc/mkinitcpio.d/linux-cachyos.preset: 'default'
+  -&gt; -k /boot/vmlinuz-linux-cachyos -g /boot/initramfs-linux-cachyos.img
+==&gt; Starting build: '6.18.0-3-cachyos'
 ... (Building hooks successful) ...
-<span class="success-highlight">==> Creating zstd-compressed initcpio image: '/boot/initramfs-linux-cachyos.img'</span>
-<span class="success-highlight">==> Initcpio image generation successful</span>
+<span class="success-highlight">==&gt; Creating zstd-compressed initcpio image: '/boot/initramfs-linux-cachyos.img'</span>
+<span class="success-highlight">==&gt; Initcpio image generation successful</span>
 (5/7) Check if user should be informed about rebooting after certain system package upgrades.
-<span class="success-highlight">==> INFO: Reboot is recommended due to the upgrade of core system package(s).</span>
+<span class="success-highlight">==&gt; INFO: Reboot is recommended due to the upgrade of core system package(s).</span>
 <span class="success-highlight">(7/7) Updating systemd-boot entries</span>
             </pre>
 
@@ -251,8 +247,7 @@
 
             <h2>3. Analisis `sudo bootctl update` <i class="fa-solid fa-arrows-rotate"></i></h2>
             <p>Perintah terakhir ini berfungsi sebagai pengecekan ulang. Hasilnya mengonfirmasi bahwa semua sudah *up to date*.</p>
-            <pre>
-> sudo bootctl update
+            <pre>&gt; sudo bootctl update
 Skipping "/boot/EFI/systemd/systemd-bootx64.efi", same boot loader version in place already.
 Skipping "/boot/EFI/BOOT/BOOTX64.EFI", same boot loader version in place already.
 Skipping "/boot/EFI/BOOT/bootx64.efi", same boot loader version in place already.
@@ -283,7 +278,8 @@ Skipping "/boot/EFI/BOOT/bootx64.efi", same boot loader version in place already
     </div>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>

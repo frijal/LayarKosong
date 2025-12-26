@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+<!DOCTYPE html><html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Panduan Interaktif FFmpeg Visual: Audio &amp; Video</title>
-    <meta name="description" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin." />
-    <meta name="keywords" content="FFmpeg, audio, video, command line, tutorial, mp3, ogg, konversi, trim, CLI, resize, normalize" />
-    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-interaktif-ffmpeg.html" />
-    <meta name="date" content="2025-09-27" />
-    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+    <meta name="keywords" content="FFmpeg, audio, video, command line, tutorial, mp3, ogg, konversi, trim, CLI, resize, normalize">
+    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-interaktif-ffmpeg.html">
+    <meta name="date" content="2025-09-27">
+    <meta name="robots" content="index, follow">
 
-    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%233b82f6' d='M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 15h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z'/></svg>" type="image/svg+xml" />
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%233b82f6' d='M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 15h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z'/></svg>" type="image/svg+xml">
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Panduan Interaktif FFmpeg Visual: Audio &amp; Video","description":"Panduan interaktif FFmpeg visual untuk konversi audio/video, trim, batch convert, resize, extract audio, dan normalize menggunakan perintah command line.","image":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp","datePublished":"2012-09-27T08:00:00+07:00","author":{"@type":"Person","name":"Frijal","image":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp"},"publisher":{"@type":"Organization","name":"Command Line Guides","logo":{"@type":"ImageObject","url":"https://dalam.web.id/favicon.png","image":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp"},"image":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp"},"mainEntityOfPage":"https://dalam.web.id/artikel/panduan-interaktif-ffmpeg.html"}</script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,19 +27,19 @@
         .btn-twitter { background-color: #1da1f2; }
         .btn-whatsapp { background-color: #25d366; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2012-09-02T23:20:38.199+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
 <meta name="ai:prompt_hint" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
 
 <meta name="twitter:image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/panduan-interaktif-ffmpeg.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
   <meta property="og:image:alt" content="Panduan Interaktif FFmpeg Visual: Audio &amp; Video">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Panduan Interaktif FFmpeg Visual: Audio &amp; Video"></head>
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
     <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -88,12 +86,12 @@
 </template>
 <template id="ffmpeg-convert-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
-    <h2 class="text-2xl font-bold text-gray-900 mb-2">Ubah Format Audio MP3 &rarr; OGG</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Ubah Format Audio MP3 → OGG</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎵<br>input.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp3 output.ogg</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎶<br>output.ogg</div>
     </div>
     <div class="code-block">
@@ -107,9 +105,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Audio</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">📁<br>folder/*.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">📁<br>folder/*.ogg</div>
     </div>
     <div class="code-block">
@@ -120,12 +118,12 @@
 </template>
 <template id="ffmpeg-wav-mp3-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
-    <h2 class="text-2xl font-bold text-gray-900 mb-2">WAV &rarr; MP3</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">WAV → MP3</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎵 input.wav</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎶 output.mp3</div>
     </div>
     <div class="code-block">
@@ -139,9 +137,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Normalize Audio</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎵 input.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp3 -af "loudnorm" output.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎶 output.mp3 (normalized)</div>
     </div>
     <div class="code-block">
@@ -155,9 +153,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Trim Video</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎬 input.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎬 output.mp4 (trimmed)</div>
     </div>
     <div class="code-block">
@@ -171,9 +169,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Resize Video</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎬 input.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎬 output.mp4 (resized)</div>
     </div>
     <div class="code-block">
@@ -187,9 +185,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Extract Audio</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎬 input.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎵 output.mp3</div>
     </div>
     <div class="code-block">
@@ -200,12 +198,12 @@
 </template>
 <template id="ffmpeg-mp4-webm-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
-    <h2 class="text-2xl font-bold text-gray-900 mb-2">Convert MP4 &rarr; WebM</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Convert MP4 → WebM</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">🎬 input.mp4</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">🎬 output.webm</div>
     </div>
     <div class="code-block">
@@ -219,9 +217,9 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Video</h2>
     <div class="diagram-box mb-4">
         <div class="diagram-step">📁 folder/*.mov</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mov}.mp4"; done</div>
-        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-arrow">→</div>
         <div class="diagram-step">📁 folder/*.mp4</div>
     </div>
     <div class="code-block">
@@ -236,7 +234,7 @@
 <div style="margin-top:18px;padding-bottom:200px;">
 <div id="pesbukdiskus"></div>
 </div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&amp;version=v23.0"></script>
+<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&amp;version=v23.0"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const navigation = document.getElementById("navigation");
@@ -316,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

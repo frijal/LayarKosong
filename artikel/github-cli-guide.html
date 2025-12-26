@@ -1,22 +1,20 @@
-<!doctype html>
-<html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Panduan GitHub CLI Interaktif: Login, Commit, PR, & Issue</title>
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue</title>
 
-<meta name="description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual." />
-<meta name="keywords" content="GitHub CLI, gh, command line, git, login, clone, commit, push, pull request, branch, issue, tutorial, panduan interaktif" />
-<meta name="author" content="Frijal" />
-<meta name="robots" content="index, follow" />
+<meta name="description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
+<meta name="keywords" content="GitHub CLI, gh, command line, git, login, clone, commit, push, pull request, branch, issue, tutorial, panduan interaktif">
+<meta name="author" content="Frijal">
+<meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://dalam.web.id/artikel/github-cli-guide.html" />
+<link rel="canonical" href="https://dalam.web.id/artikel/github-cli-guide.html">
 
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" href="/icon.svg" type="image/svg+xml" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
 
- <meta property="fb:app_id" content="1471267430691023" />
+ <meta property="fb:app_id" content="1471267430691023">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
@@ -31,20 +29,20 @@ body { font-family: Inter, sans-serif; }
 
 </style>
 
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-05-17T23:20:38.184+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
 <meta name="ai:prompt_hint" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Panduan GitHub CLI Interaktif: Login, Commit, PR, & Issue","datePublished":"2025-05-17T23:20:38.184+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/github-cli-guide.html","image":"https://dalam.web.id/img/github-cli-guide.webp","keywords":[],"description":"Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual."}</script>
 
 <meta name="twitter:image" content="https://dalam.web.id/img/github-cli-guide.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/github-cli-guide.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-cli-guide.webp">
-  <meta property="og:image:alt" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, & Issue">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-cli-guide.webp">
+  <meta property="og:image:alt" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/github-cli-guide.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue"></head>
 
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
@@ -58,7 +56,7 @@ body { font-family: Inter, sans-serif; }
         <ul class="space-y-1">
           <li><a href="#login" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Login ke GitHub</a></li>
           <li><a href="#clone" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Clone Repo</a></li>
-          <li><a href="#commit" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Commit & Push</a></li>
+          <li><a href="#commit" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Commit &amp; Push</a></li>
         </ul>
       </div>
       <div>
@@ -90,7 +88,7 @@ body { font-family: Inter, sans-serif; }
 <div class="diagram-box">
 <div class="diagram-step">gh auth login</div>
 <div class="diagram-arrow">→</div>
-<div class="diagram-step">Pilih akun & metode (HTTPS/SSH)</div>
+<div class="diagram-step">Pilih akun &amp; metode (HTTPS/SSH)</div>
 <div class="diagram-arrow">→</div>
 <div class="diagram-step">Login berhasil</div>
 </div>
@@ -120,7 +118,7 @@ body { font-family: Inter, sans-serif; }
 
 <template id="commit-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Commit & Push</h2>
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Commit &amp; Push</h2>
 <div class="diagram-box">
 <div class="diagram-step">git add .</div>
 <div class="diagram-arrow">→</div>
@@ -241,9 +239,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 
 
-</body>
-</html>
+
+
+</body></html>

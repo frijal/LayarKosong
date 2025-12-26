@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -178,9 +176,9 @@
             pre code.hljs { font-size: 0.8em; padding: 15px; }
         }
     </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
   <meta itemprop="image" content="https://dalam.web.id/img/cara-kerja-github-workflow-maintenance.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-12-17T01:17:01.303+00:00">
 <meta name="ai:summary" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
 <meta name="ai:prompt_hint" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
@@ -190,10 +188,10 @@
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/cara-kerja-github-workflow-maintenance.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/cara-kerja-github-workflow-maintenance.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/cara-kerja-github-workflow-maintenance.webp">
   <meta property="og:image:alt" content="Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions"></head>
 <body>
 
     <div class="container">
@@ -250,19 +248,19 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
-      - name: 📦 Install & Upgrade Dependencies
+      - name: 📦 Install &amp; Upgrade Dependencies
         run: |
           npm ci || npm install
           npm install -g npm-check-updates
           ncu -u --target minor
           echo "✅ Dependencies diupgrade."
 
-      - name: 🌈 Update Assets Highlight.js & Font Awesome
+      - name: 🌈 Update Assets Highlight.js &amp; Font Awesome
         run: |
           mkdir -p ext mini
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
-          # Highlight.js JS & CSS (CSS selalu dari CDN versi terbaru)
+          # Highlight.js JS &amp; CSS (CSS selalu dari CDN versi terbaru)
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           HLJS_LATEST=$(npm view @highlightjs/cdn-assets version)
           curl -s -o ext/default.min.css https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$HLJS_LATEST/styles/default.min.css
@@ -274,7 +272,7 @@ jobs:
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
 
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo -e "hljs=$HLJS_LATEST\nfontawesome=$(npm view @fortawesome/fontawesome-free version)\nupdated=$DATE_NOW" > mini/asset-info.txt
+          echo -e "hljs=$HLJS_LATEST\nfontawesome=$(npm view @fortawesome/fontawesome-free version)\nupdated=$DATE_NOW" &gt; mini/asset-info.txt
 
       - name: 🔍 Verifikasi Font Awesome
         run: |
@@ -283,28 +281,28 @@ jobs:
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
           ALERT="mini/fontawesome-alert.txt"
-          [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
-          echo "📄 Font + ukuran + hash SHA-256:" > "$OUTPUT"
+          [ -f "$OUTPUT" ] &amp;&amp; cp "$OUTPUT" "$PREV"
+          echo "📄 Font + ukuran + hash SHA-256:" &gt; "$OUTPUT"
           find "$FONT_DIR" -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" \) | sort | while read f; do
-            echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
+            echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}')" &gt;&gt; "$OUTPUT"
           done
           if [ -f "$PREV" ]; then
             diff=$(diff -u "$PREV" "$OUTPUT" || true)
-            [ -n "$diff" ] && echo -e "🚨 Perubahan font:\n$diff" > "$ALERT" && echo "alert=true" >> $GITHUB_OUTPUT || echo "alert=false" >> $GITHUB_OUTPUT
+            [ -n "$diff" ] &amp;&amp; echo -e "🚨 Perubahan font:\n$diff" &gt; "$ALERT" &amp;&amp; echo "alert=true" &gt;&gt; $GITHUB_OUTPUT || echo "alert=false" &gt;&gt; $GITHUB_OUTPUT
           else
-            echo "alert=false" >> $GITHUB_OUTPUT
+            echo "alert=false" &gt;&gt; $GITHUB_OUTPUT
           fi
 
-      - name: 🧪 Audit, Lint & Test
+      - name: 🧪 Audit, Lint &amp; Test
         run: |
           npm audit --omit=dev || true
           npm run lint --if-present || true
           npm run test --if-present || true
 
-      - name: 🔍 Cek perubahan akhir & PR
+      - name: 🔍 Cek perubahan akhir &amp; PR
         id: check_changes
         run: |
-          [[ $(git status --porcelain package.json package-lock.json ext mini) ]] && echo "changes_detected=true" >> $GITHUB_OUTPUT || echo "changes_detected=false" >> $GITHUB_OUTPUT
+          [[ $(git status --porcelain package.json package-lock.json ext mini) ]] &amp;&amp; echo "changes_detected=true" &gt;&gt; $GITHUB_OUTPUT || echo "changes_detected=false" &gt;&gt; $GITHUB_OUTPUT
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
@@ -312,17 +310,17 @@ jobs:
         with:
           branch: chore/auto-maintenance-${{ github.run_id }}
           title: 'chore: Auto Maintenance (Deps + Assets + Font Integrity)'
-          commit-message: 'chore: upgrade deps, sync Highlight.js & Font Awesome, verify font hash'
+          commit-message: 'chore: upgrade deps, sync Highlight.js &amp; Font Awesome, verify font hash'
           body: |
             🔧 **Pemeliharaan Otomatis Compact**
 
             Perubahan:
             - Upgrade Dependencies
-            - Highlight.js JS & CSS (CSS selalu versi terbaru)
+            - Highlight.js JS &amp; CSS (CSS selalu versi terbaru)
             - Font Awesome + verifikasi SHA-256 font
-            - Audit & Lint
+            - Audit &amp; Lint
 
-            ${{ steps.check_changes.outputs.changes_detected == 'true' && '🚨 Perubahan terdeteksi pada font/asset!' || '✅ Semua asset aman.' }}
+            ${{ steps.check_changes.outputs.changes_detected == 'true' &amp;&amp; '🚨 Perubahan terdeteksi pada font/asset!' || '✅ Semua asset aman.' }}
 
           labels: dependencies, chore, automated
           reviewers: frijal
@@ -353,8 +351,8 @@ jobs:
             Hal penting di sini adalah bagian <strong>Permissions</strong>. Kita ngasih izin <span class="inline-code">write</span> ke bot supaya dia boleh ngubah kode kita dan bikin Pull Request. Tanpa izin ini, dia cuma bisa nonton doang, nggak bisa kerja.
         </p>
 
-        <h2>3. Update "Oli & Sparepart" (Dependencies)</h2>
-        <h3><i class="fa-solid fa-boxes-packing"></i> Install & Caching</h3>
+        <h2>3. Update "Oli &amp; Sparepart" (Dependencies)</h2>
+        <h3><i class="fa-solid fa-boxes-packing"></i> Install &amp; Caching</h3>
         <p>
             Pertama, dia install Node.js versi 20. Biar nggak lemot, dia pakai fitur <strong>Cache</strong>. Jadi kalau file <span class="inline-code">package-lock.json</span> nggak berubah, dia nggak perlu download ulang ribuan file dari internet. Hemat kuota GitHub!
         </p>
@@ -372,7 +370,7 @@ ncu -u --target minor</code></pre>
             Misal library versi <span class="inline-code">1.2.0</span> jadi <span class="inline-code">1.3.0</span> (Minor) itu oke. Tapi kalau jadi <span class="inline-code">2.0.0</span> (Major), biasanya ada kode yang rusak (breaking changes). Bot ini cuma update yang aman-aman aja.
         </p>
 
-        <h2>4. Belanja Aset Baru (Highlight.js & Font Awesome)</h2>
+        <h2>4. Belanja Aset Baru (Highlight.js &amp; Font Awesome)</h2>
         <p>
             Bagian ini favorit saya! <i class="fa-solid fa-heart"></i> Daripada loading website kamu berat karena manggil file dari CDN orang lain (yang bisa aja down), script ini mendownload asetnya ke folder lokal.
         </p>
@@ -399,7 +397,7 @@ ncu -u --target minor</code></pre>
             Setiap file font dihitung "sidik jarinya". Kalau besok sidik jarinya berubah padahal versinya sama, berarti file itu korup atau ada yang ngutak-ngatik. Bot bakal teriak "🚨 Perubahan font!" di laporan akhirnya. Ini level keamanannya udah <em>next level</em>.
         </p>
 
-        <h2>6. Quality Control (Lint & Audit)</h2>
+        <h2>6. Quality Control (Lint &amp; Audit)</h2>
         <p>
             Sebelum lapor ke bos, bot harus yakin kerjanya bener.
         </p>
@@ -428,7 +426,7 @@ ncu -u --target minor</code></pre>
 
         <h3>Kesimpulan</h3>
         <p>
-            Workflow ini bukan sekadar script update biasa. Ini adalah sistem pemeliharaan mandiri yang <strong>Aman</strong> (cek hash & audit), <strong>Efisien</strong> (caching & local assets), dan <strong>Cerdas</strong> (minor update only).
+            Workflow ini bukan sekadar script update biasa. Ini adalah sistem pemeliharaan mandiri yang <strong>Aman</strong> (cek hash &amp; audit), <strong>Efisien</strong> (caching &amp; local assets), dan <strong>Cerdas</strong> (minor update only).
         </p>
         <p>
             Implementasi script kayak gini di repo kamu bakal bikin hidup lebih tenang. Nggak ada lagi cerita website error karena lupa update library 2 tahun! <i class="fa-solid fa-face-laugh-wink"></i>
@@ -467,7 +465,8 @@ ncu -u --target minor</code></pre>
         }
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
