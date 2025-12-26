@@ -184,7 +184,7 @@ jobs:
           force_orphan: false
           keep_files: false
 </code></pre>
-    <section>
+    </section><section>
       <h2>📌 Penjelasan Tambahan</h2>
       <p>Workflow ini sangat cocok untuk kamu yang ingin menjaga branch <code>site</code> tetap bersih dan hanya berisi file yang memang dibutuhkan untuk deploy ke Cloudflare Pages. Dengan filter <code>paths</code> dan <code>rsync --include</code>, kamu bisa pastikan hanya file penting seperti HTML, JSON, favicon, dan manifest yang ikut disalin.</p>
       <p>Langkah <strong>check_changes</strong> juga penting banget karena mencegah deploy yang sia-sia kalau ternyata tidak ada perubahan signifikan. Ini hemat waktu dan resource.</p>
