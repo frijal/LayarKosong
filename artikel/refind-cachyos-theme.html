@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cara mudah install rEFInd Theme CachyOS di Arch Linux. Bikin tampilan bootloader makin ganteng, script otomatis, dan tutorial lengkap.">
@@ -19,7 +17,7 @@
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 
@@ -146,10 +144,10 @@
             pre code.hljs { font-size: 0.8em; padding: 15px; }
         }
     </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
 
   <meta itemprop="image" content="https://dalam.web.id/img/refind-cachyos-theme.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-12-10T11:36:03.190+00:00">
 <meta name="ai:summary" content="Cara mudah install rEFInd Theme CachyOS di Arch Linux. Bikin tampilan bootloader makin ganteng, script otomatis, dan tutorial lengkap.">
 <meta name="ai:prompt_hint" content="Cara mudah install rEFInd Theme CachyOS di Arch Linux. Bikin tampilan bootloader makin ganteng, script otomatis, dan tutorial lengkap.">
@@ -159,10 +157,10 @@
 <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/refind-conf-archcachyos/main/preview.png">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/refind-cachyos-theme.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/refind-cachyos-theme.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/refind-cachyos-theme.webp">
   <meta property="og:image:alt" content="rEFInd Theme CachyOS Arch Linux">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="rEFInd Theme CachyOS Arch Linux"></head>
 <body>
 
 <div class="main-wrapper">
@@ -171,7 +169,7 @@
         <h1><i class="fa-brands fa-linux"></i> rEFInd Theme CachyOS Arch Linux</h1>
 <div id="iposbrowser"></div>
         <p>
-            <i class="fa-solid fa-user-pen"></i> <strong>Penulis:</strong> diegons490 (Forked & Modified by <a href="https://github.com/frijal" target="_blank">Fakhrul Rijal</a>)<br>
+            <i class="fa-solid fa-user-pen"></i> <strong>Penulis:</strong> diegons490 (Forked &amp; Modified by <a href="https://github.com/frijal" target="_blank">Fakhrul Rijal</a>)<br>
             <i class="fa-solid fa-code-branch"></i> <strong>Source:</strong> <a href="https://github.com/frijal/refind-conf-archcachyos.git" target="_blank">GitHub Repository</a>
         </p>
     </header>
@@ -252,7 +250,7 @@ THEME_DIR=$(dirname "$(realpath "$0")")
 function find_refind_conf {
     echo -e "${YELLOW}Searching for refind.conf inside /boot (this may take a few seconds)...${RESET}"
     local found_path
-    found_path=$(find /boot -type f -name refind.conf 2>/dev/null | head -n 1 || true)
+    found_path=$(find /boot -type f -name refind.conf 2&gt;/dev/null | head -n 1 || true)
 
     if [ -z "$found_path" ]; then
         echo -e "${RED}No refind.conf found under /boot.${RESET}"
@@ -281,11 +279,11 @@ function find_refind_conf {
 function ask_for_refind_conf {
     if ! find_refind_conf || [ "$?" -eq 2 ]; then
         echo -e "${YELLOW}Please enter the full path to your refind.conf file:${RESET}"
-        read -rp "> " REFOUND_CONF_PATH
+        read -rp "&gt; " REFOUND_CONF_PATH
     fi
     while [[ ! -f "$REFOUND_CONF_PATH" ]]; do
         echo -e "${RED}${bold}File not found. Please enter a valid path to refind.conf:${RESET}"
-        read -rp "> " REFOUND_CONF_PATH
+        read -rp "&gt; " REFOUND_CONF_PATH
     done
     if [[ ! -w "$REFOUND_CONF_PATH" ]]; then
         echo -e "${RED}${bold}You do not have write permission for $REFOUND_CONF_PATH${RESET}"
@@ -363,11 +361,11 @@ function install_theme {
 
     bg_source="${THEME_DIR}/background/background-${res}.png"
     bg_target="${INSTALL_DIR}/background/background.png"
-    [[ ! -f "$bg_source" ]] && echo -e "${RED}Background not found: $bg_source${RESET}" && exit 1
+    [[ ! -f "$bg_source" ]] &amp;&amp; echo -e "${RED}Background not found: $bg_source${RESET}" &amp;&amp; exit 1
     cp "$bg_source" "$bg_target"
 
     # Generate config
-    cat > "${INSTALL_DIR}/cachy.conf" << EOF
+    cat &gt; "${INSTALL_DIR}/cachy.conf" &lt;&lt; EOF
 # Theme by diegons490
 big_icon_size $size_big
 small_icon_size $size_small
@@ -385,7 +383,7 @@ EOF
     echo -e "${YELLOW}Backup: $backup_path${RESET}"
     cp "$REFOUND_CONF_PATH" "$backup_path"
     sed -i '/include themes\/cachy\/cachy.conf/d' "$REFOUND_CONF_PATH"
-    echo -e "\n# Load rEFInd theme Cachy\ninclude themes/cachy/cachy.conf\n" >> "$REFOUND_CONF_PATH"
+    echo -e "\n# Load rEFInd theme Cachy\ninclude themes/cachy/cachy.conf\n" &gt;&gt; "$REFOUND_CONF_PATH"
 
     echo -e "\n${GREEN}${bold}Installation complete!${RESET}"
     echo -e "Theme: ${bold}$INSTALL_DIR${normal}"
@@ -401,7 +399,7 @@ function uninstall_theme {
     INSTALL_DIR="$REFIND_DIR/themes/cachy"
 
     local backup_file
-    backup_file=$(ls -t "${REFOUND_CONF_PATH}".bak.cachy-theme.* 2>/dev/null | head -n 1 || true)
+    backup_file=$(ls -t "${REFOUND_CONF_PATH}".bak.cachy-theme.* 2&gt;/dev/null | head -n 1 || true)
 
     if [[ ! -f "$backup_file" ]]; then
         echo -e "${RED}${bold}No backup found (${REFOUND_CONF_PATH}.bak.cachy-theme.*). Cannot proceed.${RESET}"
@@ -482,7 +480,7 @@ function reconfigure_theme {
 
     echo -e "${YELLOW}Updating cachy.conf...${RESET}"
 
-    cat > "${INSTALL_DIR}/cachy.conf" << EOF
+    cat &gt; "${INSTALL_DIR}/cachy.conf" &lt;&lt; EOF
 # Theme by diegons490
 big_icon_size $size_big
 small_icon_size $size_small
@@ -517,8 +515,8 @@ case "$menu_choice" in
     1) install_theme ;;
     2) uninstall_theme ;;
     3) reconfigure_theme ;;
-    0) echo -e "${YELLOW}Cancelled by user.${RESET}" && exit 0 ;;
-    *) echo -e "${RED}Invalid option. Exiting.${RESET}" && exit 1 ;;
+    0) echo -e "${YELLOW}Cancelled by user.${RESET}" &amp;&amp; exit 0 ;;
+    *) echo -e "${RED}Invalid option. Exiting.${RESET}" &amp;&amp; exit 1 ;;
 esac</code></pre>
         </details>
     </section>
@@ -538,7 +536,7 @@ esac</code></pre>
 
     <footer>
         <p>Made with <i class="fa-solid fa-coffee" style="color: #6f4e37;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
-        <p><em>Go Back To Door & HR Generalized</em></p>
+        <p><em>Go Back To Door &amp; HR Generalized</em></p>
 
         <div class="social-icons">
             <a href="https://threads.net/frijal" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
@@ -553,15 +551,16 @@ esac</code></pre>
 
 </div>
 
-<script src="/ext/highlight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script src="/ext/highlight.js" defer=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" defer=""></script>
 <script>
     // Initialize Highlight.js
     hljs.highlightAll();
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
