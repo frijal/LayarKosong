@@ -1,12 +1,10 @@
-<!doctype html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML</title>
     <meta name="description" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
     <meta name="keywords" content="Python, BeautifulSoup, HTML, Fix HTML, Skrip Otomatis, venv, fish shell, externally-managed-environment, tutorial, coding">
-    <meta name="author" content="Gemini & frijal">
+    <meta name="author" content="Gemini &amp; frijal">
     <link rel="canonical" href="https://dalam.web.id/artikel/panduan-skrip-fix-html.html">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
 
@@ -100,24 +98,24 @@
         .info-item .icon { font-size: 1.5rem; }
         footer { text-align: center; padding: 2rem; color: #6b7380; font-size: 0.9em; margin-top: 2rem; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
 <meta name="ai:prompt_hint" content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML","datePublished":"2025-06-01T15:37:18.219+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/panduan-skrip-fix-html.html","image":"https://dalam.web.id/img/panduan-skrip-fix-html.webp","keywords":[],"description":"Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux."}</script>
 
 <meta name="twitter:image" content="https://dalam.web.id/img/panduan-skrip-fix-html.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/panduan-skrip-fix-html.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/panduan-skrip-fix-html.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/panduan-skrip-fix-html.webp">
   <meta property="og:image:alt" content="Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML"></head>
 <body>
     <div class="container">
         <header>
             <h1>⚙️ Panduan Lengkap: Skrip Otomatis Perbaikan HTML</h1>
 <div id="iposbrowser"></div>
-            <p class="subtitle">Sebuah rangkuman perjalanan dari error hingga solusi final dengan Python & BeautifulSoup.</p>
+            <p class="subtitle">Sebuah rangkuman perjalanan dari error hingga solusi final dengan Python &amp; BeautifulSoup.</p>
         </header>
         <main>
             <article>
@@ -180,8 +178,8 @@ def fix_html_file(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        if "times;</span>" in content:
-            content = content.replace("times;</span>", "&times;</span>")
+        if "times;" in content:
+            content = content.replace("times;", "×")
             log_messages.append("  - Memperbaiki &lt;span&gt; penutup yang rusak.")
             has_changes = True
 
@@ -201,7 +199,7 @@ def fix_html_file(file_path):
                     script.string = cleaned_json.strip()
                     json_cleaned_count += 1
 
-        if json_cleaned_count > 0:
+        if json_cleaned_count &gt; 0:
             log_messages.append(f"  - Membersihkan {json_cleaned_count} blok skrip JSON-LD.")
             has_changes = True
         empty_divs_removed = 0
@@ -210,7 +208,7 @@ def fix_html_file(file_path):
                 div.decompose()
                 empty_divs_removed += 1
 
-        if empty_divs_removed > 0:
+        if empty_divs_removed &gt; 0:
             log_messages.append(f"  - Menghapus {empty_divs_removed} tag &lt;div&gt; kosong.")
             has_changes = True
 
@@ -221,7 +219,7 @@ def fix_html_file(file_path):
             output_path = file_path.replace('.html', '_fixed.html')
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(soup.prettify(formatter="html5"))
-            print(f"  [✓] Perbaikan & pembersihan diterapkan: {os.path.basename(output_path)}")
+            print(f"  [✓] Perbaikan &amp; pembersihan diterapkan: {os.path.basename(output_path)}")
         else:
             print(f"  [-] Tidak ada perbaikan yang diperlukan.")
 
@@ -262,7 +260,7 @@ if __name__ == "__main__":
     main()
 </code></pre>
                 <hr>
-                <h2>Tahap 4: Cara Penggunaan & Hasil 🚀</h2>
+                <h2>Tahap 4: Cara Penggunaan &amp; Hasil 🚀</h2>
                 <h3>Langkah-langkah Eksekusi</h3>
                 <ol>
                     <li>Simpan kode di atas sebagai `fix_html.py`.</li>
@@ -294,9 +292,9 @@ Log untuk file: contoh.html
                 <div class="lightbox" id="lightbox">
                     <figure>
                         <img id="lb-img" src="" alt="Gambar diperbesar">
-                        <button class="lb-prev" id="lb-prev" aria-label="Gambar Sebelumnya">&#10094;</button>
-                        <button class="lb-next" id="lb-next" aria-label="Gambar Berikutnya">&#10095;</button>
-                        <button class="lb-close" id="lb-close" aria-label="Tutup">&times;</button>
+                        <button class="lb-prev" id="lb-prev" aria-label="Gambar Sebelumnya">❮</button>
+                        <button class="lb-next" id="lb-next" aria-label="Gambar Berikutnya">❯</button>
+                        <button class="lb-close" id="lb-close" aria-label="Tutup">×</button>
                     </figure>
                 </div>
             </article>
@@ -362,6 +360,6 @@ Log untuk file: contoh.html
                });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>
