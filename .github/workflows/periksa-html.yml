@@ -99,7 +99,7 @@ jobs:
           echo "]" >> $JSON
 
       - name: Run Auto-Fix SEO
-        run: npm run fixseo
+        run: npm run fixseo || echo "ada_error=true" >> $GITHUB_ENV
 
       - name: Linting HTML
         run: |
@@ -112,19 +112,20 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "🤖 chore: auto-fix SEO dan struktur HTML"
+          commit-message: "🤖 chore: auto-fix SEO & Audit Struktur"
           branch: auto-fix-seo-bot
-          title: "📝 Perbaikan SEO Otomatis - $(date +'%Y-%m-%d')"
+          title: "📝 Perbaikan SEO & Audit Struktur"
           body: |
             Halo @frijal! 🤖
             
-            Saya telah memproses artikel terbaru dan menemukan beberapa hal yang perlu diperbaiki secara otomatis:
-            - Perbaikan Meta Tags (OG, Twitter, Description)
-            - Penyesuaian Struktur Heading (H1/H2)
-            - Validasi HTML Dasar
-            
-            Silakan periksa perubahan di tab "Files changed" sebelum melakukan merge.
-          labels: |
-            automated-pr
-            seo-optimized
-          delete-branch: true
+            Saya baru saja memeriksa artikel kamu. 
+            - Jika ada kesalahan struktur (tag tidak seimbang), silakan cek tab **"Files changed"** atau **"Checks"**. Saya sudah memberikan komentar di baris yang bermasalah.
+            - Jika aman, saya sudah melakukan auto-fix untuk SEO, Image Alt, dan Script Defer.
+          labels: automated-pr
+
+      # Jika tadi ada error, kita buat workflow ini gagal di akhir supaya muncul tanda silang merah
+      - name: Check for errors
+        if: env.ada_error == 'true'
+        run: |
+          echo "Audit menemukan kesalahan struktur pada HTML. Silakan periksa komentar di PR."
+          exit 1
