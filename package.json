@@ -11,6 +11,7 @@
     "ci-all": "npm run ci-generate-xml-rss && npm run ci-fix-meta-image && npm run ci-screenshot",
     "check-deps": "depcheck",
     "generate-ai-api": "node ext/generate-ai-api.js",
+    "fixseo": "node ext/seo-fixer.js",
     "lint": "htmlhint \"artikel/**/*.html\""
   },
   "repository": {
