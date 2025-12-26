@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
 <!-- ===== Basic Meta ===== -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +30,7 @@
 <!-- ===== Article Meta ===== -->
 <meta name="date" content="2025-09-28">
 <meta property="article:author" content="Fakhrul Rijal">
-<meta property="article:section" content="Linux & Sysadmin">
+<meta property="article:section" content="Linux &amp; Sysadmin">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Mirror">
 <meta property="article:tag" content="Repository">
@@ -50,7 +48,7 @@
 <meta itemprop="image" content="https://dalam.web.id/img/linux-mirrors-all.webp">
 
   
-<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 <style>
   :root{
 --bg: #f6f8fb;
@@ -143,15 +141,15 @@ background:var(--bg);color:var(--text);
 
 
 </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta property="article:published_time" content="2025-08-01T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta property="article:published_time" content="2025-08-01T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
   <header>
 <div class="title">
   <h1>Mirror Selector Toolkit — Semua Distro</h1>
 <div id="iposbrowser"></div>
 
-  <p>Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS — skrip & panduan otomatis</p>
+  <p>Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS — skrip &amp; panduan otomatis</p>
 </div>
 <div class="controls">
   <button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button>
@@ -185,7 +183,7 @@ background:var(--bg);color:var(--text);
 set -e
 RELEASE="${1:-stable}"   # opsional: stable/bookworm/jammy/dll
 
-echo "[INFO] update & install netselect-apt..."
+echo "[INFO] update &amp; install netselect-apt..."
 sudo apt update
 sudo apt install -y netselect-apt
 
@@ -241,7 +239,7 @@ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak.$(date +%F_%T)
 echo "[INFO] menjalankan reflector (country=$COUNTRY)..."
 sudo reflector --country "$COUNTRY" --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 
-echo "[INFO] sync & refresh database..."
+echo "[INFO] sync &amp; refresh database..."
 sudo pacman -Syy
 
 echo "[DONE] Mirrorlist Arch telah diperbarui."</code></pre>
@@ -259,8 +257,8 @@ echo "[DONE] Mirrorlist Arch telah diperbarui."</code></pre>
 
 <!-- FEDORA -->
 <section id="fedora" class="panel" role="tabpanel" aria-hidden="true">
-  <h2>Fedora — dnf & fastestmirror</h2>
-  <p>Fedora menggunakan MirrorManager. Aktifkan plugin & refresh cache untuk memastikan Anda menggunakan mirror tercepat.</p>
+  <h2>Fedora — dnf &amp; fastestmirror</h2>
+  <p>Fedora menggunakan MirrorManager. Aktifkan plugin &amp; refresh cache untuk memastikan Anda menggunakan mirror tercepat.</p>
   <div class="note">Skrip mengaktifkan fastestmirror dan membersihkan cache.</div>
 
   <div class="grid">
@@ -280,7 +278,7 @@ echo "[INFO] backup dnf.conf..."
 sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak.$(date +%F_%T)
 
 echo "[INFO] mengaktifkan fastestmirror..."
-if ! grep -q "^fastestmirror" /etc/dnf/dnf.conf 2>/dev/null; then
+if ! grep -q "^fastestmirror" /etc/dnf/dnf.conf 2&gt;/dev/null; then
   echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
 fi
 
@@ -305,7 +303,7 @@ echo "[DONE] fastestmirror aktif. Jalankan 'sudo dnf upgrade --refresh' untuk me
 <section id="opensuse" class="panel" role="tabpanel" aria-hidden="true">
   <h2>openSUSE — zypper + mirrorlist.opensuse.org</h2>
   <p>openSUSE menyediakan mirrorlist service; script ini mengganti repo agar menggunakan mirrorlist otomatis lalu refresh.</p>
-  <div class="note">Skrip menghapus repo lama (backup) dan menambahkan OSS & Non-OSS via mirrorlist.</div>
+  <div class="note">Skrip menghapus repo lama (backup) dan menambahkan OSS &amp; Non-OSS via mirrorlist.</div>
 
   <div class="grid">
 <div>
@@ -319,14 +317,14 @@ set -e
 
 echo "[INFO] backup repo .repo..."
 sudo mkdir -p /etc/zypp/repos.d/backup
-sudo cp /etc/zypp/repos.d/*.repo /etc/zypp/repos.d/backup/ 2>/dev/null || true
+sudo cp /etc/zypp/repos.d/*.repo /etc/zypp/repos.d/backup/ 2&gt;/dev/null || true
 
 OS_VERSION=$(grep VERSION_ID /etc/os-release | cut -d '"' -f2)
 
 echo "[INFO] menghapus repo lama..."
 sudo zypper rr -a || true
 
-echo "[INFO] menambahkan repo OSS & Non-OSS via mirrorlist..."
+echo "[INFO] menambahkan repo OSS &amp; Non-OSS via mirrorlist..."
 sudo zypper ar -f "http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/oss" "openSUSE-OSS"
 sudo zypper ar -f "http://mirrorlist.opensuse.org/?repo=download.opensuse.org/distribution/leap/$OS_VERSION/repo/non-oss" "openSUSE-Non-OSS"
 
@@ -379,7 +377,7 @@ if [ -z "$MIRROR_URL" ]; then
 fi
 
 echo "[INFO] menulis $MIRROR_URL ke $MIRROR_FILE ..."
-echo "$MIRROR_URL" | sudo tee "$MIRROR_FILE" > /dev/null
+echo "$MIRROR_URL" | sudo tee "$MIRROR_FILE" &gt; /dev/null
 
 echo "[INFO] update slackpkg..."
 sudo slackpkg update gpg
@@ -417,10 +415,10 @@ CONF="/etc/nix/nix.conf"
 BACKUP="/etc/nix/nix.conf.backup.$(date +%F_%T)"
 
 echo "[INFO] backup $CONF ke $BACKUP ..."
-sudo cp "$CONF" "$BACKUP" 2>/dev/null || true
+sudo cp "$CONF" "$BACKUP" 2&gt;/dev/null || true
 
-echo "[INFO] menambahkan substituter & trusted key (contoh)..."
-sudo tee -a /etc/nix/nix.conf > /dev/null <<'EOF'
+echo "[INFO] menambahkan substituter &amp; trusted key (contoh)..."
+sudo tee -a /etc/nix/nix.conf &gt; /dev/null &lt;&lt;'EOF'
 
 # tambahan substituter cepat (contoh)
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
@@ -446,7 +444,7 @@ echo "[DONE] substituter ditambahkan. Pastikan trusted key valid untuk mirror ya
 <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
 
 <section>
-  <h2>Catatan penting & tips</h2>
+  <h2>Catatan penting &amp; tips</h2>
   <ul>
 <li>Selalu <strong>backup</strong> konfigurasi (sources.list, mirrorlist, repo files, nix.conf) sebelum mengganti.</li>
 <li>Uji mirror hasil dengan update kecil, jangan langsung melakukan operasi kritikal di server produksi.</li>
@@ -461,8 +459,8 @@ echo "[DONE] substituter ditambahkan. Pastikan trusted key valid untuk mirror ya
   </main>
 
 <!-- Prism.js -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer=""></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js" defer=""></script>
 
 <script>
   // Tab handling
@@ -577,9 +575,10 @@ btn.addEventListener('keydown', (e)=>{
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 
 
-</body>
-</html>
+
+
+</body></html>

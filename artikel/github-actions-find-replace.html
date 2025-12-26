@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow 'Cari & Ganti' Otomatis via GitHub Actions</title>
+    <title>Workflow 'Cari &amp; Ganti' Otomatis via GitHub Actions</title>
     <link rel="canonical" href="https://dalam.web.id/artikel/github-actions-find-replace.html" id="canonical-link">
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%236e5494' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
 
@@ -173,9 +171,9 @@
         }
     </style>
 <meta itemprop="image" content="https://dalam.web.id/img/github-actions-find-replace.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-10-23T07:03:49.523+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan lengkap membuat workflow GitHub Actions untuk">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan lengkap membuat workflow GitHub Actions untuk">
 <meta name="ai:prompt_hint" content="Panduan lengkap membuat workflow GitHub Actions untuk">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Workflow 'Cari & Ganti' Otomatis via GitHub Actions","datePublished":"2025-10-23T07:03:49.523+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/github-actions-find-replace.html","image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6ZjuV7rDnWY8JXp6Axz9_54HyIbv1nRy5SmNLZ-S-NVwvXs1gvV_JU96us0FLhcgLhU-z6RJyhbkI836PfPInDd6oJJlwcd3URDwxWh4_lwPv_FQyESDzdvG1LD87f7UYncLtgsQjPOaCAY9DtMAWEpEcF4JKCQBCLnyxA3piz4I1vVF4RUMJVn8Vuyg/s1600/Screenshot%20From%202025-10-23%2014-17-20.png","keywords":[],"description":"Panduan lengkap membuat workflow GitHub Actions untuk"}</script>
@@ -184,14 +182,14 @@
 <meta name="description" content="Panduan lengkap membuat workflow GitHub Actions untuk">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/github-actions-find-replace.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-actions-find-replace.webp">
-  <meta property="og:image:alt" content="Workflow 'Cari & Ganti' Otomatis via GitHub Actions">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-actions-find-replace.webp">
+  <meta property="og:image:alt" content="Workflow 'Cari &amp; Ganti' Otomatis via GitHub Actions">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Workflow 'Cari &amp; Ganti' Otomatis via GitHub Actions"></head>
 <body>
     <header class="main-header">
         <div class="container">
-            <h1>Workflow 'Cari & Ganti' Otomatis via GitHub Actions</h1>
+            <h1>Workflow 'Cari &amp; Ganti' Otomatis via GitHub Actions</h1>
 <div id="iposbrowser"></div>
             <p>Alat canggih untuk mengedit file secara massal di repositori Anda.</p>
         </div>
@@ -278,22 +276,22 @@ jobs:
           REPLACE_TERM="${{ github.event.inputs.replace }}"
 
           # Ubah koma menjadi spasi untuk loop
-          read -ra GLOBS <<< "${{ github.event.inputs.globs//,/ / }}"
+          read -ra GLOBS &lt;&lt;&lt; "${{ github.event.inputs.globs//,/ / }}"
           for g in "${GLOBS[@]}"; do
             echo "🔎 Proses pola: '$g' di folder '$TARGET'"
             # Gunakan find -path untuk mencocokkan pola **/*
             find "$TARGET" -path "$g" -type f -print0 | while IFS= read -r -d '' file; do
-              # Gunakan perl untuk find & replace yang aman
+              # Gunakan perl untuk find &amp; replace yang aman
               perl -pi -e 's#\Q$ENV{SEARCH_TERM}\E#$ENV{REPLACE_TERM}#g' "$file"
             done
           done
-      - name: Commit & push perubahan
+      - name: Commit &amp; push perubahan
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git add -A
           # Gunakan || true agar tidak error jika tidak ada perubahan
-          git commit -m "chore: ganti '${{ github.event.inputs.search }}' -> '${{ github.event.inputs.replace }}'" || true
+          git commit -m "chore: ganti '${{ github.event.inputs.search }}' -&gt; '${{ github.event.inputs.replace }}'" || true
           git push
 </code></pre>
                 </div>
@@ -302,7 +300,7 @@ jobs:
                 <ul>
                     <li><strong><code>on: workflow_dispatch: inputs:</code></strong>: Bagian ini yang membuat formulir interaktif saat kita menekan "Run workflow".</li>
                     <li><strong><code>Jalankan penggantian...</code></strong>: Di langkah ini, kita menggunakan kombinasi perintah <code>find</code> untuk mencari file berdasarkan pola yang kita masukkan, dan <code>perl</code> untuk melakukan penggantian teks di dalam setiap file yang ditemukan. Perl dipilih karena sangat andal dalam menangani karakter-karakter aneh yang mungkin ada di teks.</li>
-                    <li><strong><code>Commit & push...</code></strong>: Setelah selesai, skrip akan otomatis membuat *commit* baru dengan pesan yang jelas dan mendorongnya ke repositori. Jadi, semua perubahan langsung tersimpan.</li>
+                    <li><strong><code>Commit &amp; push...</code></strong>: Setelah selesai, skrip akan otomatis membuat *commit* baru dengan pesan yang jelas dan mendorongnya ke repositori. Jadi, semua perubahan langsung tersimpan.</li>
                 </ul>
                 <div id="pesbukdiskus"></div>
             </article>
@@ -338,7 +336,7 @@ jobs:
         });
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

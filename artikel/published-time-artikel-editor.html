@@ -1,4 +1,4 @@
-<head>
+<html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Batch Editor article:published_time</title>
@@ -61,9 +61,9 @@ pre{
 .diff ins{color:#22c55e;text-decoration:none}
 small{color:#555}
 </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta itemprop="image" content="https://dalam.web.id/img/published-time-artikel-editor.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta itemprop="image" content="https://dalam.web.id/img/published-time-artikel-editor.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 
 <body>
 
@@ -71,7 +71,7 @@ small{color:#555}
 <div id="iposbrowser"></div>
 <small>
 ✔ Cari literal <code>"YYYY-MM-DDT</code><br>
-✔ Ubah <strong>tahun & bulan saja</strong><br>
+✔ Ubah <strong>tahun &amp; bulan saja</strong><br>
 ✔ Mode paranoid: banyak kombinasi → tetap dipaksa seragam<br>
 ✔ Meta dibuat otomatis jika tidak ada
 </small>
@@ -89,8 +89,8 @@ small{color:#555}
   <button id="apply" class="warn">Terapkan</button>
 </div>
 
-<input id="folderFallback" type="file" webkitdirectory multiple hidden>
-<input id="listFallback" type="file" accept=".txt" hidden>
+<input id="folderFallback" type="file" webkitdirectory="" multiple="" hidden="">
+<input id="listFallback" type="file" accept=".txt" hidden="">
 
 <hr>
 
@@ -215,7 +215,7 @@ preview.onclick=async()=>{
         log(`➕ ${name}: meta tidak ada → disuntik`);
         newHtml=html.replace(
           /<\/head>/i,
-          `  <meta property="article:published_time" content=${systemISO(Y,M)}>\n<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>`
+          `  <meta property="article:published_time" content=${systemISO(Y,M)}>\n<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>`
         );
       }
 
@@ -235,7 +235,7 @@ preview.onclick=async()=>{
 };
 
 /* APPLY */
-apply.onclick=async()=>{
+apply.onclick=async()=&gt;{
   if(!changes.length){alert("Tidak ada perubahan");return;}
   if(!confirm("Terapkan perubahan (mode paranoid)?")) return;
 
@@ -259,10 +259,11 @@ apply.onclick=async()=>{
     }
   }
 };
-</script>
+
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT</title>
+    <title>Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT</title>
     <meta name="description" content="Panduan lengkap memperbaiki error Updating systemd-boot entries dan unknown filesystem type vfat di CachyOS atau Arch Linux akibat kernel mismatch.">
     <link rel="canonical" href="https://dalam.web.id/artikel/fix-cachyos-boot.html">
     <link rel="icon" href="/favicon.ico">
@@ -186,10 +184,10 @@
             body { font-size: 16px; }
         }
     </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
 
   <meta itemprop="image" content="https://dalam.web.id/img/fix-cachyos-boot.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-12-08T03:26:11.547+00:00">
 <meta name="ai:summary" content="Panduan lengkap memperbaiki error Updating systemd-boot entries dan unknown filesystem type vfat di CachyOS atau Arch Linux akibat kernel mismatch.">
 <meta name="ai:prompt_hint" content="Panduan lengkap memperbaiki error Updating systemd-boot entries dan unknown filesystem type vfat di CachyOS atau Arch Linux akibat kernel mismatch.">
@@ -199,16 +197,16 @@
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWGE_9DU3NC-XZVvNWns0tHZ1mQwb4Cepk4lTRp_D32QqH_Z8CetEtUwuQTVhxV_oZCo6XinIMtFHc42q5FI5CgK5XYytMEUlRfTfHdZudce1fRFgt2CzcoQGhkjKMOVQJsZH6ZQy1-kZd2gbJ8Et33REREdgYXw0peSJgc6UNQvc3MfyTPpCMiBy2ZRs/s1600/ErrorBootloader.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/fix-cachyos-boot.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/fix-cachyos-boot.webp">
-  <meta property="og:image:alt" content="Cara Memperbaiki Error Update Bootloader CachyOS & Masalah Mount VFAT">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/fix-cachyos-boot.webp">
+  <meta property="og:image:alt" content="Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Cara Memperbaiki Error Update Bootloader CachyOS &amp; Masalah Mount VFAT"></head>
 <body>
 
     <div class="container">
 
         <header>
-            <h1><i class="fa-solid fa-screwdriver-wrench"></i> Memperbaiki Error Bootloader CachyOS & Masalah "Unknown Filesystem VFAT"</h1>
+            <h1><i class="fa-solid fa-screwdriver-wrench"></i> Memperbaiki Error Bootloader CachyOS &amp; Masalah "Unknown Filesystem VFAT"</h1>
 <div id="iposbrowser"></div>
         </header>
 
@@ -278,7 +276,7 @@ error: command failed to execute correctly</pre>
             <pre>sudo arch-chroot /mnt</pre>
             <p>Kalau terminal kamu berubah (biasanya prompt-nya jadi beda warna atau teks), selamat! Kamu sudah berada di dalam sistem CachyOS utamamu, tapi menggunakan kernel dari Live USB yang sehat.</p>
 
-            <h3>Langkah 4: Perbaiki Bootloader & Kernel</h3>
+            <h3>Langkah 4: Perbaiki Bootloader &amp; Kernel</h3>
             <p>Sekarang kita punya akses penuh dan driver yang benar. Mari kita perbaiki.</p>
 
             <p><span class="step-number">1</span> <strong>Install ulang Bootloader:</strong></p>
@@ -287,7 +285,7 @@ error: command failed to execute correctly</pre>
 
             <p><span class="step-number">2</span> <strong>Reinstall Kernel (Penting!):</strong></p>
             <pre>pacman -S linux-cachyos linux-cachyos-headers</pre>
-            <p>Ini untuk memastikan gambar kernel (vmlinuz & initramfs) benar-benar tersalin ke partisi EFI yang baru saja kita mount.</p>
+            <p>Ini untuk memastikan gambar kernel (vmlinuz &amp; initramfs) benar-benar tersalin ke partisi EFI yang baru saja kita mount.</p>
 
             <p><span class="step-number">3</span> <strong>Update Boot Entries:</strong></p>
             <pre>bootctl update</pre>
@@ -301,7 +299,7 @@ sudo reboot</pre>
 
             <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border-color);">
 
-            <h3><i class="fa-solid fa-comments"></i> Diskusi & Bantuan</h3>
+            <h3><i class="fa-solid fa-comments"></i> Diskusi &amp; Bantuan</h3>
             <p>Masih bingung atau stuck di salah satu langkah? Tulis aja kendala kamu di kolom komentar di bawah ini.</p>
 
             <div id="pesbukdiskus"></div>
@@ -316,7 +314,8 @@ sudo reboot</pre>
     </div>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>

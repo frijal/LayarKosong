@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cara cerdas menghitung usia instalasi Distro Linux (Arch, Ubuntu, Fedora, dll.) menggunakan script Bash/Python dan metadata filesystem ext2/3/4.">
@@ -19,7 +17,7 @@
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 
@@ -154,10 +152,10 @@
             pre code.hljs { font-size: 0.8em; padding: 15px; }
         }
     </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
 
   <meta itemprop="image" content="https://dalam.web.id/img/usia-instalasi-linux.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-12-10T17:06:27.414+00:00">
 <meta name="ai:summary" content="Cara cerdas menghitung usia instalasi Distro Linux (Arch, Ubuntu, Fedora, dll.) menggunakan script Bash/Python dan metadata filesystem ext2/3/4.">
 <meta name="ai:prompt_hint" content="Cara cerdas menghitung usia instalasi Distro Linux (Arch, Ubuntu, Fedora, dll.) menggunakan script Bash/Python dan metadata filesystem ext2/3/4.">
@@ -167,10 +165,10 @@
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-JgU2YpPlTIbeNote5i7AznPoxv9fpIvx12i6Atr1lcGh8aTkB4Z8IIW7_foNFSDzS1Y-vZSFB8MvG3hxc4XmwLtdgCjcvoUYr-0W_QUbFS2Vwl0myDlnT0mH8jRjCboWQ_tiMNx6EhWzJ0DC55dLdGfOG2WVOI6aEqunFyVGrB_3cdBBVxqbwOHr5Zc/s1600/umurarch.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/usia-instalasi-linux.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/usia-instalasi-linux.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/usia-instalasi-linux.webp">
   <meta property="og:image:alt" content="Menguak Misteri Usia Distro Linux">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Menguak Misteri Usia Distro Linux"></head>
 <body>
 
 <div class="main-wrapper">
@@ -220,7 +218,7 @@ ROOT_DEV=$(findmnt -n -o SOURCE /)
 # 2. Ekstrak tanggal pembuatan filesystem menggunakan tune2fs
 # Menggunakan sudo karena tune2fs -l memerlukan izin root
 # Bagian grep/cut/xargs mengambil string tanggal-waktu mentah
-INSTALL_DATE_STRING=$(sudo tune2fs -l "$ROOT_DEV" 2>/dev/null | grep 'Filesystem created:' | cut -d: -f 2- | xargs)
+INSTALL_DATE_STRING=$(sudo tune2fs -l "$ROOT_DEV" 2&gt;/dev/null | grep 'Filesystem created:' | cut -d: -f 2- | xargs)
 
 # 3. Proses tanggal di Python dan hitung selisih hari
 # (Catatan: tune2fs hanya bekerja andal untuk ext2/3/4)
@@ -293,7 +291,7 @@ except ValueError:
     <footer>
         <p>Artikel ini ditulis sambil ditemani **Kopi Susu** yang mantap dari Balikpapan.</p>
         <p>Made with <i class="fa-solid fa-heart" style="color: #ff3860;"></i> and code by <strong>Fakhrul Rijal</strong>.</p>
-        <p><em>Go Back To Door & HR Generalized</em></p>
+        <p><em>Go Back To Door &amp; HR Generalized</em></p>
 
         <div class="social-icons">
             <a href="https://threads.net/frijal" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
@@ -308,16 +306,17 @@ except ValueError:
 
 </div>
 
-<script src="/ext/highlight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<script src="/ext/highlight.js" defer=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" defer=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js" defer=""></script>
 <script>
     // Initialize Highlight.js
     hljs.highlightAll();
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>

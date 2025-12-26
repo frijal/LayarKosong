@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman</title>
@@ -10,7 +8,7 @@
     <meta name="theme-color" content="#0a0f1a">
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman","image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.jpg","author":{"@type":"Person","name":"Fakhrul","image":"https://dalam.web.id/img/remove-old-kernels.webp"},"publisher":{"@type":"Organization","name":"dalam.web.id","image":"https://dalam.web.id/img/remove-old-kernels.webp"}}</script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0f1a;
@@ -59,19 +57,19 @@
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-06-10T23:20:38.203+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
 <meta name="ai:prompt_hint" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
 
 <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.jpg">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/remove-old-kernels.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/remove-old-kernels.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/remove-old-kernels.webp">
   <meta property="og:image:alt" content="Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/remove-old-kernels.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman"></head>
 <body>
     <div class="wrap">
         <header class="site">
@@ -113,8 +111,8 @@
         <img id="lightbox-img" alt="Gambar diperbesar">
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #1c2b52; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
@@ -144,7 +142,7 @@
     })();
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>

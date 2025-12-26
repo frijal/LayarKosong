@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</title>
@@ -9,7 +7,7 @@
     <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
     <meta name="theme-color" content="#1e2a38">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
     <style>
         :root {
             --bg: #1e2a38;
@@ -53,11 +51,11 @@
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-05-25T23:20:38.198+00:00">
 
   <meta itemprop="image" content="https://dalam.web.id/img/nixos-mirror.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
 <meta name="ai:prompt_hint" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS","datePublished":"2025-05-25T23:20:38.198+00:00","articleSection":"🐧 Linux & Open Source","mainEntityOfPage":"https://dalam.web.id/artikel/nixos-mirror.html","image":"https://dalam.web.id/img/nixos-mirror.webp","keywords":[],"description":"Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama."}</script>
@@ -65,10 +63,10 @@
 <meta name="twitter:image" content="https://dalam.web.id/img/nixos-mirror.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/nixos-mirror.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/nixos-mirror.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/nixos-mirror.webp">
   <meta property="og:image:alt" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS"></head>
 <body>
     <div class="wrap">
         <header class="site">
@@ -93,7 +91,7 @@ BACKUP="/etc/nix/nix.conf.backup.$(date +%F)"
 echo "[INFO] Membackup konfigurasi lama ke $BACKUP ..."
 sudo cp "$CONF_FILE" "$BACKUP"
 echo "[INFO] Menambahkan substituter mirror..."
-sudo tee -a "$CONF_FILE" >/dev/null <<'EOF'
+sudo tee -a "$CONF_FILE" &gt;/dev/null &lt;&lt;'EOF'
 # Tambahan substituter mirror cepat
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
 trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= mirror.sjtu.edu.cn-1:PASTE_PUBLIC_KEY_HERE
@@ -118,8 +116,8 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
         </footer>
     </div>
     <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
     <script>
     (function(){
         const toast = document.getElementById('toast');
@@ -136,7 +134,7 @@ echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CO
     })();
     </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>
