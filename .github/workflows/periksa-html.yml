@@ -25,9 +25,6 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Buat folder mini/
-        run: mkdir -p mini
-
       - name: Validasi HTML & SEO (hanya yang gagal)
         run: |
           TANGGAL=$(date +%Y%m%d)
