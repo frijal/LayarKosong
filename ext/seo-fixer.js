@@ -10,36 +10,33 @@ async function fixSEO() {
     let content = fs.readFileSync(file, 'utf8');
     const $ = load(content);
     let changed = false;
+
+    // 1. Ambil Judul (Hanya deklarasi SEKALI di sini)
     const title = $('title').text() || 'Layar Kosong';
-    
-// --- FITUR AUTO-IMAGE-ALT ---
+
+    // 2. Pastikan tag dasar ada
+    if ($('html').length === 0) continue; 
+
+    // --- FITUR AUTO-IMAGE-ALT ---
     $('img').each((i, el) => {
       const alt = $(el).attr('alt');
       const src = $(el).attr('src');
 
-      // Cek jika alt tidak ada, kosong, atau hanya berisi spasi
       if (!alt || alt.trim() === "") {
         let newAlt = "";
-        
         if (src) {
-          // Ambil nama file dari src, misal: "pemandangan-balikpapan.jpg" -> "pemandangan balikpapan"
           const fileName = path.basename(src, path.extname(src));
           newAlt = fileName.replace(/[-_]/g, ' ');
         } else {
           newAlt = `Gambar untuk ${title}`;
-        }    
-
-// Set alt text baru: "Nama File - Judul Artikel" agar SEO makin kuat
+        }
         $(el).attr('alt', `${newAlt} - ${title}`);
         changed = true;
         console.log(`📸 Fixed Alt Image di ${file}: ${newAlt}`);
       }
     });
-    
-    // 1. Pastikan tag dasar ada
-    if ($('html').length === 0) continue; // Skip jika bukan file HTML lengkap
 
-    // 2. Tambahkan meta charset & lang jika hilang
+    // --- STRUKTUR DASAR ---
     if (!$('meta[charset]').length) {
       $('head').prepend('<meta charset="UTF-8">');
       changed = true;
@@ -49,8 +46,7 @@ async function fixSEO() {
       changed = true;
     }
 
-    // 3. Auto-fix Meta Tags (Default Values)
-    const title = $('title').text() || 'Layar Kosong Article';
+    // --- AUTO-FIX META TAGS ---
     const checkAndAddMeta = (selector, tag) => {
       if ($(selector).length === 0) {
         $('head').append(tag);
@@ -62,13 +58,14 @@ async function fixSEO() {
     checkAndAddMeta('meta[property="og:title"]', `<meta property="og:title" content="${title}">`);
     checkAndAddMeta('link[rel="canonical"]', `<link rel="canonical" href="https://dalam.web.id/${file}">`);
 
-    // 4. Perbaikan Heading (H1)
+    // --- PERBAIKAN HEADING (H1) ---
     const h1 = $('h1');
     if (h1.length === 0) {
-      $('main').prepend(`<h1>${title}</h1>`);
+      // Masukkan ke <main> kalau ada, kalau tidak ada ke <body>
+      const target = $('main').length ? $('main') : $('body');
+      target.prepend(`<h1>${title}</h1>`);
       changed = true;
     } else if (h1.length > 1) {
-      // Jika H1 lebih dari satu, ubah yang kedua dan seterusnya menjadi H2
       h1.each((i, el) => {
         if (i > 0) {
           el.tagName = 'h2';
@@ -84,4 +81,7 @@ async function fixSEO() {
   }
 }
 
-fixSEO();
+fixSEO().catch(err => {
+  console.error("❌ Error running SEO Fixer:", err);
+  process.exit(1);
+});
