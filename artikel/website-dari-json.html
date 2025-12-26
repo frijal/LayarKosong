@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat Website dari Data .json</title>
@@ -248,8 +246,8 @@
     }
     </script>
 <meta itemprop="image" content="https://dalam.web.id/img/website-dari-json.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
 <meta name="ai:prompt_hint" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
 
 <meta property="article:author" content="Frijal">
@@ -258,10 +256,10 @@
 
 <meta property="og:url" content="https://dalam.web.id/artikel/website-dari-json.html">
     <meta property="article:published_time" content="2025-12-23T09:54:08.804+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/website-dari-json.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/website-dari-json.webp">
   <meta property="og:image:alt" content="Cara Membuat Website dari Data .json">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Cara Membuat Website dari Data .json"></head>
 <body>
     <!-- Header Halaman -->
     <header class="main-header">
@@ -275,7 +273,7 @@
         <div class="container">
             <article class="article-content">
 
-                <h1>Membuat Website dari Data .json? Tentu Saja Bisa!</h1>
+                <h2>Membuat Website dari Data .json? Tentu Saja Bisa!</h2>
 <div id="iposbrowser"></div>
 
                 <p>Tentu saja bisa. Membuat website yang datanya berasal dari file <code>.json</code> bukan hanya mungkin, tetapi juga merupakan <strong>praktik standar dan sangat umum</strong> dalam pengembangan web modern.</p>
@@ -360,20 +358,20 @@
                 <p>Ini adalah langkah intinya. Dengan JavaScript (kita sebut <code>script.js</code>), Anda akan membaca file <code>.json</code>, mengolah datanya, dan mengubahnya menjadi elemen HTML.</p>
 <pre><code>
 // Menunggu hingga semua elemen HTML dimuat
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () =&gt; {
 
     // Ambil elemen wadah dari HTML
     const container = document.getElementById('blog-posts-container');
     // Gunakan 'fetch' untuk mengambil data dari file data.json
     // 'fetch' adalah cara modern JS untuk meminta data
     fetch('data.json')
-        .then(response => response.json()) // Ubah respons teks menjadi format JSON yang bisa dibaca JS
-        .then(data => {
+        .then(response =&gt; response.json()) // Ubah respons teks menjadi format JSON yang bisa dibaca JS
+        .then(data =&gt; {
             // 'data' sekarang berisi semua objek dari file .json
 
             let htmlContent = ''; // Siapkan variabel string kosong untuk menampung HTML
             // Lakukan perulangan (looping) untuk setiap post di dalam data.posts
-            data.posts.forEach(post => {
+            data.posts.forEach(post =&gt; {
 
                 // Buat string HTML untuk setiap post menggunakan template literal (backtick ``)
                 // Ini seperti "mencetak" data ke dalam cetakan HTML
@@ -388,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Setelah semua HTML terkumpul, masukkan ke dalam wadah di halaman web
             container.innerHTML = htmlContent;
         })
-        .catch(error => {
+        .catch(error =&gt; {
             // Penanganan jika file .json gagal dimuat
             console.error('Error memuat data:', error);
             container.innerHTML = '&lt;p&gt;Maaf, gagal memuat artikel.&lt;/p&gt;';
@@ -400,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <ul>
                     <li><strong>Pemisahan Logika</strong>: Anda bisa mengubah total desain (HTML/CSS) tanpa menyentuh satu baris pun konten di <code>.json</code>.</li>
                     <li><strong>Manajemen Konten Mudah</strong>: Untuk menambah artikel baru, Anda hanya perlu mengedit file <code>.json</code> yang sederhana, tidak perlu menyentuh kode HTML yang rumit.</li>
-                    <li><strong>Dinamis & Skalabel</strong>: Anda bisa memiliki ribuan item di file <code>.json</code>, dan JavaScript akan secara otomatis membuatkan halamannya untuk Anda.</li>
+                    <li><strong>Dinamis &amp; Skalabel</strong>: Anda bisa memiliki ribuan item di file <code>.json</code>, dan JavaScript akan secara otomatis membuatkan halamannya untuk Anda.</li>
                     <li><strong>Satu Sumber Data</strong>: File <code>.json</code> yang sama bisa digunakan untuk website, aplikasi mobile (Android/iOS), atau layanan lainnya, memastikan konsistensi data di semua platform.</li>
                 </ul>
                 <p>Jadi, ya, tidak hanya bisa, tapi ini adalah cara yang sangat direkomendasikan untuk membangun web di era modern!</p>
@@ -417,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </footer>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>
