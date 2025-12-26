@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
   <!-- 🌐 Metadata SEO Lengkap -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif." />
-  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa-audio, Linux, terminal, shell script, tutorial" />
-  <meta name="author" content="Fakhrul Rijal" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa-audio, Linux, terminal, shell script, tutorial">
+  <meta name="author" content="Fakhrul Rijal">
 
   <!-- 🔗 Canonical -->
-  <link rel="canonical" href="https://dalam.web.id/artikel/gabung-video-tanpa-audio.html" />
+  <link rel="canonical" href="https://dalam.web.id/artikel/gabung-video-tanpa-audio.html">
 
   <!-- 🧭 Open Graph -->
 
   <!-- 🐦 Twitter Card -->
 
   <!-- 🎨 Favicon -->
-  <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
 
   <title>Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio</title>
 
@@ -155,9 +153,9 @@
       font-size: 1.3rem;
     }
   </style>
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
   <meta itemprop="image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2010-09-13T00:45:47.275+00:00">
 <meta name="ai:summary" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
 <meta name="ai:prompt_hint" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
@@ -167,10 +165,10 @@
 <meta name="twitter:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/gabung-video-tanpa-audio.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
   <meta property="og:image:alt" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio"></head>
 <body>
 
   <header>
@@ -198,7 +196,7 @@
 
 rm -f daftar.txt
 for f in *.mp4; do
-  echo "file '$PWD/$f'" >> daftar.txt
+  echo "file '$PWD/$f'" &gt;&gt; daftar.txt
 done
 
 ffmpeg -f concat -safe 0 -i daftar.txt -c copy hasil_gabungan.mp4
@@ -247,16 +245,16 @@ done
 if [ "$REENCODE_NEEDED" = true ]; then
   for f in "${FILES[@]}"; do
     ffmpeg -y -i "$f" -an -c:v libx264 -preset veryfast -crf 23 "temp_$f"
-    echo "file 'temp_$f'" >> daftar.txt
+    echo "file 'temp_$f'" &gt;&gt; daftar.txt
   done
 else
   for f in "${FILES[@]}"; do
-    echo "file '$PWD/$f'" >> daftar.txt
+    echo "file '$PWD/$f'" &gt;&gt; daftar.txt
   done
 fi
 
 ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
-rm -f daftar.txt temp_*.mp4 2>/dev/null || true
+rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
 echo "✨ Selesai! 📽️ Video tanpa-audio hasil: $OUTPUT"
       </code></pre>
       <button class="copy" onclick="copyCode('script2')">📋 Salin Script</button>
@@ -283,7 +281,8 @@ echo "✨ Selesai! 📽️ Video tanpa-audio hasil: $OUTPUT"
     }
   </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
