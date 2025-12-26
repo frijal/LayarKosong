@@ -98,6 +98,9 @@ jobs:
 
           echo "]" >> $JSON
 
+      - name: Run Auto-Fix SEO
+        run: npm run fixseo
+
       - name: Linting HTML
         run: |
           TANGGAL=$(date +%Y%m%d)
@@ -105,10 +108,23 @@ jobs:
           echo "🧼 Linting HTML dengan HTMLHint..." >> $TXT
           npm run lint >> $TXT || echo "⚠️ Ada peringatan dari HTMLHint." >> $TXT
 
-      - name: Commit dan push laporan ke repo
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add mini/
-          git commit -m "📝 Update laporan validasi JSON $(date +'%Y-%m-%d')" || echo "Tidak ada perubahan untuk commit."
-          git push origin HEAD
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "🤖 chore: auto-fix SEO dan struktur HTML"
+          branch: auto-fix-seo-bot
+          title: "📝 Perbaikan SEO Otomatis - $(date +'%Y-%m-%d')"
+          body: |
+            Halo @frijal! 🤖
+            
+            Saya telah memproses artikel terbaru dan menemukan beberapa hal yang perlu diperbaiki secara otomatis:
+            - Perbaikan Meta Tags (OG, Twitter, Description)
+            - Penyesuaian Struktur Heading (H1/H2)
+            - Validasi HTML Dasar
+            
+            Silakan periksa perubahan di tab "Files changed" sebelum melakukan merge.
+          labels: |
+            automated-pr
+            seo-optimized
+          delete-branch: true
