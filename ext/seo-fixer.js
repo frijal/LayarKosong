@@ -83,7 +83,7 @@ async function fixSEO() {
 
     // --- 5. SOCIAL MEDIA SHARE BUTTONS (Otomatis) ---
     // Hapus share lama jika ada agar tidak duplikat
-//    $('.share-buttons-auto').remove();
+    $('.share-buttons-auto').remove();
 
   //  const shareHtml = `
 //    <div class="share-buttons-auto" style="margin: 2rem 0; padding: 1rem; border-top: 1px solid #eee;">
