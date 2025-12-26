@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
 <!-- ===== Basic Meta ===== -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Workflow Otomatis Build & Generate Site Files di GitHub Pages</title>
+<title>Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</title>
 
 <meta name="news_keywords" content="GitHub Pages, GitHub Actions, workflow YAML, build otomatis, CI/CD, static site, automation, DevOps">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -120,9 +118,9 @@ footer {
 
 </style>
 
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
 <meta name="ai:summary" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
 <meta name="ai:prompt_hint" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Workflow Otomatis Build & Generate Site Files di GitHub Pages","datePublished":"2025-05-01T23:20:38.176+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/build-workflow.html","image":"https://dalam.web.id/thumbnail.webp","keywords":[],"description":"Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions."}</script>
@@ -132,13 +130,13 @@ footer {
 <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/build-workflow.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/build-workflow.webp">
-  <meta property="og:image:alt" content="Workflow Otomatis Build & Generate Site Files di GitHub Pages">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/build-workflow.webp">
+  <meta property="og:image:alt" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages"></head>
 <body>
 <main>
-  <h1>⚙️ Workflow Otomatis Build & Generate Site Files di GitHub Pages</h1>
+  <h1>⚙️ Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</h1>
 <div id="iposbrowser"></div>
 
 
@@ -153,7 +151,7 @@ footer {
     dan memastikan hasil akhir siap untuk di-deploy di cabang <code>gh-pages</code> atau <code>main</code>.
   </p>
 
-  <h2>📂 Struktur & Lokasi File</h2>
+  <h2>📂 Struktur &amp; Lokasi File</h2>
   <p>
     Simpan file berikut di direktori:
   </p>
@@ -194,13 +192,13 @@ jobs:
       - name: Generate site files
         run: node tools/generate.js
 
-      - name: 3.9 Summary & Links
+      - name: 3.9 Summary &amp; Links
         run: node tools/summary.js
 
       - name: Copy artikel.json ke folder artikel/
         run: cp -f artikel.json artikel/
 
-      - name: Commit & Push hasil build
+      - name: Commit &amp; Push hasil build
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -225,7 +223,7 @@ jobs:
     4️⃣ <b>Copy artikel.json</b> — Menyalin metadata hasil build ke folder <code>artikel/</code> agar mudah diakses oleh front-end.
   </p>
   <p>
-    5️⃣ <b>Commit & Push otomatis</b> — Menyimpan semua hasil build ke repositori, lengkap dengan pesan commit yang rapi.
+    5️⃣ <b>Commit &amp; Push otomatis</b> — Menyimpan semua hasil build ke repositori, lengkap dengan pesan commit yang rapi.
   </p>
 
   <h2>💡 Tips</h2>
@@ -249,9 +247,10 @@ jobs:
 
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 
 
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apa Itu rel=noreferrer dalam HTML?</title>
@@ -129,11 +127,11 @@
       color: #555;
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2016-01-02T23:20:38.198+00:00">
 
   <meta itemprop="image" content="https://dalam.web.id/img/noreferrer.webp">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Penjelasan lengkap rel=noreferrer dalam HTML: arti, fungsi, perbedaan dengan noopener, kapan digunakan, dampaknya tanpa target=_blank, tabel keputusan cepat, dan contoh flowchart.">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Penjelasan lengkap rel=noreferrer dalam HTML: arti, fungsi, perbedaan dengan noopener, kapan digunakan, dampaknya tanpa target=_blank, tabel keputusan cepat, dan contoh flowchart.">
 <meta name="ai:prompt_hint" content="Penjelasan lengkap rel=noreferrer dalam HTML: arti, fungsi, perbedaan dengan noopener, kapan digunakan, dampaknya tanpa target=_blank, tabel keputusan cepat, dan contoh flowchart.">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Apa Itu rel=noreferrer dalam HTML?","datePublished":"2016-01-02T23:20:38.198+00:00","articleSection":"🖥️ Teknologi Web, AI & Umum","mainEntityOfPage":"https://dalam.web.id/artikel/noreferrer.html","image":"https://dalam.web.id/img/noreferrer.webp","keywords":[],"description":"Penjelasan lengkap rel=noreferrer dalam HTML: arti, fungsi, perbedaan dengan noopener, kapan digunakan, dampaknya tanpa target=_blank, tabel keputusan cepat, dan contoh flowchart."}</script>
@@ -141,10 +139,10 @@
 <meta name="twitter:image" content="https://dalam.web.id/img/noreferrer.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/noreferrer.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/noreferrer.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/noreferrer.webp">
   <meta property="og:image:alt" content="Apa Itu rel=noreferrer dalam HTML?">
   <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Apa Itu rel=noreferrer dalam HTML?"></head>
 <body>
 <header>
   <h1>Apa Itu <code>rel="noreferrer"</code> dalam HTML?</h1>
@@ -190,7 +188,7 @@
   </p>
   <h2>5. Tabel Perbandingan</h2>
   <table>
-    <tr>
+    <tbody><tr>
       <th>Atribut</th>
       <th>Menyembunyikan Referer</th>
       <th>Putus <code>window.opener</code></th>
@@ -208,19 +206,18 @@
       <td>✅ Ya (di mayoritas browser)</td>
       <td>Privasi + Keamanan</td>
     </tr>
-  </table>
+  </tbody></table>
   <h2>6. Tabel Keputusan Cepat</h2>
   <table>
-    <tr><th>Kondisi Link</th><th>Atribut yang Disarankan</th></tr>
+    <tbody><tr><th>Kondisi Link</th><th>Atribut yang Disarankan</th></tr>
     <tr><td>Link internal (domain sama)</td><td>Tidak perlu / <code>noopener</code></td></tr>
     <tr><td>Eksternal aman (Google, GitHub, Wikipedia)</td><td><code>noopener</code></td></tr>
     <tr><td>Eksternal tidak tepercaya</td><td><code>noopener noreferrer</code></td></tr>
     <tr><td>Privasi penting (situs sensitif, kompetitor)</td><td><code>noreferrer</code></td></tr>
     <tr><td>Kalau ragu</td><td><code>noopener noreferrer</code> (best practice)</td></tr>
-  </table>
+  </tbody></table>
   <h2>7. Flowchart Tekstual</h2>
-  <pre>
-  Apakah link ke domain sendiri?
+  <pre>  Apakah link ke domain sendiri?
    └─ Ya → Tidak perlu rel khusus
    └─ Tidak →
        Apakah pakai target="_blank"?
@@ -231,9 +228,9 @@
         └─ Tidak → cukup noopener
   </pre>
     <div id="lightbox">
-    <button class="nav-btn prev">&#10094;</button>
+    <button class="nav-btn prev">❮</button>
     <img src="" alt="preview">
-    <button class="nav-btn next">&#10095;</button>
+    <button class="nav-btn next">❯</button>
   </div>
   <div id="pesbukdiskus"></div>
 </main>
@@ -257,7 +254,7 @@ document.querySelector('.next').onclick=()=>showLightbox((current+1)%gallery.len
 lightbox.onclick=(e)=>{if(e.target===lightbox)lightbox.style.display='none';};
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+</body></html>
