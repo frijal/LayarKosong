@@ -11,13 +11,24 @@ async function fixSEO() {
     const $ = load(content);
     let changed = false;
 
-    // 1. Ambil Judul (Hanya deklarasi SEKALI di sini)
     const title = $('title').text() || 'Layar Kosong';
 
-    // 2. Pastikan tag dasar ada
     if ($('html').length === 0) continue; 
 
-    // --- FITUR AUTO-IMAGE-ALT ---
+    // --- FITUR 1: AUTO-DEFER SCRIPT ---
+    $('script[src]').each((i, el) => {
+      const isAsync = $(el).attr('async') !== undefined;
+      const isDefer = $(el).attr('defer') !== undefined;
+
+      // Jika tidak ada async DAN tidak ada defer, tambahkan defer
+      if (!isAsync && !isDefer) {
+        $(el).attr('defer', ''); // Menghasilkan defer="" yang aman secara struktur
+        changed = true;
+        console.log(`⚡ Auto-Defer script di ${file}: ${$(el).attr('src')}`);
+      }
+    });
+
+    // --- FITUR 2: AUTO-IMAGE-ALT ---
     $('img').each((i, el) => {
       const alt = $(el).attr('alt');
       const src = $(el).attr('src');
@@ -36,7 +47,7 @@ async function fixSEO() {
       }
     });
 
-    // --- STRUKTUR DASAR ---
+    // --- FITUR 3: STRUKTUR DASAR & META ---
     if (!$('meta[charset]').length) {
       $('head').prepend('<meta charset="UTF-8">');
       changed = true;
@@ -46,7 +57,6 @@ async function fixSEO() {
       changed = true;
     }
 
-    // --- AUTO-FIX META TAGS ---
     const checkAndAddMeta = (selector, tag) => {
       if ($(selector).length === 0) {
         $('head').append(tag);
@@ -58,10 +68,9 @@ async function fixSEO() {
     checkAndAddMeta('meta[property="og:title"]', `<meta property="og:title" content="${title}">`);
     checkAndAddMeta('link[rel="canonical"]', `<link rel="canonical" href="https://dalam.web.id/${file}">`);
 
-    // --- PERBAIKAN HEADING (H1) ---
+    // --- FITUR 4: HEADING OPTIMIZATION ---
     const h1 = $('h1');
     if (h1.length === 0) {
-      // Masukkan ke <main> kalau ada, kalau tidak ada ke <body>
       const target = $('main').length ? $('main') : $('body');
       target.prepend(`<h1>${title}</h1>`);
       changed = true;
@@ -75,8 +84,9 @@ async function fixSEO() {
     }
 
     if (changed) {
+      // Simpan dengan format yang rapi
       fs.writeFileSync(file, $.html(), 'utf8');
-      console.log(`✅ Fixed: ${file}`);
+      console.log(`✅ Berhasil dioptimasi: ${file}`);
     }
   }
 }
