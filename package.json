@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "type": "module",
   "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator dengan Google Gemini",
-
   "scripts": {
     "generate-rss": "node ext/rss.js",
     "ci-generate-xml-rss": "node ext/generator.js && node ext/rss.js",
@@ -11,15 +10,13 @@
     "ci-fix-meta-image": "node ext/inject-meta.js",
     "ci-all": "npm run ci-generate-xml-rss && npm run ci-fix-meta-image && npm run ci-screenshot",
     "check-deps": "depcheck",
-    "generate-ai-api": "node ext/generate-ai-api.js"
-
+    "generate-ai-api": "node ext/generate-ai-api.js",
+    "lint": "htmlhint \"artikel/**/*.html\""
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frijal/layarkosong.git"
   },
-
   "keywords": [
     "rss",
     "feed-generator",
@@ -31,19 +28,16 @@
     "github-actions",
     "blog-tools"
   ],
-
   "author": "Fakhrul Rijal <frijal@gmail.com>",
   "license": "Unlicense",
   "homepage": "https://dalam.web.id",
-
   "engines": {
     "node": ">=20.0.0"
   },
-
   "devDependencies": {
-    "depcheck": "^1.4.7"
+    "depcheck": "^1.4.7",
+    "htmlhint": "^1.1.4"
   },
-
   "dependencies": {
     "@google/genai": "^0.15.0",
     "@xmldom/xmldom": "^0.9.8",
