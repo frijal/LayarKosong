@@ -356,7 +356,7 @@ function sendToWA() {
 
   // Validasi sederhana: Nama dan Pesan wajib diisi
   if(!name || !message) {
-    alert("Nama dan Pesan jangan dikosongkan ya, Bosku!");
+    alert("isi aja semua kolomnya Bro... 😀");
     return;
   }
 
