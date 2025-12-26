@@ -1,11 +1,6 @@
 name: 📋 Validasi SEO & Struktur HTML Lengkap
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'artikel/*.html'
+on:  
   workflow_dispatch:
 
 jobs:
@@ -21,6 +16,9 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+      
+      - name: Install Dependencies
+        run: npm install
 
       - name: Validasi HTML & SEO (hanya yang gagal)
         run: |
@@ -105,7 +103,7 @@ jobs:
           TANGGAL=$(date +%Y%m%d)
           TXT="mini/laporan-validasi-$TANGGAL.txt"
           echo "🧼 Linting HTML dengan HTMLHint..." >> $TXT
-          htmlhint "**/*.html" >> $TXT || echo "⚠️ Ada peringatan dari HTMLHint." >> $TXT
+          npm run lint >> $TXT || echo "⚠️ Ada peringatan dari HTMLHint." >> $TXT
 
       - name: Commit dan push laporan ke repo
         run: |
