@@ -558,14 +558,26 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.8rem;
-  margin-left: -30px; /* Letakkan di dalam bar */
-  opacity: 0.5;
-  transition: 0.2s;
+  font-size: 0.9rem;
+  margin-left: -30px;
+  opacity: 1 !important; /* Warna asli jreng */
+
+  /* Hilangkan display:none bawaan CSS, biar dikontrol JS */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  z-index: 5;
 }
 
-.clear-btn:hover {
-  opacity: 1;
+/* Biar pas JS manggil 'block', dia jadi flex yang rapi */
+.clear-btn[style*="display: block"] {
+  display: inline-flex !important;
+}
+
+/* Efek interaktif dikit pas ditekan, biar gak kaku */
+.clear-btn:active {
+  transform: scale(0.8);
 }
 
 /* Responsive: Sembunyikan search di layar sangat kecil atau ubah gayanya */
