@@ -107,7 +107,7 @@ function renderHero() {
   <div class="hero-content">
   <span class="hero-cat">${h.category}</span>
   <h1 class="hero-title">${h.title}</h1>
-  <p style="opacity: 0.9; max-width: 800px;">
+  <p class="hero-summary">
   ${h.summary.substring(0, 180)}...
   <strong style="color:var(--secondary);">Baca Selengkapnya →</strong>
   </p>
