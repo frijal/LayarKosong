@@ -178,6 +178,13 @@
    color: var(--primary); /* Di Light Mode birunya solid */
  }
 
+ .hero-summary {
+   opacity: 0.9;
+   max-width: 800px;
+   color: #fff;
+   display: block; /* Muncul di desktop */
+ }
+
  /* Efek sedikit zoom saat gambar di-hover (biar makin interaktif) */
  .hero:hover .hero-slide {
    filter: brightness(1.1);
@@ -683,6 +690,18 @@
     align-items: stretch;   /* Membuat elemen melebar memenuhi lebar layar */
     width: 100%;
     gap: 12px;              /* Jarak antar tumpukan */
+  }
+
+  .hero-title {
+    font-size: 1.6rem !important; /* Kecilkan dikit judulnya biar gak menutupi gambar */
+  }
+
+  .hero-summary {
+    display: none; /* Menghilang sat-set! */
+  }
+
+  .hero-content {
+    padding: 20px; /* Perkecil padding di mobile biar judulnya lebih lega */
   }
 
   .archive-box-header {
