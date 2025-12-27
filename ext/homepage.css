@@ -32,24 +32,68 @@
 
  .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
 
- /* HEADER & GLASS EFFECT */
+ /* --- HEADER & GLASS EFFECT OPTIMIZED --- */
  header {
-   position: sticky; top: 0; z-index: 1000;
-   background: var(--glass);
-   backdrop-filter: blur(12px);
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+   background: rgba(255, 255, 255, 0.7); /* Transparansi lebih halus */
+   backdrop-filter: blur(15px) saturate(180%); /* Blur lebih dalam & warna lebih hidup */
+   -webkit-backdrop-filter: blur(15px) saturate(180%);
    border-bottom: 1px solid var(--border);
-   padding: 15px 0;
+   padding: 10px 0; /* Perkecil padding agar tidak terlalu tinggi */
+   transition: all 0.3s ease;
  }
- .nav-box { display: flex; justify-content: space-between; align-items: center; }
- .logo { text-decoration: none; font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
- .logo span { color: var(--secondary); }
- .logo:hover { opacity: 0.9; text-decoration: none; }
+ /* Tambahkan sedikit shadow saat scroll agar terpisah dari konten */
+ header.scrolled {
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+   padding: 8px 0;
+ }
+
+ .nav-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 20px;
+ }
+ .logo {
+   text-decoration: none;
+   font-family: 'Montserrat';
+   font-weight: 800;
+   font-size: 1.4rem; /* Sedikit dikecilkan agar elegan */
+   color: var(--primary);
+   letter-spacing: -0.5px;
+ }
+
+ .logo span {
+   color: var(--secondary);
+ }
+
+ .logo:hover {
+   opacity: 0.8;
+   text-decoration: none;
+ }
 
  .search-bar {
    background: var(--bg-body);
    border: 1px solid var(--border);
-   padding: 8px 15px; border-radius: 20px;
-   color: var(--text-main); outline: none; width: 250px;
+   padding: 8px 18px;
+   border-radius: 25px; /* Lebih membulat pro */
+   color: var(--text-main);
+   outline: none;
+   width: 220px; /* Lebar standar */
+   font-size: 0.9rem;
+   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ /* Efek saat input diklik/fokus */
+ .search-bar:focus {
+   width: 280px; /* Memanjang halus saat diketik */
+   border-color: var(--primary);
+   box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1); /* Glow tipis */
+   background: #fff;
  }
 
  /* FEATURED HERO */
@@ -504,22 +548,33 @@
   align-items: center;
 }
 
+/* Tombol hapus pencarian ❌ */
 .clear-btn {
-  position: absolute;
-  right: 12px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem; /* Ukuran disesuaikan agar pas dengan bar pencarian */
-  padding: 0;
-  line-height: 1;
+  font-size: 0.8rem;
+  margin-left: -30px; /* Letakkan di dalam bar */
+  opacity: 0.5;
   transition: 0.2s;
 }
 
 .clear-btn:hover {
-  transform: scale(1.1);
+  opacity: 1;
 }
 
+/* Responsive: Sembunyikan search di layar sangat kecil atau ubah gayanya */
+@media (max-width: 600px) {
+  .search-bar {
+    width: 150px;
+  }
+  .search-bar:focus {
+    width: 180px;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+}
 @media (max-width: 768px) {
   .nav-box { flex-direction: column; gap: 15px; }
   ..header-tools {
