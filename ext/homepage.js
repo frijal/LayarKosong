@@ -98,41 +98,28 @@ function renderHero() {
 
   heroEl.classList.remove('skeleton');
 
-  // Render semua slide
+  // Render semua slide sebagai link utuh
   wrapper.innerHTML = heroData.map((h, i) => `
-  <div class="hero-slide" style="background-image: url('${h.img}')">
+  <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
   <div class="hero-overlay"></div>
   <div class="hero-content">
   <span class="hero-cat">${h.category}</span>
-  <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">${h.title}</h1>
-  <p style="opacity: 0.9;">${h.summary.substring(0, 160)}...</p>
+  <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">
+  ${h.title}
+  </h1>
+  <p style="opacity: 0.9; max-width: 800px;">
+  ${h.summary.substring(0, 180)}...
+  <strong style="color:var(--secondary);">Baca Selengkapnya →</strong>
+  </p>
+  </div>
+  </a>
+  `).join('');
 
-  <div class="hero-actions">
-  <div class="hero-dots">
-  ${heroData.map((_, dotIdx) => `
-    <div class="dot ${dotIdx === i ? 'active' : ''}"
-    onclick="goToHero(${dotIdx})">
-    </div>
-    `).join('')}
-    </div>
-    <a href="${h.url}" class="pill active" style="text-decoration:none;">Baca Artikel</a>
-    </div>
-    </div>
-    </div>
-    `).join('');
+  // Fitur Pause on Hover tetap kita pertahankan biar enak bacanya
+  heroEl.addEventListener('mouseenter', stopHeroSlider);
+  heroEl.addEventListener('mouseleave', startHeroSlider);
 
-    // --- FITUR PAUSE ON HOVER ---
-    heroEl.addEventListener('mouseenter', () => {
-      console.log("Slider Paused"); // Debug biar Mas tahu fiturnya jalan
-      stopHeroSlider();
-    });
-
-    heroEl.addEventListener('mouseleave', () => {
-      console.log("Slider Resumed");
-      startHeroSlider();
-    });
-
-    updateHeroPosition();
+  updateHeroPosition();
 }
 
 function updateHeroPosition() {
@@ -141,15 +128,14 @@ function updateHeroPosition() {
   const offset = currentHeroIndex * 100;
   wrapper.style.transform = `translateX(-${offset}%)`;
 
-  document.querySelectorAll('.hero-slide').forEach((slide, idx) => {
+  const slides = document.querySelectorAll('.hero-slide');
+  slides.forEach((slide, idx) => {
     slide.classList.toggle('active', idx === currentHeroIndex);
   });
 }
 
 function startHeroSlider() {
-  // Pastikan tidak ada double timer
   if (heroTimer) clearInterval(heroTimer);
-
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
     updateHeroPosition();
