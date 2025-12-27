@@ -23,20 +23,44 @@ async function fixSEO() {
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
     
-    // --- 1. VALIDASI STRUKTUR ---
+    // --- 1. VALIDASI STRUKTUR (Ditingkatkan) ---
     const tagsToWatch = ['section', 'div', 'article', 'main', 'header', 'footer'];
     let fileErrors = [];
+
     tagsToWatch.forEach(tag => {
-      const openCount = (rawContent.match(new RegExp(`<${tag}(\\s|>|$)`, 'gi')) || []).length;
-      const closeCount = (rawContent.match(new RegExp(`</${tag}>`, 'gi')) || []).length;
-      if (openCount !== closeCount) fileErrors.push(`Tag <${tag}> pincang! (${openCount} vs ${closeCount})`);
+      // Menghitung jumlah tag pembuka dan penutup
+      const openMatches = [...rawContent.matchAll(new RegExp(`<${tag}(\\s|>|$)`, 'gi'))];
+      const closeMatches = [...rawContent.matchAll(new RegExp(`</${tag}>`, 'gi'))];
+
+      const openCount = openMatches.length;
+      const closeCount = closeMatches.length;
+
+      if (openCount !== closeCount) {
+        // Logika cerdas: Cari baris pertama di mana ketidakseimbangan ini mulai terdeteksi
+        const lines = rawContent.split('\n');
+        let lineTarget = 0;
+
+        // Cari baris dari tag yang paling mencurigakan
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].toLowerCase().includes(`<${tag}`) || lines[i].toLowerCase().includes(`</${tag}>`)) {
+            lineTarget = i + 1;
+            break; // Ambil kemunculan pertama untuk investigasi awal
+          }
+        }
+
+        const selisih = Math.abs(openCount - closeCount);
+        const pesan = `Tag <${tag}> tidak seimbang! (Buka: ${openCount}, Tutup: ${closeCount}). Kurang ${selisih} tag ${openCount > closeCount ? 'penutup' : 'pembuka'}. Mulai cek sekitar baris ${lineTarget}.`;
+        fileErrors.push(pesan);
+      }
     });
 
     if (fileErrors.length > 0) {
-      console.error(`❌ STRUKTUR RUSAK: ${file}`);
+      // Tampilkan di terminal dengan warna merah (biar kamu nggak kelewatan)
+      console.error(`\x1b[31m❌ STRUKTUR RUSAK: ${file}\x1b[0m`);
+
       isiLaporan += `❌ ERROR: ${file}\n` + fileErrors.map(e => `   - ${e}`).join('\n') + '\n\n';
       totalErrors++;
-      continue; 
+      continue; // Langsung lompat ke file berikutnya, amankan desain HTML!
     }
 
     const $ = load(rawContent, { decodeEntities: false });
@@ -61,14 +85,22 @@ async function fixSEO() {
         finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
     }
 
-    // --- 4. INJEKSI JSON-LD ---
-    $('script[type="application/ld+json"]').remove();
+    // --- 4. INJEKSI JSON-LD (Mode Sapu Bersih) ---
+
+    // 1. Cari semua script LD-JSON di seluruh dokumen (head maupun body) dan hapus!
+    $('script').each((i, el) => {
+      if ($(el).attr('type') === 'application/ld+json') {
+        $(el).remove();
+      }
+    });
+
+    // 2. Siapkan object JSON-LD kamu
     const jsonLD = {
       "@context": "https://schema.org/",
       "@type": "Article",
       "mainEntityOfPage": { "@type": "WebPage", "@id": finalArticleUrl },
       "headline": title,
-      "description": $('meta[name="description"]').attr('content') || `Baca di Layar Kosong: ${title}`,
+      "description": $('meta[name="description"]').attr('content') || `kunjungi juga: ${title}`,
       "image": { "@type": "ImageObject", "url": finalImage, "width": "1200", "height": "675" },
       "author": { "@type": "Person", "name": "Fakhrul Rijal" },
       "publisher": {
@@ -79,7 +111,16 @@ async function fixSEO() {
       "datePublished": finalDate,
       "dateModified": today
     };
-    $('head').append(`\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`);
+
+    // 3. Masukkan ke dalam <head>. Kita pakai prepend supaya dia ada di urutan atas <head>
+    const scriptTag = `\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`;
+
+    if ($('head').length) {
+      $('head').prepend(scriptTag);
+    } else {
+      // Jika ternyata file HTML-mu tidak punya tag <head> (kasus langka), kita buatkan
+      $('html').prepend(`<head>${scriptTag}</head>`);
+    }
 
     // --- 5. SOCIAL MEDIA SHARE BUTTONS (Otomatis) ---
     // Hapus share lama jika ada agar tidak duplikat

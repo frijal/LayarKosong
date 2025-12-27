@@ -1,53 +1,65 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dalam.web.id/artikel/FFMpeg-memotong-durasi-video.html"
+  },
+  "headline": "FFmpeg: Cara Memotong Durasi Video via Command Line (Presisi & Cepat)",
+  "description": "Tutorial lengkap memotong video dengan FFmpeg secara presisi tanpa kehilangan kualitas. Pelajari teknik -ss, -to, dan -c copy untuk workflow editing video super cepat.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp",
+    "width": "1200",
+    "height": "675"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Fakhrul Rijal"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Layar Kosong",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dalam.web.id/logo.png",
+      "width": "48",
+      "height": "48"
+    }
+  },
+  "datePublished": "2011-05-24",
+  "dateModified": "2025-12-27"
+}
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FFmpeg: Cara Memotong Durasi Video via Command Line (Presisi & Cepat)</title>
-    <meta name="description" content="Tutorial lengkap memotong video dengan FFmpeg secara presisi tanpa kehilangan kualitas. Pelajari teknik -ss, -to, dan -c copy untuk workflow editing video super cepat." />
-    <meta name="news_keywords" content="ffmpeg, ffmpeg cut video, trim video cli, memotong video tanpa re-encoding, tutorial ffmpeg indonesia, command line video editing" />
-    <meta name="prompt-hint" content="Panduan teknis penggunaan FFmpeg untuk memotong durasi video dengan metode stream copy." />
-    <link rel="canonical" href="https://dalam.web.id/artikel/FFMpeg-memotong-durasi-video.html" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>FFmpeg: Cara Memotong Durasi Video via Command Line (Presisi &amp; Cepat)</title>
+    <meta name="description" content="Tutorial lengkap memotong video dengan FFmpeg secara presisi tanpa kehilangan kualitas. Pelajari teknik -ss, -to, dan -c copy untuk workflow editing video super cepat.">
+    <meta name="news_keywords" content="ffmpeg, ffmpeg cut video, trim video cli, memotong video tanpa re-encoding, tutorial ffmpeg indonesia, command line video editing">
+    <meta name="prompt-hint" content="Panduan teknis penggunaan FFmpeg untuk memotong durasi video dengan metode stream copy.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/FFMpeg-memotong-durasi-video.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="FFmpeg: Cara Memotong Durasi Video via CLI" />
-    <meta property="og:description" content="Potong video dalam hitungan detik tanpa re-encoding menggunakan FFmpeg." />
-    <meta property="og:url" content="https://dalam.web.id/artikel/FFMpeg-memotong-durasi-video.html" />
-    <meta property="og:image" content="https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp" />
-    <meta property="article:published_time" content="2011-05-24T03:00:00.000+00:00" />
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="FFmpeg: Cara Memotong Durasi Video via CLI">
+    <meta property="og:description" content="Potong video dalam hitungan detik tanpa re-encoding menggunakan FFmpeg.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/FFMpeg-memotong-durasi-video.html">
+    <meta property="og:image" content="https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp">
+    <meta property="article:published_time" content="2011-05-24T03:00:00.000+00:00">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@frijal" />
-    <meta name="twitter:title" content="Memotong Durasi Video Pakai FFmpeg (CLI)" />
-    <meta name="twitter:image" content="https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@frijal">
+    <meta name="twitter:title" content="Memotong Durasi Video Pakai FFmpeg (CLI)">
+    <meta name="twitter:image" content="https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "FFmpeg: Cara Memotong Durasi Video via Command Line",
-      "image": ["https://dalam.web.id/img/FFMpeg-memotong-durasi-video.webp"],
-      "datePublished": "2011-05-24T11:00:00+08:00",
-      "author": {
-        "@type": "Person",
-        "name": "Fakhrul Rijal",
-        "url": "https://dalam.web.id"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Layar Kosong",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://dalam.web.id/favicon.ico"
-        }
-      }
-    }
-    </script>
+    
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -194,8 +206,8 @@
             .terminal-box { padding: 20px; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
 
 <main>
@@ -204,7 +216,7 @@
 <div id="iposbrowser"></div>
         <div class="meta-line">
             <span><i class="fa-solid fa-user-ninja"></i> Fakhrul Rijal</span>
-            <span><i class="fa-solid fa-folder-open"></i> Multimedia & Editing</span>
+            <span><i class="fa-solid fa-folder-open"></i> Multimedia &amp; Editing</span>
             <span><i class="fa-solid fa-calendar"></i> 2011 (Updated 2025)</span>
         </div>
     </header>
@@ -244,7 +256,7 @@
             </div>
             <div class="desc-item">
                 <strong>-c copy</strong><br>
-                **Kuncian utama!** Parameter ini menyuruh FFmpeg menyalin stream audio & video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
+                **Kuncian utama!** Parameter ini menyuruh FFmpeg menyalin stream audio &amp; video tanpa melakukan proses encoding ulang. Hasilnya? Proses selesai dalam milidetik dan kualitas tidak berkurang 1% pun.
             </div>
             <div class="desc-item">
                 <strong>output.mp4</strong><br>
@@ -283,7 +295,8 @@ function copyCode(){
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
