@@ -49,7 +49,7 @@ function initSite() {
   renderSidebar();
   renderFeed();
 
-  // Search Logic
+  // Search Logic (Versi Selalu Muncul Tombol ❌)
   const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearSearch');
   const heroSection = document.getElementById('hero');
@@ -57,20 +57,16 @@ function initSite() {
   searchInput.addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
 
-    // Munculkan/Sembunyikan tombol silang
-    clearBtn.style.display = val.length > 0 ? 'block' : 'none';
+    // HAPUS: clearBtn.style.display = val.length > 0 ? 'block' : 'none';
 
     if (val.length > 0) {
-      // Sedang mencari: Sembunyikan Hero & Matikan Slider
       if (heroSection) heroSection.style.display = 'none';
       stopHeroSlider();
     } else {
-      // Input kosong: Munculkan Hero & Jalankan Slider lagi
-      if (heroSection) heroSection.style.display = 'block'; // Pakai block/flex sesuai layout awal
+      if (heroSection) heroSection.style.display = 'block';
       startHeroSlider();
     }
 
-    // Filter Data
     displayedData = allData.filter(i =>
     i.title.toLowerCase().includes(val) ||
     i.summary.toLowerCase().includes(val)
@@ -82,15 +78,14 @@ function initSite() {
 
   clearBtn.addEventListener('click', () => {
     searchInput.value = '';
-    clearBtn.style.display = 'none';
+    // HAPUS: clearBtn.style.display = 'none';
 
-    // Kembalikan ke kondisi normal
     if (heroSection) heroSection.style.display = 'block';
     displayedData = [...allData];
 
     renderFeed(true);
     renderSidebar();
-    startHeroSlider(); // Jalankan slider lagi
+    startHeroSlider();
     searchInput.focus();
   });
 
