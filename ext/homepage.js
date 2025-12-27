@@ -93,43 +93,58 @@ function initSite() {
 
 function renderHero() {
   if (heroData.length === 0) return;
-  const h = heroData[currentHeroIndex];
-  const el = document.getElementById('hero');
+  const heroEl = document.getElementById('hero');
+  const wrapper = document.getElementById('heroSliderWrapper');
 
-  el.classList.remove('skeleton');
-  el.style.opacity = '0.9';
+  heroEl.classList.remove('skeleton');
 
-  setTimeout(() => {
-    el.style.backgroundImage = `url('${h.img}')`;
-    el.innerHTML = `
-    <div class="hero-overlay"></div>
-    <div class="hero-content" style="width: 100%; max-width: 100%;">
-    <span class="hero-cat">${h.category}</span>
-    <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">${h.title}</h1>
-    <p>${h.summary.substring(0, 160)}...</p>
+  // Kita isi semua slide sekaligus
+  wrapper.innerHTML = heroData.map((h, i) => `
+  <div class="hero-slide" style="background-image: url('${h.img}')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+  <span class="hero-cat">${h.category}</span>
+  <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">${h.title}</h1>
+  <p style="opacity: 0.9;">${h.summary.substring(0, 160)}...</p>
 
-    <div class="hero-actions">
-    <div class="hero-dots">
-    ${heroData.map((_, i) => `
-      <div class="dot ${i === currentHeroIndex ? 'active' : ''}"
-      onclick="goToHero(${i})">
-      </div>
-      `).join('')}
-      </div>
-      <a href="${h.url}" class="pill active" style="text-decoration:none;">Baca Artikel</a>
-      </div>
-      </div>
-      `;
-      el.style.opacity = '1';
-  }, 200);
+  <div class="hero-actions">
+  <div class="hero-dots">
+  ${heroData.map((_, dotIdx) => `
+    <div class="dot ${dotIdx === i ? 'active' : ''}"
+    onclick="goToHero(${dotIdx})">
+    </div>
+    `).join('')}
+    </div>
+    <a href="${h.url}" class="pill active" style="text-decoration:none;">Baca Artikel</a>
+    </div>
+    </div>
+    </div>
+    `).join('');
+
+    updateHeroPosition();
+}
+
+function updateHeroPosition() {
+  const wrapper = document.getElementById('heroSliderWrapper');
+  if (!wrapper) return;
+
+  // Geser container berdasarkan index (0, 100%, 200%, dst)
+  const offset = currentHeroIndex * 100;
+  wrapper.style.transform = `translateX(-${offset}%)`;
+
+  // Beri class 'active' ke slide yang sedang tampil untuk animasi teks
+  const slides = document.querySelectorAll('.hero-slide');
+  slides.forEach((slide, idx) => {
+    slide.classList.toggle('active', idx === currentHeroIndex);
+  });
 }
 
 function startHeroSlider() {
   stopHeroSlider();
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
-    renderHero();
-  }, 6000); // Ganti tiap 6 detik
+    updateHeroPosition();
+  }, 6000); // 6 detik
 }
 
 function stopHeroSlider() {
@@ -139,7 +154,7 @@ function stopHeroSlider() {
 function goToHero(index) {
   stopHeroSlider();
   currentHeroIndex = index;
-  renderHero();
+  updateHeroPosition(); // Hanya geser, jangan render ulang HTML
   startHeroSlider();
 }
 
