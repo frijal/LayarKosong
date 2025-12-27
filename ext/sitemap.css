@@ -461,18 +461,16 @@ body.dark-mode .toc-title a {
 .toc-title a.visited {
   color: var(--text-muted-light);
   font-weight: 400;
+  text-decoration: line-through;
   opacity: 0.8;
 }
-.toc-title a.visited:hover {
-  text-decoration: line-through;
-}
+
 body.dark-mode .toc-title a.visited {
   color: var(--text-muted-dark);
   font-weight: 400;
-}
-body.dark-mode .toc-title a.visited:hover {
   text-decoration: line-through;
 }
+
 .toc-date {
   font-size: 0.8rem;
   color: var(--text-muted-light);
