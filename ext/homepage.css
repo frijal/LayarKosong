@@ -278,14 +278,14 @@
    border-top: 1px solid var(--border);
    padding: 25px 0; /* Dipangkas drastis dari 60px/40px */
    margin-top: 30px; /* Jarak dari konten atas diperkecil sedikit */
-   /* Official brand colors */
-   .page-footer .fa-facebook { color: var(--facebook); }
-   .page-footer .fa-square-github { color: var(--github); }
-   .page-footer .fa-linkedin { color: var(--linkedin); }
-   .page-footer .fa-telegram { color: var(--telegram); }
-   .page-footer .fa-threads { color: var(--threads); }
-   .page-footer .fa-youtube { color: var(--youtube); }
  }
+ /* Official brand colors — hanya untuk footer social */
+ .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
+ .page-footer .footer-social .fa-square-github   { color: var(--github); }
+ .page-footer .footer-social .fa-linkedin        { color: var(--linkedin); }
+ .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
+ .page-footer .footer-social .fa-threads         { color: var(--threads); }
+ .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
 
  .footer-content {
    display: grid;
