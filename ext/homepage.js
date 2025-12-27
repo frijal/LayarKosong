@@ -106,9 +106,7 @@ function renderHero() {
   <div class="hero-overlay"></div>
   <div class="hero-content">
   <span class="hero-cat">${h.category}</span>
-  <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">
-  ${h.title}
-  </h1>
+  <h1 class="hero-title">${h.title}</h1>
   <p style="opacity: 0.9; max-width: 800px;">
   ${h.summary.substring(0, 180)}...
   <strong style="color:var(--secondary);">Baca Selengkapnya →</strong>

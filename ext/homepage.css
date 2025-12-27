@@ -31,6 +31,13 @@
      --github: #ffffff;
      --threads: #ffffff;
    }
+   .hero-content h1 {
+     /* Efek pendaran biru neon yang halus */
+     text-shadow:
+     0 0 10px rgba(0, 176, 237, 0.5),
+     0 0 20px rgba(0, 176, 237, 0.2);
+     filter: saturate(1.2); /* Bikin birunya makin 'jreng' */
+   }
  }
 
  * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -162,6 +169,14 @@
    padding-bottom: 60px;
  }
  .hero-cat { background: var(--secondary); color: black; padding: 4px 12px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
+
+ .hero-title {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 2.5rem;
+   margin: 15px 0;
+   line-height: 1.2;
+   color: var(--primary); /* Di Light Mode birunya solid */
+ }
 
  /* Efek sedikit zoom saat gambar di-hover (biar makin interaktif) */
  .hero:hover .hero-slide {
@@ -662,8 +677,8 @@
   .btn-header {
     padding: 6px 10px;
   }
-  .nav-box { flex-direction: column; gap: 15px; }
-  ..header-tools {
+  .nav-box { flex-direction: column; gap: 15px; padding: 15px 20px; }
+  .header-tools {
     flex-direction: column; /* Membuat filter dan search bertumpuk vertikal */
     align-items: stretch;   /* Membuat elemen melebar memenuhi lebar layar */
     width: 100%;
@@ -672,8 +687,7 @@
 
   .archive-box-header {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Tahun dan Bulan bagi dua sejajar di mobile */
-    width: 100%;
+  grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%;
   }
 
   .archive-box-header select {
