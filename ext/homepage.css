@@ -55,43 +55,50 @@
  /* FEATURED HERO */
  .hero {
    position: relative;
-   overflow: hidden; /* Penting: supaya gambar yang di samping tidak kelihatan */
+   overflow: hidden;
    height: 450px;
    border-radius: 20px;
+   cursor: pointer; /* Kasih tanda kalau area ini bisa diklik */
  }
 
  .hero-slider-wrapper {
    display: flex;
    height: 100%;
    width: 100%;
-   transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Efek sliding pro */
+   transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
    will-change: transform;
  }
 
  .hero-slide {
-   min-width: 100%; /* Tiap slide dipaksa selebar container */
+   min-width: 100%;
    height: 100%;
    background-size: cover;
    background-position: center;
    position: relative;
    display: flex;
    align-items: flex-end;
+   text-decoration: none; /* Hapus garis bawah link */
+   color: white;
  }
 
  .hero-overlay {
    position: absolute; inset: 0;
    background: linear-gradient(transparent, rgba(0,0,0,0.8));
  }
- .hero-content { position: relative; padding: 40px; color: white; max-width: 700px; }
+ .hero-content {
+   position: relative;
+   padding: 40px;
+   width: 100%;
+   z-index: 2;
+   /* Kita hilangkan margin-bottom karena sudah tidak ada tombol di bawahnya */
+   padding-bottom: 60px;
+ }
  .hero-cat { background: var(--secondary); color: black; padding: 4px 12px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
 
- /* Container untuk tombol dan dots */
- .hero-actions {
-   display: flex;
-   align-items: center;
-   justify-content: flex-end; /* Paksa ke kanan */
-   gap: 15px;
-   margin-top: 25px;
+ /* Efek sedikit zoom saat gambar di-hover (biar makin interaktif) */
+ .hero:hover .hero-slide {
+   filter: brightness(1.1);
+   transition: 0.3s;
  }
 
  /* Animasi Teks */
@@ -104,41 +111,6 @@
    animation: slideTextUp 0.8s ease forwards;
  }
 
- .hero-dots {
-   display: flex;
-   gap: 8px;
-   align-items: center;
- }
-
- .dot {
-   width: 8px;
-   height: 8px;
-   background: rgba(255,255,255,0.3);
-   border-radius: 50%;
-   cursor: pointer;
-   transition: all 0.3s ease;
- }
-
- .dot.active {
-   background: var(--secondary);
-   transform: scale(1.2);
-   width: 20px; /* Opsional: buat dot aktif agak lonjong biar keren */
-   border-radius: 4px;
- }
-
- /* Supaya tombol tidak terlalu lebar */
- .hero-actions .pill {
-   white-space: nowrap;
-   padding: 10px 25px;
- }
-
- /* Supaya konten hero tetap responsif di HP */
- @media (max-width: 600px) {
-   .hero-actions {
-     justify-content: center; /* Di HP mending di tengah biar rapi */
-     flex-wrap: wrap;
-   }
- }
 
  /* FILTER & ARCHIVE BAR */
  .toolbar {
