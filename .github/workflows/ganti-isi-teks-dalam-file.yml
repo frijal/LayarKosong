@@ -22,11 +22,11 @@ on:
       folder:
         description: "Folder target (kosongkan untuk root)"
         required: false
-        default: "."
+        default: ""
       globs:
         description: "Ekstensi file (koma-separated)"
         required: false
-        default: "**/*.html,**/*.txt,**/*.md"
+        default: ""
 
 permissions:
   contents: write
