@@ -294,6 +294,39 @@
  .card-title { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
  .card-excerpt { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; }
 
+ #loadMore {
+ border: none;
+ cursor: pointer;
+ font-family: 'Montserrat', sans-serif;
+ font-weight: 700;
+ letter-spacing: 0.5px;
+ padding: 12px 40px; /* Masukkan padding ke sini biar rapi */
+ border-radius: 30px;
+ transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+ box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+ /* Warna Default (Biru Primary) */
+ background: var(--primary);
+ color: white;
+ }
+
+ #loadMore:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 10px 15px -3px rgba(0, 176, 237, 0.3);
+ filter: brightness(1.1);
+ }
+
+ /* Class khusus saat artikel habis */
+ #loadMore.is-top {
+ background: var(--secondary);
+ color: #1a1a1a;
+ box-shadow: 0 4px 6px -1px rgba(255, 191, 0, 0.2);
+ }
+
+ #loadMore.is-top:hover {
+ box-shadow: 0 10px 15px -3px rgba(255, 191, 0, 0.4);
+ }
+
  /* SIDEBAR STICKY */
  aside { position: sticky; top: 90px; height: fit-content; }
  .sidebar-box {
