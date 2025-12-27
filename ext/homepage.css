@@ -85,12 +85,11 @@
    border: 1px solid var(--header-border);
    backdrop-filter: blur(4px);
    color: inherit; /* Ikut warna teks utama */
-   padding: 8px 18px;
-   border-radius: 25px; /* Lebih membulat pro */
+   padding: 8px 35px 8px 15px; /* Padding kanan (35px) lebih besar biar teks gak nabrak ❌ */
+   border-radius: 20px; /* Lebih membulat pro */
    outline: none;
-   width: 220px; /* Lebar standar */
+   width: 200px; /* Lebar standar */
    font-size: 0.9rem;
-   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
  }
 
  /* Efek saat input diklik/fokus */
@@ -551,25 +550,30 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 /* Tombol hapus pencarian ❌ */
 .clear-btn {
+  position: absolute;
+  right: 10px; /* Jarak pas dari tepi kanan bar */
   background: none;
   border: none;
   cursor: pointer;
   font-size: 0.9rem;
-  margin-left: -30px;
-  opacity: 1 !important; /* Warna asli jreng */
-
-  /* Hilangkan display:none bawaan CSS, biar dikontrol JS */
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
+  display: inline-flex !important;
+  opacity: 1 !important;
   z-index: 5;
+  padding: 0;
+  margin: 0; /* Hapus margin-left negatif karena sudah pakai absolute */
 }
-
+/* Responsif: Biar gak kegedean di HP Balikpapan */
+@media (max-width: 480px) {
+  .search-bar {
+    width: 160px; /* Lebar pas-pasan untuk placeholder di layar kecil */
+    font-size: 0.85rem;
+  }
+}
 /* Biar pas JS manggil 'block', dia jadi flex yang rapi */
 .clear-btn[style*="display: block"] {
   display: inline-flex !important;
