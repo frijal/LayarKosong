@@ -679,10 +679,12 @@
 }
 @media (max-width: 768px) {
   .btn-header span {
-    display: none; /* Hanya tampilkan ikon di HP */
+    display: inline; /* Menampilkan kembali teks */
+    font-size: 0.75rem; /* Perkecil sedikit font-nya supaya muat */
   }
   .btn-header {
-    padding: 6px 10px;
+    padding: 6px 8px; /* Rapatkan padding agar hemat ruang */
+    gap: 4px; /* Rapatkan jarak ikon ke teks */
   }
   .nav-box { flex-direction: column; gap: 15px; padding: 15px 20px; }
   .header-tools {
