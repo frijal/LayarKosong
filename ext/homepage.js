@@ -236,7 +236,7 @@ function renderSidebar() {
 function renderCategories() {
   const cats = [...new Set(allData.map(i => i.category))];
   const container = document.getElementById('categoryPills');
-  container.innerHTML = '<div class="pill active" onclick="filterByCat(\'All\', this)">All</div>';
+  container.innerHTML = '<div class="pill active" onclick="filterByCat(\'All\', this)">Kategori</div>';
   cats.forEach(c => {
     container.innerHTML += `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`;
   });
