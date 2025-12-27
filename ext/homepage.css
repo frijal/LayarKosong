@@ -10,6 +10,12 @@
    --border: #e2e8f0;
    --glass: rgba(255, 255, 255, 0.8);
    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+   --facebook: #1877f2;
+   --github: #24292f;
+   --linkedin: #0a66c2;
+   --telegram: #229ed9;
+   --threads: #000000;
+   --youtube: #ff0000;
  }
 
  @media (prefers-color-scheme: dark) {
@@ -22,6 +28,8 @@
      --text-muted: #94a3b8;
      --border: #334155;
      --glass: rgba(30, 41, 59, 0.8);
+     --github: #ffffff;
+     --threads: #ffffff;
    }
  }
 
@@ -270,6 +278,13 @@
    border-top: 1px solid var(--border);
    padding: 25px 0; /* Dipangkas drastis dari 60px/40px */
    margin-top: 30px; /* Jarak dari konten atas diperkecil sedikit */
+   /* Official brand colors */
+   .page-footer .fa-facebook { color: var(--facebook); }
+   .page-footer .fa-square-github { color: var(--github); }
+   .page-footer .fa-linkedin { color: var(--linkedin); }
+   .page-footer .fa-telegram { color: var(--telegram); }
+   .page-footer .fa-threads { color: var(--threads); }
+   .page-footer .fa-youtube { color: var(--youtube); }
  }
 
  .footer-content {
