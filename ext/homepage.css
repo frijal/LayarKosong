@@ -204,21 +204,70 @@
 
  /* FILTER & ARCHIVE BAR */
  .toolbar {
-   display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;
-   align-items: center; justify-content: space-between;
+   display: flex;
+   gap: 15px;
+   margin-bottom: 30px;
+   flex-wrap: wrap;
+   align-items: center; /* Menjaga barisan pills dan dropdown sejajar vertikal */
+   justify-content: space-between;
  }
- .pills { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
+
+ .pills {
+   display: flex;
+   align-items: center; /* Kunci: Meratakan pill di dalam container-nya */
+   gap: 10px;
+   overflow-x: auto;
+   padding: 5px 0; /* Ubah padding agar seimbang atas-bawah */
+   /* Sembunyikan scrollbar di Chrome/Safari agar tidak merusak alignment vertikal */
+   -webkit-overflow-scrolling: touch;
+ }
+
+ /* Opsional: Sembunyikan scrollbar fisik agar tidak menambah tinggi elemen secara sepihak */
+ .pills::-webkit-scrollbar {
+   display: none;
+ }
+ .pills {
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+ }
+
  .pill {
-   padding: 8px 18px; border-radius: 20px; background: var(--bg-card);
-   border: 1px solid var(--border); cursor: pointer; white-space: nowrap;
-   transition: 0.3s; font-size: 0.9rem;
+   display: inline-flex; /* Gunakan inline-flex */
+   align-items: center;  /* Teks di dalam pill jadi rata tengah */
+   justify-content: center;
+   padding: 8px 18px;
+   border-radius: 20px;
+   background: var(--bg-card);
+   border: 1px solid var(--border);
+   cursor: pointer;
+   white-space: nowrap;
+   transition: 0.3s;
+   font-size: 0.9rem;
+   line-height: 1; /* Reset line-height agar tidak ada ruang sisa di bawah teks */
+   height: 38px;   /* Samakan tinggi dengan select box agar presisi */
  }
- .pill.active { background: var(--primary); color: white; border-color: var(--primary); }
- .pill:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+ .pill.active {
+   background: var(--primary);
+   color: white;
+   border-color: var(--primary);
+ }
+
+ .pill:hover {
+   transform: translateY(-2px);
+   box-shadow: var(--shadow);
+ }
 
  .archive-box select {
-   padding: 8px; border-radius: 8px; background: var(--bg-card);
-   color: var(--text-main); border: 1px solid var(--border);
+   height: 38px; /* Pastikan tinggi sama dengan .pill */
+   padding: 0 10px;
+   border-radius: 8px;
+   background: var(--bg-card);
+   color: var(--text-main);
+   border: 1px solid var(--border);
+   outline: none;
+   display: flex;
+   align-items: center;
  }
 
  /* MAIN LAYOUT */
