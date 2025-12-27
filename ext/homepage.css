@@ -263,7 +263,9 @@
 
  .pill:hover {
    transform: translateY(-2px);
-   box-shadow: var(--shadow);
+   background: var(--secondary);
+   color: black;
+   box-shadow: 0 4px 6px -1px rgba(255, 191, 0, 0.2);
  }
 
  .archive-box select {
