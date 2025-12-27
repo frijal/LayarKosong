@@ -545,7 +545,8 @@
 
 .archive-box-header {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 10px; /* Jarak antar tombol dan select */
 }
 
 .archive-box-header select {
@@ -556,6 +557,36 @@
   color: var(--text-main);
   font-size: 0.85rem;
   outline: none;
+}
+
+.btn-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-body);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-header i {
+  color: var(--primary); /* Ikon pakai warna brand Mas */
+  font-size: 0.9rem;
+}
+
+.btn-header:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-header:hover i {
+  color: #fff;
 }
 
 .search-wrapper {
@@ -619,6 +650,12 @@
   }
 }
 @media (max-width: 768px) {
+  .btn-header span {
+    display: none; /* Hanya tampilkan ikon di HP */
+  }
+  .btn-header {
+    padding: 6px 10px;
+  }
   .nav-box { flex-direction: column; gap: 15px; }
   ..header-tools {
     flex-direction: column; /* Membuat filter dan search bertumpuk vertikal */
