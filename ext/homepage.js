@@ -236,10 +236,13 @@ function renderSidebar() {
 function renderCategories() {
   const cats = [...new Set(allData.map(i => i.category))];
   const container = document.getElementById('categoryPills');
-  container.innerHTML = '<div class="pill active" onclick="filterByCat(\'All\', this)">Kategori</div>';
-  cats.forEach(c => {
-    container.innerHTML += `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`;
-  });
+
+  // Gabungkan semua dalam satu string dulu, baru masukkan ke innerHTML sekali saja
+  const pillsHTML = cats.map(c =>
+  `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`
+  ).join('');
+
+  container.innerHTML = `<div class="pill active" onclick="filterByCat('All', this)">Kategori</div>` + pillsHTML;
 }
 
 function renderArchives() {

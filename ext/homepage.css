@@ -204,12 +204,13 @@
 
  /* FILTER & ARCHIVE BAR */
  .toolbar {
+   max-width: 1200px;
+   margin: 0 auto 30px auto;
+   padding: 0 20px;
    display: flex;
-   gap: 15px;
-   margin-bottom: 30px;
-   flex-wrap: wrap;
-   align-items: center; /* Menjaga barisan pills dan dropdown sejajar vertikal */
-   justify-content: space-between;
+   flex-direction: column; /* Kita buat bertumpuk atau sejajar tergantung selera */
+   align-items: center;    /* Kunci: Membuat semua anak didalamnya (pills & archive) rata tengah */
+   gap: 20px;
  }
 
  .pills {
@@ -222,6 +223,15 @@
    -webkit-overflow-scrolling: touch;
  }
 
+ /* Kontainer yang menampung hasil renderCategories() */
+ #categoryPills {
+ display: flex;
+ justify-content: center; /* Membuat pill hasil render JS rata tengah */
+ flex-wrap: wrap;         /* Agar tidak meluber ke samping di layar kecil */
+ gap: 10px;
+ width: 100%;
+ }
+
  /* Opsional: Sembunyikan scrollbar fisik agar tidak menambah tinggi elemen secara sepihak */
  .pills::-webkit-scrollbar {
    display: none;
@@ -232,9 +242,6 @@
  }
 
  .pill {
-   display: inline-flex; /* Gunakan inline-flex */
-   align-items: center;  /* Teks di dalam pill jadi rata tengah */
-   justify-content: center;
    padding: 8px 18px;
    border-radius: 20px;
    background: var(--bg-card);
@@ -243,8 +250,9 @@
    white-space: nowrap;
    transition: 0.3s;
    font-size: 0.9rem;
-   line-height: 1; /* Reset line-height agar tidak ada ruang sisa di bawah teks */
-   height: 38px;   /* Samakan tinggi dengan select box agar presisi */
+   display: flex;
+   align-items: center;
+   justify-content: center;
  }
 
  .pill.active {
