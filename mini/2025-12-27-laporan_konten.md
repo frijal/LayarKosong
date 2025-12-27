@@ -37,6 +37,7 @@
 | 🎨 css      |     17 | ▇ |
 | 🌐 html     |      4 | ▇ |
 | 📜 js       |     43 | ▇▇ |
+| 📁 jsCadagnaHero |      1 | ▇ |
 | 📁 jsX      |      5 | ▇ |
 | 📁 jsY      |      2 | ▇ |
 | 📌 pl       |      1 | ▇ |
@@ -69,6 +70,7 @@
 | 🔑 ico      |      2 | ▇ | ,artikel,ext/icons |
 | 📁 img/jurukunci |      1 | ▇ | ,img |
 | 📜 js       |     46 | ▇▇ | ,artikel,ext,ext/icons |
+| 📁 jsCadagnaHero |      1 | ▇ | ,ext |
 | 📁 jsX      |      5 | ▇ | ,ext |
 | 📁 jsY      |      2 | ▇ | ,ext |
 | 🗂️ json     |      1 | ▇ | ,artikel |
@@ -82,4 +84,4 @@
 | 📄 txt      |     10 | ▇ | ,artikel,artikel/-,ext |
 | 🖼️ webp     |    717 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ,img |
 | 📁 woff2    |      4 | ▇ | ,ext/fontawesome-webfonts |
-| **TOTAL** |   1618 | | |
+| **TOTAL** |   1619 | | |
