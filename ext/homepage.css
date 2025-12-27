@@ -93,7 +93,7 @@
    width: 280px; /* Memanjang halus saat diketik */
    border-color: var(--primary);
    box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1); /* Glow tipis */
-   background: #fff;
+   background: var(--bg-body);
  }
 
  /* FEATURED HERO */
