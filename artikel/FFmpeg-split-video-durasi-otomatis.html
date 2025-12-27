@@ -1,13 +1,46 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dalam.web.id/artikel/FFmpeg-split-video-durasi-otomatis.html"
+  },
+  "headline": "FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀",
+  "description": "Pelajari cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://dalam.web.id/img/FFmpeg-split-video-durasi-otomatis.webp",
+    "width": "1200",
+    "height": "675"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Fakhrul Rijal"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Layar Kosong",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dalam.web.id/logo.png",
+      "width": "48",
+      "height": "48"
+    }
+  },
+  "datePublished": "2013-04-26",
+  "dateModified": "2025-12-27"
+}
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀</title>
-    <meta name="description" content="Pelajari cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien." />
-    <meta name="news_keywords" content="ffmpeg split video, bagi video otomatis, script bash ffmpeg, tutorial ffmpeg indonesia, automation video editing, ffprobe duration script" />
-    <meta name="prompt-hint" content="Panduan otomasi multimedia menggunakan FFmpeg untuk memecah file video besar menjadi durasi kecil yang seragam." />
+    <meta name="description" content="Pelajari cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.">
+    <meta name="news_keywords" content="ffmpeg split video, bagi video otomatis, script bash ffmpeg, tutorial ffmpeg indonesia, automation video editing, ffprobe duration script">
+    <meta name="prompt-hint" content="Panduan otomasi multimedia menggunakan FFmpeg untuk memecah file video besar menjadi durasi kecil yang seragam.">
 
     <link rel="canonical" href="https://dalam.web.id/artikel/FFmpeg-split-video-durasi-otomatis.html">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -23,31 +56,10 @@
     <meta name="twitter:title" content="Otomasi Split Video dengan FFmpeg">
     <meta name="twitter:image" content="https://dalam.web.id/img/FFmpeg-split-video-durasi-otomatis.webp">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "FFmpeg: Split Video Otomatis",
-      "image": ["https://dalam.web.id/img/FFmpeg-split-video-durasi-otomatis.webp"],
-      "datePublished": "2013-04-26T00:31:19+08:00",
-      "author": {
-        "@type": "Person",
-        "name": "Fakhrul Rijal",
-        "url": "https://dalam.web.id"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Layar Kosong",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://dalam.web.id/favicon.ico"
-        }
-      }
-    }
-    </script>
+    
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -203,8 +215,8 @@
             pre { font-size: 0.9rem; }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
 
 <main>
@@ -242,7 +254,7 @@ START=0
 echo "Memulai proses pemotongan durasi total: $LEN detik..."
 
 # Loop pemotongan otomatis
-while (( $(echo "$START < $LEN" | bc -l) )); do
+while (( $(echo "$START &lt; $LEN" | bc -l) )); do
   OUTPUT="part_$COUNT.mp4"
   ffmpeg -hide_banner -loglevel error -i "$INPUT" -ss $START -t $DURATION -c copy "$OUTPUT"
 
@@ -263,7 +275,7 @@ echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
         <ul>
             <li><span class="tag">ffprobe</span> — Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
             <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan `bc` agar kalkulasi waktu pemotongan tetap akurat.</li>
-            <li><span class="tag">-ss</span> & <span class="tag">-t</span> — Inilah "pisau" utamanya. `-ss` menentukan titik mulai, dan `-t` menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
+            <li><span class="tag">-ss</span> &amp; <span class="tag">-t</span> — Inilah "pisau" utamanya. `-ss` menentukan titik mulai, dan `-t` menentukan berapa lama durasi yang ingin diambil dari titik tersebut.</li>
             <li><span class="tag">-c copy</span> — Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya "dikemas ulang" ke file baru, sehingga prosesnya instan.</li>
         </ul>
     </div>
@@ -298,6 +310,7 @@ function copyCode(){
 </script>
 
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body>
-</html>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+</body></html>
