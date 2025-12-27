@@ -98,7 +98,7 @@ function renderHero() {
 
   heroEl.classList.remove('skeleton');
 
-  // Kita isi semua slide sekaligus
+  // Render semua slide
   wrapper.innerHTML = heroData.map((h, i) => `
   <div class="hero-slide" style="background-image: url('${h.img}')">
   <div class="hero-overlay"></div>
@@ -121,40 +121,51 @@ function renderHero() {
     </div>
     `).join('');
 
+    // --- FITUR PAUSE ON HOVER ---
+    heroEl.addEventListener('mouseenter', () => {
+      console.log("Slider Paused"); // Debug biar Mas tahu fiturnya jalan
+      stopHeroSlider();
+    });
+
+    heroEl.addEventListener('mouseleave', () => {
+      console.log("Slider Resumed");
+      startHeroSlider();
+    });
+
     updateHeroPosition();
 }
 
 function updateHeroPosition() {
   const wrapper = document.getElementById('heroSliderWrapper');
   if (!wrapper) return;
-
-  // Geser container berdasarkan index (0, 100%, 200%, dst)
   const offset = currentHeroIndex * 100;
   wrapper.style.transform = `translateX(-${offset}%)`;
 
-  // Beri class 'active' ke slide yang sedang tampil untuk animasi teks
-  const slides = document.querySelectorAll('.hero-slide');
-  slides.forEach((slide, idx) => {
+  document.querySelectorAll('.hero-slide').forEach((slide, idx) => {
     slide.classList.toggle('active', idx === currentHeroIndex);
   });
 }
 
 function startHeroSlider() {
-  stopHeroSlider();
+  // Pastikan tidak ada double timer
+  if (heroTimer) clearInterval(heroTimer);
+
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
     updateHeroPosition();
-  }, 6000); // 6 detik
+  }, 6000);
 }
 
 function stopHeroSlider() {
   clearInterval(heroTimer);
+  heroTimer = null;
 }
 
 function goToHero(index) {
-  stopHeroSlider();
   currentHeroIndex = index;
-  updateHeroPosition(); // Hanya geser, jangan render ulang HTML
+  updateHeroPosition();
+  // Jika user klik dot, timer akan di-reset (berhenti dulu lalu jalan lagi)
+  stopHeroSlider();
   startHeroSlider();
 }
 

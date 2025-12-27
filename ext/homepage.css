@@ -89,8 +89,8 @@
  .hero-actions {
    display: flex;
    align-items: center;
-   justify-content: flex-end;
-   gap: 20px;
+   justify-content: flex-end; /* Paksa ke kanan */
+   gap: 15px;
    margin-top: 25px;
  }
 
@@ -122,6 +122,14 @@
  .dot.active {
    background: var(--secondary);
    transform: scale(1.2);
+   width: 20px; /* Opsional: buat dot aktif agak lonjong biar keren */
+   border-radius: 4px;
+ }
+
+ /* Supaya tombol tidak terlalu lebar */
+ .hero-actions .pill {
+   white-space: nowrap;
+   padding: 10px 25px;
  }
 
  /* Supaya konten hero tetap responsif di HP */
