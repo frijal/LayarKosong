@@ -139,7 +139,7 @@ function startHeroSlider() {
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
     updateHeroPosition();
-  }, 6000);
+  }, 8000);
 }
 
 function stopHeroSlider() {
