@@ -323,14 +323,14 @@
  }
 
  .footer-social a {
- /*  color: var(--text-muted); */
+   color: var(--text-muted);
    transition: 0.3s ease;
    display: inline-flex;
    text-decoration: none;
  }
 
  .footer-social a:hover {
- /*  color: var(--primary); */
+   color: var(--primary);
    transform: translateY(-3px); /* Hover effect yang lebih halus */
  }
 
@@ -544,7 +544,7 @@
  }
 
  /* Efek Hover */
- .mini-text h4:hover::after,
+.mini-text h4:hover::after,
 .mini-text h4:hover::before {
   visibility: visible;
   opacity: 1;
@@ -632,15 +632,6 @@
     font-size: 0.85rem;
   }
 }
-/* Biar pas JS manggil 'block', dia jadi flex yang rapi */
-/*.clear-btn[style*="display: block"] {
-  display: inline-flex !important;
-} */
-
-/* Efek interaktif dikit pas ditekan, biar gak kaku */
-/*.clear-btn:active {
-  transform: scale(0.8);
-} */
 
 /* Responsive: Sembunyikan search di layar sangat kecil atau ubah gayanya */
 @media (max-width: 600px) {
