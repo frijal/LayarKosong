@@ -54,13 +54,30 @@
 
  /* FEATURED HERO */
  .hero {
-   transition: opacity 0.3s ease, transform 0.3s ease;
-   margin: 30px 0; border-radius: 20px; overflow: hidden;
-   position: relative; height: 450px; display: flex; align-items: flex-end;
-   background-size: cover; background-position: center;
-   box-shadow: var(--shadow);
-   animation: fadeIn 1s ease;
+   position: relative;
+   overflow: hidden; /* Penting: supaya gambar yang di samping tidak kelihatan */
+   height: 450px;
+   border-radius: 20px;
  }
+
+ .hero-slider-wrapper {
+   display: flex;
+   height: 100%;
+   width: 100%;
+   transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Efek sliding pro */
+   will-change: transform;
+ }
+
+ .hero-slide {
+   min-width: 100%; /* Tiap slide dipaksa selebar container */
+   height: 100%;
+   background-size: cover;
+   background-position: center;
+   position: relative;
+   display: flex;
+   align-items: flex-end;
+ }
+
  .hero-overlay {
    position: absolute; inset: 0;
    background: linear-gradient(transparent, rgba(0,0,0,0.8));
@@ -72,9 +89,19 @@
  .hero-actions {
    display: flex;
    align-items: center;
-   justify-content: flex-end; /* Geser ke kanan */
-   gap: 20px; /* Jarak antara dots dan tombol */
+   justify-content: flex-end;
+   gap: 20px;
    margin-top: 25px;
+ }
+
+ /* Animasi Teks */
+ @keyframes slideTextUp {
+   from { opacity: 0; transform: translateY(30px); }
+   to { opacity: 1; transform: translateY(0); }
+ }
+
+ .hero-slide.active .hero-content {
+   animation: slideTextUp 0.8s ease forwards;
  }
 
  .hero-dots {
