@@ -57,16 +57,20 @@ function initSite() {
   searchInput.addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
 
+    // Munculkan/Sembunyikan tombol silang
     clearBtn.style.display = val.length > 0 ? 'block' : 'none';
 
     if (val.length > 0) {
-      heroSection.style.display = 'none';
-      stopHeroSlider(); // Berhenti slider kalau lagi nyari
+      // Sedang mencari: Sembunyikan Hero & Matikan Slider
+      if (heroSection) heroSection.style.display = 'none';
+      stopHeroSlider();
     } else {
-      heroSection.style.display = 'flex';
+      // Input kosong: Munculkan Hero & Jalankan Slider lagi
+      if (heroSection) heroSection.style.display = 'block'; // Pakai block/flex sesuai layout awal
       startHeroSlider();
     }
 
+    // Filter Data
     displayedData = allData.filter(i =>
     i.title.toLowerCase().includes(val) ||
     i.summary.toLowerCase().includes(val)
@@ -79,11 +83,14 @@ function initSite() {
   clearBtn.addEventListener('click', () => {
     searchInput.value = '';
     clearBtn.style.display = 'none';
-    heroSection.style.display = 'flex';
+
+    // Kembalikan ke kondisi normal
+    if (heroSection) heroSection.style.display = 'block';
     displayedData = [...allData];
+
     renderFeed(true);
     renderSidebar();
-    startHeroSlider();
+    startHeroSlider(); // Jalankan slider lagi
     searchInput.focus();
   });
 
