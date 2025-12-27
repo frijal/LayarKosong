@@ -12,7 +12,7 @@ on:
         required: false
         default: ""
       search2:
-        description: "Set 2: Teks dicari (Hanya jalan jika Set 1 Match)"
+        description: "Set 2: Teks dicari (Hanya jika Set 1 Match)"
         required: false
         default: ""
       replace2:
@@ -22,7 +22,7 @@ on:
       folder:
         description: "Folder target (kosongkan untuk root)"
         required: false
-        default: ""
+        default: "."
       globs:
         description: "Ekstensi file (koma-separated)"
         required: false
@@ -50,50 +50,61 @@ jobs:
           R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
         run: |
-          # Memecah koma pada input globs menjadi array
           IFS="," read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
           
           for g in "${GLOBS[@]}"; do
             echo "📂 Scanning file dengan pola: $g"
             SEARCH_DIR="${TARGET:-.}"
             
-            # Find file, cegah error jika folder tidak ditemukan
             find "$SEARCH_DIR" -type f -wholename "$g" 2>/dev/null | while read -r file; do
               
               SET1_SUCCESS=false
 
               # --- PROSES SET 1 ---
               if [[ -n "$S1" ]]; then
-                # Bersihkan regex anchor untuk pengecekan literal dengan grep
                 CLEAN_CHECK_S="${S1#^}"
                 CLEAN_CHECK_S="${CLEAN_CHECK_S%\$}"
 
+                # 1. Cek apakah teks target (S1) ada
+                # 2. Cek apakah teks pengganti (R1) SUDAH ADA (Anti-Duplikat)
                 if grep -Fq "$CLEAN_CHECK_S" "$file"; then
-                  echo "  🔍 Match Set 1 di: $file"
-                  if [[ "$S1" == ^* ]]; then
-                    CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file" && SET1_SUCCESS=true
-                  elif [[ "$S1" == *\$ ]]; then
-                    CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file" && SET1_SUCCESS=true
+                  
+                  if [[ -n "$R1" ]] && grep -Fq "$R1" "$file"; then
+                    echo "  ⚠️ Skip Set 1: Teks pengganti '$R1' sudah ada di $file (Mencegah duplikat)"
+                    # Kita tetap anggap "Sukses" agar Set 2 bisa jalan jika diinginkan, 
+                    # atau ubah ke false jika Set 2 bergantung pada perubahan fisik Set 1.
+                    SET1_SUCCESS=true 
                   else
-                    perl -i -pe "s#\Q$S1\E#$R1#g" "$file" && SET1_SUCCESS=true
+                    echo "  🔍 Match Set 1 di: $file. Mengganti..."
+                    if [[ "$S1" == ^* ]]; then
+                      CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file" && SET1_SUCCESS=true
+                    elif [[ "$S1" == *\$ ]]; then
+                      CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file" && SET1_SUCCESS=true
+                    else
+                      perl -i -pe "s#\Q$S1\E#$R1#g" "$file" && SET1_SUCCESS=true
+                    fi
                   fi
                 else
                   echo "  ⏭️ Skip: Set 1 tidak ditemukan di $file"
                 fi
               else
-                # Jika S1 kosong, beri jalan untuk S2 (jika ada)
                 SET1_SUCCESS=true 
               fi
 
-              # --- PROSES SET 2 (Hanya jika Set 1 Berhasil/Match) ---
+              # --- PROSES SET 2 ---
               if [[ "$SET1_SUCCESS" == true && -n "$S2" ]]; then
-                echo "  ⏩ Melanjutkan ke Set 2 di: $file"
-                if [[ "$S2" == ^* ]]; then
-                  CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
-                elif [[ "$S2" == *\$ ]]; then
-                  CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$S2\E\$#$R2#g" "$file"
+                # Anti-duplikat untuk Set 2
+                if [[ -n "$R2" ]] && grep -Fq "$R2" "$file"; then
+                   echo "  ⚠️ Skip Set 2: Teks pengganti '$R2' sudah ada di $file"
                 else
-                  perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
+                  echo "  ⏩ Melanjutkan ke Set 2 di: $file"
+                  if [[ "$S2" == ^* ]]; then
+                    CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
+                  elif [[ "$S2" == *\$ ]]; then
+                    CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$S2\E\$#$R2#g" "$file"
+                  else
+                    perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
+                  fi
                 fi
               fi
             done
@@ -103,25 +114,20 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass update content - ${{ github.event.inputs.search }}"
+          commit-message: "chore: mass update content (with anti-duplicate check)"
           branch: "fix/mass-replace-${{ github.run_id }}"
           delete-branch: true
           title: "Mass Replace: ${{ github.event.inputs.search }}"
           body: |
-            ## 📝 Laporan Penggantian Teks
-            Otomatisasi dijalankan pada folder: `${{ github.event.inputs.folder }}`
+            ## 📝 Laporan Penggantian Teks (Mode Aman)
+            Sistem mendeteksi dan melewati file yang sudah mengandung teks pengganti untuk mencegah duplikasi.
             
-            ### Perubahan Utama (Set 1):
-            - **Cari:** `${{ github.event.inputs.search }}`
-            - **Ganti:** `${{ github.event.inputs.replace }}`
-            
-            ### Perubahan Lanjutan (Set 2):
-            - **Cari:** `${{ github.event.inputs.search2 }}`
-            - **Ganti:** `${{ github.event.inputs.replace2 }}`
-            - **Status:** Hanya dieksekusi jika Set 1 ditemukan pada file terkait.
+            ### Detail:
+            - **Set 1:** `${{ github.event.inputs.search }}` -> `${{ github.event.inputs.replace }}`
+            - **Set 2:** `${{ github.event.inputs.search2 }}` -> `${{ github.event.inputs.replace2 }}`
             
             ---
-            *Processed via GitHub Actions for Layar Kosong.*
+            *Processed via GitHub Actions.*
           labels: |
             automated-pr
             content-update
