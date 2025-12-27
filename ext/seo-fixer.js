@@ -4,9 +4,15 @@ import { glob } from 'glob';
 import path from 'path';
 
 async function fixSEO() {
-  const files = await glob('artikel/*.html');
-  let totalErrors = 0;
+  // MODIFIKASI: Cari di artikelx (untuk CI) ATAU artikel (untuk lokal)
+  const files = await glob('{artikelx,artikel}/*.html'); 
   
+  if (files.length === 0) {
+    console.log("ℹ️ Tidak ada file HTML yang ditemukan untuk diproses.");
+    return;
+  }
+
+  let totalErrors = 0;
   const today = new Date().toISOString().split('T')[0];
   const laporanPath = `mini/laporan-validasi-${today.replace(/-/g, '')}.txt`;
   const baseUrl = 'https://dalam.web.id';
@@ -23,44 +29,35 @@ async function fixSEO() {
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
     
-    // --- 1. VALIDASI STRUKTUR (Ditingkatkan) ---
+    // --- 1. VALIDASI STRUKTUR ---
     const tagsToWatch = ['section', 'div', 'article', 'main', 'header', 'footer'];
     let fileErrors = [];
 
     tagsToWatch.forEach(tag => {
-      // Menghitung jumlah tag pembuka dan penutup
       const openMatches = [...rawContent.matchAll(new RegExp(`<${tag}(\\s|>|$)`, 'gi'))];
       const closeMatches = [...rawContent.matchAll(new RegExp(`</${tag}>`, 'gi'))];
-
       const openCount = openMatches.length;
       const closeCount = closeMatches.length;
 
       if (openCount !== closeCount) {
-        // Logika cerdas: Cari baris pertama di mana ketidakseimbangan ini mulai terdeteksi
         const lines = rawContent.split('\n');
         let lineTarget = 0;
-
-        // Cari baris dari tag yang paling mencurigakan
         for (let i = 0; i < lines.length; i++) {
           if (lines[i].toLowerCase().includes(`<${tag}`) || lines[i].toLowerCase().includes(`</${tag}>`)) {
             lineTarget = i + 1;
-            break; // Ambil kemunculan pertama untuk investigasi awal
+            break;
           }
         }
-
         const selisih = Math.abs(openCount - closeCount);
-        const pesan = `Tag <${tag}> tidak seimbang! (Buka: ${openCount}, Tutup: ${closeCount}). Kurang ${selisih} tag ${openCount > closeCount ? 'penutup' : 'pembuka'}. Mulai cek sekitar baris ${lineTarget}.`;
-        fileErrors.push(pesan);
+        fileErrors.push(`Tag <${tag}> tidak seimbang! (${openCount} vs ${closeCount}). Kurang ${selisih} tag ${openCount > closeCount ? 'penutup' : 'pembuka'}. Cek sekitar baris ${lineTarget}.`);
       }
     });
 
     if (fileErrors.length > 0) {
-      // Tampilkan di terminal dengan warna merah (biar kamu nggak kelewatan)
       console.error(`\x1b[31m❌ STRUKTUR RUSAK: ${file}\x1b[0m`);
-
-      isiLaporan += `❌ ERROR: ${file}\n` + fileErrors.map(e => `   - ${e}`).join('\n') + '\n\n';
+      isiLaporan += `❌ ERROR: ${file}\n` + fileErrors.map(e => `    - ${e}`).join('\n') + '\n\n';
       totalErrors++;
-      continue; // Langsung lompat ke file berikutnya, amankan desain HTML!
+      continue; 
     }
 
     const $ = load(rawContent, { decodeEntities: false });
@@ -85,16 +82,9 @@ async function fixSEO() {
         finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
     }
 
-    // --- 4. INJEKSI JSON-LD (Mode Sapu Bersih) ---
+    // --- 4. INJEKSI JSON-LD (Sapu Bersih) ---
+    $('script[type="application/ld+json"]').remove();
 
-    // 1. Cari semua script LD-JSON di seluruh dokumen (head maupun body) dan hapus!
-    $('script').each((i, el) => {
-      if ($(el).attr('type') === 'application/ld+json') {
-        $(el).remove();
-      }
-    });
-
-    // 2. Siapkan object JSON-LD kamu
     const jsonLD = {
       "@context": "https://schema.org/",
       "@type": "Article",
@@ -112,35 +102,15 @@ async function fixSEO() {
       "dateModified": today
     };
 
-    // 3. Masukkan ke dalam <head>. Kita pakai prepend supaya dia ada di urutan atas <head>
     const scriptTag = `\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`;
+    if ($('head').length) $('head').prepend(scriptTag);
+    else $('html').prepend(`<head>${scriptTag}</head>`);
 
-    if ($('head').length) {
-      $('head').prepend(scriptTag);
-    } else {
-      // Jika ternyata file HTML-mu tidak punya tag <head> (kasus langka), kita buatkan
-      $('html').prepend(`<head>${scriptTag}</head>`);
-    }
-
-    // --- 5. SOCIAL MEDIA SHARE BUTTONS (Otomatis) ---
-    // Hapus share lama jika ada agar tidak duplikat
-    $('.share-buttons-auto').remove();
-
-  //  const shareHtml = `
-//    <div class="share-buttons-auto" style="margin: 2rem 0; padding: 1rem; border-top: 1px solid #eee;">
-//      <p style="font-weight: bold; margin-bottom: 10px;">Bagikan artikel ini:</p>
-//      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-//        <a href="https://wa.me/?text=${encodeURIComponent(title + ' ' + finalArticleUrl)}" target="_blank" style="background:#25d366; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-//        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1877f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-facebook"></i> Facebook</a>
-//        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(finalArticleUrl)}" target="_blank" style="background:#1da1f2; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-x-twitter"></i> X-Twitter</a>
-//        <a href="https://t.me/share/url?url=${encodeURIComponent(finalArticleUrl)}&text=${encodeURIComponent(title)}" target="_blank" style="background:#0088cc; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-size:14px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-//      </div>
-//    </div>`;
-
-    // Letakkan di akhir elemen <article>, <main>, atau sebelum <footer>
-//    if ($('article').length) $('article').append(shareHtml);
-//    else if ($('main').length) $('main').append(shareHtml);
-//    else $('body').append(shareHtml);
+    // --- 5. LOGIKA ANTI-LINK-BERSARANG (Pencegahan Duplikat H1) ---
+    $('h1').each((i, el) => {
+      const textOnly = $(el).text().trim();
+      $(el).html(`<a href="/" style="text-decoration:none; color:inherit;">${textOnly}</a>`);
+    });
 
     // --- 6. UPDATE META TAG & SEO ---
     const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
@@ -154,12 +124,15 @@ async function fixSEO() {
 
     // --- 7. SIMPAN FILE ---
     fs.writeFileSync(file, $.html(), 'utf8');
-    console.log(`✅ Selesai: ${baseName}`);
-    isiLaporan += `✅ FIXED: ${file} (Share Buttons & JSON-LD ditambahkan)\n`;
+    console.log(`✅ Selesai: ${file}`);
+    isiLaporan += `✅ FIXED: ${file}\n`;
   }
 
   fs.writeFileSync(laporanPath, isiLaporan, 'utf8');
-  if (totalErrors > 0) process.exit(1);
+  if (totalErrors > 0) {
+    console.error(`\n❌ Ada ${totalErrors} file rusak. Workflow dihentikan.`);
+    process.exit(1);
+  }
 }
 
 fixSEO().catch(err => { console.error("❌ Fatal Error:", err); process.exit(1); });
