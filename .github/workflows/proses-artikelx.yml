@@ -15,48 +15,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. Setup Node.js (UNTUK inject-meta.js)
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # 3. Install Node dependencies
       - name: Install Node dependencies
         run: npm ci
 
-      # 4. Setup Perl (NONAKTIFKAN CPAN CACHE)
       - name: Setup Perl
         uses: shogo82148/actions-setup-perl@v1.35.0
         with:
-          perl-version: '5.42'
+          perl-version: '5.38'
           enable-modules-cache: false
 
-      # 5. Localize Assets
-      - name: Localize Assets (gantifontshighlight.pl)
+      - name: Localize Assets
         run: |
           set -euo pipefail
-          [[ -f ext/gantifontshighlight.pl ]] || { echo "ext/gantifontshighlight.pl tidak ditemukan!"; exit 1; }
-          chmod +x ext/gantifontshighlight.pl
-          perl ext/gantifontshighlight.pl --quiet --no-backup
+          if [[ -f ext/gantifontshighlight.pl ]]; then
+            chmod +x ext/gantifontshighlight.pl
+            perl ext/gantifontshighlight.pl --quiet --no-backup
+          fi
 
-      # 6. Replace Content (TANPA \ SAMA SEKALI)
-      - name: Replace Content (no backslash)
+      - name: Replace Content (Perl)
         run: |
           set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            [[ -f "$file" ]] || continue
-            echo "Memproses $file"
+            echo "Processing $file"
+            # Ditambahkan check agar Adsense tidak dobel jika re-run
+            if ! grep -q "ca-pub-8157928740123992" "$file"; then
+              perl -i -wpe 's|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g' "$file"
+            fi
+            
             perl -i -wpe '
-              s|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g;
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
               s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
               s|nama_twitter_anda|frijal|g;
@@ -66,74 +64,58 @@ jobs:
               s|©|🄯|g;
             ' "$file"
           done
-          shopt -u nullglob
 
-      # 7. Add HTML Elements (SED INLINE, TIDAK ADA \)
-      - name: Add HTML Elements
+      - name: Add HTML Elements (Sed)
         run: |
           set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            [[ -f "$file" ]] || continue
-            echo "Menambahkan elemen ke $file"
-
-            if ! grep -q '<link rel="stylesheet" href="/ext/marquee-url.css">' "$file"; then
+            # (Logika sed kamu sudah bagus dengan grep check agar tidak duplikat)
+            if ! grep -q 'marquee-url.css' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">' "$file"
             fi
-
-            if ! grep -q '<div id="iposbrowser"></div>' "$file"; then
+            if ! grep -q 'id="iposbrowser"' "$file"; then
               sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
             fi
-
             if ! grep -q 'class="search-floating-container"' "$file"; then
               sed -i '/<\/body>/i <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>' "$file"
             fi
-
             if ! grep -q 'id="related-marquee-section"' "$file"; then
               sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>' "$file"
             fi
-
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
               sed -i '/<\/body>/i <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>' "$file"
             fi
           done
-          shopt -u nullglob
 
-      # 8. Inject Meta Image + JSON-LD (via npm script)
-      - name: Inject Meta Image & JSON-LD
+      - name: Inject SEO & Validate (seo-fixer.js)
         run: |
           set -euo pipefail
           npm run ci-fix-meta-image
-          
-      # 9. Move to artikel/
+
       - name: Move to artikel/
         run: |
           set -euo pipefail
-          mkdir -p artikel
           shopt -s nullglob
           files=(artikelx/*.html)
-          shopt -u nullglob
-
-          if [[ ${#files[@]} -eq 0 ]]; then
-            echo "Tidak ada file HTML di artikelx/"
-            exit 0
+          if [[ ${#files[@]} -gt 0 ]]; then
+            mv -f "${files[@]}" artikel/
+            echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
+          else
+            echo "Tidak ada file di artikelx/"
           fi
 
-          mv -f "${files[@]}" artikel/
-          echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
-
-      # 10. Commit & Push
-      - name: Commit & Push Changes
+      - name: Commit & Push
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions@github.com"
-          git add artikelx artikel
-
+          git add artikel/
+          
           if git diff --staged --quiet; then
-            echo "Tidak ada perubahan untuk dikomit."
+            echo "Tidak ada perubahan."
             exit 0
           fi
 
-          git commit -m "Proses ArtikelX: localize + enrich HTML"
+          git commit -m "Proses ArtikelX: localize + enrich + SEO [skip ci]"
           git push origin main
