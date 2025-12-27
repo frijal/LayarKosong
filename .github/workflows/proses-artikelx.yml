@@ -56,7 +56,7 @@ jobs:
             [[ -f "$file" ]] || continue
             echo "Memproses $file"
             perl -i -wpe '
-              s|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g;
+              s|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>|g;
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
               s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
               s|nama_twitter_anda|frijal|g;
@@ -68,13 +68,7 @@ jobs:
           done
           shopt -u nullglob
 
-      # 7. Inject Meta Image + JSON-LD (via npm script)
-      - name: Inject Meta Image & JSON-LD
-        run: |
-          set -euo pipefail
-          npm run ci-fix-meta-image
-
-      # 8. Add HTML Elements (SED INLINE, TIDAK ADA \)
+      # 7. Add HTML Elements (SED INLINE, TIDAK ADA \)
       - name: Add HTML Elements
         run: |
           set -euo pipefail
@@ -84,7 +78,7 @@ jobs:
             echo "Menambahkan elemen ke $file"
 
             if ! grep -q '<link rel="stylesheet" href="/ext/marquee-url.css">' "$file"; then
-              sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />' "$file"
+              sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">' "$file"
             fi
 
             if ! grep -q '<div id="iposbrowser"></div>' "$file"; then
@@ -96,15 +90,21 @@ jobs:
             fi
 
             if ! grep -q 'id="related-marquee-section"' "$file"; then
-              sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>' "$file"
+              sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>' "$file"
             fi
 
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
-              sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>' "$file"
+              sed -i '/<\/body>/i <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>' "$file"
             fi
           done
           shopt -u nullglob
 
+      # 8. Inject Meta Image + JSON-LD (via npm script)
+      - name: Inject Meta Image & JSON-LD
+        run: |
+          set -euo pipefail
+          npm run ci-fix-meta-image
+          
       # 9. Move to artikel/
       - name: Move to artikel/
         run: |
