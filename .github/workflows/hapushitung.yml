@@ -47,7 +47,7 @@ jobs:
           DATE=$(date +'%Y-%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
 
-          FOLDERS=("artikel" "img" "ext" "api")
+          FOLDERS=("artikel" "img" "ext")
           MAX_BLOCKS=20
 
           declare -A ext_emoji=(
