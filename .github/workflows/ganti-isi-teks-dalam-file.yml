@@ -10,17 +10,17 @@ on:
       replace:
         description: "Set 1: Teks pengganti"
         required: false
-        default: ''
+        default: ""
       search2:
-        description: "Set 2: Teks dicari (Opsional)"
+        description: "Set 2: Teks dicari (Hanya jalan jika Set 1 Match)"
         required: false
         default: ""
       replace2:
-        description: "Set 2: Teks pengganti (Opsional)"
+        description: "Set 2: Teks pengganti"
         required: false
         default: ""
       folder:
-        description: "Folder target"
+        description: "Folder target (kosongkan untuk root)"
         required: false
         default: ""
       globs:
@@ -30,7 +30,7 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write # Wajib ada untuk bikin PR
+  pull-requests: write
 
 jobs:
   replace-process:
@@ -50,62 +50,78 @@ jobs:
           R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
         run: |
+          # Memecah koma pada input globs menjadi array
           IFS="," read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
           
           for g in "${GLOBS[@]}"; do
-            echo "📂 Scanning file: $g"
-            # Perbaikan find: menggunakan -wholename agar globbing jalan dengan benar
-            find "$TARGET" -type f -wholename "$g" 2>/dev/null | while read -r file; do
+            echo "📂 Scanning file dengan pola: $g"
+            SEARCH_DIR="${TARGET:-.}"
+            
+            # Find file, cegah error jika folder tidak ditemukan
+            find "$SEARCH_DIR" -type f -wholename "$g" 2>/dev/null | while read -r file; do
               
-              # PROSES SET 1
+              SET1_SUCCESS=false
+
+              # --- PROSES SET 1 ---
               if [[ -n "$S1" ]]; then
-                if [[ "$S1" == ^* ]]; then
-                  CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file"
-                elif [[ "$S1" == *\$ ]]; then
-                  CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file"
+                # Bersihkan regex anchor untuk pengecekan literal dengan grep
+                CLEAN_CHECK_S="${S1#^}"
+                CLEAN_CHECK_S="${CLEAN_CHECK_S%\$}"
+
+                if grep -Fq "$CLEAN_CHECK_S" "$file"; then
+                  echo "  🔍 Match Set 1 di: $file"
+                  if [[ "$S1" == ^* ]]; then
+                    CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file" && SET1_SUCCESS=true
+                  elif [[ "$S1" == *\$ ]]; then
+                    CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file" && SET1_SUCCESS=true
+                  else
+                    perl -i -pe "s#\Q$S1\E#$R1#g" "$file" && SET1_SUCCESS=true
+                  fi
                 else
-                  perl -i -pe "s#\Q$S1\E#$R1#g" "$file"
+                  echo "  ⏭️ Skip: Set 1 tidak ditemukan di $file"
                 fi
+              else
+                # Jika S1 kosong, beri jalan untuk S2 (jika ada)
+                SET1_SUCCESS=true 
               fi
 
-              # PROSES SET 2
-              if [[ -n "$S2" ]]; then
+              # --- PROSES SET 2 (Hanya jika Set 1 Berhasil/Match) ---
+              if [[ "$SET1_SUCCESS" == true && -n "$S2" ]]; then
+                echo "  ⏩ Melanjutkan ke Set 2 di: $file"
                 if [[ "$S2" == ^* ]]; then
                   CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
                 elif [[ "$S2" == *\$ ]]; then
-                  CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R2#g" "$file"
+                  CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$S2\E\$#$R2#g" "$file"
                 else
                   perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
                 fi
               fi
-              
-              echo "  ✏️  Processed: $file"
             done
           done
 
       - name: "Create Pull Request"
         uses: peter-evans/create-pull-request@v5
         with:
-          # Disarankan pakai GITHUB_TOKEN bawaan saja jika tidak butuh trigger workflow lain
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass update content (Set 1: ${{ github.event.inputs.search }})"
-          branch: "fix/mass-replace-${{ github.run_id }}" # Branch unik tiap kali jalan
+          commit-message: "chore: mass update content - ${{ github.event.inputs.search }}"
+          branch: "fix/mass-replace-${{ github.run_id }}"
           delete-branch: true
           title: "Mass Replace: ${{ github.event.inputs.search }}"
           body: |
-            ## 📝 Deskripsi Perubahan
-            Melakukan penggantian teks otomatis pada folder `${{ github.event.inputs.folder }}`.
-
-            ### Set 1:
+            ## 📝 Laporan Penggantian Teks
+            Otomatisasi dijalankan pada folder: `${{ github.event.inputs.folder }}`
+            
+            ### Perubahan Utama (Set 1):
             - **Cari:** `${{ github.event.inputs.search }}`
             - **Ganti:** `${{ github.event.inputs.replace }}`
-
-            ### Set 2 (Jika diisi):
+            
+            ### Perubahan Lanjutan (Set 2):
             - **Cari:** `${{ github.event.inputs.search2 }}`
             - **Ganti:** `${{ github.event.inputs.replace2 }}`
-
+            - **Status:** Hanya dieksekusi jika Set 1 ditemukan pada file terkait.
+            
             ---
-            *Otomatis dibuat oleh GitHub Actions.*
+            *Processed via GitHub Actions for Layar Kosong.*
           labels: |
             automated-pr
             content-update
