@@ -323,14 +323,14 @@
  }
 
  .footer-social a {
-   color: var(--text-muted);
+ /*  color: var(--text-muted); */
    transition: 0.3s ease;
    display: inline-flex;
    text-decoration: none;
  }
 
  .footer-social a:hover {
-   color: var(--primary);
+ /*  color: var(--primary); */
    transform: translateY(-3px); /* Hover effect yang lebih halus */
  }
 
