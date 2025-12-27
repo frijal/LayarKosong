@@ -89,7 +89,6 @@
    object-fit: contain;
    /* Sedikit sentuhan supaya ikon tidak kaku */
    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-   transform: rotate(15deg); /* Efek miring dikit biar playful */
    flex-shrink: 0; /* Mencegah ikon gepeng kalau ruang sempit */
    transition: transform 0.3s ease;
  }
