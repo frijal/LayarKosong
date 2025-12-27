@@ -166,15 +166,17 @@ function renderFeed(reset = false) {
   // Ambil semua judul yang sedang mejeng di slider Hero
   const titlesInHero = heroData.map(h => h.title);
 
-  const items = displayedData
-  .filter(item => {
-    // Jika Hero tampil, jangan tampilkan artikel yang sudah ada di slider Hero
+  // 1. Simpan semua hasil filter ke dalam variabel agar bisa dihitung totalnya
+  const filteredItems = displayedData.filter(item => {
     if (isHeroVisible && titlesInHero.includes(item.title)) return false;
     return true;
-  })
-  .slice(0, limit);
+  });
 
-  items.forEach(item => {
+  // 2. Ambil item yang mau ditampilkan sesuai limit
+  const itemsToDisplay = filteredItems.slice(0, limit);
+
+  // 3. Render artikel ke HTML
+  itemsToDisplay.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
     <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='thumbnail.webp'">
@@ -193,6 +195,31 @@ function renderFeed(reset = false) {
     </div>
     `;
   });
+
+  // --- LOGIC DINAMIS TOMBOL LOAD MORE / KEMBALI KE ATAS ---
+  const loadMoreBtn = document.getElementById('loadMore');
+
+  if (loadMoreBtn) {
+    if (limit >= filteredItems.length) {
+      // MODE: KEMBALI KE ATAS
+      loadMoreBtn.innerHTML = '↑ Kembali ke Atas';
+      loadMoreBtn.classList.add('is-top'); // Panggil style amber dari CSS
+
+      loadMoreBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    } else {
+      // MODE: MUAT LAGI
+      loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
+      loadMoreBtn.classList.remove('is-top'); // Balik ke style biru
+
+      loadMoreBtn.onclick = () => {
+        limit += 6;
+        renderFeed();
+        renderSidebar();
+      };
+    }
+  }
 }
 
 // ... (Fungsi renderSidebar, renderCategories, renderArchives, dsb tetap sama seperti sebelumnya)
