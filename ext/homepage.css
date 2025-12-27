@@ -68,12 +68,21 @@
  .hero-content { position: relative; padding: 40px; color: white; max-width: 700px; }
  .hero-cat { background: var(--secondary); color: black; padding: 4px 12px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
 
- /* Slider Dots */
+ /* Container untuk tombol dan dots */
+ .hero-actions {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end; /* Geser ke kanan */
+   gap: 20px; /* Jarak antara dots dan tombol */
+   margin-top: 25px;
+ }
+
  .hero-dots {
    display: flex;
-   gap: 10px;
-   margin-top: 20px;
+   gap: 8px;
+   align-items: center;
  }
+
  .dot {
    width: 8px;
    height: 8px;
@@ -82,19 +91,18 @@
    cursor: pointer;
    transition: all 0.3s ease;
  }
+
  .dot.active {
-   background: var(--secondary); /* Pakai warna sekunder biar matching sama hero-cat */
-   width: 25px; /* Dot aktif jadi lebih panjang (modern style) */
-   border-radius: 4px;
+   background: var(--secondary);
+   transform: scale(1.2);
  }
 
- /* Animasi Ganti Slide */
- @keyframes heroSlideUp {
-   from { opacity: 0; transform: translateY(15px); }
-   to { opacity: 1; transform: translateY(0); }
- }
- .hero-content {
-   animation: heroSlideUp 0.6s ease forwards;
+ /* Supaya konten hero tetap responsif di HP */
+ @media (max-width: 600px) {
+   .hero-actions {
+     justify-content: center; /* Di HP mending di tengah biar rapi */
+     flex-wrap: wrap;
+   }
  }
 
  /* FILTER & ARCHIVE BAR */

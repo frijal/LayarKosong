@@ -91,32 +91,32 @@ function initSite() {
   document.getElementById('monthFilter').onchange = runFilters;
 }
 
-// --- LOGIKA HERO SLIDER ---
 function renderHero() {
   if (heroData.length === 0) return;
   const h = heroData[currentHeroIndex];
   const el = document.getElementById('hero');
 
   el.classList.remove('skeleton');
-  el.style.opacity = '0.9'; // Efek transisi halus saat ganti
+  el.style.opacity = '0.9';
 
   setTimeout(() => {
     el.style.backgroundImage = `url('${h.img}')`;
     el.innerHTML = `
     <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <div class="hero-content" style="width: 100%; max-width: 100%;">
     <span class="hero-cat">${h.category}</span>
     <h1 style="font-family:'Montserrat'; font-size:2.5rem; margin:15px 0; line-height:1.2;">${h.title}</h1>
     <p>${h.summary.substring(0, 160)}...</p>
-    <a href="${h.url}" class="pill active" style="margin-top:20px; display:inline-block; text-decoration:none;">Baca Artikel</a>
 
-    <div class="hero-dots" style="display:flex; gap:8px; margin-top:20px;">
+    <div class="hero-actions">
+    <div class="hero-dots">
     ${heroData.map((_, i) => `
       <div class="dot ${i === currentHeroIndex ? 'active' : ''}"
-      onclick="goToHero(${i})"
-      style="width:8px; height:8px; border-radius:50%; background:${i === currentHeroIndex ? 'var(--secondary)' : 'rgba(255,255,255,0.3)'}; cursor:pointer; transition:0.3s;">
+      onclick="goToHero(${i})">
       </div>
       `).join('')}
+      </div>
+      <a href="${h.url}" class="pill active" style="text-decoration:none;">Baca Artikel</a>
       </div>
       </div>
       `;
