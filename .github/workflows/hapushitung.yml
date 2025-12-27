@@ -27,7 +27,6 @@ jobs:
         run: |
           echo "🧹 Membersihkan gambar orphan (.webp)..."
           DELETED_COUNT=0
-          mkdir -p img
           for file in img/*.webp; do
             [ -e "$file" ] || continue
             slug="${file##*/}"
@@ -47,7 +46,6 @@ jobs:
           echo "📊 Membuat laporan markdown dengan folder/subfolder dan emoji & histogram global..."
           DATE=$(date +'%Y-%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
-          mkdir -p mini
 
           FOLDERS=("artikel" "img" "ext" "api")
           MAX_BLOCKS=20
@@ -158,7 +156,7 @@ jobs:
         run: |
          git config --global user.name 'github-actions[bot]'
          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-         git add img/ mini/ ext/ api/
+         git add img/ mini/ ext/
          if ! git diff --staged --quiet; then
          echo "📝 Perubahan ditemukan, membuat commit..."
          git commit -m "chore: Daily maintenance (screenshots, cleanup, report)" \
