@@ -63,12 +63,16 @@
    padding: 0 20px;
  }
  .logo {
+   display: flex; /* Biar teks dan ikon sejajar rapi */
+   align-items: center;
+   gap: 8px; /* Jarak antara tulisan 'Kosong' dengan ikon */
    text-decoration: none;
    font-family: 'Montserrat';
    font-weight: 800;
-   font-size: 1.4rem; /* Sedikit dikecilkan agar elegan */
+   font-size: 1.4rem;
    color: var(--primary);
    letter-spacing: -0.5px;
+   white-space: nowrap; /* Biar teks 'Layar Kosong' gak pecah jadi 2 baris */
  }
 
  .logo span {
@@ -79,7 +83,16 @@
    opacity: 0.8;
    text-decoration: none;
  }
-
+ .logo-icon {
+   width: 24px;  /* Ukuran pas untuk disandingkan dengan teks logo */
+   height: 24px;
+   object-fit: contain;
+   /* Sedikit sentuhan supaya ikon tidak kaku */
+   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+   transform: rotate(15deg); /* Efek miring dikit biar playful */
+   flex-shrink: 0; /* Mencegah ikon gepeng kalau ruang sempit */
+   transition: transform 0.3s ease;
+ }
  .search-bar {
    background: rgba(150, 150, 150, 0.1); /* Transparan abu-abu tipis */
    border: 1px solid var(--header-border);
@@ -575,14 +588,14 @@
   }
 }
 /* Biar pas JS manggil 'block', dia jadi flex yang rapi */
-.clear-btn[style*="display: block"] {
+/*.clear-btn[style*="display: block"] {
   display: inline-flex !important;
-}
+} */
 
 /* Efek interaktif dikit pas ditekan, biar gak kaku */
-.clear-btn:active {
+/*.clear-btn:active {
   transform: scale(0.8);
-}
+} */
 
 /* Responsive: Sembunyikan search di layar sangat kecil atau ubah gayanya */
 @media (max-width: 600px) {
@@ -593,7 +606,17 @@
     width: 180px;
   }
   .logo {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    gap: 6px; /* Rapatkan jarak ke ikon */
+  }
+  .logo-icon {
+    width: 20px;  /* Perkecil ikon di mobile */
+    height: 20px;
+  }
+
+  /* Hilangkan efek hover miring di mobile karena gak ada kursor */
+  .logo:hover .logo-icon {
+    transform: none;
   }
 }
 @media (max-width: 768px) {
