@@ -108,42 +108,48 @@ async function fixSEO() {
     $('body').text().match(/(\d{4}-\d{2}-\d{2})/)?.[0] || "2025-12-26";
     let finalDate = detectedDate.split('T')[0];
 
-    // --- 3. LOGIKA GAMBAR + MIRRORING (Sapu Jagat) ---
+    // --- 3. LOGIKA GAMBAR + MIRRORING (Hanya External) ---
     const allImages = $('img');
+    let finalImage = fallbackImage; // Default awal
     let featuredImageSet = false;
-    let finalImage = fallbackImage; // Definisikan default di awal agar tidak Error
 
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
       let oldSrc = imgTag.attr('src');
 
-      if (oldSrc && oldSrc.startsWith('http') && !oldSrc.includes('dalam.web.id')) {
-        // Jalankan Mirroring & WebP
+      if (!oldSrc) continue;
+
+      // CEK: Apakah ini gambar external?
+      // (Dimulai http/https DAN tidak mengandung domain sendiri DAN bukan gambar lokal /img/)
+      const isExternal = oldSrc.startsWith('http') &&
+      !oldSrc.includes('dalam.web.id') &&
+      !oldSrc.startsWith('/img/');
+
+      if (isExternal) {
+        // Jalankan misi rahasia: Mirror & Convert
         const newLocalSrc = await mirrorAndConvert(oldSrc);
-
-        // UPDATE PATH DI DALAM BODY
         imgTag.attr('src', newLocalSrc);
-        console.log(`  📸 Body Image Updated: ${oldSrc} -> ${newLocalSrc}`);
+        console.log(`  📸 External Image Mirrored: ${oldSrc} -> ${newLocalSrc}`);
 
-        // Set sebagai featured image jika ini gambar pertama yang diproses
         if (!featuredImageSet) {
           finalImage = newLocalSrc;
           featuredImageSet = true;
         }
-      } else if (oldSrc && !featuredImageSet) {
-        // Jika gambar lokal sudah ada, gunakan itu sebagai featured image
-        finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
-        featuredImageSet = true;
+      } else {
+        // Jika gambar lokal, kita biarkan saja fisiknya
+        // Tapi kita ambil path-nya untuk keperluan meta tag/JSON-LD jika ini gambar pertama
+        if (!featuredImageSet) {
+          finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
+          featuredImageSet = true;
+        }
       }
     }
 
-    // Fallback terakhir jika benar-benar tidak ada gambar di body
+    // Jika sampai akhir tidak ada <img> sama sekali, baru lari ke Meta OG Image
     if (!featuredImageSet) {
       let metaImage = $('meta[property="og:image"]').attr('content');
-      if (isDiscoverFriendly(metaImage)) {
+      if (metaImage) {
         finalImage = metaImage.startsWith('http') ? metaImage : `${baseUrl}${metaImage.startsWith('/') ? '' : '/'}${metaImage}`;
-      } else {
-        finalImage = fallbackImage;
       }
     }
 
