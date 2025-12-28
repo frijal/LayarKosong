@@ -16,6 +16,7 @@
    --telegram: #229ed9;
    --threads: #000000;
    --youtube: #ff0000;
+   --mastodon: #6364FF;
  }
 
  @media (prefers-color-scheme: dark) {
@@ -401,6 +402,7 @@
  .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
  .page-footer .footer-social .fa-threads         { color: var(--threads); }
  .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
+ .page-footer .footer-social .fa-mastodon         { color: var(--mastodon); }
 
  .footer-content {
    display: grid;
