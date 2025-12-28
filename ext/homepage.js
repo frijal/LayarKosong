@@ -202,7 +202,7 @@ function renderFeed(reset = false) {
   if (loadMoreBtn) {
     if (limit >= filteredItems.length) {
       // MODE: KEMBALI KE ATAS
-      loadMoreBtn.innerHTML = '↑ Kembali ke Atas';
+      loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
       loadMoreBtn.classList.add('is-top'); // Panggil style amber dari CSS
 
       loadMoreBtn.onclick = () => {
