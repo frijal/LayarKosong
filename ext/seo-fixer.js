@@ -9,8 +9,6 @@ import sharp from 'sharp';
 async function mirrorAndConvert(externalUrl) {
   try {
     const url = new URL(externalUrl);
-
-    // Tentukan path: img/hostname/path-asli.webp
     const originalPath = url.pathname;
     const ext = path.extname(originalPath);
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
@@ -18,12 +16,10 @@ async function mirrorAndConvert(externalUrl) {
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
-    // Kalau sudah ada, kembalikan path lokal
     if (fs.existsSync(localPath)) {
       return `/${localPath.replace(/\\/g, '/')}`;
     }
 
-    // Buat folder
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
     console.log(`📥 Mirroring & Converting: ${url.hostname}...`);
@@ -36,7 +32,6 @@ async function mirrorAndConvert(externalUrl) {
       timeout: 10000
     });
 
-    // Konversi buffer langsung ke WebP
     await sharp(response.data)
     .webp({ quality: 80 })
     .toFile(localPath);
@@ -106,18 +101,33 @@ async function fixSEO() {
     let featuredImageSet = false;
     let finalImage = fallbackImage;
 
-    // --- 3. LOGIKA MIRRORING: META ITEMPROP ---
+    // --- 3. PRIORITAS UTAMA: META SOCIAL (OG / TWITTER) ---
+    const socialImg = $('meta[property="og:image"]').attr('content') ||
+    $('meta[name="twitter:image"]').attr('content');
+
+    if (socialImg && socialImg.startsWith('http') && !socialImg.includes(baseUrl)) {
+      const newLocal = await mirrorAndConvert(socialImg);
+      finalImage = `${baseUrl}${newLocal}`;
+      featuredImageSet = true;
+      console.log(`  💎 Featured Image (Social) Mirrored: ${newLocal}`);
+    }
+
+    // --- 4. LOGIKA MIRRORING: META ITEMPROP ---
     const metaItemprop = $('meta[itemprop="image"]');
     if (metaItemprop.length) {
       let content = metaItemprop.attr('content');
       if (content && content.startsWith('http') && !content.includes(baseUrl)) {
         const newLocal = await mirrorAndConvert(content);
         metaItemprop.attr('content', `${baseUrl}${newLocal}`);
-        if (!featuredImageSet) { finalImage = `${baseUrl}${newLocal}`; featuredImageSet = true; }
+        // Itemprop HANYA jadi finalImage jika Meta Social tadi kosong
+        if (!featuredImageSet) {
+          finalImage = `${baseUrl}${newLocal}`;
+          featuredImageSet = true;
+        }
       }
     }
 
-    // --- 4. LOGIKA MIRRORING: TAG <a> CLASS THUMB ---
+    // --- 5. LOGIKA MIRRORING: TAG <a> CLASS THUMB ---
     const thumbs = $('a.thumb');
     for (let i = 0; i < thumbs.length; i++) {
       let thumb = $(thumbs[i]);
@@ -129,7 +139,7 @@ async function fixSEO() {
       }
     }
 
-    // --- 5. LOGIKA MIRRORING: IMG (SRC & DATA-SRC) + AUTO ALT ---
+    // --- 6. LOGIKA MIRRORING: IMG (SRC & DATA-SRC) + AUTO ALT ---
     const allImages = $('img');
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
@@ -137,33 +147,32 @@ async function fixSEO() {
       let dataSrc = imgTag.attr('data-src');
       let alt = imgTag.attr('alt');
 
-      // Auto Alt Text
       if (!alt || alt.trim() === "") {
         imgTag.attr('alt', articleTitle);
       }
 
-      // Mirror src
       if (src && src.startsWith('http') && !src.includes(baseUrl) && !src.startsWith('/img/')) {
         const newLocal = await mirrorAndConvert(src);
         imgTag.attr('src', newLocal);
-        if (!featuredImageSet) { finalImage = `${baseUrl}${newLocal}`; featuredImageSet = true; }
+        // Fallback terakhir: jika Meta Social & Itemprop kosong
+        if (!featuredImageSet) {
+          finalImage = `${baseUrl}${newLocal}`;
+          featuredImageSet = true;
+        }
       }
 
-      // Mirror data-src (Lazy Load)
       if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
         const newLocal = await mirrorAndConvert(dataSrc);
         imgTag.attr('data-src', newLocal);
-        // Fallback src jika src asli kosong
         if (!imgTag.attr('src')) imgTag.attr('src', newLocal);
       }
     }
 
-    // Pastikan finalImage absolut
     if (!finalImage.startsWith('http')) {
       finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
     }
 
-    // --- 6. INJEKSI JSON-LD ---
+    // --- 7. INJEKSI JSON-LD ---
     $('script[type="application/ld+json"]').remove();
     const jsonLD = {
       "@context": "https://schema.org/",
@@ -183,7 +192,7 @@ async function fixSEO() {
     };
     $('head').prepend(`\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`);
 
-    // --- 7. ANTI-LINK-BERSARANG & HEADER AUTO LINK ---
+    // --- 8. ANTI-LINK-BERSARANG & HEADER AUTO LINK ---
     $('h1').each((i, el) => {
       if ($(el).find('a').length === 0) {
         const textOnly = $(el).text().trim();
@@ -191,7 +200,7 @@ async function fixSEO() {
       }
     });
 
-    // --- 8. UPDATE META TAG ---
+    // --- 9. UPDATE META TAG ---
     const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
       if ($(selector).length) $(selector).attr(attr, val);
       else $('head').append(tagHTML);
@@ -202,7 +211,6 @@ async function fixSEO() {
       updateOrCreateMeta('meta[name="twitter:image"]', 'content', finalImage, `<meta name="twitter:image" content="${finalImage}">`);
       updateOrCreateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image', `<meta name="twitter:card" content="summary_large_image">`);
 
-      // --- 9. SIMPAN FILE ---
       fs.writeFileSync(file, $.html(), 'utf8');
       console.log(`✅ Selesai: ${file}`);
       isiLaporan += `✅ FIXED: ${file}\n`;
