@@ -184,6 +184,7 @@ async function fixSEO() {
 
       updateOrCreateMeta('link[rel="canonical"]', 'href', finalArticleUrl, `<link rel="canonical" href="${finalArticleUrl}">`);
       updateOrCreateMeta('meta[property="og:image"]', 'content', finalImage, `<meta property="og:image" content="${finalImage}">`);
+      updateOrCreateMeta('meta[name="twitter:image"]', 'content', finalImage, `<meta name="twitter:image" content="${finalImage}">`);
       updateOrCreateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image', `<meta name="twitter:card" content="summary_large_image">`);
 
       // HAPUS bagian "if (firstImg === rawImage)" yang lama, karena update src sudah dilakukan di dalam loop di atas.
