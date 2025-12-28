@@ -4,11 +4,14 @@ import { glob } from 'glob';
 import path from 'path';
 
 async function fixSEO() {
-  // MODIFIKASI: Cari di artikelx (untuk CI) ATAU artikel (untuk lokal)
-  const files = await glob('{artikelx,artikel}/*.html'); 
-  
-  if (files.length === 0) {
-    console.log("ℹ️ Tidak ada file HTML yang ditemukan untuk diproses.");
+// Ambil folder dari argument terminal (misal: node seo-fixer.js artikelx)
+  // Jika tidak ada argument, default ke 'artikel'
+  const targetFolder = process.argv[2] || 'artikel';
+  console.log(`📂 Memproses folder: ${targetFolder}`);
+  // Sekarang glob hanya akan mencari di folder yang ditentukan
+  const files = await glob(`${targetFolder}/*.html`);
+if (files.length === 0) {
+    console.log(`ℹ️ Tidak ada file HTML ditemukan di folder: ${targetFolder}`);
     return;
   }
 
