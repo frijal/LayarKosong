@@ -262,6 +262,9 @@ a.category-link.visible {
     right: 10px;
     bottom: 40px;
   }
+  #related-articles-grid {
+  grid-template-columns: 1fr;
+  }
   .nav-right {
     gap: 8px;
   }
@@ -274,28 +277,14 @@ a.category-link.visible {
   }
 }
 
-
-
 /* --- RELATED CONTENT --- */
 #related-articles-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 20px;
-margin: 40px 0;
-padding: 20px;
+grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom ke samping */
+gap: 15px;
+margin: 30px 0;
+padding-top: 20px;
 border-top: 1px solid var(--border);
-position: relative;
-}
-
-#related-articles-grid::before {
-content: "terkait:";
-display: block;
-grid-column: 1 / -1; /* Supaya judul memenuhi lebar grid */
-font-family: 'Montserrat', sans-serif;
-font-weight: 700;
-font-size: 1.5rem;
-color: var(--primary);
-margin-bottom: 10px;
 }
 
 .rel-card {
@@ -304,6 +293,51 @@ margin-bottom: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
   transition: 0.3s;
+}
+
+.rel-card-mini a {
+  display: flex; /* Bikin thumbnail & judul sejajar horizontal */
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.rel-card-mini a:hover {
+  background: rgba(0, 176, 237, 0.05); /* Highlight tipis saat hover */
+}
+
+.rel-img-mini {
+  flex: 0 0 80px; /* Lebar thumbnail tetap */
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.rel-img-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.rel-card-mini:hover .rel-img-mini img {
+  transform: scale(1.1); /* Tetap ada efek zoom estetik */
+}
+
+.rel-info-mini h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text-main);
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Maksimal 2 baris judul */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .rel-card:hover { transform: translateY(-5px); }
