@@ -108,7 +108,7 @@ async function fixSEO() {
     $('body').text().match(/(\d{4}-\d{2}-\d{2})/)?.[0] || "2025-12-26";
     let finalDate = detectedDate.split('T')[0];
 
-    // --- 3. LOGIKA GAMBAR + MIRRORING (Hanya External) ---
+    // --- 3. LOGIKA GAMBAR + MIRRORING ---
     const allImages = $('img');
     let finalImage = fallbackImage;
     let featuredImageSet = false;
@@ -129,23 +129,22 @@ async function fixSEO() {
         console.log(`  📸 External Image Mirrored: ${oldSrc} -> ${newLocalSrc}`);
 
         if (!featuredImageSet) {
-          finalImage = newLocalSrc;
+          // TAMBAHKAN baseUrl di sini untuk keperluan Meta & JSON-LD
+          finalImage = `${baseUrl}${newLocalSrc}`;
           featuredImageSet = true;
         }
       } else {
         if (!featuredImageSet) {
-          // Gunakan path absolut untuk meta tag jika gambar lokal
+          // Pastikan gambar lokal pun diconvert jadi URL absolut
           finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
           featuredImageSet = true;
         }
       }
     }
 
-    if (!featuredImageSet) {
-      let metaImage = $('meta[property="og:image"]').attr('content');
-      if (metaImage) {
-        finalImage = metaImage.startsWith('http') ? metaImage : `${baseUrl}${metaImage.startsWith('/') ? '' : '/'}${metaImage}`;
-      }
+    // Pastikan fallbackImage juga absolut jika digunakan
+    if (!featuredImageSet && !finalImage.startsWith('http')) {
+      finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
     }
 
     // --- 4. INJEKSI JSON-LD ---
