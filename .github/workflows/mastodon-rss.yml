@@ -1,8 +1,8 @@
-name: Mastodon Auto Post
+name: Mastodon Autopost (Artikel Lama)
 
 on:
   schedule:
-    - cron: "0 */4 * * *" # tiap 4 jam
+    - cron: "0 */4 * * *"
   workflow_dispatch:
 
 jobs:
@@ -29,5 +29,5 @@ jobs:
           git config user.name "mastodon-bot"
           git config user.email "bot@users.noreply.github.com"
           git add mini/mastodon-posted.json
-          git commit -m "chore: update mastodon posted state" || true
+          git commit -m "chore: mastodon auto-post state" || true
           git push
