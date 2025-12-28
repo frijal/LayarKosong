@@ -1,8 +1,8 @@
-name: RSS to Mastodon
+name: Auto Post RSS to Mastodon
 
 on:
   schedule:
-    - cron: "0 23 * * *"   # tiap 3 jam
+    - cron: "0 * * * *"   # tiap jam
   workflow_dispatch:
 
 jobs:
@@ -10,28 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Ambil RSS terbaru
-        run: |
-          curl -s https://dalam.web.id/rss.xml > rss.xml
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-      - name: Ambil item terbaru
-        run: |
-          title=$(xmllint --xpath 'string(//item[1]/title)' rss.xml)
-          link=$(xmllint --xpath 'string(//item[1]/link)' rss.xml)
+      - name: Install dependencies
+        run: npm install node-fetch@3 fast-xml-parser
 
-          echo "TITLE=$title" >> $GITHUB_ENV
-          echo "LINK=$link" >> $GITHUB_ENV
-
-      - name: Posting ke Mastodon
+      - name: Run Mastodon poster
         env:
-          TOKEN: ${{ secrets.MASTODON_TOKEN }}
-          INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
-        run: |
-          STATUS="$TITLE - $LINK #Blog #Indonesia #LayarKosong"
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: node ext/post-to-mastodon.js
 
-          curl -X POST "$INSTANCE/api/v1/statuses" \
-            -H "Authorization: Bearer $TOKEN" \
-            -F "status=$STATUS"
+      - name: Commit posted hash
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .posted.json
+          git commit -m "chore: mark RSS item as posted" || echo "Nothing to commit"
+          git push
