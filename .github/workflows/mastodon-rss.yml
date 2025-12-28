@@ -25,10 +25,11 @@ jobs:
           MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
 
-      - name: Commit cache
+      - name: Commit Mastodon state
         run: |
-          git config user.name "bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add mini/.mastodon-posted.json || true
-          git commit -m "chore: update mastodon cache" || true
-          git push || true
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add mini/mastodon-posted.json
+          git commit -m "chore: update mastodon posted links" || echo "No changes"
+          git push
+
