@@ -265,6 +265,10 @@ a.category-link.visible {
   #related-articles-grid {
   grid-template-columns: 1fr;
   }
+  .rel-img-mini {
+    flex: 0 0 75px; /* Sedikit lebih kecil di mobile agar judul punya ruang */
+    height: 55px;
+  }
   .nav-right {
     gap: 8px;
   }
@@ -277,115 +281,82 @@ a.category-link.visible {
   }
 }
 
-/* --- RELATED CONTENT --- */
+/* --- RELATED CONTENT (MINIMALIS HORIZONTAL) --- */
 #related-articles-grid {
 display: grid;
-grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom ke samping */
+grid-template-columns: repeat(2, 1fr); /* 2 kolom mendatar */
 gap: 15px;
 margin: 30px 0;
 padding-top: 20px;
-border-top: 1px solid var(--border);
-}
-
-.rel-card {
-  background: var(--bg-card, #222);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  transition: 0.3s;
+/* Gunakan --border dari artikel, jika tidak ada pakai warna abu tipis */
+border-top: 1px solid var(--border, #e2e8f0);
 }
 
 .rel-card-mini a {
-  display: flex; /* Bikin thumbnail & judul sejajar horizontal */
+  display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: inherit;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-
-.rel-card-mini a:hover {
-  background: rgba(0, 176, 237, 0.05); /* Highlight tipis saat hover */
+  padding: 10px;
+  border-radius: 10px;
+  /* Beradaptasi dengan --card-bg di artikel atau --bg-card di homepage */
+  background: var(--card-bg, var(--bg-card, #ffffff));
+  /* Beradaptasi dengan warna teks halaman */
+  color: var(--text, var(--text-main, #1a202c));
+  border: 1px solid var(--border, #e2e8f0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .rel-img-mini {
-  flex: 0 0 80px; /* Lebar thumbnail tetap */
-  height: 60px;
-  border-radius: 6px;
+  flex: 0 0 85px;
+  height: 65px;
+  border-radius: 8px;
   overflow: hidden;
+  background: #333;
 }
 
 .rel-img-mini img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
-.rel-card-mini:hover .rel-img-mini img {
-  transform: scale(1.1); /* Tetap ada efek zoom estetik */
+.rel-info-mini {
+  flex: 1;
 }
 
 .rel-info-mini h4 {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.3;
   font-weight: 600;
-  color: var(--text-main);
+  /* Warna teks default sesuai halaman */
+  color: inherit;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Maksimal 2 baris judul */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  transition: color 0.3s ease;
 }
 
-.rel-card:hover { transform: translateY(-5px); }
+/* --- EFEK HOVER (SMART FALLBACK) --- */
 
-.rel-card a { text-decoration: none; color: inherit; }
-
-.rel-img-wrap {
-  width: 100%;
-  height: 120px;
-  overflow: hidden; /* Kunci utama: memotong gambar yang nge-zoom */
-  border-radius: 8px;
-  background: #333; /* Warna cadangan saat loading */
+.rel-card-mini a:hover {
+  transform: translateY(-3px);
+  /* Cek --primary (home), kalau tidak ada pakai --accent (artikel), terakhir teal */
+  border-color: var(--primary, var(--accent, #0f766e));
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg, var(--bg-card, #ffffff));
+  filter: brightness(0.98); /* Efek klik sedikit gelap pas hover */
 }
 
-/* Transisi halus untuk gambarnya */
-.rel-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Efek smooth meluncur */
+.rel-card-mini:hover .rel-img-mini img {
+  transform: scale(1.15);
 }
 
-.rel-info { padding: 12px; }
-
-.rel-info h4 { font-size: 0.9rem; margin: 0 0 8px 0; line-height: 1.4; color: var(--primary); }
-
-.rel-info p { font-size: 0.8rem; opacity: 0.7; margin: 0; line-height: 1.4; }
-
-/* --- EFEK HOVER --- */
-
-/* 1. Zoom Gambarnya */
-.rel-card:hover .rel-img-wrap img {
-  transform: scale(1.15); /* Memperbesar gambar 15% */
+.rel-card-mini:hover h4 {
+  /* Judul berubah: Cek --secondary (home), kalau tidak ada pakai --accent (artikel) */
+  color: var(--secondary, var(--accent, #0f766e)) !important;
 }
 
-/* 2. Angkat Sedikit Kartunya & Kasih Shadow */
-.rel-card {
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-}
-
-.rel-card:hover {
-  transform: translateY(-5px); /* Kartu naik sedikit */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  border-color: var(--primary); /* Opsional: border berubah warna jadi biru Mas */
-}
-
-/* 3. Judul Berubah Warna Saat Di-hover */
-.rel-card:hover h4 {
-  color: var(--secondary) !important; /* Judul jadi amber pas di-hover */
-}
