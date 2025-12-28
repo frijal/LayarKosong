@@ -110,12 +110,15 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions@github.com"
-          git add artikel/
+          
+          # Pakai 'git add .' supaya Git mencatat perpindahan (rename/move) 
+          # dan penghapusan file di artikelx/ sekaligus
+          git add artikel/ artikelx/
           
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan."
             exit 0
           fi
 
-          git commit -m "Proses ArtikelX: localize + enrich + SEO [skip ci]"
+          git commit -m "Proses ArtikelX: Move and Clean Up [skip ci]"
           git push origin main
