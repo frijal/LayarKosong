@@ -43,8 +43,6 @@ async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
-
-  // Regex sakti untuk menangkap URL Blogger di manapun (CSS atau JS)
   const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/[^"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
 
   for (const file of files) {
@@ -52,68 +50,60 @@ async function fixSEO() {
     const $ = load(rawContent, { decodeEntities: false });
     const baseName = path.basename(file, '.html');
 
-    console.log(`\n🔍 Memproses: ${baseName}.html`);
+    console.log(`\n🔍 Scanning: ${baseName}.html`);
 
-    // --- 1. PROSES JAVASCRIPT & CSS (Isi Teks) ---
-    // Kita scan semua tag <script> dan <style>
+    // --- 1. RADAR ATRIBUT (img, a, figure, dll) ---
+    // Kita sikat semua atribut yang berpotensi menyimpan link gambar
+    const potentialAttrs = ['src', 'href', 'data-src', 'data-fullsrc', 'data-thumb'];
+    const elements = $('img, a, div, span, figure').get();
+
+    for (const el of elements) {
+      const $el = $(el);
+      for (const attr of potentialAttrs) {
+        const val = $el.attr(attr);
+        if (val && val.startsWith('http') && !val.includes(baseUrl)) {
+          // Cek apakah ini link gambar atau domain Blogger
+          if (bloggerRegex.test(val) || /\.(jpg|jpeg|png|webp|gif|JPG)/i.test(val)) {
+            const local = await mirrorAndConvert(val);
+            $el.attr(attr, local);
+            console.log(`   ✅ Tag <${el.name}> attribute [${attr}] updated.`);
+          }
+        }
+      }
+    }
+
+    // --- 2. RADAR INTERNAL TEKS (Script & Style) ---
     const textTags = $('script, style').get();
     for (const tag of textTags) {
       let content = $(tag).text();
       let matches = content.match(bloggerRegex);
-
       if (matches) {
-        // Gunakan Set supaya tidak download URL yang sama berulang kali
         const uniqueUrls = [...new Set(matches)];
         for (const extUrl of uniqueUrls) {
           const local = await mirrorAndConvert(extUrl);
-          // Ganti semua kemunculan URL tersebut di dalam blok teks
           content = content.split(extUrl).join(local);
-          console.log(`   📜 JS/CSS: Berhasil mengganti link ke ${local}`);
         }
         $(tag).text(content);
+        console.log(`   📜 Internal <${tag.name}> cleaned.`);
       }
     }
 
-    // --- 2. PROSES INLINE STYLE (Atribut style="") ---
+    // --- 3. RADAR INLINE STYLE ---
     $('[style]').each(async (i, el) => {
       let style = $(el).attr('style');
-      let matches = style.match(bloggerRegex);
-      if (matches) {
-        for (const extUrl of matches) {
-          const local = await mirrorAndConvert(extUrl);
-          style = style.replace(extUrl, local);
+      if (style.includes('https://blogger.googleusercontent.com')) {
+        let matches = style.match(bloggerRegex);
+        if (matches) {
+          for (const extUrl of matches) {
+            const local = await mirrorAndConvert(extUrl);
+            style = style.replace(extUrl, local);
+          }
+          $(el).attr('style', style);
         }
-        $(el).attr('style', style);
       }
     });
 
-    // --- 3. PROSES TAG HTML BIASA (img, a, data-*) ---
-    const imgs = $('img').get();
-    for (const el of imgs) {
-      const $el = $(el);
-      const attrs = ['src', 'data-src', 'data-fullsrc'];
-      for (const attr of attrs) {
-        const val = $el.attr(attr);
-        if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-          const local = await mirrorAndConvert(val);
-          $el.attr(attr, local);
-        }
-      }
-    }
-
-    const links = $('a').get();
-    for (const el of links) {
-      const $el = $(el);
-      const val = $el.attr('href');
-      if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-        if (bloggerRegex.test(val)) {
-          const local = await mirrorAndConvert(val);
-          $el.attr('href', local);
-        }
-      }
-    }
-
-    // --- 4. META TAGS & LD-JSON ---
+    // --- 4. META & LD-JSON (Schema) ---
     const metaSelectors = ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'meta[itemprop="image"]'];
     let currentBestImage = "";
 
@@ -130,7 +120,7 @@ async function fixSEO() {
 
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer selesai. Gambar di JavaScript Array sudah migrasi ke lokal!');
+  console.log('\n✅ SEO Fixer: Misi selesai. Semua jejak Blogger telah dihapus!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
