@@ -1,14 +1,15 @@
 import fs from "fs";
-import crypto from "crypto";
+import path from "path";
 import fetch from "node-fetch";
 import { XMLParser } from "fast-xml-parser";
 
 /* =====================
-   Konstanta
+   CONFIG
 ===================== */
 const RSS_FILE = "rss.xml";
 const STATE_FILE = "mini/mastodon-posted.json";
 const LIMIT = 500;
+const DELAY_MS = 60_000; // 60 detik antar post
 
 const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
@@ -19,10 +20,19 @@ if (!INSTANCE || !TOKEN) {
 }
 
 /* =====================
-   Helper
+   Utils
 ===================== */
-const hashLink = (link) =>
-  crypto.createHash("sha256").update(link).digest("hex");
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+const loadState = () => {
+  if (!fs.existsSync(STATE_FILE)) return [];
+  return JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
+};
+
+const saveState = data => {
+  fs.mkdirSync(path.dirname(STATE_FILE), { recursive: true });
+  fs.writeFileSync(STATE_FILE, JSON.stringify(data, null, 2));
+};
 
 /* =====================
    Parse RSS
@@ -36,58 +46,37 @@ const parser = new XMLParser({
 
 const feed = parser.parse(xml);
 
-if (!feed?.rss?.channel?.item) {
-  console.error("❌ Struktur RSS tidak dikenali");
+const items = feed?.rss?.channel?.item;
+if (!Array.isArray(items)) {
+  console.error("❌ Struktur RSS tidak valid");
   process.exit(1);
 }
-
-const items = Array.isArray(feed.rss.channel.item)
-  ? feed.rss.channel.item
-  : [feed.rss.channel.item];
-
-/* =====================
-   Load state
-===================== */
-let state = { posted: [] };
-
-if (fs.existsSync(STATE_FILE)) {
-  state = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
-}
-
-const postedSet = new Set(state.posted);
 
 /* =====================
    Cari item belum dipost
 ===================== */
-let target = null;
+const postedLinks = loadState();
 
-for (const item of items) {
-  const link = item.link?.["#text"] ?? item.link;
-  if (!link) continue;
+const nextItem = items
+  .slice()               // copy
+  .reverse()             // dari paling lama
+  .find(it => {
+    const link = it.link?.["#text"] ?? it.link;
+    return link && !postedLinks.includes(link);
+  });
 
-  const hash = hashLink(link);
-
-  if (!postedSet.has(hash)) {
-    target = { item, link, hash };
-    break;
-  }
-}
-
-if (!target) {
-  console.log("⏭️  Tidak ada artikel baru untuk diposting");
+if (!nextItem) {
+  console.log("✅ Semua artikel sudah dipost");
   process.exit(0);
 }
 
 /* =====================
    Bangun status
 ===================== */
-const title = target.item.title?.["#text"] ?? target.item.title ?? "";
-const desc =
-  target.item.description?.["#text"] ??
-  target.item.description ??
-  "";
-
-const category = target.item.category?.["#text"] ?? target.item.category;
+const title = nextItem.title?.["#text"] ?? nextItem.title;
+const link = nextItem.link?.["#text"] ?? nextItem.link;
+const desc = nextItem.description?.["#text"] ?? "";
+const category = nextItem.category?.["#text"] ?? nextItem.category;
 
 let hashtags = [];
 if (category) {
@@ -96,18 +85,22 @@ if (category) {
   );
 }
 
-let status = `${title}\n\n${desc}\n\n${target.link}\n\n${hashtags.join(" ")}`;
+let status = `${title}\n\n${desc}\n\n${link}\n\n${hashtags.join(" ")}`;
 
 if (status.length > LIMIT) {
   status = status.slice(0, LIMIT - 1) + "…";
 }
 
 /* =====================
-   Post ke Mastodon
+   Delay (anti spam)
 ===================== */
-const API_BASE = `https://${INSTANCE.replace(/^https?:\/\//, "")}`;
+console.log("⏳ Delay sebelum posting...");
+await sleep(DELAY_MS);
 
-const res = await fetch(`${API_BASE}/api/v1/statuses`, {
+/* =====================
+   Kirim ke Mastodon
+===================== */
+const res = await fetch(`https://${INSTANCE}/api/v1/statuses`, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${TOKEN}`,
@@ -128,12 +121,8 @@ if (!res.ok) {
 /* =====================
    Simpan state
 ===================== */
-state.posted.push(target.hash);
+postedLinks.push(link);
+saveState(postedLinks);
 
-fs.mkdirSync("mini", { recursive: true });
-fs.writeFileSync(
-  STATE_FILE,
-  JSON.stringify(state, null, 2)
-);
-
-console.log("✅ Berhasil post ke Mastodon:", target.link);
+console.log("✅ Berhasil post ke Mastodon:");
+console.log(link);
