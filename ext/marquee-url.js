@@ -250,24 +250,23 @@
       }
     }
 
-    const related = list.sort(() => 0.5 - Math.random()).slice(0, 4);
+    // Ambil 5 artikel secara acak
+    const related = list.sort(() => 0.6 - Math.random()).slice(0, 6);
+
     if (related.length === 0) {
       gridContainer.style.display = 'none';
       return;
     }
 
-    gridContainer.innerHTML = related.map(([title, id, img, date, summary]) => {
-      const cleanDate = new Date(date).toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
+    gridContainer.innerHTML = related.map(([title, id, img]) => {
       return `
-      <div class="rel-card" style="animation: fadeIn 0.5s ease">
-      <a href="/artikel/${id}" style="text-decoration:none; color:inherit;">
-      <div class="rel-img-wrap" style="width:100%; height:120px; overflow:hidden; border-radius:8px;">
-      <img src="${img || '/thumbnail.webp'}" alt="${title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='/thumbnail.webp'">
+      <div class="rel-card-mini">
+      <a href="/artikel/${id}">
+      <div class="rel-img-mini">
+      <img src="${img || '/thumbnail.webp'}" alt="${title}" onerror="this.src='/thumbnail.webp'">
       </div>
-      <div class="rel-info" style="padding:10px 0;">
-      <small style="opacity:0.6; font-size:0.7rem;">${cleanDate}</small>
-      <h4 style="margin:5px 0; font-size:0.9rem; line-height:1.3; color:var(--primary);">${title.substring(0, 50)}...</h4>
-      <p style="margin:0; font-size:0.75rem; opacity:0.8; line-height:1.4;">${summary ? summary.substring(0, 70) + '...' : ''}</p>
+      <div class="rel-info-mini">
+      <h4>${title}</h4>
       </div>
       </a>
       </div>
