@@ -6,7 +6,7 @@
   "scripts": {
     "fixseo": "node ext/seo-fixer.js",
     "ci-fix-meta-image": "node ext/seo-fixer.js artikelx",
-    "generate-all-meta": "node ext/generator-pro.js",
+    "ci-fix-meta-main": "node ext/seo-fixer.js artikel",
     "ci-generate-xml-rss": "node ext/generator-pro.js",
     "ci-screenshot": "node ext/screenshot-puppeteer.js",
     "ci-all": "npm run ci-fix-meta-image && npm run ci-generate-xml-rss && npm run ci-screenshot",
