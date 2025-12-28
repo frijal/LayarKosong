@@ -2,11 +2,8 @@ name: Mastodon Auto Post
 
 on:
   schedule:
-    - cron: "*/59 * * * *" # tiap 59 menit
+    - cron: "0 */4 * * *" # tiap 4 jam
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   mastodon:
@@ -20,11 +17,9 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Post to Mastodon
-        run: node ext/post-to-mastodon.js
+      - run: node ext/post-to-mastodon.js
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
@@ -33,7 +28,6 @@ jobs:
         run: |
           git config user.name "mastodon-bot"
           git config user.email "bot@users.noreply.github.com"
-
-          git add mini/mastodon-posted.json || true
+          git add mini/mastodon-posted.json
           git commit -m "chore: update mastodon posted state" || true
-          git push || true
+          git push
