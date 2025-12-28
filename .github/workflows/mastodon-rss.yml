@@ -15,9 +15,11 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      - run: node ext/post-to-mastodon.js
+      - name: Post to Mastodon
+        run: node ext/post-to-mastodon.js
         env:
           MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
