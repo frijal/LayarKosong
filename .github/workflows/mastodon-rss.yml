@@ -1,0 +1,41 @@
+name: RSS to Mastodon
+
+on:
+  schedule:
+    - cron: "0 23 * * *"   # tiap 3 jam
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ambil RSS terbaru
+        run: |
+          curl -s https://dalam.web.id/rss.xml > rss.xml
+
+      - name: Ambil item terbaru
+        run: |
+          title=$(xmllint --xpath 'string(//item[1]/title)' rss.xml)
+          link=$(xmllint --xpath 'string(//item[1]/link)' rss.xml)
+
+          echo "TITLE=$title" >> $GITHUB_ENV
+          echo "LINK=$link" >> $GITHUB_ENV
+
+      - name: Posting ke Mastodon
+        env:
+          TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+        run: |
+          STATUS="$TITLE
+
+$LINK
+
+#Blog #Indonesia #LayarKosong"
+
+          curl -X POST "$INSTANCE/api/v1/statuses" \
+            -H "Authorization: Bearer $TOKEN" \
+            -F "status=$STATUS"
