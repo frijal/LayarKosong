@@ -1,16 +1,15 @@
 import fs from "fs";
+import crypto from "crypto";
 import fetch from "node-fetch";
-import { XMLParser } from "fast-xml-parser";
 
 /* =====================
-   CONFIG
+   KONFIGURASI
 ===================== */
-const RSS_FILE = "rss.xml";
+const ARTICLE_FILE = "artikel.json";
 const STATE_FILE = "mini/mastodon-posted.json";
 const LIMIT = 500;
-const DELAY_MINUTES = 120; // delay antar post (2 jam)
 
-let INSTANCE = process.env.MASTODON_INSTANCE;
+const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
 
 if (!INSTANCE || !TOKEN) {
@@ -18,110 +17,119 @@ if (!INSTANCE || !TOKEN) {
   process.exit(1);
 }
 
-// Normalisasi instance
-INSTANCE = INSTANCE.replace(/^https?:\/\//, "").replace(/\/$/, "");
-const API_BASE = `https://${INSTANCE}`;
-
 /* =====================
-   Pastikan state file ada
+   LOAD STATE
 ===================== */
-if (!fs.existsSync("mini")) {
-  fs.mkdirSync("mini", { recursive: true });
-}
-
-if (!fs.existsSync(STATE_FILE)) {
-  fs.writeFileSync(STATE_FILE, JSON.stringify({ posted: [] }, null, 2));
-}
-
-const state = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
-
-/* =====================
-   Delay check
-===================== */
-const lastPost = state.posted[state.posted.length - 1];
-if (lastPost?.posted_at) {
-  const diffMinutes =
-    (Date.now() - new Date(lastPost.posted_at)) / 60000;
-
-  if (diffMinutes < DELAY_MINUTES) {
-    console.log("⏳ Delay belum terpenuhi, skip posting");
-    process.exit(0);
-  }
+let posted = [];
+if (fs.existsSync(STATE_FILE)) {
+  posted = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
 }
 
 /* =====================
-   Parse RSS
+   LOAD & FLATTEN ARTIKEL
 ===================== */
-const xml = fs.readFileSync(RSS_FILE, "utf8");
+const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
 
-const parser = new XMLParser({
-  ignoreAttributes: false,
-  trimValues: true
-});
+let articles = [];
 
-const feed = parser.parse(xml);
+for (const category in raw) {
+  raw[category].forEach(item => {
+    const [
+      title,
+      slug,
+      image,
+      date,
+      description
+    ] = item;
 
-const items = feed?.rss?.channel?.item;
-if (!Array.isArray(items)) {
-  console.error("❌ Struktur RSS tidak dikenali");
-  process.exit(1);
+    articles.push({
+      title,
+      slug,
+      url: slug.startsWith("http")
+        ? slug
+        : `https://dalam.web.id/artikel/${slug.replace(/^\//, "")}`,
+      image,
+      date,
+      description,
+      category
+    });
+  });
 }
 
 /* =====================
-   Cari item belum dipost
+   SORT TERBARU
 ===================== */
-const postedLinks = new Set(state.posted.map(p => p.link));
+articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-const item = items.find(i => {
-  const link = i.link?.["#text"] ?? i.link;
-  return link && !postedLinks.has(link);
-});
+/* =====================
+   PILIH YANG BELUM DIPOST
+===================== */
+const next = articles.find(a => !posted.includes(a.url));
 
-if (!item) {
-  console.log("✅ Semua artikel sudah dipost");
+if (!next) {
+  console.log("⏭️  Tidak ada artikel baru");
   process.exit(0);
 }
 
 /* =====================
-   Ambil data artikel
+   HASHTAG
 ===================== */
-const title = item.title?.["#text"] ?? item.title;
-const link = item.link?.["#text"] ?? item.link;
-const desc = item.description?.["#text"] ?? item.description ?? "";
-const category = item.category?.["#text"] ?? item.category;
+function makeHashtag(text) {
+  return (
+    "#" +
+    text
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join("")
+  );
+}
+
+let hashtags = [];
+
+/* kategori */
+hashtags.push(makeHashtag(next.category));
+
+/* judul → multi hashtag */
+next.title
+  .split(/\s+/)
+  .filter(w => w.length > 4)
+  .slice(0, 4)
+  .forEach(w => hashtags.push(makeHashtag(w)));
+
+hashtags = [...new Set(hashtags)];
 
 /* =====================
-   Hashtag
+   BANGUN STATUS
 ===================== */
-let hashtags = "";
-if (category) {
-  hashtags = "#" + category.replace(/\s+/g, "").replace(/[^\w]/g, "");
-}
+const desc =
+  next.description && next.description.trim()
+    ? next.description.trim()
+    : "sambil Ngopi.";
 
-/* =====================
-   Bangun status (rapi)
-===================== */
-let status = `📰 ${title}\n\n`;
+let status = [
+  next.title,
+  "",
+  desc,
+  "",
+  next.url,
+  "",
+  hashtags.join(" ")
+].join("\n");
 
-if (desc) {
-  status += `${desc}\n\n`;
-}
-
-status += `🔗 ${link}`;
-
-if (hashtags) {
-  status += `\n\n${hashtags}`;
-}
-
-/* Limit 500 karakter */
+/* limit 500 */
 if (status.length > LIMIT) {
   status = status.slice(0, LIMIT - 1) + "…";
 }
 
 /* =====================
-   Post ke Mastodon
+   POST KE MASTODON
 ===================== */
-const res = await fetch(`${API_BASE}/api/v1/statuses`, {
+const apiBase = INSTANCE.startsWith("http")
+  ? INSTANCE
+  : `https://${INSTANCE}`;
+
+const res = await fetch(`${apiBase}/api/v1/statuses`, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${TOKEN}`,
@@ -129,24 +137,22 @@ const res = await fetch(`${API_BASE}/api/v1/statuses`, {
   },
   body: JSON.stringify({
     status,
-    visibility: "public"
+    visibility: "public",
+    language: "id"
   })
 });
 
 if (!res.ok) {
-  const err = await res.text();
-  console.error("❌ Gagal post ke Mastodon:", err);
+  console.error("❌ Gagal post:", await res.text());
   process.exit(1);
 }
 
 /* =====================
-   Simpan state
+   SIMPAN STATE
 ===================== */
-state.posted.push({
-  link,
-  posted_at: new Date().toISOString()
-});
+posted.push(next.url);
+fs.mkdirSync("mini", { recursive: true });
+fs.writeFileSync(STATE_FILE, JSON.stringify(posted, null, 2));
 
-fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
-
-console.log("✅ Berhasil post ke Mastodon");
+console.log("✅ Berhasil post ke Mastodon:");
+console.log(next.url);
