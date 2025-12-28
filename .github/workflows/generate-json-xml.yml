@@ -5,12 +5,10 @@ on:
     branches: ['main']
     paths:
       - 'artikel/*.html'
-
   workflow_run:
     workflows: ["🔄 Proses ArtikelX"]
     types: [completed]
     branches: ['main']
-
   workflow_dispatch:
   schedule:
     - cron: '0 20 * * *'
@@ -18,6 +16,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Jalankan jika bukan dipicu workflow_run, atau jika workflow_run sukses
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
 
     permissions:
@@ -39,37 +38,44 @@ jobs:
       - name: '3. Install Dependencies'
         run: npm ci
 
-      - name: '4️⃣ Generate artikel.json & RSS'
+      - name: '4️⃣ Fix SEO & Mirror Images'
+        # Langkah ini penting agar gambar external ditarik jadi lokal dulu
+        run: npm run ci-fix-meta-image
+
+      - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
+        # Menggunakan generator-pro yang sudah digabung
         run: npm run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
-      - name: '5️⃣ Generate Sitemap Rekursif & URL Statis'
+      - name: '6️⃣ Generate sitemap.txt (Static URL List)'
+        # Tetap mempertahankan sitemap.txt sebagai pelengkap sitemap.xml
         run: |
           echo "📝 Membuat sitemap.txt..."
           BASE_URL="https://dalam.web.id"
           SITEMAP_FILE="sitemap.txt"
 
-          find artikel/ -name "*.html" \
-            | sed 's_\.html$__' \
-            | sed "s_^_$BASE_URL/_" > "$SITEMAP_FILE"
+          # Ambil daftar artikel tanpa ekstensi .html
+          find artikel/ -maxdepth 1 -name "*.html" \
+            | sed 's_artikel/__; s_\.html$__' \
+            | sed "s_^_$BASE_URL/artikel/_" > "$SITEMAP_FILE"
 
+          # Tambahkan URL statis lainnya
           echo "$BASE_URL/" >> "$SITEMAP_FILE"
           echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
           echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
           echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
           echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/img" >> "$SITEMAP_FILE"
           echo "$BASE_URL/search" >> "$SITEMAP_FILE"
           echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
           echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
 
           echo "✅ sitemap.txt selesai"
 
-      - name: '6️⃣ Generate Screenshots'
+      - name: '7️⃣ Generate Screenshots'
         run: npm run ci-screenshot
 
-      - name: '7️⃣ Commit and Push Generated Files'
+      - name: '8️⃣ Commit and Push Generated Files'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -78,22 +84,19 @@ jobs:
 
           if git diff --staged --quiet; then
             echo "✅ Tidak ada perubahan file."
-            if [[ "${{ github.event_name }}" != "push" ]]; then
-              exit 0
-            fi
+          else
+            git commit -m "build: 🚀 generate site assets (webp mirrors, json, rss, sitemap)"
+            git pull --rebase origin main || git pull origin main
+            git push origin main
           fi
-
-          git commit -m "build: 🚀 generate site assets"
-          git pull --rebase origin main || git pull origin main
-          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: '8️⃣ Summary'
+      - name: '9️⃣ Summary'
         if: always()
         run: |
-          echo "✅ Build selesai"
-          echo "🔗 artikel.json: https://dalam.web.id/artikel.json"
-          echo "🔗 rss.xml     : https://dalam.web.id/rss.xml"
-          echo "🔗 sitemap.txt : https://dalam.web.id/sitemap.txt"
+          echo "✅ Build & Mirroring selesai"
+          echo "🔗 RSS Utama    : https://dalam.web.id/rss.xml"
+          echo "🔗 Sitemap XML  : https://dalam.web.id/sitemap.xml"
+          echo "🔗 Sitemap TXT  : https://dalam.web.id/sitemap.txt"
           echo "Triggered by: ${{ github.event_name }}"
