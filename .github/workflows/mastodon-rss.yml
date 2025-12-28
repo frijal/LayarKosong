@@ -20,8 +20,8 @@ jobs:
           node-version: 20
           cache: npm
 
-   #   - name: Install dependencies
-    #    run: npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Post to Mastodon
         run: node ext/post-to-mastodon.js
