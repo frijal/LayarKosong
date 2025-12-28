@@ -44,6 +44,9 @@ async function fixSEO() {
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
 
+  // Regex sakti untuk menangkap URL Blogger di manapun (CSS atau JS)
+  const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/[^"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
+
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
     const $ = load(rawContent, { decodeEntities: false });
@@ -51,43 +54,40 @@ async function fixSEO() {
 
     console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. PROSES CSS (Tag <style> dan atribut style="") ---
-    // Mencari pattern url('...') atau url("...") atau url(...)
-    const cssUrlRegex = /url\(['"]?(https?:\/\/[^'")]+\.(?:jpg|jpeg|png|webp|gif|JPG))['"]?\)/gi;
+    // --- 1. PROSES JAVASCRIPT & CSS (Isi Teks) ---
+    // Kita scan semua tag <script> dan <style>
+    const textTags = $('script, style').get();
+    for (const tag of textTags) {
+      let content = $(tag).text();
+      let matches = content.match(bloggerRegex);
 
-    // A. Cek semua tag <style>
-    const styles = $('style').get();
-    for (const styleEl of styles) {
-      let cssText = $(styleEl).text();
-      let match;
-      while ((match = cssUrlRegex.exec(cssText)) !== null) {
-        const extUrl = match[1];
-        if (!extUrl.includes(baseUrl)) {
+      if (matches) {
+        // Gunakan Set supaya tidak download URL yang sama berulang kali
+        const uniqueUrls = [...new Set(matches)];
+        for (const extUrl of uniqueUrls) {
           const local = await mirrorAndConvert(extUrl);
-          cssText = cssText.replace(extUrl, local);
-          console.log(`   🎨 CSS Style: Link Blogger diganti ke ${local}`);
+          // Ganti semua kemunculan URL tersebut di dalam blok teks
+          content = content.split(extUrl).join(local);
+          console.log(`   📜 JS/CSS: Berhasil mengganti link ke ${local}`);
         }
+        $(tag).text(content);
       }
-      $(styleEl).text(cssText);
     }
 
-    // B. Cek semua atribut style di semua tag
-    const allElements = $('[style]').get();
-    for (const el of allElements) {
-      let inlineStyle = $(el).attr('style');
-      let match;
-      while ((match = cssUrlRegex.exec(inlineStyle)) !== null) {
-        const extUrl = match[1];
-        if (!extUrl.includes(baseUrl)) {
+    // --- 2. PROSES INLINE STYLE (Atribut style="") ---
+    $('[style]').each(async (i, el) => {
+      let style = $(el).attr('style');
+      let matches = style.match(bloggerRegex);
+      if (matches) {
+        for (const extUrl of matches) {
           const local = await mirrorAndConvert(extUrl);
-          inlineStyle = inlineStyle.replace(extUrl, local);
-          console.log(`   🎨 Inline Style: Link Blogger diganti ke ${local}`);
+          style = style.replace(extUrl, local);
         }
+        $(el).attr('style', style);
       }
-      $(el).attr('style', inlineStyle);
-    }
+    });
 
-    // --- 2. PROSES TAG HTML (img, a, data-*) ---
+    // --- 3. PROSES TAG HTML BIASA (img, a, data-*) ---
     const imgs = $('img').get();
     for (const el of imgs) {
       const $el = $(el);
@@ -106,14 +106,14 @@ async function fixSEO() {
       const $el = $(el);
       const val = $el.attr('href');
       if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-        if (/\.(jpg|jpeg|png|webp|gif|JPG)(\?.*)?$/i.test(val) || val.includes('blogger.googleusercontent.com')) {
+        if (bloggerRegex.test(val)) {
           const local = await mirrorAndConvert(val);
           $el.attr('href', local);
         }
       }
     }
 
-    // --- 3. PROSES META TAGS & LD-JSON ---
+    // --- 4. META TAGS & LD-JSON ---
     const metaSelectors = ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'meta[itemprop="image"]'];
     let currentBestImage = "";
 
@@ -128,24 +128,9 @@ async function fixSEO() {
       }
     }
 
-    // Update LD-JSON (Schema)
-    const ldScript = $('script[type="application/ld+json"]');
-    if (ldScript.length) {
-      try {
-        let ldData = JSON.parse(ldScript.text());
-        if (!currentBestImage) {
-          const fImg = $('img').first();
-          const imgUrl = fImg.attr('src') || fImg.attr('data-src') || fImg.attr('data-fullsrc');
-          currentBestImage = imgUrl ? (imgUrl.startsWith('http') ? imgUrl : `${baseUrl}${imgUrl}`) : `${baseUrl}/img/${baseName}.webp`;
-        }
-        ldData.image = currentBestImage;
-        ldScript.text(JSON.stringify(ldData, null, 2));
-      } catch (e) {}
-    }
-
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer selesai. Gambar di CSS (Background-url) sudah lokal!');
+  console.log('\n✅ SEO Fixer selesai. Gambar di JavaScript Array sudah migrasi ke lokal!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
