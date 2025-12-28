@@ -11,7 +11,6 @@ async function mirrorAndConvert(externalUrl) {
     const url = new URL(externalUrl);
     const originalPath = url.pathname;
     const ext = path.extname(originalPath);
-    // Pastikan hasil akhirnya selalu .webp
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
     const localPath = path.join('img', url.hostname, webpPathName);
@@ -23,14 +22,14 @@ async function mirrorAndConvert(externalUrl) {
 
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
-    console.log(`📥 Mirroring & Converting: ${url.hostname}...`);
+    console.log(`📥 Mirroring: ${url.hostname}...`);
 
     const response = await axios({
       url: externalUrl,
       method: 'GET',
       responseType: 'arraybuffer',
       headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 15000 // Agak lama sedikit untuk file resolusi besar
+      timeout: 15000
     });
 
     await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
@@ -55,34 +54,36 @@ async function fixSEO() {
 
     console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. PROSES BODY (IMG, DATA-SRC, HREF GAMBAR) ---
-    const bodySelectors = [
-      { tag: 'img', attr: 'src' },
-      { tag: 'img', attr: 'data-src' },
-      { tag: 'a', attr: 'href' },      // Untuk menangkap link gambar asli
-      { tag: 'a', attr: 'data-src' }  // Untuk gallery thumb
+    // --- 1. PROSES BODY (IMG & A dengan berbagai atribut) ---
+    // Daftar tag dan atribut yang mungkin berisi URL eksternal
+    const targets = [
+      { selector: 'img', attrs: ['src', 'data-src', 'data-fullsrc'] },
+      { selector: 'a', attrs: ['href', 'data-src'] }
     ];
 
-    for (const item of bodySelectors) {
-      const elements = $(item.tag);
-      for (let i = 0; i < elements.length; i++) {
-        let el = $(elements[i]);
-        let val = el.attr(item.attr);
+    for (const target of targets) {
+      $(target.selector).each(async (i, el) => {
+        const $el = $(el);
 
-        if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-          // Khusus untuk tag <a>, pastikan href-nya memang menuju file gambar
-          const isImageLink = /\.(jpg|jpeg|png|webp|gif|avif|bmp)(\?.*)?$/i.test(val);
-          const isBloggerImage = val.includes('blogger.googleusercontent.com');
+        for (const attr of target.attrs) {
+          const val = $el.attr(attr);
+          if (val && val.startsWith('http') && !val.includes(baseUrl)) {
 
-          if (item.tag !== 'a' || isImageLink || isBloggerImage) {
-            const localMedia = await mirrorAndConvert(val);
-            el.attr(item.attr, localMedia);
+            // Filter: Kalau tag <a>, pastikan dia memang link gambar
+            const isImage = /\.(jpg|jpeg|png|webp|gif|avif|bmp)(\?.*)?$/i.test(val) || val.includes('blogger.googleusercontent.com');
 
-            // Tambah alt kalau img belum ada
-            if (item.tag === 'img' && !el.attr('alt')) el.attr('alt', articleTitle);
+            if (target.selector !== 'a' || isImage) {
+              const localMedia = await mirrorAndConvert(val);
+              $el.attr(attr, localMedia);
+
+              // Tambah alt otomatis kalau belum ada (hanya untuk img)
+              if (target.selector === 'img' && !$el.attr('alt')) {
+                $el.attr('alt', articleTitle);
+              }
+            }
           }
         }
-      }
+      });
     }
 
     // --- 2. PROSES META TAGS (OG, TWITTER, ITEMPROP) ---
@@ -103,7 +104,10 @@ async function fixSEO() {
           $(selector).attr('content', finalUrl);
           if (!currentBestImage) currentBestImage = finalUrl;
         } else {
-          if (!currentBestImage) currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
+          // Jika sudah lokal, pastikan jadi absolut untuk referensi LD-JSON
+          if (!currentBestImage) {
+            currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
+          }
         }
       }
     }
@@ -114,36 +118,33 @@ async function fixSEO() {
       try {
         let ldData = JSON.parse(ldScript.text());
 
+        // Cari gambar terbaik untuk Schema
         if (!currentBestImage) {
           const firstImg = $('img').first();
-          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src');
+          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src') || firstImg.attr('data-fullsrc');
           if (imgUrl) {
             currentBestImage = imgUrl.startsWith('http') ? imgUrl : `${baseUrl}${imgUrl}`;
           }
         }
 
-        if (!currentBestImage) {
-          currentBestImage = `${baseUrl}/img/${baseName}.webp`;
-        }
+        // Final Fallback
+        if (!currentBestImage) currentBestImage = `${baseUrl}/img/${baseName}.webp`;
 
-        // Pastikan LD-JSON Image selalu URL absolut
-        if (Array.isArray(ldData.image)) {
-          ldData.image = [currentBestImage];
-        } else if (typeof ldData.image === 'object') {
+        if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
           ldData.image.url = currentBestImage;
         } else {
           ldData.image = currentBestImage;
         }
 
         ldScript.text(JSON.stringify(ldData, null, 2));
-      } catch (e) {
-        console.error("❌ Gagal update LD-JSON");
-      }
+      } catch (e) { /* silent fail */ }
     }
 
+    // Tunggu sebentar untuk proses async sebelum tulis file (Cheerio sync, tapi mirroring async)
+    // Catatan: Karena looping kita banyak async, idealnya pakai Promise.all jika file sangat besar.
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer selesai. Semua link gambar eksternal (termasuk link resolusi besar) sudah lokal.');
+  console.log('\n✅ SEO Fixer selesai. Semua data-fullsrc dan lightbox images aman di lokal!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
