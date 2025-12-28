@@ -11,7 +11,7 @@
   "description": "Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.",
   "image": {
     "@type": "ImageObject",
-    "url": "https://dalam.web.id/img/multi-distro-docs.webp",
+    "url": "https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp",
     "width": "1200",
     "height": "675"
   },
@@ -33,6 +33,8 @@
   "dateModified": "2025-12-28"
 }
 </script>
+
+
 
 
 
@@ -114,10 +116,10 @@
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
 <meta name="ai:prompt_hint" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
 
-<meta name="twitter:image" content="https://dalam.web.id/img/multi-distro-docs.webp">
+<meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/multi-distro-docs.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/multi-distro-docs.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp">
   <meta property="og:image:alt" content="Manajemen Dokumen di Multi-Distro Linux">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Manajemen Dokumen di Multi-Distro Linux">
@@ -141,7 +143,7 @@
                     <p>Permasalahan utamanya adalah setiap distro baru memiliki direktori <code>/home</code> sendiri. Jika Anda menyimpan dokumen di sana, file-file tersebut tidak akan bisa diakses dari distro lain, yang berujung pada duplikasi file, pemborosan ruang disk, dan kebingungan versi dokumen.</p>
                     <h2>Langkah 1: Buat Partisi Data Terpusat</h2>
                     <p>Gunakan GParted atau alat partisi lainnya untuk membuat satu partisi besar yang akan berfungsi sebagai "gudang" penyimpanan data untuk semua sistem operasi Anda. Format partisi ini dengan filesystem yang kompatibel dengan semua OS Anda (misalnya, NTFS jika Anda juga menggunakan Windows, atau EXT4 jika hanya Linux).</p>
-                    <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.png" alt="Partisi data terpusat di GParted"></figure>
+                    <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp" alt="Partisi data terpusat di GParted"></figure>
                     <p>Pada contoh di atas, <code>/dev/sda6</code> difungsikan sebagai partisi data bersama.</p>
                     <h2>Langkah 2: Gunakan Symbolic Link (Soft Link)</h2>
                     <p>Setelah distro baru terpasang, jangan langsung gunakan folder-folder default di direktori <code>/home</code> Anda (seperti Documents, Downloads, Pictures, dll.). Hapus folder-folder tersebut, lalu buat symbolic link (shortcut) dari direktori <code>/home</code> Anda ke folder yang sesuai di partisi data terpusat.</p>
@@ -151,8 +153,8 @@ rm -rf ~/Documents
 ln -s /media/data/Documents ~/Documents</code><button class="copy-btn" data-target="code1">Salin</button></pre>
                     <p class="muted">Ulangi proses ini untuk semua folder yang ingin Anda sentralkan (Downloads, Music, Pictures, Videos, dll.). Ganti <code>/media/data/</code> dengan mount point partisi data Anda.</p>
                     <div class="gallery">
-                        <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhreRKZJKh_fSCi7LTgHXbDX14u8tHVaTZAwAg6f8RTl9AD_CenzJF6D022GU3OWxdarVv_L6-9a9bDjZOiV8ZYPARLAlHuHqJZ-Op49Yc_jqYydeOYJMyZPoHoPFXK4JMlOSOZcXRRnaZY/s640/frijal_001.png" alt="Tampilan /home dengan symbolic link"></figure>
-                        <figure><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWLViu8Sxye14RbDTtLolL0LKHDe1ypnStm3HJWLxfd2cJAgfE3fMcWaD2r07U7v7NY-ElG2soK_uTZc4qz2KzlLY2lfrw2oY7lkq8BsN8eypHlWVANouHog7qXvOpdcyP819lERnJbvSi/s640/frijal_002.png" alt="Akses data yang sama dari distro berbeda"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhreRKZJKh_fSCi7LTgHXbDX14u8tHVaTZAwAg6f8RTl9AD_CenzJF6D022GU3OWxdarVv_L6-9a9bDjZOiV8ZYPARLAlHuHqJZ-Op49Yc_jqYydeOYJMyZPoHoPFXK4JMlOSOZcXRRnaZY/s640/frijal_001.webp" alt="Tampilan /home dengan symbolic link"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWLViu8Sxye14RbDTtLolL0LKHDe1ypnStm3HJWLxfd2cJAgfE3fMcWaD2r07U7v7NY-ElG2soK_uTZc4qz2KzlLY2lfrw2oY7lkq8BsN8eypHlWVANouHog7qXvOpdcyP819lERnJbvSi/s640/frijal_002.webp" alt="Akses data yang sama dari distro berbeda"></figure>
                     </div>
                     <p>Dengan cara ini, semua distro Linux yang Anda instal akan mengakses dan menyimpan file di lokasi yang sama, menghilangkan duplikasi dan membuat manajemen file menjadi jauh lebih mudah.</p>
                     <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>

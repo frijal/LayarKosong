@@ -11,7 +11,7 @@
   "description": "Folder /var/log/ di Debian 13 kamu bengkak? Santai. Ikuti panduan lengkap ini untuk mengecilkan log systemd-journald dan logrotate dengan aman.",
   "image": {
     "@type": "ImageObject",
-    "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp",
+    "url": "https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp",
     "width": "1200",
     "height": "675"
   },
@@ -33,6 +33,8 @@
   "dateModified": "2025-12-28"
 }
 </script>
+
+
 
 
 
@@ -286,10 +288,10 @@
 
 
 
-<meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn6kRu7uHYnbDUs-rAyeF7I6V0qIVl1tzMtE1k5bFXlUTCH6W6u-E9SFCa5jzgvq6xQwTqM45TbAfninQiKWni-699OqwTTgYd28V3xyt9RcNbHK9RYH5hlLVcxBPPzA4IoGpKjpWkUooRnFJ11-ixirwmoq1gxyKCvo89VSp_yu-ASQDYQf3IRwjN0c/s1600/varlog.webp">
+<meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp">
 
 <meta property="og:url" content="https://dalam.web.id/artikel/kecilkan-var-log-debian.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp">
   <meta property="og:image:alt" content="Cara Ampuh Mengecilkan /var/log/ di Debian 13">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Cara Ampuh Mengecilkan /var/log/ di Debian 13">
@@ -328,7 +330,7 @@
                 <p>Sebelum main hapus, kita harus investigasi dulu. Siapa sih yang paling banyak makan tempat di <code>/var/log/</code>? Kita bisa pakai perintah sakti ini untuk melihat 10 file/folder terbesar di sana:</p>
                 <pre><code>sudo du -sh /var/log/* | sort -rh | head -n 10</code></pre>
                 <p>Perintah ini artinya: <code>du -sh</code> (cek ukuran folder/file), <code>sort -rh</code> (urutkan dari terbesar ke terkecil), dan <code>head -n 10</code> (tampilkan 10 teratas).</p>
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp" alt="Ilustrasi pembersihan log">
+                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC82Gv1i0js2oVlQ-KKiDwYvN8zLhiNkABsC9bIWcJ00oqzpA0zk_v7wAZtbqr5UVweWTQdmFw38MogTb9rZm35QQdTA0Ta5BRgfhN-ra7WLxGhdSNUH2f-nP0BmiWmjD_8HXi4DBEg8o-u7OaiWN-3s42olgUaIv_4LhswojGF28y07BrfZ7gtIBLJqc/s1600/varlog2.webp" alt="Ilustrasi pembersihan log">
                 <p>Hasilnya mungkin bakal kayak gini (ini contoh dari kasus kita sebelumnya):</p>
                 <pre><code>1,7G    /var/log/journal
 16M     /var/log/installer
@@ -343,7 +345,7 @@
                     Langkah 2: Bereskan Log Systemd (Journal)
                 </h2>
                 <p>Oke, karena si <code>journal</code> ini biang keroknya, kita akan fokus ke dia. Ada dua hal yang perlu kita lakukan: membersihkan yang lama (sekali waktu) dan mengatur batasnya (permanen).</p>
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVd1f6b_oUo_Ot5z4dT1oBc11RC4XuyVTQ74tMH9EifFEF-ZtLuG5KW_RKWF7DzyZmu8QfqbVSztfE77Uh7ktu7VG6HkrA2scrLdZv0n-0NaYE1VEvcX-g-f5cNLHI7WawvQhvlDZvp2qiM-67TdVBsJz1kzrI1OQSLFO_SGh4uEGB-9AcCru6FdGdLqQ/s1600/varlog3.webp" alt="Mengedit file konfigurasi journald.conf">
+                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVd1f6b_oUo_Ot5z4dT1oBc11RC4XuyVTQ74tMH9EifFEF-ZtLuG5KW_RKWF7DzyZmu8QfqbVSztfE77Uh7ktu7VG6HkrA2scrLdZv0n-0NaYE1VEvcX-g-f5cNLHI7WawvQhvlDZvp2qiM-67TdVBsJz1kzrI1OQSLFO_SGh4uEGB-9AcCru6FdGdLqQ/s1600/varlog3.webp" alt="Mengedit file konfigurasi journald.conf">
                 <h3>
                     <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.22-1.05-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"></path></svg>
                     A. Bersihkan Sekarang (Vacuum) - Cara Cepat
@@ -361,7 +363,7 @@
                 <p>Ini adalah langkah paling penting biar masalah nggak terulang. Kita akan "memarahi" <code>systemd-journald</code> agar nggak boros tempat lagi.</p>
                 <p><strong>1. Buka file konfigurasinya:</strong></p>
                 <pre><code>sudo nano /etc/systemd/journald.conf</code></pre>
-                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq_pA9pItouLo3qjENwGNZsBbi9GCzEJZlKp521S_7Giwzi__H8jQgz7W7Hg6UN3rjFLcEVUjxGF28uipfw-wzOIF6T6oMxLA7etj670669DZ1TNlryiKUXCk-7pnrWoO1DJywHYFufT56WE0alwYUkwPhlu8dZhyTFAdcZWkBpceD4ve3eE8NbEvIpbc/s1600/varlog4.webp" alt="Terminal Linux menampilkan perintah truncate">
+                 <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq_pA9pItouLo3qjENwGNZsBbi9GCzEJZlKp521S_7Giwzi__H8jQgz7W7Hg6UN3rjFLcEVUjxGF28uipfw-wzOIF6T6oMxLA7etj670669DZ1TNlryiKUXCk-7pnrWoO1DJywHYFufT56WE0alwYUkwPhlu8dZhyTFAdcZWkBpceD4ve3eE8NbEvIpbc/s1600/varlog4.webp" alt="Terminal Linux menampilkan perintah truncate">
                 <p><strong>2. Cari dan ubah baris ini:</strong><br>
                 Kamu akan lihat banyak teks, cari baris yang ada tulisan <code>#SystemMaxUse=</code>. Tanda <code>#</code> di depannya berarti baris itu nggak aktif (dikomentari).</p>
                 <p>Hapus tanda <code>#</code> di depannya dan atur batas ukurannya. Ukuran <code>1G</code> (1 Gigabyte) atau <code>500M</code> (500 Megabyte) udah lebih dari cukup untuk penggunaan normal.</p>
@@ -404,7 +406,7 @@ SystemMaxUse=1G
                 <p>Cara yang **AMAN** adalah mengosongkan isinya tanpa menghapus filenya. Gunakan perintah <code>truncate</code>:</p>
                 <pre><code>sudo truncate -s 0 /var/log/nama-file-besar.log</code></pre>
                 <p>Perintah ini akan membuat ukuran file <code>nama-file-besar.log</code> menjadi 0 byte, tapi filenya tetap ada. Aplikasi yang tadinya nulis di situ akan lanjut nulis dari awal lagi tanpa error. Aman!</p>
-                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn6kRu7uHYnbDUs-rAyeF7I6V0qIVl1tzMtE1k5bFXlUTCH6W6u-E9SFCa5jzgvq6xQwTqM45TbAfninQiKWni-699OqwTTgYd28V3xyt9RcNbHK9RYH5hlLVcxBPPzA4IoGpKjpWkUooRnFJ11-ixirwmoq1gxyKCvo89VSp_yu-ASQDYQf3IRwjN0c/s1600/varlog.webp" alt="Struktur folder /var/log/ di Debian">
+                  <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn6kRu7uHYnbDUs-rAyeF7I6V0qIVl1tzMtE1k5bFXlUTCH6W6u-E9SFCa5jzgvq6xQwTqM45TbAfninQiKWni-699OqwTTgYd28V3xyt9RcNbHK9RYH5hlLVcxBPPzA4IoGpKjpWkUooRnFJ11-ixirwmoq1gxyKCvo89VSp_yu-ASQDYQf3IRwjN0c/s1600/varlog.webp" alt="Struktur folder /var/log/ di Debian">
             </section>
             <section>
                 <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
