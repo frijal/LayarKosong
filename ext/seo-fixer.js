@@ -111,6 +111,7 @@ async function fixSEO() {
     // --- 3. LOGIKA GAMBAR + MIRRORING (Sapu Jagat) ---
     const allImages = $('img');
     let featuredImageSet = false;
+    let finalImage = fallbackImage; // Definisikan default di awal agar tidak Error
 
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
@@ -124,11 +125,25 @@ async function fixSEO() {
         imgTag.attr('src', newLocalSrc);
         console.log(`  📸 Body Image Updated: ${oldSrc} -> ${newLocalSrc}`);
 
-        // Set sebagai featured image untuk JSON-LD jika ini gambar pertama
+        // Set sebagai featured image jika ini gambar pertama yang diproses
         if (!featuredImageSet) {
           finalImage = newLocalSrc;
           featuredImageSet = true;
         }
+      } else if (oldSrc && !featuredImageSet) {
+        // Jika gambar lokal sudah ada, gunakan itu sebagai featured image
+        finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
+        featuredImageSet = true;
+      }
+    }
+
+    // Fallback terakhir jika benar-benar tidak ada gambar di body
+    if (!featuredImageSet) {
+      let metaImage = $('meta[property="og:image"]').attr('content');
+      if (isDiscoverFriendly(metaImage)) {
+        finalImage = metaImage.startsWith('http') ? metaImage : `${baseUrl}${metaImage.startsWith('/') ? '' : '/'}${metaImage}`;
+      } else {
+        finalImage = fallbackImage;
       }
     }
 
