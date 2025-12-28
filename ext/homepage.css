@@ -480,35 +480,7 @@
    text-align: right;
  }
 
- /* --- MOBILE RESPONSIVE --- */
- @media (max-width: 1100px) {
-   .footer-content {
-     grid-template-columns: 1fr;
-     text-align: center;
-     gap: 20px;
-   }
-
-   .footer-section {
-     align-items: center;
-   }
-
-   .footer-links {
-     justify-content: center;
-     gap: 12px;
-   }
-
-   .footer-copyright p {
-     text-align: center;
-   }
- }
-
- /* RESPONSIVE */
- @media (max-width: 900px) {
-   .main-grid { grid-template-columns: 1fr; }
-   .hero { height: 350px; }
- }
-
- /* CARD CLICKABLE */
+  /* CARD CLICKABLE */
  .card-link {
    display: flex;
    flex-direction: column;
@@ -739,79 +711,127 @@
   padding: 0;
   margin: 0; /* Hapus margin-left negatif karena sudah pakai absolute */
 }
-/* Responsif: Biar gak kegedean di HP Balikpapan */
-@media (max-width: 480px) {
-  .search-bar {
-    width: 160px; /* Lebar pas-pasan untuk placeholder di layar kecil */
-    font-size: 0.85rem;
+
+/* ==============================
+ *   RESPONSIVE LAYOUT
+ *   ============================== */
+
+/* --- <= 1100px --- */
+@media (max-width: 1100px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-section {
+    align-items: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .footer-copyright p {
+    text-align: center;
   }
 }
 
-/* Responsive: Sembunyikan search di layar sangat kecil atau ubah gayanya */
-@media (max-width: 600px) {
-  .search-bar {
-    width: 150px;
-  }
-  .search-bar:focus {
-    width: 180px;
-  }
-  .logo {
-    font-size: 1.1rem;
-    gap: 6px; /* Rapatkan jarak ke ikon */
-  }
-  .logo-icon {
-    width: 20px;  /* Perkecil ikon di mobile */
-    height: 20px;
+/* --- <= 900px --- */
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* Hilangkan efek hover miring di mobile karena gak ada kursor */
-  .logo:hover .logo-icon {
-    transform: none;
+  .hero {
+    height: 350px;
   }
 }
+
+/* --- <= 768px (Tablet & Mobile Besar) --- */
 @media (max-width: 768px) {
-  .btn-header span {
-    display: inline; /* Menampilkan kembali teks */
-    font-size: 0.75rem; /* Perkecil sedikit font-nya supaya muat */
-  }
   .btn-header {
-    padding: 6px 8px; /* Rapatkan padding agar hemat ruang */
-    gap: 4px; /* Rapatkan jarak ikon ke teks */
+    padding: 6px 8px;
+    gap: 4px;
   }
-  .nav-box { flex-direction: column; gap: 15px; padding: 15px 20px; }
+
+  .btn-header span {
+    display: inline;
+    font-size: 0.75rem;
+  }
+
+  .nav-box {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
   .header-tools {
-    flex-direction: column; /* Membuat filter dan search bertumpuk vertikal */
-    align-items: stretch;   /* Membuat elemen melebar memenuhi lebar layar */
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
-    gap: 12px;              /* Jarak antar tumpukan */
+    gap: 12px;
   }
 
   .hero-title {
-    font-size: 1.6rem !important; /* Kecilkan dikit judulnya biar gak menutupi gambar */
+    font-size: 1.6rem !important;
   }
 
   .hero-summary {
-    display: none; /* Menghilang sat-set! */
+    display: none;
   }
 
   .hero-content {
-    padding: 20px; /* Perkecil padding di mobile biar judulnya lebih lega */
+    padding: 20px;
   }
 
   .archive-box-header {
     display: grid;
-  grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
   }
 
-  .archive-box-header select {
-    width: 100%; /* Dropdown memenuhi kolom grid */
-  }
-
-  .search-wrapper {
-    width: 100%; /* Kolom pencarian melebar penuh */
-  }
-
+  .archive-box-header select,
+  .search-wrapper,
   .search-bar {
-    width: 100%; /* Input search memenuhi container */
+    width: 100%;
   }
 }
+
+/* --- <= 600px (Mobile) --- */
+@media (max-width: 600px) {
+  .search-bar {
+    width: 150px;
+  }
+
+  .search-bar:focus {
+    width: 180px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    gap: 6px;
+  }
+
+  .logo-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Mobile tidak butuh hover */
+  .logo:hover .logo-icon {
+    transform: none;
+  }
+}
+
+/* --- <= 480px (HP Kecil) --- */
+@media (max-width: 480px) {
+  .search-bar {
+    width: 160px;
+    font-size: 0.85rem;
+  }
+}
+
+

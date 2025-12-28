@@ -255,49 +255,13 @@ a.category-link.visible {
   transform: scale(1.2);
 }
 
-/* --- (4) MOBILE --- */
-@media (max-width: 768px) {
-  .floating-nav {
-    left: 10px;
-    right: 10px;
-    bottom: 40px;
-  }
-  #related-articles-grid {
-  grid-template-columns: 1fr; /* Jadi 1 kolom untuk HP & Tablet Portrait */
-  gap: 12px; /* Jarak sedikit dirapatkan biar hemat ruang */
-  }
-
-  .rel-card-mini a {
-    padding: 8px; /* Padding lebih ramping di layar kecil */
-  }
-
- .rel-info-mini h4 {
-    font-size: 0.9rem; /* Ukuran teks yang tetap mudah dibaca di HP */
-  }
-  .rel-img-mini {
-    flex: 0 0 75px; /* Sedikit lebih kecil di mobile agar judul punya ruang */
-    height: 55px;
-  }
-  .nav-right {
-    gap: 8px;
-  }
-  .btn-emoji {
-    font-size: 1.8rem;
-  }
-  a.category-link {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-}
-
-/* --- RELATED CONTENT (MINIMALIS HORIZONTAL) --- */
+/* --- 1. RELATED CONTENT (DEFAULTS / DESKTOP FIRST) --- */
 #related-articles-grid {
 display: grid;
 grid-template-columns: repeat(2, 1fr); /* 2 kolom mendatar */
 gap: 15px;
 margin: 30px 0;
 padding-top: 20px;
-/* Gunakan --border dari artikel, jika tidak ada pakai warna abu tipis */
 border-top: 1px solid var(--border, #e2e8f0);
 }
 
@@ -308,9 +272,7 @@ border-top: 1px solid var(--border, #e2e8f0);
   text-decoration: none;
   padding: 10px;
   border-radius: 10px;
-  /* Beradaptasi dengan --card-bg di artikel atau --bg-card di homepage */
   background: var(--card-bg, var(--bg-card, #ffffff));
-  /* Beradaptasi dengan warna teks halaman */
   color: var(--text, var(--text-main, #1a202c));
   border: 1px solid var(--border, #e2e8f0);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -340,7 +302,6 @@ border-top: 1px solid var(--border, #e2e8f0);
   font-size: 0.95rem;
   line-height: 1.3;
   font-weight: 600;
-  /* Warna teks default sesuai halaman */
   color: inherit;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -349,15 +310,13 @@ border-top: 1px solid var(--border, #e2e8f0);
   transition: color 0.3s ease;
 }
 
-/* --- EFEK HOVER (SMART FALLBACK) --- */
-
+/* --- 2. EFEK HOVER --- */
 .rel-card-mini a:hover {
   transform: translateY(-3px);
-  /* Cek --primary (home), kalau tidak ada pakai --accent (artikel), terakhir teal */
   border-color: var(--primary, var(--accent, #0f766e));
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   background: var(--card-bg, var(--bg-card, #ffffff));
-  filter: brightness(0.98); /* Efek klik sedikit gelap pas hover */
+  filter: brightness(0.98);
 }
 
 .rel-card-mini:hover .rel-img-mini img {
@@ -365,7 +324,44 @@ border-top: 1px solid var(--border, #e2e8f0);
 }
 
 .rel-card-mini:hover h4 {
-  /* Judul berubah: Cek --secondary (home), kalau tidak ada pakai --accent (artikel) */
   color: var(--secondary, var(--accent, #0f766e)) !important;
 }
 
+/* --- 3. MEDIA QUERY (TARUH DI PALING BAWAH AGAR MENANG) --- */
+@media (max-width: 768px) {
+  .floating-nav {
+    left: 10px;
+    right: 10px;
+    bottom: 40px;
+  }
+  #related-articles-grid {
+  grid-template-columns: 1fr !important; /* Pakai !important jika masih membandel */
+  gap: 12px;
+  }
+
+  .rel-card-mini a {
+    padding: 8px;
+  }
+
+  .rel-info-mini h4 {
+    font-size: 0.9rem;
+  }
+
+  .rel-img-mini {
+    flex: 0 0 75px;
+    height: 55px;
+  }
+
+  .nav-right {
+    gap: 8px;
+  }
+
+  .btn-emoji {
+    font-size: 1.8rem;
+  }
+
+  a.category-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
