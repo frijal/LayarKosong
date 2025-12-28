@@ -15,7 +15,12 @@ async function mirrorAndConvert(externalUrl) {
     const ext = path.extname(originalPath);
     // Jika tidak ada ekstensi (misal dari API), kita asumsikan .webp nanti
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
+    // Di dalam mirrorAndConvert(url)
+    const localPath = path.join(process.cwd(), 'img', domain, pathHashed + '.webp');
 
+    if (fs.existsSync(localPath)) {
+      return `/img/${domain}/${pathHashed}.webp`; // Langsung return jika sudah ada
+    }
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
@@ -148,6 +153,51 @@ async function fixSEO() {
           finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
           featuredImageSet = true;
         }
+      }
+    }
+
+    // --- LOGIKA TAMBAHAN UNTUK META ITEMPROP, DATA-SRC, DAN THUMBNAIL ---
+
+    // 1. Menangani Meta Itemprop (Biasanya untuk skema Microdata)
+    const metaItemprop = $('meta[itemprop="image"]');
+    if (metaItemprop.length) {
+      let content = metaItemprop.attr('content');
+      if (content && content.startsWith('http') && !content.includes(baseUrl)) {
+        const newLocal = await mirrorAndConvert(content);
+        metaItemprop.attr('content', `${baseUrl}${newLocal}`);
+        console.log(`  🔗 Meta Itemprop Mirrored: ${newLocal}`);
+      }
+    }
+
+    // 2. Menangani Tag <a> dengan class "thumb" (Biasanya untuk Lightbox)
+    const thumbs = $('a.thumb');
+    for (let i = 0; i < thumbs.length; i++) {
+      let thumb = $(thumbs[i]);
+      let dataSrc = thumb.attr('data-src');
+      if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
+        const newLocal = await mirrorAndConvert(dataSrc);
+        thumb.attr('data-src', newLocal); // Tetap simpan sebagai data-src
+        // Opsional: Jika ingin href-nya juga ikut berubah
+        thumb.attr('href', newLocal);
+        console.log(`  🖼️  Thumbnail Link Mirrored: ${newLocal}`);
+      }
+    }
+
+    // 3. Menangani <img> dengan data-src (Lazy Load)
+    const lazyImgs = $('img[data-src]');
+    for (let i = 0; i < lazyImgs.length; i++) {
+      let img = $(lazyImgs[i]);
+      let dataSrc = img.attr('data-src');
+
+      if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
+        const newLocal = await mirrorAndConvert(dataSrc);
+        img.attr('data-src', newLocal);
+
+        // Pastikan src utama juga terisi agar tidak pecah/kosong jika lazyload gagal
+        if (!img.attr('src') || img.attr('src').startsWith('http')) {
+          img.attr('src', newLocal);
+        }
+        console.log(`  💤 Lazy Image Mirrored: ${newLocal}`);
       }
     }
 
