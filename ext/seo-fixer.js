@@ -11,6 +11,7 @@ async function mirrorAndConvert(externalUrl) {
     const url = new URL(externalUrl);
     const originalPath = url.pathname;
     const ext = path.extname(originalPath);
+    // Pastikan hasil akhirnya selalu .webp
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
     const localPath = path.join('img', url.hostname, webpPathName);
@@ -29,10 +30,10 @@ async function mirrorAndConvert(externalUrl) {
       method: 'GET',
       responseType: 'arraybuffer',
       headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 10000
+      timeout: 15000 // Agak lama sedikit untuk file resolusi besar
     });
 
-    await sharp(response.data).webp({ quality: 80 }).toFile(localPath);
+    await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
     console.error(`❌ Gagal Mirror ${externalUrl}:`, err.message);
@@ -54,12 +55,12 @@ async function fixSEO() {
 
     console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. PROSES SEMUA IMG & A (TAG BODY) ---
-    // Menangkap <img> src, <img> data-src, dan <a> data-src
+    // --- 1. PROSES BODY (IMG, DATA-SRC, HREF GAMBAR) ---
     const bodySelectors = [
       { tag: 'img', attr: 'src' },
       { tag: 'img', attr: 'data-src' },
-      { tag: 'a.thumb', attr: 'data-src' }
+      { tag: 'a', attr: 'href' },      // Untuk menangkap link gambar asli
+      { tag: 'a', attr: 'data-src' }  // Untuk gallery thumb
     ];
 
     for (const item of bodySelectors) {
@@ -68,12 +69,18 @@ async function fixSEO() {
         let el = $(elements[i]);
         let val = el.attr(item.attr);
 
-        // Tambah alt kalau img belum ada
-        if (item.tag === 'img' && !el.attr('alt')) el.attr('alt', articleTitle);
-
         if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-          const localMedia = await mirrorAndConvert(val);
-          el.attr(item.attr, localMedia);
+          // Khusus untuk tag <a>, pastikan href-nya memang menuju file gambar
+          const isImageLink = /\.(jpg|jpeg|png|webp|gif|avif|bmp)(\?.*)?$/i.test(val);
+          const isBloggerImage = val.includes('blogger.googleusercontent.com');
+
+          if (item.tag !== 'a' || isImageLink || isBloggerImage) {
+            const localMedia = await mirrorAndConvert(val);
+            el.attr(item.attr, localMedia);
+
+            // Tambah alt kalau img belum ada
+            if (item.tag === 'img' && !el.attr('alt')) el.attr('alt', articleTitle);
+          }
         }
       }
     }
@@ -96,7 +103,7 @@ async function fixSEO() {
           $(selector).attr('content', finalUrl);
           if (!currentBestImage) currentBestImage = finalUrl;
         } else {
-          if (!currentBestImage) currentBestImage = content;
+          if (!currentBestImage) currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
         }
       }
     }
@@ -107,7 +114,6 @@ async function fixSEO() {
       try {
         let ldData = JSON.parse(ldScript.text());
 
-        // Cari gambar terbaik: Meta > <img> src > <img> data-src > Fallback
         if (!currentBestImage) {
           const firstImg = $('img').first();
           const imgUrl = firstImg.attr('src') || firstImg.attr('data-src');
@@ -120,6 +126,7 @@ async function fixSEO() {
           currentBestImage = `${baseUrl}/img/${baseName}.webp`;
         }
 
+        // Pastikan LD-JSON Image selalu URL absolut
         if (Array.isArray(ldData.image)) {
           ldData.image = [currentBestImage];
         } else if (typeof ldData.image === 'object') {
@@ -136,7 +143,7 @@ async function fixSEO() {
 
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer selesai. Semua atribut data-src dan itemprop telah diamankan!');
+  console.log('\n✅ SEO Fixer selesai. Semua link gambar eksternal (termasuk link resolusi besar) sudah lokal.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
