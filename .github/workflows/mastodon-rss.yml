@@ -14,8 +14,6 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm install
-
       - run: node ext/post-to-mastodon.js
         env:
           MASTODON_INSTANCE: mastodon.social
