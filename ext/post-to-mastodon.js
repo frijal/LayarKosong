@@ -3,11 +3,12 @@ import crypto from "crypto";
 import fetch from "node-fetch";
 
 /* =====================
-   KONFIGURASI
+   Konfigurasi
 ===================== */
 const ARTICLE_FILE = "artikel.json";
 const STATE_FILE = "mini/mastodon-posted.json";
 const LIMIT = 500;
+const DELAY_MS = 8000;
 
 const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
@@ -18,7 +19,21 @@ if (!INSTANCE || !TOKEN) {
 }
 
 /* =====================
-   LOAD STATE
+   Util
+===================== */
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+const cleanHashtag = (str) =>
+  "#" + str
+    .replace(/&/g, "dan")
+    .replace(/[^\w\s]/g, "")
+    .replace(/\s+/g, "");
+
+const hashUrl = (url) =>
+  crypto.createHash("sha256").update(url).digest("hex");
+
+/* =====================
+   Load State
 ===================== */
 let posted = [];
 if (fs.existsSync(STATE_FILE)) {
@@ -26,96 +41,75 @@ if (fs.existsSync(STATE_FILE)) {
 }
 
 /* =====================
-   LOAD & FLATTEN ARTIKEL
+   Load & Flatten Artikel
 ===================== */
 const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
 
 let articles = [];
 
-for (const category in raw) {
-  raw[category].forEach(item => {
-    const [
-      title,
-      slug,
-      image,
-      date,
-      description
-    ] = item;
+for (const [category, items] of Object.entries(raw)) {
+  for (const item of items) {
+    const [title, slug, image, date, desc] = item;
 
     articles.push({
       title,
-      slug,
       url: slug.startsWith("http")
         ? slug
-        : `https://dalam.web.id/artikel/${slug.replace(/^\//, "")}`,
+        : `https://dalam.web.id/artikel/${slug}`,
       image,
-      date,
-      description,
+      date: new Date(date),
+      desc: desc || "",
       category
     });
-  });
+  }
 }
 
 /* =====================
-   SORT TERBARU
+   Sort Tertua → Terbaru
 ===================== */
-articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+articles.sort((a, b) => a.date - b.date);
 
 /* =====================
-   PILIH YANG BELUM DIPOST
+   Cari Artikel Belum Dipost
 ===================== */
-const next = articles.find(a => !posted.includes(a.url));
+const queue = articles.filter(a => {
+  const h = hashUrl(a.url);
+  return !posted.includes(h);
+});
 
-if (!next) {
-  console.log("⏭️  Tidak ada artikel baru");
+if (!queue.length) {
+  console.log("✅ Semua artikel sudah dipost");
   process.exit(0);
 }
 
-/* =====================
-   HASHTAG
-===================== */
-function makeHashtag(text) {
-  return (
-    "#" +
-    text
-      .replace(/[^\w\s]/g, "")
-      .split(/\s+/)
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-      .join("")
-  );
-}
+const article = queue[0];
+const urlHash = hashUrl(article.url);
 
-let hashtags = [];
+/* =====================
+   Hashtag
+===================== */
+const hashtags = new Set();
 
 /* kategori */
-hashtags.push(makeHashtag(next.category));
+hashtags.add(cleanHashtag(article.category));
 
-/* judul → multi hashtag */
-next.title
+/* judul → max 3 kata penting */
+article.title
   .split(/\s+/)
   .filter(w => w.length > 4)
-  .slice(0, 4)
-  .forEach(w => hashtags.push(makeHashtag(w)));
-
-hashtags = [...new Set(hashtags)];
+  .slice(0, 3)
+  .forEach(w => hashtags.add(cleanHashtag(w)));
 
 /* =====================
-   BANGUN STATUS
+   Status
 ===================== */
-const desc =
-  next.description && next.description.trim()
-    ? next.description.trim()
-    : "sambil Ngopi.";
+let status = `📝 ${article.title}
 
-let status = [
-  next.title,
-  "",
-  desc,
-  "",
-  next.url,
-  "",
-  hashtags.join(" ")
-].join("\n");
+${article.desc || "arsip Layar Kosong."}
+
+🔗 ${article.url}
+
+${[...hashtags].join(" ")}`;
 
 /* limit 500 */
 if (status.length > LIMIT) {
@@ -123,13 +117,9 @@ if (status.length > LIMIT) {
 }
 
 /* =====================
-   POST KE MASTODON
+   Post ke Mastodon
 ===================== */
-const apiBase = INSTANCE.startsWith("http")
-  ? INSTANCE
-  : `https://${INSTANCE}`;
-
-const res = await fetch(`${apiBase}/api/v1/statuses`, {
+const res = await fetch(`https://${INSTANCE}/api/v1/statuses`, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${TOKEN}`,
@@ -137,22 +127,26 @@ const res = await fetch(`${apiBase}/api/v1/statuses`, {
   },
   body: JSON.stringify({
     status,
-    visibility: "public",
-    language: "id"
+    visibility: "public"
   })
 });
 
 if (!res.ok) {
-  console.error("❌ Gagal post:", await res.text());
+  const err = await res.text();
+  console.error("❌ Gagal post Mastodon:", err);
   process.exit(1);
 }
 
 /* =====================
-   SIMPAN STATE
+   Simpan State
 ===================== */
-posted.push(next.url);
+posted.push(urlHash);
 fs.mkdirSync("mini", { recursive: true });
 fs.writeFileSync(STATE_FILE, JSON.stringify(posted, null, 2));
 
-console.log("✅ Berhasil post ke Mastodon:");
-console.log(next.url);
+console.log("✅ Berhasil post:", article.url);
+
+/* =====================
+   Delay Aman
+===================== */
+await sleep(DELAY_MS);
