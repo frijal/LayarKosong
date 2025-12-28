@@ -30,11 +30,7 @@ jobs:
           TOKEN: ${{ secrets.MASTODON_TOKEN }}
           INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
         run: |
-          STATUS="$TITLE
-
-$LINK
-
-#Blog #Indonesia #LayarKosong"
+          STATUS="$TITLE - $LINK #Blog #Indonesia #LayarKosong"
 
           curl -X POST "$INSTANCE/api/v1/statuses" \
             -H "Authorization: Bearer $TOKEN" \
