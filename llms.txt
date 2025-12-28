@@ -1,4 +1,4 @@
-# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 27 December 2025)
+# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 28 December 2025)
 
 Situs: https://dalam.web.id | Penulis: Fakhrul Rijal dari Balikpapan, Kalimantan Timur 🇮🇩
 
@@ -727,7 +727,7 @@ Total artikel terindeks: 711 (hanya yang punya summary). Update rutin – full l
 - [**Belajar Perintah cURL: Cheat Sheet Lengkap untuk Pemula**](https://dalam.web.id/artikel/belajar-perintah-curl.html): 2014-12-01 — Kumpulan contoh perintah cURL lengkap untuk berbagai kebutuhan: GET, POST, download file, dan lainnya. Cheat sheet ini cocok untuk developer, tester, dan siapa saja yang ingin belajar cURL.
 - [**EULA (End User License Agreement) - Panduan Lengkap Memahami Lisensi Perangkat Lunak**](https://dalam.web.id/artikel/eula-guide.html): 2014-12-01 — Panduan lengkap memahami EULA (End User License Agreement) - Perjanjian lisensi perangkat lunak yang harus dipahami pengguna Windows dan software lainnya.
 - [**Kan Bisa Belajar, Install Ulang Gak Butuh Skill, Ngapain Bayar?**](https://dalam.web.id/artikel/kan-bisa-belajar-ngapain-bayar.html): 2014-05-06 — Narasi viral 2025:
-- [**Bikin Kata Sandi Kuat — Generator | dalam.web.id**](https://dalam.web.id/artikel/password-generator-bikin-kata-sandi.html): 2014-01-13 — Generator kata sandi sederhana dan aman. Pilih panjang, jenis karakter (angka, simbol, huruf besar/kecil), lalu buat kata sandi kuat secara instan.
+- [**Bikin Kata Sandi Kuat — Generator**](https://dalam.web.id/artikel/password-generator-bikin-kata-sandi.html): 2014-01-13 — Generator kata sandi sederhana dan aman. Pilih panjang, jenis karakter (angka, simbol, huruf besar/kecil), lalu buat kata sandi kuat secara instan.
 - [**Lisensi Perangkat Lunak: Perbedaan Permisif vs Copyleft (GPL, MIT, Apache)**](https://dalam.web.id/artikel/lisensi-perangkat-lunak.html): 2014-01-08 — Panduan lengkap mengenai berbagai jenis lisensi perangkat lunak, hak dan tanggung jawab Licensor serta Licensee, dan perbedaan fundamental antara lisensi Permisif (MIT, Apache) dan Copyleft (GPL).
 - [**Demo Nekat! Kekuatan Gorilla Glass Samsung Galaxy S2 🚬**](https://dalam.web.id/artikel/gorilla-glass-s2.html): 2013-09-09 — Nekat! Demo Gorilla Glass pada Samsung Galaxy S2 putih dengan mematikan rokok di layar handphone. Video ini hanya untuk hiburan dan membuktikan ketangguhan layar. Jangan pernah ditiru!
 - [**Kisah FCKGW dan Windows XP: Bukan hasil crack, tapi VLK yang bocor**](https://dalam.web.id/artikel/fckgw-windows-xp.html): 2011-05-19 — Di balik kesuksesan Windows XP, kisah kelam VLK FCKGW yang bocor ke publik. Bukan hasil crack, melainkan lisensi volume resmi yang menyebar luas dan jadi ikon era bajakan.
