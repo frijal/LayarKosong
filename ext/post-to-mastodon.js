@@ -26,6 +26,11 @@ const toHashtag = (str) =>
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join("");
 
+const getText = (v) =>
+  typeof v === "string"
+    ? v
+    : v?.__cdata || v?.["#text"] || "";
+
 /* ================= LOAD POSTED ================= */
 const posted = fs.existsSync(POSTED_FILE)
   ? JSON.parse(fs.readFileSync(POSTED_FILE, "utf8"))
@@ -33,33 +38,49 @@ const posted = fs.existsSync(POSTED_FILE)
 
 /* ================= FETCH RSS ================= */
 const rssText = await fetch(RSS_URL).then(r => r.text());
-const parser = new XMLParser({ ignoreAttributes: false });
+
+const parser = new XMLParser({
+  ignoreAttributes: false,
+  attributeNamePrefix: "@_",
+  textNodeName: "#text",
+  cdataPropName: "__cdata",
+});
+
 const feed = parser.parse(rssText);
 
-const item = feed.rss.channel.item[0];
+if (!feed?.rss?.channel?.item) {
+  console.error("❌ Struktur RSS tidak dikenali");
+  process.exit(1);
+}
 
-const title = item.title;
-const link = item.link;
-const guid = item.guid;
-const description = item.description || "";
-const category = item.category || "";
+/* ================= NORMALIZE ITEM ================= */
+const items = Array.isArray(feed.rss.channel.item)
+  ? feed.rss.channel.item
+  : [feed.rss.channel.item];
+
+const item = items[0];
+
+const title = getText(item.title);
+const link = getText(item.link);
+const guid = getText(item.guid);
+const description = getText(item.description);
+const category = getText(item.category);
 
 const guidHash = hash(guid);
 
 if (posted.includes(guidHash)) {
-  console.log("⏭ Artikel sudah pernah dipost. Skip.");
+  console.log("⏭ Sudah pernah dipost, skip.");
   process.exit(0);
 }
 
 /* ================= HASHTAGS ================= */
-const hashtags = new Set();
-hashtags.add("#LayarKosong");
+const hashtags = new Set(["#LayarKosong"]);
 
 if (category) {
   hashtags.add(toHashtag(category));
 }
 
-const hashtagText = Array.from(hashtags).join(" ");
+const hashtagText = [...hashtags].join(" ");
 
 /* ================= BUILD STATUS ================= */
 let status = `📰 ${title}
@@ -72,22 +93,22 @@ ${hashtagText}`;
 
 status = truncate(status, MAX_CHARS);
 
-/* ================= POST TO MASTODON ================= */
-const response = await fetch(`${INSTANCE}/api/v1/statuses`, {
+/* ================= POST ================= */
+const res = await fetch(`${INSTANCE}/api/v1/statuses`, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${TOKEN}`,
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
     status,
-    visibility: "public"
-  })
+    visibility: "public",
+  }),
 });
 
-if (!response.ok) {
-  console.error("❌ Gagal posting ke Mastodon:");
-  console.error(await response.text());
+if (!res.ok) {
+  console.error("❌ Gagal posting ke Mastodon");
+  console.error(await res.text());
   process.exit(1);
 }
 
