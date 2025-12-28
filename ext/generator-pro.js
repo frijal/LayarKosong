@@ -41,17 +41,36 @@ const formatISO8601 = (date) => {
 
 const sanitizeTitle = (raw) => raw.replace(/^\p{Emoji_Presentation}\s*/u, '').trimStart();
 
-// Extractor menggunakan Regex (karena cepat)
 const extractTitle = (c) => (c.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
 const extractDesc = (c) => (c.match(/<meta\s+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] || '').trim();
 const extractPubDate = (c) => c.match(/<meta\s+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i)?.[1];
 
-const extractImage = (content) => {
-  const metaImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["'][^>]*content=["']([^"']+)["']/i)?.[1];
-  if (metaImg) return metaImg;
-  const imgTag = content.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1];
-  if (imgTag) return imgTag.startsWith('/') ? `${CONFIG.baseUrl}${imgTag}` : imgTag;
-  return CONFIG.defaultThumbnail;
+/**
+ * STRATEGI EKSTRAKSI GAMBAR (FINAL):
+ * 1. Prioritas Utama: Meta og:image atau twitter:image
+ * 2. Prioritas Kedua: Tag <img> pertama (bukan icon/logo)
+ * 3. Fallback Terakhir: /img/nama-artikel.webp
+ * (Mengabaikan itemprop="image")
+ */
+const extractImage = (content, filename) => {
+  // 1. Cek Meta Social (Urutan VVIP)
+  const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["'][^>]*content=["']([^"']+)["']/i)?.[1];
+  if (socialImg) return socialImg;
+
+  // 2. Cek Tag <img> pertama (Urutan VIP)
+  const allImgs = content.match(/<img[^>]+src=["']([^"']+)["']/gi);
+  if (allImgs) {
+    for (const tag of allImgs) {
+      const src = tag.match(/src=["']([^"']+)["']/i)?.[1];
+      if (src && !/favicon|icon|logo|loading|spacer/i.test(src)) {
+        return src.startsWith('/') ? `${CONFIG.baseUrl}${src}` : src;
+      }
+    }
+  }
+
+  // 3. FALLBACK TERAKHIR: /img/nama-artikel.webp
+  const baseName = filename.replace('.html', '');
+  return `${CONFIG.baseUrl}/img/${baseName}.webp`;
 };
 
 // ===================================================================
@@ -70,7 +89,7 @@ async function processArticleFile(file, existingFiles) {
       data: [
         title, 
         file, 
-        extractImage(content), 
+        extractImage(content, file), // Menambahkan argument file untuk fallback
         formatISO8601(pubDate), 
         extractDesc(content)
       ]
@@ -96,7 +115,7 @@ const generate = async () => {
     grouped[r.category].push(r.data);
   });
 
-  // 2. Sorting & Cleaning (Hapus yang filenya sudah tidak ada)
+  // 2. Sorting & Cleaning
   const diskSet = new Set(filesOnDisk);
   for (const cat in grouped) {
     grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
@@ -144,7 +163,6 @@ const generate = async () => {
     fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
   ];
 
-  // Tambah RSS per Kategori
   for (const [cat, articles] of Object.entries(grouped)) {
     const slug = cat.replace(/[^\w\s]/u, '').trim().toLowerCase().replace(/\s+/g, '-');
     const catItems = articles.map(a => allItemsFlat.find(f => f.loc.includes(a[1].replace('.html',''))));
