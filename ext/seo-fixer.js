@@ -13,6 +13,7 @@ async function mirrorAndConvert(externalUrl) {
     const ext = path.extname(originalPath);
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
+    // Simpan dengan struktur folder berdasarkan hostname agar rapi
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
@@ -22,7 +23,7 @@ async function mirrorAndConvert(externalUrl) {
 
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
-    console.log(`📥 Mirroring: ${url.hostname}...`);
+    console.log(`📥 Mirroring & Converting: ${url.hostname}...`);
 
     const response = await axios({
       url: externalUrl,
@@ -36,7 +37,7 @@ async function mirrorAndConvert(externalUrl) {
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
     console.error(`❌ Gagal Mirror ${externalUrl}:`, err.message);
-    return externalUrl;
+    return externalUrl; // Balikin URL asli kalau gagal
   }
 }
 
@@ -51,96 +52,90 @@ async function fixSEO() {
     const title = $('title').text() || 'Layar Kosong';
     const articleTitle = title.replace(' - Layar Kosong', '').trim();
     const baseName = path.basename(file, '.html');
-    const finalArticleUrl = `${baseUrl}/artikel/${baseName}.html`;
 
-    let featuredImageSet = false;
-    let finalImage = ""; // JANGAN diisi fallback dulu!
+    console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. HIRARKI 1: SOSIAL META (FACEBOOK/TWITTER) ---
-    let socialMeta = $('meta[property="og:image"]').attr('content') ||
-    $('meta[name="twitter:image"]').attr('content');
-
-    if (socialMeta && socialMeta.startsWith('http') && !socialMeta.includes(baseUrl)) {
-      const newLocal = await mirrorAndConvert(socialMeta);
-      finalImage = `${baseUrl}${newLocal}`;
-      featuredImageSet = true;
-      console.log(`  💎 Hirarki 1 (Social Meta) digunakan: ${finalImage}`);
-    }
-
-    // --- 2. HIRARKI 2: GAMBAR PERTAMA DI ARTIKEL (IMG) ---
+    // --- 1. PROSES SEMUA IMG DI BODY ---
+    // Kita perbaiki dulu gambarnya satu-satu
     const allImages = $('img');
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
       let src = imgTag.attr('src');
-      let dataSrc = imgTag.attr('data-src');
-
       if (!imgTag.attr('alt')) imgTag.attr('alt', articleTitle);
 
-      // Mirror src asli
-      if (src && src.startsWith('http') && !src.includes(baseUrl) && !src.startsWith('/img/')) {
-        const newLocal = await mirrorAndConvert(src);
-        imgTag.attr('src', newLocal);
-        // Jika Hirarki 1 kosong, gunakan ini
-        if (!featuredImageSet) {
-          finalImage = `${baseUrl}${newLocal}`;
-          featuredImageSet = true;
-          console.log(`  📸 Hirarki 2 (IMG Artikel) digunakan: ${finalImage}`);
+      if (src && src.startsWith('http') && !src.includes(baseUrl)) {
+        const localSrc = await mirrorAndConvert(src);
+        imgTag.attr('src', localSrc);
+      }
+    }
+
+    // --- 2. PROSES META TAGS (OG & TWITTER) ---
+    // Kita HANYA mirror jika isinya masih link luar.
+    // Jika isinya sudah benar (URL Blogger yang Mas mau atau URL lokal), jangan dipaksa ganti ke fallback!
+
+    const metaSelectors = [
+      'meta[property="og:image"]',
+      'meta[name="twitter:image"]',
+      'meta[itemprop="image"]'
+    ];
+
+    let currentBestImage = "";
+
+    for (const selector of metaSelectors) {
+      let content = $(selector).attr('content');
+      if (content) {
+        if (content.startsWith('http') && !content.includes(baseUrl)) {
+          // Jika URL eksternal, kita mirror dan update tag-nya
+          const localMedia = await mirrorAndConvert(content);
+          const finalUrl = `${baseUrl}${localMedia}`;
+          $(selector).attr('content', finalUrl);
+          if (!currentBestImage) currentBestImage = finalUrl;
+        } else {
+          // Jika sudah lokal atau sudah benar, simpan sebagai referensi untuk LD-JSON
+          if (!currentBestImage) currentBestImage = content;
         }
       }
-
-      // Mirror data-src (lazy load)
-      if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
-        const newLocal = await mirrorAndConvert(dataSrc);
-        imgTag.attr('data-src', newLocal);
-      }
     }
 
-    // --- 3. HIRARKI 3: ITEMPROP (Hanya Mirror, Bukan Prioritas Utama) ---
-    const metaItemprop = $('meta[itemprop="image"]');
-    if (metaItemprop.length) {
-      let content = metaItemprop.attr('content');
-      if (content && content.startsWith('http') && !content.includes(baseUrl)) {
-        const newLocal = await mirrorAndConvert(content);
-        metaItemprop.attr('content', `${baseUrl}${newLocal}`);
-        // Hanya pakai jika Hirarki 1 & 2 kosong
-        if (!featuredImageSet) {
-          finalImage = `${baseUrl}${newLocal}`;
-          featuredImageSet = true;
-          console.log(`  🏷️ Hirarki 3 (Itemprop) digunakan: ${finalImage}`);
+    // --- 3. PROSES LD-JSON (SCHEMA) ---
+    // Kita update LD-JSON agar sinkron dengan meta tag di atas
+    const ldScript = $('script[type="application/ld+json"]');
+    if (ldScript.length) {
+      try {
+        let ldData = JSON.parse(ldScript.text());
+
+        // Cari gambar terbaik untuk headline schema
+        // 1. Dari Meta yang sudah kita proses tadi
+        // 2. Dari gambar pertama di artikel jika meta kosong
+        if (!currentBestImage) {
+          const firstImg = $('img').first().attr('src');
+          if (firstImg) {
+            currentBestImage = firstImg.startsWith('http') ? firstImg : `${baseUrl}${firstImg}`;
+          }
         }
+
+        // 3. Fallback terakhir jika benar-benar botak
+        if (!currentBestImage) {
+          currentBestImage = `${baseUrl}/img/${baseName}.webp`;
+        }
+
+        // Update bagian image di JSON-LD
+        if (typeof ldData.image === 'object') {
+          ldData.image.url = currentBestImage;
+        } else {
+          ldData.image = currentBestImage;
+        }
+
+        ldScript.text(JSON.stringify(ldData, null, 2));
+      } catch (e) {
+        console.error("❌ Gagal update LD-JSON");
       }
     }
 
-    // --- 4. HIRARKI 4 (FINAL FALLBACK): NAMA FILE ---
-    if (!featuredImageSet || !finalImage) {
-      finalImage = `${baseUrl}/img/${baseName}.webp`;
-      console.log(`  ⚠️ Hirarki 4 (Fallback Nama File) digunakan.`);
-    }
-
-    // --- UPDATE SEMUA TAG DENGAN FINAL IMAGE HASIL HIRARKI ---
-    const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
-      if ($(selector).length) $(selector).attr(attr, val);
-      else $('head').append(tagHTML);
-    };
-
-      updateOrCreateMeta('link[rel="canonical"]', 'href', finalArticleUrl, `<link rel="canonical" href="${finalArticleUrl}">`);
-      updateOrCreateMeta('meta[property="og:image"]', 'content', finalImage, `<meta property="og:image" content="${finalImage}">`);
-      updateOrCreateMeta('meta[name="twitter:image"]', 'content', finalImage, `<meta name="twitter:image" content="${finalImage}">`);
-
-      // LD-JSON
-      $('script[type="application/ld+json"]').remove();
-      const jsonLD = {
-        "@context": "https://schema.org/",
-        "@type": "Article",
-        "headline": title,
-        "image": finalImage,
-        "author": { "@type": "Person", "name": "Fakhrul Rijal" }
-      };
-      $('head').prepend(`\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`);
-
-      fs.writeFileSync(file, $.html(), 'utf8');
+    // Simpan perubahan
+    fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('✅ SEO Fixer selesai dengan hirarki yang benar.');
+  console.log('\n✅ SEO Fixer selesai. Meta tags eksternal telah dimirror tanpa merusak hirarki.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
