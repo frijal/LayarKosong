@@ -20,6 +20,21 @@ const IDX_LASTMOD = 3;
 const IDX_DESCRIPTION = 4;
 
 // --- Fungsi Bantuan ---
+function getMimeType(url) {
+    if (!url) return 'image/jpeg';
+    const ext = url.split('?')[0].split('.').pop().toLowerCase();
+    const map = {
+        'jpg':  'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png':  'image/png',
+        'gif':  'image/gif',
+        'webp': 'image/webp',
+        'svg':  'image/svg+xml',
+        'avif': 'image/avif'
+    };
+    return map[ext] || 'image/jpeg'; // fallback ke jpeg jika tidak dikenal
+}
+
 function sanitizeTitle(raw) {
     if (!raw) return '';
     return raw.replace(/^\p{Emoji_Presentation}\s*/u, '').trimStart();
@@ -127,9 +142,11 @@ async function generateAllFeeds() {
     const latestItems = allItems.slice(0, RSS_LIMIT);
 
     const mainItemsXml = latestItems.map(it => {
-        // Enclosure type diubah ke 'image/*' untuk kompatibilitas yang lebih baik
-        const enclosure = it.imageLoc ? `    <enclosure url="${it.imageLoc}" length="0" type="image/jpeg" />` : ''; 
-        return `    <item>
+    // Deteksi tipe secara dinamis
+    const mimeType = getMimeType(it.imageLoc);
+    const enclosure = it.imageLoc ? `    <enclosure url="${it.imageLoc}" length="0" type="${mimeType}" />` : ''; 
+    
+    return `    <item>
       <title><![CDATA[${it.title}]]></title>
       <link><![CDATA[${it.loc}]]></link>
       <guid><![CDATA[${it.loc}]]></guid>
@@ -188,9 +205,12 @@ ${mainItemsXml}
 
         categoryItems.sort((a, b) => b.dateObj - a.dateObj);
         
-        const categoryItemsXml = categoryItems.map(it => {
-            const enclosure = it.imageLoc ? `<enclosure url="${it.imageLoc}" length="0" type="image/jpeg" />` : '';
-            return `    <item>
+const categoryItemsXml = categoryItems.map(it => {
+    // Deteksi tipe secara dinamis
+    const mimeType = getMimeType(it.imageLoc);
+    const enclosure = it.imageLoc ? `<enclosure url="${it.imageLoc}" length="0" type="${mimeType}" />` : '';
+    
+    return `    <item>
       <title><![CDATA[${it.title}]]></title>
       <link><![CDATA[${it.loc}]]></link>
       <guid><![CDATA[${it.loc}]]></guid>
