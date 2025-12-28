@@ -110,7 +110,7 @@ async function fixSEO() {
 
     // --- 3. LOGIKA GAMBAR + MIRRORING (Hanya External) ---
     const allImages = $('img');
-    let finalImage = fallbackImage; // Default awal
+    let finalImage = fallbackImage;
     let featuredImageSet = false;
 
     for (let i = 0; i < allImages.length; i++) {
@@ -119,14 +119,11 @@ async function fixSEO() {
 
       if (!oldSrc) continue;
 
-      // CEK: Apakah ini gambar external?
-      // (Dimulai http/https DAN tidak mengandung domain sendiri DAN bukan gambar lokal /img/)
       const isExternal = oldSrc.startsWith('http') &&
       !oldSrc.includes('dalam.web.id') &&
       !oldSrc.startsWith('/img/');
 
       if (isExternal) {
-        // Jalankan misi rahasia: Mirror & Convert
         const newLocalSrc = await mirrorAndConvert(oldSrc);
         imgTag.attr('src', newLocalSrc);
         console.log(`  📸 External Image Mirrored: ${oldSrc} -> ${newLocalSrc}`);
@@ -136,31 +133,18 @@ async function fixSEO() {
           featuredImageSet = true;
         }
       } else {
-        // Jika gambar lokal, kita biarkan saja fisiknya
-        // Tapi kita ambil path-nya untuk keperluan meta tag/JSON-LD jika ini gambar pertama
         if (!featuredImageSet) {
+          // Gunakan path absolut untuk meta tag jika gambar lokal
           finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
           featuredImageSet = true;
         }
       }
     }
 
-    // Jika sampai akhir tidak ada <img> sama sekali, baru lari ke Meta OG Image
     if (!featuredImageSet) {
       let metaImage = $('meta[property="og:image"]').attr('content');
       if (metaImage) {
         finalImage = metaImage.startsWith('http') ? metaImage : `${baseUrl}${metaImage.startsWith('/') ? '' : '/'}${metaImage}`;
-      }
-    }
-
-    // Fallback jika tidak ada gambar yang di-mirror atau tidak ada gambar sama sekali
-    if (!featuredImageSet) {
-      let metaImage = $('meta[property="og:image"]').attr('content');
-      finalImage = isDiscoverFriendly(metaImage) ? metaImage : fallbackImage;
-
-      // Pastikan internal link lengkap
-      if (finalImage && !finalImage.startsWith('http')) {
-        finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
       }
     }
 
@@ -203,10 +187,7 @@ async function fixSEO() {
       updateOrCreateMeta('meta[property="og:image"]', 'content', finalImage, `<meta property="og:image" content="${finalImage}">`);
       updateOrCreateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image', `<meta name="twitter:card" content="summary_large_image">`);
 
-      // Update src gambar pertama jika itu gambar yang kita mirror
-      if (firstImg === rawImage && finalImage.startsWith('/img/')) {
-        $('img').first().attr('src', finalImage);
-      }
+      // HAPUS bagian "if (firstImg === rawImage)" yang lama, karena update src sudah dilakukan di dalam loop di atas.
 
       // --- 7. SIMPAN FILE ---
       fs.writeFileSync(file, $.html(), 'utf8');
