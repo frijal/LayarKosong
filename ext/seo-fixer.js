@@ -108,9 +108,12 @@ async function fixSEO() {
 
     // --- 5. LOGIKA ANTI-LINK-BERSARANG (Pencegahan Duplikat H1) ---
     $('h1').each((i, el) => {
-      const textOnly = $(el).text().trim();
-      $(el).html(`<a href="/" style="text-decoration:none; color:inherit;">${textOnly}</a>`);
-    });
+  // Cek dulu, apakah di dalam H1 sudah ada link (tag <a>)?
+  if ($(el).find('a').length === 0) {
+    const textOnly = $(el).text().trim();
+    $(el).html(`<a href="/" style="text-decoration:none; color:inherit;">${textOnly}</a>`);
+  }
+});
 
     // --- 6. UPDATE META TAG & SEO ---
     const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
