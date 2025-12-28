@@ -13,7 +13,6 @@ async function mirrorAndConvert(externalUrl) {
     const ext = path.extname(originalPath);
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
-    // Simpan dengan struktur folder berdasarkan hostname agar rapi
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
@@ -37,7 +36,7 @@ async function mirrorAndConvert(externalUrl) {
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
     console.error(`❌ Gagal Mirror ${externalUrl}:`, err.message);
-    return externalUrl; // Balikin URL asli kalau gagal
+    return externalUrl;
   }
 }
 
@@ -55,24 +54,31 @@ async function fixSEO() {
 
     console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. PROSES SEMUA IMG DI BODY ---
-    // Kita perbaiki dulu gambarnya satu-satu
-    const allImages = $('img');
-    for (let i = 0; i < allImages.length; i++) {
-      let imgTag = $(allImages[i]);
-      let src = imgTag.attr('src');
-      if (!imgTag.attr('alt')) imgTag.attr('alt', articleTitle);
+    // --- 1. PROSES SEMUA IMG & A (TAG BODY) ---
+    // Menangkap <img> src, <img> data-src, dan <a> data-src
+    const bodySelectors = [
+      { tag: 'img', attr: 'src' },
+      { tag: 'img', attr: 'data-src' },
+      { tag: 'a.thumb', attr: 'data-src' }
+    ];
 
-      if (src && src.startsWith('http') && !src.includes(baseUrl)) {
-        const localSrc = await mirrorAndConvert(src);
-        imgTag.attr('src', localSrc);
+    for (const item of bodySelectors) {
+      const elements = $(item.tag);
+      for (let i = 0; i < elements.length; i++) {
+        let el = $(elements[i]);
+        let val = el.attr(item.attr);
+
+        // Tambah alt kalau img belum ada
+        if (item.tag === 'img' && !el.attr('alt')) el.attr('alt', articleTitle);
+
+        if (val && val.startsWith('http') && !val.includes(baseUrl)) {
+          const localMedia = await mirrorAndConvert(val);
+          el.attr(item.attr, localMedia);
+        }
       }
     }
 
-    // --- 2. PROSES META TAGS (OG & TWITTER) ---
-    // Kita HANYA mirror jika isinya masih link luar.
-    // Jika isinya sudah benar (URL Blogger yang Mas mau atau URL lokal), jangan dipaksa ganti ke fallback!
-
+    // --- 2. PROSES META TAGS (OG, TWITTER, ITEMPROP) ---
     const metaSelectors = [
       'meta[property="og:image"]',
       'meta[name="twitter:image"]',
@@ -85,42 +91,38 @@ async function fixSEO() {
       let content = $(selector).attr('content');
       if (content) {
         if (content.startsWith('http') && !content.includes(baseUrl)) {
-          // Jika URL eksternal, kita mirror dan update tag-nya
           const localMedia = await mirrorAndConvert(content);
           const finalUrl = `${baseUrl}${localMedia}`;
           $(selector).attr('content', finalUrl);
           if (!currentBestImage) currentBestImage = finalUrl;
         } else {
-          // Jika sudah lokal atau sudah benar, simpan sebagai referensi untuk LD-JSON
           if (!currentBestImage) currentBestImage = content;
         }
       }
     }
 
-    // --- 3. PROSES LD-JSON (SCHEMA) ---
-    // Kita update LD-JSON agar sinkron dengan meta tag di atas
+    // --- 3. SINKRONISASI LD-JSON (SCHEMA) ---
     const ldScript = $('script[type="application/ld+json"]');
     if (ldScript.length) {
       try {
         let ldData = JSON.parse(ldScript.text());
 
-        // Cari gambar terbaik untuk headline schema
-        // 1. Dari Meta yang sudah kita proses tadi
-        // 2. Dari gambar pertama di artikel jika meta kosong
+        // Cari gambar terbaik: Meta > <img> src > <img> data-src > Fallback
         if (!currentBestImage) {
-          const firstImg = $('img').first().attr('src');
-          if (firstImg) {
-            currentBestImage = firstImg.startsWith('http') ? firstImg : `${baseUrl}${firstImg}`;
+          const firstImg = $('img').first();
+          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src');
+          if (imgUrl) {
+            currentBestImage = imgUrl.startsWith('http') ? imgUrl : `${baseUrl}${imgUrl}`;
           }
         }
 
-        // 3. Fallback terakhir jika benar-benar botak
         if (!currentBestImage) {
           currentBestImage = `${baseUrl}/img/${baseName}.webp`;
         }
 
-        // Update bagian image di JSON-LD
-        if (typeof ldData.image === 'object') {
+        if (Array.isArray(ldData.image)) {
+          ldData.image = [currentBestImage];
+        } else if (typeof ldData.image === 'object') {
           ldData.image.url = currentBestImage;
         } else {
           ldData.image = currentBestImage;
@@ -132,10 +134,9 @@ async function fixSEO() {
       }
     }
 
-    // Simpan perubahan
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer selesai. Meta tags eksternal telah dimirror tanpa merusak hirarki.');
+  console.log('\n✅ SEO Fixer selesai. Semua atribut data-src dan itemprop telah diamankan!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
