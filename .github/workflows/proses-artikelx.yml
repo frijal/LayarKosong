@@ -91,7 +91,7 @@ jobs:
       - name: Inject SEO & Validate (seo-fixer.js)
         run: |
           set -euo pipefail
-          npm run ci-fix-meta-image artikelx
+          npm run ci-fix-meta-image
 
       - name: Move to artikel/
         run: |
