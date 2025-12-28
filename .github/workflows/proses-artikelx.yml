@@ -49,7 +49,6 @@ jobs:
           shopt -s nullglob
           for file in artikelx/*.html; do
             echo "Processing $file"
-            # Ditambahkan check agar Adsense tidak dobel jika re-run
             if ! grep -q "ca-pub-8157928740123992" "$file"; then
               perl -i -wpe 's|</head>|<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>|g' "$file"
             fi
@@ -70,7 +69,6 @@ jobs:
           set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            # (Logika sed kamu sudah bagus dengan grep check agar tidak duplikat)
             if ! grep -q 'marquee-url.css' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">' "$file"
             fi
@@ -88,7 +86,9 @@ jobs:
             fi
           done
 
-      - name: Inject SEO & Validate (seo-fixer.js)
+      # --- BAGIAN KRUSIAL ---
+      # Menjalankan Mirroring & WebP Optimization di folder artikelx
+      - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
         run: |
           set -euo pipefail
           npm run ci-fix-meta-image
@@ -111,14 +111,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions@github.com"
           
-          # Pakai 'git add .' supaya Git mencatat perpindahan (rename/move) 
-          # dan penghapusan file di artikelx/ sekaligus
-          git add artikel/ artikelx/
+          # PERBAIKAN: img/ ditambahkan agar gambar hasil mirroring ikut ter-upload
+          git add artikel/ artikelx/ img/
           
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan."
             exit 0
           fi
 
-          git commit -m "Proses ArtikelX: Move and Clean Up [skip ci]"
+          git commit -m "Proses ArtikelX: Move, Mirror & WebP [skip ci]"
           git push origin main
