@@ -1,100 +1,98 @@
-import fetch from "node-fetch";
 import fs from "fs";
-import crypto from "crypto";
+import fetch from "node-fetch";
 import { XMLParser } from "fast-xml-parser";
+import crypto from "crypto";
 
-/* ================= CONFIG ================= */
-const RSS_URL = "https://dalam.web.id/rss.xml";
-const POSTED_FILE = "mini/.posted.json";
-const MAX_CHARS = 500;
-
+// ================= ENV =================
 const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
 
-/* ================= HELPERS ================= */
-const hash = (str) =>
-  crypto.createHash("sha1").update(str).digest("hex");
+if (!INSTANCE || !TOKEN) {
+  console.error("❌ ENV Mastodon belum lengkap");
+  process.exit(1);
+}
 
-const truncate = (text, max) =>
-  text.length > max ? text.slice(0, max - 1) + "…" : text;
-
-const toHashtag = (str) =>
-  "#" + str
-    .replace(/[^a-zA-Z0-9 ]/g, "")
-    .split(" ")
-    .filter(Boolean)
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join("");
-
-const getText = (v) =>
-  typeof v === "string"
-    ? v
-    : v?.__cdata || v?.["#text"] || "";
-
-/* ================= LOAD POSTED ================= */
-const posted = fs.existsSync(POSTED_FILE)
-  ? JSON.parse(fs.readFileSync(POSTED_FILE, "utf8"))
-  : [];
-
-/* ================= FETCH RSS ================= */
-const rssText = await fetch(RSS_URL).then(r => r.text());
+// ================= LOAD RSS =================
+const xml = fs.readFileSync("rss.xml", "utf8");
 
 const parser = new XMLParser({
   ignoreAttributes: false,
-  attributeNamePrefix: "@_",
-  textNodeName: "#text",
-  cdataPropName: "__cdata",
+  processEntities: true,
+  trimValues: true,
 });
 
-const feed = parser.parse(rssText);
+const feed = parser.parse(xml);
 
-if (!feed?.rss?.channel?.item) {
+// ================= VALIDASI STRUKTUR =================
+const channel = feed?.rss?.channel;
+if (!channel || !channel.item) {
   console.error("❌ Struktur RSS tidak dikenali");
   process.exit(1);
 }
 
-/* ================= NORMALIZE ITEM ================= */
-const items = Array.isArray(feed.rss.channel.item)
-  ? feed.rss.channel.item
-  : [feed.rss.channel.item];
+// Pastikan item array
+const items = Array.isArray(channel.item)
+  ? channel.item
+  : [channel.item];
 
 const item = items[0];
 
-const title = getText(item.title);
-const link = getText(item.link);
-const guid = getText(item.guid);
-const description = getText(item.description);
-const category = getText(item.category);
+// ================= DATA ARTIKEL =================
+const title = item.title?.["#text"] || item.title || "";
+const link = item.link?.["#text"] || item.link || "";
+const desc =
+  item.description?.["#text"] ||
+  item.description ||
+  "";
 
-const guidHash = hash(guid);
+const categoryRaw = item.category
+  ? Array.isArray(item.category)
+    ? item.category
+    : [item.category]
+  : [];
 
-if (posted.includes(guidHash)) {
-  console.log("⏭ Sudah pernah dipost, skip.");
+// ================= HASHTAG =================
+const hashtags = categoryRaw
+  .map(c =>
+    (c["#text"] || c || "")
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/[^a-z0-9]/g, "")
+  )
+  .filter(Boolean)
+  .map(c => `#${c}`)
+  .join(" ");
+
+// ================= FORMAT STATUS =================
+let status = `${title}\n\n${desc}\n\n🔗 ${link}\n\n${hashtags}`;
+
+// Limit 500 karakter
+if (status.length > 500) {
+  status = status.slice(0, 497) + "...";
+}
+
+// ================= ANTI DOBEL POST =================
+const hash = crypto
+  .createHash("sha256")
+  .update(link)
+  .digest("hex");
+
+const cacheFile = "mini/.mastodon-posted.json";
+let posted = [];
+
+if (fs.existsSync(cacheFile)) {
+  posted = JSON.parse(fs.readFileSync(cacheFile));
+}
+
+if (posted.includes(hash)) {
+  console.log("⏭️ Sudah pernah diposting, dilewati");
   process.exit(0);
 }
 
-/* ================= HASHTAGS ================= */
-const hashtags = new Set(["#LayarKosong"]);
+// ================= POST KE MASTODON =================
+const api = `https://${INSTANCE}/api/v1/statuses`;
 
-if (category) {
-  hashtags.add(toHashtag(category));
-}
-
-const hashtagText = [...hashtags].join(" ");
-
-/* ================= BUILD STATUS ================= */
-let status = `📰 ${title}
-
-${description}
-
-🔗 ${link}
-
-${hashtagText}`;
-
-status = truncate(status, MAX_CHARS);
-
-/* ================= POST ================= */
-const res = await fetch(`${INSTANCE}/api/v1/statuses`, {
+const res = await fetch(api, {
   method: "POST",
   headers: {
     Authorization: `Bearer ${TOKEN}`,
@@ -107,13 +105,13 @@ const res = await fetch(`${INSTANCE}/api/v1/statuses`, {
 });
 
 if (!res.ok) {
-  console.error("❌ Gagal posting ke Mastodon");
-  console.error(await res.text());
+  const err = await res.text();
+  console.error("❌ Gagal posting:", err);
   process.exit(1);
 }
 
-/* ================= SAVE HASH ================= */
-posted.push(guidHash);
-fs.writeFileSync(POSTED_FILE, JSON.stringify(posted, null, 2));
+// ================= SIMPAN HASH =================
+posted.push(hash);
+fs.writeFileSync(cacheFile, JSON.stringify(posted, null, 2));
 
 console.log("✅ Berhasil posting ke Mastodon");
