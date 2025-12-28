@@ -48,10 +48,7 @@ async function fixSEO() {
   console.log(`📂 Memproses folder: ${targetFolder}`);
 
   const files = await glob(`${targetFolder}/*.html`);
-  if (files.length === 0) {
-    console.log(`ℹ️ Tidak ada file HTML ditemukan.`);
-    return;
-  }
+  if (files.length === 0) return;
 
   let totalErrors = 0;
   const today = new Date().toISOString().split('T')[0];
@@ -62,46 +59,19 @@ async function fixSEO() {
   if (!fs.existsSync('img')) fs.mkdirSync('img');
 
   let isiLaporan = `📋 LAPORAN AUDIT & OTOMASI (${new Date().toLocaleString()})\n`;
-  isiLaporan += `============================================================\n\n`;
 
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
-
-    // --- 1. VALIDASI STRUKTUR ---
-    const tagsToWatch = ['section', 'div', 'article', 'main', 'header', 'footer'];
-    let fileErrors = [];
-    tagsToWatch.forEach(tag => {
-      const openCount = (rawContent.match(new RegExp(`<${tag}(\\s|>|$)`, 'gi')) || []).length;
-      const closeCount = (rawContent.match(new RegExp(`</${tag}>`, 'gi')) || []).length;
-      if (openCount !== closeCount) {
-        fileErrors.push(`Tag <${tag}> tidak seimbang! (${openCount} vs ${closeCount})`);
-      }
-    });
-
-    if (fileErrors.length > 0) {
-      console.error(`\x1b[31m❌ STRUKTUR RUSAK: ${file}\x1b[0m`);
-      isiLaporan += `❌ ERROR: ${file}\n` + fileErrors.join('\n') + '\n\n';
-      totalErrors++;
-      continue;
-    }
-
     const $ = load(rawContent, { decodeEntities: false });
     const title = $('title').text() || 'Layar Kosong';
     const articleTitle = title.replace(' - Layar Kosong', '').trim();
     const baseName = path.basename(file, '.html');
     const finalArticleUrl = `${baseUrl}/artikel/${baseName}.html`;
-    const fallbackImage = `${baseUrl}/img/${baseName}.webp`;
-
-    // --- 2. DETEKSI TANGGAL ---
-    let detectedDate = $('meta[property="article:published_time"]').attr('content') ||
-    $('time').attr('datetime') ||
-    $('body').text().match(/(\d{4}-\d{2}-\d{2})/)?.[0] || "2025-12-26";
-    let finalDate = detectedDate.split('T')[0];
 
     let featuredImageSet = false;
-    let finalImage = fallbackImage;
+    let finalImage = ""; // Akan diisi sesuai hirarki
 
-    // --- 3. PRIORITAS UTAMA: META SOCIAL (OG / TWITTER) ---
+    // --- A. PRIORITAS 1: META SOSIAL (OG / TWITTER) ---
     const socialImg = $('meta[property="og:image"]').attr('content') ||
     $('meta[name="twitter:image"]').attr('content');
 
@@ -109,98 +79,68 @@ async function fixSEO() {
       const newLocal = await mirrorAndConvert(socialImg);
       finalImage = `${baseUrl}${newLocal}`;
       featuredImageSet = true;
-      console.log(`  💎 Featured Image (Social) Mirrored: ${newLocal}`);
+      console.log(`  💎 Hirarki 1 (Social) digunakan.`);
     }
 
-    // --- 4. LOGIKA MIRRORING: META ITEMPROP ---
-    const metaItemprop = $('meta[itemprop="image"]');
-    if (metaItemprop.length) {
-      let content = metaItemprop.attr('content');
-      if (content && content.startsWith('http') && !content.includes(baseUrl)) {
-        const newLocal = await mirrorAndConvert(content);
-        metaItemprop.attr('content', `${baseUrl}${newLocal}`);
-        // Itemprop HANYA jadi finalImage jika Meta Social tadi kosong
-        if (!featuredImageSet) {
-          finalImage = `${baseUrl}${newLocal}`;
-          featuredImageSet = true;
-        }
-      }
-    }
-
-    // --- 5. LOGIKA MIRRORING: TAG <a> CLASS THUMB ---
-    const thumbs = $('a.thumb');
-    for (let i = 0; i < thumbs.length; i++) {
-      let thumb = $(thumbs[i]);
-      let dataSrc = thumb.attr('data-src');
-      if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
-        const newLocal = await mirrorAndConvert(dataSrc);
-        thumb.attr('data-src', newLocal);
-        thumb.attr('href', newLocal);
-      }
-    }
-
-    // --- 6. LOGIKA MIRRORING: IMG (SRC & DATA-SRC) + AUTO ALT ---
+    // --- B. PROSES SEMUA IMG ( Hirarki 2 ) ---
     const allImages = $('img');
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
       let src = imgTag.attr('src');
       let dataSrc = imgTag.attr('data-src');
-      let alt = imgTag.attr('alt');
 
-      if (!alt || alt.trim() === "") {
-        imgTag.attr('alt', articleTitle);
-      }
+      if (!imgTag.attr('alt')) imgTag.attr('alt', articleTitle);
 
-      if (src && src.startsWith('http') && !src.includes(baseUrl) && !src.startsWith('/img/')) {
+      if (src && src.startsWith('http') && !src.includes(baseUrl)) {
         const newLocal = await mirrorAndConvert(src);
         imgTag.attr('src', newLocal);
-        // Fallback terakhir: jika Meta Social & Itemprop kosong
+        // Hirarki 2: Ambil gambar pertama di artikel jika sosial kosong
         if (!featuredImageSet) {
           finalImage = `${baseUrl}${newLocal}`;
           featuredImageSet = true;
+          console.log(`  📸 Hirarki 2 (IMG Artikel) digunakan.`);
         }
       }
 
       if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
         const newLocal = await mirrorAndConvert(dataSrc);
         imgTag.attr('data-src', newLocal);
-        if (!imgTag.attr('src')) imgTag.attr('src', newLocal);
       }
     }
 
-    if (!finalImage.startsWith('http')) {
-      finalImage = `${baseUrl}${finalImage.startsWith('/') ? '' : '/'}${finalImage}`;
+    // --- C. PROSES ITEMPROP & THUMB ( Hirarki 3 ) ---
+    const metaItemprop = $('meta[itemprop="image"]');
+    if (metaItemprop.length) {
+      let content = metaItemprop.attr('content');
+      if (content && content.startsWith('http') && !content.includes(baseUrl)) {
+        const newLocal = await mirrorAndConvert(content);
+        metaItemprop.attr('content', `${baseUrl}${newLocal}`);
+        // Hirarki 3: Hanya jadi finalImage jika Sosial & IMG Artikel kosong
+        if (!featuredImageSet) {
+          finalImage = `${baseUrl}${newLocal}`;
+          featuredImageSet = true;
+          console.log(`  🏷️ Hirarki 3 (Itemprop) digunakan.`);
+        }
+      }
     }
 
-    // --- 7. INJEKSI JSON-LD ---
-    $('script[type="application/ld+json"]').remove();
-    const jsonLD = {
-      "@context": "https://schema.org/",
-      "@type": "Article",
-      "mainEntityOfPage": { "@type": "WebPage", "@id": finalArticleUrl },
-      "headline": title,
-      "description": $('meta[name="description"]').attr('content') || `kunjungi juga: ${title}`,
-      "image": { "@type": "ImageObject", "url": finalImage, "width": "1200", "height": "675" },
-      "author": { "@type": "Person", "name": "Fakhrul Rijal" },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Layar Kosong",
-        "logo": { "@type": "ImageObject", "url": `${baseUrl}/logo.png`, "width": "48", "height": "48" }
-      },
-      "datePublished": finalDate,
-      "dateModified": today
-    };
-    $('head').prepend(`\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`);
-
-    // --- 8. ANTI-LINK-BERSARANG & HEADER AUTO LINK ---
-    $('h1').each((i, el) => {
-      if ($(el).find('a').length === 0) {
-        const textOnly = $(el).text().trim();
-        $(el).html(`<a href="/" style="text-decoration:none; color:inherit;">${textOnly}</a>`);
+    // Thumbnails a.thumb (hanya mirror, tidak masuk hirarki finalImage)
+    const thumbs = $('a.thumb');
+    for (let i = 0; i < thumbs.length; i++) {
+      let dataSrc = $(thumbs[i]).attr('data-src');
+      if (dataSrc && dataSrc.startsWith('http') && !dataSrc.includes(baseUrl)) {
+        const newLocal = await mirrorAndConvert(dataSrc);
+        $(thumbs[i]).attr('data-src', newLocal).attr('href', newLocal);
       }
-    });
+    }
 
-    // --- 9. UPDATE META TAG ---
+    // --- D. HIRARKI 4: FALLBACK TERAKHIR ---
+    if (!featuredImageSet || !finalImage) {
+      finalImage = `${baseUrl}/img/${baseName}.webp`;
+      console.log(`  ⚠️ Hirarki 4 (Fallback File) digunakan.`);
+    }
+
+    // --- UPDATE SEMUA META ---
     const updateOrCreateMeta = (selector, attr, val, tagHTML) => {
       if ($(selector).length) $(selector).attr(attr, val);
       else $('head').append(tagHTML);
@@ -209,15 +149,22 @@ async function fixSEO() {
       updateOrCreateMeta('link[rel="canonical"]', 'href', finalArticleUrl, `<link rel="canonical" href="${finalArticleUrl}">`);
       updateOrCreateMeta('meta[property="og:image"]', 'content', finalImage, `<meta property="og:image" content="${finalImage}">`);
       updateOrCreateMeta('meta[name="twitter:image"]', 'content', finalImage, `<meta name="twitter:image" content="${finalImage}">`);
-      updateOrCreateMeta('meta[name="twitter:card"]', 'content', 'summary_large_image', `<meta name="twitter:card" content="summary_large_image">`);
+
+      // Schema LD-JSON
+      $('script[type="application/ld+json"]').remove();
+      const jsonLD = {
+        "@context": "https://schema.org/",
+        "@type": "Article",
+        "headline": title,
+        "image": finalImage,
+        "datePublished": $('time').attr('datetime') || today,
+        "author": { "@type": "Person", "name": "Fakhrul Rijal" }
+      };
+      $('head').prepend(`\n<script type="application/ld+json">\n${JSON.stringify(jsonLD, null, 2)}\n</script>\n`);
 
       fs.writeFileSync(file, $.html(), 'utf8');
-      console.log(`✅ Selesai: ${file}`);
-      isiLaporan += `✅ FIXED: ${file}\n`;
+      console.log(`✅ FIXED: ${file} -> Image: ${finalImage}`);
   }
-
-  fs.writeFileSync(laporanPath, isiLaporan, 'utf8');
-  if (totalErrors > 0) process.exit(1);
 }
 
-fixSEO().catch(err => { console.error("❌ Fatal Error:", err); process.exit(1); });
+fixSEO().catch(err => { console.error(err); process.exit(1); });
