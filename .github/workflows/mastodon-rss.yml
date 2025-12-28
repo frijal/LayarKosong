@@ -1,12 +1,10 @@
-name: Auto Post Mastodon
-
 on:
   schedule:
-    - cron: '0 3 * * *'  
+    - cron: "*/59 * * * *" # tiap 59 menit
   workflow_dispatch:
 
 jobs:
-  post:
+  mastodon:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,20 +14,17 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Post to Mastodon
-        run: node ext/post-to-mastodon.js
+      - run: node ext/post-to-mastodon.js
         env:
-          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
 
-      - name: Commit Mastodon state
+      - name: Commit state
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "mastodon-bot"
+          git config user.email "bot@users.noreply.github.com"
           git add mini/mastodon-posted.json
-          git commit -m "chore: update mastodon posted links" || echo "No changes"
+          git commit -m "chore: update mastodon posted state" || true
           git push
-
