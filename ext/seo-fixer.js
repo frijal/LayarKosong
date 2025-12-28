@@ -108,7 +108,10 @@ async function fixSEO() {
     $('body').text().match(/(\d{4}-\d{2}-\d{2})/)?.[0] || "2025-12-26";
     let finalDate = detectedDate.split('T')[0];
 
-    // --- 3. LOGIKA GAMBAR + MIRRORING ---
+    // Ambil judul artikel untuk fallback Alt Text
+    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim();
+
+    // --- 3. LOGIKA GAMBAR + MIRRORING + AUTO ALT ---
     const allImages = $('img');
     let finalImage = fallbackImage;
     let featuredImageSet = false;
@@ -116,8 +119,16 @@ async function fixSEO() {
     for (let i = 0; i < allImages.length; i++) {
       let imgTag = $(allImages[i]);
       let oldSrc = imgTag.attr('src');
+      let oldAlt = imgTag.attr('alt');
 
       if (!oldSrc) continue;
+
+      // LOGIKA AUTO ALT TEXT
+      // Jika alt tidak ada, kosong, atau cuma spasi
+      if (!oldAlt || oldAlt.trim() === "") {
+        imgTag.attr('alt', articleTitle);
+        console.log(`  🏷️  Auto Alt Added: "${articleTitle}"`);
+      }
 
       const isExternal = oldSrc.startsWith('http') &&
       !oldSrc.includes('dalam.web.id') &&
@@ -129,13 +140,11 @@ async function fixSEO() {
         console.log(`  📸 External Image Mirrored: ${oldSrc} -> ${newLocalSrc}`);
 
         if (!featuredImageSet) {
-          // TAMBAHKAN baseUrl di sini untuk keperluan Meta & JSON-LD
           finalImage = `${baseUrl}${newLocalSrc}`;
           featuredImageSet = true;
         }
       } else {
         if (!featuredImageSet) {
-          // Pastikan gambar lokal pun diconvert jadi URL absolut
           finalImage = oldSrc.startsWith('http') ? oldSrc : `${baseUrl}${oldSrc.startsWith('/') ? '' : '/'}${oldSrc}`;
           featuredImageSet = true;
         }
