@@ -72,12 +72,12 @@
       const sep = ' • ';
       const isMobile = isMobileDevice();
       const html = unread
-        .map(([title, id, , , desc]) => {
-          const url = `/artikel/${id}`;
-          const tip = isMobile ? title : desc || title;
-          return `<a href="${url}" data-article-id="${id}" title="${tip}">${title}</a>${sep}`;
-        })
-        .join('');
+      .map(([title, id, , , desc]) => {
+        const url = `/artikel/${id}`;
+        const tip = isMobile ? title : desc || title;
+        return `<a href="${url}" data-article-id="${id}" title="${tip}">${title}</a>${sep}`;
+      })
+      .join('');
 
       container.innerHTML = `<div class="marquee-content">${html.repeat(10)}</div>`;
       const mc = container.querySelector('.marquee-content');
@@ -114,8 +114,8 @@
     }
 
     container.innerHTML = hits
-      ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang “<strong>${query}</strong>”</div>`
-      : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata “<strong>${query}</strong>”</div>`;
+    ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang “<strong>${query}</strong>”</div>`
+    : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata “<strong>${query}</strong>”</div>`;
     container.style.display = 'block';
   }
 
@@ -170,13 +170,13 @@
   function initNavIcons(data, currentFile) {
     function slugify(name) {
       return name
-        .replace(/^[^\w\s]*/, '')
-        .trim()
-        .toLowerCase()
-        .replace(/ & /g, '-and-')
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
+      .replace(/^[^\w\s]*/, '')
+      .trim()
+      .toLowerCase()
+      .replace(/ & /g, '-and-')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
     }
 
     let list = [];
@@ -197,32 +197,28 @@
     const nav = document.createElement('div');
     nav.className = 'floating-nav';
     nav.innerHTML = `
-      <div class="nav-left"><a id="category-link" class="category-link"></a></div>
-      <div class="nav-right">
-        <a href="https://dalam.web.id" title="Home" class="btn-emoji">🏠</a>
-        <a href="https://dalam.web.id/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
-        <a href="https://dalam.web.id/feed.html" title="Update harian" class="btn-emoji">📡</a>
-        <a id="next-article" class="btn-emoji">⏩</a>
-        <a id="prev-article" class="btn-emoji">⏪</a>
-      </div>`;
+    <div class="nav-left"><a id="category-link" class="category-link"></a></div>
+    <div class="nav-right">
+    <a href="https://dalam.web.id" title="Home" class="btn-emoji">🏠</a>
+    <a href="https://dalam.web.id/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
+    <a href="https://dalam.web.id/feed.html" title="Update harian" class="btn-emoji">📡</a>
+    <a id="next-article" class="btn-emoji">⏩</a>
+    <a id="prev-article" class="btn-emoji">⏪</a>
+    </div>`;
     document.body.appendChild(nav);
 
     const catLink = document.getElementById('category-link');
     const prev = document.getElementById('prev-article');
     const next = document.getElementById('next-article');
 
-    // Ganti bagian di atas dengan ini:
     if (catLink && catName) {
-    catLink.textContent = catName;
-    catLink.href = `/artikel/-/${slugify(catName)}`;
-    catLink.title = `Kategori: ${catName}`;
-    // Anda bahkan bisa menambahkan efek animasi di sini jika mau
-    // setTimeout(() => catLink.classList.add('visible'), 100);
+      catLink.textContent = catName;
+      catLink.href = `/artikel/-/${slugify(catName)}`;
+      catLink.title = `Kategori: ${catName}`;
     } else if (catLink) {
-    catLink.style.display = 'none'; // Sembunyikan jika kategori tidak ada
+      catLink.style.display = 'none';
     }
-    // Ganti bagian di atas dengan ini:
-    
+
     const total = list.length;
     if (total <= 1) {
       prev.style.display = 'none';
@@ -236,6 +232,47 @@
     next.title = list[nextI][0];
     prev.href = `/artikel/${list[prevI][1]}`;
     prev.title = list[prevI][0];
+  }
+
+  // ---------------------------
+  // RELATED GRID (ADDITION)
+  // ---------------------------
+
+  function initRelatedGrid(allData, currentFile) {
+    const gridContainer = document.getElementById('related-articles-grid');
+    if (!gridContainer) return;
+
+    let list = [];
+    for (const cat in allData) {
+      if (allData[cat].some((item) => item[1] === currentFile)) {
+        list = allData[cat].filter((i) => i[1] !== currentFile);
+        break;
+      }
+    }
+
+    const related = list.sort(() => 0.5 - Math.random()).slice(0, 4);
+    if (related.length === 0) {
+      gridContainer.style.display = 'none';
+      return;
+    }
+
+    gridContainer.innerHTML = related.map(([title, id, img, date, summary]) => {
+      const cleanDate = new Date(date).toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
+      return `
+      <div class="rel-card" style="animation: fadeIn 0.5s ease">
+      <a href="/artikel/${id}" style="text-decoration:none; color:inherit;">
+      <div class="rel-img-wrap" style="width:100%; height:120px; overflow:hidden; border-radius:8px;">
+      <img src="${img || '/thumbnail.webp'}" alt="${title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='/thumbnail.webp'">
+      </div>
+      <div class="rel-info" style="padding:10px 0;">
+      <small style="opacity:0.6; font-size:0.7rem;">${cleanDate}</small>
+      <h4 style="margin:5px 0; font-size:0.9rem; line-height:1.3; color:var(--primary);">${title.substring(0, 50)}...</h4>
+      <p style="margin:0; font-size:0.75rem; opacity:0.8; line-height:1.4;">${summary ? summary.substring(0, 70) + '...' : ''}</p>
+      </div>
+      </a>
+      </div>
+      `;
+    }).join('');
   }
 
   // ---------------------------
@@ -256,10 +293,11 @@
 
       const path = window.location.pathname;
       const current = path.endsWith('.html')
-        ? path.split('/').pop()
-        : `${path.replace(/\/$/, '').split('/').pop()}.html`;
+      ? path.split('/').pop()
+      : `${path.replace(/\/$/, '').split('/').pop()}.html`;
 
       initCategoryMarquee(data, current);
+      initRelatedGrid(data, current); // <--- Sekarang terpanggil otomatis
       initFloatingSearch(data);
       initNavIcons(data, current);
       adaptMarqueeTextColor();
