@@ -9,7 +9,17 @@ import { XMLParser } from "fast-xml-parser";
 const RSS_FILE = "rss.xml";
 const STATE_FILE = "mini/mastodon-posted.json";
 const LIMIT = 500;
-const DELAY_MS = 60_000; // 60 detik antar post
+
+const DELAY_MINUTES = 120;
+
+if (lastPostTime) {
+  const diff = (Date.now() - new Date(lastPostTime)) / 60000;
+  if (diff < DELAY_MINUTES) {
+    console.log("⏳ Delay belum terpenuhi, skip");
+    process.exit(0);
+  }
+}
+
 
 const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
