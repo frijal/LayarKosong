@@ -256,14 +256,23 @@ a.category-link.visible {
 }
 
 /* --- (4) MOBILE --- */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .floating-nav {
     left: 10px;
     right: 10px;
     bottom: 40px;
   }
   #related-articles-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Jadi 1 kolom untuk HP & Tablet Portrait */
+  gap: 12px; /* Jarak sedikit dirapatkan biar hemat ruang */
+  }
+
+  .rel-card-mini a {
+    padding: 8px; /* Padding lebih ramping di layar kecil */
+  }
+
+ .rel-info-mini h4 {
+    font-size: 0.9rem; /* Ukuran teks yang tetap mudah dibaca di HP */
   }
   .rel-img-mini {
     flex: 0 0 75px; /* Sedikit lebih kecil di mobile agar judul punya ruang */
