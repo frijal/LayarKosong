@@ -1,37 +1,31 @@
-name: Auto Post RSS to Mastodon
+name: Auto Post Mastodon
 
 on:
   schedule:
-    - cron: "0 * * * *"   # tiap jam
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
   post:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install dependencies
-        run: npm install node-fetch@3 fast-xml-parser
+      - run: npm install
 
-      - name: Run Mastodon poster
+      - run: node ext/post-to-mastodon.js
         env:
           MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        run: node ext/post-to-mastodon.js
 
-      - name: Commit posted hash
+      - name: Commit cache
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add .posted.json
-          git commit -m "chore: mark RSS item as posted" || echo "Nothing to commit"
-          git push
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add .mastodon-posted.json || true
+          git commit -m "chore: update mastodon cache" || true
+          git push || true
