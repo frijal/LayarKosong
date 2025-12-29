@@ -5,23 +5,30 @@
     <meta name="description" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="git, github, pull request, merge, squash, rebase, tutorial git, version control, frijal">
+
     <link rel="canonical" href="https://dalam.web.id/artikel/git-merge-squash-rebase.html">
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+
     <meta property="og:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
     <meta property="og:description" content="Bingung pilih antara merge, squash, atau rebase di GitHub? Kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp">
     <meta property="og:url" content="https://dalam.web.id/artikel/git-merge-squash-rebase.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Layar Kosong">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
     <meta name="twitter:description" content="Bingung pilih antara merge, squash, atau rebase di GitHub? Kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/ext/fontawesome.css">
+
     <style>
         /* CSS3 Styling untuk Desain Modern & Responsif */
         :root {
@@ -33,47 +40,56 @@
             --header-font: 'Poppins', sans-serif;
             --code-bg: #3c3c3c;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
         }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
+
         header {
             text-align: center;
             padding: 40px 0;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 40px;
         }
+
         header h1 {
             font-size: 2.5rem;
             font-weight: 700;
             color: white;
             margin-bottom: 10px;
         }
+
         header p {
             font-size: 1.1rem;
             color: #aaa;
         }
+
         main article {
             background-color: var(--card-bg);
             border-radius: 12px;
             padding: 30px;
             border: 1px solid var(--border-color);
         }
+
         h2 {
             font-size: 2rem;
             font-weight: 600;
@@ -83,25 +99,30 @@
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
         }
+
         h3 {
             font-size: 1.4rem;
             margin-top: 30px;
             margin-bottom: 15px;
             color: white;
         }
+
         p, ul, li {
             font-size: 1rem;
             color: var(--text-color);
         }
+
         ul {
             list-style: none;
             padding-left: 0;
         }
+
         li {
             padding-left: 25px;
             position: relative;
             margin-bottom: 10px;
         }
+
         li::before {
             content: '';
             position: absolute;
@@ -113,10 +134,12 @@
             background-color: var(--primary-color);
             opacity: 0.5;
         }
+
         strong {
             color: white;
             font-weight: 600;
         }
+
         code {
             background-color: var(--code-bg);
             color: #f0f0f0;
@@ -125,24 +148,29 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.95rem;
         }
+
         .pros::before { content: '👍'; left: 0; top: 0; background-color: transparent; opacity: 1; }
         .cons::before { content: '👎'; left: 0; top: 0; background-color: transparent; opacity: 1; }
+
         .image-container {
             margin: 40px 0;
             text-align: center;
         }
+
         .image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
+
         .image-container figcaption {
             font-size: 0.9rem;
             color: #aaa;
             margin-top: 10px;
             font-style: italic;
         }
+
         .recommendation {
             background-color: rgba(0, 170, 255, 0.1);
             border-left: 5px solid var(--primary-color);
@@ -150,31 +178,39 @@
             margin: 40px 0;
             border-radius: 0 8px 8px 0;
         }
+
         /* Responsive Table */
         .table-container {
             overflow-x: auto;
             margin-top: 30px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
         }
+
         th, td {
             padding: 15px;
             border-bottom: 1px solid var(--border-color);
         }
+
         th {
             background-color: #333;
             font-weight: 600;
             color: white;
         }
+
         tbody tr:hover {
             background-color: #3a3a3a;
         }
+
         td:first-child strong {
             color: var(--primary-color);
         }
+
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -182,6 +218,7 @@
             color: #aaa;
             font-size: 0.9rem;
         }
+
         /* Media Queries untuk Mobile-Friendly */
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
@@ -192,22 +229,26 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>
 <body>
+
     <div class="container">
         <header>
             <h1><a href="/" style="text-decoration: none; color: inherit;">Merge, Squash, atau Rebase?</a></h1>
 <div id="iposbrowser"></div>
             <p>Panduan Santai Memilih Strategi Tepat untuk Git Pull Request</p>
         </header>
+
         <main>
             <article>
                 <p>Kalau kamu sering pakai <code>GitHub</code>, pasti nggak asing sama tiga pilihan ini pas mau menggabungkan <em><code>Pull Request</code></em> (PR). Kadang bikin bingung, "sebaiknya pilih yang mana, ya?". Tenang, nggak ada jawaban yang 100% benar atau salah kok. Pilihan ini lebih ke soal selera dan gaya kerja tim kamu.</p>
                 <p>Biar gampang, yuk kita pakai analogi sederhana: anggap aja branch <code>main</code> kamu itu sebuah buku cerita, dan setiap PR adalah proses kamu nulis satu bab baru.</p>
+
                 <div class="image-container">
                     <figure>
-                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp" alt="Opsi merge, squash, dan rebase di GitHub">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp" alt="Opsi merge, squash, dan rebase di GitHub">
                         <figcaption>Tiga pilihan yang seringkali bikin galau.</figcaption>
                     </figure>
                 </div>
+
                 <section>
                     <h2>1. Allow merge commits (Opsi Standar)</h2>
                     <p>Ini adalah cara <code>git merge</code> yang paling standar dan klasik.</p>
@@ -219,6 +260,7 @@
                         <li class="cons"><strong>Membuat riwayat <code>main</code> jadi "ramai".</strong> Riwayatnya bakal penuh sama commit-commit kecil seperti "fix typo", "coba ini", "revert", yang sebenarnya nggak terlalu penting untuk dilihat di gambaran besar proyek.</li>
                     </ul>
                 </section>
+
                 <section>
                     <h2>2. Allow squash merging (Opsi Paling Populer)</h2>
                     <p>Opsi ini menggabungkan semua commit di PR kamu menjadi <strong>satu commit tunggal</strong> yang rapi di branch <code>main</code>.</p>
@@ -230,6 +272,7 @@
                         <li class="cons"><strong>Kehilangan detail proses.</strong> Kamu nggak bisa lagi lihat langkah-langkah kecil atau <em>trial-error</em> yang terjadi selama proses pengerjaan fitur tersebut, karena semuanya sudah dilebur jadi satu.</li>
                     </ul>
                 </section>
+
                 <section>
                     <h2>3. Allow rebase merging (Opsi Paling ’Rapi’ tapi Kompleks)</h2>
                     <p>Opsi ini mengambil semua commit kamu dan "memainkannya kembali" satu per satu di atas branch <code>main</code>, menciptakan sejarah yang lurus sempurna.</p>
@@ -241,11 +284,13 @@
                         <li class="cons"><strong>Ini "menulis ulang sejarah", yang bisa berbahaya.</strong> Kalau branch tersebut dikerjakan oleh lebih dari satu orang, <code>rebase</code> bisa bikin pusing dan menyebabkan konflik. Butuh pemahaman Git yang lebih dalam untuk menggunakannya dengan aman.</li>
                     </ul>
                 </section>
+
                 <section class="recommendation">
                     <h3>Jadi, Mana yang Paling Pas Buat Saya?</h3>
                     <p>Melihat dari konteks kamu yang mengelola blog atau situs pribadi, saya <strong>sangat merekomendasikan untuk memilih Squash Merging.</strong> Ini adalah jalan tengah terbaik yang memberikan riwayat super bersih tanpa kompleksitas dari <code>rebase</code>. Tiap artikel baru atau tiap perbaikan desain akan jadi satu commit yang jelas di riwayat proyekmu.</p>
                     <p><strong>Saran Praktis:</strong> Coba deh aktifkan HANYA <code>Allow squash merging</code> dan matikan dua lainnya. Ini akan membiasakan kamu untuk selalu menjaga riwayat Git tetap bersih dan mudah dimengerti.</p>
                 </section>
+
                 <section>
                     <h2>Tabel Perbandingan Cepat</h2>
                     <div class="table-container">
@@ -280,11 +325,16 @@
           <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
             </article>
         </main>
+
         <footer>
             <p>🄯 2025 Frijal.</p>
         </footer>
     </div>
+
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+
 </body></html>
