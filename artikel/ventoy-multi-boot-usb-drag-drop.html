@@ -32,12 +32,6 @@
   "datePublished": "2025-12-10",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventoy: Solusi Terbaik Membuat Multi-Boot USB, Cukup Drag &amp; Drop ISO!</title>
@@ -67,7 +61,6 @@
             --table-header-text: #ffffff;
             --code-bg: #f3f3f3;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1e1e2e; /* Catppuccin Mocha */
@@ -85,7 +78,6 @@
                 --code-bg: #313244;
             }
         }
-
         /* 💻 Base Styles & Layout (Widescreen 1-Column) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -97,14 +89,12 @@
             transition: background 0.3s ease, color 0.3s ease;
             padding: 20px 0;
         }
-
         .main-wrapper {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
             min-height: 100vh;
         }
-
         /* 🖊 Typography */
         h1, h2, h3 { font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 3rem; color: var(--accent-color); text-align: center; margin-top: 40px; }
@@ -114,7 +104,6 @@
         ul, ol { margin-left: 25px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-color); }
-
         /* Badges Styling */
         .badges-container {
             text-align: center;
@@ -123,7 +112,6 @@
         .badges-container img {
             margin: 5px;
         }
-
         /* 📊 Table (Dokumen & Donasi) */
         .doc-table, .donation-table {
             width: 100%;
@@ -142,7 +130,6 @@
             font-weight: 700;
         }
         .doc-table tr:nth-child(even), .donation-table tr:nth-child(even) { background-color: var(--accent-soft); }
-
         /* Image & Center Content */
         .center-content {
             text-align: center;
@@ -154,12 +141,10 @@
             border-radius: 8px;
             box-shadow: var(--card-shadow);
         }
-
         /* 🖼 Screenshot Ventoy */
         .ventoy-screenshot {
             margin: 40px 0;
         }
-
         /* Lists for Tested OS */
         .os-list-group {
             display: flex;
@@ -185,7 +170,6 @@
             break-inside: avoid;
             font-size: 0.9em;
         }
-
         /* 🛑 Note Box (for narrative explanation) */
         .note-box {
             padding: 20px;
@@ -196,7 +180,6 @@
             color: var(--note-text);
             border-left: 5px solid var(--note-text);
         }
-
         /* 🦶 Footer */
         footer {
             margin-top: 80px;
@@ -208,7 +191,6 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-
         /* 📱 Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
@@ -237,7 +219,6 @@
     <header class="center-content">
         <h1 id="header"><a href="/" style="text-decoration:none; color:inherit;">Ventoy</a></h1>
 <div id="iposbrowser"></div>
-
         <div class="badges-container">
             <img src="/img/img.shields.io/github/release/ventoy/Ventoy.webp" alt="GitHub Release">
             <img src="/img/img.shields.io/github/license/ventoy/Ventoy.webp" alt="GitHub License">
@@ -245,7 +226,6 @@
             <img src="/img/img.shields.io/github/downloads/ventoy/Ventoy/total.webp" alt="GitHub Total Downloads">
             <img src="/img/img.shields.io/github/actions/workflow/status/ventoy/Ventoy/ci.webp" alt="GitHub Actions Status">
         </div>
-
         <p style="text-align: left; font-size: 1.2em; margin-bottom: 20px;">
             <i class="fa-solid fa-rocket"></i> **Ventoy** adalah *tool* sumber terbuka (open source) yang diciptakan untuk membuat *bootable* USB *drive* yang ajaib. Kenapa ajaib? Karena kamu bisa boot langsung dari file **ISO/WIM/IMG/VHD(x)/EFI**!
         </p>
@@ -261,15 +241,12 @@
             <i class="fa-solid fa-globe"></i> **Website Resmi:** <a href="https://www.ventoy.net" target="_blank">https://www.ventoy.net</a>
         </p>
     </header>
-
     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
-
     <section>
         <h2 id="tested-os"><i class="fa-solid fa-laptop-code"></i> OS yang Sudah Diuji dan Siap Tempur</h2>
         <p>
             Bayangkan, sebagai seorang **Human Resources Generalized** di dunia teknologi, Ventoy adalah *tool* wajib untuk memastikan semua tim punya akses ke OS yang mereka butuhkan. Berikut adalah daftar raksasa OS yang sudah diuji (dan berhasil) di Ventoy:
         </p>
-
         <div class="os-list-group">
             <div>
                 <h3><i class="fa-brands fa-windows"></i> Windows &amp; WinPE</h3>
@@ -280,7 +257,6 @@
                     <li>WinPE (Windows Preinstallation Environment)</li>
                 </ul>
             </div>
-
             <div>
                 <h3><i class="fa-brands fa-freebsd"></i> Unix (BSD, Firewall, dll.)</h3>
                 <p>Termasuk keluarga FreeBSD dan *appliances* jaringan:</p>
@@ -290,7 +266,6 @@
                     <li>MidnightBSD, ClonOS, EmergencyBootKit, helloSystem</li>
                 </ul>
             </div>
-
             <div>
                 <h3><i class="fa-brands fa-chrome"></i> ChromeOS &amp; Lainnya</h3>
                 <ul>
@@ -299,7 +274,6 @@
                     <li>Dan masih banyak lagi...</li>
                 </ul>
             </div>
-
             <div>
                 <h3><i class="fa-brands fa-linux"></i> Dunia Linux (Distro Raksasa!)</h3>
                 <p>Daftarnya panjang, Bosku, ini hanya beberapa *highlight* (sekitar 1300+ ISO sudah diuji!):</p>
@@ -312,7 +286,6 @@
             </div>
         </div>
     </section>
-
     <section>
         <h2 id="features"><i class="fa-solid fa-gem"></i> Fitur-Fitur Ventoy yang Bikin Hidup Lebih Mudah</h2>
         <p>
@@ -335,7 +308,6 @@
             <h3 style="color: var(--text-color); margin-bottom: 20px;"><i class="fa-solid fa-tv"></i> Tampilan Menu Boot UEFI Ventoy</h3>
             <img src="/img/www.ventoy.net/static/img/screen/screen_uefi.webp" alt="Tampilan Menu Boot UEFI Ventoy" width="800">
         </div>
-
         <div class="note-box">
             <i class="fa-solid fa-bolt"></i> <p>**Ventoy Compatible Concept:** Ventoy punya konsep unik. Selama file kamu kompatibel dengan Ventoy, kamu **tidak perlu mengupdate Ventoy** di USB kamu hanya karena ada distro Linux baru yang dirilis. Cukup *copy* file ISO-nya, dan beres!</p>
         </div>
@@ -388,7 +360,6 @@
                 </tr>
             </tbody>
         </table>
-
         <p style="margin-top: 20px; font-weight: bold;">
             <i class="fa-brands fa-paypal"></i> <b>PayPal:</b> Transfer ke akun <code style="font-family: 'Fira Code', monospace;">admin@ventoy.net</code> atau klik <a href="https://www.paypal.me/ventoy" target="_blank">https://www.paypal.me/ventoy</a>
         </p>
@@ -396,9 +367,7 @@
             <i class="fa-brands fa-bitcoin"></i> <b>Bitcoin:</b> Address: <code style="font-family: 'Fira Code', monospace;">19mZDWzZgzkHCi9YX9H3fYCUuCHq3W6wfT</code>
         </p>
     </section>
-
     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0 30px 0;">
-
     <section>
         <h2 style="margin-top: 0;"><i class="fa-solid fa-comment-dots"></i> Diskusi dan Pengalaman Menggunakan Ventoy</h2>
         <p>
@@ -421,11 +390,8 @@
         <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Layar Kosong (dalam.web.id). Solusi yang membuat kita malas **Go Back To Door** lagi. </p>
     </footer>
 </div>
-
 <script src="/ext/highlight.js" defer=""></script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-    
 </body></html>

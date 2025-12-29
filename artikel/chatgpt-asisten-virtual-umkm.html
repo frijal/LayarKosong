@@ -32,13 +32,6 @@
   "datePublished": "2025-08-09",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatGPT: Asisten Virtual Serbaguna untuk UMKM &amp; Pelajar</title>
@@ -48,9 +41,7 @@
     <link rel="canonical" href="https://dalam.web.id/artikel/chatgpt-asisten-virtual-umkm.html">
     <link rel="icon" href="https://dalam.web.id/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
-
     <meta property="fb:app_id" content="1471267430691023">
-
     <meta name="fediverse:creator" content=".social"><style>
       :root {
         --bg-color: #1a1a2e;
@@ -273,36 +264,24 @@
           font-size: 1.8rem;
         }
       }
-
     </style>
     <meta itemprop="image" content="https://dalam.web.id/img/chatgpt-asisten-virtual-umkm.webp">
     <meta property="article:published_time" content="2025-08-09T15:37:18.085+00:00">
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
   <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Kenali ChatGPT, tool AI serbaguna yang bisa jadi asisten virtualmu. Dari bikin konten marketing sampai brainstorming ide bisnis, ChatGPT siap bantu UMKM dan pelajar untuk lebih produktif.">
 <meta name="ai:prompt_hint" content="Kenali ChatGPT, tool AI serbaguna yang bisa jadi asisten virtualmu. Dari bikin konten marketing sampai brainstorming ide bisnis, ChatGPT siap bantu UMKM dan pelajar untuk lebih produktif.">
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/chatgpt-asisten-virtual-umkm.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/chatgpt-asisten-virtual-umkm.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/chatgpt-asisten-virtual-umkm.webp">
   <meta property="og:image:alt" content="ChatGPT: Asisten Virtual Serbaguna untuk UMKM &amp; Pelajar">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="ChatGPT: Asisten Virtual Serbaguna untuk UMKM &amp; Pelajar">
-
-
-
-
-
 </head>
   <body>
-
     <div class="container">
       <header>
         <h1><a href="/" style="text-decoration:none; color:inherit;">ChatGPT: Asisten Virtual Serba Bisa Andalanmu</a></h1>
 <div id="iposbrowser"></div>
-
         <p class="subtitle">
           Partner AI untuk UMKM, Startup, dan Para Pelajar Kreatif
         </p>
@@ -324,7 +303,6 @@
             waktu kerja berjam-jam yang biasanya habis buat riset atau nulis
             dari nol. Yuk, kita lihat apa aja keajaiban yang bisa dia lakukan!
           </p>
-
           <h2>Gimana ChatGPT Membantu Bisnis Kecil &amp; UMKM?</h2>
           <ul class="benefit-list">
             <li>
@@ -355,8 +333,6 @@
             </li>
           </ul>
   <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-
-        
     </article>
       </main>
       <footer>
@@ -369,7 +345,6 @@
       <a class="lightbox-next">❯</a>
       <img class="lightbox-content" id="lightboxImg" alt="Gambar Galeri">
     </div>
-
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         // --- GALERI & LIGHTBOX ---
@@ -382,7 +357,6 @@
           (_, i) => `https://picsum.photos/id/${40 + i}/800/600`
         );
         let currentIndex;
-
         // 1. Generate dan append gambar ke galeri
         galleryImages.forEach((src) => {
           const img = document.createElement('img');
@@ -392,7 +366,6 @@
           img.className = 'lazy-load';
           gallery.appendChild(img);
         });
-
         // 2. Observer untuk Lazy Load
         const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
@@ -407,18 +380,15 @@
           });
         });
         document.querySelectorAll('img.lazy-load').forEach((img) => observer.observe(img));
-
         // 3. Logic Lightbox
         const updateLightboxImage = (index) => {
           const images = Array.from(gallery.children);
           if (index < 0) index = images.length - 1;
           if (index >= images.length) index = 0;
           currentIndex = index;
-
           let imgSrc = images[currentIndex].src || images[currentIndex].dataset.src;
           lightboxImg.src = imgSrc;
         };
-
         gallery.addEventListener('click', (e) => {
           if (e.target.tagName === 'IMG') {
             currentIndex = Array.from(gallery.children).indexOf(e.target);
@@ -426,18 +396,15 @@
             lightbox.style.display = 'flex';
           }
         });
-
         document.querySelector('.lightbox-close').onclick = () =>
           (lightbox.style.display = 'none');
         document.querySelector('.lightbox-prev').onclick = () =>
           updateLightboxImage(currentIndex - 1);
         document.querySelector('.lightbox-next').onclick = () =>
           updateLightboxImage(currentIndex + 1);
-
         lightbox.onclick = (e) => {
           if (e.target === lightbox) lightbox.style.display = 'none';
         };
-
         document.onkeydown = (e) => {
           if (lightbox.style.display === 'flex') {
             if (e.key === 'ArrowLeft') updateLightboxImage(currentIndex - 1);
@@ -447,12 +414,7 @@
         };
       });
     </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-  
-
 </body></html>

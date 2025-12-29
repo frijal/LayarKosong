@@ -32,22 +32,13 @@
   "datePublished": "2016-05-12",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris</title>
-
     <meta name="keywords" content="apt audit, modernize-sources, deb822, sources.list, Signature Packet v3, Missing Signed-By, debian, ubuntu, linux, dalam.web.id, terminal error">
     <meta name="author" content="Frijal">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://dalam.web.id/artikel/membedah-hasil-apt-audit-lengkap.html">
-
     <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
     <meta name="fediverse:creator" content=".social"><style>
@@ -199,25 +190,15 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Jangan bingung dengan hasil">
 <meta name="ai:prompt_hint" content="Jangan bingung dengan hasil">
-
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit-lengkap.webp">
 <meta name="description" content="Jangan bingung dengan hasil">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/membedah-hasil-apt-audit-lengkap.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit-lengkap.webp">
   <meta property="og:image:alt" content="Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris">
-
-
-
-
-
 </head>
 <body>
-
     <div class="container">
         <header class="article-header">
             <h1><a href="/" style="text-decoration:none; color:inherit;">Penjelasan Super Lengkap: Membedah Hasil 'apt --audit' Baris per Baris</a></h1>
@@ -244,11 +225,9 @@ Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.
                 </pre>
                 <p>Kabar baiknya adalah, laporan ini mengidentifikasi dua masalah utama yang sangat jelas, dan salah satunya bisa kita perbaiki dengan sangat mudah.</p>
             </section>
-
             <section class="content-section">
                 <h2>Penjelasan Rinci Hasil Audit</h2>
                 <p>Mari kita kupas setiap temuan audit ini secara mendalam agar tidak ada lagi kebingungan.</p>
-
                 <h3>Temuan #1: Masalah Kunci Repositori Eksternal</h3>
                 <pre>Audit: http://.../InRelease: Sub-process /usr/bin/sqv returned an error code (1)
    Error: Policy rejected packet type
@@ -266,7 +245,6 @@ Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.
 Audit: Missing Signed-By in the sources.list(5) entry for '...'
                 </pre>
                 <p>Nah, ini adalah temuan yang paling banyak muncul dan sepenuhnya berada dalam kendali kita. Sistem memberitahu kita bahwa cara kita mendaftarkan semua repositori di file <code>/etc/apt/sources.list</code> dan di dalam direktori <code>/etc/apt/sources.list.d/</code> masih menggunakan format tradisional yang ditulis dalam satu baris.</p>
-
                 <h4>Perbandingan Format Lama vs. Baru</h4>
                 <p><strong>Format Lama (single-line):</strong> Simpel tapi kurang aman.</p>
                 <pre>deb http://ftp.es.debian.org/debian trixie main contrib non-free</pre>
@@ -284,7 +262,6 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
                 <p>Inilah bagian terbaiknya. Kita tidak perlu mengedit semua file itu secara manual. Audit dari <code>apt</code> sudah sangat pintar dan memberikan kita perintah pamungkasnya:</p>
                 <pre>Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.</pre>
                 <p>Mari kita ikuti saran tersebut dengan langkah-langkah yang aman.</p>
-
                 <h3>Langkah 1: Backup Konfigurasi Lama (Sangat Direkomendasikan)</h3>
                 <p>Sebelum melakukan perubahan otomatis, selalu bijaksana untuk membuat cadangan. Buka terminal dan jalankan perintah ini:</p>
                 <pre>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -294,7 +271,6 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</pre>
                 <p>Sekarang, eksekusi perintah yang disarankan oleh sistem. Perintah ini akan melakukan semua pekerjaan berat untuk kita.</p>
                 <pre>sudo apt modernize-sources</pre>
                 <p>Tunggu sebentar. Perintah ini akan membaca semua file <code>.list</code> lama Anda, mengonversinya ke format <code>.sources</code> (deb822) yang baru, dan kemungkinan besar akan menonaktifkan file lama secara otomatis dengan memberinya komentar.</p>
-
                 <h3>Langkah 3: Verifikasi dan Lihat Hasilnya</h3>
                 <p>Setelah proses modernisasi selesai, jalankan kembali perintah update untuk memverifikasi bahwa semuanya berjalan lancar.</p>
                 <pre>sudo apt update</pre>
@@ -302,11 +278,9 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</pre>
                 <p>Peringatan tentang repositori OpenSuse kemungkinan besar masih akan tetap ada, karena itu adalah masalah eksternal. Tapi setidaknya, semua yang bisa kita perbaiki di sisi kita sudah beres!</p>
                  <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
             </section>
-        
     </main>
     </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
 w</body></html>

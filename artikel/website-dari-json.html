@@ -32,32 +32,19 @@
   "datePublished": "2025-12-23",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Membuat Website dari Data .json</title>
     <meta name="description" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
-
     <!-- Ganti '[website-dari-json]' dengan nama file (tanpa .html) -->
     <link rel="canonical" href="https://dalam.web.id/artikel/website-dari-json.html" id="canonical-link">
     <!-- Favicon (Data URI - "FP" untuk f-Page) -->
     <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230b3d91' width='100' height='100' rx='10'/><text x='50' y='60' font-size='50' text-anchor='middle' fill='%23fff' font-family='Arial' font-weight='bold'>FP</text></svg>">
     <!-- Open Graph (Facebook, LinkedIn, dll.) -->
-
     <!-- Ganti '[website-dari-json.webp]' dengan nama file gambar Anda (1200x630px) -->
-
     <!-- Twitter Card -->
-
     <!-- Ganti '[@USERNAME_TWITTER_ANDA]' dengan username Twitter Anda (misal: @frijal) -->
-
     <!-- Meta Artikel -->
-
     <!--
     ====================================================================
     AKHIR DARI BAGIAN EDIT
@@ -115,7 +102,6 @@
             flex-grow: 1; /* Mendorong footer ke bawah */
             padding: 30px 0 50px;
         }
-
         article.article-content h1 {
             font-size: 2.5rem;
             color: var(--primary-color);
@@ -197,7 +183,6 @@
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
-
         footer.main-footer h3 {
             font-size: 1.2rem;
             margin-bottom: 20px;
@@ -258,23 +243,18 @@
             }
         }
     </style>
-   
 <meta itemprop="image" content="https://dalam.web.id/img/website-dari-json.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
 <meta name="ai:prompt_hint" content="Penjelasan lengkap dan santai cara membuat website dinamis yang datanya ditarik langsung dari file .json. Pisahkan konten dari desain dengan JavaScript.">
-
 <meta property="article:author" content="Frijal">
-
 <meta name="twitter:image" content="https://dalam.web.id/img/website-dari-json.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/website-dari-json.html">
     <meta property="article:published_time" content="2025-12-23T09:54:08.804+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/website-dari-json.webp">
   <meta property="og:image:alt" content="Cara Membuat Website dari Data .json">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Cara Membuat Website dari Data .json">
-
 </head>
 <body>
     <!-- Header Halaman -->
@@ -288,15 +268,11 @@
     <main class="content">
         <div class="container">
             <article class="article-content">
-
                 <h2>Membuat Website dari Data .json? Tentu Saja Bisa!</h2>
 <div id="iposbrowser"></div>
-
                 <p>Tentu saja bisa. Membuat website yang datanya berasal dari file <code>.json</code> bukan hanya mungkin, tetapi juga merupakan <strong>praktik standar dan sangat umum</strong> dalam pengembangan web modern.</p>
-
                 <p>Konsep ini dikenal sebagai "Data-Driven Website," di mana tampilan (desain) dan konten (data) dipisahkan. Ini adalah salah satu konsep inti yang membuat *framework* modern seperti React, Vue, dan Angular sangat populer.</p>
                 <h2>Analogi Sederhana: Restoran 🍽️</h2>
-
                 <p>Bayangkan membuat sebuah website itu seperti menjalankan restoran:</p>
                 <div class="analogy-container">
                     <div class="analogy-card">
@@ -321,10 +297,8 @@
                     </div>
                 </div>
                 <h2>Bagaimana Cara Kerjanya?</h2>
-
                 <p>Prosesnya secara umum mengikuti tiga langkah utama. Mari kita buat contoh blog sederhana.</p>
                 <h3>Langkah 1: Siapkan Data dalam Format JSON</h3>
-
                 <p>Pertama, Anda siapkan semua konten Anda dalam sebuah file, misalnya <code>data.json</code>. JSON (JavaScript Object Notation) menggunakan format kunci-nilai (*key-value*) yang mudah dibaca manusia dan mesin.</p>
 <pre><code>
 {
@@ -347,7 +321,6 @@
 }
 </code></pre>
                 <h3>Langkah 2: Buat "Cetakan" di HTML</h3>
-
                 <p>Selanjutnya, Anda siapkan "wadah" atau "cetakan" kosong di file <code>index.html</code> Anda. Di sinilah JavaScript akan "menuangkan" data nanti.</p>
 <pre><code>
 &lt;!DOCTYPE html&gt;
@@ -360,7 +333,6 @@
     &lt;header&gt;
         &lt;h1&gt;Blog Saya&lt;/h1&gt;
     &lt;/header&gt;
-
     &lt;main id="blog-posts-container"&gt;
         &lt;!-- Konten dari JSON akan ditampilkan di sini --&gt;
     &lt;/main&gt;
@@ -370,12 +342,10 @@
 </code></pre>
                 <p>Perhatikan <code>div</code> dengan <code>id="blog-posts-container"</code>. Saat ini, bagian tersebut kosong.</p>
                 <h3>Langkah 3: Gunakan JavaScript untuk Menghubungkan Keduanya 🔌</h3>
-
                 <p>Ini adalah langkah intinya. Dengan JavaScript (kita sebut <code>script.js</code>), Anda akan membaca file <code>.json</code>, mengolah datanya, dan mengubahnya menjadi elemen HTML.</p>
 <pre><code>
 // Menunggu hingga semua elemen HTML dimuat
 document.addEventListener('DOMContentLoaded', () =&gt; {
-
     // Ambil elemen wadah dari HTML
     const container = document.getElementById('blog-posts-container');
     // Gunakan 'fetch' untuk mengambil data dari file data.json
@@ -384,11 +354,9 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
         .then(response =&gt; response.json()) // Ubah respons teks menjadi format JSON yang bisa dibaca JS
         .then(data =&gt; {
             // 'data' sekarang berisi semua objek dari file .json
-
             let htmlContent = ''; // Siapkan variabel string kosong untuk menampung HTML
             // Lakukan perulangan (looping) untuk setiap post di dalam data.posts
             data.posts.forEach(post =&gt; {
-
                 // Buat string HTML untuk setiap post menggunakan template literal (backtick ``)
                 // Ini seperti "mencetak" data ke dalam cetakan HTML
                 htmlContent += `
@@ -419,7 +387,6 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
                 </ul>
                 <p>Jadi, ya, tidak hanya bisa, tapi ini adalah cara yang sangat direkomendasikan untuk membangun web di era modern!</p>
                 <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-            
     </article>
         </div>
     </main>
@@ -434,6 +401,4 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
 </body></html>

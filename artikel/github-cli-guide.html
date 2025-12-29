@@ -32,30 +32,18 @@
   "datePublished": "2025-05-17",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue</title>
-
 <meta name="description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
 <meta name="keywords" content="GitHub CLI, gh, command line, git, login, clone, commit, push, pull request, branch, issue, tutorial, panduan interaktif">
 <meta name="author" content="Frijal">
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://dalam.web.id/artikel/github-cli-guide.html">
-
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
-
  <meta property="fb:app_id" content="1471267430691023">
-
 <script src="https://cdn.tailwindcss.com" defer=""></script>
 <meta name="fediverse:creator" content=".social"><style>
 body { font-family: Inter, sans-serif; }
@@ -66,36 +54,24 @@ body { font-family: Inter, sans-serif; }
 .diagram-box { border: 2px dashed #9ca3af; background-color: #f3f4f6; padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100px; margin-bottom: 1rem; flex-wrap: wrap; }
 .diagram-step { text-align: center; font-family: monospace; font-size: 0.875rem; margin: 0.5rem; }
 .diagram-arrow { font-size: 2rem; color: #3b82f6; margin: 0 1rem; }
-
 </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-05-17T23:20:38.184+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
 <meta name="ai:prompt_hint" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/github-cli-guide.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/github-cli-guide.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/github-cli-guide.webp">
   <meta property="og:image:alt" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue">
   <meta name="twitter:card" content="summary_large_image">
   <meta itemprop="image" content="https://dalam.web.id/img/github-cli-guide.webp">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue">
-
-
-
-
-
 </head>
-
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
   <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
     <h1 class="text-xl font-bold text-gray-900 mb-6"><a href="/" style="text-decoration:none; color:inherit;">Panduan GitHub CLI</a></h1>
 <div id="iposbrowser"></div>
-
     <nav id="navigation" class="space-y-4">
       <div>
         <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Dasar</h2>
@@ -115,11 +91,9 @@ body { font-family: Inter, sans-serif; }
       </div>
     </nav>
   </aside>
-
   <main id="content-display" class="w-full md:ml-[25%] lg:ml-[20%] p-6 md:p-10">
     </main>
 </div>
-
 <!-- Templates -->
 <template id="welcome-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
@@ -128,7 +102,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600">Gunakan tombol "Salin" untuk menyalin perintah dengan mudah dan mencoba langsung di terminal Anda.</p>
 </div>
 </template>
-
 <template id="login-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Login ke GitHub</h2>
@@ -146,7 +119,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Autentikasi dengan GitHub melalui CLI.</p>
 </div>
 </template>
-
 <template id="clone-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Clone Repository</h2>
@@ -162,7 +134,6 @@ body { font-family: Inter, sans-serif; }
 <p class="text-gray-600 text-sm">Mengunduh repository dari GitHub ke lokal.</p>
 </div>
 </template>
-
 <template id="commit-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Commit &amp; Push</h2>
@@ -182,7 +153,6 @@ git push</code></pre>
 <p class="text-gray-600 text-sm">Tambahkan perubahan dan kirim ke GitHub.</p>
 </div>
 </template>
-
 <template id="pr-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Pull Request</h2>
@@ -198,7 +168,6 @@ git push</code></pre>
 <p class="text-gray-600 text-sm">Buat pull request langsung dari CLI.</p>
 </div>
 </template>
-
 <template id="branch-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Branch</h2>
@@ -214,7 +183,6 @@ git push</code></pre>
 <p class="text-gray-600 text-sm">Membuat dan berpindah ke branch baru.</p>
 </div>
 </template>
-
 <template id="issue-content">
 <div class="bg-white p-8 rounded-lg shadow-sm">
 <h2 class="text-2xl font-bold text-gray-900 mb-2">Issue</h2>
@@ -235,16 +203,12 @@ git push</code></pre>
 <div style="margin-top:50px;padding:20px;text-align:center;">
 <p class="text-xs text-gray-500">🄯 2025 Command Line Guides | Panduan Interaktif GitHub CLI</p>
 </div>
-
 <!-- Facebook Comments -->
-
-
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
   const navigation=document.getElementById("navigation");
   const contentDisplay=document.getElementById("content-display");
   const navLinks=document.querySelectorAll(".nav-link");
-
   const contentMap={
     "#login":"login-content",
     "#clone":"clone-content",
@@ -253,7 +217,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     "#branch":"branch-content",
     "#issue":"issue-content"
   };
-
   const loadContent=(hash)=>{
     navLinks.forEach(l=>l.classList.remove("active-nav"));
     contentDisplay.innerHTML="";
@@ -267,10 +230,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       contentDisplay.appendChild(welcomeTemplate.content.cloneNode(true));
     }
   };
-
   navigation.addEventListener("click",e=>{if(e.target.tagName==="A"){e.preventDefault();window.location.hash=e.target.hash;}});
   window.addEventListener("hashchange",()=>loadContent(window.location.hash));
-
   contentDisplay.addEventListener("click",t=>{
     if(t.target.classList.contains("copy-btn")){
       const codeEl=t.target.nextElementSibling.querySelector("code");
@@ -279,17 +240,11 @@ document.addEventListener("DOMContentLoaded",()=>{
       .catch(err=>console.error("Gagal menyalin",err));
     }
   });
-
   if(window.location.hash) loadContent(window.location.hash);
   else loadContent("");
 });
 </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
-
 </body></html>

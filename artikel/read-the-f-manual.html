@@ -32,12 +32,6 @@
   "datePublished": "2010-06-23",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Read the Fu***ng Manual (RTFM): Menggali Kembali Jati Diri Insinyur</title>
@@ -58,7 +52,6 @@
             --blockquote-bg: #f8f8f8;
             --code-bg: #eeeeee;
         }
-
         /* Deteksi dan Tema Dark */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -72,7 +65,6 @@
                 --code-bg: #333333;
             }
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -84,47 +76,38 @@
             justify-content: center; /* Pusatkan konten */
             min-height: 100vh; /* Fullscreen/Tinggi penuh */
         }
-
         main {
             width: 100%;
             max-width: 1000px; /* Lebar maksimal untuk tata letak widescreen 1 kolom */
             padding: 20px;
             box-sizing: border-box;
         }
-
         article {
             padding: 0 15px;
         }
-
         a {
             color: var(--link-color);
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
         h1, h2 {
             color: var(--heading-color);
             margin-top: 1.5em;
         }
-
         h1 {
             font-size: 2.5em;
         }
-
         h2 {
             border-bottom: 2px solid var(--hr-color);
             padding-bottom: 5px;
         }
-
         header p#date {
             font-style: italic;
             color: var(--blockquote-color);
             margin-bottom: 30px;
         }
-
         img {
             max-width: 100%;
             height: auto;
@@ -133,15 +116,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
         ul, ol {
             padding-left: 20px;
         }
-
         li {
             margin-bottom: 10px;
         }
-
         blockquote {
             background: var(--blockquote-bg);
             border-left: 5px solid var(--link-color);
@@ -150,11 +130,9 @@
             color: var(--blockquote-color);
             font-style: italic;
         }
-
         strong {
             font-weight: 700;
         }
-
         /* Footer Style */
         footer {
             margin-top: 50px;
@@ -164,7 +142,6 @@
             font-size: 0.9em;
             color: var(--blockquote-color);
         }
-
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             h1 {
@@ -209,7 +186,6 @@
             <p>
                 Maaf ya, tapi ini bukan namanya *engineering*. Ini namanya **ketidakmampuan belajar yang sengaja dibungkus rapi** dengan label "kolaborasi." *C'mon*, kita bisa lebih baik dari ini!
             </p>
-
             <h2 id="the-death-of-self-sufficiency">🧠 Kematian Kemandirian: Kenapa Jadi Malas Riset?</h2>
             <p>
                 Dulu, istilah *engineering* itu berat maknanya. Kamu harus tahu cara riset. Kamu harus bisa baca spesifikasi bahasa pemrograman dan paham apa yang sedang dikerjakan oleh *compiler*. Kamu harus berani menelusuri kode sumber (*source code*) suatu *library* untuk tahu kenapa ada yang *nggak* beres. Insinyur sejati dulu kerjanya baca jurnal akademik, *man pages* (manual di Unix), dan RFCs (*Request for Comments*). Mereka menyelesaikan masalah sendiri dulu sebelum teriak minta tolong.
@@ -220,24 +196,19 @@
             <p>
                 **Hati-hati!** Yang kita tukar demi "kenyamanan" itu adalah **kemampuan *engineering* yang sesungguhnya.**
             </p>
-
             <h2 id="the-problem-with-modern-research">🤫 Masalah dengan "Riset" Ala Anak Zaman Sekarang</h2>
-
             <h3>**Stack Overflow Sudah *Nggak* Kayak Dulu**</h3>
             <p>
                 Aku *nggak* drama, serius. Kualitasnya menurun drastis. Jawaban yang bagus terpendam di bawah tumpukan saran *outdated*, solusi khusus versi lama, dan yang makin parah: **sampah hasil produksi AI** yang kelihatan meyakinkan tapi aslinya *nggak* bekerja. Para ahli yang dulu rajin jawab di sana sudah pada pindah, karena buat apa buang waktu bersaing dengan bot?
             </p>
-
             <h3>**AI Itu Pembohong yang Pede Banget**</h3>
             <p>
                 ChatGPT dan kawan-kawannya itu jago banget kasih rekomendasi panggilan API yang sebenarnya *nggak* pernah ada. Mereka bisa kasih saran *library* yang sudah lama *deprecated* (usang). Mereka akan bikin kode yang lolos *compile* tapi salah total tujuannya. Dan mereka melakukannya dengan kepedean tingkat dewa, persis kayak *junior developer* hari pertama: **sangat yakin, tapi minim pengetahuan.**
             </p>
-
             <h3>**Media Sosial Penuh *Grifters* **</h3>
             <p>
                 Coba *deh* posting pertanyaan teknis di Twitter/X. Siap-siap diserbu! Separuh jawaban isinya orang mau jualan kursus, buku, atau produk SaaS mereka. Separuh lainnya adalah orang yang *nggak* baca pertanyaanmu sampai tuntas. Jawaban yang benar-benar membantu? Terkubur di balik riuhnya suara-suara *nggak* jelas itu.
             </p>
-
             <h3>**Slack Itu Ranjau Neraka yang Mengganggu Konsentrasi**</h3>
             <p>
                 Setiap kamu lempar pertanyaan yang sebenarnya gampang di kanal Slack, kamu berpotensi besar **mengganggu kerjaan penting** orang lain. Mereka lihat notifikasi. Mereka pindah konteks (*context switch*). Mereka coba bantu karena mereka baik. Hasilnya? Kamu merugikan tim dengan membuang tiga puluh menit waktu produktif mereka, padahal kamu cuma perlu meluangkan **sepuluh menit** buat baca dokumen sendiri.
@@ -265,7 +236,6 @@
             <blockquote>
                 Ketika kamu melompati langkah ini dan langsung nanya ke orang lain, kamu *nggak* sedang belajar. Kamu dikasih ikan, padahal kamu harusnya belajar memancing. Dan dalam dunia *engineering*, kamu harus memancing ikan baru **setiap hari**.
             </blockquote>
-
             <h2 id="the-collaboration-fallacy">🧑‍🤝‍🧑 Mitos "Kolaborasi" yang Keliru</h2>
             <p>
                 Pasti ada yang protes, "Tapi, kan, kolaborasi itu penting!" Tentu saja penting! Tapi, bukan itu yang terjadi saat kamu posting "cara *parse* JSON di Go gimana?" di Slack. Itu namanya **males**.
@@ -290,7 +260,6 @@
             <p>
                 Menghargai waktu orang lain itu bukan pilihan, tapi **pondasi** menjadi rekan kerja yang baik. Dan cara pertama menunjukkan rasa hormat itu adalah dengan **mencoba mencari tahu sendiri sebelum bertanya.**
             </p>
-
             <h2 id="the-skills-you-re-not-building">💪 Otot *Engineering* yang Kamu Biarkan Lemah</h2>
             <p>
                 Setiap kamu ambil jalan pintas, kamu sedang melemahkan otot-otot *engineering*-mu. Kamu *nggak* akan pernah belajar:
@@ -304,7 +273,6 @@
             <p>
                 Kemampuan ini akan bertumpuk. Insinyur yang bertahun-tahun rajin baca *source code* bisa memahami *codebase* baru dalam hitungan jam. Yang selalu bertanya? Langsung bingung total. Insinyur yang baca spesifikasi tahu *kenapa* sesuatu bekerja dan *kapan* ia akan rusak. Yang kerjanya *copy-paste* dari Stack Overflow hanya punya koleksi mantra ajaib yang dia sendiri *nggak* paham.
             </p>
-
             <h2 id="when-asking-is-appropriate">🙋 Kapan Waktunya Boleh Bertanya? (Please, *Exhaust All Options First*)</h2>
             <p>
                 Aku *nggak* bilang kamu *nggak* boleh minta tolong. Tapi, **habiskan semua opsi dulu!**
@@ -328,7 +296,6 @@
                 <li><i class="fas fa-times"></i> Kamu mau orang lain yang menuliskan kodemu.</li>
                 <li><i class="fas fa-times"></i> Kamu lagi malas dan berharap ada yang mengerjakan tugasmu.</li>
             </ul>
-
             <h2 id="sources-of-truth">🔎 Sumber Kebenaran Sejati (The Real Manuals)</h2>
             <p>
                 Saat kamu riset, gunakan sumber kebenaran yang sesungguhnya:
@@ -341,7 +308,6 @@
                 <li>**RFCs dan Jurnal Akademik:** Untuk protokol dan algoritma, kembali ke sumbernya. Orang yang menciptakannya sudah menuliskan cara kerjanya.</li>
                 <li>**Release Notes dan Changelogs:** Kalau ada yang rusak setelah *upgrade*, mulailah dari sini. **Jangan tanya kenapa berubah, baca apa yang berubah!**</li>
             </ul>
-
             <h2 id="building-the-skill">🏃 Membangun Otot Riset</h2>
             <p>
                 Kalau kamu terbiasa ambil jalan pintas, rasanya akan lambat dan frustrasi saat memulai. **Bagus!** Gesekan (*friction*) itulah tempat pembelajaran sejati terjadi.
@@ -355,7 +321,6 @@
                 <li><i class="fas fa-clock"></i> Setel *timer* **30 menit** dan coba pecahkan masalah itu sendiri.</li>
                 <li><i class="fas fa-sticky-note"></i> Buat catatan tentang apa yang kamu pelajari agar *nggak* perlu belajar ulang.</li>
             </ul>
-
             <h2 id="respect-and-discipline">🧘 Disiplin dan Rasa Hormat</h2>
             <p>
                 Inti dari semua ini kembali ke dua hal: **disiplin** dan **rasa hormat** terhadap orang lain.
@@ -369,7 +334,6 @@
             <p>
                 Kalau kamu mau jadi *Senior Engineer*, ini bagian dari paketnya. Bukan cuma soal kode bagus, tapi soal **kemampuan memecahkan masalah sendiri.** Soal menjadi orang yang **melakukan riset.** Soal menjadi orang yang... **Read the Fu***ng Manual!**
             </p>
-
             <h2 id="do-better">🚀 Yuk, Kita Lebih Baik Lagi!</h2>
             <p>
                 Lain kali kamu mau nembak pertanyaan di Slack, atau *copy-paste error* ke ChatGPT, atau posting "ada yang tahu cara...?" di Threads/Twitter/Facebook, **berhenti sejenak!**
@@ -380,14 +344,12 @@
             <p>
                 **Inilah *engineering*. Inilah pekerjaan kita.** Kalau kamu *nggak* mau melakukannya, kamu bukan insinyur. Kamu cuma minta orang lain yang jadi insinyur buat kamu.
             </p>
-
             <blockquote>
                 **Tantangan:** Coba putus koneksi internetmu selama satu jam. Lihat apakah kamu bisa menyelesaikan masalah yang ada, hanya dengan dokumentasi lokal dan *unit test* di memorimu.
             </blockquote>
             <p>
                 **Baca manual itu!** Dirimu di masa depan, dan juga rekan kerjamu, pasti akan berterima kasih. Salam dari Balikpapan! 🏙
             </p>
-
             <hr style="margin-top: 40px; border-top: 1px dashed var(--hr-color);">
             <h2 id="diskusi">💬 Gabung Diskusi</h2>
             <div id="pesbukdiskus">
@@ -400,10 +362,7 @@
             <p>Balikpapan - Indonesia</p>
         </footer>
     </main>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-    
-
 </body></html>

@@ -32,31 +32,18 @@
   "datePublished": "2025-12-10",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS</title>
     <link rel="canonical" href="https://dalam.web.id/artikel/microfetch-fetch-tool-super-cepat.html">
     <meta name="description" content="Mengenal Microfetch, alat fetch command line yang ditulis dalam Rust dengan fokus ekstrem pada kecepatan (berjalan dalam hitungan mikrosekon), menargetkan pengguna NixOS.">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
     <meta name="author" content="Fakhrul Rijal">
     <meta name="keywords" content="Microfetch, NixOS, Rust, fastfetch, benchmark, command line, unixporn, terminal, fetch tool, Go Back To Door">
     <meta name="robots" content="index, follow">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Nunito:wght@400;700;900&amp;display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-
     <meta name="fediverse:creator" content=".social"><style>
         /* 🎨 CSS Variables for Auto Dark/Light Mode */
         :root {
@@ -73,7 +60,6 @@
             --table-header: #e0e0e0;
             --code-bg: #f3f3f3;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1e1e2e; /* Catppuccin Mocha */
@@ -90,7 +76,6 @@
                 --code-bg: #313244;
             }
         }
-
         /* 💻 Base Styles & Layout (Widescreen 1-Column) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -102,14 +87,12 @@
             transition: background 0.3s ease, color 0.3s ease;
             padding: 20px 0; /* Memberi padding atas bawah */
         }
-
         .main-wrapper {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
             min-height: 100vh;
         }
-
         /* 🖊 Typography */
         h1, h2, h3 { font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
         h1 { font-size: 3rem; color: var(--accent-color); text-align: center; margin-top: 40px; }
@@ -119,7 +102,6 @@
         ul, ol { margin-left: 25px; margin-bottom: 20px; }
         a { color: var(--link-color); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         a:hover { text-decoration: underline; color: var(--accent-color); }
-
         /* 💾 Code Blocks */
         code:not(pre code) {
             background-color: var(--code-bg);
@@ -144,7 +126,6 @@
             line-height: 1.6;
             overflow-x: auto;
         }
-
         /* 🚨 Notes & Alerts */
         .note-box {
             padding: 15px 20px;
@@ -155,7 +136,6 @@
             color: var(--note-text);
             border-left: 5px solid var(--note-text);
         }
-
         /* 📊 Table (Benchmarks) */
         .benchmark-table {
             width: 100%;
@@ -186,7 +166,6 @@
             font-style: italic;
             color: var(--text-color);
         }
-
         /* 🖼 Images & Center Content */
         .center-content {
             text-align: center;
@@ -206,7 +185,6 @@
             padding: 0 15px;
             text-transform: uppercase;
         }
-
         /* 🦶 Footer */
         footer {
             margin-top: 80px;
@@ -218,7 +196,6 @@
         .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .social-icons a { font-size: 1.5rem; color: var(--text-color); }
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
-
         /* 📱 Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
@@ -235,32 +212,20 @@
     <meta property="article:published_time" content="2025-12-10T17:06:27.389+00:00">
 <meta name="ai:summary" content="Mengenal Microfetch, alat fetch command line yang ditulis dalam Rust dengan fokus ekstrem pada kecepatan (berjalan dalam hitungan mikrosekon), menargetkan pengguna NixOS.">
 <meta name="ai:prompt_hint" content="Mengenal Microfetch, alat fetch command line yang ditulis dalam Rust dengan fokus ekstrem pada kecepatan (berjalan dalam hitungan mikrosekon), menargetkan pengguna NixOS.">
-
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/notashelf/microfetch/main/.github/assets/demo.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/microfetch-fetch-tool-super-cepat.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/notashelf/microfetch/main/.github/assets/demo.webp">
   <meta property="og:image:alt" content="Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS">
-
-
-
-
-
 </head>
 <body>
-
 <div class="main-wrapper">
-
     <header class="center-content">
         <div style="margin-bottom: 20px;">
             <img src="/img/deps.rs/repo/github/notashelf/microfetch/status.webp" alt="Deps.rs Status">
             <img src="/img/img.shields.io/github/stars/notashelf/microfetch.webp" alt="GitHub Stars">
         </div>
-
         <h1 id="header"><a href="/" style="text-decoration:none; color:inherit;">Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat</a></h1>
 <div id="iposbrowser"></div>
         <p style="font-size: 1.2em; font-style: italic; color: var(--accent-color);">
@@ -269,7 +234,6 @@
         <p style="font-size: 0.9em;">
             <i class="fa-solid fa-screwdriver-wrench"></i> Ditulis dalam **Rust** | <i class="fa-brands fa-linux"></i> Ditargetkan untuk **NixOS**
         </p>
-
         <div id="doc-begin">
             <a href="#synopsis">Synopsis</a> |
             <a href="#features">Fitur</a> |
@@ -278,9 +242,7 @@
             <a href="#installation">Instalasi</a>
         </div>
     </header>
-
     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
-
     <section>
         <h2 id="synopsis"><i class="fa-solid fa-book-open"></i> Sinopsis: Kecil, Cepat, dan Cantik</h2>
         <p>
@@ -289,10 +251,7 @@
         <p>
             Bayangkan, Microfetch bisa berjalan hanya dalam **sepersekian milidetik**! Alat ini menampilkan *sebagian besar* informasi penting yang sering kamu lihat di komunitas seperti r/unixporn, tapi dengan satu tujuan: **Menggantikan fastfetch** di sistem penulisnya. Walaupun kustomisasi *dilarang keras* (kita akan bahas ini di bawah!), kamu dipersilakan menggunakannya di sistem kamu, karena alat ini memang 🚀 *[sangat cepat](#benchmarks)*.
         </p>
-
-
     </section>
-
     <section>
         <h2 id="features"><i class="fa-solid fa-wand-magic-sparkles"></i> Fitur Utama (Fokus pada Kecepatan!)</h2>
         <p>
@@ -313,7 +272,6 @@
             <i class="fa-solid fa-clipboard"></i> <span style="font-size: 0.8em;">[^1]</span> Dengan Mold linker (aktif di paket Flake), ukuran binary turun menjadi ±350 KB, berkurang sekitar 20 KB.
         </div>
     </section>
-
     <section>
         <h2 id="motivation"><i class="fa-solid fa-lightbulb"></i> Motivasi: Bukan Memecahkan Masalah Teknis, Tapi Tantangan Pribadi</h2>
         <p>
@@ -335,13 +293,11 @@
             <img alt="latest demo" src="/img/raw.githubusercontent.com/notashelf/microfetch/main/.github/assets/demo.webp" width="850px" title="Contoh tampilan Microfetch di Terminal">
         </div>
     </section>
-
     <section>
         <h2 id="benchmarks"><i class="fa-solid fa-tachometer-alt"></i> Data Benchmark: Microfetch vs. Dunia Lain</h2>
         <p>
             Ini dia bukti klaim kecepatan Microfetch! Benchmark ini dilakukan menggunakan **Hyperfine** di sistem Desktop penulis dalam kondisi *medium load*. Walaupun kecepatan bisa dipengaruhi oleh *race conditions* atau konfigurasi kernel (tergantung hardware kamu), rata-rata waktu eksekusi Microfetch di bawah ini sungguh luar biasa:
         </p>
-
         <table class="benchmark-table">
             <caption>Perbandingan Kecepatan Eksekusi (Diukur dengan Hyperfine)</caption>
             <thead>
@@ -405,54 +361,41 @@
                 </tr>
             </tbody>
         </table>
-
         <p>
             **Kesimpulan:** Microfetch jauh lebih cepat dari kompetitor lainnya. Perhatikan nilai **Relative** Microfetch yang berada di angka **1.00**, sementara **Fastfetch** ada di **233.00x** lebih lambat, dan **Neofetch** bahkan **672.20x** lebih lambat! Memang, kecepatan adalah alasan utama keberadaan Microfetch.
         </p>
-
         <h3><i class="fa-solid fa-chart-line"></i> Profiling dan Alokasi</h3>
         <p>Untuk memastikan kecepatan yang konsisten, Microfetch menggunakan *tools* canggih:</p>
         <ul>
             <li><b>Benchmarking Fungsi Individual:</b> Menggunakan <a href="https://github.com/bheisler/criterion.rs" target="_blank">Criterion.rs</a>. Kamu bisa menjalankan <code style="font-family: 'Fira Code', monospace;">cargo bench</code> untuk mengukurnya.</li>
             <li>**Profiling Alokasi dan Timing:** Menggunakan <a href="https://github.com/pawurb/hotpath" target="_blank">Hotpath</a>. Berkat Hotpath, tim Microfetch berhasil mengurangi alokasi sebesar **60%**!
         </li></ul>
-
         <h4>Cara Profiling (Timing)</h4>
         <pre><code class="language-bash">HOTPATH_JSON=true cargo run --features=hotpath</code></pre>
-
         <h4>Cara Profiling (Alokasi Heap)</h4>
         <pre><code class="language-bash">HOTPATH_JSON=true cargo run --features=hotpath,hotpath-alloc</code></pre>
         <p>Output JSON dari perintah di atas bisa dianalisis dengan *tool* CLI <code style="font-family: 'Fira Code', monospace;">hotpath</code> untuk melihat metrik performa secara detail.</p>
     </section>
-
     <section>
         <h2 id="installation"><i class="fa-solid fa-box-open"></i> Cara Instalasi (Khususnya Pengguna NixOS)</h2>
-
         <div class="note-box">
             <i class="fa-solid fa-font"></i> <p>**Catatan Penting Font:** Kamu wajib punya font yang sudah di-*patch* **Nerdfonts** dan *terminal emulator* kamu harus mendukungnya. Microfetch menggunakan *glyph* Nerdfonts secara *default*.</p>
         </div>
-
         <p>Microfetch sudah tersedia dalam **nixpkgs**, membuatnya sangat mudah dipasang untuk pengguna NixOS:</p>
-
         <h3>1. Instalasi Permanen di NixOS</h3>
         <p>Tambahkan <code style="font-family: 'Fira Code', monospace;">pkgs.microfetch</code> ke <code style="font-family: 'Fira Code', monospace;">environment.systemPackages</code> kamu.</p>
-
         <h3>2. Menggunakan Nix Shell (Cepat Coba-Coba)</h3>
         <pre><code class="language-bash">nix shell nixpkgs#microfetch</code></pre>
-
         <h3>3. Jalankan Langsung dengan Nix Run</h3>
         <pre><code class="language-bash">nix run nixpkgs#microfetch</code></pre>
-
         <h3>4. Pengguna Non-Nix (Instalasi via Cargo)</h3>
         <p>
             Bagi yang tidak pakai Nix, kamu harus *build* Microfetch dengan **Cargo**. Saat ini, instalasi harus dari *source* (tidak dipublikasikan di Crates.io).
         </p>
         <pre><code class="language-bash">cargo install --git https://github.com/notashelf/microfetch.git</code></pre>
     </section>
-
     <section>
         <h2 id="customizing"><i class="fa-solid fa-ban"></i> Kustomisasi (Jawabannya Singkat: TIDAK BISA!)</h2>
-
         <h3>Kenapa Dilarang Keras?</h3>
         <p>
             Nah, ini bagian yang paling *nyeleneh* dan menunjukkan bahwa Microfetch memang program yang sangat **opinionated**.
@@ -460,7 +403,6 @@
         <p>
             Kustomisasi, dalam bentuk apapun (baca variabel lingkungan, *parsing* argumen CLI, atau membaca file konfigurasi), membutuhkan waktu dan sumber daya. Hal ini akan **menggembungkan waktu eksekusi**! Karena Microfetch adalah *code golf challenge* dan bukan sekadar program biasa, penulis memilih untuk tidak berkompromi sedikit pun soal kecepatan.
         </p>
-
         <h3>Tapi... Benar-benar Tidak Bisa?</h3>
         <p>
             Tentu saja ada jalan ninja, Bosku! Kamu *bisa* mengkustomisasi Microfetch dengan cara: **mem-patch programnya**.
@@ -474,7 +416,6 @@
             Intinya: Jika perubahan kamu kecil, *patching* adalah solusinya. Jika perubahan kamu besar, lebih baik cari program lain yang memang didesain untuk kustomisasi!
         </p>
     </section>
-
     <section>
         <h2 id="contributing"><i class="fa-solid fa-code-branch"></i> Kontribusi dan Terima Kasih</h2>
         <p>
@@ -483,21 +424,17 @@
         <p>
             Jika kamu tertarik untuk berkontribusi, kamu bisa menggunakan <code style="font-family: 'Fira Code', monospace;">nix develop</code> atau <code style="font-family: 'Fira Code', monospace;">direnv allow</code> jika menggunakan Nix Flake. Pengguna Non-Nix membutuhkan <code style="font-family: 'Fira Code', monospace;">cargo</code>, <code style="font-family: 'Fira Code', monospace;">clang</code>, dan <code style="font-family: 'Fira Code', monospace;">mold</code>.
         </p>
-
         <h3>Terima Kasih Spesial</h3>
         <p>
             Salut untuk semua kontributor yang membuat Microfetch makin cepat dan handal, termasuk:
             <a href="https://github.com/Nydragon" target="_blank">@Nydragon</a> (Packaging Nixpkgs), <a href="https://github.com/ErrorNoInternet" target="_blank">@ErrorNoInternet</a> (Performance &amp; Code), <a href="https://github.com/SoraTenshi" target="_blank">@SoraTenshi</a> (Tips), <a href="https://github.com/bloxx12" target="_blank">@bloxx12</a> (Performance &amp; Benchmarking), <a href="https://github.com/mewoocat" target="_blank">@mewoocat</a> (Logo NixOS ASCII), dan <a href="https://github.com/sioodmy" target="_blank">@sioodmy</a> (Being cute!).
         </p>
     </section>
-
     <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 50px 0 30px 0;">
-
     <section>
         <h2 style="margin-top: 0;"><i class="fa-solid fa-comment-dots"></i> Diskusi Seputar Kecepatan Microfetch</h2>
         <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
     </section>
-
     <footer>
         <p>Artikel ini disajikan oleh **Fakhrul Rijal**, sambil menikmati **Kopi Susu** di Balikpapan.</p>
         <p>Filosofi: **Go Back To Door** dan **HR Generalized** (menemukan solusi yang paling optimal dan 'manusiawi').</p>
@@ -510,19 +447,13 @@
         </div>
         <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.6;">🄯 2025 Layar Kosong (dalam.web.id). Hati-hati, konten ini dijamin bikin kantuk.</p>
     </footer>
-
 </div>
-
 <script src="/ext/highlight.js" defer=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" defer=""></script>
 <script>
     hljs.highlightAll();
 </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
     </body></html>

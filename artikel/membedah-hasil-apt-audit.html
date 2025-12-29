@@ -32,22 +32,13 @@
   "datePublished": "2016-05-12",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengupas Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya</title>
-
     <meta name="keywords" content="apt audit, modernize-sources, deb822, sources.list, Signature Packet v3, Missing Signed-By, debian, ubuntu, linux, dalam.web.id">
     <meta name="author" content="Frijal">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://dalam.web.id/artikel/membedah-hasil-apt-audit.html">
-
     <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
     <meta name="fediverse:creator" content=".social"><style>
@@ -115,7 +106,6 @@
         main {
             font-size: 1.05em;
         }
-
         .content-section {
             margin-bottom: 3rem;
         }
@@ -127,7 +117,6 @@
             padding-bottom: 0.5rem;
             display: inline-block;
         }
-
         /* Gaya untuk code block */
         pre {
             background-color: var(--code-bg-color);
@@ -150,7 +139,6 @@
             font-size: 0.9em;
             font-family: 'Fira Code', 'Courier New', Courier, monospace;
         }
-
         /* Gaya untuk daftar */
         ol {
             padding-left: 25px;
@@ -224,25 +212,15 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Hasil">
 <meta name="ai:prompt_hint" content="Hasil">
-
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
 <meta name="description" content="Hasil">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/membedah-hasil-apt-audit.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/membedah-hasil-apt-audit.webp">
   <meta property="og:image:alt" content="Mengupas Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Mengupas Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya">
-
-
-
-
-
 </head>
 <body>
-
     <div class="container">
         <header class="article-header">
             <h1><a href="/" style="text-decoration:none; color:inherit;">Mengupas Hasil 'apt --audit': Arti &amp; Solusi Lengkapnya</a></h1>
@@ -266,11 +244,9 @@ Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.
                 </pre>
                 <p>Kelihatannya rumit ya? Sebenarnya nggak juga. Laporan ini cuma ngasih tau kita dua masalah utama: satu dari luar (penyedia software) dan satu dari dalam (konfigurasi kita sendiri).</p>
             </section>
-
             <section class="content-section">
                 <h2>Bedah Hasil Audit (Satu per Satu)</h2>
                 <p>Mari kita kupas laporan ini jadi dua bagian utama biar gampang dicerna.</p>
-
                 <h3>Masalah #1: Tanda Tangan Digital Versi Jadul</h3>
                 <p>Pesan <code>Signature Packet v3 is not considered secure since 2026-02-01</code> adalah biang keladi dari peringatan awal. Artinya, repositori dari OpenSuse itu masih pakai "segel keamanan" versi lama (v3). Standar keamanan modern akan menganggap segel ini tidak aman lagi mulai 1 Februari 2026. Ini murni masalah di sisi mereka, dan kita hanya bisa berharap mereka segera memperbaruinya.</p>
                 <h3>Masalah #2: Konfigurasi Kita yang Perlu Dimodernisasi</h3>
@@ -279,9 +255,7 @@ Audit: Some sources can be modernized. Run 'apt modernize-sources' to do so.
             <section class="content-section">
                 <h2>Solusi Pamungkas: Modernisasi! ✨</h2>
                 <p>Nah, bagian paling keren dari audit ini adalah pesan terakhirnya: <code>Run 'apt modernize-sources' to do so</code>. Betul sekali, sistem <code>apt</code> sudah menyiapkan perintah otomatis untuk membereskan semua ini!</p>
-
                 <p>Ikuti langkah-langkah mudah dan aman berikut:</p>
-
                 <h3>Langkah 1: Backup Dulu Biar Tenang (Opsional)</h3>
                 <p>Untuk jaga-jaga, kita backup dulu konfigurasi yang lama. Buka terminal dan ketik:</p>
                 <pre>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -290,14 +264,12 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</pre>
                 <p>Ini dia langkah utamanya. Jalankan perintah sakti yang disarankan oleh sistem:</p>
                 <pre>sudo apt modernize-sources</pre>
                 <p>Perintah ini akan secara otomatis mengubah semua file konfigurasi <code>.list</code> lama Anda menjadi format <code>.sources</code> (deb822) yang baru dan lebih aman.</p>
-
                 <h3>Langkah 3: Verifikasi dan Nikmati Hasilnya</h3>
                 <p>Setelah selesai, jalankan update sekali lagi untuk melihat perubahannya:</p>
                 <pre>sudo apt update</pre>
                 <p>Voila! Seharusnya semua peringatan audit tentang format <code>deb822</code> dan <code>Missing Signed-By</code> kini telah lenyap. Sistem Anda jadi lebih bersih, modern, dan aman. Peringatan soal OpenSuse mungkin masih ada, tapi setidaknya bagian kita sudah beres!</p>
             </section>
             <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-        
     </main>
         </div>
     <script>
@@ -308,5 +280,4 @@ sudo cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.bak</pre>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
 </body></html>
