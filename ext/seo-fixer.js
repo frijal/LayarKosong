@@ -10,12 +10,14 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const url = new URL(externalUrl);
     const baseHostname = new URL(baseUrl).hostname;
 
+    // --- PROTEKSI: Jangan mirror domain sendiri ---
     if (url.hostname === baseHostname || url.hostname === 'localhost') {
       return externalUrl.replace(baseUrl, '');
     }
 
     const originalPath = url.pathname;
     const ext = path.extname(originalPath);
+    // Konversi ke .webp untuk semua asset eksternal
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
     const localPath = path.join('img', url.hostname, webpPathName);
@@ -48,7 +50,6 @@ async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
-  const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/img\/[ab]\/[A-Za-z0-9\-_.]+/gi;
 
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
@@ -58,7 +59,7 @@ async function fixSEO() {
 
     console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. PROSES SEMUA ASSET (IMG, SCRIPT, CSS) ---
+    // --- 1. PROSES SEMUA ASSET DI BODY (UNIVERSAL MIRRORING) ---
     const potentialAttrs = ['src', 'href', 'data-src', 'data-fullsrc', 'data-thumb'];
     const elements = $('img, a, div, span, figure').get();
 
@@ -66,28 +67,12 @@ async function fixSEO() {
       const $el = $(el);
       for (const attr of potentialAttrs) {
         const val = $el.attr(attr);
+        // Sikat semua domain luar (bukan baseUrl & bukan path lokal /)
         if (val && val.startsWith('http') && !val.startsWith(baseUrl) && !val.startsWith('/')) {
-          if (val.includes('blogger.googleusercontent.com') || /\.(jpg|jpeg|png|webp|gif|JPG)/i.test(val)) {
-            const local = await mirrorAndConvert(val, baseUrl);
-            $el.attr(attr, local);
-            if (el.name === 'img' && !$el.attr('alt')) $el.attr('alt', articleTitle);
-          }
+          const local = await mirrorAndConvert(val, baseUrl);
+          $el.attr(attr, local);
+          if (el.name === 'img' && !$el.attr('alt')) $el.attr('alt', articleTitle);
         }
-      }
-    }
-
-    const textTags = $('script, style').get();
-    for (const tag of textTags) {
-      let content = $(tag).text();
-      let matches = content.match(bloggerRegex);
-      if (matches) {
-        for (const extUrl of [...new Set(matches)]) {
-          if (!extUrl.startsWith('/') && !extUrl.startsWith(baseUrl)) {
-            const local = await mirrorAndConvert(extUrl, baseUrl);
-            content = content.split(extUrl).join(`${baseUrl}${local}`);
-          }
-        }
-        $(tag).text(content);
       }
     }
 
@@ -95,8 +80,8 @@ async function fixSEO() {
     const twitterMeta = $('meta[name="twitter:image"]');
     let twitterImgUrl = twitterMeta.attr('content');
 
-    // Pastikan twitter:image sudah dimirror jika dari blogger
-    if (twitterImgUrl && twitterImgUrl.includes('blogger.googleusercontent.com') && !twitterImgUrl.startsWith(baseUrl)) {
+    // Cek apakah twitter:image butuh mirroring (Universal: ItsFoss, Blogger, dll)
+    if (twitterImgUrl && twitterImgUrl.startsWith('http') && !twitterImgUrl.startsWith(baseUrl)) {
       const local = await mirrorAndConvert(twitterImgUrl, baseUrl);
       twitterImgUrl = `${baseUrl}${local}`;
       twitterMeta.attr('content', twitterImgUrl);
@@ -106,7 +91,7 @@ async function fixSEO() {
     }
 
     if (twitterImgUrl) {
-      // Paksa OG Image mengikuti Twitter
+      // Paksa OG & Itemprop mengikuti hasil akhir Twitter Image
       $('meta[property="og:image"]').attr('content', twitterImgUrl);
       $('meta[itemprop="image"]').attr('content', twitterImgUrl);
 
@@ -117,7 +102,7 @@ async function fixSEO() {
           let ldData = JSON.parse(ldScript.text());
           const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
 
-          // Update properti image utama
+          // Update properti image utama Schema
           if (ldData.image) {
             if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
               ldData.image.url = twitterImgUrl;
@@ -126,10 +111,11 @@ async function fixSEO() {
             }
           }
 
-          // Bersihkan seluruh link blogger di dalam JSON dan arahkan ke twitterImgUrl jika itu gambar artikel
+          // Fungsi pembersih rekursif: Ganti link eksternal apa pun di JSON menjadi twitterImgUrl
           const fixDeep = (obj) => {
             if (typeof obj === 'string') {
-              if (obj.includes('blogger.googleusercontent.com')) return twitterImgUrl;
+              // Jika masih ada link http dari luar di dalam JSON, ganti dengan Master Image
+              if (obj.startsWith('http') && !obj.startsWith(baseUrl)) return twitterImgUrl;
               if (obj.startsWith('/')) return makeAbsolute(obj);
             }
             if (obj !== null && typeof obj === 'object') {
@@ -142,12 +128,12 @@ async function fixSEO() {
           ldScript.text(JSON.stringify(ldData, null, 2));
         } catch (e) { }
       }
-      console.log(`   🎯 Sync Success: OG & Schema mengikuti Twitter Image.`);
+      console.log(`   🎯 Sync Success: OG & Schema mengikuti ${twitterImgUrl}`);
     }
 
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Twitter master record applied to OG and Schema!');
+  console.log('\n✅ SEO Fixer: Selesai! Semua domain eksternal disikat habis.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });

@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="id"><head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dalam.web.id/artikel/cleanup-doc.html"
+  },
+  "headline": "Pembersih Paket Otomatis GitHub Pages",
+  "description": "Panduan lengkap dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak terpakai di proyek GitHub Pages menggunakan depcheck.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://dalam.web.id/img/cleanup-doc.webp",
+    "width": "1200",
+    "height": "675"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Fakhrul Rijal"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Layar Kosong",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dalam.web.id/logo.png",
+      "width": "48",
+      "height": "48"
+    }
+  },
+  "datePublished": "2025-10-09",
+  "dateModified": "2025-12-28"
+}
+</script>
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pembersih Paket Otomatis GitHub Pages</title>
+
+<!-- 🧠 Metadata SEO -->
+<meta name="description" content="Panduan lengkap dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak terpakai di proyek GitHub Pages menggunakan depcheck.">
+<link rel="canonical" href="https://dalam.web.id/artikel/cleanup-doc.html">
+<link rel="icon" href="/favicon.ico">
+
+<!-- 🟦 Open Graph -->
+
+<!-- 🐦 Twitter Card -->
+
+<!-- 🌙 Tema & Gaya -->
+<meta name="fediverse:creator" content=".social"><style>
+:root {
+  color-scheme: light dark;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 2rem;
+  background: #121212;
+  color: #e0e0e0;
+}
+@media (prefers-color-scheme: light) {
+  body { background: #fafafa; color: #222; }
+}
+h1, h2, h3 { color: #ffcc33; line-height: 1.3; }
+pre {
+  background: #1e1e1e;
+  color: #8be9fd;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+@media (prefers-color-scheme: light) {
+  pre { background: #f0f0f0; color: #006; }
+}
+a { color: #80cbc4; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img.lazy {
+  filter: blur(6px);
+  transition: filter 0.4s ease;
+  max-width: 100%;
+  border-radius: 10px;
+}
+img.lazy.loaded { filter: blur(0); }
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  margin-top: 3rem;
+  color: #aaa;
+}
+.social-share {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.social-share a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: #222;
+  color: white;
+  transition: transform 0.2s;
+}
+.social-share a:hover { transform: scale(1.1); }
+.fb-comments { margin-top: 2rem; }
+
+</style>
+
+  <meta itemprop="image" content="https://dalam.web.id/img/cleanup-doc.webp">
+
+    <meta property="article:published_time" content="2025-10-09T00:31:25.605+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan lengkap dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak terpakai di proyek GitHub Pages menggunakan depcheck.">
+<meta name="ai:prompt_hint" content="Panduan lengkap dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak terpakai di proyek GitHub Pages menggunakan depcheck.">
+
+
+<meta name="twitter:image" content="https://dalam.web.id/img/cleanup-doc.webp">
+
+<meta property="og:url" content="https://dalam.web.id/artikel/cleanup-doc.html">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/cleanup-doc.webp">
+  <meta property="og:image:alt" content="Pembersih Paket Otomatis GitHub Pages">
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Pembersih Paket Otomatis GitHub Pages">
+
+
+
+
+
+</head>
+<body>
+<header>
+<h1><a href="/" style="text-decoration:none; color:inherit;">🧹 Pembersih Paket Otomatis untuk GitHub Pages</a></h1>
+<div id="iposbrowser"></div>
+
+<p>Panduan dan skrip siap pakai untuk membersihkan dependensi Node.js yang tidak digunakan di proyek statis berbasis <strong>GitHub Pages</strong>.</p>
+</header>
+
+<section>
+<h2>1. Instalasi Awal</h2>
+<pre><code>npm install --save-dev depcheck</code></pre>
+<p>Pastikan kamu sudah berada di folder proyek GitHub Pages, lalu jalankan perintah di atas untuk memasang <em>depcheck</em>.</p>
+</section>
+
+<section>
+<h2>2. Versi Interaktif</h2>
+<p>Jalankan skrip berikut untuk meninjau dan memilih paket yang akan dihapus secara manual:</p>
+<pre><code>node ext/cleanup.js</code></pre>
+<p>Skrip akan menampilkan daftar paket tidak terpakai dan menanyakan konfirmasi sebelum menghapusnya.</p>
+</section>
+
+<section>
+<h2>3. Versi Otomatis (Non-Interaktif)</h2>
+<p>Untuk otomatisasi (misalnya dalam <strong>GitHub Actions</strong>), gunakan skrip:</p>
+<pre><code>node ext/cleanup-auto.js</code></pre>
+<p>Skrip ini berjalan tanpa konfirmasi — langsung menghapus semua paket tidak terpakai dan menginstal ulang dependensi baru.</p>
+</section>
+
+<section>
+<h2>4. Integrasi dengan GitHub Actions</h2>
+<p>Tambahkan langkah berikut di <code>.github/workflows/build.yml</code> setelah build selesai:</p>
+<pre><code>- name: Cleanup Dependencies
+  run: node ext/cleanup-auto.js</code></pre>
+</section>
+
+<!-- 🌐 Bagikan ke Media Sosial -->
+<section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+
+<footer>
+<p>🄯 2025 dalam.web.id — Dokumentasi dan Skrip Pembersih Dependensi Otomatis</p>
+</footer>
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+
+
+
+
+    </body></html>
