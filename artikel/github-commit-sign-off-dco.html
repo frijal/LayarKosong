@@ -1,50 +1,28 @@
 <!DOCTYPE html><html lang="id"><head>
-<script type="application/ld+json">{
-  "@context": "https://schema.org/",
-  "@type": "Article",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dalam.web.id/artikel/github-commit-sign-off-dco.html"
-  },
-  "headline": "Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO",
-  "description": "Melihat opsi",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp",
-    "width": "1200",
-    "height": "675"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Fakhrul Rijal"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Layar Kosong",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dalam.web.id/logo.png",
-      "width": "48",
-      "height": "48"
-    },
-    "url": "https://dalam.web.id/"
-  },
-  "datePublished": "2025-10-21",
-  "dateModified": "2025-12-28"
-}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO</title>
+    <meta name="description" content="Melihat opsi Require contributors to sign off di GitHub dan bingung? Kita bedah secara mendalam apa itu commit sign off, DCO (Developer Certificate of Origin), dan apakah kamu perlu mengaktifkannya untuk proyek pribadimu.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="git, github, sign off, dco, developer certificate of origin, legal, open source, tutorial git, frijal">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-commit-sign-off-dco.html">
-    <link rel="icon" type="image/x-icon" href="https://dalam.web.id/favicon.ico">
-    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png">
+    <meta property="og:title" content="Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO">
+    <meta property="og:description" content="Penjelasan mendalam tentang commit sign off di GitHub, DCO, dan rekomendasi penggunaannya untuk proyek personal vs. open source besar.">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp">
+    <meta property="og:url" content="https://dalam.web.id/artikel/github-commit-sign-off-dco.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO">
+    <meta name="twitter:description" content="Penjelasan mendalam tentang commit sign off di GitHub, DCO, dan rekomendasi penggunaannya untuk proyek personal vs. open source besar.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <meta name="fediverse:creator" content=".social"><style>
+    <style>
         /* CSS3 Styling untuk Desain Modern & Responsif */
         :root {
             --bg-color: #1a1a1a;
@@ -232,23 +210,12 @@
             main article { padding: 20px; }
         }
     </style>
-  <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <meta property="article:published_time" content="2025-10-21T16:48:14.661+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Melihat opsi">
-<meta name="ai:prompt_hint" content="Melihat opsi">
-<meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp">
-<meta name="description" content="Melihat opsi">
-<meta property="og:url" content="https://dalam.web.id/artikel/github-commit-sign-off-dco.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp">
-  <meta property="og:image:alt" content="Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO">
-  <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Fitur 'Sign Off' di GitHub, Perlu Diaktifkan Gak Sih? Penjelasan Lengkap soal DCO">
-</head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>
 <body>
     <div class="container">
         <header>
-            <h1><a href="/" style="text-decoration:none; color:inherit;">Fitur "Sign Off" GitHub: Apa Gunanya?</a></h1>
+            <h1><a href="/" style="text-decoration: none; color: inherit;">Fitur "Sign Off" GitHub: Apa Gunanya?</a></h1>
 <div id="iposbrowser"></div>
             <p>Penjelasan Lengkap Soal Aspek Legalitas di Dunia Open Source</p>
         </header>
@@ -257,7 +224,7 @@
                 <p>Tentu, mari kita bedah fitur yang satu ini. Fitur ini lebih menyentuh aspek legalitas kontribusi dalam sebuah proyek.</p>
                 <div class="image-container">
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp" alt="Pengaturan Require contributors to sign off on web-based commits">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsPCmt8a_lZAMiUHrMi26B7meAmM-nq6o10cFufw3ykrhir8x696lJUt1Nzfrm-TqX5iqqcT9o7sJhTCvHS5xslzk9_h2AZopA0v9NTDsoHwLADyaFW7D1ZezwmRnQodzb7cPK8JcOjQZZTerX1FmIneaA1ML06bcL204zM7yn9ShBoIpfmG68nOcKwA/s1600/Screenshot%20From%202025-10-21%2022-14-00.webp" alt="Pengaturan Require contributors to sign off on web-based commits">
                         <figcaption>Fitur yang lebih fokus pada aspek legalitas kontribusi.</figcaption>
                     </figure>
                 </div>
@@ -304,15 +271,13 @@
                     </ul>
                 </section>
                 <p class="conclusion">
-                    Singkatnya, fitur ini adalah alat legalitas untuk proyek-proyek kolaboratif berskala besar. Untuk blog pribadi Anda, biarkan saja tidak dicentang agar alur kerja tetap simpel dan praktis.
+                    Singkatnya, fitur ini adalah alat legalitas untuk proyek-proyek kolaboratif berskala besar. Untuk blog pribadi Anda, biarkan saja **tidak dicentang** agar alur kerja tetap simpel dan praktis.
                 </p>
-                <div>
-<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-                </div>
-    </article>
+             <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
         </main>
         <footer>
-            <p>🄯 2025 Frijal. Dibuat dengan santai untuk para developer.</p>
+            <p>🄯 2025 Frijal.</p>
         </footer>
     </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>

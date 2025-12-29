@@ -1,37 +1,4 @@
 <!DOCTYPE html><html lang="id"><head>
-<script type="application/ld+json">{
-  "@context": "https://schema.org/",
-  "@type": "Article",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dalam.web.id/artikel/git-merge-squash-rebase.html"
-  },
-  "headline": "Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request",
-  "description": "Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp",
-    "width": "1200",
-    "height": "675"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Fakhrul Rijal"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Layar Kosong",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dalam.web.id/logo.png",
-      "width": "48",
-      "height": "48"
-    },
-    "url": "https://dalam.web.id/"
-  },
-  "datePublished": "2025-10-21",
-  "dateModified": "2025-12-28"
-}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request</title>
@@ -39,13 +6,23 @@
     <meta name="author" content="Frijal">
     <meta name="keywords" content="git, github, pull request, merge, squash, rebase, tutorial git, version control, frijal">
     <link rel="canonical" href="https://dalam.web.id/artikel/git-merge-squash-rebase.html">
-    <link rel="icon" type="image/x-icon" href="https://dalam.web.id/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+    <meta property="og:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
+    <meta property="og:description" content="Bingung pilih antara merge, squash, atau rebase di GitHub? Kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
+    <meta property="og:url" content="https://dalam.web.id/artikel/git-merge-squash-rebase.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
+    <meta name="twitter:description" content="Bingung pilih antara merge, squash, atau rebase di GitHub? Kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <meta name="fediverse:creator" content=".social"><style>
+    <style>
         /* CSS3 Styling untuk Desain Modern & Responsif */
         :root {
             --bg-color: #1a1a1a;
@@ -71,7 +48,7 @@
             line-height: 1.7;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -198,36 +175,6 @@
         td:first-child strong {
             color: var(--primary-color);
         }
-        /* Social Sharing */
-        .social-share {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-        }
-        .social-share h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .social-share a {
-            display: inline-block;
-            color: white;
-            background-color: #333;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .social-share a:hover {
-            transform: translateY(-5px);
-        }
-        .social-twitter:hover { background-color: #1DA1F2; }
-        .social-facebook:hover { background-color: #1877F2; }
-        .social-whatsapp:hover { background-color: #25D366; }
-        .social-linkedin:hover { background-color: #0A66C2; }
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -242,22 +189,12 @@
             main article { padding: 20px; }
         }
     </style>
-  <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <meta property="article:published_time" content="2025-10-21T16:48:14.661+00:00">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
-<meta name="ai:prompt_hint" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
-<meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
-<meta property="og:url" content="https://dalam.web.id/artikel/git-merge-squash-rebase.html">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp">
-  <meta property="og:image:alt" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
-  <meta name="twitter:card" content="summary_large_image">
-<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
-</head>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>
 <body>
     <div class="container">
         <header>
-            <h1><a href="/" style="text-decoration:none; color:inherit;">Merge, Squash, atau Rebase?</a></h1>
+            <h1><a href="/" style="text-decoration: none; color: inherit;">Merge, Squash, atau Rebase?</a></h1>
 <div id="iposbrowser"></div>
             <p>Panduan Santai Memilih Strategi Tepat untuk Git Pull Request</p>
         </header>
@@ -267,7 +204,7 @@
                 <p>Biar gampang, yuk kita pakai analogi sederhana: anggap aja branch <code>main</code> kamu itu sebuah buku cerita, dan setiap PR adalah proses kamu nulis satu bab baru.</p>
                 <div class="image-container">
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp" alt="Opsi merge, squash, dan rebase di GitHub">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGZN5mOfutvye29JMIUeY2b_gqcVZY_pSAuVAkO0aiuDRn_V9N5-33LqjZMYpGLfV_MbaK2MQD7hVgeLrVzupcmegz7B9ekb9-sCS5nP3qxrFLKAusIrDsAkLL1bx2GU2Pe3Dm7_6U4_4dTSnFT5T-5UvhBxj_e5-SgoarLv4HxtfA6RllESEWy79KVhM/s1600/Screenshot%20From%202025-10-21%2021-48-41.webp" alt="Opsi merge, squash, dan rebase di GitHub">
                         <figcaption>Tiga pilihan yang seringkali bikin galau.</figcaption>
                     </figure>
                 </div>
@@ -340,13 +277,11 @@
                         </table>
                     </div>
                 </section>
-                <div>
-       <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-                </div>
-    </article>
+          <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
         </main>
         <footer>
-            <p>🄯 2025 Frijal. Dibuat dengan santai untuk para developer.</p>
+            <p>🄯 2025 Frijal.</p>
         </footer>
     </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
