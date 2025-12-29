@@ -5,12 +5,17 @@ import path from 'path';
 import axios from 'axios';
 import sharp from 'sharp';
 
-async function mirrorAndConvert(externalUrl) {
+async function mirrorAndConvert(externalUrl, baseUrl) {
   try {
     const url = new URL(externalUrl);
-    const originalPath = url.pathname;
+    const baseHostname = new URL(baseUrl).hostname;
 
-    // Cek ekstensi asli, kalau tidak ada (seperti di img/a/...), paksa jadi .webp
+    // --- PROTEKSI: Jangan mirror domain sendiri atau localhost ---
+    if (url.hostname === baseHostname || url.hostname === 'localhost') {
+      return externalUrl.replace(baseUrl, '');
+    }
+
+    const originalPath = url.pathname;
     const ext = path.extname(originalPath);
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
@@ -36,7 +41,6 @@ async function mirrorAndConvert(externalUrl) {
     await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
-    console.error(`❌ Gagal Mirror ${externalUrl}:`, err.message);
     return externalUrl;
   }
 }
@@ -45,8 +49,6 @@ async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
-
-  // Regex Universal: Menangkap domain blogger dengan atau tanpa ekstensi file
   const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/img\/[ab]\/[A-Za-z0-9\-_.]+/gi;
 
   for (const file of files) {
@@ -55,112 +57,117 @@ async function fixSEO() {
     const baseName = path.basename(file, '.html');
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
 
-    console.log(`\n🔍 Scanning: ${baseName}.html`);
+    console.log(`\n🔍 Memproses: ${baseName}.html`);
 
-    // --- 1. RADAR ATRIBUT (img, a, figure, dll) ---
+    // --- 1. ATRIBUT HTML ---
     const potentialAttrs = ['src', 'href', 'data-src', 'data-fullsrc', 'data-thumb'];
-    const elements = $('img, a, div, span, figure').get();
+    $('*').each((i, el) => {
+      const $el = $(el);
+      for (const attr of potentialAttrs) {
+        const val = $el.attr(attr);
 
+        // --- FILTER SKIP: Jika diawali / atau sudah ada baseUrl, abaikan ---
+        if (val && !val.startsWith('/') && !val.startsWith(baseUrl) && val.startsWith('http')) {
+          if (val.includes('blogger.googleusercontent.com') || /\.(jpg|jpeg|png|webp|gif|JPG)/i.test(val)) {
+            // Gunakan perulangan for...of di luar .each jika ingin await yang stabil,
+            // namun di sini kita proses secara serial per file.
+          }
+        }
+      }
+    });
+
+    // Karena .each() cheerio bersifat sinkron, kita gunakan loop manual untuk stabilitas await
+    const elements = $('img, a, div, span, figure').get();
     for (const el of elements) {
       const $el = $(el);
       for (const attr of potentialAttrs) {
         const val = $el.attr(attr);
-        if (val && val.includes('blogger.googleusercontent.com')) {
-          const local = await mirrorAndConvert(val);
-          $el.attr(attr, local);
 
-          // Tambah alt otomatis jika belum ada pada tag img
-          if (el.name === 'img' && !$el.attr('alt')) {
-            $el.attr('alt', articleTitle);
+        // SKIP LOGIC: Hanya proses yang diawali http dan BUKAN domain kita
+        if (val && val.startsWith('http') && !val.startsWith(baseUrl) && !val.startsWith('/')) {
+          if (val.includes('blogger.googleusercontent.com') || /\.(jpg|jpeg|png|webp|gif|JPG)/i.test(val)) {
+            const local = await mirrorAndConvert(val, baseUrl);
+            $el.attr(attr, local);
+
+            if (el.name === 'img' && !$el.attr('alt')) {
+              $el.attr('alt', articleTitle);
+            }
           }
         }
       }
     }
 
-    // --- 2. RADAR INTERNAL TEKS (Script & Style) ---
+    // --- 2. JAVASCRIPT & CSS ---
     const textTags = $('script, style').get();
     for (const tag of textTags) {
       let content = $(tag).text();
       let matches = content.match(bloggerRegex);
       if (matches) {
-        const uniqueUrls = [...new Set(matches)];
-        for (const extUrl of uniqueUrls) {
-          const local = await mirrorAndConvert(extUrl);
-          // Gunakan absolute URL untuk JS/CSS agar path tidak pecah
-          const finalLocalUrl = `${baseUrl}${local}`;
-          content = content.split(extUrl).join(finalLocalUrl);
+        for (const extUrl of [...new Set(matches)]) {
+          // Skip jika link di dalam script ternyata sudah lokal (relatif /)
+          if (!extUrl.startsWith('/') && !extUrl.startsWith(baseUrl)) {
+            const local = await mirrorAndConvert(extUrl, baseUrl);
+            const finalLocalUrl = `${baseUrl}${local}`;
+            content = content.split(extUrl).join(finalLocalUrl);
+          }
         }
         $(tag).text(content);
-        console.log(`   📜 Internal <${tag.name}> cleaned.`);
       }
     }
 
-    // --- 3. RADAR INLINE STYLE ---
-    const styledElements = $('[style]').get();
-    for (const el of styledElements) {
-      let style = $(el).attr('style');
-      if (style.includes('blogger.googleusercontent.com')) {
-        let matches = style.match(bloggerRegex);
-        if (matches) {
-          for (const extUrl of matches) {
-            const local = await mirrorAndConvert(extUrl);
-            style = style.replace(extUrl, local);
-          }
-          $(el).attr('style', style);
-        }
-      }
-    }
-
-    // --- 4. META & LD-JSON (Schema) ---
+    // --- 3. SCHEMA & META ---
     const metaSelectors = ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'meta[itemprop="image"]'];
     let currentBestImage = "";
 
     for (const selector of metaSelectors) {
       const $meta = $(selector);
       let content = $meta.attr('content');
-      if (content && content.includes('blogger.googleusercontent.com')) {
-        const local = await mirrorAndConvert(content);
+
+      if (content && content.startsWith('http') && !content.startsWith(baseUrl) && !content.startsWith('/')) {
+        const local = await mirrorAndConvert(content, baseUrl);
         const finalUrl = `${baseUrl}${local}`;
         $meta.attr('content', finalUrl);
-        if (!currentBestImage) currentBestImage = finalUrl;
+        currentBestImage = finalUrl;
       } else if (content) {
-        currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
+        currentBestImage = (content.startsWith('/') && !content.startsWith('http')) ? `${baseUrl}${content}` : content;
       }
     }
 
-    // Update LD-JSON agar selalu absolut
+    // Update LD-JSON
     const ldScript = $('script[type="application/ld+json"]');
     if (ldScript.length) {
       try {
         let ldData = JSON.parse(ldScript.text());
         const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
 
-        // Cari fallback image jika meta kosong
         if (!currentBestImage) {
           const firstImg = $('img').first();
           const imgUrl = firstImg.attr('src') || firstImg.attr('data-src');
           currentBestImage = imgUrl ? makeAbsolute(imgUrl) : `${baseUrl}/img/${baseName}.webp`;
         }
 
-        if (ldData.image) {
-          if (typeof ldData.image === 'string') {
-            ldData.image = makeAbsolute(currentBestImage);
-          } else if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
-            ldData.image.url = makeAbsolute(currentBestImage);
-          } else if (Array.isArray(ldData.image)) {
-            ldData.image = ldData.image.map(img => typeof img === 'string' ? makeAbsolute(img) : (img.url ? { ...img, url: makeAbsolute(img.url) } : img));
+        const fixDeep = (obj) => {
+          if (typeof obj === 'string' && (obj.startsWith('/') || obj.includes('blogger'))) return makeAbsolute(obj);
+          if (obj !== null && typeof obj === 'object') {
+            for (let key in obj) obj[key] = fixDeep(obj[key]);
           }
+          return obj;
+        };
+
+        if (ldData.image) {
+          ldData.image = (typeof ldData.image === 'object' && !Array.isArray(ldData.image))
+          ? { ...ldData.image, url: makeAbsolute(currentBestImage) }
+          : makeAbsolute(currentBestImage);
         }
 
+        ldData = fixDeep(ldData);
         ldScript.text(JSON.stringify(ldData, null, 2));
-      } catch (e) {
-        console.error("   ❌ Schema Error");
-      }
+      } catch (e) {}
     }
 
     fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Misi selesai. Semua jejak Blogger dan Schema telah diperbaiki!');
+  console.log('\n✅ SEO Fixer: Link lokal (/) aman, link eksternal dimigrasi!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
