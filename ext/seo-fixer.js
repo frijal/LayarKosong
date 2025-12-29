@@ -9,6 +9,8 @@ async function mirrorAndConvert(externalUrl) {
   try {
     const url = new URL(externalUrl);
     const originalPath = url.pathname;
+
+    // Cek ekstensi asli, kalau tidak ada (seperti di img/a/...), paksa jadi .webp
     const ext = path.extname(originalPath);
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
@@ -43,17 +45,19 @@ async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
-  const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/[^"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
+
+  // Regex Universal: Menangkap domain blogger dengan atau tanpa ekstensi file
+  const bloggerRegex = /https:\/\/blogger\.googleusercontent\.com\/img\/[ab]\/[A-Za-z0-9\-_.]+/gi;
 
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
     const $ = load(rawContent, { decodeEntities: false });
     const baseName = path.basename(file, '.html');
+    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
 
     console.log(`\n🔍 Scanning: ${baseName}.html`);
 
     // --- 1. RADAR ATRIBUT (img, a, figure, dll) ---
-    // Kita sikat semua atribut yang berpotensi menyimpan link gambar
     const potentialAttrs = ['src', 'href', 'data-src', 'data-fullsrc', 'data-thumb'];
     const elements = $('img, a, div, span, figure').get();
 
@@ -61,12 +65,13 @@ async function fixSEO() {
       const $el = $(el);
       for (const attr of potentialAttrs) {
         const val = $el.attr(attr);
-        if (val && val.startsWith('http') && !val.includes(baseUrl)) {
-          // Cek apakah ini link gambar atau domain Blogger
-          if (bloggerRegex.test(val) || /\.(jpg|jpeg|png|webp|gif|JPG)/i.test(val)) {
-            const local = await mirrorAndConvert(val);
-            $el.attr(attr, local);
-            console.log(`   ✅ Tag <${el.name}> attribute [${attr}] updated.`);
+        if (val && val.includes('blogger.googleusercontent.com')) {
+          const local = await mirrorAndConvert(val);
+          $el.attr(attr, local);
+
+          // Tambah alt otomatis jika belum ada pada tag img
+          if (el.name === 'img' && !$el.attr('alt')) {
+            $el.attr('alt', articleTitle);
           }
         }
       }
@@ -81,7 +86,9 @@ async function fixSEO() {
         const uniqueUrls = [...new Set(matches)];
         for (const extUrl of uniqueUrls) {
           const local = await mirrorAndConvert(extUrl);
-          content = content.split(extUrl).join(local);
+          // Gunakan absolute URL untuk JS/CSS agar path tidak pecah
+          const finalLocalUrl = `${baseUrl}${local}`;
+          content = content.split(extUrl).join(finalLocalUrl);
         }
         $(tag).text(content);
         console.log(`   📜 Internal <${tag.name}> cleaned.`);
@@ -89,9 +96,10 @@ async function fixSEO() {
     }
 
     // --- 3. RADAR INLINE STYLE ---
-    $('[style]').each(async (i, el) => {
+    const styledElements = $('[style]').get();
+    for (const el of styledElements) {
       let style = $(el).attr('style');
-      if (style.includes('https://blogger.googleusercontent.com')) {
+      if (style.includes('blogger.googleusercontent.com')) {
         let matches = style.match(bloggerRegex);
         if (matches) {
           for (const extUrl of matches) {
@@ -101,49 +109,38 @@ async function fixSEO() {
           $(el).attr('style', style);
         }
       }
-    });
+    }
 
     // --- 4. META & LD-JSON (Schema) ---
     const metaSelectors = ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'meta[itemprop="image"]'];
     let currentBestImage = "";
 
-    // Kita cari gambar terbaik dari Meta dulu
     for (const selector of metaSelectors) {
       const $meta = $(selector);
       let content = $meta.attr('content');
-      if (content && content.startsWith('http') && !content.includes(baseUrl)) {
+      if (content && content.includes('blogger.googleusercontent.com')) {
         const local = await mirrorAndConvert(content);
         const finalUrl = `${baseUrl}${local}`;
         $meta.attr('content', finalUrl);
         if (!currentBestImage) currentBestImage = finalUrl;
       } else if (content) {
-        // Jika sudah benar (lokal/absolut), simpan untuk Schema
         currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
       }
     }
 
-    // --- PERBAIKAN SCHEMA (LD-JSON) ---
+    // Update LD-JSON agar selalu absolut
     const ldScript = $('script[type="application/ld+json"]');
     if (ldScript.length) {
       try {
         let ldData = JSON.parse(ldScript.text());
+        const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
 
-        // 1. Jika currentBestImage kosong, coba intip dari tag img
+        // Cari fallback image jika meta kosong
         if (!currentBestImage) {
           const firstImg = $('img').first();
-          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src') || firstImg.attr('data-fullsrc');
-          if (imgUrl) {
-            currentBestImage = imgUrl.startsWith('http') ? imgUrl : (imgUrl.startsWith('/') ? `${baseUrl}${imgUrl}` : `${baseUrl}/${imgUrl}`);
-          }
+          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src');
+          currentBestImage = imgUrl ? makeAbsolute(imgUrl) : `${baseUrl}/img/${baseName}.webp`;
         }
-
-        // 2. Final Fallback kalau masih botak
-        if (!currentBestImage) {
-          currentBestImage = `${baseUrl}/img/${baseName}.webp`;
-        }
-
-        // 3. Pastikan URL di ldData.image SELALU Absolut
-        const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
 
         if (ldData.image) {
           if (typeof ldData.image === 'string') {
@@ -153,27 +150,17 @@ async function fixSEO() {
           } else if (Array.isArray(ldData.image)) {
             ldData.image = ldData.image.map(img => typeof img === 'string' ? makeAbsolute(img) : (img.url ? { ...img, url: makeAbsolute(img.url) } : img));
           }
-        } else {
-          // Kalau field image belum ada di JSON, kita buatkan
-          ldData.image = {
-            "@type": "ImageObject",
-            "url": currentBestImage
-          };
         }
 
-        // Update teks LD-JSON dengan rapi
         ldScript.text(JSON.stringify(ldData, null, 2));
-        console.log(`   💎 Schema Image fixed: ${currentBestImage}`);
-
       } catch (e) {
-        console.error("❌ Gagal parsing LD-JSON:", e.message);
+        console.error("   ❌ Schema Error");
       }
     }
 
     fs.writeFileSync(file, $.html(), 'utf8');
-
   }
-  console.log('\n✅ SEO Fixer: Misi selesai. Semua jejak Blogger telah dihapus!');
+  console.log('\n✅ SEO Fixer: Misi selesai. Semua jejak Blogger dan Schema telah diperbaiki!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });

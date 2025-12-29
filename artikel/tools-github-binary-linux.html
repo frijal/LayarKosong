@@ -10,7 +10,7 @@
   "description": "Package manager tradisional Linux keren, tapi banyak tool modern rilisnya di GitHub. Ini 7 tools alternatif yang bikin install dan update binary jadi super gampang dari terminal! Cocok buat user Debian, Ubuntu, sampai cross-platform.",
   "image": {
     "@type": "ImageObject",
-    "url": "https://dalam.web.id/img/itsfoss.com/content/images/2025/12/deb-get.webp",
+    "url": "https://itsfoss.com/content/images/2025/12/deb-get.png",
     "width": "1200",
     "height": "675"
   },
@@ -60,7 +60,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="7 Tools Keren Buat Install Binary GitHub di Linux Tanpa Ribet 🚀">
     <meta name="twitter:description" content="Gak perlu lagi manual download dari GitHub! Ini tools yang bantu install dan update binary otomatis di Linux.">
-    <meta name="twitter:image" content="https://dalam.web.id/img/itsfoss.com/content/images/2025/12/deb-get.webp">
+    <meta name="twitter:image" content="https://itsfoss.com/content/images/2025/12/deb-get.png">
     <meta name="twitter:site" content="@frijal">
 
     <!-- Font Awesome -->
@@ -157,7 +157,7 @@
 
         <p>Nah, inilah celah yang lagi diatasi sama beberapa tools komunitas. Mereka bikin hidup kita balik lagi ke terminal yang nyaman, tanpa harus bolak-balik browser. Baru-baru ini artikel di It's FOSS ngebahas beberapa tools ini, dan aku langsung jatuh cinta. Aku tambahin sedikit penjelasan biar makin lengkap, plus pengalaman pribadi sebagai user Linux sehari-hari di Balikpapan yang sering gonta-ganti tool CLI. Yuk kita bahas satu-satu! <i class="fas fa-arrow-down"></i></p>
 
-        <img src="/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" alt="Contoh terminal Linux saat install tool dari GitHub" loading="lazy">
+        <img src="https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png" alt="Contoh terminal Linux saat install tool dari GitHub" loading="lazy">
 
         <h2>Tools Download Binary dari GitHub</h2>
         <table>
@@ -181,35 +181,35 @@
         </table>
 
         <h2 id="deb-get">1. deb-get <i class="fas fa-box"></i></h2>
-        <img src="/img/linux-cdn.softpedia.com/screenshots/deb-get_1.webp" alt="Screenshot deb-get di terminal" loading="lazy">
+        <img src="https://linux-cdn.softpedia.com/screenshots/deb-get_1.jpg" alt="Screenshot deb-get di terminal" loading="lazy">
         <p><strong>deb-get</strong> ini kayak bawa rasa <code>apt</code> ke paket-paket third-party yang nggak ada di repo resmi. Khusus buat distro berbasis Debian/Ubuntu (termasuk Linux Mint, Pop!_OS, dll). Dia bisa ambil paket dari GitHub releases, PPA, bahkan download langsung. Dikembangin sama Martin Wimpress – iya, yang bikin Ubuntu MATE itu!</p>
         <p>Repo-nya udah curated rapi, banyak app populer kayak VS Code, Zoom, dll yang versi terbaru sering telat masuk repo resmi. Instalasinya mirip apt, dan kalau kamu pake GitHub token, nggak bakal kena rate limit. Keren banget buat yang setia sama .deb.</p>
         <pre><code>sudo apt install curl lsb-release wget
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get</code></pre>
 
         <h2 id="autonomix">2. Autonomix <i class="fas fa-desktop"></i></h2>
-        <img src="/img/itsfoss.com/content/images/2025/12/autonomix.webp" alt="Screenshot Autonomix GUI" loading="lazy">
+        <img src="https://itsfoss.com/content/images/2025/12/autonomix.png" alt="Screenshot Autonomix GUI" loading="lazy">
         <p><strong>Autonomix</strong> adalah satu-satunya di list ini yang punya <strong>GUI</strong>! Pake GTK4 + libadwaita, tampilannya modern banget. Mirip Obtainium di Android. Support macam-macam format: .deb, .rpm, AppImage, Flatpak, Snap. Update tinggal klik doang. Cocok buat yang kadang males ketik command panjang. <i class="fas fa-heart"></i></p>
 
         <h2 id="eget">3. Eget <i class="fas fa-download"></i></h2>
-        <img src="/img/itsfoss.com/content/images/2025/12/eget.webp" alt="Screenshot Eget di terminal" loading="lazy">
+        <img src="https://itsfoss.com/content/images/2025/12/eget.png" alt="Screenshot Eget di terminal" loading="lazy">
         <p><strong>Eget</strong> ini favorit aku banget karena super simpel. Cukup kasih URL repo GitHub, dia otomatis cari binary yang cocok sama OS dan arsitektur lo, download, ekstrak, taruh di tempat yang bener. Cross-platform (Linux, macOS, BSD). Nggak ada config ribet. Aku sering pake buat install tool-tool kecil kayak lazygit atau ripgrep versi terbaru.</p>
 
         <h2 id="install-release">4. Install Release <i class="fas fa-code"></i></h2>
-        <img src="/img/user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.webp" alt="Demo bin manager (mirip konsep)" loading="lazy">
+        <img src="https://user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.gif" alt="Demo bin manager (mirip konsep)" loading="lazy">
         <p><strong>Install Release</strong> (command-nya <code>ir</code>) pake Python, support GitHub dan GitLab. Bisa sync state antar mesin lewat repo Git – jadi setup tool kamu sama persis di laptop dan desktop. Deteksi arsitektur otomatis, ada hold package juga.</p>
         <pre><code>pip install -U install-release</code></pre>
 
         <h2 id="bin">5. bin <i class="fas fa-cubes"></i></h2>
-        <img src="/img/user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.webp" alt="Screenshot bin manager" loading="lazy">
+        <img src="https://user-images.githubusercontent.com/1578458/87901619-ee629a80-ca2d-11ea-8609-8a8eb39801d2.gif" alt="Screenshot bin manager" loading="lazy">
         <p><strong>bin</strong> ini powerful karena support banyak sumber: GitHub, GitLab, Codeberg, bahkan Docker image atau Hashicorp releases. Install ke folder user (nggak butuh root), ada rollback versi juga. Cocok buat yang suka eksplor tool dari berbagai forge.</p>
 
         <h2 id="stew">6. stew <i class="fas fa-file-code"></i></h2>
-        <img src="/img/itsfoss.com/content/images/2025/12/eget.webp" alt="Contoh terminal tool serupa" loading="lazy">
+        <img src="https://itsfoss.com/content/images/2025/12/eget.png" alt="Contoh terminal tool serupa" loading="lazy">
         <p><strong>stew</strong> bawa konsep deklaratif lewat <code>Stewfile</code>. Kamu definisikan semua binary yang mau diinstall (bisa pin versi), terus jalankan sekali – reproducible di semua mesin lo. Ada mode headless dan interactive UI juga.</p>
 
         <h2 id="afx">7. AFX <i class="fas fa-plug"></i></h2>
-        <img src="/img/itsfoss.com/content/images/2025/12/deb-get.webp" alt="Contoh terminal tool manager" loading="lazy">
+        <img src="https://itsfoss.com/content/images/2025/12/deb-get.png" alt="Contoh terminal tool manager" loading="lazy">
         <p><strong>AFX</strong> spesial karena bisa manage CLI binary sekaligus shell plugin (bash/zsh/fish). Pake YAML config, support environment variable, alias, bahkan dependency antar paket. Buat yang suka customize shell sampe detail.</p>
 
         <p>Gimana bro? Dari ketujuh ini, aku pribadi lagi sering pake <strong>eget</strong> buat cepet-cepetan sama <strong>deb-get</strong> buat paket besar. Kalau kamu pake Fedora atau Arch, mungkin <strong>bin</strong> atau <strong>stew</strong> lebih cocok. Yang penting, sekarang kita nggak perlu lagi takut ketinggalan update tool favorit cuma karena males buka GitHub! <i class="fas fa-fire"></i></p>
