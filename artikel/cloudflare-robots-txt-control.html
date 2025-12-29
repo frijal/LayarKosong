@@ -32,24 +32,13 @@
   "datePublished": "2025-12-07",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜</title>
     <meta name="description" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
     <link rel="canonical" href="https://dalam.web.id/artikel/cloudflare-robots-txt-control.html">
-
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <meta name="fediverse:creator" content=".social"><style>
         :root {
             /* Default Light Theme */
@@ -63,7 +52,6 @@
             --blockquote-bg: #fff0e6;
             --blockquote-border: #f6941f;
         }
-
         /* Dark Theme Detection */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -78,7 +66,6 @@
                 --blockquote-border: #ffb74d;
             }
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -88,48 +75,40 @@
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
-
         .container {
             max-width: 1000px; /* Widescreen 1 Kolom */
             margin: 0 auto;
             padding: 20px;
         }
-
         h1, h2, h3 {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 8px;
             margin-top: 35px;
         }
-
         h3 {
             border-bottom: none;
             color: var(--secondary-color);
             margin-top: 25px;
         }
-
         p {
             margin-bottom: 18px;
             text-align: justify;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-
         th, td {
             border: 1px solid var(--code-border);
             padding: 12px;
             text-align: left;
         }
-
         th {
             background-color: var(--table-header);
             font-weight: bold;
         }
-
         blockquote {
             background: var(--blockquote-bg);
             border-left: 6px solid var(--blockquote-border);
@@ -137,7 +116,6 @@
             padding: 15px 25px;
             border-radius: 4px;
         }
-
         pre {
             background-color: var(--code-bg);
             border: 1px solid var(--code-border);
@@ -146,26 +124,22 @@
             overflow-x: auto;
             font-family: 'Consolas', 'Monaco', monospace;
         }
-
         .image-container {
             text-align: center;
             margin: 30px 0;
         }
-
         .image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-
         .option-detail {
             margin-bottom: 30px;
             padding: 15px;
             border: 1px solid var(--code-border);
             border-radius: 6px;
         }
-
         .footer {
             text-align: center;
             padding: 25px;
@@ -179,39 +153,25 @@
     <meta property="article:published_time" content="2025-12-07T08:41:41.333+00:00">
 <meta name="ai:summary" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
 <meta name="ai:prompt_hint" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/cloudflare-robots-txt-control.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
   <meta property="og:image:alt" content="Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜">
-
-
-
-
-
 </head>
 <body>
     <div class="container">
-
         <h1><a href="/" style="text-decoration:none; color:inherit;">📜 Mengelola `robots.txt` di Cloudflare: Panduan Bot Crawler</a></h1>
 <div id="iposbrowser"></div>
         <p>Hai! Pengaturan yang Anda lihat ini merupakan kontrol klasik namun fundamental dalam dunia web. File `robots.txt` adalah semacam "papan pengumuman" di pintu masuk situs Anda yang memberi tahu semua *bot* yang berkunjung, termasuk *search engine* dan *AI training bots*, area mana saja yang boleh mereka jelajahi (*crawl*). Cloudflare hadir untuk mempermudah Anda mengelola file penting ini, terutama untuk isu AI saat ini.</p>
-
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp" alt="Ilustrasi file robots.txt di root domain">
             <p style="font-size:0.9em;">**Gambar:** File `robots.txt` berada di direktori *root* situs Anda, sebagai panduan pertama bagi semua *crawler*.</p>
         </div>
-
         <hr>
-
         <h2><i class="fas fa-hammer"></i> Tiga Opsi Pengelolaan Robots.txt oleh Cloudflare</h2>
-
         <p>Cloudflare memberikan tiga cara untuk memublikasikan atau menonaktifkan file `robots.txt` di situs Anda. Pilihan ini sebagian besar didasarkan pada seberapa besar Anda ingin Cloudflare turun tangan dalam mengatur kebijakan akses konten Anda.</p>
-
         <div class="option-detail">
             <h3><i class="fas fa-signal"></i> 1. Content Signals Policy (Kebijakan Sinyal Konten)</h3>
             <p>**Deskripsi Opsi:** *Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.*</p>
@@ -226,7 +186,6 @@ Allow: /</pre>
                 </li>
             </ul>
         </div>
-
         <div class="option-detail">
             <h3><i class="fas fa-user-slash"></i> 2. Instruct AI bots to not scrape content (Menginstruksikan bot AI untuk tidak mengumpulkan konten)</h3>
             <p>**Deskripsi Opsi:** *Creates or updates your robots.txt file to signal that your content should not be used for AI training.*</p>
@@ -237,13 +196,11 @@ Allow: /</pre>
                 <li><b>Contoh ilustrasi Teks yang Disuntikkan:</b>
 <pre>User-agent: CCBot
 Disallow: /
-
 User-agent: ChatGPT-User
 Disallow: /</pre>
                 </li>
             </ul>
         </div>
-
         <div class="option-detail">
             <h3><i class="fas fa-times-circle"></i> 3. Disable robots.txt configuration (Nonaktifkan konfigurasi robots.txt)</h3>
             <p>**Deskripsi Opsi:** *Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.*</p>
@@ -254,12 +211,9 @@ Disallow: /</pre>
                 <li>**Catatan:** Jika Anda memilih ini tetapi lupa mengunggah file `robots.txt` kustom di *server* Anda, maka semua *bot* akan diizinkan menjelajahi seluruh situs Anda.</li>
             </ul>
         </div>
-
         <hr>
-
         <h2><i class="fas fa-shield-alt"></i> Kesimpulan dan Rekomendasi Perlindungan Penuh</h2>
         <p>Pengaturan `robots.txt` ini bekerja sebagai **panduan etika**. Untuk mendapatkan perlindungan konten yang paling kuat dari *AI training bots*, Anda perlu menggabungkannya dengan pengaturan pemblokiran yang berada di lapisan HTTP (yang sudah kita bahas sebelumnya).</p>
-
         <table class="specs-table">
             <thead>
                 <tr>
@@ -281,23 +235,16 @@ Disallow: /</pre>
                 </tr>
             </tbody>
         </table>
-
         <p style="margin-top: 25px;">Dengan menggabungkan kedua lapisan ini, Anda memastikan bahwa *bot* yang bertanggung jawab mendapat instruksi untuk menolak, dan *bot* yang mungkin kurang bertanggung jawab akan diblokir di lapisan jaringan Cloudflare. Perlindungan ganda yang cerdas! ✨</p>
-
         <h2 style="margin-top: 50px;"><i class="fas fa-comments"></i> Kolom Diskusi</h2>
         <p>Apakah Anda lebih suka mengelola `robots.txt` sendiri atau mengandalkan konfigurasi dari Cloudflare?</p>
         <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-
         <footer class="footer">
             <p>🄯 2025 Dalam Web ID | Analisis Cloudflare Robots.txt | <a href="https://dalam.web.id/disclaimer.html">Kebijakan Privasi</a></p>
             <p style="font-size: 0.8em;">Konten ini dibuat oleh AI (Gemini) untuk membantu menjelaskan fitur teknis web.</p>
         </footer>
-
     </div>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
     </body></html>

@@ -32,32 +32,19 @@
   "datePublished": "2025-09-27",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
 <!-- ===== Basic Meta ===== -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Panduan Mirror Linux Tercepat — Semua Distro</title>
-
 <meta name="description" content="Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="news_keywords" content="mirror Linux tercepat, repository Linux, mirror semua distro, rsync Linux, server mirror Linux, apt mirror, yum mirror">
-
 <link rel="canonical" href="https://dalam.web.id/artikel/linux-mirror-guide-all.html">
-
 <!-- ===== Icons ===== -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="https://dalam.web.id/favicon.svg">
 <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
-
 <meta name="theme-color" content="#020617">
-
 <!-- ===== Open Graph ===== -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Panduan Mirror Linux Tercepat — Semua Distro">
@@ -66,7 +53,6 @@
 <meta property="og:site_name" content="Layar Kosong">
 <meta property="og:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
 <meta property="og:image:alt" content="Panduan Mirror Linux Tercepat — Semua Distro">
-
 <!-- ===== Article Meta ===== -->
 <meta name="date" content="2025-09-27">
 <meta property="article:published_time" content="2025-09-27T08:00:00+08:00">
@@ -78,17 +64,14 @@
 <meta property="article:tag" content="Sysadmin">
 <meta property="article:tag" content="Rsync">
 <meta property="article:tag" content="Server">
-
 <!-- ===== Twitter Card ===== -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@frijal">
 <meta name="twitter:title" content="Panduan Mirror Linux Tercepat — Semua Distro">
 <meta name="twitter:description" content="Panduan teknis membangun mirror Linux tercepat untuk semua distro agar update lebih hemat bandwidth dan stabil.">
 <meta name="twitter:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
-
 <!-- ===== Structured Image Hint ===== -->
 <meta itemprop="image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
-
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 <meta name="fediverse:creator" content=".social"><style>
   :root {
@@ -237,22 +220,15 @@ header h1 {
   font-size: 1.1rem;
 }
   }
-
 </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta property="article:published_time" content="2025-08-01T11:00:00+08:00"><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script>
-
-
-
-
-
 </head>
   <body>
 <button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button>
 <header>
   <h1><a href="/" style="text-decoration:none; color:inherit;">Panduan Mirror Linux Tercepat — Semua Distro</a></h1>
 <div id="iposbrowser"></div>
-
   <p>
 Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS —
 cara otomatis &amp; manual
@@ -285,7 +261,6 @@ cara otomatis &amp; manual
 <h3>Langkah cepat</h3>
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">sudo apt update
 sudo apt install -y netselect-apt
-
 # Cari mirror untuk release (contoh: bookworm atau jammy)
 sudo netselect-apt bookworm   # Debian 12
 # atau
@@ -297,7 +272,6 @@ sudo netselect-apt jammy  # Ubuntu 22.04</code></pre>
 # Backup lalu ganti sources.list
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo mv sources.list /etc/apt/sources.list
-
 # Refresh apt
 sudo apt update</code></pre>
   </div>
@@ -329,10 +303,8 @@ Untuk Ubuntu gunakan GUI
 <h3>Arch — contoh</h3>
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Install reflector (jika belum ada)
 sudo pacman -S --noconfirm reflector
-
 # Pilih 5 mirror terbaru dari Indonesia, urut menurut speed, simpan ke mirrorlist
 sudo reflector --country "Indonesia" --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-
 # Refresh &amp; upgrade
 sudo pacman -Syyu</code></pre>
   </div>
@@ -365,7 +337,6 @@ Simpan mirrorlist hasil uji untuk rollback jika ada masalah.
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Bersihkan cache lama dan refresh metadata
 sudo dnf clean all
 sudo dnf makecache --refresh
-
 # Update sistem (paksa sinkronisasi ke mirror terbaru)
 sudo dnf upgrade --refresh</code></pre>
 <p class="note">
@@ -382,7 +353,6 @@ sudo dnf upgrade --refresh</code></pre>
 </p>
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Refresh repo
 sudo zypper refresh
-
 # Untuk upgrade (Distribution Upgrade)
 sudo zypper dup</code></pre>
 <p>
@@ -398,10 +368,8 @@ sudo zypper dup</code></pre>
 </p>
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit daftar mirror
 sudo nano /etc/slackpkg/mirrors
-
 # Contoh: aktifkan mirror lokal (hapus #)
 # ftp://kartolo.sby.datautama.net.id/slackware/slackware64-15.0/
-
 # Update slackpkg
 sudo slackpkg update gpg
 sudo slackpkg update</code></pre>
@@ -419,11 +387,9 @@ sudo slackpkg update</code></pre>
 </p>
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit /etc/nix/nix.conf (contoh)
 sudo nano /etc/nix/nix.conf
-
 # Tambahkan substituters. Contoh:
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
 trusted-public-keys = cache.nixos.org-1:... mirror.sjtu.edu.cn-1:...
-
 # Lalu update channels &amp; environment
 sudo nix-channel --update
 nix-env -u</code></pre>
@@ -476,7 +442,6 @@ elif [ "$MODE" = "arch" ]; then
   sudo pacman -Syyu
 else
   echo "Usage: $0 debian|arch"
-
 fi</code></pre>
   </section>
   <section>
@@ -491,7 +456,6 @@ fi</code></pre>
   <span id="current-url" class="small-muted"></span>
 </div>
 <div style="margin-top: 18px">
-
   <div class="fb-comments" id="fb-comments" data-href="" data-width="100%" data-numposts="5"></div>
   <script>
 let currentUrl = window.location.href;
@@ -509,7 +473,6 @@ FB.XFBML.parse();
 </div>
   </section>
   <section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section>
-
     </main>
 <footer>
   🄯 2025 • Panduan Mirror Linux — Gunakan mirror resmi dan selalu
@@ -539,12 +502,7 @@ var e = document.body.classList.contains("dark");
 darkToggle.textContent = e ? "☀️ Light Mode" : "🌙 Dark Mode";
   });
 </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
-
 </body></html>

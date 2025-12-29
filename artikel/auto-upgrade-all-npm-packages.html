@@ -32,36 +32,23 @@
   "datePublished": "2025-10-25",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- SEO Meta -->
     <title>Auto-Upgrade All NPM Packages — Workflow GitHub Actions (Analisis, perbaikan, dan template)</title>
     <meta name="description" content="Analisis lengkap workflow GitHub Actions untuk meng-upgrade semua paket NPM secara otomatis. Termasuk risiko, perbaikan aman, dan template siap pakai dengan PR, pengujian, dan update minor/patch.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content="GitHub Actions, npm, npm-check-updates, CI/CD, auto upgrade, workflow, dependencies, minor patch, create pull request">
-
     <!-- Canonical URL -->
     <link rel="canonical" href="https://dalam.web.id/artikel/auto-upgrade-all-npm-packages.html">
-
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-
     <!-- Open Graph -->
-
     <!-- Twitter Card -->
-
     <!-- Styles: Tipografi & Layout -->
     <meta name="fediverse:creator" content=".social"><style>
         :root {
@@ -75,16 +62,13 @@
             --color-tip-bg-light: rgba(62,166,255,0.08);
             --color-kbd-bg-light: rgba(62,166,255,0.15);
             --color-border-light: #e0e0e0;
-
             --color-bg-dark: #111;
             --color-text-dark: #eaeaea;
             --color-code-bg-dark: #1e1e1e; /* Warna VSC Dark+ */
             --color-tip-bg-dark: rgba(62,166,255,0.08);
             --color-kbd-bg-dark: rgba(62,166,255,0.15);
             --color-border-dark: #333;
-
             --transition: 0.25s ease;
-
             /* Default Dark */
             --bg: var(--color-bg-dark);
             --text: var(--color-text-dark);
@@ -93,12 +77,10 @@
             --kbd-bg: var(--color-kbd-bg-dark);
             --border: var(--color-border-dark);
         }
-
         html {
             scroll-behavior: smooth;
             color-scheme: light dark;
         }
-
       body {
         margin: 0;
         font-family: var(--font-sans);
@@ -109,7 +91,6 @@
         color: var(--text);
         transition: background var(--transition), color var(--transition);
     }
-
         @media (prefers-color-scheme: light) {
             body {
                 --bg: var(--color-bg-light);
@@ -140,20 +121,17 @@
             .token.function, .token.class-name { color: #DD4A68; }
             .token.regex, .token.important, .token.variable { color: #e90; }
         }
-
         main {
             max-width: 900px;
             margin: auto;
             padding: 2rem 1.5rem 5rem;
         }
-
         .article .cover img {
             width: 100%;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             margin-bottom: 1.5rem;
         }
-
         h1.title {
             font-size: clamp(2rem, 5vw, 2.6rem); /* Responsif */
             font-weight: 700;
@@ -161,7 +139,6 @@
             color: var(--color-accent);
             line-height: 1.3;
         }
-
         .meta {
             font-size: 1rem;
             color: gray;
@@ -170,11 +147,9 @@
             gap: 0.4rem;
             margin-bottom: 2rem;
         }
-
         .section {
             margin-top: 2.5rem;
         }
-
         h2, h3 {
             color: var(--color-accent);
             margin-top: 2.5rem;
@@ -185,17 +160,14 @@
         }
         h2 { font-size: 1.8rem; }
         h3 { font-size: 1.5rem; margin-top: 2rem;}
-
         p, li {
             margin-top: 0.6rem;
             margin-bottom: 0.8rem; /* Added margin-bottom */
             font-size: 1.1rem;
         }
-
         ul {
             padding-left: 1.5rem;
         }
-
         .tip {
             display: flex;
             gap: 0.8rem;
@@ -211,7 +183,6 @@
              margin-top: 0.2rem;
              color: var(--color-accent);
          }
-
         .kbd {
             background: var(--kbd-bg);
             padding: 0.2rem 0.5rem;
@@ -220,7 +191,6 @@
             font-size: 0.95em;
             border: 1px solid var(--border);
         }
-
         pre {
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -228,7 +198,6 @@
             margin: 1.5rem 0;
             border: 1px solid var(--border); /* Added border */
         }
-
         /* Override Prism background based on theme */
         pre[class*="language-"] {
          background: var(--code-bg);
@@ -236,12 +205,10 @@
          font-size: 14.5px; /* Contoh: Naikkan dari 13.5px atau pakai '1rem' */
          line-height: 1.6; /* Sesuaikan line-height kode */
     }
-
         code {
             font-family: "JetBrains Mono", "Fira Code", monospace;
             font-size: 1rem;
         }
-
         /* --- Share Section --- */
         .share-section {
             margin-top: 3rem;
@@ -286,7 +253,6 @@
         .share-buttons a[title*="Facebook"]:hover { background-color: #1877F2; color: white; border-color: #1877F2; }
         .share-buttons a[title*="LinkedIn"]:hover { background-color: #0077b5; color: white; border-color: #0077b5; }
         .share-buttons a[title*="WhatsApp"]:hover { background-color: #25D366; color: white; border-color: #25D366; }
-
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -295,7 +261,6 @@
             margin-top: 4rem;
             background: var(--bg); /* Match body background */
         }
-
         @media (max-width: 600px) { /* Adjusted breakpoint */
             body { padding: 16px; }
             main { padding: 1rem 1rem 3rem; }
@@ -304,38 +269,25 @@
             code { font-size: 0.9rem; }
         }
     </style>
-
     <!-- Prism.js CSS Theme (VSC Dark+) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
-
   <meta itemprop="image" content="https://dalam.web.id/img/auto-upgrade-all-npm-packages.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-10-25T13:28:45.315+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Analisis lengkap workflow GitHub Actions untuk meng-upgrade semua paket NPM secara otomatis. Termasuk risiko, perbaikan aman, dan template siap pakai dengan PR, pengujian, dan update minor/patch.">
 <meta name="ai:prompt_hint" content="Analisis lengkap workflow GitHub Actions untuk meng-upgrade semua paket NPM secara otomatis. Termasuk risiko, perbaikan aman, dan template siap pakai dengan PR, pengujian, dan update minor/patch.">
-
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/auto-upgrade-all-npm-packages.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/auto-upgrade-all-npm-packages.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/auto-upgrade-all-npm-packages.webp">
   <meta property="og:image:alt" content="Auto-Upgrade All NPM Packages — Workflow GitHub Actions (Analisis, perbaikan, dan template)">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Auto-Upgrade All NPM Packages — Workflow GitHub Actions (Analisis, perbaikan, dan template)">
-
-
-
-
-
 </head>
-
 <body>
     <main>
         <article class="article">
             <div class="cover" title="Auto Upgrade NPM Packages cover">
             </div>
-
             <div class="content">
                 <h1 class="title"><a href="/" style="text-decoration:none; color:inherit;">Auto-Upgrade All NPM Packages — Workflow GitHub Actions</a></h1>
 <div id="iposbrowser"></div>
@@ -344,7 +296,6 @@
                     <span>CI/CD, NPM, GitHub Actions</span> •
                     <span>Widescreen &amp; mobile-friendly</span>
                 </div>
-
                 <h2>Ringkasan cepat</h2>
                 <p>
                     Workflow ini menjalankan upgrade dependency NPM secara otomatis setiap bulan dan bisa dipicu manual. Ia memakai
@@ -357,7 +308,6 @@
                     </svg>
                     <div>Untuk keamanan, sebaiknya upgrade minor/patch dulu, jalankan test, dan ajukan PR dibanding langsung push ke <code class="kbd">main</code>.</div>
                 </div>
-
                 <h2>Analisis bagian per bagian Workflow asli</h2>
                 <p>
                     Mari kita bedah workflow GitHub Actions ini secara detail. Ini adalah pipeline otomatis untuk upgrade semua dependency NPM setiap bulan, plus bisa dijalankan manual.
@@ -367,7 +317,6 @@
                     Workflow berjalan manual lewat <code class="kbd">workflow_dispatch</code>, dan terjadwal per bulan, pada tanggal 1, setiap jam 02:00 UTC melalui cron.
                     <code class="kbd">0 2 1 * *</code>. Ini bagus untuk maintenance rutin sekaligus fleksibilitas eksekusi manual.
                 </p>
-
                 <pre><code class="language-yaml">name: Auto-Upgrade All NPM Packages
 on:
   workflow_dispatch:
@@ -393,7 +342,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Upgrade all packages
         run: |
           npm install -g npm-check-updates
@@ -415,7 +363,6 @@ jobs:
           else
             echo "No dependency upgrades detected."
           fi</code></pre>
-
                 <h2>Kelebihan</h2>
                 <ul>
                     <li><strong>Sederhana:</strong> setup minimal, mudah dipahami.</li>
@@ -423,7 +370,6 @@ jobs:
                     <li><strong>Idempotent:</strong> commit hanya saat ada perubahan nyata.</li>
                     <li><strong>Fleksibel:</strong> bisa dijalankan manual kapan pun.</li>
                 </ul>
-
                 <h2>Risiko dan titik lemah</h2>
                 <ul>
                     <li><strong>Upgrade mayor:</strong> <code class="kbd">ncu -u</code> dapat menaikkan ke rilis mayor yang berpotensi breaking.</li>
@@ -431,7 +377,6 @@ jobs:
                     <li><strong>Langsung ke main:</strong> perubahan masuk ke branch utama tanpa review, meningkatkan risiko downtime.</li>
                     <li><strong>Lockfile vs manifest:</strong> kadang cukup memperbarui <code class="kbd">package-lock.json</code> untuk patch keamanan minor.</li>
                 </ul>
-
                 <h2>Versi yang lebih aman (template siap pakai)</h2>
                 <p>Berikut template yang meng-upgrade <strong>minor/patch</strong> saja, menjalankan test, dan membuat <strong>Pull Request</strong> otomatis agar tetap ada review.</p>
                 <pre><code class="language-yaml">name: Safe Auto-Upgrade (Minor/Patch) for NPM
@@ -439,27 +384,22 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 2 1 * *' # Setiap awal bulan jam 2 UTC
-
 jobs:
   upgrade-dependencies:
     runs-on: ubuntu-latest
     permissions:
       contents: write       # Izin untuk commit/push ke branch
       pull-requests: write # Izin untuk membuat PR
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm' # Mengaktifkan caching npm
-
       - name: Install dependencies
         run: npm ci # Gunakan ci untuk install dari lockfile
-
       - name: Upgrade dependencies (minor &amp; patch only)
         id: upgrade # Beri ID untuk cek output
         run: |
@@ -475,7 +415,6 @@ jobs:
             echo "changes_detected=false" &gt;&gt; $GITHUB_OUTPUT
             echo "Tidak ada upgrade minor/patch yang ditemukan."
           fi
-
       # Hanya jalankan test jika ada perubahan
       - name: Run tests (if changes detected)
         if: steps.upgrade.outputs.changes_detected == 'true'
@@ -484,7 +423,6 @@ jobs:
           npm test --if-present
         # Tambahkan '|| true' jika test boleh gagal tapi PR tetap dibuat
         # run: (npm run build --if-present &amp;&amp; npm test --if-present) || true
-
       - name: Create Pull Request (if changes detected)
         if: steps.upgrade.outputs.changes_detected == 'true'
         uses: peter-evans/create-pull-request@v6
@@ -517,7 +455,6 @@ jobs:
                 </p>
                 <pre><code class="language-bash"># Opsi hanya update lockfile sesuai range di package.json
 npm update --package-lock-only</code></pre>
-
                 <h2>Tips tambahan biar mulus</h2>
                 <ul>
                     <li><strong>Pin engine:</strong> set <code class="kbd">engines</code> di <code class="kbd">package.json</code> jika project butuh Node versi tertentu untuk mencegah error saat GitHub Actions pakai versi berbeda.</li>
@@ -526,9 +463,6 @@ npm update --package-lock-only</code></pre>
                     <li><strong>Changelog-aware:</strong> Jika perlu info detail perubahan, tambahkan step kecil yang bisa mencoba mengekstrak bagian relevan dari <code class="kbd">CHANGELOG.md</code> paket yang diupgrade atau link ke rilis GitHub-nya (agak kompleks, biasanya manual review lebih mudah).</li>
                     <li><strong>Fail-fast:</strong> Pastikan script <code class="kbd">npm test</code> Anda punya coverage yang baik dan akan exit dengan error code jika ada kegagalan, sehingga PR otomatis menandai status check failure.</li>
                 </ul>
-
-
-
                 <h2>Bagaimana cara pakai cepat</h2>
                 <ul>
                     <li><strong>Salin template:</strong> Ambil workflow “Safe Auto-Upgrade” di atas dan simpan sebagai file `.github/workflows/upgrade-npm.yml` di repo Anda.</li>
@@ -537,29 +471,20 @@ npm update --package-lock-only</code></pre>
                     <li><strong>Review PR:</strong> Aktifkan *branch protection rules* di GitHub untuk branch utama Anda dan wajibkan *status checks* (termasuk test dari workflow ini) lulus sebelum PR bisa di-merge.</li>
                     <li><strong>Reviewer (Opsional):</strong> Ganti `frijal` di bagian `reviewers` pada action `create-pull-request` dengan username GitHub Anda atau tim Anda.</li>
                 </ul>
-
                 <!-- Share Section Moved Here -->
                 <aside class="aside share-section">
                     <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
                  </aside>
-
             </div>
-        
     </article>
-
     </main>
-
     <footer>
         🄯 2025 Frijal — Dibangun dengan GitHub Pages · Tema Prism VS Code Dark+
     </footer>
-
     <!-- Prism.js Core & Languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
 </body></html>

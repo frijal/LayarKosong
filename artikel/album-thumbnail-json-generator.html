@@ -32,13 +32,6 @@
   "datePublished": "2025-10-25",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album Thumbnail Viewer &amp; JSON Generator</title>
@@ -50,7 +43,6 @@
     <link rel="manifest" href="https://dalam.web.id/site.webmanifest">
     <meta name="keywords" content="JSON generator, thumbnail viewer, recursive gallery, web album, alat web, Frijal">
     <meta name="author" content="Frijal">
-
     <meta name="fediverse:creator" content=".social"><style>
         *, *::before, *::after { box-sizing: border-box; }
         body {
@@ -80,7 +72,6 @@
         .controls .note { width: 100%; font-size: 0.9rem; margin: 10px 0 0 0; color: #777; }
         .welcome-message { text-align: center; padding: 40px; font-size: 1.2rem; color: #777; }
         .viewer-area { display: flex; flex-grow: 1; margin-top: 20px; gap: 20px; min-height: 0; }
-
         /* --- Kolom Kiri (Info) --- */
         .main-display-wrapper { flex: 3; display: flex; flex-direction: column; min-width: 0; }
         .info-area {
@@ -112,7 +103,6 @@
         .action-btn { padding: 10px 20px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; }
         .action-btn:disabled { background-color: #bdc3c7; cursor: not-allowed; color: white; }
         .note { font-size: 0.9rem; color: #7f8c8d; margin-top: 10px; }
-
         /* --- Kolom Kanan (Galeri) --- */
         .album-grid-wrapper {
             flex: 1; background: #fff; border: 1px solid #ddd; border-radius: 8px;
@@ -154,47 +144,33 @@
             .album-grid-wrapper h2 { display: none; }
         }
     </style>
-
   <meta itemprop="image" content="https://dalam.web.id/img/album-thumbnail-json-generator.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-10-25T13:28:45.311+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Alat untuk melihat thumbnail album gambar lokal secara rekursif dan sekaligus menghasilkan file manifest">
 <meta name="ai:prompt_hint" content="Alat untuk melihat thumbnail album gambar lokal secara rekursif dan sekaligus menghasilkan file manifest">
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/album-thumbnail-json-generator.webp">
 <meta name="description" content="Alat untuk melihat thumbnail album gambar lokal secara rekursif dan sekaligus menghasilkan file manifest">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/album-thumbnail-json-generator.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/album-thumbnail-json-generator.webp">
   <meta property="og:image:alt" content="Album Thumbnail Viewer &amp; JSON Generator">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Album Thumbnail Viewer &amp; JSON Generator">
-
-
-
-
-
 </head>
 <body>
-
     <div class="container">
         <h1><a href="/" style="text-decoration:none; color:inherit;">Album Thumbnail Viewer &amp; JSON Generator</a></h1>
 <div id="iposbrowser"></div>
-
         <div class="controls">
             <button id="openFolderBtn">📁 Buka Folder Album</button>
             <button id="generateJsonBtn" disabled="">💾 Buat &amp; Download album.json</button>
             <input type="file" id="folderInput" webkitdirectory="" multiple="" hidden="">
             <p class="note">Pilih folder berisi gambar untuk melihat thumbnail dan membuat file <code>album.json</code>.</p>
         </div>
-
         <div id="welcomeMessage" class="welcome-message">
             <p>Silakan pilih folder berisi gambar untuk memulai...</p>
         </div>
-
         <div id="viewerArea" class="viewer-area" style="display: none;">
-
             <div class="main-display-wrapper">
                 <div class="info-area">
                     <div class="caption-wrapper">
@@ -205,15 +181,12 @@
                         </div>
                 </div>
             </div>
-
             <div class="album-grid-wrapper">
                 <h2>Galeri Album (<span id="imageCount">0</span>)</h2>
                 <div id="albumGrid" class="album-grid">
                     </div>
             </div>
-
         </div>
-
 <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
  <footer>
     <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
@@ -224,40 +197,30 @@
         const openFolderBtn = document.getElementById('openFolderBtn');
         const folderInput = document.getElementById('folderInput');
         const generateJsonBtn = document.getElementById('generateJsonBtn');
-
         const welcomeMessage = document.getElementById('welcomeMessage');
         const viewerArea = document.getElementById('viewerArea');
-
         const imageCaption = document.getElementById('imageCaption');
         const copyBtn = document.getElementById('copyBtn');
         const actionBtnContainer = document.getElementById('actionButtonContainer');
-
         const albumGrid = document.getElementById('albumGrid');
         const imageCount = document.getElementById('imageCount');
-
         let allImageData = [];
         let currentObjectUrls = [];
-
         openFolderBtn.addEventListener('click', () => {
             folderInput.click();
         });
-
         folderInput.addEventListener('change', (e) => {
             const files = e.target.files;
-
             cleanupOldAlbum();
-
             if (!files.length) {
                 welcomeMessage.style.display = 'block';
                 viewerArea.style.display = 'none';
                 return;
             }
-
             for (const file of files) {
                 if (file.type.startsWith('image/')) {
                     const objectUrl = URL.createObjectURL(file);
                     currentObjectUrls.push(objectUrl);
-
                     const imgData = {
                         name: file.name,
                         path: file.webkitRelativePath,
@@ -267,11 +230,9 @@
                     createThumbnail(imgData, allImageData.length - 1);
                 }
             }
-
             imageCount.textContent = allImageData.length;
             welcomeMessage.style.display = 'none';
             viewerArea.style.display = 'flex';
-
             if (allImageData.length > 0) {
                 generateJsonBtn.disabled = false;
                 showLocalAction(); // Tampilkan note tombol disabled
@@ -283,19 +244,16 @@
                 generateJsonBtn.disabled = true;
             }
         });
-
         generateJsonBtn.addEventListener('click', () => {
             if (allImageData.length === 0) {
                 alert('Tidak ada gambar untuk dibuatkan JSON.');
                 return;
             }
-
             const paths = allImageData.map(img => img.path);
             paths.sort();
             const jsonContent = JSON.stringify(paths, null, 2);
             downloadJSON(jsonContent, 'album.json');
         });
-
         function downloadJSON(content, filename) {
             const blob = new Blob([content], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -309,7 +267,6 @@
                 window.URL.revokeObjectURL(url);
             }, 0);
         }
-
         function createThumbnail(imgData, index) {
             const thumbDiv = document.createElement('div');
             thumbDiv.className = 'thumbnail';
@@ -323,25 +280,18 @@
             });
             albumGrid.appendChild(thumbDiv);
         }
-
         // Ganti nama fungsi agar lebih jelas
         function displayImageInfo(index) {
             if (index < 0 || index >= allImageData.length) return;
-
             const imgData = allImageData[index];
-
             imageCaption.textContent = imgData.path;
             copyBtn.disabled = false;
-
             showLocalAction(); // Tetap tampilkan note
-
             document.querySelectorAll('.thumbnail.active').forEach(th => th.classList.remove('active'));
             document.querySelector(`.thumbnail[data-index="${index}"]`).classList.add('active');
         }
-
         function cleanupOldAlbum() {
             currentObjectUrls.forEach(url => URL.revokeObjectURL(url));
-
             allImageData = [];
             currentObjectUrls = [];
             albumGrid.innerHTML = '';
@@ -353,17 +303,14 @@
             welcomeMessage.style.display = 'block'; // Tampilkan lagi pesan selamat datang
             viewerArea.style.display = 'none'; // Sembunyikan area viewer
         }
-
         copyBtn.addEventListener('click', () => {
             const textToCopy = imageCaption.textContent;
             if (!textToCopy) return;
-
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '✅ Tersalin!';
                 copyBtn.classList.add('copied');
                 copyBtn.disabled = true;
-
                 setTimeout(() => {
                     copyBtn.innerHTML = originalText;
                     copyBtn.classList.remove('copied');
@@ -374,19 +321,15 @@
                 alert('Gagal menyalin.');
             });
         });
-
         function showLocalAction() {
             actionBtnContainer.innerHTML = '';
-
             const btn = document.createElement('button');
             btn.disabled = true;
             btn.className = 'action-btn';
             btn.textContent = 'Buka Folder Asli';
-
             const note = document.createElement('p');
             note.className = 'note';
             note.textContent = 'Keamanan browser tidak mengizinkan JavaScript untuk membuka folder lokal Anda.';
-
             actionBtnContainer.appendChild(btn);
             actionBtnContainer.appendChild(note);
         }
@@ -394,7 +337,4 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
     </body></html>

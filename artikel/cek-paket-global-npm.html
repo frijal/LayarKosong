@@ -32,23 +32,13 @@
   "datePublished": "2025-10-27",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop</title>
     <meta name="keywords" content="npm, node.js, list global packages, cek paket npm, npm list, yarn global, pnpm list, tutorial, cli, developer">
     <link rel="canonical" href="https://dalam.web.id/artikel/cek-paket-global-npm.html">
-
     <link rel="icon" href="https://dalam.web.id/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
-
     <meta name="fediverse:creator" content=".social"><style>
     :root {
       --bg: #ffffff;
@@ -75,7 +65,6 @@
         --code-text: #dbe8ff;
       }
     }
-
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
@@ -85,9 +74,7 @@
       color: var(--text);
       line-height: 1.6;
     }
-
     .page { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
-
     header {
       position: sticky; top: 0;
       backdrop-filter: saturate(150%) blur(6px);
@@ -108,7 +95,6 @@
     .logo svg { width: 28px; height: 28px; }
     .spacer { flex: 1; }
     .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
     .icon-btn {
       display: inline-flex; align-items: center; justify-content: center;
       width: 36px; height: 36px; border-radius: 10px;
@@ -118,7 +104,6 @@
     }
     .icon-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
     .icon-btn svg { width: 20px; height: 20px; }
-
     .hero {
       /* Widescreen design */
       max-width: 1600px; margin: 0 auto; padding: 40px 24px 10px;
@@ -128,16 +113,13 @@
     @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; } }
     .title { font-size: clamp(26px, 4vw, 42px); margin: 0 0 10px; line-height: 1.2; }
     .subtitle { font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); margin: 4px 0 16px; }
-
     .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: 14px; }
     .tag { padding: 4px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); }
-
     .panel {
       border: 1px solid var(--border); border-radius: 16px;
       background: var(--card); padding: 16px;
     }
     .panel img { max-width: 100%; border-radius: 8px; }
-
     main {
       /* Widescreen design */
       max-width: 1600px; margin: 0 auto; padding: 24px;
@@ -145,16 +127,13 @@
     }
     /* Responsive */
     @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
-
     h2, h3 { margin: 22px 0 8px; line-height: 1.3; }
     .lead { font-size: 18px; color: var(--muted); }
-
     .card {
       border: 1px solid var(--border); border-radius: 16px;
       background: var(--card); padding: 16px; margin-bottom: 16px;
       position: relative; /* Untuk tombol copy */
     }
-
     pre, code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
@@ -168,7 +147,6 @@
     .card > pre:last-child { margin-bottom: 0; }
     /* Penyesuaian untuk pre di dalam card yang ada judulnya */
     .card > strong + pre { margin-top: 12px; }
-
     .copy-btn {
       position: absolute; top: 12px; right: 12px;
       background: color-mix(in oklab, var(--card) 60%, transparent);
@@ -179,7 +157,6 @@
     }
     .card:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { border-color: var(--accent); }
-
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
@@ -189,11 +166,9 @@
     }
     .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
     .btn svg { width: 18px; height: 18px; }
-
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     /* Responsive */
     @media (max-width: 780px) { .grid-2 { grid-template-columns: 1fr; } }
-
     .footer {
       border-top: 1px solid var(--border); padding: 18px 24px; color: var(--muted);
     }
@@ -210,29 +185,18 @@
     .note { color: var(--muted); font-size: 14px; }
     .accent { color: var(--accent); }
     </style>
-
   <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Panduan cepat untuk melihat semua paket global npm yang terpasang di laptop kamu. Gunakan">
 <meta name="ai:prompt_hint" content="Panduan cepat untuk melihat semua paket global npm yang terpasang di laptop kamu. Gunakan">
-
-
 <meta property="article:published_time" content="2025-10-27T14:34:09.857+00:00">
-
 <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
 <meta name="description" content="Panduan cepat untuk melihat semua paket global npm yang terpasang di laptop kamu. Gunakan">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/cek-paket-global-npm.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
   <meta property="og:image:alt" content="Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Cara Cek Semua Aplikasi Node.js (Paket Global) di Laptop">
-
-
-
-
-
 </head>
 <body>
   <div class="page">
@@ -248,7 +212,6 @@
         <span class="spacer"></span>
            </nav>
     </header>
-
     <section class="hero">
       <div>
         <h1 class="title"><a href="/" style="text-decoration:none; color:inherit;">💻 Cara Gampang Cek Semua Aplikasi Node.js yang Terpasang di Laptop</a></h1>
@@ -267,22 +230,18 @@
         <p class="note">Hasil dari <span class="kbd">npm list -g --depth=0</span>, bersih dan rapi.</p>
       </div>
     </section>
-
     <main>
       <article>
         <p class="lead">Seringkali kita install banyak "aplikasi Node.js" tapi lupa apa aja yang udah terpasang. Yang dimaksud "aplikasi" di sini biasanya adalah <strong>paket global (global packages)</strong>, yaitu alat-alat command-line (CLI) yang bisa kamu panggil dari mana aja di terminal.</p>
         <p>Contohnya kayak <span class="kbd">nodemon</span>, <span class="kbd">pm2</span>, <span class="kbd">create-react-app</span>, <span class="kbd">yarn</span>, atau <span class="kbd">netlify-cli</span>. Nah, cara termudah buat ngeceknya adalah pake perintah bawaan dari NPM sendiri.</p>
-
         <h2>1. Mengecek Paket Global (CLI)</h2>
         <p>Ini cara yang paling umum dan kemungkinan besar yang kamu cari. Buka terminal atau Command Prompt kamu dan ketikkan perintah sakti ini:</p>
-
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
           </button>
           <pre><code>npm list -g --depth=0</code></pre>
         </div>
-
         <h3>Penjelasan Perintah:</h3>
         <ul>
           <li><span class="kbd">npm list</span>: Ini adalah perintah dasarnya untuk melihat daftar paket.</li>
@@ -290,10 +249,8 @@
           <li><span class="kbd">--depth=0</span>: Nah, ini bagian pentingnya. Perintah ini bilang ke NPM, "Tolong tampilkan paket utamanya aja (<span class="accent">depth=0</span>), nggak usah sama semua dependensi-dependensinya."</li>
         </ul>
         <p class="note">Kalau kamu nekat menjalankan <span class="kbd">npm list -g</span> tanpa <span class="kbd">--depth=0</span>, siap-siap aja terminal kamu banjir teks. Kamu bakal lihat daftar yang super panjang karena semua paket kecil yang dibutuhkan oleh paket utamamu bakal ikut ditampilin.</p>
-
         <h2>2. Gimana Kalo Pake Yarn atau PNPM? 🧶</h2>
         <p>Kalau kamu lebih suka pake package manager lain, perintahnya sedikit beda tapi tujuannya sama.</p>
-
         <div class="grid-2">
           <div class="card">
             <button class="btn copy-btn" title="Salin kode">
@@ -312,10 +269,8 @@
             <p class="note">Mirip banget sama NPM, pake <span class="kbd">--depth=0</span> juga.</p>
           </div>
         </div>
-
         <h2>3. Penasaran Filenya Disimpen di Mana? 📁</h2>
         <p>Kalau kamu kepo di mana sebenernya lokasi folder <span class="kbd">node_modules</span> global kamu disimpen, pake perintah ini:</p>
-
         <div class="card">
           <button class="btn copy-btn" title="Salin kode">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 9V5h8v8h-4V9H9Zm-4 4h8v8H5v-8Zm10-2h4v10H9v-4h6V11Z"></path></svg>
@@ -323,7 +278,6 @@
           <strong>Lokasi root NPM Global:</strong>
           <pre><code>npm root -g</code></pre>
         </div>
-
         <h2>Bonus: Kalo Maksudmu Paket di Dalam Proyek (Lokal)</h2>
         <p>Ini beda kasus ya. Kalau yang kamu maksud adalah "aplikasi" atau paket yang terpasang *di dalam* satu folder proyek spesifik (yang ada di <span class="kbd">package.json</span>), caranya gampang:</p>
         <ol>
@@ -335,7 +289,6 @@
             </button>
             <pre><code>cd /path/ke/proyek-kamu</code></pre>
         </div>
-
         <ol start="2">
           <li>Jalankan perintah <span class="kbd">list</span> tapi <strong>tanpa</strong> <span class="kbd">-g</span>:</li>
         </ol>
@@ -346,10 +299,7 @@
             <pre><code>npm list</code></pre>
         </div>
         <p>Itu bakal nampilin semua paket yang dipake *hanya* untuk proyek itu.</p>
-
-      
     </article>
-
       <aside>
         <div class="card">
           <h3>Bagikan artikel ini</h3>
@@ -367,7 +317,6 @@
       </aside>
       <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
     </main>
-
     <footer class="footer">
       <div class="footer-inner">
         <div>🄯 2025 Frijal — Ditulis oleh Fakhrul</div>
@@ -375,14 +324,11 @@
       </div>
     </footer>
   </div>
-
     <script>
     // --- Fitur Fullscreen ---
     const fsBtn = document.getElementById('fs-btn');
     const docEl = document.documentElement;
-
     fsBtn.addEventListener('click', toggleFullScreen);
-
     function toggleFullScreen() {
       if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
         // Masuk fullscreen
@@ -412,7 +358,6 @@
         fsBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3Zm-2-4h2V7h3V5H5v5Zm12 7h-3v2h5v-5h-2v3ZM14 5v2h3v3h2V5h-5Z"></path></svg>`;
       }
     }
-
     // --- Fitur Copy Kode ---
     document.querySelectorAll('.copy-btn').forEach(btn => {
       const originalIcon = btn.innerHTML;
@@ -420,7 +365,6 @@
         const card = btn.closest('.card');
         const codeEl = card.querySelector('pre > code');
         if (!codeEl) return;
-
         try {
           await navigator.clipboard.writeText(codeEl.innerText);
           // Ganti ikon jadi centang
@@ -440,5 +384,4 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
 </body></html>

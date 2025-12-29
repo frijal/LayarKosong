@@ -32,38 +32,25 @@
   "datePublished": "2013-04-26",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀</title>
     <meta name="description" content="Pelajari cara membagi video panjang menjadi beberapa bagian otomatis menggunakan FFmpeg dan Script Bash. Solusi cepat tanpa re-encode untuk workflow efisien.">
     <meta name="news_keywords" content="ffmpeg split video, bagi video otomatis, script bash ffmpeg, tutorial ffmpeg indonesia, automation video editing, ffprobe duration script">
     <meta name="prompt-hint" content="Panduan otomasi multimedia menggunakan FFmpeg untuk memecah file video besar menjadi durasi kecil yang seragam.">
-
     <link rel="canonical" href="https://dalam.web.id/artikel/FFmpeg-split-video-durasi-otomatis.html">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
     <meta property="og:type" content="article">
     <meta property="og:title" content="FFmpeg: Split Video Otomatis Berdasarkan Durasi 🚀">
     <meta property="og:description" content="Pecah video panjang jadi bagian-bagian kecil secara otomatis dalam hitungan detik.">
     <meta property="og:url" content="https://dalam.web.id/artikel/FFmpeg-split-video-durasi-otomatis.html">
     <meta property="og:image" content="https://dalam.web.id/img/FFmpeg-split-video-durasi-otomatis.webp">
     <meta property="article:published_time" content="2013-04-26T00:31:19.926+00:00">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Otomasi Split Video dengan FFmpeg">
     <meta name="twitter:image" content="https://dalam.web.id/img/FFmpeg-split-video-durasi-otomatis.webp">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
-
     <meta name="fediverse:creator" content=".social"><style>
         :root {
             --bg: #ffffff;
@@ -75,7 +62,6 @@
             --card: #f8fafc;
             --border: #e2e8f0;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #030712;
@@ -88,7 +74,6 @@
                 --border: #1f2937;
             }
         }
-
         * { box-sizing: border-box; }
         body {
             margin: 0;
@@ -99,14 +84,12 @@
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
-
         main {
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
             padding: 80px 24px;
         }
-
         h1 {
             font-size: clamp(2.5rem, 8vw, 3.8rem);
             font-weight: 1000;
@@ -115,7 +98,6 @@
             margin-bottom: 20px;
         }
         h1 a { text-decoration: none; color: inherit; }
-
         .meta-container {
             display: flex;
             flex-wrap: wrap;
@@ -125,7 +107,6 @@
             font-size: 1.1rem;
             font-weight: 600;
         }
-
         .highlight-box {
             background: var(--card);
             padding: 40px;
@@ -133,7 +114,6 @@
             border: 1px solid var(--border);
             margin: 40px 0;
         }
-
         /* Script/Terminal Styling */
         .terminal-container {
             background: var(--terminal);
@@ -143,16 +123,13 @@
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
-
         .terminal-header {
             display: flex;
             gap: 8px;
             margin-bottom: 20px;
         }
-
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .r { background: #ff5f56; } .y { background: #ffbd2e; } .g { background: #27c93f; }
-
         pre {
             margin: 0;
             font-family: 'JetBrains Mono', monospace;
@@ -161,7 +138,6 @@
             overflow-x: auto;
             line-height: 1.6;
         }
-
         .copy-btn {
             position: absolute;
             top: 25px;
@@ -176,7 +152,6 @@
             transition: 0.3s;
         }
         .copy-btn:hover { background: var(--accent); color: white; }
-
         /* Logic Breakdown */
         .logic-card {
             border-left: 6px solid var(--accent);
@@ -184,7 +159,6 @@
             margin: 50px 0;
         }
         .logic-card h2 { font-size: 2rem; margin-top: 0; color: var(--accent); }
-
         .tag {
             background: var(--accent);
             color: white;
@@ -193,7 +167,6 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.9em;
         }
-
         #pesbukdiskus {
             margin-top: 80px;
             padding: 60px;
@@ -202,7 +175,6 @@
             text-align: center;
             border: 2px dashed var(--border);
         }
-
         footer {
             padding: 80px 24px;
             text-align: center;
@@ -210,7 +182,6 @@
             color: var(--muted);
             font-size: 1.1rem;
         }
-
         @media (max-width: 600px) {
             body { font-size: 1.15rem; }
             main { padding: 40px 20px; }
@@ -221,7 +192,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script></head>
 <body>
-
 <main>
     <header>
         <h1><a href="/" style="text-decoration:none; color:inherit;">FFmpeg: Automasi Split Video Berdasarkan Durasi</a></h1>
@@ -232,13 +202,10 @@
             <span><i class="fa-solid fa-location-dot"></i> Balikpapan</span>
         </div>
     </header>
-
     <section class="intro">
         <p>Pernah punya video berdurasi jam-jam-an tapi cuma butuh dipecah jadi potongan 20 detik buat konten media sosial? Melakukannya manual satu per satu adalah siksaan. Di sinilah **FFmpeg** menunjukkan taringnya sebagai raja multimedia.</p>
-
         <p>Dengan menggabungkan kekuatan FFmpeg dan sedikit logika **Bash Script**, kita bisa membuat mesin pemotong otomatis yang bekerja dalam hitungan detik tanpa mengurangi kualitas video aslinya (*no re-encoding*).</p>
     </section>
-
     <div class="terminal-container">
         <div class="terminal-header">
             <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
@@ -248,33 +215,25 @@
 # Konfigurasi Awal
 INPUT="input.mp4"
 DURATION=20   # Durasi tiap potongan (dalam detik)
-
 # Mendapatkan durasi total file menggunakan ffprobe
 LEN=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$INPUT")
 COUNT=0
 START=0
-
 echo "Memulai proses pemotongan durasi total: $LEN detik..."
-
 # Loop pemotongan otomatis
 while (( $(echo "$START &lt; $LEN" | bc -l) )); do
   OUTPUT="part_$COUNT.mp4"
   ffmpeg -hide_banner -loglevel error -i "$INPUT" -ss $START -t $DURATION -c copy "$OUTPUT"
-
   echo "Berhasil membuat: $OUTPUT"
-
   START=$(echo "$START + $DURATION" | bc)
   COUNT=$((COUNT+1))
 done
-
 echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
         <button class="copy-btn" onclick="copyCode()"><i class="fa-regular fa-copy"></i> Salin Script</button>
     </div>
-
     <div class="logic-card">
         <h2>Bagaimana Skrip Ini Bekerja?</h2>
         <p>Jangan biarkan baris kode di atas mengintimidasi kamu. Logikanya sangat sederhana jika kita bedah satu per satu:</p>
-
         <ul>
             <li><span class="tag">ffprobe</span> — Digunakan untuk mengintip metadata video dan mengambil angka durasi total secara presisi.</li>
             <li><span class="tag">bc -l</span> — Karena Bash standar tidak pandai menghitung angka desimal (koma), kita gunakan `bc` agar kalkulasi waktu pemotongan tetap akurat.</li>
@@ -282,21 +241,16 @@ echo "Otomasi selesai! Semua bagian telah terpotong."</code></pre>
             <li><span class="tag">-c copy</span> — Fitur paling krusial. Ini menyuruh FFmpeg untuk tidak melakukan proses rendering ulang. Video hanya "dikemas ulang" ke file baru, sehingga prosesnya instan.</li>
         </ul>
     </div>
-
     <div class="highlight-box">
         <p><strong>Pro Tip:</strong> Jika kamu ingin membagi video untuk keperluan WhatsApp Story atau TikTok, sesuaikan variabel <span class="tag">DURATION</span> menjadi 15 atau 60 sesuai batas durasi platform tersebut.</p>
     </div>
-
     <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-
     <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
 </main>
-
 <footer>
     <p>Dibuat dengan semangat efisiensi oleh <strong>Fakhrul Rijal</strong>.<br>
     🄯 2025 • <a href="https://dalam.web.id" style="color:inherit; font-weight:bold; text-decoration:none;">Layar Kosong</a></p>
 </footer>
-
 <script>
 function copyCode(){
     const code = document.getElementById("ffmpegCode").textContent;
@@ -311,10 +265,6 @@ function copyCode(){
     });
 }
 </script>
-
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
 </body></html>

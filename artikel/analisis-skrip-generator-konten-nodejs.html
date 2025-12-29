@@ -32,39 +32,24 @@
   "datePublished": "2025-10-22",
   "dateModified": "2025-12-28"
 }</script>
-
-
-
-
-
-
-
     <!-- Metadata Dasar -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedah Skrip Generator Konten Cerdas (Node.js)</title>
-
     <!-- SEO Meta Tags -->
     <meta name="description" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
     <meta name="keywords" content="nodejs, generator, static site generator, ssg, javascript, otomasi, ci/cd, frijal pages">
     <meta name="author" content="Frijal">
     <link rel="canonical" href="https://dalam.web.id/artikel/analisis-skrip-generator-konten-nodejs.html">
-
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
     <!-- Open Graph (untuk Facebook, LinkedIn, dll) -->
-
      <!-- GANTI DENGAN URL GAMBAR KAMU -->
-
     <!-- Twitter Card -->
-
      <!-- GANTI DENGAN URL GAMBAR KAMU -->
      <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
-
     <!-- CSS & Font -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
@@ -83,7 +68,6 @@
     --accent-heal: #2ecc71;   /* Hijau */
     --accent-write: #e74c3c;  /* Merah */
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
@@ -92,7 +76,6 @@ body {
     margin: 0;
     padding: 20px;
 }
-
 .container {
     max-width: 900px;
     margin: 40px auto;
@@ -101,21 +84,18 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     overflow: hidden;
 }
-
 header {
     background: linear-gradient(45deg, #16213e, #0f3460);
     padding: 40px;
     text-align: center;
     border-bottom: 5px solid var(--border-color);
 }
-
 header h1 {
     color: var(--header-color);
     font-size: 2.5rem;
     margin: 0;
     font-weight: 700;
 }
-
 header .subtitle {
     color: var(--text-color);
     font-size: 1.1rem;
@@ -124,11 +104,9 @@ header .subtitle {
     margin-left: auto;
     margin-right: auto;
 }
-
 main {
     padding: 30px 40px;
 }
-
 article h2 {
     color: var(--header-color);
     font-size: 1.8rem;
@@ -136,14 +114,11 @@ article h2 {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-
 article h3 {
     color: var(--header-color);
     margin-top: 40px;
 }
-
 article ol { padding-left: 20px; }
-
 .timeline {
     position: relative;
     margin: 40px 0;
@@ -159,13 +134,11 @@ article ol { padding-left: 20px; }
     background: var(--border-color);
     border-radius: 2px;
 }
-
 .timeline-item {
     position: relative;
     margin-bottom: 40px;
 }
 .timeline-item:last-child { margin-bottom: 0; }
-
 .timeline-icon {
     position: absolute;
     left: -20px;
@@ -185,14 +158,12 @@ article ol { padding-left: 20px; }
 .timeline-icon.process { background-color: var(--accent-process); }
 .timeline-icon.heal { background-color: var(--accent-heal); }
 .timeline-icon.write { background-color: var(--accent-write); }
-
 .timeline-content { padding-left: 30px; }
 .timeline-content h3 {
     margin: 0 0 5px 0; font-size: 1.4rem;
     color: var(--header-color); font-weight: 600;
 }
 .timeline-content p { font-size: 1rem; margin: 0; }
-
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -216,14 +187,12 @@ article ol { padding-left: 20px; }
     color: var(--header-color);
 }
 .feature-item p { font-size: 0.9rem; margin: 0; }
-
 .share-section {
     text-align: center; margin-top: 50px;
     padding-top: 30px; border-top: 2px solid var(--border-color);
 }
 .share-section h3 { color: var(--header-color); margin-bottom: 20px; }
 .social-icons { display: flex; justify-content: center; gap: 15px; }
-
 .social-icon, .copy-link {
     display: inline-flex; justify-content: center; align-items: center;
     width: 45px; height: 45px; border-radius: 50%;
@@ -234,14 +203,12 @@ article ol { padding-left: 20px; }
 .twitter { background: #1DA1F2; } .facebook { background: #1877F2; }
 .whatsapp { background: #25D366; } .linkedin { background: #0A66C2; }
 .copy-link { background: #6c757d; border: none; cursor: pointer; }
-
 footer {
     text-align: center; padding: 20px;
     background-color: var(--secondary-color);
     color: var(--text-color); font-size: 0.9rem; margin-top: 40px;
 }
 footer a { color: var(--header-color); text-decoration: none; }
-
 @media (max-width: 768px) {
     body { padding: 0; }
     .container { border-radius: 0; margin: 0; }
@@ -250,39 +217,26 @@ footer a { color: var(--header-color); text-decoration: none; }
     .timeline { padding-left: 20px; }
     .timeline-icon { left: -10px; }
 }
-
 </style>
-
   <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFck_UrHNNPuq7efqdzls4mrrPJv3ZRlKibwYD3w1FVCgAu0NlzQz2LDieWiUg2nsgJiFT_dr-oShXctQ3K1BckCglQ0rkOoxuYC9ceIYwSRIqt14efmNgMJDoYqBtyJalfWy3Eok6yKh-08bSSYmvyFfE7ZWpqqk9_hVC-sI8wUdjycBO22uAwFoCu-E/s1600/licensed-image.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2025-10-22T12:23:43.380+00:00">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="ai:summary" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
 <meta name="ai:prompt_hint" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
-
-
-
 <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFck_UrHNNPuq7efqdzls4mrrPJv3ZRlKibwYD3w1FVCgAu0NlzQz2LDieWiUg2nsgJiFT_dr-oShXctQ3K1BckCglQ0rkOoxuYC9ceIYwSRIqt14efmNgMJDoYqBtyJalfWy3Eok6yKh-08bSSYmvyFfE7ZWpqqk9_hVC-sI8wUdjycBO22uAwFoCu-E/s1600/licensed-image.webp">
-
 <meta property="og:url" content="https://dalam.web.id/artikel/analisis-skrip-generator-konten-nodejs.html">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFck_UrHNNPuq7efqdzls4mrrPJv3ZRlKibwYD3w1FVCgAu0NlzQz2LDieWiUg2nsgJiFT_dr-oShXctQ3K1BckCglQ0rkOoxuYC9ceIYwSRIqt14efmNgMJDoYqBtyJalfWy3Eok6yKh-08bSSYmvyFfE7ZWpqqk9_hVC-sI8wUdjycBO22uAwFoCu-E/s1600/licensed-image.webp">
   <meta property="og:image:alt" content="Bedah Skrip Generator Konten Cerdas (Node.js)">
   <meta name="twitter:card" content="summary_large_image">
 <meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta property="og:title" content="Bedah Skrip Generator Konten Cerdas (Node.js)">
-
-
-
-
-
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1><a href="/" style="text-decoration:none; color:inherit;">Bedah Skrip Generator Konten Cerdas 🧠</a></h1>
 <div id="iposbrowser"></div>
             <p class="subtitle">Melihat lebih dalam cara kerja `generator.js`, sebuah skrip otomasi canggih yang menjadi tulang punggung pengelolaan konten situs ini.</p>
         </header>
-
         <main>
             <article>
                 <h2>Tujuan Utama: Sang Asisten Digital</h2>
@@ -292,29 +246,23 @@ footer a { color: var(--header-color); text-decoration: none; }
                     <li>Sebuah <code>sitemap.xml</code> yang selalu up-to-date untuk SEO.</li>
                     <li>Halaman-halaman kategori artikel yang dibuat secara otomatis.</li>
                 </ol>
-
                 <h2>Alur Kerja: Bagaimana Si Cerdas Bekerja</h2>
                 <p>Skrip ini tidak hanya bekerja, tapi bekerja dengan alur yang efisien dan tangguh. Berikut adalah visualisasi prosesnya:</p>
-
 <div class="image-container">
     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFck_UrHNNPuq7efqdzls4mrrPJv3ZRlKibwYD3w1FVCgAu0NlzQz2LDieWiUg2nsgJiFT_dr-oShXctQ3K1BckCglQ0rkOoxuYC9ceIYwSRIqt14efmNgMJDoYqBtyJalfWy3Eok6yKh-08bSSYmvyFfE7ZWpqqk9_hVC-sI8wUdjycBO22uAwFoCu-E/s1600/licensed-image.webp" alt="Diagram alur kerja skrip generator.js" style="width:100%; height:auto; border-radius: 8px;">
 </div>
-
 <h3>Kode Lengkap: <code>generator.js</code></h3>
 <p>Berikut adalah kode lengkap dari skrip generator konten cerdas yang kita bedah di atas.</p>
-
 <div class="code-block">
     <pre><code>import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { titleToCategory } from './titleToCategory.js';
-
 // ==================================================================
 // KONFIGURASI TERPUSAT
 // ===================================================================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const CONFIG = {
   rootDir: path.join(__dirname, '..'),
   artikelDir: path.join(__dirname, '..', 'artikel'),
@@ -326,11 +274,9 @@ const CONFIG = {
   xmlPriority: '0.6',
   xmlChangeFreq: 'monthly',
 };
-
 // ===================================================================
 // FUNGSI-FUNGSI BANTUAN (HELPER FUNCTIONS)
 // ===================================================================
-
 function formatISO8601(date) {
   const d = new Date(date);
   if (isNaN(d)) {
@@ -344,33 +290,28 @@ function formatISO8601(date) {
   const minutes = pad(tzOffset % 60);
   return d.toISOString().replace('Z', `${diff}${hours}:${minutes}`);
 }
-
 function extractPubDate(content) {
   const match = content.match(
     /&lt;meta\s+property=["']article:published_time["'][^&gt;]+content=["']([^"']+)["']/i,
   );
   return match ? match[1].trim() : null;
 }
-
 function extractTitle(content) {
   const match = content.match(/&lt;title&gt;([\s\S]*?)&lt;\/title&gt;/i);
   return match ? match[1].trim() : 'Tanpa Judul';
 }
-
 function extractDescription(content) {
   const match = content.match(
     /&lt;meta\s+name=["']description["'][^&gt;]+content=["']([^"']+)["']/i,
   );
   return match ? match[1].trim() : '';
 }
-
 function fixTitleOneLine(content) {
   return content.replace(
     /&lt;title&gt;([\s\S]*?)&lt;\/title&gt;/gi,
     (m, p1) =&gt; `&lt;title&gt;${p1.trim()}&lt;/title&gt;`,
   );
 }
-
 function extractImage(content) {
   const ogMatch = content.match(
     /&lt;meta[^&gt;]+property=["']og:image["'][^&gt;]+content=["'](.*?)["']/i,
@@ -380,33 +321,27 @@ function extractImage(content) {
     const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
     if (validExt.test(src.split('?')[0])) return src;
   }
-
   const imgMatch = content.match(/&lt;img[^&gt;]+src=["'](.*?)["']/i);
   if (imgMatch &amp;&amp; imgMatch[1]) {
     const src = imgMatch[1].trim();
     const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
     if (validExt.test(src.split('?')[0])) return src;
   }
-
   return CONFIG.defaultThumbnail;
 }
-
 function formatJsonOutput(obj) {
   return JSON.stringify(obj, null, 2)
     .replace(/\[\s*\[/g, '[\n      [')
     .replace(/\]\s*\]/g, ']\n    ]')
     .replace(/(\],)\s*\[/g, '$1\n      [');
 }
-
 async function generateCategoryPages(groupedData) {
   console.log('🔄 Memulai pembuatan halaman kategori...');
   const kategoriDir = path.join(CONFIG.artikelDir, '-');
   const templatePath = path.join(kategoriDir, 'template-kategori.html');
-
   try {
     await fs.access(templatePath);
     const templateContent = await fs.readFile(templatePath, 'utf8');
-
     for (const categoryName in groupedData) {
       // Hilangkan emoji &amp; ubah ke slug
       const noEmoji = categoryName.replace(/^[^\w\s]*/, '').trim();
@@ -416,17 +351,13 @@ async function generateCategoryPages(groupedData) {
         .replace(/[^a-z0-9\s-]/g, '')
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-');
-
       // RSS URL untuk kategori
       const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
-
       // URL halaman kategori
       const fileName = `${slug}.html`;
       const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
-
       // Ambil emoji pertama (atau fallback)
       const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || '📁';
-
       // Ganti placeholder di template
       let pageContent = templateContent
         .replace(/%%TITLE%%/g, noEmoji)
@@ -435,12 +366,10 @@ async function generateCategoryPages(groupedData) {
         .replace(/%%CATEGORY_NAME%%/g, categoryName)
         .replace(/%%ICON%%/g, icon)
         .replace(/%%RSS_URL%%/g, rssUrl);
-
       // Tulis file HTML hasil render
       await fs.writeFile(path.join(kategoriDir, fileName), pageContent, 'utf8');
       console.log(`✅ Halaman kategori dibuat: ${fileName}`);
     }
-
     console.log('👍 Semua halaman kategori berhasil dibuat.');
   } catch (error) {
     console.error(
@@ -449,7 +378,6 @@ async function generateCategoryPages(groupedData) {
     );
   }
 }
-
 // ===================================================================
 // FUNGSI UTAMA (MAIN GENERATOR)
 // ===================================================================
@@ -461,13 +389,11 @@ const generate = async () =&gt; {
     console.error("❌ Folder 'artikel' tidak ditemukan. Proses dibatalkan.");
     return;
   }
-
   const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter((f) =&gt;
     f.endsWith('.html'),
   );
   const existingFilesOnDisk = new Set(filesOnDisk);
   let grouped = {};
-
   try {
     const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8');
     grouped = JSON.parse(masterContent);
@@ -477,7 +403,6 @@ const generate = async () =&gt; {
       '⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.',
     );
   }
-
   const cleanedGrouped = {};
   let deletedCount = 0;
   for (const category in grouped) {
@@ -496,34 +421,28 @@ const generate = async () =&gt; {
     }
   }
   grouped = cleanedGrouped;
-
   const existingFiles = new Set(
     Object.values(grouped)
       .flat()
       .map((item) =&gt; item[1]),
   );
   let newArticlesCount = 0;
-
   for (const file of filesOnDisk) {
     try {
       if (existingFiles.has(file)) continue;
-
       const fullPath = path.join(CONFIG.artikelDir, file);
       let content = await fs.readFile(fullPath, 'utf8');
       let needsSave = false;
-
       const fixedTitleContent = fixTitleOneLine(content);
       if (fixedTitleContent !== content) {
         content = fixedTitleContent;
         needsSave = true;
         console.log(`🔧 Merapikan &lt;title&gt; di ${file}`);
       }
-
       const title = extractTitle(content);
       const category = titleToCategory(title);
       const image = extractImage(content);
       const description = extractDescription(content);
-
       let pubDate = extractPubDate(content);
       if (!pubDate) {
         const stats = await fs.stat(fullPath);
@@ -535,11 +454,9 @@ const generate = async () =&gt; {
           console.log(`➕ Menambahkan meta tanggal ke '${file}'`);
         }
       }
-
       if (needsSave) {
         await fs.writeFile(fullPath, content, 'utf8');
       }
-
       const lastmod = formatISO8601(pubDate);
       if (!grouped[category]) grouped[category] = [];
       grouped[category].push([title, file, image, lastmod, description]);
@@ -549,7 +466,6 @@ const generate = async () =&gt; {
       console.error(`❌ Gagal memproses file ${file}:`, error.message);
     }
   }
-
   // Cek apakah file output (artikel.json di root) sudah ada
   let isJsonOutMissing = false;
   try {
@@ -558,13 +474,11 @@ const generate = async () =&gt; {
     isJsonOutMissing = true;
     console.log('🟡 File output artikel.json tidak ditemukan, akan dibuat ulang.');
   }
-
   // Tambahkan 'isJsonOutMissing' sebagai kondisi untuk menulis file
   if (newArticlesCount &gt; 0 || deletedCount &gt; 0 || isJsonOutMissing) {
     for (const category in grouped) {
       grouped[category].sort((a, b) =&gt; new Date(b[3]) - new Date(a[3]));
     }
-
     const xmlUrls = [];
     Object.values(grouped)
       .flat()
@@ -574,15 +488,11 @@ const generate = async () =&gt; {
           `  &lt;url&gt;\n    &lt;loc&gt;${CONFIG.baseUrl}/artikel/${file}&lt;/loc&gt;\n    &lt;lastmod&gt;${lastmod}&lt;/lastmod&gt;\n    &lt;priority&gt;${CONFIG.xmlPriority}&lt;/priority&gt;\n    &lt;changefreq&gt;${CONFIG.xmlChangeFreq}&lt;/changefreq&gt;\n    &lt;image:image&gt;\n      &lt;image:loc&gt;${image}&lt;/image:loc&gt;\n    &lt;/image:image&gt;\n  &lt;/url&gt;`,
         );
       });
-
     const jsonString = formatJsonOutput(grouped);
     await fs.writeFile(CONFIG.jsonOut, jsonString, 'utf8');
-
     const xmlContent = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;`;
     await fs.writeFile(CONFIG.xmlOut, xmlContent, 'utf8');
-
     await generateCategoryPages(grouped);
-
     console.log(
       `\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.`,
     );
@@ -596,13 +506,11 @@ const generate = async () =&gt; {
     console.log('\n✅ Tidak ada perubahan. File tidak diubah.');
   }
 };
-
 // Menjalankan fungsi utama
 generate();
 </code></pre>
     <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
 </div>
-
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-icon init"><i class="fas fa-memory"></i></div>
@@ -640,7 +548,6 @@ generate();
                         </div>
                     </div>
                 </div>
-
                 <h3>Fitur-Fitur Cerdas Lainnya</h3>
                 <div class="features-grid">
                     <div class="feature-item">
@@ -659,18 +566,14 @@ generate();
                         <p>Jika tidak menemukan gambar di artikel, skrip akan otomatis menggunakan gambar thumbnail default yang sudah ditentukan.</p>
                     </div>
                 </div>
-            
     </article>
 <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
         </main>
-
         <footer>
             <p>🄯 2025 - <a href="https://dalam.web.id">dalam.web.id</a></p>
         </footer>
     </div>
-
     <script>document.addEventListener('DOMContentLoaded', () => {
-
     // --- Fungsi Tombol Salin Kode ---
     const allCopyButtons = document.querySelectorAll('.copy-btn');
     allCopyButtons.forEach(button => {
@@ -678,10 +581,8 @@ generate();
             // Temukan elemen <pre> terdekat sebelum tombol
             const preElement = e.currentTarget.previousElementSibling;
             if (!preElement) return;
-
             // Dapatkan teks dari elemen <code> di dalam <pre>
             const code = preElement.querySelector('code').innerText;
-
             navigator.clipboard.writeText(code).then(() => {
                 const originalHTML = e.currentTarget.innerHTML;
                 e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
@@ -698,11 +599,8 @@ generate();
         });
     });
 });
-
 </script>
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
 </body></html>
