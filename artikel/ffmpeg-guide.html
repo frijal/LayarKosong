@@ -77,7 +77,6 @@
             <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">Halo bro/sis! 👨‍💻 FFmpeg itu tool dewa buat ngedit audio/video lewat command line. Gak perlu software berat, cukup terminal aja. Di sini aku rangkum command-command praktis yang sering dipake. Klik navigasi di bawah buat lompat ke section, dan tekan tombol Salin buat copy command langsung. Yuk oprek bareng! 🚀</p>
             <img src="https://dalam.web.id/img/itsfoss.com/content/images/wordpress/2019/03/ffmpeg_file_information.webp" alt="Contoh output info file FFmpeg di terminal" class="illus">
         </header>
-
         <nav class="nav-accordion">
             <details open="">
                 <summary>📂 Navigasi Panduan</summary>
@@ -99,7 +98,6 @@
                 </div>
             </details>
         </nav>
-
         <main>
             <h2 id="ubah-mp3-ogg">🎵 Ubah Format Audio MP3 → OGG</h2>
             <p>Command sederhana buat konversi satu file. OGG biasanya lebih ringan dan open source.</p>
@@ -107,82 +105,68 @@
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 output.ogg</code></pre>
             </div>
-
             <h2 id="batch-audio">🔄 Batch Convert Audio</h2>
             <p>Kalau punya banyak file di satu folder, command ini ubah semuanya sekaligus. Praktis banget!</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
             </div>
-
             <h2 id="wav-mp3">🎵 WAV → MP3</h2>
             <p>WAV biasanya besar, ubah ke MP3 biar lebih kompak dengan kualitas bagus.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre>
             </div>
-
             <h2 id="bitrate-audio">📊 Change Audio Bitrate</h2>
             <p>Kontrol ukuran file dengan atur bitrate. Semakin tinggi, semakin bagus suara tapi file lebih besar.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 -b:a 192k output.mp3</code></pre>
             </div>
-
             <h2 id="normalize-audio">🔊 Normalize Audio</h2>
             <p>Bikin volume semua file rata, biar gak ada yang kenceng banget atau pelan.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</code></pre>
             </div>
-
             <img src="https://dalam.web.id/img/thumbs.dreamstime.com/b/video-production-line-icons-editing-color-grading-adding-special-effects-animation-music-movie-vector-set-designs-images-film-159703911.webp" alt="Ikons manipulasi video editing" class="illus">
-
             <h2 id="trim-video">✂️ Trim Video</h2>
             <p>Potong bagian video tanpa re-encode (cepet!), dari detik 10 sampai 20.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</code></pre>
             </div>
-
             <h2 id="resize-video">🖼️ Resize Video</h2>
             <p>Ubah resolusi video, misalnya ke 720p.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre>
             </div>
-
             <h2 id="extract-audio">🔊 Extract Audio dari Video</h2>
             <p>Ambil suara doang dari video, jadi file MP3.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre>
             </div>
-
             <h2 id="mp4-webm">🔄 Convert MP4 → WebM</h2>
             <p>WebM bagus buat web, lebih efisien.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</code></pre>
             </div>
-
             <h2 id="batch-video">🔄 Batch Convert Video</h2>
             <p>Ubah semua file MOV jadi MP4 sekaligus.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -crf 23 -c:a aac "${f%.mov}.mp4"; done</code></pre>
             </div>
-
             <h2>💡 Tips Bonus FFmpeg</h2>
             <ul>
                 <li><strong>Info file:</strong> <code>ffmpeg -i input.mp4</code> – Lihat detail codec, resolusi, dll. 📋</li>
                 <li><strong>Compress video:</strong> <code>ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4</code> – CRF越高, file越小 (tapi kualitas turun).</li>
                 <li><strong>Tambah subtitle:</strong> <code>ffmpeg -i input.mp4 -vf subtitles=subs.srt output.mp4</code> 📝</li>
             </ul>
-
             <p>Selesai sudah panduannya! Coba command-command ini di terminal lo malam ini juga. Kalau ada yang bingung atau mau request command lain, komentar aja di bawah. Happy encoding bro! 🔥🎉</p>
-
-
         </main>
    <div id="pesbukdiskus">
             <p style="text-align:center; color:var(--muted);">Komentar bakal muncul di sini...</p>
@@ -190,14 +174,11 @@
  <div id="related-articles-grid">
                 <p style="margin-top:2rem; color:var(--muted);">Related articles coming soon...</p>
             </div>
-
         <footer>
             <p>Artikel informatif, bukan tutorial resmi. Selalu backup file sebelum oprek ya!</p>
             <p>🄯 Layar Kosong • 2025</p>
-
         </footer>
     </div>
-
     <script>
         // Copy button
         document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -213,7 +194,4 @@
 <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
 <script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-
-
-
 </body></html>
