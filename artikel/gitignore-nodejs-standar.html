@@ -5,7 +5,7 @@
     <meta name="description" content="Gunakan template .gitignore standar ini untuk project Node.js agar folder seperti node_modules, .npm-cache, file log, dan .env tidak ikut ter-commit ke Git.">
     <meta name="author" content="Frijal">
     <meta name="keywords" content=".gitignore, nodejs, npm, node_modules, .npm-cache, git, version control, best practice, template">
-    <link rel="canonical" href="https://frijal.pages.dev/artikel/gitignore-nodejs-standar.html">
+    <link rel="canonical" href="https://dalam.web.id/artikel/gitignore-nodejs-standar.html">
     <link rel="icon" href="/ext/icons/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="/ext/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/ext/icons/favicon-16x16.png">
@@ -14,14 +14,14 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Contoh .gitignore Lengkap untuk Project Node.js (Anti .npm-cache &amp; node_modules Masuk Repo)">
     <meta property="og:description" content="Template .gitignore siap pakai agar folder cache, dependencies, log, dan environment tidak ikut ke Git.">
-    <meta property="og:url" content="https://frijal.pages.dev/artikel/gitignore-nodejs-standar.html">
+    <meta property="og:url" content="https://dalam.web.id/artikel/gitignore-nodejs-standar.html">
     <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggEd6y8jYtsawTRfw4nMvRaF-L1woiyx2pZEj0K1ctLQXT_NE5xrrRHxCwuNCaS4DBlXsbKvUpn6E_Gg224iGqlhldTIKW3E3LfuaxKNB7G9cFES9OKYO8w9d4hb6kjXaY4WJyo3WiI1fBqsQU1wRU6Qwo_Pp_CrZeq4B12w5CsZ1oBP84it5onRmhHU0/s1600/Screenshot%20From%202025-10-25%2022-10-28.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg01M2TMrKy5jG-MoXqOLUA26COeUM6yxaZtrcLF8X9ciIsn-zNg_TIBUgP2VsxQOddICIZAL1gCf0nbmKD7L0nsdpEjVdM8eZk1w3rvcQ_-nu3tV9d1E7i7SDqsjTaP2Fisn_eu6XC142xLfru8icl9DEtHe9_XOP0LADIqVVXCkXMz4rwwBZ-JToUtuc/s1600/gitignore-nodejs-standar.webp">
     <meta property="og:image:width" content="1600"> <meta property="og:locale" content="id_ID">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contoh .gitignore Lengkap untuk Project Node.js">
     <meta name="twitter:description" content="Template .gitignore siap pakai agar folder cache, dependencies, log, dan environment tidak ikut ke Git.">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggEd6y8jYtsawTRfw4nMvRaF-L1woiyx2pZEj0K1ctLQXT_NE5xrrRHxCwuNCaS4DBlXsbKvUpn6E_Gg224iGqlhldTIKW3E3LfuaxKNB7G9cFES9OKYO8w9d4hb6kjXaY4WJyo3WiI1fBqsQU1wRU6Qwo_Pp_CrZeq4B12w5CsZ1oBP84it5onRmhHU0/s1600/Screenshot%20From%202025-10-25%2022-10-28.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg01M2TMrKy5jG-MoXqOLUA26COeUM6yxaZtrcLF8X9ciIsn-zNg_TIBUgP2VsxQOddICIZAL1gCf0nbmKD7L0nsdpEjVdM8eZk1w3rvcQ_-nu3tV9d1E7i7SDqsjTaP2Fisn_eu6XC142xLfru8icl9DEtHe9_XOP0LADIqVVXCkXMz4rwwBZ-JToUtuc/s1600/gitignore-nodejs-standar.webp">
     <meta name="twitter:site" content="@frijal">
     <meta name="twitter:creator" content="@frijal">
     <link rel="stylesheet" href="/ext/fontawesome.css">
@@ -199,7 +199,7 @@
     <main>
         <article class="article">
             <div class="cover" title=".gitignore file icon illustration">
-                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggEd6y8jYtsawTRfw4nMvRaF-L1woiyx2pZEj0K1ctLQXT_NE5xrrRHxCwuNCaS4DBlXsbKvUpn6E_Gg224iGqlhldTIKW3E3LfuaxKNB7G9cFES9OKYO8w9d4hb6kjXaY4WJyo3WiI1fBqsQU1wRU6Qwo_Pp_CrZeq4B12w5CsZ1oBP84it5onRmhHU0/s1600/Screenshot%20From%202025-10-25%2022-10-28.webp" alt="Ilustrasi file .gitignore dengan ikon Git">
+                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg01M2TMrKy5jG-MoXqOLUA26COeUM6yxaZtrcLF8X9ciIsn-zNg_TIBUgP2VsxQOddICIZAL1gCf0nbmKD7L0nsdpEjVdM8eZk1w3rvcQ_-nu3tV9d1E7i7SDqsjTaP2Fisn_eu6XC142xLfru8icl9DEtHe9_XOP0LADIqVVXCkXMz4rwwBZ-JToUtuc/s1600/gitignore-nodejs-standar.webp" alt="Ilustrasi file .gitignore dengan ikon Git">
             </div>
             <div class="content">
                 <h1 class="title"><a href="/" style="text-decoration: none; color: inherit;">Jaga Repomu Tetap Bersih: Contoh `.gitignore` Lengkap untuk Node.js</a></h1>
