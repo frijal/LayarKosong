@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan GitHub CLI Lengkap</title>
@@ -12,13 +10,13 @@
     <meta property="og:description" content="Panduan lengkap GitHub CLI: dari login sampai release, semua via terminal. Praktis, interaktif, dengan tombol salin command dan visual workflow.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikel/github-cli-lengkap.html">
-    <meta property="og:image" content="https://cli.github.com/assets/images/social-card.png">
+    <meta property="og:image" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
     <meta property="og:image:alt" content="Screenshot GitHub CLI di terminal dengan command gh">
     <meta property="og:site_name" content="Layar Kosong">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Panduan GitHub CLI Lengkap">
     <meta name="twitter:description" content="Panduan lengkap GitHub CLI: dari login sampai release, semua via terminal.">
-    <meta name="twitter:image" content="https://cli.github.com/assets/images/social-card.png">
+    <meta name="twitter:image" content="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-cli-lengkap.html">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -69,23 +67,25 @@
         img.illus { max-width: 100%; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         @media (max-width: 768px) { h1 a { font-size: 2rem; } body { padding: 1rem; } }
     </style>
-</head>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>
 <body>
     <div class="container">
         <header>
             <h1><a href="/">Panduan GitHub CLI Lengkap</a></h1>
+<div id="iposbrowser"></div>
             <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.2rem;">GitHub CLI (gh) itu tool resmi dari GitHub buat ngelola repo, PR, issue, dll langsung dari terminal. Lebih cepet daripada buka web terus. Aku rangkum command-command esensial plus visualnya. Navigasi di bawah buat lompat section, tekan Salin buat copy command. Yuk level up workflow kamu! 🚀</p>
-            <img src="https://cli.github.com/assets/images/social-card.png" alt="Social card GitHub CLI dengan terminal" class="illus">
+            <img src="https://dalam.web.id/img/cli.github.com/assets/images/social-card.webp" alt="Social card GitHub CLI dengan terminal" class="illus">
         </header>
 
         <nav class="nav-accordion">
-            <details open>
+            <details open="">
                 <summary>🔧 Navigasi Panduan GitHub CLI</summary>
                 <div class="nav-list">
-                    <details open><summary>🌱 Dasar</summary>
+                    <details open=""><summary>🌱 Dasar</summary>
                         <a href="#login">Login ke GitHub</a>
                         <a href="#clone">Clone Repository</a>
-                        <a href="#commit">Commit & Push</a>
+                        <a href="#commit">Commit &amp; Push</a>
                     </details>
                     <details><summary>⚡ Lanjutan</summary>
                         <a href="#pr">Pull Request</a>
@@ -94,7 +94,7 @@
                         <a href="#fork">Fork Repository</a>
                         <a href="#merge">Merge Branch</a>
                         <a href="#release">Release</a>
-                        <a href="#watch-star">Watch & Star</a>
+                        <a href="#watch-star">Watch &amp; Star</a>
                     </details>
                 </div>
             </details>
@@ -107,7 +107,7 @@
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>gh auth login</code></pre>
             </div>
-            <img src="https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png" alt="Diagram alur login GitHub CLI" class="illus">
+            <img src="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" alt="Diagram alur login GitHub CLI" class="illus">
 
             <h2 id="clone">📥 Clone Repository</h2>
             <p>Unduh repo orang lain atau punya sendiri ke lokal dengan cepat.</p>
@@ -116,7 +116,7 @@
                 <pre><code>gh repo clone username/repo</code></pre>
             </div>
 
-            <h2 id="commit">📝 Commit & Push</h2>
+            <h2 id="commit">📝 Commit &amp; Push</h2>
             <p>Workflow dasar Git tetep dipake, tapi gh bisa bantu shortcut.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
@@ -131,7 +131,7 @@ git push</code></pre>
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
                 <pre><code>gh pr create --title "Judul PR" --body "Deskripsi detail"</code></pre>
             </div>
-            <img src="https://nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.png" alt="Diagram workflow pull request GitHub" class="illus">
+            <img src="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp" alt="Diagram workflow pull request GitHub" class="illus">
 
             <h2 id="branch">🌿 Branch</h2>
             <p>Bikin branch baru buat fitur tanpa ganggu main.</p>
@@ -161,7 +161,7 @@ git push</code></pre>
                 <pre><code>git checkout main
 git merge nama-branch</code></pre>
             </div>
-            <img src="https://kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp" alt="Diagram branch dan merge GitHub" class="illus">
+            <img src="https://dalam.web.id/img/kevinsguides.com/wp-content/uploads/2024/06/basic-2branch-example.webp" alt="Diagram branch dan merge GitHub" class="illus">
 
             <h2 id="release">📦 Release</h2>
             <p>Bikin tag release baru plus upload asset.</p>
@@ -170,7 +170,7 @@ git merge nama-branch</code></pre>
                 <pre><code>gh release create v1.0.0 file.zip --title "Version 1.0.0"</code></pre>
             </div>
 
-            <h2 id="watch-star">⭐ Watch & Star</h2>
+            <h2 id="watch-star">⭐ Watch &amp; Star</h2>
             <p>Pantau update repo dan beri star biar support author.</p>
             <div class="code-block">
                 <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
@@ -197,7 +197,7 @@ gh repo star username/repo</code></pre>
 
         <footer>
             <p>Artikel ini informatif, selalu cek docs resmi GitHub CLI untuk update terbaru ya!</p>
-            <p>© Layar Kosong • 2025</p>
+            <p>🄯 Layar Kosong • 2025</p>
 
         </footer>
     </div>
@@ -215,6 +215,10 @@ gh repo star username/repo</code></pre>
         });
 
     </script>
-</body>
-</html>
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 
+
+
+</body></html>
