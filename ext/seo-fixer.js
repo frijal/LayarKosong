@@ -107,6 +107,7 @@ async function fixSEO() {
     const metaSelectors = ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'meta[itemprop="image"]'];
     let currentBestImage = "";
 
+    // Kita cari gambar terbaik dari Meta dulu
     for (const selector of metaSelectors) {
       const $meta = $(selector);
       let content = $meta.attr('content');
@@ -115,10 +116,62 @@ async function fixSEO() {
         const finalUrl = `${baseUrl}${local}`;
         $meta.attr('content', finalUrl);
         if (!currentBestImage) currentBestImage = finalUrl;
+      } else if (content) {
+        // Jika sudah benar (lokal/absolut), simpan untuk Schema
+        currentBestImage = content.startsWith('/') ? `${baseUrl}${content}` : content;
+      }
+    }
+
+    // --- PERBAIKAN SCHEMA (LD-JSON) ---
+    const ldScript = $('script[type="application/ld+json"]');
+    if (ldScript.length) {
+      try {
+        let ldData = JSON.parse(ldScript.text());
+
+        // 1. Jika currentBestImage kosong, coba intip dari tag img
+        if (!currentBestImage) {
+          const firstImg = $('img').first();
+          const imgUrl = firstImg.attr('src') || firstImg.attr('data-src') || firstImg.attr('data-fullsrc');
+          if (imgUrl) {
+            currentBestImage = imgUrl.startsWith('http') ? imgUrl : (imgUrl.startsWith('/') ? `${baseUrl}${imgUrl}` : `${baseUrl}/${imgUrl}`);
+          }
+        }
+
+        // 2. Final Fallback kalau masih botak
+        if (!currentBestImage) {
+          currentBestImage = `${baseUrl}/img/${baseName}.webp`;
+        }
+
+        // 3. Pastikan URL di ldData.image SELALU Absolut
+        const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
+
+        if (ldData.image) {
+          if (typeof ldData.image === 'string') {
+            ldData.image = makeAbsolute(currentBestImage);
+          } else if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
+            ldData.image.url = makeAbsolute(currentBestImage);
+          } else if (Array.isArray(ldData.image)) {
+            ldData.image = ldData.image.map(img => typeof img === 'string' ? makeAbsolute(img) : (img.url ? { ...img, url: makeAbsolute(img.url) } : img));
+          }
+        } else {
+          // Kalau field image belum ada di JSON, kita buatkan
+          ldData.image = {
+            "@type": "ImageObject",
+            "url": currentBestImage
+          };
+        }
+
+        // Update teks LD-JSON dengan rapi
+        ldScript.text(JSON.stringify(ldData, null, 2));
+        console.log(`   💎 Schema Image fixed: ${currentBestImage}`);
+
+      } catch (e) {
+        console.error("❌ Gagal parsing LD-JSON:", e.message);
       }
     }
 
     fs.writeFileSync(file, $.html(), 'utf8');
+
   }
   console.log('\n✅ SEO Fixer: Misi selesai. Semua jejak Blogger telah dihapus!');
 }
