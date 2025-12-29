@@ -10,7 +10,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const url = new URL(externalUrl);
     const baseHostname = new URL(baseUrl).hostname;
 
-    // --- PROTEKSI: Jangan mirror domain sendiri ---
+    // --- 1. JANGAN DOWNLOAD JIKA SUDAH DOMAIN SENDIRI ---
     if (url.hostname === baseHostname || url.hostname === 'localhost') {
       return externalUrl.replace(baseUrl, '');
     }
@@ -22,13 +22,14 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
+    // --- 2. PROTEKSI: JANGAN DOWNLOAD ULANG JIKA FILE SUDAH ADA ---
     if (fs.existsSync(localPath)) {
       return `/${localPath.replace(/\\/g, '/')}`;
     }
 
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
-    console.log(`📥 Mirroring: ${url.hostname}...`);
+    console.log(`📥 Mirroring baru: ${url.hostname}${originalPath}...`);
 
     const response = await axios({
       url: externalUrl,
@@ -50,97 +51,85 @@ async function fixSEO() {
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
 
+  // Regex sakti: Cari URL gambar luar, abaikan domain sendiri & schema.org
+  const imgUrlRegex = /https?:\/\/(?!dalam\.web\.id|schema\.org)[^\s"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
+
   for (const file of files) {
-    const rawContent = fs.readFileSync(file, 'utf8');
-    const $ = load(rawContent, { decodeEntities: false });
-    const baseName = path.basename(file, '.html');
-    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
+    let rawContent = fs.readFileSync(file, 'utf8');
+    const baseName = path.basename(file);
+    console.log(`\n🔍 Memproses: ${baseName}`);
 
-    console.log(`\n🔍 Memproses: ${baseName}.html`);
+    // --- STRATEGI SCAN & SWAP (HTML + SCRIPTS + JSON) ---
+    const matches = rawContent.match(imgUrlRegex);
+    if (matches) {
+      const uniqueUrls = [...new Set(matches)];
+      for (const extUrl of uniqueUrls) {
+        // Cek lokal/download
+        const localPath = await mirrorAndConvert(extUrl, baseUrl);
 
-    // --- 1. PROSES SEMUA ASSET DI BODY ---
-    const potentialAttrs = ['src', 'href', 'data-src', 'data-fullsrc', 'data-thumb'];
-    const elements = $('img, a, div, span, figure').get();
-
-    for (const el of elements) {
-      const $el = $(el);
-      for (const attr of potentialAttrs) {
-        const val = $el.attr(attr);
-        if (val && val.startsWith('http') && !val.startsWith(baseUrl) && !val.startsWith('/')) {
-          const local = await mirrorAndConvert(val, baseUrl);
-          $el.attr(attr, local);
-          if (el.name === 'img' && !$el.attr('alt')) $el.attr('alt', articleTitle);
+        // Jika berhasil dimirror (balikan diawali /), ganti semua teksnya
+        if (localPath.startsWith('/')) {
+          const newLocalUrl = `${baseUrl}${localPath}`;
+          rawContent = rawContent.split(extUrl).join(newLocalUrl);
         }
       }
     }
 
-    // --- 2. SINKRONISASI METADATA (TWITTER AS MASTER) ---
-    const twitterMeta = $('meta[name="twitter:image"]');
-    let twitterImgUrl = twitterMeta.attr('content');
+    // --- SYNC STRUKTURAL DENGAN CHEERIO ---
+    const $ = load(rawContent, { decodeEntities: false });
+    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
 
-    if (twitterImgUrl && twitterImgUrl.startsWith('http') && !twitterImgUrl.startsWith(baseUrl)) {
-      const local = await mirrorAndConvert(twitterImgUrl, baseUrl);
-      twitterImgUrl = `${baseUrl}${local}`;
-      twitterMeta.attr('content', twitterImgUrl);
-    } else if (twitterImgUrl && twitterImgUrl.startsWith('/')) {
-      twitterImgUrl = `${baseUrl}${twitterImgUrl}`;
-      twitterMeta.attr('content', twitterImgUrl);
-    }
+    // Tambahkan alt pada img yang bocor
+    $('img').each((_, el) => {
+      if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
+    });
 
-    if (twitterImgUrl) {
-      $('meta[property="og:image"]').attr('content', twitterImgUrl);
-      $('meta[itemprop="image"]').attr('content', twitterImgUrl);
+      const twitterImg = $('meta[name="twitter:image"]').attr('content');
+      if (twitterImg) {
+        $('meta[property="og:image"]').attr('content', twitterImg);
+        $('meta[itemprop="image"]').attr('content', twitterImg);
 
-      const ldScript = $('script[type="application/ld+json"]');
-      if (ldScript.length) {
-        try {
-          let ldData = JSON.parse(ldScript.text());
-          const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
+        const ldScript = $('script[type="application/ld+json"]');
+        if (ldScript.length) {
+          try {
+            let ldData = JSON.parse(ldScript.text());
+            const makeAbsolute = (url) => (url && url.startsWith('/') && !url.startsWith('http')) ? `${baseUrl}${url}` : url;
 
-          // Sinkronisasi Image Utama Schema
-          if (ldData.image) {
-            if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
-              ldData.image.url = twitterImgUrl;
-            } else {
-              ldData.image = twitterImgUrl;
-            }
-          }
-
-          // --- TAMBAHAN: Update Publisher URL Layar Kosong ---
-          if (ldData.publisher && ldData.publisher.name === "Layar Kosong") {
-            ldData.publisher.url = `${baseUrl}/`;
-          }
-
-          // --- Fungsi deepFix yang Aman (@context Protected) ---
-          const fixDeep = (obj, keyName = "") => {
-            if (keyName === "@context") return obj;
-
-            if (typeof obj === 'string') {
-              // Ganti link eksternal (kecuali schema.org) menjadi twitterImgUrl
-              if (obj.startsWith('http') && !obj.startsWith(baseUrl) && !obj.includes('schema.org')) {
-                return twitterImgUrl;
-              }
-              if (obj.startsWith('/')) return makeAbsolute(obj);
-            }
-
-            if (obj !== null && typeof obj === 'object') {
-              for (let key in obj) {
-                obj[key] = fixDeep(obj[key], key);
+            if (ldData.image) {
+              if (typeof ldData.image === 'object' && !Array.isArray(ldData.image)) {
+                ldData.image.url = twitterImg;
+              } else {
+                ldData.image = twitterImg;
               }
             }
-            return obj;
-          };
 
-          ldData = fixDeep(ldData);
-          ldScript.text(JSON.stringify(ldData, null, 2));
-        } catch (e) { }
+            if (ldData.publisher && ldData.publisher.name === "Layar Kosong") {
+              ldData.publisher.url = `${baseUrl}/`;
+            }
+
+            const fixDeep = (obj, keyName = "") => {
+              if (keyName === "@context") return obj;
+              if (typeof obj === 'string') {
+                if (obj.startsWith('http') && !obj.startsWith(baseUrl) && !obj.includes('schema.org')) {
+                  return twitterImg;
+                }
+                if (obj.startsWith('/')) return makeAbsolute(obj);
+              }
+              if (obj !== null && typeof obj === 'object') {
+                for (let key in obj) obj[key] = fixDeep(obj[key], key);
+              }
+              return obj;
+            };
+
+            ldData = fixDeep(ldData);
+            ldScript.text(JSON.stringify(ldData, null, 2));
+          } catch (e) { }
+        }
       }
-      console.log(`   🎯 Sync Success: OG, Schema & Publisher URL updated.`);
-    }
 
-    fs.writeFileSync(file, $.html(), 'utf8');
+      fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer Selesai: @context aman, ItsFoss dkk dimirror, Publisher URL ditambahkan!');
+  console.log('\n✅ SEO Fixer: Scan massal selesai. Gallery JS & Meta aman!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
