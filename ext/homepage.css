@@ -715,6 +715,60 @@
   margin: 0; /* Hapus margin-left negatif karena sudah pakai absolute */
 }
 
+/* --- TYPOGRAPHY & INTERACTION --- */
+
+.rel-card-mini a {
+  /* Memastikan font mengikuti tema utama blog */
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Efek Hover untuk Card */
+.rel-card-mini a:hover {
+  /* Sedikit angkat kartu tanpa pakai kotak/bayangan berat */
+  transform: translateY(-3px);
+  /* Pakai variabel warna aksen jika ada, kalau tidak, sedikit lebih terang/gelap */
+  background: var(--bg-hover, rgba(0,0,0,0.02));
+  border-color: var(--accent, var(--border));
+}
+
+/* Animasi Gambar saat Hover */
+.rel-card-mini a:hover .rel-img-mini img {
+  transform: scale(1.1) rotate(1deg); /* Biar ada sedikit dinamika */
+}
+
+/* Styling Judul (H4) */
+.rel-info-mini h4 {
+  font-family: inherit; /* Pakai font yang sama dengan existing */
+  /* Tidak perlu warna spesifik, sudah inherit dari .rel-card-mini a */
+}
+
+.rel-card-mini a:hover h4 {
+  /* Opsional: Ubah warna judul saat hover jika ada variabel aksen */
+  color: var(--accent-color, inherit);
+}
+
+/* Responsive adjustment biar tetap enak dilihat di HP */
+
+
+/* --- 2. EFEK HOVER (MENGIKUTI AKSEN HALAMAN) --- */
+.rel-card-mini a:hover {
+  transform: translateY(-3px);
+  /* Pakai aksen utama halaman (Teal di artikel, Biru di Home) */
+  border-color: var(--accent, var(--primary, currentColor));
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.1); /* Biar ada efek nyala sedikit tanpa ngerubah warna */
+}
+
+.rel-card-mini:hover .rel-img-mini img {
+  transform: scale(1.15);
+}
+
+.rel-card-mini:hover h4 {
+  /* Pakai aksen halaman untuk judul saat hover */
+  color: var(--accent, var(--secondary, inherit)) !important;
+}
+
 /* ==============================
  *   RESPONSIVE LAYOUT
  *   ============================== */
@@ -801,6 +855,24 @@
   .search-bar {
     width: 100%;
   }
+
+  #related-articles-grid {
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+  }
+
+  .rel-card-mini a {
+    padding: 8px;
+  }
+
+  .rel-info-mini h4 {
+    font-size: 0.9rem;
+  }
+
+  .rel-img-mini {
+    flex: 0 0 75px;
+    height: 55px;
+  }
 }
 
 /* --- <= 600px (Mobile) --- */
@@ -827,6 +899,15 @@
   .logo:hover .logo-icon {
     transform: none;
   }
+  #related-articles-grid {
+  grid-template-columns: 1fr; /* Jadi satu kolom kalau di layar kecil */
+  gap: 10px;
+  }
+
+  .rel-img-mini {
+    flex: 0 0 70px;
+    height: 60px;
+  }
 }
 
 /* --- <= 480px (HP Kecil) --- */
@@ -836,5 +917,3 @@
     font-size: 0.85rem;
   }
 }
-
-
