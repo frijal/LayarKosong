@@ -1,10 +1,10 @@
 name: ☢️ Build and Generate Site Files
 
 on:
-  push:
-    branches: ['main']
-    paths:
-      - 'artikel/*.html'
+  #push:
+   # branches: ['main']
+    #paths:
+     # - 'artikel/*.html'
   workflow_run:
     workflows: ["🔄 Proses ArtikelX"]
     types: [completed]
