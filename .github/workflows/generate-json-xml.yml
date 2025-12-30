@@ -75,6 +75,9 @@ jobs:
       - name: '7️⃣ Generate Screenshots'
         run: npm run ci-screenshot
 
+      - name: 🧠 Inject schema.org (smart mode)
+        run: python ext/inject_schema.py
+
       - name: '8️⃣ Clean Empty Lines (HTML Minify Lite)'
         run: |
           echo "🧹 Membersihkan baris kosong di folder artikel/..."
@@ -86,10 +89,7 @@ jobs:
             # Di sini kita pilih yang agresif: hapus semua baris kosong.
             sed -i '/^[[:space:]]*$/d' "$file"
           done
-          echo "✅ Pembersihan selesai."
-
-      - name: 🧠 Inject schema.org (smart mode)
-        run: python ext/inject_schema.py
+          echo "✅ Pembersihan selesai."      
 
       - name: '9️⃣ Commit and Push Generated Files'
         run: |
