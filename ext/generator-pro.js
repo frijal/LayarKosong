@@ -18,7 +18,7 @@ const CONFIG = {
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
   defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
-  rssLimit: 30
+    rssLimit: 30
 };
 
 // ===================================================================
@@ -45,20 +45,11 @@ const extractTitle = (c) => (c.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'Tan
 const extractDesc = (c) => (c.match(/<meta\s+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] || '').trim();
 const extractPubDate = (c) => c.match(/<meta\s+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i)?.[1];
 
-/**
- * STRATEGI EKSTRAKSI GAMBAR (FINAL):
- * 1. Prioritas Utama: Meta og:image atau twitter:image
- * 2. Prioritas Kedua: Tag <img> pertama (bukan icon/logo)
- * 3. Fallback Terakhir: /img/nama-artikel.webp
- * (Mengabaikan itemprop="image")
- */
 const extractImage = (content, filename) => {
-  // 1. Cek Meta Social (Urutan VVIP)
   const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["'][^>]*content=["']([^"']+)["']/i)?.[1];
   if (socialImg) return socialImg;
 
-  // 2. Cek Tag <img> pertama (Urutan VIP)
-  const allImgs = content.match(/<img[^>]+src=["']([^"']+)["']/gi);
+  const allImgs = content.match(/<img[^+]+src=["']([^"']+)["']/gi);
   if (allImgs) {
     for (const tag of allImgs) {
       const src = tag.match(/src=["']([^"']+)["']/i)?.[1];
@@ -68,7 +59,6 @@ const extractImage = (content, filename) => {
     }
   }
 
-  // 3. FALLBACK TERAKHIR: /img/nama-artikel.webp
   const baseName = filename.replace('.html', '');
   return `${CONFIG.baseUrl}/img/${baseName}.webp`;
 };
@@ -83,15 +73,15 @@ async function processArticleFile(file, existingFiles) {
     const content = await fs.readFile(fullPath, 'utf8');
     const title = extractTitle(content);
     const pubDate = extractPubDate(content) || (await fs.stat(fullPath)).mtime;
-    
+
     return {
       category: titleToCategory(title),
       data: [
-        title, 
-        file, 
-        extractImage(content, file), // Menambahkan argument file untuk fallback
-        formatISO8601(pubDate), 
-        extractDesc(content)
+        title,
+        file,
+        extractImage(content, file),
+        formatISO8601(pubDate),
+          extractDesc(content)
       ]
     };
   } catch (e) { return null; }
@@ -102,75 +92,72 @@ async function processArticleFile(file, existingFiles) {
 // ===================================================================
 const generate = async () => {
   console.log('🚀 Memulai Generator Pro (JSON + Sitemap + RSS)...');
-  
-  const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
-  const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8').catch(() => '{}');
-  let grouped = JSON.parse(masterContent);
-  const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
 
-  // 1. Proses Artikel Baru
-  const results = await Promise.all(filesOnDisk.filter(f => !existingFilesMap.has(f)).map(f => processArticleFile(f, existingFilesMap)));
-  results.filter(r => r !== null).forEach(r => {
-    if (!grouped[r.category]) grouped[r.category] = [];
-    grouped[r.category].push(r.data);
-  });
+  try {
+    const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
+    const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8').catch(() => '{}');
+    let grouped = JSON.parse(masterContent);
+    const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
 
-  // 2. Sorting & Cleaning
-  const diskSet = new Set(filesOnDisk);
-  for (const cat in grouped) {
-    grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
-    grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
-  }
+    // 1. Proses Artikel Baru
+    const results = await Promise.all(filesOnDisk.filter(f => !existingFilesMap.has(f)).map(f => processArticleFile(f, existingFilesMap)));
+    results.filter(r => r !== null).forEach(r => {
+      if (!grouped[r.category]) grouped[r.category] = [];
+      grouped[r.category].push(r.data);
+    });
 
-  // 3. Bangun XML Sitemap & RSS Flat List
-  let allItemsFlat = [];
-  const sitemapUrls = Object.values(grouped).flat().map(item => {
-    const [title, file, img, lastmod, desc] = item;
-    const prettyUrl = `${CONFIG.baseUrl}/artikel/${file.replace('.html', '')}`;
-    allItemsFlat.push({ title, loc: prettyUrl, img, lastmod, desc, category: Object.keys(grouped).find(k => grouped[k].includes(item)) });
-    
-    return `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <image:image><image:loc>${img}</image:loc></image:image>\n  </url>`;
-  });
+    // 2. Sorting & Cleaning
+    const diskSet = new Set(filesOnDisk);
+    for (const cat in grouped) {
+      grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
+      grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
+    }
 
-  // 4. Generate RSS (Utama)
-  allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
-  const buildRss = (title, items, rssLink) => {
-    const itemsXml = items.map(it => `
-    <item>
+    // 3. Bangun XML Sitemap & RSS Flat List
+    let allItemsFlat = [];
+    const sitemapUrls = Object.values(grouped).flat().map(item => {
+      const [title, file, img, lastmod, desc] = item;
+      const prettyUrl = `${CONFIG.baseUrl}/artikel/${file.replace('.html', '')}`;
+      allItemsFlat.push({ title, loc: prettyUrl, img, lastmod, desc, category: Object.keys(grouped).find(k => grouped[k].includes(item)) });
+
+      return `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <image:image><image:loc>${img}</image:loc></image:image>\n  </url>`;
+    });
+
+    // 4. Generate RSS Helper
+    const buildRss = (title, items, rssLink) => {
+      const itemsXml = items.map(it => `
+      <item>
       <title><![CDATA[${it.title}]]></title>
       <link><![CDATA[${it.loc}]]></link>
       <description><![CDATA[${it.desc || sanitizeTitle(it.title)}]]></description>
       <pubDate>${new Date(it.lastmod).toUTCString()}</pubDate>
       <enclosure url="${it.img}" length="0" type="${getMimeType(it.img)}" />
-    </item>`).join('');
+      </item>`).join('');
 
-    return `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title><![CDATA[${title}]]></title>
-    <link><![CDATA[${CONFIG.baseUrl}]]></link>
-    <atom:link href="${rssLink}" rel="self" type="application/rss+xml" />
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    ${itemsXml}
-  </channel>
-</rss>`;
-  };
+      return `<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title><![CDATA[${title}]]></title>\n    <link><![CDATA[${CONFIG.baseUrl}]]></link>\n    <atom:link href="${rssLink}" rel="self" type="application/rss+xml" />\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n    ${itemsXml}\n  </channel>\n</rss>`;
+    };
 
-  // 5. Penulisan File Secara Paralel
-  const writePromises = [
-    fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
-    fs.writeFile(CONFIG.xmlOut, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${sitemapUrls.join('')}</urlset>`),
-    fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
-  ];
+    // 5. Penulisan File Secara Paralel
+    allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
 
-  for (const [cat, articles] of Object.entries(grouped)) {
-    const slug = cat.replace(/[^\w\s]/u, '').trim().toLowerCase().replace(/\s+/g, '-');
-    const catItems = articles.map(a => allItemsFlat.find(f => f.loc.includes(a[1].replace('.html',''))));
-    writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`)));
+    const writePromises = [
+      fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
+      fs.writeFile(CONFIG.xmlOut, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${sitemapUrls.join('')}</urlset>`),
+      fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
+    ];
+
+    for (const [cat, articles] of Object.entries(grouped)) {
+      const slug = cat.replace(/[^\w\s]/u, '').trim().toLowerCase().replace(/\s+/g, '-');
+      const catItems = articles.map(a => allItemsFlat.find(f => f.loc.includes(a[1].replace('.html','')))).filter(Boolean);
+      writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`)));
+    }
+
+    await Promise.all(writePromises);
+    console.log('✅ Selesai! JSON, Sitemap, dan Semua Feed RSS diperbarui tanpa injeksi HTML.');
+  } catch (err) {
+    console.error('❌ Terjadi kesalahan fatal:', err);
+    process.exit(1);
   }
-
-  await Promise.all(writePromises);
-  console.log('✅ Selesai! JSON, Sitemap, dan Semua Feed RSS diperbarui.');
 };
 
 generate();
