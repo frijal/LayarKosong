@@ -38,10 +38,6 @@ jobs:
       - name: '3. Install Dependencies'
         run: npm ci
 
-      - name: '4️⃣ Maintenance SEO (Main Folder)'
-        # Memastikan semua file di folder utama sudah rapi
-        run: npm run ci-fix-meta-main
-
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
         # Menggunakan generator-pro yang sudah digabung
         run: npm run ci-generate-xml-rss
