@@ -10,109 +10,81 @@ permissions:
   contents: write
 
 jobs:
-  # =========================================================
-  # 1️⃣ Deteksi URL baru dari sitemap.txt
-  # =========================================================
-  detect_urls:
+  seo_and_maintenance:
     runs-on: ubuntu-latest
-    outputs:
-      has_new_urls: ${{ steps.diff.outputs.changed }}
-
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: 🔍 Compare sitemap vs IndexNow cache
-        id: diff
-        run: |
-          mkdir -p mini
-          touch mini/indexnow-cache.txt
-
-          sort sitemap.txt > /tmp/sitemap.sorted
-          sort mini/indexnow-cache.txt > /tmp/cache.sorted
-
-          comm -23 /tmp/sitemap.sorted /tmp/cache.sorted > /tmp/new-urls.txt
-
-          if [ -s /tmp/new-urls.txt ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            wc -l /tmp/new-urls.txt
-            echo "🆕 URL baru terdeteksi"
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "ℹ️ Tidak ada URL baru"
-          fi
-
-          mkdir -p mini/indexnow-batch
-          split -l 10000 /tmp/new-urls.txt mini/indexnow-batch/urls-
-
-  # =========================================================
-  # 2️⃣ Submit IndexNow (HANYA jika ada URL baru)
-  # =========================================================
-  indexnow:
-    needs: detect_urls
-    if: needs.detect_urls.outputs.has_new_urls == 'true'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: 🚀 Submit IndexNow batches
+      # =========================================================
+      # 1️⃣ Deteksi & Submit URL Baru (Logika Diff Sederhana)
+      # =========================================================
+      - name: 🔍 IndexNow Sync
+        id: indexnow_sync
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          for file in mini/indexnow-batch/urls-*; do
+          # Pastikan folder dan file cache ada (antisipasi file belum dibuat)
+          mkdir -p mini
+          touch mini/indexnow-cache.txt
+          
+          # Ambil URL yang ada di sitemap tapi BELUM ada di cache
+          # Menggunakan grep -v -F -f untuk membandingkan baris per baris secara mentah
+          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
+
+          if [ -s /tmp/new_urls.txt ]; then
+            echo "🆕 Menemukan URL baru untuk disubmit..."
+            
+            # Buat payload JSON (Bing/IndexNow limit 10k URL per request, 
+            # asumsikan sitemap Bang Frijal masih di bawah itu agar simpel)
             jq -n \
               --arg host "dalam.web.id" \
               --arg key "$INDEXNOW_KEY" \
-              --argjson urls "$(jq -R . < "$file" | jq -s .)" \
-              '{host: $host, key: $key, urlList: $urls}' \
-              > payload.json
+              --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" \
+              '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
 
+            # Kirim ke Bing
             curl -X POST "https://bing.com/indexnow" \
               -H "Content-Type: application/json; charset=utf-8" \
-              --data-binary @payload.json --fail
-          done
-
-      - name: 💾 Update IndexNow cache
-        run: |
-          shopt -s nullglob
-          FILES=(mini/indexnow-batch/urls-*)
-          if [ ${#FILES[@]} -eq 0 ]; then
-          echo "ℹ️ Tidak ada batch URL baru untuk ditambahkan ke cache"
-          exit 0
+              --data-binary @/tmp/payload.json --fail
+            
+            # Tambahkan yang baru saja disubmit ke dalam cache
+            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
+            echo "sync_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "ℹ️ Tidak ada URL baru sejak submit terakhir."
+            echo "sync_needed=false" >> $GITHUB_OUTPUT
           fi
-          cat "${FILES[@]}" >> mini/indexnow-cache.txt
-          sort -u mini/indexnow-cache.txt -o mini/indexnow-cache.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add mini/indexnow-cache.txt
-          git commit -m "seo: update IndexNow URL cache"
-          git pull origin main --rebase
-          git push
 
-  # =========================================================
-  # 3️⃣ Generate LLMs (maintenance only)
-  # =========================================================
-  generate_llms:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
+      # =========================================================
+      # 2️⃣ Generate LLMs
+      # =========================================================
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: ⚙️ Generate LLMs index
-        run: python ext/generate_llms.py
-
-      - name: 💾 Commit LLMs (if changed)
         run: |
-          git add llms.txt llms.md llms-index.html
+          if [ -f ext/generate_llms.py ]; then
+            python ext/generate_llms.py
+          fi
+
+      # =========================================================
+      # 3️⃣ Simpan Catatan (Commit)
+      # =========================================================
+      - name: 💾 Save Changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Add cache dan hasil generate LLM
+          git add mini/indexnow-cache.txt llms.txt llms.md llms-index.html
+          
           if git diff --staged --quiet; then
-            echo "ℹ️ LLMs tidak berubah"
+            echo "ℹ️ Tidak ada perubahan data."
           else
-            git config user.name 'github-actions[bot]'
-            git config user.email 'github-actions[bot]@users.noreply.github.com'
-            git commit -m "docs: auto-generate llms index"
+            git commit -m "chore: update indexnow cache & llms"
+            git pull origin main --rebase
             git push
           fi
