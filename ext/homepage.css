@@ -715,58 +715,74 @@
   margin: 0; /* Hapus margin-left negatif karena sudah pakai absolute */
 }
 
-/* --- TYPOGRAPHY & INTERACTION --- */
-
+/* --- RELATED POST MINI --- */
 .rel-card-mini a {
-  /* Memastikan font mengikuti tema utama blog */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  /* Pakai inherit biar font sama dengan body/p */
   font-family: inherit;
+  background: var(--card-bg, var(--bg-card, transparent));
+  color: var(--text, var(--text-main, inherit));
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
-/* Efek Hover untuk Card */
-.rel-card-mini a:hover {
-  /* Sedikit angkat kartu tanpa pakai kotak/bayangan berat */
-  transform: translateY(-3px);
-  /* Pakai variabel warna aksen jika ada, kalau tidak, sedikit lebih terang/gelap */
-  background: var(--bg-hover, rgba(0,0,0,0.02));
-  border-color: var(--accent, var(--border));
+/* Bingkai Gambar (Kunci agar gambar tidak membesar ke ukuran asli) */
+.rel-img-mini {
+  flex: 0 0 85px; /* Lebar tetap */
+  height: 65px;   /* Tinggi tetap */
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--border);
 }
 
-/* Animasi Gambar saat Hover */
-.rel-card-mini a:hover .rel-img-mini img {
-  transform: scale(1.1) rotate(1deg); /* Biar ada sedikit dinamika */
+.rel-img-mini img {
+  /* Memaksa gambar mengecil masuk ke bingkai */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Biar tetap proporsional/tidak gepeng */
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-/* Styling Judul (H4) */
 .rel-info-mini h4 {
-  font-family: inherit; /* Pakai font yang sama dengan existing */
-  /* Tidak perlu warna spesifik, sudah inherit dari .rel-card-mini a */
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: inherit;
+  /* Batasi teks 2 baris agar rapi */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.3s ease;
 }
 
-.rel-card-mini a:hover h4 {
-  /* Opsional: Ubah warna judul saat hover jika ada variabel aksen */
-  color: var(--accent-color, inherit);
-}
-
-/* Responsive adjustment biar tetap enak dilihat di HP */
-
-
-/* --- 2. EFEK HOVER (MENGIKUTI AKSEN HALAMAN) --- */
+/* --- EFEK HOVER (CLEAN & INTERACTIVE) --- */
 .rel-card-mini a:hover {
+  /* Transform angkat sedikit saja */
   transform: translateY(-3px);
-  /* Pakai aksen utama halaman (Teal di artikel, Biru di Home) */
+  /* Sesuai request: Tidak usah kotak/shadow, cukup main warna border & bg */
   border-color: var(--accent, var(--primary, currentColor));
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  filter: brightness(1.1); /* Biar ada efek nyala sedikit tanpa ngerubah warna */
+  background: var(--bg-hover, rgba(0,0,0,0.02));
+  filter: brightness(1.05);
 }
 
-.rel-card-mini:hover .rel-img-mini img {
-  transform: scale(1.15);
+/* Zoom gambar saat hover (tetap di dalam bingkai) */
+.rel-card-mini a:hover .rel-img-mini img {
+  transform: scale(1.1) rotate(1deg);
 }
 
-.rel-card-mini:hover h4 {
-  /* Pakai aksen halaman untuk judul saat hover */
-  color: var(--accent, var(--secondary, inherit)) !important;
+/* Warna judul saat hover */
+.rel-card-mini a:hover h4 {
+  color: var(--accent, var(--secondary, inherit));
 }
 
 /* ==============================
