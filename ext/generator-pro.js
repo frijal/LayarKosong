@@ -114,43 +114,40 @@ const buildLdJson = (item, categoryName) => {
 // HTML UPDATER (INJECTOR) - ANTI DUPLIKASI
 // ===================================================================
 async function updateHtmlFilesWithSchema(groupedData) {
-  console.log('💉 Membersihkan dan menyuntikkan LD+JSON baru...');
-
-  for (const [category, articles] of Object.entries(groupedData)) {
-    for (const article of articles) {
+  console.log('💉 Injecting LD+JSON...');
+  for (const cat in groupedData) {
+    for (const article of groupedData[cat]) {
       const fileName = article[1];
       const filePath = path.join(CONFIG.artikelDir, fileName);
-
       try {
         const raw = await fs.readFile(filePath, 'utf8');
         if (!raw || raw.length < 10) continue;
 
-        const ldJson = buildLdJson(article, category);
+        const ldJson = buildLdJson(article, cat);
 
-        // 1. Pembersihan: Hapus script lama & komentar penanda
-        var cleanContent = raw.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
-        cleanContent = cleanContent.replace(//gi, '');
+        // Bersihkan konten dari skrip & komentar lama
+        let content = raw.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
+        content = content.replace(//gi, '');
 
-        // 2. Strategi Penempatan (Cari <style> atau </head>)
-        var finalHtml = '';
-        var styleRegex = /<style[^>]*>/i;
-        var headRegex = /<\/head>/i;
+        // Cari posisi injeksi (style atau head)
+        const styleMatch = content.match(/<style[^>]*>/i);
+        const headMatch = content.match(/<\/head>/i);
 
-        if (styleRegex.test(cleanContent)) {
-          finalHtml = cleanContent.replace(styleRegex, (m) => `\n${ldJson}\n${m}`);
-        } else if (headRegex.test(cleanContent)) {
-          finalHtml = cleanContent.replace(headRegex, (m) => `\n${ldJson}\n${m}`);
+        let output = '';
+        if (styleMatch) {
+          output = content.replace(styleMatch[0], `\n${ldJson}\n${styleMatch[0]}`);
+        } else if (headMatch) {
+          output = content.replace(headMatch[0], `\n${ldJson}\n${headMatch[0]}`);
         } else {
-          finalHtml = ldJson + "\n" + cleanContent;
+          output = ldJson + "\n" + content;
         }
 
-        // Tulis kembali file jika aman
-        if (finalHtml && finalHtml.length > 50) {
-          await fs.writeFile(filePath, finalHtml, 'utf8');
+        if (output && output.length > 50) {
+          await fs.writeFile(filePath, output, 'utf8');
           console.log(`✅ Updated: ${fileName}`);
         }
       } catch (err) {
-        console.error(`❌ Gagal proses ${fileName}:`, err.message);
+        console.error(`❌ Error ${fileName}: ${err.message}`);
       }
     }
   }
