@@ -37,10 +37,16 @@ new_hashes = set()
 # ======================================================
 # UTILITIES
 # ======================================================
-def normalize_category(category: str) -> str:
-    return category.strip().lower()
+def category_slug(category: str) -> str:
+    """Slug URL kategori: lowercase + spasi -> dash"""
+    return category.strip().lower().replace(" ", "-")
+
+def category_name(category: str) -> str:
+    """Nama kategori untuk breadcrumb: Title Case"""
+    return category.strip().replace("-", " ").title()
 
 def hash_article(url: str, title: str) -> str:
+    """Hash stabil: URL asli + judul lowercase"""
     raw = f"{url.strip()}|{title.strip().lower()}"
     return hashlib.sha1(raw.encode("utf-8")).hexdigest()
 
@@ -76,9 +82,10 @@ def build_article_schema(category, article):
     # slug artikel TIDAK diubah
     article_url = f"{BASE_URL}/artikel/{filename}"
 
-    # kategori WAJIB lowercase
-    category_norm = normalize_category(category)
-    category_url = f"{BASE_URL}/artikel/-/{category_norm}/"
+    # kategori: slug vs nama DIPISAH
+    cat_slug = category_slug(category)
+    cat_name = category_name(category)
+    category_url = f"{BASE_URL}/artikel/-/{cat_slug}/"
 
     now_utc = datetime.now(UTC).strftime("%Y-%m-%d")
 
@@ -133,7 +140,7 @@ def build_article_schema(category, article):
                         {
                             "@type": "ListItem",
                             "position": 2,
-                            "name": category_norm.replace("-", " "),
+                            "name": cat_name,
                             "item": category_url
                         },
                         {
