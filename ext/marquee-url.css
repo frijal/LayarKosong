@@ -209,7 +209,18 @@ a.category-link.visible {
   transform: scale(1.2);
 }
 
-/* --- RELATED POST MINI --- */
+/* --- RELATED POST --- */
+#related-articles-grid {
+display: grid;
+/* Desktop 2 kolom, Mobile otomatis 1 kolom */
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 15px;
+margin: 30px 0;
+padding-top: 20px;
+border-top: 1px solid var(--border);
+}
+
+/* --- ITEM CARD --- */
 .rel-card-mini a {
   display: flex;
   align-items: center;
@@ -217,8 +228,7 @@ a.category-link.visible {
   text-decoration: none;
   padding: 10px;
   border-radius: 10px;
-  /* Pakai inherit biar font sama dengan body/p */
-  font-family: inherit;
+  font-family: inherit; /* Font sama dengan body */
   background: var(--card-bg, var(--bg-card, transparent));
   color: var(--text, var(--text-main, inherit));
   border: 1px solid var(--border);
@@ -226,24 +236,24 @@ a.category-link.visible {
   cursor: pointer;
 }
 
-/* Bingkai Gambar (Kunci agar gambar tidak membesar ke ukuran asli) */
+/* --- BINGKAI GAMBAR (UKURAN TETAP) --- */
 .rel-img-mini {
-  flex: 0 0 85px; /* Lebar tetap */
-  height: 65px;   /* Tinggi tetap */
+  flex: 0 0 85px; /* Ngunci lebar */
+  height: 65px;   /* Ngunci tinggi */
   border-radius: 8px;
   overflow: hidden;
   background: var(--border);
 }
 
 .rel-img-mini img {
-  /* Memaksa gambar mengecil masuk ke bingkai */
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Biar tetap proporsional/tidak gepeng */
+  object-fit: cover; /* Gambar mengecil & rapi di dalam kotak */
   display: block;
   transition: transform 0.5s ease;
 }
 
+/* --- TEXT/JUDUL --- */
 .rel-info-mini h4 {
   margin: 0;
   font-family: inherit;
@@ -251,30 +261,24 @@ a.category-link.visible {
   line-height: 1.3;
   font-weight: 600;
   color: inherit;
-  /* Batasi teks 2 baris agar rapi */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  transition: color 0.3s ease;
 }
 
-/* --- EFEK HOVER (CLEAN & INTERACTIVE) --- */
+/* --- HOVER INTERACTION --- */
 .rel-card-mini a:hover {
-  /* Transform angkat sedikit saja */
   transform: translateY(-3px);
-  /* Sesuai request: Tidak usah kotak/shadow, cukup main warna border & bg */
-  border-color: var(--accent, var(--primary, currentColor));
+  border-color: var(--accent, var(--primary, #ccc));
   background: var(--bg-hover, rgba(0,0,0,0.02));
   filter: brightness(1.05);
 }
 
-/* Zoom gambar saat hover (tetap di dalam bingkai) */
 .rel-card-mini a:hover .rel-img-mini img {
-  transform: scale(1.1) rotate(1deg);
+  transform: scale(1.1) rotate(1deg); /* Zoom halus di dalam bingkai */
 }
 
-/* Warna judul saat hover */
 .rel-card-mini a:hover h4 {
   color: var(--accent, var(--secondary, inherit));
 }
