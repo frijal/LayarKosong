@@ -74,12 +74,16 @@ jobs:
 
       - name: 💾 Update IndexNow cache
         run: |
-          cat mini/indexnow-batch/urls-* >> mini/indexnow-cache.txt
+          shopt -s nullglob
+          FILES=(mini/indexnow-batch/urls-*)
+          if [ ${#FILES[@]} -eq 0 ]; then
+          echo "ℹ️ Tidak ada batch URL baru untuk ditambahkan ke cache"
+          exit 0
+          fi
+          cat "${FILES[@]}" >> mini/indexnow-cache.txt
           sort -u mini/indexnow-cache.txt -o mini/indexnow-cache.txt
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
           git add mini/indexnow-cache.txt
           git commit -m "seo: update IndexNow URL cache"
           git pull origin main --rebase
