@@ -13,7 +13,7 @@ AUTHOR = "Fakhrul Rijal"
 LOGO_URL = f"{BASE_URL}/logo.png"
 WEBSITE_ID = f"{BASE_URL}/#website"
 
-HASH_FILE = "mini/article-hash.txt"
+HASH_FILE = "mini/LD-JSON-Schema.txt"
 os.makedirs("mini", exist_ok=True)
 
 # ======================================================
@@ -127,7 +127,7 @@ def build_article_schema(category, article):
                         {
                             "@type": "ListItem",
                             "position": 1,
-                            "name": "beranda",
+                            "name": "Beranda",
                             "item": BASE_URL + "/"
                         },
                         {
