@@ -142,34 +142,36 @@ async function updateHtmlFilesWithSchema(groupedData) {
 
       try {
         let content = await fs.readFile(filePath, 'utf8');
+        if (!content) continue; // Jangan proses kalau file kosong
+
         const ldJson = buildLdJson(article, category);
 
-        // 1. Bersihkan LD+JSON lama & komentar autogen
+        // 1. REGEX YANG AMAN
+        // Menghapus semua tag script ld+json yang ada
         const ldJsonRegex = /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi;
+        // Menghapus komentar penanda lama (jika ada)
         const commentRegex = //gi;
 
-        content = content.replace(ldJsonRegex, '');
-        content = content.replace(commentRegex, '');
+        let newContent = content.replace(ldJsonRegex, '');
+        newContent = newContent.replace(commentRegex, '');
 
-        // 2. Gunakan Regex untuk mencari <style> atau </head> (Case Insensitive)
+        // 2. STRATEGI PENYUNTIKAN (MENGGUNAKAN VARIABEL BARU)
         const styleRegex = /<style[^>]*>/i;
         const headEndRegex = /<\/head>/i;
 
-        if (styleRegex.test(content)) {
-          // Suntik sebelum <style>
-          content = content.replace(styleRegex, (match) => `\n${ldJson}\n${match}`);
-          await fs.writeFile(filePath, content, 'utf8');
-          console.log(`✅ Updated: ${fileName}`);
-        } else if (headEndRegex.test(content)) {
-          // Jika tidak ada style, suntik sebelum </head>
-          content = content.replace(headEndRegex, (match) => `\n${ldJson}\n${match}`);
-          await fs.writeFile(filePath, content, 'utf8');
-          console.log(`✅ Updated (via head): ${fileName}`);
+        if (styleRegex.test(newContent)) {
+          newContent = newContent.replace(styleRegex, (match) => `\n${ldJson}\n${match}`);
+        } else if (headEndRegex.test(newContent)) {
+          newContent = newContent.replace(headEndRegex, (match) => `\n${ldJson}\n${match}`);
         } else {
-          // Jika keduanya tidak ada, paksa taruh di paling atas (paling liar)
-          content = `${ldJson}\n${content}`;
-          await fs.writeFile(filePath, content, 'utf8');
-          console.log(`✅ Updated (forced top): ${fileName}`);
+          // Jika tidak ada jangkar, taruh di paling atas tapi pertahankan isi lama
+          newContent = `${ldJson}\n${newContent}`;
+        }
+
+        // TULIS KEMBALI HANYA JIKA newContent TIDAK KOSONG
+        if (newContent.trim().length > 0) {
+          await fs.writeFile(filePath, newContent, 'utf8');
+          console.log(`✅ Updated: ${fileName}`);
         }
       } catch (err) {
         console.error(`❌ Gagal proses ${fileName}:`, err.message);
