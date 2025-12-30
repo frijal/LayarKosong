@@ -6,9 +6,6 @@ import { titleToCategory } from './titleToCategory.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ===================================================================
-// KONFIGURASI TERPUSAT
-// ===================================================================
 const CONFIG = {
   rootDir: path.join(__dirname, '..'),
   artikelDir: path.join(__dirname, '..', 'artikel'),
@@ -18,14 +15,11 @@ const CONFIG = {
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
   defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
-    rssLimit: 30,
-    authorName: "Fakhrul Rijal",
-    publisherLogo: "https://dalam.web.id/logo.png"
+  rssLimit: 30,
+  authorName: "Fakhrul Rijal",
+  publisherLogo: "https://dalam.web.id/logo.png"
 };
 
-// ===================================================================
-// HELPER FUNCTIONS
-// ===================================================================
 const getMimeType = (url) => {
   if (!url) return 'image/jpeg';
   const ext = url.split('?')[0].split('.').pop().toLowerCase();
@@ -45,9 +39,9 @@ const sanitizeTitle = (raw) => raw.replace(/^\p{Emoji_Presentation}\s*/u, '').tr
 
 const slugify = (text) => {
   return text.toString().toLowerCase().trim()
-  .replace(/\s+/g, '-')
-  .replace(/[^\w\-]+/g, '')
-  .replace(/\-\-+/g, '-');
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-');
 };
 
 const extractTitle = (c) => (c.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
@@ -55,28 +49,14 @@ const extractDesc = (c) => (c.match(/<meta\s+name=["']description["'][^>]+conten
 const extractPubDate = (c) => c.match(/<meta\s+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i)?.[1];
 
 const extractImage = (content, filename) => {
-  const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["']/i)?.[1];
+  const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["'][^>]*content=["']([^"']+)["']/i)?.[1];
   if (socialImg) return socialImg;
-  const allImgs = content.match(/<img[^>]+src=["']([^"']+)["']/gi);
-  if (allImgs) {
-    for (const tag of allImgs) {
-      const src = tag.match(/src=["']([^"']+)["']/i)?.[1];
-      if (src && !/favicon|icon|logo|loading|spacer/i.test(src)) {
-        return src.startsWith('/') ? `${CONFIG.baseUrl}${src}` : src;
-      }
-    }
-  }
   return `${CONFIG.baseUrl}/img/${filename.replace('.html', '')}.webp`;
 };
 
-// ===================================================================
-// SCHEMA GENERATOR (LD+JSON)
-// ===================================================================
 const buildLdJson = (item, categoryName) => {
   const [title, file, img, lastmod, desc] = item;
   const fullUrl = `${CONFIG.baseUrl}/artikel/${file}`;
-  const categorySlug = slugify(categoryName);
-
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -95,24 +75,12 @@ const buildLdJson = (item, categoryName) => {
         },
         "datePublished": lastmod.split('T')[0],
         "dateModified": new Date().toISOString().split('T')[0]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Beranda", "item": `${CONFIG.baseUrl}/` },
-          { "@type": "ListItem", "position": 2, "name": categoryName, "item": `${CONFIG.baseUrl}/artikel/-/${categorySlug}/` },
-          { "@type": "ListItem", "position": 3, "name": sanitizeTitle(title) }
-        ]
       }
     ]
   };
-
   return `\n<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n`;
 };
 
-// ===================================================================
-// HTML UPDATER (INJECTOR) - ANTI DUPLIKASI
-// ===================================================================
 async function updateHtmlFilesWithSchema(groupedData) {
   console.log('💉 Injecting LD+JSON...');
   for (const cat in groupedData) {
@@ -122,40 +90,30 @@ async function updateHtmlFilesWithSchema(groupedData) {
       try {
         const raw = await fs.readFile(filePath, 'utf8');
         if (!raw || raw.length < 10) continue;
-
-        const ldJson = buildLdJson(article, cat);
-
-        // Bersihkan konten dari skrip & komentar lama
-        let content = raw.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
-        content = content.replace(//gi, '');
-
-        // Cari posisi injeksi (style atau head)
-        const styleMatch = content.match(/<style[^>]*>/i);
-        const headMatch = content.match(/<\/head>/i);
-
-        let output = '';
-        if (styleMatch) {
-          output = content.replace(styleMatch[0], `\n${ldJson}\n${styleMatch[0]}`);
-        } else if (headMatch) {
-          output = content.replace(headMatch[0], `\n${ldJson}\n${headMatch[0]}`);
+        const ld = buildLdJson(article, cat);
+        let c = raw.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
+        c = c.replace(//gi, '');
+        const mStyle = c.match(/<style[^>]*>/i);
+        const mHead = c.match(/<\/head>/i);
+        let out = '';
+        if (mStyle) {
+          out = c.replace(mStyle[0], `\n${ld}\n${mStyle[0]}`);
+        } else if (mHead) {
+          out = c.replace(mHead[0], `\n${ld}\n${mHead[0]}`);
         } else {
-          output = ldJson + "\n" + content;
+          out = ld + "\n" + c;
         }
-
-        if (output && output.length > 50) {
-          await fs.writeFile(filePath, output, 'utf8');
+        if (out && out.length > 50) {
+          await fs.writeFile(filePath, out, 'utf8');
           console.log(`✅ Updated: ${fileName}`);
         }
-      } catch (err) {
-        console.error(`❌ Error ${fileName}: ${err.message}`);
+      } catch (e) {
+        console.error(`❌ Error ${fileName}: ${e.message}`);
       }
     }
   }
 }
 
-// ===================================================================
-// CORE PROCESSOR
-// ===================================================================
 async function processArticleFile(file, existingFiles) {
   if (existingFiles.has(file)) return null;
   const fullPath = path.join(CONFIG.artikelDir, file);
@@ -163,79 +121,35 @@ async function processArticleFile(file, existingFiles) {
     const content = await fs.readFile(fullPath, 'utf8');
     const title = extractTitle(content);
     const pubDate = extractPubDate(content) || (await fs.stat(fullPath)).mtime;
-
     return {
       category: titleToCategory(title),
-                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+      data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
     };
   } catch (e) { return null; }
 }
 
-// ===================================================================
-// MAIN GENERATOR
-// ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai Generator Pro (JSON + Sitemap + RSS + Schema)...');
-
+  console.log('🚀 Running Generator...');
   try {
     const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
     const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8').catch(() => '{}');
     let grouped = JSON.parse(masterContent);
     const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
-
-    const results = await Promise.all(
-      filesOnDisk.filter(f => !existingFilesMap.has(f)).map(f => processArticleFile(f, existingFilesMap))
-    );
-
+    const results = await Promise.all(filesOnDisk.filter(f => !existingFilesMap.has(f)).map(f => processArticleFile(f, existingFilesMap)));
     results.filter(r => r !== null).forEach(r => {
       if (!grouped[r.category]) grouped[r.category] = [];
       grouped[r.category].push(r.data);
     });
-
     const diskSet = new Set(filesOnDisk);
     for (const cat in grouped) {
       grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
       grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
     }
-
-    let allItemsFlat = [];
-    const sitemapUrls = Object.values(grouped).flat().map(item => {
-      const [title, file, img, lastmod, desc] = item;
-      const prettyUrl = `${CONFIG.baseUrl}/artikel/${file.replace('.html', '')}`;
-      allItemsFlat.push({ title, loc: prettyUrl, img, lastmod, desc, category: Object.keys(grouped).find(k => grouped[k].includes(item)) });
-      return `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <image:image><image:loc>${img}</image:loc></image:image>\n  </url>`;
-    });
-
-    const buildRss = (title, items, rssLink) => {
-      const itemsXml = items.map(it => `
-      <item>
-      <title><![CDATA[${it.title}]]></title>
-      <link><![CDATA[${it.loc}]]></link>
-      <description><![CDATA[${it.desc || sanitizeTitle(it.title)}]]></description>
-      <pubDate>${new Date(it.lastmod).toUTCString()}</pubDate>
-      <enclosure url="${it.img}" length="0" type="${getMimeType(it.img)}" />
-      </item>`).join('');
-      return `<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title><![CDATA[${title}]]></title>\n    <link><![CDATA[${CONFIG.baseUrl}]]></link>\n    <atom:link href="${rssLink}" rel="self" type="application/rss+xml" />\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n    ${itemsXml}\n  </channel>\n</rss>`;
-    };
-
-    const writePromises = [
-      fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
-                                            fs.writeFile(CONFIG.xmlOut, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${sitemapUrls.join('')}</urlset>`),
-                                            fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod)).slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
-    ];
-
-    for (const [cat, articles] of Object.entries(grouped)) {
-      const slug = slugify(cat);
-      const catItems = articles.map(a => allItemsFlat.find(f => f.loc.includes(a[1].replace('.html','')))).filter(Boolean);
-      writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`)));
-    }
-
-    await Promise.all(writePromises);
+    await fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2));
     await updateHtmlFilesWithSchema(grouped);
-
-    console.log('✅ Selesai! Semua sistem diperbarui dengan aman.');
+    console.log('✅ Done!');
   } catch (err) {
-    console.error('❌ Terjadi kesalahan fatal:', err);
+    console.error('❌ Fatal:', err);
     process.exit(1);
   }
 };
