@@ -18,9 +18,9 @@ const CONFIG = {
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
   defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
-  rssLimit: 30,
-  authorName: "Fakhrul Rijal",
-  publisherLogo: "https://dalam.web.id/logo.png"
+    rssLimit: 30,
+    authorName: "Fakhrul Rijal",
+    publisherLogo: "https://dalam.web.id/logo.png"
 };
 
 // ===================================================================
@@ -45,9 +45,9 @@ const sanitizeTitle = (raw) => raw.replace(/^\p{Emoji_Presentation}\s*/u, '').tr
 
 const slugify = (text) => {
   return text.toString().toLowerCase().trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-');
+  .replace(/\s+/g, '-')
+  .replace(/[^\w\-]+/g, '')
+  .replace(/\-\-+/g, '-');
 };
 
 const extractTitle = (c) => (c.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
@@ -55,9 +55,8 @@ const extractDesc = (c) => (c.match(/<meta\s+name=["']description["'][^>]+conten
 const extractPubDate = (c) => c.match(/<meta\s+property=["']article:published_time["'][^>]+content=["']([^"']+)["']/i)?.[1];
 
 const extractImage = (content, filename) => {
-  const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["'][^>]*content=["']([^"']+)["']/i)?.[1];
+  const socialImg = content.match(/<meta\s+[^>]*(?:name|property)=["'](?:og|twitter):image["']/i)?.[1];
   if (socialImg) return socialImg;
-
   const allImgs = content.match(/<img[^>]+src=["']([^"']+)["']/gi);
   if (allImgs) {
     for (const tag of allImgs) {
@@ -77,7 +76,7 @@ const buildLdJson = (item, categoryName) => {
   const [title, file, img, lastmod, desc] = item;
   const fullUrl = `${CONFIG.baseUrl}/artikel/${file}`;
   const categorySlug = slugify(categoryName);
-  
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -86,23 +85,13 @@ const buildLdJson = (item, categoryName) => {
         "mainEntityOfPage": { "@type": "WebPage", "@id": fullUrl },
         "headline": title,
         "description": desc || sanitizeTitle(title),
-        "image": {
-          "@type": "ImageObject",
-          "url": img,
-          "width": 1200,
-          "height": 675
-        },
+        "image": { "@type": "ImageObject", "url": img, "width": 1200, "height": 675 },
         "author": { "@type": "Person", "name": CONFIG.authorName },
         "publisher": {
           "@type": "Organization",
           "name": "Layar Kosong",
           "url": `${CONFIG.baseUrl}/`,
-          "logo": {
-            "@type": "ImageObject",
-            "url": CONFIG.publisherLogo,
-            "width": 48,
-            "height": 48
-          }
+          "logo": { "@type": "ImageObject", "url": CONFIG.publisherLogo, "width": 48, "height": 48 }
         },
         "datePublished": lastmod.split('T')[0],
         "dateModified": new Date().toISOString().split('T')[0]
@@ -111,28 +100,19 @@ const buildLdJson = (item, categoryName) => {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Beranda", "item": `${CONFIG.baseUrl}/` },
-          { 
-            "@type": "ListItem", 
-            "position": 2, 
-            "name": categoryName, 
-            "item": `${CONFIG.baseUrl}/artikel/-/${categorySlug}/` 
-          },
+          { "@type": "ListItem", "position": 2, "name": categoryName, "item": `${CONFIG.baseUrl}/artikel/-/${categorySlug}/` },
           { "@type": "ListItem", "position": 3, "name": sanitizeTitle(title) }
         ]
       }
     ]
   };
 
-  return `<script type="application/ld+json">
-${JSON.stringify(schema, null, 2)}
-</script>
-`;
+  return `\n<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n`;
 };
 
 // ===================================================================
 // HTML UPDATER (INJECTOR) - ANTI DUPLIKASI
 // ===================================================================
-
 async function updateHtmlFilesWithSchema(groupedData) {
   console.log('💉 Membersihkan dan menyuntikkan LD+JSON baru...');
 
@@ -142,30 +122,30 @@ async function updateHtmlFilesWithSchema(groupedData) {
       const filePath = path.join(CONFIG.artikelDir, fileName);
 
       try {
-        const rawContent = await fs.readFile(filePath, 'utf8');
-        if (!rawContent || rawContent.trim().length === 0) continue;
+        const raw = await fs.readFile(filePath, 'utf8');
+        if (!raw || raw.length < 10) continue;
 
         const ldJson = buildLdJson(article, category);
 
-        // 1. Pembersihan total (Gunakan variabel yang berbeda setiap langkah)
-        const cleanStep1 = rawContent.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
-        const cleanStep2 = cleanStep1.replace(//gi, '');
+        // 1. Pembersihan: Hapus script lama & komentar penanda
+        var cleanContent = raw.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
+        cleanContent = cleanContent.replace(//gi, '');
 
-        // 2. Strategi Penempatan
-        let finalHtml = '';
-        const regexStyle = /<style[^>]*>/i;
-        const regexHead = /<\/head>/i;
+        // 2. Strategi Penempatan (Cari <style> atau </head>)
+        var finalHtml = '';
+        var styleRegex = /<style[^>]*>/i;
+        var headRegex = /<\/head>/i;
 
-        if (regexStyle.test(cleanStep2)) {
-          finalHtml = cleanStep2.replace(regexStyle, (m) => `\n${ldJson}\n${m}`);
-        } else if (regexHead.test(cleanStep2)) {
-          finalHtml = cleanStep2.replace(regexHead, (m) => `\n${ldJson}\n${m}`);
+        if (styleRegex.test(cleanContent)) {
+          finalHtml = cleanContent.replace(styleRegex, (m) => `\n${ldJson}\n${m}`);
+        } else if (headRegex.test(cleanContent)) {
+          finalHtml = cleanContent.replace(headRegex, (m) => `\n${ldJson}\n${m}`);
         } else {
-          finalHtml = `${ldJson}\n${cleanStep2}`;
+          finalHtml = ldJson + "\n" + cleanContent;
         }
 
-        // Tulis kembali file
-        if (finalHtml && finalHtml.length > 50) { // Safety check agar tidak menulis file rusak
+        // Tulis kembali file jika aman
+        if (finalHtml && finalHtml.length > 50) {
           await fs.writeFile(filePath, finalHtml, 'utf8');
           console.log(`✅ Updated: ${fileName}`);
         }
@@ -174,6 +154,24 @@ async function updateHtmlFilesWithSchema(groupedData) {
       }
     }
   }
+}
+
+// ===================================================================
+// CORE PROCESSOR
+// ===================================================================
+async function processArticleFile(file, existingFiles) {
+  if (existingFiles.has(file)) return null;
+  const fullPath = path.join(CONFIG.artikelDir, file);
+  try {
+    const content = await fs.readFile(fullPath, 'utf8');
+    const title = extractTitle(content);
+    const pubDate = extractPubDate(content) || (await fs.stat(fullPath)).mtime;
+
+    return {
+      category: titleToCategory(title),
+                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+    };
+  } catch (e) { return null; }
 }
 
 // ===================================================================
@@ -188,7 +186,6 @@ const generate = async () => {
     let grouped = JSON.parse(masterContent);
     const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
 
-    // 1. Proses Artikel Baru
     const results = await Promise.all(
       filesOnDisk.filter(f => !existingFilesMap.has(f)).map(f => processArticleFile(f, existingFilesMap))
     );
@@ -198,14 +195,12 @@ const generate = async () => {
       grouped[r.category].push(r.data);
     });
 
-    // 2. Sorting & Cleaning
     const diskSet = new Set(filesOnDisk);
     for (const cat in grouped) {
       grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
       grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
     }
 
-    // 3. Bangun XML & RSS Data
     let allItemsFlat = [];
     const sitemapUrls = Object.values(grouped).flat().map(item => {
       const [title, file, img, lastmod, desc] = item;
@@ -214,7 +209,6 @@ const generate = async () => {
       return `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <image:image><image:loc>${img}</image:loc></image:image>\n  </url>`;
     });
 
-    // 4. Penulisan File Pendukung
     const buildRss = (title, items, rssLink) => {
       const itemsXml = items.map(it => `
       <item>
@@ -229,8 +223,8 @@ const generate = async () => {
 
     const writePromises = [
       fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
-      fs.writeFile(CONFIG.xmlOut, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${sitemapUrls.join('')}</urlset>`),
-      fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod)).slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
+                                            fs.writeFile(CONFIG.xmlOut, `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${sitemapUrls.join('')}</urlset>`),
+                                            fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod)).slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`))
     ];
 
     for (const [cat, articles] of Object.entries(grouped)) {
@@ -240,8 +234,6 @@ const generate = async () => {
     }
 
     await Promise.all(writePromises);
-
-    // 5. Update HTML (Suntik LD+JSON)
     await updateHtmlFilesWithSchema(grouped);
 
     console.log('✅ Selesai! Semua sistem diperbarui dengan aman.');
