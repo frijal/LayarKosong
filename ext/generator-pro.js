@@ -141,36 +141,34 @@ async function updateHtmlFilesWithSchema(groupedData) {
       const filePath = path.join(CONFIG.artikelDir, fileName);
 
       try {
-        let content = await fs.readFile(filePath, 'utf8');
-        if (!content) continue; // Jangan proses kalau file kosong
+        const rawContent = await fs.readFile(filePath, 'utf8');
+        if (!rawContent) continue;
 
         const ldJson = buildLdJson(article, category);
 
-        // 1. REGEX YANG AMAN
-        // Menghapus semua tag script ld+json yang ada
-        const ldJsonRegex = /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi;
-        // Menghapus komentar penanda lama (jika ada)
-        const commentRegex = //gi;
+        // 1. REGEX PEMBERSIH
+        const regexLdJson = /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi;
+        const regexComments = //gi;
 
-        let newContent = content.replace(ldJsonRegex, '');
-        newContent = newContent.replace(commentRegex, '');
+        // Ganti nama variabel dari 'newContent' ke 'updatedHtml' untuk hindari reserved word issue
+        let updatedHtml = rawContent.replace(regexLdJson, '');
+        updatedHtml = updatedHtml.replace(regexComments, '');
 
-        // 2. STRATEGI PENYUNTIKAN (MENGGUNAKAN VARIABEL BARU)
-        const styleRegex = /<style[^>]*>/i;
-        const headEndRegex = /<\/head>/i;
+        // 2. STRATEGI PENYUNTIKAN
+        const regexStyle = /<style[^>]*>/i;
+        const regexHeadEnd = /<\/head>/i;
 
-        if (styleRegex.test(newContent)) {
-          newContent = newContent.replace(styleRegex, (match) => `\n${ldJson}\n${match}`);
-        } else if (headEndRegex.test(newContent)) {
-          newContent = newContent.replace(headEndRegex, (match) => `\n${ldJson}\n${match}`);
+        if (regexStyle.test(updatedHtml)) {
+          updatedHtml = updatedHtml.replace(regexStyle, (match) => `\n${ldJson}\n${match}`);
+        } else if (regexHeadEnd.test(updatedHtml)) {
+          updatedHtml = updatedHtml.replace(regexHeadEnd, (match) => `\n${ldJson}\n${match}`);
         } else {
-          // Jika tidak ada jangkar, taruh di paling atas tapi pertahankan isi lama
-          newContent = `${ldJson}\n${newContent}`;
+          updatedHtml = `${ldJson}\n${updatedHtml}`;
         }
 
-        // TULIS KEMBALI HANYA JIKA newContent TIDAK KOSONG
-        if (newContent.trim().length > 0) {
-          await fs.writeFile(filePath, newContent, 'utf8');
+        // Simpan hanya jika konten tidak rusak (tetap ada isinya)
+        if (updatedHtml && updatedHtml.trim().length > 0) {
+          await fs.writeFile(filePath, updatedHtml, 'utf8');
           console.log(`✅ Updated: ${fileName}`);
         }
       } catch (err) {
