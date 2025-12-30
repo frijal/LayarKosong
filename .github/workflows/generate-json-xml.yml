@@ -88,6 +88,9 @@ jobs:
           done
           echo "✅ Pembersihan selesai."
 
+      - name: 🧠 Inject schema.org (smart mode)
+        run: python ext/inject_schema.py
+
       - name: '9️⃣ Commit and Push Generated Files'
         run: |
           git config --global user.name "github-actions[bot]"
