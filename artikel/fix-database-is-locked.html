@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memperbaiki Error “Database is Locked” di Arch Linux</title>
+<link rel="canonical" href="https://dalam.web.id/artikel/fix-database-is-locked.html">
+<!-- 🔎 SEO Open Graph -->
+<!-- 🐦 Twitter Card -->
+<link rel="icon" href="https://dalam.web.id/favicon.ico">
+<meta name="fediverse:creator" content=".social"><style>
+:root {
+  color-scheme: light dark;
+  --bg: #f9f9f9;
+  --text: #222;
+  --accent: #1793d1;
+  --card: #fff;
+  --border: #ccc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eee;
+    --accent: #1793d1;
+    --card: #1e1e1e;
+    --border: #333;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header img {
+  width: 80px;
+  height: 80px;
+}
+main {
+  max-width: 960px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+pre {
+  background: #000;
+  color: #0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+code {
+  background: rgba(0,0,0,0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+ul li { margin-bottom: .4rem; }
+.share {
+  text-align: center;
+  margin-top: 2rem;
+}
+.share a {
+  margin: 0 8px;
+  text-decoration: none;
+  font-size: 1.4em;
+}
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.fb-comments {
+  margin-top: 2rem;
+}
+</style>
+  <meta itemprop="image" content="https://dalam.web.id/img/fix-database-is-locked.webp">
+    <meta property="article:published_time" content="2025-10-13T21:14:36.029+00:00">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap mengatasi error">
+<meta name="ai:prompt_hint" content="Panduan lengkap mengatasi error">
+<meta name="twitter:image" content="https://dalam.web.id/img/fix-database-is-locked.webp">
+<meta name="description" content="Panduan lengkap mengatasi error">
+<meta property="og:url" content="https://dalam.web.id/artikel/fix-database-is-locked.html">
+<meta property="og:image" content="https://dalam.web.id/img/fix-database-is-locked.webp">
+  <meta property="og:image:alt" content="Memperbaiki Error “Database is Locked” di Arch Linux">
+  <meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Memperbaiki Error “Database is Locked” di Arch Linux">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://dalam.web.id/artikel/fix-database-is-locked.html#article",
+      "isPartOf": {
+        "@id": "https://dalam.web.id/#website"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dalam.web.id/artikel/fix-database-is-locked.html"
+      },
+      "headline": "Memperbaiki Error “Database is Locked” di Arch Linux",
+      "description": "Panduan lengkap mengatasi error",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://dalam.web.id/img/fix-database-is-locked.webp",
+        "width": 1200,
+        "height": 675
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Fakhrul Rijal"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Layar Kosong",
+        "url": "https://dalam.web.id",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dalam.web.id/logo.png",
+          "width": 48,
+          "height": 48
+        }
+      },
+      "datePublished": "2025-10-13T21:14:36.029+00:00",
+      "dateModified": "2025-12-30"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://dalam.web.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sistem Terbuka",
+          "item": "https://dalam.web.id/artikel/-/sistem-terbuka/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Memperbaiki Error “Database is Locked” di Arch Linux",
+          "item": "https://dalam.web.id/artikel/fix-database-is-locked.html"
+        }
+      ]
+    }
+  ]
+}</script>
+<meta name="google-adsense-account" content="ca-pub-8157928740123992"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8157928740123992" crossorigin="anonymous"></script><meta name="fediverse:creator" content=".social"></head>
+<body>
+<header>
+  <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
+  <h1><a href="/" style="text-decoration:none; color:inherit;">📦 Memperbaiki Error “Database is Locked”</a></h1>
+<div id="iposbrowser"></div>
+  <p>Panduan santai untuk memperbaiki error <code>database is locked</code> yang sering muncul saat update atau instalasi paket di Arch Linux dan turunannya.</p>
+</header>
+<main>
+<section>
+  <h2>⚠️ Contoh Pesan Error</h2>
+  <pre><code>error: could not lock database: File exists
+  if you're sure a package manager is not already running, you can remove /var/lib/pacman/db.lck
+error: failed to synchronize all databases</code></pre>
+  <p>Error ini muncul karena <strong>pacman</strong> sedang dikunci oleh proses lain — bisa karena update belum selesai, sistem mati mendadak, atau ada proses pacman/par u yang masih berjalan di background.</p>
+</section>
+<section>
+  <h2>🧭 Langkah Aman Memperbaiki</h2>
+  <h3>1️⃣ Cek Apakah Ada Proses Pacman yang Aktif</h3>
+  <pre><code>ps aux | grep pacman</code></pre>
+  <p>Kalau masih ada proses <code>pacman</code> atau <code>paru</code> yang aktif, biarkan sampai selesai atau hentikan dengan hati-hati:</p>
+  <pre><code>sudo kill -9 &lt;PID&gt;</code></pre>
+  <h3>2️⃣ Hapus File Lock</h3>
+  <p>Jika tidak ada proses aktif, hapus file pengunci manual:</p>
+  <pre><code>sudo rm /var/lib/pacman/db.lck</code></pre>
+  <p>File ini hanya menandakan bahwa pacman sedang digunakan. Menghapusnya aman jika tidak ada pacman lain yang sedang berjalan.</p>
+  <h3>3️⃣ Jalankan Sinkronisasi Ulang</h3>
+  <pre><code>sudo pacman -Syyu</code></pre>
+  <p>Ini memastikan database dan paket kembali tersinkron setelah file lock dihapus.</p>
+  <h3>4️⃣ Jika Masalah Terjadi Berulang</h3>
+  <ul>
+    <li>Pastikan tidak menjalankan dua terminal pacman/paru bersamaan.</li>
+    <li>Hindari mematikan sistem di tengah proses update.</li>
+    <li>Periksa service otomatis seperti <code>reflector</code> atau <code>pamac</code> (jika terpasang) yang bisa mengunci database di background.</li>
+  </ul>
+</section>
+<section>
+  <h2>💡 Tips Tambahan</h2>
+  <ul>
+    <li>Kamu bisa menambahkan alias kecil di <code>~/.bashrc</code> untuk memeriksa file lock:</li>
+  </ul>
+  <pre><code>alias paclock='sudo lsof /var/lib/pacman/db.lck'</code></pre>
+  <p>Gunakan <code>paclock</code> untuk memeriksa apakah database sedang dikunci dan oleh proses apa.</p>
+</section>
+<section>
+  <h2>✅ Kesimpulan</h2>
+  <p>Error “database is locked” hanyalah mekanisme keamanan bawaan pacman untuk mencegah dua proses menulis database bersamaan.
+  Hapus file <code>db.lck</code> hanya jika kamu yakin tidak ada proses pacman lain yang aktif.</p>
+</section>
+<section class="share">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+<footer>
+  🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤
+</footer>
+<!-- Facebook SDK -->
+<script>
+window.onload = () => window.scrollTo({ top: 0, behavior: "smooth" });
+</script>
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
