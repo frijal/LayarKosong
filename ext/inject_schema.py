@@ -68,8 +68,8 @@ def build_website_schema():
                 "logo": {
                     "@type": "ImageObject",
                     "url": LOGO_URL,
-                    "width": 48,
-                    "height": 48
+                    "width": 384,
+                    "height": 384
                 }
             }
         }, separators=(",", ":"))
@@ -121,8 +121,8 @@ def build_article_schema(category, article):
                         "logo": {
                             "@type": "ImageObject",
                             "url": LOGO_URL,
-                            "width": 48,
-                            "height": 48
+                            "width": 384,
+                            "height": 384
                         }
                     },
                     "datePublished": date_pub,
