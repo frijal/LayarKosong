@@ -1,0 +1,125 @@
+name: "Layar Kosong: Super Automation & MedSos"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'artikel.json'
+  schedule:
+    - cron: "0 */2 * * *" # Berjalan setiap 2 jam
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  everything-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏗️ Setup Environments (Python & Node)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm install
+          # Pastikan jq terinstall (biasanya sudah ada di runner)
+          sudo apt-get install jq -y
+
+      # =========================================================
+      # 1️⃣ MEDSOS AUTOPOST (Facebook & Mastodon)
+      # =========================================================
+      
+      - name: 🔵 Process Facebook (Oldest First)
+        id: fb_info
+        run: python3 ext/post-to-facebook.py
+
+      - name: 🚀 Send to Facebook Page
+        if: steps.fb_info.outputs.url != ''
+        run: |
+          curl -X POST "https://graph.facebook.com/v18.0/${{ secrets.FB_PAGE_ID }}/feed" \
+            -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
+            -d "link=${{ steps.fb_info.outputs.url }}" \
+            -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
+          
+          # Catat ke database lokal
+          mkdir -p mini
+          cat temp_new_url.txt >> mini/facebook-posted.txt
+
+      - name: 🐘 Send to Mastodon
+        run: node ext/post-to-mastodon.js
+        env:
+          MASTODON_INSTANCE: mastodon.social
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+
+      # =========================================================
+      # 2️⃣ INFRASTRUCTURE (Cloudflare Cleanup)
+      # =========================================================
+
+      - name: 🧹 Cloudflare Cleanup
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: node ext/rapikan-cloudflare.js
+
+      # =========================================================
+      # 3️⃣ SEO & MAINTENANCE (IndexNow & LLMs)
+      # =========================================================
+
+      - name: 🔍 IndexNow Sync
+        id: indexnow_sync
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          mkdir -p mini
+          touch mini/indexnow-cache.txt
+          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
+
+          if [ -s /tmp/new_urls.txt ]; then
+            echo "🆕 Menemukan URL baru untuk IndexNow..."
+            jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
+            curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
+            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
+          fi
+
+      - name: ⚙️ Generate LLMs Index
+        run: |
+          if [ -f ext/generate_llms.py ]; then
+            python3 ext/generate_llms.py
+          fi
+
+      # =========================================================
+      # 4️⃣ FINAL COMMIT (Push All Updates)
+      # =========================================================
+
+      - name: 💾 Save All Changes to Repository
+        run: |
+          git config --global user.name "Layar Kosong Automation"
+          git config --global user.email "bot@dalam.web.id"
+          
+          # Add all database and generated files
+          git add mini/facebook-posted.txt \
+                  mini/mastodon-posted.json \
+                  mini/indexnow-cache.txt \
+                  llms.txt llms.md llms-index.html
+          
+          # Commit hanya jika ada perubahan
+          if git diff --staged --quiet; then
+            echo "ℹ️ Tidak ada perubahan data untuk dikomit."
+          else
+            git commit -m "chore: automation sync (FB, Mastodon, SEO, LLM) [$(date +'%Y-%m-%d %H:%M')]"
+            git pull origin main --rebase
+            git push
+          fi
