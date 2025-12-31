@@ -49,7 +49,6 @@ jobs:
             -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
           
           # Catat ke database lokal
-          mkdir -p mini
           cat temp_new_url.txt >> mini/facebook-posted.txt
 
       - name: 🐘 Send to Mastodon
@@ -78,7 +77,6 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          mkdir -p mini
           touch mini/indexnow-cache.txt
           grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
 
