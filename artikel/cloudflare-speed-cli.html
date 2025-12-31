@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cloudflare-speed-cli: Tool Keren Tes Kecepatan Internet di Terminal! 🚀</title>
@@ -10,16 +8,16 @@
     <meta name="news_keywords" content="cloudflare speed test, cli tool, rust, terminal ui, tes kecepatan internet, open source">
     <meta property="og:title" content="cloudflare-speed-cli: Tool Keren Tes Kecepatan Internet di Terminal! 🚀">
     <meta property="og:description" content="Tool CLI berbasis Rust yang nunjukin hasil tes speed dari Cloudflare dalam antarmuka TUI yang interaktif. Ada chart real-time, riwayat, ekspor JSON, dan banyak lagi!">
-    <meta property="og:image" content="https://github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.png">
+    <meta property="og:image" content="https://dalam.web.id/img/github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.webp">
     <meta property="og:url" content="https://dalam.web.id/artikel/cloudflare-speed-cli.html">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="id_ID">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="cloudflare-speed-cli: Tool Keren Tes Kecepatan Internet di Terminal! 🚀">
     <meta name="twitter:description" content="Tes speed internet tanpa buka browser, langsung di terminal dengan tampilan chart keren. Built with Rust!">
-    <meta name="twitter:image" content="https://github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.png">
+    <meta name="twitter:image" content="https://dalam.web.id/img/github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.webp">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
             --bg: #ffffff;
@@ -66,6 +64,7 @@
         .badge { vertical-align: middle; margin: 0 0.5rem; }
         footer { margin-top: auto; padding-top: 2rem; }
     </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="fediverse:creator" content="@frijal@mastodon.social">
 </head>
 <body>
 
@@ -74,6 +73,7 @@
     </header>
 
     <main><h1><a href="/" style="text-decoration: none; color: inherit;">cloudflare-speed-cli: Tool Keren Tes Kecepatan Internet di Terminal! 🚀</a></h1>
+<div id="iposbrowser"></div>
         <p>😎 Hari ini aku mau cerita tentang tool CLI super keren namanya <strong>cloudflare-speed-cli</strong>. Ini tool buat tes kecepatan internet langsung pake layanan speed test dari Cloudflare, tapi tampilannya di terminal dengan TUI (Text-based User Interface) yang bikin mata kita dimanjain chart real-time. Kayak dashboard pro gitu loh di command line! 🔥</p>
 
         <p>Aku nemu tool ini pas lagi scroll-scroll GitHub, dan langsung jatuh cinta. Bayangin aja, nggak perlu buka browser ke speed.cloudflare.com, cukup ketik satu command di terminal, langsung deh tes download/upload, latency, dan semuanya muncul dengan grafik yang hidup. Cocok banget buat kita yang suka main Linux, atau lagi ngecek koneksi di server VPS tanpa GUI. Apalagi di Balikpapan kadang sinyal naik-turun kayak roller coaster, tool ini bantu banget buat monitor real-time! 😂</p>
@@ -81,12 +81,12 @@
         <p>Tool ini dibuat pake Rust (bahasa pemrograman yang lagi ngetrend karena cepet dan aman), dan open source di GitHub. Repo-nya: <a href="https://github.com/kavehtehrani/cloudflare-speed-cli" target="_blank">github.com/kavehtehrani/cloudflare-speed-cli</a> <i class="fas fa-external-link-alt"></i></p>
 
         <div style="text-align:center;">
-            <img src="https://github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.png" alt="Screenshot dashboard cloudflare-speed-cli di terminal 🚀" loading="lazy">
+            <img src="https://dalam.web.id/img/github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-dashboard.webp" alt="Screenshot dashboard cloudflare-speed-cli di terminal 🚀" loading="lazy">
             <p><em>Contoh tampilan dashboard utama dengan chart real-time yang keren abis! 📊</em></p>
         </div>
 
         <div style="text-align:center;">
-            <img src="https://github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-history.png" alt="Screenshot riwayat tes di cloudflare-speed-cli" loading="lazy">
+            <img src="https://dalam.web.id/img/github.com/kavehtehrani/cloudflare-speed-cli/raw/main/images/screenshot-history.webp" alt="Screenshot riwayat tes di cloudflare-speed-cli" loading="lazy">
             <p><em>Riwayat tes sebelumnya, bisa di-manage dan diekspor juga loh! 📈</em></p>
         </div>
 
@@ -137,8 +137,12 @@
 
     <footer>
 
-        <p style="text-align:center; margin-top:2rem; font-size:0.9rem; color:#888;">© 2025 Layar Kosong • Fakhrul Rijal</p>
+        <p style="text-align:center; margin-top:2rem; font-size:0.9rem; color:#888;">🄯 2025 Layar Kosong • Fakhrul Rijal</p>
     </footer>
 
-</body>
-</html>
+
+
+<div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
