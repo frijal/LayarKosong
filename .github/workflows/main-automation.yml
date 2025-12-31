@@ -1,8 +1,13 @@
 name: "Layar Kosong: Super Automation & MedSos"
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'artikel.json'
   schedule:
-    - cron: "0 */2 * * *" # Berjalan setiap 2 jam
+    - cron: "0 */2 * * *" # Eksekusi otomatis tiap 2 jam
   workflow_dispatch:
 
 permissions:
@@ -17,26 +22,64 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🏗️ Setup Environments (Python & Node)
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - uses: actions/setup-node@v4
+      - name: 🏗️ Setup Environments (Node & Python)
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
       - name: 📦 Install Dependencies
         run: |
           npm install
-          # Pastikan jq terinstall (biasanya sudah ada di runner)
           sudo apt-get install jq -y
 
       # =========================================================
-      # 1️⃣ MEDSOS AUTOPOST (Facebook & Mastodon)
+      # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
       # =========================================================
-      
-      - name: 🔵 Process Facebook (Oldest First)
+
+      - name: 🧹 1. Cloudflare Cleanup
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: node ext/rapikan-cloudflare.js
+
+      - name: 🐘 2. Mastodon Autopost
+        run: node ext/post-to-mastodon.js
+        env:
+          MASTODON_INSTANCE: mastodon.social
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+
+      # =========================================================
+      # 🟡 BAGIAN 2: PYTHON SCRIPTS (.py)
+      # =========================================================
+
+      - name: 🔍 3a. IndexNow Sync (Bash & JQ)
+        id: indexnow_sync
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          mkdir -p mini
+          touch mini/indexnow-cache.txt
+          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
+
+          if [ -s /tmp/new_urls.txt ]; then
+            echo "🆕 Menemukan URL baru untuk IndexNow..."
+            jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
+            curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
+            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
+          fi
+
+      - name: ⚙️ 3b. Generate LLMs Index
+        run: |
+          if [ -f ext/generate_llms.py ]; then
+            python3 ext/generate_llms.py
+          fi
+
+      - name: 🔵 4. Process Facebook (Oldest First)
         id: fb_info
         run: python3 ext/post-to-facebook.py
 
@@ -48,71 +91,28 @@ jobs:
             -d "link=${{ steps.fb_info.outputs.url }}" \
             -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
           
-          # Catat ke database lokal
-          cat temp_new_url.txt >> mini/facebook-posted.txt
-
-      - name: 🐘 Send to Mastodon
-        run: node ext/post-to-mastodon.js
-        env:
-          MASTODON_INSTANCE: mastodon.social
-          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-
-      # =========================================================
-      # 2️⃣ INFRASTRUCTURE (Cloudflare Cleanup)
-      # =========================================================
-
-      - name: 🧹 Cloudflare Cleanup
-        env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: node ext/rapikan-cloudflare.js
-
-      # =========================================================
-      # 3️⃣ SEO & MAINTENANCE (IndexNow & LLMs)
-      # =========================================================
-
-      - name: 🔍 IndexNow Sync
-        id: indexnow_sync
-        env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-        run: |
-          touch mini/indexnow-cache.txt
-          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
-
-          if [ -s /tmp/new_urls.txt ]; then
-            echo "🆕 Menemukan URL baru untuk IndexNow..."
-            jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
-            curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
-            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
-          fi
-
-      - name: ⚙️ Generate LLMs Index
-        run: |
-          if [ -f ext/generate_llms.py ]; then
-            python3 ext/generate_llms.py
+          if [ -f temp_new_url.txt ]; then
+            cat temp_new_url.txt >> mini/facebook-posted.txt
           fi
 
       # =========================================================
-      # 4️⃣ FINAL COMMIT (Push All Updates)
+      # 💾 BAGIAN 3: FINAL COMMIT
       # =========================================================
 
-      - name: 💾 Save All Changes to Repository
+      - name: 💾 Save All Changes to Repo
         run: |
-          git config --global user.name "Layar Kosong Automation"
+          git config --global user.name "Layar Kosong Bot"
           git config --global user.email "bot@dalam.web.id"
           
-          # Add all database and generated files
           git add mini/facebook-posted.txt \
                   mini/mastodon-posted.json \
                   mini/indexnow-cache.txt \
-                  llms.txt llms.md llms-index.html
+                  llms.txt llms.md llms-index.html || true
           
-          # Commit hanya jika ada perubahan
           if git diff --staged --quiet; then
-            echo "ℹ️ Tidak ada perubahan data untuk dikomit."
+            echo "ℹ️ Tidak ada perubahan data."
           else
-            git commit -m "chore: automation sync (FB, Mastodon, SEO, LLM) [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "chore: automation sync (JS -> PY order) [$(date +'%Y-%m-%d %H:%M')]"
             git pull origin main --rebase
             git push
           fi
