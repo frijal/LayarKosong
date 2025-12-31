@@ -1,11 +1,6 @@
 name: "Layar Kosong: Super Automation & MedSos"
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'artikel.json'
   schedule:
     - cron: "0 */2 * * *" # Eksekusi otomatis tiap 2 jam
   workflow_dispatch:
