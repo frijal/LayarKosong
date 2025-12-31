@@ -1,6 +1,7 @@
 name: Auto Post RSS to Facebook
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
