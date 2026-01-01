@@ -2,7 +2,7 @@ import fs from 'fs';
 import axios from 'axios';
 
 const JSON_FILE = 'artikel.json';
-const DATABASE_FILE = 'mini/posted-linkedin.txt';
+const DATABASE_FILE = 'mini/posted-linkedin.txt'; // Database khusus LinkedIn
 const BASE_URL = 'https://dalam.web.id/artikel/';
 
 async function postToLinkedIn() {
@@ -11,23 +11,31 @@ async function postToLinkedIn() {
 
     if (!fs.existsSync(JSON_FILE)) return;
 
+    // 1. Baca data dari artikel.json
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
-            allPosts.push({ title: p[0], slug: p[1].replace('.html', ''), desc: p[4] });
+            allPosts.push({ 
+                title: p[0], 
+                slug: p[1].replace('.html', ''), 
+                image: p[2], 
+                desc: p[4] 
+            });
         });
     }
-    allPosts.reverse(); // Urutan dari artikel terlama
+    allPosts.reverse(); 
 
+    // 2. CEK DATABASE: Baca file agar tidak duplikat
     let postedUrls = fs.existsSync(DATABASE_FILE) 
         ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
         : [];
 
+    // Cari artikel yang BELUM ada di posted-linkedin.txt
     let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
 
     if (!target) {
-        console.log("🏁 LinkedIn: Semua artikel sudah terposting.");
+        console.log("🏁 LinkedIn: Semua artikel sudah terposting. Tidak ada duplikat.");
         return;
     }
 
@@ -38,7 +46,7 @@ async function postToLinkedIn() {
         
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `📝 ${target.title}\n\n${target.desc}\n\n#repost #ngopi #Blog #article`,
+            commentary: `📝 ${target.title}\n\n${target.desc}\n\n#repost #ngopi #article #indonesia`,
             visibility: 'PUBLIC',
             distribution: {
                 feedDistribution: 'MAIN_FEED',
@@ -49,7 +57,8 @@ async function postToLinkedIn() {
                 article: {
                     source: targetUrl,
                     title: target.title,
-                    description: target.desc
+                    description: target.desc,
+                    thumbnail: target.image 
                 }
             },
             lifecycleState: 'PUBLISHED'
@@ -57,12 +66,14 @@ async function postToLinkedIn() {
             headers: {
                 'Authorization': `Bearer ${ACCESS_TOKEN}`,
                 'X-Restli-Protocol-Version': '2.0.0',
-                'LinkedIn-Version': '202510' // Sesuaikan versi stabil terakhir
+                'LinkedIn-Version': '202510' 
             }
         });
 
+        // 3. TULIS KE DATABASE: Simpan URL yang berhasil diposting
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ LinkedIn Berhasil diposting!`);
+        console.log(`✅ LinkedIn Berhasil! URL disimpan di ${DATABASE_FILE}`);
+        
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));
         process.exit(1);
