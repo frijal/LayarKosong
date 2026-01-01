@@ -49,20 +49,15 @@ async function postToLinkedIn() {
 
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `📝 ${target.title}\n\n${target.desc}\n\n#repost #ngopi #article #indonesia`,
+            // Link ditaruh di dalam teks (commentary) agar LinkedIn men-generate lnkd.in
+            commentary: `📝 ${target.title}\n\n${target.desc}\n\nBaca selengkapnya: ${targetUrl}\n\n#repost #ngopi #article #indonesia`,
             visibility: 'PUBLIC',
             distribution: {
                 feedDistribution: 'MAIN_FEED',
                 targetEntities: [],
                 thirdPartyDistributionChannels: []
             },
-            content: {
-                article: {
-                    source: targetUrl,
-                    title: target.title,
-                    description: target.desc
-                }
-            },
+            // Kosongkan bagian content.article agar LinkedIn melakukan auto-crawling dari link di commentary
             lifecycleState: 'PUBLISHED'
         }, {
             headers: {
