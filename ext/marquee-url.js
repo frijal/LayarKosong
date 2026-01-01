@@ -10,7 +10,7 @@
       </svg>`;
 
       const headerHTML = `
-      <a href="https://dalam.web.id" class="sticky-header" target="_blank" rel="noopener noreferrer">
+      <a href="https://dalam.web.id" class="sticky-header" rel="noopener noreferrer">
       ${logoSVG}
       <span class="site-name">dalam.web.id</span>
       </a>`;
