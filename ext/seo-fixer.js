@@ -45,6 +45,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 }
 
 async function fixSEO() {
+  // Folder input bisa apa saja (artikelx, draft, dll)
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
@@ -73,20 +74,20 @@ async function fixSEO() {
     const $ = load(rawContent, { decodeEntities: false });
     const head = $('head');
 
-    // Ambil data dasar sebelum tag lama dihapus
+    // Ambil data dasar
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
     const fileName = path.basename(file);
-    const canonicalUrl = `${baseUrl}/${targetFolder}/${fileName}`;
 
-    // Cari deskripsi: dari meta lama, atau paragraf pertama
+    // FIX: Canonical & OG:URL diarahkan ke folder 'artikel' (folder publik akhir)
+    const canonicalUrl = `${baseUrl}/artikel/${fileName}`;
+
     let siteDescription = $('meta[name="description"]').attr('content') ||
     $('p').first().text().substring(0, 160).trim() ||
     "Artikel terbaru dari Layar Kosong.";
 
-    // Ambil URL gambar dari twitter:image yang sudah ter-swap linknya
     const twitterImg = $('meta[name="twitter:image"]').attr('content') || '';
 
-    // --- 3. BERSIHKAN SEMUA META LAMA (Agar tidak duplikat & berantakan) ---
+    // --- 3. BERSIHKAN SEMUA META LAMA ---
     $('meta[property^="og:"], meta[name^="twitter:"], meta[name="fb:app_id"], meta[property="fb:app_id"], link[rel="canonical"], meta[itemprop="image"]').remove();
 
     // --- 4. SUNTIK ULANG DENGAN URUTAN RAPI ---
@@ -109,7 +110,7 @@ async function fixSEO() {
     head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
     head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
-    head.append(`\n`); // Memberi jarak rapi sebelum tag berikutnya
+    head.append(`\n`);
 
     // --- 5. FIX ALT TEXT GAMBAR ---
     $('img').each((_, el) => {
@@ -119,7 +120,7 @@ async function fixSEO() {
       // --- 6. SIMPAN HASIL ---
       fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Mirroring, Canonical, FB App ID, dan Perapihan Meta SELESAI!');
+  console.log('\n✅ SEO Fixer: Mirroring, Canonical (Hardcoded /artikel/), FB App ID, dan Meta Selesai!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
