@@ -84,7 +84,7 @@ jobs:
               sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>' "$file"
             fi
             if ! grep -q '/ext/iposbrowser.js' "$file"; then
-              sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>' "$file"
+              sed -i '/<\/body>/i <a id="layar-kosong-header" href="https://dalam.web.id"></a><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>' "$file"
             fi     
           done
 
