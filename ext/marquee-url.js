@@ -40,6 +40,22 @@
     });
   }
 
+  // --- TITIPAN: PROGRESS BAR ---
+  function initProgressBar() {
+    const bar = document.getElementById('progress');
+    if (!bar) return; // Supaya gak error kalau elemennya gak ada
+
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const perc = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      bar.style.width = perc + '%';
+    };
+
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Jalankan sekali saat load
+  }
+
   // ---------------------------
   // MARQUEE
   // ---------------------------
@@ -237,7 +253,7 @@
   }
 
   // ---------------------------
-  // RELATED GRID (ADDITION)
+  // RELATED GRID
   // ---------------------------
 
   function initRelatedGrid(allData, currentFile) {
@@ -252,7 +268,6 @@
       }
     }
 
-    // Ambil 5 artikel secara acak
     const related = list.sort(() => 0.6 - Math.random()).slice(0, 6);
 
     if (related.length === 0) {
@@ -297,19 +312,17 @@
       ? path.split('/').pop()
       : `${path.replace(/\/$/, '').split('/').pop()}.html`;
 
+      // Panggil semua fungsi
+      initProgressBar(); // <--- Sekarang aktif di sini
       initCategoryMarquee(data, current);
-      initRelatedGrid(data, current); // <--- Sekarang terpanggil otomatis
+      initRelatedGrid(data, current);
       initFloatingSearch(data);
       initNavIcons(data, current);
       adaptMarqueeTextColor();
+
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', adaptMarqueeTextColor);
     } catch (err) {
       console.error('Init Error:', err);
-      const input = document.getElementById('floatingSearchInput');
-      if (input) {
-        input.placeholder = 'Gagal memuat data';
-        input.disabled = true;
-      }
     }
   }
 
