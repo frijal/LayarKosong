@@ -1,3 +1,27 @@
+/* --- Inject Header Layar Kosong --- */
+(function() {
+  const injectHeader = () => {
+    // Pastikan tidak double inject kalau script terpanggil dua kali
+    if (!document.querySelector('.sticky-header')) {
+      const headerHTML = `
+      <a href="https://dalam.web.id" class="sticky-header" target="_blank" rel="noopener noreferrer">
+      <img src="https://dalam.web.id/favicon.svg" alt="Layar Kosong">
+      <span class="site-name">dalam.web.id</span>
+      </a>`;
+      document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    }
+  };
+
+  // Jalankan segera jika body sudah ada, atau tunggu DOM siap
+  if (document.body) {
+    injectHeader();
+  } else {
+    window.addEventListener('DOMContentLoaded', injectHeader);
+  }
+})();
+
+// ---------------------------
+// ---------------------------
 (function () {
   'use strict';
 
