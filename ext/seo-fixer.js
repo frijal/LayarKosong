@@ -45,7 +45,6 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 }
 
 async function fixSEO() {
-  // Folder input bisa apa saja (artikelx, draft, dll)
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
@@ -74,25 +73,32 @@ async function fixSEO() {
     const $ = load(rawContent, { decodeEntities: false });
     const head = $('head');
 
-    // Ambil data dasar
-    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
+    // --- 3. LOGIKA URL BERSIH (TANPA .HTML) ---
     const fileName = path.basename(file);
+    const cleanFileName = fileName.replace('.html', '');
+    // Pakai folder /artikel/ sesuai tujuan akhir publikasi
+    const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`;
 
-    // FIX: Canonical & OG:URL diarahkan ke folder 'artikel' (folder publik akhir)
-    const canonicalUrl = `${baseUrl}/artikel/${fileName}`;
-
+    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
     let siteDescription = $('meta[name="description"]').attr('content') ||
     $('p').first().text().substring(0, 160).trim() ||
     "Artikel terbaru dari Layar Kosong.";
 
     const twitterImg = $('meta[name="twitter:image"]').attr('content') || '';
 
-    // --- 3. BERSIHKAN SEMUA META LAMA ---
-    $('meta[property^="og:"], meta[name^="twitter:"], meta[name="fb:app_id"], meta[property="fb:app_id"], link[rel="canonical"], meta[itemprop="image"]').remove();
+    // --- 4. BERSIHKAN SEMUA TAG LAMA (CLEAN SLATE) ---
+    // Hapus semua meta social dan canonical lama agar urutannya bisa kita atur ulang
+    $('link[rel="canonical"]').remove();
+    $('meta[property^="og:"]').remove();
+    $('meta[name^="twitter:"]').remove();
+    $('meta[name="fb:app_id"], meta[property="fb:app_id"]').remove();
+    $('meta[itemprop="image"]').remove();
 
-    // --- 4. SUNTIK ULANG DENGAN URUTAN RAPI ---
+    // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
     head.append(`\n    `);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
+
+    // Open Graph
     head.append(`\n    <meta property="og:type" content="article" />`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
     head.append(`\n    <meta property="og:title" content="${articleTitle}" />`);
@@ -100,27 +106,30 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong" />`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
 
+    // Twitter Card
+    head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
+    head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
+    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
+    head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
+    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
+
+    // Images
     if (twitterImg) {
       head.append(`\n    <meta property="og:image" content="${twitterImg}" />`);
       head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
       head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
     }
-
-    head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
-    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
-    head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
-    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
     head.append(`\n`);
 
-    // --- 5. FIX ALT TEXT GAMBAR ---
+    // --- 6. FIX ALT TEXT GAMBAR ---
     $('img').each((_, el) => {
       if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
     });
 
-      // --- 6. SIMPAN HASIL ---
+      // --- 7. SIMPAN HASIL ---
       fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Mirroring, Canonical (Hardcoded /artikel/), FB App ID, dan Meta Selesai!');
+  console.log('\n✅ SEO Fixer: URL dibersihkan, Twitter Meta ditambahkan, dan Meta Tags dirapikan!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
