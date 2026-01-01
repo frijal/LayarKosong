@@ -1,6 +1,25 @@
 /* ==========================================================
    FILE: /ext/marquee-url.css
-   Versi Final — Marquee, Floating Search & Floating Nav
+   Versi Final — Marquee, Floating Search & Floating Nav */
+
+   :root {
+   --primary-color: #2c3e50;
+   --accent-color: #00b0ed;
+   --bg-color: #f4f7f6;
+   --text-color: #333;
+   --card-bg: #ffffff;
+   --border-color: #e1e8ed;
+   }
+   @media (prefers-color-scheme: dark) {
+   :root {
+   --primary-color: #ecf0f1;
+   --accent-color: #00b0ed;
+   --bg-color: #121212;
+   --text-color: #e0e0e0;
+   --card-bg: #1e1e1e;
+   --border-color: #333;
+   }
+   }
    ========================================================== */
 a {
   color: var(--accent-color);
