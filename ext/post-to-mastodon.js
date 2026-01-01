@@ -6,7 +6,7 @@ import fetch from "node-fetch";
    Konfigurasi
 ===================== */
 const ARTICLE_FILE = "artikel.json";
-const STATE_FILE = "mini/mastodon-posted.json";
+const STATE_FILE = "mini/posted-mastodon.json";
 const LIMIT = 500;
 const DELAY_MS = 8000;
 
