@@ -1,26 +1,127 @@
 /* ==========================================================
    FILE: /ext/marquee-url.css
    Versi Final — Marquee, Floating Search & Floating Nav */
+/*========================================================== */
+/* --- (1) SHARED FLOATING STYLE (Main) --- */
+.search-floating-container,
+#layar-kosong-header {
+position: fixed;
+top: 20px;
+z-index: 1001;
+height: 44px;
+display: flex;
+align-items: center;
+box-sizing: border-box;
+transition: all 0.3s ease-in-out;
+}
 
-   :root {
-   --primary-color: #2c3e50;
-   --accent-color: #00b0ed;
-   --bg-color: #f4f7f6;
-   --text-color: #333;
-   --card-bg: #ffffff;
-   --border-color: #e1e8ed;
-   }
-   @media (prefers-color-scheme: dark) {
-   :root {
-   --primary-color: #ecf0f1;
-   --accent-color: #00b0ed;
-   --bg-color: #121212;
-   --text-color: #e0e0e0;
-   --card-bg: #1e1e1e;
-   --border-color: #333;
-   }
-   }
-   ========================================================== */
+/* --- (2) SPECIFIC POSITIONS --- */
+#layar-kosong-header {
+left: 20px;
+padding: 0 18px 0 12px;
+text-decoration: none;
+border-radius: 25px;
+background-color: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(128, 128, 128, 0.3);
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-floating-container {
+  right: 20px;
+  width: 250px;
+}
+
+/* --- (3) SEARCH INPUT & INTERACTION --- */
+#floatingSearchInput {
+width: 100%;
+height: 100%;
+padding: 10px 40px;
+font-size: 14px;
+border: 1px solid rgba(128, 128, 128, 0.3);
+border-radius: 25px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+outline: none;
+background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
+backdrop-filter: blur(6px);
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+color: #111;
+transition: border-color 0.3s, background-color 0.3s;
+}
+
+.search-floating-container:focus-within { width: 300px; }
+#floatingSearchInput:focus { border-color: #007bff; }
+
+/* --- (4) STICKY HEADER CONTENT (Logo & Text) --- */
+#layar-kosong-header:hover {
+border-color: #00b0ed;
+background-color: rgba(255, 255, 255, 0.95);
+transform: translateY(-1px);
+}
+
+#layar-kosong-header::before {
+content: "";
+width: 24px;
+height: 24px;
+margin-right: 10px;
+background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='616.8 136.4 785 777.8'%3E%3Cpath fill='%2300b0ed' d='m 886.3122,912.91855 c -0.2137,-0.6875 -4.71651,-32.3 -10.00624,-70.25 -24.81695,-178.04385 -83.33958,-588.63047 -83.99312,-589.28401 -0.46701,-0.46701 -30.98393,-4.28741 -125.04932,-15.65486 -25.3,-3.05741 -47.0125,-5.793 -48.25,-6.07908 -4.56288,-1.05484 -2.19993,-3.49045 8.68008,-8.94698 78.00632,-39.12164 164.57277,-65.69883 254.06992,-78.00323 76.71376,-10.54691 160.30668,-11.08698 225.49998,-1.45692 75.8364,11.2022 128.0336,33.90694 164.524,71.56455 26.1854,27.02308 41.3244,56.01641 49.7109,95.2033 2.5657,11.9884 2.7089,14.08396 2.7089,39.65723 0,25.66581 -0.1364,27.64239 -2.7584,40 -8.9509,42.18488 -25.3771,76.11845 -57.5795,118.94895 -22.3975,29.78958 -59.8258,67.79925 -97.6059,99.1222 -6.6,5.47196 -13.4625,10.98763 -15.25,12.25703 -1.7875,1.26941 -3.25,2.75076 -3.25,3.29191 0,0.94123 24.9553,28.82428 183.3672,204.87991 38.8481,43.175 70.6329,78.85162 70.6329,79.28138 10e-5,2.78637 -4.9354,0.67798 -21.2009,-9.05692 -10.0645,-6.02354 -36.0741,-21.43886 -57.7991,-34.25626 -21.725,-12.81741 -68.3,-40.39903 -103.5001,-61.2925 -35.2,-20.89346 -75.925,-45.0599 -90.5,-53.70318 -63.5494,-37.68619 -118.041,-69.97952 -124.695,-73.89803 -3.9573,-2.33042 -7.68831,-4.83151 -8.29131,-5.55799 -1.7223,-2.07529 22.17711,-121.56097 24.65891,-123.28242 38.1064,-26.43226 63.0352,-45.72797 89.0932,-68.96116 43.826,-39.07498 71.0165,-73.81606 80.8278,-103.27292 2.5842,-7.7585 2.8321,-9.76491 2.8416,-23 0.01,-12.69347 -0.267,-15.18524 -2.2162,-20 -15.5302,-38.36099 -88.3738,-63.37878 -216.87242,-74.48387 -8.4686,-0.73187 -7.0091,-5.28628 -11.3718,35.48387 -1.6773,15.675 -4.8328,43.7758 -7.0122,62.44623 -2.1794,18.67042 -3.9577,34.87042 -3.9517,36 0.01,1.6422 1.5617,2.63415 7.75,4.94992 15.49,5.79668 94.91722,39.03956 111.53492,46.68099 1.8673,0.85866 2.6976,1.91732 2.5,3.18778 -0.2206,1.41876 -17.1563,10.5031 -66.6392,35.7454 -36.48892,18.61377 -66.48852,33.98868 -66.66592,34.16645 -0.2783,0.27901 -32.0883,253.49686 -45.01363,358.32323 -2.44139,19.8 -4.68104,37.0125 -4.97701,38.25 -0.57336,2.39732 -3.30232,3.08796 -3.95134,1 z' /%3E%3C/svg%3E") no-repeat center;
+background-size: contain;
+}
+
+#layar-kosong-header::after {
+content: "dalam.web.id";
+font-size: 14px;
+font-weight: 600;
+color: #111;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- (5) SEARCH RESULTS & UI --- */
+.floating-results-container {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  left: 0;
+  top: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 999;
+  color: #222;
+}
+
+.floating-results-container a {
+  display: block;
+  padding: 12px 15px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.floating-results-container a:hover { background-color: #f5f5f5; }
+.floating-results-container a small { display: block; color: #777; font-size: 12px; }
+
+.clear-button {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 22px;
+  color: #999;
+  font-weight: bold;
+}
+/* ================== */
 a {
   color: var(--accent-color);
   text-decoration: none;
@@ -83,103 +184,6 @@ a:link, a:visited, a:hover, a:active {
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
-}
-
-/* --- (2) FLOATING SEARCH BAR --- */
-.search-floating-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1001;
-  width: 250px;
-  transition: width 0.4s ease-in-out;
-}
-
-.search-floating-container:focus-within {
-  width: 300px;
-}
-
-#floatingSearchInput {
-  width: 100%;
-  height: 44px;
-  padding: 10px 40px;
-  font-size: 14px;
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  border-radius: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
-  background-position: 15px center;
-  background-repeat: no-repeat;
-  transition: border-color 0.3s, background-color 0.3s;
-  color: #111;
-}
-
-#floatingSearchInput:focus {
-  border-color: #007bff;
-}
-
-.floating-results-container {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  left: 0;
-  top: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-  z-index: 999;
-  color: #222;
-}
-
-.floating-results-container a {
-  display: block;
-  padding: 12px 15px;
-  color: #333;
-  text-decoration: none;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.floating-results-container a:last-child {
-  border-bottom: none;
-}
-
-.floating-results-container a:hover {
-  background-color: #f5f5f5;
-}
-
-.floating-results-container a small {
-  display: block;
-  color: #777;
-  font-size: 12px;
-}
-
-.clear-button {
-  display: none;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 22px;
-  color: #999;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.clear-button:hover {
-  color: #333;
 }
 
 /* --- (3) FLOATING NAV --- */
@@ -348,57 +352,6 @@ margin: 30px 0;
   transform: scale(1.1);
 }
 
-/* --- STICKY HEADER LAYAR KOSONG --- */
-#layar-kosong-header {
-position: fixed;
-top: 20px;          /* Sama persis dengan search container */
-left: 20px;         /* Simetris dengan right: 20px */
-z-index: 1001;      /* Sama agar tidak saling tumpang tindih */
-display: flex;
-align-items: center;
-height: 44px;       /* Sama persis dengan #floatingSearchInput */
-padding: 0 18px 0 12px;
-text-decoration: none;
-border-radius: 25px;
-box-sizing: border-box;
-
-/* Efek Visual (Sama dengan Search Bar kamu) */
-background-color: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(128, 128, 128, 0.3);
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-transition: all 0.3s ease;
-}
-
-/* Hover effect mengikuti gaya interaksi blogmu */
-#layar-kosong-header:hover {
-border-color: #00b0ed;
-background-color: rgba(255, 255, 255, 0.95);
-transform: translateY(-1px);
-}
-
-/* Logo SVG */
-#layar-kosong-header::before {
-content: "";
-width: 24px;
-height: 24px;
-margin-right: 10px;
-/* Pakai koordinat asli kamu yang lebih detail */
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='616.8 136.4 785 777.8'%3E%3Cpath fill='%2300b0ed' d='m 886.3122,912.91855 c -0.2137,-0.6875 -4.71651,-32.3 -10.00624,-70.25 -24.81695,-178.04385 -83.33958,-588.63047 -83.99312,-589.28401 -0.46701,-0.46701 -30.98393,-4.28741 -125.04932,-15.65486 -25.3,-3.05741 -47.0125,-5.793 -48.25,-6.07908 -4.56288,-1.05484 -2.19993,-3.49045 8.68008,-8.94698 78.00632,-39.12164 164.57277,-65.69883 254.06992,-78.00323 76.71376,-10.54691 160.30668,-11.08698 225.49998,-1.45692 75.8364,11.2022 128.0336,33.90694 164.524,71.56455 26.1854,27.02308 41.3244,56.01641 49.7109,95.2033 2.5657,11.9884 2.7089,14.08396 2.7089,39.65723 0,25.66581 -0.1364,27.64239 -2.7584,40 -8.9509,42.18488 -25.3771,76.11845 -57.5795,118.94895 -22.3975,29.78958 -59.8258,67.79925 -97.6059,99.1222 -6.6,5.47196 -13.4625,10.98763 -15.25,12.25703 -1.7875,1.26941 -3.25,2.75076 -3.25,3.29191 0,0.94123 24.9553,28.82428 183.3672,204.87991 38.8481,43.175 70.6329,78.85162 70.6329,79.28138 10e-5,2.78637 -4.9354,0.67798 -21.2009,-9.05692 -10.0645,-6.02354 -36.0741,-21.43886 -57.7991,-34.25626 -21.725,-12.81741 -68.3,-40.39903 -103.5001,-61.2925 -35.2,-20.89346 -75.925,-45.0599 -90.5,-53.70318 -63.5494,-37.68619 -118.041,-69.97952 -124.695,-73.89803 -3.9573,-2.33042 -7.68831,-4.83151 -8.29131,-5.55799 -1.7223,-2.07529 22.17711,-121.56097 24.65891,-123.28242 38.1064,-26.43226 63.0352,-45.72797 89.0932,-68.96116 43.826,-39.07498 71.0165,-73.81606 80.8278,-103.27292 2.5842,-7.7585 2.8321,-9.76491 2.8416,-23 0.01,-12.69347 -0.267,-15.18524 -2.2162,-20 -15.5302,-38.36099 -88.3738,-63.37878 -216.87242,-74.48387 -8.4686,-0.73187 -7.0091,-5.28628 -11.3718,35.48387 -1.6773,15.675 -4.8328,43.7758 -7.0122,62.44623 -2.1794,18.67042 -3.9577,34.87042 -3.9517,36 0.01,1.6422 1.5617,2.63415 7.75,4.94992 15.49,5.79668 94.91722,39.03956 111.53492,46.68099 1.8673,0.85866 2.6976,1.91732 2.5,3.18778 -0.2206,1.41876 -17.1563,10.5031 -66.6392,35.7454 -36.48892,18.61377 -66.48852,33.98868 -66.66592,34.16645 -0.2783,0.27901 -32.0883,253.49686 -45.01363,358.32323 -2.44139,19.8 -4.68104,37.0125 -4.97701,38.25 -0.57336,2.39732 -3.30232,3.08796 -3.95134,1 z' /%3E%3C/svg%3E");
-background-size: contain;
-background-repeat: no-repeat;
-}
-
-/* Teks Site Name */
-#layar-kosong-header::after {
-content: "dalam.web.id";
-font-size: 14px;
-font-weight: 600;
-color: #111;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
 /* Navigasi bawaan Mas Rijal */
 @media (max-width: 768px) {
 .floating-nav {
@@ -433,18 +386,13 @@ gap: 12px;
   flex: 0 0 75px;
   height: 55px;
 }
-#layar-kosong-header { top: 15px; left: 15px; height: 40px; }
-#layar-kosong-header::after { display: none; } /* Hanya logo di HP agar tidak sempit */
-#layar-kosong-header::before { margin-right: 0; }
 }
+/* =================== */
 @media (max-width: 600px) {
 #related-articles-grid {
 grid-template-columns: 1fr; /* Jadi satu kolom kalau di layar kecil */
 gap: 10px;
 }
-#layar-kosong-header { top: 15px; left: 15px; height: 40px; }
-#layar-kosong-header::after { display: none; } /* Hanya logo di HP agar tidak sempit */
-#layar-kosong-header::before { margin-right: 0; }
 .rel-img-mini {
   flex: 0 0 70px;
   height: 60px;
@@ -455,11 +403,38 @@ gap: 10px;
 .container { padding: 25px; margin: 80px auto 10px; }
   h1 { font-size: 1.8em; }
   .sticky-header .site-name { display: none; }
-}
-@media (max-width: 480px) {
-  #layar-kosong-header { top: 15px; left: 15px; height: 40px; }
-  #layar-kosong-header::after { display: none; } /* Hanya logo di HP agar tidak sempit */
-  #layar-kosong-header::before { margin-right: 0; }
+  /* Hilangkan teks pada Sticky Header */
+  #layar-kosong-header::after {
+  display: none;
+  }
+
+  /* Sesuaikan ukuran container header di HP */
+  #layar-kosong-header {
+  left: 10px;           /* Lebih mepet ke pinggir di layar kecil */
+  top: 15px;            /* Sedikit lebih naik biar hemat ruang */
+  padding: 0;           /* Hilangkan padding teks */
+  width: 44px;          /* Buat jadi persegi (sama dengan height) */
+  justify-content: center; /* Logo tepat di tengah */
+  border-radius: 50%;   /* Opsional: buat jadi bulat di HP */
+  }
+
+  /* Hilangkan margin kanan logo karena teks sudah tidak ada */
+  #layar-kosong-header::before {
+  margin-right: 0;
+  width: 26px;
+  height: 26px;
+  }
+
+  /* Sesuaikan juga Search Bar di HP agar seimbang */
+  .search-floating-container {
+    right: 10px;
+    top: 15px;
+    width: 150px;         /* Perkecil lebar search bar di HP */
+  }
+
+  .search-floating-container:focus-within {
+    width: 200px;         /* Lebar saat diklik di HP */
+  }
 }
 
 /* --- DARK MODE FIX --- */
