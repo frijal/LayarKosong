@@ -36,12 +36,13 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 /* --- (3) SEARCH INPUT & INTERACTION --- */
 #floatingSearchInput {
 width: 100%;
-height: 100%;
+height: 44px;
 padding: 10px 40px;
 font-size: 14px;
 border: 1px solid rgba(128, 128, 128, 0.3);
 border-radius: 25px;
 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+box-sizing: border-box;
 outline: none;
 background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
 backdrop-filter: blur(6px);
