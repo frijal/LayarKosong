@@ -3,8 +3,8 @@ import crypto from "crypto";
 import fetch from "node-fetch";
 
 /* =====================
-   Konfigurasi
-===================== */
+ K onfigurasi        *
+ ===================== */
 const ARTICLE_FILE = "artikel.json";
 const STATE_FILE = "mini/posted-mastodon.json";
 const LIMIT = 500;
@@ -19,30 +19,30 @@ if (!INSTANCE || !TOKEN) {
 }
 
 /* =====================
-   Util
-===================== */
+ U til               *
+ ===================== */
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 const cleanHashtag = (str) =>
-  "#" + str
-    .replace(/&/g, "dan")
-    .replace(/[^\w\s]/g, "")
-    .replace(/\s+/g, "");
+"#" + str
+.replace(/&/g, "dan")
+.replace(/[^\w\s]/g, "")
+.replace(/\s+/g, "");
 
 const hashUrl = (url) =>
-  crypto.createHash("sha256").update(url).digest("hex");
+crypto.createHash("sha256").update(url).digest("hex");
 
 /* =====================
-   Load State
-===================== */
+ L oad State         *
+ ===================== */
 let posted = [];
 if (fs.existsSync(STATE_FILE)) {
   posted = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
 }
 
 /* =====================
-   Load & Flatten Artikel
-===================== */
+ L oad & Flatten Arti*kel
+ ===================== */
 const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
 
 let articles = [];
@@ -53,25 +53,26 @@ for (const [category, items] of Object.entries(raw)) {
 
     articles.push({
       title,
+      // Pastikan slug bersih dari .html agar konsisten
       url: slug.startsWith("http")
-        ? slug
-        : `https://dalam.web.id/artikel/${slug}`,
-      image,
-      date: new Date(date),
-      desc: desc || "",
-      category
+      ? slug
+      : `https://dalam.web.id/artikel/${slug.replace('.html', '')}`,
+                  image,
+                  date: new Date(date),
+                  desc: desc || "",
+                  category
     });
   }
 }
 
 /* =====================
-   Sort Tertua → Terbaru
-===================== */
+ S ort Tertua → Terba*ru
+ ===================== */
 articles.sort((a, b) => a.date - b.date);
 
 /* =====================
-   Cari Artikel Belum Dipost
-===================== */
+ C ari Artikel Belum *Dipost
+ ===================== */
 const queue = articles.filter(a => {
   const h = hashUrl(a.url);
   return !posted.includes(h);
@@ -86,30 +87,33 @@ const article = queue[0];
 const urlHash = hashUrl(article.url);
 
 /* =====================
-   Hashtag
-===================== */
+ H ashtag            *
+ ===================== */
 const hashtags = new Set();
+
+/* Tag Wajib */
+hashtags.add("#LayarKosong");
+hashtags.add("#Repost");
 
 /* kategori */
 hashtags.add(cleanHashtag(article.category));
 
-/* judul → max 3 kata penting */
+/* judul → max 3 kata penting (untuk tambahan konteks hashtag) */
 article.title
-  .split(/\s+/)
-  .filter(w => w.length > 4)
-  .slice(0, 3)
-  .forEach(w => hashtags.add(cleanHashtag(w)));
+.split(/\s+/)
+.filter(w => w.length > 4)
+.slice(0, 3)
+.forEach(w => hashtags.add(cleanHashtag(w)));
 
 /* =====================
-   Status
-===================== */
-let status = `📝 ${article.title}
+ S tatus (Urutan: Des*kripsi -> Hashtag -> Link)
+ Tanpa Judul karena akan muncul di Link Preview
+ ===================== */
+let status = `${article.desc || "Archive."}
 
-${article.desc || "arsip Layar Kosong."}
+${[...hashtags].join(" ")}
 
-🔗 ${article.url}
-
-${[...hashtags].join(" ")}`;
+Baca selengkapnya: ${article.url}`;
 
 /* limit 500 */
 if (status.length > LIMIT) {
@@ -117,8 +121,8 @@ if (status.length > LIMIT) {
 }
 
 /* =====================
-   Post ke Mastodon
-===================== */
+ P ost ke Mastodon   *
+ ===================== */
 const res = await fetch(`https://${INSTANCE}/api/v1/statuses`, {
   method: "POST",
   headers: {
@@ -138,15 +142,15 @@ if (!res.ok) {
 }
 
 /* =====================
-   Simpan State
-===================== */
+ S impan State       *
+ ===================== */
 posted.push(urlHash);
 fs.mkdirSync("mini", { recursive: true });
 fs.writeFileSync(STATE_FILE, JSON.stringify(posted, null, 2));
 
-console.log("✅ Berhasil post:", article.url);
+console.log("✅ Berhasil post ke Mastodon:", article.url);
 
 /* =====================
-   Delay Aman
-===================== */
+ D elay Aman         *
+ ===================== */
 await sleep(DELAY_MS);

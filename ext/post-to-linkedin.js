@@ -5,7 +5,7 @@ const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-linkedin.txt';
 const BASE_URL = 'https://dalam.web.id/artikel/';
 
-// Fungsi untuk memberi jeda waktu (sama seperti di Threads)
+// Fungsi untuk memberi jeda waktu
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function postToLinkedIn() {
@@ -43,21 +43,20 @@ async function postToLinkedIn() {
     try {
         console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
         
-        // Memberi jeda 10 detik di awal (opsional, tapi bagus buat kestabilan)
-        console.log("⏳ Menunggu 10 detik agar sistem sinkron...");
+        // Jeda 10 detik agar environment GitHub Actions stabil
+        console.log("⏳ Menunggu 10 detik sebelum mengirim...");
         await delay(10000);
 
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            // Link ditaruh di dalam teks (commentary) agar LinkedIn men-generate lnkd.in
-            commentary: `📝 ${target.title}\n\n${target.desc}\n\nBaca selengkapnya: ${targetUrl}\n\n#repost #ngopi #article #indonesia`,
+            // URUTAN BARU: Deskripsi -> Hashtag -> Link di paling bawah
+            commentary: `${target.desc}\n\n#LayarKosong #Repost #Ngopi #Article\n\nBaca selengkapnya: ${targetUrl}`,
             visibility: 'PUBLIC',
             distribution: {
                 feedDistribution: 'MAIN_FEED',
                 targetEntities: [],
                 thirdPartyDistributionChannels: []
             },
-            // Kosongkan bagian content.article agar LinkedIn melakukan auto-crawling dari link di commentary
             lifecycleState: 'PUBLISHED'
         }, {
             headers: {
@@ -68,7 +67,7 @@ async function postToLinkedIn() {
         });
 
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ LinkedIn Berhasil diposting!`);
+        console.log(`✅ LinkedIn Berhasil diposting! Urutan: Desc -> Hashtag -> Link`);
         
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));

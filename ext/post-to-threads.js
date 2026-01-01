@@ -19,32 +19,38 @@ async function postToThreads() {
     let allPosts = [];
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
-            allPosts.push({ title: p[0], slug: p[1].replace('.html', ''), desc: p[4] });
+            allPosts.push({
+                title: p[0],
+                slug: p[1].replace('.html', ''),
+                          desc: p[4]
+            });
         });
     }
 
     allPosts.reverse();
 
-    let postedUrls = fs.existsSync(DATABASE_FILE) 
-        ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
-        : [];
+    let postedUrls = fs.existsSync(DATABASE_FILE)
+    ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
+    : [];
 
     let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
 
     if (!target) {
-        console.log("🏁 Semua artikel sudah terposting.");
+        console.log("🏁 Threads: Semua artikel sudah terposting.");
         return;
     }
 
     const targetUrl = `${BASE_URL}${target.slug}`;
 
     try {
-        console.log(`🚀 Membuat Media Container: ${target.title}`);
-        
-        // Step 1: Create Container (Gunakan hanya 1 hashtag sesuai temuanmu)
+        console.log(`🚀 Menyiapkan Threads: ${target.title}`);
+
+        // Step 1: Create Container
+        // Urutan: Deskripsi -> Hashtag.
+        // Judul dihapus karena otomatis muncul di Link Attachment (Link Card).
         const resContainer = await axios.post(`${API_BASE}/${THREADS_USER_ID}/threads`, {
             media_type: 'TEXT',
-            text: `📝 ${target.title}\n\n${target.desc}\n\n#repost`,
+            text: `${target.desc}\n\n#repost`,
             link_attachment: targetUrl,
             access_token: ACCESS_TOKEN
         });
@@ -65,7 +71,7 @@ async function postToThreads() {
         console.log(`✅ Berhasil diposting ke Threads!`);
     } catch (err) {
         const errorData = err.response?.data || err.message;
-        console.error('❌ Gagal:', JSON.stringify(errorData, null, 2));
+        console.error('❌ Threads Gagal:', JSON.stringify(errorData, null, 2));
         process.exit(1);
     }
 }
