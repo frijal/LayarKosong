@@ -71,7 +71,7 @@
         s.async = true;
         s.defer = true;
         s.crossOrigin = "anonymous";
-        s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=175216696195384";
+        s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=700179713164663";
         s.onload = () => callback && callback();
         d.body.appendChild(s);
     }
