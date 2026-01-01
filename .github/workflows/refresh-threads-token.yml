@@ -1,0 +1,43 @@
+name: Auto Refresh Threads Token
+
+on:
+  schedule:
+    - cron: '0 0 */50 * *' # Jalan otomatis setiap 50 hari
+  workflow_dispatch: # Bisa dijalankan manual untuk tes
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install axios
+        run: npm install axios
+
+      - name: Get New Token
+        id: refresh_token
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          # Jalankan script dan tangkap output tokennya
+          NEW_TOKEN=$(node -e "
+            import axios from 'axios';
+            const res = await axios.get('https://graph.threads.net/refresh_access_token', {
+                params: { grant_type: 'th_refresh_token', access_token: process.env.THREADS_ACCESS_TOKEN }
+            });
+            console.log(res.data.access_token);
+          ")
+          echo "NEW_THREADS_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
+
+      - name: Update GitHub Secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }} # Kamu butuh Personal Access Token (PAT) untuk ini
+        run: |
+          # Menggunakan GitHub CLI untuk update secret secara otomatis
+          gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN"
