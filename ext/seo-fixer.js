@@ -99,26 +99,29 @@ async function fixSEO() {
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
 
     // Open Graph
+    head.append(`\n    <meta name="author" content="Fakhrul Rijal" />`);
+    head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage" />`);
+    head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
+    head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
+    head.append(`\n    <meta property="og:locale" content="id_ID" />`);
+    head.append(`\n    <meta property="og:site_name" content="Layar Kosong" />`);
+    head.append(`\n    <meta property="og:title" content="${articleTitle}" />`);
     head.append(`\n    <meta property="og:type" content="article" />`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
-    head.append(`\n    <meta property="og:title" content="${articleTitle}" />`);
-    head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
-    head.append(`\n    <meta property="og:site_name" content="Layar Kosong" />`);
-    head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
 
     // Twitter Card
     head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
-    head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
-    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
     head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
+    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
+    head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
 
     // Images & OG:Image:Alt
     if (twitterImg) {
+      head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
+      head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
       head.append(`\n    <meta property="og:image" content="${twitterImg}" />`);
       head.append(`\n    <meta property="og:image:alt" content="${articleTitle}" />`);
-      head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
-      head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
     }
     head.append(`\n`);
 
