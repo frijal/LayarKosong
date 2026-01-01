@@ -110,9 +110,7 @@ jobs:
           git config --global user.name "Layar Kosong Bot"
           git config --global user.email "bot@dalam.web.id"
           
-          git add mini/*.txt \
-                  mini/posted-mastodon.json \                  
-                  llms.txt llms.md llms-index.html || true
+          git add mini/*.txt mini/posted-mastodon.json llms.txt llms.md llms-index.html || true
           
           if git diff --staged --quiet; then
             echo "ℹ️ Tidak ada perubahan data."
