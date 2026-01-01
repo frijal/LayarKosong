@@ -2,6 +2,40 @@
    FILE: /ext/marquee-url.css
    Versi Final — Marquee, Floating Search & Floating Nav */
 /*========================================================== */
+:root {
+  /* Warna identitas baru Layar Kosong */
+  --accent: #00b0ed;
+  /* Warna aksen kedua untuk gradasi (bisa tetap pakai warna lama atau sesuaikan) */
+  --accent-2: #ffd37a;
+}
+/* ======================== */
+#progress {
+position: fixed;
+top: 0;
+left: 0;
+height: 4px; /* Sedikit lebih tebal biar gradasinya kelihatan */
+width: 0%;
+/* Pakai linear-gradient biar tetap estetik seperti sebelumnya */
+background: linear-gradient(90deg, var(--accent), var(--accent-2));
+z-index: 10000;
+transition: width 0.15s ease-out;
+pointer-events: none;
+}
+
+/* Biar makin cakep, kita kasih efek cahaya di ujung bar-nya */
+#progress::after {
+content: '';
+position: absolute;
+top: 0;
+right: 0;
+width: 15px;
+height: 100%;
+background: var(--accent-2);
+box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
+}
+
+/* =================== */
+
 /* --- (1) SHARED FLOATING STYLE (Main) --- */
 .search-floating-container,
 #layar-kosong-header {
