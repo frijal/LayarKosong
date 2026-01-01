@@ -29,7 +29,7 @@ jobs:
       - name: 📦 Install Dependencies
         run: |
           npm install
-          sudo apt-get install jq -y
+          sudo apt-get install axios jq -y
 
       # =========================================================
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
@@ -48,10 +48,7 @@ jobs:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
 
-      - name: Install axios
-        run: npm install axios
-
-      - name: Run Threads Post Script
+      - name: ⚙️ 3. Run Threads Post Script
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
