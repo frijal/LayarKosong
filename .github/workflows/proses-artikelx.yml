@@ -74,11 +74,11 @@ jobs:
             if ! grep -q 'marquee-url.css' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="fediverse:creator" content="@frijal@mastodon.social">' "$file"
             fi      
-            if ! grep -q 'id="layar-kosong-header"' "$file"; then
-              sed -i '/<\/h1>/a <a id="layar-kosong-header" href="https://dalam.web.id/"></a><div id="iposbrowser"></div>' "$file"
+            if ! grep -q 'id="iposbrowser"' "$file"; then
+              sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
             fi      
             if ! grep -q 'class="search-floating-container"' "$file"; then
-              sed -i '/<\/body>/i <div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>' "$file"
+              sed -i '/<\/body>/i <a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>' "$file"
             fi      
             if ! grep -q 'id="related-marquee-section"' "$file"; then
               sed -i '/<\/body>/i <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>' "$file"
