@@ -357,37 +357,41 @@ margin: 30px 0;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 18px 0 10px; /* Padding kanan lebih besar biar text nggak mepet */
-  height: 44px; /* Samakan dengan search bar */
+  padding: 0 18px 0 12px;
+  height: 44px; /* Sesuai dengan floatingSearchInput */
   text-decoration: none;
+  box-sizing: border-box;
 
-  /* Desain Border & Glassmorphism (Mirip Search Bar) */
+  /* Glassmorphism & Border (Identik dengan Search Bar) */
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(128, 128, 128, 0.3);
   border-radius: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
-  transition: all 0.3s ease-in-out;
+  /* Animasi halus */
+  transition: border-color 0.3s, background-color 0.3s, transform 0.3s;
 }
 
 .sticky-header:hover {
-  border-color: #00b0ed; /* Warna khas Layar Kosong saat hover */
+  border-color: #00b0ed; /* Warna khas Layar Kosong */
   background-color: rgba(255, 255, 255, 0.95);
   transform: translateY(-1px);
 }
 
 .sticky-header svg {
-  width: 24px;
-  height: 24px;
+  width: 26px; /* Sedikit lebih besar agar proporsional dengan height 44px */
+  height: 26px;
   flex-shrink: 0;
+  display: block;
 }
 
 .sticky-header .site-name {
   font-size: 14px;
   font-weight: 600;
   color: #111;
-  font-family: sans-serif; /* Sesuaikan dengan font blogmu */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.2px;
 }
 
 /* Navigasi bawaan Mas Rijal */
@@ -444,12 +448,12 @@ gap: 10px;
 }
 @media (max-width: 480px) {
   .sticky-header {
-    top: 10px;
-    left: 10px;
-    padding: 0 12px 0 8px;
+    top: 15px;
+    left: 15px;
+    padding: 0 12px;
   }
   .sticky-header .site-name {
-    display: none; /* Di HP tampilkan logonya saja biar minimalis */
+    display: none; /* Hanya logo untuk hemat ruang di HP */
   }
 }
 
