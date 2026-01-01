@@ -1,9 +1,9 @@
-name: Auto Refresh Threads Token
+name: Threads Token Auto Refresh
 
 on:
   schedule:
-    - cron: '0 0 */50 * *' # Jalan otomatis setiap 50 hari
-  workflow_dispatch: # Bisa dijalankan manual untuk tes
+    - cron: '0 0 */50 * *' # Otomatis tiap 50 hari
+  workflow_dispatch: # Bisa klik manual dari tab Actions
 
 jobs:
   refresh:
@@ -25,19 +25,15 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
         run: |
-          # Jalankan script dan tangkap output tokennya
-          NEW_TOKEN=$(node -e "
-            import axios from 'axios';
-            const res = await axios.get('https://graph.threads.net/refresh_access_token', {
-                params: { grant_type: 'th_refresh_token', access_token: process.env.THREADS_ACCESS_TOKEN }
-            });
-            console.log(res.data.access_token);
-          ")
+          # Jalankan script yang ada di folder ext/
+          # Kita simpan outputnya ke environment variable GitHub
+          NEW_TOKEN=$(node ext/refresh-threads-token.js)
           echo "NEW_THREADS_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
 
       - name: Update GitHub Secret
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }} # Kamu butuh Personal Access Token (PAT) untuk ini
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          # Menggunakan GitHub CLI untuk update secret secara otomatis
-          gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN"
+          # Update secret THREADS_ACCESS_TOKEN dengan token baru
+          # Menggunakan flag --repo agar spesifik ke repo Layar Kosong
+          gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN" --repo ${{ github.repository }}
