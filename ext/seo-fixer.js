@@ -77,18 +77,52 @@ async function fixSEO() {
     const $ = load(rawContent, { decodeEntities: false });
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
 
+    // Ambil deskripsi dari meta description yang sudah ada, atau ambil cuplikan paragraf pertama
+    let siteDescription = $('meta[name="description"]').attr('content') ||
+    $('p').first().text().substring(0, 160).trim() ||
+    "Artikel terbaru dari Layar Kosong.";
+
     // 1. Tambahkan alt pada img jika kosong
     $('img').each((_, el) => {
       if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
     });
 
-      // 2. Sinkronisasi Meta Image (OG dan Itemprop mengikuti Twitter Image yang sudah ter-swap linknya)
-      const twitterImg = $('meta[name="twitter:image"]').attr('content');
-      if (twitterImg) {
-        $('meta[property="og:image"]').attr('content', twitterImg);
-        $('meta[itemprop="image"]').attr('content', twitterImg);
+      // 2. SINKRONISASI & PENAMBAHAN META TAGS (OG, FB, Twitter)
+      const head = $('head');
+
+      // Cek og:type (biasanya 'article' untuk postingan blog)
+      if (!$('meta[property="og:type"]').length) {
+        head.append('<meta property="og:type" content="article" />');
       }
 
+      // Cek og:description
+      if (!$('meta[property="og:description"]').length) {
+        head.append(`<meta property="og:description" content="${siteDescription}" />`);
+      }
+
+      // Cek fb:app_id (Pakai ID kamu: 175216696195384)
+      if (!$('meta[property="fb:app_id"]').length) {
+        head.append('<meta property="fb:app_id" content="175216696195384" />');
+      }
+
+      // 3. Sinkronisasi Meta Image (OG dan Itemprop mengikuti Twitter Image)
+      const twitterImg = $('meta[name="twitter:image"]').attr('content');
+      if (twitterImg) {
+        // Update jika sudah ada, atau buat baru jika belum ada
+        if ($('meta[property="og:image"]').length) {
+          $('meta[property="og:image"]').attr('content', twitterImg);
+        } else {
+          head.append(`<meta property="og:image" content="${twitterImg}" />`);
+        }
+
+        if ($('meta[itemprop="image"]').length) {
+          $('meta[itemprop="image"]').attr('content', twitterImg);
+        } else {
+          head.append(`<meta itemprop="image" content="${twitterImg}" />`);
+        }
+      }
+
+      // Simpan hasil perubahan
       fs.writeFileSync(file, $.html(), 'utf8');
   }
   console.log('\n✅ SEO Fixer: Mirroring dan perbaikan Meta selesai!');
