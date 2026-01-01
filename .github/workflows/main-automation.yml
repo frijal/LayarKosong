@@ -86,7 +86,7 @@ jobs:
             -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
           
           if [ -f temp_new_url.txt ]; then
-            cat temp_new_url.txt >> mini/facebook-posted.txt
+            cat temp_new_url.txt >> mini/posted-facebook.txt
           fi
 
       # =========================================================
@@ -98,8 +98,8 @@ jobs:
           git config --global user.name "Layar Kosong Bot"
           git config --global user.email "bot@dalam.web.id"
           
-          git add mini/facebook-posted.txt \
-                  mini/mastodon-posted.json \
+          git add mini/posted-facebook.txt \
+                  mini/posted-mastodon.json \
                   mini/indexnow-cache.txt \
                   llms.txt llms.md llms-index.html || true
           
