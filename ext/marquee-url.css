@@ -2,7 +2,31 @@
    FILE: /ext/marquee-url.css
    Versi Final — Marquee, Floating Search & Floating Nav
    ========================================================== */
+:root {
+  --accent-color: #00b0ed;
+}
+/* 2. Global Link Styling dengan Filter */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block; /* Biar efek scale di a:active bekerja maksimal */
+}
 
+a:link, a:visited {
+  color: var(--accent-color);
+}
+
+a:hover {
+  filter: brightness(1.15); /* 15% lebih terang saat kursor di atasnya */
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+a:active {
+  filter: brightness(0.85); /* 15% lebih gelap saat diklik */
+  transform: scale(0.96);    /* Efek membal sedikit pas ditekan */
+}
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
   position: fixed;
@@ -322,6 +346,43 @@ margin: 30px 0;
   transform: scale(1.1);
 }
 
+/* --- Global Sticky Header Style --- */
+.sticky-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card-bg, #ffffff);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color, #dddddd);
+  text-decoration: none !important; /* Paksa hilangin garis bawah */
+  transition: all 0.2s ease;
+}
+
+.sticky-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  text-decoration: none !important;
+  filter: brightness(1.05);
+}
+
+.sticky-header img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.sticky-header .site-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-color, #333);
+}
 /* Navigasi bawaan Mas Rijal */
 @media (max-width: 768px) {
 .floating-nav {
@@ -366,6 +427,9 @@ gap: 10px;
 .rel-img-mini {
   flex: 0 0 70px;
   height: 60px;
+}
+.sticky-header .site-name {
+  display: none;
 }
 }
 
@@ -415,3 +479,8 @@ gap: 10px;
     font-size: 14px;
   }
 }
+
+
+
+===================
+
