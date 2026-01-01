@@ -48,6 +48,15 @@ jobs:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
 
+      - name: Install axios
+        run: npm install axios
+
+      - name: Run Threads Post Script
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        run: node ext/post-to-threads.js
+
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON SCRIPTS (.py)
       # =========================================================
@@ -100,6 +109,7 @@ jobs:
           
           git add mini/posted-facebook.txt \
                   mini/posted-mastodon.json \
+                  mini/posted-threads.txt \
                   mini/indexnow-cache.txt \
                   llms.txt llms.md llms-index.html || true
           
