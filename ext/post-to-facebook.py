@@ -5,7 +5,7 @@ import sys
 
 # Konfigurasi Path & URL
 JSON_FILE = 'artikel.json'
-DATABASE_FILE = 'mini/facebook-posted.txt'
+DATABASE_FILE = 'mini/posted-facebook.txt'
 BASE_URL = 'https://dalam.web.id/artikel/'
 
 def main():
