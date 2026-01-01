@@ -2,31 +2,19 @@
    FILE: /ext/marquee-url.css
    Versi Final — Marquee, Floating Search & Floating Nav
    ========================================================== */
-:root {
-  --accent-color: #00b0ed;
-}
-/* 2. Global Link Styling dengan Filter */
 a {
   color: var(--accent-color);
   text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-block; /* Biar efek scale di a:active bekerja maksimal */
+  transition: all 0.2s ease;
 }
-
-a:link, a:visited {
-  color: var(--accent-color);
+a:hover { opacity: 0.8; text-decoration: underline; }
+@media (max-width: 600px) {
+  .container { padding: 25px; margin: 80px auto 10px; }
+  h1 { font-size: 1.8em; }
+  .sticky-header .site-name { display: none; }
 }
-
-a:hover {
-  filter: brightness(1.15); /* 15% lebih terang saat kursor di atasnya */
-  text-decoration: underline;
-  opacity: 0.9;
-}
-
-a:active {
-  filter: brightness(0.85); /* 15% lebih gelap saat diklik */
-  transform: scale(0.96);    /* Efek membal sedikit pas ditekan */
-}
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
   position: fixed;
