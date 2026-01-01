@@ -45,6 +45,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 }
 
 async function fixSEO() {
+  // Folder input (artikelx, draft, dll)
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
@@ -73,10 +74,10 @@ async function fixSEO() {
     const $ = load(rawContent, { decodeEntities: false });
     const head = $('head');
 
-    // --- 3. LOGIKA URL BERSIH (TANPA .HTML) ---
+    // --- 3. LOGIKA DATA SEO ---
     const fileName = path.basename(file);
     const cleanFileName = fileName.replace('.html', '');
-    // Pakai folder /artikel/ sesuai tujuan akhir publikasi
+    // URL absolut publik tanpa .html
     const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`;
 
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
@@ -87,7 +88,6 @@ async function fixSEO() {
     const twitterImg = $('meta[name="twitter:image"]').attr('content') || '';
 
     // --- 4. BERSIHKAN SEMUA TAG LAMA (CLEAN SLATE) ---
-    // Hapus semua meta social dan canonical lama agar urutannya bisa kita atur ulang
     $('link[rel="canonical"]').remove();
     $('meta[property^="og:"]').remove();
     $('meta[name^="twitter:"]').remove();
@@ -113,15 +113,16 @@ async function fixSEO() {
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
     head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
 
-    // Images
+    // Images & OG:Image:Alt
     if (twitterImg) {
       head.append(`\n    <meta property="og:image" content="${twitterImg}" />`);
+      head.append(`\n    <meta property="og:image:alt" content="${articleTitle}" />`);
       head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
       head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
     }
     head.append(`\n`);
 
-    // --- 6. FIX ALT TEXT GAMBAR ---
+    // --- 6. FIX ALT TEXT GAMBAR DI BODY ---
     $('img').each((_, el) => {
       if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
     });
@@ -129,7 +130,7 @@ async function fixSEO() {
       // --- 7. SIMPAN HASIL ---
       fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: URL dibersihkan, Twitter Meta ditambahkan, dan Meta Tags dirapikan!');
+  console.log('\n✅ SEO Fixer: Selesai! URL bersih, Meta rapi, dan og:image:alt terpasang.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
