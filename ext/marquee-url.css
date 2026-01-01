@@ -27,11 +27,6 @@ a {
   transition: all 0.2s ease;
 }
 a:hover { opacity: 0.8; text-decoration: underline; }
-@media (max-width: 600px) {
-  .container { padding: 25px; margin: 80px auto 10px; }
-  h1 { font-size: 1.8em; }
-  .sticky-header .site-name { display: none; }
-}
 a:link, a:visited, a:hover, a:active {
   text-decoration: none; }
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
@@ -353,45 +348,48 @@ margin: 30px 0;
   transform: scale(1.1);
 }
 
-/* --- Global Sticky Header Style --- */
+/* --- STICKY HEADER LAYAR KOSONG --- */
 .sticky-header {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1000;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  background: var(--card-bg);
-  padding: 0.5rem 0.75rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-color);
-  text-decoration: none !important; /* Paksa hilangin garis bawah */
-  transition: all 0.2s ease;
+  gap: 10px;
+  padding: 0 18px 0 10px; /* Padding kanan lebih besar biar text nggak mepet */
+  height: 44px; /* Samakan dengan search bar */
+  text-decoration: none;
+
+  /* Desain Border & Glassmorphism (Mirip Search Bar) */
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.3s ease-in-out;
 }
 
 .sticky-header:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  text-decoration: none !important;
-  filter: brightness(1.05);
+  border-color: #00b0ed; /* Warna khas Layar Kosong saat hover */
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
 }
 
-.sticky-header img {
-  width: 32px;
-  height: 32px;
-  display: block;
+.sticky-header svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 .sticky-header .site-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-color, #333);
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  font-family: sans-serif; /* Sesuaikan dengan font blogmu */
 }
 
-.site-name { font-weight: 700; font-size: 1.1rem; color: var(--text-color); }
 /* Navigasi bawaan Mas Rijal */
 @media (max-width: 768px) {
 .floating-nav {
@@ -440,8 +438,20 @@ gap: 10px;
 .sticky-header .site-name {
   display: none;
 }
+.container { padding: 25px; margin: 80px auto 10px; }
+  h1 { font-size: 1.8em; }
+  .sticky-header .site-name { display: none; }
 }
-
+@media (max-width: 480px) {
+  .sticky-header {
+    top: 10px;
+    left: 10px;
+    padding: 0 12px 0 8px;
+  }
+  .sticky-header .site-name {
+    display: none; /* Di HP tampilkan logonya saja biar minimalis */
+  }
+}
 
 /* --- DARK MODE FIX --- */
 @media (prefers-color-scheme: dark) {
@@ -488,8 +498,3 @@ gap: 10px;
     font-size: 14px;
   }
 }
-
-
-
-===================
-
