@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilihan Terbaik Memasang Firefox di Debian — ESR vs Flatpak</title>
     <meta name="description" content="Diskusi komunitas mengenai cara terbaik menginstal dan memperbarui Firefox di Debian: memilih antara stabilitas Firefox ESR dari repositori resmi atau fitur terbaru dari Flatpak/Mozilla.">
+    
     <meta name="keywords" content="Firefox, Debian, ESR, Flatpak, APT, Repositori, Linux, Browser, Stabilitas, Keamanan, LibreWolf, Waterfox">
     <meta name="author" content="Frijal Community">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23FF7139' d='M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.89 1.7a.8.8 0 0 1-.09-.37.8.8 0 0 1 .46-.86c.15.06.31.06.46 0a.8.8 0 0 1 .46.86c-.15.06-.31.06-.46 0a.8.8 0 0 1-.46-.86zM8 3c-1.88 0-3.5 1.05-4.32 2.6a4.8 4.8 0 0 0-.28 1.4c0 2.5 1.77 4.5 4 4.5s4-2 4-4.5a4.8 4.8 0 0 0-.28-1.4A4.8 4.8 0 0 0 8 3zm0 1.25c1.1 0 2 1.34 2 3s-.9 3-2 3c-1.1 0-2-1.34-2-3s.9-3 2-3z'/%3E%3C/svg%3E" type="image/svg+xml">
@@ -119,11 +120,20 @@
             }
         }
     </style>
+  
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:published_time" content="2025-11-05T08:15:04.134+00:00">
 <meta name="ai:summary" content="Diskusi komunitas mengenai cara terbaik menginstal dan memperbarui Firefox di Debian: memilih antara stabilitas Firefox ESR dari repositori resmi atau fitur terbaru dari Flatpak/Mozilla.">
 <meta name="ai:prompt_hint" content="Diskusi komunitas mengenai cara terbaik menginstal dan memperbarui Firefox di Debian: memilih antara stabilitas Firefox ESR dari repositori resmi atau fitur terbaru dari Flatpak/Mozilla.">
+
+
+
+  
+  
+
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dalam.web.id/artikel/firefox-esr-debian-repos.html#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/firefox-esr-debian-repos.html"},"headline":"Pilihan Terbaik Memasang Firefox di Debian — ESR vs Flatpak","description":"Diskusi komunitas mengenai cara terbaik menginstal dan memperbarui Firefox di Debian: memilih antara stabilitas Firefox ESR dari repositori resmi atau fitur terbaru dari Flatpak/Mozilla.","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLI7Gdth2sLPCZttMFAh-eK08UIElQXpM1kk-AqO-1WyMH8L_YQCQqJk-V-wN117N4x2AhBB_17FmIj-rbELRzjrluOFJSNx8nnh0eic7WgH9UKAZU79PHwW8OcKGqkbr3LnxMz6aYKWFl6j9QTpT1KM-teLVGrGL2TcMeSzP1-89DPeW2jiP4OwrkL4g/s1600/1firefox-esr.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal"},"publisher":{"@type":"Organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}},"datePublished":"2025-11-05T08:15:04.134+00:00","dateModified":"2025-12-30"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/artikel/-/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Pilihan Terbaik Memasang Firefox di Debian — ESR vs Flatpak","item":"https://dalam.web.id/artikel/firefox-esr-debian-repos.html"}]}]}</script>
+
+    
     <link rel="canonical" href="https://dalam.web.id/artikel/firefox-esr-debian-repos">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikel/firefox-esr-debian-repos">
@@ -137,6 +147,7 @@
     <meta name="twitter:description" content="Diskusi komunitas mengenai cara terbaik menginstal dan memperbarui Firefox di Debian: memilih antara stabilitas Firefox ESR dari repositori resmi atau fitur terbaru dari Flatpak/Mozilla.">
     <meta name="twitter:site" content="@frijal">
     <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLI7Gdth2sLPCZttMFAh-eK08UIElQXpM1kk-AqO-1WyMH8L_YQCQqJk-V-wN117N4x2AhBB_17FmIj-rbELRzjrluOFJSNx8nnh0eic7WgH9UKAZU79PHwW8OcKGqkbr3LnxMz6aYKWFl6j9QTpT1KM-teLVGrGL2TcMeSzP1-89DPeW2jiP4OwrkL4g/s1600/1firefox-esr.webp">
+    <meta property="og:image:alt" content="Pilihan Terbaik Memasang Firefox di Debian — ESR vs Flatpak">
     <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLI7Gdth2sLPCZttMFAh-eK08UIElQXpM1kk-AqO-1WyMH8L_YQCQqJk-V-wN117N4x2AhBB_17FmIj-rbELRzjrluOFJSNx8nnh0eic7WgH9UKAZU79PHwW8OcKGqkbr3LnxMz6aYKWFl6j9QTpT1KM-teLVGrGL2TcMeSzP1-89DPeW2jiP4OwrkL4g/s1600/1firefox-esr.webp">
     <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLI7Gdth2sLPCZttMFAh-eK08UIElQXpM1kk-AqO-1WyMH8L_YQCQqJk-V-wN117N4x2AhBB_17FmIj-rbELRzjrluOFJSNx8nnh0eic7WgH9UKAZU79PHwW8OcKGqkbr3LnxMz6aYKWFl6j9QTpT1KM-teLVGrGL2TcMeSzP1-89DPeW2jiP4OwrkL4g/s1600/1firefox-esr.webp">
 </head>
