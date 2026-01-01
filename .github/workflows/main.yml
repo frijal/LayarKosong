@@ -1,0 +1,38 @@
+name: LinkedIn Token Auto Refresh
+
+on:
+  schedule:
+    - cron: '0 0 */50 * *' # Jalan tiap 50 hari
+  workflow_dispatch:
+
+jobs:
+  refresh-linkedin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install axios
+        run: npm install axios
+
+      - name: Get New LinkedIn Token
+        id: get_token
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+        run: |
+          NEW_TOKEN=$(node ext/refresh-linkedin-token.js)
+          echo "NEW_LI_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
+
+      - name: Update GitHub Secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set LINKEDIN_ACCESS_TOKEN --body "$NEW_LI_TOKEN" --repo ${{ github.repository }}
