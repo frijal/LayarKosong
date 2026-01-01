@@ -10,7 +10,6 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const url = new URL(externalUrl);
     const baseHostname = new URL(baseUrl).hostname;
 
-    // --- 1. JANGAN DOWNLOAD JIKA SUDAH DOMAIN SENDIRI ---
     if (url.hostname === baseHostname || url.hostname === 'localhost') {
       return externalUrl.replace(baseUrl, '');
     }
@@ -22,7 +21,6 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
-    // --- 2. PROTEKSI: JANGAN DOWNLOAD ULANG JIKA FILE SUDAH ADA ---
     if (fs.existsSync(localPath)) {
       return `/${localPath.replace(/\\/g, '/')}`;
     }
@@ -51,7 +49,6 @@ async function fixSEO() {
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
 
-  // Regex: Cari URL gambar luar, abaikan domain sendiri & schema.org
   const imgUrlRegex = /https?:\/\/(?!dalam\.web\.id|schema\.org)[^\s"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
 
   for (const file of files) {
@@ -59,13 +56,12 @@ async function fixSEO() {
     const baseName = path.basename(file);
     console.log(`\n🔍 Memproses: ${baseName}`);
 
-    // --- STRATEGI SCAN & SWAP (Ganti semua URL luar ke lokal) ---
+    // --- 1. SCAN & SWAP URL GAMBAR ---
     const matches = rawContent.match(imgUrlRegex);
     if (matches) {
       const uniqueUrls = [...new Set(matches)];
       for (const extUrl of uniqueUrls) {
         const localPath = await mirrorAndConvert(extUrl, baseUrl);
-
         if (localPath.startsWith('/')) {
           const newLocalUrl = `${baseUrl}${localPath}`;
           rawContent = rawContent.split(extUrl).join(newLocalUrl);
@@ -73,59 +69,57 @@ async function fixSEO() {
       }
     }
 
-    // --- PERAPIHAN STRUKTURAL DENGAN CHEERIO ---
+    // --- 2. LOAD KE CHEERIO ---
     const $ = load(rawContent, { decodeEntities: false });
-    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
+    const head = $('head');
 
-    // Ambil deskripsi dari meta description yang sudah ada, atau ambil cuplikan paragraf pertama
+    // Ambil data dasar sebelum tag lama dihapus
+    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
+    const fileName = path.basename(file);
+    const canonicalUrl = `${baseUrl}/${targetFolder}/${fileName}`;
+
+    // Cari deskripsi: dari meta lama, atau paragraf pertama
     let siteDescription = $('meta[name="description"]').attr('content') ||
     $('p').first().text().substring(0, 160).trim() ||
     "Artikel terbaru dari Layar Kosong.";
 
-    // 1. Tambahkan alt pada img jika kosong
+    // Ambil URL gambar dari twitter:image yang sudah ter-swap linknya
+    const twitterImg = $('meta[name="twitter:image"]').attr('content') || '';
+
+    // --- 3. BERSIHKAN SEMUA META LAMA (Agar tidak duplikat & berantakan) ---
+    $('meta[property^="og:"], meta[name^="twitter:"], meta[name="fb:app_id"], meta[property="fb:app_id"], link[rel="canonical"], meta[itemprop="image"]').remove();
+
+    // --- 4. SUNTIK ULANG DENGAN URUTAN RAPI ---
+    head.append(`\n    `);
+    head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
+    head.append(`\n    <meta property="og:type" content="article" />`);
+    head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
+    head.append(`\n    <meta property="og:title" content="${articleTitle}" />`);
+    head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
+    head.append(`\n    <meta property="og:site_name" content="Layar Kosong" />`);
+    head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
+
+    if (twitterImg) {
+      head.append(`\n    <meta property="og:image" content="${twitterImg}" />`);
+      head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
+      head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
+    }
+
+    head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
+    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
+    head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
+    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
+    head.append(`\n`); // Memberi jarak rapi sebelum tag berikutnya
+
+    // --- 5. FIX ALT TEXT GAMBAR ---
     $('img').each((_, el) => {
       if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
     });
 
-      // 2. SINKRONISASI & PENAMBAHAN META TAGS (OG, FB, Twitter)
-      const head = $('head');
-
-      // Cek og:type (biasanya 'article' untuk postingan blog)
-      if (!$('meta[property="og:type"]').length) {
-        head.append('<meta property="og:type" content="article" />');
-      }
-
-      // Cek og:description
-      if (!$('meta[property="og:description"]').length) {
-        head.append(`<meta property="og:description" content="${siteDescription}" />`);
-      }
-
-      // Cek fb:app_id (Pakai ID kamu: 175216696195384)
-      if (!$('meta[property="fb:app_id"]').length) {
-        head.append('<meta property="fb:app_id" content="175216696195384" />');
-      }
-
-      // 3. Sinkronisasi Meta Image (OG dan Itemprop mengikuti Twitter Image)
-      const twitterImg = $('meta[name="twitter:image"]').attr('content');
-      if (twitterImg) {
-        // Update jika sudah ada, atau buat baru jika belum ada
-        if ($('meta[property="og:image"]').length) {
-          $('meta[property="og:image"]').attr('content', twitterImg);
-        } else {
-          head.append(`<meta property="og:image" content="${twitterImg}" />`);
-        }
-
-        if ($('meta[itemprop="image"]').length) {
-          $('meta[itemprop="image"]').attr('content', twitterImg);
-        } else {
-          head.append(`<meta itemprop="image" content="${twitterImg}" />`);
-        }
-      }
-
-      // Simpan hasil perubahan
+      // --- 6. SIMPAN HASIL ---
       fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Mirroring dan perbaikan Meta selesai!');
+  console.log('\n✅ SEO Fixer: Mirroring, Canonical, FB App ID, dan Perapihan Meta SELESAI!');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
