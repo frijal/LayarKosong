@@ -91,6 +91,7 @@ async function fixSEO() {
     $('link[rel="canonical"]').remove();
     $('meta[property^="og:"]').remove();
     $('meta[name^="twitter:"]').remove();
+    $('meta[name^="author:"]').remove();
     $('meta[name="fb:app_id"], meta[property="fb:app_id"]').remove();
     $('meta[itemprop="image"]').remove();
 
