@@ -70,7 +70,6 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          mkdir -p mini
           touch mini/indexnow-cache.txt
           # Pakai || true supaya jika tidak ada perbedaan, workflow tidak stop
           grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
