@@ -284,7 +284,7 @@
         }
 
         // Susun pesan sesuai permintaan user
-        const pesan = `Halo! Saya baru saja menghitung estimasi tagihan listrik di Layar Kosong.%0A%0A⚡ *HASIL HITUNG LISTRIK 2026*%0A---------------------------%0A🏠 *Golongan:*%0A${golonganNama}%0A%0A📋 *Rincian Alat:*%0A${resultState.list}---------------------------%0A💰 *Estimasi Tagihan:*%0A*${totalHarga}/Bulan*%0A%0ACek sendiri juga disini: https://dalam.web.id/artikel/kalkulator-listrik/`;
+        const pesan = `Halo! Saya baru saja menghitung estimasi tagihan listrik di Layar Kosong.%0A%0A⚡ *HASIL HITUNG LISTRIK 2026*%0A---------------------------%0A🏠 *Golongan:*%0A${golonganNama}%0A%0A📋 *Rincian Alat:*%0A${resultState.list}---------------------------%0A💰 *Estimasi Tagihan:*%0A*${totalHarga}/Bulan*%0A%0ACek sendiri juga disini: https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026/`;
 
         window.open(`https://api.whatsapp.com/send?text=${pesan}`, '_blank');
     }
