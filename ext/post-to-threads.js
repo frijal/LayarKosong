@@ -17,22 +17,30 @@ async function postToThreads() {
 
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
+
+    // --- LOGIKA PENGUMPULAN DATA ---
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
+            // p[0]: judul, p[1]: slug, p[2]: image, p[3]: ISO Date, p[4]: desc
             allPosts.push({
                 title: p[0],
-                slug: p[1].replace('.html', ''),
-                          desc: p[4]
+                slug: p[1].replace('.html', '').replace(/^\//, ''),
+                date: p[3], // ISO 8601 String untuk sorting presisi
+                desc: p[4] || "",
+                category: cat
             });
         });
     }
 
-    allPosts.reverse();
+    // --- SORTING AKURAT (Terbaru di Paling Atas) ---
+    // Membandingkan string ISO secara alfabetis (descending)
+    allPosts.sort((a, b) => b.date.localeCompare(a.date));
 
     let postedUrls = fs.existsSync(DATABASE_FILE)
-    ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
-    : [];
+        ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
+        : [];
 
+    // Mencari artikel terbaru yang belum tercatat di database txt
     let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
 
     if (!target) {
@@ -43,14 +51,13 @@ async function postToThreads() {
     const targetUrl = `${BASE_URL}${target.slug}`;
 
     try {
-        console.log(`🚀 Menyiapkan Threads: ${target.title}`);
+        console.log(`🚀 Menyiapkan Threads: ${target.title} (${target.date})`);
 
         // Step 1: Create Container
-        // Urutan: Deskripsi -> Hashtag.
-        // Judul dihapus karena otomatis muncul di Link Attachment (Link Card).
+        // Format: Deskripsi -> Link Attachment (Judul otomatis muncul dari Metadata Link)
         const resContainer = await axios.post(`${API_BASE}/${THREADS_USER_ID}/threads`, {
             media_type: 'TEXT',
-            text: `${target.desc}\n\n#repost`,
+            text: `${target.desc}\n\n#Repost #Ngopi #Indonesia #fediverse`,
             link_attachment: targetUrl,
             access_token: ACCESS_TOKEN
         });
@@ -58,7 +65,7 @@ async function postToThreads() {
         const creationId = resContainer.data.id;
         console.log(`📦 Container ID: ${creationId}. Menunggu 10 detik agar server Threads siap...`);
 
-        // Jeda 10 detik agar tidak terkena error "Media Not Found"
+        // Jeda 10 detik agar tidak terkena error "Media Not Found" saat publish
         await delay(10000);
 
         // Step 2: Publish
@@ -67,8 +74,11 @@ async function postToThreads() {
             access_token: ACCESS_TOKEN
         });
 
+        // Simpan ke database plain text
+        if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ Berhasil diposting ke Threads!`);
+        
+        console.log(`✅ Berhasil diposting ke Threads: ${target.title}`);
     } catch (err) {
         const errorData = err.response?.data || err.message;
         console.error('❌ Threads Gagal:', JSON.stringify(errorData, null, 2));
