@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: Cache Node Modules
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.1
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -26,14 +26,14 @@ jobs:
       # SETUP RUNTIME
       # --------------------
       - name: Setup Node.js (LTS + native fetch)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.1.0
         with:
           node-version: '20'
 
       - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+        uses: actions/setup-python@v6.1.0
+      #  with:
+      #    python-version: '3.x'
 
       # --------------------
       # INSTALL DEPENDENCIES
