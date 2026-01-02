@@ -38,7 +38,6 @@ jobs:
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
-          mkdir -p ext mini
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Highlight.js JS & CSS (CSS selalu dari CDN versi terbaru)
@@ -57,7 +56,6 @@ jobs:
 
       - name: 🔍 Verifikasi Font Awesome
         run: |
-          mkdir -p mini
           FONT_DIR="ext/fontawesome-webfonts"
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
