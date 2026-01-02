@@ -5,7 +5,6 @@ const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-linkedin.txt';
 const BASE_URL = 'https://dalam.web.id/artikel/';
 
-// Fungsi untuk memberi jeda waktu
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function postToLinkedIn() {
@@ -16,15 +15,18 @@ async function postToLinkedIn() {
 
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
+
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
             allPosts.push({ 
                 title: p[0], 
                 slug: p[1].replace('.html', ''), 
+                image: p[2], 
                 desc: p[4] 
             });
         });
     }
+    
     allPosts.reverse(); 
 
     let postedUrls = fs.existsSync(DATABASE_FILE) 
@@ -39,35 +41,67 @@ async function postToLinkedIn() {
     }
 
     const targetUrl = `${BASE_URL}${target.slug}`;
+    const commonHeaders = {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'X-Restli-Protocol-Version': '2.0.0',
+        'LinkedIn-Version': '202510',
+        'Content-Type': 'application/json'
+    };
 
     try {
         console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
+
+        // --- STEP 1: REGISTER IMAGE ---
+        console.log("📸 Meregistrasi gambar ke LinkedIn...");
+        const registerRes = await axios.post('https://api.linkedin.com/rest/images?action=initializeUpload', {
+            initializeUploadRequest: {
+                owner: LINKEDIN_PERSON_ID
+            }
+        }, { headers: commonHeaders });
+
+        const uploadUrl = registerRes.data.value.uploadUrl;
+        const imageUrn = registerRes.data.value.image;
+
+        // --- STEP 2: UPLOAD BINARY GAMBAR ---
+        console.log(`📤 Mengambil gambar dari: ${target.image}`);
+        const imageResponse = await axios.get(target.image, { responseType: 'arraybuffer' });
         
-        // Jeda 10 detik agar environment GitHub Actions stabil
-        console.log("⏳ Menunggu 10 detik sebelum mengirim...");
+        const finalType = imageResponse.headers['content-type'] || 'image/webp';
+        console.log(`📡 Uploading binary dengan tipe: ${finalType}`);
+
+        await axios.put(uploadUrl, imageResponse.data, {
+            headers: { 
+                'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                'Content-Type': finalType
+            }
+        });
+
+        console.log("⏳ Menunggu sistem LinkedIn (10 detik)...");
         await delay(10000);
 
+        // --- STEP 3: POST KE FEED (DENGAN DISTRIBUTION) ---
+        console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            // URUTAN BARU: Deskripsi -> Hashtag -> Link di paling bawah
-            commentary: `${target.desc}\n\n#LayarKosong #Repost #Ngopi #Article\n\n${targetUrl}`,
+            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost\n\n${targetUrl}`,
             visibility: 'PUBLIC',
+            content: {
+                media: {
+                    id: imageUrn,
+                    altText: target.title
+                }
+            },
+            // Bagian ini wajib ada di API 202510 untuk menghindari Error 422
             distribution: {
                 feedDistribution: 'MAIN_FEED',
                 targetEntities: [],
                 thirdPartyDistributionChannels: []
             },
             lifecycleState: 'PUBLISHED'
-        }, {
-            headers: {
-                'Authorization': `Bearer ${ACCESS_TOKEN}`,
-                'X-Restli-Protocol-Version': '2.0.0',
-                'LinkedIn-Version': '202510' 
-            }
-        });
+        }, { headers: commonHeaders });
 
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ LinkedIn Berhasil diposting! Urutan: Desc -> Hashtag -> Link`);
+        console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang di LinkedIn.`);
         
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));
