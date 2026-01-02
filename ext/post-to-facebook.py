@@ -55,7 +55,7 @@ def main():
         cat_hashtag = "#" + cat_raw.replace(" ", "").lower()
 
         # Gabungan hashtag wajib
-        hashtags = f"#LayarKosong #Repost #Ngopi {cat_hashtag} #Indonesia"
+        hashtags = f"#fediverse #Repost #Ngopi {cat_hashtag} #Indonesia"
 
         # URUTAN BARU: Deskripsi -> Hashtag -> Link (Tanpa Judul)
         full_msg = f"{desc}\n\n{hashtags}\n\n{target_url}"

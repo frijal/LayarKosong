@@ -87,7 +87,7 @@ const article = queue[0];
  H ashtag            *
  ===================== */
 const hashtags = new Set();
-hashtags.add("#LayarKosong");
+hashtags.add("#fediverse");
 hashtags.add("#Repost");
 hashtags.add(cleanHashtag(article.category));
 

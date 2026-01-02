@@ -83,7 +83,7 @@ async function postToLinkedIn() {
         console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost\n\n${targetUrl}`,
+            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost #fediverse\n\n${targetUrl}`,
             visibility: 'PUBLIC',
             content: {
                 media: {
