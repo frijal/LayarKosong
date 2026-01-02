@@ -33,6 +33,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1 # Gunakan v4 atau v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: 🏗️ Setup Environments (Node & Python)
         uses: actions/setup-node@v4
         with:
