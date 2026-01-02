@@ -112,10 +112,11 @@ jobs:
 
       - name: 💾 Save All Changes to Repo
         run: |
-          git config --global user.name "Layar Kosong Bot"
-          git config --global user.email "bot@dalam.web.id"
+          # Menggunakan identitas resmi GitHub Actions Bot
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Tambahkan semua file database yang mungkin berubah
+          # Tambahkan semua database file yang mungkin berubah
           git add mini/*.txt mini/*.json llms.txt llms.md llms-index.html || true
           
           if git diff --staged --quiet; then
