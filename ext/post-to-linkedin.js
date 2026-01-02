@@ -50,7 +50,7 @@ async function postToLinkedIn() {
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
             // URUTAN BARU: Deskripsi -> Hashtag -> Link di paling bawah
-            commentary: `${target.desc}\n\n#LayarKosong #Repost #Ngopi #Article\n\nBaca selengkapnya: ${targetUrl}`,
+            commentary: `${target.desc}\n\n#LayarKosong #Repost #Ngopi #Article\n\n${targetUrl}`,
             visibility: 'PUBLIC',
             distribution: {
                 feedDistribution: 'MAIN_FEED',

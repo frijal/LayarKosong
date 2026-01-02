@@ -113,7 +113,7 @@ let status = `${article.desc || "Archive."}
 
 ${[...hashtags].join(" ")}
 
-Baca selengkapnya: ${article.url}`;
+${article.url}`;
 
 /* limit 500 */
 if (status.length > LIMIT) {

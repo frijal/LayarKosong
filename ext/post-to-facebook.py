@@ -58,7 +58,7 @@ def main():
         hashtags = f"#LayarKosong #Repost #Ngopi {cat_hashtag} #Indonesia"
 
         # URUTAN BARU: Deskripsi -> Hashtag -> Link (Tanpa Judul)
-        full_msg = f"{desc}\n\n{hashtags}\n\nBaca selengkapnya: {target_url}"
+        full_msg = f"{desc}\n\n{hashtags}\n\n{target_url}"
 
         encoded_msg = urllib.parse.quote(full_msg)
 
