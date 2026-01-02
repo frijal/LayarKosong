@@ -68,25 +68,22 @@ if (!target) {
    ===================== */
 const tags = ["Layar Kosong", "Repost", "Ngopi", "Indonesia", target.category];
 
-// Gunakan callback yang lebih kuat untuk handle error async
-client.createLinkPost(BLOG_NAME, {
+// Di versi 5.x, gunakan client.createPost
+client.createPost(BLOG_NAME, {
+  type: 'link', // Tentukan tipe post sebagai 'link' di sini
   url: target.url,
   description: `<p>${target.desc || "Archive."}</p><p>#LayarKosong #00b0ed</p>`,
   tags: tags.map(t => cleanTag(t))
 }, (err, data) => {
   if (err) {
-    // Log error lebih detail untuk debugging di GitHub Actions
     console.error("❌ Gagal post Tumblr:", JSON.stringify(err, null, 2));
     process.exit(1);
   }
 
   // Simpan URL baru ke file TXT (Append)
-  // Tambahkan pengecekan folder mini jika belum ada
   if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
-  
   fs.appendFileSync(DATABASE_FILE, target.url + "\n");
 
   console.log("✅ Berhasil post ke Tumblr:", target.url);
-  // Tambahkan sedikit delay sebelum exit agar proses I/O selesai
   setTimeout(() => process.exit(0), 500);
 });
