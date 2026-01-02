@@ -1,8 +1,7 @@
 import json
 import os
 import re
-import hashlib
-from datetime import datetime, UTC
+from datetime import UTC
 
 # ======================================================
 # KONFIGURASI GLOBAL
@@ -10,8 +9,10 @@ from datetime import datetime, UTC
 BASE_URL = "https://dalam.web.id"
 SITE_NAME = "Layar Kosong"
 AUTHOR = "Fakhrul Rijal"
+
 LOGO_URL = f"{BASE_URL}/logo.png"
 WEBSITE_ID = f"{BASE_URL}/#website"
+ORG_ID = f"{BASE_URL}/#organization"
 
 HASH_FILE = "mini/LD-JSON-Schema.txt"
 os.makedirs("mini", exist_ok=True)
@@ -25,30 +26,30 @@ SCHEMA_REGEX = re.compile(
 )
 
 # ======================================================
-# LOAD HASH CACHE
-# ======================================================
-existing_hashes = set()
-if os.path.isfile(HASH_FILE):
-    with open(HASH_FILE, "r", encoding="utf-8") as f:
-        existing_hashes = {line.strip() for line in f if line.strip()}
-
-new_hashes = set()
-
-# ======================================================
 # UTILITIES
 # ======================================================
+def strip_html(filename: str) -> str:
+    return filename[:-5] if filename.endswith(".html") else filename
+
 def category_slug(category: str) -> str:
-    """Slug URL kategori: lowercase + spasi -> dash"""
     return category.strip().lower().replace(" ", "-")
 
 def category_name(category: str) -> str:
-    """Nama kategori untuk breadcrumb: Title Case"""
     return category.strip().replace("-", " ").title()
 
-def hash_article(url: str, title: str) -> str:
-    """Hash stabil: URL asli + judul lowercase"""
-    raw = f"{url.strip()}|{title.strip().lower()}"
-    return hashlib.sha1(raw.encode("utf-8")).hexdigest()
+def build_keywords(headline: str, category: str, slug: str) -> str:
+    base = set()
+
+    for part in re.split(r"[^\w]+", headline.lower()):
+        if len(part) > 3:
+            base.add(part)
+
+    base.add(category.lower())
+    base.update(slug.replace("-", " ").split())
+
+    base.add("layar kosong")
+
+    return ", ".join(sorted(base))
 
 # ======================================================
 # SCHEMA BUILDERS (MINIFIED)
@@ -64,7 +65,9 @@ def build_website_schema():
             "name": SITE_NAME,
             "publisher": {
                 "@type": "Organization",
+                "@id": ORG_ID,
                 "name": SITE_NAME,
+                "url": BASE_URL,
                 "logo": {
                     "@type": "ImageObject",
                     "url": LOGO_URL,
@@ -77,17 +80,16 @@ def build_website_schema():
     )
 
 def build_article_schema(category, article):
-    headline, filename, image, date_pub, desc = article
+    headline, filename, image, iso_date, desc = article
 
-    # slug artikel TIDAK diubah
-    article_url = f"{BASE_URL}/artikel/{filename}"
+    slug = strip_html(filename)
+    article_url = f"{BASE_URL}/artikel/{slug}"
 
-    # kategori: slug vs nama DIPISAH
     cat_slug = category_slug(category)
     cat_name = category_name(category)
     category_url = f"{BASE_URL}/artikel/-/{cat_slug}/"
 
-    now_utc = datetime.now(UTC).strftime("%Y-%m-%d")
+    keywords = build_keywords(headline, cat_name, slug)
 
     return (
         '<script type="application/ld+json">'
@@ -104,6 +106,8 @@ def build_article_schema(category, article):
                     },
                     "headline": headline,
                     "description": desc,
+                    "articleSection": cat_name,
+                    "keywords": keywords,
                     "image": {
                         "@type": "ImageObject",
                         "url": image,
@@ -116,17 +120,10 @@ def build_article_schema(category, article):
                     },
                     "publisher": {
                         "@type": "Organization",
-                        "name": SITE_NAME,
-                        "url": BASE_URL,
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": LOGO_URL,
-                            "width": 384,
-                            "height": 384
-                        }
+                        "@id": ORG_ID
                     },
-                    "datePublished": date_pub,
-                    "dateModified": now_utc
+                    "datePublished": iso_date,
+                    "dateModified": iso_date
                 },
                 {
                     "@type": "BreadcrumbList",
@@ -162,49 +159,43 @@ def build_article_schema(category, article):
 with open("artikel.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
+written_urls = []
 website_schema_injected = False
 changed_files = 0
 
 # ======================================================
-# PROSES ARTIKEL
+# PROSES ARTIKEL (RESET TOTAL)
 # ======================================================
 for category, articles in data.items():
     for article in articles:
-        headline, filename = article[0], article[1]
+        filename = article[1]
         html_path = os.path.join("artikel", filename)
 
         if not os.path.isfile(html_path):
             continue
 
-        article_url = f"{BASE_URL}/artikel/{filename}"
-        article_hash = hash_article(article_url, headline)
-        new_hashes.add(article_hash)
-
-        is_new_article = article_hash not in existing_hashes
+        slug = strip_html(filename)
+        article_url = f"{BASE_URL}/artikel/{slug}"
+        written_urls.append(article_url)
 
         with open(html_path, "r", encoding="utf-8") as f:
             original_html = f.read()
 
-        # hapus semua schema lama
         html = re.sub(SCHEMA_REGEX, "", original_html)
 
-        inject_block = ""
+        inject = ""
 
-        # inject WebSite schema sekali
         if not website_schema_injected:
-            inject_block += build_website_schema()
+            inject += build_website_schema()
             website_schema_injected = True
 
-        # inject Article schema hanya jika artikel baru
-        if is_new_article:
-            inject_block += build_article_schema(category, article)
+        inject += build_article_schema(category, article)
 
-        if not inject_block or "</head>" not in html:
+        if "</head>" not in html:
             continue
 
-        new_html = html.replace("</head>", inject_block + "</head>")
+        new_html = html.replace("</head>", inject + "</head>")
 
-        # skip jika tidak berubah
         if new_html == original_html:
             continue
 
@@ -214,11 +205,10 @@ for category, articles in data.items():
         changed_files += 1
 
 # ======================================================
-# UPDATE HASH CACHE
+# SIMPAN URL (PLAIN TEXT)
 # ======================================================
 with open(HASH_FILE, "w", encoding="utf-8") as f:
-    for h in sorted(new_hashes):
-        f.write(h + "\n")
+    for url in sorted(set(written_urls)):
+        f.write(url + "\n")
 
-print(f"✅ Schema injected into {changed_files} file(s)")
-
+print(f"✅ Reset + upgrade LD+JSON selesai ({changed_files} file)")
