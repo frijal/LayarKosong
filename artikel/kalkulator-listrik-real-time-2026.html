@@ -129,11 +129,6 @@
             .share-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026"},"headline":"Kalkulator Listrik Real-Time 2026","description":"Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!","articleSection":"Lainnya","keywords":"2026, kalkulator, lainnya, layar kosong, listrik, real, time","image":{"@type":"ImageObject","url":"https://dalam.web.id/assets/images/kalkulator-listrik-2026-twitter.jpg","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal"},"publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-02T17:00:00.000+00:00","dateModified":"2026-01-02T17:00:00.000+00:00"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/artikel/-/lainnya/"},{"@type":"ListItem","position":3,"name":"Kalkulator Listrik Real-Time 2026","item":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026"}]}]}</script>
     <link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026">
     <meta name="author" content="Fakhrul Rijal">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
@@ -150,10 +145,12 @@
     <meta property="og:title" content="Kalkulator Listrik Real-Time 2026">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026">
-    <meta itemprop="image" content="https://dalam.web.id/assets/images/kalkulator-listrik-2026-twitter.jpg">
-    <meta name="twitter:image" content="https://dalam.web.id/assets/images/kalkulator-listrik-2026-twitter.jpg">
-    <meta property="og:image" content="https://dalam.web.id/assets/images/kalkulator-listrik-2026-twitter.jpg">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
     <meta property="og:image:alt" content="Kalkulator Listrik Real-Time 2026">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026"},"headline":"Kalkulator Listrik Real-Time 2026","description":"Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!","articleSection":"Lainnya","keywords":"2026, kalkulator, lainnya, layar kosong, listrik, real, time","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal"},"publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-02T17:00:00.000+00:00","dateModified":"2026-01-02T17:00:00.000+00:00"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/artikel/-/lainnya/"},{"@type":"ListItem","position":3,"name":"Kalkulator Listrik Real-Time 2026","item":"https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026"}]}]}</script>
 </head>
 <body>
     <div class="calc-wrapper">
@@ -210,83 +207,7 @@
             <p>🄯 2026 <strong>- Layar Kosong</strong> - Fakhrul Rijal - Balikpapan.</p>
         </footer>
     </div>
-    <script>
-    let resultState = { total: "Rp 0", list: "" };
-    function addRow() {
-        const container = document.getElementById('device-list');
-        const newRow = document.createElement('div');
-        newRow.className = 'device-row';
-        newRow.innerHTML = `
-            <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-watt" placeholder="0" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-hours" placeholder="0" oninput="hitungOtomatis()"></div>
-            <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
-        `;
-        container.appendChild(newRow);
-        hitungOtomatis();
-    }
-    function removeRow(btn) {
-        if (document.querySelectorAll('.device-row').length > 1) {
-            btn.parentElement.remove();
-            hitungOtomatis();
-        }
-    }
-    function hitungOtomatis() {
-        const tarif = parseFloat(document.getElementById('tarif_global').value);
-        const names = document.querySelectorAll('.dev-name');
-        const qtys = document.querySelectorAll('.dev-qty');
-        const watts = document.querySelectorAll('.dev-watt');
-        const hours = document.querySelectorAll('.dev-hours');
-        let totalKwh = 0;
-        let listWA = ""; // Variabel penampung rincian alat
-        for (let i = 0; i < names.length; i++) {
-            let n = names[i].value || "Alat s/n";
-            let q = parseFloat(qtys[i].value) || 0;
-            let w = parseFloat(watts[i].value) || 0;
-            let h = parseFloat(hours[i].value) || 0;
-            if (w > 0 && q > 0) {
-                let kwh = (q * w * h / 1000) * 30;
-                totalKwh += kwh;
-                // Tambahkan %0A di akhir agar di WA menjadi baris baru (1 kolom)
-                listWA += `• ${n} (${q} unit)%0A`;
-            }
-        }
-        const totalRupiah = totalKwh * tarif;
-        const formatDuit = "Rp " + totalRupiah.toLocaleString('id-ID', { maximumFractionDigits: 0 });
-        // Update UI
-        document.getElementById('total-tagihan').innerText = formatDuit;
-        document.getElementById('summary-info').innerHTML = totalKwh > 0
-            ? `Total Konsumsi: <strong>${totalKwh.toFixed(2)} kWh</strong> / Bulan`
-            : "Silakan masukkan data alat...";
-        // Simpan data untuk dishare
-        resultState = { total: formatDuit, list: listWA };
-    }
-    function shareWA() {
-        const tarifSelect = document.getElementById('tarif_global');
-        const golonganNama = tarifSelect.options[tarifSelect.selectedIndex].text;
-        const totalHarga = document.getElementById('total-tagihan').innerText;
-        if (totalHarga === "Rp 0" || resultState.list === "") {
-            alert("Isi dulu daftar alatnya ya, sobat!");
-            return;
-        }
-        // Pesan dengan rincian alat lurus ke bawah (1 kolom)
-        const pesan = `Halo! Saya baru saja menghitung estimasi tagihan listrik di Layar Kosong.%0A%0A⚡ *HASIL HITUNG LISTRIK 2026*%0A---------------------------%0A🏠 *Golongan:*%0A${golonganNama}%0A%0A📋 *Rincian Alat:*%0A${resultState.list}---------------------------%0A💰 *Estimasi Tagihan:*%0A*${totalHarga}/Bulan*%0A%0ACek sendiri juga disini: https://dalam.web.id/artikel/kalkulator-listrik/`;
-        window.open(`https://api.whatsapp.com/send?text=${pesan}`, '_blank');
-    }
-    function downloadPDF() {
-        const element = document.getElementById('printable-content');
-        const opt = {
-            margin: 0.5,
-            filename: 'Tagihan_Listrik_LayarKosong.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(element).save();
-    }
-</script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
 </body></html>
