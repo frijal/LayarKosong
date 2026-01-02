@@ -64,18 +64,32 @@ if (!target) {
 }
 
 /* =====================
-   Posting
+   Posting (Format NPF untuk v5.x)
    ===================== */
 const tags = ["Layar Kosong", "Repost", "Ngopi", "Indonesia", target.category];
 
-// Di versi 5.x, gunakan client.createPost
+// Format NPF mengharapkan array of content blocks
+const content = [
+  {
+    type: "text",
+    text: target.desc || "Archive.",
+  },
+  {
+    type: "text",
+    text: "#LayarKosong #00b0ed",
+  },
+  {
+    type: "link",
+    url: target.url,
+  }
+];
+
 client.createPost(BLOG_NAME, {
-  type: 'link', // Tentukan tipe post sebagai 'link' di sini
-  url: target.url,
-  description: `<p>${target.desc || "Archive."}</p><p>#LayarKosong #00b0ed</p>`,
+  content: content,
   tags: tags.map(t => cleanTag(t))
 }, (err, data) => {
   if (err) {
+    // Log error lengkap untuk melihat pesan dari server Tumblr
     console.error("❌ Gagal post Tumblr:", JSON.stringify(err, null, 2));
     process.exit(1);
   }
@@ -84,6 +98,6 @@ client.createPost(BLOG_NAME, {
   if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
   fs.appendFileSync(DATABASE_FILE, target.url + "\n");
 
-  console.log("✅ Berhasil post ke Tumblr:", target.url);
+  console.log("✅ Berhasil post ke Tumblr (NPF Mode):", target.url);
   setTimeout(() => process.exit(0), 500);
 });
