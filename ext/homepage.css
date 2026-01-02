@@ -397,12 +397,12 @@
  }
  /* Official brand colors — hanya untuk footer social */
  .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
- .page-footer .footer-social .fa-square-github   { color: var(--github); }
+ .page-footer .footer-social .fa-github		 { color: var(--github); }
  .page-footer .footer-social .fa-linkedin        { color: var(--linkedin); }
  .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
  .page-footer .footer-social .fa-threads         { color: var(--threads); }
  .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
- .page-footer .footer-social .fa-mastodon         { color: var(--mastodon); }
+ .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
 
  .footer-content {
    display: grid;
