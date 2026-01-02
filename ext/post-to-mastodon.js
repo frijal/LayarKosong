@@ -1,12 +1,11 @@
 import fs from "fs";
-import crypto from "crypto";
 import fetch from "node-fetch";
 
 /* =====================
  K onfigurasi        *
  ===================== */
 const ARTICLE_FILE = "artikel.json";
-const STATE_FILE = "mini/posted-mastodon.json";
+const STATE_FILE = "mini/posted-mastodon.txt"; // Ganti jadi .txt
 const LIMIT = 500;
 const DELAY_MS = 8000;
 
@@ -29,36 +28,37 @@ const cleanHashtag = (str) =>
 .replace(/[^\w\s]/g, "")
 .replace(/\s+/g, "");
 
-const hashUrl = (url) =>
-crypto.createHash("sha256").update(url).digest("hex");
-
 /* =====================
- L oad State         *
+ L oad State (Plain T*ext)
  ===================== */
-let posted = [];
+let postedUrls = [];
 if (fs.existsSync(STATE_FILE)) {
-  posted = JSON.parse(fs.readFileSync(STATE_FILE, "utf8"));
+  postedUrls = fs.readFileSync(STATE_FILE, "utf8")
+  .split("\n")
+  .map(line => line.trim())
+  .filter(line => line !== "");
 }
 
 /* =====================
  L oad & Flatten Arti*kel
  ===================== */
 const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
-
 let articles = [];
 
 for (const [category, items] of Object.entries(raw)) {
   for (const item of items) {
     const [title, slug, image, date, desc] = item;
 
+    // Bersihkan .html dan pastikan slug konsisten
+    const cleanSlug = slug.replace('.html', '').replace(/^\//, '');
+    const fullUrl = slug.startsWith("http")
+    ? slug
+    : `https://dalam.web.id/artikel/${cleanSlug}`;
+
     articles.push({
       title,
-      // Pastikan slug bersih dari .html agar konsisten
-      url: slug.startsWith("http")
-      ? slug
-      : `https://dalam.web.id/artikel/${slug.replace('.html', '')}`,
-                  image,
-                  date: new Date(date),
+      url: fullUrl,
+      date: new Date(date),
                   desc: desc || "",
                   category
     });
@@ -73,32 +73,25 @@ articles.sort((a, b) => a.date - b.date);
 /* =====================
  C ari Artikel Belum *Dipost
  ===================== */
-const queue = articles.filter(a => {
-  const h = hashUrl(a.url);
-  return !posted.includes(h);
-});
+// Bandingkan URL langsung tanpa hash
+const queue = articles.filter(a => !postedUrls.includes(a.url));
 
 if (!queue.length) {
-  console.log("✅ Semua artikel sudah dipost");
+  console.log("✅ Semua artikel sudah dipost ke Mastodon");
   process.exit(0);
 }
 
 const article = queue[0];
-const urlHash = hashUrl(article.url);
 
 /* =====================
  H ashtag            *
  ===================== */
 const hashtags = new Set();
-
-/* Tag Wajib */
 hashtags.add("#LayarKosong");
 hashtags.add("#Repost");
-
-/* kategori */
 hashtags.add(cleanHashtag(article.category));
 
-/* judul → max 3 kata penting (untuk tambahan konteks hashtag) */
+// Tambah hashtag dari judul (max 3 kata > 4 huruf)
 article.title
 .split(/\s+/)
 .filter(w => w.length > 4)
@@ -106,8 +99,7 @@ article.title
 .forEach(w => hashtags.add(cleanHashtag(w)));
 
 /* =====================
- S tatus (Urutan: Des*kripsi -> Hashtag -> Link)
- Tanpa Judul karena akan muncul di Link Preview
+ S tatus             *
  ===================== */
 let status = `${article.desc || "Archive."}
 
@@ -115,7 +107,6 @@ ${[...hashtags].join(" ")}
 
 ${article.url}`;
 
-/* limit 500 */
 if (status.length > LIMIT) {
   status = status.slice(0, LIMIT - 1) + "…";
 }
@@ -142,11 +133,10 @@ if (!res.ok) {
 }
 
 /* =====================
- S impan State       *
+ S impan State (Appen*d Plain Text)
  ===================== */
-posted.push(urlHash);
-fs.mkdirSync("mini", { recursive: true });
-fs.writeFileSync(STATE_FILE, JSON.stringify(posted, null, 2));
+if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
+fs.appendFileSync(STATE_FILE, article.url + "\n");
 
 console.log("✅ Berhasil post ke Mastodon:", article.url);
 

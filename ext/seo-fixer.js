@@ -98,9 +98,13 @@ async function fixSEO() {
     // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
     head.append(`\n    `);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
-
-    // Open Graph
     head.append(`\n    <meta name="author" content="Fakhrul Rijal" />`);
+    head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
+    head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
+    head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
+    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
+    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
+    head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage" />`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
     head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
@@ -110,14 +114,6 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:type" content="article" />`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
 
-    // Twitter Card
-    head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
-    head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
-    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
-    head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
-    head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
-
-    // Images & OG:Image:Alt
     if (twitterImg) {
       head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
       head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
