@@ -37,7 +37,7 @@ jobs:
     steps:    
       # Checkout branch main (source)
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           ref: main
           path: source
@@ -46,7 +46,7 @@ jobs:
       # Jika Anda HANYA deploy, langkah checkout 'site' ini bisa dihapus
       # Jika Anda PERLU membandingkan (seperti di kode asli), biarkan saja
       - name: Checkout site branch (for comparison) 
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           ref: site
           path: site
