@@ -1,7 +1,6 @@
 import json
 import os
 import re
-from datetime import UTC
 
 # ======================================================
 # KONFIGURASI GLOBAL
@@ -46,7 +45,6 @@ def build_keywords(headline: str, category: str, slug: str) -> str:
 
     base.add(category.lower())
     base.update(slug.replace("-", " ").split())
-
     base.add("layar kosong")
 
     return ", ".join(sorted(base))
@@ -159,12 +157,22 @@ def build_article_schema(category, article):
 with open("artikel.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
-written_urls = []
+# ======================================================
+# LOAD URL YANG SUDAH DIPROSES
+# ======================================================
+processed_urls = set()
+if os.path.isfile(HASH_FILE):
+    with open(HASH_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            processed_urls.add(line.strip())
+
+new_urls = set()
 website_schema_injected = False
 changed_files = 0
+skipped_files = 0
 
 # ======================================================
-# PROSES ARTIKEL (RESET TOTAL)
+# PROSES ARTIKEL (INCREMENTAL)
 # ======================================================
 for category, articles in data.items():
     for article in articles:
@@ -176,7 +184,11 @@ for category, articles in data.items():
 
         slug = strip_html(filename)
         article_url = f"{BASE_URL}/artikel/{slug}"
-        written_urls.append(article_url)
+
+        # 👉 INI KUNCINYA
+        if article_url in processed_urls:
+            skipped_files += 1
+            continue
 
         with open(html_path, "r", encoding="utf-8") as f:
             original_html = f.read()
@@ -184,7 +196,6 @@ for category, articles in data.items():
         html = re.sub(SCHEMA_REGEX, "", original_html)
 
         inject = ""
-
         if not website_schema_injected:
             inject += build_website_schema()
             website_schema_injected = True
@@ -202,13 +213,17 @@ for category, articles in data.items():
         with open(html_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
+        new_urls.add(article_url)
         changed_files += 1
 
 # ======================================================
-# SIMPAN URL (PLAIN TEXT)
+# UPDATE FILE URL (MERGE LAMA + BARU)
 # ======================================================
+all_urls = sorted(processed_urls | new_urls)
 with open(HASH_FILE, "w", encoding="utf-8") as f:
-    for url in sorted(set(written_urls)):
+    for url in all_urls:
         f.write(url + "\n")
 
-print(f"✅ Reset + upgrade LD+JSON selesai ({changed_files} file)")
+print(f"✅ Incremental LD+JSON selesai")
+print(f"🆕 Artikel baru diproses : {changed_files}")
+print(f"⏭️ Artikel dilewati       : {skipped_files}")
