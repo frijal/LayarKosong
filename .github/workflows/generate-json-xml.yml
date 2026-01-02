@@ -29,11 +29,18 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0
 
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: '2. Setup Node.js'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: '3. Install Dependencies'
         run: npm ci
