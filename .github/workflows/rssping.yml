@@ -13,7 +13,7 @@ jobs:
   seo_and_maintenance:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.1
         with:
           fetch-depth: 0
 
@@ -67,7 +67,7 @@ jobs:
       # =========================================================
       # 2️⃣ Generate LLMs
       # =========================================================
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6.1.0
         with:
           python-version: '3.x'
 
