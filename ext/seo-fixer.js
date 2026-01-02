@@ -10,24 +10,27 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const url = new URL(externalUrl);
     const baseHostname = new URL(baseUrl).hostname;
 
-    if (url.hostname === baseHostname || url.hostname === 'localhost') {
+    // Abaikan jika sudah host sendiri atau localhost
+    if (url.hostname === baseHostname || url.hostname === 'localhost' || url.hostname === 'schema.org') {
       return externalUrl.replace(baseUrl, '');
     }
 
     const originalPath = url.pathname;
     const ext = path.extname(originalPath);
+    // Selalu konversi ke .webp
     const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
 
     const localPath = path.join('img', url.hostname, webpPathName);
     const dirPath = path.dirname(localPath);
 
+    // Jika file sudah ada, tidak perlu download lagi
     if (fs.existsSync(localPath)) {
       return `/${localPath.replace(/\\/g, '/')}`;
     }
 
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
-    console.log(`📥 Mirroring baru: ${url.hostname}${originalPath}...`);
+    console.log(`📥 Mirroring & WebP: ${url.hostname}${originalPath}...`);
 
     const response = await axios({
       url: externalUrl,
@@ -37,47 +40,44 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
       timeout: 15000
     });
 
+    // Proses konversi Sharp
     await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
+    // Jika gagal (404 atau timeout), biarkan URL aslinya
     return externalUrl;
   }
 }
 
 async function fixSEO() {
-  // Folder input (artikelx, draft, dll)
   const targetFolder = process.argv[2] || 'artikel';
   const files = await glob(`${targetFolder}/*.html`);
   const baseUrl = 'https://dalam.web.id';
 
-  const imgUrlRegex = /https?:\/\/(?!dalam\.web\.id|schema\.org)[^\s"']+\.(?:jpg|jpeg|png|webp|gif|JPG)/gi;
-
   for (const file of files) {
-    let rawContent = fs.readFileSync(file, 'utf8');
+    const rawContent = fs.readFileSync(file, 'utf8');
     const baseName = path.basename(file);
-    console.log(`\n🔍 Memproses: ${baseName}`);
+    console.log(`\n🔍 Memproses SEO & Images: ${baseName}`);
 
-    // --- 1. SCAN & SWAP URL GAMBAR ---
-    const matches = rawContent.match(imgUrlRegex);
-    if (matches) {
-      const uniqueUrls = [...new Set(matches)];
-      for (const extUrl of uniqueUrls) {
-        const localPath = await mirrorAndConvert(extUrl, baseUrl);
+    // --- 1. LOAD KE CHEERIO (DOM Parser) ---
+    const $ = load(rawContent, { decodeEntities: false });
+    const head = $('head');
+
+    // --- 2. MIRRORING GAMBAR DI DALAM ARTIKEL (IMG TAG) ---
+    const images = $('img').toArray();
+    for (const el of images) {
+      const src = $(el).attr('src');
+      if (src && src.startsWith('http')) {
+        const localPath = await mirrorAndConvert(src, baseUrl);
         if (localPath.startsWith('/')) {
-          const newLocalUrl = `${baseUrl}${localPath}`;
-          rawContent = rawContent.split(extUrl).join(newLocalUrl);
+          $(el).attr('src', `${baseUrl}${localPath}`);
         }
       }
     }
 
-    // --- 2. LOAD KE CHEERIO ---
-    const $ = load(rawContent, { decodeEntities: false });
-    const head = $('head');
-
     // --- 3. LOGIKA DATA SEO ---
     const fileName = path.basename(file);
     const cleanFileName = fileName.replace('.html', '');
-    // URL absolut publik tanpa .html
     const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`;
 
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
@@ -85,9 +85,20 @@ async function fixSEO() {
     $('p').first().text().substring(0, 160).trim() ||
     "Artikel terbaru dari Layar Kosong.";
 
-    const twitterImg = $('meta[name="twitter:image"]').attr('content') || '';
+    // Ambil gambar untuk meta (OG/Twitter) - Cek meta lama atau gambar pertama di body
+    let metaImgUrl = $('meta[name="twitter:image"]').attr('content') ||
+    $('meta[property="og:image"]').attr('content') ||
+    $('img').first().attr('src') || '';
 
-    // --- 4. BERSIHKAN SEMUA TAG LAMA (CLEAN SLATE) ---
+    // Mirroring gambar untuk Meta Tag jika dari luar
+    if (metaImgUrl && metaImgUrl.startsWith('http')) {
+      const mirroredMetaPath = await mirrorAndConvert(metaImgUrl, baseUrl);
+      if (mirroredMetaPath.startsWith('/')) {
+        metaImgUrl = `${baseUrl}${mirroredMetaPath}`;
+      }
+    }
+
+    // --- 4. BERSIHKAN SEMUA TAG LAMA ---
     $('link[rel="canonical"]').remove();
     $('meta[property^="og:"]').remove();
     $('meta[name^="twitter:"]').remove();
@@ -96,7 +107,6 @@ async function fixSEO() {
     $('meta[itemprop="image"]').remove();
 
     // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
-    head.append(`\n    `);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal" />`);
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
@@ -114,10 +124,10 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:type" content="article" />`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
 
-    if (twitterImg) {
-      head.append(`\n    <meta itemprop="image" content="${twitterImg}" />`);
-      head.append(`\n    <meta name="twitter:image" content="${twitterImg}" />`);
-      head.append(`\n    <meta property="og:image" content="${twitterImg}" />`);
+    if (metaImgUrl) {
+      head.append(`\n    <meta itemprop="image" content="${metaImgUrl}" />`);
+      head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}" />`);
+      head.append(`\n    <meta property="og:image" content="${metaImgUrl}" />`);
       head.append(`\n    <meta property="og:image:alt" content="${articleTitle}" />`);
     }
     head.append(`\n`);
@@ -130,7 +140,7 @@ async function fixSEO() {
       // --- 7. SIMPAN HASIL ---
       fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer: Selesai! URL bersih, Meta rapi, dan og:image:alt terpasang.');
+  console.log('\n✅ SEO Fixer & Mirroring: Selesai! Gambar dikonversi ke WebP dan Meta Tag rapi.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
