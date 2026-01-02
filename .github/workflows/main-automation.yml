@@ -70,7 +70,7 @@ jobs:
           TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
-          T_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
         run: node ext/post-to-tumblr.js
 
       # =========================================================
