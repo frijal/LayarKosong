@@ -4,6 +4,22 @@ on:
   schedule:
     - cron: "0 */2 * * *" # Eksekusi otomatis tiap 2 jam
   workflow_dispatch:
+    inputs:
+      task:
+        description: 'Pilih tugas yang ingin dijalankan'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - cloudflare
+          - mastodon
+          - threads
+          - linkedin
+          - tumblr
+          - facebook
+          - indexnow
+          - llms_index
 
 permissions:
   contents: write
@@ -36,6 +52,7 @@ jobs:
       # =========================================================
 
       - name: 🧹 1. Cloudflare Cleanup
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
         continue-on-error: true
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
@@ -44,6 +61,7 @@ jobs:
         run: node ext/rapikan-cloudflare.js
 
       - name: 🐘 2. Mastodon Autopost
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'mastodon'
         continue-on-error: true
         env:
           MASTODON_INSTANCE: mastodon.social
@@ -51,6 +69,7 @@ jobs:
         run: node ext/post-to-mastodon.js
 
       - name: ⚙️ 3. Threads Post Script
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'threads'
         continue-on-error: true
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
@@ -58,6 +77,7 @@ jobs:
         run: node ext/post-to-threads.js     
 
       - name: 🆕 4. LinkedIn Post Script
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
         continue-on-error: true
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
@@ -65,6 +85,7 @@ jobs:
         run: node ext/post-to-linkedin.js
 
       - name: 🎨 5. Tumblr Autopost
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'tumblr'
         continue-on-error: true
         env:
           TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
@@ -78,6 +99,7 @@ jobs:
       # =========================================================
 
       - name: 🔍 6. IndexNow Sync (Bash & JQ)
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
         continue-on-error: true
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
@@ -91,6 +113,7 @@ jobs:
           fi
 
       - name: ⚙️ 7. Generate LLMs Index
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
         continue-on-error: true
         run: |
           if [ -f ext/generate_llms.py ]; then
@@ -98,12 +121,13 @@ jobs:
           fi
 
       - name: 🔵 8. Process Facebook (Data Prep)
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         id: fb_info
         continue-on-error: true
         run: python3 ext/post-to-facebook.py
 
       - name: 🚀 9. Send to Facebook Page
-        if: always() && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
+        if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
         continue-on-error: true
         run: |
           curl -X POST "https://graph.facebook.com/v18.0/${{ secrets.FB_PAGE_ID }}/feed" \
