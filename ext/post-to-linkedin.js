@@ -16,14 +16,13 @@ async function postToLinkedIn() {
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
 
-    // Loop melalui kategori (Warta Tekno, dll)
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
             allPosts.push({ 
                 title: p[0], 
                 slug: p[1].replace('.html', ''), 
-                image: p[2], // URL Gambar dari JSON
-                desc: p[4]   // Deskripsi dari JSON
+                image: p[2], 
+                desc: p[4] 
             });
         });
     }
@@ -42,7 +41,7 @@ async function postToLinkedIn() {
     }
 
     const targetUrl = `${BASE_URL}${target.slug}`;
-    const headers = {
+    const commonHeaders = {
         'Authorization': `Bearer ${ACCESS_TOKEN}`,
         'X-Restli-Protocol-Version': '2.0.0',
         'LinkedIn-Version': '202510',
@@ -53,13 +52,12 @@ async function postToLinkedIn() {
         console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
 
         // --- STEP 1: REGISTER IMAGE ---
-        // Kita hapus specificRealtimeInput karena menyebabkan BadRequest di akun kamu
         console.log("📸 Meregistrasi gambar ke LinkedIn...");
         const registerRes = await axios.post('https://api.linkedin.com/rest/images?action=initializeUpload', {
             initializeUploadRequest: {
                 owner: LINKEDIN_PERSON_ID
             }
-        }, { headers });
+        }, { headers: commonHeaders });
 
         const uploadUrl = registerRes.data.value.uploadUrl;
         const imageUrn = registerRes.data.value.image;
@@ -68,29 +66,17 @@ async function postToLinkedIn() {
         console.log(`📤 Mengambil gambar dari: ${target.image}`);
         const imageResponse = await axios.get(target.image, { responseType: 'arraybuffer' });
         
-        // Tetap gunakan image/webp sebagai fallback
-        const contentType = imageResponse.headers['content-type'] || 'image/webp';
-        console.log(`📡 Uploading binary dengan tipe: ${contentType}`);
+        // Cek content-type dari response blog
+        const finalContentType = imageResponse.headers['content-type'] || 'image/webp';
+        console.log(`📡 Uploading binary dengan tipe: ${finalContentType}`);
 
         await axios.put(uploadUrl, imageResponse.data, {
             headers: { 
                 'Authorization': `Bearer ${ACCESS_TOKEN}`,
-                'Content-Type': contentType // LinkedIn akan otomatis memproses WebP di sini
-            }
-        });
-        
-        // Gunakan Content-Type asli dari blog, atau fallback ke image/webp
-        const contentType = imageResponse.headers['content-type'] || 'image/webp';
-        console.log(`📡 Uploading binary dengan tipe: ${contentType}`);
-
-        await axios.put(uploadUrl, imageResponse.data, {
-            headers: { 
-                'Authorization': `Bearer ${ACCESS_TOKEN}`,
-                'Content-Type': contentType
+                'Content-Type': finalContentType
             }
         });
 
-        // Tunggu sistem LinkedIn memproses gambar (status: AVAILABLE)
         console.log("⏳ Menunggu sistem LinkedIn (10 detik)...");
         await delay(10000);
 
@@ -98,7 +84,7 @@ async function postToLinkedIn() {
         console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `${target.desc}\n\n#LayarKosong #Repost #Ngopi #Article\n\n${targetUrl}`,
+            commentary: `${target.desc}\n\n#repost #ngopi #article #Indonesia\n\n${targetUrl}`,
             visibility: 'PUBLIC',
             content: {
                 media: {
@@ -107,10 +93,10 @@ async function postToLinkedIn() {
                 }
             },
             lifecycleState: 'PUBLISHED'
-        }, { headers });
+        }, { headers: commonHeaders });
 
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ Berhasil! Artikel "${target.title}" tayang dengan gambar WebP.`);
+        console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang.`);
         
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));
