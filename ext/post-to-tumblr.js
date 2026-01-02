@@ -76,7 +76,7 @@ const content = [
   },
   {
     type: "text",
-    text: "#LayarKosong #00b0ed",
+    text: "#reblogged #indonesia",
   },
   {
     type: "link",
