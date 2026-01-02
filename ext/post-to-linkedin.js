@@ -16,23 +16,29 @@ async function postToLinkedIn() {
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
 
+    // --- LOGIKA PENGUMPULAN DATA ---
     for (const [cat, posts] of Object.entries(data)) {
         posts.forEach(p => {
+            // p[0]: judul, p[1]: slug, p[2]: image, p[3]: ISO Date, p[4]: desc
             allPosts.push({ 
                 title: p[0], 
                 slug: p[1].replace('.html', ''), 
                 image: p[2], 
+                date: p[3], // Kita simpan tanggal ISO-nya
                 desc: p[4] 
             });
         });
     }
     
-    allPosts.reverse(); 
+    // --- SORTING AKURAT (Terbaru di Paling Atas) ---
+    // String ISO 8601 bisa di-sort secara alfabetis (descending)
+    allPosts.sort((a, b) => b.date.localeCompare(a.date));
 
     let postedUrls = fs.existsSync(DATABASE_FILE) 
         ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
         : [];
 
+    // Karena sudah di-sort terbaru, find() akan otomatis mengambil yang paling gres yang belum dipost
     let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
 
     if (!target) {
@@ -49,7 +55,7 @@ async function postToLinkedIn() {
     };
 
     try {
-        console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
+        console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title} (${target.date})`);
 
         // --- STEP 1: REGISTER IMAGE ---
         console.log("📸 Meregistrasi gambar ke LinkedIn...");
@@ -79,7 +85,7 @@ async function postToLinkedIn() {
         console.log("⏳ Menunggu sistem LinkedIn (10 detik)...");
         await delay(10000);
 
-        // --- STEP 3: POST KE FEED (DENGAN DISTRIBUTION) ---
+        // --- STEP 3: POST KE FEED ---
         console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
@@ -91,7 +97,6 @@ async function postToLinkedIn() {
                     altText: target.title
                 }
             },
-            // Bagian ini wajib ada di API 202510 untuk menghindari Error 422
             distribution: {
                 feedDistribution: 'MAIN_FEED',
                 targetEntities: [],
@@ -100,7 +105,10 @@ async function postToLinkedIn() {
             lifecycleState: 'PUBLISHED'
         }, { headers: commonHeaders });
 
+        // Simpan URL ke database plain text
+        if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
+        
         console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang di LinkedIn.`);
         
     } catch (err) {

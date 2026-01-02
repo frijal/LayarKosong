@@ -8,7 +8,6 @@ const ARTICLE_FILE = "artikel.json";
 const DATABASE_FILE = "mini/posted-tumblr.txt"; 
 const BLOG_NAME = "frijal";
 
-// Pastikan nama variabel di sini SAMA PERSIS dengan yang ada di GitHub Secrets & YAML
 const client = tumblr.createClient({
   consumer_key: process.env.TUMBLR_CONSUMER_KEY,
   consumer_secret: process.env.TUMBLR_CONSUMER_SECRET,
@@ -41,21 +40,27 @@ let allArticles = [];
 
 for (const [category, items] of Object.entries(raw)) {
   for (const item of items) {
-    const [title, slug, image, date, desc] = item;
-    // Bersihkan .html dan pastikan slashess konsisten
-    const cleanSlug = slug.replace('.html', '').replace(/^\//, '');
-    const fullUrl = slug.startsWith("http") 
-      ? slug 
-      : `https://dalam.web.id/artikel/${cleanSlug}`;
+    // p[0]: judul, p[1]: slug, p[2]: image, p[3]: ISO Date, p[4]: desc
+    const slug = item[1].replace('.html', '').replace(/^\//, '');
+    const fullUrl = item[1].startsWith("http") 
+      ? item[1] 
+      : `https://dalam.web.id/artikel/${slug}`;
 
-    allArticles.push({ title, url: fullUrl, date: new Date(date), desc, category });
+    allArticles.push({ 
+      title: item[0], 
+      url: fullUrl, 
+      date: item[3], // ISO String (2026-01-01T...)
+      desc: item[4] || "Archive.", 
+      category: category 
+    });
   }
 }
 
-// Sort tertua ke terbaru
-allArticles.sort((a, b) => a.date - b.date);
+// --- SORTING TERBARU DULUAN ---
+// Menggunakan localeCompare agar presisi hingga detik/milidetik
+allArticles.sort((a, b) => b.date.localeCompare(a.date));
 
-// Cari artikel pertama yang belum ada di database txt
+// Cari artikel terbaru yang belum ada di database txt
 const target = allArticles.find(a => !postedUrls.includes(a.url));
 
 if (!target) {
@@ -66,17 +71,18 @@ if (!target) {
 /* =====================
    Posting (Format NPF untuk v5.x)
    ===================== */
-const tags = ["Layar Kosong", "Repost", "Ngopi", "Indonesia", target.category];
+const tags = ["fediverse", "Repost", "Ngopi", "Indonesia", target.category];
 
-// Format NPF mengharapkan array of content blocks
+console.log(`🚀 Mengirim ke Tumblr: ${target.title} (${target.date})`);
+
 const content = [
   {
     type: "text",
-    text: target.desc || "Archive.",
+    text: target.desc,
   },
   {
     type: "text",
-    text: "#reblogged #indonesia",
+    text: "#fediverse #Indonesia",
   },
   {
     type: "link",
@@ -89,15 +95,14 @@ client.createPost(BLOG_NAME, {
   tags: tags.map(t => cleanTag(t))
 }, (err, data) => {
   if (err) {
-    // Log error lengkap untuk melihat pesan dari server Tumblr
     console.error("❌ Gagal post Tumblr:", JSON.stringify(err, null, 2));
     process.exit(1);
   }
 
-  // Simpan URL baru ke file TXT (Append)
+  // Simpan ke database txt
   if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
   fs.appendFileSync(DATABASE_FILE, target.url + "\n");
 
-  console.log("✅ Berhasil post ke Tumblr (NPF Mode):", target.url);
+  console.log("✅ Berhasil post ke Tumblr:", target.url);
   setTimeout(() => process.exit(0), 500);
 });

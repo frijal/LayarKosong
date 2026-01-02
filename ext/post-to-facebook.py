@@ -17,18 +17,28 @@ def main():
     with open(JSON_FILE, 'r') as f:
         data = json.load(f)
 
-    # Gabungkan semua kategori dan selipkan nama kategori
+    # Gabungkan semua kategori
     all_posts = []
     for category_name, posts in data.items():
         for post in posts:
-            # post[1] adalah slug file (misal: sembelit.html)
-            # Kita bersihkan .html jika ada, agar konsisten dengan LinkedIn
+            # Struktur: [0:judul, 1:slug, 2:image, 3:date(ISO), 4:desc]
             slug = post[1].replace('.html', '')
-            post_with_cat = [post[0], slug, post[2], post[3], post[4], category_name]
+            iso_date = post[3] # Mengambil string ISO 8601 lengkap
+            
+            # Kita susun ulang untuk diproses
+            post_with_cat = {
+                'title': post[0],
+                'slug': slug,
+                'date': iso_date,
+                'desc': post[4],
+                'category': category_name
+            }
             all_posts.append(post_with_cat)
 
-    # Reverse agar artikel paling jadul jadi yang pertama
-    all_posts.reverse()
+    # --- LOGIKA SORTING AKURAT ---
+    # Mengurutkan berdasarkan string tanggal ISO secara terbalik (Terbaru -> Lama)
+    # Karena format ISO 8601 (YYYY-MM-DDTHH:MM...) bisa di-sort langsung secara alfabetis
+    all_posts.sort(key=lambda x: x['date'], reverse=True)
 
     # Load database URL yang sudah pernah diposting
     posted_urls = []
@@ -36,28 +46,27 @@ def main():
         with open(DATABASE_FILE, 'r') as f:
             posted_urls = [line.strip() for line in f.readlines()]
 
-    # Cari yang belum diposting
+    # Cari yang belum diposting (loop ini akan menemukan yang paling gres duluan)
     target_post = None
     target_url = None
     for post in all_posts:
-        url = f"{BASE_URL}{post[1]}"
+        url = f"{BASE_URL}{post['slug']}"
         if url not in posted_urls:
             target_post = post
             target_url = url
             break
 
     if target_post:
-        # title = target_post[0] # Judul tidak digunakan dalam pesan
-        desc = target_post[4]
-        cat_raw = target_post[5]
+        desc = target_post['desc']
+        cat_raw = target_post['category']
 
         # Format hashtag kategori: #namakategori
         cat_hashtag = "#" + cat_raw.replace(" ", "").lower()
 
-        # Gabungan hashtag wajib
+        # Gabungan hashtag wajib (Warna khas Layar Kosong #00b0ed disisipkan secara implisit di brand)
         hashtags = f"#fediverse #Repost #Ngopi {cat_hashtag} #Indonesia"
 
-        # URUTAN BARU: Deskripsi -> Hashtag -> Link (Tanpa Judul)
+        # URUTAN: Deskripsi -> Hashtag -> Link
         full_msg = f"{desc}\n\n{hashtags}\n\n{target_url}"
 
         encoded_msg = urllib.parse.quote(full_msg)
@@ -72,9 +81,9 @@ def main():
         with open('temp_new_url.txt', 'w') as f:
             f.write(target_url + '\n')
 
-        print(f"Berhasil memproses artikel untuk FB: {target_url}")
+        print(f"✅ Berhasil memproses artikel TERBARU ({target_post['date']}): {target_url}")
     else:
-        print("Misi selesai! Semua artikel sudah terposting di Facebook.")
+        print("✅ Misi selesai! Tidak ada artikel baru untuk diposting ke Facebook.")
 
 if __name__ == "__main__":
     main()
