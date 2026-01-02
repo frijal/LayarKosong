@@ -66,25 +66,24 @@ async function postToLinkedIn() {
         console.log(`📤 Mengambil gambar dari: ${target.image}`);
         const imageResponse = await axios.get(target.image, { responseType: 'arraybuffer' });
         
-        // Cek content-type dari response blog
-        const finalContentType = imageResponse.headers['content-type'] || 'image/webp';
-        console.log(`📡 Uploading binary dengan tipe: ${finalContentType}`);
+        const finalType = imageResponse.headers['content-type'] || 'image/webp';
+        console.log(`📡 Uploading binary dengan tipe: ${finalType}`);
 
         await axios.put(uploadUrl, imageResponse.data, {
             headers: { 
                 'Authorization': `Bearer ${ACCESS_TOKEN}`,
-                'Content-Type': finalContentType
+                'Content-Type': finalType
             }
         });
 
         console.log("⏳ Menunggu sistem LinkedIn (10 detik)...");
         await delay(10000);
 
-        // --- STEP 3: POST KE FEED ---
+        // --- STEP 3: POST KE FEED (DENGAN DISTRIBUTION) ---
         console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `${target.desc}\n\n#repost #ngopi #article #Indonesia\n\n${targetUrl}`,
+            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost\n\n${targetUrl}`,
             visibility: 'PUBLIC',
             content: {
                 media: {
@@ -92,11 +91,17 @@ async function postToLinkedIn() {
                     altText: target.title
                 }
             },
+            // Bagian ini wajib ada di API 202510 untuk menghindari Error 422
+            distribution: {
+                feedDistribution: 'MAIN_FEED',
+                targetEntities: [],
+                thirdPartyDistributionChannels: []
+            },
             lifecycleState: 'PUBLISHED'
         }, { headers: commonHeaders });
 
         fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang.`);
+        console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang di LinkedIn.`);
         
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));
