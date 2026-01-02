@@ -154,7 +154,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ Tidak ada perubahan data untuk di-commit."
           else
-            git commit -m "chore: automation sync (JS -> PY) [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "chore: automation MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
             git pull origin main --rebase
             git push
           fi
