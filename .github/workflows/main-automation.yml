@@ -28,7 +28,8 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          npm install
+          # Cek jika package.json ada sebelum install
+          if [ -f package.json ]; then npm install; else npm install axios openai; fi
           sudo apt-get install jq -y
 
       # =========================================================
@@ -43,10 +44,10 @@ jobs:
         run: node ext/rapikan-cloudflare.js
 
       - name: 🐘 2. Mastodon Autopost
-        run: node ext/post-to-mastodon.js
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: node ext/post-to-mastodon.js
 
       - name: ⚙️ 3. Threads Post Script
         env:
@@ -61,15 +62,17 @@ jobs:
         run: node ext/post-to-linkedin.js
 
       # =========================================================
-      # 🟡 BAGIAN 2: PYTHON SCRIPTS (.py)
+      # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
       # =========================================================
 
-      - name: 🔍 3a. IndexNow Sync (Bash & JQ)
+      - name: 🔍 5. IndexNow Sync (Bash & JQ)
         id: indexnow_sync
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
+          mkdir -p mini
           touch mini/indexnow-cache.txt
+          # Pakai || true supaya jika tidak ada perbedaan, workflow tidak stop
           grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
 
           if [ -s /tmp/new_urls.txt ]; then
@@ -77,20 +80,22 @@ jobs:
             jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
             curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
             cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
+          else
+            echo "✅ Tidak ada URL baru untuk IndexNow."
           fi
 
-      - name: ⚙️ 3b. Generate LLMs Index
+      - name: ⚙️ 6. Generate LLMs Index
         run: |
           if [ -f ext/generate_llms.py ]; then
             python3 ext/generate_llms.py
           fi
 
-      - name: 🔵 4. Process Facebook (Oldest First)
+      - name: 🔵 7. Process Facebook (Data Prep)
         id: fb_info
         run: python3 ext/post-to-facebook.py
 
-      - name: 🚀 Send to Facebook Page
-        if: steps.fb_info.outputs.url != ''
+      - name: 🚀 8. Send to Facebook Page
+        if: steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
         run: |
           curl -X POST "https://graph.facebook.com/v18.0/${{ secrets.FB_PAGE_ID }}/feed" \
             -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
@@ -110,12 +115,13 @@ jobs:
           git config --global user.name "Layar Kosong Bot"
           git config --global user.email "bot@dalam.web.id"
           
-          git add mini/*.txt mini/posted-mastodon.json llms.txt llms.md llms-index.html || true
+          # Tambahkan semua file database yang mungkin berubah
+          git add mini/*.txt mini/*.json llms.txt llms.md llms-index.html || true
           
           if git diff --staged --quiet; then
-            echo "ℹ️ Tidak ada perubahan data."
+            echo "ℹ️ Tidak ada perubahan data untuk di-commit."
           else
-            git commit -m "chore: automation sync (JS -> PY order) [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "chore: automation sync (JS -> PY) [$(date +'%Y-%m-%d %H:%M')]"
             git pull origin main --rebase
             git push
           fi
