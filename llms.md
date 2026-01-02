@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 725 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 727 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Warta Tekno
 
@@ -260,6 +260,7 @@ Total artikel terindeks: 725 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Opini Sosial
 
+- [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-02 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
 - [**Bilqis Humaira: Tameng AI di Balik Tajamnya Kritik Digital**](https://dalam.web.id/artikel/bilqis-humaira-ai-kritik-indonesia.html): 2026-01-01 — Menguak fenomena Bilqis Humaira, karakter AI yang menjadi wajah baru perlawanan digital dan kritik pemerintah di Indonesia. Apakah anonimitas AI adalah solusi atas UU ITE?
 - [**Renungan Niat: Menjadi Pegawai Negeri atau Pengusaha?**](https://dalam.web.id/artikel/niat-cpns.html): 2025-12-30 — Renungan tentang niat, pengabdian, dan pilihan hidup antara menjadi pegawai negeri atau pengusaha.
 - [**Bahaya Ghibah dan Fitnah: Menjaga Lisan dari Dosa Tak Terasa**](https://dalam.web.id/artikel/mengelola-lisan.html): 2025-12-30 — Pahami bahaya ghibah (menggunjing), fitnah, dan prasangka buruk dalam Islam. Pelajari dalil Al-Qur
@@ -738,6 +739,7 @@ Total artikel terindeks: 725 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Lainnya
 
+- [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-02 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
 - [**Kalkulator Laundry Berkah**](https://dalam.web.id/artikel/Kalkulator-Laundry-Berkah.html): 2025-10-29 — Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.
 - [**Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya!**](https://dalam.web.id/artikel/larangan-cas-powerbank-di-kereta.html): 2025-10-27 — Penjelasan lengkap kenapa KAI melarang cas powerbank di kereta. Ini alasannya, dari risiko overload, listrik padam satu gerbong, hingga bahaya kebakaran.
 - [**Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara!**](https://dalam.web.id/artikel/revolusi-dapur-dme.html): 2025-10-27 — Era tabung gas melon akan berakhir! Pemerintah finalisasi proyek penggantian LPG impor dengan DME (Dimethyl Ether) dari batu bara. Simak alasannya, plus minusnya, dan apa dampaknya bagi dapur kita.
