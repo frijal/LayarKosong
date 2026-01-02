@@ -40,7 +40,7 @@ jobs:
 
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
         # Menggunakan generator-pro yang sudah digabung
-        run: npm run ci-generate-xml-rss
+        run: node ext/seo-fixer.js #npm run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
