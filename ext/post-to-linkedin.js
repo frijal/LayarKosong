@@ -53,25 +53,31 @@ async function postToLinkedIn() {
         console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
 
         // --- STEP 1: REGISTER IMAGE ---
-        // Menambahkan SpecificRealtimeInput agar LinkedIn siap menerima file gambar
+        // Kita hapus specificRealtimeInput karena menyebabkan BadRequest di akun kamu
         console.log("📸 Meregistrasi gambar ke LinkedIn...");
         const registerRes = await axios.post('https://api.linkedin.com/rest/images?action=initializeUpload', {
             initializeUploadRequest: {
-                owner: LINKEDIN_PERSON_ID,
-                specificRealtimeInput: {
-                    "com.linkedin.videocontent.RealtimeUploadInput": {
-                        "uploadReason": "POST_IMAGE"
-                    }
-                }
+                owner: LINKEDIN_PERSON_ID
             }
         }, { headers });
 
         const uploadUrl = registerRes.data.value.uploadUrl;
         const imageUrn = registerRes.data.value.image;
 
-        // --- STEP 2: UPLOAD BINARY GAMBAR (WebP Support) ---
+        // --- STEP 2: UPLOAD BINARY GAMBAR ---
         console.log(`📤 Mengambil gambar dari: ${target.image}`);
         const imageResponse = await axios.get(target.image, { responseType: 'arraybuffer' });
+        
+        // Tetap gunakan image/webp sebagai fallback
+        const contentType = imageResponse.headers['content-type'] || 'image/webp';
+        console.log(`📡 Uploading binary dengan tipe: ${contentType}`);
+
+        await axios.put(uploadUrl, imageResponse.data, {
+            headers: { 
+                'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                'Content-Type': contentType // LinkedIn akan otomatis memproses WebP di sini
+            }
+        });
         
         // Gunakan Content-Type asli dari blog, atau fallback ke image/webp
         const contentType = imageResponse.headers['content-type'] || 'image/webp';
