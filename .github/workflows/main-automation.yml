@@ -50,6 +50,13 @@ jobs:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
         run: node ext/post-to-mastodon.js
 
+      - name: 📢 2b. Telegram Autopost
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node ext/post-to-telegram.js
+
       - name: ⚙️ 3. Threads Post Script
         continue-on-error: true
         env:
