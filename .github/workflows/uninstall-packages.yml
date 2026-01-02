@@ -19,13 +19,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       # --- NODE.JS SECTION ---
       - name: Setup Node.js
         if: hashFiles('package.json') != ''
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Node.js Prep & Uninstall
         if: hashFiles('package.json') != ''
