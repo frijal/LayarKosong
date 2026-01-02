@@ -208,7 +208,6 @@
     </div>
     <script>
     let resultState = { total: "Rp 0", list: "" };
-
     function addRow() {
         const container = document.getElementById('device-list');
         const newRow = document.createElement('div');
@@ -223,71 +222,56 @@
         container.appendChild(newRow);
         hitungOtomatis();
     }
-
     function removeRow(btn) {
         if (document.querySelectorAll('.device-row').length > 1) {
             btn.parentElement.remove();
             hitungOtomatis();
         }
     }
-
     function hitungOtomatis() {
         const tarif = parseFloat(document.getElementById('tarif_global').value);
         const names = document.querySelectorAll('.dev-name');
         const qtys = document.querySelectorAll('.dev-qty');
         const watts = document.querySelectorAll('.dev-watt');
         const hours = document.querySelectorAll('.dev-hours');
-
         let totalKwh = 0;
         let listWA = ""; 
-
         for (let i = 0; i < names.length; i++) {
             let n = names[i].value || "Alat s/n";
             let q = parseFloat(qtys[i].value) || 0;
             let w = parseFloat(watts[i].value) || 0;
             let h = parseFloat(hours[i].value) || 0;
-
             if (w > 0 && q > 0) {
                 // Hitung kWh harian lalu bulanan (30 hari)
                 let kwhPerAlat = (q * w * h / 1000) * 30;
                 let hargaPerAlat = kwhPerAlat * tarif;
                 totalKwh += kwhPerAlat;
-
                 // Format rupiah per alat
                 let formatRpAlat = hargaPerAlat.toLocaleString('id-ID', { maximumFractionDigits: 0 });
-
                 // Format baris: * Nama (Watt x Unit x Jam = Rp. Harga)
                 listWA += `* ${n} (${w} watt x ${q} unit x ${h} jam = Rp. ${formatRpAlat})%0A`; 
             }
         }
-
         const totalRupiah = totalKwh * tarif;
         const formatDuit = "Rp " + totalRupiah.toLocaleString('id-ID', { maximumFractionDigits: 0 });
-
         document.getElementById('total-tagihan').innerText = formatDuit;
         document.getElementById('summary-info').innerHTML = totalKwh > 0 
             ? `Total Konsumsi: <strong>${totalKwh.toFixed(2)} kWh</strong> / Bulan`
             : "Silakan masukkan data alat...";
-
         resultState = { total: formatDuit, list: listWA };
     }
-
     function shareWA() {
         const tarifSelect = document.getElementById('tarif_global');
         const golonganNama = tarifSelect.options[tarifSelect.selectedIndex].text;
         const totalHarga = document.getElementById('total-tagihan').innerText;
-        
         if (totalHarga === "Rp 0" || resultState.list === "") {
             alert("Isi dulu daftar alatnya ya, sobat!");
             return;
         }
-
         // Susun pesan sesuai permintaan user
         const pesan = `Halo! Saya baru saja menghitung estimasi tagihan listrik di Layar Kosong.%0A%0A⚡ *HASIL HITUNG LISTRIK 2026*%0A---------------------------%0A🏠 *Golongan:*%0A${golonganNama}%0A%0A📋 *Rincian Alat:*%0A${resultState.list}---------------------------%0A💰 *Estimasi Tagihan:*%0A*${totalHarga}/Bulan*%0A%0ACek sendiri juga disini: https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026/`;
-
         window.open(`https://api.whatsapp.com/send?text=${pesan}`, '_blank');
     }
-
     function downloadPDF() {
         const element = document.getElementById('printable-content');
         const opt = {
