@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
 
       - name: Cache Node Modules
         uses: actions/cache@v5.0.1
@@ -21,12 +21,12 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.1.0
         with:
           node-version: '20'
 
       - name: Install axios
-        run: npm install axios
+        run: npm install #axios
 
       - name: Get New Token
         id: refresh_token
