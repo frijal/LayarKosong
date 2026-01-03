@@ -1,36 +1,15 @@
 <!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Kalkulator Rasio dan Dimensi Gambar Otomatis</title>
     <meta name="description" content="Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!">
     <meta name="keywords" content="Kalkulator Gambar, Image Ratio Calculator, Hitung Piksel Gambar, Rasio 16:9, 4:3, 21:9, Aspect Ratio Tool, Layar Kosong, Alat Web Developer, Dimensi Foto">
     <meta name="robots" content="index, follow">
-    
-
-    
-
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-    
-    
-    
-    
-    
-    
     <meta property="article:published_time" content="2026-01-03T22:00:00+08:00">
-
-    
-    
-    
-    
-    
-
     <!-- Additional SEO -->
     <meta name="news_keywords" content="kalkulator aspect ratio, dimensi gambar 2026, tool resize gambar, rasio layar monitor">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --primary: #00b0ed;
@@ -39,7 +18,6 @@
             --input-bg: #f4f7f9;
             --border: #e1e8ed;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #121212;
@@ -48,7 +26,6 @@
                 --border: #333333;
             }
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
@@ -57,23 +34,19 @@
             line-height: 1.6;
             padding: 20px;
         }
-
         .wrapper {
             max-width: 1000px;
             margin: 0 auto;
         }
-
         header {
             text-align: center;
             margin-bottom: 40px;
         }
-
         header h1 {
             color: var(--primary);
             font-size: 2rem;
             margin-bottom: 10px;
         }
-
         /* 2 Kolom Input di Awal */
         .input-grid {
             display: grid;
@@ -85,18 +58,15 @@
             border: 1px solid var(--border);
             margin-bottom: 40px;
         }
-
         .input-group {
             display: flex;
             flex-direction: column;
         }
-
         label {
             font-weight: bold;
             margin-bottom: 8px;
             color: var(--primary);
         }
-
         input, select {
             padding: 12px;
             border-radius: 8px;
@@ -106,51 +76,42 @@
             font-size: 1rem;
             outline: none;
         }
-
         input:focus { border-color: var(--primary); }
-
         /* Hasil Tabel */
         .result-section {
             overflow-x: auto;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
             background: var(--bg);
         }
-
         th, td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid var(--border);
         }
-
         th {
             background-color: var(--primary);
             color: white;
         }
-
         .highlight-val {
             font-weight: bold;
             color: var(--primary);
         }
-
         footer {
             margin-top: 60px;
             text-align: center;
             font-size: 0.9rem;
             color: #888;
         }
-
         /* Responsive Mobile View */
         @media (max-width: 600px) {
             .input-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 1.5rem; }
         }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-dimensi-gambar">
     <meta name="author" content="Fakhrul Rijal">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
@@ -172,9 +133,10 @@
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9vy9VKbwAAZd9h.webp">
     <meta property="og:image:alt" content="Kalkulator Rasio dan Dimensi Gambar Otomatis">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://dalam.web.id/artikel/kalkulator-dimensi-gambar#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/kalkulator-dimensi-gambar"},"headline":"Kalkulator Rasio dan Dimensi Gambar Otomatis","description":"Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!","articleSection":"Olah Media","keywords":"dimensi, gambar, kalkulator, layar kosong, olah media, otomatis, rasio","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G9vy9VKbwAAZd9h.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal"},"publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-03T14:00:00.000+00:00","dateModified":"2026-01-03T14:00:00.000+00:00"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/artikel/-/olah-media/"},{"@type":"ListItem","position":3,"name":"Kalkulator Rasio dan Dimensi Gambar Otomatis","item":"https://dalam.web.id/artikel/kalkulator-dimensi-gambar"}]}]}</script>
 </head>
 <body>
-
 <div class="wrapper">
     <header>
         <p style="font-weight: 800; color: var(--primary); letter-spacing: 2px;">LAYAR KOSONG TOOLS</p>
@@ -182,7 +144,6 @@
 <div id="iposbrowser"></div>
         <p>Input ukuran sisi utama, maka sisi lainnya akan menyesuaikan otomatis sesuai rasio standar.</p><p><span class="emoji-span">💡</span> <strong>Info:</strong> Alat ini bekerja dengan rumus matematika, perbandingan tetap sederhana.</p>
     </header>
-
     <main>
             <article>
             <p>Jika kamu memilih arah orientasi <strong>Horizontal</strong>, maka angka yang kamu input dianggap sebagai <em>Lebar (Width)</em>, dan sistem akan mencari berapa <em>Tinggi (Height)</em> yang ideal.</p><p>Sebaliknya, kalau kamu pilih <strong>Vertical</strong>, maka nilai angka yang kamu input dianggap sebagai <em>Tinggi</em>, dan tabel di bawah akan menampilkan berapa <em>Lebar</em> yang pas, supaya gambar nggak kelihatan penyet atau ketarik.</p>
@@ -215,16 +176,13 @@
                     </tbody>
             </table>
         </div>
-
         <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
     </main>
-
     <footer>
         <p>🄯 2026 <strong>Layar Kosong</strong> - <a href="https://dalam.web.id" style="color: var(--primary); text-decoration: none;">dalam.web.id</a></p>
     </footer>
 </div>
-
 <script>
     const ratios = [
         { name: "Kotak Square", w: 1, h: 1, note: "Instagram, Profil" },
@@ -235,23 +193,18 @@
         { name: "Ultrawide", w: 21, h: 9, note: "Cinema, Monitor Gaming" },
         { name: "Golden Ratio", w: 1.618, h: 1, note: "Desain Estetik" }
     ];
-
     function hitungDimensi() {
         const val = parseFloat(document.getElementById('baseValue').value);
         const orient = document.getElementById('orientation').value;
         const tbody = document.getElementById('result-body');
-
         if (!val || val <= 0) {
             tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Masukkan angka piksel dulu, Jal!</td></tr>';
             return;
         }
-
         tbody.innerHTML = '';
-
         ratios.forEach(r => {
             let width, height;
             let ratioText = "";
-
             if (orient === "horizontal") {
                 // Input adalah Lebar
                 width = val;
@@ -264,7 +217,6 @@
                 // Kita balik tampilannya kalau portrait (misal 16:9 jadi 9:16)
                 ratioText = `${r.h}:${r.w}`;
             }
-
             const tr = document.createElement('tr');
             tr.innerHTML = `
             <td>${ratioText}</td>
@@ -275,13 +227,9 @@
             tbody.appendChild(tr);
         });
     }
-
     // Jalankan sekali pas load
     window.onload = hitungDimensi;
 </script>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
