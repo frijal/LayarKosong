@@ -65,12 +65,13 @@ jobs:
 
           # Tambahkan URL statis lainnya
           echo "$BASE_URL/" >> "$SITEMAP_FILE"
+          echo "$BASE_URL/about" >> "$SITEMAP_FILE"
           echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
           echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
           echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
           echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/search" >> "$SITEMAP_FILE"
           echo "$BASE_URL/privacy" >> "$SITEMAP_FILE" 
+          echo "$BASE_URL/search" >> "$SITEMAP_FILE"
           echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
           echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
 
