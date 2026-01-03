@@ -186,60 +186,41 @@
   // ---------------------------
 
  function initNavIcons(data, currentFile) {
-    let list = [];
-    let idx = -1;
-    let catName = null;
+    let list = [], idx = -1, catName = null;
 
-    // 1. Cari artikel (Asumsi data sudah urut secara kronologis di JSON)
+    // 1. Cari data
     for (const [cat, arts] of Object.entries(data)) {
         const i = arts.findIndex(a => a[1] === currentFile);
-        if (i !== -1) {
-            list = arts;
-            idx = i;
-            catName = cat;
-            break;
-        }
+        if (i !== -1) { [list, idx, catName] = [arts, i, cat]; break; }
     }
+    if (idx === -1) return;
 
-    // Exit jika artikel tidak terdaftar di data JSON
-    if (idx === -1) return; 
-
+    // 2. Siapkan navigasi
     const total = list.length;
-    
-    // 2. Logic Loop Navigasi Abadi (Modulo)
-    // nextI: Ke artikel yang lebih baru (indeks berkurang)
-    // prevI: Ke artikel yang lebih lama (indeks bertambah)
-    const nextI = (idx - 1 + total) % total; 
+    const nextI = (idx - 1 + total) % total;
     const prevI = (idx + 1) % total;
+    const getUrl = (f) => `/artikel/${f.replace('.html', '')}`;
 
-    // Helper Clean URL: Menghapus .html agar sinkron dengan sistem kita
-    const getUrl = (file) => `/artikel/${file.replace('.html', '')}`;
-
-    // 3. Render Elemen Navigasi
-    const nav = document.createElement('div');
+    // 3. Render Instant ke satu DIV Utama
+    const nav = document.getElementById('dynamic-nav-container') || document.createElement('div');
+    nav.id = 'dynamic-nav-container';
     nav.className = 'floating-nav';
     
-    // Tampilkan tombol navigasi hanya jika artikel lebih dari satu
-    const navButtons = total > 1 ? `
-        <a href="${getUrl(list[nextI][1])}" title="${list[nextI][0]}" class="btn-emoji">⏩</a>
-        <a href="${getUrl(list[prevI][1])}" title="${list[prevI][0]}" class="btn-emoji">⏪</a>
-    ` : '';
-
     nav.innerHTML = `
         <div class="nav-left">
-            <a href="/artikel/-/${catName.toLowerCase().replace(/\s+/g, '-')}" class="category-link">
-                ${catName}
-            </a>
+            <a href="/artikel/-/${catName.toLowerCase().replace(/\s+/g, '-')}" class="category-link visible">${catName}</a>
         </div>
         <div class="nav-right">
             <a href="/" title="Home" class="btn-emoji">🏠</a>
             <a href="/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
             <a href="/feed.html" title="RSS Feed" class="btn-emoji">📡</a>
-            ${navButtons}
-        </div>
-    `;
+            ${total > 1 ? `
+                <a href="${getUrl(list[nextI][1])}" title="${list[nextI][0]}" class="btn-emoji">⏩</a>
+                <a href="${getUrl(list[prevI][1])}" title="${list[prevI][0]}" class="btn-emoji">⏪</a>
+            ` : ''}
+        </div>`;
 
-    document.body.appendChild(nav);
+    if (!nav.parentElement) document.body.appendChild(nav);
 }
 
   // ---------------------------
