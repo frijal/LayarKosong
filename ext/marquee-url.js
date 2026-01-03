@@ -227,43 +227,62 @@
 // Internal TOC
 // ----------------------------------
 function initInternalNav() {
+  // Jalankan hanya setelah DOM siap sepenuhnya
+  const runScan = () => {
     const tocContainer = document.getElementById('internal-nav');
     if (!tocContainer) return;
 
-    // 1. Scan h1 sampai h4 di seluruh penjuru halaman
-    // Filter: jangan ambil heading yang ada di dalam box navigasi itu sendiri
+    // 1. Scan headings, tapi filter yang bener-bener punya teks
+    // Kita juga kecualikan logo "Layar Kosong" kalau dia pake tag heading
     const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4'))
-        .filter(h => !tocContainer.contains(h) && !h.closest('.floating-nav'));
-
-    // Jika tidak ada heading, sembunyikan container-nya
-    if (headings.length === 0) {
-        tocContainer.style.display = 'none';
-        return;
-    }
-
-    // 2. Build list navigasi secara instant
-    let tocHtml = '<ul class="nav-list">';
-    
-    headings.forEach((h, i) => {
-        // Buat ID otomatis jika belum ada (biar anchor link jalan)
-        if (!h.id) {
-            h.id = 'section-' + i;
-        }
-
-        const tag = h.tagName.toLowerCase(); // h1, h2, dll
-        const text = h.innerText.trim();
-
-        tocHtml += `
-            <li class="nav-item nav-${tag}">
-                <a href="#${h.id}" class="nav-link">${text}</a>
-            </li>`;
+    .filter(h => {
+      const hasText = h.innerText.trim().length > 0;
+      const isNotInsideNav = !tocContainer.contains(h) && !h.closest('.floating-nav');
+      const isNotLogo = !h.closest('#layar-kosong-header');
+      return hasText && isNotInsideNav && isNotLogo;
     });
 
+    // 2. Jika tidak ada heading yang valid, sembunyikan container
+    if (headings.length === 0) {
+      tocContainer.style.display = 'none';
+      return;
+    }
+
+    // Pastikan container terlihat (jika sebelumnya kena display:none)
+    tocContainer.style.display = 'block';
+
+    // 3. Bangun HTML List
+    let tocHtml = '<ul class="nav-list">';
+    headings.forEach((h, i) => {
+      // Buat ID unik berdasarkan urutan jika belum ada
+      if (!h.id) {
+        h.id = 'section-' + i;
+      }
+
+      const tag = h.tagName.toLowerCase();
+      const text = h.innerText.trim();
+
+      tocHtml += `
+      <li class="nav-item nav-${tag}">
+      <a href="#${h.id}" class="nav-link">${text}</a>
+      </li>`;
+    });
     tocHtml += '</ul>';
-    
-    // 3. Masukkan ke DOM
+
+    // 4. Suntikkan ke DOM
     tocContainer.innerHTML = tocHtml;
+  };
+
+  // Pastikan script nunggu browser selesai loading HTML
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runScan);
+  } else {
+    runScan();
+  }
 }
+
+// Panggil fungsinya
+initInternalNav();
   // ---------------------------
   // RELATED GRID
   // ---------------------------
