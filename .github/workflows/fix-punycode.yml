@@ -40,7 +40,7 @@ jobs:
         run: |
           node --trace-deprecation -e "require('./index')" 2>&1 | tee trace.txt || true
       - name: Upload trace as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: deprecation-trace
           path: trace.txt
