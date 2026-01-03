@@ -1,0 +1,69 @@
+name: Fix punycode deprecation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1' # weekly check every Monday 03:00 UTC
+
+jobs:
+  detect-and-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v6.0.1
+        
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.1.0
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies (clean)
+        run: npm ci
+
+      - name: Run Node with trace-deprecation to capture stack
+        run: |
+          node --trace-deprecation -e "require('./index')" || true
+        continue-on-error: true
+        env:
+          CI: true
+
+      - name: Save trace output
+        if: always()
+        run: |
+          node --trace-deprecation -e "require('./index')" 2>&1 | tee trace.txt || true
+      - name: Upload trace as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deprecation-trace
+          path: trace.txt
+
+      - name: Try automatic dependency updates
+        run: |
+          npm update
+          npm audit fix --force || true
+
+      - name: Ensure userland punycode is available (temporary)
+        run: |
+          npm install punycode --save-dev
+
+      - name: Run test suite
+        run: npm test
+        env:
+          CI: true
+
+      - name: Commit lockfile if changed and open PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "ci: update deps and add punycode to address DEP0040"
+          branch: fix/punycode-deprecation
+          title: "Fix: punycode deprecation (automated)"
+          body: |
+            This PR updates dependencies and adds the userland punycode package as a temporary fix for DEP0040.
