@@ -223,6 +223,47 @@
     if (!nav.parentElement) document.body.appendChild(nav);
 }
 
+// ----------------------------------
+// Internal TOC
+// ----------------------------------
+function initInternalNav() {
+    const tocContainer = document.getElementById('internal-nav');
+    if (!tocContainer) return;
+
+    // 1. Scan h1 sampai h4 di seluruh penjuru halaman
+    // Filter: jangan ambil heading yang ada di dalam box navigasi itu sendiri
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4'))
+        .filter(h => !tocContainer.contains(h) && !h.closest('.floating-nav'));
+
+    // Jika tidak ada heading, sembunyikan container-nya
+    if (headings.length === 0) {
+        tocContainer.style.display = 'none';
+        return;
+    }
+
+    // 2. Build list navigasi secara instant
+    let tocHtml = '<ul class="nav-list">';
+    
+    headings.forEach((h, i) => {
+        // Buat ID otomatis jika belum ada (biar anchor link jalan)
+        if (!h.id) {
+            h.id = 'section-' + i;
+        }
+
+        const tag = h.tagName.toLowerCase(); // h1, h2, dll
+        const text = h.innerText.trim();
+
+        tocHtml += `
+            <li class="nav-item nav-${tag}">
+                <a href="#${h.id}" class="nav-link">${text}</a>
+            </li>`;
+    });
+
+    tocHtml += '</ul>';
+    
+    // 3. Masukkan ke DOM
+    tocContainer.innerHTML = tocHtml;
+}
   // ---------------------------
   // RELATED GRID
   // ---------------------------
