@@ -162,9 +162,56 @@ a {
   text-decoration: none;
   transition: all 0.2s ease;
 }
-a:hover { opacity: 0.8; text-decoration: underline; }
-a:link, a:visited, a:hover, a:active {
-  text-decoration: none; }
+a:hover { opacity: 0.8; text-decoration: none; }
+a:link, a:visited, a:hover, a:active { text-decoration: none; }
+
+/* --- (6) INTERNAL NAV (Daftar Isi) --- */
+#internal-nav {
+position: fixed;
+top: 74px; /* 20px (top logo) + 44px (height logo) + 10px (gap) */
+left: 20px;
+width: 220px; /* Lebar ideal buat sidebar kiri */
+max-height: calc(100vh - 100px); /* Biar gak luber kalau headingnya banyak */
+overflow-y: auto;
+z-index: 1000;
+
+/* Styling agar senada dengan logo lu */
+background-color: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(128, 128, 128, 0.3);
+border-radius: 15px;
+padding: 15px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+box-sizing: border-box;
+}
+
+/* Styling List di dalam Nav */
+#internal-nav .nav-list {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+#internal-nav .nav-link {
+display: block;
+padding: 5px 0;
+font-size: 13px;
+color: #444;
+line-height: 1.4;
+transition: color 0.2s ease;
+}
+
+#internal-nav .nav-link:hover {
+color: #00b0ed;
+}
+
+/* Indentasi Hierarki */
+#internal-nav .nav-h1 { font-weight: bold; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 5px; }
+#internal-nav .nav-h2 { margin-left: 10px; }
+#internal-nav .nav-h3 { margin-left: 20px; font-size: 12px; opacity: 0.8; }
+#internal-nav .nav-h4 { margin-left: 30px; font-size: 11px; opacity: 0.6; }
+
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
   position: fixed;
@@ -420,6 +467,9 @@ gap: 12px;
 .rel-img-mini {
   flex: 0 0 75px;
   height: 55px;
+}
+#internal-nav {
+display: none !important;
 }
 }
 /* =================== */
