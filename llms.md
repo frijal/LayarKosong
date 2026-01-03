@@ -22,10 +22,11 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 731 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 734 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Warta Tekno
 
+- [**Panduan Lengkap ASN Digital dan Cara Aktivasi MFA: Amankan Data Kepegawaianmu!**](https://dalam.web.id/artikel/panduan-asn-digital-mfa-2026.html): 2026-01-03 — Transformasi ASN Digital 2026. Panduan lengkap cara aktivasi akun, reset password, dan aktivasi MFA di portal asndigital.bkn.go.id demi keamanan data kepegawaian.
 - [**Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya**](https://dalam.web.id/artikel/apakah-bsu-2026-akan-cair.html): 2026-01-02 — Kabar BSU 2026 Rp600 Ribu cair Januari kembali mencuat. Simak fakta terbaru, syarat penerima, dan cara cek status resminya di sini agar tidak tertipu!
 - [**cloudflare-speed-cli: Tool Keren Tes Kecepatan Internet di Terminal! 🚀**](https://dalam.web.id/artikel/cloudflare-speed-cli.html): 2026-01-01 — Review tool CLI super keren cloudflare-speed-cli yang bisa tes speed internet pake Cloudflare langsung di terminal dengan TUI interaktif. Cocok buat kamu yang suka main di Linux! Lengkap dengan cara install dan fitur-fitur mantap.
 - [**Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart**](https://dalam.web.id/artikel/refresh-codespaces-browser.html): 2025-12-30 — Cheat sheet cara refresh GitHub Codespaces langsung dari browser: Restart, Rebuild Container, Full Rebuild. Plus diagram alur singkat kapan pilih yang mana.
@@ -261,7 +262,8 @@ Total artikel terindeks: 731 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Opini Sosial
 
-- [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-02 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
+- [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-03 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
+- [**Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend!**](https://dalam.web.id/artikel/panduan-libur-cuti-bersama-2026.html): 2026-01-03 — Rencana liburan 2026? Cek daftar lengkap libur nasional, cuti bersama, jadwal Imlek, hingga Lebaran 2026 berdasarkan SKB 3 Menteri. Siapkan jadwal healing-mu!
 - [**Bilqis Humaira: Tameng AI di Balik Tajamnya Kritik Digital**](https://dalam.web.id/artikel/bilqis-humaira-ai-kritik-indonesia.html): 2026-01-01 — Menguak fenomena Bilqis Humaira, karakter AI yang menjadi wajah baru perlawanan digital dan kritik pemerintah di Indonesia. Apakah anonimitas AI adalah solusi atas UU ITE?
 - [**Renungan Niat: Menjadi Pegawai Negeri atau Pengusaha?**](https://dalam.web.id/artikel/niat-cpns.html): 2025-12-30 — Renungan tentang niat, pengabdian, dan pilihan hidup antara menjadi pegawai negeri atau pengusaha.
 - [**Bahaya Ghibah dan Fitnah: Menjaga Lisan dari Dosa Tak Terasa**](https://dalam.web.id/artikel/mengelola-lisan.html): 2025-12-30 — Pahami bahaya ghibah (menggunjing), fitnah, dan prasangka buruk dalam Islam. Pelajari dalil Al-Qur
@@ -503,6 +505,7 @@ Total artikel terindeks: 731 (hanya yang punya summary). Update rutin – full l
 ## 📌 Sistem Terbuka
 
 - [**Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong**](https://dalam.web.id/artikel/tarif-listrik-januari-maret-2026.html): 2026-01-03 — Kabar gembira! PLN pastikan tarif listrik Januari-Maret 2026 tetap. Cek daftar tarif per kWh terbaru dan cara hitung tagihan listrik rumahmu di sini.
+- [**Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀**](https://dalam.web.id/artikel/harga-bbm-turun-2026.html): 2026-01-02 — Mulai 1 Januari 2026, harga BBM non-subsidi seperti Pertamax, Pertamax Turbo, Dexlite turun signifikan. Cek daftar harga baru Pertamina dan badan usaha lain. Solar &amp; Pertalite tetap, ini kado awal tahun buat pengendara!
 - [**🐧 Mencoba Linux Distro Mageia 9 - Review Santai**](https://dalam.web.id/artikel/mageia9-review.html): 2025-12-30 — Review interaktif Mageia 9: pengalaman instalasi, fitur, manajemen paket, galeri, dan tips.
 - [**Implementasi Open Source Software di Hulu Sungai Tengah**](https://dalam.web.id/artikel/hst-oss.html): 2025-12-30 — Kisah sukses migrasi Open Source Software (OSS) di Kabupaten Hulu Sungai Tengah. Dari efisiensi anggaran hingga kemandirian teknologi sejak 2010 hingga 2025.
 - [**Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦**](https://dalam.web.id/artikel/flatpak-linux.html): 2025-12-30 — Capek sama dependensi error? Pelajari cara pakai Flatpak dan Flathub untuk instal aplikasi universal di semua distro Linux. Aman, stabil, dan modern!
@@ -742,7 +745,7 @@ Total artikel terindeks: 731 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Lainnya
 
-- [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-02 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
+- [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-03 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
 - [**Kalkulator Listrik Real-Time 2026**](https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026.html): 2026-01-02 — Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!
 - [**Kalkulator Laundry Berkah**](https://dalam.web.id/artikel/Kalkulator-Laundry-Berkah.html): 2025-10-29 — Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.
 - [**Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya!**](https://dalam.web.id/artikel/larangan-cas-powerbank-di-kereta.html): 2025-10-27 — Penjelasan lengkap kenapa KAI melarang cas powerbank di kereta. Ini alasannya, dari risiko overload, listrik padam satu gerbong, hingga bahaya kebakaran.
