@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 738 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 739 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Warta Tekno
 
@@ -202,6 +202,7 @@ Total artikel terindeks: 738 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Olah Media
 
+- [**Kalkulator Rasio dan Dimensi Gambar Otomatis**](https://dalam.web.id/artikel/kalkulator-dimensi-gambar.html): 2026-01-03 — Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!
 - [**Template Excel Gratis &amp; Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️**](https://dalam.web.id/artikel/template-excel-dan-rekomendasi-cmms.html): 2026-01-02 — Daftar template Excel gratis untuk priority matrix &amp; backlog maintenance, plus rekomendasi CMMS terbaik lokal dan internasional buat oil &amp; gas di Indonesia, khusus Balikpapan. Mulai dari Smartsheet sampai HashMicro!
 - [**Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah**](https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html): 2025-12-30 — Panduan praktis batch resize foto menggunakan ImageMagick di Linux dan Windows. Ubah ukuran banyak gambar sekaligus dan simpan hasilnya ke folder terpisah dengan aman.
 - [**LibreOffice: Alternatif Microsoft Office Gratis &amp; Keren**](https://dalam.web.id/artikel/libreoffice-alternatif-gratis-microsoft-office.html): 2025-12-30 — Lagi cari alternatif Microsoft Office yang gratis tapi fiturnya lengkap? Kenalan sama LibreOffice, paket aplikasi perkantoran open-source yang powerful dan 100% gratis!
