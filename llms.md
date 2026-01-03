@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 737 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 738 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Warta Tekno
 
@@ -507,6 +507,7 @@ Total artikel terindeks: 737 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Sistem Terbuka
 
+- [**TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!**](https://dalam.web.id/artikel/tuxsync-migration-assistant-linux.html): 2026-01-03 — Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.
 - [**Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong**](https://dalam.web.id/artikel/tarif-listrik-januari-maret-2026.html): 2026-01-03 — Kabar gembira! PLN pastikan tarif listrik Januari-Maret 2026 tetap. Cek daftar tarif per kWh terbaru dan cara hitung tagihan listrik rumahmu di sini.
 - [**Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀**](https://dalam.web.id/artikel/harga-bbm-turun-2026.html): 2026-01-02 — Mulai 1 Januari 2026, harga BBM non-subsidi seperti Pertamax, Pertamax Turbo, Dexlite turun signifikan. Cek daftar harga baru Pertamina dan badan usaha lain. Solar &amp; Pertalite tetap, ini kado awal tahun buat pengendara!
 - [**🐧 Mencoba Linux Distro Mageia 9 - Review Santai**](https://dalam.web.id/artikel/mageia9-review.html): 2025-12-30 — Review interaktif Mageia 9: pengalaman instalasi, fitur, manajemen paket, galeri, dan tips.
