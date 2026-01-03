@@ -60,7 +60,7 @@ jobs:
           CI: true
 
       - name: Commit lockfile if changed and open PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8.0.0
         with:
           commit-message: "ci: update deps and add punycode to address DEP0040"
           branch: fix/punycode-deprecation
