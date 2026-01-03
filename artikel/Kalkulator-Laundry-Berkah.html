@@ -230,26 +230,22 @@ function validasiInput() {
 function exportSummary() {
   if (!validasiInput()) return;
   hitungTotal();
-
   const namaKonsumen = document.getElementById("namaKonsumen").value.trim() || "tanpa-nama";
   const catatan = document.getElementById("catatan").value.trim();
   const rows = document.querySelectorAll("#daftar-item tr");
   const totalHarga = document.getElementById("total-belanja").value;
-
   // Kumpulkan data per Nama Barang (Aggregation)
   const summaryMap = {};
   rows.forEach(r => {
     const nama = (r.querySelector('td:nth-child(2) input').value || "-").trim();
     const jumlah = parseFloat(r.querySelector('.jumlah').value.replace(/\./g, "").replace(",", ".")) || 0;
     const subtotal = parseFloat(r.querySelector('.subtotal').value.replace(/\./g, "").replace(",", ".")) || 0;
-    
     if (!summaryMap[nama]) {
       summaryMap[nama] = { qty: 0, subtotal: 0 };
     }
     summaryMap[nama].qty += jumlah;
     summaryMap[nama].subtotal += subtotal;
   });
-
   const now = new Date();
   const tgl = String(now.getDate()).padStart(2, "0");
   const bln = String(now.getMonth() + 1).padStart(2, "0");
@@ -257,7 +253,6 @@ function exportSummary() {
   const jam = String(now.getHours()).padStart(2, "0");
   const mnt = String(now.getMinutes()).padStart(2, "0");
   const timestamp = `${tgl}-${bln}-${thn}-${jam}${mnt}`;
-
   // Buat HTML ringkasan nota
   let html = `<h3>Nota Laundry Berkah</h3>
     <p><strong>Nama Konsumen:</strong> ${namaKonsumen}</p>
@@ -265,23 +260,18 @@ function exportSummary() {
     <div style="margin-top:12px;padding:10px;border-top:1px solid #ccc;">
       <p><strong>Detail per Item:</strong></p>
       <ul style="margin:0;padding-left:18px;line-height:1.6;">`;
-
   Object.keys(summaryMap).forEach(nama => {
     const item = summaryMap[nama];
     const hargaSatuan = item.qty > 0 ? item.subtotal / item.qty : 0;
     html += `<li>${nama}: ${item.qty.toString().replace(".", ",")} x ${formatRupiah(hargaSatuan)} = Rp ${formatRupiah(item.subtotal)}</li>`;
   });
-
   html += `</ul></div>
     <p style="margin-top:10px;"><strong>Total Keseluruhan:</strong> Rp ${totalHarga}</p>`;
-  
   if (catatan) html += `<p><strong>Catatan:</strong> ${catatan}</p>`;
   html += `<p style="text-align:center;margin-top:10px;">Terima kasih.</p>`;
-
   const notaSummary = document.getElementById("nota-summary");
   notaSummary.innerHTML = html;
   notaSummary.style.display = "block";
-
   // PROSES EXPORT KE WEBP
   html2canvas(notaSummary, { 
     scale: 2, // Biar resolusinya 2x lebih tajam (bagus buat teks kecil)
@@ -289,21 +279,16 @@ function exportSummary() {
     backgroundColor: "#ffffff" // Pastiin background putih biar gak transparan aneh
   }).then(canvas => {
     const link = document.createElement("a");
-    
     // Nama file diganti ekstensinya jadi .webp
     const namaFile = `${timestamp}-${namaKonsumen.replace(/\s+/g, "_")}.webp`;
     link.download = namaFile;
-    
     // MENGGUNAKAN WEBP DENGAN KUALITAS 0.9 (90%)
     // 0.9 adalah sweet spot: Teks tajem, size jauh lebih kecil dari PNG
     link.href = canvas.toDataURL("image/webp", 0.9);
-    
     link.click();
-
     // Clean up
     notaSummary.style.display = "none";
     localStorage.removeItem("notaBelanja");
-    
     console.log(`Nota berhasil di-export sebagai WebP: ${namaFile}`);
   });
 }
