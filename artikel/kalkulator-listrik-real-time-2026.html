@@ -184,11 +184,11 @@
                 </div>
                 <div>
                     <label>Watt</label>
-                    <input type="number" class="dev-watt" placeholder="0" oninput="hitungOtomatis()">
+                    <input type="number" class="dev-watt" placeholder="berapa Watt?" oninput="hitungOtomatis()">
                 </div>
                 <div>
                     <label>Menyala Berapa Jam/Hari?</label>
-                    <input type="number" class="dev-hours" placeholder="0" oninput="hitungOtomatis()">
+                    <input type="number" class="dev-hours" placeholder="berapa Jam?" oninput="hitungOtomatis()">
                 </div>
                 <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
             </div>
@@ -215,8 +215,8 @@
         newRow.innerHTML = `
             <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
             <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-watt" placeholder="0" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-hours" placeholder="0" oninput="hitungOtomatis()"></div>
+            <div><input type="number" class="dev-watt" placeholder="berapa Watt?" oninput="hitungOtomatis()"></div>
+            <div><input type="number" class="dev-hours" placeholder=""berapa Jam?"" oninput="hitungOtomatis()"></div>
             <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
         `;
         container.appendChild(newRow);
