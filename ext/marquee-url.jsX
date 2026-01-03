@@ -185,62 +185,72 @@
   // NAV ICONS
   // ---------------------------
 
- function initNavIcons(data, currentFile) {
+  function initNavIcons(data, currentFile) {
+    function slugify(name) {
+      return name
+      .replace(/^[^\w\s]*/, '')
+      .trim()
+      .toLowerCase()
+      .replace(/ & /g, '-and-')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+    }
+
     let list = [];
     let idx = -1;
     let catName = null;
 
-    // 1. Cari artikel (Asumsi data sudah urut secara kronologis di JSON)
     for (const [cat, arts] of Object.entries(data)) {
-        const i = arts.findIndex(a => a[1] === currentFile);
-        if (i !== -1) {
-            list = arts;
-            idx = i;
-            catName = cat;
-            break;
-        }
+      arts.sort((a, b) => new Date(b[3]) - new Date(a[3]));
+      const i = arts.findIndex((a) => a[1] === currentFile);
+      if (i !== -1) {
+        list = arts;
+        idx = i;
+        catName = cat;
+        break;
+      }
     }
 
-    // Exit jika artikel tidak terdaftar di data JSON
-    if (idx === -1) return; 
-
-    const total = list.length;
-    
-    // 2. Logic Loop Navigasi Abadi (Modulo)
-    // nextI: Ke artikel yang lebih baru (indeks berkurang)
-    // prevI: Ke artikel yang lebih lama (indeks bertambah)
-    const nextI = (idx - 1 + total) % total; 
-    const prevI = (idx + 1) % total;
-
-    // Helper Clean URL: Menghapus .html agar sinkron dengan sistem kita
-    const getUrl = (file) => `/artikel/${file.replace('.html', '')}`;
-
-    // 3. Render Elemen Navigasi
     const nav = document.createElement('div');
     nav.className = 'floating-nav';
-    
-    // Tampilkan tombol navigasi hanya jika artikel lebih dari satu
-    const navButtons = total > 1 ? `
-        <a href="${getUrl(list[nextI][1])}" title="${list[nextI][0]}" class="btn-emoji">⏩</a>
-        <a href="${getUrl(list[prevI][1])}" title="${list[prevI][0]}" class="btn-emoji">⏪</a>
-    ` : '';
-
     nav.innerHTML = `
-        <div class="nav-left">
-            <a href="/artikel/-/${catName.toLowerCase().replace(/\s+/g, '-')}" class="category-link">
-                ${catName}
-            </a>
-        </div>
-        <div class="nav-right">
-            <a href="/" title="Home" class="btn-emoji">🏠</a>
-            <a href="/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
-            <a href="/feed.html" title="RSS Feed" class="btn-emoji">📡</a>
-            ${navButtons}
-        </div>
-    `;
-
+    <div class="nav-left"><a id="category-link" class="category-link"></a></div>
+    <div class="nav-right">
+    <a href="https://dalam.web.id" title="Home" class="btn-emoji">🏠</a>
+    <a href="https://dalam.web.id/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
+    <a href="https://dalam.web.id/feed.html" title="Update harian" class="btn-emoji">📡</a>
+    <a id="next-article" class="btn-emoji">⏩</a>
+    <a id="prev-article" class="btn-emoji">⏪</a>
+    </div>`;
     document.body.appendChild(nav);
-}
+
+    const catLink = document.getElementById('category-link');
+    const prev = document.getElementById('prev-article');
+    const next = document.getElementById('next-article');
+
+    if (catLink && catName) {
+      catLink.textContent = catName;
+      catLink.href = `/artikel/-/${slugify(catName)}`;
+      catLink.title = `Kategori: ${catName}`;
+    } else if (catLink) {
+      catLink.style.display = 'none';
+    }
+
+    const total = list.length;
+    if (total <= 1) {
+      prev.style.display = 'none';
+      next.style.display = 'none';
+      return;
+    }
+
+    const nextI = (idx + 1) % total;
+    const prevI = (idx - 1 + total) % total;
+    next.href = `/artikel/${list[nextI][1]}`;
+    next.title = list[nextI][0];
+    prev.href = `/artikel/${list[prevI][1]}`;
+    prev.title = list[prevI][0];
+  }
 
   // ---------------------------
   // RELATED GRID
