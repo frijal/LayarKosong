@@ -165,52 +165,87 @@ a {
 a:hover { opacity: 0.8; text-decoration: none; }
 a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) --- */
+/* --- (6) INTERNAL NAV (Daftar Isi) - DNA Floating Nav Version --- */
 #internal-nav {
 position: fixed;
-top: 74px; /* 20px (top logo) + 44px (height logo) + 10px (gap) */
+top: 80px; /* Jarak aman di bawah logo */
 left: 20px;
-width: 220px; /* Lebar ideal buat sidebar kiri */
-max-height: calc(100vh - 100px); /* Biar gak luber kalau headingnya banyak */
+width: 240px;
+max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
 
-/* Styling agar senada dengan logo lu */
-background-color: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(128, 128, 128, 0.3);
-border-radius: 15px;
-padding: 15px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-box-sizing: border-box;
+/* Hilangkan background kotak besar agar sama seperti Floating Nav */
+background: transparent;
+border: none;
+box-shadow: none;
+backdrop-filter: none;
+-webkit-backdrop-filter: none;
+padding: 0;
+pointer-events: none; /* Biar scroll body gak keganggu kalau pas kosong */
 }
 
-/* Styling List di dalam Nav */
+/* Styling List */
 #internal-nav .nav-list {
 list-style: none;
 padding: 0;
 margin: 0;
+display: flex;
+flex-direction: column;
+gap: 8px; /* Jarak antar link sama seperti gap di .nav-right */
 }
 
+/* Link Styling - Mengikuti gaya .category-link */
 #internal-nav .nav-link {
-display: block;
-padding: 5px 0;
+display: inline-block; /* Agar lebar kotak mengikuti panjang teks */
+width: fit-content;
+max-width: 100%;
+pointer-events: auto; /* Aktifkan klik kembali */
+
+padding: 8px 16px;
 font-size: 13px;
-color: #444;
-line-height: 1.4;
-transition: color 0.2s ease;
+font-weight: 600;
+color: #111;
+text-decoration: none;
+
+/* Gaya Glassmorphism Persis Floating Nav */
+background-color: rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+border: 1px solid rgba(128, 128, 128, 0.2);
+border-radius: 20px; /* Rounded kapsul */
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
+/* Hover State - Konsisten dengan warna aksen lo */
 #internal-nav .nav-link:hover {
-color: #00b0ed;
+background-color: var(--accent);
+color: #fff;
+transform: translateX(5px); /* Geser dikit ke kanan pas di-hover */
+border-color: var(--accent);
 }
 
-/* Indentasi Hierarki */
-#internal-nav .nav-h1 { font-weight: bold; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 5px; }
-#internal-nav .nav-h2 { margin-left: 10px; }
-#internal-nav .nav-h3 { margin-left: 20px; font-size: 12px; opacity: 0.8; }
-#internal-nav .nav-h4 { margin-left: 30px; font-size: 11px; opacity: 0.6; }
+/* Hierarki Indentasi (Tetap ada tapi minimalis) */
+#internal-nav .nav-h1 {
+font-weight: 800;
+color: var(--accent);
+background: transparent;
+border: none;
+box-shadow: none;
+padding-left: 0;
+backdrop-filter: none;
+}
+#internal-nav .nav-h2 { margin-left: 10px; opacity: 0.9; }
+#internal-nav .nav-h3 { margin-left: 20px; opacity: 0.7; font-size: 12px; }
+
+/* Custom Scrollbar Tipis biar senada dengan Marquee */
+#internal-nav::-webkit-scrollbar { width: 3px; }
+#internal-nav::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
@@ -565,5 +600,14 @@ margin: 30px 0;
     text-align: center;
     padding: 14px;
     font-size: 14px;
+  }
+  #internal-nav .nav-link {
+  background-color: rgba(30, 30, 30, 0.8);
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.1);
+  }
+  #internal-nav .nav-link:hover {
+  background-color: var(--accent);
+  color: #fff;
   }
 }
