@@ -165,15 +165,24 @@ a {
 a:hover { opacity: 0.8; text-decoration: none; }
 a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text & Multi-line Version --- */
+/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text, Multi-line & Left Hover --- */
 #internal-nav {
 position: fixed;
 top: 80px;
 left: 20px;
-width: 240px; /* Lebar ini jadi patokan kapan teks harus turun ke bawah */
+width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
+
+background: transparent;
+border: none;
+box-shadow: none;
+backdrop-filter: none;
+-webkit-backdrop-filter: none;
+padding: 0;
+pointer-events: none;
+}
 
 /* Styling List */
 #internal-nav .nav-list {
@@ -182,12 +191,12 @@ padding: 0;
 margin: 0;
 display: flex;
 flex-direction: column;
-gap: 10px; /* Gue tambahin gap-nya dikit biar kalau ada teks 2 baris nggak dempetan */
+gap: 10px;
 }
 
-/* Link Styling - Support Multi-line */
+/* Link Styling */
 #internal-nav .nav-link {
-display: block; /* Ganti ke block agar lebar otomatis mengikuti kontainer */
+display: block;
 width: 100%;
 pointer-events: auto;
 
@@ -197,19 +206,19 @@ font-weight: 500;
 color: #444;
 text-decoration: none;
 
-/* PENTING: Supaya teks bisa turun ke bawah */
-white-space: normal;      /* Izinkan baris baru */
-word-wrap: break-word;    /* Patahkan kata jika terlalu panjang */
-overflow: visible;        /* Tampilkan semua teks */
-text-overflow: clip;      /* Hilangkan efek titik-titik (...) */
+white-space: normal;
+word-wrap: break-word;
+overflow: visible;
 
-transition: all 0.2s ease-in-out;
+/* Transisi halus untuk pergerakan ke kiri */
+transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Hover State */
+/* Hover State - BERGERAK KE KIRI */
 #internal-nav .nav-link:hover {
 color: var(--accent);
-transform: translateX(-4px);
+/* Nilai negatif (-) untuk arah kiri */
+transform: translateX(-8px);
 font-weight: 700;
 }
 
