@@ -175,15 +175,6 @@ max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
 
-background: transparent;
-border: none;
-box-shadow: none;
-backdrop-filter: none;
--webkit-backdrop-filter: none;
-padding: 0;
-pointer-events: none;
-}
-
 /* Styling List */
 #internal-nav .nav-list {
 list-style: none;
@@ -218,7 +209,7 @@ transition: all 0.2s ease-in-out;
 /* Hover State */
 #internal-nav .nav-link:hover {
 color: var(--accent);
-transform: translateX(8px);
+transform: translateX(-4px);
 font-weight: 700;
 }
 
@@ -232,10 +223,6 @@ margin-bottom: 5px;
 #internal-nav .nav-h2 { margin-left: 12px; }
 #internal-nav .nav-h3 { margin-left: 24px; font-size: 12px; opacity: 0.8; }
 #internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; opacity: 0.6; }
-
-/* Scrollbar tetap ada buat jaga-jaga kalau heading lo super banyak sampai ke bawah layar */
-#internal-nav::-webkit-scrollbar { width: 2px; }
-#internal-nav::-webkit-scrollbar-thumb { background: rgba(0, 176, 237, 0.2); }
 
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
