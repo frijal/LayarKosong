@@ -165,24 +165,24 @@ a {
 a:hover { opacity: 0.8; text-decoration: none; }
 a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) - DNA Floating Nav Version --- */
+/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text Version --- */
 #internal-nav {
 position: fixed;
-top: 80px; /* Jarak aman di bawah logo */
+top: 80px;
 left: 20px;
 width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
 
-/* Hilangkan background kotak besar agar sama seperti Floating Nav */
+/* Reset total gaya kontainer */
 background: transparent;
 border: none;
 box-shadow: none;
 backdrop-filter: none;
 -webkit-backdrop-filter: none;
 padding: 0;
-pointer-events: none; /* Biar scroll body gak keganggu kalau pas kosong */
+pointer-events: none;
 }
 
 /* Styling List */
@@ -192,60 +192,55 @@ padding: 0;
 margin: 0;
 display: flex;
 flex-direction: column;
-gap: 8px; /* Jarak antar link sama seperti gap di .nav-right */
+gap: 4px; /* Jarak antar teks lebih rapat biar rapi */
 }
 
-/* Link Styling - Mengikuti gaya .category-link */
+/* Link Styling - Murni Teks */
 #internal-nav .nav-link {
-display: inline-block; /* Agar lebar kotak mengikuti panjang teks */
+display: inline-block;
 width: fit-content;
 max-width: 100%;
-pointer-events: auto; /* Aktifkan klik kembali */
+pointer-events: auto;
 
-padding: 8px 16px;
+padding: 4px 0; /* Padding vertikal saja untuk area klik */
 font-size: 13px;
-font-weight: 600;
-color: #111;
+font-weight: 500;
+color: #444; /* Warna teks standar */
 text-decoration: none;
 
-/* Gaya Glassmorphism Persis Floating Nav */
-background-color: rgba(255, 255, 255, 0.7);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-border: 1px solid rgba(128, 128, 128, 0.2);
-border-radius: 20px; /* Rounded kapsul */
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* Hapus semua gaya visual kapsul */
+background: transparent;
+border: none;
+box-shadow: none;
+backdrop-filter: none;
 
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.2s ease-in-out;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 }
 
-/* Hover State - Konsisten dengan warna aksen lo */
+/* Hover State - Hanya teks yang bereaksi */
 #internal-nav .nav-link:hover {
-background-color: var(--accent);
-color: #fff;
-transform: translateX(5px); /* Geser dikit ke kanan pas di-hover */
-border-color: var(--accent);
+color: var(--accent); /* Berubah jadi biru Layar Kosong */
+transform: translateX(8px); /* Geser ke kanan tetap dipertahankan biar interaktif */
+font-weight: 700;
 }
 
-/* Hierarki Indentasi (Tetap ada tapi minimalis) */
+/* Hierarki Indentasi (Minimalis tanpa garis) */
 #internal-nav .nav-h1 {
 font-weight: 800;
-color: var(--accent);
-background: transparent;
-border: none;
-box-shadow: none;
-padding-left: 0;
-backdrop-filter: none;
+font-size: 14px;
+color: #111;
+margin-bottom: 5px;
 }
-#internal-nav .nav-h2 { margin-left: 10px; opacity: 0.9; }
-#internal-nav .nav-h3 { margin-left: 20px; opacity: 0.7; font-size: 12px; }
+#internal-nav .nav-h2 { margin-left: 12px; }
+#internal-nav .nav-h3 { margin-left: 24px; font-size: 12px; opacity: 0.8; }
+#internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; opacity: 0.6; }
 
-/* Custom Scrollbar Tipis biar senada dengan Marquee */
-#internal-nav::-webkit-scrollbar { width: 3px; }
-#internal-nav::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+/* Scrollbar tetap dibuat super tipis & transparan */
+#internal-nav::-webkit-scrollbar { width: 2px; }
+#internal-nav::-webkit-scrollbar-thumb { background: rgba(0, 176, 237, 0.2); }
 
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
@@ -602,12 +597,12 @@ margin: 30px 0;
     font-size: 14px;
   }
   #internal-nav .nav-link {
-  background-color: rgba(30, 30, 30, 0.8);
-  color: #f5f5f5;
-  border-color: rgba(255, 255, 255, 0.1);
+  color: #bbb;
   }
   #internal-nav .nav-link:hover {
-  background-color: var(--accent);
-  color: #fff;
+  color: var(--accent);
+  }
+  #internal-nav .nav-h1 {
+  color: #eee;
   }
 }
