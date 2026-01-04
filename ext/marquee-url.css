@@ -587,6 +587,28 @@ margin: 30px 0;
     padding: 14px;
     font-size: 14px;
   }
+  #layar-kosong-header {
+  /* Background jadi gelap transparan (efek kaca gelap) */
+  background-color: rgba(30, 41, 59, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  #layar-kosong-header:hover {
+  /* Saat hover di mode gelap, sedikit lebih terang */
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: #00b0ed; /* Tetap pakai biru khas lo */
+  }
+
+  #layar-kosong-header::after {
+  /* Warna teks "Layar Kosong" jadi putih tulang biar enak dibaca */
+  color: #f1f5f9;
+  }
+
+  #layar-kosong-header::before {
+   filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
+  }
+
   #internal-nav .nav-link { color: #bbb; }
   #internal-nav .nav-link:hover { color: var(--accent); }
   #internal-nav .nav-h1 { color: #eee; }
