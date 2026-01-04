@@ -165,17 +165,16 @@ a {
 a:hover { opacity: 0.8; text-decoration: none; }
 a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text Version --- */
+/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text & Multi-line Version --- */
 #internal-nav {
 position: fixed;
 top: 80px;
 left: 20px;
-width: 240px;
+width: 240px; /* Lebar ini jadi patokan kapan teks harus turun ke bawah */
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
 
-/* Reset total gaya kontainer */
 background: transparent;
 border: none;
 box-shadow: none;
@@ -192,42 +191,38 @@ padding: 0;
 margin: 0;
 display: flex;
 flex-direction: column;
-gap: 4px; /* Jarak antar teks lebih rapat biar rapi */
+gap: 10px; /* Gue tambahin gap-nya dikit biar kalau ada teks 2 baris nggak dempetan */
 }
 
-/* Link Styling - Murni Teks */
+/* Link Styling - Support Multi-line */
 #internal-nav .nav-link {
-display: inline-block;
-width: fit-content;
-max-width: 100%;
+display: block; /* Ganti ke block agar lebar otomatis mengikuti kontainer */
+width: 100%;
 pointer-events: auto;
 
-padding: 4px 0; /* Padding vertikal saja untuk area klik */
+padding: 2px 0;
 font-size: 13px;
 font-weight: 500;
-color: #444; /* Warna teks standar */
+color: #444;
 text-decoration: none;
 
-/* Hapus semua gaya visual kapsul */
-background: transparent;
-border: none;
-box-shadow: none;
-backdrop-filter: none;
+/* PENTING: Supaya teks bisa turun ke bawah */
+white-space: normal;      /* Izinkan baris baru */
+word-wrap: break-word;    /* Patahkan kata jika terlalu panjang */
+overflow: visible;        /* Tampilkan semua teks */
+text-overflow: clip;      /* Hilangkan efek titik-titik (...) */
 
 transition: all 0.2s ease-in-out;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
 }
 
-/* Hover State - Hanya teks yang bereaksi */
+/* Hover State */
 #internal-nav .nav-link:hover {
-color: var(--accent); /* Berubah jadi biru Layar Kosong */
-transform: translateX(8px); /* Geser ke kanan tetap dipertahankan biar interaktif */
+color: var(--accent);
+transform: translateX(8px);
 font-weight: 700;
 }
 
-/* Hierarki Indentasi (Minimalis tanpa garis) */
+/* Hierarki Indentasi */
 #internal-nav .nav-h1 {
 font-weight: 800;
 font-size: 14px;
@@ -238,7 +233,7 @@ margin-bottom: 5px;
 #internal-nav .nav-h3 { margin-left: 24px; font-size: 12px; opacity: 0.8; }
 #internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; opacity: 0.6; }
 
-/* Scrollbar tetap dibuat super tipis & transparan */
+/* Scrollbar tetap ada buat jaga-jaga kalau heading lo super banyak sampai ke bawah layar */
 #internal-nav::-webkit-scrollbar { width: 2px; }
 #internal-nav::-webkit-scrollbar-thumb { background: rgba(0, 176, 237, 0.2); }
 
@@ -596,13 +591,7 @@ margin: 30px 0;
     padding: 14px;
     font-size: 14px;
   }
-  #internal-nav .nav-link {
-  color: #bbb;
-  }
-  #internal-nav .nav-link:hover {
-  color: var(--accent);
-  }
-  #internal-nav .nav-h1 {
-  color: #eee;
-  }
+  #internal-nav .nav-link { color: #bbb; }
+  #internal-nav .nav-link:hover { color: var(--accent); }
+  #internal-nav .nav-h1 { color: #eee; }
 }
