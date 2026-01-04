@@ -1,22 +1,12 @@
 /* ==========================================================
-   FILE: /ext/marquee-url.css
-   Versi Final — Marquee, Floating Search & Floating Nav */
+ *   FILE: /ext/marquee-url.css
+ *   Versi Final — Marquee, Floating Search & Floating Nav */
 /*========================================================== */
 :root {
   /* Warna identitas baru Layar Kosong */
   --accent: #00b0ed;
   /* Warna aksen kedua untuk gradasi (bisa tetap pakai warna lama atau sesuaikan) */
   --accent-2: #ffd37a;
-  --floating-height: 44px;
-  --floating-radius: 25px;
-  --floating-bg: rgba(255, 255, 255, 0.8);
-  --floating-bg-hover: rgba(255, 255, 255, 0.95);
-  --floating-border: 1px solid rgba(128, 128, 128, 0.3);
-  --floating-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  --floating-blur: blur(6px);
-  --floating-transition: all 0.3s ease-in-out;
-  --text-main: #111;
-  --text-muted: #666;
 }
 /* ======================== */
 #progress {
@@ -44,38 +34,64 @@ background: var(--accent-2);
 box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 }
 
-/* Shared Floating Base (SEMUA ikut ini) */
-/* ========================= */
-/* SHARED FLOATING BASE */
-/* ========================= */
+/* =================== */
+
+/* --- (1) SHARED FLOATING STYLE (Main) --- */
 .search-floating-container,
-#layar-kosong-header,
-#internal-nav {
-position: fixed;
-z-index: 1000;
-box-sizing: border-box;
-background-color: var(--floating-bg);
-backdrop-filter: var(--floating-blur);
--webkit-backdrop-filter: var(--floating-blur);
-border: var(--floating-border);
-box-shadow: var(--floating-shadow);
-transition: var(--floating-transition);
-}
-/* Header Logo (disamakan dengan Search) */
 #layar-kosong-header {
+position: fixed;
 top: 20px;
-left: 20px;
-height: var(--floating-height);
+z-index: 1001;
+height: 44px;
 display: flex;
 align-items: center;
-padding: 0 18px 0 12px;
-border-radius: var(--floating-radius);
-text-decoration: none;
+box-sizing: border-box;
+transition: all 0.3s ease-in-out;
 }
 
+/* --- (2) SPECIFIC POSITIONS --- */
+#layar-kosong-header {
+left: 20px;
+padding: 0 18px 0 12px;
+text-decoration: none;
+border-radius: 25px;
+background-color: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(128, 128, 128, 0.3);
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-floating-container {
+  right: 20px;
+  width: 250px;
+}
+
+/* --- (3) SEARCH INPUT & INTERACTION --- */
+#floatingSearchInput {
+width: 100%;
+height: 44px;
+padding: 10px 40px;
+font-size: 14px;
+border: 1px solid rgba(128, 128, 128, 0.3);
+border-radius: 25px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+box-sizing: border-box;
+outline: none;
+background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
+backdrop-filter: blur(6px);
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+color: #111;
+transition: border-color 0.3s, background-color 0.3s;
+}
+
+.search-floating-container:focus-within { width: 300px; }
+#floatingSearchInput:focus { border-color: #007bff; }
+
+/* --- (4) STICKY HEADER CONTENT (Logo & Text) --- */
 #layar-kosong-header:hover {
-border-color: var(--accent);
-background-color: var(--floating-bg-hover);
+border-color: #00b0ed;
+background-color: rgba(255, 255, 255, 0.95);
 transform: translateY(-1px);
 }
 
@@ -92,92 +108,89 @@ background-size: contain;
 content: "Layar Kosong";
 font-size: 14px;
 font-weight: 600;
-color: var(--text-main);
+color: #111;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-/* Search Floating (jadi acuan utama) */
-.search-floating-container {
-  top: 20px;
-  right: 20px;
-  width: 250px;
-  height: var(--floating-height);
-  border-radius: var(--floating-radius);
-}
 
-.search-floating-container:focus-within {
-  width: 300px;
-}
-#floatingSearchInput {
-width: 100%;
-height: var(--floating-height);
-padding: 10px 40px;
-font-size: 14px;
-border-radius: var(--floating-radius);
-border: var(--floating-border);
-box-shadow: var(--floating-shadow);
-outline: none;
-color: var(--text-main);
-background: var(--floating-bg) no-repeat 15px center;
-backdrop-filter: var(--floating-blur);
-transition: border-color 0.3s, background-color 0.3s;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
-}
-
-#floatingSearchInput:focus {
-border-color: #007bff;
-}
-
-/* Search Results (ikut gaya floating) */
+/* --- (5) SEARCH RESULTS & UI --- */
 .floating-results-container {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-  background-color: var(--floating-bg-hover);
-  border: var(--floating-border);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
   border-top: none;
   border-radius: 0 0 15px 15px;
-  box-shadow: var(--floating-shadow);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  left: 0;
+  top: 100%;
+  max-height: 400px;
+  overflow-y: auto;
   z-index: 999;
   color: #222;
 }
+
 .floating-results-container a {
   display: block;
   padding: 12px 15px;
-  font-size: 14px;
   color: #333;
+  text-decoration: none;
   border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.floating-results-container a:hover {
-  background-color: #f5f5f5;
+.floating-results-container a:hover { background-color: #f5f5f5; }
+.floating-results-container a small { display: block; color: #777; font-size: 12px; }
+
+.clear-button {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 22px;
+  color: #999;
+  font-weight: bold;
 }
 
-.floating-results-container a small {
-  display: block;
-  font-size: 12px;
-  color: #777;
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
-/* Internal Nav (SIDEBAR ikut search */
+a:hover { opacity: 0.8; text-decoration: none; }
+a:link, a:visited, a:hover, a:active { text-decoration: none; }
+
+/* --- (6) INTERNAL NAV (Daftar Isi) --- */
 #internal-nav {
-top: calc(20px + var(--floating-height) + 10px);
+position: fixed;
+top: 74px; /* 20px (top logo) + 44px (height logo) + 10px (gap) */
 left: 20px;
-width: 220px;
-max-height: calc(100vh - 100px);
+width: 220px; /* Lebar ideal buat sidebar kiri */
+max-height: calc(100vh - 100px); /* Biar gak luber kalau headingnya banyak */
 overflow-y: auto;
+z-index: 1000;
+
+/* Styling agar senada dengan logo lu */
+background-color: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(128, 128, 128, 0.3);
 border-radius: 15px;
 padding: 15px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+box-sizing: border-box;
 }
+
+/* Styling List di dalam Nav */
 #internal-nav .nav-list {
 list-style: none;
-margin: 0;
 padding: 0;
+margin: 0;
 }
 
 #internal-nav .nav-link {
@@ -185,80 +198,61 @@ display: block;
 padding: 5px 0;
 font-size: 13px;
 color: #444;
+line-height: 1.4;
 transition: color 0.2s ease;
 }
 
 #internal-nav .nav-link:hover {
-color: var(--accent);
-}
-#internal-nav .nav-h1 {
-font-weight: 600;
-font-size: 14px;
-border-bottom: 1px solid rgba(0,0,0,0.05);
-margin-bottom: 5px;
+color: #00b0ed;
 }
 
+/* Indentasi Hierarki */
+#internal-nav .nav-h1 { font-weight: bold; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 5px; }
 #internal-nav .nav-h2 { margin-left: 10px; }
 #internal-nav .nav-h3 { margin-left: 20px; font-size: 12px; opacity: 0.8; }
 #internal-nav .nav-h4 { margin-left: 30px; font-size: 11px; opacity: 0.6; }
 
-/* Link Global (rapih & konsisten) */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a:hover { opacity: 0.8; }
-a:link,
-a:visited,
-a:hover,
-a:active {
-  text-decoration: none;
-}
-
-
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 990;
-  overflow: hidden;
-  pointer-events: none;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+z-index: 990;
+overflow: hidden;
+pointer-events: none;
 }
 
 #related-marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 0;
+overflow: hidden;
+white-space: nowrap;
+padding: 0;
 }
 
 #related-marquee-container .marquee-content {
-  display: inline-block;
-  animation: marquee-scroll linear infinite;
-  pointer-events: auto;
-  padding: 12px 0;
+display: inline-block;
+animation: marquee-scroll linear infinite;
+pointer-events: auto;
+padding: 12px 0;
 }
 
 #related-marquee-container:hover .marquee-content {
-  animation-play-state: paused;
+animation-play-state: paused;
 }
 
 #related-marquee-container a {
-  color: inherit;
-  text-decoration: none;
-  margin-right: 30px;
-  font-weight: 400;
-  font-size: 0.85em;
-  opacity: 0.8;
-  transition: opacity 0.3s;
+color: inherit;
+text-decoration: none;
+margin-right: 30px;
+font-weight: 400;
+font-size: 0.85em;
+opacity: 0.8;
+transition: opacity 0.3s;
 }
 
 #related-marquee-container a:hover {
-  opacity: 1;
-  font-weight: 700;
+opacity: 1;
+font-weight: 700;
 }
 
 .marquee-message {
@@ -442,56 +436,56 @@ margin: 30px 0;
 
 /* Navigasi bawaan Mas Rijal */
 @media (max-width: 768px) {
-.floating-nav {
-  left: 10px;
-  right: 10px;
-  bottom: 40px;
-}
-.nav-right {
-  gap: 8px;
-}
-.btn-emoji {
-  font-size: 1.8rem;
-}
-a.category-link {
-  font-size: 12px;
-  padding: 6px 12px;
-}
-#related-articles-grid {
-grid-template-columns: 1fr !important;
-gap: 12px;
-}
+  .floating-nav {
+    left: 10px;
+    right: 10px;
+    bottom: 40px;
+  }
+  .nav-right {
+    gap: 8px;
+  }
+  .btn-emoji {
+    font-size: 1.8rem;
+  }
+  a.category-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  #related-articles-grid {
+  grid-template-columns: 1fr !important;
+  gap: 12px;
+  }
 
-.rel-card-mini a {
-  padding: 8px;
-}
+  .rel-card-mini a {
+    padding: 8px;
+  }
 
-.rel-info-mini h4 {
-  font-size: 0.9rem;
-}
+  .rel-info-mini h4 {
+    font-size: 0.9rem;
+  }
 
-.rel-img-mini {
-  flex: 0 0 75px;
-  height: 55px;
-}
-#internal-nav {
-display: none !important;
-}
+  .rel-img-mini {
+    flex: 0 0 75px;
+    height: 55px;
+  }
+  #internal-nav {
+  display: none !important;
+  }
 }
 /* =================== */
 @media (max-width: 600px) {
-#related-articles-grid {
-grid-template-columns: 1fr; /* Jadi satu kolom kalau di layar kecil */
-gap: 10px;
-}
-.rel-img-mini {
-  flex: 0 0 70px;
-  height: 60px;
-}
-.sticky-header .site-name {
-  display: none;
-}
-.container { padding: 25px; margin: 80px auto 10px; }
+  #related-articles-grid {
+  grid-template-columns: 1fr; /* Jadi satu kolom kalau di layar kecil */
+  gap: 10px;
+  }
+  .rel-img-mini {
+    flex: 0 0 70px;
+    height: 60px;
+  }
+  .sticky-header .site-name {
+    display: none;
+  }
+  .container { padding: 25px; margin: 80px auto 10px; }
   h1 { font-size: 1.8em; }
   .sticky-header .site-name { display: none; }
   /* Hilangkan teks pada Sticky Header */
