@@ -34,65 +34,45 @@ background: var(--accent-2);
 box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 }
 
-/* =================== */
+/* ============================================================
+ L AYAR KOSONG - UNIFIED FLOATING UI                                                              *
+ ============================================================ */
 
-/* --- (1) SHARED FLOATING STYLE (Main) --- */
-.search-floating-container,
-#layar-kosong-header {
-position: fixed;
-top: 20px;
-z-index: 1001;
-height: 44px;
-display: flex;
-align-items: center;
-box-sizing: border-box;
-transition: all 0.3s ease-in-out;
-}
-
-/* --- (2) SPECIFIC POSITIONS --- */
-#layar-kosong-header {
-left: 20px;
-padding: 0 18px 0 12px;
-text-decoration: none;
-border-radius: 25px;
+/* --- (1) SHARED CORE STYLE (Glassmorphism) --- */
+/* Semua elemen floating (Header, Search Input, Internal Nav) pakai dasar ini */
+#layar-kosong-header,
+#floatingSearchInput,
+#internal-nav {
 background-color: rgba(255, 255, 255, 0.8);
 backdrop-filter: blur(6px);
 -webkit-backdrop-filter: blur(6px);
 border: 1px solid rgba(128, 128, 128, 0.3);
 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.search-floating-container {
-  right: 20px;
-  width: 250px;
-}
-
-/* --- (3) SEARCH INPUT & INTERACTION --- */
-#floatingSearchInput {
-width: 100%;
-height: 44px;
-padding: 10px 40px;
-font-size: 14px;
-border: 1px solid rgba(128, 128, 128, 0.3);
-border-radius: 25px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+transition: all 0.3s ease-in-out;
 box-sizing: border-box;
-outline: none;
-background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
-backdrop-filter: blur(6px);
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
-color: #111;
-transition: border-color 0.3s, background-color 0.3s;
 }
 
-.search-floating-container:focus-within { width: 300px; }
-#floatingSearchInput:focus { border-color: #007bff; }
-
-/* --- (4) STICKY HEADER CONTENT (Logo & Text) --- */
-#layar-kosong-header:hover {
-border-color: #00b0ed;
+/* Hover & Focus Global Effect */
+#layar-kosong-header:hover,
+#internal-nav:hover,
+#floatingSearchInput:focus {
+border-color: #00b0ed; /* Warna Khas Layar Kosong */
 background-color: rgba(255, 255, 255, 0.95);
 transform: translateY(-1px);
+}
+
+/* --- (2) HEADER LOGO --- */
+#layar-kosong-header {
+position: fixed;
+top: 20px;
+left: 20px;
+z-index: 1001;
+height: 44px;
+display: flex;
+align-items: center;
+padding: 0 18px 0 12px;
+text-decoration: none;
+border-radius: 25px; /* Standar rounded search */
 }
 
 #layar-kosong-header::before {
@@ -100,7 +80,8 @@ content: "";
 width: 24px;
 height: 24px;
 margin-right: 10px;
-background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='616.8 136.4 785 777.8'%3E%3Cpath fill='%2300b0ed' d='m 886.3122,912.91855 c -0.2137,-0.6875 -4.71651,-32.3 -10.00624,-70.25 -24.81695,-178.04385 -83.33958,-588.63047 -83.99312,-589.28401 -0.46701,-0.46701 -30.98393,-4.28741 -125.04932,-15.65486 -25.3,-3.05741 -47.0125,-5.793 -48.25,-6.07908 -4.56288,-1.05484 -2.19993,-3.49045 8.68008,-8.94698 78.00632,-39.12164 164.57277,-65.69883 254.06992,-78.00323 76.71376,-10.54691 160.30668,-11.08698 225.49998,-1.45692 75.8364,11.2022 128.0336,33.90694 164.524,71.56455 26.1854,27.02308 41.3244,56.01641 49.7109,95.2033 2.5657,11.9884 2.7089,14.08396 2.7089,39.65723 0,25.66581 -0.1364,27.64239 -2.7584,40 -8.9509,42.18488 -25.3771,76.11845 -57.5795,118.94895 -22.3975,29.78958 -59.8258,67.79925 -97.6059,99.1222 -6.6,5.47196 -13.4625,10.98763 -15.25,12.25703 -1.7875,1.26941 -3.25,2.75076 -3.25,3.29191 0,0.94123 24.9553,28.82428 183.3672,204.87991 38.8481,43.175 70.6329,78.85162 70.6329,79.28138 10e-5,2.78637 -4.9354,0.67798 -21.2009,-9.05692 -10.0645,-6.02354 -36.0741,-21.43886 -57.7991,-34.25626 -21.725,-12.81741 -68.3,-40.39903 -103.5001,-61.2925 -35.2,-20.89346 -75.925,-45.0599 -90.5,-53.70318 -63.5494,-37.68619 -118.041,-69.97952 -124.695,-73.89803 -3.9573,-2.33042 -7.68831,-4.83151 -8.29131,-5.55799 -1.7223,-2.07529 22.17711,-121.56097 24.65891,-123.28242 38.1064,-26.43226 63.0352,-45.72797 89.0932,-68.96116 43.826,-39.07498 71.0165,-73.81606 80.8278,-103.27292 2.5842,-7.7585 2.8321,-9.76491 2.8416,-23 0.01,-12.69347 -0.267,-15.18524 -2.2162,-20 -15.5302,-38.36099 -88.3738,-63.37878 -216.87242,-74.48387 -8.4686,-0.73187 -7.0091,-5.28628 -11.3718,35.48387 -1.6773,15.675 -4.8328,43.7758 -7.0122,62.44623 -2.1794,18.67042 -3.9577,34.87042 -3.9517,36 0.01,1.6422 1.5617,2.63415 7.75,4.94992 15.49,5.79668 94.91722,39.03956 111.53492,46.68099 1.8673,0.85866 2.6976,1.91732 2.5,3.18778 -0.2206,1.41876 -17.1563,10.5031 -66.6392,35.7454 -36.48892,18.61377 -66.48852,33.98868 -66.66592,34.16645 -0.2783,0.27901 -32.0883,253.49686 -45.01363,358.32323 -2.44139,19.8 -4.68104,37.0125 -4.97701,38.25 -0.57336,2.39732 -3.30232,3.08796 -3.95134,1 z' /%3E%3C/svg%3E") no-repeat center;
+background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='616.8 136.4 785 777.8'%3E%3Cpath fill='%2300b0ed' d='m 886.3122,912.91855 c -0.2137,-0.6875 -4.71651,-32.3 -10.00624,-70.25 -24.81695,-178.04385 -83.33958,-588.63047 -83.99312,-589.28401 -0.46701,-0.46701 -30.98393,-4.28741 -125.04932,-15.65486 -25.3,-3.05741 -47.0125,-5.793 -48.25,-6.07908 -4.56288,-1.05484 -2.19993,-3.49045 8.68008,-8.94698 78.00632,-39.12164 164.57277,-65.69883 254.06992,-78.00323 76.71376,-10.54691 160.30668,-11.08698 225.49998,-1.45692 75.8364,11.2022 128.0336,33.90694 164.524,71.56455 26.1854,27.02308 41.3244,56.01641 49.7109,95.2033 2.5657,11.9884 2.7089,14.08396 2.7089,39.65723 0,25.66581 -0.1364,27.64239 -2.7584,40 -8.9509,42.18488 -25.3771,76.11845 -57.5795,118.94895 -22.3975,29.78958 -59.8258,67.79925 -97.6059,99.1222 -6.6,5.47196 -13.4625,10.98763 -15.25,12.25703 -1.7875,1.26941 -3.25,2.75076 -3.25,3.29191 0,0.94123 24.9553,28.82428 183.3672,204.87991 38.8481,43.175 70.6329,78.85162 70.6329,79.28138 10e-5,2.78637 -4.9354,0.67798 -21.2009,-9.05692 -10.0645,-6.02354 -36.0741,-21.43886 -57.7991,-34.25626 -21.725,-12.81741 -68.3,-40.39903 -103.5001,-61.2925 -35.2,-20.89346 -75.925,-45.0599 -90.5,-53.70318 -63.5494,-37.68619 -118.041,-69.97952 -124.695,-73.89803 -3.9573,-2.33042 -7.68831,-4.83151 -8.29131,-5.55799 -1.7223,-2.07529 22.17711,-121.56097 24.65891,-123.28242 38.1064,-26.43226 63.0352,-45.72797 89.0932,-68.96116 43.826,-39.07498 71.0165,-73.81606 80.8278,-103.27292 2.5842,-7.7585 2.8321,-9.76491 2.8416,-23 0.01,-12.69347 -0.267,-15.18524 -2.2162,-20 -15.5302,-38.36099 -88.3738,-63.37878 -216.87242,-74.48387 -8.4686,-0.73187 -7.0091,-5.28628 -11.3718,35.48387 -1.6773,15.675 -4.8328,43.7758 -7.0122,62.44623 -2.1794,18.67042 -3.9577,34.87042 -3.9517,36 0.01,1.6422 1.5617,2.63415 7.75,4.94992 15.49,5.79668 94.91722,39.03956 111.53492,46.68099 1.8673,0.85866 2.6976,1.91732 2.5,3.18778 -0.2206,1.41876 -17.1563,10.5031 -66.6392,35.7454 -36.48892,18.61377 -66.48852,33.98868 -66.66592,34.16645 -0.2783,0.27901 -32.0883,253.49686 -45.01363,358.32323 -2.44139,19.8 -4.68104,37.0125 -4.97701,38.25 -0.57336,2.39732 -3.30232,3.08796 -3.95134,1 z' /%3E%3C/svg%3E")background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='616.8 136.4 785 777.8'%3E%3Cpath fill='%2300b0ed' d='m 886.3122,912.91855 c -0.2137,-0.6875 -4.71651,-32.3 -10.00624,-70.25 -24.81695,-178.04385 -83.33958,-588.63047 -83.99312,-589.28401 -0.46701,-0.46701 -30.98393,-4.28741 -125.04932,-15.65486 -25.3,-3.05741 -47.0125,-5.793 -48.25,-6.07908 -4.56288,-1.05484 -2.19993,-3.49045 8.68008,-8.94698 78.00632,-39.12164 164.57277,-65.69883 254.06992,-78.00323 76.71376,-10.54691 160.30668,-11.08698 225.49998,-1.45692 75.8364,11.2022 128.0336,33.90694 164.524,71.56455 26.1854,27.02308 41.3244,56.01641 49.7109,95.2033 2.5657,11.9884 2.7089,14.08396 2.7089,39.65723 0,25.66581 -0.1364,27.64239 -2.7584,40 -8.9509,42.18488 -25.3771,76.11845 -57.5795,118.94895 -22.3975,29.78958 -59.8258,67.79925 -97.6059,99.1222 -6.6,5.47196 -13.4625,10.98763 -15.25,12.25703 -1.7875,1.26941 -3.25,2.75076 -3.25,3.29191 0,0.94123 24.9553,28.82428 183.3672,204.87991 38.8481,43.175 70.6329,78.85162 70.6329,79.28138 10e-5,2.78637 -4.9354,0.67798 -21.2009,-9.05692 -10.0645,-6.02354 -36.0741,-21.43886 -57.7991,-34.25626 -21.725,-12.81741 -68.3,-40.39903 -103.5001,-61.2925 -35.2,-20.89346 -75.925,-45.0599 -90.5,-53.70318 -63.5494,-37.68619 -118.041,-69.97952 -124.695,-73.89803 -3.9573,-2.33042 -7.68831,-4.83151 -8.29131,-5.55799 -1.7223,-2.07529 22.17711,-121.56097 24.65891,-123.28242 38.1064,-26.43226 63.0352,-45.72797 89.0932,-68.96116 43.826,-39.07498 71.0165,-73.81606 80.8278,-103.27292 2.5842,-7.7585 2.8321,-9.76491 2.8416,-23 0.01,-12.69347 -0.267,-15.18524 -2.2162,-20 -15.5302,-38.36099 -88.3738,-63.37878 -216.87242,-74.48387 -8.4686,-0.73187 -7.0091,-5.28628 -11.3718,35.48387 -1.6773,15.675 -4.8328,43.7758 -7.0122,62.44623 -2.1794,18.67042 -3.9577,34.87042 -3.9517,36 0.01,1.6422 1.5617,2.63415 7.75,4.94992 15.49,5.79668 94.91722,39.03956 111.53492,46.68099 1.8673,0.85866 2.6976,1.91732 2.5,3.18778 -0.2206,1.41876 -17.1563,10.5031 -66.6392,35.7454 -36.48892,18.61377 -66.48852,33.98868 -66.66592,34.16645 -0.2783,0.27901 -32.0883,253.49686 -45.01363,358.32323 -2.44139,19.8 -4.68104,37.0125 -4.97701,38.25 -0.57336,2.39732 -3.30232,3.08796 -3.95134,1 z' /%3E%3C/svg%3E") no-repeat center;
+no-repeat center;
 background-size: contain;
 }
 
@@ -112,105 +93,82 @@ color: #111;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* --- (5) SEARCH RESULTS & UI --- */
-.floating-results-container {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  left: 0;
-  top: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-  z-index: 999;
-  color: #222;
+/* --- (3) SEARCH AREA --- */
+.search-floating-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  width: 250px;
+  transition: width 0.3s ease-in-out;
 }
 
-.floating-results-container a {
-  display: block;
-  padding: 12px 15px;
-  color: #333;
-  text-decoration: none;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.search-floating-container:focus-within {
+  width: 300px;
 }
 
-.floating-results-container a:hover { background-color: #f5f5f5; }
-.floating-results-container a small { display: block; color: #777; font-size: 12px; }
-
-.clear-button {
-  display: none;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 22px;
-  color: #999;
-  font-weight: bold;
+#floatingSearchInput {
+width: 100%;
+height: 44px;
+padding: 10px 40px;
+font-size: 14px;
+border-radius: 25px;
+outline: none;
+color: #111;
+background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E")background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+;
 }
-/* ================== */
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-a:hover { opacity: 0.8; text-decoration: none; }
-a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) --- */
+/* --- (4) INTERNAL NAV (Daftar Isi) --- */
 #internal-nav {
 position: fixed;
-top: 74px; /* 20px (top logo) + 44px (height logo) + 10px (gap) */
+top: 74px; /* Logo height (44) + top (20) + gap (10) */
 left: 20px;
-width: 220px; /* Lebar ideal buat sidebar kiri */
-max-height: calc(100vh - 100px); /* Biar gak luber kalau headingnya banyak */
+width: 250px; /* Lebar seragam dengan search bar */
+max-height: calc(100vh - 100px);
 overflow-y: auto;
 z-index: 1000;
-
-/* Styling agar senada dengan logo lu */
-background-color: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(128, 128, 128, 0.3);
-border-radius: 15px;
+border-radius: 20px; /* Lebih rounded agar senada */
 padding: 15px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-box-sizing: border-box;
 }
 
-/* Styling List di dalam Nav */
-#internal-nav .nav-list {
-list-style: none;
-padding: 0;
-margin: 0;
-}
+/* Nav Link Styling */
+#internal-nav .nav-list { list-style: none; padding: 0; margin: 0; }
 
 #internal-nav .nav-link {
 display: block;
-padding: 5px 0;
+padding: 6px 10px;
 font-size: 13px;
 color: #444;
 line-height: 1.4;
-transition: color 0.2s ease;
+text-decoration: none;
+border-radius: 8px;
+transition: all 0.2s ease;
 }
 
 #internal-nav .nav-link:hover {
 color: #00b0ed;
+background: rgba(0, 176, 237, 0.05);
+padding-left: 15px;
 }
 
-/* Indentasi Hierarki */
-#internal-nav .nav-h1 { font-weight: bold; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 5px; }
-#internal-nav .nav-h2 { margin-left: 10px; }
+/* Nav Hierarchy */
+#internal-nav .nav-h1 {
+font-weight: bold;
+font-size: 14px;
+border-bottom: 1px solid rgba(0,0,0,0.05);
+margin-bottom: 8px;
+color: #111;
+}
+#internal-nav .nav-h2 { margin-left: 10px; border-left: 2px solid rgba(0, 176, 237, 0.2); }
 #internal-nav .nav-h3 { margin-left: 20px; font-size: 12px; opacity: 0.8; }
 #internal-nav .nav-h4 { margin-left: 30px; font-size: 11px; opacity: 0.6; }
+
+/* Custom Scrollbar for Nav (Glassy style) */
+#internal-nav::-webkit-scrollbar { width: 4px; }
+#internal-nav::-webkit-scrollbar-thumb { background: rgba(0, 176, 237, 0.4); border-radius: 10px; }
+
 
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
 #related-marquee-section {
