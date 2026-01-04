@@ -22,11 +22,11 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 739 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 740 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Warta Tekno
 
-- [**Panduan Lengkap ASN Digital dan Cara Aktivasi MFA: Amankan Data Kepegawaianmu!**](https://dalam.web.id/artikel/panduan-asn-digital-mfa-2026.html): 2026-01-03 — Transformasi ASN Digital 2026. Panduan lengkap cara aktivasi akun, reset password, dan aktivasi MFA di portal asndigital.bkn.go.id demi keamanan data kepegawaian.
+- [**Panduan Lengkap ASN Digital dan Cara Aktivasi MFA: Amankan Data Kepegawaianmu!**](https://dalam.web.id/artikel/panduan-asn-digital-mfa-2026.html): 2026-01-04 — Transformasi ASN Digital 2026. Panduan lengkap cara aktivasi akun, reset password, dan aktivasi MFA di portal asndigital.bkn.go.id demi keamanan data kepegawaian.
 - [**Backlog Management: Apa yang Sebenarnya Sedang Kita Tunda di Maintenance? 🔧**](https://dalam.web.id/artikel/backlog-management-maintenance.html): 2026-01-02 — Backlog maintenance bukan cuma soal jumlah, tapi kualitas dan prioritas. Pelajari kenapa backlog penting dikelola dengan baik agar tim tidak reaktif dan risiko terkendali. Tips praktis untuk planner dan teknisi!
 - [**Tips Implementasi CMMS dan Contoh Prioritas Matrix untuk Maintenance Warrior 🔧**](https://dalam.web.id/artikel/tips-cmms-dan-priority-matrix.html): 2026-01-02 — Panduan lengkap implementasi CMMS sukses plus contoh risk priority matrix buat rapikan backlog maintenance. Tips praktis dari planning sampai go-live, biar tim nggak reaktif lagi!
 - [**Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya**](https://dalam.web.id/artikel/apakah-bsu-2026-akan-cair.html): 2026-01-02 — Kabar BSU 2026 Rp600 Ribu cair Januari kembali mencuat. Simak fakta terbaru, syarat penerima, dan cara cek status resminya di sini agar tidak tertipu!
@@ -266,7 +266,7 @@ Total artikel terindeks: 739 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Opini Sosial
 
-- [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-03 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
+- [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-04 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
 - [**Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend!**](https://dalam.web.id/artikel/panduan-libur-cuti-bersama-2026.html): 2026-01-03 — Rencana liburan 2026? Cek daftar lengkap libur nasional, cuti bersama, jadwal Imlek, hingga Lebaran 2026 berdasarkan SKB 3 Menteri. Siapkan jadwal healing-mu!
 - [**Bilqis Humaira: Tameng AI di Balik Tajamnya Kritik Digital**](https://dalam.web.id/artikel/bilqis-humaira-ai-kritik-indonesia.html): 2026-01-01 — Menguak fenomena Bilqis Humaira, karakter AI yang menjadi wajah baru perlawanan digital dan kritik pemerintah di Indonesia. Apakah anonimitas AI adalah solusi atas UU ITE?
 - [**Renungan Niat: Menjadi Pegawai Negeri atau Pengusaha?**](https://dalam.web.id/artikel/niat-cpns.html): 2025-12-30 — Renungan tentang niat, pengabdian, dan pilihan hidup antara menjadi pegawai negeri atau pengusaha.
@@ -750,12 +750,13 @@ Total artikel terindeks: 739 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Lainnya
 
-- [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-03 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
+- [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-04 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
 - [**Kalkulator Listrik Real-Time 2026**](https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026.html): 2026-01-02 — Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!
 - [**Kalkulator Laundry Berkah**](https://dalam.web.id/artikel/Kalkulator-Laundry-Berkah.html): 2025-10-29 — Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.
 - [**Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya!**](https://dalam.web.id/artikel/larangan-cas-powerbank-di-kereta.html): 2025-10-27 — Penjelasan lengkap kenapa KAI melarang cas powerbank di kereta. Ini alasannya, dari risiko overload, listrik padam satu gerbong, hingga bahaya kebakaran.
 - [**Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara!**](https://dalam.web.id/artikel/revolusi-dapur-dme.html): 2025-10-27 — Era tabung gas melon akan berakhir! Pemerintah finalisasi proyek penggantian LPG impor dengan DME (Dimethyl Ether) dari batu bara. Simak alasannya, plus minusnya, dan apa dampaknya bagi dapur kita.
 - [**Ujian Nasional: catatan singkat, video, dan visual**](https://dalam.web.id/artikel/ujian-nasional-catatan-video.html): 2025-09-22 — Sedikit catatan tentang dampak Ujian Nasional: video, komentar santai, dan foto suasana pelaksanaan. Desain fullscreen, interaktif, dan mobile-friendly.
+- [**Fakhrul Rijal - HRGA Supervisor - Talent Acquisition Specialist**](https://dalam.web.id/artikel/fakhrul-rijal-hrga-supervisor-talent-acquisition.html): 2024-01-15 — HRGA Supervisor - Talent Acquisition Specialist dengan 10+ tahun pengalaman di bidang industri. Ahli dalam HRIS, perekrutan, dan manajemen tenaga kerja.
 - [**Bikin Kata Sandi Kuat — Generator**](https://dalam.web.id/artikel/password-generator-bikin-kata-sandi.html): 2014-01-13 — Generator kata sandi sederhana dan aman. Pilih panjang, jenis karakter (angka, simbol, huruf besar/kecil), lalu buat kata sandi kuat secara instan.
 - [**Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012**](https://dalam.web.id/artikel/Cuti-Tahun-2012.html): 2013-09-13 — Daftar lengkap cuti bersama dan hari libur nasional Indonesia tahun 2012 sebagai arsip dan referensi kalender.
 - [**Kisah Sang Panglima Gerilya, Jenderal Soedirman**](https://dalam.web.id/artikel/kisah-jenderal-soedirman.html): 2012-10-02 — Kisah lengkap Jenderal Soedirman. Dari guru Muhammadiyah, komandan PETA, panglima besar TKR, hingga perang gerilya di atas tandu. Simbol integritas dan perjuangan.
