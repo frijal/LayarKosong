@@ -7,6 +7,16 @@
   --accent: #00b0ed;
   /* Warna aksen kedua untuk gradasi (bisa tetap pakai warna lama atau sesuaikan) */
   --accent-2: #ffd37a;
+  --floating-height: 44px;
+  --floating-radius: 25px;
+  --floating-bg: rgba(255, 255, 255, 0.8);
+  --floating-bg-hover: rgba(255, 255, 255, 0.95);
+  --floating-border: 1px solid rgba(128, 128, 128, 0.3);
+  --floating-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --floating-blur: blur(6px);
+  --floating-transition: all 0.3s ease-in-out;
+  --text-main: #111;
+  --text-muted: #666;
 }
 /* ======================== */
 #progress {
@@ -34,45 +44,39 @@ background: var(--accent-2);
 box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 }
 
-/* ============================================================
- L AYAR KOSONG - UNIFIED FLOATING UI                                                              *
- ============================================================ */
-
-/* --- (1) SHARED CORE STYLE (Glassmorphism) --- */
-/* Semua elemen floating (Header, Search Input, Internal Nav) pakai dasar ini */
+/* Shared Floating Base (SEMUA ikut ini) */
+/* ========================= */
+/* SHARED FLOATING BASE */
+/* ========================= */
+.search-floating-container,
 #layar-kosong-header,
-#floatingSearchInput,
 #internal-nav {
-background-color: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(6px);
--webkit-backdrop-filter: blur(6px);
-border: 1px solid rgba(128, 128, 128, 0.3);
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-transition: all 0.3s ease-in-out;
-box-sizing: border-box;
-}
-
-/* Hover & Focus Global Effect */
-#layar-kosong-header:hover,
-#internal-nav:hover,
-#floatingSearchInput:focus {
-border-color: #00b0ed; /* Warna Khas Layar Kosong */
-background-color: rgba(255, 255, 255, 0.95);
-transform: translateY(-1px);
-}
-
-/* --- (2) HEADER LOGO --- */
-#layar-kosong-header {
 position: fixed;
+z-index: 1000;
+box-sizing: border-box;
+background-color: var(--floating-bg);
+backdrop-filter: var(--floating-blur);
+-webkit-backdrop-filter: var(--floating-blur);
+border: var(--floating-border);
+box-shadow: var(--floating-shadow);
+transition: var(--floating-transition);
+}
+/* Header Logo (disamakan dengan Search) */
+#layar-kosong-header {
 top: 20px;
 left: 20px;
-z-index: 1001;
-height: 44px;
+height: var(--floating-height);
 display: flex;
 align-items: center;
 padding: 0 18px 0 12px;
+border-radius: var(--floating-radius);
 text-decoration: none;
-border-radius: 25px; /* Standar rounded search */
+}
+
+#layar-kosong-header:hover {
+border-color: var(--accent);
+background-color: var(--floating-bg-hover);
+transform: translateY(-1px);
 }
 
 #layar-kosong-header::before {
@@ -84,101 +88,134 @@ background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 background-size: contain;
 }
 
-
 #layar-kosong-header::after {
 content: "Layar Kosong";
 font-size: 14px;
 font-weight: 600;
-color: #111;
+color: var(--text-main);
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-
-/* --- (3) SEARCH AREA --- */
+/* Search Floating (jadi acuan utama) */
 .search-floating-container {
-  position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1001;
   width: 250px;
-  transition: width 0.3s ease-in-out;
+  height: var(--floating-height);
+  border-radius: var(--floating-radius);
 }
 
 .search-floating-container:focus-within {
   width: 300px;
 }
-
 #floatingSearchInput {
 width: 100%;
-height: 44px;
+height: var(--floating-height);
 padding: 10px 40px;
 font-size: 14px;
-border-radius: 25px;
+border-radius: var(--floating-radius);
+border: var(--floating-border);
+box-shadow: var(--floating-shadow);
 outline: none;
-color: #111;
-background: rgba(255, 255, 255, 0.8) no-repeat 15px center;
+color: var(--text-main);
+background: var(--floating-bg) no-repeat 15px center;
+backdrop-filter: var(--floating-blur);
+transition: border-color 0.3s, background-color 0.3s;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
 }
 
-.clear-button {
+#floatingSearchInput:focus {
+border-color: #007bff;
+}
+
+/* Search Results (ikut gaya floating) */
+.floating-results-container {
   display: none;
   position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 22px;
-  color: #999;
-  font-weight: bold;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: var(--floating-bg-hover);
+  border: var(--floating-border);
+  border-top: none;
+  border-radius: 0 0 15px 15px;
+  box-shadow: var(--floating-shadow);
+  z-index: 999;
+  color: #222;
+}
+.floating-results-container a {
+  display: block;
+  padding: 12px 15px;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* --- (4) INTERNAL NAV (Daftar Isi) --- */
+.floating-results-container a:hover {
+  background-color: #f5f5f5;
+}
+
+.floating-results-container a small {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+/* Internal Nav (SIDEBAR ikut search */
 #internal-nav {
-position: fixed;
-top: 74px; /* Logo height (44) + top (20) + gap (10) */
+top: calc(20px + var(--floating-height) + 10px);
 left: 20px;
-width: 250px; /* Lebar seragam dengan search bar */
+width: 220px;
 max-height: calc(100vh - 100px);
 overflow-y: auto;
-z-index: 1000;
-border-radius: 20px; /* Lebih rounded agar senada */
+border-radius: 15px;
 padding: 15px;
 }
-
-/* Nav Link Styling */
-#internal-nav .nav-list { list-style: none; padding: 0; margin: 0; }
+#internal-nav .nav-list {
+list-style: none;
+margin: 0;
+padding: 0;
+}
 
 #internal-nav .nav-link {
 display: block;
-padding: 6px 10px;
+padding: 5px 0;
 font-size: 13px;
 color: #444;
-line-height: 1.4;
-text-decoration: none;
-border-radius: 8px;
-transition: all 0.2s ease;
+transition: color 0.2s ease;
 }
 
 #internal-nav .nav-link:hover {
-color: #00b0ed;
-background: rgba(0, 176, 237, 0.05);
-padding-left: 15px;
+color: var(--accent);
 }
-
-/* Nav Hierarchy */
 #internal-nav .nav-h1 {
-font-weight: bold;
+font-weight: 600;
 font-size: 14px;
 border-bottom: 1px solid rgba(0,0,0,0.05);
-margin-bottom: 8px;
-color: #111;
+margin-bottom: 5px;
 }
-#internal-nav .nav-h2 { margin-left: 10px; border-left: 2px solid rgba(0, 176, 237, 0.2); }
+
+#internal-nav .nav-h2 { margin-left: 10px; }
 #internal-nav .nav-h3 { margin-left: 20px; font-size: 12px; opacity: 0.8; }
 #internal-nav .nav-h4 { margin-left: 30px; font-size: 11px; opacity: 0.6; }
 
-/* Custom Scrollbar for Nav (Glassy style) */
-#internal-nav::-webkit-scrollbar { width: 4px; }
-#internal-nav::-webkit-scrollbar-thumb { background: rgba(0, 176, 237, 0.4); border-radius: 10px; }
+/* Link Global (rapih & konsisten) */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover { opacity: 0.8; }
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
 
 
 /* --- (1) MARQUEE ARTIKEL TERKAIT --- */
