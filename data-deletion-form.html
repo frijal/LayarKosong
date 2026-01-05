@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Formulir Penghapusan Data / Data Deletion Form — dalam.web.id</title>
   <meta name="description" content="Request deletion of your data on dalam.web.id (ID/EN)">
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     /* Menggunakan warna khas Layar Kosong #00b0ed */
     :root {
@@ -149,7 +149,7 @@
       <textarea name="keterangan" placeholder="Ceritakan lebih detail... / Provide more details..."></textarea>
 
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
+<div class="g-recaptcha" data-sitekey="6LfMGkEsAAAAAKSkCCYsekHlDrDolAJ1gxY7UgP1"></div>
       <button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
     </form>
 
@@ -225,34 +225,35 @@
     e.preventDefault();
     const currentLang = localStorage.getItem('lang') || 'id';
 
+    // 1. Cek apakah reCAPTCHA sudah dicentang
+    const captchaResponse = grecaptcha.getResponse();
+    if (!captchaResponse) {
+      alert(currentLang === 'en' ? 'Please complete the CAPTCHA!' : 'Silakan centang reCAPTCHA!');
+      return;
+    }
+
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
-    if(errorMsg) errorMsg.style.display = 'none';
 
-    // Google Apps Script lebih suka format URLSearchParams
     const formData = new URLSearchParams(new FormData(form));
+    // Kirim token captcha ke Google Script untuk diverifikasi
+    formData.append('g-recaptcha-response', captchaResponse);
 
     try {
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzlnqknDAAx2Sdbj4kIYjVm9wvlXBywarj3ZXrENTDUpxyHjhP_MdKRAYVkg4CIMMs-/exec';
 
       await fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors', // Wajib untuk Google Apps Script
+        mode: 'no-cors',
         body: formData
       });
 
-      // Karena no-cors, kita langsung anggap sukses jika tidak masuk ke catch
       form.style.display = 'none';
       successMsg.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
-      console.error("Submission error:", err);
-      if(errorMsg) {
-        errorMsg.style.display = 'block';
-        const errText = errorMsg.querySelector('span');
-        if(errText) errText.textContent = (currentLang === 'en' ? 'Connection failed!' : 'Koneksi gagal!');
-      }
+      alert("Error: " + err.message);
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
     }
