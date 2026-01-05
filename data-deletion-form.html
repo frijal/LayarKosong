@@ -5,104 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Formulir Penghapusan Data / Data Deletion Form — dalam.web.id</title>
   <meta name="description" content="Request deletion of your data on dalam.web.id (ID/EN)">
+
   <style>
-    :root { --bg: #ffffff; --text: #1f2937; --border: #e5e7eb; --muted: #64748b; --accent: #2563eb; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0f172a; --text: #e2e8f0; --border: #374151; --muted: #94a3b8; --accent: #60a5fa; }
-    }
-    body {
-      font-family: system-ui,-apple-system,sans-serif;
-      background:var(--bg); color:var(--text);
-      margin:0; padding:0; line-height:1.6; min-height:100vh;
+    /* Menggunakan warna khas Layar Kosong #00b0ed */
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --border: #e5e7eb;
+      --muted: #64748b;
+      --accent: #00b0ed;
+      --success-bg: #dcfce7;
+      --success-text: #166534;
+      --error-bg: #fee2e2;
+      --error-text: #991b1b;
     }
 
-    /* === STICKY LOGO & NAMA DI KIRI ATAS === */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --text: #e2e8f0;
+        --border: #374151;
+        --muted: #94a3b8;
+        --accent: #00b0ed;
+        --success-bg: #064e3b;
+        --success-text: #34d399;
+        --error-bg: #450a0a;
+        --error-text: #f87171;
+      }
+    }
+
+    body {
+      font-family: system-ui,-apple-system,sans-serif;
+      background: var(--bg); color: var(--text);
+      margin: 0; padding: 0; line-height: 1.6; min-height: 100vh;
+    }
+
+    /* === STICKY HEADER === */
     .sticky-header {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--bg);
-      padding: 0.5rem 0.75rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      transition: all 0.2s;
+      position: fixed; top: 1rem; left: 1rem; z-index: 1000;
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--bg); padding: 0.5rem 0.75rem;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px); border: 1px solid var(--border);
+      text-decoration: none; transition: all 0.2s;
     }
     .sticky-header:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
     .sticky-header img { width: 40px; height: 40px; }
     .site-name { font-weight: 700; font-size: 1.35rem; color: var(--text); }
 
-    /* Konten utama agar tidak tertutup sticky header */
-    .main-content {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 7rem 1.5rem 3rem; /* atas lebih besar karena sticky header */
-    }
-
-    h1 { font-size: 1.8rem; margin-top: 0; }
     .lang-select {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 1000;
-      background: var(--bg);
-      padding: 0.4rem 0.7rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      position: fixed; top: 1rem; right: 1rem; z-index: 1000;
+      background: var(--bg); padding: 0.4rem 0.7rem;
+      border: 1px solid var(--border); border-radius: 8px;
       backdrop-filter: blur(8px);
     }
-    select { background: var(--bg); color: var(--text); border: none; font-size: 1rem; }
+    select { background: var(--bg); color: var(--text); border: none; font-size: 1rem; cursor: pointer; }
 
-    .lead { color: var(--muted); margin: 1rem 0 2rem; }
+    /* === LAYOUT === */
+    .main-content {
+      max-width: 680px; margin: 0 auto;
+      padding: 7rem 1.5rem 3rem;
+    }
+
+    h1 { font-size: 1.8rem; margin-top: 0; color: var(--accent); }
+    .lead { color: var(--muted); margin: 1rem 0 2rem; font-size: 1.1rem; }
+
     form {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; transition: opacity 0.3s;
     }
-    label { display:block; margin:1.4rem 0 0.5rem; font-weight:600; }
+
+    label { display: block; margin: 1.4rem 0 0.5rem; font-weight: 600; }
     input, select, textarea {
-      width:100%; padding:0.75rem; border:1px solid var(--border); border-radius:8px;
-      background:var(--bg); color:var(--text); font-size:1rem;
+      width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--bg); color: var(--text); font-size: 1rem; box-sizing: border-box;
     }
-    textarea { min-height:120px; resize:vertical; }
+    input:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    textarea { min-height: 120px; resize: vertical; }
+
     button {
-      margin-top:2rem; background:var(--accent); color:white; border:none;
-      padding:0.9rem 1.8rem; border-radius:8px; font-size:1rem; font-weight:600; cursor:pointer;
+      width: 100%; margin-top: 2rem; background: var(--accent); color: white; border: none;
+      padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 700;
+      cursor: pointer; transition: filter 0.2s;
     }
-    button:hover { opacity:0.9; }
-    .msg { margin-top:1.5rem; padding:1rem; border-radius:8px; display:none; }
-    .success { background:#dcfce7; color:#166534; border:1px solid #86efac; }
-    .error   { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; }
-    footer { margin-top:4rem; text-align:center; color:var(--muted); font-size:0.9rem; }
-    a { color:var(--accent); text-decoration:underline; }
+    button:hover { filter: brightness(1.1); }
+    button:disabled { background: var(--muted); cursor: not-allowed; }
+
+    /* === MESSAGES === */
+    .msg { margin-top: 1.5rem; padding: 1.5rem; border-radius: 12px; display: none; line-height: 1.5; }
+    .success { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--accent); }
+    .error { background: var(--error-bg); color: var(--error-text); border: 1px solid #fca5a5; }
+
+    footer { margin-top: 4rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    a { color: var(--accent); text-decoration: underline; }
+    .back-link { text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
 
-  <!-- STICKY LOGO & NAMA (selalu terlihat) -->
   <a href="https://dalam.web.id" class="sticky-header" aria-label="Kembali ke dalam.web.id">
-    <img src="https://dalam.web.id/favicon.svg" alt="dalam.web.id">
+    <img src="https://dalam.web.id/favicon.svg" alt="Logo">
     <span class="site-name">dalam.web.id</span>
   </a>
 
-  <!-- SELECT BAHASA (juga sticky di kanan atas) -->
   <div class="lang-select">
-    <select id="lang" onchange="switchLang(this.value)" aria-label="Pilih bahasa">
+    <select id="lang-switcher" onchange="switchLang(this.value)" aria-label="Pilih bahasa">
       <option value="id">Bahasa Indonesia</option>
       <option value="en">English</option>
     </select>
   </div>
 
-  <!-- KONTEN UTAMA -->
   <div class="main-content">
-    <h1>Formulir Penghapusan Data / Data Deletion Form</h1>
+    <h1 data-id="Formulir Penghapusan Data" data-en="Data Deletion Form">Formulir Penghapusan Data</h1>
 
     <p class="lead" id="lead-id">
       Gunakan formulir ini untuk mengajukan penghapusan komentar, profil, atau data lain di <strong>dalam.web.id</strong>.
@@ -111,23 +126,17 @@
       Use this form to request deletion of comments, profile, or any other data on <strong>dalam.web.id</strong>.
     </p>
 
-    <form id="deletion-form" action="https://formspree.io/f/mwpwzylb" method="POST">
+    <form id="deletion-form" action="https://email-sender.frijal.workers.dev" method="POST">
       <label data-id="Nama tampilan (jika ada)" data-en="Display name (if any)">Nama tampilan (jika ada)</label>
       <input type="text" name="nama_tampilan" placeholder="Contoh: Paijo Suparjio">
 
-      <label data-id="Email yang pernah digunakan *" data-en="Email address used *">
-        Email yang pernah digunakan *
-      </label>
+      <label data-id="Email yang pernah digunakan *" data-en="Email address used *">Email yang pernah digunakan *</label>
       <input type="email" name="_replyto" required placeholder="emailanda@contoh.com">
 
-      <label data-id="URL halaman atau ID komentar (opsional)" data-en="Page URL or comment ID (optional)">
-        URL halaman atau ID komentar (opsional)
-      </label>
+      <label data-id="URL halaman atau ID komentar (opsional)" data-en="Page URL or comment ID (optional)">URL halaman atau ID komentar (opsional)</label>
       <input type="text" name="url_atau_id" placeholder="https://dalam.web.id/artikel/...">
 
-      <label data-id="Jenis data yang ingin dihapus *" data-en="Type of data to delete *">
-        Jenis data yang ingin dihapus *
-      </label>
+      <label data-id="Jenis data yang ingin dihapus *" data-en="Type of data to delete *">Jenis data yang ingin dihapus *</label>
       <select name="jenis_data" required>
         <option value="" disabled selected data-id="Pilih salah satu" data-en="Choose one">Pilih salah satu</option>
         <option value="komentar" data-id="Komentar yang saya buat" data-en="Comments I made">Komentar yang saya buat</option>
@@ -136,60 +145,98 @@
         <option value="lainnya" data-id="Lainnya (jelaskan di bawah)" data-en="Other (explain below)">Lainnya (jelaskan di bawah)</option>
       </select>
 
-      <label data-id="Keterangan tambahan (opsional)" data-en="Additional notes (optional)">
-        Keterangan tambahan (opsional)
-      </label>
+      <label data-id="Keterangan tambahan (opsional)" data-en="Additional notes (optional)">Keterangan tambahan (opsional)</label>
       <textarea name="keterangan" placeholder="Ceritakan lebih detail... / Provide more details..."></textarea>
 
-      <input type="text" name="_gotcha" style="display:none">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-      <button type="submit" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
+      <button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
     </form>
 
     <div class="msg success" id="success">
-      <span id="succ-id">Terima kasih! Permintaan Anda sudah kami terima.<br>
-      Kami akan memproses dalam 24–72 jam kerja dan mengirimkan konfirmasi ke email Anda.</span>
-      <span id="succ-en" style="display:none">Thank you! Your request has been received.<br>
-      We will process it within 24–72 business hours and send confirmation to your email.</span>
+      <div id="succ-id">
+        <strong>Terima kasih!</strong> Permintaan Anda sudah kami terima.<br>
+        Kami akan memproses dalam 24–72 jam kerja dan mengirimkan konfirmasi ke email Anda.
+      </div>
+      <div id="succ-en" style="display:none">
+        <strong>Thank you!</strong> Your request has been received.<br>
+        We will process it within 24–72 business hours and send confirmation to your email.
+      </div>
     </div>
 
     <div class="msg error" id="error">
-      Maaf, terjadi kesalahan. Coba lagi atau kirim email langsung ke <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a><br>
-      Sorry, something went wrong. Please try again or email us directly at <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a>.
+      <span data-id="Maaf, terjadi kesalahan. Coba lagi atau kirim email langsung ke"
+            data-en="Sorry, something went wrong. Please try again or email us directly at">
+        Maaf, terjadi kesalahan. Coba lagi atau kirim email langsung ke
+      </span>
+      <a href="mailto:sini@dalam.web.id">sini@dalam.web.id</a>
     </div>
 
     <footer>
-      <a href="https://dalam.web.id/data-deletion">← Kembali ke Instruksi Penghapusan Data</a>
+      <a href="https://dalam.web.id/data-deletion" class="back-link"
+         data-id="← Kembali ke Instruksi Penghapusan Data"
+         data-en="← Back to Data Deletion Instructions">
+        ← Kembali ke Instruksi Penghapusan Data
+      </a>
     </footer>
   </div>
 
 <script>
+  const form = document.getElementById('deletion-form');
+  const btn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success');
+  const errorMsg = document.getElementById('error');
+
+  // --- FUNGSI GANTI BAHASA ---
   function switchLang(lang) {
     document.querySelectorAll('[data-id],[data-en]').forEach(el => {
       el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
     });
-    document.querySelectorAll('#lead-id, #lead-en, #succ-id, #succ-en').forEach(el => {
-      el.style.display = el.id.includes(lang) ? 'block' : 'none';
-    });
+
+    // Toggle visibilitas elemen panjang
+    document.getElementById('lead-id').style.display = (lang === 'id' ? 'block' : 'none');
+    document.getElementById('lead-en').style.display = (lang === 'en' ? 'block' : 'none');
+    document.getElementById('succ-id').style.display = (lang === 'id' ? 'block' : 'none');
+    document.getElementById('succ-en').style.display = (lang === 'en' ? 'block' : 'none');
+
     localStorage.setItem('lang', lang);
   }
 
-  const saved = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
-  document.getElementById('lang').value = saved;
-  switchLang(saved);
+  // Inisialisasi Bahasa
+  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
+  document.getElementById('lang-switcher').value = savedLang;
+  switchLang(savedLang);
 
-  const form = document.getElementById('deletion-form');
-  form.addEventListener('submit', () => {
-    setTimeout(() => {
-      form.style.display = 'none';
-      document.getElementById('success').style.display = 'block';
-    }, 800);
+  // --- FUNGSI KIRIM FORM (AJAX) ---
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const currentLang = localStorage.getItem('lang');
+    btn.disabled = true;
+    btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error('Gagal mengirim');
+      }
+    } catch (err) {
+      errorMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
+    }
   });
-
-  if (location.search.includes('formspree-error')) {
-    form.style.display = 'none';
-    document.getElementById('error').style.display = 'block';
-  }
 </script>
 </body>
 </html>
