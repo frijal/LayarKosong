@@ -117,7 +117,7 @@ const generate = async () => {
         const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
         return {
           category: titleToCategory(title),
-                                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+          data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
         };
       })
     );
@@ -160,7 +160,7 @@ const generate = async () => {
     for (const [cat, articles] of Object.entries(grouped)) {
       const slug = slugify(cat);
       const catItems = allItemsFlat.filter(f => f.category === cat);
-
+      const cleanTitle = cat.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
       // RSS Kategori
       writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`, `Feed artikel terbaru untuk kategori ${cat}`)));
 
@@ -169,7 +169,7 @@ const generate = async () => {
         const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
         const pageContent = templateHTML
         .replace(/%%TITLE%%/g, cat.replace(/^\p{Emoji_Presentation}\s*/u, ''))
-        .replace(/%%DESCRIPTION%%/g, `topik ${noEmoji}`)
+        .replace(/%%DESCRIPTION%%/g, `Topik ${cleanTitle} - Kumpulan artikel terbaru di Layar Kosong`)
         .replace(/%%CATEGORY_NAME%%/g, cat)
         .replace(/%%RSS_URL%%/g, `${CONFIG.baseUrl}/feed-${slug}.xml`)
         .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}`)
