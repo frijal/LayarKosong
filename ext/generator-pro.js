@@ -171,7 +171,7 @@ const generate = async () => {
         .replace(/%%TITLE%%/g, cat.replace(/^\p{Emoji_Presentation}\s*/u, ''))
         .replace(/%%CATEGORY_NAME%%/g, cat)
         .replace(/%%RSS_URL%%/g, `${CONFIG.baseUrl}/feed-${slug}.xml`)
-        .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}.html`)
+        .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}`)
         .replace(/%%ICON%%/g, icon);
         writePromises.push(fs.writeFile(path.join(CONFIG.kategoriDir, `${slug}.html`), pageContent));
       }
