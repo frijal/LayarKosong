@@ -190,12 +190,9 @@
   // --- FUNGSI GANTI BAHASA ---
   function switchLang(lang) {
     document.querySelectorAll('[data-id],[data-en]').forEach(el => {
-      // Cek apakah elemen punya atribut sesuai bahasa, jika tidak gunakan textContent asli
-      const text = (lang === 'en') ? el.dataset.en : el.dataset.id;
-      if (text) el.textContent = text;
+      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
     });
 
-    // Toggle visibilitas elemen panjang
     document.getElementById('lead-id').style.display = (lang === 'id' ? 'block' : 'none');
     document.getElementById('lead-en').style.display = (lang === 'en' ? 'block' : 'none');
     document.getElementById('succ-id').style.display = (lang === 'id' ? 'block' : 'none');
@@ -204,54 +201,55 @@
     localStorage.setItem('lang', lang);
   }
 
-  // --- FUNGSI FOCUS KE FORM (Untuk link di pesan error) ---
+  // --- FUNGSI ARAHKAN BALIK KE FORM (Jika Error) ---
   function focusForm() {
     errorMsg.style.display = 'none';
-    form.scrollIntoView({ behavior: 'smooth' });
+    form.style.display = 'block';
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const firstInput = form.querySelector('input');
     if (firstInput) firstInput.focus();
   }
 
-  // Inisialisasi Bahasa
+  // Inisialisasi Bahasa saat load
   const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
-  const langSwitcher = document.getElementById('lang-switcher');
-  if (langSwitcher) langSwitcher.value = savedLang;
+  const switcher = document.getElementById('lang-switcher');
+  if(switcher) switcher.value = savedLang;
   switchLang(savedLang);
 
-  // --- FUNGSI KIRIM FORM (AJAX) ---
+  // --- FUNGSI KIRIM FORM (Kunci Perbaikan di Sini) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const currentLang = localStorage.getItem('lang');
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
-    errorMsg.style.display = 'none'; // Sembunyikan error lama jika ada
+    errorMsg.style.display = 'none';
 
-    // PERBAIKAN UTAMA: Mengonversi FormData ke URL Search Params (application/x-www-form-urlencoded)
+    // 1. Ambil data form
     const formData = new FormData(form);
+    // 2. Ubah ke format URLSearchParams agar Worker tidak Error
     const data = new URLSearchParams(formData);
 
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: data, // Worker kamu minta format ini
-        headers: {
-          'Accept': 'application/json'
-          // Jangan set Content-Type secara manual, browser akan otomatis set ke x-www-form-urlencoded
-        }
+        body: data,
+        headers: { 'Accept': 'application/json' }
       });
 
+      // 3. Baca respon dari Worker
       const result = await response.json();
 
+      // Cek apakah HTTP status OK DAN Worker membalas sukses
       if (response.ok && result.success !== false) {
         form.style.display = 'none';
         successMsg.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        throw new Error(result.error || 'Gagal mengirim');
+        throw new Error(result.error || 'Gagal');
       }
     } catch (err) {
-      console.error('Submission error:', err);
+      console.error("Submission error:", err);
       errorMsg.style.display = 'block';
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
