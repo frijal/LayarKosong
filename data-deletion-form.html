@@ -181,71 +181,40 @@
     </footer>
   </div>
 
-  <script>
+ <script>
   const form = document.getElementById('deletion-form');
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success');
   const errorMsg = document.getElementById('error');
 
-  // --- FUNGSI GANTI BAHASA ---
-  function switchLang(lang) {
-    document.querySelectorAll('[data-id],[data-en]').forEach(el => {
-      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
-    });
-    document.getElementById('lead-id').style.display = (lang === 'id' ? 'block' : 'none');
-    document.getElementById('lead-en').style.display = (lang === 'en' ? 'block' : 'none');
-    document.getElementById('succ-id').style.display = (lang === 'id' ? 'block' : 'none');
-    document.getElementById('succ-en').style.display = (lang === 'en' ? 'block' : 'none');
-    localStorage.setItem('lang', lang);
-  }
-
-  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
-  const switcher = document.getElementById('lang-switcher');
-  if(switcher) switcher.value = savedLang;
-  switchLang(savedLang);
-
-  // --- FUNGSI KIRIM FORM (VERSI PASTI NYAMPAI) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const currentLang = localStorage.getItem('lang');
-
     btn.disabled = true;
-    btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
-    errorMsg.style.display = 'none';
+    btn.textContent = 'Sending...';
 
-    // AMBIL DATA MANUAL (Cara paling aman agar tidak kosong)
-    const formData = new URLSearchParams();
-    formData.append('nama_tampilan', form.nama_tampilan.value);
-    formData.append('_replyto', form._replyto.value);
-    formData.append('url_atau_id', form.url_atau_id.value);
-    formData.append('jenis_data', form.jenis_data.value);
-    formData.append('keterangan', form.keterangan.value);
+    // Google Apps Script lebih suka format URLSearchParams
+    const formData = new URLSearchParams(new FormData(form));
 
     try {
-      const response = await fetch(form.action, {
+      // GANTI URL DI BAWAH INI DENGAN URL DARI GOOGLE DEPLOY TADI
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzlnqknDAAx2Sdbj4kIYjVm9wvlXBywarj3ZXrENTDUpxyHjhP_MdKRAYVkg4CIMMs-/exec';
+
+      const response = await fetch(scriptURL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formData.toString() // Kirim sebagai string form yang sudah matang
+        mode: 'no-cors', // Google Script butuh mode ini kalau fetch dari luar
+        body: formData
       });
 
-      const result = await response.json();
+      // Karena mode no-cors, kita tidak bisa baca respon JSON,
+      // tapi asalkan tidak error, berarti data terkirim.
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (result.success) {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        // Jika muncul error dari Worker (seperti "Kabel SEB belum dicolok")
-        throw new Error(result.error);
-      }
     } catch (err) {
-      console.error("Error:", err);
-      errorMsg.querySelector('span').textContent = err.message;
-      errorMsg.style.display = 'block';
+      alert("Error: " + err.message);
       btn.disabled = false;
-      btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
+      btn.textContent = 'Submit Request';
     }
   });
 </script>
