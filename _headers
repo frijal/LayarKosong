@@ -64,6 +64,8 @@ https://*.fbcdn.net/*
   Cache-Control: public, max-age=31536000, immutable
 /disclaimer.html
   Cache-Control: public, max-age=31536000, immutable
+/disclaimer
+  Cache-Control: public, max-age=31536000, immutable
 /favicon.ico
   Cache-Control: public, max-age=31536000, immutable
 /favicon.png
@@ -72,15 +74,23 @@ https://*.fbcdn.net/*
   Cache-Control: public, max-age=31536000, immutable
 /feed.html
   Cache-Control: public, max-age=31536000, immutable
+/feed
+  Cache-Control: public, max-age=31536000, immutable
 /icon.png
   Cache-Control: public, max-age=31536000, immutable
 /img.html
+  Cache-Control: public, max-age=31536000, immutable
+/img
   Cache-Control: public, max-age=31536000, immutable
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
 /search.html
   Cache-Control: public, max-age=31536000, immutable
+/search
+  Cache-Control: public, max-age=31536000, immutable
 /sitemap.html
+  Cache-Control: public, max-age=31536000, immutable
+/sitemap
   Cache-Control: public, max-age=31536000, immutable
 /site.webmanifest
   Cache-Control: public, max-age=31536000, immutable
