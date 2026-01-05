@@ -217,6 +217,7 @@
   switchLang(savedLang);
 
   // --- FUNGSI KIRIM FORM (Kunci Perbaikan di Sini) ---
+  // --- FUNGSI KIRIM FORM (Sudah disesuaikan dengan Worker baru) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -225,23 +226,23 @@
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
     errorMsg.style.display = 'none';
 
-    // 1. Ambil data form
+    // 1. Ambil data form dan ubah jadi Object biasa
     const formData = new FormData(form);
-    // 2. Ubah ke format URLSearchParams agar Worker tidak Error
-    const data = new URLSearchParams(formData);
+    const data = Object.fromEntries(formData.entries());
 
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: {
+          'Content-Type': 'application/json', // <--- Wajib kasih tau Worker kalau ini JSON
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data) // <--- Kirim sebagai string JSON
       });
 
-      // 3. Baca respon dari Worker
       const result = await response.json();
 
-      // Cek apakah HTTP status OK DAN Worker membalas sukses
-      if (response.ok && result.success !== false) {
+      if (response.ok && result.success) {
         form.style.display = 'none';
         successMsg.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -250,6 +251,8 @@
       }
     } catch (err) {
       console.error("Submission error:", err);
+      // Munculkan pesan error asli dari Worker biar kita tau kendalanya
+      errorMsg.querySelector('span').textContent = (currentLang === 'en' ? 'Error: ' : 'Kesalahan: ') + err.message;
       errorMsg.style.display = 'block';
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
