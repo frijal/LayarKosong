@@ -181,40 +181,80 @@
     </footer>
   </div>
 
- <script>
+<script>
   const form = document.getElementById('deletion-form');
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success');
   const errorMsg = document.getElementById('error');
 
+  // --- FUNGSI GANTI BAHASA ---
+  function switchLang(lang) {
+    // Cari semua elemen yang punya atribut data-id dan data-en
+    document.querySelectorAll('[data-id],[data-en]').forEach(el => {
+      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
+    });
+
+    // Khusus untuk elemen yang butuh kontrol display (block/none)
+    const idElements = ['lead-id', 'succ-id'];
+    const enElements = ['lead-en', 'succ-en'];
+
+    idElements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = (lang === 'id' ? 'block' : 'none');
+    });
+
+    enElements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = (lang === 'en' ? 'block' : 'none');
+    });
+
+    localStorage.setItem('lang', lang);
+  }
+
+  // Inisialisasi Bahasa saat halaman dimuat
+  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
+  const switcher = document.getElementById('lang-switcher');
+  if (switcher) {
+    switcher.value = savedLang;
+    switcher.addEventListener('change', (e) => switchLang(e.target.value));
+  }
+  switchLang(savedLang);
+
+  // --- FUNGSI KIRIM FORM ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const currentLang = localStorage.getItem('lang') || 'id';
+
     btn.disabled = true;
-    btn.textContent = 'Sending...';
+    btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
+    if(errorMsg) errorMsg.style.display = 'none';
 
     // Google Apps Script lebih suka format URLSearchParams
     const formData = new URLSearchParams(new FormData(form));
 
     try {
-      // GANTI URL DI BAWAH INI DENGAN URL DARI GOOGLE DEPLOY TADI
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzlnqknDAAx2Sdbj4kIYjVm9wvlXBywarj3ZXrENTDUpxyHjhP_MdKRAYVkg4CIMMs-/exec';
 
-      const response = await fetch(scriptURL, {
+      await fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors', // Google Script butuh mode ini kalau fetch dari luar
+        mode: 'no-cors', // Wajib untuk Google Apps Script
         body: formData
       });
 
-      // Karena mode no-cors, kita tidak bisa baca respon JSON,
-      // tapi asalkan tidak error, berarti data terkirim.
+      // Karena no-cors, kita langsung anggap sukses jika tidak masuk ke catch
       form.style.display = 'none';
       successMsg.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
-      alert("Error: " + err.message);
+      console.error("Submission error:", err);
+      if(errorMsg) {
+        errorMsg.style.display = 'block';
+        const errText = errorMsg.querySelector('span');
+        if(errText) errText.textContent = (currentLang === 'en' ? 'Connection failed!' : 'Koneksi gagal!');
+      }
       btn.disabled = false;
-      btn.textContent = 'Submit Request';
+      btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
     }
   });
 </script>
