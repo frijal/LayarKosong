@@ -433,7 +433,7 @@
 <div class="ats-keywords">HRIS,Human Resources Information System,Talent Acquisition,Recruitment,Mining Industry,Screening,Interviewing,HR Generalist,HRGA,Personnel Management,Workforce Planning,Employee Relations,Labor Relations,Onboarding,Training,Development,Coal Mining,Operations Management,Industrial Engineering,Data Processing,Compliance,Regulatory,Performance Management,Compensation,Benefits Administration,Workforce Development,HR Analytics,Recruitment Strategy,Talent Management,Mining Sector,HR Operations,Human Capital Management,Organizational Development,Employee Engagement,HR Policies,Labor Law Compliance,Payroll Administration,Industrial Relations,HR Technology,Succession Planning,Talent Pipeline,Competency Assessment,HR Metrics,Recruitment Process,Sourcing Strategies,Candidate Assessment,HR Business Partner,HR Compliance</div>
     <div class="container">
         <header class="header">
-            <button class="language-toggle" onclick="toggleLanguage()">🌐 <span class="lang-id">ID / EN</span><span class="lang-en">EN / ID</span></button>
+            <button class="language-toggle" onclick="toggleLanguage()"><i class="fa-solid fa-language"></i> <span class="lang-id">ID / EN</span><span class="lang-en">EN / ID</span></button>
             <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhp6kWSFBQfE_sjsJGKFMfuWVbxACKsa6ycYDgetxlPBE66S9XQI7PO6XC_xQUCIBZCVD5vaFpSeu4Jzs22cv_JUJRj-oOIvSD0sTuVWMsb6Sbo8zHT48c2J88T05g7myyJnwc3Man-gIZSin5fbB6GhdqnI2iONqMPyp-xHtuhHm0xbkdB8dYgZLRzna8/s1600/Gemini_Generated_Image_x15xgdx15xgdx15x.webp" alt="Fakhrul Rijal" class="profile-img" width="150" height="150" loading="eager">
             <h1>Fakhrul Rijal</h1>
             <div class="title lang-id">Supervisor HRGA | Spesialis Akuisisi Talenta | Pengendalian Administrasi</div>
@@ -709,9 +709,9 @@
             // Update button text based on current language
             const isIndonesianVisible = getComputedStyle(idElements[0]).display !== 'none';
             if (isIndonesianVisible) {
-                buttonText.innerHTML = '🌐 <span class="lang-id">ID / EN</span><span class="lang-en">EN / ID</span>';
+                buttonText.innerHTML = '<i class="fa-solid fa-language"></i> <span class="lang-id">ID / EN</span><span class="lang-en">EN / ID</span>';
             } else {
-                buttonText.innerHTML = '🌐 <span class="lang-id">EN / ID</span><span class="lang-en">ID / EN</span>';
+                buttonText.innerHTML = '<i class="fa-solid fa-language"></i> <span class="lang-id">EN / ID</span><span class="lang-en">ID / EN</span>';
             }
         }
         // PDF Download Function
@@ -786,7 +786,7 @@
                 alert('Terjadi kesalahan saat membuat PDF. Silakan coba lagi.');
                 // Restore button state
                 const downloadBtn = document.querySelector('.download-btn');
-                downloadBtn.innerHTML = '<span class="lang-id">📄 Unduh sebagai PDF</span><span class="lang-en">📄 Download as PDF</span>';
+                downloadBtn.innerHTML = '<span class="lang-id"><i class="fa-regular fa-file-pdf"></i> Unduh sebagai PDF</span><span class="lang-en"><i class="fa-regular fa-file-pdf"></i> Download as PDF</span>';
                 downloadBtn.disabled = false;
             }
         }
