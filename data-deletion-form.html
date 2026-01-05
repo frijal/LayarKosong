@@ -211,43 +211,35 @@
     const currentLang = localStorage.getItem('lang');
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
-    errorMsg.style.display = 'none';
 
-    // 1. Ambil data form dan jadikan JSON
+    // Ambil data form
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    // Kirim sebagai URLSearchParams (Format standard form)
+    const body = new URLSearchParams(formData).toString();
 
     try {
-      // 2. Kirim ke api.dalam.web.id
       const response = await fetch(form.action, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(data)
+        body: body
       });
 
       const result = await response.json();
 
-      if (response.ok && result.success) {
+      if (result.success) {
         form.style.display = 'none';
         successMsg.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        // Ini akan menangkap error "Kabel pengirim (Binding SEB) belum dipasang"
-        throw new Error(result.error || 'Server Error');
+        throw new Error(result.error);
       }
     } catch (err) {
-      console.error("Submission error:", err);
-      // Munculkan pesan error dari Worker di kotak merah
-      const errorText = errorMsg.querySelector('span');
-      if (errorText) errorText.textContent = err.message;
-
+      alert("Waduh: " + err.message);
       errorMsg.style.display = 'block';
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
-      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
 </script>
