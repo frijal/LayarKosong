@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Formulir Penghapusan Data / Data Deletion Form — dalam.web.id</title>
   <meta name="description" content="Request deletion of your data on dalam.web.id (ID/EN)">
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script  src="https://challenges.cloudflare.com/turnstile/v0/api.js"  async  defer></script>
+
   <style>
     /* Menggunakan warna khas Layar Kosong #00b0ed */
     :root {
@@ -149,8 +150,8 @@
       <textarea name="keterangan" placeholder="Ceritakan lebih detail... / Provide more details..."></textarea>
 
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-<div class="g-recaptcha" data-sitekey="6LfMGkEsAAAAAKSkCCYsekHlDrDolAJ1gxY7UgP1"></div>
-      <button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
+<div class="cf-turnstile" data-sitekey="0x4AAAAAACKrzVdE-d1IIs5o"></div>
+<button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
     </form>
 
     <div class="msg success" id="success">
@@ -185,50 +186,40 @@
   const form = document.getElementById('deletion-form');
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success');
-  const errorMsg = document.getElementById('error');
 
-  // --- FUNGSI GANTI BAHASA ---
+  // --- 1. FUNGSI GANTI BAHASA ---
   function switchLang(lang) {
-    // Cari semua elemen yang punya atribut data-id dan data-en
     document.querySelectorAll('[data-id],[data-en]').forEach(el => {
       el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
     });
 
-    // Khusus untuk elemen yang butuh kontrol display (block/none)
-    const idElements = ['lead-id', 'succ-id'];
-    const enElements = ['lead-en', 'succ-en'];
+    const idEls = ['lead-id', 'succ-id'];
+    const enEls = ['lead-en', 'succ-en'];
 
-    idElements.forEach(id => {
+    idEls.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.style.display = (lang === 'id' ? 'block' : 'none');
+      if(el) el.style.display = (lang === 'id' ? 'block' : 'none');
     });
-
-    enElements.forEach(id => {
+    enEls.forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.style.display = (lang === 'en' ? 'block' : 'none');
+      if(el) el.style.display = (lang === 'en' ? 'block' : 'none');
     });
 
     localStorage.setItem('lang', lang);
   }
 
-  // Inisialisasi Bahasa saat halaman dimuat
-  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
-  const switcher = document.getElementById('lang-switcher');
-  if (switcher) {
-    switcher.value = savedLang;
-    switcher.addEventListener('change', (e) => switchLang(e.target.value));
-  }
+  const savedLang = localStorage.getItem('lang') || 'id';
   switchLang(savedLang);
 
-  // --- FUNGSI KIRIM FORM ---
+  // --- 2. LOGIKA KIRIM FORM (Cloudflare Turnstile) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const currentLang = localStorage.getItem('lang') || 'id';
 
-    // 1. Cek apakah reCAPTCHA sudah dicentang
-    const captchaResponse = grecaptcha.getResponse();
-    if (!captchaResponse) {
-      alert(currentLang === 'en' ? 'Please complete the CAPTCHA!' : 'Silakan centang reCAPTCHA!');
+    // Ambil token Turnstile
+    const turnstileResponse = turnstile.getResponse();
+    if (!turnstileResponse) {
+      alert(currentLang === 'en' ? 'Please complete the security check!' : 'Silakan selesaikan pengecekan keamanan!');
       return;
     }
 
@@ -236,11 +227,10 @@
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
 
     const formData = new URLSearchParams(new FormData(form));
-    // Kirim token captcha ke Google Script untuk diverifikasi
-    formData.append('g-recaptcha-response', captchaResponse);
+    formData.append('cf-turnstile-response', turnstileResponse);
 
     try {
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzlnqknDAAx2Sdbj4kIYjVm9wvlXBywarj3ZXrENTDUpxyHjhP_MdKRAYVkg4CIMMs-/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwwEtyD9E-HkBRoLsPCXwrCbUNbUp7jrycMRvWt3vOmNMIF8hkS7BbZX4tyUQPlsEsj/exec';
 
       await fetch(scriptURL, {
         method: 'POST',
@@ -256,6 +246,7 @@
       alert("Error: " + err.message);
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
+      turnstile.reset(); // Reset jika gagal
     }
   });
 </script>
