@@ -7,7 +7,6 @@
   <meta name="description" content="Request deletion of your data on dalam.web.id (ID/EN)">
   <link rel="preconnect" href="https://challenges.cloudflare.com">
 <script  src="https://challenges.cloudflare.com/turnstile/v0/api.js"  async  defer></script>
-
   <style>
     /* Menggunakan warna khas Layar Kosong #00b0ed */
     :root {
@@ -21,7 +20,6 @@
       --error-bg: #fee2e2;
       --error-text: #991b1b;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0f172a;
@@ -35,13 +33,11 @@
         --error-text: #f87171;
       }
     }
-
     body {
       font-family: system-ui,-apple-system,sans-serif;
       background: var(--bg); color: var(--text);
       margin: 0; padding: 0; line-height: 1.6; min-height: 100vh;
     }
-
     /* === STICKY HEADER === */
     .sticky-header {
       position: fixed; top: 1rem; left: 1rem; z-index: 1000;
@@ -54,7 +50,6 @@
     .sticky-header:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
     .sticky-header img { width: 40px; height: 40px; }
     .site-name { font-weight: 700; font-size: 1.35rem; color: var(--text); }
-
     .lang-select {
       position: fixed; top: 1rem; right: 1rem; z-index: 1000;
       background: var(--bg); padding: 0.4rem 0.7rem;
@@ -62,22 +57,18 @@
       backdrop-filter: blur(8px);
     }
     select { background: var(--bg); color: var(--text); border: none; font-size: 1rem; cursor: pointer; }
-
     /* === LAYOUT === */
     .main-content {
       max-width: 680px; margin: 0 auto;
       padding: 7rem 1.5rem 3rem;
     }
-
     h1 { font-size: 1.8rem; margin-top: 0; color: var(--accent); }
     .lead { color: var(--muted); margin: 1rem 0 2rem; font-size: 1.1rem; }
-
     form {
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--border); border-radius: 12px;
       padding: 2rem; transition: opacity 0.3s;
     }
-
     label { display: block; margin: 1.4rem 0 0.5rem; font-weight: 600; }
     input, select, textarea {
       width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px;
@@ -85,7 +76,6 @@
     }
     input:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
     textarea { min-height: 120px; resize: vertical; }
-
     button {
       width: 100%; margin-top: 2rem; background: var(--accent); color: white; border: none;
       padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: 700;
@@ -93,51 +83,42 @@
     }
     button:hover { filter: brightness(1.1); }
     button:disabled { background: var(--muted); cursor: not-allowed; }
-
     /* === MESSAGES === */
     .msg { margin-top: 1.5rem; padding: 1.5rem; border-radius: 12px; display: none; line-height: 1.5; }
     .success { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--accent); }
     .error { background: var(--error-bg); color: var(--error-text); border: 1px solid #fca5a5; }
-
     footer { margin-top: 4rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
     a { color: var(--accent); text-decoration: underline; }
     .back-link { text-decoration: none; font-weight: 600; }
+    .action-container{display:flex;flex-direction:column;align-items:center;gap:20px;margin-top:30px;padding:20px;border-top:1px solid #eee}#submit-btn{background-color:#00b0ed;color:#fff;border:none;padding:12px 30px;font-size:16px;font-weight:700;border-radius:8px;cursor:pointer;transition:all .3s ease;width:100%;max-width:300px}#submit-btn:hover{background-color:#008fbd;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,176,237,.3)}#submit-btn:disabled{background-color:#ccc;cursor:not-allowed;transform:none}.cf-turnstile{margin:0 auto}
   </style>
 </head>
 <body>
-
   <a href="https://dalam.web.id" class="sticky-header" aria-label="Kembali ke dalam.web.id">
     <img src="https://dalam.web.id/favicon.svg" alt="Logo">
     <span class="site-name">dalam.web.id</span>
   </a>
-
   <div class="lang-select">
     <select id="lang-switcher" onchange="switchLang(this.value)" aria-label="Pilih bahasa">
       <option value="id">Bahasa Indonesia</option>
       <option value="en">English</option>
     </select>
   </div>
-
   <div class="main-content">
     <h1 data-id="Formulir Penghapusan Data" data-en="Data Deletion Form">Formulir Penghapusan Data</h1>
-
     <p class="lead" id="lead-id">
       Gunakan formulir ini untuk mengajukan penghapusan komentar, profil, atau data lain di <strong>dalam.web.id</strong>.
     </p>
     <p class="lead" id="lead-en" style="display:none">
       Use this form to request deletion of comments, profile, or any other data on <strong>dalam.web.id</strong>.
     </p>
-
     <form id="deletion-form" action="https://api.dalam.web.id" method="POST">
       <label data-id="Nama tampilan (jika ada)" data-en="Display name (if any)">Nama tampilan (jika ada)</label>
       <input type="text" name="nama_tampilan" placeholder="Contoh: Paijo Suparjio">
-
       <label data-id="Email yang pernah digunakan *" data-en="Email address used *">Email yang pernah digunakan *</label>
       <input type="email" name="_replyto" required placeholder="emailanda@contoh.com">
-
       <label data-id="URL halaman atau ID komentar (opsional)" data-en="Page URL or comment ID (optional)">URL halaman atau ID komentar (opsional)</label>
       <input type="text" name="url_atau_id" placeholder="https://dalam.web.id/artikel/...">
-
       <label data-id="Jenis data yang ingin dihapus *" data-en="Type of data to delete *">Jenis data yang ingin dihapus *</label>
       <select name="jenis_data" required>
         <option value="" disabled selected data-id="Pilih salah satu" data-en="Choose one">Pilih salah satu</option>
@@ -146,15 +127,13 @@
         <option value="semua" data-id="Semua data terkait email ini" data-en="All data linked to this email">Semua data terkait email ini</option>
         <option value="lainnya" data-id="Lainnya (jelaskan di bawah)" data-en="Other (explain below)">Lainnya (jelaskan di bawah)</option>
       </select>
-
       <label data-id="Keterangan tambahan (opsional)" data-en="Additional notes (optional)">Keterangan tambahan (opsional)</label>
       <textarea name="keterangan" placeholder="Ceritakan lebih detail... / Provide more details..."></textarea>
-
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-<div class="cf-turnstile" data-sitekey="0x4AAAAAACKrzVdE-d1IIs5o" data-size="normal" data-callback="onSuccess"></div>
-<button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button>
+<div class="action-container">
+  <div class="cf-turnstile" data-sitekey="0x4AAAAAACKrzVdE-d1IIs5o" data-size="normal" data-callback="onSuccess"></div>
+<button type="submit" id="submit-btn" data-id="Kirim Permintaan" data-en="Submit Request">Kirim Permintaan</button></div>
     </form>
-
     <div class="msg success" id="success">
       <div id="succ-id">
         <strong>Terima kasih!</strong> Permintaan Anda sudah kami terima.<br>
@@ -165,7 +144,6 @@
         We will process it within 24–72 business hours and send confirmation to your email.
       </div>
     </div>
-
     <div class="msg error" id="error">
       <span data-id="Maaf, terjadi kesalahan. Coba lagi atau kirim email langsung ke"
             data-en="Sorry, something went wrong. Please try again or email us directly at">
@@ -173,7 +151,6 @@
       </span>
       <a href="https://dalam.web.id/data-deletion-form#deletion-form">sini@dalam.web.id</a>
     </div>
-
     <footer>
       <a href="https://dalam.web.id/data-deletion" class="back-link"
          data-id="← Kembali ke Instruksi Penghapusan Data"
@@ -182,21 +159,19 @@
       </a>
     </footer>
   </div>
-
 <script>
   const form = document.getElementById('deletion-form');
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success');
-
   // --- 1. FUNGSI GANTI BAHASA ---
   function switchLang(lang) {
+    // Update semua elemen dengan atribut data-id dan data-en
     document.querySelectorAll('[data-id],[data-en]').forEach(el => {
       el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
     });
-
+    // Kontrol visibilitas elemen instruksi dan pesan sukses
     const idEls = ['lead-id', 'succ-id'];
     const enEls = ['lead-en', 'succ-en'];
-
     idEls.forEach(id => {
       const el = document.getElementById(id);
       if(el) el.style.display = (lang === 'id' ? 'block' : 'none');
@@ -205,49 +180,59 @@
       const el = document.getElementById(id);
       if(el) el.style.display = (lang === 'en' ? 'block' : 'none');
     });
-
     localStorage.setItem('lang', lang);
   }
-
-  const savedLang = localStorage.getItem('lang') || 'id';
+  // --- 2. CALLBACK TURNSTILE ---
+  // Fungsi ini otomatis dipanggil saat Turnstile sukses terverifikasi
+  function onSuccess(token) {
+    console.log("Turnstile Verified!");
+    // Efek visual khas Layar Kosong saat verifikasi oke
+    btn.style.boxShadow = "0 0 15px rgba(0, 176, 237, 0.5)";
+    btn.style.borderColor = "#00b0ed";
+  }
+  // Inisialisasi bahasa saat halaman dimuat
+  const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
+  const switcher = document.getElementById('lang-switcher');
+  if (switcher) {
+    switcher.value = savedLang;
+    switcher.addEventListener('change', (e) => switchLang(e.target.value));
+  }
   switchLang(savedLang);
-
-  // --- 2. LOGIKA KIRIM FORM (Cloudflare Turnstile) ---
+  // --- 3. LOGIKA KIRIM FORM ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const currentLang = localStorage.getItem('lang') || 'id';
-
     // Ambil token Turnstile
     const turnstileResponse = turnstile.getResponse();
     if (!turnstileResponse) {
       alert(currentLang === 'en' ? 'Please complete the security check!' : 'Silakan selesaikan pengecekan keamanan!');
       return;
     }
-
+    // Status Loading
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
-
     const formData = new URLSearchParams(new FormData(form));
     formData.append('cf-turnstile-response', turnstileResponse);
-
     try {
+      // URL Google Apps Script Mas Rijal yang baru
       const scriptURL = 'https://script.google.com/macros/s/AKfycbwwEtyD9E-HkBRoLsPCXwrCbUNbUp7jrycMRvWt3vOmNMIF8hkS7BbZX4tyUQPlsEsj/exec';
-
       await fetch(scriptURL, {
         method: 'POST',
-        mode: 'no-cors',
+        mode: 'no-cors', // Penting untuk Google Apps Script
         body: formData
       });
-
+      // Tampilan Sukses
       form.style.display = 'none';
       successMsg.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
     } catch (err) {
-      alert("Error: " + err.message);
+      console.error("Submission error:", err);
+      alert(currentLang === 'en' ? "Failed to send request. Please try again." : "Gagal mengirim permintaan. Silakan coba lagi.");
+      // Kembalikan tombol ke status awal
       btn.disabled = false;
-      btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
-      turnstile.reset(); // Reset jika gagal
+      btn.textContent = (currentLang === 'en' ? btn.dataset.en : btn.dataset.id);
+      // Reset Turnstile agar user bisa mencoba lagi
+      if (typeof turnstile !== 'undefined') turnstile.reset();
     }
   });
 </script>
