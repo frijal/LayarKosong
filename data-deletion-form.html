@@ -192,52 +192,40 @@
     document.querySelectorAll('[data-id],[data-en]').forEach(el => {
       el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.id;
     });
-
     document.getElementById('lead-id').style.display = (lang === 'id' ? 'block' : 'none');
     document.getElementById('lead-en').style.display = (lang === 'en' ? 'block' : 'none');
     document.getElementById('succ-id').style.display = (lang === 'id' ? 'block' : 'none');
     document.getElementById('succ-en').style.display = (lang === 'en' ? 'block' : 'none');
-
     localStorage.setItem('lang', lang);
   }
 
-  // --- FUNGSI ARAHKAN BALIK KE FORM (Jika Error) ---
-  function focusForm() {
-    errorMsg.style.display = 'none';
-    form.style.display = 'block';
-    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    const firstInput = form.querySelector('input');
-    if (firstInput) firstInput.focus();
-  }
-
-  // Inisialisasi Bahasa saat load
+  // Inisialisasi Bahasa
   const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
   const switcher = document.getElementById('lang-switcher');
   if(switcher) switcher.value = savedLang;
   switchLang(savedLang);
 
-  // --- FUNGSI KIRIM FORM (Kunci Perbaikan di Sini) ---
-  // --- FUNGSI KIRIM FORM (Sudah disesuaikan dengan Worker baru) ---
+  // --- FUNGSI KIRIM FORM (VERSI SINKRON) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const currentLang = localStorage.getItem('lang');
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
     errorMsg.style.display = 'none';
 
-    // 1. Ambil data form dan ubah jadi Object biasa
+    // 1. Ambil data form dan jadikan JSON
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
+      // 2. Kirim ke api.dalam.web.id
       const response = await fetch(form.action, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // <--- Wajib kasih tau Worker kalau ini JSON
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(data) // <--- Kirim sebagai string JSON
+        body: JSON.stringify(data)
       });
 
       const result = await response.json();
@@ -247,12 +235,15 @@
         successMsg.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        throw new Error(result.error || 'Gagal');
+        // Ini akan menangkap error "Kabel pengirim (Binding SEB) belum dipasang"
+        throw new Error(result.error || 'Server Error');
       }
     } catch (err) {
       console.error("Submission error:", err);
-      // Munculkan pesan error asli dari Worker biar kita tau kendalanya
-      errorMsg.querySelector('span').textContent = (currentLang === 'en' ? 'Error: ' : 'Kesalahan: ') + err.message;
+      // Munculkan pesan error dari Worker di kotak merah
+      const errorText = errorMsg.querySelector('span');
+      if (errorText) errorText.textContent = err.message;
+
       errorMsg.style.display = 'block';
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
