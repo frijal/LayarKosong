@@ -181,7 +181,7 @@
     </footer>
   </div>
 
-<script>
+  <script>
   const form = document.getElementById('deletion-form');
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success');
@@ -199,23 +199,27 @@
     localStorage.setItem('lang', lang);
   }
 
-  // Inisialisasi Bahasa
   const savedLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'id');
   const switcher = document.getElementById('lang-switcher');
   if(switcher) switcher.value = savedLang;
   switchLang(savedLang);
 
-  // --- FUNGSI KIRIM FORM (VERSI SINKRON) ---
+  // --- FUNGSI KIRIM FORM (VERSI PASTI NYAMPAI) ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const currentLang = localStorage.getItem('lang');
+
     btn.disabled = true;
     btn.textContent = (currentLang === 'en' ? 'Sending...' : 'Mengirim...');
+    errorMsg.style.display = 'none';
 
-    // Ambil data form
-    const formData = new FormData(form);
-    // Kirim sebagai URLSearchParams (Format standard form)
-    const body = new URLSearchParams(formData).toString();
+    // AMBIL DATA MANUAL (Cara paling aman agar tidak kosong)
+    const formData = new URLSearchParams();
+    formData.append('nama_tampilan', form.nama_tampilan.value);
+    formData.append('_replyto', form._replyto.value);
+    formData.append('url_atau_id', form.url_atau_id.value);
+    formData.append('jenis_data', form.jenis_data.value);
+    formData.append('keterangan', form.keterangan.value);
 
     try {
       const response = await fetch(form.action, {
@@ -223,7 +227,7 @@
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: body
+        body: formData.toString() // Kirim sebagai string form yang sudah matang
       });
 
       const result = await response.json();
@@ -233,10 +237,12 @@
         successMsg.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
+        // Jika muncul error dari Worker (seperti "Kabel SEB belum dicolok")
         throw new Error(result.error);
       }
     } catch (err) {
-      alert("Waduh: " + err.message);
+      console.error("Error:", err);
+      errorMsg.querySelector('span').textContent = err.message;
       errorMsg.style.display = 'block';
       btn.disabled = false;
       btn.textContent = (currentLang === 'en' ? 'Submit Request' : 'Kirim Permintaan');
