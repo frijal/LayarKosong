@@ -10,14 +10,16 @@
    --border: #e2e8f0;
    --glass: rgba(255, 255, 255, 0.8);
    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-   --facebook: #1877f2;
-   --github: #24292f;
-   --linkedin: #0a66c2;
-   --telegram: #229ed9;
+   --facebook: #1877F2;
+   --github: #24292F;
+   --linkedin: #0A66C2;
+   --telegram: #229ED9;
    --threads: #000000;
    --twitter: #1DA1F2;
-   --youtube: #ff0000;
+   --youtube: #FF0000;
+   --reddit: #FF5700;
    --mastodon: #6364FF;
+   --bluesky: #1185FE;
  }
 
  @media (prefers-color-scheme: dark) {
@@ -33,6 +35,18 @@
      --github: #ffffff;
      --threads: #ffffff;
    }
+       /* Official brand colors — hanya untuk footer social */
+ .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
+ .page-footer .footer-social .fa-github		 { color: var(--github); }
+ .page-footer .footer-social .fa-square-linkedin { color: var(--linkedin); }
+ .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
+ .page-footer .footer-social .fa-threads         { color: var(--threads); }
+ .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
+ .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
+ .page-footer .footer-social .fa-reddit          { color: var(--mastodon); }
+ .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
+ .page-footer .footer-social .fa-bluesky         { color: var(--bluesky); }
+ 
    .hero-content h1 {
      /* Efek pendaran biru neon yang halus */
      text-shadow:
@@ -396,15 +410,6 @@
    padding: 25px 0; /* Dipangkas drastis dari 60px/40px */
    margin-top: 30px; /* Jarak dari konten atas diperkecil sedikit */
  }
- /* Official brand colors — hanya untuk footer social */
- .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
- .page-footer .footer-social .fa-github		 { color: var(--github); }
- .page-footer .footer-social .fa-square-linkedin { color: var(--linkedin); }
- .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
- .page-footer .footer-social .fa-threads         { color: var(--threads); }
- .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
- .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
- .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
 
  .footer-content {
    display: grid;
