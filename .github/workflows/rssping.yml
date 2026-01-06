@@ -74,7 +74,7 @@ jobs:
       - name: ⚙️ Generate LLMs index
         run: |
           if [ -f ext/generate_llms.py ]; then
-            python ext/generate_llms.py
+            python3 ext/generate_llms.py
           fi
 
       # =========================================================
