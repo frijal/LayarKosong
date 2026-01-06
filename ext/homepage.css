@@ -324,7 +324,6 @@
  border-radius: 30px;
  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
- justify-content: center;
  /* Warna Default (Biru Primary) */
  background: var(--primary);
  color: white;
@@ -341,7 +340,6 @@
  background: var(--secondary);
  color: black;
  box-shadow: 0 4px 6px -1px rgba(255, 191, 0, 0.2);
-  justify-content: center;
  }
 
  #loadMore.is-top:hover {
