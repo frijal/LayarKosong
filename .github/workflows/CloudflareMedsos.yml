@@ -23,8 +23,8 @@ on:
           - llms_index
 
 permissions:
-  contents: write
-
+  contents: write read
+  
 jobs:
   everything-job:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
         with:
           python-version: '3.x'
           cache: 'pip'
-
+              
       - name: 📦 Install Dependencies
         run: |
           npm install
