@@ -101,7 +101,7 @@ def main():
                     go.write(f"bsky_url={target_url}\n")
 
             # Simpan log sementara untuk diproses workflow push
-            with open('temp_new_url_bsky.txt', 'w') as f:
+            with open('ext/temp_new_url_bsky.txt', 'w') as f:
                 f.write(target_url + '\n')
 
             print(f"✅ Berhasil posting (Deskripsi Saja + Card) ke Bluesky: {target_url}")
