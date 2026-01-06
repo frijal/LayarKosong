@@ -51,7 +51,7 @@ jobs:
       - name: 3.1 Jalankan Script Scan Gambar Nganggur
         run: |
           echo "🐍 Menjalankan cek_gambar.py..."
-          python cek_gambar.py
+          python3 ext/cek_gambar.py
           
       - name: 3.2 Hapus Gambar Berdasarkan Daftar Nganggur
         run: |
