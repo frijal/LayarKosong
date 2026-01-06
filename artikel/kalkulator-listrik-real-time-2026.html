@@ -214,18 +214,19 @@
     <script>
     let resultState = { total: "Rp 0", list: "" };
     function addRow() {
-        const container = document.getElementById('device-list');
-        const newRow = document.createElement('div');
-        newRow.className = 'device-row';
-        newRow.innerHTML = `
-            <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-watt" placeholder="berapa Watt?" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-hours" placeholder=""berapa Jam?"" oninput="hitungOtomatis()"></div>
-            <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
-        `;
-        container.appendChild(newRow);
-        hitungOtomatis();
+    const container = document.getElementById('device-list');
+    const newRow = document.createElement('div');
+    newRow.className = 'device-row';
+    // Perbaikan pada placeholder jam di bawah ini:
+    newRow.innerHTML = `
+        <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-watt" placeholder="Watt" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-hours" placeholder="Jam" oninput="hitungOtomatis()"></div>
+        <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
+    `;
+    container.appendChild(newRow);
+    hitungOtomatis();
     }
     function removeRow(btn) {
         if (document.querySelectorAll('.device-row').length > 1) {
