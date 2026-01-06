@@ -174,7 +174,7 @@ width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
-
+color: inherit;
 background: transparent;
 border: none;
 box-shadow: none;
@@ -190,6 +190,7 @@ list-style: none;
 padding: 0;
 margin: 0;
 display: flex;
+color: inherit;
 flex-direction: column;
 gap: 10px;
 }
@@ -226,7 +227,7 @@ font-weight: 700;
 #internal-nav .nav-h1 {
 font-weight: 800;
 font-size: 14px;
-color: #111;
+color: inherit;
 margin-bottom: 5px;
 }
 #internal-nav .nav-h2 { margin-left: 12px; }
