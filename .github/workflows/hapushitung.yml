@@ -34,26 +34,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
-      # ========== IMAGE CLEANUP ==========
-      - name: 3. Cleanup Orphan .webp Images (Manual)
-        id: manual_cleanup
-        run: |
-          echo "🧹 Membersihkan gambar orphan (.webp)..."
-          cleaned_count=0
-          for file in img/*.webp; do
-            [ -e "$file" ] || continue
-            slug="${file##*/}"
-            slug="${slug%.webp}"
-            if [ ! -f "artikel/${slug}.html" ]; then
-              echo "→ Menghapus: $file"
-              git rm -f "$file"
-              cleaned_count=$((cleaned_count + 1))
-            fi
-          done
-          echo "Jumlah yang dihapus (manual): $cleaned_count"
-
-      - name: 4. Scan Unused Images via Python
+      
+      - name: 3. Scan Unused Images via Python
         id: python_scan
         run: |
           echo "🐍 Menjalankan cek_gambar.py..."
@@ -80,6 +62,24 @@ jobs:
             echo "ℹ️  File daftar tidak ditemukan: $LIST_FILE"
           fi
 
+      # ========== IMAGE CLEANUP ==========
+      - name: 4. Cleanup Orphan .webp Images (Manual)
+        id: manual_cleanup
+        run: |
+          echo "🧹 Membersihkan gambar orphan (.webp)..."
+          cleaned_count=0
+          for file in img/*.webp; do
+            [ -e "$file" ] || continue
+            slug="${file##*/}"
+            slug="${slug%.webp}"
+            if [ ! -f "artikel/${slug}.html" ]; then
+              echo "→ Menghapus: $file"
+              git rm -f "$file"
+              cleaned_count=$((cleaned_count + 1))
+            fi
+          done
+          echo "Jumlah yang dihapus (manual): $cleaned_count"
+          
       # ========== CONTENT REPORT GENERATION ==========
       - name: 5. Generate Detailed Content Report
         id: generate_report
