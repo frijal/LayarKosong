@@ -19,7 +19,7 @@ def main():
     with open(JSON_FILE, 'r') as f:
         data = json.load(f)
 
-    # Gabungkan semua kategori & Flatten data
+    # Gabungkan semua kategori
     all_posts = []
     for category_name, posts in data.items():
         for post in posts:
@@ -63,7 +63,7 @@ def main():
             client.login(handle, password)
             
             # --- PREPARASI EMBED (CARD PREVIEW) ---
-            # Kita download gambar untuk dijadikan preview agar link tidak perlu ditulis manual
+            # Judul dan Deskripsi lengkap masuk ke sini secara visual
             embed_external = None
             try:
                 img_res = requests.get(target_post['image_url'], timeout=10)
@@ -72,7 +72,7 @@ def main():
                     embed_external = models.AppBskyEmbedExternal.Main(
                         external=models.AppBskyEmbedExternal.External(
                             title=target_post['title'],
-                            description=target_post['desc'][:150] + "...",
+                            description=target_post['desc'],
                             uri=target_url,
                             thumb=upload.blob
                         )
@@ -80,37 +80,33 @@ def main():
             except Exception as e:
                 print(f"⚠️ Gagal membuat preview gambar: {e}")
 
-            # --- PREPARASI PESAN (TEXT) ---
-            cat_hashtag = "#" + target_post['category'].replace(" ", "").lower()
-            hashtags = f"#fediverse #repost {cat_hashtag} #Indonesia"
+            # --- PREPARASI PESAN (TEXT ONLY) ---
+            # Sesuai permintaan: Tidak menuliskan judul dan hashtag.
+            # Hanya deskripsi saja.
+            full_msg = target_post['desc']
             
-            # Potong deskripsi jika kepanjangan (Limit Bluesky 300)
-            clean_desc = target_post['desc']
-            if len(clean_desc) > 180:
-                clean_desc = clean_desc[:177] + "..."
-
-            # Gabungkan pesan (Tanpa menuliskan Link Mentah di body teks untuk hemat karakter)
-            full_msg = f"📖 {target_post['title']}\n\n{clean_desc}\n\n{hashtags}"
+            # Tetap kita jaga agar tidak lebih dari 300 karakter (limit Bluesky)
+            if len(full_msg) > 297:
+                full_msg = full_msg[:297] + "..."
 
             # Kirim ke Bluesky
-            # Kita gunakan TextBuilder untuk memastikan hashtag terdeteksi otomatis
             text_builder = client_utils.TextBuilder()
             text_builder.text(full_msg)
             
             client.send_post(text_builder, embed=embed_external)
 
-            # Output untuk GitHub Actions (mengikuti pola skrip Facebook-mu)
+            # Output untuk GitHub Actions
             if 'GITHUB_OUTPUT' in os.environ:
                 with open(os.environ['GITHUB_OUTPUT'], 'a') as go:
                     go.write(f"bsky_url={target_url}\n")
 
-            # Simpan log lokal
+            # Simpan log sementara untuk diproses workflow push
             with open('temp_new_url_bsky.txt', 'w') as f:
                 f.write(target_url + '\n')
 
-            print(f"✅ Berhasil posting ke Bluesky: {target_url}")
+            print(f"✅ Berhasil posting (Deskripsi Saja + Card) ke Bluesky: {target_url}")
             
-            # Berikan waktu tunggu singkat agar tidak dianggap spam/bot brutal
+            # Waktu tunggu agar aman
             time.sleep(2)
 
         except Exception as e:
