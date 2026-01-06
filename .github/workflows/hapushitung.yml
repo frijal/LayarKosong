@@ -34,7 +34,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      
+
+      # ========== IMAGE CLEANUP ==========     
       - name: 3. Scan Unused Images via Python
         id: python_scan
         run: |
@@ -62,7 +63,6 @@ jobs:
             echo "ℹ️  File daftar tidak ditemukan: $LIST_FILE"
           fi
 
-      # ========== IMAGE CLEANUP ==========
       - name: 4. Cleanup Orphan .webp Images (Manual)
         id: manual_cleanup
         run: |
