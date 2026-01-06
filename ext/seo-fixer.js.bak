@@ -110,8 +110,6 @@ async function fixSEO() {
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal" />`);
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
-<meta name="bluesky:creator" content="@dalam.web.id">
-<meta name="twitter:creator" content="@responaja">
     head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
