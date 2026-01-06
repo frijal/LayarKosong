@@ -165,18 +165,20 @@ jobs:
       # 💾 BAGIAN 3: FINAL COMMIT
       # =========================================================
 
-      - name: 💾 Save All Changes to Repo
-        if: always()
+      - name: 💾 Save All Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add mini/*.txt mini/*.json llms.txt llms.md llms-index.html || true
+          # Gunakan git add . supaya SEMUA perubahan (termasuk hasil skrip SEO & log) ikut terbawa
+          git add . 
           
           if git diff --staged --quiet; then
             echo "ℹ️ Tidak ada perubahan data untuk di-commit."
           else
             git commit -m "chore: automation MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
-            git pull origin main --rebase
+            
+            # Tambahkan --autostash agar Git otomatis mengamankan file nanggung jika ada
+            git pull origin main --rebase --autostash
             git push
           fi
