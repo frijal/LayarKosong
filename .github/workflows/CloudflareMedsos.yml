@@ -116,8 +116,8 @@ jobs:
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: |
           python3 ext/post-to-bluesky.py
-          if [ -f temp_new_url_bsky.txt ]; then
-            cat temp_new_url_bsky.txt >> mini/posted-bluesky.txt
+          if [ -f mini/temp_new_url_bsky.txt ]; then
+            cat mini/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
           fi
 
       - name: 🔍 7. IndexNow Sync (Bash & JQ)
