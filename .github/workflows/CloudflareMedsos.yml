@@ -164,21 +164,26 @@ jobs:
       # =========================================================
       # 💾 BAGIAN 3: FINAL COMMIT
       # =========================================================
-
-      - name: 💾 Save All Changes
+      
+      - name: 💾 Save All Changes (Universal Template)
         run: |
+          # 1. Identitas Bot
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Gunakan git add . supaya SEMUA perubahan (termasuk hasil skrip SEO & log) ikut terbawa
+          # 2. Ambil semua perubahan tanpa pilih kasih
           git add . 
           
+          # 3. Cek apakah benar-benar ada yang berubah
           if git diff --staged --quiet; then
-            echo "ℹ️ Tidak ada perubahan data untuk di-commit."
+            echo "ℹ️ Ga ada kerjaan baru, skip commit."
           else
+            # 4. Commit dengan timestamp biar rapi di history
             git commit -m "chore: automation MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
             
-            # Tambahkan --autostash agar Git otomatis mengamankan file nanggung jika ada
+            # 5. Tarik data terbaru dengan aman (kunci suksesnya di sini)
             git pull origin main --rebase --autostash
+            
+            # 6. Gas pol push ke repo
             git push
           fi
