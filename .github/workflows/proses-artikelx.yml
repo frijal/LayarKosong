@@ -59,9 +59,9 @@ jobs:
             perl -i -wpe '
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
               s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
-              s|nama_twitter_anda|frijal|g;
-              s|akun_twitter_kamu|frijal|g;
-              s|YourTwitterHandle|frijal|g;
+              s|nama_twitter_anda|responaja|g;
+              s|akun_twitter_kamu|responaja|g;
+              s|YourTwitterHandle|responaja|g;
               s|&copy;|🄯|g;
               s|©|🄯|g;
             ' "$file"
