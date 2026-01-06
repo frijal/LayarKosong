@@ -1,6 +1,6 @@
 :root {
- /* --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
- /* --header-border: rgba(0, 0, 0, 0.05); */
+  --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
+  --header-border: rgba(0, 0, 0, 0.05);
   --primary: #00b0ed;
   --primary-rgb: 0, 176, 237;
   --secondary: #ffbf00;
@@ -47,8 +47,8 @@
 
  @media (prefers-color-scheme: dark) {
    :root {
-    /* --header-bg: #0f172a; /* Dark solid */
-   /*  --header-border: rgba(255, 255, 255, 0.1); */
+     --header-bg: #0f172a; /* Dark solid */
+     --header-border: rgba(255, 255, 255, 0.1);
      --bg-body: #0f172a;
      --bg-card: #1e293b;
      --text-main: #f1f5f9;
@@ -324,7 +324,7 @@
  border-radius: 30px;
  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-
+ justify-content: center;
  /* Warna Default (Biru Primary) */
  background: var(--primary);
  color: white;
@@ -341,6 +341,7 @@
  background: var(--secondary);
  color: black;
  box-shadow: 0 4px 6px -1px rgba(255, 191, 0, 0.2);
+  justify-content: center;
  }
 
  #loadMore.is-top:hover {
