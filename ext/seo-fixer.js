@@ -116,6 +116,7 @@ async function fixSEO() {
     head.append(`\n    <meta name="twitter:site" content="@responaja" />`);
     head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
     head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
+    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage" />`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
     head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
