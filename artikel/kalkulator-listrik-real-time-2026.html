@@ -123,9 +123,15 @@
             font-size: 0.9rem;
         }
         @media (max-width: 768px) {
-            .device-row { grid-template-columns: 1fr 1fr; }
-            .device-row div:first-child { grid-column: span 2; }
-            .share-grid { grid-template-columns: 1fr; }
+        .device-row { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 8px; /* Biar lebih rapat sedikit di HP */
+        }
+        .device-row div:first-child { grid-column: span 2; }
+        .share-grid { 
+        grid-template-columns: 1fr; 
+        margin-bottom: 50px; /* Tambah margin bawah biar gak nabrak footer */
+        }
         }
     </style>
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
