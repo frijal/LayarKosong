@@ -15,6 +15,7 @@
    --linkedin: #0a66c2;
    --telegram: #229ed9;
    --threads: #000000;
+   --twitter:  #1DA1F2;
    --youtube: #ff0000;
    --mastodon: #6364FF;
  }
@@ -397,12 +398,13 @@
  }
  /* Official brand colors — hanya untuk footer social */
  .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
- .page-footer .footer-social .fa-github		       { color: var(--github); }
+ .page-footer .footer-social .fa-github		 { color: var(--github); }
  .page-footer .footer-social .fa-square-linkedin { color: var(--linkedin); }
  .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
  .page-footer .footer-social .fa-threads         { color: var(--threads); }
  .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
  .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
+ .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
 
  .footer-content {
    display: grid;
