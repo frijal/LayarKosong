@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js (LTS + native fetch)
         uses: actions/setup-node@v6.1.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Setup Python
         uses: actions/setup-python@v6.1.0
