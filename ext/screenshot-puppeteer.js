@@ -44,7 +44,7 @@ async function main() {
 
   fs.mkdirSync(IMG_DIR, { recursive: true });
 
-  // --- LOGIKA BARU: Baca daftar gambar nganggur ---
+  // --- LOGIKA BARU: Baca daftar gambar nganggur ----
   const NGANGGUR_FILE = path.join(IMG_DIR, "gambarnganggur.txt");
   let gambarNganggur = [];
 
