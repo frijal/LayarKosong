@@ -112,7 +112,7 @@ async function fixSEO() {
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
     head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
-    head.append(`\n    <meta name="twitter:site" content="@frijal" />`);
+    head.append(`\n    <meta name="twitter:site" content="@responaja" />`);
     head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
     head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage" />`);
