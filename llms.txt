@@ -1,4 +1,4 @@
-# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 05 January 2026)
+# Layar Kosong – Blog Pribadi Fakhrul Rijal (Updated: 06 January 2026)
 
 Situs: https://dalam.web.id | Penulis: Fakhrul Rijal dari Balikpapan, Kalimantan Timur 🇮🇩
 
@@ -22,10 +22,11 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 743 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 746 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Opini Sosial
 
+- [**Optimasi Core Web Vitals untuk Blog Statis: Rahasia Skor 100**](https://dalam.web.id/artikel/optimasi-core-web-vitals.html): 2026-01-06 — Cara jitu mengoptimalkan LCP, CLS, dan INP pada blog statis. Pelajari teknik optimasi performa web agar blog Layar Kosong kamu melesat di hasil pencarian Google!
 - [**1 Januari 2026: Hari Ketika Televisi Benar-Benar Ditinggalkan Zaman**](https://dalam.web.id/artikel/televisi-ditinggalkan-zaman.html): 2026-01-05 — 1 Januari 2026 menjadi penanda senyap runtuhnya televisi linear. Pay TV tutup, hak siar pindah, dan layar kecil menggantikan TV di ruang tamu.
 - [**Panduan Lengkap Libur dan Cuti Bersama 2026: Siap-Siap Long Weekend!**](https://dalam.web.id/artikel/panduan-libur-cuti-bersama-2026.html): 2026-01-03 — Rencana liburan 2026? Cek daftar lengkap libur nasional, cuti bersama, jadwal Imlek, hingga Lebaran 2026 berdasarkan SKB 3 Menteri. Siapkan jadwal healing-mu!
 - [**Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya**](https://dalam.web.id/artikel/apakah-bsu-2026-akan-cair.html): 2026-01-02 — Kabar BSU 2026 Rp600 Ribu cair Januari kembali mencuat. Simak fakta terbaru, syarat penerima, dan cara cek status resminya di sini agar tidak tertipu!
@@ -698,6 +699,8 @@ Total artikel terindeks: 743 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Lainnya
 
+- [**Cara Hemat Kelola Blog Tanpa Pusing Update Server**](https://dalam.web.id/artikel/hemat-kelola-blog-tanpa-server.html): 2026-01-06 — Tips mengelola blog dengan biaya minim bahkan nol rupiah tanpa harus pusing update OS atau PHP server. Solusi cerdas bagi blogger praktis di Layar Kosong.
+- [**Migrasi Blog ke Serverless: Bye-bye Server Lemot dan Mahal!**](https://dalam.web.id/artikel/migrasi-blog-serverless.html): 2026-01-06 — Kenapa blog statis dan serverless adalah masa depan? Simak panduan migrasi blog ke infrastruktur serverless untuk performa maksimal dan biaya nol rupiah di Layar Kosong.
 - [**Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong**](https://dalam.web.id/artikel/privasi-layar-kosong.html): 2026-01-06 — Layar Kosong kini menghadirkan sistem permintaan hapus data yang lebih aman, privat, dan bebas spam menggunakan teknologi Cloudflare Turnstile. Keamanan data Anda adalah janji kami.
 - [**KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil**](https://dalam.web.id/artikel/kuhp-baru-kebebasan-sipil.html): 2026-01-05 — KUHP baru resmi berlaku 2 Januari 2026. Sejumlah pasal tentang penghinaan pemerintah dan demonstrasi dinilai berpotensi mengancam kebebasan sipil.
 - [**Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong**](https://dalam.web.id/artikel/tarif-listrik-januari-maret-2026.html): 2026-01-03 — Kabar gembira! PLN pastikan tarif listrik Januari-Maret 2026 tetap. Cek daftar tarif per kWh terbaru dan cara hitung tagihan listrik rumahmu di sini.
