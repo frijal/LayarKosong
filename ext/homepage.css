@@ -2,6 +2,7 @@
    --header-bg: rgba(255, 255, 255, 0.2); /* Putih transparan */
    --header-border: rgba(0, 0, 0, 0.05);
    --primary: #00b0ed;
+   --primary-rgb: 0, 176, 237; /* Nilai RGB dari #00b0ed */
    --secondary: #ffbf00; /* Amber */
    --bg-body: #f4f7f9;
    --bg-card: #ffffff;
@@ -21,6 +22,27 @@
    --mastodon: #6364FF;
    --bluesky: #1185FE;
  }
+ /* Official brand colors — hanya untuk footer social */
+ .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
+ .page-footer .footer-social .fa-github          { color: var(--github); }
+ .page-footer .footer-social .fa-square-linkedin { color: var(--linkedin); }
+ .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
+ .page-footer .footer-social .fa-threads         { color: var(--threads); }
+ .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
+ .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
+ .page-footer .footer-social .fa-reddit          { color: var(--reddit); }
+ .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
+ .page-footer .footer-social .fa-bluesky         { color: var(--bluesky); }
+
+ /* Animasi Teks */
+ @keyframes slideTextUp {
+   from { opacity: 0; transform: translateY(30px); }
+   to { opacity: 1; transform: translateY(0); }
+ }
+
+ .hero-slide.active .hero-content {
+   animation: slideTextUp 0.8s ease forwards;
+ }
 
  @media (prefers-color-scheme: dark) {
    :root {
@@ -35,17 +57,6 @@
      --github: #ffffff;
      --threads: #ffffff;
    }
-       /* Official brand colors — hanya untuk footer social */
- .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
- .page-footer .footer-social .fa-github		 { color: var(--github); }
- .page-footer .footer-social .fa-square-linkedin { color: var(--linkedin); }
- .page-footer .footer-social .fa-telegram        { color: var(--telegram); }
- .page-footer .footer-social .fa-threads         { color: var(--threads); }
- .page-footer .footer-social .fa-youtube         { color: var(--youtube); }
- .page-footer .footer-social .fa-mastodon        { color: var(--mastodon); }
- .page-footer .footer-social .fa-reddit          { color: var(--reddit); }
- .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
- .page-footer .footer-social .fa-bluesky         { color: var(--bluesky); }
  
    .hero-content h1 {
      /* Efek pendaran biru neon yang halus */
@@ -206,17 +217,6 @@
    filter: brightness(1.1);
    transition: 0.3s;
  }
-
- /* Animasi Teks */
- @keyframes slideTextUp {
-   from { opacity: 0; transform: translateY(30px); }
-   to { opacity: 1; transform: translateY(0); }
- }
-
- .hero-slide.active .hero-content {
-   animation: slideTextUp 0.8s ease forwards;
- }
-
 
  /* FILTER & ARCHIVE BAR */
  .toolbar {
@@ -839,7 +839,7 @@
 /* --- <= 480px (HP Kecil) --- */
 @media (max-width: 480px) {
   .search-bar {
-    width: 160px;
+    width: 120px;
     font-size: 0.85rem;
   }
 }
