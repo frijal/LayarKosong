@@ -23,7 +23,7 @@ on:
           - llms_index
 
 permissions:
-  contents: write read
+  contents: write
   
 jobs:
   everything-job:
