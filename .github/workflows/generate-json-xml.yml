@@ -81,7 +81,7 @@ jobs:
         run: npm run ci-screenshot
 
       - name: 🧠 Inject schema.org (smart mode)
-        run: python ext/inject_schema.py
+        run: python3 ext/inject_schema.py
 
       - name: '8️⃣ Clean Empty Lines (HTML Minify Lite)'
         run: |
