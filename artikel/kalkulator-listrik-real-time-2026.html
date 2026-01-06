@@ -123,9 +123,15 @@
             font-size: 0.9rem;
         }
         @media (max-width: 768px) {
-            .device-row { grid-template-columns: 1fr 1fr; }
-            .device-row div:first-child { grid-column: span 2; }
-            .share-grid { grid-template-columns: 1fr; }
+        .device-row { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 8px; /* Biar lebih rapat sedikit di HP */
+        }
+        .device-row div:first-child { grid-column: span 2; }
+        .share-grid { 
+        grid-template-columns: 1fr; 
+        margin-bottom: 50px; /* Tambah margin bawah biar gak nabrak footer */
+        }
         }
     </style>
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
@@ -135,8 +141,6 @@
     <link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-listrik-real-time-2026">
     <meta name="author" content="Fakhrul Rijal">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-<meta name="bluesky:creator" content="@dalam.web.id">
-<meta name="twitter:creator" content="@responaja">
 <meta name="bluesky:creator" content="@dalam.web.id">
 <meta name="twitter:creator" content="@responaja">
     <meta name="twitter:card" content="summary_large_image">
@@ -214,18 +218,19 @@
     <script>
     let resultState = { total: "Rp 0", list: "" };
     function addRow() {
-        const container = document.getElementById('device-list');
-        const newRow = document.createElement('div');
-        newRow.className = 'device-row';
-        newRow.innerHTML = `
-            <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-watt" placeholder="berapa Watt?" oninput="hitungOtomatis()"></div>
-            <div><input type="number" class="dev-hours" placeholder=""berapa Jam?"" oninput="hitungOtomatis()"></div>
-            <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
-        `;
-        container.appendChild(newRow);
-        hitungOtomatis();
+    const container = document.getElementById('device-list');
+    const newRow = document.createElement('div');
+    newRow.className = 'device-row';
+    // Perbaikan pada placeholder jam di bawah ini:
+    newRow.innerHTML = `
+        <div><input type="text" class="dev-name" placeholder="Nama Alat" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-watt" placeholder="Watt" oninput="hitungOtomatis()"></div>
+        <div><input type="number" class="dev-hours" placeholder="Jam" oninput="hitungOtomatis()"></div>
+        <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
+    `;
+    container.appendChild(newRow);
+    hitungOtomatis();
     }
     function removeRow(btn) {
         if (document.querySelectorAll('.device-row').length > 1) {
