@@ -238,7 +238,7 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           
           # Add all modified directories
-          git add img/ mini/ ext/
+          git add .
           
           # Check for changes
           if ! git diff --staged --quiet; then
