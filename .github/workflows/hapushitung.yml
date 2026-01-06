@@ -11,18 +11,11 @@ jobs:
       contents: write
 
     steps:
+      # ========== SETUP ENVIRONMENT ==========
       - name: 1. Checkout Repository
         uses: actions/checkout@v6.0.1
         with:
           fetch-depth: 0
-
-      - name: Cache Node Modules
-        uses: actions/cache@v5.0.1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       - name: 2. Setup Node.js & Python
         uses: actions/setup-node@v6.1.0
@@ -34,170 +27,239 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: 3. Cleanup Orphan .webp Images (Manual Logic)
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # ========== IMAGE CLEANUP ==========
+      - name: 3. Cleanup Orphan .webp Images (Manual)
+        id: manual_cleanup
         run: |
           echo "🧹 Membersihkan gambar orphan (.webp)..."
+          cleaned_count=0
           for file in img/*.webp; do
             [ -e "$file" ] || continue
             slug="${file##*/}"
             slug="${slug%.webp}"
             if [ ! -f "artikel/${slug}.html" ]; then
+              echo "→ Menghapus: $file"
               git rm -f "$file"
+              cleaned_count=$((cleaned_count + 1))
             fi
           done
+          echo "Jumlah yang dihapus (manual): $cleaned_count"
 
-      # --- TAMBAHAN STEP UNTUK SCRIPT PYTHON ---
-      
-      - name: 3.1 Jalankan Script Scan Gambar Nganggur
+      - name: 4. Scan Unused Images via Python
+        id: python_scan
         run: |
           echo "🐍 Menjalankan cek_gambar.py..."
           python3 ext/cek_gambar.py
           
-      - name: 3.2 Hapus Gambar Berdasarkan Daftar Nganggur
-        run: |
           LIST_FILE="img/gambarnganggur.txt"
           if [ -f "$LIST_FILE" ]; then
             echo "📑 Membaca daftar dari $LIST_FILE..."
+            cleaned_py_count=0
             while IFS= read -r filename; do
-              # Abaikan jika baris kosong atau pesan "Semua gambar terpakai"
               if [[ -n "$filename" && "$filename" == *.webp ]]; then
                 TARGET="img/$filename"
                 if [ -f "$TARGET" ]; then
-                  echo "-> Menghapus berdasarkan daftar: $TARGET"
+                  echo "→ Menghapus (dari daftar Python): $TARGET"
                   git rm -f "$TARGET"
+                  cleaned_py_count=$((cleaned_py_count + 1))
                 fi
+              elif [[ -n "$filename" && "$filename" != "Semua gambar terpakai" ]]; then
+                echo "⚠️  Baris tidak diproses: $filename"
               fi
             done < "$LIST_FILE"
+            echo "Jumlah yang dihapus (Python): $cleaned_py_count"
+          else
+            echo "ℹ️  File daftar tidak ditemukan: $LIST_FILE"
           fi
 
-      # -----------------------------------------
+      # ========== CONTENT REPORT GENERATION ==========
+      - name: 5. Generate Detailed Content Report
+        id: generate_report
+        run: |
+          echo "📊 Membuat laporan markdown dengan folder/subfolder dan emoji & histogram global..."
 
-      - name: 4. Buat Laporan Markdown Detail per Folder/Subfolder
-        id: counts
-        run: |
-          echo "📊 Membuat laporan markdown dengan folder/subfolder dan emoji & histogram global..."
-          DATE=$(date +'%Y-%m-%d')
-          REPORT_PATH="mini/${DATE}-laporan_konten.md"
+          DATE=$(date +'%Y-%m-%d')
+          REPORT_PATH="mini/${DATE}-laporan_konten.md"
+          FOLDERS=("artikel" "img" "ext")
+          MAX_BLOCKS=20
 
-          FOLDERS=("artikel" "img" "ext")
-          MAX_BLOCKS=20
+          # Emoji mapping
+          declare -A ext_emoji=(
+            [css]="🎨"
+            [html]="🌐"
+            [ico]="🔑"
+            [jpeg]="🖼️"
+            [jpg]="🖼️"
+            [js]="📜"
+            [json]="🗂️"
+            [pl]="📌"
+            [png]="🖼️"
+            [py]="🐍"
+            [sh]="💻"
+            [svg]="✏️"
+            [txt]="📄"
+            [webp]="🖼️"
+          )
 
-          declare -A ext_emoji=(
-            [css]="🎨"
-            [html]="🌐"
-            [ico]="🔑"
-            [jpeg]="🖼️"
-            [jpg]="🖼️"
-            [js]="📜"
-            [json]="🗂️"
-            [pl]="📌"
-            [png]="🖼️"
-            [py]="🐍"
-            [sh]="💻"
-            [svg]="✏️"
-            [txt]="📄"
-            [webp]="🖼️"
-          )
+          # Global counters
+          declare -A global_ext_count
+          declare -A global_ext_folders
+          max_global_count=0
 
-          declare -A global_ext_count
-          declare -A global_ext_folders
-          max_global_count=0
+          # 1. Collect global statistics
+          echo "Mengumpulkan statistik global..."
+          for folder in "${FOLDERS[@]}"; do
+            while IFS= read -r file; do
+              ext="${file##*.}"
+              global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+              dir_path=$(dirname "$file")
+              global_ext_folders[$ext]+="${dir_path} "
+            done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null || true)
+          done
 
-          # Hitung global ekstensi dan folder path tiap file
-          for folder in "${FOLDERS[@]}"; do
-            while IFS= read -r file; do
-              ext="${file##*.}"
-              global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
-              dir_path=$(dirname "$file")
-              global_ext_folders[$ext]+="${dir_path} "
-            done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null)
-          done
+          # Find max count for histogram scaling
+          for c in "${global_ext_count[@]}"; do
+            (( c > max_global_count )) && max_global_count=$c
+          done
+          (( max_global_count == 0 )) && max_global_count=1
 
-          for c in "${global_ext_count[@]}"; do
-            [ $c -gt $max_global_count ] && max_global_count=$c
-          done
-          [ $max_global_count -eq 0 ] && max_global_count=1
+          # 2. Generate report
+          {
+            echo "# Laporan Konten Harian ($DATE)"
+            echo ""
 
-          {
-            echo "# Laporan Konten Harian ($DATE)"
-            echo ""
-            total_global=0
+            total_global=0
 
-            # Laporan per folder/subfolder
-            for folder in "${FOLDERS[@]}"; do
-              # List semua subfolder
-              mapfile -t subfolders < <(find "$folder" -maxdepth 5 -type d 2>/dev/null)
-              for subfolder in "${subfolders[@]}"; do
-                # Hitung file per ekstensi
-                declare -A subfolder_ext_count
-                while IFS= read -r file; do
-                  ext="${file##*.}"
-                  subfolder_ext_count[$ext]=$(( ${subfolder_ext_count[$ext]:-0} + 1 ))
-                done < <(find "$subfolder" -maxdepth 1 -type f 2>/dev/null)
+            # 3. Per-folder analysis
+            for folder in "${FOLDERS[@]}"; do
+              mapfile -t subfolders < <(find "$folder" -maxdepth 5 -type d 2>/dev/null || true)
 
-                [ ${#subfolder_ext_count[@]} -eq 0 ] && continue
+              for subfolder in "${subfolders[@]}"; do
+                declare -A subfolder_ext_count
 
-                echo "## Folder/Subfolder: $subfolder"
-                echo ""
-                echo "| Jenis File | Jumlah | Histogram |"
-                echo "|-----------:|-------:|-----------|"
+                while IFS= read -r file; do
+                  ext="${file##*.}"
+                  subfolder_ext_count[$ext]=$(( ${subfolder_ext_count[$ext]:-0} + 1 ))
+                done < <(find "$subfolder" -maxdepth 1 -type f 2>/dev/null || true)
 
-                for ext in $(printf "%s\n" "${!subfolder_ext_count[@]}" | sort); do
-                  count=${subfolder_ext_count[$ext]}
-                  total_global=$((total_global + count))
-                  blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
-                  histogram=$(printf '▇%.0s' $(seq 1 $blocks))
-                  emoji=${ext_emoji[$ext]:-📁}
-                  printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
-                done
+                (( ${#subfolder_ext_count[@]} == 0 )) && continue
 
-                echo ""
-                unset subfolder_ext_count
-              done
-            done
+                echo "## Folder/Subfolder: $subfolder"
+                echo ""
+                echo "| Jenis File | Jumlah | Histogram |"
+                echo "|-----------:|-------:|-----------|"
 
-            # Ringkasan global
-            echo "## Ringkasan Global (semua folder)"
-            echo ""
-            echo "| Jenis File | Jumlah | Histogram | Folder/Subfolder (unik) |"
-            echo "|-----------:|-------:|-----------|-----------------|"
-            for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
-              count=${global_ext_count[$ext]}
-              blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
-              histogram=$(printf '▇%.0s' $(seq 1 $blocks))
-              emoji=${ext_emoji[$ext]:-📁}
-              folder_unique=$(echo "${global_ext_folders[$ext]}" | tr ' ' '\n' | sort -u | tr '\n' ',' | sed 's/,$//')
-              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
-            done
+                for ext in $(printf "%s\n" "${!subfolder_ext_count[@]}" | sort); do
+                  count=${subfolder_ext_count[$ext]}
+                  total_global=$(( total_global + count ))
 
-            printf "| **TOTAL** | %6d | | |\n" "$total_global"
+                  blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
+                  blocks=$(( blocks > MAX_BLOCKS ? MAX_BLOCKS : blocks ))
+                  histogram=$(printf '▇%.0s' $(seq 1 "$blocks"))
+                  emoji=${ext_emoji[$ext]:-📁}
 
-          } > "$REPORT_PATH"
+                  printf "| %s %-8s | %6d | %s |\n" \
+                    "$emoji" "$ext" "$count" "$histogram"
+                done
 
-          cat "$REPORT_PATH"
+                echo ""
+                unset subfolder_ext_count
+              done
+            done
 
-      - name: 5. Rotasi Laporan Lama 
+            # 4. Global summary
+            echo "## Ringkasan Global (semua folder)"
+            echo ""
+            echo "| Jenis File | Jumlah | Histogram | Folder/Subfolder (unik) |"
+            echo "|-----------:|-------:|-----------|-------------------------|"
+
+            for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
+              count=${global_ext_count[$ext]}
+              blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
+              blocks=$(( blocks > MAX_BLOCKS ? MAX_BLOCKS : blocks ))
+              histogram=$(printf '▇%.0s' $(seq 1 "$blocks"))
+              emoji=${ext_emoji[$ext]:-📁}
+
+              folder_unique=$(
+                echo "${global_ext_folders[$ext]}" \
+                | tr ' ' '\n' \
+                | sort -u \
+                | tr '\n' ',' \
+                | sed 's/,$//; s/,/, /g'
+              )
+
+              printf "| %s %-8s | %6d | %s | %s |\n" \
+                "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
+            done
+
+            printf "| **TOTAL** | %6d | | |\n" "$total_global"
+
+          } > "$REPORT_PATH"
+
+          # Show report preview
+          echo "✅ Laporan berhasil dibuat: $REPORT_PATH"
+          echo "--- PREVIEW ---"
+          head -20 "$REPORT_PATH"
+
+      # ========== REPORT ROTATION ==========
+      - name: 6. Rotasi Laporan Lama (Keep Last 7)
+        id: rotate_reports
         run: |
           files=(mini/*-laporan_konten.md)
           if [ ${#files[@]} -gt 7 ]; then
             echo "🗑️ Menghapus laporan lama..."
-            rm -f "${files[@]:7}"
+            # Sort by date in filename
+            sorted_files=($(printf '%s\n' "${files[@]}" | sort))
+            files_to_delete=("${sorted_files[@]:0:${#sorted_files[@]}-7}")
+            
+            for file in "${files_to_delete[@]}"; do
+              echo "→ Menghapus: $file"
+              rm -f "$file"
+            done
+            echo "Total dihapus: ${#files_to_delete[@]} file"
+          else
+            echo "ℹ️  Tidak ada laporan yang perlu dihapus (${#files[@]}/7)"
           fi
-          
-      - name: 6. Commit Semua Perubahan Sekaligus
+
+      # ========== COMMIT CHANGES ==========
+      - name: 7. Commit & Push All Changes
+        id: commit_changes
         run: |
+          # Configure Git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           
-          # Tambahkan semua folder yang terlibat
+          # Add all modified directories
           git add img/ mini/ ext/
           
+          # Check for changes
           if ! git diff --staged --quiet; then
             echo "📝 Perubahan ditemukan, membuat commit..."
-            git commit -m "chore: Daily maintenance (cleanup via python, report)" \
-            --author="frijal <5477182+frijal@users.noreply.github.com>"
-            git pull origin main --rebase
-            git push
+            
+            # Get changes summary
+            added_count=$(git diff --staged --name-status | grep -c "^A" || true)
+            deleted_count=$(git diff --staged --name-status | grep -c "^D" || true)
+            
+            git commit -m "chore: Daily maintenance report ($DATE) 📊
+            
+            - Added: $added_count file(s)
+            - Deleted: $deleted_count file(s)
+            - Report: ${DATE}-laporan_konten.md" \
+              --author="frijal <5477182+frijal@users.noreply.github.com>"
+            
+            # Pull latest changes and push
+            git pull origin main --rebase --strategy-option=theirs
+            git push origin main
+            
+            echo "✅ Perubahan berhasil di-commit dan di-push"
           else
             echo "✅ Tidak ada perubahan baru untuk di-commit."
           fi
