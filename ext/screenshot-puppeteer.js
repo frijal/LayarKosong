@@ -70,7 +70,16 @@ async function main() {
   try {
     browser = await puppeteer.launch({
       headless: "new",
-      // ... (args puppeteer tetap sama)
+      defaultViewport: {
+        width: TARGET_WIDTH,
+        height: TARGET_HEIGHT,
+      },
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu",
+      ],
     });
 
     const page = await browser.newPage();
