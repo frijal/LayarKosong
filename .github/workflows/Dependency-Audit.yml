@@ -134,16 +134,26 @@ jobs:
       # ====================
       # COMMIT RESULT
       # ====================
-      - name: Commit and Push Results
+    
+      - name: 💾 Save All Changes (Universal Template)
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add sementara/audit/*.txt package.json package-lock.json || true
-
+          # 1. Identitas Bot
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 2. Ambil semua perubahan tanpa pilih kasih
+          git add . 
+          
+          # 3. Cek apakah benar-benar ada yang berubah
           if git diff --staged --quiet; then
-            echo "ℹ️ Tidak ada perubahan"
+            echo "ℹ️ Ga ada kerjaan baru, skip commit."
           else
+            # 4. Commit dengan timestamp biar rapi di history
             git commit -m "chore(audit): full inspector & dependency audit $(date +'%Y-%m-%d')"
+            
+            # 5. Tarik data terbaru dengan aman (kunci suksesnya di sini)
+            git pull origin main --rebase --autostash
+            
+            # 6. Gas pol push ke repo
             git push
           fi
