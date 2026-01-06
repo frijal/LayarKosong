@@ -1,8 +1,7 @@
 :root {
-  --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
-  --header-border: rgba(0, 0, 0, 0.05);
+ /* --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
+ /* --header-border: rgba(0, 0, 0, 0.05); */
   --primary: #00b0ed;
-  /* PERBAIKAN: Hanya angka tanpa rgb() untuk digunakan di box-shadow */
   --primary-rgb: 0, 176, 237;
   --secondary: #ffbf00;
   --bg-body: #f4f7f9;
@@ -48,8 +47,8 @@
 
  @media (prefers-color-scheme: dark) {
    :root {
-     --header-bg: #0f172a; /* Dark solid */
-     --header-border: rgba(255, 255, 255, 0.1);
+    /* --header-bg: #0f172a; /* Dark solid */
+   /*  --header-border: rgba(255, 255, 255, 0.1); */
      --bg-body: #0f172a;
      --bg-card: #1e293b;
      --text-main: #f1f5f9;
