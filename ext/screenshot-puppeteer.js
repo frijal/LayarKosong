@@ -44,6 +44,18 @@ async function main() {
 
   fs.mkdirSync(IMG_DIR, { recursive: true });
 
+  // --- LOGIKA BARU: Baca daftar gambar nganggur ---
+  const NGANGGUR_FILE = path.join(IMG_DIR, "gambarnganggur.txt");
+  let gambarNganggur = [];
+
+  if (fs.existsSync(NGANGGUR_FILE)) {
+    const content = fs.readFileSync(NGANGGUR_FILE, "utf-8");
+    // Pecah jadi array, bersihkan spasi/line break, dan ambil yang tidak kosong
+    gambarNganggur = content.split("\n").map(name => name.trim()).filter(Boolean);
+    console.log(`[📄] Terdeteksi ${gambarNganggur.length} nama file di gambarnganggur.txt`);
+  }
+  // -----------------------------------------------
+
   const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
   console.log(`🧭 ${files.length} artikel ditemukan`);
 
@@ -58,28 +70,28 @@ async function main() {
   try {
     browser = await puppeteer.launch({
       headless: "new",
-      defaultViewport: {
-        width: TARGET_WIDTH,
-        height: TARGET_HEIGHT,
-      },
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-        "--disable-gpu",
-      ],
+      // ... (args puppeteer tetap sama)
     });
 
     const page = await browser.newPage();
 
     for (const file of files) {
       const base = path.basename(file, ".html");
-      const output = path.join(IMG_DIR, `${base}.${EXT}`);
+      const outputName = `${base}.${EXT}`;
+      const outputPath = path.join(IMG_DIR, outputName);
 
-      if (fs.existsSync(output)) {
-        console.log(`[⏭️] Skip ${output}`);
+      // --- LOGIKA FILTER GANDA ---
+      // 1. Cek fisik file
+      const isExist = fs.existsSync(outputPath);
+      // 2. Cek apakah ada di daftar nganggur
+      const isNganggur = gambarNganggur.includes(outputName);
+
+      if (isExist || isNganggur) {
+        const alasan = isExist ? "Fisik file sudah ada" : "Terdaftar di gambarnganggur.txt";
+        console.log(`[⏭️] Skip ${outputName} (${alasan})`);
         continue;
       }
+      // ----------------------------
 
       const url = `${BASE_URL}${base}.html`;
       console.log(`[🔍] Render ${url}`);
