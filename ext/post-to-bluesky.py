@@ -2,107 +2,122 @@ import json
 import os
 import sys
 import requests
+import time
 from atproto import Client, client_utils, models
 
-# --- KONFIGURASI ---
+# Konfigurasi Path & URL
 JSON_FILE = 'artikel.json'
-DATABASE_FILE = 'mini/posted-bluesky.txt' 
+DATABASE_FILE = 'mini/posted-bluesky.txt'
 BASE_URL = 'https://dalam.web.id/artikel/'
-
-# Credential dari GitHub Secrets / Env Vars
-BSKY_HANDLE = os.getenv('BSKY_HANDLE')
-BSKY_PASSWORD = os.getenv('BSKY_PASSWORD')
 
 def main():
     if not os.path.exists(JSON_FILE):
-        print(f"Error: {JSON_FILE} tidak ditemukan")
+        print("Error: artikel.json tidak ditemukan")
         sys.exit(1)
 
-    # 1. Load Data
+    # Load data
     with open(JSON_FILE, 'r') as f:
         data = json.load(f)
 
-    # 2. Gabungkan Kategori & Flatten Data
+    # Gabungkan semua kategori & Flatten data
     all_posts = []
     for category_name, posts in data.items():
         for post in posts:
-            # Sesuai struktur artikel.json: 
-            # 0: Judul, 1: Slug, 2: Image URL, 3: Date, 4: Desc
-            slug_clean = post[1].replace('.html', '')
+            # Struktur: [0:judul, 1:slug, 2:image_url, 3:date(ISO), 4:desc]
+            slug = post[1].replace('.html', '')
             all_posts.append({
                 'title': post[0],
-                'url': f"{BASE_URL}{slug_clean}",
-                'image_url': post[2], # Langsung pakai URL dari JSON
+                'slug': slug,
+                'image_url': post[2],
                 'date': post[3],
                 'desc': post[4],
                 'category': category_name
             })
 
-    # 3. Sortir (Terbaru di Atas)
+    # Sorting Terbaru -> Lama
     all_posts.sort(key=lambda x: x['date'], reverse=True)
 
-    # 4. Cek Database
+    # Load database
     posted_urls = []
     if os.path.exists(DATABASE_FILE):
         with open(DATABASE_FILE, 'r') as f:
             posted_urls = [line.strip() for line in f.readlines()]
 
-    # Cari artikel terbaru yang belum pernah diposting
-    target_post = next((p for p in all_posts if p['url'] not in posted_urls), None)
+    # Cari artikel terbaru yang belum diposting
+    target_post = None
+    target_url = None
+    for post in all_posts:
+        url = f"{BASE_URL}{post['slug']}"
+        if url not in posted_urls:
+            target_post = post
+            target_url = url
+            break
 
-    if not target_post:
-        print("✅ Santai dulu... Tidak ada artikel baru untuk diposting.")
-        return
+    if target_post:
+        # Credential Bluesky
+        handle = os.getenv('BSKY_HANDLE')
+        password = os.getenv('BSKY_PASSWORD')
 
-    print(f"🚀 Memproses: {target_post['title']}")
-
-    # 5. Login ke Bluesky
-    client = Client()
-    try:
-        client.login(BSKY_HANDLE, BSKY_PASSWORD)
-        
-        # --- Bagian Card Preview (Embed) ---
-        embed_external = None
+        client = Client()
         try:
-            # Download gambar langsung dari URL di JSON
-            img_res = requests.get(target_post['image_url'], timeout=15)
-            img_res.raise_for_status()
+            client.login(handle, password)
             
-            # Upload blob ke Bluesky
-            upload = client.upload_blob(img_res.content)
+            # --- PREPARASI EMBED (CARD PREVIEW) ---
+            # Kita download gambar untuk dijadikan preview agar link tidak perlu ditulis manual
+            embed_external = None
+            try:
+                img_res = requests.get(target_post['image_url'], timeout=10)
+                if img_res.status_code == 200:
+                    upload = client.upload_blob(img_res.content)
+                    embed_external = models.AppBskyEmbedExternal.Main(
+                        external=models.AppBskyEmbedExternal.External(
+                            title=target_post['title'],
+                            description=target_post['desc'][:150] + "...",
+                            uri=target_url,
+                            thumb=upload.blob
+                        )
+                    )
+            except Exception as e:
+                print(f"⚠️ Gagal membuat preview gambar: {e}")
+
+            # --- PREPARASI PESAN (TEXT) ---
+            cat_hashtag = "#" + target_post['category'].replace(" ", "").lower()
+            hashtags = f"#fediverse #repost {cat_hashtag} #Indonesia"
             
-            # Buat objek Card Preview
-            embed_external = models.AppBskyEmbedExternal.Main(
-                external=models.AppBskyEmbedExternal.External(
-                    title=target_post['title'],
-                    description=target_post['desc'],
-                    uri=target_post['url'],
-                    thumb=upload.blob
-                )
-            )
-        except Exception as img_err:
-            print(f"⚠️ Gambar gagal diproses, lanjut mode teks saja: {img_err}")
+            # Potong deskripsi jika kepanjangan (Limit Bluesky 300)
+            clean_desc = target_post['desc']
+            if len(clean_desc) > 180:
+                clean_desc = clean_desc[:177] + "..."
 
-        # --- Bagian Teks & Hashtag ---
-        cat_hashtag = "#" + target_post['category'].replace(" ", "").lower()
-        hashtags = f"#fediverse #repost {cat_hashtag} #Indonesia"
-        
-        text_builder = client_utils.TextBuilder()
-        text_builder.text(f"📖 {target_post['title']}\n\n{target_post['desc']}\n\n{hashtags}\n\n")
-        text_builder.link(target_post['url'], target_post['url'])
+            # Gabungkan pesan (Tanpa menuliskan Link Mentah di body teks untuk hemat karakter)
+            full_msg = f"📖 {target_post['title']}\n\n{clean_desc}\n\n{hashtags}"
 
-        # Kirim Postingan
-        client.send_post(text_builder, embed=embed_external)
-
-        # 6. Update Database
-        with open(DATABASE_FILE, 'a') as f:
-            f.write(target_post['url'] + '\n')
+            # Kirim ke Bluesky
+            # Kita gunakan TextBuilder untuk memastikan hashtag terdeteksi otomatis
+            text_builder = client_utils.TextBuilder()
+            text_builder.text(full_msg)
             
-        print(f"✨ SUKSES! Artikel sudah nangkring di Bluesky.")
+            client.send_post(text_builder, embed=embed_external)
 
-    except Exception as e:
-        print(f"❌ Ada masalah: {e}")
-        sys.exit(1)
+            # Output untuk GitHub Actions (mengikuti pola skrip Facebook-mu)
+            if 'GITHUB_OUTPUT' in os.environ:
+                with open(os.environ['GITHUB_OUTPUT'], 'a') as go:
+                    go.write(f"bsky_url={target_url}\n")
+
+            # Simpan log lokal
+            with open('temp_new_url_bsky.txt', 'w') as f:
+                f.write(target_url + '\n')
+
+            print(f"✅ Berhasil posting ke Bluesky: {target_url}")
+            
+            # Berikan waktu tunggu singkat agar tidak dianggap spam/bot brutal
+            time.sleep(2)
+
+        except Exception as e:
+            print(f"❌ Error Bluesky: {e}")
+            sys.exit(1)
+    else:
+        print("✅ Misi selesai! Tidak ada artikel baru untuk Bluesky.")
 
 if __name__ == "__main__":
     main()
