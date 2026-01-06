@@ -1,28 +1,27 @@
-:root {
-  --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
-  --header-border: rgba(0, 0, 0, 0.05);
-  --primary: #00b0ed;
-  /* PERBAIKAN: Hanya angka tanpa rgb() untuk digunakan di box-shadow */
-  --primary-rgb: 0, 176, 237;
-  --secondary: #ffbf00;
-  --bg-body: #f4f7f9;
-  --bg-card: #ffffff;
-  --text-main: #1a1a1a;
-  --text-muted: #555555;
-  --border: #e2e8f0;
-  --glass: rgba(255, 255, 255, 0.95);
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-  --facebook: #1877F2;
-  --github: #24292F;
-  --linkedin: #0A66C2;
-  --telegram: #229ED9;
-  --threads: #000000;
-  --twitter: #1DA1F2;
-  --youtube: #FF0000;
-  --reddit: #FF5700;
-  --mastodon: #6364FF;
-  --bluesky: #1185FE;
-}
+  :root {
+   --header-bg: rgba(255, 255, 255, 0.2); /* Putih transparan */
+   --header-border: rgba(0, 0, 0, 0.05);
+   --primary: #00b0ed;
+   --primary-rgb: 0, 176, 237; /* Nilai RGB dari #00b0ed */
+   --secondary: #ffbf00; /* Amber */
+   --bg-body: #f4f7f9;
+   --bg-card: #ffffff;
+   --text-main: #1a1a1a;
+   --text-muted: #555555;
+   --border: #e2e8f0;
+   --glass: rgba(255, 255, 255, 0.8);
+   --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+   --facebook: #1877F2;
+   --github: #24292F;
+   --linkedin: #0A66C2;
+   --telegram: #229ED9;
+   --threads: #000000;
+   --twitter: #1DA1F2;
+   --youtube: #FF0000;
+   --reddit: #FF5700;
+   --mastodon: #6364FF;
+   --bluesky: #1185FE;
+ }
  /* Official brand colors — hanya untuk footer social */
  .page-footer .footer-social .fa-facebook        { color: var(--facebook); }
  .page-footer .footer-social .fa-github          { color: var(--github); }
@@ -42,43 +41,38 @@
  }
 
  .hero-slide.active .hero-content {
-   animation: slideTextUp 0.4s ease-out forwards;
-   will-change: transform, opacity;
+   animation: slideTextUp 0.8s ease forwards;
  }
 
  @media (prefers-color-scheme: dark) {
    :root {
-     --header-bg: #0f172a; /* Dark solid */
+     --header-bg: rgba(0, 0, 0, 0.3); /* Hitam transparan */
      --header-border: rgba(255, 255, 255, 0.1);
      --bg-body: #0f172a;
      --bg-card: #1e293b;
      --text-main: #f1f5f9;
      --text-muted: #94a3b8;
      --border: #334155;
-     --glass: #1e293b;
+     --glass: rgba(30, 41, 59, 0.8);
+     --github: #ffffff;
+     --threads: #ffffff;
    }
-
-   /* PERBAIKAN: Hero title di dark mode agar tetap "jreng" tanpa filter berat */
+ 
    .hero-content h1 {
-     color: #ffffff;
-     text-shadow: 0 0 12px rgba(0, 176, 237, 0.6);
-     filter: none; /* Hapus saturate filter karena berat saat animasi */
+     /* Efek pendaran biru neon yang halus */
+     text-shadow:
+     0 0 10px rgba(0, 176, 237, 0.5),
+     0 0 20px rgba(0, 176, 237, 0.2);
+     filter: saturate(1.2); /* Bikin birunya makin jreng' */
    }
  }
 
- * {
-   margin: 0; padding: 0; box-sizing: border-box;
-   /* Menghilangkan delay tap di mobile */
-   touch-action: manipulation;
-   /* Mempercepat kalkulasi rendering */
-   text-rendering: optimizeLegibility;
- }
-  html { scroll-behavior: smooth; }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
  body {
    font-family: 'Inter', sans-serif;
    background: var(--bg-body);
    color: var(--text-main);
-   transition: background 0.15s ease, color 0.15s ease;
+   transition: 0.3s ease;
    line-height: 1.6;
  }
 
@@ -89,16 +83,16 @@
    position: sticky;
    top: 0;
    z-index: 1000;
-   background: var(--header-bg); /* Solid */
+   background: var(--header-bg);
    border-bottom: 1px solid var(--header-border);
-   backdrop-filter: none !important;
-   -webkit-backdrop-filter: none !important;
-   padding: 10px 0;
-   transition: padding 0.2s ease, box-shadow 0.2s ease;
+   backdrop-filter: blur(10px) saturate(160%);
+   -webkit-backdrop-filter: blur(10px) saturate(160%);
+   padding: 10px 0; /* Perkecil padding agar tidak terlalu tinggi */
+   transition: all 0.3s ease;
  }
-
+ /* Tambahkan sedikit shadow saat scroll agar terpisah dari konten */
  header.scrolled {
-   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
    padding: 8px 0;
  }
 
@@ -141,22 +135,23 @@
    transition: transform 0.3s ease;
  }
  .search-bar {
-   background: rgba(150, 150, 150, 0.1);
+   background: rgba(150, 150, 150, 0.1); /* Transparan abu-abu tipis */
    border: 1px solid var(--header-border);
-   color: inherit;
-   padding: 8px 35px 8px 15px;
-   border-radius: 20px;
+   backdrop-filter: blur(4px);
+   color: inherit; /* Ikut warna teks utama */
+   padding: 8px 35px 8px 15px; /* Padding kanan (35px) lebih besar biar teks gak nabrak ❌ */
+   border-radius: 20px; /* Lebih membulat pro */
    outline: none;
-   width: 200px;
-   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Efek snap yang lebih cepat */
+   width: 200px; /* Lebar standar */
+   font-size: 0.9rem;
  }
 
  /* Efek saat input diklik/fokus */
  .search-bar:focus {
-   width: 280px;
-   background: var(--bg-card);
+   width: 280px; /* Memanjang halus saat diketik */
+   background: rgba(255, 255, 255, 0.1);
    border-color: var(--primary);
-   box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.15);
+   box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1); /* Glow tipis */
  }
 
  /* FEATURED HERO */
@@ -207,8 +202,7 @@
    font-size: 2.5rem;
    margin: 15px 0;
    line-height: 1.2;
-   color: var(--primary);
-   text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+   color: var(--primary); /* Di Light Mode birunya solid */
  }
 
  .hero-summary {
@@ -507,8 +501,15 @@
  }
 
  .card {
-   contain: content; /* Optimasi render: browser tidak perlu cek elemen di luar card */
-   transition: transform 0.2s ease, box-shadow 0.2s ease;
+   background: var(--bg-card);
+   border: 1px solid var(--border);
+   border-radius: 12px; /* Pilih salah satu, misal 12px biar lebih modern */
+   overflow: hidden;
+   box-shadow: var(--shadow);
+   display: flex;
+   flex-direction: column;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   will-change: transform; /* Bagus buat performa animasi */
  }
 
  .card-category {
@@ -527,9 +528,8 @@
    justify-content: space-between;
    align-items: center;
    font-size: 0.85rem;
-   background: var(--bg-card); /* Hilangkan glass transparan */
-   border-top: 1px solid var(--border);
-   backdrop-filter: none !important;
+   background: var(--glass);
+   backdrop-filter: blur(10px);
  }
 
  /* Tanggal */
@@ -549,12 +549,12 @@
 
  /* Hover efek */
  .card:hover {
-   transform: translateY(-5px); /* Kurangi jarak agar transisi selesai lebih cepat */
-   box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.15);
+   transform: translateY(-8px);
+   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
  }
 
  .card-img {
-   transition: opacity 0.2s ease;
+   transform: scale(1.04);
  }
 
  .card-link:hover .card-title {
