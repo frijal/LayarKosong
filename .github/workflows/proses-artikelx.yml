@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js 20
         uses: actions/setup-node@v6.1.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install Node dependencies
         run: npm ci
@@ -59,9 +59,6 @@ jobs:
             perl -i -wpe '
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
               s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
-              s|nama_twitter_anda|responaja|g;
-              s|akun_twitter_kamu|responaja|g;
-              s|YourTwitterHandle|responaja|g;
               s|&copy;|🄯|g;
               s|©|🄯|g;
             ' "$file"
