@@ -84,13 +84,11 @@ async function main() {
 
     const page = await browser.newPage();
 
-//    for (const file of files) {
-//      const base = path.basename(file, ".html");
-//      const outputName = `${base}.${EXT}`;
-//      const outputPath = path.join(IMG_DIR, outputName);
-     for (const file of files) {
+    for (const file of files) {
       const base = path.basename(file, ".html");
-      const output = path.join(IMG_DIR, outputName);
+     const outputName = `${base}.${EXT}`;
+     const outputPath = path.join(IMG_DIR, outputName);
+     
       // --- LOGIKA FILTER GANDA ---
       // 1. Cek fisik file
       const isExist = fs.existsSync(outputPath);
