@@ -29,6 +29,7 @@
 | 📁 img/jurukunci |      1 | ▇ |
 | 🖼️ png      |      1 | ▇ |
 | 📄 txt      |      1 | ▇ |
+| 📁 txt2     |      1 | ▇ |
 | 🖼️ webp     |    299 | ▇▇▇▇▇▇▇▇ |
 
 ## Folder/Subfolder: img/yoast.com/app/uploads/2019/08
@@ -717,6 +718,7 @@
 | 💻 sh       |      9 | ▇ | , artikel, ext |
 | ✏️ svg      |      4 | ▇ | , artikel, ext/icons |
 | 📄 txt      |     11 | ▇ | , artikel, artikel/-, ext, img |
+| 📁 txt2     |      1 | ▇ | , img |
 | 🖼️ webp     |    445 | ▇▇▇▇▇▇▇▇▇▇▇▇ | , img, img/blog.openreplay.com/images/setting-up-github-actions-for-nodejs-projects/images, img/blogger.googleusercontent.com/img/a, img/cdn-icons-png.flaticon.com/512/2910, img/cdn-icons-png.flaticon.com/512/3135, img/cdn-icons-png.flaticon.com/512/337, img/cdn.jsdelivr.net/npm/simple-icons@v11/icons, img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, img/cli.github.com/assets/images, img/faciliworks.com/wp-content/uploads, img/github.com, img/github.com/user-attachments/assets, img/i.ytimg.com/vi/00sDqK1K2xA, img/i.ytimg.com/vi/0h-xyR6Axh8, img/i.ytimg.com/vi/H6E9Gg847lo, img/i.ytimg.com/vi/UNSf6O3ukPU, img/i.ytimg.com/vi/ha9kUA1vdvE, img/images.unsplash.com, img/img.freepik.com/free-photo, img/img.icons8.com/color/48/000000, img/img.shields.io/badge, img/img.shields.io/github/last-commit/frijal, img/img.shields.io/github/license/ventoy, img/img.shields.io/github/release/ventoy, img/img.shields.io/github/stars/notashelf, img/img.shields.io/github/stars/ventoy, img/img.shields.io/pypi/v, img/img.youtube.com/vi/0nMgo2HOIVM, img/img.youtube.com/vi/1QW72jFLkis, img/img.youtube.com/vi/4BJZMnmckDA, img/img.youtube.com/vi/4ypuNPqRoJo, img/img.youtube.com/vi/C4ShJaXCcLc, img/img.youtube.com/vi/HgHK5mbBpGs, img/img.youtube.com/vi/IUXGTiC04Qk, img/img.youtube.com/vi/LSbZfasf-OI, img/img.youtube.com/vi/TTHxxDkEQfw, img/img.youtube.com/vi/ZICVhIAXUCE, img/img.youtube.com/vi/wVj08oL_iKo, img/img.youtube.com/vi/xf0cNi91bhk, img/itsfoss.com/content/images/icon, img/itsfoss.com/content/images/thumbnail, img/limble.com/wp-content/uploads, img/linux-cdn.softpedia.com/screenshots, img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190, img/pbs.twimg.com/media, img/picsum.photos/id/1015/800, img/picsum.photos/id/1035/800, img/picsum.photos/id/1045/800, img/placehold.co/900x450/3182ce, img/placehold.co/900x450/4a5568, img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main, img/static.wixstatic.com/media, img/thumbs.dreamstime.com/b, img/user-images.githubusercontent.com/1578458, img/user-images.githubusercontent.com/98482, img/www.quality-assurance-solutions.com/images, img/www.ventoy.net/static/img, img/www.ventoy.net/static/img/screen |
 | 📁 woff2    |      4 | ▇ | , ext/fontawesome-webfonts |
-| **TOTAL** |   1464 | | |
+| **TOTAL** |   1465 | | |
