@@ -108,7 +108,7 @@ function renderHero() {
   <span class="hero-cat">${h.category}</span>
   <h1 class="hero-title">${h.title}</h1>
   <p class="hero-summary">
-  ${h.summary.substring(0, 180)}...
+  ${h.summary.substring(0, 270)}...
   <strong style="color:var(--secondary);">Baca Selengkapnya →</strong>
   </p>
   </div>
@@ -139,7 +139,7 @@ function startHeroSlider() {
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
     updateHeroPosition();
-  }, 8000);
+  }, 6000);
 }
 
 function stopHeroSlider() {
