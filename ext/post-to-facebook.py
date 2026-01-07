@@ -78,7 +78,7 @@ def main():
                 go.write(f"encoded_msg={encoded_msg}\n")
 
         # Simpan URL sementara untuk diproses Git commit di workflow
-        with open('temp_new_url.txt', 'w') as f:
+        with open('/tmp/temp_new_url_facebook.txt', 'w') as f:
             f.write(target_url + '\n')
 
         print(f"✅ Berhasil memproses artikel TERBARU ({target_post['date']}): {target_url}")
