@@ -1,5 +1,5 @@
 // server-screenshot.js
-// CI-safe, package.json-aligned, deterministic
+// CI-safe, package.json-aligned, deterministic dengan Filter Ganda
 
 import fs from "fs";
 import path from "path";
@@ -10,13 +10,16 @@ const ROOT_DIR = process.cwd();
 const ARTIKEL_DIR = path.join(ROOT_DIR, "artikel");
 const IMG_DIR = path.join(ROOT_DIR, "img");
 
- const EXT = "webp";
+const EXT = "webp";
 const PORT = Number(process.env.PORT) || 4173;
-const BASE_URL = `http://localhost:${PORT}/artikel/`; 
+const BASE_URL = `http://localhost:${PORT}/artikel/`;
 
 const TARGET_WIDTH = 1200;
 const TARGET_HEIGHT = 630;
 
+/**
+ * Menjalankan server lokal sementara untuk melayani file HTML
+ */
 function startServer() {
   return new Promise((resolve, reject) => {
     const app = express();
@@ -42,25 +45,32 @@ async function main() {
     throw new Error("Folder 'artikel/' tidak ditemukan.");
   }
 
-  fs.mkdirSync(IMG_DIR, { recursive: true });
+  // Pastikan folder img ada
+  if (!fs.existsSync(IMG_DIR)) {
+    fs.mkdirSync(IMG_DIR, { recursive: true });
+  }
 
-  // --- LOGIKA BARU: Baca daftar gambar nganggur ----
+  // --- LOGIKA FILTER: Baca daftar gambar nganggur ---
   const NGANGGUR_FILE = path.join(IMG_DIR, "gambarnganggur.txt");
   let gambarNganggur = [];
-
+  
   if (fs.existsSync(NGANGGUR_FILE)) {
-    const content = fs.readFileSync(NGANGGUR_FILE, "utf-8");
-    // Pecah jadi array, bersihkan spasi/line break, dan ambil yang tidak kosong
-    gambarNganggur = content.split("\n").map(name => name.trim()).filter(Boolean);
-    console.log(`[📄] Terdeteksi ${gambarNganggur.length} nama file di gambarnganggur.txt`);
+    try {
+      const content = fs.readFileSync(NGANGGUR_FILE, "utf-8");
+      // Pecah baris, hapus spasi, dan filter yang bukan kosong
+      gambarNganggur = content.split("\n").map(name => name.trim()).filter(Boolean);
+      console.log(`[📄] Memuat daftar pengecualian: ${gambarNganggur.length} file di gambarnganggur.txt`);
+    } catch (err) {
+      console.warn(`[⚠️] Gagal membaca ${NGANGGUR_FILE}: ${err.message}`);
+    }
   }
-  // -----------------------------------------------
 
+  // Ambil semua daftar artikel
   const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
-  console.log(`🧭 ${files.length} artikel ditemukan`);
+  console.log(`🧭 ${files.length} artikel ditemukan dalam antrean`);
 
   if (files.length === 0) {
-    console.log("ℹ️ Tidak ada artikel untuk diproses");
+    console.log("ℹ️ Tidak ada artikel untuk diproses.");
     return;
   }
 
@@ -86,21 +96,18 @@ async function main() {
 
     for (const file of files) {
       const base = path.basename(file, ".html");
-     const outputName = `${base}.${EXT}`;
-     const outputPath = path.join(IMG_DIR, outputName);
-     
+      const outputName = `${base}.${EXT}`;
+      const outputPath = path.join(IMG_DIR, outputName);
+
       // --- LOGIKA FILTER GANDA ---
-      // 1. Cek fisik file
       const isExist = fs.existsSync(outputPath);
-      // 2. Cek apakah ada di daftar nganggur
       const isNganggur = gambarNganggur.includes(outputName);
 
       if (isExist || isNganggur) {
-        const alasan = isExist ? "Fisik file sudah ada" : "Terdaftar di gambarnganggur.txt";
+        const alasan = isExist ? "Fisik file sudah ada" : "Masuk daftar 'gambarnganggur.txt'";
         console.log(`[⏭️] Skip ${outputName} (${alasan})`);
         continue;
       }
-      // ----------------------------
 
       const url = `${BASE_URL}${base}.html`;
       console.log(`[🔍] Render ${url}`);
@@ -117,24 +124,25 @@ async function main() {
         }
 
         await page.screenshot({
-          path: output,
+          path: outputPath,
           type: EXT,
           quality: 90,
         });
 
-        console.log(`[📸] Disimpan: ${output}`);
+        console.log(`[📸] Disimpan: ${outputName}`);
       } catch (err) {
-        console.error(`[❌] Gagal ${url}: ${err.message}`);
+        console.error(`[❌] Gagal memproses ${url}: ${err.message}`);
       }
 
+      // Delay kecil agar server tidak overload
       await new Promise(r => setTimeout(r, 400));
     }
 
-    console.log("🎉 Screenshot selesai");
+    console.log("🎉 Proses screenshot selesai.");
 
   } finally {
     if (browser) await browser.close();
-    server.close(() => console.log("[🛑] Server dihentikan"));
+    server.close(() => console.log("[🛑] Server lokal dihentikan"));
   }
 }
 
