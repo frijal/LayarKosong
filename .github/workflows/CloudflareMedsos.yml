@@ -116,8 +116,8 @@ jobs:
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: |
           python3 ext/post-to-bluesky.py
-          if [ -f mini/temp_new_url_bsky.txt ]; then
-            cat mini/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
+          if [ -f /tmp/temp_new_url_bsky.txt ]; then
+            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
           fi
 
       - name: 🔍 7. IndexNow Sync (Bash & JQ)
@@ -157,8 +157,8 @@ jobs:
             -d "link=${{ steps.fb_info.outputs.url }}" \
             -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
           
-          if [ -f temp_new_url.txt ]; then
-            cat temp_new_url.txt >> mini/posted-facebook.txt
+          if [ -f /tmp/temp_new_url_facebook.txt ]; then
+            cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
           fi
 
       # =========================================================
