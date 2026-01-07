@@ -55,7 +55,6 @@ jobs:
         run: |
           npm install
           pip install -r requirements.txt
-          sudo apt-get install jq -y
 
       # =========================================================
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
@@ -107,6 +106,9 @@ jobs:
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
       # =========================================================
+      - name: 📦 Install Dependencies
+        run: |
+          pip install -r requirements.txt
 
       - name: 🦋 6. Bluesky Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
