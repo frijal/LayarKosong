@@ -6,21 +6,18 @@ def scan_unused_images():
     img_folder = './img/'
     output_file = './img/gambarnganggur.txt'
 
-    # 1. Ambil daftar semua file .webp di folder img/
     if not os.path.exists(img_folder):
-        print(f"❌ Error: Folder {img_folder} tidak ditemukan!")
         return
-
     all_images = {f for f in os.listdir(img_folder) if f.lower().endswith('.webp')}
 
-    # 2. Cari referensi gambar di semua file .html dalam folder artikel/
     used_images = set()
-
     if not os.path.exists(html_folder):
-        print(f"❌ Error: Folder {html_folder} tidak ditemukan!")
         return
 
-    # Regex untuk mencari nama file gambar .webp
+    # REGEX BARU: Mencari nama file sebelum .webp
+    # Pola ini mencari karakter yang bukan / atau kutip atau spasi, yang diakhiri .webp
+    # Contoh: /img/kucing.webp -> akan ambil 'kucing.webp'
+    # Contoh: src="ayam.webp" -> akan ambil 'ayam.webp'
     webp_pattern = re.compile(r'([^/\\"\']+\.webp)', re.IGNORECASE)
 
     for root, dirs, files in os.walk(html_folder):
@@ -30,23 +27,25 @@ def scan_unused_images():
                 try:
                     with open(file_path, 'r', encoding='utf-8') as f:
                         content = f.read()
+                        # Kita cari semua yang cocok dengan pola .webp
                         matches = webp_pattern.findall(content)
                         for match in matches:
-                            used_images.add(match)
+                            # Kita ambil hanya nama filenya saja (basename)
+                            # Antisipasi kalau ada path lengkap yang tertangkap
+                            clean_name = os.path.basename(match)
+                            used_images.add(clean_name)
                 except Exception as e:
-                    print(f"⚠️ Gagal membaca {file}: {e}")
+                    print(f"⚠️ Gagal: {e}")
 
-    # 3. Cari yang tidak terpakai (Selisih)
     unused_images = all_images - used_images
 
-    # 4. Simpan hasilnya dengan mode 'a' (Append)
     if unused_images:
         with open(output_file, 'a', encoding='utf-8') as out:
             for img in sorted(unused_images):
                 out.write(img + '\n')
-        print(f"✅ Selesai! {len(unused_images)} gambar baru ditambahkan ke {output_file}")
+        print(f"✅ Ditemukan {len(unused_images)} gambar nganggur (Regex longgar).")
     else:
-        print("😎 Mantap! Tidak ada gambar nganggur baru ditemukan.")
+        print("😎 Aman! Semua file .webp terdeteksi dalam kode HTML.")
 
 if __name__ == "__main__":
     scan_unused_images()
