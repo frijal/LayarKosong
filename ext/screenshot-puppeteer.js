@@ -10,9 +10,9 @@ const ROOT_DIR = process.cwd();
 const ARTIKEL_DIR = path.join(ROOT_DIR, "artikel");
 const IMG_DIR = path.join(ROOT_DIR, "img");
 
-const EXT = "webp";
+ const EXT = "webp";
 const PORT = Number(process.env.PORT) || 4173;
-const BASE_URL = `http://localhost/artikel/`;
+const BASE_URL = `http://localhost:${PORT}/artikel/`; 
 
 const TARGET_WIDTH = 1200;
 const TARGET_HEIGHT = 630;
