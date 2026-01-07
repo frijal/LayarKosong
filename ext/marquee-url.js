@@ -185,13 +185,13 @@
   // NAV ICONS
   // ---------------------------
 
- function initNavIcons(data, currentFile) {
+  function initNavIcons(data, currentFile) {
     let list = [], idx = -1, catName = null;
 
     // 1. Cari data
     for (const [cat, arts] of Object.entries(data)) {
-        const i = arts.findIndex(a => a[1] === currentFile);
-        if (i !== -1) { [list, idx, catName] = [arts, i, cat]; break; }
+      const i = arts.findIndex(a => a[1] === currentFile);
+      if (i !== -1) { [list, idx, catName] = [arts, i, cat]; break; }
     }
     if (idx === -1) return;
 
@@ -205,84 +205,84 @@
     const nav = document.getElementById('dynamic-nav-container') || document.createElement('div');
     nav.id = 'dynamic-nav-container';
     nav.className = 'floating-nav';
-    
+
     nav.innerHTML = `
-        <div class="nav-left">
-            <a href="/artikel/-/${catName.toLowerCase().replace(/\s+/g, '-')}" class="category-link visible">${catName}</a>
-        </div>
-        <div class="nav-right">
-            <a href="/" title="Home" class="btn-emoji">🏠</a>
-            <a href="/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
-            <a href="/feed.html" title="RSS Feed" class="btn-emoji">📡</a>
-            ${total > 1 ? `
-                <a href="${getUrl(list[nextI][1])}" title="${list[nextI][0]}" class="btn-emoji">⏩</a>
-                <a href="${getUrl(list[prevI][1])}" title="${list[prevI][0]}" class="btn-emoji">⏪</a>
-            ` : ''}
-        </div>`;
+    <div class="nav-left">
+    <a href="/artikel/-/${catName.toLowerCase().replace(/\s+/g, '-')}" class="category-link visible">${catName}</a>
+    </div>
+    <div class="nav-right">
+    <a href="/" title="Home" class="btn-emoji">🏠</a>
+    <a href="/sitemap.html" title="Daftar Isi" class="btn-emoji">📄</a>
+    <a href="/feed.html" title="RSS Feed" class="btn-emoji">📡</a>
+    ${total > 1 ? `
+      <a href="${getUrl(list[nextI][1])}" title="${list[nextI][0]}" class="btn-emoji">⏩</a>
+      <a href="${getUrl(list[prevI][1])}" title="${list[prevI][0]}" class="btn-emoji">⏪</a>
+      ` : ''}
+      </div>`;
 
-    if (!nav.parentElement) document.body.appendChild(nav);
-}
+      if (!nav.parentElement) document.body.appendChild(nav);
+  }
 
-// ----------------------------------
-// Internal TOC
-// ----------------------------------
-function initInternalNav() {
-  // Jalankan hanya setelah DOM siap sepenuhnya
-  const runScan = () => {
-    const tocContainer = document.getElementById('internal-nav');
-    if (!tocContainer) return;
+  // ----------------------------------
+  // Internal TOC
+  // ----------------------------------
+  function initInternalNav() {
+    // Jalankan hanya setelah DOM siap sepenuhnya
+    const runScan = () => {
+      const tocContainer = document.getElementById('internal-nav');
+      if (!tocContainer) return;
 
-    // 1. Scan headings, tapi filter yang bener-bener punya teks
-    // Kita juga kecualikan logo "Layar Kosong" kalau dia pake tag heading
-    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4'))
-    .filter(h => {
-      const hasText = h.innerText.trim().length > 0;
-      const isNotInsideNav = !tocContainer.contains(h) && !h.closest('.floating-nav');
-      const isNotLogo = !h.closest('#layar-kosong-header');
-      return hasText && isNotInsideNav && isNotLogo;
-    });
+      // 1. Scan headings, tapi filter yang bener-bener punya teks
+      // Kita juga kecualikan logo "Layar Kosong" kalau dia pake tag heading
+      const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4'))
+      .filter(h => {
+        const hasText = h.innerText.trim().length > 0;
+        const isNotInsideNav = !tocContainer.contains(h) && !h.closest('.floating-nav');
+        const isNotLogo = !h.closest('#layar-kosong-header');
+        return hasText && isNotInsideNav && isNotLogo;
+      });
 
-    // 2. Jika tidak ada heading yang valid, sembunyikan container
-    if (headings.length === 0) {
-      tocContainer.style.display = 'none';
-      return;
-    }
-
-    // Pastikan container terlihat (jika sebelumnya kena display:none)
-    tocContainer.style.display = 'block';
-
-    // 3. Bangun HTML List
-    let tocHtml = '<ul class="nav-list">';
-    headings.forEach((h, i) => {
-      // Buat ID unik berdasarkan urutan jika belum ada
-      if (!h.id) {
-        h.id = 'section-' + i;
+      // 2. Jika tidak ada heading yang valid, sembunyikan container
+      if (headings.length === 0) {
+        tocContainer.style.display = 'none';
+        return;
       }
 
-      const tag = h.tagName.toLowerCase();
-      const text = h.innerText.trim();
+      // Pastikan container terlihat (jika sebelumnya kena display:none)
+      tocContainer.style.display = 'block';
 
-      tocHtml += `
-      <li class="nav-item nav-${tag}">
-      <a href="#${h.id}" class="nav-link">${text}</a>
-      </li>`;
-    });
-    tocHtml += '</ul>';
+      // 3. Bangun HTML List
+      let tocHtml = '<ul class="nav-list">';
+      headings.forEach((h, i) => {
+        // Buat ID unik berdasarkan urutan jika belum ada
+        if (!h.id) {
+          h.id = 'section-' + i;
+        }
 
-    // 4. Suntikkan ke DOM
-    tocContainer.innerHTML = tocHtml;
-  };
+        const tag = h.tagName.toLowerCase();
+        const text = h.innerText.trim();
 
-  // Pastikan script nunggu browser selesai loading HTML
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runScan);
-  } else {
-    runScan();
+        tocHtml += `
+        <li class="nav-item nav-${tag}">
+        <a href="#${h.id}" class="nav-link">${text}</a>
+        </li>`;
+      });
+      tocHtml += '</ul>';
+
+      // 4. Suntikkan ke DOM
+      tocContainer.innerHTML = tocHtml;
+    };
+
+    // Pastikan script nunggu browser selesai loading HTML
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runScan);
+    } else {
+      runScan();
+    }
   }
-}
 
-// Panggil fungsinya
-initInternalNav();
+  // Panggil fungsinya
+  initInternalNav();
   // ---------------------------
   // RELATED GRID
   // ---------------------------
