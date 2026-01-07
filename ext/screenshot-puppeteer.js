@@ -12,7 +12,7 @@ const IMG_DIR = path.join(ROOT_DIR, "img");
 
 const EXT = "webp";
 const PORT = Number(process.env.PORT) || 4173;
-const BASE_URL = `https://dalam.web.id/artikel/`;
+const BASE_URL = `http://localhost/artikel/`;
 
 const TARGET_WIDTH = 1200;
 const TARGET_HEIGHT = 630;
