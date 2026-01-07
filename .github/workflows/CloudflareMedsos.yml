@@ -53,6 +53,7 @@ jobs:
               
       - name: 📦 Install Dependencies
         run: |
+          pip install -r requirements.txt
           npm install
 
       # =========================================================
@@ -105,9 +106,6 @@ jobs:
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
       # =========================================================
-      - name: 📦 Install Dependencies
-        run: |
-          pip install -r requirements.txt
 
       - name: 🦋 6. Bluesky Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
