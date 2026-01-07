@@ -100,23 +100,25 @@ async function fixSEO() {
 
     // --- 4. BERSIHKAN SEMUA TAG LAMA ---
     $('link[rel="canonical"]').remove();
-    $('meta[property^="og:"]').remove();
-    $('meta[name^="twitter:"]').remove();
+    $('meta[itemprop="image"]').remove();
     $('meta[name="author"]').remove();
     $('meta[name="fb:app_id"], meta[property="fb:app_id"]').remove();
-    $('meta[itemprop="image"]').remove();
+    $('meta[name^="twitter:"]').remove();
+    $('meta[property^="og:"]').remove();
 
     // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}" />`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal" />`);
+    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
+    head.append(`\n    <meta name="googlebot" content="max-image-preview:large">`);
+    head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
     head.append(`\n    <meta name="twitter:card" content="summary_large_image" />`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
     head.append(`\n    <meta name="twitter:description" content="${siteDescription}" />`);
     head.append(`\n    <meta name="twitter:site" content="@responaja" />`);
     head.append(`\n    <meta name="twitter:title" content="${articleTitle}" />`);
     head.append(`\n    <meta name="twitter:url" content="${canonicalUrl}" />`);
-    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage" />`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384" />`);
     head.append(`\n    <meta property="og:description" content="${siteDescription}" />`);
@@ -126,9 +128,11 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:type" content="article" />`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}" />`);
 
+
     if (metaImgUrl) {
       head.append(`\n    <meta itemprop="image" content="${metaImgUrl}" />`);
       head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}" />`);
+      head.append(`\n    <meta name="twitter:image:alt" content="${articleTitle}" />`);
       head.append(`\n    <meta property="og:image" content="${metaImgUrl}" />`);
       head.append(`\n    <meta property="og:image:alt" content="${articleTitle}" />`);
     }
