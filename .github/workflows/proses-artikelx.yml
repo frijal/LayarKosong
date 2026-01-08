@@ -40,7 +40,7 @@ jobs:
         uses: shogo82148/actions-setup-perl@v1.37.0
         with:
           perl-version: '5.38'
-          enable-modules-cache: false
+          enable-modules-cache: true
 
       - name: Localize Assets
         run: |
