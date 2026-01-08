@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Artikel JSON Pro - Layar Kosong</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
             --bg-color: #121212;
@@ -258,12 +256,34 @@
             .form-row { grid-template-columns: 1fr; gap: 0; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/aaaa">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/aaaa">
+    <meta property="og:title" content="Editor Artikel JSON Pro">
+    <meta property="og:description" content="Editor ini dirancang untuk mengelola database artikel berbasis file .json secara offline/online. Anda bisa menambah, mengubah, atau menghapus entri artikel deng">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 <div class="container">
     <header class="app-header">
         <div class="app-title">
             <h1><i class="fa-solid fa-layer-group"></i> Layar Kosong <span>Editor</span></h1>
+<div id="iposbrowser"></div>
         </div>
 
         <div class="search-box">
@@ -324,7 +344,7 @@
     <div class="modal-content">
         <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
             <h2 id="modalTitle" style="margin:0;">Edit Artikel</h2>
-            <button onclick="closeModal()" style="background:none; border:none; font-size:1.5rem;">&times;</button>
+            <button onclick="closeModal()" style="background:none; border:none; font-size:1.5rem;">×</button>
         </div>
 
         <form id="editForm" onsubmit="saveArticle(event)">
@@ -333,32 +353,32 @@
 
             <div class="form-group">
                 <label>Judul Artikel</label>
-                <input type="text" id="inpTitle" class="form-input" required placeholder="Contoh: Tutorial Linux Pemula">
+                <input type="text" id="inpTitle" class="form-input" required="" placeholder="Contoh: Tutorial Linux Pemula">
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label>URL / Slug (HTML)</label>
-                    <input type="text" id="inpUrl" class="form-input" required placeholder="tutorial-linux.html">
+                    <input type="text" id="inpUrl" class="form-input" required="" placeholder="tutorial-linux.html">
                 </div>
                 <div class="form-group">
                     <label>Tanggal (Waktu Setempat)</label>
-                    <input type="datetime-local" id="inpDate" class="form-input" required>
+                    <input type="datetime-local" id="inpDate" class="form-input" required="">
                 </div>
             </div>
 
             <div class="form-group">
                 <label>URL Gambar Thumbnail</label>
-                <input type="text" id="inpImg" class="form-input" required placeholder="https://..." oninput="updatePreview()">
+                <input type="text" id="inpImg" class="form-input" required="" placeholder="https://..." oninput="updatePreview()">
                 <div class="preview-box">
-                    <img id="imgPreview" src="" onerror="this.style.display='none'" onload="this.style.display='inline-block'">
+                    <img id="imgPreview" src="" onerror="this.style.display='none'" onload="this.style.display='inline-block'" alt="Editor Artikel JSON Pro">
                     <p id="imgError" style="font-size:0.8rem; color:#f44336; display:none; margin-top:5px;">Gambar tidak ditemukan</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Deskripsi Singkat</label>
-                <textarea id="inpDesc" class="form-input" required placeholder="Ringkasan isi artikel..."></textarea>
+                <textarea id="inpDesc" class="form-input" required="" placeholder="Ringkasan isi artikel..."></textarea>
             </div>
 
             <div style="text-align: right; margin-top: 30px;">
@@ -641,5 +661,9 @@
         if (event.target === document.getElementById('modalEditor')) closeModal();
     }
 </script>
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
