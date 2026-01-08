@@ -307,9 +307,12 @@
     }
 
     gridContainer.innerHTML = related.map(([title, id, img]) => {
+      // Menghilangkan .html dari ID jika ada
+      const cleanId = id.replace('.html', '');
+
       return `
       <div class="rel-card-mini">
-      <a href="/artikel/${id}">
+      <a href="/artikel/${cleanId}">
       <div class="rel-img-mini">
       <img src="${img || '/thumbnail.webp'}" alt="${title}" onerror="this.src='/thumbnail.webp'">
       </div>
