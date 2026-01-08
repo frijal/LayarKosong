@@ -25,7 +25,7 @@ jobs:
           node-version: '24'
       
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Validasi HTML & SEO (hanya yang gagal)
         run: |
