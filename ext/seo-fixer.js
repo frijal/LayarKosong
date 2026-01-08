@@ -115,7 +115,6 @@ async function fixSEO() {
     $('meta[property^="article:"]').remove(); // Penting: hapus namespace article lama
 
     // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
-    const head = $('head');
 
     // SEO & Crawler (Ditaruh paling atas)
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
