@@ -38,7 +38,7 @@ jobs:
         if: hashFiles('package.json') != ''
         run: |
           echo "Processing Node.js packages..."
-          npm install --package-lock-only || true
+          npm ci --package-lock-only || true
           npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
           npm prune
 
