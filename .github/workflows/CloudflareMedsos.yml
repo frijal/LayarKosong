@@ -54,7 +54,7 @@ jobs:
       - name: 📦 Install Dependencies
         run: |
           pip install -r requirements.txt
-          npm install
+          npm ci
 
       # =========================================================
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
