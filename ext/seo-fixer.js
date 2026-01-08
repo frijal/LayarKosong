@@ -101,7 +101,7 @@ async function fixSEO() {
     // --- 4. BERSIHKAN SEMUA TAG LAMA ---
     // Update atribut HTML sekaligus
     $('html')
-    .removeAttr('lang')
+    .attr('lang', 'id')
     .attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
 
     // Hapus tag lama secara menyeluruh

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Layar Kosong</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-switch" aria-label="Ganti Tema">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+    </button>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Layar Kosong</h1>
+            <div class="filter-wrapper">
+                <div class="dropdown-group">
+                    <select id="filter-year">
+                        <option value="all">Semua Tahun</option>
+                    </select>
+                    <select id="filter-month" disabled>
+                        <option value="all">Semua Bulan</option>
+                    </select>
+                    <select id="filter-category">
+                        <option value="all">Semua Kategori</option>
+                    </select>
+                </div>
+                <div id="filter-info" class="filter-info-text hidden"></div>
+            </div>
+        </header>
+
+        <div id="default-view">
+            <section id="latest-global">
+                <h2>Terbaru ✨</h2>
+                <div id="global-grid" class="article-grid"></div>
+            </section>
+            <div id="category-sections"></div>
+        </div>
+
+        <div id="filtered-view" class="hidden">
+            <h2>Hasil Filter</h2>
+            <div id="filtered-grid" class="article-grid"></div>
+        </div>
+
+        <footer class="page-footer">
+            <p>&copy; 2025 Layar Kosong - Balikpapan</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
