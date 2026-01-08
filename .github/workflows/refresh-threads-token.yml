@@ -26,7 +26,7 @@ jobs:
           node-version: '24'
 
       - name: Install axios
-        run: npm install #axios
+        run: npm ci #axios
 
       - name: Get New Token
         id: refresh_token
