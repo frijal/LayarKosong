@@ -342,6 +342,34 @@ body {
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
 }
+.about-inline{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.about-title{
+  margin:0;
+}
+
+.about-link{
+  font-size:0.85rem;
+  color:var(--text-muted,#64748b);
+  text-decoration:none;
+  border-bottom:1px dotted transparent;
+}
+
+.about-link:hover{
+  color:var(--primary-color,#0284c7);
+  border-bottom-color:currentColor;
+}
+
+.about-sep{
+  font-size:0.8rem;
+  color:var(--text-muted,#94a3b8);
+}
+
 /* ===========================================================
    RESPONSIVE DESIGN
 =========================================================== */
@@ -434,7 +462,16 @@ body {
                       <!-- TENTANG KAMI - BAHASA INDONESIA -->
             <div class="lang-content active" id="about-id">
                 <div class="about-section">
-                    <h1 class="about-title">Tentang Layar Kosong</h1>
+<div class="about-inline">
+  <h1 class="about-title">Tentang Layar Kosong</h1>
+<span class="about-sep">·</span>
+ <a href="/lisensi" class="about-link" rel="nofollow noopener">Lisensi</a>
+ <span class="about-sep">·</span>
+ <a href="/privacy" class="about-link" rel="nofollow noopener">Kebijakan Privasi & Hukum</a>
+ <span class="about-sep">·</span>
+  <a href="/disclaimer" class="about-link" rel="nofollow noopener">Sangkalan</a>
+   <span class="about-sep">·</span>
+</div>
                     <div class="about-content">
                         <p>Selamat datang di <strong>Layar Kosong</strong> - ruang digital tempat kita berbagi pengetahuan, pengalaman, dan pemikiran tentang teknologi, open source, dan perkembangan digital yang membentuk dunia kita.</p>
                     </div>
@@ -491,7 +528,16 @@ body {
             <!-- ABOUT US - ENGLISH VERSION -->
             <div class="lang-content" id="about-en">
                 <div class="about-section">
+                    <div class="about-inline">
                     <h1 class="about-title">About Layar Kosong</h1>
+ <span class="about-sep">·</span>
+ <a href="/lisensi" class="about-link" rel="nofollow noopener">License</a>
+ <span class="about-sep">·</span>
+ <a href="/privacy" class="about-link" rel="nofollow noopener">Privacy & Legal Policy</a>
+ <span class="about-sep">·</span>
+  <a href="/disclaimer" class="about-link" rel="nofollow noopener">Disclaimer</a>
+   <span class="about-sep">·</span>
+</div>
                     <div class="about-content">
                         <p>Welcome to <strong>Layar Kosong</strong> - a digital space where we share knowledge, experiences, and thoughts about technology, open source, and digital developments that shape our world.</p>
                     </div>
