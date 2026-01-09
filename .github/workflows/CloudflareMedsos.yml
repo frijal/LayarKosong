@@ -151,7 +151,7 @@ jobs:
         if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
         continue-on-error: true
         run: |
-          curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_ID }}/feed" \
+          curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_IDD }}/feed" \
             -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
             -d "link=${{ steps.fb_info.outputs.url }}" \
             -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
