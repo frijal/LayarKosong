@@ -114,6 +114,9 @@ async function fixSEO() {
     $('meta[name^="twitter:"]').remove();
     $('meta[property^="og:"]').remove();
     $('meta[property^="article:"]').remove(); // Penting: hapus namespace article lama
+    $('meta[name="theme-color"]').remove(); // Hapus warna tema lama
+    $('meta[name="fediverse:creator"]').remove(); // Hapus atribusi Mastodon
+    $('meta[name="bluesky:creator"]').remove(); // Hapus atribusi Bluesky
 
     // --- 5. SUNTIK ULANG DENGAN URUTAN RAPI ---
 
