@@ -1,12 +1,16 @@
 (function () {
     const d = document;
 
-    // ==============================================
+// ==============================================
     // ⚡ INTEGRASI GOOGLE SWG (SWG Basic)
     // Diletakkan di awal agar dijalankan di setiap halaman.
     // ==============================================
 
-    // 1. Memuat library swg-basic.js secara dinamis
+    // 1. Deteksi tema user secara otomatis (Dark/Light)
+    const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const swgTheme = isDark ? "dark" : "light";
+
+    // 2. Memuat library swg-basic.js secara dinamis
     const swgScript = d.createElement("script");
     swgScript.async = true;
     swgScript.type = "application/javascript";
@@ -14,13 +18,16 @@
     // Memasukkan script ke dalam <head>
     d.head.appendChild(swgScript); 
 
-    // 2. Inisialisasi konfigurasi SwG (type: NewsArticle, isPartOfProductId: openaccess)
+    // 3. Inisialisasi konfigurasi SwG (Adaptive Theme)
     (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
       basicSubscriptions.init({
         type: "NewsArticle",
         isPartOfType: ["Product"],
         isPartOfProductId: "CAowztjDDA:openaccess",
-        clientOptions: { theme: "light", lang: "id" },
+        clientOptions: { 
+            theme: swgTheme, // Menggunakan variabel deteksi otomatis
+            lang: "id" 
+        },
       });
     });
 
