@@ -106,6 +106,7 @@ async function fixSEO() {
 
     // Hapus tag lama secara menyeluruh
     $('link[rel="canonical"]').remove();
+    $('link[rel="icon"], link[rel="shortcut icon"]').remove(); // 🔥 Hapus favicon lama
     $('meta[itemprop="image"]').remove();
     $('meta[name="author"]').remove();
     $('meta[name="robots"], meta[name="googlebot"]').remove(); // Bersihkan robots lama
@@ -118,6 +119,7 @@ async function fixSEO() {
 
     // SEO & Crawler (Ditaruh paling atas)
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
+    head.append(`\n    <link rel="icon" href="/favicon.ico">`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
     head.append(`\n    <meta name="googlebot" content="max-image-preview:large">`);
