@@ -1,4 +1,4 @@
-# Lisensi UNLICENSE - Public Domain.
+# Lisensi Public Domain.
 
 ## 🇮🇩 Bahasa Indonesia (Terjemahan)
 
