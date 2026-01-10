@@ -327,6 +327,7 @@
  /* Warna Default (Biru Primary) */
  background: var(--primary);
  color: white;
+ justify-content: center;
  }
 
  #loadMore:hover {
@@ -340,6 +341,7 @@
  background: var(--secondary);
  color: black;
  box-shadow: 0 4px 6px -1px rgba(255, 191, 0, 0.2);
+ justify-content: center;
  }
 
  #loadMore.is-top:hover {
