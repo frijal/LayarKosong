@@ -612,37 +612,77 @@ body {
             </div>
             <!-- PROYEK LAINNYA -->
             <div class="projects-section">
-                <h3 class="social-title">Proyek & Inisiatif Lainnya</h3>
-                <div class="projects-grid">
-                    <a class="project-card" href="https://dalam.web.id" target="_blank" rel="noopener">
+                <div class="lang-content active" id="grid-id">
+                <div class="grid">
+                    <a class="card" href="https://dalam.web.id" target="_blank" rel="noopener">
                         <i class="fa-solid fa-feather-pointed"></i>
-                        <div class="project-meta">
-                            <span class="project-title">Blog Utama</span>
-                            <span class="project-desc">Artikel teknologi & open source</span>
+                        <div class="meta">
+                            <span class="title">Layar Kosong</span>
+                            <span class="desc">Blog & Cerita</span>
                         </div>
                     </a>
-                    <a class="project-card" href="https://yvci.or.id" target="_blank" rel="noopener">
+                    <a class="card" href="https://yvci.or.id" target="_blank" rel="noopener">
                         <i class="fa-solid fa-motorcycle"></i>
-                        <div class="project-meta">
-                            <span class="project-title">YVCI.or.id</span>
-                            <span class="project-desc">Yamaha V-ixion Club Indonesia</span>
+                        <div class="meta">
+                            <span class="title">YVCI.or.id</span>
+                            <span class="desc">Yamaha V-ixion Club Indonesia</span>
                         </div>
                     </a>
-                    <a class="project-card" href="https://mentari-group.com" target="_blank" rel="noopener">
+                    <a class="card" href="https://mentari-group.com" target="_blank" rel="noopener">
                         <i class="fa-solid fa-briefcase"></i>
-                        <div class="project-meta">
-                            <span class="project-title">Mentari Group</span>
-                            <span class="project-desc">Bisnis & proyek kolaborasi</span>
+                        <div class="meta">
+                            <span class="title">Mentari Group</span>
+                            <span class="desc">Bisnis & Proyek</span>
                         </div>
                     </a>
-                    <a class="project-card" href="https://portalbalikpapan.com" target="_blank" rel="noopener">
+                    <a class="card" href="https://portalbalikpapan.com" target="_blank" rel="noopener">
                         <i class="fa-solid fa-city"></i>
-                        <div class="project-meta">
-                            <span class="project-title">Portal Balikpapan</span>
-                            <span class="project-desc">Informasi lokal & berita</span>
+                        <div class="meta">
+                            <span class="title">Portal Balikpapan</span>
+                            <span class="desc">Berita & Info Umum</span>
                         </div>
                     </a>
                 </div>
+                <footer style="color: var(--muted); font-size: 14px; text-align: center; margin-top: 30px; padding-bottom: 20px;">
+                    Tidak diperlukan izin untuk menyalin, atau memodifikasi halaman ini. Silakan lakukan secara Bebas.
+                </footer>
+            </div>
+            <!-- KONTEN GRID BAHASA ENGLISH -->
+            <div class="lang-content" id="grid-en">
+                <div class="grid">
+                    <a class="card" href="https://dalam.web.id" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                        <div class="meta">
+                            <span class="title">Blank Screen</span>
+                            <span class="desc">Blog & Stories</span>
+                        </div>
+                    </a>
+                    <a class="card" href="https://yvci.or.id" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <div class="meta">
+                            <span class="title">YVCI.or.id</span>
+                            <span class="desc">Yamaha V-ixion Club Indonesia</span>
+                        </div>
+                    </a>
+                    <a class="card" href="https://mentari-group.com" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <div class="meta">
+                            <span class="title">Mentari Group</span>
+                            <span class="desc">Business & Projects</span>
+                        </div>
+                    </a>
+                    <a class="card" href="https://portalbalikpapan.com" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-city"></i>
+                        <div class="meta">
+                            <span class="title">Balikpapan Portal</span>
+                            <span class="desc">News & General Info</span>
+                        </div>
+                    </a>
+                </div>
+                <footer style="color: var(--muted); font-size: 14px; text-align: center; margin-top: 30px; padding-bottom: 20px;">
+                    No permission required to copy or modify this page. Feel free to do so.
+                </footer>
+            </div>
             </div>
             <!-- SOCIAL CONNECTIONS -->
            <div class="social-section">
@@ -682,6 +722,7 @@ body {
                 document.getElementById('footer-id').classList.add('active');
                 document.getElementById('social-title-id').classList.add('active');
                 document.getElementById('btn-id').classList.add('active');
+                document.getElementById('grid-id').classList.add('active');
                 document.documentElement.lang = 'id';
             } else {
                 document.getElementById('bio-en').classList.add('active');
@@ -689,6 +730,7 @@ body {
                 document.getElementById('footer-en').classList.add('active');
                 document.getElementById('social-title-en').classList.add('active');
                 document.getElementById('btn-en').classList.add('active');
+                document.getElementById('grid-en').classList.add('active');
                 document.documentElement.lang = 'en';
             }
             // Simpan preferensi
