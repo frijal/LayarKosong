@@ -233,5 +233,3 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 [![Copilot](https://img.shields.io/badge/Copilot-Yes-purple?logo=github&logoColor=white)](#readme)
 
 </details>
-
-<p align="center"><a href="#top">(kembali ke awal)</a></p>
