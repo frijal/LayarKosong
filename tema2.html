@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Kosong - Portal Berita & Opini Digital</title>
+    <meta name="description" content="Portal berita dan opini digital dengan beragam kontak menarik. Filter artikel berdasarkan kategori, tahun, dan bulan.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="ext/tema2.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p>Memuat artikel...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>📰 Layar Kosong</h1>
+                    <p class="tagline">Portal Berita & Opini Digital</p>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    ☀️
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar">
+        <div class="container">
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="category-filter"><i class="fas fa-tags"></i> Kategori</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Memuat kategori...</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="year-filter"><i class="fas fa-calendar-alt"></i> Tahun</label>
+                    <select id="year-filter" class="filter-select">
+                        <option value="all">Memuat tahun...</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="month-filter"><i class="fas fa-calendar"></i> Bulan</label>
+                    <select id="month-filter" class="filter-select">
+                        <option value="all">Memuat bulan...</option>
+                    </select>
+                </div>
+
+                <div class="filter-group search-box">
+                    <label for="search-input"><i class="fas fa-search"></i> Cari Artikel</label>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Ketik judul atau isi artikel..."
+                        aria-label="Search articles"
+                    >
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <div id="article-count" class="article-count">
+                    Memuat...
+                </div>
+                <button id="clear-filters" class="clear-filters">
+                    <i class="fas fa-times"></i> Hapus Filter
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container main-layout">
+        <!-- Articles Section -->
+        <section class="articles-section">
+            <div id="articles-grid" class="articles-grid">
+                <!-- Articles will be loaded here by JavaScript -->
+                <!-- Skeleton Loaders -->
+                <div class="article-card skeleton skeleton-card"></div>
+                <div class="article-card skeleton skeleton-card"></div>
+                <div class="article-card skeleton skeleton-card"></div>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination">
+                <!-- Pagination will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Recent News -->
+            <section class="sidebar-section">
+                <h3><i class="fas fa-fire"></i> Berita Terbaru</h3>
+                <div id="sidebar-news" class="sidebar-news">
+                    <!-- Recent news will be loaded here -->
+                    <div class="sidebar-article skeleton skeleton-sidebar"></div>
+                    <div class="sidebar-article skeleton skeleton-sidebar"></div>
+                    <div class="sidebar-article skeleton skeleton-sidebar"></div>
+                </div>
+            </section>
+
+            <!-- Archive -->
+            <section class="sidebar-section">
+                <h3><i class="fas fa-archive"></i> Arsip Artikel</h3>
+                <div id="archive-years" class="archive-list">
+                    <!-- Archive will be loaded here -->
+                    <div class="skeleton" style="height: 40px; margin-bottom: 10px;"></div>
+                    <div class="skeleton" style="height: 40px; margin-bottom: 10px;"></div>
+                    <div class="skeleton" style="height: 40px;"></div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="sidebar-section">
+                <h3><i class="fas fa-folder"></i> Kategori</h3>
+                <div id="category-list" class="category-list">
+                    <!-- Categories will be loaded here -->
+                    <div class="skeleton" style="height: 30px; margin-bottom: 8px;"></div>
+                    <div class="skeleton" style="height: 30px; margin-bottom: 8px;"></div>
+                    <div class="skeleton" style="height: 30px;"></div>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <section class="sidebar-section">
+                <h3><i class="fas fa-chart-bar"></i> Statistik</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-articles">0</div>
+                        <div class="stat-label">Total Artikel</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-categories">0</div>
+                        <div class="stat-label">Kategori</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="latest-year">2026</div>
+                        <div class="stat-label">Tahun Terbaru</div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="#"><i class="fas fa-newspaper"></i> Artikel</a>
+                    <a href="#"><i class="fas fa-info-circle"></i> Tentang</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Kontak</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Privasi</a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2026 Layar Kosong. Semua hak dilindungi.</p>
+                    <p>Dibuat dengan ❤️ untuk komunitas digital Indonesia.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="ext/tema2.js"></script>
+
+    <!-- Additional JavaScript for stats -->
+    <script>
+        // Update stats after articles are loaded
+        function updateStats(articles) {
+            if (!articles || articles.length === 0) return;
+
+            const categories = new Set(articles.map(a => a.category));
+            const years = articles.map(a => a.year);
+            const latestYear = Math.max(...years);
+
+            document.getElementById('total-articles').textContent = articles.length;
+            document.getElementById('total-categories').textContent = categories.size;
+            document.getElementById('latest-year').textContent = latestYear;
+        }
+
+        // Expose function to main script
+        window.updateStats = updateStats;
+    </script>
+</body>
+</html>
