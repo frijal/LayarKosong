@@ -103,16 +103,18 @@ async function fixSEO() {
     $('html')
     .attr('lang', 'id')
     .attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-
-    // Hapus tag lama secara menyeluruh
+   // Hapus tag lama secara menyeluruh, TAPI selamatkan description
     $('link[rel="canonical"]').remove();
     $('link[rel="icon"], link[rel="shortcut icon"]').remove(); // 🔥 Hapus favicon lama
     $('meta[itemprop="image"]').remove();
     $('meta[name="author"]').remove();
     $('meta[name="robots"], meta[name="googlebot"]').remove(); // Bersihkan robots lama
     $('meta[name="fb:app_id"], meta[property="fb:app_id"]').remove();
-    $('meta[name^="twitter:"]').remove();
-    $('meta[property^="og:"]').remove();
+    // 👇 INI BAGIAN YANG DIUBAH
+    // Hapus semua meta twitter, KECUALI yang namanya twitter:description
+    $('meta[name^="twitter:"]').not('[name="twitter:description"]').remove();
+    // Hapus semua meta og, KECUALI yang propertinya og:description
+    $('meta[property^="og:"]').not('[property="og:description"]').remove();
     $('meta[property^="article:"]').remove(); // Penting: hapus namespace article lama
     $('meta[name="theme-color"]').remove(); // Hapus warna tema lama
     $('meta[name="fediverse:creator"]').remove(); // Hapus atribusi Mastodon
@@ -139,7 +141,6 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:type" content="article">`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
     head.append(`\n    <meta property="og:title" content="${articleTitle}">`);
-    head.append(`\n    <meta property="og:description" content="${siteDescription}">`);
 
     // Twitter Card (Hanya yang esensial karena Twitter fallback ke OG)
     head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
