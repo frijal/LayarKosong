@@ -234,4 +234,4 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 </details>
 
-<p align="center"><a href="#readme">(kembali ke awal)</a></p>
+<p align="center"><a href="#top">(kembali ke awal)</a></p>
