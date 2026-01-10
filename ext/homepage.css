@@ -443,7 +443,7 @@
    flex-wrap: wrap; /* Ubah dari nowrap ke wrap */
    gap: 12px;
    align-items: center;
-   justify-content: center; /* Tambahkan agar tetap center */
+   justify-content: flex; /* Tambahkan agar tetap kiri */
    font-size: 1.4rem;
  }
 
