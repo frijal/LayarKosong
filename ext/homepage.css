@@ -440,10 +440,11 @@
  .footer-social {
    display: flex;
    flex-direction: row;
-   flex-wrap: nowrap;
+   flex-wrap: wrap; /* Ubah dari nowrap ke wrap */
    gap: 12px;
    align-items: center;
-   font-size: 1.4rem; /* Diperkecil dari 1.8rem agar proporsional dengan teks */
+   justify-content: center; /* Tambahkan agar tetap center */
+   font-size: 1.4rem;
  }
 
  .footer-social a {
@@ -830,6 +831,11 @@
   .logo:hover .logo-icon {
     transform: none;
   }
+  .footer-social {
+    font-size: 1.2rem; /* Kurangi ukuran icon di mobile */
+    gap: 10px;
+    max-width: 100%; /* Pastikan tidak melebihi lebar container */
+  }
 }
 
 /* --- <= 480px (HP Kecil) --- */
@@ -837,5 +843,9 @@
   .search-bar {
     width: 120px;
     font-size: 0.85rem;
+  }
+  .footer-social {
+    font-size: 1rem; /* Lebih kecil lagi untuk layar sangat kecil */
+    gap: 8px;
   }
 }
