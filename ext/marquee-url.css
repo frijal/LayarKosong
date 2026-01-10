@@ -36,147 +36,6 @@ box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 
 /* =================== */
 
-/* --- THEME TOGGLE BUTTON --- */
-.theme-toggle {
-  position: fixed;
-  top: 70px;
-  right: 15px;
-  z-index: 999;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-color: var(--accent);
-  transform: translateY(-1px) scale(1.05);
-}
-
-/* Icon sun/moon */
-.theme-toggle::before {
-  content: "🌙";
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover::before {
-  transform: rotate(20deg);
-}
-
-/* Dark mode state */
-.dark .theme-toggle {
-  background-color: rgba(30, 30, 30, 0.85);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.dark .theme-toggle::before {
-  content: "☀️";
-}
-
-.dark .theme-toggle:hover {
-  background-color: rgba(45, 45, 45, 0.95);
-  border-color: var(--accent);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 65px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .theme-toggle::before {
-    font-size: 18px;
-  }
-}
-
-/* --- KONTROL KECEPATAN MARQUEE --- */
-.marquee-speed-control {
-  position: fixed;
-  bottom: 70px;
-  left: 15px;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease-in-out;
-}
-
-.marquee-speed-control:hover {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
-.marquee-speed-control label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-  white-space: nowrap;
-}
-
-.marquee-speed-control input[type="range"] {
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 5px;
-  outline: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-}
-
-.marquee-speed-control input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  background: var(--accent);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.marquee-speed-control input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.marquee-speed-control input[type="range"]::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: var(--accent);
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.marquee-speed-control input[type="range"]::-moz-range-thumb:hover {
-  transform: scale(1.2);
-}
-
 /* --- (1) SHARED FLOATING STYLE (Main) --- */
 .search-floating-container,
 #layar-kosong-header {
@@ -598,11 +457,6 @@ margin: 30px 0;
 
 /* Navigasi bawaan Mas Rijal */
 @media (max-width: 768px) {
-  /* Sembunyikan marquee speed control di tablet/mobile */
-  .marquee-speed-control {
-    display: none;
-  }
-
   .floating-nav {
     left: 10px;
     right: 10px;
@@ -691,82 +545,66 @@ margin: 30px 0;
 
 /* --- DARK MODE FIX --- */
 /* --- (1) SEARCH INPUT --- */
-.dark #floatingSearchInput {
-  border-color: rgba(255, 255, 255, 0.2);
-  background-color: rgba(30, 30, 30, 0.85); /* Warna Acuan */
-  color: #f5f5f5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbb' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+#floatingSearchInput {
+border-color: rgba(255, 255, 255, 0.2);
+background-color: rgba(30, 30, 30, 0.85); /* Warna Acuan */
+color: #f5f5f5;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbb' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* --- (2) LAYAR KOSONG HEADER (Samain warnanya) --- */
-.dark #layar-kosong-header {
-  background-color: rgba(30, 30, 30, 0.85); /* Disamakan */
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+#layar-kosong-header {
+background-color: rgba(30, 30, 30, 0.85); /* Disamakan */
+border-color: rgba(255, 255, 255, 0.1);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-.dark #layar-kosong-header:hover {
-  background-color: rgba(45, 45, 45, 0.95); /* Sedikit lebih terang pas hover */
-  border-color: #00b0ed;
+#layar-kosong-header:hover {
+background-color: rgba(45, 45, 45, 0.95); /* Sedikit lebih terang pas hover */
+border-color: #00b0ed;
 }
 
-.dark #layar-kosong-header::after {
-  color: #f5f5f5;
+#layar-kosong-header::after {
+color: #f5f5f5;
 }
 
-.dark #layar-kosong-header::before {
-  filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
+#layar-kosong-header::before {
+filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
 }
 
 /* --- (3) SEARCH RESULTS CONTAINER --- */
-.dark .floating-results-container {
+.floating-results-container {
   background: rgba(25, 25, 25, 0.95);
   color: #f5f5f5;
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.dark .floating-results-container a {
+.floating-results-container a {
   color: #f5f5f5;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.dark .floating-results-container a:hover {
+.floating-results-container a:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-.dark .floating-results-container a small {
+.floating-results-container a small {
   color: #bbb;
 }
 
-.dark .clear-button {
+.clear-button {
   color: #bbb;
 }
 
-.dark .clear-button:hover {
+.clear-button:hover {
   color: #fff;
 }
 
-.dark .floating-results-container .no-results {
+.floating-results-container .no-results {
   color: #ff6b6b;
   text-align: center;
   padding: 14px;
   font-size: 14px;
-}
-
-/* --- (4) MARQUEE SPEED CONTROL DARK MODE --- */
-.dark .marquee-speed-control {
-  background-color: rgba(30, 30, 30, 0.85);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.dark .marquee-speed-control:hover {
-  background-color: rgba(45, 45, 45, 0.95);
-  border-color: var(--accent);
-}
-
-.dark .marquee-speed-control label {
-  color: #f5f5f5;
 }
