@@ -166,6 +166,8 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 ---
 
+<p align="center"><a href="#readme">(kembali ke awal)</a></p>
+
 <details>
 <summary>⚡ Klik untuk Status Teknis ⚙️</summary>
 
@@ -232,4 +234,4 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 </details>
 
-<p align="center"><a href="#table-of-contents">(kembali ke awal)</a></p>
+<p align="center"><a href="#readme">(kembali ke awal)</a></p>
