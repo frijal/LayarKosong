@@ -166,7 +166,7 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 ---
 
-<p align="center"><a href="#readme">(kembali ke awal)</a></p>
+<p align="center"><a href="#top">(kembali ke awal)</a></p>
 
 <details>
 <summary>⚡ Klik untuk Status Teknis ⚙️</summary>
@@ -232,6 +232,6 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-Yes-blue?logo=openai&logoColor=white)](#readme)
 [![Copilot](https://img.shields.io/badge/Copilot-Yes-purple?logo=github&logoColor=white)](#readme)
 
-</details>
-
 <p align="center"><a href="#top">(kembali ke awal)</a></p>
+
+</details>
