@@ -64,7 +64,7 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
 .search-floating-container {
   right: 20px;
-  width: 150px;
+  width: 174px;
 }
 
 /* --- (3) SEARCH INPUT & INTERACTION --- */
@@ -539,7 +539,7 @@ margin: 30px 0;
   }
 
   .search-floating-container:focus-within {
-    width: 200px;         /* Lebar saat diklik di HP */
+    width: 160px;         /* Lebar saat diklik di HP */
   }
 }
 
