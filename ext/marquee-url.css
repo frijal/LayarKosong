@@ -189,14 +189,6 @@ border-color: #007bff;
   font-weight: bold;
 }
 
-/* Global Link Fix */
-a {
-  color: var(--accent); /* FIXED: previously --accent-color */
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-a:hover { opacity: 0.8; }
-
 /* ========================
  *  4. INTERNAL NAV (DAFTAR ISI)
  *  ======================== */
@@ -554,3 +546,11 @@ border-top: 1px solid var(--border);
   .clear-button { color: #bbb; }
   .clear-button:hover { color: #fff; }
 }
+
+/* Global Link Fix */
+a {
+  color: inherit; /* FIXED: previously --accent-color */
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a:hover { opacity: 0.8; }
