@@ -208,6 +208,7 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 [![npm](https://img.shields.io/badge/npm-Yes-CB3837?logo=npm&logoColor=white)](#readme)
 [![pnpm](https://img.shields.io/badge/pnpm-Yes-F69220?logo=pnpm&logoColor=white)](#readme)
 [![pipx](https://img.shields.io/badge/pipx-Yes-3776AB?logo=python&logoColor=white)](#readme)
+[![Perl](https://img.shields.io/badge/Perl-Yes-808080?logo=perl&logoColor=white)](#readme)
 
 **Format Data:**
 
