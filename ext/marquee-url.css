@@ -11,7 +11,7 @@
   --accent-2: #ffd37a;
   /* Fallback vars jika belum didefinisikan di CSS global */
   --border: rgba(128, 128, 128, 0.2);
-  --bg-card: transparent;
+  --bg-card: inherit;
   --text-main: inherit;
 }
 
