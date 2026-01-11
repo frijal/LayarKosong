@@ -1,6 +1,6 @@
 let allData = [];
 let displayedData = [];
-let heroData = []; // Menyimpan artikel terbaru dari tiap kategori
+let heroData = [];
 let currentHeroIndex = 0;
 let heroTimer;
 let limit = 6;
@@ -12,13 +12,19 @@ async function fetchData() {
 
     allData = [];
 
-    // Flatten data dari kategori JSON
+    // Flatten data & Bersihkan URL
     for (const cat in data) {
       data[cat].forEach(item => {
+        // Logika penghapusan .html ada di sini
+        let cleanUrl = item[1];
+        if (cleanUrl.endsWith('.html')) {
+          cleanUrl = cleanUrl.replace(/\.html$/, '');
+        }
+
         allData.push({
           category: cat,
           title: item[0],
-          url: 'artikel/' + item[1],
+          url: 'artikel/' + cleanUrl, // URL sekarang bersih
           img: item[2],
           date: new Date(item[3]),
                      summary: item[4]
@@ -26,19 +32,18 @@ async function fetchData() {
       });
     }
 
-    // Sort terbaru (berdasarkan tanggal)
     allData.sort((a, b) => b.date - a.date);
     displayedData = [...allData];
 
-    // --- SETUP HERO DATA (1 terbaru per kategori) ---
     const categories = [...new Set(allData.map(item => item.category))];
     heroData = categories.map(cat => allData.find(item => item.category === cat));
 
     initSite();
-    startHeroSlider(); // Jalankan slider otomatis
+    startHeroSlider();
   } catch (e) {
     console.error("Gagal ambil data", e);
-    document.getElementById('newsFeed').innerHTML = "<p>Gagal memuat konten. Pastikan file JSON tersedia.</p>";
+    const feed = document.getElementById('newsFeed');
+    if(feed) feed.innerHTML = "<p>Gagal memuat konten.</p>";
   }
 }
 
