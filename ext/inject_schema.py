@@ -8,6 +8,7 @@ import re
 BASE_URL = "https://dalam.web.id"
 SITE_NAME = "Layar Kosong"
 AUTHOR = "Fakhrul Rijal"
+LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 
 LOGO_URL = f"{BASE_URL}/logo.png"
 WEBSITE_ID = f"{BASE_URL}/#website"
@@ -91,6 +92,7 @@ def build_combined_schema(category, article):
                     "@type": "WebPage",
                     "@id": article_url
                 },
+                "license": LICENSE_URL,
                 "headline": headline,
                 "description": desc,
                 "articleSection": cat_name,
