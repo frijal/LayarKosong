@@ -40,6 +40,34 @@
     });
   }
 
+  // --- DARK MODE INITIALIZATION ---
+  function initDarkMode() {
+    const darkSwitch = document.getElementById('darkSwitch')
+    const saved = localStorage.getItem('darkMode')
+
+    function setDarkMode(isDark) {
+      if (isDark) document.body.classList.add('dark-mode')
+        else document.body.classList.remove('dark-mode')
+          if (darkSwitch) darkSwitch.checked = isDark
+    }
+
+    if (saved !== null) {
+      setDarkMode(saved === 'true')
+    } else {
+      setDarkMode(
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches,
+      )
+    }
+
+    if (darkSwitch) {
+      darkSwitch.addEventListener('change', () => {
+        localStorage.setItem('darkMode', darkSwitch.checked)
+        setDarkMode(darkSwitch.checked)
+      })
+    }
+  }
+
   // --- TITIPAN: PROGRESS BAR ---
   function initProgressBar() {
     const bar = document.getElementById('progress');
@@ -132,8 +160,8 @@
     }
 
     container.innerHTML = hits
-    ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang “<strong>${query}</strong>”</div>`
-    : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata “<strong>${query}</strong>”</div>`;
+    ? `<div style="padding:12px 15px; font-size:14px;">💡 Ada <strong>${hits}</strong> kata tentang "<strong>${query}</strong>"</div>`
+    : `<div style="padding:12px 15px; font-size:14px;">❌ Tidak ditemukan kata "<strong>${query}</strong>"</div>`;
     container.style.display = 'block';
   }
 
@@ -283,6 +311,7 @@
 
   // Panggil fungsinya
   initInternalNav();
+
   // ---------------------------
   // RELATED GRID
   // ---------------------------
@@ -347,7 +376,8 @@
       : `${path.replace(/\/$/, '').split('/').pop()}.html`;
 
       // Panggil semua fungsi
-      initProgressBar(); // <--- Sekarang aktif di sini
+      initDarkMode(); // <--- Dark mode initialization
+      initProgressBar();
       initCategoryMarquee(data, current);
       initRelatedGrid(data, current);
       initFloatingSearch(data);

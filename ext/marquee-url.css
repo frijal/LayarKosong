@@ -2,27 +2,27 @@
  *   FILE: /ext/marquee-url.css
  *   Versi Final — Marquee, Floating Search & Floating Nav */
 /*========================================================== */
+
 :root {
   /* Warna identitas baru Layar Kosong */
   --accent: #00b0ed;
-  /* Warna aksen kedua untuk gradasi (bisa tetap pakai warna lama atau sesuaikan) */
+  /* Warna aksen kedua untuk gradasi */
   --accent-2: #ffd37a;
 }
-/* ======================== */
+
+/* =================== PROGRESS BAR =================== */
 #progress {
 position: fixed;
 top: 0;
 left: 0;
-height: 4px; /* Sedikit lebih tebal biar gradasinya kelihatan */
+height: 4px;
 width: 0%;
-/* Pakai linear-gradient biar tetap estetik seperti sebelumnya */
 background: linear-gradient(90deg, var(--accent), var(--accent-2));
 z-index: 10000;
 transition: width 0.15s ease-out;
 pointer-events: none;
 }
 
-/* Biar makin cakep, kita kasih efek cahaya di ujung bar-nya */
 #progress::after {
 content: '';
 position: absolute;
@@ -34,9 +34,9 @@ background: var(--accent-2);
 box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 }
 
-/* =================== */
+/* =================== FLOATING CONTAINERS =================== */
 
-/* --- (1) SHARED FLOATING STYLE (Main) --- */
+/* --- SHARED FLOATING STYLE (Main) --- */
 .search-floating-container,
 #layar-kosong-header {
 position: fixed;
@@ -49,7 +49,7 @@ box-sizing: border-box;
 transition: all 0.3s ease-in-out;
 }
 
-/* --- (2) SPECIFIC POSITIONS --- */
+/* --- SPECIFIC POSITIONS --- */
 #layar-kosong-header {
 left: 20px;
 padding: 0 18px 0 12px;
@@ -67,7 +67,7 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   width: 174px;
 }
 
-/* --- (3) SEARCH INPUT & INTERACTION --- */
+/* --- SEARCH INPUT & INTERACTION --- */
 #floatingSearchInput {
 width: 100%;
 height: 44px;
@@ -85,10 +85,15 @@ color: #111;
 transition: border-color 0.3s, background-color 0.3s;
 }
 
-.search-floating-container:focus-within { width: 300px; }
-#floatingSearchInput:focus { border-color: #007bff; }
+.search-floating-container:focus-within {
+  width: 300px;
+}
 
-/* --- (4) STICKY HEADER CONTENT (Logo & Text) --- */
+#floatingSearchInput:focus {
+border-color: #007bff;
+}
+
+/* --- STICKY HEADER CONTENT (Logo & Text) --- */
 #layar-kosong-header:hover {
 border-color: #00b0ed;
 background-color: rgba(255, 255, 255, 0.95);
@@ -112,7 +117,7 @@ color: #111;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* --- (5) SEARCH RESULTS & UI --- */
+/* --- SEARCH RESULTS & UI --- */
 .floating-results-container {
   display: none;
   position: absolute;
@@ -142,8 +147,15 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   text-overflow: ellipsis;
 }
 
-.floating-results-container a:hover { background-color: #f5f5f5; }
-.floating-results-container a small { display: block; color: #777; font-size: 12px; }
+.floating-results-container a:hover {
+  background-color: #f5f5f5;
+}
+
+.floating-results-container a small {
+  display: block;
+  color: #777;
+  font-size: 12px;
+}
 
 .clear-button {
   display: none;
@@ -162,10 +174,85 @@ a {
   text-decoration: none;
   transition: all 0.2s ease;
 }
-a:hover { opacity: 0.8; text-decoration: none; }
-a:link, a:visited, a:hover, a:active { text-decoration: none; }
 
-/* --- (6) INTERNAL NAV (Daftar Isi) - Clean Text, Multi-line & Left Hover --- */
+a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+
+/* --- Toggle Switch Dark Mode --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 26px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted-light);
+  flex-shrink: 0;
+}
+
+body.dark-mode .switch-label {
+  color: var(--text-muted-dark);
+}
+
+/* Positioning untuk switch */
+.controls {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  transform: translateX(-50%);
+  z-index: 1002;
+  display: flex;
+  align-items: center;
+}
+
+/* =================== INTERNAL NAV (Daftar Isi) =================== */
+
 #internal-nav {
 position: fixed;
 top: 80px;
@@ -200,25 +287,20 @@ gap: 10px;
 display: block;
 width: 100%;
 pointer-events: auto;
-
 padding: 2px 0;
 font-size: 13px;
 font-weight: 500;
 color: inherit;
 text-decoration: none;
-
 white-space: normal;
 word-wrap: break-word;
 overflow: visible;
-
-/* Transisi halus untuk pergerakan ke kiri */
 transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Hover State - BERGERAK KE KIRI */
 #internal-nav .nav-link:hover {
 color: var(--accent);
-/* Nilai negatif (-) untuk arah kiri */
 transform: translateX(-8px);
 font-weight: 700;
 }
@@ -230,11 +312,25 @@ font-size: 14px;
 color: inherit;
 margin-bottom: 5px;
 }
-#internal-nav .nav-h2 { margin-left: 12px; }
-#internal-nav .nav-h3 { margin-left: 24px; font-size: 12px; opacity: 0.8; }
-#internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; opacity: 0.6; }
 
-/* --- (1) MARQUEE ARTIKEL TERKAIT --- */
+#internal-nav .nav-h2 {
+margin-left: 12px;
+}
+
+#internal-nav .nav-h3 {
+margin-left: 24px;
+font-size: 12px;
+opacity: 0.8;
+}
+
+#internal-nav .nav-h4 {
+margin-left: 36px;
+font-size: 11px;
+opacity: 0.6;
+}
+
+/* =================== MARQUEE ARTIKEL TERKAIT =================== */
+
 #related-marquee-section {
 position: fixed;
 bottom: 0;
@@ -290,7 +386,8 @@ font-weight: 700;
   100% { transform: translateX(-50%); }
 }
 
-/* --- (3) FLOATING NAV --- */
+/* =================== FLOATING NAV =================== */
+
 .floating-nav {
   position: fixed;
   bottom: 45px;
@@ -342,10 +439,10 @@ a.category-link.visible {
   transform: scale(1.2);
 }
 
-/* --- RELATED POST --- */
+/* =================== RELATED ARTICLES GRID =================== */
+
 #related-articles-grid {
 display: grid;
-/* Desktop 2 kolom, Mobile otomatis 1 kolom */
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 15px;
 margin: 30px 0;
@@ -361,54 +458,12 @@ border-top: 1px solid var(--border);
   text-decoration: none;
   padding: 10px;
   border-radius: 10px;
-  font-family: inherit; /* Font sama dengan body */
-  background: var(--card-bg, var(--bg-card, transparent));
-  color: var(--text, var(--text-main, inherit));
   border: 1px solid var(--border);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-/* --- BINGKAI GAMBAR (UKURAN TETAP) --- */
-.rel-img-mini {
-  flex: 0 0 85px; /* Ngunci lebar */
-  height: 65px;   /* Ngunci tinggi */
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--border);
-}
-
-.rel-img-mini img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Gambar mengecil & rapi di dalam kotak */
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-/* --- TEXT/JUDUL --- */
-/* --- CONTAINER (2 KOLOM DESKTOP) --- */
-#related-articles-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 15px;
-margin: 30px 0;
-}
-
-/* --- ITEM CARD --- */
-.rel-card-mini a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  /* SEMUA INHERIT */
   font-family: inherit;
   color: inherit;
   background: var(--card-bg, transparent);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 /* --- GAMBAR (TETAP DIKUNCI SIZE-NYA) --- */
@@ -417,6 +472,7 @@ margin: 30px 0;
   height: 65px;
   border-radius: 8px;
   overflow: hidden;
+  background: var(--border);
 }
 
 .rel-img-mini img {
@@ -430,14 +486,11 @@ margin: 30px 0;
 /* --- JUDUL (VERSI FULL INHERIT) --- */
 .rel-info-mini h4 {
   margin: 0;
-  /* Nyopet gaya tulisan dari induknya secara total */
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
   color: inherit;
-
-  /* Cuma kunci di barisnya aja biar gak luber */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -455,23 +508,95 @@ margin: 30px 0;
   transform: scale(1.1);
 }
 
-/* Navigasi bawaan Mas Rijal */
+/* =================== DARK MODE STYLES =================== */
+
+/* --- SEARCH INPUT DARK MODE --- */
+body.dark-mode #floatingSearchInput {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(30, 30, 30, 0.85);
+  color: #f5f5f5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbb' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* --- LAYAR KOSONG HEADER DARK MODE --- */
+body.dark-mode #layar-kosong-header {
+  background-color: rgba(30, 30, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode #layar-kosong-header:hover {
+  background-color: rgba(45, 45, 45, 0.95);
+  border-color: #00b0ed;
+}
+
+body.dark-mode #layar-kosong-header::after {
+  color: #f5f5f5;
+}
+
+body.dark-mode #layar-kosong-header::before {
+  filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
+}
+
+/* --- SEARCH RESULTS CONTAINER DARK MODE --- */
+body.dark-mode .floating-results-container {
+  background: rgba(25, 25, 25, 0.95);
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .floating-results-container a {
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .floating-results-container a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .floating-results-container a small {
+  color: #bbb;
+}
+
+body.dark-mode .clear-button {
+  color: #bbb;
+}
+
+body.dark-mode .clear-button:hover {
+  color: #fff;
+}
+
+body.dark-mode .floating-results-container .no-results {
+  color: #ff6b6b;
+  text-align: center;
+  padding: 14px;
+  font-size: 14px;
+}
+
+/* =================== RESPONSIVE DESIGN =================== */
+
 @media (max-width: 768px) {
   .floating-nav {
     left: 10px;
     right: 10px;
     bottom: 40px;
   }
+
   .nav-right {
     gap: 8px;
   }
+
   .btn-emoji {
     font-size: 1.8rem;
   }
+
   a.category-link {
     font-size: 12px;
     padding: 6px 12px;
   }
+
   #related-articles-grid {
   grid-template-columns: 1fr !important;
   gap: 12px;
@@ -489,26 +614,36 @@ margin: 30px 0;
     flex: 0 0 75px;
     height: 55px;
   }
+
   #internal-nav {
   display: none !important;
   }
 }
-/* =================== */
+
 @media (max-width: 600px) {
   #related-articles-grid {
-  grid-template-columns: 1fr; /* Jadi satu kolom kalau di layar kecil */
+  grid-template-columns: 1fr;
   gap: 10px;
   }
+
   .rel-img-mini {
     flex: 0 0 70px;
     height: 60px;
   }
+
   .sticky-header .site-name {
     display: none;
   }
-  .container { padding: 25px; margin: 80px auto 10px; }
-  h1 { font-size: 1.8em; }
-  .sticky-header .site-name { display: none; }
+
+  .container {
+    padding: 25px;
+    margin: 80px auto 10px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
   /* Hilangkan teks pada Sticky Header */
   #layar-kosong-header::after {
   display: none;
@@ -516,12 +651,12 @@ margin: 30px 0;
 
   /* Sesuaikan ukuran container header di HP */
   #layar-kosong-header {
-  left: 10px;           /* Lebih mepet ke pinggir di layar kecil */
-  top: 15px;            /* Sedikit lebih naik biar hemat ruang */
-  padding: 0;           /* Hilangkan padding teks */
-  width: 44px;          /* Buat jadi persegi (sama dengan height) */
-  justify-content: center; /* Logo tepat di tengah */
-  border-radius: 50%;   /* Opsional: buat jadi bulat di HP */
+  left: 10px;
+  top: 15px;
+  padding: 0;
+  width: 44px;
+  justify-content: center;
+  border-radius: 50%;
   }
 
   /* Hilangkan margin kanan logo karena teks sudah tidak ada */
@@ -535,76 +670,10 @@ margin: 30px 0;
   .search-floating-container {
     right: 10px;
     top: 15px;
-    width: 150px;         /* Perkecil lebar search bar di HP */
+    width: 150px;
   }
 
   .search-floating-container:focus-within {
-    width: 160px;         /* Lebar saat diklik di HP */
+    width: 160px;
   }
-}
-
-/* --- DARK MODE FIX --- */
-/* --- (1) SEARCH INPUT --- */
-#floatingSearchInput {
-border-color: rgba(255, 255, 255, 0.2);
-background-color: rgba(30, 30, 30, 0.85); /* Warna Acuan */
-color: #f5f5f5;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbb' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* --- (2) LAYAR KOSONG HEADER (Samain warnanya) --- */
-#layar-kosong-header {
-background-color: rgba(30, 30, 30, 0.85); /* Disamakan */
-border-color: rgba(255, 255, 255, 0.1);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-#layar-kosong-header:hover {
-background-color: rgba(45, 45, 45, 0.95); /* Sedikit lebih terang pas hover */
-border-color: #00b0ed;
-}
-
-#layar-kosong-header::after {
-color: #f5f5f5;
-}
-
-#layar-kosong-header::before {
-filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
-}
-
-/* --- (3) SEARCH RESULTS CONTAINER --- */
-.floating-results-container {
-  background: rgba(25, 25, 25, 0.95);
-  color: #f5f5f5;
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-.floating-results-container a {
-  color: #f5f5f5;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.floating-results-container a:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.floating-results-container a small {
-  color: #bbb;
-}
-
-.clear-button {
-  color: #bbb;
-}
-
-.clear-button:hover {
-  color: #fff;
-}
-
-.floating-results-container .no-results {
-  color: #ff6b6b;
-  text-align: center;
-  padding: 14px;
-  font-size: 14px;
 }
