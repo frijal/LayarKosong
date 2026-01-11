@@ -40,34 +40,6 @@
     });
   }
 
-  // --- DARK MODE INITIALIZATION ---
-  function initDarkMode() {
-    const darkSwitch = document.getElementById('darkSwitch')
-    const saved = localStorage.getItem('darkMode')
-
-    function setDarkMode(isDark) {
-      if (isDark) document.body.classList.add('dark-mode')
-        else document.body.classList.remove('dark-mode')
-          if (darkSwitch) darkSwitch.checked = isDark
-    }
-
-    if (saved !== null) {
-      setDarkMode(saved === 'true')
-    } else {
-      setDarkMode(
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches,
-      )
-    }
-
-    if (darkSwitch) {
-      darkSwitch.addEventListener('change', () => {
-        localStorage.setItem('darkMode', darkSwitch.checked)
-        setDarkMode(darkSwitch.checked)
-      })
-    }
-  }
-
   // --- TITIPAN: PROGRESS BAR ---
   function initProgressBar() {
     const bar = document.getElementById('progress');
@@ -376,7 +348,6 @@
       : `${path.replace(/\/$/, '').split('/').pop()}.html`;
 
       // Panggil semua fungsi
-      initDarkMode(); // <--- Dark mode initialization
       initProgressBar();
       initCategoryMarquee(data, current);
       initRelatedGrid(data, current);
