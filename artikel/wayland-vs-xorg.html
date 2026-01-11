@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Panduan lengkap perbandingan Wayland vs X11 untuk Linux. Pelajari perbedaan, kelebihan, kekurangan, dan mengapa Wayland menjadi future dari Linux graphics stack.">
     <meta name="keywords" content="Wayland, X11, X.Org, Linux Display Server, Graphics Stack, Linux Desktop, Comparison">
     <meta name="news_keywords" content="Wayland, X11, Linux Graphics, Display Server, Desktop Environment">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta property="article:published_time" content="2026-01-05T00:00:00+07:00">
-    <meta property="article:author" content="Fakhrul Rijal">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Wayland vs X11: Mana yang Lebih Baik untuk Linux?">
+    
+    
+    
+    
+    
     <meta property="og:description" content="Perbandingan mendalam antara Wayland dan X11, memahami perbedaan teknis, kelebihan, kekurangan, dan masa depan display server di Linux.">
-    <meta property="og:url" content="https://dalam.web.id/artikel/wayland-vs-xorg.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/G-XB2QVasAkHVt6.jpg">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Wayland vs X11: Mana yang Lebih Baik untuk Linux?">
+    
+    
+    
+    
+    
     <meta name="twitter:description" content="Dive deep ke perbandingan Wayland vs X11 - architecture, performance, security, dan masa depan Linux graphics.">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/G-XB2QVasAkHVt6.jpg">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="theme-color" content="#2E3440">
-    <link rel="canonical" href="https://dalam.web.id/artikel/wayland-vs-xorg.html">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/ext/fontawesome.css">
     <title>Wayland vs X11: Mana yang Lebih Baik untuk Linux?</title>
     <style>
         * {
@@ -688,11 +686,40 @@
             }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/wayland-vs-xorg">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/wayland-vs-xorg">
+    <meta property="og:title" content="Wayland vs X11: Mana yang Lebih Baik untuk Linux?">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-XB2QVasAkHVt6.webp">
+    <meta property="og:image:alt" content="Wayland vs X11: Mana yang Lebih Baik untuk Linux?">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-XB2QVasAkHVt6.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-XB2QVasAkHVt6.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
     <header>
         <div class="container">
             <h1><span class="emoji">🖥️</span>Wayland vs X11: Mana yang Lebih Baik untuk Linux?</h1>
+<div id="iposbrowser"></div>
             <div class="header-meta">
                 <span><i class="fas fa-calendar-alt"></i> 5 Januari 2026</span>
                 <span><i class="fas fa-user"></i> Fakhrul Rijal</span>
@@ -750,7 +777,7 @@
                 <h3><i class="fas fa-check"></i> Kelebihan X11</h3>
 
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Stability & Maturity</h4>
+                    <h4><i class="fas fa-check-circle"></i> Stability &amp; Maturity</h4>
                     <p>
                         X11 sudah ada puluhan tahun dan sangat stabil. Ini adalah yang most tested dan battle-hardened display server di Linux. Jika kamu jalankan X11, kamu tahu apa yang bakal kamu dapat - reliability yang proven.
                     </p>
@@ -808,7 +835,7 @@
                 </div>
 
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> High-DPI & Multi-Monitor Struggles</h4>
+                    <h4><i class="fas fa-times-circle"></i> High-DPI &amp; Multi-Monitor Struggles</h4>
                     <p>
                         X11 tidak native support high-DPI displays dan handling untuk multi-monitor setups bisa inconsistent. Scaling menjadi complicated dan seringkali applications tidak scale correctly.
                     </p>
@@ -1029,7 +1056,7 @@
                     <h4><i class="fas fa-rocket"></i> Wayland</h4>
                     <ul>
                         <li>Modern, clean architecture</li>
-                        <li>Better performance & efficiency</li>
+                        <li>Better performance &amp; efficiency</li>
                         <li>Strong security model</li>
                         <li>Native high-DPI support</li>
                         <li>Future-oriented design</li>
@@ -1131,7 +1158,7 @@
                 </p>
             </div>
 
-            <h3><i class="fas fa-code"></i> Untuk Developers & Sysadmins</h3>
+            <h3><i class="fas fa-code"></i> Untuk Developers &amp; Sysadmins</h3>
             <div class="feature-card">
                 <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Depends on Workflow</h4>
                 <p>
@@ -1155,7 +1182,7 @@
                 </p>
             </div>
 
-            <h3><i class="fa-brands fa-accessible-icon"></i></i> Untuk Accessibility Needs</h3>
+            <h3><i class="fa-brands fa-accessible-icon"></i> Untuk Accessibility Needs</h3>
             <div class="feature-card">
                 <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Check Compatibility</h4>
                 <p>
@@ -1219,7 +1246,7 @@
 ↓ (X Protocol over Network/IPC)
 X.Org Server (Display Server)
 ↓ (Direct Hardware Access)
-GPU & Display Hardware
+GPU &amp; Display Hardware
 </code>
 </div>
 <p>
@@ -1249,11 +1276,11 @@ GPU & Display Hardware
                 <li>Compositor punya complete control over what each app bisa access</li>
                 <li>Better isolation dan security</li>
             </ul>
-        </section>
+        </code></div></section><code>
 
         <!-- Common Questions -->
         <section>
-            <h2><i class="fas fa-comments"></i> Pertanyaan Umum & Jawaban</h2>
+            <h2><i class="fas fa-comments"></i> Pertanyaan Umum &amp; Jawaban</h2>
 
             <h3><i class="fas fa-question"></i> Q: Bisakah aku run both X11 dan Wayland di komputer yang sama?</h3>
             <div class="info-box">
@@ -1290,7 +1317,7 @@ GPU & Display Hardware
                 </p>
             </div>
         </section>
-            <img src="https://pbs.twimg.com/media/G-XB2QVasAkHVt6.jpg" alt="Wayland vs X11 Display Server Architecture">
+            <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-XB2QVasAkHVt6.webp" alt="Wayland vs X11 Display Server Architecture">
             <div class="image-caption">Perbandingan visual architecture antara X11 client-server model dan Wayland compositor direct model</div>
         <!-- Conclusion -->
         <section>
@@ -1318,8 +1345,8 @@ GPU & Display Hardware
         <!-- Comments Section -->
         <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
-    </article>
-</div>
+    </code></article><code>
+</code></div><code>
 
 <!-- Footer -->
 <footer>
@@ -1372,7 +1399,7 @@ GPU & Display Hardware
 </div>
 <div class="footer-bottom">
             <p>
-                © 2026 <a href="https://dalam.web.id">Layar Kosong</a> - Dibuat dengan <i class="fas fa-heart"></i> oleh <a href="https://www.linkedin.com/in/frijal">Fakhrul Rijal</a>
+                🄯 2026 <a href="https://dalam.web.id">Layar Kosong</a> - Dibuat dengan <i class="fas fa-heart"></i> oleh <a href="https://www.linkedin.com/in/frijal">Fakhrul Rijal</a>
             </p>
             <p style="margin-top: 10px; font-size: 0.85rem;">
                 Catatan: Semua views dan opinions dalam blog ini adalah personal dan tidak mewakili organisasi apapun.
@@ -1381,5 +1408,9 @@ GPU & Display Hardware
     </div>
 </footer>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</code></body></html>
