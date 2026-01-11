@@ -1,0 +1,66 @@
+name: Cleanup Old GitHub Actions Cache
+
+on:
+  schedule:
+    - cron: "0 0 */6 * *" # setiap hari jam 03:00 UTC
+  workflow_dispatch: # bisa dijalankan manual
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cleanup caches older than 7 days
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DAYS: 7
+        run: |
+          set -e
+
+          NOW=$(date +%s)
+          LIMIT=$((DAYS * 86400))
+
+          echo "Fetching caches for $REPO"
+          PAGE=1
+
+          while :; do
+            RESPONSE=$(gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/$REPO/actions/caches?per_page=100&page=$PAGE")
+
+            COUNT=$(echo "$RESPONSE" | jq '.actions_caches | length')
+
+            if [ "$COUNT" -eq 0 ]; then
+              break
+            fi
+
+            echo "$RESPONSE" | jq -c '.actions_caches[]' | while read CACHE; do
+              ID=$(echo "$CACHE" | jq -r '.id')
+              KEY=$(echo "$CACHE" | jq -r '.key')
+              CREATED=$(echo "$CACHE" | jq -r '.created_at')
+
+              CREATED_TS=$(date -d "$CREATED" +%s)
+              AGE=$((NOW - CREATED_TS))
+
+              if [ "$AGE" -gt "$LIMIT" ]; then
+                echo "Deleting cache:"
+                echo "  ID   : $ID"
+                echo "  KEY  : $KEY"
+                echo "  AGE  : $((AGE / 86400)) days"
+
+                gh api \
+                  -X DELETE \
+                  -H "Accept: application/vnd.github+json" \
+                  "/repos/$REPO/actions/caches/$ID"
+              fi
+            done
+
+            PAGE=$((PAGE + 1))
+          done
+
+          echo "Cache cleanup completed."
