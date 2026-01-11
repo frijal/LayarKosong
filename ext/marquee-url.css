@@ -1,6 +1,6 @@
 /* ==========================================================
  * FILE: /ext/marquee-url.css
- * Versi Final (Refactored) — Marquee, Floating Search & Floating Nav
+ * Versi Final (Dark Mode Fixed) — Marquee, Floating Search & Floating Nav
  * Updated: 2026-01-11
  * ========================================================== */
 
@@ -9,15 +9,15 @@
   --accent: #00b0ed;
   /* Warna aksen kedua */
   --accent-2: #ffd37a;
-  /* Fallback vars jika belum didefinisikan di CSS global */
+  /* Default Light Mode Vars */
   --border: rgba(128, 128, 128, 0.2);
-  --bg-card: inherit;
-  --text-main: inherit;
+  --bg-card: #ffffff;      /* Diubah dari inherit ke putih eksplisit */
+  --text-main: #212529;    /* Diubah dari inherit ke hitam eksplisit */
 }
 
 /* ========================
- *  1. PROGRESS BAR
- *  ======================== */
+ * 1. PROGRESS BAR
+ * ======================== */
 #progress {
 position: fixed;
 top: 0;
@@ -25,12 +25,11 @@ left: 0;
 height: 4px;
 width: 0%;
 background: linear-gradient(90deg, var(--accent), var(--accent-2));
-z-index: 10002; /* Paling atas */
+z-index: 10002;
 transition: width 0.15s ease-out;
 pointer-events: none;
 }
 
-/* Efek cahaya di ujung bar */
 #progress::after {
 content: '';
 position: absolute;
@@ -43,13 +42,13 @@ box-shadow: 0 0 10px var(--accent-2), 0 0 5px var(--accent-2);
 }
 
 /* ========================
- *  2. FLOATING HEADER & SEARCH
- *  ======================== */
+ * 2. FLOATING HEADER & SEARCH
+ * ======================== */
 .search-floating-container,
 #layar-kosong-header {
 position: fixed;
 top: 20px;
-z-index: 10001; /* Di bawah progress bar, di atas konten */
+z-index: 10001;
 height: 44px;
 display: flex;
 align-items: center;
@@ -129,8 +128,8 @@ border-color: #007bff;
 }
 
 /* ========================
- *  3. SEARCH RESULTS
- *  ======================== */
+ * 3. SEARCH RESULTS
+ * ======================== */
 .floating-results-container {
   display: none;
   position: absolute;
@@ -190,8 +189,8 @@ border-color: #007bff;
 }
 
 /* ========================
- *  4. INTERNAL NAV (DAFTAR ISI)
- *  ======================== */
+ * 4. INTERNAL NAV (DAFTAR ISI)
+ * ======================== */
 #internal-nav {
 position: fixed;
 top: 80px;
@@ -200,7 +199,7 @@ width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
-color: inherit;
+color: var(--text-main); /* Menggunakan variabel */
 background: transparent;
 pointer-events: none;
 }
@@ -230,7 +229,7 @@ transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 #internal-nav .nav-link:hover {
 color: var(--accent);
-transform: translateX(-8px); /* Gerak ke kiri */
+transform: translateX(-8px);
 font-weight: 700;
 }
 
@@ -241,8 +240,8 @@ font-weight: 700;
 #internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; opacity: 0.6; }
 
 /* ========================
- *  5. MARQUEE & FLOATING NAV (BOTTOM)
- *  ======================== */
+ * 5. MARQUEE & FLOATING NAV (BOTTOM)
+ * ======================== */
 /* Marquee */
 #related-marquee-section {
 position: fixed;
@@ -272,7 +271,7 @@ animation-play-state: paused;
 }
 
 #related-marquee-container a {
-color: inherit;
+color: var(--text-main); /* Menggunakan variabel */
 margin-right: 30px;
 font-weight: 400;
 font-size: 0.85em;
@@ -289,7 +288,7 @@ font-weight: 700;
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Bottom Nav (Kategori & Emoji) */
+/* Floating Bottom Nav */
 .floating-nav {
   position: fixed;
   bottom: 45px;
@@ -319,6 +318,7 @@ a.category-link {
   font-size: 14px;
   font-weight: 600;
   transition: opacity 0.5s ease, transform 0.5s ease;
+  color: var(--text-main);
 }
 
 a.category-link.visible {
@@ -338,9 +338,8 @@ a.category-link.visible {
 }
 
 /* ========================
- *  6. RELATED ARTICLES GRID
- *  (Merged & Cleaned Up)
- *  ======================== */
+ * 6. RELATED ARTICLES GRID
+ * ======================== */
 #related-articles-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -359,12 +358,11 @@ border-top: 1px solid var(--border);
   border-radius: 10px;
   border: 1px solid var(--border);
   font-family: inherit;
-  background: var(--bg-card, transparent);
-  color: var(--text-main, inherit);
+  background: var(--bg-card); /* Menggunakan variabel */
+  color: var(--text-main); /* Menggunakan variabel */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Bingkai Gambar */
 .rel-img-mini {
   flex: 0 0 85px;
   height: 65px;
@@ -381,7 +379,6 @@ border-top: 1px solid var(--border);
   transition: transform 0.5s ease;
 }
 
-/* Judul Info */
 .rel-info-mini h4 {
   margin: 0;
   font-family: inherit;
@@ -399,110 +396,70 @@ border-top: 1px solid var(--border);
 .rel-card-mini a:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
-  background: var(--bg-hover, rgba(0,0,0,0.02));
+  background: rgba(0,0,0,0.02);
 }
 
 .rel-card-mini a:hover .rel-img-mini img {
   transform: scale(1.1);
 }
 
+/* Global Link Fix */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a:hover { opacity: 0.8; }
+
 /* ========================
- *  7. RESPONSIVE (MEDIA QUERIES)
- *  ======================== */
-/* Tablet & Small Desktop (Max 768px) */
+ * 7. RESPONSIVE (MEDIA QUERIES)
+ * ======================== */
 @media (max-width: 768px) {
-  .floating-nav {
-    left: 10px;
-    right: 10px;
-    bottom: 40px;
-  }
+  .floating-nav { left: 10px; right: 10px; bottom: 40px; }
   .nav-right { gap: 8px; }
   .btn-emoji { font-size: 1.8rem; }
-
-  a.category-link {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  /* Grid Related Post jadi 1 kolom */
-  #related-articles-grid {
-  grid-template-columns: 1fr !important;
-  gap: 12px;
-  }
+  a.category-link { font-size: 12px; padding: 6px 12px; }
+  #related-articles-grid { grid-template-columns: 1fr !important; gap: 12px; }
   .rel-card-mini a { padding: 8px; }
   .rel-info-mini h4 { font-size: 0.9rem; }
-  .rel-img-mini {
-    flex: 0 0 75px;
-    height: 55px;
-  }
-
-  /* Sembunyikan TOC di Mobile */
-  #internal-nav {
-  display: none !important;
-  }
+  .rel-img-mini { flex: 0 0 75px; height: 55px; }
+  #internal-nav { display: none !important; }
 }
 
-/* Mobile Small (Max 600px) */
 @media (max-width: 600px) {
-  .rel-img-mini {
-    flex: 0 0 70px;
-    height: 60px;
-  }
-
-  .container {
-    padding: 25px;
-    margin: 80px auto 10px;
-  }
-
+  .rel-img-mini { flex: 0 0 70px; height: 60px; }
+  .container { padding: 25px; margin: 80px auto 10px; }
   h1 { font-size: 1.8em; }
-
-  /* Header Transformations untuk HP */
   #layar-kosong-header {
-  left: 10px;
-  top: 15px;
-  padding: 0;
-  width: 44px; /* Jadi kotak/bulat */
-  justify-content: center;
-  border-radius: 50%;
+  left: 10px; top: 15px; padding: 0; width: 44px; justify-content: center; border-radius: 50%;
   }
-
-  /* Hilangkan teks nama situs */
   #layar-kosong-header::after { display: none; }
-  .sticky-header .site-name { display: none; }
-
-  /* Logo adjustment */
-  #layar-kosong-header::before {
-  margin-right: 0;
-  width: 26px;
-  height: 26px;
-  }
-
-  /* Search Bar Adjustment */
-  .search-floating-container {
-    right: 10px;
-    top: 15px;
-    width: 150px;
-  }
-  .search-floating-container:focus-within {
-    width: 160px;
-  }
+  #layar-kosong-header::before { margin-right: 0; width: 26px; height: 26px; }
+  .search-floating-container { right: 10px; top: 15px; width: 150px; }
+  .search-floating-container:focus-within { width: 160px; }
 }
 
 /* ========================
- *  8. DARK MODE FIX
- *  (Wajib dibungkus media query atau class)
- *  ======================== */
+ * 8. DARK MODE FIX (CRUCIAL UPDATE)
+ * ======================== */
 @media (prefers-color-scheme: dark) {
-  /* 1. Search Input */
+
+  /* Update Variabel Utama untuk Dark Mode */
+  :root {
+    --bg-card: #1e1e1e;       /* Background kartu gelap */
+    --text-main: #e0e0e0;     /* Text putih terang */
+    --border: rgba(255, 255, 255, 0.1); /* Border transparan putih */
+  }
+
+  /* 1. Header & Search Input */
   #floatingSearchInput {
   border-color: rgba(255, 255, 255, 0.2);
   background-color: rgba(30, 30, 30, 0.85);
-  color: #f5f5f5;
+  color: #f5f5f5; /* Force White */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbb' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 
-  /* 2. Header Logo */
   #layar-kosong-header {
   background-color: rgba(30, 30, 30, 0.85);
   border-color: rgba(255, 255, 255, 0.1);
@@ -514,43 +471,47 @@ border-top: 1px solid var(--border);
   border-color: var(--accent);
   }
 
-  #layar-kosong-header::after {
-  color: #f5f5f5;
-  }
+  #layar-kosong-header::after { color: #f5f5f5; }
+  #layar-kosong-header::before { filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3)); }
 
-  #layar-kosong-header::before {
-  filter: drop-shadow(0 0 2px rgba(0, 176, 237, 0.3));
-  }
-
-  /* 3. Search Results */
+  /* 2. Floating Results */
   .floating-results-container {
     background: rgba(25, 25, 25, 0.95);
     color: #f5f5f5;
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   }
-
   .floating-results-container a {
     color: #f5f5f5;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-
   .floating-results-container a:hover {
     background-color: rgba(255, 255, 255, 0.08);
   }
-
-  .floating-results-container a small {
-    color: #bbb;
-  }
-
+  .floating-results-container a small,
   .clear-button { color: #bbb; }
   .clear-button:hover { color: #fff; }
+
+  /* 3. RELATED ARTICLES GRID (NEW FIX) */
+  .rel-card-mini a {
+    background: rgba(30, 30, 30, 0.5); /* Semi transparan */
+    border-color: var(--border);
+    color: var(--text-main);
+  }
+
+  .rel-card-mini a:hover {
+    background: rgba(255, 255, 255, 0.05); /* Efek hover halus */
+    border-color: var(--accent);
+  }
+
+  /* 4. INTERNAL NAV & MARQUEE (NEW FIX) */
+  #internal-nav .nav-link,
+  #related-marquee-container a,
+  a.category-link {
+    color: #e0e0e0; /* Paksa warna terang */
+  }
+
+  #internal-nav .nav-link:hover {
+  color: var(--accent);
+  }
 }
 
-/* Global Link Fix */
-a {
-  color: inherit; /* FIXED: previously --accent-color */
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-a:hover { opacity: 0.8; }
