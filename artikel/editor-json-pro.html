@@ -7,201 +7,208 @@
     <meta name="news_keywords" content="JSON, Editor, Web Development, Content Management, Tools">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-    :root {
-        --lk-color: #00b0ed;
-        --bg-body: #f8f9fa;
-        --text-main: #212529;
-        --text-muted: #6c757d; /* Tambahan untuk meta text */
-        --card-bg: #ffffff;
-        --border-color: #dee2e6;
-        --input-bg: #ffffff;
-        --modal-overlay: rgba(0,0,0,0.5);
-        --header-bg: rgba(0, 176, 237, 0.1);
-    }
-
-    /* Auto Dark Mode Detection */
-    @media (prefers-color-scheme: dark) {
         :root {
-            --bg-body: #121212;
-            --text-main: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --card-bg: #1e1e1e;
-            --border-color: #333333;
-            --input-bg: #2d2d2d;
-            --modal-overlay: rgba(0,0,0,0.8);
-            --header-bg: rgba(0, 176, 237, 0.15); /* Sedikit lebih terang di dark mode */
+            --lk-color: #00b0ed;
+            --bg-body: #f8f9fa;
+            --text-main: #212529;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --input-bg: #ffffff;
+            --modal-overlay: rgba(0,0,0,0.5);
         }
-    }
+        /* Auto Dark Mode Detection */
 
-    * { box-sizing: border-box; }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        background-color: var(--bg-body);
-        color: var(--text-main); /* Memastikan teks utama mengikuti variabel */
-        margin: 0;
-        padding: 20px;
-        line-height: 1.6;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-    .container {
-        max-width: 1000px; /* Saya beri limit dikit biar gak terlalu lebar di layar gede */
-        padding: 0 15px;
-        margin: 0 auto;
-    }
-
-    /* Memastikan Judul tetap terbaca */
-    h1, h2, h3 { margin-top: 0; color: var(--lk-color); }
-
-    /* Paksa h4 dan label pakai warna main text */
-    h4, .article-details h4, .form-group label {
-        color: var(--text-main);
-    }
-
-    a { color: var(--lk-color); text-decoration: none; }
-
-    .toolbar {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-bottom: 20px;
-        padding: 15px;
-        background: var(--card-bg);
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border: 1px solid var(--border-color);
-    }
-
-    .search-wrapper {
-        flex-grow: 1;
-        position: relative;
-        min-width: 250px;
-    }
-
-    .search-wrapper i {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-muted); /* Pakai variabel biar konsisten */
-    }
-
-    #searchInput {
-        width: 100%;
-        padding: 10px 10px 10px 35px;
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-        background: var(--input-bg);
-        color: var(--text-main);
-        font-size: 1rem;
-    }
-
-    #searchInput:focus { outline: 2px solid var(--lk-color); border-color: transparent; }
-
-    .btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: transform 0.1s, opacity 0.2s;
-        text-decoration: none;
-        font-size: 0.9rem;
-    }
-
-    .btn:active { transform: scale(0.98); }
-    .btn:hover { opacity: 0.9; }
-    .btn-primary { background: var(--lk-color); color: white; }
-    .btn-success { background: #28a745; color: white; }
-    .btn-danger { background: #dc3545; color: white; }
-    .btn-secondary { background: #6c757d; color: white; }
-    .btn-info { background: #17a2b8; color: white; }
-
-    .category-block {
-        background: var(--card-bg);
-        margin-bottom: 20px;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        overflow: hidden;
-    }
-
-    .category-header {
-        padding: 15px 20px;
-        background: var(--header-bg);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .article-item {
-        padding: 15px 20px;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        transition: background 0.2s;
-        background: var(--card-bg); /* Memastikan bg item konsisten */
-    }
-
-    .article-item:last-child { border-bottom: none; }
-
-    /* Efek hover yang bersahabat dengan mode gelap */
-    .article-item:hover {
-        background: rgba(128, 128, 128, 0.05);
-    }
-
-    .article-meta { font-size: 0.85rem; color: var(--text-muted); }
-
-    .article-desc {
-        font-size: 0.9rem;
-        margin-top: 5px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        color: var(--text-main);
-        opacity: 0.85;
-    }
-
-    .modal-content {
-        background: var(--card-bg);
-        color: var(--text-main);
-        padding: 25px;
-        border-radius: 12px;
-        width: 100%;
-        max-width: 600px;
-        max-height: 90vh;
-        overflow-y: auto;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        border: 1px solid var(--border-color);
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
-        background: var(--input-bg);
-        color: var(--text-main);
-    }
-
-    footer {
-        margin-top: 50px;
-        text-align: center;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        padding-bottom: 20px;
-    }
-</style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 { margin-top: 0; color: var(--lk-color); }
+        a { color: var(--lk-color); text-decoration: none; }
+        /* Toolbar Area */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border: 1px solid var(--border-color);
+        }
+        /* Search Box Style */
+        .search-wrapper {
+            flex-grow: 1;
+            position: relative;
+            min-width: 250px;
+        }
+        .search-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 10px 10px 10px 35px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+        #searchInput:focus { outline: 2px solid var(--lk-color); border-color: transparent; }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.1s;
+            text-decoration: none; /* Fix for <a> buttons */
+            font-size: 0.9rem;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background: var(--lk-color); color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-info { background: #17a2b8; color: white; } /* New Color for View */
+        input[type="file"] { display: none; }
+        /* Editor Area */
+        .category-block {
+            background: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .category-header {
+            padding: 15px 20px;
+            background: rgba(0, 176, 237, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .article-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .article-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: background 0.2s;
+        }
+        .article-item:last-child { border-bottom: none; }
+        .article-item:hover { background: rgba(0,0,0,0.02); }
+        .article-thumb {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #ccc;
+            flex-shrink: 0;
+        }
+        .article-details {
+            flex: 1;
+            min-width: 0; /* Fix flex overflow text */
+        }
+        .article-details h4 { margin: 0 0 5px 0; font-size: 1rem; }
+        .article-meta { font-size: 0.85rem; opacity: 0.7; }
+        .article-desc { font-size: 0.9rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: 0.8; }
+        .action-group {
+            display: flex;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--modal-overlay);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
+        /* Narrative Section */
+        .narrative {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border: 1px solid var(--border-color);
+        }
+        .narrative p { margin-bottom: 15px; }
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+            padding-bottom: 20px;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .search-wrapper { width: 100%; margin: 10px 0; order: 2; }
+            #statusText { order: 3; text-align: center; margin: 10px 0 0 0; }
+            .article-item { flex-direction: column; }
+            .article-thumb { width: 100%; height: 150px; }
+            .action-group { width: 100%; justify-content: flex-end; margin-top: 10px; }
+        }
+    </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/artikel/editor-json-pro#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/editor-json-pro"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Editor Artikel JSON Pro - Kelola Konten Layar Kosong","description":"Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.","articleSection":"Opini Sosial","keywords":"artikel, editor, json, kelola, konten, kosong, layar, layar kosong, opini sosial, pro","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/editor-json-pro.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-09T01:34:16.813+00:00","dateModified":"2026-01-09T01:34:16.813+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/artikel/editor-json-pro#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Opini Sosial","item":"https://dalam.web.id/artikel/-/opini-sosial/"},{"@type":"ListItem","position":3,"name":"Editor Artikel JSON Pro - Kelola Konten Layar Kosong","item":"https://dalam.web.id/artikel/editor-json-pro"}]}]}</script>
     <link rel="canonical" href="https://dalam.web.id/artikel/editor-json-pro">
