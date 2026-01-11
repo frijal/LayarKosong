@@ -129,6 +129,7 @@ async function fixSEO() {
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
     head.append(`\n    <meta name="googlebot" content="max-image-preview:large">`);
     head.append(`\n    <meta name="theme-color" content="#00b0ed">`); // Warna khas Layar Kosong
+    head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
 
     // Social Presence & Creators
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
