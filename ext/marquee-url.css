@@ -496,7 +496,8 @@ a:hover { opacity: 0.8; }
   .rel-card-mini a {
     background: rgba(30, 30, 30, 0.5); /* Semi transparan */
     border-color: var(--border);
-    color: var(--text-main);
+    /* color: var(--text-main); */
+    color: inherit;
   }
 
   .rel-card-mini a:hover {
