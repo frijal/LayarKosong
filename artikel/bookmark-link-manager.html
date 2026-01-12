@@ -123,9 +123,7 @@ Klik <em>Export to JSON</em> → Simpan file sebagai
 <code>data.json</code> di folder yang sama.
 </li>
 <li>
-Saat halaman dibuka, sistem otomatis membaca file
-<code>data.json</code> (jika tersedia) dan menampilkan hasilnya lengkap
-dengan fitur <em>Search</em> dan <em>Sort</em>.
+Saat halaman dibuka, sistem otomatis membaca file <code>bookmark.json</code> (jika tersedia) dan menampilkan hasilnya lengkap dengan fitur <em>Search</em> dan <em>Sort</em>.
 </li>
 </ol>
 <p>Karena JavaScript di browser <strong>tidak diizinkan menulis atau membuat file langsung ke folder server</strong> (demi alasan keamanan), maka digunakan mekanisme <strong>Download JSON</strong> sebagai solusinya. Cara ini disebut <strong>Pre-fetching</strong>. Intinya, kita merayap di awal untuk mengambil data (<em>crawl</em>), lalu menyimpan hasilnya ke dalam file <strong>JSON</strong>. Setelah itu, browser hanya perlu membaca file JSON yang ringan tersebut. Hasilnya? Proses jadi jauh lebih cepat dan lebih hemat kuota.</p>
@@ -272,8 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadJson();
 });
 </script>
-  <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-</script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+  <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><<script defer="" src="/ext/marquee-url.js"></script>
+</script></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body>
 </html>
