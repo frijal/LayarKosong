@@ -151,7 +151,7 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
                 url: info.url || url,
                 title: info.title || "No Title",
                 desc: info.description || "No description available.",
-                img: info.image?.url || info.screenshot?.url || '/thumbnail.webp',
+                img: info.image?.url || info.screenshot?.url || 'https://via.placeholder.com/300x160?text=No+Image',
                 favicon: info.logo?.url || `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
                 date: new Date().toISOString()
             };
@@ -179,7 +179,7 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "bookmark.json");
+        downloadAnchorNode.setAttribute("download", "data.json");
         document.body.appendChild(downloadAnchorNode);
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
@@ -189,13 +189,13 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
     async function loadJson() {
         try {
             // Pakai cache breaker (?v=...) supaya browser selalu ambil yang terbaru dari server
-            const response = await fetch('/artikel/bookmark.json?v=' + Date.now());
+            const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error();
             db = await response.json();
             render();
             statusEl.innerText = `📂 Load sukses: ${db.length} link siap ditampilkan.`;
         } catch (e) {
-            statusEl.innerText = "ℹ️ Belum ada bookmark.json di server. Silakan buat dan upload dulu.";
+            statusEl.innerText = "ℹ️ Belum ada data.json di server. Silakan buat dan upload dulu.";
         }
     }
 
@@ -215,7 +215,7 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
 
         linkGrid.innerHTML = filtered.map(item => `
             <a href="${item.url}" target="_blank" class="card">
-                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='/thumbnail.webp'">
+                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
                 <div class="card-body">
                     <div class="card-title">
                         <img src="${item.favicon}" class="favicon" onerror="this.style.display='none'">
