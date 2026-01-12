@@ -507,7 +507,7 @@ a:hover { opacity: 0.8; }
   #internal-nav .nav-link,
   #related-marquee-container a,
   a.category-link {
-    color: #e0e0e0; /* Paksa warna terang */
+    color: inherit /*#e0e0e0 */; /* Paksa warna terang */
   }
 
   #internal-nav .nav-link:hover {
