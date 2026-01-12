@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 765 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 767 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Opini Sosial
 
@@ -148,6 +148,7 @@ Total artikel terindeks: 765 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Sistem Terbuka
 
+- [**7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil &amp; Cepat) 🐧**](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html): 2026-01-12 — Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
 - [**Wayland vs X11: Mana yang Lebih Baik untuk Linux?**](https://dalam.web.id/artikel/wayland-vs-xorg.html): 2026-01-12 — Panduan lengkap perbandingan Wayland vs X11 untuk Linux. Pelajari perbedaan, kelebihan, kekurangan, dan mengapa Wayland menjadi future dari Linux graphics stack.
 - [**KDE Plasma 6.6 – Fitur Terbaru yang Bikin Linux Users Excited!**](https://dalam.web.id/artikel/kde-plasma-6-6.html): 2026-01-12 — Panduan lengkap KDE Plasma 6.6 - fitur terbaru, peningkatan performa, dan mengapa Linux users harus excited tentang update besar ini. Cek tema custom, Wayland improvements, dan gaming support yang lebih baik.
 - [**TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!**](https://dalam.web.id/artikel/tuxsync-migration-assistant-linux.html): 2026-01-03 — Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.
@@ -747,6 +748,7 @@ Total artikel terindeks: 765 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Olah Media
 
+- [**Kode Generator Gambar**](https://dalam.web.id/artikel/kode-generator-gambar.html): 2026-01-12 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
 - [**Kalkulator Rasio dan Dimensi Gambar Otomatis**](https://dalam.web.id/artikel/kalkulator-dimensi-gambar.html): 2026-01-03 — Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!
 - [**Template Excel Gratis &amp; Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️**](https://dalam.web.id/artikel/template-excel-dan-rekomendasi-cmms.html): 2026-01-02 — Daftar template Excel gratis untuk priority matrix &amp; backlog maintenance, plus rekomendasi CMMS terbaik lokal dan internasional buat oil &amp; gas di Indonesia, khusus Balikpapan. Mulai dari Smartsheet sampai HashMicro!
 - [**Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah**](https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html): 2025-12-30 — Panduan praktis batch resize foto menggunakan ImageMagick di Linux dan Windows. Ubah ukuran banyak gambar sekaligus dan simpan hasilnya ke folder terpisah dengan aman.
