@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Basic Metadata -->
+<title>Layar Kosong – Link Manager</title>
+<meta name="description" content="Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.">
+<meta name="keywords" content="Layar Kosong, Link Manager, pre-fetching, crawl data, JSON, hemat kuota, web performance, static data, search sort">
+<meta name="author" content="Layar Kosong">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://dalam.web.id/bookmark-link-manager.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Layar Kosong – Link Manager">
+<meta property="og:description" content="Strategi pre-fetching untuk mengambil data di awal, menyimpannya ke JSON, lalu menampilkannya secara cepat dan hemat kuota dengan fitur pencarian dan sortir.">
+<meta property="og:url" content="https://dalam.web.id/bookmark-link-manager.html">
+<meta property="og:image" content="https://pbs.twimg.com/media/G-eL-WWbUAIe9vu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:locale" content="id_ID">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Layar Kosong – Link Manager">
+<meta name="twitter:description" content="Optimasi web dengan strategi pre-fetching: crawl data sekali, simpan ke JSON, tampilkan cepat, ringan, dan hemat kuota.">
+<meta name="twitter:image" content="https://pbs.twimg.com/media/G-eL-WWbUAIe9vu.jpg">
+<meta name="twitter:site" content="@responaja">
+<meta name="twitter:creator" content="@responaja">
+
+<meta property="article:section" content="Teknologi Web">
+<meta property="article:tag" content="Pre-fetching">
+<meta property="article:tag" content="JSON">
+<meta property="article:tag" content="Web Performance">
+<meta property="article:tag" content="Link Manager">
+
+
+<style>
+:root {
+  --bg: #0b1020; --card: #161b2d; --text: #f9fafb; --accent: #00b0ed; --border: rgba(255,255,255,0.1);
+}
+body {
+  font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text);
+  margin: 0; padding: 20px; line-height: 1.6;
+}
+.container { max-width: 1200px; margin: auto; }
+h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; }
+
+/* Layout Sections */
+section { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid var(--border); }
+
+/* Section 1: Input & Crawler */
+.input-group { display: flex; gap: 10px; }
+input[type="text"], input[type="search"] {
+  flex: 1; padding: 12px 20px; border-radius: 25px; border: 1px solid var(--border);
+  background: #020617; color: white; outline: none;
+}
+input[type="text"]:focus { border-color: var(--accent); }
+button {
+  padding: 10px 25px; border-radius: 25px; border: none; cursor: pointer;
+  font-weight: 600; transition: 0.3s; background: var(--accent); color: white;
+}
+button:hover { opacity: 0.8; transform: translateY(-2px); }
+button.secondary { background: #334155; }
+
+/* Section 2: Controls */
+.controls { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+/* Section 3: Result Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card {
+  background: #0f172a; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border); text-decoration: none; color: inherit;
+  transition: 0.3s; display: flex; flex-direction: column;
+}
+.card:hover { border-color: var(--accent); }
+.card-img { width: 100%; height: 160px; object-fit: cover; background: #222; }
+.card-body { padding: 15px; flex: 1; }
+.card-title { font-size: 16px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.card-desc { font-size: 13px; color: #9ca3af; height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.favicon { width: 16px; height: 16px; }
+
+/* Status & Loading */
+#status { font-size: 13px; margin-top: 10px; color: var(--accent); }
+.badge { background: var(--accent); padding: 2px 8px; border-radius: 10px; font-size: 10px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Layar Kosong Bookmark Link Manager</h2>
+<section>
+<p><strong>Cara Kerja:</strong></p>
+<ol>
+<li>
+Masukkan URL → Klik tombol <em>Crawl</em> → Data hasil crawling akan muncul di antrean.
+</li>
+<li>
+Klik <em>Export to JSON</em> → Simpan file sebagai
+<code>data.json</code> di folder yang sama.
+</li>
+<li>
+Saat halaman dibuka, sistem otomatis membaca file
+<code>data.json</code> (jika tersedia) dan menampilkan hasilnya lengkap
+dengan fitur <em>Search</em> dan <em>Sort</em>.
+</li>
+</ol>
+<p>Karena JavaScript di browser <strong>tidak diizinkan menulis atau membuat file langsung ke folder server</strong> (demi alasan keamanan), maka digunakan mekanisme <strong>Download JSON</strong> sebagai solusinya. Cara ini disebut <strong>Pre-fetching</strong>. Intinya, kita merayap di awal untuk mengambil data (<em>crawl</em>), lalu menyimpan hasilnya ke dalam file <strong>JSON</strong>. Setelah itu, browser hanya perlu membaca file JSON yang ringan tersebut. Hasilnya? Proses jadi jauh lebih cepat dan lebih hemat kuota.</p>
+</section>
+
+<section>
+<div class="input-group">
+<input type="text" id="urlInput" placeholder="Masukkan URL baru (https://...)">
+<button id="crawlBtn">Crawl URL</button>
+</div>
+<div id="status">Ready. Masukkan URL untuk menambah ke database sementara.</div>
+</section>
+
+<section class="controls">
+<input type="search" id="searchInput" placeholder="Cari judul atau deskripsi...">
+<select id="sortSelect" style="padding: 10px; border-radius: 20px; background: #020617; color: white; border: 1px solid var(--border);">
+<option value="newest">Terbaru</option>
+<option value="oldest">Terlama</option>
+<option value="title">Judul (A-Z)</option>
+</select>
+<button class="secondary" id="exportBtn">Export to JSON</button>
+<button class="secondary" id="loadBtn">Load data.json</button>
+</section>
+
+<div id="linkGrid" class="grid">
+</div>
+</div>
+
+<script>
+let db = []; // Database utama di memori
+const urlInput = document.getElementById('urlInput');
+const statusEl = document.getElementById('status');
+const linkGrid = document.getElementById('linkGrid');
+const searchInput = document.getElementById('searchInput');
+
+// --- FUNGSI CRAWL (Section 1) ---
+async function crawlUrl() {
+  const url = urlInput.value.trim();
+  if (!url) return;
+
+  statusEl.innerText = "⏳ Sedang merayap... pelan-pelan...";
+  try {
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const response = await fetch(proxy);
+    const data = await response.json();
+    const html = data.contents;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const getMeta = (prop) =>
+    doc.querySelector(`meta[property="${prop}"]`)?.getAttribute('content') ||
+    doc.querySelector(`meta[name="${prop}"]`)?.getAttribute('content');
+
+    const newEntry = {
+      id: Date.now(),
+      url: url,
+      title: doc.querySelector('title')?.innerText || url,
+      desc: getMeta('description') || getMeta('og:description') || 'No description.',
+      img: getMeta('og:image') || '/thumbnail.webp',
+      favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
+      date: new Date().toISOString()
+    };
+
+    db.unshift(newEntry); // Tambah ke atas
+    render();
+    urlInput.value = '';
+    statusEl.innerText = "✅ Berhasil ditambah! Jangan lupa Export jika sudah selesai.";
+  } catch (e) {
+    statusEl.innerText = "❌ Gagal mengambil data. Pastikan URL benar.";
+  }
+}
+
+// --- FUNGSI EXPORT & LOAD (Section 2) ---
+function exportToJson() {
+  if (db.length === 0) return alert("Database kosong!");
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "bookmark.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+async function loadJson() {
+  try {
+    const response = await fetch('artikel/bookmark.json');
+    if (!response.ok) throw new Error();
+    db = await response.json();
+    render();
+    statusEl.innerText = `📂 Berhasil memuat ${db.length} data dari bookmark.json`;
+  } catch (e) {
+    statusEl.innerText = "ℹ️ bookmark.json tidak ditemukan. Silakan buat atau export dulu.";
+  }
+}
+
+// --- FUNGSI RENDER & SEARCH & SORT (Section 3) ---
+function render() {
+  let filtered = db.filter(item =>
+  item.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+  item.desc.toLowerCase().includes(searchInput.value.toLowerCase())
+  );
+
+  const sortVal = document.getElementById('sortSelect').value;
+  if (sortVal === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
+  if (sortVal === 'oldest') filtered.reverse();
+
+  linkGrid.innerHTML = filtered.map(item => `
+  <a href="${item.url}" target="_blank" class="card">
+  <img src="${item.img}" class="card-img" onerror="this.src='/thumbnail.webp'">
+  <div class="card-body">
+  <div class="card-title">
+  <img src="${item.favicon}" class="favicon">
+  <span>${item.title}</span>
+  </div>
+  <p class="card-desc">${item.desc}</p>
+  <div style="font-size:10px; opacity:0.5; margin-top:10px;">${new URL(item.url).hostname}</div>
+  </div>
+  </a>
+  `).join('');
+}
+
+// Event Listeners
+document.getElementById('crawlBtn').addEventListener('click', crawlUrl);
+document.getElementById('exportBtn').addEventListener('click', exportToJson);
+document.getElementById('loadBtn').addEventListener('click', loadJson);
+searchInput.addEventListener('input', render);
+document.getElementById('sortSelect').addEventListener('change', render);
+
+// Auto load saat buka halaman
+window.onload = loadJson;
+</script>
+
+</body>
+</html>
