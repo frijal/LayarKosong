@@ -22,11 +22,11 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 764 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 765 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Opini Sosial
 
-- [**Menguasai 5W+1H: Rahasia Artikel Berbobot**](https://dalam.web.id/artikel/menguasai-5w1h-penulisan-artikel.html): 2026-01-11 — Pelajari prinsip dasar 5W+1H dalam penulisan artikel untuk menciptakan konten yang jelas, komprehensif, dan SEO-friendly. Panduan lengkap dari Layar Kosong!
+- [**Menguasai 5W+1H: Rahasia Artikel Berbobot**](https://dalam.web.id/artikel/menguasai-5w1h-penulisan-artikel.html): 2026-01-12 — Pelajari prinsip dasar 5W+1H dalam penulisan artikel untuk menciptakan konten yang jelas, komprehensif, dan SEO-friendly. Panduan lengkap dari Layar Kosong!
 - [**Seni Digital Masa Depan Kreativitas di Era Modern**](https://dalam.web.id/artikel/seni-digital-masa-depan-kreativitas.html): 2026-01-10 — Seni Digital: eksplorasi mendalam tentang siapa, apa, kapan, di mana, mengapa, dan bagaimana seni digital membentuk masa depan kreativitas. Narasi lengkap, santai, dan ramah pembaca.
 - [**Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu!**](https://dalam.web.id/artikel/sekolah-jateng-tak-wajib-libur-minggu.html): 2026-01-08 — Pemerintah Provinsi Jawa Tengah menetapkan kalender pendidikan 2025-2026 dengan aturan baru: sekolah boleh tentukan hari libur selain Minggu. Fleksibilitas baru bagi pendidikan di Jawa Tengah. Simak aturan Perkadisdikbud Nomor 400.3.3/07209.
 - [**Wajib Tahu! Mengenal UU KUHP 2026 &amp; Dampaknya bagi Netizen Indonesia**](https://dalam.web.id/artikel/uu-kuhp-2026-netizen-indonesia.html): 2026-01-08 — Pahami UU KUHP Nasional 2026 yang baru berlaku dan bagaimana dampaknya terhadap kebebasan berekspresi, kejahatan digital, serta privasi netizen Indonesia.
@@ -148,8 +148,8 @@ Total artikel terindeks: 764 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Sistem Terbuka
 
-- [**Wayland vs X11: Mana yang Lebih Baik untuk Linux?**](https://dalam.web.id/artikel/wayland-vs-xorg.html): 2026-01-11 — Panduan lengkap perbandingan Wayland vs X11 untuk Linux. Pelajari perbedaan, kelebihan, kekurangan, dan mengapa Wayland menjadi future dari Linux graphics stack.
-- [**KDE Plasma 6.6 – Fitur Terbaru yang Bikin Linux Users Excited!**](https://dalam.web.id/artikel/kde-plasma-6-6.html): 2026-01-11 — Panduan lengkap KDE Plasma 6.6 - fitur terbaru, peningkatan performa, dan mengapa Linux users harus excited tentang update besar ini. Cek tema custom, Wayland improvements, dan gaming support yang lebih baik.
+- [**Wayland vs X11: Mana yang Lebih Baik untuk Linux?**](https://dalam.web.id/artikel/wayland-vs-xorg.html): 2026-01-12 — Panduan lengkap perbandingan Wayland vs X11 untuk Linux. Pelajari perbedaan, kelebihan, kekurangan, dan mengapa Wayland menjadi future dari Linux graphics stack.
+- [**KDE Plasma 6.6 – Fitur Terbaru yang Bikin Linux Users Excited!**](https://dalam.web.id/artikel/kde-plasma-6-6.html): 2026-01-12 — Panduan lengkap KDE Plasma 6.6 - fitur terbaru, peningkatan performa, dan mengapa Linux users harus excited tentang update besar ini. Cek tema custom, Wayland improvements, dan gaming support yang lebih baik.
 - [**TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!**](https://dalam.web.id/artikel/tuxsync-migration-assistant-linux.html): 2026-01-03 — Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.
 - [**🐧 Mencoba Linux Distro Mageia 9 - Review Santai**](https://dalam.web.id/artikel/mageia9-review.html): 2025-12-30 — Review interaktif Mageia 9: pengalaman instalasi, fitur, manajemen paket, galeri, dan tips.
 - [**Implementasi Open Source Software di Hulu Sungai Tengah**](https://dalam.web.id/artikel/hst-oss.html): 2025-12-30 — Kisah sukses migrasi Open Source Software (OSS) di Kabupaten Hulu Sungai Tengah. Dari efisiensi anggaran hingga kemandirian teknologi sejak 2010 hingga 2025.
@@ -704,6 +704,7 @@ Total artikel terindeks: 764 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Lainnya
 
+- [**Layar Kosong – Link Manager**](https://dalam.web.id/artikel/bookmark-link-manager.html): 2026-01-12 — Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.
 - [**Editor Artikel JSON Pro - Kelola Konten Layar Kosong**](https://dalam.web.id/artikel/editor-json-pro.html): 2026-01-09 — Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.
 - [**Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio &amp; Aturan TKA Validator**](https://dalam.web.id/artikel/panduan-lengkap-snbp-2026.html): 2026-01-08 — Simak panduan lengkap SNBP 2026. Penjelasan kuota sekolah berdasarkan akreditasi, fungsi TKA sebagai validator nilai rapor, jadwal masa sanggah, hingga syarat portofolio seni dan olahraga.
 - [**Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional?**](https://dalam.web.id/artikel/kenapa-kartun-90an-hilang-dari-tv.html): 2026-01-08 — Menganalisis alasan di balik hilangnya animasi legendaris era 90-an dari layar kaca Indonesia. Dari pergeseran digital hingga biaya lisensi.
