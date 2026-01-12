@@ -447,7 +447,8 @@ a:hover { opacity: 0.8; }
   /* Update Variabel Utama untuk Dark Mode */
   :root {
     --bg-card: #1e1e1e;       /* Background kartu gelap */
-    --text-main: #e0e0e0;     /* Text putih terang */
+    /*--text-main: #e0e0e0;     /* Text putih terang */
+    --text-main: inherit;     /* Text putih terang */
     --border: rgba(255, 255, 255, 0.1); /* Border transparan putih */
   }
 
@@ -507,7 +508,7 @@ a:hover { opacity: 0.8; }
   #internal-nav .nav-link,
   #related-marquee-container a,
   a.category-link {
-    color: inherit /*#e0e0e0 */; /* Paksa warna terang */
+    color: inherit; /* Paksa warna terang */
   }
 
   #internal-nav .nav-link:hover {
