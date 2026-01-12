@@ -122,96 +122,127 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
 </div>
 </div>
 <script>
-let db = []; // Database utama di memori
-const urlInput = document.getElementById('urlInput');
-const statusEl = document.getElementById('status');
-const linkGrid = document.getElementById('linkGrid');
-const searchInput = document.getElementById('searchInput');
-// --- FUNGSI CRAWL (Section 1) ---
-async function crawlUrl() {
-  const url = urlInput.value.trim();
-  if (!url) return;
-  statusEl.innerText = "⏳ Sedang merayap... pelan-pelan...";
-  try {
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const response = await fetch(proxy);
-    const data = await response.json();
-    const html = data.contents;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const getMeta = (prop) =>
-    doc.querySelector(`meta[property="${prop}"]`)?.getAttribute('content') ||
-    doc.querySelector(`meta[name="${prop}"]`)?.getAttribute('content');
-    const newEntry = {
-      id: Date.now(),
-      url: url,
-      title: doc.querySelector('title')?.innerText || url,
-      desc: getMeta('description') || getMeta('og:description') || 'No description.',
-      img: getMeta('og:image') || '/thumbnail.webp',
-      favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
-      date: new Date().toISOString()
-    };
-    db.unshift(newEntry); // Tambah ke atas
-    render();
-    urlInput.value = '';
-    statusEl.innerText = "✅ Berhasil ditambah! Jangan lupa Export jika sudah selesai.";
-  } catch (e) {
-    statusEl.innerText = "❌ Gagal mengambil data. Pastikan URL benar.";
-  }
-}
-// --- FUNGSI EXPORT & LOAD (Section 2) ---
-function exportToJson() {
-  if (db.length === 0) return alert("Database kosong!");
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
-  const downloadAnchorNode = document.createElement('a');
-  downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", "bookmark.json");
-  document.body.appendChild(downloadAnchorNode);
-  downloadAnchorNode.click();
-  downloadAnchorNode.remove();
-}
-async function loadJson() {
-  try {
-    const response = await fetch('/artikel/bookmark.json');
-    if (!response.ok) throw new Error();
-    db = await response.json();
-    render();
-    statusEl.innerText = `📂 Berhasil memuat ${db.length} data dari bookmark.json`;
-  } catch (e) {
-    statusEl.innerText = "ℹ️ bookmark.json tidak ditemukan. Silakan buat atau export dulu.";
-  }
-}
-// --- FUNGSI RENDER & SEARCH & SORT (Section 3) ---
-function render() {
-  let filtered = db.filter(item =>
-  item.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-  item.desc.toLowerCase().includes(searchInput.value.toLowerCase())
-  );
-  const sortVal = document.getElementById('sortSelect').value;
-  if (sortVal === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
-  if (sortVal === 'oldest') filtered.reverse();
-  linkGrid.innerHTML = filtered.map(item => `
-  <a href="${item.url}" target="_blank" class="card">
-  <img src="${item.img}" class="card-img" onerror="this.src='/thumbnail.webp'">
-  <div class="card-body">
-  <div class="card-title">
-  <img src="${item.favicon}" class="favicon">
-  <span>${item.title}</span>
-  </div>
-  <p class="card-desc">${item.desc}</p>
-  <div style="font-size:10px; opacity:0.5; margin-top:10px;">${new URL(item.url).hostname}</div>
-  </div>
-  </a>
-  `).join('');
-}
-// Event Listeners
-document.getElementById('crawlBtn').addEventListener('click', crawlUrl);
-document.getElementById('exportBtn').addEventListener('click', exportToJson);
-document.getElementById('loadBtn').addEventListener('click', loadJson);
-searchInput.addEventListener('input', render);
-document.getElementById('sortSelect').addEventListener('change', render);
-// Auto load saat buka halaman
-window.onload = loadJson;
+    let db = []; 
+    const urlInput = document.getElementById('urlInput');
+    const statusEl = document.getElementById('status');
+    const linkGrid = document.getElementById('linkGrid');
+    const searchInput = document.getElementById('searchInput');
+
+    // --- FUNGSI CRAWL (Versi Microlink API - Lebih Ringan) ---
+    async function crawlUrl() {
+        const url = urlInput.value.trim();
+        if (!url) return;
+
+        statusEl.innerText = "⏳ Mengambil data via Microlink API...";
+        
+        try {
+            // Kita langsung panggil API Microlink. Tidak perlu Proxy lagi.
+            // API ini mengembalikan JSON berisi title, description, image, dan logo (favicon)
+            const apiUrl = `https://api.microlink.io?url=${encodeURIComponent(url)}`;
+            const response = await fetch(apiUrl);
+            const resData = await response.json();
+
+            if (resData.status !== 'success') throw new Error("Gagal");
+
+            const info = resData.data;
+
+            const newEntry = {
+                id: Date.now(),
+                url: info.url || url,
+                title: info.title || "No Title",
+                desc: info.description || "No description available.",
+                img: info.image?.url || info.screenshot?.url || '/thumbnail.webp',
+                favicon: info.logo?.url || `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
+                date: new Date().toISOString()
+            };
+
+            // Cek apakah URL sudah ada di database (biar tidak duplikat)
+            const exists = db.find(item => item.url === newEntry.url);
+            if (exists) {
+                statusEl.innerText = "⚠️ URL ini sudah ada di daftar.";
+                return;
+            }
+
+            db.unshift(newEntry); 
+            render();
+            urlInput.value = '';
+            statusEl.innerText = `✅ Berhasil mengambil data: ${newEntry.title}`;
+        } catch (e) {
+            console.error(e);
+            statusEl.innerText = "❌ Gagal. Microlink tidak bisa akses URL tersebut atau limit tercapai.";
+        }
+    }
+
+    // --- FUNGSI EXPORT (Tetap sama) ---
+    function exportToJson() {
+        if (db.length === 0) return alert("Database masih kosong!");
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "bookmark.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
+    // --- FUNGSI LOAD (Membaca file data.json di server) ---
+    async function loadJson() {
+        try {
+            // Pakai cache breaker (?v=...) supaya browser selalu ambil yang terbaru dari server
+            const response = await fetch('/artikel/bookmark.json?v=' + Date.now());
+            if (!response.ok) throw new Error();
+            db = await response.json();
+            render();
+            statusEl.innerText = `📂 Load sukses: ${db.length} link siap ditampilkan.`;
+        } catch (e) {
+            statusEl.innerText = "ℹ️ Belum ada bookmark.json di server. Silakan buat dan upload dulu.";
+        }
+    }
+
+    // --- FUNGSI RENDER, SEARCH & SORT (Instan & Ringan) ---
+    function render() {
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        let filtered = db.filter(item => 
+            item.title.toLowerCase().includes(searchTerm) ||
+            item.desc.toLowerCase().includes(searchTerm) ||
+            item.url.toLowerCase().includes(searchTerm)
+        );
+
+        const sortVal = document.getElementById('sortSelect').value;
+        if (sortVal === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
+        if (sortVal === 'oldest') filtered = [...filtered].reverse(); // Urutan kebalik dari default unshift
+
+        linkGrid.innerHTML = filtered.map(item => `
+            <a href="${item.url}" target="_blank" class="card">
+                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='/thumbnail.webp'">
+                <div class="card-body">
+                    <div class="card-title">
+                        <img src="${item.favicon}" class="favicon" onerror="this.style.display='none'">
+                        <span>${item.title}</span>
+                    </div>
+                    <p class="card-desc">${item.desc}</p>
+                    <div style="font-size:10px; opacity:0.4; margin-top:10px; border-top:1px solid #222; pt-5">
+                        ${new URL(item.url).hostname}
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    // Listeners
+    document.getElementById('crawlBtn').addEventListener('click', crawlUrl);
+    document.getElementById('exportBtn').addEventListener('click', exportToJson);
+    document.getElementById('loadBtn').addEventListener('click', loadJson);
+    searchInput.addEventListener('input', render);
+    document.getElementById('sortSelect').addEventListener('change', render);
+
+    // Enter di input URL otomatis jalanin crawl
+    urlInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') crawlUrl();
+    });
+
+    window.onload = loadJson;
 </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script></script><script defer src="/ext/markdown.js">
