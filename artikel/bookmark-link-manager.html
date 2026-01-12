@@ -7,50 +7,6 @@
 <meta name="keywords" content="Layar Kosong, Link Manager, pre-fetching, crawl data, JSON, hemat kuota, web performance, static data, search sort">
 <meta property="og:description" content="Strategi pre-fetching untuk mengambil data di awal, menyimpannya ke JSON, lalu menampilkannya secara cepat dan hemat kuota dengan fitur pencarian dan sortir.">
 <meta name="twitter:description" content="Optimasi web dengan strategi pre-fetching: crawl data sekali, simpan ke JSON, tampilkan cepat, ringan, dan hemat kuota.">
-<style>
-:root {
-  --bg: #0b1020; --card: #161b2d; --text: #f9fafb; --accent: #00b0ed; --border: rgba(255,255,255,0.1);
-}
-body {
-  font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text);
-  margin: 0; padding: 20px; line-height: 1.6;
-}
-.container { max-width: 1200px; margin: auto; }
-h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; }
-/* Layout Sections */
-section { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid var(--border); }
-/* Section 1: Input & Crawler */
-.input-group { display: flex; gap: 10px; }
-input[type="text"], input[type="search"] {
-  flex: 1; padding: 12px 20px; border-radius: 25px; border: 1px solid var(--border);
-  background: #020617; color: white; outline: none;
-}
-input[type="text"]:focus { border-color: var(--accent); }
-button {
-  padding: 10px 25px; border-radius: 25px; border: none; cursor: pointer;
-  font-weight: 600; transition: 0.3s; background: var(--accent); color: white;
-}
-button:hover { opacity: 0.8; transform: translateY(-2px); }
-button.secondary { background: #334155; }
-/* Section 2: Controls */
-.controls { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
-/* Section 3: Result Grid */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-.card {
-  background: #0f172a; border-radius: 12px; overflow: hidden;
-  border: 1px solid var(--border); text-decoration: none; color: inherit;
-  transition: 0.3s; display: flex; flex-direction: column;
-}
-.card:hover { border-color: var(--accent); }
-.card-img { width: 100%; height: 160px; object-fit: cover; background: #222; }
-.card-body { padding: 15px; flex: 1; }
-.card-title { font-size: 16px; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.card-desc { font-size: 13px; color: #9ca3af; height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.favicon { width: 16px; height: 16px; }
-/* Status & Loading */
-#status { font-size: 13px; margin-top: 10px; color: var(--accent); }
-.badge { background: var(--accent); padding: 2px 8px; border-radius: 10px; font-size: 10px; }
-</style>
     <link rel="canonical" href="https://dalam.web.id/artikel/bookmark-link-manager">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -79,10 +35,184 @@ button.secondary { background: #334155; }
     <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/artikel/bookmark-link-manager#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/bookmark-link-manager"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Layar Kosong – Link Manager","description":"Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.","articleSection":"Lainnya","keywords":"bookmark, kosong, lainnya, layar, layar kosong, link, manager","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-12T15:16:19.736+00:00","dateModified":"2026-01-12T15:16:19.736+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/artikel/bookmark-link-manager#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/artikel/-/lainnya/"},{"@type":"ListItem","position":3,"name":"Layar Kosong – Link Manager","item":"https://dalam.web.id/artikel/bookmark-link-manager"}]}]}</script>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --card: #161b2d;
+            --text: #f9fafb;
+            --accent: #00b0ed;
+            --border: rgba(255,255,255,0.1);
+            --input-bg: #020617;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 { margin: 0; font-size: 24px; color: var(--accent); }
+        p.subtitle { margin: 5px 0 0; opacity: 0.6; font-size: 14px; }
+
+        /* Sections Layout */
+        section {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 { font-size: 18px; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        /* Input Group */
+        .input-group { display: flex; gap: 10px; }
+        input[type="text"], input[type="search"], select {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--input-bg);
+            color: white;
+            outline: none;
+            font-family: inherit;
+        }
+        input:focus { border-color: var(--accent); }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            background: var(--accent);
+            color: white;
+            white-space: nowrap;
+        }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-secondary { background: #334155; }
+        .btn-success { background: #10b981; }
+
+        /* Controls Area */
+        .controls {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #status {
+            font-size: 13px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(0, 176, 237, 0.1);
+            color: var(--accent);
+            display: none; /* Muncul lewat JS */
+        }
+
+        /* Grid Results */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #020617;
+        }
+
+        .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .favicon {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            border-radius: 4px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .card-footer {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .controls { grid-template-columns: 1fr; }
+            .input-group { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
+
 <div class="container">
-<h2>Layar Kosong Bookmark Link Manager</h2>
+    <header>
+        <h1>Layar Kosong Bookmark Link Manager</h1>
+        <p class="subtitle">Kelola daftar URL dan simpan ke dalam database JSON</p>
+    </header>
 <section>
 <p><strong>Cara Kerja:</strong></p>
 <ol>
@@ -101,149 +231,164 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
 </ol>
 <p>Karena JavaScript di browser <strong>tidak diizinkan menulis atau membuat file langsung ke folder server</strong> (demi alasan keamanan), maka digunakan mekanisme <strong>Download JSON</strong> sebagai solusinya. Cara ini disebut <strong>Pre-fetching</strong>. Intinya, kita merayap di awal untuk mengambil data (<em>crawl</em>), lalu menyimpan hasilnya ke dalam file <strong>JSON</strong>. Setelah itu, browser hanya perlu membaca file JSON yang ringan tersebut. Hasilnya? Proses jadi jauh lebih cepat dan lebih hemat kuota.</p>
 </section>
-<section>
-<div class="input-group">
-<input type="text" id="urlInput" placeholder="Masukkan URL baru (https://...)">
-<button id="crawlBtn">Crawl URL</button>
+    <section>
+        <h2><span>🚀</span> Crawl URL Baru</h2>
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="Tempel URL di sini (contoh: https://dalam.web.id)">
+            <button class="btn" id="crawlBtn">Dapatkan Metadata</button>
+        </div>
+        <div id="status"></div>
+    </section>
+
+    <section>
+        <h2><span>⚙️</span> Database & Filter</h2>
+        <div class="controls">
+            <input type="search" id="searchInput" placeholder="Cari berdasarkan judul atau deskripsi...">
+            
+            <select id="sortSelect">
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+                <option value="title">Judul (A-Z)</option>
+            </select>
+
+            <button class="btn btn-secondary" id="loadBtn">Load bookmark.json</button>
+            <button class="btn btn-success" id="exportBtn">Export JSON</button>
+        </div>
+    </section>
+
+    <div id="linkGrid" class="grid">
+        </div>
 </div>
-<div id="status">Ready. Masukkan URL untuk menambah ke database sementara.</div>
-</section>
-<section class="controls">
-<input type="search" id="searchInput" placeholder="Cari judul atau deskripsi...">
-<select id="sortSelect" style="padding: 10px; border-radius: 20px; background: #020617; color: white; border: 1px solid var(--border);">
-<option value="newest">Terbaru</option>
-<option value="oldest">Terlama</option>
-<option value="title">Judul (A-Z)</option>
-</select>
-<button class="secondary" id="exportBtn">Export to JSON</button>
-<button class="secondary" id="loadBtn">Load bookmark.json</button>
-</section>
-<div id="linkGrid" class="grid">
-</div>
-</div>
+
 <script>
     let db = []; 
-    const urlInput = document.getElementById('urlInput');
-    const statusEl = document.getElementById('status');
-    const linkGrid = document.getElementById('linkGrid');
-    const searchInput = document.getElementById('searchInput');
+    const getEl = (id) => document.getElementById(id);
 
-    // --- FUNGSI CRAWL (Versi Microlink API - Lebih Ringan) ---
+    function showStatus(msg, isError = false) {
+        const statusEl = getEl('status');
+        if (!statusEl) return;
+        statusEl.style.display = 'block';
+        statusEl.style.color = isError ? '#f87171' : '#00b0ed';
+        statusEl.innerText = msg;
+    }
+
     async function crawlUrl() {
-        const url = urlInput.value.trim();
-        if (!url) return;
-
-        statusEl.innerText = "⏳ Mengambil data via Microlink API...";
+        const urlInput = getEl('urlInput');
+        const url = urlInput ? urlInput.value.trim() : '';
         
+        if (!url) return showStatus("Masukkan URL terlebih dahulu!", true);
+        
+        showStatus("⏳ Sedang merayap via Microlink API, pelan-pelan...");
+
         try {
-            // Kita langsung panggil API Microlink. Tidak perlu Proxy lagi.
-            // API ini mengembalikan JSON berisi title, description, image, dan logo (favicon)
             const apiUrl = `https://api.microlink.io?url=${encodeURIComponent(url)}`;
             const response = await fetch(apiUrl);
             const resData = await response.json();
 
-            if (resData.status !== 'success') throw new Error("Gagal");
+            if (resData.status !== 'success') throw new Error();
 
             const info = resData.data;
-
             const newEntry = {
                 id: Date.now(),
                 url: info.url || url,
-                title: info.title || "No Title",
-                desc: info.description || "No description available.",
-                img: info.image?.url || info.screenshot?.url || 'https://via.placeholder.com/300x160?text=No+Image',
+                title: info.title || "Tanpa Judul",
+                desc: info.description || "Tidak ada deskripsi yang tersedia.",
+                img: info.image?.url || info.screenshot?.url || '/thumbnail.webp',
                 favicon: info.logo?.url || `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
                 date: new Date().toISOString()
             };
 
-            // Cek apakah URL sudah ada di database (biar tidak duplikat)
-            const exists = db.find(item => item.url === newEntry.url);
-            if (exists) {
-                statusEl.innerText = "⚠️ URL ini sudah ada di daftar.";
-                return;
+            // Cek duplikat
+            if (db.find(item => item.url === newEntry.url)) {
+                return showStatus("⚠️ URL ini sudah ada di daftar.", true);
             }
 
             db.unshift(newEntry); 
             render();
             urlInput.value = '';
-            statusEl.innerText = `✅ Berhasil mengambil data: ${newEntry.title}`;
+            showStatus(`✅ Berhasil menambahkan: ${newEntry.title}`);
         } catch (e) {
-            console.error(e);
-            statusEl.innerText = "❌ Gagal. Microlink tidak bisa akses URL tersebut atau limit tercapai.";
+            showStatus("❌ Gagal mengambil data. Periksa koneksi atau limit API.", true);
         }
     }
 
-    // --- FUNGSI EXPORT (Tetap sama) ---
     function exportToJson() {
-        if (db.length === 0) return alert("Database masih kosong!");
+        if (db.length === 0) return alert("Belum ada data untuk diekspor!");
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
-        const downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "data.json");
-        document.body.appendChild(downloadAnchorNode);
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
+        const downloadNode = document.createElement('a');
+        downloadNode.setAttribute("href", dataStr);
+        downloadNode.setAttribute("download", "bookmark.json");
+        document.body.appendChild(downloadNode);
+        downloadNode.click();
+        downloadNode.remove();
+        showStatus("✅ File bookmark.json berhasil diunduh. Silakan upload ke server.");
     }
 
-    // --- FUNGSI LOAD (Membaca file data.json di server) ---
     async function loadJson() {
         try {
-            // Pakai cache breaker (?v=...) supaya browser selalu ambil yang terbaru dari server
-            const response = await fetch('data.json?v=' + Date.now());
+            // Pakai cache breaker agar selalu dapat data terbaru dari server
+            const response = await fetch('/artikel/bookmark.json?v=' + Date.now());
             if (!response.ok) throw new Error();
             db = await response.json();
             render();
-            statusEl.innerText = `📂 Load sukses: ${db.length} link siap ditampilkan.`;
+            showStatus(`📂 Berhasil memuat ${db.length} data dari server.`);
         } catch (e) {
-            statusEl.innerText = "ℹ️ Belum ada data.json di server. Silakan buat dan upload dulu.";
+            showStatus("ℹ️ data.json belum ada di server atau gagal dimuat.");
         }
     }
 
-    // --- FUNGSI RENDER, SEARCH & SORT (Instan & Ringan) ---
     function render() {
-        const searchTerm = searchInput.value.toLowerCase();
-        
+        const grid = getEl('linkGrid');
+        const search = getEl('searchInput')?.value.toLowerCase() || '';
+        const sort = getEl('sortSelect')?.value || 'newest';
+
+        if (!grid) return;
+
+        // Filter
         let filtered = db.filter(item => 
-            item.title.toLowerCase().includes(searchTerm) ||
-            item.desc.toLowerCase().includes(searchTerm) ||
-            item.url.toLowerCase().includes(searchTerm)
+            (item.title || '').toLowerCase().includes(search) || 
+            (item.desc || '').toLowerCase().includes(search) ||
+            (item.url || '').toLowerCase().includes(search)
         );
 
-        const sortVal = document.getElementById('sortSelect').value;
-        if (sortVal === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
-        if (sortVal === 'oldest') filtered = [...filtered].reverse(); // Urutan kebalik dari default unshift
+        // Sort
+        if (sort === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
+        if (sort === 'oldest') filtered = [...filtered].reverse();
 
-        linkGrid.innerHTML = filtered.map(item => `
-            <a href="${item.url}" target="_blank" class="card">
-                <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='https://via.placeholder.com/300x160?text=Image+Not+Found'">
-                <div class="card-body">
-                    <div class="card-title">
-                        <img src="${item.favicon}" class="favicon" onerror="this.style.display='none'">
-                        <span>${item.title}</span>
-                    </div>
-                    <p class="card-desc">${item.desc}</p>
-                    <div style="font-size:10px; opacity:0.4; margin-top:10px; border-top:1px solid #222; pt-5">
-                        ${new URL(item.url).hostname}
+        grid.innerHTML = filtered.map(item => {
+            let host = "";
+            try { host = new URL(item.url).hostname; } catch(e) { host = "URL"; }
+            
+            return `
+                <div class="card">
+                    <a href="${item.url}" target="_blank">
+                        <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='/thumbnail.webp'">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <img src="${item.favicon}" class="favicon" onerror="this.style.display='none'">
+                            <span>${item.title}</span>
+                        </div>
+                        <p class="card-desc">${item.desc}</p>
+                        <div class="card-footer">${host}</div>
                     </div>
                 </div>
-            </a>
-        `).join('');
+            `;
+        }).join('');
     }
 
-    // Listeners
-    document.getElementById('crawlBtn').addEventListener('click', crawlUrl);
-    document.getElementById('exportBtn').addEventListener('click', exportToJson);
-    document.getElementById('loadBtn').addEventListener('click', loadJson);
-    searchInput.addEventListener('input', render);
-    document.getElementById('sortSelect').addEventListener('change', render);
-
-    // Enter di input URL otomatis jalanin crawl
-    urlInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') crawlUrl();
+    // Inisialisasi
+    document.addEventListener('DOMContentLoaded', () => {
+        getEl('crawlBtn').onclick = crawlUrl;
+        getEl('exportBtn').onclick = exportToJson;
+        getEl('loadBtn').onclick = loadJson;
+        getEl('searchInput').oninput = render;
+        getEl('sortSelect').onchange = render;
+        getEl('urlInput').onkeypress = (e) => { if(e.key === 'Enter') crawlUrl(); };
+        
+        loadJson();
     });
-
-    window.onload = loadJson;
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script></script><script defer src="/ext/markdown.js">
-</body></html>
+
+</body>
+</html>
