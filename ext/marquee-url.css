@@ -385,7 +385,7 @@ border-top: 1px solid var(--border);
   border-radius: 10px;
   border: 1px solid var(--border);
   font-family: inherit;
-  background: var(--bg-card); /* Menggunakan variabel */
+ /* background: var(--bg-card); /* Menggunakan variabel */
   color: var(--text-main); /* Menggunakan variabel */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
