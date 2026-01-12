@@ -116,7 +116,7 @@ dengan fitur <em>Search</em> dan <em>Sort</em>.
 <option value="title">Judul (A-Z)</option>
 </select>
 <button class="secondary" id="exportBtn">Export to JSON</button>
-<button class="secondary" id="loadBtn">Load data.json</button>
+<button class="secondary" id="loadBtn">Load bookmark.json</button>
 </section>
 <div id="linkGrid" class="grid">
 </div>
@@ -172,7 +172,7 @@ function exportToJson() {
 }
 async function loadJson() {
   try {
-    const response = await fetch('artikel/bookmark.json');
+    const response = await fetch('/artikel/bookmark.json');
     if (!response.ok) throw new Error();
     db = await response.json();
     render();
@@ -213,7 +213,7 @@ document.getElementById('sortSelect').addEventListener('change', render);
 // Auto load saat buka halaman
 window.onload = loadJson;
 </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
 </body></html>
