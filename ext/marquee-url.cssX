@@ -222,7 +222,7 @@ width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
-color: var(--text-main); /* Menggunakan variabel */
+/*color: var(--text-main); /* Menggunakan variabel */
 background: transparent;
 pointer-events: none;
 }
@@ -232,7 +232,7 @@ list-style: none;
 padding: 0;
 margin: 0;
 display: flex;
-color: inherit;
+/*color: inherit;*/
 flex-direction: column;
 gap: 10px;
 }
@@ -244,7 +244,7 @@ pointer-events: auto;
 padding: 2px 0;
 font-size: 13px;
 font-weight: 500;
-color: var(--text-main); /* Pastikan variabel dipanggil ulang */
+/*color: var(--text-main); /* Pastikan variabel dipanggil ulang */
 opacity: 0.8;
 white-space: normal;
 word-wrap: break-word;
@@ -296,26 +296,17 @@ animation-play-state: paused;
 }
 
 #related-marquee-container a {
-color: inherit;
-text-decoration: none;
+/*color: var(--text-main); /* Menggunakan variabel */
 margin-right: 30px;
 font-weight: 400;
 font-size: 0.85em;
 opacity: 0.8;
-transition: opacity 0.3s;
 }
 
 #related-marquee-container a:hover {
 opacity: 1;
 font-weight: 700;
-color: var(--accent);
-}
-.marquee-message {
-  margin: 0;
-  text-align: center;
-  font-style: italic;
-  padding: 8px 0;
-  color: var(--muted-color, #aaa);
+/*color: var(--accent); */
 }
 
 @keyframes marquee-scroll {
@@ -347,17 +338,14 @@ color: var(--accent);
 }
 
 a.category-link {
-  backdrop-filter: none;
   background-color: transparent;
+  padding: 8px 16px;
   border-radius: 20px;
-  box-shadow: none;
-  color: inherit;
   font-size: 14px;
   font-weight: 600;
-  padding: 8px 16px;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.1);
-  text-decoration: none;
   transition: opacity 0.5s ease, transform 0.5s ease;
+ /* color: var(--text-main); /* Menggunakan variabel */
+  text-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
 a.category-link.visible {
@@ -368,7 +356,6 @@ a.category-link.visible {
 .btn-emoji {
   font-size: 2rem;
   transition: transform 0.2s ease;
-  text-decoration: none;
   text-shadow: 0 2px 5px rgba(0,0,0,0.4);
   line-height: 1;
 }
