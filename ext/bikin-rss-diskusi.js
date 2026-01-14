@@ -1,6 +1,6 @@
-const Parser = require('rss-parser');
-const { Octokit } = require("@octokit/core");
-const fs = require('fs');
+import Parser from 'rss-parser';
+import { Octokit } from "@octokit/core";
+import fs from 'fs';
 
 const parser = new Parser();
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
