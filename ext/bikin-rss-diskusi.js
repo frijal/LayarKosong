@@ -18,6 +18,8 @@ const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).pad
 
 async function run() {
   try {
+    console.log("🔍 Memulai sinkronisasi...");
+
     const repoRes = await octokit.graphql(`
     query($owner: String!, $name: String!) {
       repository(owner: $owner, name: $name) {
@@ -33,19 +35,26 @@ async function run() {
     let ghLabels = repoRes.repository.labels.nodes;
 
     for (const fileName of RSS_FILES) {
-      if (!fs.existsSync(fileName)) continue;
-      const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
-      const rawCategory = feed.title.split(' - ')[0].trim();
-      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rssCategoryName.toLowerCase()) || ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
-
-      if (!targetCategory) {
-        console.log(`⚠️ Kategori ${rawCategory} tidak ditemukan di repo, skip file ini.`);
+      if (!fs.existsSync(fileName)) {
+        console.log(`ℹ️ File ${fileName} tidak ditemukan, skip.`);
         continue;
       }
 
+      const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
+      const rawCategory = feed.title.split(' - ')[0].trim();
+
+      // Cari kategori yang cocok di GitHub
+      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
+
+      if (!targetCategory) {
+        console.log(`⚠️ Kategori "${rawCategory}" belum dibuat di GitHub Discussions. Silakan buat manual.`);
+        continue;
+      }
+
+      console.log(`\n📂 Memproses Kategori: ${targetCategory.name}`);
+
       for (const item of feed.items) {
-        // --- LOGIKA CEK DUPLIKAT (VERSI PERBAIKAN) ---
-        // Kita gunakan search global untuk mencari link artikel di diskusi
+        // --- 1. CEK DUPLIKAT ---
         const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${item.link}"`;
         const checkRes = await octokit.graphql(`
         query($searchQuery: String!) {
@@ -56,30 +65,29 @@ async function run() {
         `, { searchQuery: searchQuery });
 
         if (checkRes.search.discussionCount > 0) {
-          continue; // Sudah ada, skip
+          continue;
         }
 
-        // --- LOGIKA LABEL ---
-        const rssCategoryName = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
-        let keywords = [rssCategoryName];
+        // --- 2. LOGIKA LABEL ---
+        const itemCategory = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
+        let existingLabel = ghLabels.find(l => l.name.toLowerCase() === itemCategory.toLowerCase());
         let labelIds = [];
 
-        for (let kw of keywords) {
-          let existingLabel = ghLabels.find(l => l.name.toLowerCase() === kw.toLowerCase());
-          if (!existingLabel) {
-            try {
-              console.log(`🎨 Membuat label baru: ${kw}`);
-              const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
-                owner: REPO_OWNER, repo: REPO_NAME, name: kw, color: getRandomColor()
-              });
-              existingLabel = { id: newLabel.data.node_id, name: kw };
-              ghLabels.push(existingLabel);
-            } catch (e) { console.log(`Gagal buat label ${kw}, lanjut saja.`); }
+        if (!existingLabel) {
+          try {
+            console.log(`🎨 Membuat label baru: ${itemCategory}`);
+            const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
+              owner: REPO_OWNER, repo: REPO_NAME, name: itemCategory, color: getRandomColor()
+            });
+            existingLabel = { id: newLabel.data.node_id, name: itemCategory };
+            ghLabels.push(existingLabel);
+          } catch (e) {
+            console.log(`🟡 Gagal buat label ${itemCategory}, kemungkinan sudah ada.`);
           }
-          if (existingLabel) labelIds.push(existingLabel.id);
         }
+        if (existingLabel) labelIds.push(existingLabel.id);
 
-        // --- POSTING ---
+        // --- 3. POSTING DISKUSI ---
         console.log(`🚀 Posting: ${item.title}`);
         const thumbnail = item.enclosure ? `\n\n![Thumbnail](${item.enclosure.url})` : '';
         const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})\n\n☕ *Dukung melalui [PayPal.me/FakhrulRijal](https://paypal.me/FakhrulRijal)*`;
@@ -99,9 +107,14 @@ async function run() {
         });
       }
     }
-    console.log("✅ Selesai!");
+    console.log("\n✅ Sinkronisasi Berhasil!");
   } catch (err) {
-    console.error("❌ Error Detail:", JSON.stringify(err, null, 2));
+    console.error("❌ Terjadi Kesalahan:");
+    if (err.errors) {
+      err.errors.forEach(e => console.error(`- ${e.message}`));
+    } else {
+      console.error(err.message);
+    }
   }
 }
 
