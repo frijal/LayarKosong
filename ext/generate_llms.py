@@ -49,7 +49,7 @@ def load_and_process_data(file_path):
 
             # Tambahkan ke daftar RSS kategori
             cat_slug = category_key.lower().replace(" ", "-")
-            category_rss_links.append(f"- [RSS Feed {category_key.title()}]({DOMAIN}/{cat_slug}.xml)")
+            category_rss_links.append(f"- [RSS Feed {category_key.title()}]({DOMAIN}/feed-{cat_slug}.xml)")
 
             temp_lines = []
             def get_date_key(item):
