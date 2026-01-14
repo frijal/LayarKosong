@@ -72,9 +72,20 @@ async function run() {
         let displayImage = '';
         if (item.enclosure && item.enclosure.url) {
           let imgUrl = item.enclosure.url;
-          // Menghilangkan https://dalam.web.id agar menjadi img/folder/file.ext
-          const relativePath = imgUrl.replace('https://dalam.web.id/', '');
-          displayImage = `\n\n![Thumbnail](${relativePath})`;
+
+          if (imgUrl.startsWith('https://dalam.web.id/')) {
+            // 1. Hilangkan domain
+            const relativePath = imgUrl.replace('https://dalam.web.id/', '');
+
+            // 2. Ubah menjadi Raw GitHub URL agar bisa dirender oleh GitHub
+            // Format: https://raw.githubusercontent.com/USER/REPO/BRANCH/PATH
+            const rawGithubUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${relativePath}`;
+
+            displayImage = `\n\n![Thumbnail](${rawGithubUrl})`;
+          } else {
+            // Jika gambar dari luar (misal: OpenAI), tetap gunakan URL aslinya
+            displayImage = `\n\n![Thumbnail](${imgUrl})`;
+          }
         }
 
         console.log(`🚀 Posting: ${item.title}`);
