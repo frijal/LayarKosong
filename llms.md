@@ -2,7 +2,7 @@
 # Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems
 
 schema_version: 1.0
-document_version: 1.0
+document_version: 1.1
 last_updated: 2026-01-14
 document_type: llm_behavior_and_entity_guidance
 
@@ -33,7 +33,7 @@ ai_crawling_policy:
 ---
 
 # Index Artikel Terbaru (Updated: 14 January 2026)
-Total artikel terindeks: 774 | Version: 1.0 | [Sitemap](https://dalam.web.id/sitemap.xml)
+Total artikel terindeks: 774 | Version: 1.1 | [Sitemap](https://dalam.web.id/sitemap.xml)
 
 ---
 
