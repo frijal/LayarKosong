@@ -172,7 +172,7 @@ ai_crawling_policy:
     <meta charset="UTF-8">
     <title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        body {{ font-family: system-ui, sans-serif; margin: 2em auto; max-width: 900px; padding: 1em; line-height: 1.6; background: #fdfdfd; }}
+        body {{ font-family: system-ui, sans-serif; margin: 2em auto; max-width: 1200px; padding: 1em; line-height: 1.6; background: #fdfdfd; }}
         pre {{ background: #1e1e1e; color: #dcdcdc; padding: 1.5em; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; font-size: 0.9em; }}
         @media (prefers-color-scheme: dark) {{ body {{ background: #111; color: #eee; }} }}
     </style>
