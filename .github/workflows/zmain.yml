@@ -1,0 +1,38 @@
+name: Clear All GitHub Discussions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete-discussions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete all discussions
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          set -e
+
+          echo "Fetching repository ID..."
+          REPO_ID=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/$OWNER/$REPO | jq -r .node_id)
+
+          echo "Fetching discussions..."
+          DISCUSSIONS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/$OWNER/$REPO/discussions \
+            | jq -r '.[].node_id')
+
+          for DISCUSSION_ID in $DISCUSSIONS; do
+            echo "Deleting discussion $DISCUSSION_ID"
+            curl -s -X POST https://api.github.com/graphql \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "{\"query\":\"mutation { deleteDiscussion(input:{id:\\\"$DISCUSSION_ID\\\"}) { clientMutationId }}\"}"
+          done
+
+          echo "All discussions deleted."
