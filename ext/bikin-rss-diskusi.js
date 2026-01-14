@@ -12,7 +12,7 @@ const RSS_FILES = [
 ];
 
 const REPO_OWNER = 'frijal';
-const REPO_NAME = 'nama-repo-kamu';
+const REPO_NAME = 'LayarKosong';
 
 // Fungsi untuk membuat warna HEX acak untuk label baru
 const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
