@@ -35,86 +35,88 @@ async function run() {
     let ghLabels = repoRes.repository.labels.nodes;
 
     for (const fileName of RSS_FILES) {
-      if (!fs.existsSync(fileName)) {
-        console.log(`ℹ️ File ${fileName} tidak ditemukan, skip.`);
-        continue;
-      }
+      if (!fs.existsSync(fileName)) continue;
 
       const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
       const rawCategory = feed.title.split(' - ')[0].trim();
-
-      // Cari kategori yang cocok di GitHub
       const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
 
       if (!targetCategory) {
-        console.log(`⚠️ Kategori "${rawCategory}" belum dibuat di GitHub Discussions. Silakan buat manual.`);
+        console.log(`⚠️ Kategori "${rawCategory}" belum ada di GitHub, skip.`);
         continue;
       }
 
-      console.log(`\n📂 Memproses Kategori: ${targetCategory.name}`);
+      console.log(`\n📂 Memproses: ${targetCategory.name}`);
 
       for (const item of feed.items) {
-        // --- 1. CEK DUPLIKAT ---
+        // 1. CEK DUPLIKAT
         const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${item.link}"`;
         const checkRes = await octokit.graphql(`
         query($searchQuery: String!) {
-          search(query: $searchQuery, type: DISCUSSION, first: 1) {
-            discussionCount
-          }
+          search(query: $searchQuery, type: DISCUSSION, first: 1) { discussionCount }
         }
         `, { searchQuery: searchQuery });
 
-        if (checkRes.search.discussionCount > 0) {
-          continue;
-        }
+        if (checkRes.search.discussionCount > 0) continue;
 
-        // --- 2. LOGIKA LABEL ---
+        // 2. LOGIKA LABEL (Cek/Buat)
         const itemCategory = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
         let existingLabel = ghLabels.find(l => l.name.toLowerCase() === itemCategory.toLowerCase());
-        let labelIds = [];
 
         if (!existingLabel) {
           try {
-            console.log(`🎨 Membuat label baru: ${itemCategory}`);
+            console.log(`🎨 Membuat label: ${itemCategory}`);
             const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
               owner: REPO_OWNER, repo: REPO_NAME, name: itemCategory, color: getRandomColor()
             });
             existingLabel = { id: newLabel.data.node_id, name: itemCategory };
             ghLabels.push(existingLabel);
-          } catch (e) {
-            console.log(`🟡 Gagal buat label ${itemCategory}, kemungkinan sudah ada.`);
-          }
+          } catch (e) { /* label mungkin sudah ada */ }
         }
-        if (existingLabel) labelIds.push(existingLabel.id);
 
-        // --- 3. POSTING DISKUSI ---
+        // 3. BUAT DISKUSI (Tanpa Label)
         console.log(`🚀 Posting: ${item.title}`);
         const thumbnail = item.enclosure ? `\n\n![Thumbnail](${item.enclosure.url})` : '';
         const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})\n\n☕ *Dukung melalui [PayPal.me/FakhrulRijal](https://paypal.me/FakhrulRijal)*`;
 
-        await octokit.graphql(`
-        mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!, $labelIds: [ID!]) {
+        const createRes = await octokit.graphql(`
+        mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
           createDiscussion(input: {
-            repositoryId: $repoId, categoryId: $catId, body: $body, title: $title, labelIds: $labelIds
-          }) { discussion { url } }
+            repositoryId: $repoId, categoryId: $catId, body: $body, title: $title
+          }) { discussion { id url } }
         }
         `, {
           repoId: repoId,
           catId: targetCategory.id,
           title: item.title,
-          labelIds: labelIds,
           body: `### [${item.title}](${item.link})${thumbnail}\n\n${item.contentSnippet || item.description || ''}${footer}`
         });
+
+        // 4. TEMPELKAN LABEL (Setelah Diskusi Jadi)
+        const discussionId = createRes.createDiscussion.discussion.id;
+        if (existingLabel && discussionId) {
+          try {
+            await octokit.graphql(`
+            mutation($labelableId: ID!, $labelIds: [ID!]!) {
+              addLabelsToLabelable(input: {labelableId: $labelableId, labelIds: $labelIds}) {
+                clientMutationId
+              }
+            }
+            `, {
+              labelableId: discussionId,
+              labelIds: [existingLabel.id]
+            });
+          } catch (e) {
+            console.log(`⚠️ Gagal menempelkan label ke: ${item.title}`);
+          }
+        }
       }
     }
-    console.log("\n✅ Sinkronisasi Berhasil!");
+    console.log("\n✅ Sinkronisasi Selesai!");
   } catch (err) {
-    console.error("❌ Terjadi Kesalahan:");
-    if (err.errors) {
-      err.errors.forEach(e => console.error(`- ${e.message}`));
-    } else {
-      console.error(err.message);
-    }
+    console.error("❌ Kesalahan:");
+    if (err.errors) err.errors.forEach(e => console.error(`- ${e.message}`));
+    else console.error(err.message);
   }
 }
 
