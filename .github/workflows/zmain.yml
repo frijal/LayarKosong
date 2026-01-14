@@ -4,76 +4,92 @@ on:
   workflow_dispatch:
 
 jobs:
-  purge:
+  purge-discussions:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Delete all discussions
+      - name: Delete all discussions via GraphQL
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           OWNER: frijal
           REPO: LayarKosong
         run: |
-          set -e
+          set -euo pipefail
 
-          echo "Fetching repository node ID..."
+          echo "== Fetching repository node ID =="
+
           RESPONSE=$(curl -s -X POST https://api.github.com/graphql \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{
-              \"query\": \"query {
-                repository(owner: \\\"$OWNER\\\", name: \\\"$REPO\\\") {
-                  id
-                }
-              }\"
-            }")
+            --data-binary @- <<EOF
+          {
+            "query": "query {
+              repository(owner: \"$OWNER\", name: \"$REPO\") {
+                id
+              }
+            }"
+          }
+          EOF
+          )
 
           echo "$RESPONSE"
 
           REPO_ID=$(echo "$RESPONSE" | jq -r '.data.repository.id')
 
-          if [ "$REPO_ID" = "null" ] || [ -z "$REPO_ID" ]; then
-            echo "ERROR: Repository not accessible. Check token scopes and Discussions setting."
+          if [ -z "$REPO_ID" ] || [ "$REPO_ID" = "null" ]; then
+            echo "ERROR: Repository not accessible."
+            echo "Check:"
+            echo "- Token scope (repo + write:discussion)"
+            echo "- Repo owner/name"
+            echo "- Discussions enabled"
             exit 1
           fi
 
           echo "Repo ID: $REPO_ID"
 
-          echo "Fetching discussions..."
+          echo "== Fetching discussions =="
+
           DISCUSSION_IDS=$(curl -s -X POST https://api.github.com/graphql \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{
-              \"query\": \"query {
-                repository(id: \\\"$REPO_ID\\\") {
-                  discussions(first: 100) {
-                    nodes {
-                      id
-                      title
-                    }
+            --data-binary @- <<EOF | jq -r '.data.repository.discussions.nodes[].id'
+          {
+            "query": "query {
+              repository(id: \"$REPO_ID\") {
+                discussions(first: 100) {
+                  nodes {
+                    id
+                    title
                   }
                 }
-              }\"
-            }" | jq -r '.data.repository.discussions.nodes[].id')
+              }
+            }"
+          }
+          EOF
+          )
 
           if [ -z "$DISCUSSION_IDS" ]; then
-            echo "No discussions found."
+            echo "No discussions found. Nothing to delete."
             exit 0
           fi
 
-          for ID in $DISCUSSION_IDS; do
-            echo "Deleting discussion $ID"
+          echo "== Deleting discussions =="
+
+          for DISCUSSION_ID in $DISCUSSION_IDS; do
+            echo "Deleting discussion $DISCUSSION_ID"
+
             curl -s -X POST https://api.github.com/graphql \
               -H "Authorization: Bearer $GH_TOKEN" \
               -H "Content-Type: application/json" \
-              -d "{
-                \"query\": \"mutation {
-                  deleteDiscussion(input:{id:\\\"$ID\\\"}) {
-                    clientMutationId
-                  }
-                }\"
-              }"
+              --data-binary @- <<EOF
+          {
+            "query": "mutation {
+              deleteDiscussion(input:{id:\"$DISCUSSION_ID\"}) {
+                clientMutationId
+              }
+            }"
+          }
+          EOF
           done
 
-          echo "All discussions deleted."
-
+          echo "== All discussions deleted successfully =="
