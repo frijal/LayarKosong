@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 769 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 770 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Opini Sosial
 
@@ -148,9 +148,9 @@ Total artikel terindeks: 769 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Sistem Terbuka
 
-- [**Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6**](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html): 2026-01-13 — Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
-- [**7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil &amp; Cepat) 🐧**](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html): 2026-01-13 — Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
-- [**6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya!**](https://dalam.web.id/artikel/6-hal-salah-kaprah-windows-user-tentang-linux.html): 2026-01-13 — Sering dengar kalau Linux itu susah? Atau Linux nggak bisa kena virus? Yuk bongkar 6 mitos yang sering salah dipahami pengguna Windows tentang Linux di sini.
+- [**Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6**](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html): 2026-01-14 — Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
+- [**7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil &amp; Cepat) 🐧**](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html): 2026-01-14 — Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
+- [**6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya!**](https://dalam.web.id/artikel/6-hal-salah-kaprah-windows-user-tentang-linux.html): 2026-01-14 — Sering dengar kalau Linux itu susah? Atau Linux nggak bisa kena virus? Yuk bongkar 6 mitos yang sering salah dipahami pengguna Windows tentang Linux di sini.
 - [**Wayland vs X11: Mana yang Lebih Baik untuk Linux?**](https://dalam.web.id/artikel/wayland-vs-xorg.html): 2026-01-12 — Panduan lengkap perbandingan Wayland vs X11 untuk Linux. Pelajari perbedaan, kelebihan, kekurangan, dan mengapa Wayland menjadi future dari Linux graphics stack.
 - [**KDE Plasma 6.6 – Fitur Terbaru yang Bikin Linux Users Excited!**](https://dalam.web.id/artikel/kde-plasma-6-6.html): 2026-01-12 — Panduan lengkap KDE Plasma 6.6 - fitur terbaru, peningkatan performa, dan mengapa Linux users harus excited tentang update besar ini. Cek tema custom, Wayland improvements, dan gaming support yang lebih baik.
 - [**TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!**](https://dalam.web.id/artikel/tuxsync-migration-assistant-linux.html): 2026-01-03 — Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.
@@ -579,6 +579,7 @@ Total artikel terindeks: 769 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Jejak Sejarah
 
+- [**Kesalahan Protokoler &amp; Sejarah BPM: Sultan Kutai yang Terpinggirkan - Layar Kosong**](https://dalam.web.id/artikel/sejarah-bpm-sultan-kutai.html): 2026-01-14 — Analisis mendalam kesalahan protokoler RDMP Balikpapan terhadap Sultan Kutai. Menelusuri sejarah BPM, legitimasi tanah, dan ironi modernitas yang melupakan akar sejarah.
 - [**Sejarah Fujiko F. Fujio: Duo Genius Pencipta Doraemon yang Mengubah Dunia Animasi**](https://dalam.web.id/artikel/sejarah-fujiko-f-fujio-pencipta-doraemon.html): 2026-01-08 — Sejarah lengkap Fujiko F. Fujio, duo kreator di balik Doraemon. Temukan inspirasi, perjalanan, dan proses penciptaan robot kucing terpopuler sepanjang masa.
 - [**Sejarah &amp; Pro-Kontra Maulid Nabi: Outline Presentasi Lengkap**](https://dalam.web.id/artikel/maulid-outline-slides.html): 2025-12-30 — Outline slide presentasi interaktif tentang Maulid Nabi: latar belakang, sejarah singkat, pro-kontra ulama, dan sikap bijak menyikapi perbedaan.
 - [**Hukum Perayaan Hari Kelahiran (Termasuk Maulid Nabi) dalam Islam**](https://dalam.web.id/artikel/hukum-perayaan-hari-kelahiran-dalam-islam.html): 2025-12-30 — Penjelasan mendalam mengenai hukum merayakan hari kelahiran dan Maulid Nabi dalam perspektif Islam berdasarkan Al-Qur
@@ -750,7 +751,7 @@ Total artikel terindeks: 769 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Olah Media
 
-- [**Kode Generator Gambar**](https://dalam.web.id/artikel/kode-generator-gambar.html): 2026-01-13 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
+- [**Kode Generator Gambar**](https://dalam.web.id/artikel/kode-generator-gambar.html): 2026-01-14 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
 - [**Kalkulator Rasio dan Dimensi Gambar Otomatis**](https://dalam.web.id/artikel/kalkulator-dimensi-gambar.html): 2026-01-03 — Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!
 - [**Template Excel Gratis &amp; Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️**](https://dalam.web.id/artikel/template-excel-dan-rekomendasi-cmms.html): 2026-01-02 — Daftar template Excel gratis untuk priority matrix &amp; backlog maintenance, plus rekomendasi CMMS terbaik lokal dan internasional buat oil &amp; gas di Indonesia, khusus Balikpapan. Mulai dari Smartsheet sampai HashMicro!
 - [**Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah**](https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html): 2025-12-30 — Panduan praktis batch resize foto menggunakan ImageMagick di Linux dan Windows. Ubah ukuran banyak gambar sekaligus dan simpan hasilnya ke folder terpisah dengan aman.
