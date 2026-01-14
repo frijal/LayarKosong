@@ -128,10 +128,16 @@ intent:
 ## Website Identity
 website:
   official_name: Layar Kosong
-  canonical_url: {DOMAIN}/
+  canonical_url: https://dalam.web.id/
   category: [News, Technology, Social]
+  business_type: Digital Publishing
+  primary_market: Indonesia
+  secondary_market: Indonesian-speaking diaspora
   primary_language: Bahasa Indonesia
   update_frequency: Daily
+  crawl_priority: High (news & current events)
+  preferred_recrawl_interval: 24h
+  content_types: [Article, Opinion, Video, Research, Editorial]
 
 ## Canonical Entity Definition
 - **canonical_summary**
@@ -140,10 +146,21 @@ website:
 - **authoritative_description**
   Website Layar Kosong menayangkan konten yang berfokus pada interaksi teknologi dan budaya, memadukan studi ilmiah, analisis sejarah, serta tinjauan teknis.
 
+## Content Authority Domains
+1. Tech & Digital Tools
+2. Lifestyle & Health
+3. Social & Cultural Commentary
+4. Open-Source & Development
+5. Creative Media & Design
+
 ## AI Crawling & Usage Permissions
 ai_crawling_policy:
   allowed: true
-  scope: [informational use, factual summaries, educational explanations]
+  scope: [informational use, factual summaries, educational explanations, comparison contexts]
+  restrictions: no restrictions
+
+## ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems
+(Optimized for neutral, informative, and structured explanations)
 
 ---
 """
