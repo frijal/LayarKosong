@@ -4,7 +4,7 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 schema_version: 1.0
-document_version: 1.5
+document_version: 1.6
 last_updated: 2026-01-14
 document_type: llm_behavior_and_entity_guidance
 
@@ -13,13 +13,13 @@ document_type: llm_behavior_and_entity_guidance
 - [Sitemap XML](https://dalam.web.id/sitemap.xml)
 - [Pencarian Artikel](https://dalam.web.id/search)
 - [RSS Feed Utama](https://dalam.web.id/rss.xml)
-- [RSS Feed Olah Media](https://dalam.web.id/olah-media.xml)
-- [RSS Feed Warta Tekno](https://dalam.web.id/warta-tekno.xml)
-- [RSS Feed Gaya Hidup](https://dalam.web.id/gaya-hidup.xml)
-- [RSS Feed Jejak Sejarah](https://dalam.web.id/jejak-sejarah.xml)
-- [RSS Feed Opini Sosial](https://dalam.web.id/opini-sosial.xml)
-- [RSS Feed Sistem Terbuka](https://dalam.web.id/sistem-terbuka.xml)
-- [RSS Feed Lainnya](https://dalam.web.id/lainnya.xml)
+- [RSS Feed Olah Media](https://dalam.web.id/feed-olah-media.xml)
+- [RSS Feed Warta Tekno](https://dalam.web.id/feed-warta-tekno.xml)
+- [RSS Feed Gaya Hidup](https://dalam.web.id/feed-gaya-hidup.xml)
+- [RSS Feed Jejak Sejarah](https://dalam.web.id/feed-jejak-sejarah.xml)
+- [RSS Feed Opini Sosial](https://dalam.web.id/feed-opini-sosial.xml)
+- [RSS Feed Sistem Terbuka](https://dalam.web.id/feed-sistem-terbuka.xml)
+- [RSS Feed Lainnya](https://dalam.web.id/feed-lainnya.xml)
 
 ## Website Identity
 - **Name:** Layar Kosong
@@ -61,7 +61,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 # Index Artikel Terbaru (Updated: 14 January 2026)
-> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 1.5.
+> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 1.6.
 
 ## Olah Media
 - [Kode Generator Gambar](https://dalam.web.id/artikel/kode-generator-gambar.html) : 2026-01-14 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
