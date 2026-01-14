@@ -18,7 +18,7 @@ const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).pad
 
 async function run() {
   try {
-    console.log("🔍 Memulai sinkronisasi lokal...");
+    console.log("🔍 Memulai sinkronisasi...");
 
     const repoRes = await octokit.graphql(`
     query($owner: String!, $name: String!) {
@@ -31,7 +31,7 @@ async function run() {
     `, { owner: REPO_OWNER, name: REPO_NAME });
 
     const repoId = repoRes.repository.id;
-    const ghCategories = repoRes.repository.discussionCategories.nodes;
+    const ghCategories = repoRes.repository.id ? repoRes.repository.discussionCategories.nodes : [];
     let ghLabels = repoRes.repository.labels.nodes;
 
     for (const fileName of RSS_FILES) {
@@ -43,9 +43,8 @@ async function run() {
 
       if (!targetCategory) continue;
 
-      console.log(`\n📂 Kategori: ${targetCategory.name}`);
-
       for (const item of feed.items) {
+        // 1. CEK DUPLIKAT
         const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${item.link}"`;
         const checkRes = await octokit.graphql(`
         query($searchQuery: String!) {
@@ -55,7 +54,7 @@ async function run() {
 
         if (checkRes.search.discussionCount > 0) continue;
 
-        // LOGIKA LABEL
+        // 2. LOGIKA LABEL
         const itemCategory = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
         let existingLabel = ghLabels.find(l => l.name.toLowerCase() === itemCategory.toLowerCase());
 
@@ -69,18 +68,13 @@ async function run() {
           } catch (e) { }
         }
 
-        // --- LOGIKA GAMBAR LOKAL ---
+        // --- 3. LOGIKA GAMBAR (AMBIL PATH UTUH) ---
         let displayImage = '';
         if (item.enclosure && item.enclosure.url) {
           let imgUrl = item.enclosure.url;
-          // Jika URL gambar berasal dari dalam.web.id, ubah jadi path repo
-          if (imgUrl.startsWith('https://dalam.web.id/')) {
-            const fileNameImg = imgUrl.split('/').pop();
-            // Menggunakan path relatif GitHub untuk menampilkan gambar dari folder img/
-            displayImage = `\n\n![Thumbnail](img/${fileNameImg})`;
-          } else {
-            displayImage = `\n\n![Thumbnail](${imgUrl})`;
-          }
+          // Menghilangkan https://dalam.web.id agar menjadi img/folder/file.ext
+          const relativePath = imgUrl.replace('https://dalam.web.id/', '');
+          displayImage = `\n\n![Thumbnail](${relativePath})`;
         }
 
         console.log(`🚀 Posting: ${item.title}`);
@@ -99,7 +93,7 @@ async function run() {
           body: `### [${item.title}](${item.link})${displayImage}\n\n${item.contentSnippet || item.description || ''}${footer}`
         });
 
-        // TAMBAHKAN LABEL
+        // 4. TAMBAHKAN LABEL
         if (existingLabel && createRes.createDiscussion.discussion.id) {
           try {
             await octokit.graphql(`
@@ -116,8 +110,7 @@ async function run() {
     }
     console.log("\n✅ Selesai!");
   } catch (err) {
-    if (err.errors) err.errors.forEach(e => console.error(`- ${e.message}`));
-    else console.error(err.message);
+    console.error("❌ Kesalahan:", err.message);
   }
 }
 
