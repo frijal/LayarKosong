@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: Delete all discussions
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           OWNER: frijal
           REPO: LayarKosong
         run: |
           set -e
 
           echo "Fetching repository node ID..."
-          REPO_ID=$(curl -s -X POST https://api.github.com/graphql \
+          RESPONSE=$(curl -s -X POST https://api.github.com/graphql \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Content-Type: application/json" \
             -d "{
@@ -26,7 +26,16 @@ jobs:
                   id
                 }
               }\"
-            }" | jq -r '.data.repository.id')
+            }")
+
+          echo "$RESPONSE"
+
+          REPO_ID=$(echo "$RESPONSE" | jq -r '.data.repository.id')
+
+          if [ "$REPO_ID" = "null" ] || [ -z "$REPO_ID" ]; then
+            echo "ERROR: Repository not accessible. Check token scopes and Discussions setting."
+            exit 1
+          fi
 
           echo "Repo ID: $REPO_ID"
 
@@ -47,23 +56,24 @@ jobs:
               }\"
             }" | jq -r '.data.repository.discussions.nodes[].id')
 
-          if [ -z \"$DISCUSSION_IDS\" ]; then
-            echo \"No discussions found.\"
+          if [ -z "$DISCUSSION_IDS" ]; then
+            echo "No discussions found."
             exit 0
           fi
 
           for ID in $DISCUSSION_IDS; do
-            echo \"Deleting discussion $ID\"
+            echo "Deleting discussion $ID"
             curl -s -X POST https://api.github.com/graphql \
-              -H \"Authorization: Bearer $GH_TOKEN\" \
-              -H \"Content-Type: application/json\" \
-              -d \"{
-                \\\"query\\\": \\\"mutation {
-                  deleteDiscussion(input:{id:\\\\\\\"$ID\\\\\\\"}) {
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"query\": \"mutation {
+                  deleteDiscussion(input:{id:\\\"$ID\\\"}) {
                     clientMutationId
                   }
-                }\\\"
-              }\"
+                }\"
+              }"
           done
 
-          echo \"All discussions deleted.\"
+          echo "All discussions deleted."
+
