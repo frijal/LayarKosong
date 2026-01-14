@@ -435,3 +435,99 @@
   }
 
 })();
+
+
+/**
+ * Global Theme Toggle Script for Layar Kosong
+ * Fitur: Dark Mode, Auto-Hide (>80px), LocalStorage Memory, Font Awesome Support
+ */
+
+(function() {
+  // 1. INJECT CSS KE DALAM HEAD
+  const css = `
+  :root {
+    --tk-bg: #ffffff;
+    --tk-text: #1e293b;
+    --tk-border: #e2e8f0;
+    --tk-shadow: rgba(0,0,0,0.1);
+  }
+  .dark {
+    --tk-bg: #0f172a;
+    --tk-text: #f1f5f9;
+    --tk-border: #334155;
+    --tk-shadow: rgba(0,0,0,0.3);
+  }
+  .theme-toggle-btn {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 99999;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--tk-border);
+    background: var(--tk-bg);
+    color: var(--tk-text);
+    box-shadow: 0 4px 15px var(--tk-shadow);
+    transition: all 0.4s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+  }
+  .theme-toggle-btn.hidden-btn {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+  }
+  .theme-toggle-btn:hover {
+    transform: scale(1.05);
+    border-color: #dc2626;
+  }
+  @media (max-width: 600px) {
+    .theme-toggle-btn { top: 70px; right: 20px; }
+  }
+  `;
+
+  const styleHead = document.createElement('style');
+  styleHead.innerHTML = css;
+  document.head.appendChild(styleHead);
+
+  // 2. INJECT TOMBOL KE DALAM BODY
+  const btn = document.createElement('button');
+  btn.className = 'theme-toggle-btn';
+  btn.setAttribute('aria-label', 'Ganti Tema');
+  btn.innerHTML = '<i class="fas fa-circle-half-stroke"></i> <span>Ganti Tema</span>';
+  document.body.appendChild(btn);
+
+  // 3. LOGIKA DARK MODE & MEMORY
+  const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  };
+
+  const toggleDarkMode = () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  };
+
+  btn.addEventListener('click', toggleDarkMode);
+
+  // 4. LOGIKA AUTO-HIDE (Scroll > 80px)
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      btn.classList.add('hidden-btn');
+    } else {
+      btn.classList.remove('hidden-btn');
+    }
+  });
+
+  // Jalankan Inisialisasi
+  initTheme();
+})();
