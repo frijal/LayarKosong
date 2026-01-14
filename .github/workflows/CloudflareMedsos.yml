@@ -24,7 +24,7 @@ on:
           - llms_index
 
 permissions:
-  contents: read write
+  contents: write
   discussions: write
   issues: write # Dibutuhkan oleh Octokit untuk membuat label baru
   
