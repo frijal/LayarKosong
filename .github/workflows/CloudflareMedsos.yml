@@ -24,7 +24,9 @@ on:
           - llms_index
 
 permissions:
-  contents: write
+  contents: read write
+  discussions: write
+  issues: write # Dibutuhkan oleh Octokit untuk membuat label baru
   
 jobs:
   everything-job:
