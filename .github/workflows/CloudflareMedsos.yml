@@ -2,7 +2,7 @@ name: "🟢 Layar Kosong: Super Automation & MedSos"
 
 on:
   schedule:
-    - cron: "0 */3 * * *" # Eksekusi otomatis tiap 2 jam
+    - cron: "0 */4 * * *" # Eksekusi otomatis tiap 2 jam
   workflow_dispatch:
     inputs:
       task:
