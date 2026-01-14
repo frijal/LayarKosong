@@ -22,7 +22,7 @@ Petunjuk untuk LLM (Bahasa Indonesia):
 - Konten beginner-friendly, praktis, dan netral.
 - Prioritaskan jawaban dalam bahasa Indonesia jika query dalam bahasa Indonesia.
 
-Total artikel terindeks: 770 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
+Total artikel terindeks: 774 (hanya yang punya summary). Update rutin – full list di [sitemap.xml](https://dalam.web.id/sitemap.xml).
 
 ## 📌 Opini Sosial
 
@@ -393,6 +393,7 @@ Total artikel terindeks: 770 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Warta Tekno
 
+- [**Ganti Alamat Gmail Tanpa Hapus Akun? Akhirnya Google Dengar Curhatan Kita!**](https://dalam.web.id/artikel/ganti-alamat-gmail-2026.html): 2026-01-14 — Kabar gembira di 2026! Google akhirnya izinkan ganti alamat Gmail tanpa bikin akun baru. Simak cara kerja, manfaat buat personal branding, dan tips keamanannya.
 - [**Fediverse, Masa Depan Media Sosial**](https://dalam.web.id/artikel/tour-the-fediverse.html): 2026-01-08 — Tur 5 menit menjelajahi Fediverse, kumpulan jaringan sosial open source yang saling terhubung. Temukan kebebasan dari algoritma dan iklan di dunia digital.
 - [**Nasib Firefox di Windows 10 Setelah Pensiun: Masih Aman Kah?**](https://dalam.web.id/artikel/nasib-firefox-windows-10-eos.html): 2026-01-08 — Windows 10 resmi pensiun (EOS). Apakah Firefox masih bisa digunakan? Simak panduan lengkap dukungan Mozilla, cara dapat update keamanan gratis, dan migrasi ke Windows 11.
 - [**Panduan Lengkap SEO dan Metadata untuk Blog Anda**](https://dalam.web.id/artikel/panduan-seo-metadata-blog.html): 2026-01-08 — Mengapa blog Anda yang bernama
@@ -579,7 +580,8 @@ Total artikel terindeks: 770 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Jejak Sejarah
 
-- [**Kesalahan Protokoler &amp; Sejarah BPM: Sultan Kutai yang Terpinggirkan - Layar Kosong**](https://dalam.web.id/artikel/sejarah-bpm-sultan-kutai.html): 2026-01-14 — Analisis mendalam kesalahan protokoler RDMP Balikpapan terhadap Sultan Kutai. Menelusuri sejarah BPM, legitimasi tanah, dan ironi modernitas yang melupakan akar sejarah.
+- [**Kesalahan Protokoler &amp; Sejarah BPM: Sultan Kutai yang Terpinggirkan**](https://dalam.web.id/artikel/sejarah-bpm-sultan-kutai.html): 2026-01-14 — Analisis mendalam kesalahan protokoler RDMP Balikpapan terhadap Sultan Kutai. Menelusuri sejarah BPM, legitimasi tanah, dan ironi modernitas yang melupakan akar sejarah.
+- [**Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?**](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html): 2026-01-14 — Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
 - [**Sejarah Fujiko F. Fujio: Duo Genius Pencipta Doraemon yang Mengubah Dunia Animasi**](https://dalam.web.id/artikel/sejarah-fujiko-f-fujio-pencipta-doraemon.html): 2026-01-08 — Sejarah lengkap Fujiko F. Fujio, duo kreator di balik Doraemon. Temukan inspirasi, perjalanan, dan proses penciptaan robot kucing terpopuler sepanjang masa.
 - [**Sejarah &amp; Pro-Kontra Maulid Nabi: Outline Presentasi Lengkap**](https://dalam.web.id/artikel/maulid-outline-slides.html): 2025-12-30 — Outline slide presentasi interaktif tentang Maulid Nabi: latar belakang, sejarah singkat, pro-kontra ulama, dan sikap bijak menyikapi perbedaan.
 - [**Hukum Perayaan Hari Kelahiran (Termasuk Maulid Nabi) dalam Islam**](https://dalam.web.id/artikel/hukum-perayaan-hari-kelahiran-dalam-islam.html): 2025-12-30 — Penjelasan mendalam mengenai hukum merayakan hari kelahiran dan Maulid Nabi dalam perspektif Islam berdasarkan Al-Qur
@@ -751,7 +753,9 @@ Total artikel terindeks: 770 (hanya yang punya summary). Update rutin – full l
 
 ## 📌 Olah Media
 
+- [**Video Durasi Singkat: Benarkah Membunuh Fokus Kita?**](https://dalam.web.id/artikel/video-singkat-menyusutkan-otak.html): 2026-01-14 — Hasil studi Nature Communications membuktikan video pendek merusak prefrontal cortex. Yuk, pahami kenapa otak kita jadi gampang bosan dan sulit fokus.
 - [**Kode Generator Gambar**](https://dalam.web.id/artikel/kode-generator-gambar.html): 2026-01-14 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
+- [**Cara Mengubah YouTube Shorts Menjadi Video Biasa**](https://dalam.web.id/artikel/cara-ubah-youtube-shorts.html): 2026-01-14 — Sering kesal dengan tampilan YouTube Shorts? Gunakan tool gratis dari Layar Kosong untuk mengubah link Shorts menjadi video standar dengan fitur kontrol penuh.
 - [**Kalkulator Rasio dan Dimensi Gambar Otomatis**](https://dalam.web.id/artikel/kalkulator-dimensi-gambar.html): 2026-01-03 — Alat bantu hitung dimensi gambar otomatis untuk berbagai rasio (16:9, 4:3, 21:9, dll) dengan pilihan orientasi Horizontal atau Vertikal. Cocok buat web developer, designer, atau siapa aja yang sering ngedit gambar!
 - [**Template Excel Gratis &amp; Rekomendasi CMMS Cocok Buat Industri Migas di Balikpapan 🛢️**](https://dalam.web.id/artikel/template-excel-dan-rekomendasi-cmms.html): 2026-01-02 — Daftar template Excel gratis untuk priority matrix &amp; backlog maintenance, plus rekomendasi CMMS terbaik lokal dan internasional buat oil &amp; gas di Indonesia, khusus Balikpapan. Mulai dari Smartsheet sampai HashMicro!
 - [**Batch Resize Foto dengan ImageMagick — Simpan ke Folder Terpisah**](https://dalam.web.id/artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html): 2025-12-30 — Panduan praktis batch resize foto menggunakan ImageMagick di Linux dan Windows. Ubah ukuran banyak gambar sekaligus dan simpan hasilnya ke folder terpisah dengan aman.
