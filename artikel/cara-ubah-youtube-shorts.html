@@ -2,48 +2,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Mengubah YouTube Shorts Menjadi Video Biasa</title>
-
     <meta name="description" content="Kesal dengan tampilan YouTube Shorts? Gunakan tool gratis dari Layar Kosong untuk mengubah link Shorts menjadi video standar dengan fitur rewind dan kontrol penuh.">
     <meta name="keywords" content="YouTube Shorts Converter, Ubah Shorts ke Video Biasa, Layar Kosong, Tool YouTube, Nonton Shorts di Desktop, Frijal">
     <meta name="news_keywords" content="tutorial youtube, youtube shorts converter, tips teknologi, layar kosong, balikpapan">
-    
-    
-    
-
-    
-    
     <meta property="og:description" content="Nonton YouTube Shorts tapi pengen fitur rewind dan ganti resolusi? Cek cara simpel mengubahnya secara instan di sini!">
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
     <meta name="twitter:description" content="Capek sama UI Shorts yang kaku? Pindahkan ke mode video biasa dalam sekali klik. Cobain di blog Layar Kosong!">
-    
-
     <meta name="prompthint" content="Masukkan URL YouTube Shorts untuk mendapatkan link video standar beserta preview-nya.">
-    
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
         // Tailwind Configuration for Dark Mode
         tailwind.config = {
             darkMode: 'class',
         }
-
         // Automatic Theme Detection (System Preference)
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
     </script>
-
     <style>
         /* Optimasi Core Web Vitals (CLS & LCP) */
         .content-wrapper { min-height: 100vh; }
@@ -58,7 +34,6 @@
         #toast { transition: opacity 0.3s ease; }
         iframe { border-radius: 8px; }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/cara-ubah-youtube-shorts">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -86,10 +61,9 @@
     <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-mgmHyasAAVBUf.webp">
     <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-mgmHyasAAVBUf.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/artikel/cara-ubah-youtube-shorts#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/cara-ubah-youtube-shorts"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Mengubah YouTube Shorts Menjadi Video Biasa","description":"Kesal dengan tampilan YouTube Shorts? Gunakan tool gratis dari Layar Kosong untuk mengubah link Shorts menjadi video standar dengan fitur rewind dan kontrol penuh.","articleSection":"Olah Media","keywords":"biasa, cara, layar kosong, mengubah, menjadi, olah media, shorts, ubah, video, youtube","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G-mgmHyasAAVBUf.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-14T07:35:10.428+00:00","dateModified":"2026-01-14T07:35:10.428+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/artikel/cara-ubah-youtube-shorts#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/artikel/-/olah-media/"},{"@type":"ListItem","position":3,"name":"Cara Mengubah YouTube Shorts Menjadi Video Biasa","item":"https://dalam.web.id/artikel/cara-ubah-youtube-shorts"}]}]}</script>
 </head>
-
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
-
     <div class="max-w-4xl mx-auto px-4 py-8 content-wrapper">
         <header class="mb-10 text-center">
             <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">📺 YouTube Shorts Converter</h1>
@@ -101,32 +75,26 @@
                 </button>
             </div>
         </header>
-
         <main class="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 mb-12">
             <div class="flex flex-col gap-5">
                 <label for="inputUrl" class="text-xl font-bold flex items-center gap-2">
                     <i class="fas fa-link text-red-500"></i> Masukkan Link Video YouTube Short:
                 </label>
                 <input type="text" id="inputUrl" placeholder="https://www.youtube.com/shorts/..." class="w-full p-4 md:p-5 rounded-2xl bg-slate-100 dark:bg-slate-800 border-2 border-transparent focus:border-red-500 outline-none transition-all text-lg shadow-inner">
-
                 <button onclick="convertLink()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 md:py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all text-xl">
                     <i class="fas fa-wand-magic-sparkles"></i> Konversi &amp; Lihat Preview
                 </button>
             </div>
-
             <div id="resultBox" class="hidden mt-10 p-6 md:p-8 bg-blue-50 dark:bg-blue-900/10 border-2 border-dashed border-blue-400 rounded-3xl animate-in fade-in duration-500">
                 <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-blue-700 dark:text-blue-400">
                     <i class="fas fa-check-circle"></i> Berhasil Dikonversi!
                 </h3>
-
                 <div id="videoPreview" class="mb-6 overflow-hidden rounded-xl shadow-2xl bg-black aspect-video">
                     </div>
-
                 <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 mb-6 shadow-sm">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2 font-bold">Link Video Standar:</p>
                     <div id="outputUrl" class="break-all font-mono text-lg text-blue-600 dark:text-blue-400"></div>
                 </div>
-
                 <div class="flex flex-col sm:flex-row gap-4">
                     <button onclick="copyToClipboard()" class="flex-1 bg-slate-800 dark:bg-slate-700 text-white py-4 rounded-xl hover:bg-black flex items-center justify-center gap-2 transition-all font-bold">
                         <i class="fas fa-copy"></i> Salin Link
@@ -137,11 +105,9 @@
                 </div>
             </div>
         </main>
-
         <article class="prose prose-lg prose-slate dark:prose-invert max-w-none">
             <h2 class="text-3xl font-bold mb-6">Kenapa Kamu Harus Mengubah Shorts Menjadi Video Biasa? 🧐</h2>
             <p class="mb-6 leading-relaxed">Kamu lagi seru-serunya nonton video di YouTube Shorts, tapi tiba-tiba pengen ngulang bagian sedetik yang lalu tapi nggak bisa? Kamu harus nunggu videonya selesai berputar dulu baru bisa ulang lagi. Menyebalkan, kan? Nah, di blog <strong>Layar Kosong</strong> ini, aku buatin solusinya pakai prinsip 5W+1H biar makin mantap penjelasannya!</p>
-
             <div class="grid gap-8 my-10">
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
@@ -150,7 +116,6 @@
                     </h3>
                     <p class="opacity-80">Ini adalah tool berbasis JavaScript sederhana yang mengubah susunan URL video dari yang tadinya memakai format <code>/shorts/</code> menjadi format <code>/watch?v=</code>. Secara fungsi, videonya sama, tapi tampilannya beda total!</p>
                 </div>
-
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
                         <span class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
@@ -158,7 +123,6 @@
                     </h3>
                     <p class="opacity-80">Buat kamu yang pengen nonton video Shorts dengan fitur kontrol penuh (rewind, fast-forward, pilih resolusi, ganti kecepatan putar) layaknya video YouTube biasa di desktop maupun mobile.</p>
                 </div>
-
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
                         <span class="bg-green-100 text-green-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
@@ -166,7 +130,6 @@
                     </h3>
                     <p class="opacity-80">Dimana saja! Halaman ini sudah dioptimasi agar <i>Mobile Friendly</i> dan responsif. Mau dibuka di layar widescreen monitor atau HP jadul pun tampilannya tetap rapi karena menggunakan sistem satu kolom.</p>
                 </div>
-
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
                         <span class="bg-orange-100 text-orange-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
@@ -174,7 +137,6 @@
                     </h3>
                     <p class="opacity-80">Gunakan setiap kali kamu mendapatkan link YouTube Shorts yang informatif (seperti tutorial atau resep masak) dimana kamu perlu melakukan <i>pause</i> atau <i>rewind</i> berulang kali tanpa ribet.</p>
                 </div>
-
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
                         <span class="bg-yellow-100 text-yellow-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
@@ -182,7 +144,6 @@
                     </h3>
                     <p class="opacity-80">Karena kebebasan! Interface Shorts membatasi interaksi kita dengan video. Dengan mengubahnya ke video biasa, kamu bisa dengan mudah menyimpan video ke playlist, membagikan link dengan <i>timestamp</i> tertentu, dan melihat kolom komentar dengan lebih nyaman.</p>
                 </div>
-
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
                         <span class="bg-purple-100 text-purple-600 w-10 h-10 rounded-full flex items-center justify-center">H</span>
@@ -194,10 +155,6 @@
             <div id="pesbukdiskus" class="min-h-[200px] border border-slate-200 dark:border-slate-800 p-8 rounded-3xl text-center flex flex-col items-center justify-center bg-white dark:bg-slate-900 shadow-sm"></div>
             <div id="related-articles-grid" class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </article></div>
-
-
-        
-
         <footer class="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 text-center text-sm opacity-70">
             <p class="font-bold">🄯 2026 <a href="https://dalam.web.id" class="hover:text-red-500 underline transition-colors">Layar Kosong</a></p>
             <p class="mt-2 mb-6">Dibuat sambil ngoppi oleh <a href="https://linkedin.com/in/frijal" class="underline">Frijal</a> di Balikpapan.</p>
@@ -208,42 +165,33 @@
             </div>
             <p class="mt-8 text-xs italic">Optimized for Core Web Vitals (LCP, CLS, INP)</p>
         </footer>
-    
-
     <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl opacity-0 pointer-events-none z-50 font-bold border border-slate-700">
         Link berhasil disalin!
     </div>
-
     <script>
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
         }
-
         function convertLink() {
             const input = document.getElementById('inputUrl').value.trim();
             const resultBox = document.getElementById('resultBox');
             const outputUrl = document.getElementById('outputUrl');
             const openLink = document.getElementById('openLink');
             const videoPreview = document.getElementById('videoPreview');
-
             if (!input) {
                 showToast("Oops! Masukkan link YouTube dulu ya... 🙏");
                 return;
             }
-
             // Regex deteksi ID video dari link Shorts
             const shortsRegex = /youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/;
             const match = input.match(shortsRegex);
-
             if (match && match[1]) {
                 const videoId = match[1];
                 const regularUrl = `https://www.youtube.com/watch?v=${videoId}`;
                 const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0`;
-
                 // Update UI
                 outputUrl.innerText = regularUrl;
                 openLink.href = regularUrl;
-
                 // Inject Player Iframe (Preview)
                 videoPreview.innerHTML = `
                     <iframe
@@ -255,9 +203,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
                     </iframe>`;
-
                 resultBox.classList.remove('hidden');
-
                 // Scroll ke hasil konversi agar user langsung lihat preview
                 resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 showToast("Boom! Videonya sudah siap. ✨");
@@ -266,7 +212,6 @@
                 resultBox.classList.add('hidden');
             }
         }
-
         function copyToClipboard() {
             const text = document.getElementById('outputUrl').innerText;
             const dummy = document.createElement("textarea");
@@ -277,7 +222,6 @@
             document.body.removeChild(dummy);
             showToast("Mantap! Link sudah tersalin ke clipboard. 📋");
         }
-
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.innerText = message;
@@ -286,7 +230,6 @@
                 toast.classList.add('opacity-0');
             }, 3000);
         }
-
         // Support tombol Enter
         document.getElementById('inputUrl').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -294,7 +237,6 @@
             }
         });
     </script>
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
