@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Mengubah YouTube Shorts Menjadi Video Biasa</title>
+
+    <meta name="description" content="Kesal dengan tampilan YouTube Shorts? Gunakan tool gratis dari Layar Kosong untuk mengubah link Shorts menjadi video standar dengan fitur rewind dan kontrol penuh.">
+    <meta name="keywords" content="YouTube Shorts Converter, Ubah Shorts ke Video Biasa, Layar Kosong, Tool YouTube, Nonton Shorts di Desktop, Frijal">
+    <meta name="news_keywords" content="tutorial youtube, youtube shorts converter, tips teknologi, layar kosong, balikpapan">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-ubah-youtube-shorts.html">
+    <meta name="author" content="Frijal">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:title" content="Cara Mengubah YouTube Shorts Menjadi Video Biasa Secara Otomatis">
+    <meta property="og:description" content="Nonton YouTube Shorts tapi pengen fitur rewind dan ganti resolusi? Cek cara simpel mengubahnya secara instan di sini!">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-ubah-youtube-shorts.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://pbs.twimg.com/media/G-mgmHyasAAVBUf.jpg">
+    <meta property="article:published_time" content="2026-01-14T09:00:00+07:00">
+    <meta property="article:author" content="https://facebook.com/frijal">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:title" content="Alat Konversi YouTube Shorts ke Video Standar">
+    <meta name="twitter:description" content="Capek sama UI Shorts yang kaku? Pindahkan ke mode video biasa dalam sekali klik. Cobain di blog Layar Kosong!">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/G-mgmHyasAAVBUf.jpg">
+
+    <meta name="prompthint" content="Masukkan URL YouTube Shorts untuk mendapatkan link video standar beserta preview-nya.">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // Tailwind Configuration for Dark Mode
+        tailwind.config = {
+            darkMode: 'class',
+        }
+
+        // Automatic Theme Detection (System Preference)
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <style>
+        /* Optimasi Core Web Vitals (CLS & LCP) */
+        .content-wrapper { min-height: 100vh; }
+        .hero-img {
+            content-visibility: auto;
+            aspect-ratio: 16/9;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        #toast { transition: opacity 0.3s ease; }
+        iframe { border-radius: 8px; }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+
+    <div class="max-w-4xl mx-auto px-4 py-8 content-wrapper">
+        <header class="mb-10 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">📺 YouTube Shorts Converter</h1>
+            <p class="text-lg opacity-75">Nonton video pendek tanpa batasan interface! 🚀</p>
+            <div class="mt-6 flex justify-center gap-4">
+                <button onclick="toggleDarkMode()" class="px-4 py-2 bg-slate-200 dark:bg-slate-800 rounded-full hover:scale-105 transition-transform flex items-center gap-2 text-sm font-medium">
+                    <i class="fas fa-circle-half-stroke"></i> Ganti Mode Tampilan
+                </button>
+            </div>
+        </header>
+
+        <main class="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 mb-12">
+            <div class="flex flex-col gap-5">
+                <label for="inputUrl" class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-link text-red-500"></i> Masukkan Link Video YouTube Short:
+                </label>
+                <input type="text" id="inputUrl" placeholder="https://www.youtube.com/shorts/..."
+                    class="w-full p-4 md:p-5 rounded-2xl bg-slate-100 dark:bg-slate-800 border-2 border-transparent focus:border-red-500 outline-none transition-all text-lg shadow-inner">
+
+                <button onclick="convertLink()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 md:py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all text-xl">
+                    <i class="fas fa-wand-magic-sparkles"></i> Konversi & Lihat Preview
+                </button>
+            </div>
+
+            <div id="resultBox" class="hidden mt-10 p-6 md:p-8 bg-blue-50 dark:bg-blue-900/10 border-2 border-dashed border-blue-400 rounded-3xl animate-in fade-in duration-500">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-blue-700 dark:text-blue-400">
+                    <i class="fas fa-check-circle"></i> Berhasil Dikonversi!
+                </h3>
+
+                <div id="videoPreview" class="mb-6 overflow-hidden rounded-xl shadow-2xl bg-black aspect-video">
+                    </div>
+
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 mb-6 shadow-sm">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2 font-bold">Link Video Standar:</p>
+                    <div id="outputUrl" class="break-all font-mono text-lg text-blue-600 dark:text-blue-400"></div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="copyToClipboard()" class="flex-1 bg-slate-800 dark:bg-slate-700 text-white py-4 rounded-xl hover:bg-black flex items-center justify-center gap-2 transition-all font-bold">
+                        <i class="fas fa-copy"></i> Salin Link
+                    </button>
+                    <a id="openLink" target="_blank" class="flex-1 bg-red-600 text-white py-4 rounded-xl hover:bg-red-700 text-center flex items-center justify-center gap-2 transition-all font-bold shadow-lg">
+                        <i class="fas fa-external-link-alt"></i> Buka di YouTube
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <article class="prose prose-lg prose-slate dark:prose-invert max-w-none">
+            <h2 class="text-3xl font-bold mb-6">Kenapa Kamu Harus Mengubah Shorts Menjadi Video Biasa? 🧐</h2>
+            <p class="mb-6 leading-relaxed">Kamu lagi seru-serunya nonton video di YouTube Shorts, tapi tiba-tiba pengen ngulang bagian sedetik yang lalu tapi nggak bisa? Kamu harus nunggu videonya selesai berputar dulu baru bisa ulang lagi. Menyebalkan, kan? Nah, di blog <strong>Layar Kosong</strong> ini, aku buatin solusinya pakai prinsip 5W+1H biar makin mantap penjelasannya!</p>
+
+            <div class="grid gap-8 my-10">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-red-100 text-red-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
+                        What: Apa itu Konverter Shorts?
+                    </h3>
+                    <p class="opacity-80">Ini adalah tool berbasis JavaScript sederhana yang mengubah susunan URL video dari yang tadinya memakai format <code>/shorts/</code> menjadi format <code>/watch?v=</code>. Secara fungsi, videonya sama, tapi tampilannya beda total!</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
+                        Who: Siapa yang butuh tool ini?
+                    </h3>
+                    <p class="opacity-80">Buat kamu yang pengen nonton video Shorts dengan fitur kontrol penuh (rewind, fast-forward, pilih resolusi, ganti kecepatan putar) layaknya video YouTube biasa di desktop maupun mobile.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-green-100 text-green-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
+                        Where: Dimana tool ini bisa digunakan?
+                    </h3>
+                    <p class="opacity-80">Dimana saja! Halaman ini sudah dioptimasi agar <i>Mobile Friendly</i> dan responsif. Mau dibuka di layar widescreen monitor atau HP jadul pun tampilannya tetap rapi karena menggunakan sistem satu kolom.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-orange-100 text-orange-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
+                        When: Kapan harus memakainya?
+                    </h3>
+                    <p class="opacity-80">Gunakan setiap kali kamu mendapatkan link YouTube Shorts yang informatif (seperti tutorial atau resep masak) dimana kamu perlu melakukan <i>pause</i> atau <i>rewind</i> berulang kali tanpa ribet.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-yellow-100 text-yellow-600 w-10 h-10 rounded-full flex items-center justify-center">W</span>
+                        Why: Mengapa ini lebih baik?
+                    </h3>
+                    <p class="opacity-80">Karena kebebasan! Interface Shorts membatasi interaksi kita dengan video. Dengan mengubahnya ke video biasa, kamu bisa dengan mudah menyimpan video ke playlist, membagikan link dengan <i>timestamp</i> tertentu, dan melihat kolom komentar dengan lebih nyaman.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold flex items-center gap-3 mb-3">
+                        <span class="bg-purple-100 text-purple-600 w-10 h-10 rounded-full flex items-center justify-center">H</span>
+                        How: Bagaimana cara kerjanya?
+                    </h3>
+                    <p class="opacity-80">Sistem akan melakukan <i>parsing</i> terhadap ID video unik yang ada di URL Shorts. Setelah itu, sistem akan menyematkan ID tersebut ke dalam framework URL YouTube standar dan menampilkan <b>Preview Player</b> di atas secara instan.</p>
+                </div>
+            </div>
+            <div id="pesbukdiskus" class="min-h-[200px] border border-slate-200 dark:border-slate-800 p-8 rounded-3xl text-center flex flex-col items-center justify-center bg-white dark:bg-slate-900 shadow-sm"></div>
+            <div id="related-articles-grid" class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+
+        </article>
+
+        <footer class="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 text-center text-sm opacity-70">
+            <p class="font-bold">&copy; 2026 <a href="https://dalam.web.id" class="hover:text-red-500 underline transition-colors">Layar Kosong</a></p>
+            <p class="mt-2 mb-6">Dibuat sambil ngoppi oleh <a href="https://linkedin.com/in/frijal" class="underline">Frijal</a> di Balikpapan.</p>
+            <div class="flex justify-center gap-6 text-2xl">
+                <a href="https://github.com/frijal" target="_blank" class="hover:text-black dark:hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/responaja" target="_blank" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/frijal" target="_blank" class="hover:text-blue-500 transition-colors"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="mt-8 text-xs italic">Optimized for Core Web Vitals (LCP, CLS, INP)</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl opacity-0 pointer-events-none z-50 font-bold border border-slate-700">
+        Link berhasil disalin!
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function convertLink() {
+            const input = document.getElementById('inputUrl').value.trim();
+            const resultBox = document.getElementById('resultBox');
+            const outputUrl = document.getElementById('outputUrl');
+            const openLink = document.getElementById('openLink');
+            const videoPreview = document.getElementById('videoPreview');
+
+            if (!input) {
+                showToast("Oops! Masukkan link YouTube dulu ya... 🙏");
+                return;
+            }
+
+            // Regex deteksi ID video dari link Shorts
+            const shortsRegex = /youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/;
+            const match = input.match(shortsRegex);
+
+            if (match && match[1]) {
+                const videoId = match[1];
+                const regularUrl = `https://www.youtube.com/watch?v=${videoId}`;
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0`;
+
+                // Update UI
+                outputUrl.innerText = regularUrl;
+                openLink.href = regularUrl;
+
+                // Inject Player Iframe (Preview)
+                videoPreview.innerHTML = `
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        src="${embedUrl}"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>`;
+
+                resultBox.classList.remove('hidden');
+
+                // Scroll ke hasil konversi agar user langsung lihat preview
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                showToast("Boom! Videonya sudah siap. ✨");
+            } else {
+                showToast("Hmm, itu kayaknya bukan link Shorts asli. 🧐");
+                resultBox.classList.add('hidden');
+            }
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('outputUrl').innerText;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("Mantap! Link sudah tersalin ke clipboard. 📋");
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Support tombol Enter
+        document.getElementById('inputUrl').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                convertLink();
+            }
+        });
+    </script>
+</body>
+</html>
