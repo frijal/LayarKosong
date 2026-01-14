@@ -1,57 +1,27 @@
 name: Delete All Discussions
 
 on:
-  workflow_dispatch: # Hanya dijalankan secara manual demi keamanan
+  workflow_dispatch:
 
 jobs:
-  delete-discussions:
+  delete:
     runs-on: ubuntu-latest
     permissions:
       discussions: write
-
     steps:
-      - name: Delete Discussions via Script
+      - name: '1. Checkout Repository'
+        uses: actions/checkout@v6.0.1
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - name: '2. Setup Node.js'
+        uses: actions/setup-node@v6.1.0
+        with:
+          node-version: '24'
+      - name: Install
+        run: npm ci
+      - name: Run Delete Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node -e "
-          import { Octokit } from '@octokit/core';
-          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-          const [owner, repo] = ['$GITHUB_REPOSITORY'.split('/')[0], '$GITHUB_REPOSITORY'.split('/')[1]];
-
-          async function deleteAll() {
-            console.log('🧹 Memulai pembersihan diskusi di ' + owner + '/' + repo);
-            
-            // 1. Ambil daftar diskusi (maks 100 sekali jalan)
-            const query = \`
-              query(\$owner: String!, \$name: String!) {
-                repository(owner: \$owner, name: \$name) {
-                  discussions(first: 100) {
-                    nodes { id title }
-                  }
-                }
-              }
-            \`;
-
-            const res = await octokit.graphql(query, { owner, name: repo });
-            const discussions = res.repository.discussions.nodes;
-
-            if (discussions.length === 0) {
-              console.log('✅ Tidak ada diskusi yang tersisa.');
-              return;
-            }
-
-            // 2. Hapus satu per satu
-            for (const disc of discussions) {
-              console.log('🗑️ Menghapus: ' + disc.title);
-              await octokit.graphql(\`
-                mutation(\$id: ID!) {
-                  deleteDiscussion(input: {id: \$id}) { clientMutationId }
-                }
-              \`, { id: disc.id });
-            }
-            
-            console.log('♻️ Berhasil menghapus ' + discussions.length + ' diskusi. Jalankan lagi jika masih ada sisa.');
-          }
-          deleteAll();
-          "
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node ext/sapu-bersih.js
