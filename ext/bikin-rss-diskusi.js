@@ -14,12 +14,10 @@ const RSS_FILES = [
 const REPO_OWNER = 'frijal';
 const REPO_NAME = 'LayarKosong';
 
-// Fungsi untuk membuat warna HEX acak untuk label baru
 const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
 
 async function run() {
   try {
-    // 1. Ambil Data Dasar Repo
     const repoRes = await octokit.graphql(`
     query($owner: String!, $name: String!) {
       repository(owner: $owner, name: $name) {
@@ -38,80 +36,72 @@ async function run() {
       if (!fs.existsSync(fileName)) continue;
       const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
       const rawCategory = feed.title.split(' - ')[0].trim();
-      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
+      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rssCategoryName.toLowerCase()) || ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
 
-      if (!targetCategory) continue;
+      if (!targetCategory) {
+        console.log(`⚠️ Kategori ${rawCategory} tidak ditemukan di repo, skip file ini.`);
+        continue;
+      }
 
       for (const item of feed.items) {
-        // --- LOGIKA LABEL OTOMATIS ---
-        let keywords = item.categories || [rawCategory];
+        // --- LOGIKA CEK DUPLIKAT (VERSI PERBAIKAN) ---
+        // Kita gunakan search global untuk mencari link artikel di diskusi
+        const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${item.link}"`;
+        const checkRes = await octokit.graphql(`
+        query($searchQuery: String!) {
+          search(query: $searchQuery, type: DISCUSSION, first: 1) {
+            discussionCount
+          }
+        }
+        `, { searchQuery: searchQuery });
+
+        if (checkRes.search.discussionCount > 0) {
+          continue; // Sudah ada, skip
+        }
+
+        // --- LOGIKA LABEL ---
+        const rssCategoryName = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
+        let keywords = [rssCategoryName];
         let labelIds = [];
 
         for (let kw of keywords) {
           let existingLabel = ghLabels.find(l => l.name.toLowerCase() === kw.toLowerCase());
-
           if (!existingLabel) {
-            console.log(`🎨 Membuat label baru: ${kw}`);
-            const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
-              owner: REPO_OWNER,
-              repo: REPO_NAME,
-              name: kw,
-              color: getRandomColor(),
-                                                   description: `Otomatis dari kategori ${kw}`
-            });
-            existingLabel = { id: newLabel.data.node_id, name: kw };
-            ghLabels.push(existingLabel);
+            try {
+              console.log(`🎨 Membuat label baru: ${kw}`);
+              const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
+                owner: REPO_OWNER, repo: REPO_NAME, name: kw, color: getRandomColor()
+              });
+              existingLabel = { id: newLabel.data.node_id, name: kw };
+              ghLabels.push(existingLabel);
+            } catch (e) { console.log(`Gagal buat label ${kw}, lanjut saja.`); }
           }
-          labelIds.push(existingLabel.id);
+          if (existingLabel) labelIds.push(existingLabel.id);
         }
 
-        // --- CEK DUPLIKAT ---
-        const checkRes = await octokit.graphql(`
-        query($owner: String!, $name: String!, $link: String!) {
-          repository(owner: $owner, name: $name) {
-            discussions(first: 1, query: $link) { totalCount }
-          }
+        // --- POSTING ---
+        console.log(`🚀 Posting: ${item.title}`);
+        const thumbnail = item.enclosure ? `\n\n![Thumbnail](${item.enclosure.url})` : '';
+        const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})\n\n☕ *Dukung melalui [PayPal.me/FakhrulRijal](https://paypal.me/FakhrulRijal)*`;
+
+        await octokit.graphql(`
+        mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!, $labelIds: [ID!]) {
+          createDiscussion(input: {
+            repositoryId: $repoId, categoryId: $catId, body: $body, title: $title, labelIds: $labelIds
+          }) { discussion { url } }
         }
-        `, { owner: REPO_OWNER, name: REPO_NAME, link: item.link });
-
-        if (checkRes.repository.discussions.totalCount === 0) {
-          console.log(`🚀 Posting: ${item.title}`);
-
-          // --- LOGIKA TAMBAHAN: GAMBAR & FOOTER ---
-          // Ambil gambar dari enclosure (jika ada)
-          const thumbnail = item.enclosure ? `\n\n![Thumbnail](${item.enclosure.url})` : '';
-
-          // Footer dengan info sosial dan PayPal
-          const footer = `
-          ---
-          **Baca selengkapnya di:** [${item.link}](${item.link})
-                   `;
-
-          await octokit.graphql(`
-          mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!, $labelIds: [ID!]) {
-            createDiscussion(input: {
-              repositoryId: $repoId,
-              categoryId: $catId,
-              body: $body,
-              title: $title,
-              labelIds: $labelIds
-            }) {
-              discussion { url }
-            }
-          }
-          `, {
-            repoId: repoId,
-            catId: targetCategory.id,
-            title: item.title,
-            labelIds: labelIds,
-            body: `### [${item.title}](${item.link})${thumbnail}\n\n${item.contentSnippet || item.description || ''}${footer}`
-          });
-        }
+        `, {
+          repoId: repoId,
+          catId: targetCategory.id,
+          title: item.title,
+          labelIds: labelIds,
+          body: `### [${item.title}](${item.link})${thumbnail}\n\n${item.contentSnippet || item.description || ''}${footer}`
+        });
       }
     }
-    console.log("✅ Proses Sinkronisasi Selesai!");
+    console.log("✅ Selesai!");
   } catch (err) {
-    console.error("❌ Error:", err.message);
+    console.error("❌ Error Detail:", JSON.stringify(err, null, 2));
   }
 }
 
