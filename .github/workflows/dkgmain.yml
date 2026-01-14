@@ -1,0 +1,57 @@
+name: Delete All Discussions
+
+on:
+  workflow_dispatch: # Hanya dijalankan secara manual demi keamanan
+
+jobs:
+  delete-discussions:
+    runs-on: ubuntu-latest
+    permissions:
+      discussions: write
+
+    steps:
+      - name: Delete Discussions via Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node -e "
+          import { Octokit } from '@octokit/core';
+          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+          const [owner, repo] = ['$GITHUB_REPOSITORY'.split('/')[0], '$GITHUB_REPOSITORY'.split('/')[1]];
+
+          async function deleteAll() {
+            console.log('🧹 Memulai pembersihan diskusi di ' + owner + '/' + repo);
+            
+            // 1. Ambil daftar diskusi (maks 100 sekali jalan)
+            const query = \`
+              query(\$owner: String!, \$name: String!) {
+                repository(owner: \$owner, name: \$name) {
+                  discussions(first: 100) {
+                    nodes { id title }
+                  }
+                }
+              }
+            \`;
+
+            const res = await octokit.graphql(query, { owner, name: repo });
+            const discussions = res.repository.discussions.nodes;
+
+            if (discussions.length === 0) {
+              console.log('✅ Tidak ada diskusi yang tersisa.');
+              return;
+            }
+
+            // 2. Hapus satu per satu
+            for (const disc of discussions) {
+              console.log('🗑️ Menghapus: ' + disc.title);
+              await octokit.graphql(\`
+                mutation(\$id: ID!) {
+                  deleteDiscussion(input: {id: \$id}) { clientMutationId }
+                }
+              \`, { id: disc.id });
+            }
+            
+            console.log('♻️ Berhasil menghapus ' + discussions.length + ' diskusi. Jalankan lagi jika masih ada sisa.');
+          }
+          deleteAll();
+          "
