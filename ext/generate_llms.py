@@ -66,7 +66,7 @@ def load_and_process_data(file_path):
             for item in sorted_articles:
                 if len(item) < 5 or not item[4].strip(): continue
                 title, slug, date_str, summary = item[0].strip(), item[1].strip(), item[3][:10], item[4].strip()
-                temp_lines.append(f"- [{title}]({DOMAIN}/artikel/{slug}) : {date_str} — {summary}")
+                temp_lines.append(f"- [{title}]({DOMAIN}/artikel/{slug}) : {date_str} - {summary}")
                 article_count += 1
 
             if article_count > 0:
