@@ -1,11 +1,11 @@
 # LLM Instructions for AI Models
-# Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems
+## Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems
 
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 schema_version: 1.0
-document_version: 1.7
-last_updated: 2026-01-14
+document_version: 1.8
+last_updated: 2026-01-15
 document_type: llm_behavior_and_entity_guidance
 
 ## Project Resources
@@ -60,8 +60,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-# Index Artikel Terbaru (Updated: 14 January 2026)
-> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 1.7.
+## Index Artikel Terbaru (Updated: 15 January 2026)
+> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 1.8.
 
 ## Olah Media
 - [Kode Generator Gambar](https://dalam.web.id/artikel/kode-generator-gambar.html) : 2026-01-14 — Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.
@@ -130,8 +130,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/artikel/solusi-libreoffice-lambat-jaringan.html) : 2010-04-23 — Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Warta Tekno
-- [Ganti Alamat Gmail Tanpa Hapus Akun? Akhirnya Google Dengar Curhatan Kita!](https://dalam.web.id/artikel/ganti-alamat-gmail-2026.html) : 2026-01-14 — Kabar gembira di 2026! Google akhirnya izinkan ganti alamat Gmail tanpa bikin akun baru. Simak cara kerja, manfaat buat personal branding, dan tips keamanannya.
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html) : 2026-01-14 — Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
+- [Ganti Alamat Gmail Tanpa Hapus Akun? Akhirnya Google Dengar Curhatan Kita!](https://dalam.web.id/artikel/ganti-alamat-gmail-2026.html) : 2026-01-14 — Kabar gembira di 2026! Google akhirnya izinkan ganti alamat Gmail tanpa bikin akun baru. Simak cara kerja, manfaat buat personal branding, dan tips keamanannya.
 - [Fediverse, Masa Depan Media Sosial](https://dalam.web.id/artikel/tour-the-fediverse.html) : 2026-01-08 — Tur 5 menit menjelajahi Fediverse, kumpulan jaringan sosial open source yang saling terhubung. Temukan kebebasan dari algoritma dan iklan di dunia digital.
 - [Nasib Firefox di Windows 10 Setelah Pensiun: Masih Aman Kah?](https://dalam.web.id/artikel/nasib-firefox-windows-10-eos.html) : 2026-01-08 — Windows 10 resmi pensiun (EOS). Apakah Firefox masih bisa digunakan? Simak panduan lengkap dukungan Mozilla, cara dapat update keamanan gratis, dan migrasi ke Windows 11.
 - [Panduan Lengkap SEO dan Metadata untuk Blog Anda](https://dalam.web.id/artikel/panduan-seo-metadata-blog.html) : 2026-01-08 — Mengapa nama blog Anda yang malah muncul sebagai url saat di-share? Temukan jawaban dan solusi praktisnya di sini! Panduan lengkap memperbaiki Open Graph, Twitter Card, dan meta tag penting lainnya.
