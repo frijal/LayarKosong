@@ -3,7 +3,7 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 2.1
+- document_version: 2.2
 - last_updated: 2026-01-15
 - document_type: llm_behavior_and_entity_guidance
 
@@ -60,7 +60,7 @@
 ---
 
 ## Index Artikel Terbaru (Updated: 15 January 2026)
-> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 2.1.
+> Menampilkan 774 artikel curated  berhasil diindeks dalam versi 2.2.
 
 ## Olah Media
 - [Kode Generator Gambar](https://dalam.web.id/artikel/kode-generator-gambar.html) : Kumpulan kode generator gambar untuk web, termasuk HTML, CSS, JavaScript. Cocok untuk membuat gambar otomatis, thumbnail, banner, dan kebutuhan visual dinamis.[Last modified: 2026-01-14]
