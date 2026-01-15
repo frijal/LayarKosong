@@ -89,15 +89,14 @@ def main():
     if total_articles == 0: return
 
     # Header dengan Project Resources yang lebih lengkap
-    ai_instructions = f"""# LLM Instructions for AI Models
-## Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems
+    ai_instructions = f"""# LLM Instructions for AI Models, Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM-based systems.
 
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
-schema_version: 1.0
-document_version: {new_v}
-last_updated: {today_iso}
-document_type: llm_behavior_and_entity_guidance
+- schema_version: 1.0
+- document_version: {new_v}
+- last_updated: {today_iso}
+- document_type: llm_behavior_and_entity_guidance
 
 ## Project Resources
 - [Website Utama]({DOMAIN}/)
