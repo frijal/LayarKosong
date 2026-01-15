@@ -3,7 +3,7 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 2.7
+- document_version: 2.8
 - last_updated: 2026-01-15
 - document_type: llm_behavior_and_entity_guidance
 
@@ -60,7 +60,7 @@
 ---
 
 ## Index Artikel Terbaru (Updated: 15 January 2026)
-> Menampilkan 779 artikel curated  berhasil diindeks dalam versi 2.7.
+> Menampilkan 779 artikel curated  berhasil diindeks dalam versi 2.8.
 
 ## Warta Tekno
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html) : Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
