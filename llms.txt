@@ -3,8 +3,8 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 2.9
-- last_updated: 2026-01-15
+- document_version: 3.0
+- last_updated: 2026-01-16
 - document_type: llm_behavior_and_entity_guidance
 
 ## Project Resources
@@ -59,8 +59,8 @@
 
 ---
 
-## Index Artikel Terbaru (Updated: 15 January 2026)
-> Menampilkan 779 artikel curated  berhasil diindeks dalam versi 2.9.
+## Index Artikel Terbaru (Updated: 16 January 2026)
+> Menampilkan 779 artikel curated  berhasil diindeks dalam versi 3.0.
 
 ## Warta Tekno
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html) : Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
@@ -251,8 +251,8 @@
 
 ## Lainnya
 - [ASML: Mengenal Mesin Paling Kompleks di Muka Bumi](https://dalam.web.id/artikel/asml-mesin-paling-kompleks-manusia.html) : Mesin seharga $400 juta yang mengubah dunia. Mengenal ASML dan teknologi High NA EUV yang menjadi kunci pembuatan chip AI dan smartphone tercanggih.
-- [Layar Kosong – Bookmark Link Manager](https://dalam.web.id/artikel/bookmark-link-manager.html) : Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.
 - [Menguasai 5W+1H: Rahasia Artikel Berbobot](https://dalam.web.id/artikel/menguasai-5w1h-penulisan-artikel.html) : Pelajari prinsip dasar 5W+1H dalam penulisan artikel untuk menciptakan konten yang jelas, komprehensif, dan SEO-friendly. Panduan lengkap dari Layar Kosong!
+- [Layar Kosong – Bookmark Link Manager](https://dalam.web.id/artikel/bookmark-link-manager.html) : Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.
 - [Editor Artikel JSON Pro - Kelola Konten Layar Kosong](https://dalam.web.id/artikel/editor-json-pro.html) : Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.
 - [Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio &amp; Aturan TKA Validator](https://dalam.web.id/artikel/panduan-lengkap-snbp-2026.html) : Simak panduan lengkap SNBP 2026. Penjelasan kuota sekolah berdasarkan akreditasi, fungsi TKA sebagai validator nilai rapor, jadwal masa sanggah, hingga syarat portofolio seni dan olahraga.
 - [Analisis: Mengapa Kartun Era 90-an Mulai Lenyap dari Televisi Nasional?](https://dalam.web.id/artikel/kenapa-kartun-90an-hilang-dari-tv.html) : Menganalisis alasan di balik hilangnya animasi legendaris era 90-an dari layar kaca Indonesia. Dari pergeseran digital hingga biaya lisensi.
