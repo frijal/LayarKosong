@@ -236,6 +236,46 @@
     <footer>
         <p>🄯 2026 Layar Kosong. Dibuat dengan ❤️ di Indonesia.</p>
     </footer>
+     <script>
+        // Fungsi untuk mendeteksi preferensi tema user (Dark/Light)
+        function detectTheme() {
+            if (localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
+            }
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        }
+
+        // Fungsi untuk menerapkan tema
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const themeToggle = document.getElementById('theme-toggle');
+            if (theme === 'dark') {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Ganti Tema';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Ganti Tema';
+            }
+        }
+
+        // Jalankan saat DOMContentLoaded untuk CLS (Cumulative Layout Shift)
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialTheme = detectTheme();
+            applyTheme(initialTheme);
+
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = localStorage.getItem('theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                });
+            }
+        });
+
+     </script>
    <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
