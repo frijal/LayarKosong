@@ -11,6 +11,7 @@ on:
       - main  
     paths:
       # Daftar filter trigger tetap sama (untuk efisiensi trigger)
+      - 'wrangler.toml'  # Tambahkan ini biar kalau config berubah, dia auto-run
       - 'artikel.json'
       - 'llms.md'
       - '_redirects'
