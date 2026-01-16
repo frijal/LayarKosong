@@ -16,8 +16,8 @@ Konsepnya: Kamu cukup fokus menulis di GitHub, dan biarkan **GitHub Actions + Cl
 
 Langkah pertama: **Pastikan Git dan Node.js sudah terpasang** karena kita akan menggunakan perintah `npx wrangler`.
 
-* **Git:** [Download di sini](https://www.google.com/search?q=https://git-scm.com/downloads) (Atau gunakan `winget install Git.Git` di Windows).
-* **Node.js:** [Download di sini](https://www.google.com/search?q=https://nodejs.org/) (Rekomendasi versi LTS).
+* **Git:** [Download di sini](https://git-scm.com/downloads) (Atau gunakan `winget install Git.Git` di Windows).
+* **Node.js:** [Download di sini](https://nodejs.org/) (Rekomendasi versi LTS).
 
 ### 🪟 Windows
 Unduh dan instal *installer* resmi dari [git-scm.com](https://git-scm.com/download/win). Tinggal "Next, Next, Finish"!
