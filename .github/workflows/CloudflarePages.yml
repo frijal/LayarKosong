@@ -6,9 +6,9 @@ on:
     types: [completed]
   schedule:
     - cron: '0 14 * * *' 
-  push:
-    branches:
-      - main  
+#  push:
+#    branches:
+#      - main  
     paths:
       # Daftar filter trigger tetap sama (untuk efisiensi trigger)
       - 'artikel.json'
