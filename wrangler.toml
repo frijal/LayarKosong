@@ -26,6 +26,5 @@
 name = "layarkosong"
 compatibility_date = "2025-12-01"
 
-[pages_build_config]
-build_command = ""        # Kosongkan karena build sudah dilakukan di GitHub Actions
-destination_dir = "deploy_dir" # Folder hasil rsync tadi
+# Ini field yang dia tagih di log tadi
+pages_build_output_dir = "deploy_dir"
