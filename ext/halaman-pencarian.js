@@ -77,51 +77,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // 🖌️ 5. RENDERER & HIGHLIGHTER
     function renderResults(matches, query) {
         if (matches.length === 0) {
-            resultsContainer.innerHTML = `<p class="text-center py-10 text-gray-500">Tidak ditemukan artikel untuk "${query}"</p>`;
+            resultsContainer.innerHTML = `<p style="text-align:center; color:var(--color-fallback-text); padding: 40px 0;">Tidak ditemukan artikel untuk "${query}"</p>`;
             return;
         }
 
-        resultsContainer.innerHTML = `<p class="mb-4 text-xs opacity-60">Menemukan ${matches.length} hasil.</p>`;
+        resultsContainer.innerHTML = `<p class="text-muted">Menemukan ${matches.length} hasil.</p>`;
 
         const grid = document.createElement('div');
-        // 4 KOLOM di layar medium, 5 KOLOM di layar besar
-        grid.className = 'grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4';
+        grid.className = 'search-grid'; // Memakai class dari CSS di atas
 
         const highlight = (text) => {
             if (!text) return '';
             const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const regex = new RegExp(`(${safeQuery})`, 'gi');
-            return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-600/50 rounded-sm">$1</mark>');
+            // Tag <mark> otomatis pakai style dari CSS kamu
+            return text.replace(regex, '<mark>$1</mark>');
         };
 
         matches.forEach(m => {
-            // --- HILANGKAN .HTML ---
+            // Hapus ekstensi .html
             const cleanUrl = m.filename ? m.filename.replace('.html', '') : '#';
-
             const date = m.dateISO ? new Date(m.dateISO).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 
             const card = document.createElement('div');
-            // Ukuran teks dan padding diperkecil (text-sm & p-3)
-            card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full text-sm';
+            card.className = 'result-card'; // Memakai class dari CSS kamu
+            card.style.display = 'flex';
+            card.style.flexDirection = 'column';
+            card.style.borderRadius = '8px';
+            card.style.overflow = 'hidden';
+            card.style.height = '100%';
 
             card.innerHTML = `
-            <a href="artikel/${cleanUrl}" class="aspect-video block overflow-hidden bg-gray-100">
-            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-            </a>
-            <div class="p-3 flex-grow flex flex-col">
-            <span class="text-[9px] uppercase tracking-tighter text-blue-500 font-bold mb-1 opacity-80">${m.category}</span>
-
-            <h3 class="font-bold text-gray-900 dark:text-white leading-tight mb-2 line-clamp-2 text-sm">
-            <a href="artikel/${cleanUrl}" class="hover:text-blue-600 transition-colors">${highlight(m.title)}</a>
-            </h3>
-
-            <p class="text-[12px] text-gray-500 dark:text-gray-400 line-clamp-2 mb-3 leading-snug">${highlight(m.description)}</p>
-
-            <div class="mt-auto pt-2 border-t border-gray-50 dark:border-gray-700 flex justify-between items-center text-[10px] text-gray-400">
+            <a href="artikel/${cleanUrl}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
+            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" onerror="this.src='https://placehold.co/400x225?text=No+Image'">
+            <div class="card-content">
+            <span style="font-size: 10px; color: var(--color-primary); font-weight: bold; text-transform: uppercase;">${m.category}</span>
+            <h3 class="card-title">${highlight(m.title)}</h3>
+            <p class="card-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+            ${highlight(m.description)}
+            </p>
+            <div style="margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--color-fallback-text);">
             <span>${date}</span>
-            <a href="artikel/${cleanUrl}" class="font-bold text-blue-500 hover:underline text-[9px]">DETAIL &rarr;</a>
+            <span style="font-weight: bold; color: var(--color-primary);">BACA →</span>
             </div>
             </div>
+            </a>
             `;
             grid.appendChild(card);
         });

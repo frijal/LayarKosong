@@ -25,6 +25,12 @@ buat agar bisa mengikuti user mode, dark atau light: /* 1. Definisi Variabel Glo
         --color-fallback-text: #718096;/* gray-500 */
     }
 }
+/* Utilitas Teks & Warna agar ikut Variable CSS */
+.text-main { color: var(--color-primary); }
+.text-muted { color: var(--color-fallback-text); font-size: 0.75rem; }
+.card-content { padding: 0.75rem; display: flex; flex-direction: column; flex-grow: 1; }
+.card-title { font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem; line-height: 1.25; }
+.card-desc { font-size: 0.75rem; color: var(--color-fallback-text); line-height: 1.4; }
 
 /* 3. Gaya Dasar & Tata Letak Utama (Sticky Footer) */
 body {
@@ -61,7 +67,13 @@ main {
     width: 100%;
     display: block;
 }
-
+/* Layout Grid untuk Hasil Pencarian */
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Mobile: 2 kolom */
+    gap: 1rem;
+    padding: 1rem 0;
+}
 .fallback-img {
     display: flex;
     align-items: center;
@@ -96,5 +108,16 @@ mark { /* Styling untuk highlight hasil pencarian */
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+@media (min-width: 768px) {
+    .search-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)); /* Tablet/Laptop: 4 kolom */
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr)); /* Desktop: 5 kolom */
     }
 }
