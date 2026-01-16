@@ -1,0 +1,81 @@
+name: 🚀 Filter & Direct Deploy to Cloudflare
+
+on:
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"]
+    types: [completed]
+  schedule:
+    - cron: '0 14 * * *' 
+  push:
+    branches:
+      - main  
+    paths:
+      # Daftar filter trigger tetap sama (untuk efisiensi trigger)
+      - 'artikel.json'
+      - 'llms.md'
+      - '_redirects'
+      - '_headers'
+      - '*.html'
+      - '*.xml'
+      - '*.txt'
+      - 'favicon.*'
+      - 'icon.*'
+      - 'logo.*'
+      - 'thumbnail.*'
+      - '*.webmanifest'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
+  deployments: write
+
+jobs:
+  deploy-direct:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Ambil source code dari main
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: source
+
+      # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
+      - name: Prepare Clean Directory
+        run: |
+          mkdir deploy_dir
+          echo "🧹 Filtering files using rsync..."
+          
+          # Logic 'satpam' rsync yang sama persis
+          rsync -a --delete \
+            --include='artikel/***' \
+            --include='ext/***' \
+            --include='.well-known/***' \
+            --include='img/***' \
+            --include='artikel.json' \
+            --include='llms.md' \
+            --include='_redirects' \
+            --include='_headers' \
+            --include='*.html' \
+            --include='*.xml' \
+            --include='*.txt' \
+            --include='favicon.*' \
+            --include='icon.*' \
+            --include='logo.*' \
+            --include='thumbnail.*' \
+            --include='*.webmanifest' \
+            --exclude='*' \
+            source/ deploy_dir/
+            
+          echo "✅ Ready to deploy contents of deploy_dir/"
+
+      # 3. Langsung upload ke Cloudflare (Bagian 'Ferrari'-nya)
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1.5.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: layarkosong
+          directory: 'deploy_dir' # Folder hasil filter tadi
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
