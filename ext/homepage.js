@@ -360,7 +360,7 @@ function showToast(message) {
 
 function sendToWA() {
   const name = document.getElementById('contact-name').value;
-  const email = document.getElementById('contact-email').value;
+ // const email = document.getElementById('contact-email').value; //
   const message = document.getElementById('contact-message').value;
   if(!name || !message) {
     alert("isi aja semua kolomnya Bro... 😀");
@@ -372,7 +372,7 @@ function sendToWA() {
   setTimeout(() => {
     window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
     document.getElementById('contact-name').value = "";
-    document.getElementById('contact-email').value = "";
+  //  document.getElementById('contact-email').value = ""; //
     document.getElementById('contact-message').value = "";
   }, 1200);
 }
