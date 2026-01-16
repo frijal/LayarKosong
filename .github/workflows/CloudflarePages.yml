@@ -6,7 +6,7 @@ on:
     types: [completed]
   schedule:
     - cron: '0 14 * * *' 
-#  push:
+  push:
 #    branches:
 #      - main  
     paths:
