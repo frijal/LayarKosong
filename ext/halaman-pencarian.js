@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             card.innerHTML = `
             <a href="artikel/${cleanUrl}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
-            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" onerror="this.src='https://placehold.co/400x225?text=No+Image'">
+            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
             <div class="card-content">
             <span style="font-size: 10px; color: var(--color-primary); font-weight: bold; text-transform: uppercase;">${m.category}</span>
             <h3 class="card-title">${highlight(m.title)}</h3>
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
             <div style="margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--color-fallback-text);">
             <span>${date}</span>
-            <span style="font-weight: bold; color: var(--color-primary);">BACA →</span>
+            <span style="font-weight: bold; color: var(--color-primary);">Langsung Buka →</span>
             </div>
             </div>
             </a>
