@@ -39,6 +39,22 @@ jobs:
         uses: actions/checkout@v6.0.1
         with:
           path: source
+
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: '2. Setup Node.js'
+        uses: actions/setup-node@v6.1.0
+        with:
+          node-version: 24
+
+      - name: '3. Install Dependencies'
+        run: npm ci
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
       - name: Prepare Clean Directory
@@ -70,9 +86,9 @@ jobs:
           echo "✅ Ready to deploy contents of deploy_dir/"
 
       # 3. Langsung upload ke Cloudflare (Bagian 'Ferrari'-nya)
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3.1.0
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy deploy_dir --project-name=layarkosong --branch=main
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main
+        working-directory: source # Pastikan npx jalan di folder yang ada package.json
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
