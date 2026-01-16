@@ -53,8 +53,14 @@ jobs:
         with:
           node-version: 24
 
-      - name: '3. Install Dependencies'
-        run: npm ci
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+        working-directory: source
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
       - name: Prepare Clean Directory
