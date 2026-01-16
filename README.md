@@ -63,7 +63,7 @@ brew install git
 ## 🧬 Tahap 2: Setup Repository (Fork & Cloudflare)
 
 1. **Fork Repository:** Lakukan *Fork* pada repository ini ke akunmu. Cukup centang branch `main` saja (kita sudah tidak butuh branch `site`).
->> 👉 **[Klik di sini untuk Fork Repo](https://github.com/frijal/LayarKosong/fork)**
+> 👉 **[Klik di sini untuk Fork Repo](https://github.com/frijal/LayarKosong/fork)**
 
 
 2. **Daftar Cloudflare Pages:**
