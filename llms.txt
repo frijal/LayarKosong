@@ -3,7 +3,7 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 3.0
+- document_version: 3.1
 - last_updated: 2026-01-16
 - document_type: llm_behavior_and_entity_guidance
 
@@ -60,9 +60,11 @@
 ---
 
 ## Index Artikel Terbaru (Updated: 16 January 2026)
-> Menampilkan 779 artikel curated  berhasil diindeks dalam versi 3.0.
+> Menampilkan 782 artikel curated  berhasil diindeks dalam versi 3.1.
 
 ## Warta Tekno
+- [Gemini Makin "Bestie" dengan Personal Intelligence: Asisten AI yang Beneran Kenal Kamu](https://dalam.web.id/artikel/gemini-personal-intelligence.html) : Google meluncurkan fitur Personal Intelligence beta untuk Gemini. Fitur ini menghubungkan AI dengan Gmail, Foto, dan YouTube kamu agar responnya makin personal dan relevan. Simak ulasan lengkapnya di sini!
+- [Apple Resmi Gandeng Google Gemini, Tinggalkan OpenAI? Plot Twist 2026](https://dalam.web.id/artikel/apple-google-gemini-partnership.html) : Kejutan besar Januari 2026! Apple dan Google umumkan kemitraan strategis. Gemini akan mentenagai Siri dan Apple Intelligence, kalahkan OpenAI dan Anthropic. Simak analisis lengkapnya.
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html) : Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
 - [Ganti Alamat Gmail Tanpa Hapus Akun? Akhirnya Google Dengar Curhatan Kita!](https://dalam.web.id/artikel/ganti-alamat-gmail-2026.html) : Kabar gembira di 2026! Google akhirnya izinkan ganti alamat Gmail tanpa bikin akun baru. Simak cara kerja, manfaat buat personal branding, dan tips keamanannya.
 - [Fediverse, Masa Depan Media Sosial](https://dalam.web.id/artikel/tour-the-fediverse.html) : Tur 5 menit menjelajahi Fediverse, kumpulan jaringan sosial open source yang saling terhubung. Temukan kebebasan dari algoritma dan iklan di dunia digital.
@@ -612,6 +614,7 @@
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/artikel/istighfar-kunci-rezeki.html) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Sistem Terbuka
+- [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
 - [7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil &amp; Cepat) 🐧](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html) : Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
 - [6 Mitos Salah Kaprah Pengguna Windows Soal Linux dan Faktanya!](https://dalam.web.id/artikel/6-hal-salah-kaprah-windows-user-tentang-linux.html) : Sering dengar kalau Linux itu susah? Atau Linux nggak bisa kena virus? Yuk bongkar 6 mitos yang sering salah dipahami pengguna Windows tentang Linux di sini.
