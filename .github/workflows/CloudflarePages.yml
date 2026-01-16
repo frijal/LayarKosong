@@ -52,7 +52,11 @@ jobs:
       - name: 🏗️ Setup Environments
         uses: actions/setup-node@v6.1.0
         with:
-          node-version: 24     
+          node-version: 24
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
       - name: Prepare Clean Directory
