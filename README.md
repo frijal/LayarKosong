@@ -1,14 +1,23 @@
 # 🚀 Panduan Membuat Static Site dengan Layar Kosong
 
-Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat dan ringan menggunakan *repository* **Layar Kosong**.
+Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan **otomatis ter-deploy ke Cloudflare Pages** menggunakan *repository* **Layar Kosong**.
 
-Konsepnya sederhana: Kita hanya menggunakan sekumpulan file HTML yang digabungkan, disimpan, lalu dipanggil menggunakan domain **GitHub Pages** (biasanya `usernamekamu.github.io`) atau domain kustom milikmu.
+Konsepnya: Kamu cukup fokus menulis di GitHub, dan biarkan **GitHub Actions + Cloudflare Wrangler** yang bekerja mengirimkan artikelmu ke internet secara instan.
+
+**Otomatisasi:**
+
+* **Direct Deploy:** Menggunakan Wrangler untuk pengiriman kilat tanpa branch perantara.
+* **Search Engine:** Client-side JavaScript menggunakan data dari `artikel.json`.
+* **Clean URLs:** Mendukung URL tanpa `.html` untuk navigasi yang lebih rapi.
 
 ---
 
-## 🛠️ Tahap 1: Persiapan Lingkungan (Install Git)
+## 🛠️ Tahap 1: Persiapan Lingkungan (Git & Node.js)
 
-Langkah pertama yang paling krusial: **Pastikan Git CLI sudah terpasang**. Berikut cara instalasinya di berbagai Sistem Operasi:
+Langkah pertama: **Pastikan Git dan Node.js sudah terpasang** karena kita akan menggunakan perintah `npx wrangler`.
+
+* **Git:** [Download di sini](https://www.google.com/search?q=https://git-scm.com/downloads) (Atau gunakan `winget install Git.Git` di Windows).
+* **Node.js:** [Download di sini](https://www.google.com/search?q=https://nodejs.org/) (Rekomendasi versi LTS).
 
 ### 🪟 Windows
 Unduh dan instal *installer* resmi dari [git-scm.com](https://git-scm.com/download/win). Tinggal "Next, Next, Finish"!
@@ -49,25 +58,28 @@ brew install git
     ```bash
     sudo zypper install git
     ```
+---
 
------
+## 🧬 Tahap 2: Setup Repository (Fork & Cloudflare)
 
-## 🧬 Tahap 2: Setup Repository (Fork & Clone)
+1. **Fork Repository:** Lakukan *Fork* pada repository ini ke akunmu. Cukup centang branch `main` saja (kita sudah tidak butuh branch `site`).
+>> 👉 **[Klik di sini untuk Fork Repo](https://github.com/frijal/LayarKosong/fork)**
 
-1.  **Punya Akun GitHub:** Pastikan kamu sudah login.
-2.  **Fork Repository:** Lakukan *Fork* pada repository ini agar masuk ke akunmu. Pastikan mencentang opsi untuk menyertakan **seluruh branch** (termasuk branch `site`).
-      * 👉 **[Klik di sini untuk Fork](https://github.com/frijal/LayarKosong/fork)**
-3.  **Aktifkan Pages:** Setelah berhasil di-fork:
-      * Masuk ke menu **Settings** \> **Pages**.
-      * Pada bagian "Source", pilih **Deploy from a branch**.
-      * Pilih branch `main` (atau `site` sesuai konfigurasi preferensimu) dan folder `/ (root)`.
-      * Klik **Save**. Situsmu sekarang akan mulai dibangun\!
 
-Repository kamu sekarang bisa diakses secara online di: `https://usernamekamu.github.io`
+2. **Daftar Cloudflare Pages:**
+* Login ke dashboard [Cloudflare](https://dash.cloudflare.com/).
+* Pilih **Workers & Pages** > **Create application** > **Pages** > **Upload assets**.
+* Beri nama proyekmu (misal: `blog-saya`).
 
------
 
-## 🏗️ Tahap 3: Produksi (Membuat Konten)
+3. **Ambil API Token:**
+* Buka **My Profile** > **API Tokens** > **Create Token**.
+* Gunakan *template* "Edit Cloudflare Workers" atau beri akses untuk *Account: Cloudflare Pages*.
+* Simpan **Account ID** dan **API Token** kamu.
+
+---
+
+## 🏗️ Tahap 3: Otomatisasi (GitHub Secrets)
 
 Sekarang saatnya bersih-bersih dan mulai mengisi kontenmu sendiri.
 
@@ -78,14 +90,17 @@ Hapus semua file contoh bawaan agar situsmu bersih:
   * Hapus semua isi di dalam folder `artikel/`.
   * Hapus seluruh gambar di dalam folder `img/`.
 
-### 2\. Aktifkan GitHub Actions ⚡
+### 2\. Agar GitHub bisa mengirim file ke Cloudflare secara otomatis:
+masukkan "kunci" rahasia di repo hasil fork-mu:
 
-Secara *default*, fitur keamanan GitHub akan mematikan *Actions* pada repository hasil fork.
+1. Buka tab **Settings** > **Secrets and variables** > **Actions** pada repository GitHub-mu.
+2. Klik **New repository secret** dan tambahkan:
+* `CF_API_TOKEN`: (Isi dengan token API Cloudflare-mu).
+* `CF_ACCOUNT_ID`: (Isi dengan ID akun Cloudflare-mu).
 
-  * Masuk ke tab **Actions**.
-  * Klik tombol hijau bertuliskan **"I understand my workflows, go ahead and enable them"**.
+---
 
-### 3\. Mulai Menulis (Workflow Otomatis) ✍️
+## ✍️ Tahap 4: Mulai Menulis dan Produksi (Membuat Konten)
 
 Di sinilah keajaiban terjadi. Kamu tidak menaruh file langsung di folder publik, tapi melalui proses "masak" otomatis:
 
@@ -96,9 +111,9 @@ Di sinilah keajaiban terjadi. Kamu tidak menaruh file langsung di folder publik,
 
 🎉 **Selesai\!** Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya.
 
------
+---
 
-## 🎨 Tahap 4: Personalisasi & Konfigurasi
+## 🎨 Tahap 5: Personalisasi & Konfigurasi
 
 Setelah uji coba sukses, saatnya mengklaim situs ini menjadi milikmu sepenuhnya. Jangan lupa ubah data-data berikut agar SEO dan identitas situsmu benar.
 
@@ -134,7 +149,7 @@ Edit dan sesuaikan informasi di file-file berikut yang ada di halaman utama (*ro
 - [ ] Test semua link internal.
 - [ ] Verifikasi sitemap dan robots.txt
 
------
+---
 
 ## Domain Custom (Opsional jika Ada)
 
@@ -146,15 +161,26 @@ Jika ingin menggunakan domain custom:
    - Tambahkan record A ke IP GitHub Pages.
    - Atau CNAME ke `usernamekamu.github.io`
 
------
+---
+
+## 🎨 Tahap 6: Personalisasi
+
+Ubah data berikut di branch `main` agar situs ini menjadi milikmu sepenuhnya:
+
+* **`wrangler.toml`**: Ganti `name = "layarkosong"` menjadi nama proyek Cloudflare-mu.
+* **`artikel.json`**: Ini adalah nyawa mesin pencari blogmu, biarkan sistem yang mengupdatenya secara otomatis.
+* Sesuaikan `index.html`, `search.html`, dan `404.html` dengan identitasmu.
+* Folder `ext/**`: Sesuaikan konfigurasi domain di dalamnya.
+
+---
 
 ## 💬 Butuh Bantuan?
 
-Ada kendala saat instalasi atau *workflow* macet? Jangan panik\! Langsung saja meluncur ke repository aslinya, kita ngobrol santai di sana.
+Jika *workflow* macet atau bingung set-up Cloudflare, langsung saja meluncur ke repository aslinya.
 
-👉 **[Diskusi di Repository LayarKosong](https://github.com/frijal/LayarKosong/discussions)**
+> 👉 **[Diskusi di Repository LayarKosong](https://github.com/frijal/LayarKosong/discussions)**
 
------
+---
 
 ## Lisensi
 
@@ -164,14 +190,14 @@ Silakan cek file [Lisensi](LICENSE) di repository untuk informasi lisensi.
 
 Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
----
-
 <p align="center"><a href="#top">(kembali ke awal)</a></p>
+
+---
 
 <details>
 <summary>⚡ Klik untuk Status Teknis ⚙️</summary>
 
-### 📊 Status:
+### 📊 Status & Stack:
 
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![Public Domain](https://img.shields.io/badge/Public%20Domain-Yes-orange?logo=creative-commons&logoColor=white)](#readme)
@@ -234,3 +260,5 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 [![Copilot](https://img.shields.io/badge/Copilot-Yes-purple?logo=github&logoColor=white)](#readme)
 
 </details>
+
+---
