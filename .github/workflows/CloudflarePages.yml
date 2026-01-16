@@ -54,10 +54,6 @@ jobs:
         with:
           node-version: 24
                     
-      - name: 📦 Install Dependencies
-        run: |
-          npm ci
-
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
       - name: Prepare Clean Directory
         run: |
