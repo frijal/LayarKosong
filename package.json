@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "depcheck": "^1.4.7",
+    "wrangler": "^3.5.1",
     "htmlhint": "^1.8.0"
   },
   "dependencies": {
@@ -55,5 +56,9 @@
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1",
     "twitter-api-v2": "^1.28.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/frijal/layarkosong/issues"
+  },
+  "main": "index.js"
 }
