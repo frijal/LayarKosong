@@ -239,83 +239,94 @@
 <div id="iposbrowser"></div>
     </header>
     <div class="container">
-                    <article>
-            <p>
-                Santai saja, Sobat! Kalau proses update dan upgrade menggunakan <b>paru<b> di CachyOS tiba-tiba mandek atau gagal, itu hal yang lumrah. Kegagalan ini biasanya disebabkan oleh tiga hal utama: <b>kunci PGP yang kedaluwarsa<b>, <b>paket yang korup<b>, atau <b>repositori yang tidak sinkron<b>.
-            </b></b></b></b></b></b></b></b></p><b><b><b>
-            <p>
-                Daripada panik, yuk ikuti langkah-langkah terstruktur di bawah ini. Dijamin CachyOS Anda akan lancar lagi!
-            </p>
-            <section>
-                <h2><i class="fas fa-route"></i> Langkah 1: Periksa Koneksi dan Sinkronisasi Ulang Database</h2>
-                <p>
-                    Sebelum masuk ke langkah yang rumit, kita cek dulu koneksi dan pastikan daftar paket kita sudah yang terbaru dari server.
-                </p>
-                <ul>
-                    <li><b>Cek Koneksi:<b> Pastikan internet Anda benar-benar nyambung. Coba buka browser atau ping ke luar.</b></b></li><b><b>
-                    <li><b>Cek Koneksi:<b> Gunakan Pacman untuk memaksa sinkronisasi database repositori. Ini mengatasi kegagalan karena daftar paket lokal sudah usang.</b></b></li><b><b>
-                </b></b></b></b></ul><b><b><b>
-                <pre><code>sudo pacman -Syy</code></pre>
-                <p>Setelah itu, coba jalankan paru lagi:</p>
-                <pre><code>paru -Syu</code></pre>
-            </b></b></b></section><b><b><b>
-            <hr>
-            <section>
-                <h2><i class="fas fa-key"></i> Langkah 2: Atasi Masalah Kunci PGP (GPG Keys)</h2>
-                <p>
-                    Ini adalah biang kerok kegagalan update paling sering. Pesan error biasanya menyebut "invalid or corrupted package" atau "key is unknown/untrusted".
-                </p>
-                <h3>A. Update Keyring Resmi</h3>
-                <p>Kunci lama di sistem Anda perlu diperbarui terlebih dahulu dengan kunci resmi Arch dan CachyOS yang baru:</p>
-                <pre><code>sudo pacman -S archlinux-keyring cachyos-keyring</code></pre>
-                <h3>B. Bersihkan dan Isi Ulang Kunci</h3>
-                <p>Jika cara di atas masih gagal, kita lakukan reset dan populasi kunci secara menyeluruh:</p>
-                <pre><code># 1. Hapus cache kunci yang lama;
+                   <article>
+    <p>
+        Santai saja, Sobat! Kalau proses update dan upgrade menggunakan <b>paru</b> di CachyOS tiba-tiba mandek atau gagal, itu hal yang lumrah. Kegagalan ini biasanya disebabkan oleh tiga hal utama:
+        <b>kunci PGP yang kedaluwarsa</b>, <b>paket yang korup</b>, atau <b>repositori yang tidak sinkron</b>.
+    </p>
+
+    <p>
+        Daripada panik, yuk ikuti langkah-langkah terstruktur di bawah ini. Dijamin CachyOS Anda akan lancar lagi!
+    </p>
+
+    <section>
+        <h2><i class="fas fa-route"></i> Langkah 1: Periksa Koneksi dan Sinkronisasi Ulang Database</h2>
+        <p>
+            Sebelum masuk ke langkah yang rumit, kita cek dulu koneksi dan pastikan daftar paket kita sudah yang terbaru dari server.
+        </p>
+        <ul>
+            <li><b>Cek Koneksi:</b> Pastikan internet Anda benar-benar nyambung. Coba buka browser atau ping ke luar.</li>
+            <li><b>Sinkronisasi:</b> Gunakan Pacman untuk memaksa sinkronisasi database repositori. Ini mengatasi kegagalan karena daftar paket lokal sudah usang.</li>
+        </ul>
+        <pre><code>sudo pacman -Syy</code></pre>
+        <p>Setelah itu, coba jalankan paru lagi:</p>
+        <pre><code>paru -Syu</code></pre>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2><i class="fas fa-key"></i> Langkah 2: Atasi Masalah Kunci PGP (GPG Keys)</h2>
+        <p>
+            Ini adalah biang kerok kegagalan update paling sering. Pesan error biasanya menyebut <i>"invalid or corrupted package"</i> atau <i>"key is unknown/untrusted"</i>.
+        </p>
+
+        <h3>A. Update Keyring Resmi</h3>
+        <p>Kunci lama di sistem Anda perlu diperbarui terlebih dahulu dengan kunci resmi Arch dan CachyOS yang baru:</p>
+        <pre><code>sudo pacman -S archlinux-keyring cachyos-keyring</code></pre>
+
+        <h3>B. Bersihkan dan Isi Ulang Kunci</h3>
+        <p>Jika cara di atas masih gagal, kita lakukan reset dan populasi kunci secara menyeluruh:</p>
+        <pre><code># 1. Hapus cache kunci yang lama
 sudo rm -r /etc/pacman.d/gnupg
-<br>
-# 2. Inisiasi ulang GPG;
+
+# 2. Inisiasi ulang GPG
 sudo pacman-key --init
-<br>
-# 3. Isi ulang (populate) kunci resmi dari Arch dan CachyOS;
+
+# 3. Isi ulang (populate) kunci resmi dari Arch dan CachyOS
 sudo pacman-key --populate archlinux cachyos
-<br>
-# 4. Refresh semua kunci (pastikan port GPG tidak diblokir);
-sudo pacman-key --refresh-keys
-</code></pre>
-                <p>Setelah langkah ini, coba jalankan kembali proses update dengan `paru -Syu`.</p>
-            </section>
-            <hr>
-            <section>
-                <h2><i class="fas fa-trash-alt"></i> Langkah 3: Hapus Paket Korup dan Cache</h2>
-                <p>
-                    Terkadang, proses download terputus sehingga meninggalkan file paket yang terunduh setengah jalan (.part) atau korup. Pacman dan Paru akan bingung saat menemukannya.
-                </p>
-                <h3>A. Singkirkan File Partial</h3>
-                <p>Gunakan perintah ini untuk mencari dan menghapus semua file yang rusak atau terunduh setengah (.part) di dalam cache Pacman:</p>
-                <pre><code># Cari dan hapus semua file .part
-sudo find /var/cache/pacman/pkg/ -iname "*.part" -exec rm {} \;
-</code></pre>
-                <h3>B. Bersihkan Cache Pacman</h3>
-                <p>Ini adalah tindakan terakhir jika semua cara di atas gagal. Perintah ini akan menghapus paket yang sudah tidak terinstal, membuat cache Anda lebih rapi.</p>
-                <pre><code># Hapus paket yang tidak terinstal, hanya menyisakan yang aktif
-sudo pacman -Sc
-</code></pre>
-                <p>Jika Anda ingin lebih ekstrem (Hanya lakukan ini jika Anda yakin!), gunakan `sudo pacman -Scc` untuk menghapus semua paket di cache, termasuk paket yang sedang terinstal.</p>
-            </section>
-            <section>
-                <h2><i class="fas fa-cogs"></i> Langkah Tambahan: Kegagalan Khusus AUR</h2>
-                <p>
-                    Jika masalahnya hanya terjadi ketika <b>paru<b> mencoba membangun paket dari **AUR** (bukan dari repositori resmi), kemungkinan ada masalah pada dependensi pembangunan (*build dependencies*).
-                </b></b></p><b><b>
-                <ul>
-                    <li>Perhatikan output error-nya. Paket AUR mana yang gagal diinstal?</li>
-                    <li>Coba cari paket tersebut di AUR, dan cek apakah ada komentar tentang dependensi baru yang perlu diinstal manual.</li>
-                    <li>Pastikan paket dasar seperti `base-devel` sudah terinstal: <pre><code>sudo pacman -S base-devel</code></pre></li>
-                </ul><div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-            </b></b></section><b><b>
-        </b></b></b></b></b></b></b></b>
-    </article><b><b><b>
-    </b></b></b></div><b><b><b>
+
+# 4. Refresh semua kunci (pastikan port GPG tidak diblokir)
+sudo pacman-key --refresh-keys</code></pre>
+        <p>Setelah langkah ini, coba jalankan kembali proses update dengan <code>paru -Syu</code>.</p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2><i class="fas fa-trash-alt"></i> Langkah 3: Hapus Paket Korup dan Cache</h2>
+        <p>
+            Terkadang, proses download terputus sehingga meninggalkan file paket yang terunduh setengah jalan (.part) atau korup. Pacman dan Paru akan bingung saat menemukannya.
+        </p>
+
+        <h3>A. Singkirkan File Partial</h3>
+        <p>Gunakan perintah ini untuk mencari dan menghapus semua file yang rusak atau terunduh setengah (.part) di dalam cache Pacman:</p>
+        <pre><code># Cari dan hapus semua file .part
+sudo find /var/cache/pacman/pkg/ -iname "*.part" -exec rm {} \;</code></pre>
+
+        <h3>B. Bersihkan Cache Pacman</h3>
+        <p>Ini adalah tindakan terakhir jika semua cara di atas gagal. Perintah ini akan menghapus paket yang sudah tidak terinstal, membuat cache Anda lebih rapi.</p>
+        <pre><code># Hapus paket yang tidak terinstal, hanya menyisakan yang aktif
+sudo pacman -Sc</code></pre>
+        <p>Jika Anda ingin lebih ekstrem (Hanya lakukan ini jika Anda yakin!), gunakan <code>sudo pacman -Scc</code> untuk menghapus semua paket di cache, termasuk paket yang sedang terinstal.</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-cogs"></i> Langkah Tambahan: Kegagalan Khusus AUR</h2>
+        <p>
+            Jika masalahnya hanya terjadi ketika <b>paru</b> mencoba membangun paket dari <b>AUR</b> (bukan dari repositori resmi), kemungkinan ada masalah pada dependensi pembangunan (<i>build dependencies</i>).
+        </p>
+        <ul>
+            <li>Perhatikan output error-nya. Paket AUR mana yang gagal diinstal?</li>
+            <li>Coba cari paket tersebut di AUR, dan cek apakah ada komentar tentang dependensi baru yang perlu diinstal manual.</li>
+            <li>Pastikan paket dasar seperti <code>base-devel</code> sudah terinstal:</li>
+        </ul>
+        <pre><code>sudo pacman -S base-devel</code></pre>
+
+        <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+    </section>
+</article>
     <div id="lightbox-modal" class="lightbox" style="display: none;">
         <span class="close-btn">×</span>
         <img class="lightbox-content" id="lightbox-img" alt="Gambar - Mengatasi PARU Gagal Update dan Upgrade di CachyOS">
