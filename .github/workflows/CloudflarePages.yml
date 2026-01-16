@@ -36,7 +36,7 @@ jobs:
     steps:
       # 1. Ambil source code dari main
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           ref: main
           path: source
@@ -72,7 +72,7 @@ jobs:
 
       # 3. Langsung upload ke Cloudflare (Bagian 'Ferrari'-nya)
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1.5.0
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
