@@ -360,19 +360,26 @@ function showToast(message) {
 
 function sendToWA() {
   const name = document.getElementById('contact-name').value;
- // const email = document.getElementById('contact-email').value; //
   const message = document.getElementById('contact-message').value;
+
+  // Validasi: Cukup cek nama dan pesan saja
   if(!name || !message) {
-    alert("isi aja semua kolomnya Bro... 😀");
+    alert("Isi nama dan pesannya dulu dong, Bro... 😀");
     return;
   }
+
   const noWA = "6281578163858";
-  const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Pesan:* ${message}`;
+  
+  // Email dihapus dari format teks WhatsApp
+  const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Pesan:* ${message}`;
+
   showToast("Membuka WhatsApp... Pesan siap dikirim!");
+
   setTimeout(() => {
     window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
+    
+    // Reset input (Email sudah tidak ada di sini)
     document.getElementById('contact-name').value = "";
-  //  document.getElementById('contact-email').value = ""; //
     document.getElementById('contact-message').value = "";
   }, 1200);
 }

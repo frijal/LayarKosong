@@ -368,8 +368,16 @@
  .contact-card {
    background: var(--primary); color: white; padding: 30px; border-radius: 15px; text-align: center;
  }
- .contact-card input, .contact-card textarea {
-   width: 100%; padding: 10px; margin: 5px 0; border-radius: 8px; border: none;
+.contact-card input, .contact-card textarea {
+   width: 100%; 
+   padding: 10px; 
+   margin: 5px 0; 
+   border-radius: 8px; 
+   border: none;
+   /* Tambahan biar font seragam dan textarea gak bisa ditarik sembarangan */
+   font-family: inherit; 
+   resize: vertical; /* Biar cuma bisa ditarik ke bawah, gak ke samping */
+   box-sizing: border-box; /* Biar padding gak nambah lebar total input */
  }
 
  /* --- TOAST NOTIFICATION STYLES --- */
