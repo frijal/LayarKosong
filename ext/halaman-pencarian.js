@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 🖌️ 5. RENDERER & HIGHLIGHTER
     function renderResults(matches, query) {
         if (matches.length === 0) {
-            resultsContainer.innerHTML = `<p class="text-center py-10">Tidak ditemukan artikel untuk "${query}"</p>`;
+            resultsContainer.innerHTML = `<p class="text-center py-10 text-gray-500">Tidak ditemukan artikel untuk "${query}"</p>`;
             return;
         }
 
-        resultsContainer.innerHTML = `<p class="mb-4 opacity-70">Menemukan ${matches.length} artikel.</p>`;
+        resultsContainer.innerHTML = `<p class="mb-4 text-xs opacity-60">Menemukan ${matches.length} hasil.</p>`;
 
         const grid = document.createElement('div');
-        grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+        // 4 KOLOM di layar medium, 5 KOLOM di layar besar
+        grid.className = 'grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4';
 
-        // Fungsi Highlight Aman (XSS Safe-ish)
         const highlight = (text) => {
             if (!text) return '';
             const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -95,23 +95,31 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         matches.forEach(m => {
+            // --- HILANGKAN .HTML ---
+            const cleanUrl = m.filename ? m.filename.replace('.html', '') : '#';
+
             const date = m.dateISO ? new Date(m.dateISO).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 
             const card = document.createElement('div');
-            card.className = 'bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col';
+            // Ukuran teks dan padding diperkecil (text-sm & p-3)
+            card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full text-sm';
+
             card.innerHTML = `
-            <a href="artikel/${m.filename}" class="aspect-video block overflow-hidden bg-gray-100">
-            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform">
+            <a href="artikel/${cleanUrl}" class="aspect-video block overflow-hidden bg-gray-100">
+            <img src="${m.imageUrl}" alt="${m.title}" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
             </a>
-            <div class="p-4 flex-grow flex flex-col">
-            <span class="text-[10px] uppercase tracking-wider text-blue-500 font-bold mb-1">${m.category}</span>
-            <h3 class="font-bold text-gray-900 dark:text-white leading-snug mb-2 line-clamp-2">
-            <a href="artikel/${m.filename}" class="hover:text-blue-600 transition-colors">${highlight(m.title)}</a>
+            <div class="p-3 flex-grow flex flex-col">
+            <span class="text-[9px] uppercase tracking-tighter text-blue-500 font-bold mb-1 opacity-80">${m.category}</span>
+
+            <h3 class="font-bold text-gray-900 dark:text-white leading-tight mb-2 line-clamp-2 text-sm">
+            <a href="artikel/${cleanUrl}" class="hover:text-blue-600 transition-colors">${highlight(m.title)}</a>
             </h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3 mb-4 text-justify">${highlight(m.description)}</p>
-            <div class="mt-auto pt-3 border-t border-gray-50 dark:border-gray-700 flex justify-between items-center text-[11px] text-gray-400">
+
+            <p class="text-[12px] text-gray-500 dark:text-gray-400 line-clamp-2 mb-3 leading-snug">${highlight(m.description)}</p>
+
+            <div class="mt-auto pt-2 border-t border-gray-50 dark:border-gray-700 flex justify-between items-center text-[10px] text-gray-400">
             <span>${date}</span>
-            <a href="artikel/${m.filename}" class="text-blue-500 font-semibold hover:underline">BACA &rarr;</a>
+            <a href="artikel/${cleanUrl}" class="font-bold text-blue-500 hover:underline text-[9px]">DETAIL &rarr;</a>
             </div>
             </div>
             `;
