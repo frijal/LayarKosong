@@ -176,9 +176,7 @@
 <body>
     <div class="container">
         <header>
-             <button id="theme-toggle" class="pill" style="background: none; border: 1px solid var(--primary-light); color: var(--primary-light); padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-top: 15px;">
-                <i class="fas fa-moon"></i> Ganti Tema</button>
-            <h1>Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Tiada Henti 🏥</h1>
+                   <h1>Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Tiada Henti 🏥</h1>
 <div id="iposbrowser"></div>
             <p>Mengungkap perjalanan sebuah ikon kesehatan yang berdedikasi tinggi.</p>
         </header>
@@ -238,43 +236,7 @@
     <footer>
         <p>🄯 2026 Layar Kosong. Dibuat dengan ❤️ di Indonesia.</p>
     </footer>
-    <script>
-        // Fungsi untuk mendeteksi preferensi tema user (Dark/Light)
-        function detectTheme() {
-            if (localStorage.getItem('theme')) {
-                return localStorage.getItem('theme');
-            }
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                return 'dark';
-            }
-            return 'light';
-        }
-        // Fungsi untuk menerapkan tema
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            const themeToggle = document.getElementById('theme-toggle');
-            if (theme === 'dark') {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Ganti Tema';
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Ganti Tema';
-            }
-        }
-        // Jalankan saat DOMContentLoaded untuk CLS (Cumulative Layout Shift)
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialTheme = detectTheme();
-            applyTheme(initialTheme);
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const currentTheme = localStorage.getItem('theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    applyTheme(newTheme);
-                });
-            }
-        });
-     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+   <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
 <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
 </body></html>
