@@ -3,7 +3,7 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 3.3
+- document_version: 3.4
 - last_updated: 2026-01-16
 - document_type: llm_behavior_and_entity_guidance
 
@@ -60,7 +60,7 @@
 ---
 
 ## Index Artikel Terbaru (Updated: 16 January 2026)
-> Menampilkan 782 artikel curated  berhasil diindeks dalam versi 3.3.
+> Menampilkan 783 artikel curated  berhasil diindeks dalam versi 3.4.
 
 ## Sistem Terbuka
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
@@ -427,9 +427,9 @@
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/artikel/bahaya-penjilat-dalam-institusi.html) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Warta Tekno
+- [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
 - [Gemini Makin "Bestie" dengan Personal Intelligence: Asisten AI yang Beneran Kenal Kamu](https://dalam.web.id/artikel/gemini-personal-intelligence.html) : Google meluncurkan fitur Personal Intelligence beta untuk Gemini. Fitur ini menghubungkan AI dengan Gmail, Foto, dan YouTube kamu agar responnya makin personal dan relevan. Simak ulasan lengkapnya di sini!
 - [Apple Resmi Gandeng Google Gemini, Tinggalkan OpenAI? Plot Twist 2026](https://dalam.web.id/artikel/apple-google-gemini-partnership.html) : Kejutan besar Januari 2026! Apple dan Google umumkan kemitraan strategis. Gemini akan mentenagai Siri dan Apple Intelligence, kalahkan OpenAI dan Anthropic. Simak analisis lengkapnya.
-- [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/registrasi-sim-wajah-2026.html) : Pemerintah mewajibkan verifikasi wajah untuk registrasi kartu SIM mulai 2026. Simak ulasan mendalam tentang manfaat, risiko biometrik, dan kesiapan data kita.
 - [Ganti Alamat Gmail Tanpa Hapus Akun? Akhirnya Google Dengar Curhatan Kita!](https://dalam.web.id/artikel/ganti-alamat-gmail-2026.html) : Kabar gembira di 2026! Google akhirnya izinkan ganti alamat Gmail tanpa bikin akun baru. Simak cara kerja, manfaat buat personal branding, dan tips keamanannya.
 - [Fediverse, Masa Depan Media Sosial](https://dalam.web.id/artikel/tour-the-fediverse.html) : Tur 5 menit menjelajahi Fediverse, kumpulan jaringan sosial open source yang saling terhubung. Temukan kebebasan dari algoritma dan iklan di dunia digital.
@@ -617,6 +617,7 @@
 - [Read the Fu***ng Manual (RTFM): Menggali Kembali Jati Diri Insinyur](https://dalam.web.id/artikel/read-the-f-manual.html) : Mengapa kebiasaan malas membaca dokumentasi, terlalu bergantung pada ChatGPT dan Stack Overflow, merusak kemampuan rekayasa perangkat lunak (software engineering). Pelajari kembali pentingnya kemandirian, riset mendalam, dan menghormati waktu rekan kerja.
 
 ## Jejak Sejarah
+- [Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Sejak 1923](https://dalam.web.id/artikel/sejarah-rs-pku-muhammadiyah-yogyakarta.html) : Kupas tuntas sejarah RS PKU Muhammadiyah Yogyakarta, dari klinik sederhana hingga rumah sakit modern yang mengabdi pada umat sejak 1923. Pelajari peran KH Ahmad Dahlan dan H.M. Sudjak dalam membangun kesehatan masyarakat dhuafa.
 - [Membaca Karakteristik Air dalam Perspektif Islam: Anomali Banjir](https://dalam.web.id/artikel/karakteristik-air-perspektif-islam.html) : Mengupas tuntas karakteristik air secara ilmiah dan sudut pandang Islam (Al-Quran), serta menemukan hikmah di balik anomali musibah banjir sebagai bentuk muhasabah diri.
 - [Kesalahan Protokoler &amp; Sejarah BPM: Sultan Kutai yang Terpinggirkan](https://dalam.web.id/artikel/sejarah-bpm-sultan-kutai.html) : Analisis mendalam kesalahan protokoler RDMP Balikpapan terhadap Sultan Kutai. Menelusuri sejarah BPM, legitimasi tanah, dan ironi modernitas yang melupakan akar sejarah.
 - [Sejarah Fujiko F. Fujio: Duo Genius Pencipta Doraemon yang Mengubah Dunia Animasi](https://dalam.web.id/artikel/sejarah-fujiko-f-fujio-pencipta-doraemon.html) : Sejarah lengkap Fujiko F. Fujio, duo kreator di balik Doraemon. Temukan inspirasi, perjalanan, dan proses penciptaan robot kucing terpopuler sepanjang masa.
