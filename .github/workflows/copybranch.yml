@@ -2,29 +2,8 @@ name: ⚠️ Copy ke Branch Site Cloudflare
 
 on:
   workflow_run:
-    workflows: ["☢️ Build and Generate Site Files"] # Pastikan NAMA workflow pertama SAMA PERSIS
-    types: [completed] # Hanya berjalan jika workflow pertama SELESAI
   schedule:
     - cron: '0 14 * * *' 
-  push:
-    branches:
-      - main  
-  # ⬇️ Tambahkan filter paths di sini
-    paths:
-      - 'artikel.json'      # File spesifik di root
-      - 'llms.md'           # File spesifik di root
-      - '_redirects'        # File spesifik di root
-      - '_headers'          # File spesifik di root
-      - '*.html'            # File HTML di root
-      - '*.xml'             # File XML di root
-      - '*.txt'             # File TXT di root
-      - 'favicon.*'         # Pola file di root
-      - 'icon.*'            # Pola file di root
-      - 'logo.*'            # Pola file di root
-      - 'thumbnail.*'       # Pola file di root
-      - '*.webmanifest'     # Pola file di root
-      # Anda TIDAK perlu menambahkan file/folder lain seperti README.md, .github/**, dll.
-
   workflow_dispatch: # Pemicu manual tetap ada
 
 permissions:
