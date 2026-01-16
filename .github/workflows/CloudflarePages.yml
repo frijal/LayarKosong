@@ -76,6 +76,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: layarkosong
-          directory: 'deploy_dir' # Folder hasil filter tadi
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy deploy_dir --project-name=layarkosong --branch=main
