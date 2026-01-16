@@ -3,7 +3,7 @@ name: ⚠️ Copy ke Branch Site Cloudflare
 on:
   workflow_run:
   schedule:
-    - cron: '0 14 * * *' 
+    - cron: '0 14 27 * *' 
   workflow_dispatch: # Pemicu manual tetap ada
 
 permissions:
