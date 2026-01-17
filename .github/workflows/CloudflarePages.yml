@@ -93,15 +93,6 @@ jobs:
             
           echo "✅ Ready to deploy contents of deploy_dir/"
 
-      # 3. Langsung upload ke Cloudflare (Bagian 'Ferrari'-nya)
-    #  - name: Deploy to Cloudflare Pages
-     #   run: npx wrangler pages deploy ../deploy_dir --project-name=layarkosong --branch=main
-        #run: npx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main
-     #   working-directory: source # Pastikan npx jalan di folder yang ada package.json
-     #   env:
-     #     CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-     #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy --branch=main
         working-directory: source
