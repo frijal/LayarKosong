@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: Buat daftar judul dari artikel.json
         run: |          
@@ -22,7 +22,7 @@ jobs:
           cat mini/daftar-judul.txt
 
       - name: Commit file daftar judul
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7.1.0
         with:
           commit_message: "docs: perbarui daftar judul artikel (daftar-judul.txt)"
           file_pattern: mini/daftar-judul.txt
