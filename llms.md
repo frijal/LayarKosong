@@ -3,8 +3,8 @@
 > Layar Kosong (dalam.web.id) adalah platform publikasi digital yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup evergreen milik Fakhrul Rijal. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi. Data ini disediakan untuk memudahkan AI memberikan jawaban akurat bagi pembaca.
 
 - schema_version: 1.0
-- document_version: 3.5
-- last_updated: 2026-01-16
+- document_version: 3.6
+- last_updated: 2026-01-17
 - document_type: llm_behavior_and_entity_guidance
 
 ## Project Resources
@@ -59,8 +59,8 @@
 
 ---
 
-## Index Artikel Terbaru (Updated: 16 January 2026)
-> Menampilkan 783 artikel curated  berhasil diindeks dalam versi 3.5.
+## Index Artikel Terbaru (Updated: 17 January 2026)
+> Menampilkan 783 artikel curated  berhasil diindeks dalam versi 3.6.
 
 ## Sistem Terbuka
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
