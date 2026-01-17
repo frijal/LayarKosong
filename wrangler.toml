@@ -1,27 +1,3 @@
-#name = "frijal"
-#compatibility_date = "2025-10-16"
-
-#pages_build_output_dir = "./"
-
-#[build]
-#  upload.exclude = [
-#    ".git/*",
-#    ".github/*",
-#    ".gitignore",
-#    ".wranglerignore",
-#    "wrangler.toml",
-#    "node_modules/*",
-#    "package.json",
-#    "package-lock.json",
-#    ".nojekyll",
-#    "README.md",
-#    "LICENSE",
-#    "artikelx/*",
-#    "mini/*",
-#    "sementara/*"
-#  ]
-
-
 #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
 name = "layarkosong"
 compatibility_date = "2025-12-01"
