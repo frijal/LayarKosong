@@ -19,7 +19,7 @@ jobs:
       contents: write # penting agar bisa commit & push
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: Remove files by extension
         run: |
