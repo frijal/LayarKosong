@@ -76,6 +76,7 @@ jobs:
             --include='.well-known/***' \
             --include='img/***' \
             --include='artikel.json' \
+            --include='wrangler.toml' \
             --include='llms.md' \
             --include='_redirects' \
             --include='_headers' \
