@@ -13,28 +13,28 @@ jobs:
     steps:
       # ========== SETUP ENVIRONMENT ==========
       - name: 1. Checkout Repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
 
-      - name: 2. Setup Node.js & Python
-        uses: actions/setup-node@v6.1.0
-        with:
-          node-version: '24'
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
       - name: Cache Node Modules
-        uses: actions/cache@v5.0.1
+        uses: actions/cache@v5.0.2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: 2. Setup Node.js & Python
+        uses: actions/setup-node@v6.2.0
+        with:
+          node-version: 24
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+    
       # ========== IMAGE CLEANUP ==========     
       - name: 3. Scan Unused Images via Python
         id: python_scan
