@@ -4,7 +4,7 @@
 Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rijal yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup di Balikpapan. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi.
 
 - schema_version: 1.0
-- document_version: 4.2
+- document_version: 4.3
 - last_updated: 2026-01-17
 - document_type: llm_behavior_and_entity_guidance
 
@@ -59,7 +59,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 ## Index Artikel Terbaru (Updated: 17 January 2026)
-> Menampilkan 783 artikel curated yang berhasil diindeks dalam versi 4.2.
+> Menampilkan 787 artikel curated yang berhasil diindeks dalam versi 4.3.
 ## Sistem Terbuka
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru &amp; Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
 - [7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil &amp; Cepat) 🐧](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html) : Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
@@ -305,6 +305,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/artikel/perjalanan-ubuntu-jogja-gcos.html) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Gaya Hidup
+- [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
+- [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
 - [Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua](https://dalam.web.id/artikel/keringanan-pajak-kendaraan-rusak.html) : Mengapa kendaraan rusak berat masih ditagih pajak? Simak ulasan mendalam mengenai kebijakan keringanan pajak kendaraan hingga 50% untuk motor rusak dan sosial.
 - [Introducing ChatGPT Health - Pengalaman Kesehatan Terdedikasi | OpenAI](https://dalam.web.id/artikel/introducing-chatgpt-health.html) : ChatGPT Health adalah pengalaman terdedikasi dalam ChatGPT yang dirancang untuk kesehatan dan kebugaran. Temukan bagaimana AI dapat membantu Anda mengelola kesehatan dengan aman.
 - [Skrining Riwayat Kesehatan BPJS Wajib 2026 – Cara Online dan Manfaat Lengkap](https://dalam.web.id/artikel/skrining-riwayat-kesehatan-bpjs-2026.html) : Mulai 1 Januari 2026, skrining riwayat kesehatan BPJS Kesehatan wajib dilakukan peserta JKN-KIS. Ini cara online, manfaat, dan penjelasan lengkapnya.
@@ -358,6 +360,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/artikel/rumus-dan-tata-cara-touring-sepeda-motor.html) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Opini Sosial
+- [Catatan Real-Time 1945: Dari Reruntuhan Nazi hingga Fajar Bom Atom](https://dalam.web.id/artikel/catatan-real-time-1945-economist.html) : Selami arsip orisinal The Economist dari tahun 1945. Laporan mendalam tentang jatuhnya Reich Ketiga, kematian FDR, kemenangan atas Jepang, dan lahirnya era atom.
 - [Video Durasi Singkat: Benarkah Membunuh Fokus Kita?](https://dalam.web.id/artikel/video-singkat-menyusutkan-otak.html) : Hasil studi Nature Communications membuktikan video pendek merusak prefrontal cortex. Yuk, pahami kenapa otak kita jadi gampang bosan dan sulit fokus.
 - [Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu!](https://dalam.web.id/artikel/sekolah-jateng-tak-wajib-libur-minggu.html) : Pemerintah Provinsi Jawa Tengah menetapkan kalender pendidikan 2025-2026 dengan aturan baru: sekolah boleh tentukan hari libur selain Minggu. Fleksibilitas baru bagi pendidikan di Jawa Tengah. Simak aturan Perkadisdikbud Nomor 400.3.3/07209.
 - [Wajib Tahu! Mengenal UU KUHP 2026 &amp; Dampaknya bagi Netizen Indonesia](https://dalam.web.id/artikel/uu-kuhp-2026-netizen-indonesia.html) : Pahami UU KUHP Nasional 2026 yang baru berlaku dan bagaimana dampaknya terhadap kebebasan berekspresi, kejahatan digital, serta privasi netizen Indonesia.
@@ -425,6 +428,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/artikel/bahaya-penjilat-dalam-institusi.html) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Warta Tekno
+- [Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache](https://dalam.web.id/artikel/urutan-workflow-github.html) : Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.
 - [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
 - [Gemini Makin "Bestie" dengan Personal Intelligence: Asisten AI yang Beneran Kenal Kamu](https://dalam.web.id/artikel/gemini-personal-intelligence.html) : Google meluncurkan fitur Personal Intelligence beta untuk Gemini. Fitur ini menghubungkan AI dengan Gmail, Foto, dan YouTube kamu agar responnya makin personal dan relevan. Simak ulasan lengkapnya di sini!
 - [Apple Resmi Gandeng Google Gemini, Tinggalkan OpenAI? Plot Twist 2026](https://dalam.web.id/artikel/apple-google-gemini-partnership.html) : Kejutan besar Januari 2026! Apple dan Google umumkan kemitraan strategis. Gemini akan mentenagai Siri dan Apple Intelligence, kalahkan OpenAI dan Anthropic. Simak analisis lengkapnya.
