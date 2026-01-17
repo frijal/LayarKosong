@@ -10,7 +10,7 @@ VERSION_FILE = "mini/llms-version.txt"
 TXT_OUTPUT = "llms.txt"
 MD_OUTPUT = "llms.md"
 HTML_OUTPUT = "llms-index.html"
-WELL_KNOWN_PATH = ".well-known/llms.txt"
+WELL_KNOWN_DIR = ".well-known"
 
 def get_next_version(version_file):
     dir_name = os.path.dirname(version_file)
@@ -174,11 +174,11 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(full_markdown)
 
-    # 2. Simpan ke .well-known/llms.txt
-    well_known_dir = os.path.dirname(WELL_KNOWN_PATH)
-    if not os.path.exists(well_known_dir):
-        os.makedirs(well_known_dir)
-    shutil.copy2(TXT_OUTPUT, WELL_KNOWN_PATH)
+    # 2. Simpan ke .well-known/
+    for filename in [TXT_OUTPUT, MD_OUTPUT]:
+        source = filename
+        destination = os.path.join(WELL_KNOWN_DIR, filename)
+        shutil.copy2(source, destination)
 
     # 3. Generate HTML Index
     html_content = f"""<!DOCTYPE html>
