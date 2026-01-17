@@ -19,7 +19,7 @@ jobs:
     steps:
       # 1. Checkout
       - name: Checkout repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           # fetch-depth: 0 diperlukan untuk commit/push dan operasi git lainnya
           fetch-depth: 0
