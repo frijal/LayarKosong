@@ -1,5 +1,12 @@
 User-Agent: *
+# Berikan akses ke file info buat AI
+Allow: /llms.txt
+# Pastikan artikel bisa diindex
+Allow: /artikel/*.html
+# Opsional: Larang bot masuk ke folder sistem/temp jika ada
+Disallow: /api/
+Disallow: /ext/
+
+# Daftar Sitemap
 Sitemap: https://dalam.web.id/sitemap.xml
 Sitemap: https://dalam.web.id/sitemap.txt
-Allow: /llms.txt
-Allow: /artikel/*.html
