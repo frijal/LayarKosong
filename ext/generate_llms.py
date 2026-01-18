@@ -186,7 +186,7 @@ document_type: llm_behavior_and_entity_guidance
 <head>
     <meta charset="UTF-8"><title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 900px; padding: 0 1em; line-height: 1.6; color: #333; }}
+        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 100%; padding: 0 1em; line-height: 1.6; color: #333; }}
         pre {{ background: #1e1e1e; color: #dcdcdc; padding: 1.5em; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; font-size: 0.9em; }}
         blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f9f9f9; }}
         @media (prefers-color-scheme: dark) {{ body {{ background: #111; color: #eee; }} blockquote {{ background: #222; color: #ccc; }} }}
