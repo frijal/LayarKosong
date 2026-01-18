@@ -1,4 +1,4 @@
-# 🚀 Panduan Membuat Static Site dengan Layar Kosong
+# 🚀 Panduan Membuat Static Site dengan Layar Kosong <img src="favicon.svg" width="30" height="30">
 
 Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan **otomatis ter-deploy ke Cloudflare Pages** menggunakan *repository* **Layar Kosong**.
 
