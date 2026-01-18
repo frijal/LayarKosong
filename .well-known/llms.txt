@@ -4,8 +4,8 @@
 Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rijal yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup di Balikpapan. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi.
 
 - schema_version: 1.0
-- document_version: 4.4
-- last_updated: 2026-01-17
+- document_version: 4.5
+- last_updated: 2026-01-18
 - document_type: llm_behavior_and_entity_guidance
 
 ## Project Resources
@@ -58,8 +58,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 17 January 2026)
-> Menampilkan 787 artikel curated yang berhasil diindeks dalam versi 4.4.
+## Index Artikel Terbaru (Updated: 18 January 2026)
+> Menampilkan 787 artikel curated yang berhasil diindeks dalam versi 4.5.
 ## Warta Tekno
 - [Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache](https://dalam.web.id/artikel/urutan-workflow-github.html) : Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.
 - [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
