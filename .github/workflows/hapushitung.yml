@@ -61,24 +61,7 @@ jobs:
             echo "Jumlah yang dihapus (Python): $cleaned_py_count"
           else
             echo "ℹ️  File daftar tidak ditemukan: $LIST_FILE"
-          fi
-
-      - name: 4. Cleanup Orphan .webp Images (Manual)
-        id: manual_cleanup
-        run: |
-          echo "🧹 Membersihkan gambar orphan (.webp)..."
-          cleaned_count=0
-          for file in img/*.webp; do
-            [ -e "$file" ] || continue
-            slug="${file##*/}"
-            slug="${slug%.webp}"
-            if [ ! -f "artikel/${slug}.html" ]; then
-              echo "→ Menghapus: $file"
-              git rm -f "$file"
-              cleaned_count=$((cleaned_count + 1))
-            fi
-          done
-          echo "Jumlah yang dihapus (manual): $cleaned_count"
+          fi    
           
       # ========== CONTENT REPORT GENERATION ==========
       - name: 5. Generate Detailed Content Report
