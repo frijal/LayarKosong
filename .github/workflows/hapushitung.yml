@@ -30,10 +30,10 @@ jobs:
         with:
           node-version: 24
       
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6.1.0
         with:
-          python-version: 3.15
+          python-version: '3.x'
+          cache: 'pip'
     
       # ========== IMAGE CLEANUP ==========     
       - name: 3. Scan Unused Images via Python
