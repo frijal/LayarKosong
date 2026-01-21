@@ -1,10 +1,10 @@
-# Laporan Konten Harian (2026-01-14)
+# Laporan Konten Harian (2026-01-21)
 
 ## Folder/Subfolder: artikel
 
 | Jenis File | Jumlah | Histogram |
 |-----------:|-------:|-----------|
-| 🌐 html     |    777 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
+| 🌐 html     |    793 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ |
 | 🔑 ico      |      1 | ▇ |
 | 📜 js       |      2 | ▇ |
 | 🗂️ json     |      2 | ▇ |
@@ -49,7 +49,7 @@
 
 | Jenis File | Jumlah | Histogram |
 |-----------:|-------:|-----------|
-| 🖼️ webp     |     42 | ▇▇ |
+| 🖼️ webp     |     60 | ▇▇ |
 
 ## Folder/Subfolder: img/raw.githubusercontent.com/canonical/ubuntu-pro-for-wsl/main/img
 
@@ -691,12 +691,12 @@
 
 | Jenis File | Jumlah | Histogram |
 |-----------:|-------:|-----------|
-| 🎨 css      |     17 | ▇ |
+| 🎨 css      |     16 | ▇ |
 | 📁 cssX     |      2 | ▇ |
 | 🌐 html     |      4 | ▇ |
-| 📜 js       |     50 | ▇▇ |
+| 📜 js       |     52 | ▇▇ |
 | 📁 jsCadagnaHero |      1 | ▇ |
-| 📁 jsX      |      4 | ▇ |
+| 📁 jsX      |      3 | ▇ |
 | 📁 jsY      |      3 | ▇ |
 | 📌 pl       |      1 | ▇ |
 | 🐍 py       |      6 | ▇ |
@@ -723,14 +723,14 @@
 
 | Jenis File | Jumlah | Histogram | Folder/Subfolder (unik) |
 |-----------:|-------:|-----------|-------------------------|
-| 🎨 css      |     17 | ▇ | , ext |
+| 🎨 css      |     16 | ▇ | , ext |
 | 📁 cssX     |      2 | ▇ | , ext |
-| 🌐 html     |    789 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | , artikel, artikel/-, ext |
+| 🌐 html     |    805 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | , artikel, artikel/-, ext |
 | 🔑 ico      |      2 | ▇ | , artikel, ext/icons |
 | 📁 img/jurukunci |      1 | ▇ | , img |
-| 📜 js       |     53 | ▇▇ | , artikel, ext, ext/icons |
+| 📜 js       |     55 | ▇▇ | , artikel, ext, ext/icons |
 | 📁 jsCadagnaHero |      1 | ▇ | , ext |
-| 📁 jsX      |      4 | ▇ | , ext |
+| 📁 jsX      |      3 | ▇ | , ext |
 | 📁 jsY      |      3 | ▇ | , ext |
 | 🗂️ json     |      2 | ▇ | , artikel |
 | 📁 jsonX    |      1 | ▇ | , artikel |
@@ -742,6 +742,6 @@
 | ✏️ svg      |      6 | ▇ | , artikel, ext/icons, img |
 | 📄 txt      |     11 | ▇ | , artikel, artikel/-, ext, img |
 | 📁 txt2     |      1 | ▇ | , img |
-| 🖼️ webp     |    470 | ▇▇▇▇▇▇▇▇▇▇▇▇ | , img, img/blog.openreplay.com/images/setting-up-github-actions-for-nodejs-projects/images, img/blogger.googleusercontent.com/img/a, img/cdn-icons-png.flaticon.com/512/2910, img/cdn-icons-png.flaticon.com/512/3135, img/cdn-icons-png.flaticon.com/512/337, img/cdn.jsdelivr.net/npm/simple-icons@v11/icons, img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, img/cli.github.com/assets/images, img/faciliworks.com/wp-content/uploads, img/github.com, img/github.com/user-attachments/assets, img/i.ytimg.com/vi/00sDqK1K2xA, img/i.ytimg.com/vi/0h-xyR6Axh8, img/i.ytimg.com/vi/H6E9Gg847lo, img/i.ytimg.com/vi/UNSf6O3ukPU, img/i.ytimg.com/vi/ha9kUA1vdvE, img/images.ctfassets.net/kftzwdyauwt9/4XRlgv6c3jHpFYqWS3C5q5/1bb4beeaae428129b3fe2a2d511e01d2, img/images.unsplash.com, img/img.freepik.com/free-photo, img/img.icons8.com/color/48/000000, img/img.shields.io/badge, img/img.shields.io/github/last-commit/frijal, img/img.shields.io/github/license/ventoy, img/img.shields.io/github/release/ventoy, img/img.shields.io/github/stars/notashelf, img/img.shields.io/github/stars/ventoy, img/img.shields.io/pypi/v, img/img.youtube.com/vi/0nMgo2HOIVM, img/img.youtube.com/vi/1QW72jFLkis, img/img.youtube.com/vi/4BJZMnmckDA, img/img.youtube.com/vi/4ypuNPqRoJo, img/img.youtube.com/vi/C4ShJaXCcLc, img/img.youtube.com/vi/HgHK5mbBpGs, img/img.youtube.com/vi/IUXGTiC04Qk, img/img.youtube.com/vi/LSbZfasf-OI, img/img.youtube.com/vi/TTHxxDkEQfw, img/img.youtube.com/vi/ZICVhIAXUCE, img/img.youtube.com/vi/wVj08oL_iKo, img/img.youtube.com/vi/xf0cNi91bhk, img/itsfoss.com/content/images/icon, img/itsfoss.com/content/images/thumbnail, img/limble.com/wp-content/uploads, img/linux-cdn.softpedia.com/screenshots, img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190, img/pbs.twimg.com/media, img/picsum.photos/id/1015/800, img/picsum.photos/id/1035/800, img/picsum.photos/id/1045/800, img/placehold.co/900x450/3182ce, img/placehold.co/900x450/4a5568, img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main, img/static.wixstatic.com/media, img/thumbs.dreamstime.com/b, img/user-images.githubusercontent.com/1578458, img/user-images.githubusercontent.com/98482, img/www.quality-assurance-solutions.com/images, img/www.ventoy.net/static/img, img/www.ventoy.net/static/img/screen |
+| 🖼️ webp     |    488 | ▇▇▇▇▇▇▇▇▇▇▇▇▇ | , img, img/blog.openreplay.com/images/setting-up-github-actions-for-nodejs-projects/images, img/blogger.googleusercontent.com/img/a, img/cdn-icons-png.flaticon.com/512/2910, img/cdn-icons-png.flaticon.com/512/3135, img/cdn-icons-png.flaticon.com/512/337, img/cdn.jsdelivr.net/npm/simple-icons@v11/icons, img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, img/cli.github.com/assets/images, img/faciliworks.com/wp-content/uploads, img/github.com, img/github.com/user-attachments/assets, img/i.ytimg.com/vi/00sDqK1K2xA, img/i.ytimg.com/vi/0h-xyR6Axh8, img/i.ytimg.com/vi/H6E9Gg847lo, img/i.ytimg.com/vi/UNSf6O3ukPU, img/i.ytimg.com/vi/ha9kUA1vdvE, img/images.ctfassets.net/kftzwdyauwt9/4XRlgv6c3jHpFYqWS3C5q5/1bb4beeaae428129b3fe2a2d511e01d2, img/images.unsplash.com, img/img.freepik.com/free-photo, img/img.icons8.com/color/48/000000, img/img.shields.io/badge, img/img.shields.io/github/last-commit/frijal, img/img.shields.io/github/license/ventoy, img/img.shields.io/github/release/ventoy, img/img.shields.io/github/stars/notashelf, img/img.shields.io/github/stars/ventoy, img/img.shields.io/pypi/v, img/img.youtube.com/vi/0nMgo2HOIVM, img/img.youtube.com/vi/1QW72jFLkis, img/img.youtube.com/vi/4BJZMnmckDA, img/img.youtube.com/vi/4ypuNPqRoJo, img/img.youtube.com/vi/C4ShJaXCcLc, img/img.youtube.com/vi/HgHK5mbBpGs, img/img.youtube.com/vi/IUXGTiC04Qk, img/img.youtube.com/vi/LSbZfasf-OI, img/img.youtube.com/vi/TTHxxDkEQfw, img/img.youtube.com/vi/ZICVhIAXUCE, img/img.youtube.com/vi/wVj08oL_iKo, img/img.youtube.com/vi/xf0cNi91bhk, img/itsfoss.com/content/images/icon, img/itsfoss.com/content/images/thumbnail, img/limble.com/wp-content/uploads, img/linux-cdn.softpedia.com/screenshots, img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190, img/pbs.twimg.com/media, img/picsum.photos/id/1015/800, img/picsum.photos/id/1035/800, img/picsum.photos/id/1045/800, img/placehold.co/900x450/3182ce, img/placehold.co/900x450/4a5568, img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main, img/static.wixstatic.com/media, img/thumbs.dreamstime.com/b, img/user-images.githubusercontent.com/1578458, img/user-images.githubusercontent.com/98482, img/www.quality-assurance-solutions.com/images, img/www.ventoy.net/static/img, img/www.ventoy.net/static/img/screen |
 | 📁 woff2    |      4 | ▇ | , ext/fontawesome-webfonts |
-| **TOTAL** |   1536 | | |
+| **TOTAL** |   1570 | | |
