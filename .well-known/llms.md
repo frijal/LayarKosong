@@ -5,8 +5,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 6.5
-last_updated: 2026-01-20
+document_version: 6.6
+last_updated: 2026-01-21
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -36,8 +36,8 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 20 January 2026)
-> Menampilkan 793 artikel yang berhasil diindeks dalam versi 6.5.
+## Index Artikel Terbaru (Updated: 21 January 2026)
+> Menampilkan 793 artikel yang berhasil diindeks dalam versi 6.6.
 ## Gaya Hidup
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
 - [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
@@ -341,7 +341,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/artikel/solusi-libreoffice-lambat-jaringan.html) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
-- [4 Jebakan Struktural Pendidikan Tinggi Indonesia: Analisis Rahmat Mulyana](https://dalam.web.id/artikel/jebakan-struktural-pendidikan-tinggi.html) : Mengapa ribuan kampus di Indonesia gagal berinovasi? Simak analisis tajam Rahmat Mulyana tentang 4 jebakan struktural: anggaran, linieritas, hingga disrupsi AI.
+- [4 Jebakan Struktural Pendidikan Tinggi Indonesia: Analisis Rahmat Mulyana - Layar Kosong](https://dalam.web.id/artikel/jebakan-struktural-pendidikan-tinggi.html) : Mengapa ribuan kampus di Indonesia gagal berinovasi? Simak analisis tajam Rahmat Mulyana tentang 4 jebakan struktural: anggaran, linieritas, hingga disrupsi AI.
 - [Video Durasi Singkat: Benarkah Membunuh Fokus Kita?](https://dalam.web.id/artikel/video-singkat-menyusutkan-otak.html) : Hasil studi Nature Communications membuktikan video pendek merusak prefrontal cortex. Yuk, pahami kenapa otak kita jadi gampang bosan dan sulit fokus.
 - [Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu!](https://dalam.web.id/artikel/sekolah-jateng-tak-wajib-libur-minggu.html) : Pemerintah Provinsi Jawa Tengah menetapkan kalender pendidikan 2025-2026 dengan aturan baru: sekolah boleh tentukan hari libur selain Minggu. Fleksibilitas baru bagi pendidikan di Jawa Tengah. Simak aturan Perkadisdikbud Nomor 400.3.3/07209.
 - [Wajib Tahu! Mengenal UU KUHP 2026 & Dampaknya bagi Netizen Indonesia](https://dalam.web.id/artikel/uu-kuhp-2026-netizen-indonesia.html) : Pahami UU KUHP Nasional 2026 yang baru berlaku dan bagaimana dampaknya terhadap kebebasan berekspresi, kejahatan digital, serta privasi netizen Indonesia.
