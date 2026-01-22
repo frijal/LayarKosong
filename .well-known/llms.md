@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 7.4
+document_version: 7.5
 last_updated: 2026-01-22
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,9 +37,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 22 January 2026)
-> Menampilkan 800 artikel yang berhasil diindeks dalam versi 7.4.
+> Menampilkan 806 artikel yang berhasil diindeks dalam versi 7.5.
 ## Gaya Hidup
-- [Ironi MBG dan Nasib Guru Honorer: Di Balik Megahnya Angka, Ada Tangisan yang Tak Terdengar](https://dalam.web.id/artikel/ironi-mbg-dan-nasib-guru-honorer.html) : Ulasan mendalam tentang ironi program Makan Bergizi Gratis (MBG) yang megah berbanding terbalik dengan kesejahteraan guru honorer yang masih memprihatinkan di Indonesia.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
 - [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
 - [Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua](https://dalam.web.id/artikel/keringanan-pajak-kendaraan-rusak.html) : Mengapa kendaraan rusak berat masih ditagih pajak? Simak ulasan mendalam mengenai kebijakan keringanan pajak kendaraan hingga 50% untuk motor rusak dan sosial.
@@ -227,6 +226,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Lainnya
 - [Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental?](https://dalam.web.id/artikel/terjebak-dopamine-loop-scroll-medsos.html) : Mengapa kita merasa lelah padahal hanya scroll medsos? Simak analisis mendalam tentang kecanduan dopamine, algoritma toxic, dan cara memulihkan kesehatan mental di era digital.
+- [Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari!](https://dalam.web.id/artikel/dua-usaha-dihindari-2026.html) : Tahun 2026 bukan cuma soal cari cuan, tapi soal ketenangan jiwa. Simak analisis mendalam mengapa bisnis subsidi MBG dan Koperasi Desa punya risiko mahal yang harus diwaspadai.
+- [Bahaya Memilih Presiden yang Pikun: Bedah Medis & Dampak Global](https://dalam.web.id/artikel/bahaya-memilih-presiden-pikun.html) : Mengapa kesehatan otak pemimpin adalah isu keselamatan publik? Bedah tuntas Frontotemporal Dementia (FTD) dan dampaknya pada stabilitas negara bersama Dr. Erta Priadi Wirawijaya.
 - [Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak](https://dalam.web.id/artikel/prosedur-laporan-polisi-diterima.html) : Bingung kenapa laporan polisi sering ditolak? Simak panduan lengkap 5W+1H, prosedur resmi SPKT, hingga strategi hukum agar laporan diproses cepat oleh penyidik.
 - [ASML: Mengenal Mesin Paling Kompleks di Muka Bumi](https://dalam.web.id/artikel/asml-mesin-paling-kompleks-manusia.html) : Mesin seharga $400 juta yang mengubah dunia. Mengenal ASML dan teknologi High NA EUV yang menjadi kunci pembuatan chip AI dan smartphone tercanggih.
 - [Menguasai 5W+1H: Rahasia Artikel Berbobot](https://dalam.web.id/artikel/menguasai-5w1h-penulisan-artikel.html) : Pelajari prinsip dasar 5W+1H dalam penulisan artikel untuk menciptakan konten yang jelas, komprehensif, dan SEO-friendly. Panduan lengkap dari Layar Kosong!
@@ -342,8 +343,13 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/artikel/solusi-libreoffice-lambat-jaringan.html) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer?](https://dalam.web.id/artikel/polemik-sppg-asn-pppk-keadilan-honorer.html) : Mengulas tuntas polemik pengangkatan pegawai SPPG menjadi ASN PPPK di tahun 2025. Analisis mendalam mengenai ketimpangan keadilan bagi guru honorer dan dampaknya terhadap kepercayaan birokrasi.
+- [Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia](https://dalam.web.id/artikel/perut-kenyang-namun-otak-kosong.html) : Analisis mendalam tentang ketimpangan anggaran pendidikan Indonesia: antara program makan gratis populis dan pendidikan yang terbengkalai. Bagaimana kebijakan ini membentuk generasi yang kenyang perut tapi lapar otak?
+- [MBG: Ketika Kemerdekaan Dirampas Atas Nama Gizi - Analisis Kritis Program Makanan Bergizi Gratis](https://dalam.web.id/artikel/mbg-kemerdekaan-dirampas-atas-nama-gizi.html) : Analisis mendalam tentang Program Makan Bergizi Gratis (MBG) yang mengkritisi aspek kebebasan memilih makanan anak, implikasi psikologis, dan alternatif solusi yang lebih memberdayakan. Pandangan kritis tentang kebijakan nutrisi anak Indonesia.
+- [Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG](https://dalam.web.id/artikel/makan-siang-masa-depan.html) : Kritik mendalam kebijakan Makan Bergizi Gratis (MBG). Apakah ini jembatan emas menuju Indonesia Emas 2045 atau sekadar beban utang bagi anak cucu? Simak ulasan lengkap 5W+1H.
 - [Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu](https://dalam.web.id/artikel/manuver-mikro-pendidikan-indonesia.html) : Kritik mendalam terhadap kebijakan pendidikan rezim saat ini, mulai dari MBG hingga sekolah unggulan, dan bagaimana guru bisa bermanuver di ruang kelas yang otonom.
 - [4 Jebakan Struktural Pendidikan Tinggi Indonesia: Analisis Rahmat Mulyana - Layar Kosong](https://dalam.web.id/artikel/jebakan-struktural-pendidikan-tinggi.html) : Mengapa ribuan kampus di Indonesia gagal berinovasi? Simak analisis tajam Rahmat Mulyana tentang 4 jebakan struktural: anggaran, linieritas, hingga disrupsi AI.
+- [Ironi MBG dan Nasib Guru Honorer: Di Balik Megahnya Angka, Ada Tangisan yang Tak Terdengar](https://dalam.web.id/artikel/ironi-mbg-dan-nasib-guru-honorer.html) : Ulasan mendalam tentang ironi program Makan Bergizi Gratis (MBG) yang megah berbanding terbalik dengan kesejahteraan guru honorer yang masih memprihatinkan di Indonesia.
 - [AGENDA 2030: The Grand Convergence — Bagaimana Sepiring Nasi Gratis Menjadi Kunci Penjara Digital Anda](https://dalam.web.id/artikel/agenda-2030-the-grand-convergence.html) : Analisis mendalam tentang Agenda 2030 dan konvergensi besar yang mengubah makanan gratis menjadi alat kontrol digital. Bagaimana program Makan Bergizi Gratis (MBG) dan Digital ID membentuk masa depan dunia.
 - [Video Durasi Singkat: Benarkah Membunuh Fokus Kita?](https://dalam.web.id/artikel/video-singkat-menyusutkan-otak.html) : Hasil studi Nature Communications membuktikan video pendek merusak prefrontal cortex. Yuk, pahami kenapa otak kita jadi gampang bosan dan sulit fokus.
 - [Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu!](https://dalam.web.id/artikel/sekolah-jateng-tak-wajib-libur-minggu.html) : Pemerintah Provinsi Jawa Tengah menetapkan kalender pendidikan 2025-2026 dengan aturan baru: sekolah boleh tentukan hari libur selain Minggu. Fleksibilitas baru bagi pendidikan di Jawa Tengah. Simak aturan Perkadisdikbud Nomor 400.3.3/07209.
@@ -412,6 +418,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/artikel/bahaya-penjilat-dalam-institusi.html) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Evaluasi Kritis Program MBG: Antara Niat Mulia dan Pentingnya Peran Puskesmas](https://dalam.web.id/artikel/evaluasi-mbg-puskesmas-solusi.html) : Program Makan Bergizi Gratis (MBG) punya niat mulia, tapi apakah sudah tepat sasaran? Simak analisis mendalam mengapa Puskesmas harus jadi ujung tombak gizi nasional.
 - [Anggaran 2026: Antara Perut Kenyang dan Otak Pintar](https://dalam.web.id/artikel/analisis-anggaran-pendidikan-vs-gizi-2026.html) : Mengapa anggaran Badan Gizi Nasional (BGN) jauh melampaui Kemendikbud di 2026? Analisis kritis kebijakan Makan Bergizi Gratis vs Kualitas Pendidikan Nasional.
 - [Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026)](https://dalam.web.id/artikel/linux-kernel-7-release.html) : Kupas tuntas Linux Kernel 7 yang rilis 2026. Dari Rust, performa gaming, hingga dukungan AI. Penjelasan santai tapi teknis untuk pengguna desktop dan server.
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru & Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
@@ -660,7 +667,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/artikel/perjalanan-ubuntu-jogja-gcos.html) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer?](https://dalam.web.id/artikel/polemik-sppg-asn-pppk-keadilan-honorer.html) : Mengulas tuntas polemik pengangkatan pegawai SPPG menjadi ASN PPPK di tahun 2025. Analisis mendalam mengenai ketimpangan keadilan bagi guru honorer dan dampaknya terhadap kepercayaan birokrasi.
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/biometrik-registrasi-sim-wajah-2026.html) : Rencana registrasi kartu SIM berbasis biometrik (wajah) menuai protes keras. Pakar siber ingatkan risiko kebocoran data seumur hidup. Simak analisis lengkap dan suara netizen di sini.
 - [Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache](https://dalam.web.id/artikel/urutan-workflow-github.html) : Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.
 - [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
