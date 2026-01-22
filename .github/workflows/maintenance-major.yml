@@ -33,11 +33,11 @@ jobs:
       - name: 🔍 Preview major upgrades
         run: |
           npm install -g npm-check-updates
-          ncu --target major --format group
+          ncu --target latest --format group
 
       - name: 🚨 Apply major upgrades
         run: |
-          ncu -u --target major
+          ncu -u --target latest
           npm install
 
       - name: 🧪 Lint & Test (non-blocking)
