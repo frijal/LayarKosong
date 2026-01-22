@@ -41,21 +41,21 @@
     "wrangler": "^4.59.3"
   },
   "dependencies": {
-    "@google/genai": "^0.15.0",
+    "@google/genai": "^1.38.0",
     "@octokit/core": "^7.0.6",
     "@xmldom/xmldom": "^0.9.8",
     "axios": "^1.13.2",
     "cheerio": "^1.1.2",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "glob": "^11.1.0",
-    "miniflare": "^4.20250906.0",
+    "glob": "^13.0.0",
+    "miniflare": "^4.20260116.0",
     "node-fetch": "^3.3.2",
-    "puppeteer": "^24.34.0",
+    "puppeteer": "^24.35.0",
     "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1",
-    "twitter-api-v2": "^1.28.0"
+    "twitter-api-v2": "^1.29.0"
   },
   "bugs": {
     "url": "https://github.com/frijal/layarkosong/issues"
