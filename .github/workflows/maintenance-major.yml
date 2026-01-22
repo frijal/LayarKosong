@@ -1,11 +1,7 @@
 name: 🚨 Major Dependency Upgrade (Controlled)
 
 on:
-  workflow_dispatch:
-    inputs:
-      confirm:
-        description: "Ketik: UPGRADE-MAJOR"
-        required: true
+  workflow_dispatch:    
   schedule:
     - cron: '0 2 1 */3 *' # tiap 3 bulan (01 UTC ≈ 08 WIB)
 
