@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 7.2
+document_version: 7.3
 last_updated: 2026-01-22
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 22 January 2026)
-> Menampilkan 796 artikel yang berhasil diindeks dalam versi 7.2.
+> Menampilkan 796 artikel yang berhasil diindeks dalam versi 7.3.
 ## Gaya Hidup
 - [Ironi MBG dan Nasib Guru Honorer: Di Balik Megahnya Angka, Ada Tangisan yang Tak Terdengar](https://dalam.web.id/artikel/ironi-mbg-dan-nasib-guru-honorer.html) : Ulasan mendalam tentang ironi program Makan Bergizi Gratis (MBG) yang megah berbanding terbalik dengan kesejahteraan guru honorer yang masih memprihatinkan di Indonesia.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
