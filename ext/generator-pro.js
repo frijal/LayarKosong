@@ -16,13 +16,13 @@ const CONFIG = {
   templateKategori: path.join(__dirname, '..', 'artikel', '-', 'template-kategori.html'),
   masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
   jsonOut: path.join(__dirname, '..', 'artikel.json'),
-  
+
   // Output Sitemaps
-  xmlIndexOut: path.join(__dirname, '..', 'sitemap.xml'),      // Induk
-  xmlPostsOut: path.join(__dirname, '..', 'sitemap-1.xml'),    // Artikel
-  xmlImagesOut: path.join(__dirname, '..', 'image-sitemap.xml'),
-  xmlVideosOut: path.join(__dirname, '..', 'video-sitemap.xml'),
-  
+  xmlIndexOut: path.join(__dirname, '..', 'sitemap.xml'),
+  xmlPostsOut: path.join(__dirname, '..', 'sitemap-1.xml'),
+  xmlImagesOut: path.join(__dirname, '..', 'image-sitemap-1.xml'),
+  xmlVideosOut: path.join(__dirname, '..', 'video-sitemap-1.xml'),
+
   xslLink: 'sitemap-style.xsl',
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
@@ -46,16 +46,16 @@ const sanitizeTitle = (raw) => raw.replace(/^\p{Emoji_Presentation}\s*/u, '').tr
 
 const slugify = (text) => {
   return text.toString().toLowerCase().trim()
-    .replace(/^[^\w\s]*/u, '')
-    .replace(/ & /g, '-and-')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+  .replace(/^[^\w\s]*/u, '')
+  .replace(/ & /g, '-and-')
+  .replace(/[^a-z0-9\s-]/g, '')
+  .replace(/\s+/g, '-')
+  .replace(/-+/g, '-');
 };
 
 const formatISO8601 = (date) => {
   const d = new Date(date);
-  return d.toISOString();
+  return d.toISOString().split('.')[0] + 'Z'; // Format Jetpack Z-style
 };
 
 const getYoutubeThumb = (url) => {
@@ -76,20 +76,13 @@ const extractImage = (content, filename) => {
 
 const extractVideos = (content, title, desc) => {
   const videos = [];
-  // Regex untuk mencari iframe YouTube atau tag video
   const iframes = [...content.matchAll(/<iframe[^>]+src=["']([^"']+)["']/gi)];
-
   iframes.forEach(m => {
     let src = m[1];
-
-    // Pastikan URL diawali dengan https: (seringkali iframe pake //www.youtube...)
     if (src.startsWith('//')) src = 'https:' + src;
-
-      // Google sangat ketat: Hilangkan parameter tambahan jika ada agar URL bersih
       const cleanSrc = src.split('?')[0];
-
     videos.push({
-      loc: cleanSrc, // URL artikel asal
+      loc: cleanSrc,
       title: title,
       description: desc || `Video dari ${title}`,
       thumbnail: getYoutubeThumb(src) || `${CONFIG.baseUrl}/img/default-video.webp`
@@ -134,7 +127,7 @@ const buildRss = (title, items, rssLink, description) => {
 // CORE PROCESSOR
 // ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai Generator Pro V3 (Full Sitemaps & RSS)...');
+  console.log('🚀 Memulai Generator Pro V4 (Full Restore)...');
 
   try {
     const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
@@ -150,7 +143,7 @@ const generate = async () => {
         const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
         return {
           category: titleToCategory(title),
-          data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+                                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
         };
       })
     );
@@ -167,7 +160,8 @@ const generate = async () => {
       grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
       grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
       grouped[cat].forEach(item => {
-        allItemsFlat.push({ title: item[0], file: item[1], img: item[2], lastmod: item[3], desc: item[4], category: cat });
+        const loc = `${CONFIG.baseUrl}/artikel/${item[1].replace('.html', '')}/`;
+        allItemsFlat.push({ title: item[0], file: item[1], img: item[2], lastmod: item[3], desc: item[4], category: cat, loc: loc });
       });
     }
     allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
@@ -178,80 +172,62 @@ const generate = async () => {
     let xmlVideos = '';
 
     for (const item of allItemsFlat) {
-      const prettyUrl = `${CONFIG.baseUrl}/artikel/${item.file.replace('.html', '')}`;
-      
       // Artikel Sitemap
-      xmlPosts += `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n  </url>\n`;
-      
-      // Image Sitemap
-      xmlImages += `  <url>\n    <loc>${prettyUrl}</loc>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
+      xmlPosts += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n  </url>\n`;
 
-      // 3. Video Sitemap (DENGAN FILTER KETAT)
+      // Image Sitemap (Pola Jetpack: One URL per Image)
+      xmlImages += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
+
+      // Video Sitemap
       const content = await fs.readFile(path.join(CONFIG.artikelDir, item.file), 'utf8');
-      const rawVideos = extractVideos(content, item.title, item.desc);
-
-      // FILTER: Hanya masukkan video yang URL-nya VALID (bukan ${embedUrl})
-      const validVideos = rawVideos.filter(v => v.loc && !v.loc.includes('${embedUrl}'));
+      const validVideos = extractVideos(content, item.title, item.desc).filter(v => v.loc && !v.loc.includes('${'));
 
       if (validVideos.length > 0) {
-        xmlVideos += `  <url>\n    <loc>${prettyUrl}</loc>\n`;
         validVideos.forEach(v => {
-          // Menghindari karakter & yang merusak XML
-          const cleanLoc = v.loc.replace(/&/g, '&amp;');
-          xmlVideos += `    <video:video>\n`;
-          xmlVideos += `      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n`;
-          xmlVideos += `      <video:title><![CDATA[${v.title}]]></video:title>\n`;
-          xmlVideos += `      <video:description><![CDATA[${v.description}]]></video:description>\n`;
-          xmlVideos += `      <video:player_loc>${cleanLoc}</video:player_loc>\n`;
-          xmlVideos += `    </video:video>\n`;
+          xmlVideos += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <video:video>\n      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n      <video:title><![CDATA[${v.title}]]></video:title>\n      <video:description><![CDATA[${v.description}]]></video:description>\n      <video:player_loc>${v.loc.replace(/&/g, '&amp;')}</video:player_loc>\n    </video:video>\n  </url>\n`;
         });
-        xmlVideos += `  </url>\n`;
       }
     }
 
-    // 4. Penulisan File
-    const xslHeaderMain = `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
+    // 4. Penulisan File dengan Header Jetpack
+    const writeSitemap = async (filePath, content, type) => {
+      const header = `<?xml version="1.0" encoding="UTF-8"?>\n\n\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
+      let ns = '';
+      if(type === 'Image') ns = ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
+        if(type === 'Video') ns = ' xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"';
+
+          const wrapper = `<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${ns}>\n${content}</urlset>`;
+      await fs.writeFile(filePath, header + wrapper);
+    };
 
     const writePromises = [
       fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
+      // Index
+      fs.writeFile(CONFIG.xmlIndexOut, `<?xml version="1.0" encoding="UTF-8"?>\n\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n</sitemapindex>`),
 
-      // Sitemap Index
-      fs.writeFile(CONFIG.xmlIndexOut, `${xslHeaderMain}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n</sitemapindex>`),
+      writeSitemap(CONFIG.xmlPostsOut, xmlPosts, 'Page'),
+      writeSitemap(CONFIG.xmlImagesOut, xmlImages, 'Image'),
+      writeSitemap(CONFIG.xmlVideosOut, xmlVideos, 'Video'),
 
-      // Sub-Sitemaps (Sekarang juga pakai xslHeaderMain)
-      fs.writeFile(CONFIG.xmlPostsOut, `${xslHeaderMain}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlPosts}</urlset>`),
-      fs.writeFile(CONFIG.xmlImagesOut, `${xslHeaderMain}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlImages}</urlset>`),
-      fs.writeFile(CONFIG.xmlVideosOut, `${xslHeaderMain}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${xmlVideos}</urlset>`),
-
-      // RSS Utama
       fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`, `Feed ${CONFIG.rssLimit} artikel terbaru`))
     ];
 
     // RSS & HTML Kategori
     const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch(() => null);
-
     for (const [cat, articles] of Object.entries(grouped)) {
       const slug = slugify(cat);
       const catItems = allItemsFlat.filter(f => f.category === cat);
-      const cleanTitle = cat.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
-      
-      writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`, `Feed artikel terbaru untuk kategori ${cat}`)));
+      writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`, `Feed kategori ${cat}`)));
 
       if (templateHTML) {
         const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
-        const pageContent = templateHTML
-          .replace(/%%TITLE%%/g, cat.replace(/^\p{Emoji_Presentation}\s*/u, ''))
-          .replace(/%%DESCRIPTION%%/g, `Topik ${cleanTitle} - Kumpulan artikel terbaru di Layar Kosong`)
-          .replace(/%%CATEGORY_NAME%%/g, cat)
-          .replace(/%%RSS_URL%%/g, `${CONFIG.baseUrl}/feed-${slug}.xml`)
-          .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}`)
-          .replace(/%%ICON%%/g, icon);
+        const pageContent = templateHTML.replace(/%%TITLE%%/g, sanitizeTitle(cat)).replace(/%%CATEGORY_NAME%%/g, cat).replace(/%%RSS_URL%%/g, `${CONFIG.baseUrl}/feed-${slug}.xml`).replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}`).replace(/%%ICON%%/g, icon);
         writePromises.push(fs.writeFile(path.join(CONFIG.kategoriDir, `${slug}.html`), pageContent));
       }
     }
 
     await Promise.all(writePromises);
-    console.log('✅ Selesai! Sitemap Index, Image, Video, RSS, dan Kategori telah diperbarui.');
+    console.log('✅ Selesai! Semua fitur asli + Jetpack Style telah aktif.');
   } catch (err) {
     console.error('❌ Error:', err);
   }
