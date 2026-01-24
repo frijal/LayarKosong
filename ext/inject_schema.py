@@ -49,9 +49,10 @@ def build_keywords(headline: str, category: str, slug: str) -> str:
 def build_combined_schema(category, article):
     headline, filename, image, iso_date, desc = article
 
-    # 👉 STRUKTUR V6.9: /{kategori}/{slug}/
+    # 👉 PERBAIKAN DI SINI: Cara Python membersihkan slug
     cat_slug = slugify(category)
-    file_slug = filename.replace('.html', '').replace(/^\//, '')
+    file_slug = filename.replace('.html', '').lstrip('/')
+
     article_url = f"{BASE_URL}/{cat_slug}/{file_slug}/"
 
     cat_display_name = category_name_clean(category)
@@ -153,10 +154,10 @@ if __name__ == "__main__":
 
         for article in articles:
             filename = article[1]
-            file_slug = filename.replace('.html', '').replace('/', '')
+            file_slug = filename.replace('.html', '').lstrip('/')
 
             # 👉 Jalur file sekarang ada di: kategori/slug.html
-            html_path = os.path.join(cat_slug, filename)
+            html_path = os.path.join(cat_slug, filename.lstrip('/'))
 
             if not os.path.isfile(html_path):
                 # Backup check jika filename mengandung path lengkap
