@@ -87,13 +87,7 @@
 <body>
 	<div id='description'>
 		<h1>Indeks Peta Situs XML</h1>
-		<xsl:choose>
-			<xsl:when test='not(sitemap:sitemapindex/sitemap:sitemap)'>
-				<p><strong></strong></p>
-			</xsl:when>
-		</xsl:choose>
-		<p>Ini adalah Indeks Peta Situs XML yang dibuat oleh <a href="https://jetpack.com/">Jetpack</a>, ditujukan untuk diindeks oleh mesin pencari seperti <a href="https://www.google.com/">Google</a> atau <a href="https://www.bing.com/">Bing</a>.</p>
-		<p>Anda dapat mencari lebih banyak informasi tentang peta situs XML di <a href="https://sitemaps.org">sitemaps.org</a></p>
+		<p>Ini adalah Indeks Peta Situs XML milik <a href="https://dalam.web.id">Layar Kosong</a>.</p>
 	</div>
 	<div id='content'>
 		<table>
@@ -109,26 +103,16 @@
 							<xsl:attribute name="class">odd</xsl:attribute>
 						</xsl:when>
 					</xsl:choose>
+					<td><xsl:value-of select = "position()" /></td>
 					<td>
-						<xsl:value-of select = "position()" />
-					</td>
-					<td>
-						<xsl:variable name='itemURL'>
-							<xsl:value-of select='sitemap:loc'/>
-						</xsl:variable>
-						<a href='{$itemURL}'>
+						<a href='{sitemap:loc}'>
 							<xsl:value-of select='sitemap:loc'/>
 						</a>
 					</td>
-					<td>
-						<xsl:value-of select='sitemap:lastmod'/>
-					</td>
+					<td><xsl:value-of select='sitemap:lastmod'/></td>
 				</tr>
 			</xsl:for-each>
 		</table>
-	</div>
-	<div id='footer'>
-		<p>Dibuat oleh <a href="https://jetpack.com">Jetpack untuk WordPress</a></p>
 	</div>
 </body>
 </html>
