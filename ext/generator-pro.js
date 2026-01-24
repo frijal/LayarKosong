@@ -76,13 +76,20 @@ const extractImage = (content, filename) => {
 
 const extractVideos = (content, title, desc) => {
   const videos = [];
+  // Regex untuk mencari iframe YouTube atau tag video
   const iframes = [...content.matchAll(/<iframe[^>]+src=["']([^"']+)["']/gi)];
-  const videoTags = [...content.matchAll(/<video[^>]+src=["']([^"']+)["']/gi)];
-  
-  [...iframes, ...videoTags].forEach(m => {
-    const src = m[1];
+
+  iframes.forEach(m => {
+    let src = m[1];
+
+    // Pastikan URL diawali dengan https: (seringkali iframe pake //www.youtube...)
+    if (src.startsWith('//')) src = 'https:' + src;
+
+      // Google sangat ketat: Hilangkan parameter tambahan jika ada agar URL bersih
+      const cleanSrc = src.split('?')[0];
+
     videos.push({
-      loc: src,
+      loc: cleanSrc, // URL artikel asal
       title: title,
       description: desc || `Video dari ${title}`,
       thumbnail: getYoutubeThumb(src) || `${CONFIG.baseUrl}/img/default-video.webp`
@@ -185,7 +192,14 @@ const generate = async () => {
       if (videos.length > 0) {
         xmlVideos += `  <url>\n    <loc>${prettyUrl}</loc>\n`;
         videos.forEach(v => {
-          xmlVideos += `    <video:video>\n      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n      <video:title><![CDATA[${v.title}]]></video:title>\n      <video:description><![CDATA[${v.description}]]></video:description>\n      <video:player_loc>${v.loc}</video:player_loc>\n    </video:video>\n`;
+          // Pastikan v.loc tidak mengandung karakter & yang tidak di-escape
+          const safePlayerLoc = v.loc.replace(/&/g, '&amp;');
+          xmlVideos += `    <video:video>\n`;
+          xmlVideos += `      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n`;
+          xmlVideos += `      <video:title><![CDATA[${v.title}]]></video:title>\n`;
+          xmlVideos += `      <video:description><![CDATA[${v.description}]]></video:description>\n`;
+          xmlVideos += `      <video:player_loc>${safePlayerLoc}</video:player_loc>\n`; // Gunakan safe URL
+          xmlVideos += `    </video:video>\n`;
         });
         xmlVideos += `  </url>\n`;
       }
