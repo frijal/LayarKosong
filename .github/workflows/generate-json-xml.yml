@@ -75,10 +75,10 @@ jobs:
           "
           echo "✅ sitemap.txt sinkron dengan V6.9"     
 
-      - name: '7️⃣ Generate Screenshots'
-        run: npm run ci-screenshot
+  #    - name: 'Generate Screenshots'
+  #      run: npm run ci-screenshot
 
-      - name: 🧠 Inject schema.org (smart mode)
+      - name: 7️⃣ Inject schema.org (smart mode)
         run: python3 ext/inject_schema.py
 
       - name: '8️⃣ Clean Empty Lines (HTML Minify V6.9)'
