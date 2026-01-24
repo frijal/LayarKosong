@@ -3,7 +3,7 @@ name: RSS to Discussions Sync Professional
 on:
   schedule:
     # Berjalan otomatis setiap 12 jam (Pukul 00:00 dan 12:00 UTC)
-    - cron: '0 */12 * * *'
+    - cron: '0 */23 * * *'
   workflow_dispatch: # Memungkinkan kamu menjalankan manual lewat tombol di tab Actions
 
 jobs:
