@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 8.9
+document_version: 9.0
 last_updated: 2026-01-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,8 +37,9 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 24 January 2026)
-> Menampilkan 808 artikel yang berhasil diindeks dalam versi 8.9.
+> Menampilkan 816 artikel yang berhasil diindeks dalam versi 9.0.
 ## Gaya Hidup
+- [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/artikel/16-tahun-ojol-tanpa-uu.html) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
 - [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
 - [Keadilan Pajak untuk Kendaraan Rusak dan Sosial: Harapan Baru Bagi Pemilik Motor Tua](https://dalam.web.id/artikel/keringanan-pajak-kendaraan-rusak.html) : Mengapa kendaraan rusak berat masih ditagih pajak? Simak ulasan mendalam mengenai kebijakan keringanan pajak kendaraan hingga 50% untuk motor rusak dan sosial.
@@ -225,6 +226,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/artikel/istighfar-kunci-rezeki.html) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [MBG dan Koperasi Merah Putih: Infrastruktur Kekuasaan Berkedok Kesejahteraan](https://dalam.web.id/artikel/mbg-dan-koperasi-merah-putih.html) : Analisis kritis MBG dan Koperasi Merah Putih: benarkah program kesejahteraan atau sekadar infrastruktur kekuasaan? Dibedah dengan 5W+1H, bahasa santai, dan perspektif warga.
+- [Hoaks Mati Listrik Nasional dan Bisnis Ketakutan](https://dalam.web.id/artikel/hoaks-mati-listrik-nasional.html) : Isu mati listrik nasional selama tujuh hari kembali beredar. Artikel ini membedah hoaks, fakta teknis sistem kelistrikan Indonesia, serangan siber, dan praktik bisnis ketakutan secara rasional.
+- [Hutang Konsumtif Negara dan Dosa Antar Generasi](https://dalam.web.id/artikel/hutang-konsumtif-dan-dosa-antar-generasi.html) : Hutang negara bukan sekadar angka. Ia adalah beban masa depan generasi yang belum lahir. Analisis kritis hutang konsumtif, subsidi salah sasaran, dan dosa antar generasi.
 - [Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental?](https://dalam.web.id/artikel/terjebak-dopamine-loop-scroll-medsos.html) : Mengapa kita merasa lelah padahal hanya scroll medsos? Simak analisis mendalam tentang kecanduan dopamine, algoritma toxic, dan cara memulihkan kesehatan mental di era digital.
 - [Waspada 2026: Dua Jenis Usaha Berisiko Tinggi yang Harus Kamu Hindari!](https://dalam.web.id/artikel/dua-usaha-dihindari-2026.html) : Tahun 2026 bukan cuma soal cari cuan, tapi soal ketenangan jiwa. Simak analisis mendalam mengapa bisnis subsidi MBG dan Koperasi Desa punya risiko mahal yang harus diwaspadai.
 - [Bahaya Memilih Presiden yang Pikun: Bedah Medis & Dampak Global](https://dalam.web.id/artikel/bahaya-memilih-presiden-pikun.html) : Mengapa kesehatan otak pemimpin adalah isu keselamatan publik? Bedah tuntas Frontotemporal Dementia (FTD) dan dampaknya pada stabilitas negara bersama Dr. Erta Priadi Wirawijaya.
@@ -343,6 +347,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/artikel/solusi-libreoffice-lambat-jaringan.html) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Zaman Ruwaibidhah: Ketika Si Bodoh Ikut Mengatur Urusan Publik](https://dalam.web.id/artikel/hilangnya-amanah-munculnya-ruwaibidha.html) : Analisis mendalam tentang Fenomena Ruwaibidhah di akhir zaman. Ketika penipu dipercaya, orang jujur didustakan, dan orang tanpa ilmu berbicara urusan publik.
+- [Paradox Negara Bonus Demografi tapi KUA Sepi, Dampak Makro Marry is Scary](https://dalam.web.id/artikel/paradox-bonus-demografi-kua-sepi.html) : Indonesia sedang menikmati bonus demografi, tapi justru KUA makin sepi. Fenomena marry is scary dan childfree bukan sekadar urusan personal, tapi berpotensi jadi bom waktu nasional.
 - [Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer?](https://dalam.web.id/artikel/polemik-sppg-asn-pppk-keadilan-honorer.html) : Mengulas tuntas polemik pengangkatan pegawai SPPG menjadi ASN PPPK di tahun 2025. Analisis mendalam mengenai ketimpangan keadilan bagi guru honorer dan dampaknya terhadap kepercayaan birokrasi.
 - [Perut Kenyang namun Otak Kosong: Analisis Kritis Program Makan Gratis vs Pendidikan Indonesia](https://dalam.web.id/artikel/perut-kenyang-namun-otak-kosong.html) : Analisis mendalam tentang ketimpangan anggaran pendidikan Indonesia: antara program makan gratis populis dan pendidikan yang terbengkalai. Bagaimana kebijakan ini membentuk generasi yang kenyang perut tapi lapar otak?
 - [MBG: Ketika Kemerdekaan Dirampas Atas Nama Gizi - Analisis Kritis Program Makanan Bergizi Gratis](https://dalam.web.id/artikel/mbg-kemerdekaan-dirampas-atas-nama-gizi.html) : Analisis mendalam tentang Program Makan Bergizi Gratis (MBG) yang mengkritisi aspek kebebasan memilih makanan anak, implikasi psikologis, dan alternatif solusi yang lebih memberdayakan. Pandangan kritis tentang kebijakan nutrisi anak Indonesia.
@@ -668,6 +674,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/artikel/perjalanan-ubuntu-jogja-gcos.html) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Kiamat Digital Indonesia: Ketika Jaringan Telkomsel & IndiHome Lumpuh Total](https://dalam.web.id/artikel/kiamat-digital-indonesia-telkom-down.html) : Analisis mendalam peristiwa Blackout Internet Nasional pada 22 Januari 2026. Mengapa jaringan Telkomsel dan IndiHome lumpuh? Simak kronologi, penyebab kabel laut JaSuKa, dan dampaknya bagi ekonomi digital Indonesia.
+- [Mengenal JaSuKa: "Urat Nadi" Internet Indonesia yang Sering Bikin Galau](https://dalam.web.id/artikel/mengenal-teknologi-kabel-laut-jasuka.html) : Kupas tuntas teknologi kabel laut JaSuKa (Jawa-Sumatera-Kalimantan). Mengapa kabel ini vital bagi internet Indonesia dan apa yang terjadi jika ia putus? Baca di Layar Kosong.
 - [Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide](https://dalam.web.id/artikel/panduan-lengkap-notebooklm.html) : Pelajari cara menggunakan NotebookLM, asisten riset AI berbasis sumber terpercaya. Panduan lengkap fitur Source, Chat, dan Studio untuk proyek kreatif Anda.
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/biometrik-registrasi-sim-wajah-2026.html) : Rencana registrasi kartu SIM berbasis biometrik (wajah) menuai protes keras. Pakar siber ingatkan risiko kebocoran data seumur hidup. Simak analisis lengkap dan suara netizen di sini.
 - [Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache](https://dalam.web.id/artikel/urutan-workflow-github.html) : Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.
