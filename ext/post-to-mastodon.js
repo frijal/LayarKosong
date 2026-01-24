@@ -2,12 +2,13 @@ import fs from "fs";
 import fetch from "node-fetch";
 
 /* =====================
-   Konfigurasi
-   ===================== */
+ K onfigurasi        *
+ ===================== */
 const ARTICLE_FILE = "artikel.json";
-const STATE_FILE = "mini/posted-mastodon.txt"; 
+const STATE_FILE = "mini/posted-mastodon.txt";
 const LIMIT = 500;
 const DELAY_MS = 8000;
+const BASE_URL = "https://dalam.web.id";
 
 const INSTANCE = process.env.MASTODON_INSTANCE;
 const TOKEN = process.env.MASTODON_TOKEN;
@@ -18,106 +19,108 @@ if (!INSTANCE || !TOKEN) {
 }
 
 /* =====================
-   Util
-   ===================== */
+ U til               *
+ ===================== */
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+const slugify = (text) =>
+text.toLowerCase().trim().replace(/\s+/g, '-');
+
 const cleanHashtag = (str) =>
-  "#" + str
-    .replace(/&/g, "dan")
-    .replace(/[^\w\s]/g, "")
-    .replace(/\s+/g, "");
+"#" + str
+.replace(/&/g, "dan")
+.replace(/[^\w\s]/g, "")
+.replace(/\s+/g, "");
 
 /* =====================
-   Load State (Plain Text)
-   ===================== */
-let postedUrls = [];
+ L oad State (Cek Str*ing Gede)
+ ===================== */
+let postedDatabase = "";
 if (fs.existsSync(STATE_FILE)) {
-  postedUrls = fs.readFileSync(STATE_FILE, "utf8")
-    .split("\n")
-    .map(line => line.trim())
-    .filter(line => line !== "");
+  // Kita baca semua isi file sebagai satu string untuk pencarian slug
+  postedDatabase = fs.readFileSync(STATE_FILE, "utf8");
 }
 
 /* =====================
-   Load & Flatten Artikel
-   ===================== */
+ L oad & Flatten Arti*kel
+ ===================== */
 const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
 let articles = [];
 
 for (const [category, items] of Object.entries(raw)) {
+  const catSlug = slugify(category);
+
   for (const item of items) {
-    // Struktur JSON: [0:judul, 1:slug, 2:image, 3:date(ISO), 4:desc]
     const title = item[0];
-    const slug = item[1];
-    const isoDate = item[3]; // Ambil jam & menit lengkap
+    const fileName = item[1].strip ? item[1].strip() : item[1];
+    const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
+    const isoDate = item[3];
     const desc = item[4] || "";
 
-    const cleanSlug = slug.replace('.html', '').replace(/^\//, '');
-    const fullUrl = slug.startsWith("http")
-      ? slug
-      : `https://dalam.web.id/artikel/${cleanSlug}`;
+    // LOGIKA V6.9: https://dalam.web.id/kategori/slug/
+    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
 
-    articles.push({
-      title,
-      url: fullUrl,
-      date: isoDate, // Gunakan string ISO asli untuk sort presisi
-      desc,
-      category
-    });
+    // --- CEK BERDASARKAN SLUG (Biar nggak post ulang artikel lama) ---
+    if (!postedDatabase.includes(fileSlug)) {
+      articles.push({
+        title,
+        url: fullUrl,
+        slug: fileSlug,
+        date: isoDate,
+        desc,
+        category
+      });
+    }
   }
 }
 
 /* =====================
-   Sort TERBARU → TERLAMA
-   ===================== */
-// Menggunakan localeCompare pada string ISO agar akurat hingga milidetik
+ S ort TERBARU → TERL*AMA
+ ===================== */
 articles.sort((a, b) => b.date.localeCompare(a.date));
 
-/* =====================
-   Cari Artikel Belum Dipost
-   ===================== */
-const queue = articles.filter(a => !postedUrls.includes(a.url));
-
-if (!queue.length) {
-  console.log("✅ Semua artikel sudah dipost ke Mastodon");
+if (!articles.length) {
+  console.log("✅ Semua artikel sudah dipost ke Mastodon (berdasarkan cek slug)");
   process.exit(0);
 }
 
-// Ambil yang paling atas (terbaru hasil sorting tadi)
-const article = queue[0];
+const article = articles[0];
 
 /* =====================
-   Hashtag
-   ===================== */
+ H ashtag            *
+ ===================== */
 const hashtags = new Set();
 hashtags.add("#fediverse");
 hashtags.add("#Repost");
+hashtags.add("#Indonesia");
 hashtags.add(cleanHashtag(article.category));
 
+// Ambil kata dari judul untuk jadi hashtag tambahan
 article.title
-  .split(/\s+/)
-  .filter(w => w.length > 4)
-  .slice(0, 3)
-  .forEach(w => hashtags.add(cleanHashtag(w)));
+.split(/\s+/)
+.filter(w => w.length > 4)
+.slice(0, 3)
+.forEach(w => hashtags.add(cleanHashtag(w)));
 
 /* =====================
-   Status
-   ===================== */
-let status = `${article.desc || "Archive."}
+ S tatus             *
+ ===================== */
+let status = `${article.title}
+
+${article.desc || "Archive."}
 
 ${[...hashtags].join(" ")}
 
 ${article.url}`;
 
 if (status.length > LIMIT) {
-  status = status.slice(0, LIMIT - 1) + "…";
+  status = status.slice(0, LIMIT - 5) + "...";
 }
 
 /* =====================
-   Post ke Mastodon
-   ===================== */
-console.log(`🚀 Mengirim ke Mastodon: ${article.title} (${article.date})`);
+ P ost ke Mastodon   *
+ ===================== */
+console.log(`🚀 Mengirim ke Mastodon: ${article.title}`);
 
 const res = await fetch(`https://${INSTANCE}/api/v1/statuses`, {
   method: "POST",
@@ -138,14 +141,12 @@ if (!res.ok) {
 }
 
 /* =====================
-   Simpan State
-   ===================== */
+ S impan State       *
+ ===================== */
 if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
+// Simpan URL baru ke file teks
 fs.appendFileSync(STATE_FILE, article.url + "\n");
 
 console.log("✅ Berhasil post ke Mastodon:", article.url);
 
-/* =====================
-   Delay Aman
-   ===================== */
 await sleep(DELAY_MS);

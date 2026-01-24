@@ -3,10 +3,14 @@ import axios from 'axios';
 
 const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-threads.txt';
-const BASE_URL = 'https://dalam.web.id/artikel/';
+// Base URL utama tanpa folder /artikel/
+const DOMAIN_URL = 'https://dalam.web.id';
 
 // Fungsi untuk memberi jeda waktu
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const slugify = (text) =>
+text.toLowerCase().trim().replace(/\s+/g, '-');
 
 async function postToThreads() {
     const ACCESS_TOKEN = process.env.THREADS_ACCESS_TOKEN;
@@ -18,54 +22,59 @@ async function postToThreads() {
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
 
-    // --- LOGIKA PENGUMPULAN DATA ---
+    // --- LOAD DATABASE (Cek sebagai String Besar untuk pencarian Slug) ---
+    let postedDatabase = fs.existsSync(DATABASE_FILE)
+    ? fs.readFileSync(DATABASE_FILE, 'utf8')
+    : "";
+
+    // --- LOGIKA PENGUMPULAN DATA V6.9 ---
     for (const [cat, posts] of Object.entries(data)) {
+        const catSlug = slugify(cat); // Gaya Hidup -> gaya-hidup
+
         posts.forEach(p => {
-            // p[0]: judul, p[1]: slug, p[2]: image, p[3]: ISO Date, p[4]: desc
-            allPosts.push({
-                title: p[0],
-                slug: p[1].replace('.html', '').replace(/^\//, ''),
-                date: p[3], // ISO 8601 String untuk sorting presisi
-                desc: p[4] || "",
-                category: cat
-            });
+            const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
+            // Bentuk URL Baru: https://dalam.web.id/kategori/slug/
+            const fullUrl = `${DOMAIN_URL}/${catSlug}/${fileSlug}/`;
+
+            // Cek apakah slug sudah ada di dalam database teks
+            if (!postedDatabase.includes(fileSlug)) {
+                allPosts.push({
+                    title: p[0],
+                    url: fullUrl,
+                    slug: fileSlug,
+                    date: p[3],
+                    desc: p[4] || "",
+                    category: cat
+                });
+            }
         });
     }
 
-    // --- SORTING AKURAT (Terbaru di Paling Atas) ---
-    // Membandingkan string ISO secara alfabetis (descending)
+    // --- SORTING TERBARU DULUAN ---
     allPosts.sort((a, b) => b.date.localeCompare(a.date));
 
-    let postedUrls = fs.existsSync(DATABASE_FILE)
-        ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
-        : [];
-
-    // Mencari artikel terbaru yang belum tercatat di database txt
-    let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
-
-    if (!target) {
-        console.log("🏁 Threads: Semua artikel sudah terposting.");
+    if (allPosts.length === 0) {
+        console.log("🏁 Threads: Semua artikel sudah terposting (berdasarkan cek slug).");
         return;
     }
 
-    const targetUrl = `${BASE_URL}${target.slug}`;
+    // Ambil artikel terbaru yang lolos filter
+    const target = allPosts[0];
 
     try {
         console.log(`🚀 Menyiapkan Threads: ${target.title} (${target.date})`);
 
         // Step 1: Create Container
-        // Format: Deskripsi -> Link Attachment (Judul otomatis muncul dari Metadata Link)
         const resContainer = await axios.post(`${API_BASE}/${THREADS_USER_ID}/threads`, {
             media_type: 'TEXT',
             text: `${target.desc}\n\n#Repost #Ngopi #Indonesia #fediverse`,
-            link_attachment: targetUrl,
+            link_attachment: target.url,
             access_token: ACCESS_TOKEN
         });
 
         const creationId = resContainer.data.id;
-        console.log(`📦 Container ID: ${creationId}. Menunggu 10 detik agar server Threads siap...`);
+        console.log(`📦 Container ID: ${creationId}. Menunggu 10 detik...`);
 
-        // Jeda 10 detik agar tidak terkena error "Media Not Found" saat publish
         await delay(10000);
 
         // Step 2: Publish
@@ -74,10 +83,10 @@ async function postToThreads() {
             access_token: ACCESS_TOKEN
         });
 
-        // Simpan ke database plain text
+        // Simpan FULL URL ke database (biar record-nya lengkap, tapi tetap aman dicek via slug)
         if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
-        fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        
+        fs.appendFileSync(DATABASE_FILE, target.url + '\n');
+
         console.log(`✅ Berhasil diposting ke Threads: ${target.title}`);
     } catch (err) {
         const errorData = err.response?.data || err.message;

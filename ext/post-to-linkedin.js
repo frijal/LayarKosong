@@ -3,9 +3,12 @@ import axios from 'axios';
 
 const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-linkedin.txt';
-const BASE_URL = 'https://dalam.web.id/artikel/';
+const BASE_URL = 'https://dalam.web.id';
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const slugify = (text) =>
+text.toLowerCase().trim().replace(/\s+/g, '-');
 
 async function postToLinkedIn() {
     const ACCESS_TOKEN = process.env.LINKEDIN_ACCESS_TOKEN;
@@ -16,37 +19,45 @@ async function postToLinkedIn() {
     const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
     let allPosts = [];
 
-    // --- LOGIKA PENGUMPULAN DATA ---
+    // --- LOAD DATABASE (Cek sebagai String Besar untuk filter Slug) ---
+    let postedDatabase = fs.existsSync(DATABASE_FILE)
+    ? fs.readFileSync(DATABASE_FILE, 'utf8')
+    : "";
+
+    // --- LOGIKA PENGUMPULAN DATA V6.9 ---
     for (const [cat, posts] of Object.entries(data)) {
+        const catSlug = slugify(cat);
+
         posts.forEach(p => {
-            // p[0]: judul, p[1]: slug, p[2]: image, p[3]: ISO Date, p[4]: desc
-            allPosts.push({ 
-                title: p[0], 
-                slug: p[1].replace('.html', ''), 
-                image: p[2], 
-                date: p[3], // Kita simpan tanggal ISO-nya
-                desc: p[4] 
-            });
+            const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
+            // Format URL Baru: https://dalam.web.id/kategori/slug/
+            const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
+
+            // Cek apakah slug sudah ada di dalam rekaman database teks
+            if (!postedDatabase.includes(fileSlug)) {
+                allPosts.push({
+                    title: p[0],
+                    url: fullUrl,
+                    slug: fileSlug,
+                    image: p[2],
+                    date: p[3],
+                    desc: p[4] || "Archive."
+                });
+            }
         });
     }
-    
-    // --- SORTING AKURAT (Terbaru di Paling Atas) ---
-    // String ISO 8601 bisa di-sort secara alfabetis (descending)
+
+    // --- SORTING TERBARU DULUAN ---
     allPosts.sort((a, b) => b.date.localeCompare(a.date));
 
-    let postedUrls = fs.existsSync(DATABASE_FILE) 
-        ? fs.readFileSync(DATABASE_FILE, 'utf8').split('\n').map(l => l.trim()).filter(Boolean)
-        : [];
-
-    // Karena sudah di-sort terbaru, find() akan otomatis mengambil yang paling gres yang belum dipost
-    let target = allPosts.find(p => !postedUrls.includes(`${BASE_URL}${p.slug}`));
-
-    if (!target) {
-        console.log("🏁 LinkedIn: Semua artikel sudah terposting.");
+    if (allPosts.length === 0) {
+        console.log("🏁 LinkedIn: Semua artikel sudah terposting (berdasarkan cek slug).");
         return;
     }
 
-    const targetUrl = `${BASE_URL}${target.slug}`;
+    // Ambil artikel paling gres yang lolos filter
+    const target = allPosts[0];
+
     const commonHeaders = {
         'Authorization': `Bearer ${ACCESS_TOKEN}`,
         'X-Restli-Protocol-Version': '2.0.0',
@@ -55,7 +66,7 @@ async function postToLinkedIn() {
     };
 
     try {
-        console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title} (${target.date})`);
+        console.log(`🚀 Menyiapkan postingan LinkedIn: ${target.title}`);
 
         // --- STEP 1: REGISTER IMAGE ---
         console.log("📸 Meregistrasi gambar ke LinkedIn...");
@@ -71,12 +82,10 @@ async function postToLinkedIn() {
         // --- STEP 2: UPLOAD BINARY GAMBAR ---
         console.log(`📤 Mengambil gambar dari: ${target.image}`);
         const imageResponse = await axios.get(target.image, { responseType: 'arraybuffer' });
-        
         const finalType = imageResponse.headers['content-type'] || 'image/webp';
-        console.log(`📡 Uploading binary dengan tipe: ${finalType}`);
 
         await axios.put(uploadUrl, imageResponse.data, {
-            headers: { 
+            headers: {
                 'Authorization': `Bearer ${ACCESS_TOKEN}`,
                 'Content-Type': finalType
             }
@@ -85,11 +94,12 @@ async function postToLinkedIn() {
         console.log("⏳ Menunggu sistem LinkedIn (10 detik)...");
         await delay(10000);
 
-        // --- STEP 3: POST KE FEED ---
+        // --- STEP 3: POST KE FEED (Kembali ke struktur asli Mas Rijal) ---
         console.log("📝 Mengirim postingan final...");
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
-            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost #fediverse\n\n${targetUrl}`,
+            // Tetap menggunakan target.url yang sudah V6.9
+            commentary: `${target.desc}\n\n#Indonesia #Ngopi #Article #Repost #fediverse\n\n${target.url}`,
             visibility: 'PUBLIC',
             content: {
                 media: {
@@ -97,6 +107,7 @@ async function postToLinkedIn() {
                     altText: target.title
                 }
             },
+            // Bagian ini yang tadi sempat hilang/berbeda:
             distribution: {
                 feedDistribution: 'MAIN_FEED',
                 targetEntities: [],
@@ -105,12 +116,12 @@ async function postToLinkedIn() {
             lifecycleState: 'PUBLISHED'
         }, { headers: commonHeaders });
 
-        // Simpan URL ke database plain text
+        // Simpan URL baru ke database
         if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
-        fs.appendFileSync(DATABASE_FILE, targetUrl + '\n');
-        
+        fs.appendFileSync(DATABASE_FILE, target.url + '\n');
+
         console.log(`✅ Berhasil! Artikel "${target.title}" sudah tayang di LinkedIn.`);
-        
+
     } catch (err) {
         console.error('❌ LinkedIn Error:', JSON.stringify(err.response?.data || err.message, null, 2));
         process.exit(1);
