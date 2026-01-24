@@ -47,33 +47,33 @@ jobs:
         env:
           RSS_LIMIT: 30
 
-      - name: '6️⃣ Generate sitemap.txt (Static URL List)'
-        # Tetap mempertahankan sitemap.txt sebagai pelengkap sitemap.xml
+      - name: '6️⃣ Generate sitemap.txt (Sync V6.9)'
+        # Kita ambil datanya langsung dari hasil generator-pro (artikel.json)
+        # Ini cara paling akurat agar sitemap.txt sama persis dengan sitemap.xml
         run: |
-          echo "📝 Membuat sitemap.txt..."
+          echo "📝 Membuat sitemap.txt dari database V6.9..."
           BASE_URL="https://dalam.web.id"
           SITEMAP_FILE="sitemap.txt"
-
-          # Ambil daftar artikel tanpa ekstensi .html
-          find artikel/ -maxdepth 1 -name "*.html" \
-            | sed 's_artikel/__; s_\.html$__' \
-            | sed "s_^_$BASE_URL/artikel/_" > "$SITEMAP_FILE"
-
-          # Tambahkan URL statis lainnya
-          echo "$BASE_URL/" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/about" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/data-deletion" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/data-deletion-form" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/disclaimer" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/feed" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/img" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/lisensi" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/privacy" >> "$SITEMAP_FILE"      
-          echo "$BASE_URL/search" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/security-policy" >> "$SITEMAP_FILE"
-          echo "$BASE_URL/sitemap" >> "$SITEMAP_FILE"
-
-          echo "✅ sitemap.txt selesai"
+          
+          # Pakai node sebentar buat extract URL dari artikel.json
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
+            const urls = [];
+            const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
+            
+            for (const [cat, posts] of Object.entries(data)) {
+              posts.forEach(p => {
+                const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
+                urls.push('${BASE_URL}/' + slugify(cat) + '/' + fileSlug + '/');
+              });
+            }
+            // Tambahkan URL Statis
+            ['/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/', '/privacy/'].forEach(u => urls.push('${BASE_URL}' + u));
+            
+            fs.writeFileSync('$SITEMAP_FILE', urls.join('\n') + '\n');
+          "
+          echo "✅ sitemap.txt sinkron dengan V6.9"     
 
       - name: '7️⃣ Generate Screenshots'
         run: npm run ci-screenshot
@@ -81,18 +81,22 @@ jobs:
       - name: 🧠 Inject schema.org (smart mode)
         run: python3 ext/inject_schema.py
 
-      - name: '8️⃣ Clean Empty Lines (HTML Minify Lite)'
+      - name: '8️⃣ Clean Empty Lines (HTML Minify V6.9)'
         run: |
-          echo "🧹 Membersihkan baris kosong di folder artikel/..."
-          set -euo pipefail
-          shopt -s nullglob
-          for file in artikel/*.html; do
-            # Menghapus baris yang kosong atau hanya berisi whitespace
-            # Lalu mengganti multiple blank lines menjadi single blank line (opsional)
-            # Di sini kita pilih yang agresif: hapus semua baris kosong.
-            sed -i '/^[[:space:]]*$/d' "$file"
-          done
-          echo "✅ Pembersihan selesai."      
+          echo "🧹 Membersihkan baris kosong di folder kategori..."
+          # Sekarang kita cari di semua folder kecuali folder sistem
+          find . -maxdepth 2 -name "*.html" \
+            ! -path "./node_modules/*" \
+            ! -path "./.*" \
+            ! -path "./artikel/*" \
+            ! -path "./artikelx/*" \
+            ! -path "./ext/*" \
+            ! -path "./sementara/*" \
+            ! -path "./mini/*" \
+            ! -path "./img/*" \
+            ! -name "index.html" \
+            -exec sed -i '/^[[:space:]]*$/d' {} +
+          echo "✅ Pembersihan selesai."     
 
       - name: '9️⃣ Commit and Push Generated Files'
         run: |
