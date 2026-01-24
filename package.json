@@ -38,20 +38,20 @@
   "devDependencies": {
     "depcheck": "^1.4.7",
     "htmlhint": "^1.8.0",
-    "wrangler": "^4.59.3"
+    "wrangler": "^4.60.0"
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
     "@octokit/core": "^7.0.6",
     "@xmldom/xmldom": "^0.9.8",
     "axios": "^1.13.2",
-    "cheerio": "^1.1.2",
+    "cheerio": "^1.2.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "glob": "^13.0.0",
-    "miniflare": "^4.20260116.0",
+    "miniflare": "^4.20260120.0",
     "node-fetch": "^3.3.2",
-    "puppeteer": "^24.35.0",
+    "puppeteer": "^24.36.0",
     "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1",
