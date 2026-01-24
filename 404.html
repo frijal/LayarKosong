@@ -132,6 +132,31 @@
     <script>
       // Menjalankan skrip setelah seluruh halaman HTML selesai dimuat
       document.addEventListener('DOMContentLoaded', () => {
+async function handleRedirect() {
+    const path = window.location.pathname;
+    
+    // Cek apakah URL mengandung '/artikel/'
+    if (path.includes('/artikel/')) {
+        const fileName = path.split('/').pop() + '.html'; // misal: debian-post-install-2025.html
+        
+        const res = await fetch('/artikel.json');
+        const data = await res.json();
+        
+        for (const cat in data) {
+            const match = data[cat].find(item => item[1] === fileName);
+            if (match) {
+                const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+                const fileSlug = fileName.replace('.html', '');
+                // Lompat ke URL baru!
+                window.location.replace(`/${catSlug}/${fileSlug}/`);
+                return;
+            }
+        }
+    }
+    // Jika memang beneran nggak ada, tampilkan pesan error biasa
+    document.body.innerHTML = "<h1>Halaman Tidak Ditemukan (404)</h1>";
+}
+handleRedirect();
         // --- 1. PENYIMPANAN ELEMEN & DATA IKON ---
 
         // Menyimpan elemen DOM ke dalam variabel agar lebih efisien
