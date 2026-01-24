@@ -63,7 +63,7 @@ jobs:
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
       # =========================================================
 
-      - name: Run RSS Sync Script
+      - name: RSS kirim ke Diskusi Github
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'diskusi RSS'
         continue-on-error: true
         env:
