@@ -26,11 +26,10 @@ const slugify = (text) =>
 text.toLowerCase().trim().replace(/\s+/g, '-');
 
 /* =====================
- * Load Database (Cari Berdasarkan Keyword/Slug)
+ * Load Database
  * ===================== */
 let postedDatabase = "";
 if (fs.existsSync(DATABASE_FILE)) {
-  // Kita baca semua isinya sebagai satu string besar supaya gampang di-search
   postedDatabase = fs.readFileSync(DATABASE_FILE, "utf8");
 }
 
@@ -41,21 +40,22 @@ const raw = JSON.parse(fs.readFileSync(ARTICLE_FILE, "utf8"));
 let allArticles = [];
 
 for (const [category, items] of Object.entries(raw)) {
-  const catSlug = slugify(category);
+  const catSlug = slugify(category); // <--- Pakai catSlug
 
   for (const item of items) {
     const fileSlug = item[1].replace('.html', '').replace(/^\//, '');
-    const fullUrl = `${BASE_URL}/${cat_slug}/${fileSlug}/`;
 
-    // --- LOGIKA BARU: CEK SLUG ---
-    // Jika slug "kesimpulan-ai-umkm" ada di dalam database, maka skip.
+    // Perbaikan di sini: Pastikan variabelnya sama (catSlug)
+    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
+
+    // Cek slug di database biar nggak dobel post
     const isPosted = postedDatabase.includes(fileSlug);
 
     if (!isPosted) {
       allArticles.push({
         title: item[0],
         url: fullUrl,
-        slug: fileSlug, // Kita simpan slug-nya buat referensi simpan nanti
+        slug: fileSlug,
         date: item[3],
         desc: item[4] || "Archive.",
         category: category
@@ -67,10 +67,10 @@ for (const [category, items] of Object.entries(raw)) {
 // Sorting terbaru
 allArticles.sort((a, b) => b.date.localeCompare(a.date));
 
-const target = allArticles[0]; // Ambil yang paling baru dari yang belum di-post
+const target = allArticles[0];
 
 if (!target) {
-  console.log("✅ Tumblr: Misi selesai, tidak ada artikel baru (berdasarkan slug).");
+  console.log("✅ Tumblr: Tidak ada artikel baru (berdasarkan slug).");
   process.exit(0);
 }
 
@@ -96,7 +96,6 @@ client.createPost(BLOG_NAME, {
     process.exit(1);
   }
 
-  // SIMPAN FULL URL ke database (biar tetap rapi, tapi nanti dicek cuma slug-nya)
   if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
   fs.appendFileSync(DATABASE_FILE, target.url + "\n");
 
