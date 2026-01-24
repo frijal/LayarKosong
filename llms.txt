@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 8.7
+document_version: 8.8
 last_updated: 2026-01-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 24 January 2026)
-> Menampilkan 806 artikel yang berhasil diindeks dalam versi 8.7.
+> Menampilkan 807 artikel yang berhasil diindeks dalam versi 8.8.
 ## Gaya Hidup
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
 - [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
@@ -667,6 +667,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/artikel/perjalanan-ubuntu-jogja-gcos.html) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Ahli NotebookLM: Cara Cerdas Kelola Riset dan Ide](https://dalam.web.id/artikel/panduan-lengkap-notebooklm.html) : Pelajari cara menggunakan NotebookLM, asisten riset AI berbasis sumber terpercaya. Panduan lengkap fitur Source, Chat, dan Studio untuk proyek kreatif Anda.
 - [Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?](https://dalam.web.id/artikel/biometrik-registrasi-sim-wajah-2026.html) : Rencana registrasi kartu SIM berbasis biometrik (wajah) menuai protes keras. Pakar siber ingatkan risiko kebocoran data seumur hidup. Simak analisis lengkap dan suara netizen di sini.
 - [Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache](https://dalam.web.id/artikel/urutan-workflow-github.html) : Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.
 - [Gmail Dirombak Total: Gemini Otomatis Nyala, Privasi Jadi Taruhan? Simak Cara Matikannya](https://dalam.web.id/artikel/gmail-gemini-update-2026.html) : Update terbesar Gmail dalam 20 tahun! Google menanamkan Gemini AI secara default. Fitur canggih tapi bikin was-was soal privasi. Ini panduan lengkap cara mematikannya (Opt-out).
