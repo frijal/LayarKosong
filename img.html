@@ -217,7 +217,6 @@
     // Konfigurasi V6.9: Target langsung ke root json dan folder kategori
     const JSON_URL = 'https://dalam.web.id/artikel.json';
     const BASE_URL = 'https://dalam.web.id'; // Digunakan untuk membangun Clean URL
-
     const statusDiv = document.getElementById('status');
     const galleryContainer = document.getElementById('gallery-container');
     const sortSelect = document.getElementById('sort-select');
@@ -227,10 +226,8 @@
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
-
     let allImageData = [];
     let currentIndex = 0;
-
     // Helper slugify sesuai dengan logika generator-pro.js kamu
     const slugify = (text) => {
         return text.toString().toLowerCase().trim()
@@ -240,21 +237,16 @@
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-');
     };
-
     async function fetchAndDisplayImages() {
         if(statusDiv) statusDiv.textContent = 'Menghubungkan ke Database V6.9... ⏳';
         try {
             const response = await fetch(`${JSON_URL}?t=${new Date().getTime()}`);
             if (!response.ok) throw new Error(`Gagal memuat data: ${response.status}`);
-
             const data = await response.json();
-
             // Transformasi data sesuai struktur generator-pro.js V6.9
             const extractedData = [];
-
             for (const [categoryName, articles] of Object.entries(data)) {
                 const catSlug = slugify(categoryName); // Foldernya
-
                 articles.forEach(item => {
                     // Struktur V6.9 dalam array:
                     // item[0] = Judul (Title)
@@ -262,14 +254,11 @@
                     // item[2] = URL Gambar (Image URL)
                     // item[3] = Tanggal Publikasi (ISO8601)
                     // item[4] = Deskripsi (Description)
-
                     if (item[2] && item[2].startsWith('http')) {
                         const fileName = item[1];
                         const slugOnly = fileName.replace('.html', '');
-
                         // Membangun Clean URL V6.9: baseUrl/kategori/slug/
                         const cleanUrl = `${BASE_URL}/${catSlug}/${slugOnly}/`;
-
                         extractedData.push({
                             title: item[1],
                             url: item[2],
@@ -282,21 +271,17 @@
                     }
                 });
             }
-
             allImageData = extractedData;
-
             if (allImageData.length === 0) {
                 if(statusDiv) statusDiv.textContent = 'Tidak ada aset visual ditemukan.';
                 return;
             }
-
             if(statusDiv) statusDiv.textContent = `V6.9 Terkoneksi: ${allImageData.length} artikel dimuat.`;
             sortAndRender();
         } catch (error) {
             if(statusDiv) statusDiv.textContent = `Error V6.9: ${error.message}`;
         }
     }
-
     function sortAndRender() {
         const sortBy = sortSelect ? sortSelect.value : 'date_desc';
         allImageData.sort((a, b) => {
@@ -310,7 +295,6 @@
         });
         displayThumbnails();
     }
-
     function displayThumbnails() {
         if(!galleryContainer) return;
         galleryContainer.innerHTML = '';
@@ -325,7 +309,6 @@
             galleryContainer.appendChild(thumb);
         });
     }
-
     function updateLightbox() {
         const current = allImageData[currentIndex];
         lightboxImg.src = current.url;
@@ -334,40 +317,33 @@
         lightboxCaption.href = current.loc;
         lightboxCaption.target = "_blank";
     }
-
     function openLightbox(index) {
         currentIndex = index;
         updateLightbox();
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
-
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
-
     function showNext() {
         currentIndex = (currentIndex + 1) % allImageData.length;
         updateLightbox();
     }
-
     function showPrev() {
         currentIndex = (currentIndex - 1 + allImageData.length) % allImageData.length;
         updateLightbox();
     }
-
     // Social Share & Initializers
     document.addEventListener('DOMContentLoaded', () => {
         fetchAndDisplayImages();
-
         // Share buttons logic
         const shareData = {
             '.social-twitter': `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`,
             '.social-facebook': `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
             '.social-whatsapp': `https://api.whatsapp.com/send?text=${encodeURIComponent(document.title + ' ' + window.location.href)}`
         };
-
         Object.entries(shareData).forEach(([selector, link]) => {
             const el = document.querySelector(selector);
             if (el) {
@@ -379,12 +355,10 @@
             }
         });
     });
-
     if(sortSelect) sortSelect.addEventListener('change', sortAndRender);
     if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
     if(lightboxNext) lightboxNext.addEventListener('click', showNext);
     if(lightboxPrev) lightboxPrev.addEventListener('click', showPrev);
-
     document.addEventListener('keydown', e => {
         if (lightbox && lightbox.classList.contains('active')) {
             if (e.key === 'ArrowRight') showNext();
