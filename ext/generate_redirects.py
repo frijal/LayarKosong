@@ -4,10 +4,9 @@ import re
 # Konfigurasi
 SOURCE_JSON = 'artikel.json'
 OUTPUT_FILE = '_redirects2'
-BASE_URL = 'https://dalam.web.id'
 
 def slugify(text):
-    # Trimming dan ubah spasi jadi tanda hubung
+    # Trimming dan ubah spasi jadi tanda hubung tunggal
     text = text.strip().lower()
     text = re.sub(r'\s+', '-', text)
     return text
@@ -19,34 +18,35 @@ def generate_redirects():
             data = json.load(f)
 
         lines = []
-        lines.append(f"# Redirects Full URL Layar Kosong V6.9")
-        lines.append(f"# Generated for: {BASE_URL}\n")
+        # Tambahkan header komentar (opsional, Cloudflare tetap bisa baca)
+        lines.append("# Redirects Relative Path Layar Kosong V6.9\n")
 
         for category, articles in data.items():
             cat_slug = slugify(category)
 
             for article in articles:
-                # Format artikel: [Judul, NamaFile, Gambar, Tanggal, Deskripsi]
+                # Ambil nama file dan bersihkan spasi
                 file_name = article[1].strip()
                 file_slug = file_name.replace('.html', '')
                 
-                # Full Target URL
-                target_url = f"{BASE_URL}/{cat_slug}/{file_slug}/"
+                # Path Target Baru
+                target_path = f"/{cat_slug}/{file_slug}/"
 
-                # Full Source URL (Tanpa .html)
-                source_full_clean = f"{BASE_URL}/artikel/{file_slug}"
-                lines.append(f"{source_full_clean}  {target_url}  301")
+                # Path Lama 1: Tanpa .html
+                source_clean = f"/artikel/{file_slug}"
+                # Format: /lama /baru 301 (dipisahkan spasi/tab)
+                lines.append(f"{source_clean}  {target_path}  301")
 
-                # Full Source URL (Dengan .html)
-                source_full_html = f"{BASE_URL}/artikel/{file_name}"
-                lines.append(f"{source_full_html}  {target_url}  301")
+                # Path Lama 2: Dengan .html
+                source_html = f"/artikel/{file_name}"
+                lines.append(f"{source_html}  {target_path}  301")
 
         # 2. Tulis ke file _redirects
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             f.write("\n".join(lines))
 
-        print(f"✅ Berhasil, Mas! File {OUTPUT_FILE} sudah Full URL.")
-        print(f"📊 Total: {len(lines) - 3} baris siap tempur.")
+        print(f"✅ Selesai! File {OUTPUT_FILE} sudah siap dengan Relative Path.")
+        print(f"📊 Total baris: {len(lines) - 1}")
 
     except Exception as e:
         print(f"❌ Error: {e}")
