@@ -99,12 +99,3 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          
-      - name: 🧹 1. Cloudflare Cleanup
-        #if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
-        continue-on-error: true
-        env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: node ext/rapikan-cloudflare.js
