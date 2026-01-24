@@ -12,22 +12,24 @@ async function fetchData() {
 
     allData = [];
 
-    // Flatten data & Bersihkan URL
+    // Flatten data & Sesuaikan URL ke V6.9 (Hanya bagian ini yang diubah secara signifikan)
     for (const cat in data) {
+      // Buat slug kategori untuk folder (Gaya Hidup -> gaya-hidup)
+      const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+
       data[cat].forEach(item => {
-        // Logika penghapusan .html ada di sini
-        let cleanUrl = item[1];
-        if (cleanUrl.endsWith('.html')) {
-          cleanUrl = cleanUrl.replace(/\.html$/, '');
-        }
+        let fileName = item[1];
+        // Hapus .html jika ada
+        let fileSlug = fileName.endsWith('.html') ? fileName.replace(/\.html$/, '') : fileName;
 
         allData.push({
           category: cat,
           title: item[0],
-          url: 'artikel/' + cleanUrl, // URL sekarang bersih
+          // V6.9 Compatible: Mengarah ke folder kategori, bukan lagi folder /artikel/
+          url: '/' + catSlug + '/' + fileSlug + '/',
           img: item[2],
           date: new Date(item[3]),
-                     summary: item[4]
+                     summary: item[4] || ''
         });
       });
     }
@@ -62,8 +64,6 @@ function initSite() {
   searchInput.addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
 
-    // HAPUS: clearBtn.style.display = val.length > 0 ? 'block' : 'none';
-
     if (val.length > 0) {
       if (heroSection) heroSection.style.display = 'none';
       stopHeroSlider();
@@ -74,7 +74,7 @@ function initSite() {
 
     displayedData = allData.filter(i =>
     i.title.toLowerCase().includes(val) ||
-    i.summary.toLowerCase().includes(val)
+    (i.summary && i.summary.toLowerCase().includes(val))
     );
 
     renderFeed(true);
@@ -83,8 +83,6 @@ function initSite() {
 
   clearBtn.addEventListener('click', () => {
     searchInput.value = '';
-    // HAPUS: clearBtn.style.display = 'none';
-
     if (heroSection) heroSection.style.display = 'block';
     displayedData = [...allData];
 
@@ -105,7 +103,6 @@ function renderHero() {
 
   heroEl.classList.remove('skeleton');
 
-  // Render semua slide sebagai link utuh
   wrapper.innerHTML = heroData.map((h, i) => `
   <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
   <div class="hero-overlay"></div>
@@ -120,7 +117,6 @@ function renderHero() {
   </a>
   `).join('');
 
-  // Fitur Pause on Hover tetap kita pertahankan biar enak bacanya
   heroEl.addEventListener('mouseenter', stopHeroSlider);
   heroEl.addEventListener('mouseleave', startHeroSlider);
 
@@ -155,7 +151,6 @@ function stopHeroSlider() {
 function goToHero(index) {
   currentHeroIndex = index;
   updateHeroPosition();
-  // Jika user klik dot, timer akan di-reset (berhenti dulu lalu jalan lagi)
   stopHeroSlider();
   startHeroSlider();
 }
@@ -168,23 +163,19 @@ function renderFeed(reset = false) {
   const heroSection = document.getElementById('hero');
   const isHeroVisible = heroSection && heroSection.style.display !== 'none';
 
-  // Ambil semua judul yang sedang mejeng di slider Hero
   const titlesInHero = heroData.map(h => h.title);
 
-  // 1. Simpan semua hasil filter ke dalam variabel agar bisa dihitung totalnya
   const filteredItems = displayedData.filter(item => {
     if (isHeroVisible && titlesInHero.includes(item.title)) return false;
     return true;
   });
 
-  // 2. Ambil item yang mau ditampilkan sesuai limit
   const itemsToDisplay = filteredItems.slice(0, limit);
 
-  // 3. Render artikel ke HTML
   itemsToDisplay.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
-    <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='thumbnail.webp'">
+    <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='/thumbnail.webp'">
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -201,23 +192,18 @@ function renderFeed(reset = false) {
     `;
   });
 
-  // --- LOGIC DINAMIS TOMBOL LOAD MORE / KEMBALI KE ATAS ---
   const loadMoreBtn = document.getElementById('loadMore');
 
   if (loadMoreBtn) {
     if (limit >= filteredItems.length) {
-      // MODE: KEMBALI KE ATAS
       loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
-      loadMoreBtn.classList.add('is-top'); // Panggil style amber dari CSS
-
+      loadMoreBtn.classList.add('is-top');
       loadMoreBtn.onclick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       };
     } else {
-      // MODE: MUAT LAGI
       loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
-      loadMoreBtn.classList.remove('is-top'); // Balik ke style biru
-
+      loadMoreBtn.classList.remove('is-top');
       loadMoreBtn.onclick = () => {
         limit += 6;
         renderFeed();
@@ -227,10 +213,9 @@ function renderFeed(reset = false) {
   }
 }
 
-// ... (Fungsi renderSidebar, renderCategories, renderArchives, dsb tetap sama seperti sebelumnya)
-
 function renderSidebar() {
   const side = document.getElementById('sidebarRandom');
+  if(!side) return;
   side.innerHTML = '';
 
   const heroSection = document.getElementById('hero');
@@ -247,11 +232,11 @@ function renderSidebar() {
   const randoms = [...availableForSidebar].sort(() => 0.5 - Math.random()).slice(0, 5);
 
   randoms.forEach(item => {
-    const cleanSummary = item.summary.replace(/"/g, '&quot;');
+    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
     const cleanTitle = item.title.replace(/"/g, '&quot;');
     side.innerHTML += `
     <div class="mini-item" style="animation: fadeIn 0.5s ease">
-    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='thumbnail.webp'">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'">
     <div class="mini-text">
     <h4 data-tooltip="${cleanSummary}">
     <a href="${item.url}" title="${cleanTitle}" style="text-decoration:none; color:inherit;">
@@ -268,8 +253,7 @@ function renderSidebar() {
 function renderCategories() {
   const cats = [...new Set(allData.map(i => i.category))];
   const container = document.getElementById('categoryPills');
-
-  // Gabungkan semua dalam satu string dulu, baru masukkan ke innerHTML sekali saja
+  if(!container) return;
   const pillsHTML = cats.map(c =>
   `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`
   ).join('');
@@ -280,6 +264,7 @@ function renderCategories() {
 function renderArchives() {
   const years = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
   const ySelect = document.getElementById('yearFilter');
+  if(!ySelect) return;
   ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
   years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
   updateMonthDropdown();
@@ -288,6 +273,7 @@ function renderArchives() {
 function updateMonthDropdown() {
   const ySelect = document.getElementById('yearFilter');
   const mSelect = document.getElementById('monthFilter');
+  if(!ySelect || !mSelect) return;
   const selectedYear = ySelect.value;
   const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
   mSelect.innerHTML = '<option value="">Bulan</option>';
@@ -306,10 +292,10 @@ function runFilters() {
   const heroSection = document.getElementById('hero');
 
   if (y !== "") {
-    heroSection.style.display = 'none';
+    if(heroSection) heroSection.style.display = 'none';
     stopHeroSlider();
   } else {
-    heroSection.style.display = 'flex';
+    if(heroSection) heroSection.style.display = 'flex';
     startHeroSlider();
   }
 
@@ -322,11 +308,16 @@ function runFilters() {
   renderSidebar();
 }
 
-document.getElementById('yearFilter').addEventListener('change', () => {
-  updateMonthDropdown();
-  runFilters();
-});
-document.getElementById('monthFilter').addEventListener('change', runFilters);
+// Handler event filter
+const yFilter = document.getElementById('yearFilter');
+const mFilter = document.getElementById('monthFilter');
+if(yFilter) {
+  yFilter.addEventListener('change', () => {
+    updateMonthDropdown();
+    runFilters();
+  });
+}
+if(mFilter) mFilter.addEventListener('change', runFilters);
 
 function filterByCat(cat, el) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
@@ -334,12 +325,6 @@ function filterByCat(cat, el) {
   displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
   renderFeed(true);
 }
-
-document.getElementById('loadMore').onclick = () => {
-  limit += 6;
-  renderFeed();
-  renderSidebar();
-};
 
 function showToast(message) {
   let container = document.getElementById('toast-container');
@@ -362,23 +347,18 @@ function sendToWA() {
   const name = document.getElementById('contact-name').value;
   const message = document.getElementById('contact-message').value;
 
-  // Validasi: Cukup cek nama dan pesan saja
   if(!name || !message) {
     alert("Isi nama dan pesannya dulu dong, Bro... 😀");
     return;
   }
 
   const noWA = "6281578163858";
-  
-  // Email dihapus dari format teks WhatsApp
   const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Pesan:* ${message}`;
 
   showToast("Membuka WhatsApp... Pesan siap dikirim!");
 
   setTimeout(() => {
     window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
-    
-    // Reset input (Email sudah tidak ada di sini)
     document.getElementById('contact-name').value = "";
     document.getElementById('contact-message').value = "";
   }, 1200);
