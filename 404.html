@@ -1,37 +1,7 @@
 <!doctype html>
 <html lang="id">
   <head>
-	  <script>
-  // 🚀 REDIRECT INSTAN (Tanpa Menunggu DOM)
-  (function() {
-    const path = window.location.pathname;
-
-    // Cek apakah pengunjung datang dari folder /artikel/ lama
-    if (path.includes('/artikel/')) {
-      let segments = path.split('/').filter(Boolean);
-      let lastSegment = segments.pop();
-      let fileName = lastSegment.endsWith('.html') ? lastSegment : lastSegment + '.html';
-
-      // Jalankan fetch secepat mungkin
-      fetch('/artikel.json')
-        .then(res => res.json())
-        .then(data => {
-          for (const catName in data) {
-            const match = data[catName].find(item => item[1] === fileName);
-            if (match) {
-              const catSlug = catName.toLowerCase().replace(/\s+/g, '-');
-              const fileSlug = fileName.replace('.html', '');
-              
-              // Redirect secepat kilat!
-              window.location.replace(`/${catSlug}/${fileSlug}/`);
-            }
-          }
-        })
-        .catch(err => console.error("Redirect Error:", err));
-    }
-  })();
-</script>
-    <meta charset="UTF-8" />
+	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirect Page Premium Browser - OS - IP Address</title>
     <style>
