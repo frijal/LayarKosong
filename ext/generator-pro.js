@@ -7,12 +7,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ===================================================================
-// KONFIGURASI TERPUSAT - FIXED BASEURL & XSL
+// KONFIGURASI TERPUSAT
 // ===================================================================
 const CONFIG = {
   rootDir: path.join(__dirname, '..'),
   artikelDir: path.join(__dirname, '..', 'artikel'),
-  kategoriDir: path.join(__dirname, '..', 'artikel', '-'),
+  // Folder template tetap di artikel/-/, tapi outputnya nanti pindah
   templateKategori: path.join(__dirname, '..', 'artikel', '-', 'template-kategori.html'),
   masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
   jsonOut: path.join(__dirname, '..', 'artikel.json'),
@@ -23,11 +23,17 @@ const CONFIG = {
   xmlImagesOut: path.join(__dirname, '..', 'image-sitemap-1.xml'),
   xmlVideosOut: path.join(__dirname, '..', 'video-sitemap-1.xml'),
 
-  xslLink: 'sitemap-style.xsl', // <--- KITA KEMBALIKAN KE FILE ASLI MAS
+  xslLink: 'sitemap-style.xsl',
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
   rssLimit: 30
 };
+
+// Daftar Kategori Fisik
+const VALID_CATEGORIES = [
+  'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media',
+'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+];
 
 // ===================================================================
 // HELPER FUNCTIONS
@@ -124,10 +130,10 @@ const buildRss = (title, items, rssLink, description) => {
 };
 
 // ===================================================================
-// CORE PROCESSOR
+// CORE PROCESSOR (V6.9 - CLEAN URL LANDING PAGE)
 // ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai Generator Pro V5 (Fixed XSL & Full Restore)...');
+  console.log('🚀 Memulai Generator V6.9 (Landing Page di Folder Kategori)...');
 
   try {
     const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
@@ -135,15 +141,17 @@ const generate = async () => {
     let grouped = JSON.parse(masterContent);
     const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
 
-    // 1. Scan Artikel Baru
+    // 1. Scan Artikel Baru (Deteksi & Update JSON)
     const newResults = await Promise.all(
       filesOnDisk.filter(f => !existingFilesMap.has(f)).map(async (file) => {
         const content = await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
         const title = extractTitle(content);
         const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
+        const category = titleToCategory(title);
+
         return {
-          category: titleToCategory(title),
-                                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+          category: category,
+          data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
         };
       })
     );
@@ -153,20 +161,74 @@ const generate = async () => {
       grouped[r.category].push(r.data);
     });
 
-    // 2. Sorting & URL Formatting
+    // 2. SMART CLEANING
+    // Pastikan kita tidak menghapus 'index.html' di folder kategori nanti (karena itu landing page)
+    const validFilesSet = new Set();
+    for (const [catName, articles] of Object.entries(grouped)) {
+      const catSlug = slugify(catName);
+      articles.forEach(art => validFilesSet.add(`${catSlug}/${art[1]}`));
+    }
+
+    for (const catSlug of VALID_CATEGORIES) {
+      const folderPath = path.join(CONFIG.rootDir, catSlug);
+      await fs.mkdir(folderPath, { recursive: true });
+      const diskFiles = await fs.readdir(folderPath).catch(() => []);
+      for (const file of diskFiles) {
+        // Hapus file .html JIKA: bukan index.html DAN tidak terdaftar di JSON
+        if (file.endsWith('.html') && file !== 'index.html' && !validFilesSet.has(`${catSlug}/${file}`)) {
+          console.log(`🗑️  Menghapus file usang: ${catSlug}/${file}`);
+          await fs.unlink(path.join(folderPath, file));
+        }
+      }
+    }
+
+    // 3. DISTRIBUSI ARTIKEL & AUTO-REPAIR HTML
     let allItemsFlat = [];
     const diskSet = new Set(filesOnDisk);
+
     for (const cat in grouped) {
+      const catSlug = slugify(cat);
       grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
       grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
-      grouped[cat].forEach(item => {
-        const loc = `${CONFIG.baseUrl}/artikel/${item[1].replace('.html', '')}/`;
-        allItemsFlat.push({ title: item[0], file: item[1], img: item[2], lastmod: item[3], desc: item[4], category: cat, loc: loc });
-      });
+
+      for (const item of grouped[cat]) {
+        const fileName = item[1];
+        const sourcePath = path.join(CONFIG.artikelDir, fileName);
+        const destPath = path.join(CONFIG.rootDir, catSlug, fileName);
+
+        const prettyUrl = `${CONFIG.baseUrl}/${catSlug}/${fileName.replace('.html', '')}/`;
+        const canonicalUrl = prettyUrl;
+
+        let content = await fs.readFile(sourcePath, 'utf8');
+
+        // AUTO-FIX CANONICAL & LINKS
+        content = content.replace(
+          /<link\s+rel=["']canonical["']\s+href=["'][^"']+["']\s*\/?>/i,
+          `<link rel="canonical" href="${canonicalUrl}">`
+        );
+        content = content.replace(
+          /<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>/i,
+          `<meta property="og:url" content="${canonicalUrl}">`
+        );
+
+        // Ganti rujukan /artikel/ ke /kategori/
+        const oldUrlPattern = new RegExp(`${CONFIG.baseUrl}/artikel/${fileName.replace('.html','')}`, 'g');
+        content = content.replace(oldUrlPattern, canonicalUrl);
+
+        // Hapus link ke landing page lama (/artikel/-/kategori.html) ganti ke (/kategori/)
+        content = content.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1/');
+
+        await fs.writeFile(destPath, content);
+
+        allItemsFlat.push({
+          title: item[0], file: item[1], img: item[2], lastmod: item[3], desc: item[4], category: cat, loc: canonicalUrl
+        });
+      }
     }
+
     allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
 
-    // 3. Build XML Content
+    // 4. GENERATE SITEMAPS (XML)
     let xmlPosts = '';
     let xmlImages = '';
     let xmlVideos = '';
@@ -182,45 +244,57 @@ const generate = async () => {
       });
     }
 
-    // 4. Penulisan File dengan XSL yang BENAR
     const xslHeader = `<?xml version="1.0" encoding="UTF-8"?>\n\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
 
     const writePromises = [
       fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
-
-      // Index
       fs.writeFile(CONFIG.xmlIndexOut, `${xslHeader}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n</sitemapindex>`),
-
-      // Sub-Sitemaps
       fs.writeFile(CONFIG.xmlPostsOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlPosts}</urlset>`),
       fs.writeFile(CONFIG.xmlImagesOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlImages}</urlset>`),
       fs.writeFile(CONFIG.xmlVideosOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${xmlVideos}</urlset>`),
-
-      // RSS
       fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`, `Feed artikel terbaru`))
     ];
 
-    // RSS & HTML Kategori
-    const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch(() => null);
-    for (const [cat, articles] of Object.entries(grouped)) {
-      const slug = slugify(cat);
-      const catItems = allItemsFlat.filter(f => f.category === cat);
-      writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, `${CONFIG.baseUrl}/feed-${slug}.xml`, `Feed kategori ${cat}`)));
+    // 5. LANDING PAGE KATEGORI (INDEX.HTML DI FOLDER MASING-MASING)
+    const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch((err) => {
+      console.warn("⚠️ Template kategori tidak ditemukan:", err.message);
+      return null;
+    });
 
-      if (templateHTML) {
+    if (templateHTML) {
+      for (const [cat, articles] of Object.entries(grouped)) {
+        const slug = slugify(cat);
+        const catItems = allItemsFlat.filter(f => f.category === cat);
+
+        // A. Tulis RSS Kategori (Tetap di root untuk kemudahan akses)
+        const rssFilename = `feed-${slug}.xml`;
+        const rssUrl = `${CONFIG.baseUrl}/${rssFilename}`;
+        writePromises.push(fs.writeFile(path.join(CONFIG.rootDir, rssFilename), buildRss(`${cat} - Layar Kosong`, catItems, rssUrl, `Feed kategori ${cat}`)));
+
+        // B. Tulis HTML Kategori -> /nama-kategori/index.html
+        // Ini kuncinya! Kita taruh index.html di dalam folder kategorinya
         const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
-        const pageContent = templateHTML
+        const description = `Kumpulan lengkap artikel, tutorial, dan catatan tentang ${cat}.`;
+
+        // Canonical URL untuk landing page kategori: https://dalam.web.id/gaya-hidup/
+        const canonicalCat = `${CONFIG.baseUrl}/${slug}/`;
+
+        let pageContent = templateHTML
         .replace(/%%TITLE%%/g, sanitizeTitle(cat))
+        .replace(/%%DESCRIPTION%%/g, description)
         .replace(/%%CATEGORY_NAME%%/g, cat)
-        .replace(/%%RSS_URL%%/g, `${CONFIG.baseUrl}/feed-${slug}.xml`)
-        .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/artikel/-/${slug}`)
+        .replace(/%%RSS_URL%%/g, rssUrl)
+        .replace(/%%CANONICAL_URL%%/g, canonicalCat)
         .replace(/%%ICON%%/g, icon);
-        writePromises.push(fs.writeFile(path.join(CONFIG.kategoriDir, `${slug}.html`), pageContent));
+
+        // Tulis ke: rootDir/gaya-hidup/index.html
+        const landingPagePath = path.join(CONFIG.rootDir, slug, 'index.html');
+        writePromises.push(fs.writeFile(landingPagePath, pageContent));
       }
     }
 
     await Promise.all(writePromises);
-    console.log('✅ SELESAI! Link XSL fix, fitur kategori fix, domain fix. Mantap Mas!');
+    console.log('✅ SELESAI! Landing page kategori ada di /folder/index.html (Clean URL).');
   } catch (err) {
     console.error('❌ Error:', err);
   }
