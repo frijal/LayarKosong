@@ -460,22 +460,20 @@
       <div id="article-grid"></div>
     </div>
 
-    <script>
+   <script>
       document.addEventListener('DOMContentLoaded', () => {
         const TARGET_CATEGORY = '%%CATEGORY_NAME%%';
-        const DATA_URL = '../../artikel.json';
+        // V6.9: Karena index.html ada di /nama-kategori/, JSON naik satu tingkat saja
+        const DATA_URL = '../artikel.json'; 
         const articleGrid = document.getElementById('article-grid');
         const loadingIndicator = document.getElementById('loading');
-        // Target elemen <span> yang ada di header kustom
         const pageTitleText = document.getElementById('category-title-text');
 
         const fetchAndDisplayCategory = async () => {
-          // Pastikan pageTitleText ditemukan sebelum menggunakannya
           if (pageTitleText) {
-            const titleText = TARGET_CATEGORY.replace(/^[^\w\s]*/, '').trim();
+            // Hilangkan emoji di depan teks judul jika ada
+            const titleText = TARGET_CATEGORY.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
             pageTitleText.textContent = titleText;
-          } else {
-            console.error("Elemen 'category-title-text' tidak ditemukan.");
           }
 
           try {
@@ -493,10 +491,16 @@
             }
 
             let articlesHTML = '';
+            // Sortir terbaru
             articles.sort((a, b) => new Date(b[3]) - new Date(a[3]));
 
             articles.forEach((article) => {
-              const [title, url, image, pubDate, description] = article;
+              const [title, fileName, image, pubDate, description] = article;
+              
+              // V6.9 Clean URL: Artikel ada di folder yang sama dengan index kategori ini
+              // Kita ubah "judul-artikel.html" menjadi "judul-artikel/"
+              const cleanUrl = fileName.replace('.html', '') + '/';
+
               const formattedDate = new Intl.DateTimeFormat('id-ID', {
                 dateStyle: 'long',
               }).format(new Date(pubDate));
@@ -509,9 +513,9 @@
               }
 
               articlesHTML += `
-                <a href="../${url}" class="article-card">
+                <a href="${cleanUrl}" class="article-card">
                     <div class="card-thumbnail">
-                        <img src="${image}" alt="${title}" loading="lazy">
+                        <img src="${image}" alt="${title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
                     </div>
                     <div class="card-content">
                         <h2>${title}</h2>
