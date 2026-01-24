@@ -71,7 +71,13 @@ jobs:
           
           # Logic 'satpam' rsync yang sama persis
           rsync -a --delete \
-            --include='artikel/***' \
+            --include='gaya-hidup/***' \
+            --include='jejak-sejarah/***' \
+            --include='lainnya/***' \
+            --include='olah-media/***' \
+            --include='opini-sosial/***' \
+            --include='sistem-terbuka/***' \
+            --include='warta-tekno/***' \
             --include='ext/***' \
             --include='.well-known/***' \
             --include='img/***' \
