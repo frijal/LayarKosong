@@ -5,6 +5,7 @@ import fs from 'fs';
 const parser = new Parser();
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
+// RSS Files tetap sama sesuai struktur Mas
 const RSS_FILES = [
   'feed-gaya-hidup.xml', 'feed-jejak-sejarah.xml', 'feed-lainnya.xml',
 'feed-olah-media.xml', 'feed-opini-sosial.xml',
@@ -18,7 +19,7 @@ const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).pad
 
 async function run() {
   try {
-    console.log("🔍 Memulai sinkronisasi...");
+    console.log("🔍 Memulai sinkronisasi GitHub Discussions...");
 
     const repoRes = await octokit.graphql(`
     query($owner: String!, $name: String!) {
@@ -38,23 +39,35 @@ async function run() {
       if (!fs.existsSync(fileName)) continue;
 
       const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
+      // Mengambil nama kategori dari title Feed (misal: "Gaya Hidup - Layar Kosong")
       const rawCategory = feed.title.split(' - ')[0].trim();
       const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
 
-      if (!targetCategory) continue;
+      if (!targetCategory) {
+        console.log(`⚠️ Kategori Discussion "${rawCategory}" tidak ditemukan, skipping...`);
+        continue;
+      }
 
       for (const item of feed.items) {
-        // 1. CEK DUPLIKAT
-        const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${item.link}"`;
+        // --- 1. CEK DUPLIKAT (LOGIKA ANTI-DOUBLE V6.9) ---
+        // Kita ambil slug-nya saja untuk pencarian agar lebih akurat
+        const urlParts = item.link.split('/');
+        const slug = urlParts[urlParts.length - 1] || urlParts[urlParts.length - 2];
+
+        // Cari diskusi yang mengandung slug tersebut di body atau title
+        const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${slug}"`;
         const checkRes = await octokit.graphql(`
         query($searchQuery: String!) {
           search(query: $searchQuery, type: DISCUSSION, first: 1) { discussionCount }
         }
         `, { searchQuery: searchQuery });
 
-        if (checkRes.search.discussionCount > 0) continue;
+        if (checkRes.search.discussionCount > 0) {
+          console.log(`⏭️ Skip: ${item.title} (Sudah ada diskusi dengan slug ini)`);
+          continue;
+        }
 
-        // 2. LOGIKA LABEL
+        // --- 2. LOGIKA LABEL ---
         const itemCategory = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
         let existingLabel = ghLabels.find(l => l.name.toLowerCase() === itemCategory.toLowerCase());
 
@@ -68,26 +81,20 @@ async function run() {
           } catch (e) { }
         }
 
-        // --- 3. LOGIKA GAMBAR (AMBIL PATH UTUH) ---
+        // --- 3. LOGIKA GAMBAR (GitHub Raw Support) ---
         let displayImage = '';
         if (item.enclosure && item.enclosure.url) {
           let imgUrl = item.enclosure.url;
-
           if (imgUrl.startsWith('https://dalam.web.id/')) {
-            // 1. Hilangkan domain
             const relativePath = imgUrl.replace('https://dalam.web.id/', '');
-
-            // 2. Ubah menjadi Raw GitHub URL agar bisa dirender oleh GitHub
-            // Format: https://raw.githubusercontent.com/USER/REPO/BRANCH/PATH
             const rawGithubUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${relativePath}`;
-
             displayImage = `\n\n![Thumbnail](${rawGithubUrl})`;
           } else {
-            // Jika gambar dari luar (misal: OpenAI), tetap gunakan URL aslinya
             displayImage = `\n\n![Thumbnail](${imgUrl})`;
           }
         }
 
+        // --- 4. POSTING DISKUSI ---
         console.log(`🚀 Posting: ${item.title}`);
         const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})`;
 
@@ -104,7 +111,7 @@ async function run() {
           body: `### [${item.title}](${item.link})${displayImage}\n\n${item.contentSnippet || item.description || ''}${footer}`
         });
 
-        // 4. TAMBAHKAN LABEL
+        // --- 5. TAMBAHKAN LABEL ---
         if (existingLabel && createRes.createDiscussion.discussion.id) {
           try {
             await octokit.graphql(`
@@ -119,7 +126,7 @@ async function run() {
         }
       }
     }
-    console.log("\n✅ Selesai!");
+    console.log("\n✅ Semua Feed berhasil disinkronkan ke GitHub Discussions!");
   } catch (err) {
     console.error("❌ Kesalahan:", err.message);
   }
