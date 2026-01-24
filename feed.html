@@ -32,7 +32,6 @@
 <link rel="stylesheet" href="/ext/fontawesome.css" />
 <link rel="alternate" type="application/rss+xml" title="RSS Layar Kosong" href="https://dalam.web.id/rss.xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://dalam.web.id/feed.html","url":"https://dalam.web.id/feed.html","name":"RSS Feed Layar Kosong","description":"RSS Feed Layar Kosong berisi kumpulan artikel terbaru dari berbagai topik. Ikuti pembaruan konten secara real-time melalui RSS reader favorit Anda.","isPartOf":{"@type":"WebSite","@id":"https://dalam.web.id/#website"},"about":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"inLanguage":"id-ID","dateModified":"2025-10-30"} </script>
-    
     <style>
       :root {
         --bg-color: #121212;
@@ -46,7 +45,6 @@
         --error-text: #ffc4c4;
         --error-border: #a83c3c;
       }
-
       @media (prefers-color-scheme: light) {
         :root {
           --bg-color: #f4f4f9;
@@ -61,13 +59,11 @@
           --error-border: #ef9a9a;
         }
       }
-
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-
       body {
         font-family: 'Poppins', sans-serif;
         background-color: var(--bg-color);
@@ -77,7 +73,6 @@
           background-color 0.3s,
           color 0.3s;
       }
-
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -89,13 +84,11 @@
         margin-bottom: 2.5rem;
         font-size: 2.5rem;
       }
-
       #feed-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 1.5rem;
       }
-
       .feed-item {
         background-color: var(--surface-color);
         border: 1px solid var(--border-color);
@@ -109,7 +102,6 @@
           box-shadow 0.3s ease,
           background-color 0.3s;
       }
-
       .feed-item:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px var(--shadow-color);
@@ -232,17 +224,14 @@
       <div id="loading"></div>
       <div id="feed-container"></div>
     </div>
-
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const RSS_URL = 'rss.xml'
         const BASE_URL = 'https://dalam.web.id/artikel/'
         const DEFAULT_THUMBNAIL = 'https://dalam.web.id/thumbnail.webp'
-
         const feedContainer = document.getElementById('feed-container')
         const loadingIndicator = document.getElementById('loading')
         const parser = new DOMParser()
-
         function extractThumbnail(item) {
           const enclosure = item.querySelector('enclosure')
           if (enclosure && enclosure.getAttribute('type').startsWith('image')) {
@@ -264,24 +253,19 @@
           }
           return DEFAULT_THUMBNAIL
         }
-
         const fetchAndDisplayFeed = async () => {
           try {
             const response = await fetch(RSS_URL)
             if (!response.ok) throw new Error(`Status ${response.status}`)
-
             const xmlText = await response.text()
             const doc = parser.parseFromString(xmlText, 'application/xml')
             const items = doc.querySelectorAll('item')
-
             if (items.length === 0) {
               feedContainer.innerHTML =
                 '<p class="error-message">Tidak ada item ditemukan di dalam feed.</p>'
               return
             }
-
             let feedHTML = ''
-
             items.forEach((item) => {
               const title =
                 item.querySelector('title')?.textContent || 'Tanpa Judul'
@@ -294,17 +278,14 @@
               const pubDateStr = item.querySelector('pubDate')?.textContent
               const category = item.querySelector('category')?.textContent || ''
               const thumbnailUrl = extractThumbnail(item)
-
               let formattedDate = ''
               if (pubDateStr) {
                 formattedDate = new Intl.DateTimeFormat('id-ID', {
                   dateStyle: 'long',
                 }).format(new Date(pubDateStr))
               }
-
               const encodedLink = encodeURIComponent(link)
               const encodedTitle = encodeURIComponent(title)
-
               feedHTML += `
                             <div class="feed-item">
                                 <div class="feed-item-thumbnail">
@@ -339,7 +320,6 @@
                             </div>
                         `
             })
-
             feedContainer.innerHTML = feedHTML
           } catch (error) {
             console.error('Terjadi kesalahan:', error)
@@ -351,7 +331,6 @@
         fetchAndDisplayFeed()
       })
     </script> 
-  
 <script defer src="/ext/marquee-url.js"></script><script defer src="/ext/markdown.js"></script>
     </body>
 </html>

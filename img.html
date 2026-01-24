@@ -31,7 +31,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://dalam.web.id/img.html","url":"https://dalam.web.id/img.html","name":"Galeri Gambar Layar Kosong","description":"Galeri gambar Layar Kosong berisi koleksi visual WebP dari artikel-artikel blog Frijal. Telusuri gambar secara cepat dalam format galeri yang rapi dan ringan.","isPartOf":{"@type":"WebSite","@id":"https://dalam.web.id/#website"},"about":{"@type":"Person","@id":"https://dalam.web.id/#person"},"inLanguage":"id-ID","dateModified":"2025-12-30"} </script>
-
     <style>
         :root {
             --bg-color: #1a1a1a;
@@ -40,29 +39,23 @@
             --primary-color: #00aaff;
             --border-color: #444;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
-
         .container { max-width: 100%; margin: 0 auto; padding: 20px; }
-
         header {
             text-align: center;
             padding: 20px 0;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 30px;
         }
-
         h1 { font-size: 2.2rem; font-weight: 600; }
         h1 a { color: white; text-decoration: none; transition: color 0.3s ease; }
         h1 a:hover { color: var(--primary-color); }
-
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -74,12 +67,9 @@
             background-color: var(--card-bg);
             border-radius: 8px;
         }
-        
         #status { font-style: italic; color: #aaa; }
-
         .sort-container { display: flex; align-items: center; }
         .sort-container label { margin-right: 10px; font-size: 0.9rem; }
-
         select {
             background-color: #333;
             color: var(--text-color);
@@ -88,7 +78,6 @@
             border-radius: 6px;
             font-family: inherit;
         }
-
         .action-buttons {
             display: flex;
             align-items: center;
@@ -112,7 +101,6 @@
             font-size: 1.2rem;
             align-self: center;
         }
-
         #gallery-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -121,7 +109,6 @@
             border-radius: 8px;
             min-height: 200px;
         }
-
         .thumb-item {
             position: relative;
             overflow: hidden;
@@ -147,7 +134,6 @@
             text-overflow: ellipsis; transform: translateY(100%);
             transition: transform 0.3s ease;
         }
-
         /* Lightbox CSS */
         .lightbox {
             display: none;
@@ -191,12 +177,10 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>Galeri Gambar</h1>
         </header>
-
         <div class="controls">
             <div id="status">Memuat gambar...</div>
             <div class="sort-container">
@@ -210,7 +194,6 @@
                     <option value="type_desc">Tipe (Z-A)</option>
                 </select>
             </div>
-            
             <div class="action-buttons">
                 <a href="https://dalam.web.id/" class="action-btn" title="Beranda"><i class="fa-solid fa-house"></i></a>
                 <a href="https://dalam.web.id/feed/" class="action-btn" title="RSS Feed"><i class="fa-solid fa-rss"></i></a>
@@ -221,10 +204,8 @@
                 <a href="#" class="action-btn social-whatsapp" title="Bagikan ke WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
-
         <div id="gallery-container"></div>
     </div>
-    
     <div id="lightbox" class="lightbox">
         <span id="lightbox-close" class="lightbox-close">&times;</span>
         <span id="lightbox-prev" class="lightbox-nav lightbox-prev">&#10094;</span>
@@ -232,38 +213,30 @@
         <img id="lightbox-img" class="lightbox-content">
         <a id="lightbox-caption" class="lightbox-caption" href="#"></a>
     </div>
-
     <script>
         const JSON_URL = 'https://dalam.web.id/artikel.json';
         const ARTICLE_BASE_URL = 'https://dalam.web.id/artikel/';
-
         const statusDiv = document.getElementById('status');
         const galleryContainer = document.getElementById('gallery-container');
         const sortSelect = document.getElementById('sort-select');
-
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxPrev = document.getElementById('lightbox-prev');
         const lightboxNext = document.getElementById('lightbox-next');
-
         let allImageData = []; 
         let currentIndex = 0;
-
         async function fetchAndDisplayImages() {
             statusDiv.textContent = 'Membaca artikel.json... ⏳';
             try {
                 const response = await fetch(`${JSON_URL}?t=${new Date().getTime()}`);
                 if (!response.ok) throw new Error(`Gagal memuat artikel.json: ${response.status}`);
                 const data = await response.json();
-                
                 if (typeof data !== 'object' || Array.isArray(data) || data === null) {
                     throw new Error('Format artikel.json salah. Seharusnya berisi objek dengan kategori.');
                 }
-
                 const allArticles = Object.values(data).flat();
-                
                 allImageData = allArticles.map(item => {
                     if (Array.isArray(item) && item.length > 3 && typeof item[2] === 'string' && item[2].startsWith('http')) {
                         const url = item[2];
@@ -277,23 +250,18 @@
                     }
                     return null;
                 }).filter(Boolean);
-                
                 if (allImageData.length === 0) {
                     statusDiv.textContent = 'Tidak ada URL gambar yang valid ditemukan.';
                     return;
                 }
-
                 statusDiv.textContent = `Ditemukan ${allImageData.length} gambar.`;
                 sortAndRender();
-                
             } catch (error) {
                 statusDiv.textContent = `Error: ${error.message}`;
             }
         }
-
         function sortAndRender() {
             const sortBy = sortSelect.value;
-            
             allImageData.sort((a, b) => {
                 switch (sortBy) {
                     case 'name_asc': return a.name.localeCompare(b.name);
@@ -305,10 +273,8 @@
                     default: return 0;
                 }
             });
-
             displayThumbnails();
         }
-
         function displayThumbnails() {
             galleryContainer.innerHTML = '';
             allImageData.forEach((file, index) => {
@@ -317,15 +283,12 @@
                 item.title = file.name;
                 item.dataset.index = index;
                 item.addEventListener('click', () => openLightbox(index));
-                
                 item.innerHTML = `
                     <img src="${file.url}" alt="${file.name}" loading="lazy">
                     <div class="caption">${file.name}</div>`;
-                
                 galleryContainer.appendChild(item);
             });
         }
-
         function updateLightbox() {
             const currentImage = allImageData[currentIndex];
             lightboxImg.src = currentImage.url;
@@ -333,41 +296,32 @@
             // Set href untuk caption
             lightboxCaption.href = `${ARTICLE_BASE_URL}${currentImage.htmlFile}`;
         }
-
         function openLightbox(index) {
             currentIndex = index;
             updateLightbox();
             lightbox.classList.add('active');
         }
-
         function closeLightbox() {
             lightbox.classList.remove('active');
         }
-
         function showNext() {
             currentIndex = (currentIndex + 1) % allImageData.length;
             updateLightbox();
         }
-
         function showPrev() {
             currentIndex = (currentIndex - 1 + allImageData.length) % allImageData.length;
             updateLightbox();
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             fetchAndDisplayImages();
-
             const pageUrl = encodeURIComponent(window.location.href);
             const pageTitle = encodeURIComponent(document.title);
-
             const twitterShare = document.querySelector('.social-twitter');
             const facebookShare = document.querySelector('.social-facebook');
             const whatsappShare = document.querySelector('.social-whatsapp');
-            
             if(twitterShare) twitterShare.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
             if(facebookShare) facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
             if(whatsappShare) whatsappShare.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
             const shareLinks = document.querySelectorAll('.social-twitter, .social-facebook, .social-whatsapp');
             shareLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -376,12 +330,10 @@
                 });
             });
         });
-
         sortSelect.addEventListener('change', sortAndRender);
         lightboxClose.addEventListener('click', closeLightbox);
         lightboxNext.addEventListener('click', showNext);
         lightboxPrev.addEventListener('click', showPrev);
-        
         document.addEventListener('keydown', e => {
             if (lightbox.classList.contains('active')) {
                 if (e.key === 'ArrowRight') showNext();

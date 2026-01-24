@@ -40,8 +40,6 @@
 <meta name="twitter:description" content="Kumpulan artikel terbaru tentang Linux, Windows, Islam, dan tips karir." />
 <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp" />
 <!-- Ads -->
-
-
 <!-- Structured Data -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","alternateName":"Blog Frijal","publisher":{"@id":"https://dalam.web.id/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://dalam.web.id/search?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id/","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":512,"height":512},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://t.me/frijal"}},{"@type":"WebPage","@id":"https://dalam.web.id/#homepage","url":"https://dalam.web.id/","name":"Layar Kosong – Teknologi, Linux, Religi, & Karir","isPartOf":{"@id":"https://dalam.web.id/#website"},"about":{"@id":"https://dalam.web.id/#organization"},"description":"Jelajahi panduan sistem operasi Windows dan Linux, inspirasi kehidupan, hingga artikel religi dan tips karir di Layar Kosong."},{"@type":"Person","@id":"https://dalam.web.id/#person","name":"Fakhrul Rijal","url":"https://dalam.web.id/","sameAs":["https://twitter.com/responaja","https://github.com/frijal","https://linkedin.com/in/frijal","https://www.youtube.com/@frijal"],"jobTitle":"Blogger & Tech Enthusiast","worksFor":{"@id":"https://dalam.web.id/#organization"}}]}</script>
 <!-- JS -->
@@ -60,7 +58,6 @@
             --glass: rgba(255, 255, 255, 0.8);
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #0f172a;
@@ -71,7 +68,6 @@
                 --glass: rgba(30, 41, 59, 0.8);
             }
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -80,9 +76,7 @@
             transition: 0.3s ease;
             line-height: 1.6;
         }
-
         .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
-
         /* HEADER & GLASS EFFECT */
         header {
             position: sticky; top: 0; z-index: 1000;
@@ -95,14 +89,12 @@
         .logo { text-decoration: none; font-family: 'Montserrat'; font-weight: 800; font-size: 1.5rem; color: var(--primary); }
         .logo span { color: var(--secondary); }
         .logo:hover { opacity: 0.9; text-decoration: none; }
-
         .search-bar {
             background: var(--bg-body);
             border: 1px solid var(--border);
             padding: 8px 15px; border-radius: 20px;
             color: var(--text-main); outline: none; width: 250px;
         }
-
         /* FEATURED HERO */
         .hero {
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -118,7 +110,6 @@
         }
         .hero-content { position: relative; padding: 40px; color: white; max-width: 700px; }
         .hero-cat { background: var(--secondary); color: black; padding: 4px 12px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
-
         /* FILTER & ARCHIVE BAR */
         .toolbar {
             display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;
@@ -132,15 +123,12 @@
         }
         .pill.active { background: var(--primary); color: white; border-color: var(--primary); }
         .pill:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-
         .archive-box select {
             padding: 8px; border-radius: 8px; background: var(--bg-card);
             color: var(--text-main); border: 1px solid var(--border);
         }
-
         /* MAIN LAYOUT */
         .main-grid { display: grid; grid-template-columns: 1fr 350px; gap: 30px; }
-
         /* ARTICLE CARDS */
         .news-feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
         .card {
@@ -153,7 +141,6 @@
         .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-family: 'Montserrat'; font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
         .card-excerpt { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; }
-
         /* SIDEBAR STICKY */
         aside { position: sticky; top: 90px; height: fit-content; }
         .sidebar-box {
@@ -164,12 +151,10 @@
         .mini-item { display: flex; gap: 12px; margin-bottom: 15px; align-items: center; }
         .mini-thumb { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
         .mini-text h4 { font-size: 0.85rem; line-height: 1.3; }
-
         /* SKELETON ANIMATION */
         .skeleton { background: #e2e8f0; animation: pulse 1.5s infinite ease-in-out; }
         @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         /* CONTACT FORM */
         .contact-card {
             background: var(--primary); color: white; padding: 30px; border-radius: 15px; text-align: center;
@@ -177,7 +162,6 @@
         .contact-card input, .contact-card textarea {
             width: 100%; padding: 10px; margin: 5px 0; border-radius: 8px; border: none;
         }
-
         /* --- TOAST NOTIFICATION STYLES --- */
 #toast-container {
     position: fixed;
@@ -185,7 +169,6 @@
     right: 20px;
     z-index: 9999;
 }
-
 .toast {
     background: #2ecc71; /* Warna hijau sukses */
     color: white;
@@ -201,16 +184,13 @@
     animation: slideIn 0.5s ease forwards;
     transition: opacity 0.5s ease;
 }
-
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
-
 .toast-hide {
     opacity: 0;
 }
-
 /* --- FOOTER 2 KOLOM INTEGRATED --- */
 .page-footer {
     background: var(--bg-card);
@@ -218,7 +198,6 @@
     padding: 60px 0 40px;
     margin-top: 50px;
 }
-
 .footer-content {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -228,13 +207,11 @@
     padding: 0 20px;
     align-items: start;
 }
-
 .footer-section {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
-
 /* Tagline Kiri */
 .footer-section p {
     font-size: 1.15rem;
@@ -243,7 +220,6 @@
     line-height: 1.4;
     margin: 0;
 }
-
 /* Sosmed di Kiri */
 .footer-social {
     display: flex;
@@ -253,20 +229,17 @@
     align-items: center;
     font-size: 1.8rem;
 }
-
 .footer-social a {
     color: var(--text-muted);
     transition: 0.3s ease;
     display: inline-flex; /* Memastikan ikon di dalam link terpusat */
     text-decoration: none;
 }
-
 .footer-social a:hover {
     color: var(--primary);
     transform: translateY(-5px);
     text-decoration: none;
 }
-
 /* Link di Kanan */
 .footer-links {
     display: flex;
@@ -274,30 +247,25 @@
     flex-wrap: nowrap;   /* Jangan biarkan ikon turun ke baris baru di desktop */
     gap: 12px;
 }
-
 .footer-links a {
     color: var(--text-muted);
     font-size: 0.95rem;
     text-decoration: none;
     transition: 0.2s;
 }
-
 .footer-links a:hover {
     color: var(--primary);
     padding-left: 5px;
 }
-
 /* Hak Cipta di Kanan Bawah */
 .footer-copyright {
     margin-top: 10px;
 }
-
 .footer-copyright p {
     font-size: 0.8rem !important; /* Lebih kecil agar tidak dominan */
     font-weight: 400 !important;
     color: var(--text-muted) !important;
 }
-
 /* --- MOBILE RESPONSIVE --- */
 @media (min-width: 1101px) {
     .footer-social {
@@ -305,37 +273,31 @@
         text-decoration: none;
     }
 }
-
 @media (max-width: 1100px) {
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 40px;
     }
-
     .footer-section {
         align-items: center;
     }
-
     .footer-links {
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
         gap: 15px;
     }
-
     .footer-copyright {
         border-top: none;
         padding-top: 0;
     }
 }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .main-grid { grid-template-columns: 1fr; }
             .hero { height: 350px; }
         }
-
 /* CARD CLICKABLE */
 .card-link {
     display: flex;
@@ -345,13 +307,11 @@
     color: inherit;
     position: relative;
 }
-
 .card-link::after {
     content: "";
     position: absolute;
     inset: 0;
 }
-
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -361,7 +321,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     will-change: transform;
 }
-
 .card-category {
     color: var(--primary);
     font-weight: 700;
@@ -369,7 +328,6 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
 /* Footer sejajar */
 .card-footer {
     margin-top: auto;
@@ -381,44 +339,36 @@
     background: var(--glass);
     backdrop-filter: blur(10px);
 }
-
 /* Tanggal */
 .card-date {
     color: var(--text-muted);
 }
-
 /* Read more */
 .card-readmore {
     color: var(--primary);
     font-weight: 600;
 }
-
 .card-readmore:hover {
     color: var(--secondary); /* Aksen amber pas hover, biar playful */
 }
-
 /* Hover efek */
 .card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
-
 .card:hover .card-img {
     transform: scale(1.04);
 }
-
 .card-link:hover .card-title {
     text-decoration: none;
     color: var(--primary); /* Judul sedikit highlight biru */
 }
-
 .card-img {
     width: 100%;
     height: 180px;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
-
 .card-title {
     color: var(--text-main);
     padding: 1rem 1rem 0.5rem;
@@ -426,25 +376,21 @@
     font-size: 1.1rem;
     transition: color 0.3s ease;
 }
-
 .card-summary {
     color: var(--text-muted);
     padding: 0 1rem;
     font-size: 0.9rem;
 }
-
 .card-body small {
     display: inline-block;
     margin-bottom: 6px;
     letter-spacing: 0.3px;
 }
-
 /* --- CUSTOM TOOLTIP --- */
 .mini-text h4 {
     position: relative;
     cursor: help;
 }
-
 /* Kotak Tooltip */
 .mini-text h4::after {
     content: attr(data-tooltip); /* Mengambil teks dari atribut data-tooltip */
@@ -469,7 +415,6 @@
     line-height: 1.4;
     pointer-events: none;
 }
-
 /* Panah Tooltip */
 .mini-text h4::before {
     content: '';
@@ -484,7 +429,6 @@
     transition: 0.3s;
     z-index: 100;
 }
-
 /* Efek Hover */
 .mini-text h4:hover::after,
 .mini-text h4:hover::before {
@@ -492,19 +436,16 @@
     opacity: 1;
     transform: translateX(-50%) scale(1);
 }
-
 /* Styling Header Baru */
 .header-tools {
     display: flex;
     align-items: center;
     gap: 15px;
 }
-
 .archive-box-header {
     display: flex;
     gap: 8px;
 }
-
 .archive-box-header select {
     padding: 8px;
     border-radius: 8px;
@@ -514,13 +455,11 @@
     font-size: 0.85rem;
     outline: none;
 }
-
 .search-wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
-
 .clear-btn {
     position: absolute;
     right: 12px;
@@ -532,30 +471,24 @@
     line-height: 1;
     transition: 0.2s;
 }
-
 .clear-btn:hover {
   transform: scale(1.1);
 }
-
 @media (max-width: 768px) {
     .nav-box { flex-direction: column; gap: 15px; }
     .header-tools { width: 100%; justify-content: space-between; }
     .search-wrapper { flex-grow: 1; }
 }
-
     </style>
 <body>
-
 <header>
     <div class="container nav-box">
         <a href="https://dalam.web.id/" class="logo" title="Beranda" rel="home">Layar <span>Kosong</span></a>
-
         <div class="header-tools">
             <div class="archive-box-header">
                 <select id="yearFilter"><option value="">Tahun</option></select>
                 <select id="monthFilter" disabled><option value="">Bulan</option></select>
             </div>
-
 <div class="search-wrapper">
     <input type="text" id="searchInput" class="search-bar" placeholder="cari artikel berita seru...">
     <button id="clearSearch" class="clear-btn">❌</button>
@@ -563,16 +496,13 @@
         </div>
     </div>
 </header>
-
 <div class="container">
     <div id="hero" class="hero skeleton"></div>
-
     <div class="toolbar">
         <div class="pills" id="categoryPills">
             <div class="pill active" onclick="filterByCat('All')">Kategori</div>
         </div>
     </div>
-
     <div class="main-grid">
         <main>
             <div id="newsFeed" class="news-feed">
@@ -581,22 +511,18 @@
                 <button id="loadMore" class="pill" style="padding: 12px 40px; background: var(--primary); color: white;">Muat Lebih Banyak</button>
             </div>
         </main>
-
         <aside>
             <div class="sidebar-box">
                 <h3 class="sidebar-title">Rekomendasi Acak</h3>
                 <div id="sidebarRandom"></div>
                 <button onclick="renderSidebar()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-size:0.8rem; width:100%; text-align:right;">↻ Acak Lagi</button>
             </div>
-
            <div class="contact-card">
     <h3>Hubungi Kami</h3>
     <p style="font-size: 0.8rem; margin-bottom: 10px;">Kirim saran atau kerjasama</p>
-
     <input type="text" id="contact-name" placeholder="Nama" required>
     <input type="email" id="contact-email" placeholder="Email" required>
     <textarea id="contact-message" placeholder="Pesan" required></textarea>
-
     <button type="button" onclick="sendToWA()" class="pill" style="width:100%; background: var(--secondary); color:black; font-weight:bold; margin-top:10px; border:none; cursor:pointer;">
         Kirim ke WhatsApp
     </button>
@@ -604,7 +530,6 @@
         </aside>
     </div>
 </div>
-
 <footer class="page-footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -618,7 +543,6 @@
                 <a href="https://youtube.com/@frijal" title="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </div>
-
         <div class="footer-section">
             <div class="footer-links">
                 <a href="/feed.html">RSS Feed</a>
@@ -636,15 +560,12 @@
     let allData = [];
     let displayedData = [];
     let limit = 6;
-
 async function fetchData() {
         try {
             const res = await fetch('artikel.json');
             const data = await res.json();
-
             // Kosongkan array sebelum mengisi (menghindari duplikasi saat refresh)
             allData = [];
-
             // Flatten data dari kategori JSON
             for (const cat in data) {
                 data[cat].forEach(item => {
@@ -659,57 +580,46 @@ async function fetchData() {
                     });
                 });
             }
-
             // Sort terbaru (berdasarkan tanggal)
             allData.sort((a, b) => b.date - a.date);
             displayedData = [...allData];
-
             initSite();
         } catch (e) {
             console.error("Gagal ambil data", e);
             document.getElementById('newsFeed').innerHTML = "<p>Gagal memuat konten. Pastikan file JSON tersedia.</p>";
         }
     }
-
     function initSite() {
         renderHero();
         renderCategories();
         renderArchives();
         renderSidebar();
         renderFeed();
-
 // Search Logic
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const val = e.target.value.toLowerCase();
     const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearSearch');
 const heroSection = document.getElementById('hero');
-
 searchInput.addEventListener('input', (e) => {
     const val = e.target.value;
-
     // Tampilkan/Sembunyikan tombol X
     clearBtn.style.display = val.length > 0 ? 'block' : 'none';
-
     // Sembunyikan Hero jika sedang mencari
     heroSection.style.display = val.length > 0 ? 'none' : 'flex';
-
     // Jalankan filter
     runSearch(val.toLowerCase());
 });
-
 clearBtn.addEventListener('click', () => {
     searchInput.value = '';
     clearBtn.style.display = 'none';
     heroSection.style.display = 'flex';
-
     // Reset data ke awal
     displayedData = [...allData];
     renderFeed(true);
     renderSidebar();
     searchInput.focus();
 });
-
 function runSearch(keyword) {
     displayedData = allData.filter(i =>
         i.title.toLowerCase().includes(keyword) ||
@@ -718,8 +628,6 @@ function runSearch(keyword) {
     renderFeed(true);
     renderSidebar();
 }
-
-
     // Logika Otomatis Sembunyikan Hero
     if (val.length > 0) {
         // Jika ada teks di kolom pencarian, sembunyikan hero
@@ -728,22 +636,18 @@ function runSearch(keyword) {
         // Jika kolom pencarian kosong, tampilkan kembali hero
         heroSection.style.display = 'flex'; // atau 'block' sesuai CSS awal
     }
-
     // Filter data seperti biasa
     displayedData = allData.filter(i =>
         i.title.toLowerCase().includes(val) ||
         i.summary.toLowerCase().includes(val)
     );
-
     renderFeed(true);
     renderSidebar(); // Pastikan sidebar juga terupdate tanpa duplikat
 });
-
         // Archive Change
         document.getElementById('yearFilter').onchange = runFilters;
         document.getElementById('monthFilter').onchange = runFilters;
     }
-
     function renderHero() {
         const h = allData[0];
         const el = document.getElementById('hero');
@@ -759,12 +663,10 @@ function runSearch(keyword) {
             </div>
         `;
     }
-
     function renderFeed(reset = false) {
         if(reset) limit = 6;
         const container = document.getElementById('newsFeed');
         container.innerHTML = '';
-
         const items = displayedData.slice(0, limit);
         items.forEach(item => {
             container.innerHTML += `
@@ -775,15 +677,12 @@ function runSearch(keyword) {
         <small style="color:var(--primary); font-weight:bold">
             ${item.category}
         </small>
-
         <h3 class="card-title">
             ${item.title}
         </h3>
-
         <p class="card-excerpt">
             ${item.summary.substring(0, 200)}...
         </p>
-
         <div class="card-footer">
             <time class="card-date" datetime="${item.date.toISOString()}">
                 ${item.date.toLocaleDateString('id-ID', {
@@ -799,22 +698,17 @@ function runSearch(keyword) {
             `;
         });
     }
-
 function renderSidebar() {
     const side = document.getElementById('sidebarRandom');
     side.innerHTML = '';
-
     const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
     const availableForSidebar = allData.filter(item => !displayedTitles.includes(item.title));
-
     const randoms = [...availableForSidebar]
         .sort(() => 0.5 - Math.random())
         .slice(0, 5);
-
     randoms.forEach(item => {
         // Membersihkan summary dari tanda petik agar tidak merusak HTML
         const cleanSummary = item.summary.replace(/"/g, '&quot;');
-
         side.innerHTML += `
             <div class="mini-item" style="animation: fadeIn 0.5s ease">
                 <img src="${item.img}" class="mini-thumb" onerror="this.src='thumbnail.webp'">
@@ -830,7 +724,6 @@ function renderSidebar() {
         `;
     });
 }
-
     function renderCategories() {
         const cats = [...new Set(allData.map(i => i.category))];
         const container = document.getElementById('categoryPills');
@@ -838,27 +731,21 @@ function renderSidebar() {
             container.innerHTML += `<div class="pill" onclick="filterByCat('${c}', this)">${c}</div>`;
         });
     }
-
 function renderArchives() {
     const years = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
     const ySelect = document.getElementById('yearFilter');
-
     // Reset dan isi Tahun
     ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
     years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
-
     // Pastikan dropdown bulan di-reset di awal
     updateMonthDropdown();
 }
-
 function updateMonthDropdown() {
     const ySelect = document.getElementById('yearFilter');
     const mSelect = document.getElementById('monthFilter');
     const selectedYear = ySelect.value;
     const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-
     mSelect.innerHTML = '<option value="">Bulan</option>';
-
     if (selectedYear) {
         // Cari bulan apa saja yang ada di tahun terpilih
         const availableMonths = [...new Set(
@@ -866,7 +753,6 @@ function updateMonthDropdown() {
                 .filter(i => i.date.getFullYear() == selectedYear)
                 .map(i => i.date.getMonth())
         )].sort((a, b) => a - b);
-
         availableMonths.forEach(m => {
             mSelect.innerHTML += `<option value="${m}">${monthsName[m]}</option>`;
         });
@@ -875,15 +761,12 @@ function updateMonthDropdown() {
         mSelect.disabled = true; // Matikan bulan jika tahun belum dipilih
     }
 }
-
 function runFilters() {
     const ySelect = document.getElementById('yearFilter');
     const mSelect = document.getElementById('monthFilter');
     const heroSection = document.getElementById('hero');
-
     const y = ySelect.value;
     const m = mSelect.value;
-
     // --- LOGIKA SEMBUNYIKAN HERO ---
     if (y !== "") {
         // Jika tahun dipilih, sembunyikan hero agar hasil filter naik ke atas
@@ -892,42 +775,33 @@ function runFilters() {
         // Jika filter direset ke "Tahun", tampilkan hero lagi
         heroSection.style.display = 'flex';
     }
-
     // Jalankan filter data
     displayedData = allData.filter(i => {
         const matchY = y ? i.date.getFullYear() == y : true;
         const matchM = m !== "" ? i.date.getMonth() == m : true;
         return matchY && matchM;
     });
-
     renderFeed(true);
     renderSidebar();
 }
-
 // Tambahkan event listener khusus untuk cascading
 document.getElementById('yearFilter').addEventListener('change', () => {
     updateMonthDropdown(); // Update list bulan dulu
     runFilters();          // Baru jalankan filter data
 });
-
 document.getElementById('monthFilter').addEventListener('change', runFilters);
-
     function filterByCat(cat, el) {
         document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
         if(el) el.classList.add('active');
-
         displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
         renderFeed(true);
     }
-
     document.getElementById('loadMore').onclick = () => {
         limit += 6;
         renderFeed();
         renderSidebar();
     };
-
     fetchData();
-
     function showToast(message) {
     // Buat container jika belum ada
     let container = document.getElementById('toast-container');
@@ -936,45 +810,35 @@ document.getElementById('monthFilter').addEventListener('change', runFilters);
         container.id = 'toast-container';
         document.body.appendChild(container);
     }
-
     // Buat elemen toast
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
-
     container.appendChild(toast);
-
     // Hilangkan toast otomatis setelah 3 detik
     setTimeout(() => {
         toast.classList.add('toast-hide');
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 }
-
 function sendToWA() {
     const name = document.getElementById('contact-name').value;
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-message').value;
-
     // Validasi sederhana: Nama dan Pesan wajib diisi
     if(!name || !message) {
         alert("Nama dan Pesan jangan dikosongkan ya, Bosku!");
         return;
     }
-
     // Ganti dengan nomor WhatsApp kamu (format 62...)
     const noWA = "6281578163858";
-
     // Menyusun format pesan WhatsApp
     const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Pesan:* ${message}`;
-
     // Panggil notifikasi Toast (fungsi showToast ada di chat sebelumnya)
     showToast("Membuka WhatsApp... Pesan siap dikirim!");
-
     // Jeda 1 detik agar user bisa lihat notifikasi suksesnya dulu
     setTimeout(() => {
         window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
-
         // Bersihkan input setelah berhasil
         document.getElementById('contact-name').value = "";
         document.getElementById('contact-email').value = "";
@@ -982,6 +846,5 @@ function sendToWA() {
     }, 1200);
 }
 </script>
-
 </body>
 </html>

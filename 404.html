@@ -73,7 +73,6 @@
         color: #00bfff;
         text-shadow: 0 0 10px #0ff;
       }
-
       @media (max-width: 800px) {
         h1 {
           font-size: 2rem;
@@ -128,13 +127,10 @@
       </div>
       <p id="redirectInfo">redirect sebentar lagi...</p>
     </div>
-
     <script>
       // Menjalankan skrip setelah seluruh halaman HTML selesai dimuat
       document.addEventListener('DOMContentLoaded', () => {
-
         // --- 1. PENYIMPANAN ELEMEN & DATA IKON ---
-
         // Menyimpan elemen DOM ke dalam variabel agar lebih efisien
         const elements = {
           browserText: document.getElementById('browserText'),
@@ -151,7 +147,6 @@
           flagRightIcon: document.getElementById('flagRightIcon'),
           redirectInfo: document.getElementById('redirectInfo'),
         };
-
         // Ikon SVG Lokal
         const svgIcons = {
            Firefox:`
@@ -232,7 +227,6 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M687 496  C706 494 709 489 714 486  C620 652 620 652 620 652  C616 660 608 667 596 667  C492 667 492 667 492 667  C492 728 492 728 492 728  C407 583 407 583 407 583  C492 437 492 437 492 437  C492 496 492 496 492 496z" />
 <path d="M519 315  C666 231 666 231 666 231  C743 362 743 362 743 362  C771 416 723 468 691 474  C612 474 612 474 612 474z" />
 <path d="M357 35  C351 27 339 17 328 15  C525 15 525 15 525 15  C536 15 546 19 551 28  C602 118 602 118 602 118  C653 89 653 89 653 89  C570 233 570 233 570 233  C404 233 404 233 404 233  C454 203 454 203 454 203z" /></g></svg>`,
-
         // OS SVG
         Windows:
           `<svg class="icon responsive-icon" xmlns="http://www.w3.org/2000/svg" height="150" width="170">
@@ -716,14 +710,11 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M687 496  C706 494 709 489 714 486  C620 652 620 652 620 652  C616 660 608 667 596 667  C492 667 492 667 492 667  C492 728 492 728 492 728  C407 583 407 583 407 583  C492 437 492 437 492 437  C492 496 492 496 492 496z" />
 <path d="M519 315  C666 231 666 231 666 231  C743 362 743 362 743 362  C771 416 723 468 691 474  C612 474 612 474 612 474z" />
 <path d="M357 35  C351 27 339 17 328 15  C525 15 525 15 525 15  C536 15 546 19 551 28  C602 118 602 118 602 118  C653 89 653 89 653 89  C570 233 570 233 570 233  C404 233 404 233 404 233  C454 203 454 203 454 203z" /></g></svg>`,
-
         // Icon IP/Global
         Globe:
           `<svg viewBox="0 0 100 100" fill="#00bfff"><circle cx="50" cy="50" r="48"/><path fill="none" stroke="#fff" stroke-width="5" d="M50 2a48 48 0 000 96 48 48 0 000-96zM2 50h96M50 2c15 30 15 70 0 96"/></svg>`,          
         };
-    
         // --- 2. FUNGSI-FUNGSI BANTUAN ---
-
         // Pemetaan nama browser ke kunci ikon
         function getBrowserIconKey(name) {
           if (name.includes('Firefox')) return 'Firefox';
@@ -733,7 +724,6 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
           if (name.includes('Edge')) return 'Edge';
           return 'UnknownBrowser';
         }
-
         // Pemetaan nama OS ke kunci ikon
         function getOSIconKey(name) {
           if (name.includes('Windows')) return 'Windows';
@@ -743,14 +733,12 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
           if (name.includes('iOS')) return 'iOS';
           return 'UnknownOS';
         }
-
         // Deteksi Browser (logika diperbaiki)
         function getBrowserInfo() {
           const ua = navigator.userAgent;
           let name = 'Unknown Browser';
           let version = 'N/A';
           let match;
-
           // Urutan deteksi penting untuk akurasi
           if ((match = ua.match(/Edg\/([0-9\.]+)/))) {
             name = 'Edge';
@@ -772,17 +760,14 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
             name = 'Chrome';
             version = match[1];
           }
-
           return { name, version, iconKey: getBrowserIconKey(name) };
         }
-
         // Deteksi OS (logika dirapikan)
         function getOSInfo() {
           const platform = navigator.platform.toLowerCase();
           const ua = navigator.userAgent.toLowerCase();
           let name = 'Unknown OS';
           let version = '';
-
           if (platform.includes('win')) {
             name = 'Windows';
             version = ua.match(/windows nt ([0-9\.]+)/)?.[1] || '';
@@ -796,29 +781,23 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
           } else if (platform.includes('linux')) {
             name = 'Linux';
           }
-
           return { name, version, iconKey: getOSIconKey(name) };
         }
-
         // Fungsi untuk menyuntikkan SVG ke elemen
         function setSvgIcon(element, iconKey) {
           if (element) {
             element.innerHTML = svgIcons[iconKey] || svgIcons['UnknownBrowser'];
           }
         }
-
         // --- 3. PROSES UTAMA ---
-
         // Menampilkan informasi Browser & Versi
         const browser = getBrowserInfo();
         elements.browserText.textContent = `Browser: ${browser.name}`;
         setSvgIcon(elements.browserLeftIcon, browser.iconKey);
         setSvgIcon(elements.browserRightIcon, browser.iconKey);
-
         elements.versionText.textContent = `Versi: ${browser.version}`;
         setSvgIcon(elements.versionLeftIcon, browser.iconKey);
         setSvgIcon(elements.versionRightIcon, browser.iconKey);
-
         // Menampilkan informasi OS
         const os = getOSInfo();
         // Menggabungkan nama dan versi OS, hanya jika versi terdeteksi
@@ -826,11 +805,9 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
         elements.osText.textContent = `OS: ${osString}`;
         setSvgIcon(elements.osLeftIcon, os.iconKey);
         setSvgIcon(elements.osRightIcon, os.iconKey);
-
         // Mengambil informasi IP dan menampilkan ikon globe
         setSvgIcon(elements.flagLeftIcon, 'Globe');
         setSvgIcon(elements.flagRightIcon, 'Globe');
-
         fetch('https://ipapi.co/json/')
           .then((res) => res.json())
           .then((data) => {
@@ -840,7 +817,6 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
           .catch(() => {
             elements.ipText.textContent = 'IP: Tidak dapat diambil';
           });
-
         // Hitung mundur untuk redirect
         let redirectTime = 3;
         const countdown = setInterval(() => {
