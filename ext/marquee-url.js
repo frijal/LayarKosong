@@ -152,7 +152,7 @@
   }
 
   // ---------------------------
-  // 4. FLOATING SEARCH (DENGAN URL DINAMIS)
+  // 4. FLOATING SEARCH (DENGAN URL DINAMIS & ENTER REDIRECT)
   // ---------------------------
   function initFloatingSearch(allData) {
     const wrap = document.querySelector('.search-floating-container');
@@ -161,11 +161,20 @@
     const results = wrap?.querySelector('.floating-results-container');
     if (!wrap || !input || !clear || !results) return;
 
+    // Fungsi untuk lompat ke halaman pencarian utama
+    const goToSearchPage = () => {
+      const query = input.value.trim();
+      if (query.length > 0) {
+        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+      }
+    };
+
     input.addEventListener('input', () => {
       const v = input.value.trim();
       clear.style.display = v.length ? 'block' : 'none';
 
       const q = v.toLowerCase();
+      // Tampilkan hasil instan jika minimal 3 karakter
       if (q.length < 3) { results.style.display = 'none'; return; }
 
       let matches = [];
@@ -193,10 +202,23 @@
       }
     });
 
+    // ⚡ FITUR BARU: Tekan ENTER untuk ke halaman pencarian
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault(); // Mencegah reload form default
+        goToSearchPage();
+      }
+    });
+
     clear.addEventListener('click', () => {
       input.value = '';
       results.style.display = 'none';
       clear.style.display = 'none';
+    });
+
+    // Opsional: Klik luar untuk tutup hasil instan
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) results.style.display = 'none';
     });
   }
 
