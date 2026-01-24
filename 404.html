@@ -1,6 +1,36 @@
 <!doctype html>
 <html lang="id">
   <head>
+	  <script>
+  // 🚀 REDIRECT INSTAN (Tanpa Menunggu DOM)
+  (function() {
+    const path = window.location.pathname;
+
+    // Cek apakah pengunjung datang dari folder /artikel/ lama
+    if (path.includes('/artikel/')) {
+      let segments = path.split('/').filter(Boolean);
+      let lastSegment = segments.pop();
+      let fileName = lastSegment.endsWith('.html') ? lastSegment : lastSegment + '.html';
+
+      // Jalankan fetch secepat mungkin
+      fetch('/artikel.json')
+        .then(res => res.json())
+        .then(data => {
+          for (const catName in data) {
+            const match = data[catName].find(item => item[1] === fileName);
+            if (match) {
+              const catSlug = catName.toLowerCase().replace(/\s+/g, '-');
+              const fileSlug = fileName.replace('.html', '');
+              
+              // Redirect secepat kilat!
+              window.location.replace(`/${catSlug}/${fileSlug}/`);
+            }
+          }
+        })
+        .catch(err => console.error("Redirect Error:", err));
+    }
+  })();
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirect Page Premium Browser - OS - IP Address</title>
@@ -132,31 +162,7 @@
     <script>
       // Menjalankan skrip setelah seluruh halaman HTML selesai dimuat
       document.addEventListener('DOMContentLoaded', () => {
-async function handleRedirect() {
-    const path = window.location.pathname;
-    
-    // Cek apakah URL mengandung '/artikel/'
-    if (path.includes('/artikel/')) {
-        const fileName = path.split('/').pop() + '.html'; // misal: debian-post-install-2025.html
-        
-        const res = await fetch('/artikel.json');
-        const data = await res.json();
-        
-        for (const cat in data) {
-            const match = data[cat].find(item => item[1] === fileName);
-            if (match) {
-                const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-                const fileSlug = fileName.replace('.html', '');
-                // Lompat ke URL baru!
-                window.location.replace(`/${catSlug}/${fileSlug}/`);
-                return;
-            }
-        }
-    }
-    // Jika memang beneran nggak ada, tampilkan pesan error biasa
-    document.body.innerHTML = "<h1>Halaman Tidak Ditemukan (404)</h1>";
-}
-handleRedirect();
+
         // --- 1. PENYIMPANAN ELEMEN & DATA IKON ---
 
         // Menyimpan elemen DOM ke dalam variabel agar lebih efisien
