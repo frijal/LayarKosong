@@ -177,7 +177,7 @@ const generate = async () => {
       xmlPosts += `  <url>\n    <loc>${prettyUrl}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n  </url>\n`;
       
       // Image Sitemap
-      xmlImages += `  <url>\n    <loc>${prettyUrl}</loc>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    <lastmod>${item.lastmod}</lastmod>\n     </image:image>\n  </url>\n`;
+      xmlImages += `  <url>\n    <loc>${prettyUrl}</loc>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
 
       // Video Sitemap
       const content = await fs.readFile(path.join(CONFIG.artikelDir, item.file), 'utf8');
