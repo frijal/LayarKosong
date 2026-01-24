@@ -186,19 +186,23 @@ const generate = async () => {
       // Image Sitemap
       xmlImages += `  <url>\n    <loc>${prettyUrl}</loc>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
 
-      // Video Sitemap
+      // 3. Video Sitemap (DENGAN FILTER KETAT)
       const content = await fs.readFile(path.join(CONFIG.artikelDir, item.file), 'utf8');
-      const videos = extractVideos(content, item.title, item.desc);
-      if (videos.length > 0) {
+      const rawVideos = extractVideos(content, item.title, item.desc);
+
+      // FILTER: Hanya masukkan video yang URL-nya VALID (bukan ${embedUrl})
+      const validVideos = rawVideos.filter(v => v.loc && !v.loc.includes('${embedUrl}'));
+
+      if (validVideos.length > 0) {
         xmlVideos += `  <url>\n    <loc>${prettyUrl}</loc>\n`;
-        videos.forEach(v => {
-          // Pastikan v.loc tidak mengandung karakter & yang tidak di-escape
-          const safePlayerLoc = v.loc.replace(/&/g, '&amp;');
+        validVideos.forEach(v => {
+          // Menghindari karakter & yang merusak XML
+          const cleanLoc = v.loc.replace(/&/g, '&amp;');
           xmlVideos += `    <video:video>\n`;
           xmlVideos += `      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n`;
           xmlVideos += `      <video:title><![CDATA[${v.title}]]></video:title>\n`;
           xmlVideos += `      <video:description><![CDATA[${v.description}]]></video:description>\n`;
-          xmlVideos += `      <video:player_loc>${safePlayerLoc}</video:player_loc>\n`; // Gunakan safe URL
+          xmlVideos += `      <video:player_loc>${cleanLoc}</video:player_loc>\n`;
           xmlVideos += `    </video:video>\n`;
         });
         xmlVideos += `  </url>\n`;
