@@ -23,14 +23,20 @@ const CONFIG = {
   xmlImagesOut: path.join(__dirname, '..', 'image-sitemap-1.xml'),
   xmlVideosOut: path.join(__dirname, '..', 'video-sitemap-1.xml'),
 
-  xslLink: 'sitemap-style.xsl', // <--- KITA KEMBALIKAN KE FILE ASLI MAS
+  xslLink: 'sitemap-style.xsl',
   rssOut: path.join(__dirname, '..', 'rss.xml'),
   baseUrl: 'https://dalam.web.id',
   rssLimit: 30
 };
 
+// Daftar Kategori Fisik
+const VALID_CATEGORIES = [
+  'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media',
+'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+];
+
 // ===================================================================
-// HELPER FUNCTIONS
+// HELPER FUNCTIONS (ORIGINAL RESTORED)
 // ===================================================================
 const getMimeType = (url) => {
   if (!url) return 'image/jpeg';
@@ -64,7 +70,7 @@ const getYoutubeThumb = (url) => {
 };
 
 // ===================================================================
-// EXTRACTORS
+// EXTRACTORS (ORIGINAL RESTORED)
 // ===================================================================
 const extractTitle = (c) => (c.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
 const extractDesc = (c) => (c.match(/<meta\s+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] || '').trim();
@@ -92,7 +98,7 @@ const extractVideos = (content, title, desc) => {
 };
 
 // ===================================================================
-// RSS BUILDER
+// RSS BUILDER (ORIGINAL RESTORED)
 // ===================================================================
 const buildRss = (title, items, rssLink, description) => {
   const itemsXml = items.map(it => {
@@ -124,10 +130,10 @@ const buildRss = (title, items, rssLink, description) => {
 };
 
 // ===================================================================
-// CORE PROCESSOR
+// CORE PROCESSOR (ENHANCED WITH SMART SYNC)
 // ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai Generator Pro V5 (Fixed XSL & Full Restore)...');
+  console.log('🚀 Memulai Generator Pro V6.5 (The Master Script)...');
 
   try {
     const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
@@ -135,7 +141,7 @@ const generate = async () => {
     let grouped = JSON.parse(masterContent);
     const existingFilesMap = new Map(Object.values(grouped).flat().map(item => [item[1], true]));
 
-    // 1. Scan Artikel Baru
+    // 1. Scan Artikel Baru (Menggunakan titleToCategory)
     const newResults = await Promise.all(
       filesOnDisk.filter(f => !existingFilesMap.has(f)).map(async (file) => {
         const content = await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
@@ -143,7 +149,7 @@ const generate = async () => {
         const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
         return {
           category: titleToCategory(title),
-                                                            data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
+          data: [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)]
         };
       })
     );
@@ -153,20 +159,51 @@ const generate = async () => {
       grouped[r.category].push(r.data);
     });
 
-    // 2. Sorting & URL Formatting
+    // 2. Smart Cleaning & Physical Mirroring
+    const validFilesSet = new Set();
+    for (const [catName, articles] of Object.entries(grouped)) {
+      const catSlug = slugify(catName);
+      articles.forEach(art => validFilesSet.add(`${catSlug}/${art[1]}`));
+    }
+
+    // Cleaning file sampah di folder kategori
+    for (const catSlug of VALID_CATEGORIES) {
+      const folderPath = path.join(CONFIG.rootDir, catSlug);
+      await fs.mkdir(folderPath, { recursive: true });
+      const diskFiles = await fs.readdir(folderPath);
+      for (const file of diskFiles) {
+        if (file.endsWith('.html') && !validFilesSet.has(`${catSlug}/${file}`)) {
+          console.log(`🗑️ Menghapus file usang: ${catSlug}/${file}`);
+          await fs.unlink(path.join(folderPath, file));
+        }
+      }
+    }
+
+    // 3. Sorting, URL Formatting & Physical Copy
     let allItemsFlat = [];
     const diskSet = new Set(filesOnDisk);
+
     for (const cat in grouped) {
+      const catSlug = slugify(cat);
       grouped[cat] = grouped[cat].filter(item => diskSet.has(item[1]));
       grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
-      grouped[cat].forEach(item => {
-        const loc = `${CONFIG.baseUrl}/artikel/${item[1].replace('.html', '')}/`;
+
+      for (const item of grouped[cat]) {
+        // Pindah file fisik ke folder kategori
+        const sourcePath = path.join(CONFIG.artikelDir, item[1]);
+        const destPath = path.join(CONFIG.rootDir, catSlug, item[1]);
+
+        const content = await fs.readFile(sourcePath, 'utf8');
+        await fs.writeFile(destPath, content);
+
+        // URL Baru (Pretty URL tanpa /artikel/)
+        const loc = `${CONFIG.baseUrl}/${catSlug}/${item[1].replace('.html', '')}/`;
         allItemsFlat.push({ title: item[0], file: item[1], img: item[2], lastmod: item[3], desc: item[4], category: cat, loc: loc });
-      });
+      }
     }
     allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
 
-    // 3. Build XML Content
+    // 4. Build XML Content (Including Video)
     let xmlPosts = '';
     let xmlImages = '';
     let xmlVideos = '';
@@ -182,25 +219,19 @@ const generate = async () => {
       });
     }
 
-    // 4. Penulisan File dengan XSL yang BENAR
+    // 5. Penulisan Akhir (XSL & RSS Terjaga)
     const xslHeader = `<?xml version="1.0" encoding="UTF-8"?>\n\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
 
     const writePromises = [
       fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2)),
-
-      // Index
       fs.writeFile(CONFIG.xmlIndexOut, `${xslHeader}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap-1.xml</loc><lastmod>${allItemsFlat[0].lastmod}</lastmod></sitemap>\n</sitemapindex>`),
-
-      // Sub-Sitemaps
       fs.writeFile(CONFIG.xmlPostsOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlPosts}</urlset>`),
       fs.writeFile(CONFIG.xmlImagesOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlImages}</urlset>`),
       fs.writeFile(CONFIG.xmlVideosOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${xmlVideos}</urlset>`),
-
-      // RSS
       fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`, `Feed artikel terbaru`))
     ];
 
-    // RSS & HTML Kategori
+    // RSS Per Kategori & Template HTML Kategori (Fitur V5)
     const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch(() => null);
     for (const [cat, articles] of Object.entries(grouped)) {
       const slug = slugify(cat);
@@ -220,7 +251,7 @@ const generate = async () => {
     }
 
     await Promise.all(writePromises);
-    console.log('✅ SELESAI! Link XSL fix, fitur kategori fix, domain fix. Mantap Mas!');
+    console.log('✅ SELESAI! Folder kategori sinkron fisik, Video Sitemap OK, RSS OK. Joss!');
   } catch (err) {
     console.error('❌ Error:', err);
   }
