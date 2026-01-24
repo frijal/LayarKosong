@@ -1,13 +1,13 @@
 # =========================================================
 # 1. PERLINDUNGAN DOMAIN (CLOUDFLARE DEFAULT)
 # =========================================================
-/*.xsl
-  Content-Type: application/xml; charset=utf-8
-  X-Content-Type-Options: nosniff
+#/*.xsl
+#  Content-Type: application/xml; charset=utf-8
+#  X-Content-Type-Options: nosniff
 
-/*.xml
-  Content-Type: application/xml; charset=utf-8
-  X-Content-Type-Options: nosniff
+#/*.xml
+#  Content-Type: application/xml; charset=utf-8
+#  X-Content-Type-Options: nosniff
 
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
