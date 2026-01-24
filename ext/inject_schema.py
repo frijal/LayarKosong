@@ -3,7 +3,7 @@ import os
 import re
 
 # ======================================================
-# KONFIGURASI GLOBAL
+# KONFIGURASI GLOBAL (V6.9 READY)
 # ======================================================
 BASE_URL = "https://dalam.web.id"
 SITE_NAME = "Layar Kosong"
@@ -17,9 +17,7 @@ ORG_ID = f"{BASE_URL}/#organization"
 HASH_FILE = "mini/LD-JSON-Schema.txt"
 os.makedirs("mini", exist_ok=True)
 
-# ======================================================
-# REGEX HAPUS SEMUA SCHEMA EXISTING (BIAR BERSIH)
-# ======================================================
+# REGEX HAPUS SEMUA SCHEMA EXISTING
 SCHEMA_REGEX = re.compile(
     r'<script\s+type="application/ld\+json">.*?</script>',
     re.DOTALL | re.IGNORECASE
@@ -28,14 +26,11 @@ SCHEMA_REGEX = re.compile(
 # ======================================================
 # UTILITIES
 # ======================================================
-def strip_html(filename: str) -> str:
-    """Menghapus ekstensi .html untuk slug dan Clean URL"""
-    return filename[:-5] if filename.endswith(".html") else filename
+def slugify(text: str) -> str:
+    """Sinkron dengan generator-pro untuk kategori"""
+    return text.strip().lower().replace(" ", "-")
 
-def category_slug(category: str) -> str:
-    return category.strip().lower().replace(" ", "-")
-
-def category_name(category: str) -> str:
+def category_name_clean(category: str) -> str:
     return category.strip().replace("-", " ").title()
 
 def build_keywords(headline: str, category: str, slug: str) -> str:
@@ -49,19 +44,19 @@ def build_keywords(headline: str, category: str, slug: str) -> str:
     return ", ".join(sorted(base))
 
 # ======================================================
-# SINGLE SCHEMA BUILDER (COMBINED @GRAPH)
+# SINGLE SCHEMA BUILDER (COMBINED @GRAPH V6.9)
 # ======================================================
 def build_combined_schema(category, article):
     headline, filename, image, iso_date, desc = article
-    
-    # 👉 PEMBERSIHAN URL: Menghasilkan Clean URL tanpa .html
-    slug = strip_html(filename)
-    article_url = f"{BASE_URL}/artikel/{slug}"
-    
-    cat_slug = category_slug(category)
-    cat_name = category_name(category)
-    category_url = f"{BASE_URL}/artikel/-/{cat_slug}/"
-    keywords = build_keywords(headline, cat_name, slug)
+
+    # 👉 STRUKTUR V6.9: /{kategori}/{slug}/
+    cat_slug = slugify(category)
+    file_slug = filename.replace('.html', '').replace(/^\//, '')
+    article_url = f"{BASE_URL}/{cat_slug}/{file_slug}/"
+
+    cat_display_name = category_name_clean(category)
+    category_url = f"{BASE_URL}/{cat_slug}/"
+    keywords = build_keywords(headline, cat_display_name, file_slug)
 
     schema_data = {
         "@context": "https://schema.org",
@@ -95,7 +90,7 @@ def build_combined_schema(category, article):
                 "license": LICENSE_URL,
                 "headline": headline,
                 "description": desc,
-                "articleSection": cat_name,
+                "articleSection": cat_display_name,
                 "keywords": keywords,
                 "image": {
                     "@type": "ImageObject",
@@ -117,7 +112,7 @@ def build_combined_schema(category, article):
                 "@id": f"{article_url}#breadcrumb",
                 "itemListElement": [
                     {"@type": "ListItem", "position": 1, "name": "Beranda", "item": BASE_URL + "/"},
-                    {"@type": "ListItem", "position": 2, "name": cat_name, "item": category_url},
+                    {"@type": "ListItem", "position": 2, "name": cat_display_name, "item": category_url},
                     {"@type": "ListItem", "position": 3, "name": headline, "item": article_url}
                 ]
             }
@@ -141,68 +136,70 @@ if __name__ == "__main__":
     with open("artikel.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # 2. Load progress (Incremental)
-    processed_urls = set()
+    # Load progress (Incremental via Slug)
+    processed_slugs = set()
     if os.path.isfile(HASH_FILE):
         with open(HASH_FILE, "r", encoding="utf-8") as f:
             for line in f:
-                processed_urls.add(line.strip())
+                processed_slugs.add(line.strip())
 
-    new_urls_ordered = [] # Pake list biar urutan pengerjaan terjaga
+    new_slugs_to_save = []
     changed_files = 0
     skipped_files = 0
 
-    # 3. Proses File
+    # Proses File berdasarkan kategori (V6.9)
     for category, articles in data.items():
+        cat_slug = slugify(category)
+
         for article in articles:
             filename = article[1]
-            html_path = os.path.join("artikel", filename)
+            file_slug = filename.replace('.html', '').replace('/', '')
+
+            # 👉 Jalur file sekarang ada di: kategori/slug.html
+            html_path = os.path.join(cat_slug, filename)
 
             if not os.path.isfile(html_path):
-                continue
+                # Backup check jika filename mengandung path lengkap
+                html_path = filename if os.path.isfile(filename) else html_path
+                if not os.path.isfile(html_path):
+                    continue
 
-            # 👉 URL DISINI SUDAH BERSIH DARI .HTML
-            slug = strip_html(filename)
-            article_url = f"{BASE_URL}/artikel/{slug}"
-
-            # Cek apakah sudah diproses sebelumnya (menggunakan URL bersih)
-            if article_url in processed_urls:
+            # Gunakan slug sebagai identitas unik di HASH_FILE
+            if file_slug in processed_slugs:
                 skipped_files += 1
                 continue
+
+            print(f"🧠 Injecting Schema: {cat_slug}/{filename}")
 
             with open(html_path, "r", encoding="utf-8") as f:
                 original_html = f.read()
 
-            # Langkah 1: Bersihkan semua schema ld+json lama
+            # 1. Bersihkan schema lama
             html_clean = re.sub(SCHEMA_REGEX, "", original_html)
 
-            # Langkah 2: Build schema baru (sudah gabungan)
+            # 2. Build schema baru V6.9
             inject_code = build_combined_schema(category, article)
 
             if "</head>" not in html_clean:
-                print(f"⚠️ Tag </head> tidak ditemukan di {filename}")
                 continue
 
-            # Langkah 3: Masukkan tepat sebelum </head>
+            # 3. Inject sebelum </head>
             new_html = html_clean.replace("</head>", inject_code + "</head>")
 
             with open(html_path, "w", encoding="utf-8") as f:
                 f.write(new_html)
 
-            new_urls_ordered.append(article_url)
+            new_slugs_to_save.append(file_slug)
             changed_files += 1
 
-    # ======================================================
-    # 4. UPDATE FILE URL (APPEND MODE - TERBARU DI BAWAH)
-    # ======================================================
-    if new_urls_ordered:
+    # Update HASH_FILE
+    if new_slugs_to_save:
         with open(HASH_FILE, "a", encoding="utf-8") as f:
-            for url in new_urls_ordered:
-                f.write(url + "\n")
+            for s in new_slugs_to_save:
+                f.write(s + "\n")
 
     print("-" * 30)
-    print(f"✅ Tugas Selesai di Balikpapan!")
-    print(f"🆕 Artikel baru diproses : {changed_files}")
-    print(f"⏭️ Artikel dilewati      : {skipped_files}")
-    print(f"📝 Cek daftar terbaru di bagian bawah {HASH_FILE}")
+    print(f"✅ Schema V6.9 Injected!")
+    print(f"🆕 Baru  : {changed_files}")
+    print(f"⏭️ Skip  : {skipped_files}")
     print("-" * 30)
