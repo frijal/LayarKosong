@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 8.8
+document_version: 8.9
 last_updated: 2026-01-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 24 January 2026)
-> Menampilkan 807 artikel yang berhasil diindeks dalam versi 8.8.
+> Menampilkan 808 artikel yang berhasil diindeks dalam versi 8.9.
 ## Gaya Hidup
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/artikel/panduan-pengasuhan-sains.html) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
 - [Masa Depan Globalisasi: Dari Era Keemasan ke Homeland Economics](https://dalam.web.id/artikel/masa-depan-globalisasi-ekonomi.html) : Analisis mendalam perjalanan globalisasi dari tahun 1990-an hingga pergeseran menuju proteksionisme dan homeland economics di tahun 2024. Pahami dampaknya bagi ekonomi dunia.
@@ -420,6 +420,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/artikel/bahaya-penjilat-dalam-institusi.html) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula](https://dalam.web.id/artikel/mengenal-linux-dan-floss.html) : Panduan komprehensif memahami Linux, FLOSS, dan ekosistem open source. Pelajari sejarah, filosofi, dan bagaimana memilih distribusi Linux yang tepat untuk kebutuhan Anda.
 - [Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026)](https://dalam.web.id/artikel/linux-kernel-7-release.html) : Kupas tuntas Linux Kernel 7 yang rilis 2026. Dari Rust, performa gaming, hingga dukungan AI. Penjelasan santai tapi teknis untuk pengguna desktop dan server.
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru & Performa Cinnamon 6.6](https://dalam.web.id/artikel/linux-mint-22-3-zena-cinnamon-6-6.html) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
 - [7 Distribusi Linux Terbaik untuk Penggunaan Sehari-hari 2026 (Stabil & Cepat) 🐧](https://dalam.web.id/artikel/distro-linux-terbaik-2026.html) : Panduan lengkap memilih distro Linux terbaik untuk penggunaan harian tahun 2026. Cocok untuk pemula hingga advanced user dengan ulasan mendalam berdasarkan pengalaman nyata.
