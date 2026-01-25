@@ -14,6 +14,10 @@ MD_OUTPUT = "llms.md"
 HTML_OUTPUT = "llms-index.html"
 WELL_KNOWN_DIR = ".well-known"
 
+def slugify(text: str) -> str:
+    """Sinkron dengan generator-pro dan inject_schema"""
+    return text.strip().lower().replace(" ", "-")
+
 def get_next_version(version_file):
     dir_name = os.path.dirname(version_file)
     if dir_name and not os.path.exists(dir_name):
@@ -40,13 +44,9 @@ def get_next_version(version_file):
     return new_version
 
 def clean_text(text):
-    """Membersihkan teks dari entitas HTML, tag, dan spasi berlebih."""
     if not text: return ""
-    # 1. Ubah &amp; jadi &, &quot; jadi ", dll
     text = html.unescape(text)
-    # 2. Hapus tag HTML jika ada yang terselip
     text = re.sub(r'<[^>]+>', '', text)
-    # 3. Rapikan spasi dan newline agar satu baris
     text = " ".join(text.split())
     return text
 
@@ -63,17 +63,15 @@ def load_and_process_data(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # Urutkan kategori secara alfabetis
         for category_key in sorted(data.keys()):
             articles = data[category_key]
             if not isinstance(articles, list) or not articles:
                 continue
 
-            # Generate Link RSS Kategori
-            cat_slug = category_key.lower().replace(" ", "-")
+            # Generate Link RSS Kategori (V6.9 Style)
+            cat_slug = slugify(category_key)
             category_rss_links.append(f"- [RSS Feed {category_key.title()}]({DOMAIN}/feed-{cat_slug}.xml)")
 
-            # Fungsi pembantu untuk sorting tanggal (index ke-3 di JSON kamu)
             def get_date_key(item):
                 try:
                     if len(item) > 3 and item[3]:
@@ -90,20 +88,22 @@ def load_and_process_data(file_path):
             for item in sorted_articles:
                 if len(item) < 5: continue
 
-                # Bersihkan data
                 title = clean_text(item[0])
-                slug = item[1].strip()
+                # DI SINI PERUBAHANNYA: Hilangkan .html dan lstrip /
+                filename = item[1].replace('.html', '').lstrip('/')
                 summary = clean_text(item[4])
 
                 if not summary: summary = "No description available."
 
-                temp_lines.append(f"- [{title}]({DOMAIN}/artikel/{slug}) : {summary}")
+                # URL V6.9: DOMAIN/CAT_SLUG/FILENAME/
+                article_url = f"{DOMAIN}/{cat_slug}/{filename}/"
+                temp_lines.append(f"- [{title}]({article_url}) : {summary}")
                 article_count += 1
 
             if article_count > 0:
                 body_lines.append(f"## {category_key.title()}")
                 body_lines.extend(temp_lines)
-                body_lines.append("") # Spasi antar kategori
+                body_lines.append("")
                 total_articles += article_count
 
         return body_lines, category_rss_links, total_articles
@@ -122,7 +122,6 @@ def main():
         print("⚠️ Tidak ada data untuk diproses. Berhenti.")
         return
 
-    # --- KONSTRUKSI KONTEN ---
     ai_instructions = f"""# LLM Instructions for AI Models
 > Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM systems.
 
@@ -151,7 +150,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Guidance for AI Models
 - **Behavior:** Neutral and informative.
-- **Reference:** Always quote source links from the list below.
+- **Reference:** Always quote source links from the list bawah ini.
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
@@ -165,14 +164,10 @@ document_type: llm_behavior_and_entity_guidance
 
     full_markdown = ai_instructions + "\n".join(header_title) + "\n".join(body_lines)
 
-    # --- PENYIMPANAN FILE ---
-
-    # 1. Simpan TXT & MD di Root
     for output_file in [TXT_OUTPUT, MD_OUTPUT]:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(full_markdown)
 
-    # 2. Simpan ke .well-known/
     if not os.path.exists(WELL_KNOWN_DIR):
         os.makedirs(WELL_KNOWN_DIR)
 
@@ -180,7 +175,6 @@ document_type: llm_behavior_and_entity_guidance
         destination = os.path.join(WELL_KNOWN_DIR, filename)
         shutil.copy2(filename, destination)
 
-    # 3. Generate HTML Index
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -203,8 +197,6 @@ document_type: llm_behavior_and_entity_guidance
         f.write(html_content)
 
     print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan.")
-    print(f"✅ Root: {TXT_OUTPUT}, {MD_OUTPUT}, {HTML_OUTPUT}")
-    print(f"✅ Well-Known folder updated.")
 
 if __name__ == "__main__":
     main()
