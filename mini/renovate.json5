@@ -9,26 +9,23 @@
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
   "labels": ["dependencies", "renovate-bot"],
-
   "packageRules": [
     {
       "description": "Minor & Patch langsung automerge",
-      "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "platformAutomerge": true,
-      "groupName": "Minor and Patch Updates"
+      "groupName": "Minor and Patch Updates",
+      "matchPackageNames": ["*"]
     },
     {
       "description": "Major Update dibuatkan PR tapi tidak automerge",
-      "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
       "automerge": false,
-      // Biar PR-nya rapi, satu paket major satu PR
-      "groupName": null 
+      "groupName": null,
+      "matchPackageNames": ["*"]
     }
   ],
-
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0
 }
