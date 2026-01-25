@@ -55,7 +55,7 @@ jobs:
 
       - name: Setup Python
         if: steps.check_python.outputs.has_python == 'true'
-        uses: actions/setup-python@v6.1.0
+        uses: actions/setup-python@v6.2.0
         with:
           python-version: '3.x'
           cache: 'pip' # Sekarang aman karena sudah dipastikan filenya ada
