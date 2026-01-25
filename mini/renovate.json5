@@ -5,7 +5,8 @@
   ],
   // Munculin Dashboard di menu Issues buat kontrol manual
   "dependencyDashboard": true,
-  "labels": ["dependencies"],
+  "recreateClosed": true, // <--- TAMBAHKAN INI SEMENTARA
+  "labels": ["dependencies", "renovate-bot"], // <--- UBAH DIKIT
   "timezone": "Asia/Makassar", // WITA (Balikpapan pride!)
   "packageRules": [
     {
