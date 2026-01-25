@@ -1,74 +1,16 @@
 name: Renovate
 on:
   workflow_dispatch:
-    inputs:
-      repoCache:
-        description: 'Reset or disable the cache?'
-        type: choice
-        default: enabled
-        options:
-          - enabled
-          - disabled
-          - reset
-  schedule:
-    # Jalan tiap jam 02:00 WITA (18:00 UTC)
-    - cron: '0 18 * * *'
-
-env:
-  cache_archive: renovate_cache.tar.gz
-  cache_dir: /tmp/renovate/cache/renovate/repository
-  cache_key: renovate-cache
 
 jobs:
   renovate:
-    name: Renovate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
-
-      - name: Download previous cache
-        uses: dawidd6/action-download-artifact@v12
-        if: github.event.inputs.repoCache != 'disabled'
-        continue-on-error: true
-        with:
-          name: ${{ env.cache_key }}
-          path: cache-download
-
-      - name: Extract renovate cache
-        run: |
-          if [ -d cache-download ] && [ "${{ github.event.inputs.repoCache }}" != "reset" ]; then
-            mkdir -p $cache_dir
-            tar -xzf cache-download/$cache_archive -C $cache_dir
-            sudo chown -R 12021:0 /tmp/renovate/
-            echo "✅ Cache restored."
-          else
-            echo "ℹ️ Starting without cache."
-          fi
+        uses: actions/checkout@v4
 
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v44.2.5
         with:
-          configurationFile: mini/renovate.json
+          configurationFile: mini/renovate.json # Pastikan file ini ada di folder 'mini'
           token: ${{ secrets.RENOVATE_TOKEN }}
-        env:
-          # Pindahkan argumen ke sini dengan format RENOVATE_NAMA_VAR
-          RENOVATE_AUTODISCOVER: 'true'
-          RENOVATE_AUTODISCOVER_FILTER: '${{ github.repository }}'
-          RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
-          LOG_LEVEL: 'info'
-
-      - name: Compress renovate cache
-        if: github.event.inputs.repoCache != 'disabled'
-        run: |
-          if [ -d $cache_dir ]; then
-            tar -czvf $cache_archive -C $cache_dir .
-          fi
-
-      - name: Upload cache artifact
-        uses: actions/upload-artifact@v6.0.0
-        if: github.event.inputs.repoCache != 'disabled'
-        with:
-          name: ${{ env.cache_key }}
-          path: ${{ env.cache_archive }}
-          retention-days: 1
