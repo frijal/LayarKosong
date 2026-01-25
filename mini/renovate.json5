@@ -9,6 +9,14 @@
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
   "labels": ["dependencies", "renovate-bot"],
+  
+  // Fitur perapih package-lock.json otomatis
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 8am on monday"]
+  },
+
   "packageRules": [
     {
       "description": "Minor & Patch langsung automerge",
