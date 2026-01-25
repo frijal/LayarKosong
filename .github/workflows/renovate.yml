@@ -49,11 +49,12 @@ jobs:
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v44.2.5
         with:
-          configurationFile: mini/renovate.json5
+          configurationFile: renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
-          # Biar gak error "No repositories found", kita kunci ke repo ini
-          renovate-args: '--autodiscover=true --autodiscover-filter=${{ github.repository }}'
         env:
+          # Pindahkan argumen ke sini dengan format RENOVATE_NAMA_VAR
+          RENOVATE_AUTODISCOVER: 'true'
+          RENOVATE_AUTODISCOVER_FILTER: '${{ github.repository }}'
           RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
           LOG_LEVEL: 'info'
 
