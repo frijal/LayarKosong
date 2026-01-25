@@ -20,6 +20,11 @@ jobs:
           restore-keys: |
             renovate-cache-
 
+      - name: Perbaiki Izin Folder Cache
+        run: |
+          sudo mkdir -p /tmp/renovate/cache /tmp/renovate/repos
+          sudo chmod -R 777 /tmp/renovate
+
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v44.2.5
         with:
@@ -29,6 +34,7 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-          # Tambahkan ini untuk mengaktifkan cache di sisi Renovate
           RENOVATE_REPOSITORY_CACHE: "enabled"
           RENOVATE_CACHE_DIR: /tmp/renovate/cache
+          # Tambahan biar dia nggak bikin folder di tempat terlarang
+          RENOVATE_BASE_DIR: /tmp/renovate
