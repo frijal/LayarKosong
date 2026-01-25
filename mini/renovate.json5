@@ -1,10 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "dependencyDashboard": true,
-  "recreateClosed": true,
+  "recreateWhen": "always",
   "labels": ["dependencies", "renovate-bot"],
   "timezone": "Asia/Makassar",
   "packageRules": [
