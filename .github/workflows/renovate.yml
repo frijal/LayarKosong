@@ -5,18 +5,28 @@ on:
 jobs:
   renovate:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
 
+      # 1. Setup Cache (Biar proses scan berikutnya super cepat)
+      - name: Cache Renovate
+        uses: actions/cache@v5.0.2
+        with:
+          path: /tmp/renovate/cache
+          key: renovate-cache-${{ github.run_id }}
+          restore-keys: |
+            renovate-cache-
+
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v44.2.5
         with:
-          configurationFile: mini/renovate.json5
+          configurationFile: mini/renovate.json # Pastikan filenya .json atau .json5 sesuai di folder
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
-          # Pastikan variabelnya diawali RENOVATE_
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
+          # Tambahkan ini untuk mengaktifkan cache di sisi Renovate
+          RENOVATE_REPOSITORY_CACHE: "enabled"
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
