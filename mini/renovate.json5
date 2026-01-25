@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  // Munculin Dashboard di menu Issues buat kontrol manual
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "timezone": "Asia/Makassar", // WITA (Balikpapan pride!)
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "non-major dependencies",
+      "automerge": false // Set true kalau kamu pede sama test kamu
+    }
+  ]
+}
