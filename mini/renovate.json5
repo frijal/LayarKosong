@@ -1,21 +1,34 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable"
+  ],
   "onboarding": false,
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
+  "labels": ["dependencies", "renovate-bot"],
+
   "packageRules": [
     {
-      "description": "Automerge non-major updates",
-      "matchUpdateTypes": ["minor", "patch"],
+      "description": "Minor & Patch langsung automerge",
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
-      "automergeType": "branch",
-      "platformAutomerge": true
+      "platformAutomerge": true,
+      "groupName": "Minor and Patch Updates"
     },
     {
-      "description": "Jangan ganggu saya dengan update Major, biarkan saya klik manual di Dashboard",
+      "description": "Major Update dibuatkan PR tapi tidak automerge",
+      "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
-      "automerge": false
+      "automerge": false,
+      // Biar PR-nya rapi, satu paket major satu PR
+      "groupName": null 
     }
-  ]
+  ],
+
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0
 }
