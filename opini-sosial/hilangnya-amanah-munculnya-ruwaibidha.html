@@ -94,6 +94,8 @@
         /* Footer & Placeholders */
         footer { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--meta-color); padding-bottom: 1rem; }
         #pesbukdiskus, #related-articles-grid { margin-top: 3rem; min-height: 100px; background: var(--quote-bg); border-radius: 8px; padding: 1rem; text-align: center; border: 1px dashed var(--meta-color); }
+        #pesbukdiskus::before { content: "Kolom Komentar (Loading...)"; }
+        #related-articles-grid::before { content: "Artikel Terkait (Loading...)"; }
         /* Responsive Fixes */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
