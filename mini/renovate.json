@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "recreateClosed": true,
+  "labels": ["dependencies", "renovate-bot"],
+  "timezone": "Asia/Makassar",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "non-major dependencies",
+      "automerge": false
+    }
+  ]
+}
