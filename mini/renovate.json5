@@ -2,7 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "onboarding": false,
-  "requireConfig": "ignored",
-  "dependencyDashboard": true,
-  "timezone": "Asia/Makassar"
+  "dependencyDashboard": true
 }
