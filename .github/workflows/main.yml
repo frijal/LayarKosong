@@ -1,0 +1,21 @@
+name: Renovate
+on:
+  workflow_dispatch:
+  schedule:
+    # Jalan tiap hari jam 03:00 WITA supaya nggak tabrakan sama kerjaan utama
+    - cron: '0 19 * * *' 
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v44.2.5
+        with:
+          configurationFile: ext/renovate.json
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          LOG_LEVEL: 'debug'
