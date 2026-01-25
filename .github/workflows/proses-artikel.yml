@@ -71,7 +71,7 @@ jobs:
       # 5. Commit dan Push Perubahan
       # Ini akan menyimpan kembali file yang telah diubah oleh Perl
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           # Hanya commit file yang diubah
           commit_message: "🤖 Proses Artikel: Perubahan Otomatis"
