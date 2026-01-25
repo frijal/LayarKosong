@@ -21,7 +21,7 @@ jobs:
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v44.2.5
         with:
-          configurationFile: mini/renovate.json # Pastikan filenya .json atau .json5 sesuai di folder
+          configurationFile: mini/renovate.json5 # Pastikan filenya .json atau .json5 sesuai di folder
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
