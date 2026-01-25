@@ -17,5 +17,6 @@ jobs:
         with:
           configurationFile: mini/renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
+          renovate-args: '--autodiscover=true --autodiscover-filter=frijal/LayarKosong' # Filter ini opsional tapi disarankan
         env:
           LOG_LEVEL: 'debug'
