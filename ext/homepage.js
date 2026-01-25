@@ -111,7 +111,7 @@ function renderHero() {
   <h1 class="hero-title">${h.title}</h1>
   <p class="hero-summary">
   ${h.summary.substring(0, 270)}...
-  <strong style="color:var(--secondary);">Baca Selengkapnya →</strong>
+  <strong style="color:var(--secondary);">Kupas Tuntas →</strong>
   </p>
   </div>
   </a>
