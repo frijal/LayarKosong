@@ -69,7 +69,7 @@ jobs:
               });
             }
             // Tambahkan URL Statis
-            ['/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/', '/privacy/'].forEach(u => urls.push('${BASE_URL}' + u));
+            ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/', '/privacy/'].forEach(u => urls.push('${BASE_URL}' + u));
             
             fs.writeFileSync('$SITEMAP_FILE', urls.join('\n') + '\n');
           "
