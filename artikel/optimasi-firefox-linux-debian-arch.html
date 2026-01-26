@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch</title>
     <meta name="description" content="Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang.">
     <meta name="news_keywords" content="Optimasi Firefox Linux, Bersihkan Cache Firefox Debian, Firefox Diet Arch Linux, Vacuum SQLite Firefox, Folder .mozilla bengkak, Sysadmin Balikpapan, Layar Kosong">
-    <link rel="canonical" href="https://dalam.web.id/artikel/optimasi-firefox-linux-debian-arch.html">
-    <meta name="author" content="Fakhrul Rijal">
+    
+    
     <meta name="prompt_hint" content="Artikel panduan teknis mendalam tentang perawatan browser Firefox di sistem operasi Linux menggunakan script Bash otomatis.">
 
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:title" content="Firefox Kamu Lemot dan Makan Disk? Ini Cara 'Sedot Lemak' di Debian dan Arch! 🚀">
+    
+    
     <meta property="og:description" content="Jangan biarkan folder .mozilla membengkak! Ikuti panduan script otomatis untuk optimasi database dan cache Firefox kamu sekarang juga.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/optimasi-firefox-linux-debian-arch.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/G_no9YMaYAAHpec.jpg">
-    <meta property="article:published_time" content="2026-01-27T12:00:00+07:00">
+    
+    
+    
+    
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:title" content="Script Sakti Optimasi Firefox Linux: Debian dan Arch Ready!">
+    
+    
+    
     <meta name="twitter:description" content="Cara cerdas sysadmin Balikpapan dalam mengelola ruang disk browser. Script bash otomatis sekali jalan. Cek di Layar Kosong!">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/G_no9YMaYAAHpec.jpg">
+    
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         :root {
@@ -134,6 +132,34 @@
             .article-content { font-size: 1.1rem; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/optimasi-firefox-linux-debian-arch">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/optimasi-firefox-linux-debian-arch">
+    <meta property="og:title" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
+    <meta property="og:image:alt" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
@@ -145,6 +171,7 @@
             <span><i class="fas fa-calendar-check"></i> 27 Jan 2026</span>
         </div>
         <h1>Rahasia Firefox Kencang: Cara 'Sedot Lemak' Folder .mozilla di Debian dan Arch Linux 🦊🚀</h1>
+<div id="iposbrowser"></div>
         <p style="font-size: 1.3rem; opacity: 0.8; font-weight: 300;">Hentikan pembengkakan disk dan percepat loading browser kamu dengan teknik Vacuum SQLite otomatis.</p>
     </header>
 
@@ -173,7 +200,7 @@
 
         <p>Selain itu, ada folder bernama <code>storage/default</code>. Ini adalah tempat "sampah modern" di mana website menyimpan data <em>offline storage</em>. Website kayak YouTube, Spotify, atau Canva suka banget nyampah di sini. Kalau gak dibersihin, folder ini bisa jadi "lubang hitam" penyedot disk kamu.</p>
 
-        <img src="https://pbs.twimg.com/media/G_no9YMaYAAHpec.jpg" alt="Firefox Storage Management Visualization" class="featured-image" style="margin-top: 20px;">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp" alt="Firefox Storage Management Visualization" class="featured-image" style="margin-top: 20px;">
 
         <h2>1. Solusi untuk Debian dan Ubuntu (Stabil dan Pasti)</h2>
         <p>Di Debian, stabilitas adalah segalanya. Kita bakal pake script yang sangat aman untuk membersihkan Firefox-ESR atau versi standar. Pastikan kamu sudah install <code>sqlite3</code> ya!</p>
@@ -195,7 +222,7 @@ NC='\033[0m'
 echo -e "${BLUE}=== Memulai Prosedur Sedot Lemak Firefox ===${NC}"
 
 # 1. Pastikan Firefox sedang tidak berjalan
-if pgrep -x "firefox" > /dev/null || pgrep -x "firefox-esr" > /dev/null; then
+if pgrep -x "firefox" &gt; /dev/null || pgrep -x "firefox-esr" &gt; /dev/null; then
     echo -e "${YELLOW}[!] Firefox terdeteksi masih terbuka.${NC}"
     echo "Tutup Firefox dulu bos biar hasilnya maksimal!"
     exit 1
@@ -217,7 +244,7 @@ fi
 # 4. Optimasi Database SQLite (Vacuuming)
 echo -e "${YELLOW}[*] Mengoptimasi database (SQLite Vacuum)...${NC}"
 # Cek apakah sqlite3 terinstall
-if ! command -v sqlite3 &> /dev/null; then
+if ! command -v sqlite3 &amp;&gt; /dev/null; then
     echo "sqlite3 belum ada. Install dulu: sudo apt install sqlite3"
 else
     find "$FF_DIR" -name "*.sqlite" | while read -r db; do
@@ -266,7 +293,7 @@ NC='\033[0m'
 echo -e "${CYAN}--- Arch Linux: Firefox Maintenance Mode ---${NC}"
 
 # 1. Cek Firefox Running
-if pgrep -x "firefox" > /dev/null; then
+if pgrep -x "firefox" &gt; /dev/null; then
     echo -e "${RED}[!] Firefox masih jalan.${NC} Close dulu biar gak korup databasenya."
     exit 1
 fi
@@ -280,17 +307,17 @@ echo -e "${YELLOW}[*] Purging Cache...${NC}"
 if [ -d "$FF_CACHE_DIR" ]; then
     # Menggunakan find biar lebih aman dibanding rm -rf langsung
     find "$FF_CACHE_DIR" -mindepth 1 -delete
-    echo -e "${CYAN}>> Cache cleared.${NC}"
+    echo -e "${CYAN}&gt;&gt; Cache cleared.${NC}"
 fi
 
 # 4. Vacuum SQLite Database
 # Di Arch, sqlite3 biasanya sudah include di banyak instalasi, tapi kita cek dulu.
-if ! command -v sqlite3 &> /dev/null; then
+if ! command -v sqlite3 &amp;&gt; /dev/null; then
     echo -e "${RED}[!] sqlite3 tidak ditemukan.${NC} Install dulu: sudo pacman -S sqlite"
 else
     echo -e "${YELLOW}[*] Vacuuming SQLite databases...${NC}"
     find "$FF_PROFILE" -name "*.sqlite" -print0 | xargs -0 -I {} sqlite3 "{}" "VACUUM;"
-    echo -e "${CYAN}>> Database optimized.${NC}"
+    echo -e "${CYAN}&gt;&gt; Database optimized.${NC}"
 fi
 
 # 5. Membersihkan Data Tambahan (Storage dan Session Backups)
@@ -324,7 +351,7 @@ echo -e "${CYAN}==============================================${NC}"</code></pre
 
     <footer>
 
-        <p>&copy; 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan cinta dari Balikpapan.</p>
+        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan cinta dari Balikpapan.</p>
         <p style="font-size: 0.8rem; opacity: 0.6;">Dukung keberlangsungan blog ini: <a href="https://paypal.me/FakhrulRijal" style="color:inherit;">paypal.me/FakhrulRijal</a></p>
                 <div class="social-links">
             <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -336,5 +363,9 @@ echo -e "${CYAN}==============================================${NC}"</code></pre
     </footer>
 </div>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
