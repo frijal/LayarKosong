@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 10.2
+document_version: 10.3
 last_updated: 2026-01-26
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 26 January 2026)
-> Menampilkan 816 artikel yang berhasil diindeks dalam versi 10.2.
+> Menampilkan 822 artikel yang berhasil diindeks dalam versi 10.3.
 ## Gaya Hidup
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu/) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/gaya-hidup/panduan-pengasuhan-sains/) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
@@ -226,6 +226,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki/) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman](https://dalam.web.id/lainnya/polemik-mbg-bulan-puasa-2026/) : Mengupas tuntas polemik program Makan Bergizi Gratis (MBG) di bulan Puasa 2026. Bagaimana nasib UMKM, katering lokal, dan tantangan anak sekolah saat Ramadan?
 - [MBG dan Koperasi Merah Putih: Infrastruktur Kekuasaan Berkedok Kesejahteraan](https://dalam.web.id/lainnya/mbg-dan-koperasi-merah-putih/) : Analisis kritis MBG dan Koperasi Merah Putih: benarkah program kesejahteraan atau sekadar infrastruktur kekuasaan? Dibedah dengan 5W+1H, bahasa santai, dan perspektif warga.
 - [Hoaks Mati Listrik Nasional dan Bisnis Ketakutan](https://dalam.web.id/lainnya/hoaks-mati-listrik-nasional/) : Isu mati listrik nasional selama tujuh hari kembali beredar. Artikel ini membedah hoaks, fakta teknis sistem kelistrikan Indonesia, serangan siber, dan praktik bisnis ketakutan secara rasional.
 - [Hutang Konsumtif Negara dan Dosa Antar Generasi](https://dalam.web.id/lainnya/hutang-konsumtif-dan-dosa-antar-generasi/) : Hutang negara bukan sekadar angka. Ia adalah beban masa depan generasi yang belum lahir. Analisis kritis hutang konsumtif, subsidi salah sasaran, dan dosa antar generasi.
@@ -426,6 +427,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi/) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨](https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/) : Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.
+- [Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash](https://dalam.web.id/sistem-terbuka/master-dashboard-monitor-linux-bash/) : Tutorial membuat script Master Dashboard untuk monitoring server Linux (Disk, RAM, Trafik Jaringan) secara real-time. Solusi praktis sysadmin untuk mengelola server tanpa ribet.
+- [Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol](https://dalam.web.id/sistem-terbuka/monitor-trafik-jaringan-linux-otomatis/) : Panduan lengkap membuat script monitoring bandwidth Linux. Deteksi lonjakan trafik mencurigakan, cegah DDoS, dan pantau penggunaan data secara real-time.
+- [RAM Server Sering Penuh? Rahasia Script Monitoring RAM Linux Otomatis](https://dalam.web.id/sistem-terbuka/script-monitor-ram-linux-otomatis/) : Cegah server down akibat Out of Memory (OOM). Panduan membuat script Bash untuk monitoring RAM Linux otomatis dengan notifikasi real-time. Tips sysadmin cerdas.
+- [Otomatisasi Monitoring Disk Linux: Script Bash Anti-Panik 100% Full](https://dalam.web.id/sistem-terbuka/script-otomatis-monitor-disk-linux/) : Jangan biarkan server mati mendadak! Pelajari cara membuat script otomatis untuk monitoring penggunaan disk Linux. Solusi cerdas pencegahan disk 100% full.
 - [Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula](https://dalam.web.id/sistem-terbuka/mengenal-linux-dan-floss/) : Panduan komprehensif memahami Linux, FLOSS, dan ekosistem open source. Pelajari sejarah, filosofi, dan bagaimana memilih distribusi Linux yang tepat untuk kebutuhan Anda.
 - [Linux Kernel 7 Segera Rilis: Apa Artinya Buat Kita? (Deep Dive 2026)](https://dalam.web.id/sistem-terbuka/linux-kernel-7-release/) : Kupas tuntas Linux Kernel 7 yang rilis 2026. Dari Rust, performa gaming, hingga dukungan AI. Penjelasan santai tapi teknis untuk pengguna desktop dan server.
 - [Review Lengkap Linux Mint 22.3 'Zena': Fitur Baru & Performa Cinnamon 6.6](https://dalam.web.id/sistem-terbuka/linux-mint-22-3-zena-cinnamon-6-6/) : Eksplorasi mendalam Linux Mint 22.3 Zena. Temukan fitur baru System Information Tool, update Nemo, hingga dukungan Warpinator IPv6 di Cinnamon 6.6.
