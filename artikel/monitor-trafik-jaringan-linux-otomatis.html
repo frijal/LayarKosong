@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol</title>
     <meta name="description" content="Panduan lengkap membuat script monitoring bandwidth Linux. Deteksi lonjakan trafik mencurigakan, cegah DDoS, dan pantau penggunaan data secara real-time.">
     <meta name="news_keywords" content="Monitor Bandwidth Linux, Script Trafik Jaringan, Deteksi DDoS, Network Monitoring Bash, Sysadmin Balikpapan, Layar Kosong, Keamanan Server">
-    <link rel="canonical" href="https://dalam.web.id/artikel/monitor-trafik-jaringan-linux-otomatis.html">
-    <meta name="author" content="Fakhrul Rijal">
+    
+    
     <meta name="prompt_hint" content="Artikel tutorial DevOps tentang monitoring jaringan Linux menggunakan Bash Script dan analisis trafik.">
 
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:title" content="Pantau Arus Data Server: Script Monitor Trafik Jaringan Linux! 🌐">
+    
+    
     <meta property="og:description" content="Server kamu tiba-tiba lemot? Jangan-jangan lagi kena sedot! Pakai script monitoring trafik ini biar tahu siapa yang makan bandwidth lo.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/monitor-trafik-jaringan-linux-otomatis.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/G_nX3-VbAAQRgXj.jpg">
-    <meta property="article:published_time" content="2026-01-27T08:00:00+07:00">
+    
+    
+    
+    
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:title" content="Deteksi DDoS Sejak Dini dengan Script Monitor Trafik Linux">
+    
+    
+    
     <meta name="twitter:description" content="Panduan bikin script monitor bandwidth otomatis. Jaga server tetap kencang, tagihan tetap aman. Cek di Layar Kosong!">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/G_nX3-VbAAQRgXj.jpg">
+    
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         :root {
@@ -123,6 +121,34 @@
             .article-content { font-size: 1.1rem; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/monitor-trafik-jaringan-linux-otomatis">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/monitor-trafik-jaringan-linux-otomatis">
+    <meta property="og:title" content="Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nX3-VbAAQRgXj.webp">
+    <meta property="og:image:alt" content="Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nX3-VbAAQRgXj.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nX3-VbAAQRgXj.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
@@ -134,6 +160,7 @@
             <span><i class="fas fa-map-marker-alt"></i> Balikpapan</span>
         </div>
         <h1>Siaga Satu Jaringan: Script Otomatis Pantau Bandwidth Biar Gak Kebobolan! 🌐</h1>
+<div id="iposbrowser"></div>
         <p style="font-size: 1.3rem; font-weight: 300; opacity: 0.9;">Deteksi serangan DDoS dan awasi penggunaan data server kamu secara real-time.</p>
     </header>
 
@@ -142,7 +169,7 @@
         <p>Halo sobat tech mania! Balik lagi bareng aku di <strong>Layar Kosong</strong>. Kita sudah bahas cara jaga Disk biar gak penuh dan RAM biar gak amnesia. Tapi ada satu pintu masuk yang sering banget luput dari perhatian kita: <strong>Network Interface</strong>. </p>
 
         <p>Bayangin server kamu itu kayak sebuah toko. Disk itu gudangnya, RAM itu meja kasirnya, dan Network itu adalah pintu masuknya. Kalau pintunya tiba-tiba diserbu ribuan orang nggak jelas (DDoS) atau ada karyawan kamu yang diem-diem ngangkutin barang lewat pintu belakang (data leak), kamu harus tahu secepat mungkin! Jangan nunggu sampai tagihan ISP atau penyedia Cloud kamu meledak di akhir bulan.</p>
-    <img src="https://pbs.twimg.com/media/G_nX3-VbAAQRgXj.jpg" alt="Linux Network Traffic Monitoring Visualization" class="featured-image">
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nX3-VbAAQRgXj.webp" alt="Linux Network Traffic Monitoring Visualization" class="featured-image">
 
         <h2>Apa Itu Monitoring Trafik Jaringan? ("What")</h2>
         <p>Monitoring trafik jaringan adalah proses mengamati jumlah data yang masuk (<em>Incoming/RX</em>) dan keluar (<em>Outgoing/TX</em>) dari server melalui antarmuka jaringan (seperti <code>eth0</code> atau <code>ens3</code>). Dalam Linux, semua data ini tercatat dengan rapi di dalam sistem file <code>/proc/net/dev</code> atau bisa diakses lewat statistik kernel.</p>
@@ -170,7 +197,7 @@
 
 # --- KONFIGURASI ---
 INTERFACE="eth0"               # Ganti dengan nama interface kamu (cek pake 'ip a')
-THRESHOLD_MBPS=50              # Notifikasi kalau trafik > 50 Mbps
+THRESHOLD_MBPS=50              # Notifikasi kalau trafik &gt; 50 Mbps
 INTERVAL=2                     # Jeda waktu hitung (detik)
 HOSTNAME=$(hostname)
 
@@ -233,7 +260,7 @@ fi</code></pre>
 
     <footer>
 
-        <p>&copy; 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan penuh tenaga dari Balikpapan untuk dunia IT yang lebih stabil.</p>
+        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan penuh tenaga dari Balikpapan untuk dunia IT yang lebih stabil.</p>
         <p style="font-size: 0.8rem; opacity: 0.6;">Traktir saya kopi via <a href="https://paypal.me/FakhrulRijal" style="color:var(--accent-color)">PayPal</a> agar server Layar Kosong tetap ngebut!</p>
             <div class="social-grid">
             <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -244,5 +271,9 @@ fi</code></pre>
         </footer>
 </div>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
