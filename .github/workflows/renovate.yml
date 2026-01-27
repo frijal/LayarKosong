@@ -17,7 +17,7 @@ jobs:
         with:
           path: /tmp/renovate/cache
           # Kunci ini akan berubah kalau config renovatemu berubah
-          key: ${{ runner.os }}-renovate-${{ hashFiles('renovate.json') }}
+          key: ${{ runner.os }}-renovate-${{ hashFiles('**/renovate.json5', '**/.renovaterc.json') }}
           restore-keys: |
             ${{ runner.os }}-renovate-
 
@@ -33,9 +33,10 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
           RENOVATE_REPOSITORY_CACHE: "enabled"
-          RENOVATE_CACHE_DIR: /tmp/renovate/cache
+          RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
           # Tambahan biar dia nggak bikin folder di tempat terlarang
           RENOVATE_BASE_DIR: /tmp/renovate
