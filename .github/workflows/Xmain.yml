@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # --- TRICK 1: DOCKER IMAGE CACHE (MANUAL) ---
       - name: Cache Renovate Docker Image
