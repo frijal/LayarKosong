@@ -26,7 +26,7 @@ jobs:
           sudo chmod -R 777 /tmp/renovate
 
       - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v44.2.5
+        uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5 # Pastikan filenya .json atau .json5 sesuai di folder
           token: ${{ secrets.RENOVATE_TOKEN }}
