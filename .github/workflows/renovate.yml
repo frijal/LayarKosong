@@ -34,12 +34,13 @@ jobs:
 
       # 3. Cache Data Renovate (JSON Cache) - Pakai Key Dinamis
       - name: Cache Renovate Data
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: /tmp/renovate/cache
-          key: renovate-data-${{ runner.os }}-${{ github.run_id }}
+          # Menggunakan prefix baru pilihan kamu
+          key: renovate-cache-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
-            renovate-data-${{ runner.os }}-
+            renovate-cache-${{ runner.os }}-
 
       # 4. Persiapan Folder & Izin Akses
       - name: Prepare Renovate Directories
