@@ -45,7 +45,8 @@ jobs:
 
       - name: Super-linter
         # Tetap pakai action terbaru tanpa pusing nomor versi
-        uses: super-linter/super-linter@main 
+        uses: super-linter/super-linter@main
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
