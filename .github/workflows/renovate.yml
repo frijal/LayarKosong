@@ -11,12 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
 
-      - name: Renovate Docker Image Cache
-        uses: jpribyl/action-docker-layer-caching@v0.1.1
-        with:
-          key: docker-renovate-${{ runner.os }}-v42 # v42 sesuai versi yang kamu pakai
-          # Simpan image renovatebot/renovate:42
-          images: 'ghcr.io/renovatebot/renovate:42'
+      # 1. Setup Docker Buildx (Ini kunci buat caching Docker)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       # 1. Setup Cache (Biar proses scan berikutnya super cepat)
       - name: Cache Renovate
@@ -24,7 +21,7 @@ jobs:
         with:
           path: /tmp/renovate/cache
           # Kunci ini akan berubah kalau config renovatemu berubah
-          key: ${{ runner.os }}-renovate-${{ hashFiles('**/renovate.json5', '**/.renovaterc.json') }}
+          key: ${{ runner.os }}-renovate-${{ hashFiles('**/renovate.json', '**/.renovaterc.json') }}
           restore-keys: |
             ${{ runner.os }}-renovate-
 
@@ -40,6 +37,7 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_REPOSITORY_CACHE_TYPE: "local" # Pakai penyimpanan lokal di runner
           RENOVATE_CACHE_DIR: /tmp/renovate/cache
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
@@ -47,3 +45,4 @@ jobs:
           RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
           # Tambahan biar dia nggak bikin folder di tempat terlarang
           RENOVATE_BASE_DIR: /tmp/renovate
+          RENOVATE_BINARY_SOURCE: "docker"
