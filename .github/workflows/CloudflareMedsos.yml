@@ -86,7 +86,7 @@ jobs:
 
       - name: 📦 Install Python Dependencies
         if: steps.check.outputs.need_python == 'true'
-        run: pip install -r requirements.txt
+        run: pip install -r mini/requirements.txt
 
       # =========================================================
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
