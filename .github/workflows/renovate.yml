@@ -14,30 +14,30 @@ jobs:
       # 1. Cache Docker Image (Pakai format .tzst)
       - name: Cache Renovate Docker Image
         id: cache-docker
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/renovate-image.tzst
-          key: docker-renovate-slim-v42 # Gunakan slim biar makin ngebut
+          # Kita ganti key-nya agar dia trigger pull baru sekali ini saja
+          key: renovate-cache-docker-42-slim
 
       # 2. Load/Pull dengan Zstd Parallel Compression
       - name: Load or Pull Renovate Image
         run: |
           if [ -f ~/renovate-image.tzst ]; then
-            echo "Decompressing and loading image with zstd..."
+            echo "Decompressing and loading image..."
             zstd -d -c -T0 ~/renovate-image.tzst | docker load
           else
-            echo "Cache miss, pulling and compressing image..."
-            docker pull ghcr.io/renovatebot/renovate:slim
-            # Simpan dengan level kompresi 3 (default) tapi parallel T0
-            docker save ghcr.io/renovatebot/renovate:slim | zstd -T0 -o ~/renovate-image.tzst
+            echo "Cache miss, pulling version 42-slim..."
+            # Pakai tag 42-slim biar dapet versi terbaru tapi tetep kecil
+            docker pull ghcr.io/renovatebot/renovate:42-slim
+            docker save ghcr.io/renovatebot/renovate:42-slim | zstd -T0 -o ~/renovate-image.tzst
           fi
 
       # 3. Cache Data Renovate (JSON Cache) - Pakai Key Dinamis
       - name: Cache Renovate Data
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: /tmp/renovate/cache
-          # Menggunakan prefix baru pilihan kamu
           key: renovate-cache-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
             renovate-cache-${{ runner.os }}-
@@ -56,7 +56,7 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
           # Pakai image yang sama dengan yang di-cache di atas
           renovate-image: ghcr.io/renovatebot/renovate
-          renovate-version: slim 
+          renovate-version: 42-slim 
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_BASE_DIR: /tmp/renovate
