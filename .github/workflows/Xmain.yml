@@ -32,10 +32,9 @@ jobs:
       - name: Cache Renovate Data
         uses: actions/cache@v5
         with:
+          # Pakai path absolut agar tidak bingung dengan folder repo
           path: /tmp/renovate/cache
-          # Tambahkan run_id atau timestamp agar key-nya selalu baru saat 'save'
           key: renovate-data-${{ runner.os }}-${{ github.run_id }}
-          # Tapi tetap bisa ambil data lama pakai restore-keys
           restore-keys: |
             renovate-data-${{ runner.os }}-
 
