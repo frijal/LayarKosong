@@ -48,7 +48,7 @@ jobs:
         uses: super-linter/super-linter@main 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           # Konfigurasi linter
           VALIDATE_HTML_PRETTIER: true
           VALIDATE_CSS_PRETTIER: true
