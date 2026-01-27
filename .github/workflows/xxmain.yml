@@ -67,7 +67,7 @@ jobs:
       # --- 2. SETUP NODE.JS (Hanya jika need_node=true) ---
       - name: 🏗️ Setup Node.js
         if: steps.check.outputs.need_node == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: 'npm'
