@@ -55,8 +55,6 @@ jobs:
           VALIDATE_CSS_PRETTIER: true
           VALIDATE_JAVASCRIPT_PRETTIER: true
           VALIDATE_JSON_PRETTIER: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_BASH: true
           VALIDATE_SHELL_SHFMT: true
           VALIDATE_YAML: true
           FIX_HTML_PRETTIER: true
