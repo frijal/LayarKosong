@@ -18,7 +18,7 @@ jobs:
         with:
           path: ~/renovate-image.tzst
           # Kita ganti key-nya agar dia trigger pull baru sekali ini saja
-          key: renovate-cache-docker-slim
+          key: renovate-cache-docker
 
       # 2. Load/Pull dengan Zstd Parallel Compression
       - name: Load or Pull Renovate Image
@@ -27,10 +27,10 @@ jobs:
             echo "Decompressing and loading image..."
             zstd -d -c -T0 ~/renovate-image.tzst | docker load
           else
-            echo "Cache miss, pulling latest slim version..."
-            # Pakai 'slim' - ini tag resmi yang paling stabil & kecil
-            docker pull ghcr.io/renovatebot/renovate:slim
-            docker save ghcr.io/renovatebot/renovate:slim | zstd -T0 -o ~/renovate-image.tzst
+            echo "Cache miss, pulling version 42 full..."
+            # Pakai tag 42 (ini versi full yang paling update)
+            docker pull ghcr.io/renovatebot/renovate:42
+            docker save ghcr.io/renovatebot/renovate:42 | zstd -T0 -o ~/renovate-image.tzst
           fi
 
       # 3. Cache Data Renovate (JSON Cache) - Pakai Key Dinamis
@@ -54,9 +54,9 @@ jobs:
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
-          # Pakai image yang sama dengan yang di-cache di atas
+          # Pastikan menunjuk ke image full
           renovate-image: ghcr.io/renovatebot/renovate
-          renovate-version: slim 
+          renovate-version: 42
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_BASE_DIR: /tmp/renovate
