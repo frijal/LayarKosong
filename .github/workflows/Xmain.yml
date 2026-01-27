@@ -1,0 +1,54 @@
+name: Renovate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *' # Jalan tiap jam 2 pagi
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # --- TRICK 1: DOCKER IMAGE CACHE (MANUAL) ---
+      - name: Cache Renovate Docker Image
+        id: cache-docker
+        uses: actions/cache@v4
+        with:
+          path: ~/renovate-image.tar
+          key: docker-renovate-v42
+
+      - name: Load/Pull Docker Image
+        run: |
+          if [ -f ~/renovate-image.tar ]; then
+            docker load -i ~/renovate-image.tar
+          else
+            docker pull ghcr.io/renovatebot/renovate:42
+            docker save ghcr.io/renovatebot/renovate:42 -o ~/renovate-image.tar
+          fi
+
+      # --- TRICK 2: REPOSITORY CACHE (JSON) ---
+      - name: Cache Renovate Data
+        uses: actions/cache@v4
+        with:
+          path: /tmp/renovate/cache
+          key: renovate-data-${{ runner.os }}-${{ hashFiles('**/renovate.json') }}
+          restore-keys: renovate-data-${{ runner.os }}-
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v44.2.6
+        with:
+          configurationFile: mini/renovate.json5
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          # Mengaktifkan fitur dari dokumen yang kamu temukan
+          RENOVATE_REPOSITORY_CACHE: "enabled"
+          RENOVATE_REPOSITORY_CACHE_TYPE: "local"
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
+          
+          # Otomatis handle kredensial ghcr.io (Experimental tapi berguna)
+          RENOVATE_X_GITHUB_HOST_RULES: "true"
+          
+          # Informasi repo
+          REPOSITORIES: ${{ github.repository }}
