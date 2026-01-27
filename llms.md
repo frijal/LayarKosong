@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 10.6
+document_version: 10.7
 last_updated: 2026-01-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 27 January 2026)
-> Menampilkan 823 artikel yang berhasil diindeks dalam versi 10.6.
+> Menampilkan 826 artikel yang berhasil diindeks dalam versi 10.7.
 ## Gaya Hidup
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu/) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/gaya-hidup/panduan-pengasuhan-sains/) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
@@ -427,6 +427,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi/) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [CachyOS 2026: Era Baru Wayland dan Plasma Login Manager di Arch Linux](https://dalam.web.id/sistem-terbuka/cachyos-2026-update-wayland-plasma/) : Review mendalam rilis CachyOS Januari 2026. Transisi besar ke Wayland, Plasma Login Manager, dan optimasi performa Arch Linux untuk gaming.
+- [Emmabuntüs DE 6: Review Lengkap Linux Berhati Mulia untuk Lawan Limbah Elektronik](https://dalam.web.id/sistem-terbuka/emmabuntus-de-6-review-linux-etika/) : Emmabuntüs DE 6 hadir dengan basis Debian 13 Trixie. Simak review mendalam distro Linux yang fokus pada etika, daur ulang komputer lama, dan aksesibilitas luar biasa.
+- [GNOME dan Firefox Mau Matikan Middle Click Paste? Akhir Era X11 "Dumpster Fire"](https://dalam.web.id/sistem-terbuka/gnome-firefox-middle-click-paste/) : Rencana GNOME dan Firefox menonaktifkan fitur Middle-Click Paste secara default memicu perdebatan. Apakah ini langkah maju atau penghianatan terhadap tradisi Linux? Simak analisis lengkapnya.
 - [Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch](https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/) : Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang.
 - [Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨](https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/) : Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.
 - [Master Dashboard Monitor Linux: Disk, RAM, dan Network dalam Satu Script Bash](https://dalam.web.id/sistem-terbuka/master-dashboard-monitor-linux-bash/) : Tutorial membuat script Master Dashboard untuk monitoring server Linux (Disk, RAM, Trafik Jaringan) secara real-time. Solusi praktis sysadmin untuk mengelola server tanpa ribet.
