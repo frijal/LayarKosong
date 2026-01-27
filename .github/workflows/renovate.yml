@@ -17,7 +17,7 @@ jobs:
 
       # 1. Setup Cache (Biar proses scan berikutnya super cepat)
       - name: Cache Renovate
-        uses: actions/cache@v5.0.2
+        uses: actions/cache@v4
         with:
           path: /tmp/renovate/cache
           # Kunci ini akan berubah kalau config renovatemu berubah
