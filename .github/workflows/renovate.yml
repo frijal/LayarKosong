@@ -16,9 +16,11 @@ jobs:
         uses: actions/cache@v5.0.2
         with:
           path: /tmp/renovate/cache
-          key: renovate-cache-${{ github.run_id }}
+          # Gunakan OS sebagai key agar konsisten
+          key: ${{ runner.os }}-renovate-${{ hashFiles('**/package.json', '**/renovate.json') }}
+          # Restore keys akan mencari cache terbaru yang awalan namanya sama
           restore-keys: |
-            renovate-cache-
+            ${{ runner.os }}-renovate-
 
       - name: Perbaiki Izin Folder Cache
         run: |
