@@ -67,3 +67,77 @@ jobs:
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
           RENOVATE_BINARY_SOURCE: "docker"
+
+      # =========================================================
+      # 6. ULTIMATE AUDIT REPOSITORY (With Auto-Cleanup Suggester)
+      # =========================================================
+      - name: 🔍 Run Ultimate Global Audit
+        run: |
+          TARGET_DIR="ext"
+          REPORT_FILE="mini/unused-package.txt"
+          CLEANUP_SCRIPT="mini/auto_cleanup.sh"
+          
+          echo "🔎 Memulai Ultimate GLOBAL Audit..."
+          echo "--------------------------------------------------" > $REPORT_FILE
+          echo "LAPORAN AUDIT TOTAL ($(date))" >> $REPORT_FILE
+          echo "--------------------------------------------------" >> $REPORT_FILE
+
+          # Siapkan file cleanup script
+          echo "#!/bin/bash" > $CLEANUP_SCRIPT
+          echo "# Perintah pembersihan otomatis hasil audit $(date)" >> $CLEANUP_SCRIPT
+          echo "echo '🧹 Memulai pembersihan repository...'" >> $CLEANUP_SCRIPT
+
+          UNUSED_FILES=0
+          UNUSED_DEPS_LIST=""
+
+          # --- BAGIAN 1: AUDIT FILE FISIK ---
+          echo -e "\n--- [1] DAFTAR FILE TIDAK TERPAKAI ---" >> $REPORT_FILE
+          FILES=$(find "$TARGET_DIR" -type f \( -name "*.css" -o -name "*.js" -o -name "*.py" \))
+
+          for FILEPATH in $FILES; do
+              FILENAME=$(basename "$FILEPATH")
+              SEARCH_RESULT=$(grep -r "$FILENAME" . \
+                  --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir="$TARGET_DIR" --exclude-dir="mini" 2>/dev/null)
+
+              if [ -z "$SEARCH_RESULT" ]; then
+                  echo "- Jalur: $FILEPATH" >> $REPORT_FILE
+                  echo "rm \"$FILEPATH\"" >> $CLEANUP_SCRIPT
+                  ((UNUSED_FILES++))
+              fi
+          done
+
+          # --- BAGIAN 2: AUDIT PACKAGE.JSON ---
+          if [ -f "package.json" ]; then
+              echo -e "\n--- [2] DAFTAR DEPENDENCIES TIDAK TERPAKAI ---" >> $REPORT_FILE
+              DEPS=$(jq -r '.dependencies | keys[]' package.json 2>/dev/null)
+              if [ -n "$DEPS" ]; then
+                  for DEP in $DEPS; do
+                      SEARCH_DEP=$(grep -rE "require\(['\"]$DEP['\"]\)|from\s+['\"]$DEP['\"]" . \
+                          --include="*.js" --exclude-dir=".git" --exclude-dir="node_modules" --exclude="package.json" 2>/dev/null)
+                      
+                      if [ -z "$SEARCH_DEP" ]; then
+                          echo "- Package: $DEP" >> $REPORT_FILE
+                          UNUSED_DEPS_LIST="$UNUSED_DEPS_LIST $DEP"
+                      fi
+                  done
+              fi
+          fi
+
+          # Tambahkan perintah uninstall ke cleanup script jika ada
+          if [ ! -z "$UNUSED_DEPS_LIST" ]; then
+              echo "npm uninstall $UNUSED_DEPS_LIST" >> $CLEANUP_SCRIPT
+          fi
+
+          echo "echo '✅ Pembersihan selesai!'" >> $CLEANUP_SCRIPT
+          chmod +x $CLEANUP_SCRIPT
+
+          # Cetak ringkasan di laporan
+          echo -e "\n--------------------------------------------------" >> $REPORT_FILE
+          echo "📊 RINGKASAN AUDIT:" >> $REPORT_FILE
+          echo "- File bisa dihapus: $UNUSED_FILES" >> $REPORT_FILE
+          echo "- Package bisa di-uninstall: ${UNUSED_DEPS_LIST:-0}" >> $REPORT_FILE
+          echo "--------------------------------------------------" >> $REPORT_FILE
+          echo "💡 CARA MEMBERSIHKAN:" >> $REPORT_FILE
+          echo "Jalankan perintah: bash mini/auto_cleanup.sh" >> $REPORT_FILE
+          
+          cat $REPORT_FILE
