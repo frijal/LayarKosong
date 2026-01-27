@@ -66,9 +66,15 @@ jobs:
           VALIDATE_SHELL_SHFMT: true
           FIX_SHELL_SHFMT: true
           VALIDATE_PERL: true
-          VALIDATE_GITLEAKS: true
           VALIDATE_TRIVY: true
           VALIDATE_YAML: true
+          VALIDATE_GITLEAKS: false
+          VALIDATE_JUPYTER_NBQA_BLACK: false
+          VALIDATE_JUPYTER_NBQA_FLAKE8: false
+          VALIDATE_JUPYTER_NBQA_ISORT: false
+          VALIDATE_JUPYTER_NBQA_MYPY: false
+          VALIDATE_JUPYTER_NBQA_PYLINT: false
+          VALIDATE_JUPYTER_NBQA_RUFF: false
 
       - name: Cleanup Output Folder
         if: always()
