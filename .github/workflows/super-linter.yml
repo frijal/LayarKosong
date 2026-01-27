@@ -18,12 +18,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4 # Gunakan v4 yang stabil
         with:
           fetch-depth: 0
-          # Penting: jangan pakai persist-credentials false kalau mau buat PR
 
-    # --- BAGIAN CACHE MULAI DISINI ---
+      # --- BAGIAN CACHE MULAI DISINI ---
       - name: Cache Super-Linter Docker Image
         uses: actions/cache@v4
         with:
@@ -32,14 +31,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-super-linter-
       # ---------------------------------
-          
+
       - name: Super-linter
         uses: super-linter/super-linter@v8.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
-          
-          # --- PRETTIER (Frontend & Docs) ---
+          # Konfigurasi linter tetap sama...
           VALIDATE_HTML_PRETTIER: true
           VALIDATE_CSS_PRETTIER: true
           VALIDATE_JAVASCRIPT_PRETTIER: true
@@ -49,40 +47,29 @@ jobs:
           FIX_CSS_PRETTIER: true
           FIX_JAVASCRIPT_PRETTIER: true
           FIX_JSON_PRETTIER: true
-
-          # --- PYTHON (Menggunakan Black/Ruff untuk Auto-Fix) ---
           VALIDATE_PYTHON_BLACK: true
           FIX_PYTHON_BLACK: true
-          # Ruff itu linter Python yang sangat teliti
           VALIDATE_PYTHON_RUFF: true
-
-          # --- SHELL & BASH ---
           VALIDATE_BASH: true
           VALIDATE_SHELL_SHFMT: true
           FIX_SHELL_SHFMT: true
-
-          # --- PERL ---
           VALIDATE_PERL: true
-
-          # --- KEAMANAN & LAINNYA ---
           VALIDATE_GITLEAKS: true
           VALIDATE_TRIVY: true
           VALIDATE_YAML: true
 
-      # --- TAMBAHKAN LANGKAH INI ---
       - name: Cleanup Output Folder
         if: always()
         run: sudo rm -rf super-linter-output
-      # -----------------------------
 
       - name: Create Pull Request with Fixes
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: auto-format code with Super-Linter"
           title: "🤖 Auto-fix: Linting & Formatting"
-          body: |
-            Halo! Saya menemukan beberapa file yang formatnya kurang rapi dan sudah saya perbaiki secara otomatis.
+          body: "Halo! Saya merapikan kode secara otomatis."
           branch: super-linter-fixes
           base: main
           delete-branch: true
+
