@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Gunakan v4 yang stabil
+        uses: actions/checkout@v6 # Gunakan v4 yang stabil
         with:
           fetch-depth: 0
 
