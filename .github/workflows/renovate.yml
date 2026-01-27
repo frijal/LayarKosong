@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v6.0.2
 
       - name: Renovate Docker Image Cache
-        uses: jpribyl/action-docker-cache@v4
+        uses: jpribyl/action-docker-layer-caching@v0.1.1
         with:
           key: docker-renovate-${{ runner.os }}-v42 # v42 sesuai versi yang kamu pakai
           # Simpan image renovatebot/renovate:42
