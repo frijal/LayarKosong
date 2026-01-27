@@ -201,7 +201,7 @@ function exportToJson() {
 }
 async function loadJson() {
   try {
-    const res = await fetch('/ext/bookmark.json?v=' + Date.now());
+    const res = await fetch('/artikel/bookmark.json?v=' + Date.now());
     if (!res.ok) throw new Error();
     db = await res.json();
     render();
