@@ -1,10 +1,9 @@
 name: Lint and Fix
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 17 28 * *'
 
 permissions:
   contents: write
