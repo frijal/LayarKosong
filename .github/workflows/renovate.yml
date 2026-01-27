@@ -97,8 +97,7 @@ jobs:
           for FILEPATH in $FILES; do
               FILENAME=$(basename "$FILEPATH")
               SEARCH_RESULT=$(grep -r "$FILENAME" . \
-                  --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir="$TARGET_DIR" --exclude-dir="mini" 2>/dev/null)
-
+              --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir="$TARGET_DIR" --exclude-dir="mini" 2>/dev/null || true)
               if [ -z "$SEARCH_RESULT" ]; then
                   echo "- Jalur: $FILEPATH" >> $REPORT_FILE
                   echo "rm \"$FILEPATH\"" >> $CLEANUP_SCRIPT
@@ -113,8 +112,7 @@ jobs:
               if [ -n "$DEPS" ]; then
                   for DEP in $DEPS; do
                       SEARCH_DEP=$(grep -rE "require\(['\"]$DEP['\"]\)|from\s+['\"]$DEP['\"]" . \
-                          --include="*.js" --exclude-dir=".git" --exclude-dir="node_modules" --exclude="package.json" 2>/dev/null)
-                      
+                      --include="*.js" --exclude-dir=".git" --exclude-dir="node_modules" --exclude="package.json" 2>/dev/null || true)                      
                       if [ -z "$SEARCH_DEP" ]; then
                           echo "- Package: $DEP" >> $REPORT_FILE
                           UNUSED_DEPS_LIST="$UNUSED_DEPS_LIST $DEP"
