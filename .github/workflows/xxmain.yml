@@ -79,7 +79,7 @@ jobs:
       # --- 3. SETUP PYTHON (Hanya jika need_python=true) ---
       - name: 🏗️ Setup Python
         if: steps.check.outputs.need_python == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
           cache: 'pip'
