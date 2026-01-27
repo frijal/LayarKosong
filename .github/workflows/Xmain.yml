@@ -28,6 +28,13 @@ jobs:
             docker save ghcr.io/renovatebot/renovate:42 -o ~/renovate-image.tar
           fi
 
+      - name: Prepare Renovate Directories
+        run: |
+          # Buat folder tanpa sudo jika memungkinkan, atau chmod setelahnya
+          sudo mkdir -p /tmp/renovate/cache /tmp/renovate/repos
+          # Ini kuncinya: 777 memastikan user 1000 (Docker) bisa nulis di sini
+          sudo chmod -R 777 /tmp/renovate
+
       # --- TRICK 2: REPOSITORY CACHE (JSON) ---
       - name: Cache Renovate Data
         uses: actions/cache@v5
@@ -42,18 +49,12 @@ jobs:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
-          # Pastikan variabel ini benar namanya (REPOSITORIES)
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          
-          # Cache tetap di /tmp agar bisa kita simpan lewat actions/cache
+          # Arahkan base dir ke folder yang sudah kita chmod 777 tadi
+          RENOVATE_BASE_DIR: /tmp/renovate
           RENOVATE_CACHE_DIR: /tmp/renovate/cache
           RENOVATE_REPOSITORY_CACHE: "enabled"
           RENOVATE_REPOSITORY_CACHE_TYPE: "local"
-
-          # HAPUS RENOVATE_BASE_DIR atau set ke default agar dia bisa nemu repo hasil checkout
-          # RENOVATE_BASE_DIR: /tmp/renovate <--- Hapus baris ini
-
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-          RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
           RENOVATE_BINARY_SOURCE: "docker"
