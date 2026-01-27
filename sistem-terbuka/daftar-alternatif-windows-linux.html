@@ -1,263 +1,437 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)</title>
-    <meta name="description" content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.">
-    <meta name="keywords" content="alternatif software, open source, gratis, tabel software, perbandingan software, GIMP, Inkscape, LibreOffice, Blender, free software">
+<!doctype html>
+<html
+  lang="id"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)
+    </title>
+    <meta
+      name="description"
+      content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya."
+    />
+    <meta
+      name="keywords"
+      content="alternatif software, open source, gratis, tabel software, perbandingan software, GIMP, Inkscape, LibreOffice, Blender, free software"
+    />
     <style>
-        /* Menggunakan font dari Google Fonts biar lebih cakep */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --primary-text-color: #e0e0e0;
-            --secondary-text-color: #a0a0a0;
-            --accent-color: #03dac6;
-            --border-color: #333333;
+      /* Menggunakan font dari Google Fonts biar lebih cakep */
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+      :root {
+        --bg-color: #121212;
+        --surface-color: #1e1e1e;
+        --primary-text-color: #e0e0e0;
+        --secondary-text-color: #a0a0a0;
+        --accent-color: #03dac6;
+        --border-color: #333333;
+      }
+      /* Reset dasar & pengaturan global */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--bg-color);
+        color: var(--primary-text-color);
+        font-family: "Inter", sans-serif;
+        line-height: 1.7;
+        font-size: 16px;
+      }
+      /* Kontainer utama */
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+      /* Header */
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 2rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        margin-top: 3rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+        color: #ffffff;
+      }
+      .intro {
+        font-size: 1.1rem;
+        color: var(--secondary-text-color);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+      strong {
+        color: #ffffff;
+      }
+      /* Styling untuk Tabel Software */
+      .table-container {
+        overflow-x: auto; /* Penting untuk responsif di mobile */
+        -webkit-overflow-scrolling: touch;
+      }
+      .software-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+      }
+      .software-table th,
+      .software-table td {
+        padding: 0.9rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .software-table thead {
+        background-color: #2a2a2a;
+      }
+      .software-table th {
+        color: #ffffff;
+        font-weight: bold;
+      }
+      .software-table tbody tr:nth-child(even) {
+        background-color: var(--surface-color);
+      }
+      .software-table tbody tr:hover {
+        background-color: #2c2c2c;
+      }
+      /* CSS BARU: Mengatur pemotongan kata pada URL yang panjang */
+      .software-table td:nth-child(3) a {
+        word-break: break-all;
+      }
+      /* Styling untuk bagian lainnya tetap sama */
+      /* Galeri Foto */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+      .gallery-grid img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          filter 0.3s ease;
+        border: 2px solid var(--border-color);
+      }
+      .gallery-grid img:hover {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+      }
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 80%;
+        animation: zoomIn 0.5s;
+      }
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.8);
         }
-        /* Reset dasar & pengaturan global */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        to {
+          transform: scale(1);
         }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--primary-text-color);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            font-size: 16px;
-        }
-        /* Kontainer utama */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-        }
+      }
+      .lightbox-close,
+      .lightbox-prev,
+      .lightbox-next {
+        position: absolute;
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+        transition: color 0.3s ease;
+      }
+      .lightbox-close:hover,
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        color: var(--accent-color);
+      }
+      .lightbox-close {
+        top: 20px;
+        right: 35px;
+      }
+      .lightbox-prev,
+      .lightbox-next {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .lightbox-prev {
+        left: 20px;
+      }
+      .lightbox-next {
+        right: 20px;
+      }
+      /* Ikon Berbagi */
+      .share-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .share-btn {
+        font-size: 1.5rem;
+        color: var(--secondary-text-color);
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+      }
+      .share-btn:hover {
+        transform: scale(1.2);
+        color: #ffffff;
+      }
+      /* Footer */
+      footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        color: var(--secondary-text-color);
+      }
+      /* Media Queries untuk Responsif */
+      @media (max-width: 768px) {
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
+          font-size: 2rem;
         }
         h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            margin-top: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            color: #ffffff;
+          font-size: 1.5rem;
         }
-        .intro {
-            font-size: 1.1rem;
-            color: var(--secondary-text-color);
-            max-width: 700px;
-            margin: 0 auto;
+        body {
+          font-size: 15px;
         }
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .container {
+          padding: 1.5rem 1rem;
         }
-        a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        strong {
-            color: #ffffff;
-        }
-        /* Styling untuk Tabel Software */
-        .table-container {
-            overflow-x: auto; /* Penting untuk responsif di mobile */
-            -webkit-overflow-scrolling: touch;
-        }
-        .software-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-        }
-        .software-table th, .software-table td {
-            padding: 0.9rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .software-table thead {
-            background-color: #2a2a2a;
-        }
-        .software-table th {
-            color: #ffffff;
-            font-weight: bold;
-        }
-        .software-table tbody tr:nth-child(even) {
-            background-color: var(--surface-color);
-        }
-        .software-table tbody tr:hover {
-            background-color: #2c2c2c;
-        }
-        /* CSS BARU: Mengatur pemotongan kata pada URL yang panjang */
-        .software-table td:nth-child(3) a {
-            word-break: break-all;
-        }
-        /* Styling untuk bagian lainnya tetap sama */
-        /* Galeri Foto */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            border: 2px solid var(--border-color);
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
-        }
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox.active {
-            display: flex;
-        }
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-            animation: zoomIn 0.5s;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); }
-            to { transform: scale(1); }
-        }
-        .lightbox-close, .lightbox-prev, .lightbox-next {
-            position: absolute;
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
-            transition: color 0.3s ease;
-        }
-        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
-            color: var(--accent-color);
-        }
-        .lightbox-close { top: 20px; right: 35px; }
-        .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        /* Ikon Berbagi */
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .share-btn {
-            font-size: 1.5rem;
-            color: var(--secondary-text-color);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        .share-btn:hover {
-            transform: scale(1.2);
-            color: #ffffff;
-        }
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--secondary-text-color);
-        }
-        /* Media Queries untuk Responsif */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            body { font-size: 15px; }
-            .container { padding: 1.5rem 1rem; }
-        }
+      }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<meta name="ai:summary" content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.">
-<meta name="ai:prompt_hint" content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)","description":"Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.","articleSection":"Sistem Terbuka","keywords":"alternatif, daftar, gratis, layar kosong, lengkap, linux, open, sistem terbuka, software, source, tabel, versi, windows","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/daftar-alternatif-windows-linux.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-06-04T18:15:06.387+00:00","dateModified":"2025-06-04T18:15:06.387+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)","item":"https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"}]}]}</script>
-    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/">
-    <meta property="og:title" content="Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)">
-    <meta property="og:description" content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp">
-    <meta property="og:image:alt" content="Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp">
-</head>
-<body>
+    <link rel="stylesheet" href="/ext/marquee-url.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="30 artikel baru bikin."
+      href="https://dalam.web.id/rss.xml"
+    />
+    <meta
+      name="ai:summary"
+      content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya."
+    />
+    <meta
+      name="ai:prompt_hint"
+      content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dalam.web.id/#website",
+            "url": "https://dalam.web.id/",
+            "name": "Layar Kosong",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://dalam.web.id/#organization",
+              "name": "Layar Kosong",
+              "url": "https://dalam.web.id",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dalam.web.id/logo.png",
+                "width": 384,
+                "height": 384
+              }
+            }
+          },
+          {
+            "@type": "Article",
+            "@id": "https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/#article",
+            "isPartOf": { "@id": "https://dalam.web.id/#website" },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"
+            },
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "headline": "Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)",
+            "description": "Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya.",
+            "articleSection": "Sistem Terbuka",
+            "keywords": "alternatif, daftar, gratis, layar kosong, lengkap, linux, open, sistem terbuka, software, source, tabel, versi, windows",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://dalam.web.id/img/daftar-alternatif-windows-linux.webp",
+              "width": 1200,
+              "height": 675
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Fakhrul Rijal",
+              "url": "https://dalam.web.id/about"
+            },
+            "publisher": { "@id": "https://dalam.web.id/#organization" },
+            "datePublished": "2025-06-04T18:15:06.387+00:00",
+            "dateModified": "2025-06-04T18:15:06.387+00:00"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Beranda",
+                "item": "https://dalam.web.id/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sistem Terbuka",
+                "item": "https://dalam.web.id/sistem-terbuka/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)",
+                "item": "https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link
+      rel="canonical"
+      href="https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="license"
+      href="https://creativecommons.org/publicdomain/zero/1.0/"
+    />
+    <meta name="author" content="Fakhrul Rijal" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="max-image-preview:large" />
+    <meta name="theme-color" content="#00b0ed" />
+    <meta name="fediverse:creator" content="@frijal@mastodon.social" />
+    <meta name="twitter:creator" content="@responaja" />
+    <meta name="bluesky:creator" content="@dalam.web.id" />
+    <meta property="og:site_name" content="Layar Kosong" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://dalam.web.id/sistem-terbuka/daftar-alternatif-windows-linux/"
+    />
+    <meta
+      property="og:title"
+      content="Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)"
+    />
+    <meta
+      property="og:description"
+      content="Nggak perlu bajakan! Temukan daftar lengkap alternatif software gratis dan open source dalam tabel perbandingan untuk menggantikan aplikasi populer seperti Adobe Photoshop, Microsoft Office, dan lainnya."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@responaja" />
+    <meta property="fb:app_id" content="175216696195384" />
+    <meta property="article:author" content="https://facebook.com/frijal" />
+    <meta
+      property="article:publisher"
+      content="https://facebook.com/frijalpage"
+    />
+    <meta
+      property="og:image"
+      content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      name="twitter:image"
+      content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp"
+    />
+    <meta
+      itemprop="image"
+      content="https://dalam.web.id/img/daftar-alternatif-windows-linux.webp"
+    />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>📋 Alternatif Software Open Source: Gratis, Legal, dan Keren!</h1>
-<div id="iposbrowser"></div>
-            <p class="intro">Sering pusing lihat harga software ori yang selangit? Atau malah pakai versi pak tani? Tenang! Dunia <strong>open source</strong> nawarin banyak aplikasi keren pengganti software populer. Yuk, kita lihat tabel lengkapnya di bawah ini!</p>
-        </header>
-        <main>
-             <h2>Tabel Perbandingan Software</h2>
-             <div class="table-container" id="software-table-container">
-                 </div><div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-    </main>
-                        <div id="lightbox" class="lightbox">
-            <span class="lightbox-close">×</span>
-            <img class="lightbox-content" id="lightbox-img" alt="Gambar - Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)">
-            <a class="lightbox-prev">❮</a>
-            <a class="lightbox-next">❯</a>
-        </div>
+      <header>
+        <h1>📋 Alternatif Software Open Source: Gratis, Legal, dan Keren!</h1>
+        <div id="iposbrowser"></div>
+        <p class="intro">
+          Sering pusing lihat harga software ori yang selangit? Atau malah pakai
+          versi pak tani? Tenang! Dunia <strong>open source</strong> nawarin
+          banyak aplikasi keren pengganti software populer. Yuk, kita lihat
+          tabel lengkapnya di bawah ini!
+        </p>
+      </header>
+      <main>
+        <h2>Tabel Perbandingan Software</h2>
+        <div class="table-container" id="software-table-container"></div>
+        <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+      </main>
+      <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <img
+          class="lightbox-content"
+          id="lightbox-img"
+          alt="Gambar - Daftar Lengkap Alternatif Software Open Source Gratis (Versi Tabel)"
+        />
+        <a class="lightbox-prev">❮</a>
+        <a class="lightbox-next">❯</a>
+      </div>
     </div>
     <footer>
-        <p>🄯 2025 - Dibuat dengan semangat 🐧 open source.</p>
+      <p>🄯 2025 - Dibuat dengan semangat 🐧 open source.</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Data Software ---
-            const softwareDataRaw = `
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Data Software ---
+        const softwareDataRaw = `
                 3D Home Architect | Sweet Home 3D | http://sweethome3d.sourceforge.net/index.html
                 3D Studio Max | Art of Illusion | http://www.artofillusion.org
                 3D Studio Max | Blender | http://www.blender.org
@@ -511,10 +685,10 @@
                 ZoneAlarm | Guarddog | http://www.simonzone.com/software/guarddog
                 Zscreen | Shutter | http://shutter-project.org
             `;
-            // --- Fungsi untuk memproses dan menampilkan tabel software ---
-            function renderSoftwareTable() {
-                const lines = softwareDataRaw.trim().split('\n');
-                let tableHTML = `
+        // --- Fungsi untuk memproses dan menampilkan tabel software ---
+        function renderSoftwareTable() {
+          const lines = softwareDataRaw.trim().split("\n");
+          let tableHTML = `
                     <table class="software-table">
                         <thead>
                             <tr>
@@ -525,69 +699,92 @@
                         </thead>
                         <tbody>
                 `;
-                lines.forEach(line => {
-                    const parts = line.split('|').map(part => part.trim());
-                    if (parts.length === 3) {
-                        const [commercial, alternative, url] = parts;
-                        tableHTML += `
+          lines.forEach((line) => {
+            const parts = line.split("|").map((part) => part.trim());
+            if (parts.length === 3) {
+              const [commercial, alternative, url] = parts;
+              tableHTML += `
                             <tr>
                                 <td>${commercial}</td>
                                 <td><strong>${alternative}</strong></td>
                                 <td><a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a></td>
                             </tr>
                         `;
-                    }
-                });
-                tableHTML += `</tbody></table>`;
-                const container = document.getElementById('software-table-container');
-                container.innerHTML = tableHTML;
             }
-            // --- Fungsi untuk Lightbox Galeri (tidak berubah) ---
-            function setupLightbox() {
-                const lightbox = document.getElementById('lightbox');
-                if (!lightbox) return;
-                const lightboxImg = document.getElementById('lightbox-img');
-                const galleryImages = document.querySelectorAll('.gallery-grid img');
-                const closeBtn = document.querySelector('.lightbox-close');
-                const prevBtn = document.querySelector('.lightbox-prev');
-                const nextBtn = document.querySelector('.lightbox-next');
-                let currentIndex;
-                const imageSources = Array.from(galleryImages).map(img => img.src);
-                const showImage = (index) => {
-                    if (index < 0) index = imageSources.length - 1;
-                    if (index >= imageSources.length) index = 0;
-                    lightboxImg.src = imageSources[index];
-                    currentIndex = index;
-                };
-                galleryImages.forEach((img, index) => {
-                    img.addEventListener('click', () => {
-                        lightbox.classList.add('active');
-                        showImage(index);
-                    });
-                });
-                closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
-                lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) {
-                        lightbox.classList.remove('active');
-                    }
-                });
-                prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
-                nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
-                document.addEventListener('keydown', (e) => {
-                    if (lightbox.classList.contains('active')) {
-                        if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-                        if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-                        if (e.key === 'Escape') lightbox.classList.remove('active');
-                    }
-                });
+          });
+          tableHTML += `</tbody></table>`;
+          const container = document.getElementById("software-table-container");
+          container.innerHTML = tableHTML;
+        }
+        // --- Fungsi untuk Lightbox Galeri (tidak berubah) ---
+        function setupLightbox() {
+          const lightbox = document.getElementById("lightbox");
+          if (!lightbox) return;
+          const lightboxImg = document.getElementById("lightbox-img");
+          const galleryImages = document.querySelectorAll(".gallery-grid img");
+          const closeBtn = document.querySelector(".lightbox-close");
+          const prevBtn = document.querySelector(".lightbox-prev");
+          const nextBtn = document.querySelector(".lightbox-next");
+          let currentIndex;
+          const imageSources = Array.from(galleryImages).map((img) => img.src);
+          const showImage = (index) => {
+            if (index < 0) index = imageSources.length - 1;
+            if (index >= imageSources.length) index = 0;
+            lightboxImg.src = imageSources[index];
+            currentIndex = index;
+          };
+          galleryImages.forEach((img, index) => {
+            img.addEventListener("click", () => {
+              lightbox.classList.add("active");
+              showImage(index);
+            });
+          });
+          closeBtn.addEventListener("click", () =>
+            lightbox.classList.remove("active"),
+          );
+          lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+              lightbox.classList.remove("active");
             }
-            // Jalankan semua fungsi
-            renderSoftwareTable();
-            setupLightbox();
-        });
+          });
+          prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+          nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+          document.addEventListener("keydown", (e) => {
+            if (lightbox.classList.contains("active")) {
+              if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+              if (e.key === "ArrowRight") showImage(currentIndex + 1);
+              if (e.key === "Escape") lightbox.classList.remove("active");
+            }
+          });
+        }
+        // Jalankan semua fungsi
+        renderSoftwareTable();
+        setupLightbox();
+      });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" defer=""></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js"
+      defer=""
+    ></script>
+    <div id="progress"></div>
+    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
+    <div class="search-floating-container">
+      <input
+        type="text"
+        id="floatingSearchInput"
+        placeholder="cari artikel..."
+        autocomplete="off"
+      /><span id="floatingSearchClear" class="clear-button"></span>
+      <div id="floatingSearchResults" class="floating-results-container"></div>
+    </div>
+    <div id="dynamic-nav-container" class="floating-nav"></div>
+    <div id="internal-nav"></div>
+    <section id="related-marquee-section">
+      <div id="related-marquee-container"></div>
+    </section>
+    <script defer="" src="/ext/marquee-url.js"></script>
+    <script defer="" src="/ext/iposbrowser.js"></script>
+    <script defer="" src="/ext/markdown.js"></script>
+    <script defer="" src="/ext/pesbukdiskus.js"></script>
+  </body>
+</html>

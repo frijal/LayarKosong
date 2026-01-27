@@ -15,7 +15,7 @@
  * @param {string|null} crossOrigin - Nilai crossOrigin (misal: 'anonymous')
  */
 function injectLink(href, rel, crossOrigin = null) {
-  const link = document.createElement('link');
+  const link = document.createElement("link");
   link.href = href;
   link.rel = rel;
   if (crossOrigin) {
@@ -28,42 +28,41 @@ function injectLink(href, rel, crossOrigin = null) {
 // (Menggunakan Root-Relative Path untuk keamanan)
 
 // 1. Muat Google Fonts (preconnect)
-injectLink('https://fonts.googleapis.com', 'preconnect');
-injectLink('https://fonts.gstatic.com', 'preconnect', 'anonymous');
+injectLink("https://fonts.googleapis.com", "preconnect");
+injectLink("https://fonts.gstatic.com", "preconnect", "anonymous");
 
 // 2. Muat Google Fonts (stylesheet)
 injectLink(
-  'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap',
-  'stylesheet'
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap",
+  "stylesheet",
 );
 
 // 3. Muat Font Awesome (ikon)
 // Menggunakan root-relative path
-injectLink(
-  '/ext/fontawesome.css',
-  'stylesheet'
-);
+injectLink("/ext/fontawesome.css", "stylesheet");
 
 // 4. Muat file header.css Anda
 // Menggunakan root-relative path
-injectLink('/ext/header.css', 'stylesheet');
+injectLink("/ext/header.css", "stylesheet");
 
 // --- BAGIAN 2: INJEKSI HTML & CLASS BODY ---
 // (Ini menunggu DOM siap)
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // 1. Ambil file header.html
   // Menggunakan root-relative path (/) untuk memastikan path selalu benar dari root domain
-  fetch('/ext/header-logo-atas')
+  fetch("/ext/header-logo-atas")
     .then((response) => {
       if (!response.ok) {
         // Jika file tidak ditemukan (error 404) atau error server
-        throw new Error(`HTTP error! status: ${response.status} (Redirection/File Not Found)`);
+        throw new Error(
+          `HTTP error! status: ${response.status} (Redirection/File Not Found)`,
+        );
       }
       return response.text();
     })
     .then((data) => {
       // 2. Masukkan HTML header ke dalam placeholder
-      const placeholder = document.getElementById('header-placeholder');
+      const placeholder = document.getElementById("header-placeholder");
       if (placeholder) {
         placeholder.innerHTML = data;
       } else {
@@ -72,12 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 3. Tambahkan class ke <body> untuk padding (didefinisikan di header.css)
-      document.body.classList.add('header-dimuat');
+      document.body.classList.add("header-dimuat");
     })
     .catch((error) => {
       // Tangani error jika fetch gagal (misal file tidak ada, server mati)
-      console.error('Gagal memuat header:', error);
-      const placeholder = document.getElementById('header-placeholder');
+      console.error("Gagal memuat header:", error);
+      const placeholder = document.getElementById("header-placeholder");
       if (placeholder) {
         // Tampilkan pesan error di halaman agar mudah di-debug
         placeholder.innerHTML =

@@ -53,20 +53,25 @@ async function main() {
   // --- LOGIKA FILTER: Baca daftar gambar nganggur ---
   const NGANGGUR_FILE = path.join(IMG_DIR, "gambarnganggur.txt");
   let gambarNganggur = [];
-  
+
   if (fs.existsSync(NGANGGUR_FILE)) {
     try {
       const content = fs.readFileSync(NGANGGUR_FILE, "utf-8");
       // Pecah baris, hapus spasi, dan filter yang bukan kosong
-      gambarNganggur = content.split("\n").map(name => name.trim()).filter(Boolean);
-      console.log(`[📄] Memuat daftar pengecualian: ${gambarNganggur.length} file di gambarnganggur.txt`);
+      gambarNganggur = content
+        .split("\n")
+        .map((name) => name.trim())
+        .filter(Boolean);
+      console.log(
+        `[📄] Memuat daftar pengecualian: ${gambarNganggur.length} file di gambarnganggur.txt`,
+      );
     } catch (err) {
       console.warn(`[⚠️] Gagal membaca ${NGANGGUR_FILE}: ${err.message}`);
     }
   }
 
   // Ambil semua daftar artikel
-  const files = fs.readdirSync(ARTIKEL_DIR).filter(f => f.endsWith(".html"));
+  const files = fs.readdirSync(ARTIKEL_DIR).filter((f) => f.endsWith(".html"));
   console.log(`🧭 ${files.length} artikel ditemukan dalam antrean`);
 
   if (files.length === 0) {
@@ -104,7 +109,9 @@ async function main() {
       const isNganggur = gambarNganggur.includes(outputName);
 
       if (isExist || isNganggur) {
-        const alasan = isExist ? "Fisik file sudah ada" : "Masuk daftar 'gambarnganggur.txt'";
+        const alasan = isExist
+          ? "Fisik file sudah ada"
+          : "Masuk daftar 'gambarnganggur.txt'";
         console.log(`[⏭️] Skip ${outputName} (${alasan})`);
         continue;
       }
@@ -135,18 +142,17 @@ async function main() {
       }
 
       // Delay kecil agar server tidak overload
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 400));
     }
 
     console.log("🎉 Proses screenshot selesai.");
-
   } finally {
     if (browser) await browser.close();
     server.close(() => console.log("[🛑] Server lokal dihentikan"));
   }
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(`[FATAL] ${err.message}`);
   process.exit(1);
 });

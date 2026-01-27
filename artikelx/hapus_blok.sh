@@ -13,8 +13,8 @@ PATTERN_FILE="pola.txt"
 
 # --- [Pemeriksaan Awal] ---
 if [ ! -f "$PATTERN_FILE" ]; then
-  echo "❌ KESALAHAN: File pola '$PATTERN_FILE' tidak ditemukan!"
-  exit 1
+	echo "❌ KESALAHAN: File pola '$PATTERN_FILE' tidak ditemukan!"
+	exit 1
 fi
 
 echo "📖 Membaca pola dari '$PATTERN_FILE' untuk dihapus..."
@@ -25,20 +25,20 @@ echo "--------------------------------------------------------"
 
 # Loop melalui setiap file .html
 for file in *.html; do
-  if [ -f "$file" ]; then
+	if [ -f "$file" ]; then
 
-    # Perintah Perl untuk MENGHAPUS blok yang cocok secara langsung di dalam file.
-    # -i    : Mengaktifkan mode "in-place edit" (mengubah file asli).
-    # -p    : Loop melalui file dan mencetak hasilnya (standar untuk in-place edit).
-    # s/...// : Perintah substitusi (ganti), mengganti pola yang ditemukan dengan KOSONG.
-    
-    perl -0777 -i -pe '
+		# Perintah Perl untuk MENGHAPUS blok yang cocok secara langsung di dalam file.
+		# -i    : Mengaktifkan mode "in-place edit" (mengubah file asli).
+		# -p    : Loop melalui file dan mencetak hasilnya (standar untuk in-place edit).
+		# s/...// : Perintah substitusi (ganti), mengganti pola yang ditemukan dengan KOSONG.
+
+		perl -0777 -i -pe '
       my $pattern = $ENV{"PATTERN_TO_FIND"};
       s/\Q$pattern\E//g
     ' "$file"
 
-    echo "✅ Selesai memproses file: $file"
-  fi
+		echo "✅ Selesai memproses file: $file"
+	fi
 done
 
 echo "--------------------------------------------------------"

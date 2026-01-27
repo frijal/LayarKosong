@@ -16,9 +16,9 @@ rm -f "$OUTPUT_FILE"
 # --- [Pemeriksaan Awal] ---
 # Periksa apakah file pola ada sebelum melanjutkan
 if [ ! -f "$PATTERN_FILE" ]; then
-  echo "❌ KESALAHAN: File pola '$PATTERN_FILE' tidak ditemukan!"
-  echo "Harap buat file tersebut dan isi dengan blok HTML yang ingin Anda cari."
-  exit 1
+	echo "❌ KESALAHAN: File pola '$PATTERN_FILE' tidak ditemukan!"
+	echo "Harap buat file tersebut dan isi dengan blok HTML yang ingin Anda cari."
+	exit 1
 fi
 
 echo "📖 Membaca pola dari '$PATTERN_FILE'..."
@@ -30,37 +30,37 @@ echo "Mencari blok HTML di semua file *.html..."
 echo "--------------------------------------------------------"
 
 for file in *.html; do
-  if [ -f "$file" ]; then
+	if [ -f "$file" ]; then
 
-    # Perintah Perl kini membaca pola dari environment variable 'PATTERN_TO_FIND'
-    # \Q dan \E digunakan untuk "mengutip" pola secara otomatis.
-    # Ini memastikan semua karakter khusus (seperti /, $, ?, dll.)
-    # diperlakukan sebagai teks biasa, bukan sebagai perintah regex.
-    # Ini adalah kunci mengapa metode ini sangat kuat dan akurat.
-    
-    MATCH=$(perl -0777 -ne '
+		# Perintah Perl kini membaca pola dari environment variable 'PATTERN_TO_FIND'
+		# \Q dan \E digunakan untuk "mengutip" pola secara otomatis.
+		# Ini memastikan semua karakter khusus (seperti /, $, ?, dll.)
+		# diperlakukan sebagai teks biasa, bukan sebagai perintah regex.
+		# Ini adalah kunci mengapa metode ini sangat kuat dan akurat.
+
+		MATCH=$(perl -0777 -ne '
       my $pattern = $ENV{"PATTERN_TO_FIND"};
       if (/\Q$pattern\E/s) {
         print $&
       }
     ' "$file")
 
-    if [ -n "$MATCH" ]; then
-      echo "✅ Blok ditemukan di file: $file"
-      echo "========================================================" >> "$OUTPUT_FILE"
-      echo "Ditemukan di: $file" >> "$OUTPUT_FILE"
-      echo "========================================================" >> "$OUTPUT_FILE"
-      echo "$MATCH" >> "$OUTPUT_FILE"
-      echo "" >> "$OUTPUT_FILE"
-    else
-      echo "❌ Blok tidak ditemukan di file: $file"
-    fi
-  fi
+		if [ -n "$MATCH" ]; then
+			echo "✅ Blok ditemukan di file: $file"
+			echo "========================================================" >>"$OUTPUT_FILE"
+			echo "Ditemukan di: $file" >>"$OUTPUT_FILE"
+			echo "========================================================" >>"$OUTPUT_FILE"
+			echo "$MATCH" >>"$OUTPUT_FILE"
+			echo "" >>"$OUTPUT_FILE"
+		else
+			echo "❌ Blok tidak ditemukan di file: $file"
+		fi
+	fi
 done
 
 echo "--------------------------------------------------------"
 if [ -s "$OUTPUT_FILE" ]; then
-  echo "🎉 Selesai! Blok yang ditemukan telah diekstrak ke '$OUTPUT_FILE'."
+	echo "🎉 Selesai! Blok yang ditemukan telah diekstrak ke '$OUTPUT_FILE'."
 else
-  echo "🤷‍♂️ Selesai. Tidak ada blok yang cocok yang ditemukan di file manapun."
+	echo "🤷‍♂️ Selesai. Tidak ada blok yang cocok yang ditemukan di file manapun."
 fi

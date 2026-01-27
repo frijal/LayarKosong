@@ -149,7 +149,7 @@ body.header-dimuat {
 }
 
 .input-pencarian {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
   padding: 0.5rem 1rem 0.5rem 2.5rem;
   border: 1px solid var(--warna-garis);
@@ -158,7 +158,9 @@ body.header-dimuat {
   /* Ganti ke warna permukaan jika ingin kontras dengan latar transparan */
   background-color: var(--warna-permukaan);
   color: var(--warna-teks-utama);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .input-pencarian::placeholder {
@@ -193,5 +195,3 @@ body.header-dimuat {
     font-size: 1.75rem; /* Kembalikan ukuran di desktop */
   }
 }
-
-

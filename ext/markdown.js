@@ -3,7 +3,6 @@
  */
 
 (async function () {
-
   // === 1️⃣ Muat highlight.js (Browser Cache akan menangani efisiensi) ===
   async function loadHighlightJSIfNeeded() {
     const hasCodeBlocks = document.querySelector("pre code");
@@ -15,14 +14,14 @@
     // Cek apakah script tag sudah pernah kita suntikkan sebelumnya di sesi ini
     // untuk menghindari duplikasi tag script
     if (document.querySelector('script[src="/ext/highlight.js"]')) {
-        return new Promise(resolve => {
-            const check = setInterval(() => {
-                if (window.hljs) {
-                    clearInterval(check);
-                    resolve(window.hljs);
-                }
-            }, 100);
-        });
+      return new Promise((resolve) => {
+        const check = setInterval(() => {
+          if (window.hljs) {
+            clearInterval(check);
+            resolve(window.hljs);
+          }
+        }, 100);
+      });
     }
 
     // Muat dari file (Gunakan Absolute Path "/")
@@ -31,23 +30,25 @@
     script.defer = true;
     document.head.appendChild(script);
 
-    await new Promise(res => (script.onload = res));
+    await new Promise((res) => (script.onload = res));
     return window.hljs;
   }
 
   // === 2️⃣ Terapkan tema highlight.js otomatis ===
   function applyHighlightTheme() {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     const existing = document.querySelector("link[data-hljs-theme]");
-    
+
     // Gunakan Absolute Path "/"
     const newHref = prefersDark
       ? "/ext/github-dark.min.css" // <-- PERBAIKAN PATH
-      : "/ext/github.min.css";     // <-- PERBAIKAN PATH
+      : "/ext/github.min.css"; // <-- PERBAIKAN PATH
 
     if (existing) {
-      if (existing.href !== newHref && !existing.href.endsWith(newHref)) { 
-          existing.href = newHref;
+      if (existing.href !== newHref && !existing.href.endsWith(newHref)) {
+        existing.href = newHref;
       }
     } else {
       const link = document.createElement("link");
@@ -59,7 +60,9 @@
   }
 
   function setupThemeListener() {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", applyHighlightTheme);
   }
 
   // === 3️⃣ Markdown converter ===
@@ -82,40 +85,60 @@
         const language = lang || "plaintext";
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
       })
-      .replace(/((?:\|.*\|\n)+)/g, match => {
-        const rows = match.trim().split("\n").filter(r => r.trim());
+      .replace(/((?:\|.*\|\n)+)/g, (match) => {
+        const rows = match
+          .trim()
+          .split("\n")
+          .filter((r) => r.trim());
         if (rows.length < 2) return match;
-        const header = rows[0].split("|").filter(Boolean).map(c => `<th>${c.trim()}</th>`).join("");
-        const body = rows.slice(2).map(r =>
-          "<tr>" + r.split("|").filter(Boolean).map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
-        ).join("");
+        const header = rows[0]
+          .split("|")
+          .filter(Boolean)
+          .map((c) => `<th>${c.trim()}</th>`)
+          .join("");
+        const body = rows
+          .slice(2)
+          .map(
+            (r) =>
+              "<tr>" +
+              r
+                .split("|")
+                .filter(Boolean)
+                .map((c) => `<td>${c.trim()}</td>`)
+                .join("") +
+              "</tr>",
+          )
+          .join("");
         return `<table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
       });
   }
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, header, quote, h1, h2, h3, h4, h5, h6, .note-box, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .markdown, .markdown-body, .alert, .intro-alert";
-    document.querySelectorAll(selector).forEach(el => {
+    const selector =
+      "p, li, blockquote, td, th, header, quote, h1, h2, h3, h4, h5, h6, .note-box, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .markdown, .markdown-body, .alert, .intro-alert";
+    document.querySelectorAll(selector).forEach((el) => {
       if (el.classList.contains("no-md")) return;
-      if (el.querySelector("pre, code, table")) return; 
+      if (el.querySelector("pre, code, table")) return;
 
       const original = el.innerHTML.trim();
       if (!original) return;
 
-      const singleLine = original.replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
+      const singleLine = original
+        .replace(/\s*\n\s*/g, " ")
+        .replace(/\s{2,}/g, " ");
       el.innerHTML = convertInlineMarkdown(singleLine);
     });
   }
 
   // === 5️⃣ Pastikan inline code tidak menjadi blok ===
   function fixInlineCodeDisplay() {
-    document.querySelectorAll("code.inline-code").forEach(el => {
+    document.querySelectorAll("code.inline-code").forEach((el) => {
       el.style.display = "inline";
       el.style.whiteSpace = "nowrap";
       el.style.margin = "0";
       // Tambahkan padding sedikit agar rapi
-      el.style.padding = "2px 4px"; 
+      el.style.padding = "2px 4px";
       el.style.borderRadius = "4px";
     });
   }
@@ -131,8 +154,10 @@
     applyHighlightTheme();
     setupThemeListener();
 
-    codeBlocks.forEach(el => {
-      try { hljs.highlightElement(el); } catch {}
+    codeBlocks.forEach((el) => {
+      try {
+        hljs.highlightElement(el);
+      } catch {}
     });
   }
 
@@ -142,5 +167,4 @@
     fixInlineCodeDisplay();
     await highlightIfPresent();
   });
-
 })();

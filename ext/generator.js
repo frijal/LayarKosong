@@ -1,8 +1,8 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 // Asumsikan titleToCategory.js ada
-import { titleToCategory } from './titleToCategory.js';
+import { titleToCategory } from "./titleToCategory.js";
 
 // ==================================================================
 // KONFIGURASI TERPUSAT
@@ -11,15 +11,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const CONFIG = {
-  rootDir: path.join(__dirname, '..'),
-  artikelDir: path.join(__dirname, '..', 'artikel'),
-  masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
-  jsonOut: path.join(__dirname, '..', 'artikel.json'),
-  xmlOut: path.join(__dirname, '..', 'sitemap.xml'),
-  baseUrl: 'https://dalam.web.id',
-  defaultThumbnail: 'https://dalam.web.id/thumbnail.webp',
-  xmlPriority: '0.6',
-  xmlChangeFreq: 'monthly',
+  rootDir: path.join(__dirname, ".."),
+  artikelDir: path.join(__dirname, "..", "artikel"),
+  masterJson: path.join(__dirname, "..", "artikel", "artikel.json"),
+  jsonOut: path.join(__dirname, "..", "artikel.json"),
+  xmlOut: path.join(__dirname, "..", "sitemap.xml"),
+  baseUrl: "https://dalam.web.id",
+  defaultThumbnail: "https://dalam.web.id/thumbnail.webp",
+  xmlPriority: "0.6",
+  xmlChangeFreq: "monthly",
 };
 
 // ===================================================================
@@ -38,12 +38,12 @@ function formatISO8601(date) {
   }
   // Logika zona waktu lokal agar sesuai dengan format asli (non-'Z')
   const tzOffset = -d.getTimezoneOffset();
-  const diff = tzOffset >= 0 ? '+' : '-';
-  const pad = (n) => String(Math.floor(Math.abs(n))).padStart(2, '0');
+  const diff = tzOffset >= 0 ? "+" : "-";
+  const pad = (n) => String(Math.floor(Math.abs(n))).padStart(2, "0");
   const hours = pad(tzOffset / 60);
   const minutes = pad(tzOffset % 60);
   // Menggunakan toISOString() lalu mengganti 'Z' dengan offset lokal
-  return d.toISOString().replace('Z', `${diff}${hours}:${minutes}`);
+  return d.toISOString().replace("Z", `${diff}${hours}:${minutes}`);
 }
 
 // Fungsi extractors lainnya tetap sama karena sudah cepat (pure function)
@@ -57,14 +57,14 @@ function extractPubDate(content) {
 
 function extractTitle(content) {
   const match = content.match(/<title>([\s\S]*?)<\/title>/i);
-  return match ? match[1].trim() : 'Tanpa Judul';
+  return match ? match[1].trim() : "Tanpa Judul";
 }
 
 function extractDescription(content) {
   const match = content.match(
     /<meta\s+name=["']description["'][^>]+content=["']([^"']+)["']/i,
   );
-  return match ? match[1].trim() : '';
+  return match ? match[1].trim() : "";
 }
 
 function fixTitleOneLine(content) {
@@ -77,9 +77,11 @@ function fixTitleOneLine(content) {
 function extractImage(content) {
   const validExt = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
 
-  const metas = [...content.matchAll(
-    /<meta\s+[^>]*(?:name|property)=["']([^"']+)["'][^>]*content=["']([^"']+)["'][^>]*>/gi
-  )];
+  const metas = [
+    ...content.matchAll(
+      /<meta\s+[^>]*(?:name|property)=["']([^"']+)["'][^>]*content=["']([^"']+)["'][^>]*>/gi,
+    ),
+  ];
 
   const metaMap = {};
   for (const [, key, value] of metas) {
@@ -87,32 +89,28 @@ function extractImage(content) {
   }
 
   // PRIORITAS YANG REALISTIS
-  const candidates = [
-    metaMap['twitter:image'],
-    metaMap['og:image'],
-  ];
+  const candidates = [metaMap["twitter:image"], metaMap["og:image"]];
 
   for (const src of candidates) {
-    if (src && validExt.test(src.split('?')[0])) {
+    if (src && validExt.test(src.split("?")[0])) {
       return src;
     }
   }
 
   // Fallback: first <img>
   const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
-  if (imgMatch && validExt.test(imgMatch[1].split('?')[0])) {
+  if (imgMatch && validExt.test(imgMatch[1].split("?")[0])) {
     return imgMatch[1];
   }
 
   return CONFIG.defaultThumbnail;
 }
 
-
 function formatJsonOutput(obj) {
   return JSON.stringify(obj, null, 2)
-    .replace(/\[\s*\[/g, '[\n      [')
-    .replace(/\]\s*\]/g, ']\n    ]')
-    .replace(/(\],)\s*\[/g, '$1\n      [');
+    .replace(/\[\s*\[/g, "[\n      [")
+    .replace(/\]\s*\]/g, "]\n    ]")
+    .replace(/(\],)\s*\[/g, "$1\n      [");
 }
 
 // ===================================================================
@@ -127,12 +125,12 @@ function formatJsonOutput(obj) {
  */
 async function processArticleFile(file, existingFiles) {
   if (existingFiles.has(file)) return null;
-  
+
   const fullPath = path.join(CONFIG.artikelDir, file);
   try {
-    let content = await fs.readFile(fullPath, 'utf8');
+    let content = await fs.readFile(fullPath, "utf8");
     let needsSave = false;
-    
+
     // 1. Merapikan Judul
     const fixedTitleContent = fixTitleOneLine(content);
     if (fixedTitleContent !== content) {
@@ -145,26 +143,26 @@ async function processArticleFile(file, existingFiles) {
     const category = titleToCategory(title);
     const image = extractImage(content);
     const description = extractDescription(content);
-    
+
     let pubDate = extractPubDate(content);
-    
+
     // 2. Menambahkan Tanggal Publikasi jika hilang
     if (!pubDate) {
       // Menggunakan Promise.all untuk stat dan meta tag
       const stats = await fs.stat(fullPath);
       pubDate = stats.mtime;
       const newMetaTag = `    <meta property="article:published_time" content="${formatISO8601(pubDate)}">`;
-      
-      if (content.includes('</head>')) {
-        content = content.replace('</head>', `${newMetaTag}\n</head>`);
+
+      if (content.includes("</head>")) {
+        content = content.replace("</head>", `${newMetaTag}\n</head>`);
         needsSave = true;
         console.log(`➕ Menambahkan meta tanggal ke '${file}'`);
       }
     }
-    
+
     if (needsSave) {
       // I/O: Menulis kembali file jika ada perubahan (merapikan title/menambahkan tanggal)
-      await fs.writeFile(fullPath, content, 'utf8');
+      await fs.writeFile(fullPath, content, "utf8");
     }
 
     const lastmod = formatISO8601(pubDate);
@@ -172,9 +170,8 @@ async function processArticleFile(file, existingFiles) {
     // [title, file, image, lastmod, description]
     return {
       category,
-      data: [title, file, image, lastmod, description]
+      data: [title, file, image, lastmod, description],
     };
-
   } catch (error) {
     console.error(`❌ Gagal memproses file ${file}:`, error.message);
     return null;
@@ -186,31 +183,31 @@ async function processArticleFile(file, existingFiles) {
 // ===================================================================
 
 async function generateCategoryPages(groupedData) {
-  console.log('🔄 Memulai pembuatan halaman kategori...');
-  const kategoriDir = path.join(CONFIG.artikelDir, '-');
-  const templatePath = path.join(kategoriDir, 'template-kategori.html');
+  console.log("🔄 Memulai pembuatan halaman kategori...");
+  const kategoriDir = path.join(CONFIG.artikelDir, "-");
+  const templatePath = path.join(kategoriDir, "template-kategori.html");
 
   try {
     await fs.access(templatePath);
-    const templateContent = await fs.readFile(templatePath, 'utf8');
-    
+    const templateContent = await fs.readFile(templatePath, "utf8");
+
     const categoryWritePromises = [];
-    
+
     for (const categoryName in groupedData) {
       // Logika slugging (tetap sama)
-      const noEmoji = categoryName.replace(/^[^\w\s]*/, '').trim();
+      const noEmoji = categoryName.replace(/^[^\w\s]*/, "").trim();
       const slug = noEmoji
         .toLowerCase()
-        .replace(/ & /g, '-and-')
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
-      
+        .replace(/ & /g, "-and-")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+
       const fileName = `${slug}.html`;
       const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
       const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
-      const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || '📁';
-      
+      const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || "📁";
+
       // Ganti placeholder di template
       let pageContent = templateContent
         .replace(/%%TITLE%%/g, noEmoji)
@@ -219,18 +216,19 @@ async function generateCategoryPages(groupedData) {
         .replace(/%%CATEGORY_NAME%%/g, categoryName)
         .replace(/%%ICON%%/g, icon)
         .replace(/%%RSS_URL%%/g, rssUrl);
-        
+
       // Tambahkan Promise ke array
       categoryWritePromises.push(
-        fs.writeFile(path.join(kategoriDir, fileName), pageContent, 'utf8')
-          .then(() => console.log(`✅ Halaman kategori dibuat: ${fileName}`))
+        fs
+          .writeFile(path.join(kategoriDir, fileName), pageContent, "utf8")
+          .then(() => console.log(`✅ Halaman kategori dibuat: ${fileName}`)),
       );
     }
 
     // Tunggu semua file kategori selesai ditulis secara paralel
     await Promise.all(categoryWritePromises);
-    
-    console.log('👍 Semua halaman kategori berhasil dibuat.');
+
+    console.log("👍 Semua halaman kategori berhasil dibuat.");
   } catch (error) {
     console.error(
       "❌ Gagal membuat halaman kategori. Pastikan 'template-kategori.html' ada di dalam folder 'artikel/-'.",
@@ -243,7 +241,7 @@ async function generateCategoryPages(groupedData) {
 // FUNGSI UTAMA (MAIN GENERATOR)
 // ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai proses generator...');
+  console.log("🚀 Memulai proses generator...");
   try {
     await fs.access(CONFIG.artikelDir);
   } catch {
@@ -253,18 +251,21 @@ const generate = async () => {
 
   // OPTIMASI: Membaca file disk dan JSON secara paralel
   const [filesOnDisk, masterContent] = await Promise.all([
-    fs.readdir(CONFIG.artikelDir)
-      .then(files => files.filter(f => f.endsWith('.html'))),
-    fs.readFile(CONFIG.masterJson, 'utf8').catch(() => {
-      console.warn('⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.');
-      return '{}'; // Return string kosong jika gagal
-    })
+    fs
+      .readdir(CONFIG.artikelDir)
+      .then((files) => files.filter((f) => f.endsWith(".html"))),
+    fs.readFile(CONFIG.masterJson, "utf8").catch(() => {
+      console.warn(
+        "⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.",
+      );
+      return "{}"; // Return string kosong jika gagal
+    }),
   ]);
 
   const existingFilesOnDisk = new Set(filesOnDisk);
   let grouped = JSON.parse(masterContent);
-  console.log('📂 Master JSON berhasil dimuat atau diinisialisasi.');
-  
+  console.log("📂 Master JSON berhasil dimuat atau diinisialisasi.");
+
   // 1. Membersihkan Data Lama (Deleted Articles)
   const cleanedGrouped = {};
   let deletedCount = 0;
@@ -272,7 +273,9 @@ const generate = async () => {
     const survivingArticles = grouped[category].filter((item) => {
       // item[1] adalah nama file
       if (!existingFilesOnDisk.has(item[1])) {
-        console.log(`🗑️ File terhapus terdeteksi, menghapus dari data: ${item[1]}`);
+        console.log(
+          `🗑️ File terhapus terdeteksi, menghapus dari data: ${item[1]}`,
+        );
         deletedCount++;
         return false;
       }
@@ -283,25 +286,31 @@ const generate = async () => {
     }
   }
   grouped = cleanedGrouped;
-  
+
   // Map file yang sudah ada di JSON (digunakan untuk check cepat)
   const existingFilesMap = new Map(
-    Object.values(grouped).flat().map(item => [item[1], true])
+    Object.values(grouped)
+      .flat()
+      .map((item) => [item[1], true]),
   );
-  
+
   // 2. Memproses Artikel Baru/Update secara Paralel
   console.log(`🔄 Memeriksa ${filesOnDisk.length} file artikel di disk...`);
-  
+
   // Filter file yang belum ada di JSON master
-  const newFilesToProcess = filesOnDisk.filter(file => !existingFilesMap.has(file));
-  
-  let newArticlesCount = 0;
-  const processingPromises = newFilesToProcess.map(file => 
-    processArticleFile(file, existingFilesMap)
+  const newFilesToProcess = filesOnDisk.filter(
+    (file) => !existingFilesMap.has(file),
   );
-  
+
+  let newArticlesCount = 0;
+  const processingPromises = newFilesToProcess.map((file) =>
+    processArticleFile(file, existingFilesMap),
+  );
+
   // Tunggu semua file baru selesai diproses secara paralel
-  const newArticlesResults = (await Promise.all(processingPromises)).filter(result => result !== null);
+  const newArticlesResults = (await Promise.all(processingPromises)).filter(
+    (result) => result !== null,
+  );
 
   // 3. Menggabungkan Hasil Pemrosesan Paralel
   for (const result of newArticlesResults) {
@@ -310,14 +319,17 @@ const generate = async () => {
     newArticlesCount++;
     console.log(`➕ Artikel baru berhasil diproses: ${result.data[1]}`);
   }
-  
+
   // --- Penulisan File Output (Hanya jika ada perubahan) ---
 
-  const hasChanges = newArticlesCount > 0 || deletedCount > 0 || Object.keys(grouped).length === 0;
+  const hasChanges =
+    newArticlesCount > 0 ||
+    deletedCount > 0 ||
+    Object.keys(grouped).length === 0;
 
   if (hasChanges) {
     // 4. Sorting, JSON, XML, dan Kategori Generation
-    console.log('🔥 Perubahan terdeteksi, menulis ulang file output...');
+    console.log("🔥 Perubahan terdeteksi, menulis ulang file output...");
 
     // Sorting (Dilakukan setelah semua data baru masuk)
     for (const category in grouped) {
@@ -331,8 +343,8 @@ const generate = async () => {
       .forEach((item) => {
         const [, file, image, lastmod] = item;
         // Gunakan file.replace('.html', '') untuk Pretty URL di sitemap.xml
-        const cleanLoc = `${CONFIG.baseUrl}/artikel/${file.replace('.html', '')}`; 
-        
+        const cleanLoc = `${CONFIG.baseUrl}/artikel/${file.replace(".html", "")}`;
+
         xmlUrls.push(
           `  <url>\n    <loc>${cleanLoc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${CONFIG.xmlPriority}</priority>\n    <changefreq>${CONFIG.xmlChangeFreq}</changefreq>\n    <image:image>\n      <image:loc>${image}</image:loc>\n    </image:image>\n  </url>`,
         );
@@ -343,22 +355,28 @@ const generate = async () => {
 
     // JSON
     const jsonString = formatJsonOutput(grouped);
-    writePromises.push(fs.writeFile(CONFIG.jsonOut, jsonString, 'utf8'));
+    writePromises.push(fs.writeFile(CONFIG.jsonOut, jsonString, "utf8"));
 
     // XML (Sitemap)
-    const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlUrls.join('\n')}\n</urlset>`;
-    writePromises.push(fs.writeFile(CONFIG.xmlOut, xmlContent, 'utf8'));
-    
+    const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlUrls.join("\n")}\n</urlset>`;
+    writePromises.push(fs.writeFile(CONFIG.xmlOut, xmlContent, "utf8"));
+
     // Kategori Pages (sudah mengandung Promise.all di dalamnya)
     await generateCategoryPages(grouped);
 
     // Tunggu JSON dan XML selesai ditulis
     await Promise.all(writePromises);
-    
-    console.log(`\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.`);
-    console.log('✅ artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.');
+
+    console.log(
+      `\n✅ Ringkasan: ${newArticlesCount} artikel baru ditambahkan, ${deletedCount} artikel lama dihapus.`,
+    );
+    console.log(
+      "✅ artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.",
+    );
   } else {
-    console.log('\n✅ Tidak ada perubahan yang substansial. File tidak diubah.');
+    console.log(
+      "\n✅ Tidak ada perubahan yang substansial. File tidak diubah.",
+    );
   }
 };
 

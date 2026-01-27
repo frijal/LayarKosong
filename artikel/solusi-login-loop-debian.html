@@ -1,13 +1,27 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html
+  lang="id"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Solusi Gagal Login (Login Loop) di Debian Setelah Install</title>
-    <meta name="description" content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.">
-    <meta name="keywords" content="Debian, login loop, gagal login, mental ke login, TTY, NVIDIA driver, permission error, Linux, troubleshooting, tidak bisa masuk desktop">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <meta
+      name="description"
+      content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission."
+    />
+    <meta
+      name="keywords"
+      content="Debian, login loop, gagal login, mental ke login, TTY, NVIDIA driver, permission error, Linux, troubleshooting, tidak bisa masuk desktop"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Fira+Code&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/ext/fontawesome.css" />
     <style>
       :root {
         --bg-color: #121212;
@@ -25,17 +39,17 @@
         padding: 0;
       }
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         background-color: var(--bg-color);
         color: var(--primary-text-color);
         line-height: 1.8;
       }
       footer {
-      text-align: center;
-      padding: 2rem;
-      color: #666;
-      font-size: .9rem;
-    }
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        font-size: 0.9rem;
+      }
       .container {
         max-width: 900px;
         margin: 0 auto;
@@ -92,7 +106,7 @@
         overflow-x: auto;
       }
       code {
-        font-family: 'Fira Code', monospace;
+        font-family: "Fira Code", monospace;
         color: var(--primary-text-color);
         white-space: pre;
       }
@@ -102,7 +116,7 @@
         padding: 3px 6px;
         border-radius: 4px;
         border: 1px solid var(--border-color);
-        font-family: 'Fira Code', monospace;
+        font-family: "Fira Code", monospace;
       }
       hr {
         border: 0;
@@ -129,7 +143,9 @@
         font-size: 2rem;
         margin-right: 1.5rem;
         color: var(--secondary-text-color);
-        transition: color 0.3s, transform 0.3s;
+        transition:
+          color 0.3s,
+          transform 0.3s;
       }
       .social-share-icons a:hover {
         transform: scale(1.2);
@@ -152,47 +168,166 @@
         }
       }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-  <meta name="ai:summary" content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.">
-<meta name="ai:prompt_hint" content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/artikel/solusi-login-loop-debian#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/solusi-login-loop-debian"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Solusi Gagal Login (Login Loop) di Debian Setelah Install","description":"Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.","articleSection":"Sistem Terbuka","keywords":"debian, gagal, install, layar kosong, login, loop, setelah, sistem terbuka, solusi","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/solusi-login-loop-debian.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-06T06:06:53.427+00:00","dateModified":"2025-10-06T06:06:53.427+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/artikel/solusi-login-loop-debian#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/artikel/-/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Solusi Gagal Login (Login Loop) di Debian Setelah Install","item":"https://dalam.web.id/artikel/solusi-login-loop-debian"}]}]}</script>
-    <link rel="canonical" href="https://dalam.web.id/artikel/solusi-login-loop-debian">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/solusi-login-loop-debian">
-    <meta property="og:title" content="Solusi Gagal Login (Login Loop) di Debian Setelah Install">
-    <meta property="og:description" content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/solusi-login-loop-debian.webp">
-    <meta property="og:image:alt" content="Solusi Gagal Login (Login Loop) di Debian Setelah Install">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/solusi-login-loop-debian.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/solusi-login-loop-debian.webp">
-</head>
+    <link rel="stylesheet" href="/ext/marquee-url.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="30 artikel baru bikin."
+      href="https://dalam.web.id/rss.xml"
+    />
+    <meta
+      name="ai:summary"
+      content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission."
+    />
+    <meta
+      name="ai:prompt_hint"
+      content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dalam.web.id/#website",
+            "url": "https://dalam.web.id/",
+            "name": "Layar Kosong",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://dalam.web.id/#organization",
+              "name": "Layar Kosong",
+              "url": "https://dalam.web.id",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dalam.web.id/logo.png",
+                "width": 384,
+                "height": 384
+              }
+            }
+          },
+          {
+            "@type": "Article",
+            "@id": "https://dalam.web.id/artikel/solusi-login-loop-debian#article",
+            "isPartOf": { "@id": "https://dalam.web.id/#website" },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://dalam.web.id/artikel/solusi-login-loop-debian"
+            },
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "headline": "Solusi Gagal Login (Login Loop) di Debian Setelah Install",
+            "description": "Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission.",
+            "articleSection": "Sistem Terbuka",
+            "keywords": "debian, gagal, install, layar kosong, login, loop, setelah, sistem terbuka, solusi",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://dalam.web.id/img/solusi-login-loop-debian.webp",
+              "width": 1200,
+              "height": 675
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Fakhrul Rijal",
+              "url": "https://dalam.web.id/about"
+            },
+            "publisher": { "@id": "https://dalam.web.id/#organization" },
+            "datePublished": "2025-10-06T06:06:53.427+00:00",
+            "dateModified": "2025-10-06T06:06:53.427+00:00"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://dalam.web.id/artikel/solusi-login-loop-debian#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Beranda",
+                "item": "https://dalam.web.id/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sistem Terbuka",
+                "item": "https://dalam.web.id/artikel/-/sistem-terbuka/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Solusi Gagal Login (Login Loop) di Debian Setelah Install",
+                "item": "https://dalam.web.id/artikel/solusi-login-loop-debian"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link
+      rel="canonical"
+      href="https://dalam.web.id/artikel/solusi-login-loop-debian"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="license"
+      href="https://creativecommons.org/publicdomain/zero/1.0/"
+    />
+    <meta name="author" content="Fakhrul Rijal" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="max-image-preview:large" />
+    <meta name="theme-color" content="#00b0ed" />
+    <meta name="fediverse:creator" content="@frijal@mastodon.social" />
+    <meta name="twitter:creator" content="@responaja" />
+    <meta name="bluesky:creator" content="@dalam.web.id" />
+    <meta property="og:site_name" content="Layar Kosong" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://dalam.web.id/artikel/solusi-login-loop-debian"
+    />
+    <meta
+      property="og:title"
+      content="Solusi Gagal Login (Login Loop) di Debian Setelah Install"
+    />
+    <meta
+      property="og:description"
+      content="Mengalami masalah mental kembali ke halaman login setelah install Debian? Pelajari cara mengatasi login loop dengan panduan langkah demi langkah, dari memperbaiki driver VGA hingga cek permission."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@responaja" />
+    <meta property="fb:app_id" content="175216696195384" />
+    <meta property="article:author" content="https://facebook.com/frijal" />
+    <meta
+      property="article:publisher"
+      content="https://facebook.com/frijalpage"
+    />
+    <meta
+      property="og:image"
+      content="https://dalam.web.id/img/solusi-login-loop-debian.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="Solusi Gagal Login (Login Loop) di Debian Setelah Install"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      name="twitter:image"
+      content="https://dalam.web.id/img/solusi-login-loop-debian.webp"
+    />
+    <meta
+      itemprop="image"
+      content="https://dalam.web.id/img/solusi-login-loop-debian.webp"
+    />
+  </head>
   <body>
     <main class="container">
       <article>
         <h1>Solusi Gagal Login (Login Loop) di Debian Setelah Install</h1>
-<div id="iposbrowser"></div>
+        <div id="iposbrowser"></div>
         <p>
           Ini masalah yang cukup sering terjadi di dunia Linux, biasa disebut
-          <strong>"login loop"</strong>. Kamu sudah yakin username dan
-          password benar, tapi setiap kali login malah mental kembali ke halaman
-          login. Tenang, ini bukan berarti instalasi Debian kamu gagal total dan
+          <strong>"login loop"</strong>. Kamu sudah yakin username dan password
+          benar, tapi setiap kali login malah mental kembali ke halaman login.
+          Tenang, ini bukan berarti instalasi Debian kamu gagal total dan
           biasanya bisa diatasi.
         </p>
         <h2>Langkah Wajib Pertama: Masuk ke Terminal TTY</h2>
@@ -205,10 +340,10 @@
         </p>
         <p>
           Layar akan berubah menjadi hitam dengan teks (command-line). Login di
-          sini dengan username dan password kamu. Jika berhasil, kamu siap
-          untuk lanjut ke langkah berikutnya.
+          sini dengan username dan password kamu. Jika berhasil, kamu siap untuk
+          lanjut ke langkah berikutnya.
         </p>
-        <hr>
+        <hr />
         <h2>Cara Mengatasi Login Loop (Coba dari No. 1)</h2>
         <h3>1. Perbaiki Driver Kartu Grafis (Penyebab Paling Umum)</h3>
         <p>
@@ -274,17 +409,37 @@ sudo chown $(whoami):$(whoami) ~/.Xauthority</code></pre>
           <pre><code>sudo apt install --reinstall xfce4 lightdm</code></pre>
         </ul>
         <p>Pilih sesuai desktop yang kamu install, lalu `sudo reboot`.</p>
-        <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-    </article>
- <footer>
-    <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
-  </footer>
+        <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+      </article>
+      <footer>
+        <a href="https://dalam.web.id/disclaimer/" target="_blank"
+          >Jaga Data Pribadi Tetap Aman.</a
+        >
+      </footer>
     </main>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      });
+      document.addEventListener("DOMContentLoaded", () => {});
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+    <div id="progress"></div>
+    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
+    <div class="search-floating-container">
+      <input
+        type="text"
+        id="floatingSearchInput"
+        placeholder="cari artikel..."
+        autocomplete="off"
+      /><span id="floatingSearchClear" class="clear-button"></span>
+      <div id="floatingSearchResults" class="floating-results-container"></div>
+    </div>
+    <div id="dynamic-nav-container" class="floating-nav"></div>
+    <div id="internal-nav"></div>
+    <section id="related-marquee-section">
+      <div id="related-marquee-container"></div>
+    </section>
+    <script defer="" src="/ext/marquee-url.js"></script>
+    <script defer="" src="/ext/iposbrowser.js"></script>
+    <script defer="" src="/ext/markdown.js"></script>
+    <script defer="" src="/ext/pesbukdiskus.js"></script>
+  </body>
+</html>

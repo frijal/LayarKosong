@@ -1,10 +1,21 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html
+  lang="id"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)</title>
-    <meta name="description" content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.">
-    <meta name="keywords" content="Paru, AUR Helper, AUR, Arch User Repository, Software Komunitas, Pacman, Instalasi Linux">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <meta
+      name="description"
+      content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya."
+    />
+    <meta
+      name="keywords"
+      content="Paru, AUR Helper, AUR, Arch User Repository, Software Komunitas, Pacman, Instalasi Linux"
+    />
+    <link rel="stylesheet" href="/ext/fontawesome.css" />
     <style>
       :root {
         --color-bg: #00000d;
@@ -19,7 +30,7 @@
         padding: 0;
       }
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--color-bg);
         color: var(--color-text);
         line-height: 1.7;
@@ -52,7 +63,7 @@
         color: var(--color-primary);
         padding: 2px 6px;
         border-radius: 4px;
-        font-family: 'Consolas', monospace;
+        font-family: "Consolas", monospace;
       }
       pre {
         background-color: #111;
@@ -149,41 +160,160 @@
         }
       }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-  <meta name="ai:summary" content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.">
-<meta name="ai:prompt_hint" content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/artikel/paru-software-nonresmi#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/artikel/paru-software-nonresmi"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)","description":"Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.","articleSection":"Sistem Terbuka","keywords":"fungsi, komunitas, layar kosong, menginstal, nonresmi, paru, sebenarnya, sistem terbuka, software","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/paru-software-nonresmi.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-06T06:06:53.376+00:00","dateModified":"2025-10-06T06:06:53.376+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/artikel/paru-software-nonresmi#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/artikel/-/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)","item":"https://dalam.web.id/artikel/paru-software-nonresmi"}]}]}</script>
-    <link rel="canonical" href="https://dalam.web.id/artikel/paru-software-nonresmi">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/paru-software-nonresmi">
-    <meta property="og:title" content="Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)">
-    <meta property="og:description" content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/paru-software-nonresmi.webp">
-    <meta property="og:image:alt" content="Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/paru-software-nonresmi.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/paru-software-nonresmi.webp">
-</head>
+    <link rel="stylesheet" href="/ext/marquee-url.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="30 artikel baru bikin."
+      href="https://dalam.web.id/rss.xml"
+    />
+    <meta
+      name="ai:summary"
+      content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya."
+    />
+    <meta
+      name="ai:prompt_hint"
+      content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dalam.web.id/#website",
+            "url": "https://dalam.web.id/",
+            "name": "Layar Kosong",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://dalam.web.id/#organization",
+              "name": "Layar Kosong",
+              "url": "https://dalam.web.id",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dalam.web.id/logo.png",
+                "width": 384,
+                "height": 384
+              }
+            }
+          },
+          {
+            "@type": "Article",
+            "@id": "https://dalam.web.id/artikel/paru-software-nonresmi#article",
+            "isPartOf": { "@id": "https://dalam.web.id/#website" },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://dalam.web.id/artikel/paru-software-nonresmi"
+            },
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "headline": "Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)",
+            "description": "Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya.",
+            "articleSection": "Sistem Terbuka",
+            "keywords": "fungsi, komunitas, layar kosong, menginstal, nonresmi, paru, sebenarnya, sistem terbuka, software",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://dalam.web.id/img/paru-software-nonresmi.webp",
+              "width": 1200,
+              "height": 675
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Fakhrul Rijal",
+              "url": "https://dalam.web.id/about"
+            },
+            "publisher": { "@id": "https://dalam.web.id/#organization" },
+            "datePublished": "2025-10-06T06:06:53.376+00:00",
+            "dateModified": "2025-10-06T06:06:53.376+00:00"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://dalam.web.id/artikel/paru-software-nonresmi#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Beranda",
+                "item": "https://dalam.web.id/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sistem Terbuka",
+                "item": "https://dalam.web.id/artikel/-/sistem-terbuka/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)",
+                "item": "https://dalam.web.id/artikel/paru-software-nonresmi"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link
+      rel="canonical"
+      href="https://dalam.web.id/artikel/paru-software-nonresmi"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="license"
+      href="https://creativecommons.org/publicdomain/zero/1.0/"
+    />
+    <meta name="author" content="Fakhrul Rijal" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="max-image-preview:large" />
+    <meta name="theme-color" content="#00b0ed" />
+    <meta name="fediverse:creator" content="@frijal@mastodon.social" />
+    <meta name="twitter:creator" content="@responaja" />
+    <meta name="bluesky:creator" content="@dalam.web.id" />
+    <meta property="og:site_name" content="Layar Kosong" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://dalam.web.id/artikel/paru-software-nonresmi"
+    />
+    <meta
+      property="og:title"
+      content="Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)"
+    />
+    <meta
+      property="og:description"
+      content="Penjelasan mendalam tentang peran Paru sebagai AUR Helper untuk menginstal software yang tidak tersedia di repositori resmi Pacman, serta keuntungannya."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@responaja" />
+    <meta property="fb:app_id" content="175216696195384" />
+    <meta property="article:author" content="https://facebook.com/frijal" />
+    <meta
+      property="article:publisher"
+      content="https://facebook.com/frijalpage"
+    />
+    <meta
+      property="og:image"
+      content="https://dalam.web.id/img/paru-software-nonresmi.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="Fungsi Sebenarnya Paru: Menginstal Software Komunitas (AUR)"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      name="twitter:image"
+      content="https://dalam.web.id/img/paru-software-nonresmi.webp"
+    />
+    <meta
+      itemprop="image"
+      content="https://dalam.web.id/img/paru-software-nonresmi.webp"
+    />
+  </head>
   <body>
     <header>
       <h1>Paru dan Software Komunitas: Menguak Kekuatan AUR</h1>
-<div id="iposbrowser"></div>
+      <div id="iposbrowser"></div>
     </header>
     <div class="container">
       <article>
@@ -211,8 +341,9 @@
               Spotify, Google Chrome, Visual Studio Code.
             </li>
             <li>
-              <i class="fas fa-laptop-code"></i> <b>Versi Pengembangan:</b>
-              Versi <code>beta</code> atau <code>git</code> dari sebuah program.
+              <i class="fas fa-laptop-code"></i>
+              <b>Versi Pengembangan:</b> Versi <code>beta</code> atau
+              <code>git</code> dari sebuah program.
             </li>
             <li>
               <i class="fas fa-cogs"></i> <b>Perangkat Lunak Khusus:</b>
@@ -220,13 +351,15 @@
             </li>
           </ul>
         </section>
-        <hr>
+        <hr />
         <section>
-          <h2><i class="fas fa-tools"></i> Peran Paru dalam Menjembatani AUR</h2>
+          <h2>
+            <i class="fas fa-tools"></i> Peran Paru dalam Menjembatani AUR
+          </h2>
           <p>
             Sebelum ada AUR Helper seperti Paru, menginstal dari AUR adalah
-            pekerjaan manual yang cukup merepotkan. <b>Paru mengotomatisasi
-            seluruh proses tersebut.</b>
+            pekerjaan manual yang cukup merepotkan.
+            <b>Paru mengotomatisasi seluruh proses tersebut.</b>
           </p>
           <p>
             Saat Anda menggunakan <code>paru -S [nama-software]</code>, Paru
@@ -238,8 +371,8 @@
               resmi dan AUR.
             </li>
             <li>
-              <i class="fas fa-code-branch"></i> Jika ditemukan di AUR, Paru akan
-              mengunduh kode sumbernya.
+              <i class="fas fa-code-branch"></i> Jika ditemukan di AUR, Paru
+              akan mengunduh kode sumbernya.
             </li>
             <li>
               <i class="fas fa-eye"></i> <b>Menampilkan PKGBUILD</b> (skrip
@@ -255,13 +388,17 @@
             resmi.
           </p>
         </section>
-        <hr>
+        <hr />
         <section>
-          <h2><i class="fas fa-shield-alt"></i> Peringatan Penting: Keamanan AUR</h2>
+          <h2>
+            <i class="fas fa-shield-alt"></i> Peringatan Penting: Keamanan AUR
+          </h2>
           <p>
-            Perlu diingat bahwa <b>perangkat lunak dari AUR dikelola oleh
-            komunitas, bukan oleh pengembang resmi distro Anda</b>.
-            Perhatikan hal berikut:
+            Perlu diingat bahwa
+            <b
+              >perangkat lunak dari AUR dikelola oleh komunitas, bukan oleh
+              pengembang resmi distro Anda</b
+            >. Perhatikan hal berikut:
           </p>
           <ul>
             <li>
@@ -270,24 +407,32 @@
               memastikan tidak ada kode berbahaya.
             </li>
             <li>
-              <b>Pahami Dependensi:</b> Paket AUR mungkin memiliki dependensi yang
-              rumit. Paru akan membantu mengurusnya, tetapi pastikan Anda
+              <b>Pahami Dependensi:</b> Paket AUR mungkin memiliki dependensi
+              yang rumit. Paru akan membantu mengurusnya, tetapi pastikan Anda
               mengerti apa yang diinstal.
             </li>
           </ul>
         </section>
         <section class="social-share">
-         <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+          <div id="pesbukdiskus"></div>
+          <div id="related-articles-grid"></div>
         </section>
         <section id="fb-comments-container">
-          <h2><i class="far fa-comment-dots"></i> Jaga Data Pribadi Tetap Aman.</h2>
-          <div class="fb-comments" data-href="https://dalam.web.id/artikel/paru-software-nonresmi.html" data-width="100%" data-numposts="5"></div>
+          <h2>
+            <i class="far fa-comment-dots"></i> Jaga Data Pribadi Tetap Aman.
+          </h2>
+          <div
+            class="fb-comments"
+            data-href="https://dalam.web.id/artikel/paru-software-nonresmi.html"
+            data-width="100%"
+            data-numposts="5"
+          ></div>
         </section>
-    </article>
+      </article>
     </div>
     <div id="lightbox-modal" class="lightbox">
       <span class="close-btn">×</span>
-      <img class="lightbox-content" id="lightbox-img" alt="Gambar diperbesar">
+      <img class="lightbox-content" id="lightbox-img" alt="Gambar diperbesar" />
       <a class="prev"><i class="fas fa-chevron-left"></i></a>
       <a class="next"><i class="fas fa-chevron-right"></i></a>
     </div>
@@ -295,45 +440,71 @@
       <p>🄯 2024 Artikel Frijal. Gunakan Paru dengan bijak dan aman!</p>
     </footer>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // --- Lightbox Gallery (disembunyikan jika tidak ada gambar) ---
-        const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
-        const lightboxModal = document.getElementById('lightbox-modal');
+        const galleryImages = Array.from(
+          document.querySelectorAll(".gallery img"),
+        );
+        const lightboxModal = document.getElementById("lightbox-modal");
         if (galleryImages.length > 0 && lightboxModal) {
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = lightboxModal.querySelector('.close-btn');
-            const prevBtn = lightboxModal.querySelector('.prev');
-            const nextBtn = lightboxModal.querySelector('.next');
-            let currentIndex = 0;
-            function openLightbox(index) {
-                lightboxModal.style.display = 'grid';
-                lightboxImg.src = galleryImages[index].src;
-                currentIndex = index;
+          const lightboxImg = document.getElementById("lightbox-img");
+          const closeBtn = lightboxModal.querySelector(".close-btn");
+          const prevBtn = lightboxModal.querySelector(".prev");
+          const nextBtn = lightboxModal.querySelector(".next");
+          let currentIndex = 0;
+          function openLightbox(index) {
+            lightboxModal.style.display = "grid";
+            lightboxImg.src = galleryImages[index].src;
+            currentIndex = index;
+          }
+          function closeLightbox() {
+            lightboxModal.style.display = "none";
+          }
+          function changeImage(n) {
+            currentIndex =
+              (currentIndex + n + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex].src;
+          }
+          galleryImages.forEach((img, index) =>
+            img.addEventListener("click", () => openLightbox(index)),
+          );
+          closeBtn.addEventListener("click", closeLightbox);
+          prevBtn.addEventListener("click", () => changeImage(-1));
+          nextBtn.addEventListener("click", () => changeImage(1));
+          lightboxModal.addEventListener(
+            "click",
+            (e) => e.target === lightboxModal && closeLightbox(),
+          );
+          document.addEventListener("keydown", (e) => {
+            if (lightboxModal.style.display === "grid") {
+              if (e.key === "ArrowLeft") changeImage(-1);
+              if (e.key === "ArrowRight") changeImage(1);
+              if (e.key === "Escape") closeLightbox();
             }
-            function closeLightbox() {
-                lightboxModal.style.display = 'none';
-            }
-            function changeImage(n) {
-                currentIndex = (currentIndex + n + galleryImages.length) % galleryImages.length;
-                lightboxImg.src = galleryImages[currentIndex].src;
-            }
-            galleryImages.forEach((img, index) => img.addEventListener('click', () => openLightbox(index)));
-            closeBtn.addEventListener('click', closeLightbox);
-            prevBtn.addEventListener('click', () => changeImage(-1));
-            nextBtn.addEventListener('click', () => changeImage(1));
-            lightboxModal.addEventListener('click', (e) => (e.target === lightboxModal) && closeLightbox());
-            document.addEventListener('keydown', (e) => {
-                if (lightboxModal.style.display === 'grid') {
-                    if (e.key === 'ArrowLeft') changeImage(-1);
-                    if (e.key === 'ArrowRight') changeImage(1);
-                    if (e.key === 'Escape') closeLightbox();
-                }
-            });
+          });
         }
         // --- Blok deteksi info pengguna DIHAPUS ---
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+    <div id="progress"></div>
+    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
+    <div class="search-floating-container">
+      <input
+        type="text"
+        id="floatingSearchInput"
+        placeholder="cari artikel..."
+        autocomplete="off"
+      /><span id="floatingSearchClear" class="clear-button"></span>
+      <div id="floatingSearchResults" class="floating-results-container"></div>
+    </div>
+    <div id="dynamic-nav-container" class="floating-nav"></div>
+    <div id="internal-nav"></div>
+    <section id="related-marquee-section">
+      <div id="related-marquee-container"></div>
+    </section>
+    <script defer="" src="/ext/marquee-url.js"></script>
+    <script defer="" src="/ext/iposbrowser.js"></script>
+    <script defer="" src="/ext/markdown.js"></script>
+    <script defer="" src="/ext/pesbukdiskus.js"></script>
+  </body>
+</html>

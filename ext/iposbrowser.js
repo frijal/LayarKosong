@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // [FIX] Semua fungsi dan logika digabung ke dalam satu event listener.
 
   // 1. Utility: parse “rgb(r,g,b)” → [r, g, b]
@@ -9,11 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. Compute relative luminance (WCAG)
   function relativeLuminance([r, g, b]) {
-    const a = [r, g, b].map(v => {
+    const a = [r, g, b].map((v) => {
       v /= 255;
-      return v <= 0.03928
-        ? v / 12.92
-        : Math.pow((v + 0.055) / 1.055, 2.4);
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
     });
     return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
   }
@@ -37,46 +35,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const bg = findBackgroundColor(el);
     const lum = relativeLuminance(parseRGB(bg));
-    el.style.color = lum > 0.5 ? '#222' : '#eee';
+    el.style.color = lum > 0.5 ? "#222" : "#eee";
   }
 
   function detectBrowser() {
     const ua = navigator.userAgent;
-    if (/(firefox|fxios)/i.test(ua)) return 'Firefox';
-    if (/edg/i.test(ua)) return 'Edge';
-    if (/chrome|crios/i.test(ua) && !/edg/i.test(ua)) return 'Chrome';
-    if (/safari/i.test(ua) && !/chrome|crios|fxios|edg/i.test(ua)) return 'Safari';
-    return 'Unknown';
+    if (/(firefox|fxios)/i.test(ua)) return "Firefox";
+    if (/edg/i.test(ua)) return "Edge";
+    if (/chrome|crios/i.test(ua) && !/edg/i.test(ua)) return "Chrome";
+    if (/safari/i.test(ua) && !/chrome|crios|fxios|edg/i.test(ua))
+      return "Safari";
+    return "Unknown";
   }
 
   function detectOS() {
     const ua = navigator.userAgent;
-    if (/android/i.test(ua)) return 'Android';
-    if (/iphone|ipad|ipod/i.test(ua)) return 'iOS';
-    if (ua.includes('Windows')) return 'Windows';
-    if (ua.includes('Mac')) return 'macOS';
-    if (ua.includes('Linux')) return 'Linux';
-    return 'Unknown';
+    if (/android/i.test(ua)) return "Android";
+    if (/iphone|ipad|ipod/i.test(ua)) return "iOS";
+    if (ua.includes("Windows")) return "Windows";
+    if (ua.includes("Mac")) return "macOS";
+    if (ua.includes("Linux")) return "Linux";
+    return "Unknown";
   }
 
   async function fetchGeoIP() {
     let ipAddress = null;
     try {
       try {
-        const ip4Res = await fetch('https://api.ipify.org?format=json');
-        if (!ip4Res.ok) throw new Error('API IPv4 tidak merespons');
+        const ip4Res = await fetch("https://api.ipify.org?format=json");
+        if (!ip4Res.ok) throw new Error("API IPv4 tidak merespons");
         const ip4Data = await ip4Res.json();
         ipAddress = ip4Data.ip;
       } catch (ipv4Error) {
-        console.warn('Gagal mendapatkan IPv4, mencoba fallback ke IPv6...', ipv4Error);
-        const ip6Res = await fetch('https://api64.ipify.org?format=json');
-        if (!ip6Res.ok) throw new Error('API IPv6 juga tidak merespons');
+        console.warn(
+          "Gagal mendapatkan IPv4, mencoba fallback ke IPv6...",
+          ipv4Error,
+        );
+        const ip6Res = await fetch("https://api64.ipify.org?format=json");
+        if (!ip6Res.ok) throw new Error("API IPv6 juga tidak merespons");
         const ip6Data = await ip6Res.json();
         ipAddress = ip6Data.ip;
       }
 
       const locRes = await fetch(`https://ipapi.co/${ipAddress}/json/`);
-      if (!locRes.ok) throw new Error('Gagal mengambil data lokasi');
+      if (!locRes.ok) throw new Error("Gagal mengambil data lokasi");
       const locData = await locRes.json();
 
       // [PERBAIKAN] Tambahkan pengecekan error dari konten JSON
@@ -91,43 +93,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         code: locData.country_code,
       };
     } catch (err) {
-      console.error('GeoIP Error Final:', err);
+      console.error("GeoIP Error Final:", err);
       return null;
     }
   }
 
-  const target = document.getElementById('iposbrowser');
+  const target = document.getElementById("iposbrowser");
   if (!target) return;
 
   const browser = detectBrowser();
   const os = detectOS();
   const geo = await fetchGeoIP();
-   
+
   // [PERBAIKAN] Hapus variabel HTML yang tidak terpakai.
   let geoHTML = '<div class="info-item"><span></span></div>';
   if (geo) {
     const flag = geo.code
       ? `<img class="geo-flag" src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="${geo.country}" />`
-      : '';
-    geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + ' - ' : ''}${geo.country} • ${geo.ip}</div>`;
+      : "";
+    geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + " - " : ""}${geo.country} • ${geo.ip}</div>`;
   }
 
   target.innerHTML = `
     <div id="ipos-browser-info">
-      <div class="browser-block"><span class="icon browser">${browserIcons[browser] || ''}</span><span class="text">${browser}</span></div>
-      <div class="os-block"><span class="icon os">${osIcons[os] || ''}</span><span class="text">${os}</span></div>
+      <div class="browser-block"><span class="icon browser">${browserIcons[browser] || ""}</span><span class="text">${browser}</span></div>
+      <div class="os-block"><span class="icon os">${osIcons[os] || ""}</span><span class="text">${os}</span></div>
       ${geoHTML}
     </div>`;
 
   // [FIX UTAMA] Gunakan querySelector & pastikan elemen ada sebelum diproses
-  const infoBox = target.querySelector('#ipos-browser-info');
-  
+  const infoBox = target.querySelector("#ipos-browser-info");
+
   if (infoBox) {
     adjustTextColorBasedOnBackground(infoBox);
 
-    new MutationObserver(() => adjustTextColorBasedOnBackground(infoBox)).observe(document.body, {
+    new MutationObserver(() =>
+      adjustTextColorBasedOnBackground(infoBox),
+    ).observe(document.body, {
       attributes: true,
-      attributeFilter: ['class', 'style']
+      attributeFilter: ["class", "style"],
     });
   } else {
     console.warn("Elemen #ipos-browser-info gagal dirender.");
@@ -135,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // 5. Inject CSS fallback + text-shadow halo
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   :root { --ipos-text-color: #222; }
   @media (prefers-color-scheme: dark) { :root { --ipos-text-color: #eee; } }
@@ -277,7 +281,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M687 496  C706 494 709 489 714 486  C620 652 620 652 620 652  C616 660 608 667 596 667  C492 667 492 667 492 667  C492 728 492 728 492 728  C407 583 407 583 407 583  C492 437 492 437 492 437  C492 496 492 496 492 496z" />
 <path d="M519 315  C666 231 666 231 666 231  C743 362 743 362 743 362  C771 416 723 468 691 474  C612 474 612 474 612 474z" />
 <path d="M357 35  C351 27 339 17 328 15  C525 15 525 15 525 15  C536 15 546 19 551 28  C602 118 602 118 602 118  C653 89 653 89 653 89  C570 233 570 233 570 233  C404 233 404 233 404 233  C454 203 454 203 454 203z" /></g></svg>`,
-}
+};
 
 const osIcons = {
   Windows: `<svg class="icon responsive-icon" xmlns="http://www.w3.org/2000/svg" height="150" width="170">
@@ -762,4 +766,4 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M687 496  C706 494 709 489 714 486  C620 652 620 652 620 652  C616 660 608 667 596 667  C492 667 492 667 492 667  C492 728 492 728 492 728  C407 583 407 583 407 583  C492 437 492 437 492 437  C492 496 492 496 492 496z" />
 <path d="M519 315  C666 231 666 231 666 231  C743 362 743 362 743 362  C771 416 723 468 691 474  C612 474 612 474 612 474z" />
 <path d="M357 35  C351 27 339 17 328 15  C525 15 525 15 525 15  C536 15 546 19 551 28  C602 118 602 118 602 118  C653 89 653 89 653 89  C570 233 570 233 570 233  C404 233 404 233 404 233  C454 203 454 203 454 203z" /></g></svg>`,
-}
+};

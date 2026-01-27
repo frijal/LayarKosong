@@ -73,148 +73,148 @@
     </section>
 
     <script>
-      const manifestUrl = '/site.webmanifest'
-      let currentFilter = 'all' // default
+      const manifestUrl = "/site.webmanifest";
+      let currentFilter = "all"; // default
 
       // --- Uji Manifest + PWA ---
       fetch(manifestUrl)
         .then((r) => r.json())
         .then((data) => {
-          document.getElementById('statusManifest').innerHTML =
-            '✅ Manifest berhasil dimuat'
-          document.getElementById('jsonManifest').textContent = JSON.stringify(
+          document.getElementById("statusManifest").innerHTML =
+            "✅ Manifest berhasil dimuat";
+          document.getElementById("jsonManifest").textContent = JSON.stringify(
             data,
             null,
             2,
-          )
+          );
           if (data.icons) {
-            const iconsDiv = document.getElementById('iconsManifest')
-            iconsDiv.innerHTML = '<h3>Ikon:</h3>'
+            const iconsDiv = document.getElementById("iconsManifest");
+            iconsDiv.innerHTML = "<h3>Ikon:</h3>";
             data.icons.forEach((icon) => {
-              const img = document.createElement('img')
-              img.src = '/' + icon.src
-              img.alt = icon.sizes
-              img.title = icon.sizes
-              iconsDiv.appendChild(img)
-            })
+              const img = document.createElement("img");
+              img.src = "/" + icon.src;
+              img.alt = icon.sizes;
+              img.title = icon.sizes;
+              iconsDiv.appendChild(img);
+            });
           }
-          document.getElementById('statusPWA').innerHTML =
+          document.getElementById("statusPWA").innerHTML =
             data.name && data.icons && data.start_url
-              ? '🚀 PWA installable (name, icons, start_url lengkap)'
-              : '⚠ Masih ada properti PWA yang kurang'
+              ? "🚀 PWA installable (name, icons, start_url lengkap)"
+              : "⚠ Masih ada properti PWA yang kurang";
         })
         .catch((err) => {
-          document.getElementById('statusManifest').innerHTML =
-            '❌ ' + err.message
-        })
+          document.getElementById("statusManifest").innerHTML =
+            "❌ " + err.message;
+        });
 
       // --- Uji Semua Artikel dari artikel.json ---
-      const container = document.getElementById('articlesReport')
+      const container = document.getElementById("articlesReport");
 
       function checkMeta(doc, selector, label) {
         if (doc.querySelector(selector)) {
-          return `<li class="ok">✔ ${label} ada</li>`
+          return `<li class="ok">✔ ${label} ada</li>`;
         } else {
-          return `<li class="fail">✖ ${label} tidak ada</li>`
+          return `<li class="fail">✖ ${label} tidak ada</li>`;
         }
       }
 
       function renderArticles(data) {
-        container.innerHTML = ''
+        container.innerHTML = "";
         for (const kategori in data) {
-          const group = data[kategori]
-          container.innerHTML += `<h3 class="category">📚 ${kategori}</h3>`
+          const group = data[kategori];
+          container.innerHTML += `<h3 class="category">📚 ${kategori}</h3>`;
           group.forEach((item) => {
-            const judul = item[0]
-            const file = item[1]
-            const url = '/artikel/' + file
+            const judul = item[0];
+            const file = item[1];
+            const url = "/artikel/" + file;
 
             fetch(url)
               .then((r) => r.text())
               .then((html) => {
-                const parser = new DOMParser()
-                const doc = parser.parseFromString(html, 'text/html')
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
                 const title =
-                  doc.querySelector('title')?.innerText || judul || file
+                  doc.querySelector("title")?.innerText || judul || file;
 
-                let checks = []
+                let checks = [];
                 checks.push(
-                  checkMeta(doc, 'meta[name="description"]', 'Description'),
-                )
+                  checkMeta(doc, 'meta[name="description"]', "Description"),
+                );
                 checks.push(
-                  checkMeta(doc, 'link[rel="canonical"]', 'Canonical'),
-                )
+                  checkMeta(doc, 'link[rel="canonical"]', "Canonical"),
+                );
                 checks.push(
-                  checkMeta(doc, 'meta[property="og:title"]', 'OG Title'),
-                )
+                  checkMeta(doc, 'meta[property="og:title"]', "OG Title"),
+                );
                 checks.push(
                   checkMeta(
                     doc,
                     'meta[property="og:description"]',
-                    'OG Description',
+                    "OG Description",
                   ),
-                )
+                );
                 checks.push(
-                  checkMeta(doc, 'meta[property="og:image"]', 'OG Image'),
-                )
+                  checkMeta(doc, 'meta[property="og:image"]', "OG Image"),
+                );
                 checks.push(
-                  checkMeta(doc, 'meta[name="twitter:card"]', 'Twitter Card'),
-                )
+                  checkMeta(doc, 'meta[name="twitter:card"]', "Twitter Card"),
+                );
                 checks.push(
-                  checkMeta(doc, 'meta[name="twitter:title"]', 'Twitter Title'),
-                )
+                  checkMeta(doc, 'meta[name="twitter:title"]', "Twitter Title"),
+                );
                 checks.push(
                   checkMeta(
                     doc,
                     'meta[name="twitter:description"]',
-                    'Twitter Description',
+                    "Twitter Description",
                   ),
-                )
+                );
                 checks.push(
-                  checkMeta(doc, 'meta[name="twitter:image"]', 'Twitter Image'),
-                )
+                  checkMeta(doc, 'meta[name="twitter:image"]', "Twitter Image"),
+                );
                 checks.push(
                   checkMeta(
                     doc,
                     'script[type="application/ld+json"]',
-                    'Structured Data',
+                    "Structured Data",
                   ),
-                )
+                );
 
                 // filter sesuai pilihan
                 let filtered = checks.filter((c) => {
-                  if (currentFilter === 'all') return true
-                  if (currentFilter === 'fail') return c.includes('fail')
-                  if (currentFilter === 'pass') return c.includes('ok')
-                })
+                  if (currentFilter === "all") return true;
+                  if (currentFilter === "fail") return c.includes("fail");
+                  if (currentFilter === "pass") return c.includes("ok");
+                });
 
                 if (filtered.length > 0) {
                   let report = `<div class="article-report">
                   <h4>📄 ${title} - ${file}</h4>
-                  <ul>${filtered.join('')}</ul>
-                </div>`
-                  container.innerHTML += report
+                  <ul>${filtered.join("")}</ul>
+                </div>`;
+                  container.innerHTML += report;
                 }
               })
               .catch(() => {
-                container.innerHTML += `<div class="article-report"><h4>📄 ${judul} - ${file}</h4><p class="fail">❌ Tidak bisa dimuat</p></div>`
-              })
-          })
+                container.innerHTML += `<div class="article-report"><h4>📄 ${judul} - ${file}</h4><p class="fail">❌ Tidak bisa dimuat</p></div>`;
+              });
+          });
         }
       }
 
       function setFilter(mode) {
-        currentFilter = mode
-        fetch('/artikel.json')
+        currentFilter = mode;
+        fetch("/artikel.json")
           .then((r) => r.json())
           .then((data) => renderArticles(data))
           .catch(() => {
-            container.innerHTML = '❌ Gagal memuat artikel.json'
-          })
+            container.innerHTML = "❌ Gagal memuat artikel.json";
+          });
       }
 
       // initial load
-      setFilter('all')
+      setFilter("all");
     </script>
   </body>
 </html>

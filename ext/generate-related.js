@@ -15,9 +15,7 @@ if (!fs.existsSync(CLUSTER_FILE)) {
   process.exit(1);
 }
 
-const clusterData = JSON.parse(
-  fs.readFileSync(CLUSTER_FILE, "utf8")
-);
+const clusterData = JSON.parse(fs.readFileSync(CLUSTER_FILE, "utf8"));
 
 const clusters = clusterData.clusters || {};
 
@@ -34,11 +32,11 @@ const slugIndex = {};
   }
 */
 
-Object.values(clusters).forEach(cluster => {
-  cluster.articles.forEach(a => {
+Object.values(clusters).forEach((cluster) => {
+  cluster.articles.forEach((a) => {
     slugIndex[a.slug] = {
       label: cluster.label,
-      articles: cluster.articles
+      articles: cluster.articles,
     };
   });
 });
@@ -57,14 +55,14 @@ for (const slug of Object.keys(slugIndex)) {
   const cluster = slugIndex[slug];
 
   const related = cluster.articles
-    .filter(a => a.slug !== slug)
-    .sort((a,b) => b.score - a.score || a.title.localeCompare(b.title))
+    .filter((a) => a.slug !== slug)
+    .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
     .slice(0, MAX_RELATED)
-    .map(a => ({
+    .map((a) => ({
       slug: a.slug,
       title: a.title,
       url: a.url,
-      score: a.score
+      score: a.score,
     }));
 
   // skip jika tidak ada related
@@ -74,7 +72,7 @@ for (const slug of Object.keys(slugIndex)) {
     slug,
     cluster: cluster.label,
     total: related.length,
-    related
+    related,
   };
 
   const outFile = path.join(OUT_DIR, `${slug}.json`);

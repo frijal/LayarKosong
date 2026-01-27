@@ -1,6 +1,6 @@
 (function () {
-    // Inject styles
-    const css = `
+  // Inject styles
+  const css = `
         /* Bubble */
         #gt-bubble {
             position: fixed;
@@ -80,19 +80,19 @@
             font-size: 14px;
         }
     `;
-    const sty = document.createElement("style");
-    sty.innerHTML = css;
-    document.head.appendChild(sty);
+  const sty = document.createElement("style");
+  sty.innerHTML = css;
+  document.head.appendChild(sty);
 
-    // Create bubble
-    const bubble = document.createElement("div");
-    bubble.id = "gt-bubble";
-    bubble.innerHTML = "🌐";
+  // Create bubble
+  const bubble = document.createElement("div");
+  bubble.id = "gt-bubble";
+  bubble.innerHTML = "🌐";
 
-    // Create modal
-    const modal = document.createElement("div");
-    modal.id = "gt-modal";
-    modal.innerHTML = `
+  // Create modal
+  const modal = document.createElement("div");
+  modal.id = "gt-modal";
+  modal.innerHTML = `
         <div id="gt-box">
             <div id="gt-close">✖</div>
             <h3 style="margin-top:0;font-size:18px">Translate halaman ini</h3>
@@ -101,40 +101,45 @@
         </div>
     `;
 
-    document.body.appendChild(bubble);
-    document.body.appendChild(modal);
+  document.body.appendChild(bubble);
+  document.body.appendChild(modal);
 
-    // Bubble open modal
-    bubble.addEventListener("click", () => {
-        modal.style.display = "flex";
-    });
-    document.getElementById("gt-close").addEventListener("click", () => {
-        modal.style.display = "none";
-    });
+  // Bubble open modal
+  bubble.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+  document.getElementById("gt-close").addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 
-    // Reset language
-    document.getElementById("gt-reset").addEventListener("click", () => {
-        const frame = document.querySelector("iframe.goog-te-menu-frame");
-        document.cookie = "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
-        location.reload();
-    });
+  // Reset language
+  document.getElementById("gt-reset").addEventListener("click", () => {
+    const frame = document.querySelector("iframe.goog-te-menu-frame");
+    document.cookie =
+      "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+    location.reload();
+  });
 
-    // Google Translate Loader
-    window.googleTranslateElementInit = function () {
-        new google.translate.TranslateElement({
-            pageLanguage: "id",
-            autoDisplay: false
-        }, "google_translate_element");
-    };
+  // Google Translate Loader
+  window.googleTranslateElementInit = function () {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "id",
+        autoDisplay: false,
+      },
+      "google_translate_element",
+    );
+  };
 
-    // Load script dynamically
-    const s = document.createElement("script");
-    s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    document.body.appendChild(s);
+  // Load script dynamically
+  const s = document.createElement("script");
+  s.src =
+    "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  document.body.appendChild(s);
 
-    // Auto enable when <div id="terjemah"></div> exists
-    const target = document.getElementById("terjemah");
-    if (target) {
-        target.appendChild(bubble);
-    }
+  // Auto enable when <div id="terjemah"></div> exists
+  const target = document.getElementById("terjemah");
+  if (target) {
+    target.appendChild(bubble);
+  }
 })();

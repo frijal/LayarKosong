@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "name": "Layar Kosong AI Structured Index",
   "description": "Indeks data terstruktur (JSON) dan panduan konten mentah (llms.txt / llms.md) dari semua artikel Blog Layar Kosong, dioptimalkan untuk Generative Engine Optimization (GEO).",
-  
+
   "ai_apis": [
     {
       "type": "index",
@@ -23,11 +23,11 @@
       "purpose": "Alternative content guide using the explicit llms.md extension for clarity."
     }
   ],
-  
+
   "contact": {
     "email": "sini@dalam.web.id",
     "security": "https://dalam.web.id/.well-known/security.txt"
   },
-  
+
   "preferred_languages": ["id", "en"]
 }

@@ -6,7 +6,7 @@ async function main() {
   const {
     CF_ACCOUNT_ID: accountId,
     CF_PROJECT_NAME: projectName,
-    CF_API_TOKEN: token
+    CF_API_TOKEN: token,
   } = process.env;
 
   if (!accountId || !projectName || !token) {
@@ -21,8 +21,8 @@ async function main() {
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
+      Accept: "application/json",
+    },
   });
 
   if (!res.ok) {
@@ -40,10 +40,11 @@ async function main() {
   const deployments = json.result;
 
   const previews = deployments
-    .filter(d =>
-      d.production === false ||
-      typeof d.production === "undefined" ||
-      d.environment === "preview"
+    .filter(
+      (d) =>
+        d.production === false ||
+        typeof d.production === "undefined" ||
+        d.environment === "preview",
     )
     // paling lama → paling baru
     .sort((a, b) => {
@@ -53,7 +54,9 @@ async function main() {
     });
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-  console.log(`🗑 Preview yang akan dihapus (urut lama → baru): ${previews.length}`);
+  console.log(
+    `🗑 Preview yang akan dihapus (urut lama → baru): ${previews.length}`,
+  );
 
   if (previews.length === 0) {
     console.log("ℹ Tidak ada preview yang memenuhi kriteria penghapusan");
@@ -74,8 +77,8 @@ async function deleteDeployment(accountId, projectName, token, id) {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
+      Accept: "application/json",
+    },
   });
 
   if (!res.ok) {
@@ -92,7 +95,7 @@ async function deleteDeployment(accountId, projectName, token, id) {
   }
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error("❌ Fatal error:", err);
   process.exit(1);
 });

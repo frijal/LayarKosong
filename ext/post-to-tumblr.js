@@ -20,10 +20,12 @@ const client = tumblr.createClient({
  * Util
  * ===================== */
 const cleanTag = (str) =>
-str.replace(/&/g, "dan").replace(/[^\w\s]/g, "").trim();
+  str
+    .replace(/&/g, "dan")
+    .replace(/[^\w\s]/g, "")
+    .trim();
 
-const slugify = (text) =>
-text.toLowerCase().trim().replace(/\s+/g, '-');
+const slugify = (text) => text.toLowerCase().trim().replace(/\s+/g, "-");
 
 /* =====================
  * Load Database
@@ -43,7 +45,7 @@ for (const [category, items] of Object.entries(raw)) {
   const catSlug = slugify(category); // <--- Pakai catSlug
 
   for (const item of items) {
-    const fileSlug = item[1].replace('.html', '').replace(/^\//, '');
+    const fileSlug = item[1].replace(".html", "").replace(/^\//, "");
 
     // Perbaikan di sini: Pastikan variabelnya sama (catSlug)
     const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
@@ -58,7 +60,7 @@ for (const [category, items] of Object.entries(raw)) {
         slug: fileSlug,
         date: item[3],
         desc: item[4] || "Archive.",
-        category: category
+        category: category,
       });
     }
   }
@@ -83,22 +85,26 @@ console.log(`🚀 Mengirim ke Tumblr: ${target.title}`);
 
 const content = [
   { type: "text", text: target.desc },
-{ type: "text", text: "#fediverse #Indonesia" },
-{ type: "link", url: target.url }
+  { type: "text", text: "#fediverse #Indonesia" },
+  { type: "link", url: target.url },
 ];
 
-client.createPost(BLOG_NAME, {
-  content: content,
-  tags: tags.map(t => cleanTag(t))
-}, (err, data) => {
-  if (err) {
-    console.error("❌ Gagal post Tumblr:", JSON.stringify(err, null, 2));
-    process.exit(1);
-  }
+client.createPost(
+  BLOG_NAME,
+  {
+    content: content,
+    tags: tags.map((t) => cleanTag(t)),
+  },
+  (err, data) => {
+    if (err) {
+      console.error("❌ Gagal post Tumblr:", JSON.stringify(err, null, 2));
+      process.exit(1);
+    }
 
-  if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
-  fs.appendFileSync(DATABASE_FILE, target.url + "\n");
+    if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
+    fs.appendFileSync(DATABASE_FILE, target.url + "\n");
 
-  console.log("✅ Berhasil post ke Tumblr:", target.url);
-  setTimeout(() => process.exit(0), 500);
-});
+    console.log("✅ Berhasil post ke Tumblr:", target.url);
+    setTimeout(() => process.exit(0), 500);
+  },
+);

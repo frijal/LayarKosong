@@ -10,25 +10,23 @@
  * =================================================================================
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   // --- [KONFIGURASI UNIVERSAL] ---
   const CONFIG = {
     // [DIPERBARUI] Semua selector kini diawali dengan 'body'
     galleryImageSelectors: [
-      'body .image-gallery img',
-      'body .gallery-image',
-      'body .gallery',
-      'body .artikel-gambar',
-      'body main .wp-block-image img',
-      'body article img',
-      'body main img',
-      'body separator'
-
+      "body .image-gallery img",
+      "body .gallery-image",
+      "body .gallery",
+      "body .artikel-gambar",
+      "body main .wp-block-image img",
+      "body article img",
+      "body main img",
+      "body separator",
     ],
 
     minImageWidth: 50,
-    lightboxId: 'auto-generated-lightbox'
+    lightboxId: "auto-generated-lightbox",
   };
   // -----------------------------
 
@@ -37,19 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const elements = document.querySelectorAll(selector);
       if (elements.length > 0) return elements;
     }
-    return document.querySelectorAll('.non-existent-class-for-empty-nodelist');
+    return document.querySelectorAll(".non-existent-class-for-empty-nodelist");
   };
 
   // 1. Temukan dan filter semua gambar yang relevan
   const potentialImages = findElements(CONFIG.galleryImageSelectors);
 
   // [DIPERBARUI] Filter kini memeriksa lebar DAN ekstensi file
-  const galleryImages = Array.from(potentialImages).filter(img => {
-    const isWideEnough = img.naturalWidth >= CONFIG.minImageWidth || img.width >= CONFIG.minImageWidth;
+  const galleryImages = Array.from(potentialImages).filter((img) => {
+    const isWideEnough =
+      img.naturalWidth >= CONFIG.minImageWidth ||
+      img.width >= CONFIG.minImageWidth;
     if (!isWideEnough) return false;
 
     const allowedExtensions = /\.(jpe?g|png|webp)$/i;
-    const srcPath = img.src.split('?')[0];
+    const srcPath = img.src.split("?")[0];
     return allowedExtensions.test(srcPath);
   });
 
@@ -67,24 +67,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let lightbox, lightboxImage;
 
   const createLightboxHTML = () => {
-    lightbox = document.createElement('div');
+    lightbox = document.createElement("div");
     lightbox.id = CONFIG.lightboxId;
-    lightbox.className = 'auto-lightbox-overlay';
-    const closeButton = document.createElement('button');
-    closeButton.className = 'auto-lightbox-close';
-    closeButton.innerHTML = '&times;';
+    lightbox.className = "auto-lightbox-overlay";
+    const closeButton = document.createElement("button");
+    closeButton.className = "auto-lightbox-close";
+    closeButton.innerHTML = "&times;";
     closeButton.onclick = closeLightbox;
-    lightboxImage = document.createElement('img');
-    lightboxImage.className = 'auto-lightbox-image';
-    const navContainer = document.createElement('div');
-    navContainer.className = 'auto-lightbox-nav';
-    const prevButton = document.createElement('button');
-    prevButton.className = 'auto-lightbox-nav-btn prev';
-    prevButton.innerHTML = '&#9664;';
+    lightboxImage = document.createElement("img");
+    lightboxImage.className = "auto-lightbox-image";
+    const navContainer = document.createElement("div");
+    navContainer.className = "auto-lightbox-nav";
+    const prevButton = document.createElement("button");
+    prevButton.className = "auto-lightbox-nav-btn prev";
+    prevButton.innerHTML = "&#9664;";
     prevButton.onclick = showPrevImage;
-    const nextButton = document.createElement('button');
-    nextButton.className = 'auto-lightbox-nav-btn next';
-    nextButton.innerHTML = '&#9654;';
+    const nextButton = document.createElement("button");
+    nextButton.className = "auto-lightbox-nav-btn next";
+    nextButton.innerHTML = "&#9654;";
     nextButton.onclick = showNextImage;
     navContainer.appendChild(prevButton);
     navContainer.appendChild(nextButton);
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const injectStyles = () => {
-    const style = document.createElement('style');
-    style.id = 'auto-lightbox-styles';
+    const style = document.createElement("style");
+    style.id = "auto-lightbox-styles";
     style.innerHTML = `
       .auto-lightbox-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none; align-items: center; justify-content: center; z-index: 99999; }
       .auto-lightbox-overlay.open { display: flex; }
@@ -111,17 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const openLightbox = (index) => {
     currentIndex = index;
     updateLightboxImage();
-    lightbox.classList.add('open');
+    lightbox.classList.add("open");
   };
 
   const closeLightbox = () => {
-    lightbox.classList.remove('open');
+    lightbox.classList.remove("open");
   };
 
   const updateLightboxImage = () => {
     const targetImage = galleryImages[currentIndex];
     let imageUrl = targetImage.dataset.full || targetImage.src;
-    imageUrl = imageUrl.replace(/\/s\d+(-c)?\//, '/s0/');
+    imageUrl = imageUrl.replace(/\/s\d+(-c)?\//, "/s0/");
     lightboxImage.src = imageUrl;
   };
 
@@ -131,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const showPrevImage = () => {
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    currentIndex =
+      (currentIndex - 1 + galleryImages.length) % galleryImages.length;
     updateLightboxImage();
   };
 
@@ -139,18 +140,18 @@ document.addEventListener('DOMContentLoaded', () => {
     createLightboxHTML();
     injectStyles();
     galleryImages.forEach((img, index) => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
         openLightbox(index);
       });
     });
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'ArrowRight') showNextImage();
-      if (e.key === 'ArrowLeft') showPrevImage();
-      if (e.key === 'Escape') closeLightbox();
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "ArrowRight") showNextImage();
+      if (e.key === "ArrowLeft") showPrevImage();
+      if (e.key === "Escape") closeLightbox();
     });
-    lightbox.addEventListener('click', (e) => {
+    lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) closeLightbox();
     });
   };

@@ -1,10 +1,21 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html
+  lang="id"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan</title>
-    <meta name="description" content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.">
-    <meta name="keywords" content="Notion AI, produktivitas, manajemen proyek, AI writer, tools untuk pelajar, UMKM, organisasi">
-    <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
+    <meta
+      name="description"
+      content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi."
+    />
+    <meta
+      name="keywords"
+      content="Notion AI, produktivitas, manajemen proyek, AI writer, tools untuk pelajar, UMKM, organisasi"
+    />
+    <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png" />
     <style>
       :root {
         --bg-color: #0d1117;
@@ -14,9 +25,13 @@
         --text-muted: #8b949e;
         --border-color: #30363d;
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        --font-main:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+          sans-serif;
       }
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: var(--font-main);
         margin: 0;
@@ -25,10 +40,27 @@
         line-height: 1.8;
         font-size: 1.1rem;
       }
-      .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-      header { text-align: center; padding: 60px 20px; border-bottom: 1px solid var(--border-color); }
-      header h1 { font-size: 3rem; color: var(--primary-color); margin: 0; font-weight: 700; }
-      header .subtitle { font-size: 1.3rem; color: var(--text-muted); margin-top: 15px; }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        text-align: center;
+        padding: 60px 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      header h1 {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin: 0;
+        font-weight: 700;
+      }
+      header .subtitle {
+        font-size: 1.3rem;
+        color: var(--text-muted);
+        margin-top: 15px;
+      }
       article {
         background: var(--surface-color);
         border-radius: 15px;
@@ -45,7 +77,9 @@
         padding-bottom: 10px;
         font-weight: 600;
       }
-      ul { padding-left: 20px; }
+      ul {
+        padding-left: 20px;
+      }
       .highlight-box {
         background-color: rgba(88, 166, 255, 0.1);
         border-left: 5px solid var(--primary-color);
@@ -66,9 +100,14 @@
         object-fit: cover;
         border-radius: 10px;
         cursor: pointer;
-        transition: transform 0.3s, filter 0.3s;
+        transition:
+          transform 0.3s,
+          filter 0.3s;
       }
-      .gallery img:hover { transform: scale(1.05); filter: brightness(1.2); }
+      .gallery img:hover {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+      }
       .lightbox {
         display: none;
         position: fixed;
@@ -78,9 +117,24 @@
         justify-content: center;
         align-items: center;
       }
-      .lightbox-content { max-width: 90%; max-height: 85%; animation: fadeIn 0.4s ease; }
-      @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-      .lightbox-close, .lightbox-prev, .lightbox-next {
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 85%;
+        animation: fadeIn 0.4s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .lightbox-close,
+      .lightbox-prev,
+      .lightbox-next {
         position: absolute;
         color: white;
         font-size: 40px;
@@ -88,11 +142,27 @@
         user-select: none;
         transition: opacity 0.3s;
       }
-      .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { opacity: 0.7; }
-      .lightbox-close { top: 15px; right: 30px; }
-      .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); padding: 10px; }
-      .lightbox-prev { left: 15px; }
-      .lightbox-next { right: 15px; }
+      .lightbox-close:hover,
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        opacity: 0.7;
+      }
+      .lightbox-close {
+        top: 15px;
+        right: 30px;
+      }
+      .lightbox-prev,
+      .lightbox-next {
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+      }
+      .lightbox-prev {
+        left: 15px;
+      }
+      .lightbox-next {
+        right: 15px;
+      }
       .action-section {
         text-align: center;
         margin: 40px 0;
@@ -101,55 +171,204 @@
         border-radius: 12px;
         border: 1px solid var(--border-color);
       }
-      .action-section h3 { margin-top: 0; font-size: 1.5rem; color: var(--primary-color); }
-      .share-icons-container { display: flex; justify-content: center; gap: 20px; }
-      .share-icon { display: inline-block; transition: transform 0.2s ease; }
-      .share-icon:hover { transform: scale(1.15); }
-      .share-icon svg { width: 40px; height: 40px; }
-      footer { text-align: center; padding: 25px; margin-top: 40px; font-size: 1rem; color: var(--text-muted); }
+      .action-section h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+      .share-icons-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .share-icon {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .share-icon:hover {
+        transform: scale(1.15);
+      }
+      .share-icon svg {
+        width: 40px;
+        height: 40px;
+      }
+      footer {
+        text-align: center;
+        padding: 25px;
+        margin-top: 40px;
+        font-size: 1rem;
+        color: var(--text-muted);
+      }
       @media (max-width: 768px) {
-        body { font-size: 1rem; }
-        header h1 { font-size: 2.5rem; }
-        article { padding: 20px; }
-        h2 { font-size: 1.8rem; }
+        body {
+          font-size: 1rem;
+        }
+        header h1 {
+          font-size: 2.5rem;
+        }
+        article {
+          padding: 20px;
+        }
+        h2 {
+          font-size: 1.8rem;
+        }
       }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-  <meta name="ai:summary" content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.">
-<meta name="ai:prompt_hint" content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan","description":"Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.","articleSection":"Warta Tekno","keywords":"ai, cerdas, kalangan, layar kosong, notion, partner, productivity, produktivitas, semua, untuk, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/notion-ai-productivity-partner.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-06-01T15:37:18.212+00:00","dateModified":"2025-06-01T15:37:18.212+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan","item":"https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"}]}]}</script>
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/">
-    <meta property="og:title" content="Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan">
-    <meta property="og:description" content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/notion-ai-productivity-partner.webp">
-    <meta property="og:image:alt" content="Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/notion-ai-productivity-partner.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/notion-ai-productivity-partner.webp">
-</head>
+    <link rel="stylesheet" href="/ext/marquee-url.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="30 artikel baru bikin."
+      href="https://dalam.web.id/rss.xml"
+    />
+    <meta
+      name="ai:summary"
+      content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi."
+    />
+    <meta
+      name="ai:prompt_hint"
+      content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dalam.web.id/#website",
+            "url": "https://dalam.web.id/",
+            "name": "Layar Kosong",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://dalam.web.id/#organization",
+              "name": "Layar Kosong",
+              "url": "https://dalam.web.id",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dalam.web.id/logo.png",
+                "width": 384,
+                "height": 384
+              }
+            }
+          },
+          {
+            "@type": "Article",
+            "@id": "https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/#article",
+            "isPartOf": { "@id": "https://dalam.web.id/#website" },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"
+            },
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "headline": "Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan",
+            "description": "Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi.",
+            "articleSection": "Warta Tekno",
+            "keywords": "ai, cerdas, kalangan, layar kosong, notion, partner, productivity, produktivitas, semua, untuk, warta tekno",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://dalam.web.id/img/notion-ai-productivity-partner.webp",
+              "width": 1200,
+              "height": 675
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Fakhrul Rijal",
+              "url": "https://dalam.web.id/about"
+            },
+            "publisher": { "@id": "https://dalam.web.id/#organization" },
+            "datePublished": "2025-06-01T15:37:18.212+00:00",
+            "dateModified": "2025-06-01T15:37:18.212+00:00"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Beranda",
+                "item": "https://dalam.web.id/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Warta Tekno",
+                "item": "https://dalam.web.id/warta-tekno/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan",
+                "item": "https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link
+      rel="canonical"
+      href="https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="license"
+      href="https://creativecommons.org/publicdomain/zero/1.0/"
+    />
+    <meta name="author" content="Fakhrul Rijal" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="max-image-preview:large" />
+    <meta name="theme-color" content="#00b0ed" />
+    <meta name="fediverse:creator" content="@frijal@mastodon.social" />
+    <meta name="twitter:creator" content="@responaja" />
+    <meta name="bluesky:creator" content="@dalam.web.id" />
+    <meta property="og:site_name" content="Layar Kosong" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://dalam.web.id/warta-tekno/notion-ai-productivity-partner/"
+    />
+    <meta
+      property="og:title"
+      content="Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan"
+    />
+    <meta
+      property="og:description"
+      content="Kewalahan antara tugas kuliah dan bisnis? Kenali Notion AI, partner cerdas yang menggabungkan catatan, manajemen proyek, dan AI writer dalam satu aplikasi."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@responaja" />
+    <meta property="fb:app_id" content="175216696195384" />
+    <meta property="article:author" content="https://facebook.com/frijal" />
+    <meta
+      property="article:publisher"
+      content="https://facebook.com/frijalpage"
+    />
+    <meta
+      property="og:image"
+      content="https://dalam.web.id/img/notion-ai-productivity-partner.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="Notion AI: Partner Produktivitas Cerdas untuk Semua Kalangan"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      name="twitter:image"
+      content="https://dalam.web.id/img/notion-ai-productivity-partner.webp"
+    />
+    <meta
+      itemprop="image"
+      content="https://dalam.web.id/img/notion-ai-productivity-partner.webp"
+    />
+  </head>
   <body>
     <div class="container">
       <header>
         <h1>Notion AI: Partner Produktivitas Paling Cerdas</h1>
-<div id="iposbrowser"></div>
+        <div id="iposbrowser"></div>
         <p class="subtitle">
           Saat Catatan, Proyek, dan AI Bersatu dalam Satu Aplikasi
         </p>
@@ -191,12 +410,12 @@
             </p>
           </div>
           <h2>Contoh Ruang Kerja di Notion</h2>
-          <div class="gallery" id="photoGallery">
-            </div>
+          <div class="gallery" id="photoGallery"></div>
           <div class="action-section">
-           <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            <div id="pesbukdiskus"></div>
+            <div id="related-articles-grid"></div>
           </div>
-    </article>
+        </article>
       </main>
       <footer>
         <p>🄯 2025 Frijal. Bekerja lebih cerdas, bukan lebih keras.</p>
@@ -206,52 +425,76 @@
       <span class="lightbox-close">×</span>
       <a class="lightbox-prev">❮</a>
       <a class="lightbox-next">❯</a>
-      <img class="lightbox-content" id="lightboxImg" alt="Gambar diperbesar">
+      <img class="lightbox-content" id="lightboxImg" alt="Gambar diperbesar" />
     </div>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // --- GALERI & LIGHTBOX ---
-        const gallery = document.getElementById('photoGallery');
-        const lightbox = document.getElementById('lightbox');
+        const gallery = document.getElementById("photoGallery");
+        const lightbox = document.getElementById("lightbox");
         if (gallery && lightbox) {
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.querySelector('.lightbox-close');
-            const prevBtn = document.querySelector('.lightbox-prev');
-            const nextBtn = document.querySelector('.lightbox-next');
-            let currentIndex;
-            // Mengisi galeri dengan gambar
-            const images = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/id/${60 + i}/800/600`);
-            images.forEach((src, index) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = `Contoh template Notion ${index + 1}`;
-                img.loading = 'lazy';
-                gallery.appendChild(img);
-            });
-            const imagesInGallery = Array.from(gallery.children);
-            function showImage(index) {
-                if (index >= imagesInGallery.length) currentIndex = 0;
-                else if (index < 0) currentIndex = imagesInGallery.length - 1;
-                else currentIndex = index;
-                lightboxImg.src = imagesInGallery[currentIndex].src;
+          const lightboxImg = document.getElementById("lightboxImg");
+          const closeBtn = document.querySelector(".lightbox-close");
+          const prevBtn = document.querySelector(".lightbox-prev");
+          const nextBtn = document.querySelector(".lightbox-next");
+          let currentIndex;
+          // Mengisi galeri dengan gambar
+          const images = Array.from(
+            { length: 6 },
+            (_, i) => `https://picsum.photos/id/${60 + i}/800/600`,
+          );
+          images.forEach((src, index) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = `Contoh template Notion ${index + 1}`;
+            img.loading = "lazy";
+            gallery.appendChild(img);
+          });
+          const imagesInGallery = Array.from(gallery.children);
+          function showImage(index) {
+            if (index >= imagesInGallery.length) currentIndex = 0;
+            else if (index < 0) currentIndex = imagesInGallery.length - 1;
+            else currentIndex = index;
+            lightboxImg.src = imagesInGallery[currentIndex].src;
+          }
+          gallery.addEventListener("click", (e) => {
+            if (e.target.tagName === "IMG") {
+              const clickedIndex = imagesInGallery.indexOf(e.target);
+              lightbox.style.display = "flex";
+              showImage(clickedIndex);
             }
-            gallery.addEventListener('click', (e) => {
-                if (e.target.tagName === 'IMG') {
-                    const clickedIndex = imagesInGallery.indexOf(e.target);
-                    lightbox.style.display = 'flex';
-                    showImage(clickedIndex);
-                }
-            });
-            closeBtn.addEventListener('click', () => (lightbox.style.display = 'none'));
-            prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
-            nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) lightbox.style.display = 'none';
-            });
+          });
+          closeBtn.addEventListener(
+            "click",
+            () => (lightbox.style.display = "none"),
+          );
+          prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+          nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+          lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) lightbox.style.display = "none";
+          });
         }
       });
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+    <div id="progress"></div>
+    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
+    <div class="search-floating-container">
+      <input
+        type="text"
+        id="floatingSearchInput"
+        placeholder="cari artikel..."
+        autocomplete="off"
+      /><span id="floatingSearchClear" class="clear-button"></span>
+      <div id="floatingSearchResults" class="floating-results-container"></div>
+    </div>
+    <div id="dynamic-nav-container" class="floating-nav"></div>
+    <div id="internal-nav"></div>
+    <section id="related-marquee-section">
+      <div id="related-marquee-container"></div>
+    </section>
+    <script defer="" src="/ext/marquee-url.js"></script>
+    <script defer="" src="/ext/iposbrowser.js"></script>
+    <script defer="" src="/ext/markdown.js"></script>
+    <script defer="" src="/ext/pesbukdiskus.js"></script>
+  </body>
+</html>

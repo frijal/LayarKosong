@@ -2,15 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const relatedList = document.getElementById("related-list");
 
   fetch("/api/related.json")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       if (!data.articles || data.articles.length === 0) {
         relatedList.innerHTML = "<li>No related articles found.</li>";
         return;
       }
 
       relatedList.innerHTML = data.articles
-        .map(article => {
+        .map((article) => {
           const badge = article.category
             ? `<span class="badge">${article.category}</span>`
             : "";
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .join("");
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("Error loading related articles:", err);
       relatedList.innerHTML = "<li>Failed to load related articles.</li>";
     });

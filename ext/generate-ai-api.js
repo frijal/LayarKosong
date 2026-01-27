@@ -1,9 +1,9 @@
 // ext/generate-ai-api.js
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { GoogleGenAI } from '@google/genai';
-import { glob } from 'glob';
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { GoogleGenAI } from "@google/genai";
+import { glob } from "glob";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MODELS = [
   "gemini-2.5-flash",
   "gemini-2.5-flash-lite",
-  "gemini-robotics-er-1.5-preview"
+  "gemini-robotics-er-1.5-preview",
 ];
 
 const apiKeys = [];
@@ -20,18 +20,22 @@ for (let i = 1; i <= 20; i++) {
   const key = process.env[`GEMINI_API_KEY${i}`];
   if (key) apiKeys.push(key);
 }
-if (apiKeys.length === 0) throw new Error("Tidak ada GEMINI_API_KEY ditemukan.");
+if (apiKeys.length === 0)
+  throw new Error("Tidak ada GEMINI_API_KEY ditemukan.");
 
 // ==================== ROTASI ====================
 const failedKeys = new Set();
 const failedModels = new Set();
 const validCombinations = [];
-apiKeys.forEach(key => MODELS.forEach(model => validCombinations.push({ key, model })));
+apiKeys.forEach((key) =>
+  MODELS.forEach((model) => validCombinations.push({ key, model })),
+);
 
 function getNextCombination(startIndex = 0) {
   for (let i = startIndex; i < validCombinations.length; i++) {
     const { key, model } = validCombinations[i];
-    if (!failedKeys.has(key) && !failedModels.has(model)) return { key, model, newIndex: i + 1 };
+    if (!failedKeys.has(key) && !failedModels.has(model))
+      return { key, model, newIndex: i + 1 };
   }
   return { key: null, model: null, newIndex: validCombinations.length };
 }
@@ -45,14 +49,17 @@ function sanitizeJSON(str) {
   try {
     return JSON.parse(str);
   } catch {
-    const cleaned = str.replace(/```json/g, '').replace(/```/g, '').trim();
+    const cleaned = str
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
     return JSON.parse(cleaned);
   }
 }
 
 function diffArrays(oldArr = [], newArr = []) {
-  const added = newArr.filter(x => !oldArr.includes(x));
-  const removed = oldArr.filter(x => !newArr.includes(x));
+  const added = newArr.filter((x) => !oldArr.includes(x));
+  const removed = oldArr.filter((x) => !newArr.includes(x));
   return { added, removed };
 }
 
@@ -83,7 +90,7 @@ Konten: """${text.slice(0, 8000)}"""
       const res = await ai.models.generateContent({
         model,
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.2 }
+        config: { temperature: 0.2 },
       });
       const parsed = sanitizeJSON(res.text);
       console.log(`✅ Key berhasil: ${key}, Model: ${model}`);
@@ -100,17 +107,17 @@ Konten: """${text.slice(0, 8000)}"""
 
 // ==================== MAIN ====================
 (async () => {
-  const LOG_DIR = path.join(__dirname, 'mini');
+  const LOG_DIR = path.join(__dirname, "mini");
   await fs.mkdir(LOG_DIR, { recursive: true });
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const LOG_FILE = path.join(LOG_DIR, `${today}-LogAI.md`);
 
   let logContent = `# LogAI - Layar Kosong
 Tanggal: ${today}
 `;
 
-  const allArticles = glob.sync(path.join(__dirname, 'api/v1/**/*.json'));
+  const allArticles = glob.sync(path.join(__dirname, "api/v1/**/*.json"));
   logContent += `Jumlah Artikel Diproses: ${allArticles.length}\n\n`;
 
   let successCount = 0;
@@ -119,9 +126,12 @@ Tanggal: ${today}
 
   for (const articlePath of allArticles) {
     const fileName = path.basename(articlePath);
-    const oldData = JSON.parse(await fs.readFile(articlePath, 'utf-8'));
+    const oldData = JSON.parse(await fs.readFile(articlePath, "utf-8"));
 
-    const aiResult = await aiExtract(oldData.content || '', oldData.title || '');
+    const aiResult = await aiExtract(
+      oldData.content || "",
+      oldData.title || "",
+    );
     if (!aiResult) {
       failCount++;
       logContent += `❌ Gagal memproses: ${fileName}\n`;
@@ -130,8 +140,8 @@ Tanggal: ${today}
     successCount++;
 
     // Compare metadata
-    const oldSummary = oldData.summary || '';
-    const newSummary = aiResult.summary || '';
+    const oldSummary = oldData.summary || "";
+    const newSummary = aiResult.summary || "";
 
     const oldKeywords = oldData.keywords || [];
     const newKeywords = aiResult.keywords || [];
@@ -142,7 +152,13 @@ Tanggal: ${today}
     const keywordsDiff = diffArrays(oldKeywords, newKeywords);
     const topicsDiff = diffArrays(oldTopics, newTopics);
 
-    if (oldSummary !== newSummary || keywordsDiff.added.length || keywordsDiff.removed.length || topicsDiff.added.length || topicsDiff.removed.length) {
+    if (
+      oldSummary !== newSummary ||
+      keywordsDiff.added.length ||
+      keywordsDiff.removed.length ||
+      topicsDiff.added.length ||
+      topicsDiff.removed.length
+    ) {
       metadataChangedCount++;
       logContent += `### Perubahan Metadata: ${fileName}\n`;
       logContent += `| Field | Lama | Baru |\n| --- | --- | --- |\n`;
@@ -150,8 +166,12 @@ Tanggal: ${today}
 
       const formatArrayDiff = (oldArr, newArr) => {
         const { added, removed } = diffArrays(oldArr, newArr);
-        const oldStr = oldArr.map(x => removed.includes(x) ? `~~${x}~~` : x).join(', ');
-        const newStr = newArr.map(x => added.includes(x) ? `**${x}**` : x).join(', ');
+        const oldStr = oldArr
+          .map((x) => (removed.includes(x) ? `~~${x}~~` : x))
+          .join(", ");
+        const newStr = newArr
+          .map((x) => (added.includes(x) ? `**${x}**` : x))
+          .join(", ");
         return { oldStr, newStr };
       };
 
@@ -171,4 +191,3 @@ Tanggal: ${today}
   await fs.writeFile(LOG_FILE, logContent);
   console.log(`ℹ️ Selesai. LogAI ditulis ke: ${LOG_FILE}`);
 })();
-
