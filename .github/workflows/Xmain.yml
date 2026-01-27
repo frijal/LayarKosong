@@ -42,13 +42,18 @@ jobs:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
-          # Mengaktifkan fitur dari dokumen yang kamu temukan
+          # Pastikan variabel ini benar namanya (REPOSITORIES)
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          
+          # Cache tetap di /tmp agar bisa kita simpan lewat actions/cache
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
           RENOVATE_REPOSITORY_CACHE: "enabled"
           RENOVATE_REPOSITORY_CACHE_TYPE: "local"
-          RENOVATE_CACHE_DIR: /tmp/renovate/cache
-          
-          # Otomatis handle kredensial ghcr.io (Experimental tapi berguna)
-          RENOVATE_X_GITHUB_HOST_RULES: "true"
-          
-          # Informasi repo
-          REPOSITORIES: ${{ github.repository }}
+
+          # HAPUS RENOVATE_BASE_DIR atau set ke default agar dia bisa nemu repo hasil checkout
+          # RENOVATE_BASE_DIR: /tmp/renovate <--- Hapus baris ini
+
+          RENOVATE_ONBOARDING: "false"
+          RENOVATE_REQUIRE_CONFIG: "ignored"
+          RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
+          RENOVATE_BINARY_SOURCE: "docker"
