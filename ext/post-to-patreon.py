@@ -37,7 +37,6 @@ def main():
     for category_name, posts in data.items():
         cat_slug = slugify(category_name)
         for post in posts:
-            # Struktur JSON: [0:judul, 1:slug, 2:image, 3:date, 4:desc]
             file_name = post[1].strip()
             file_slug = file_name.replace('.html', '').replace('/', '')
             full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}/"
@@ -48,11 +47,11 @@ def main():
                     'slug': file_slug,
                     'url': full_url,
                     'date': post[3],
-                    'desc': post[4] or "Baca selengkapnya di Layar Kosong.",
+                    'desc': post[4] or "Kupas Tuntas di Layar Kosong.",
                     'category': category_name
                 })
 
-    # Urutkan dari yang terbaru (ISO Date)
+    # Urutkan dari yang terbaru
     all_posts.sort(key=lambda x: x['date'], reverse=True)
 
     if all_posts:
@@ -60,7 +59,15 @@ def main():
         title = target_post['title']
         body = f"<p>{target_post['desc']}</p><p>Kupas Tuntas di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
 
-        # --- PAYLOAD SESUAI DOKUMENTASI PATREON V2 ---
+        # Token & ID Cleaning
+        token = str(PATREON_ACCESS_TOKEN).strip() if PATREON_ACCESS_TOKEN else None
+        camp_id = str(CAMPAIGN_ID).strip() if CAMPAIGN_ID else None
+
+        if not token or not camp_id:
+            print("⚠️ Error: PATREON_ACCESS_TOKEN atau PATREON_CAMPAIGN_ID tidak ditemukan!")
+            return
+
+        # --- PREPARE PAYLOAD ---
         payload = {
             "data": {
                 "type": "post",
@@ -74,43 +81,45 @@ def main():
                     "campaign": {
                         "data": {
                             "type": "campaign",
-                            "id": str(CAMPAIGN_ID).strip()
+                            "id": camp_id
                         }
                     }
                 }
             }
         }
 
-        # Header wajib untuk JSON:API
         headers = {
-            "Authorization": f"Bearer {PATREON_ACCESS_TOKEN.strip()}",
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/vnd.api+json",
             "Accept": "application/vnd.api+json"
         }
 
-        # Eksekusi ke API Patreon (Tanpa trailing slash)
-        if PATREON_ACCESS_TOKEN and CAMPAIGN_ID:
-            print(f"🚀 Mencoba rute kampanye: {title}...")
-            # Kita coba kirim, jika 405 (Method Not Allowed), kita fallback ke /v2/posts
+        # --- TRY POSTING ---
+        print(f"🚀 Mencoba rute kampanye untuk: {title}...")
+        api_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{camp_id}/posts"
+
+        try:
             response = requests.post(api_url, json=payload, headers=headers)
 
-            if response.status_code == 405 or response.status_code == 404:
-                print("⚠️ Rute kampanye gagal, mencoba rute umum /v2/posts...")
-                api_url_fallback = "https://www.patreon.com/api/oauth2/v2/posts"
-                response = requests.post(api_url_fallback, json=payload, headers=headers)
+            # Jika rute kampanye ditolak (405/404), coba rute umum
+            if response.status_code in [404, 405]:
+                print("⚠️ Rute kampanye ditolak, mencoba rute /v2/posts...")
+                api_url = "https://www.patreon.com/api/oauth2/v2/posts"
+                response = requests.post(api_url, json=payload, headers=headers)
 
-            if response.status_code in [201, 200]:
+            if response.status_code in [200, 201]:
                 print(f"✅ Berhasil posting ke Patreon: {title}")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
                 print(f"❌ Gagal total. Status: {response.status_code}")
-                print(f"Respon Akhir: {response.text}")
-        else:
-            print("⚠️ Error: PATREON_ACCESS_TOKEN atau CAMPAIGN_ID kosong!")
+                print(f"Detail: {response.text}")
+
+        except Exception as e:
+            print(f"❌ Terjadi kesalahan saat request: {str(e)}")
 
     else:
-        print("✅ Tidak ada artikel baru untuk diposting ke Patreon.")
+        print("✅ Tidak ada artikel baru untuk diposting.")
 
 if __name__ == "__main__":
     main()
