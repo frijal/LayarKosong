@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 const API = "https://api.cloudflare.com/client/v4";
 
 async function main() {
