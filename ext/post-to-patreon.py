@@ -58,7 +58,7 @@ def main():
     if all_posts:
         target_post = all_posts[0]
         title = target_post['title']
-        body = f"<p>{target_post['desc']}</p><p>Baca selengkapnya di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
+        body = f"<p>{target_post['desc']}</p><p>Kupas Tuntas di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
 
         # --- PAYLOAD SESUAI DOKUMENTASI PATREON V2 ---
         payload = {
@@ -83,26 +83,29 @@ def main():
 
         # Header wajib untuk JSON:API
         headers = {
-            "Authorization": f"Bearer {PATREON_ACCESS_TOKEN}",
+            "Authorization": f"Bearer {PATREON_ACCESS_TOKEN.strip()}",
             "Content-Type": "application/vnd.api+json",
             "Accept": "application/vnd.api+json"
         }
 
         # Eksekusi ke API Patreon (Tanpa trailing slash)
         if PATREON_ACCESS_TOKEN and CAMPAIGN_ID:
-            api_url = "https://www.patreon.com/api/oauth2/v2/posts"
-
-            print(f"🚀 Mengirim artikel ke Patreon: {title}...")
+            print(f"🚀 Mencoba rute kampanye: {title}...")
+            # Kita coba kirim, jika 405 (Method Not Allowed), kita fallback ke /v2/posts
             response = requests.post(api_url, json=payload, headers=headers)
+
+            if response.status_code == 405 or response.status_code == 404:
+                print("⚠️ Rute kampanye gagal, mencoba rute umum /v2/posts...")
+                api_url_fallback = "https://www.patreon.com/api/oauth2/v2/posts"
+                response = requests.post(api_url_fallback, json=payload, headers=headers)
 
             if response.status_code in [201, 200]:
                 print(f"✅ Berhasil posting ke Patreon: {title}")
-                # Catat ke database
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Gagal posting. Status: {response.status_code}")
-                print(f"Detail Error: {response.text}")
+                print(f"❌ Gagal total. Status: {response.status_code}")
+                print(f"Respon Akhir: {response.text}")
         else:
             print("⚠️ Error: PATREON_ACCESS_TOKEN atau CAMPAIGN_ID kosong!")
 
