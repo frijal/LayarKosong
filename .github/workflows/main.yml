@@ -46,7 +46,7 @@ jobs:
       - name: Save self-contained Docker image to artifact
         run: |
           docker save ghcr.io/renovatebot/renovate:full -o ${{ github.workspace }}/sementara/renovate-full.tar
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v6
         with:
           name: renovate-full
           path: ${{ github.workspace }}/sementara/renovate-full.tar
