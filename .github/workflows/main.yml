@@ -16,7 +16,7 @@ jobs:
           python-version: '3.14'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r mini/requirements.txt
 
       - name: Run Diagnosis Script
         env:
