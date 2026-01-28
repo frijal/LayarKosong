@@ -199,9 +199,9 @@ jobs:
             echo "ℹ️  Tidak ada laporan yang perlu dihapus (${#files[@]}/7)"
           fi
 
-      - name: 🔍 Run Ultimate Global Audit
-        run: |
-          python3 mini/periksa-unused.py
+    #  - name: 🔍 Run Ultimate Global Audit
+    #    run: |
+    #      python3 mini/periksa-unused.py
 
       # ========== COMMIT CHANGES ==========
       - name: 7. Commit & Push All Changes
