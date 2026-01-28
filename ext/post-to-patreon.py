@@ -23,10 +23,11 @@ def get_actual_campaign_id(token):
     headers = {"Authorization": f"Bearer {token}"}
     try:
         res = requests.get(url, headers=headers)
-        data = res.json()
-        if res.status_code == 200 and data.get('data'):
-            # Ambil ID pertama yang ditemukan
-            return data['data'][0]['id']
+        if res.status_code == 200:
+            data = res.json()
+            if data.get('data'):
+                return data['data'][0]['id']
+        print(f"⚠️ Respon API Campaign ({res.status_code}): {res.text}")
     except Exception as e:
         print(f"⚠️ Gagal mendeteksi Campaign ID: {e}")
     return None
@@ -45,7 +46,7 @@ def main():
     # 2. Auto-Detect Campaign ID
     camp_id = get_actual_campaign_id(token)
     if not camp_id:
-        print("❌ Gagal mendapatkan Campaign ID. Pastikan Token benar dan Page sudah di-publish.")
+        print("❌ Gagal mendapatkan Campaign ID. Pastikan Token benar dan Page sudah Launch.")
         return
     print(f"📍 Menggunakan Campaign ID: {camp_id}")
 
@@ -62,6 +63,7 @@ def main():
     for category_name, posts in data.items():
         cat_slug = slugify(category_name)
         for post in posts:
+            # post[1] adalah slug file
             file_slug = post[1].strip().replace('.html', '').replace('/', '')
             full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}/"
 
@@ -74,6 +76,7 @@ def main():
                     'desc': post[4] or "Kupas Tuntas di Layar Kosong."
                 })
 
+    # Urutkan artikel terbaru
     all_posts.sort(key=lambda x: x['date'], reverse=True)
 
     if all_posts:
@@ -82,14 +85,14 @@ def main():
         body = f"<p>{target_post['desc']}</p><p>Kupas Tuntas di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
 
         # --- PREPARE PAYLOAD ---
-        # Menggunakan format minimalis agar kompatibel dengan editor baru
         payload = {
             "data": {
                 "type": "post",
                 "attributes": {
                     "title": title,
                     "content": body,
-                    "is_public": True
+                    "is_public": True,
+                    "publish_state": "published"
                 },
                 "relationships": {
                     "campaign": {
@@ -108,26 +111,31 @@ def main():
             "Accept": "application/vnd.api+json"
         }
 
-# --- EXECUTE KE ENDPOINT UMUM (YANG DIIZINKAN POST) ---
+        # --- EXECUTE WITH FALLBACK ---
         api_url = "https://www.patreon.com/api/oauth2/v2/posts"
 
-        print(f"🚀 Mengirim posting ke rute umum v2 untuk Campaign {camp_id}...")
+        print(f"🚀 Mengirim '{title}' ke Patreon...")
         try:
-            # Gunakan rute umum, ID kampanye sudah ada di dalam payload relationships
+            # Percobaan 1: Tanpa Slash
             response = requests.post(api_url, json=payload, headers=headers)
 
-            if response.status_code in [201, 200]:
-                print(f"✅ AKHIRNYA BERHASIL! Artikel '{title}' sudah tayang.")
+            # Percobaan 2: Dengan Slash jika 404
+            if response.status_code == 404:
+                print("🔄 Rute standar 404, mencoba dengan trailing slash...")
+                response = requests.post(api_url + "/", json=payload, headers=headers)
+
+            if response.status_code in [200, 201]:
+                print(f"✅ BERHASIL! Artikel tayang di Patreon.")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Gagal lagi. Status: {response.status_code}")
+                print(f"❌ Gagal. Status: {response.status_code}")
                 print(f"Pesan Server: {response.text}")
 
         except Exception as e:
             print(f"❌ Request error: {e}")
     else:
-        print("✅ Semua artikel sudah ter-update.")
+        print("✅ Tidak ada artikel baru untuk diposting.")
 
 if __name__ == "__main__":
     main()
