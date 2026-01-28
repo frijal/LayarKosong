@@ -52,3 +52,28 @@
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0
 }
+{
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard"
+  ],
+
+  "packageRules": [
+    {
+      "description": "Auto-update Renovate GitHub Action",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["renovatebot/github-action"],
+      "automerge": true,
+      "automergeType": "branch",
+      "labels": ["renovate-self-update"]
+    },
+    {
+      "description": "Auto-update Renovate Docker image",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/renovatebot/renovate"],
+      "automerge": true,
+      "automergeType": "branch",
+      "labels": ["renovate-self-update"]
+    }
+  ]
+}
