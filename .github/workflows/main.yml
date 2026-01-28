@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/renovatebot/renovate:full
+      # Jalankan container sebagai root agar checkout bisa tulis di workspace
+      options: --user root
       # Mount folder 'sementara/' sebagai cache
       volumes:
         - ${{ github.workspace }}/sementara:/tmp/renovate/cache
@@ -17,14 +19,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1  # cepat
+          fetch-depth: 1  # hemat waktu
 
       - name: Run Renovate
         run: |
           echo "Starting Renovate..."
           renovate --config-file mini/renovate.json5
         env:
-          # Token untuk akses repo
-          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          # Token GH_PAT untuk akses repo & update workflow
+          RENOVATE_TOKEN: ${{ secrets.GH_PAT }}
           # Aktifkan cache repository
           RENOVATE_REPOSITORY_CACHE: enabled
