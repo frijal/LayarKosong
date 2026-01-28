@@ -8,8 +8,6 @@ const BASE_URL = 'https://dalam.web.id';
 const slugify = (text) =>
   text.toLowerCase().trim().replace(/\s+/g, '-');
 
-import axios from 'axios';
-
 async function checkAndPost() {
   const token = process.env.PATREON_ACCESS_TOKEN;
   const camp_id = "15483016";
