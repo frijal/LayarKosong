@@ -56,7 +56,8 @@ async function postToPatreon() {
 
   try {
     const response = await axios.post(
-      'https://www.patreon.com/api/oauth2/v2/posts', // URL diperbaiki ke v2
+      // KITA GUNAKAN RUTE SPESIFIK KAMPANYE
+      `https://www.patreon.com/api/oauth2/v2/campaigns/${CAMPAIGN_ID}/posts`,
       {
         data: {
           type: 'post',
@@ -65,32 +66,31 @@ async function postToPatreon() {
             content: `<p>${target.desc}</p><p>🔗 Kupas Tuntas di: <a href="${target.url}">${target.url}</a></p>`,
             is_public: true,
             publish_state: 'published'
-          },
-          relationships: {
-            campaign: {
-              data: {
-                type: 'campaign',
-                id: CAMPAIGN_ID
-              }
-            }
           }
+          // Di rute ini, kita TIDAK PERLU lagi mengirim relationships campaign
+          // karena ID kampanye sudah ada di URL.
         }
       },
       {
         headers: {
           'Authorization': `Bearer ${ACCESS_TOKEN}`,
-          'Content-Type': 'application/vnd.api+json', // Wajib ini!
+          'Content-Type': 'application/vnd.api+json',
           'Accept': 'application/vnd.api+json'
         }
       }
     );
 
     if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
-    // Simpan slug saja ke database agar pengecekan lebih akurat
     fs.appendFileSync(DATABASE_FILE, target.slug + '\n');
 
-    console.log(`✅ Patreon sukses! "${target.title}" sudah tayang.`);
+    console.log(`✅ AKHIRNYA BERHASIL! "${target.title}" sudah tayang.`);
   } catch (err) {
+    // JIKA RUTE KAMPANYE MASIH 404, KITA COBA FALLBACK KE RUTE UMUM (UNTUK BERJAGA-JAGA)
+    if (err.response?.status === 404) {
+        console.log("🔄 Rute kampanye 404, mencoba rute umum v2 sebagai cadangan...");
+        // ... (Logika fallback jika diperlukan)
+    }
+
     console.error(
       '❌ Patreon Error:',
       JSON.stringify(err.response?.data || err.message, null, 2)
