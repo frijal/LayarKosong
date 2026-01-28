@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/renovatebot/renovate:full
-      # Mount cache agar Renovate bisa simpan metadata dependency
+      # Mount folder 'sementara/' sebagai cache
       volumes:
-        - renovate-cache:/tmp/renovate/cache
+        - ${{ github.workspace }}/sementara:/tmp/renovate/cache
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          fetch-depth: 1  # cepat
 
       - name: Run Renovate
         run: |
@@ -28,7 +28,3 @@ jobs:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           # Aktifkan cache repository
           RENOVATE_REPOSITORY_CACHE: enabled
-
-# Define Docker volume inline
-volumes:
-  renovate-cache:
