@@ -61,41 +61,37 @@ async function postToPatreon() {
 
   try {
     await axios.post(
-      'https://www.patreon.com/api/oauth2/v2/posts',
-      {
-        data: {
-          type: 'post',
-          attributes: {
-            title: target.title,
-            content: `
+  'https://www.patreon.com/api/posts',
+  {
+    data: {
+      type: 'post',
+      attributes: {
+        title: target.title,
+        content: `
 ${target.desc}
 
-🔗 Baca selengkapnya:
+🔗 Kupas Tuntas di:
 ${target.url}
-
-Terima kasih sudah mendukung 🙏
-            `,
-            content_format: 'markdown',
-            is_public: true,
-            embed_url: target.image
-          },
-          relationships: {
-            campaign: {
-              data: {
-                type: 'campaign',
-                id: CAMPAIGN_ID
-              }
-            }
+        `,
+        is_public: true
+      },
+      relationships: {
+        campaign: {
+          data: {
+            type: 'campaign',
+            id: CAMPAIGN_ID
           }
         }
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          'Content-Type': 'application/json'
-        }
       }
-    );
+    }
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    }
+  }
+);
 
     if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
     fs.appendFileSync(DATABASE_FILE, target.url + '\n');
