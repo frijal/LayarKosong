@@ -57,47 +57,49 @@ def main():
     if all_posts:
         target_post = all_posts[0]
         
-        # --- PERSIAPAN KONTEN PATREON ---
-        title = f"Latest Update: {target_post['title']}"
-        # Patreon mendukung sedikit HTML sederhana
-        body = f"<p>{target_post['desc']}</p><p>Buka Faktanya di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
-        
+# --- PERSIAPAN KONTEN PATREON ---
+        title = target_post['title']
+        body = f"<p>{target_post['desc']}</p><p>Baca selengkapnya di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
+
         payload = {
             "data": {
                 "type": "post",
                 "attributes": {
                     "title": title,
                     "content": body,
-                    "is_paid": False, # Set True kalau mau khusus buat yang bayar
-                    "publish_states": "published"
+                    "is_paid": False,
+                    "publish_states": "published" # Pastikan statusnya published
                 },
                 "relationships": {
                     "campaign": {
-                        "data": { "type": "campaign", "id": CAMPAIGN_ID }
+                        "data": {
+                            "type": "campaign",
+                            "id": str(CAMPAIGN_ID) # Harus berupa string!
+                        }
                     }
                 }
             }
         }
 
-# Eksekusi ke API Patreon
-        if PATREON_ACCESS_TOKEN and CAMPAIGN_ID:
+        # Eksekusi ke API Patreon
+        if PATREON_ACCESS_TOKEN:
             headers = {
                 "Authorization": f"Bearer {PATREON_ACCESS_TOKEN}",
-                "Content-Type": "application/vnd.api+json"
+                "Content-Type": "application/vnd.api+json" # Header wajib JSON:API
             }
 
-            # PERBAIKAN: URL harus menyertakan CAMPAIGN_ID
-            api_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{CAMPAIGN_ID}/posts"
+            # URL yang benar untuk POST v2 (TANPA trailing slash di akhir)
+            api_url = "https://www.patreon.com/api/oauth2/v2/posts"
 
             response = requests.post(api_url, json=payload, headers=headers)
 
             if response.status_code in [201, 200]:
-                print(f"✅ Berhasil posting ke Patreon: {target_post['title']}")
+                print(f"✅ Berhasil posting ke Patreon: {title}")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Gagal posting ke Patreon. Status: {response.status_code}")
-                print(response.text)
+                print(f"❌ Gagal posting. Status: {response.status_code}")
+                print(f"Detail: {response.text}")
         else:
             print("⚠️ Token Patreon tidak ditemukan di environment variable.")
             
