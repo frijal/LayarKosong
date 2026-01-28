@@ -1,16 +1,42 @@
 --------------------------------------------------
-LAPORAN AUDIT TOTAL (27 Jan 2026 08:39:11)
+LAPORAN AUDIT TOTAL (28 Jan 2026 08:39:16)
 --------------------------------------------------
 
 --- [1] DAFTAR FILE TIDAK TERPAKAI ---
-- Jalur: ext/dsgdsgdsg.js
+- Jalur: ext/indexhtml.js
+- Jalur: ext/check-links-lokal.js
+- Jalur: ext/disqus.js
+- Jalur: ext/generate_indexnow.js
+- Jalur: ext/terjemah.js
+- Jalur: ext/perbaikimetaartikelhtml.js
+- Jalur: ext/header.css
+- Jalur: ext/indexhtml-render.js
+- Jalur: ext/toc.js
+- Jalur: ext/sitemap-init.js
+- Jalur: ext/github-dark.css
+- Jalur: ext/topic-cluster.js
+- Jalur: ext/github.css
+- Jalur: ext/hapus-LD_JSON-bahaya.py
+- Jalur: ext/generate_redirects.py
+- Jalur: ext/indexhtml-util.js
+- Jalur: ext/pesbuk.js
+- Jalur: ext/related-by-topic.js
+- Jalur: ext/github-dark-dimmed.css
+- Jalur: ext/indexhtml-main.js
+- Jalur: ext/related-articles.css
+- Jalur: ext/marquee.js
+- Jalur: ext/visited.js
+- Jalur: ext/related-articles.js
+- Jalur: ext/darkmode.js
+- Jalur: ext/generate-related.js
+- Jalur: ext/inject-meta.js
 
 --- [2] DAFTAR DEPENDENCIES TIDAK TERPAKAI ---
 (Semua package terpakai)
 
 --------------------------------------------------
 📊 RINGKASAN AUDIT:
-- File bisa dihapus: 1
+- File bisa dihapus: 27
 - Package bisa di-uninstall: 0
 --------------------------------------------------
 💡 CARA MEMBERSIHKAN: bash mini/auto_cleanup.sh
