@@ -1,76 +1,47 @@
-name: Patreon API Diagnosis
+name: Twitter Auto Post
 
 on:
-  workflow_dispatch: # Agar bisa kamu jalankan manual dari tab "Actions"
+  push:
+    branches:
+      - main
+  schedule:
+    # Berjalan setiap 6 jam sekali
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Supaya bisa dijalankan manual dari tab Actions
 
 jobs:
-  diagnose:
+  tweet:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/checkout@v4
         with:
-          python-version: '3.14'
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pip install -r mini/requirements.txt
+        run: npm install twitter-api-v2
 
-      - name: Run Diagnosis Script
+      - name: Run Twitter Post Script
         env:
-          PATREON_ACCESS_TOKEN: ${{ secrets.PATREON_ACCESS_TOKEN }}
+          # Pastikan nama secret ini sama dengan yang kamu buat di GitHub
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+        run: node ext/post-to-twitter.js
+
+      - name: Commit and Push Database Update
         run: |
-          cat << 'EOF' > debug_patreon.py
-          import os
-          import requests
-          import json
-
-          token = os.getenv('PATREON_ACCESS_TOKEN')
-
-          def diagnose():
-              if not token:
-                  print("❌ ERROR: PATREON_ACCESS_TOKEN kosong!")
-                  return
-
-              headers = {
-                  "Authorization": f"Bearer {token}",
-                  "User-Agent": "Patreon-Diagnoser/1.0"
-              }
-              
-              # 1. Cek Identity & Scopes
-              print("\n--- 🔍 STEP 1: DIAGNOSA TOKEN ---")
-              try:
-                  user_res = requests.get("https://www.patreon.com/api/oauth2/v2/identity?fields%5Buser%5D=full_name", headers=headers)
-                  print(f"Status Identity: {user_res.status_code}")
-                  if user_res.status_code == 200:
-                      print(f"Data User: {user_res.json().get('data', {}).get('attributes', {}).get('full_name')}")
-                  
-                  # Mencari Scopes di Header
-                  scopes = user_res.headers.get('X-OAuth-Scopes') or user_res.headers.get('X-Accepted-OAuth-Scopes')
-                  print(f"Scopes yang terdeteksi di Header: {scopes}")
-              except Exception as e:
-                  print(f"Gagal di Step 1: {e}")
-
-              # 2. Cek List Campaigns
-              print("\n--- 🔍 STEP 2: CEK AKSES KAMPANYE ---")
-              camp_res = requests.get("https://www.patreon.com/api/oauth2/v2/campaigns", headers=headers)
-              print(f"GET /v2/campaigns: {camp_res.status_code}")
-
-              # 3. Cek Endpoint Posts (GET)
-              print("\n--- 🔍 STEP 3: TEST AKSES ENDPOINT POSTS ---")
-              # Kita tes rute yang tadi kasih 404
-              test_url = "https://www.patreon.com/api/oauth2/v2/posts"
-              get_res = requests.get(test_url, headers=headers)
-              print(f"GET {test_url}: {get_res.status_code}")
-              
-              if get_res.status_code == 404:
-                  print("💡 ANALISA: Rute /v2/posts benar-benar TIDAK ADA untuk token ini.")
-              elif get_res.status_code == 401:
-                  print("💡 ANALISA: Token tidak valid atau tidak punya izin baca.")
-              
-          if __name__ == "__main__":
-              diagnose()
-          EOF
-          python3 debug_patreon.py
+          git config --local user.email "frijal@dalam.web.id"
+          git config --local user.name "frijal"
+          git add mini/posted-twitter.txt
+          git commit -m "Update twitter posted database [skip ci]" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
