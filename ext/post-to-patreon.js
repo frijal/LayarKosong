@@ -75,7 +75,8 @@ async function postToPatreon() {
   try {
     const response = await axios({
       method: 'post',
-      url: 'https://www.patreon.com/api/oauth2/v2/posts',
+      // KITA COBA RUTE ALTERNATIF TANPA OAUTH2 PREFIX
+      url: 'https://www.patreon.com/api/v2/posts',
       headers: {
         'Authorization': `Bearer ${ACCESS_TOKEN}`,
         'Content-Type': 'application/vnd.api+json',
@@ -90,6 +91,27 @@ async function postToPatreon() {
       fs.appendFileSync(DATABASE_FILE, target.slug + '\n');
     }
   } catch (err) {
+    // JIKA MASIH 404, KITA COBA RUTE LAMA DENGAN STRUKTUR BARU
+    if (err.response?.status === 404) {
+        console.log("🔄 Rute v2/posts 404, mencoba rute kampanye v2 dengan payload yang sama...");
+        try {
+            const retryResponse = await axios({
+                method: 'post',
+                url: `https://www.patreon.com/api/oauth2/v2/campaigns/${CAMPAIGN_ID}/posts`,
+                headers: {
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                    'Content-Type': 'application/vnd.api+json'
+                },
+                data: payload
+            });
+            console.log(`✅ SUKSES LEWAT RUTE CADANGAN!`);
+            fs.appendFileSync(DATABASE_FILE, target.slug + '\n');
+            return;
+        } catch (retryErr) {
+            console.error('❌ Semua rute gagal.');
+        }
+    }
+
     console.error('❌ Detail Error:', JSON.stringify(err.response?.data || err.message, null, 2));
     process.exit(1);
   }
