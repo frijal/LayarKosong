@@ -108,22 +108,24 @@ def main():
             "Accept": "application/vnd.api+json"
         }
 
-        # --- EXECUTE ---
-        # Gunakan endpoint spesifik kampanye (Paling stabil)
-        api_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{camp_id}/posts"
+# --- EXECUTE KE ENDPOINT UMUM (YANG DIIZINKAN POST) ---
+        api_url = "https://www.patreon.com/api/oauth2/v2/posts"
 
-        print(f"🚀 Memproses posting ke Layar Kosong Patreon: {title}...")
+        print(f"🚀 Mengirim posting ke rute umum v2 untuk Campaign {camp_id}...")
         try:
+            # Gunakan rute umum, ID kampanye sudah ada di dalam payload relationships
             response = requests.post(api_url, json=payload, headers=headers)
 
             if response.status_code in [201, 200]:
-                print(f"✅ Berhasil! Artikel sudah tayang di Patreon.")
+                print(f"✅ AKHIRNYA BERHASIL! Artikel '{title}' sudah tayang.")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Error {response.status_code}: {response.text}")
+                print(f"❌ Gagal lagi. Status: {response.status_code}")
+                print(f"Pesan Server: {response.text}")
+
         except Exception as e:
-            print(f"❌ Request gagal: {e}")
+            print(f"❌ Request error: {e}")
     else:
         print("✅ Semua artikel sudah ter-update.")
 
