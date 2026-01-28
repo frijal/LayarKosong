@@ -1,76 +1,65 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
 
-  "extends": [
+  extends: [
     "config:recommended",
     ":combinePatchMinorReleases",
-    ":ignoreUnstable",
-    ":dependencyDashboard"
+    ":ignoreUnstable"
   ],
 
-  "onboarding": false,
-  "dependencyDashboard": true,
-  "dependencyDashboardApproval": false,
+  // 🚫 MATIKAN DASHBOARD TOTAL
+  dependencyDashboard: false,
 
-  "timezone": "Asia/Makassar",
-  "labels": ["dependencies", "renovate-bot"],
+  // 🚀 JALAN KAPAN PUN
+  schedule: ["at any time"],
 
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
+  onboarding: false,
+  timezone: "Asia/Makassar",
+
+  labels: ["dependencies", "renovate-bot"],
+
+  // 🔧 Lockfile langsung update & merge
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true,
+    schedule: ["at any time"]
   },
 
-  "packageRules": [
+  packageRules: [
+    // ✅ PROD: minor & patch auto-merge
     {
-      "description": "Prod deps: minor & patch auto-merge",
-      "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "platformAutomerge": true,
-      "groupName": "Production Dependency Updates"
-    },
-    {
-      "description": "Prod deps: major update butuh review",
-      "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["major"],
-      "automerge": false,
-      "groupName": null
-    },
-    {
-      "description": "Dev deps: minor & patch auto-merge",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "platformAutomerge": true,
-      "groupName": "Dev Dependency Updates"
-    },
-    {
-      "description": "Dev deps: major update tidak auto-merge",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["major"],
-      "automerge": false,
-      "groupName": "Dev Dependency Major Updates"
+      matchDepTypes: ["dependencies"],
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      automerge: true,
+      platformAutomerge: true,
+      groupName: "prod-deps-auto"
     },
 
-    // 🔁 SELF-UPDATE RENOVATE
+    // 🛑 PROD: major → PR saja
     {
-      "description": "Auto-update Renovate GitHub Action",
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["renovatebot/github-action"],
-      "automerge": true,
-      "automergeType": "branch",
-      "labels": ["renovate-self-update"]
+      matchDepTypes: ["dependencies"],
+      matchUpdateTypes: ["major"],
+      automerge: false
     },
+
+    // ✅ DEV: minor & patch auto-merge
     {
-      "description": "Auto-update Renovate Docker image",
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/renovatebot/renovate"],
-      "automerge": true,
-      "automergeType": "branch",
-      "labels": ["renovate-self-update"]
+      matchDepTypes: ["devDependencies"],
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      automerge: true,
+      platformAutomerge: true,
+      groupName: "dev-deps-auto"
+    },
+
+    // 🛑 DEV: major → PR saja
+    {
+      matchDepTypes: ["devDependencies"],
+      matchUpdateTypes: ["major"],
+      automerge: false
     }
   ],
 
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0
+  // 🚫 TANPA LIMIT (biar sekali jalan langsung kelar)
+  prConcurrentLimit: 0,
+  prHourlyLimit: 0
 }
