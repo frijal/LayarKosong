@@ -55,7 +55,7 @@ jobs:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
           renovate-image: ghcr.io/renovatebot/renovate
-          renovate-version: 42
+#          renovate-version: 42
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_BASE_DIR: /tmp/renovate
