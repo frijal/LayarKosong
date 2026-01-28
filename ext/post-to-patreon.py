@@ -61,24 +61,32 @@ def main():
         title = target_post['title']
         body = f"<p>{target_post['desc']}</p><p>Baca selengkapnya di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
 
+# --- PERBAIKAN PAYLOAD ---
         payload = {
             "data": {
                 "type": "post",
                 "attributes": {
-                    "title": title,
+                    "title": target_post['title'],
                     "content": body,
                     "is_paid": False,
-                    "publish_states": "published" # Pastikan statusnya published
+                    "publish_state": "published" # Perbaikan: publish_state (tunggal)
                 },
                 "relationships": {
                     "campaign": {
                         "data": {
                             "type": "campaign",
-                            "id": str(CAMPAIGN_ID) # Harus berupa string!
+                            "id": str(CAMPAIGN_ID).strip() # Pastikan bersih dari spasi
                         }
                     }
                 }
             }
+        }
+
+        # Gunakan Header Accept juga agar lebih 'sopan' ke server Patreon
+        headers = {
+            "Authorization": f"Bearer {PATREON_ACCESS_TOKEN}",
+            "Content-Type": "application/vnd.api+json",
+            "Accept": "application/vnd.api+json"
         }
 
         # Eksekusi ke API Patreon
