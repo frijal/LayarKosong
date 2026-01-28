@@ -1,9 +1,6 @@
 name: Twitter Auto Post
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Berjalan setiap 6 jam sekali
     - cron: '0 */6 * * *'
