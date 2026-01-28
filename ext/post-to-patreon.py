@@ -91,14 +91,13 @@ def main():
                 "attributes": {
                     "title": title,
                     "content": body,
-                    "is_public": True,
-                    "publish_state": "published"
+                    "is_public": True
                 },
                 "relationships": {
                     "campaign": {
                         "data": {
                             "type": "campaign",
-                            "id": camp_id
+                            "id": str(camp_id) # Pastikan string
                         }
                     }
                 }
@@ -108,35 +107,31 @@ def main():
         headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/vnd.api+json",
-            "Accept": "application/vnd.api+json",
-            "User-Agent": "Patreon-Python-Client/1.0"
+            "Accept": "application/vnd.api+json"
         }
 
         # --- EXECUTE WITH FALLBACK ---
         api_url = "https://www.patreon.com/api/oauth2/v2/posts"
 
-        print(f"🚀 Mencoba rute standar v2 dengan User-Agent: {title}...")
+        print(f"🚀 Mencoba kirim ulang ke {api_url}...")
         try:
             import json as json_lib
-            # Kirim data sebagai string mentah (raw body)
+            # Gunakan data= dengan json_lib.dumps untuk kontrol penuh
             response = requests.post(api_url, data=json_lib.dumps(payload), headers=headers)
 
-            # Jika masih 404, coba paksa rute kampanye LAGI tapi dengan trailing slash
-            if response.status_code == 404:
-                print("🔄 Rute umum 404, mencoba rute kampanye dengan trailing slash...")
-                alt_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{camp_id}/posts/"
-                response = requests.post(alt_url, data=json_lib.dumps(payload), headers=headers)
-
             if response.status_code in [200, 201]:
-                print(f"✅ AKHIRNYA BERHASIL! Artikel tayang di Patreon.")
+                print(f"✅ AKHIRNYA TEMBUS! Artikel tayang.")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Gagal Total. Status: {response.status_code}")
-                print(f"Respon Server: {response.text}")
+                print(f"❌ Masih ditolak. Status: {response.status_code}")
+                print(f"Detail: {response.text}")
 
+                # Jika masih gagal, satu-satunya cara adalah cek permission token
+                if "NotFound" in response.text:
+                    print("💡 Tips: Coba cek di Developer Portal, apakah 'w:posts' sudah dicentang?")
         except Exception as e:
-            print(f"❌ Kesalahan sistem: {e}")
+            print(f"❌ Error: {e}")
     else:
         print("✅ Tidak ada artikel baru untuk diposting.")
 
