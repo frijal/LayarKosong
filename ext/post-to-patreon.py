@@ -112,28 +112,30 @@ def main():
         }
 
         # --- EXECUTE WITH FALLBACK ---
-        api_url = "https://www.patreon.com/api/oauth2/v2/posts"
+        api_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{camp_id}/posts"
 
-        print(f"🚀 Mengirim '{title}' ke Patreon...")
+        print(f"🚀 Mengirim '{title}' langsung ke Campaign ID {camp_id}...")
         try:
-            # Percobaan 1: Tanpa Slash
-            response = requests.post(api_url, json=payload, headers=headers)
+            # Menggunakan json.dumps untuk memastikan serialisasi JSON:API yang super ketat
+            import json as json_lib
+            response = requests.post(api_url, data=json_lib.dumps(payload), headers=headers)
 
-            # Percobaan 2: Dengan Slash jika 404
-            if response.status_code == 404:
-                print("🔄 Rute standar 404, mencoba dengan trailing slash...")
-                response = requests.post(api_url + "/", json=payload, headers=headers)
+            # Jika rute kampanye ditolak (404/405), kita fallback ke rute umum sekali lagi
+            if response.status_code in [404, 405]:
+                print("🔄 Rute kampanye tidak diizinkan, mencoba rute umum v2...")
+                fallback_url = "https://www.patreon.com/api/oauth2/v2/posts"
+                response = requests.post(fallback_url, data=json_lib.dumps(payload), headers=headers)
 
             if response.status_code in [200, 201]:
-                print(f"✅ BERHASIL! Artikel tayang di Patreon.")
+                print(f"✅ AKHIRNYA BERHASIL! Artikel '{title}' sudah tayang di Patreon.")
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
-                print(f"❌ Gagal. Status: {response.status_code}")
-                print(f"Pesan Server: {response.text}")
+                print(f"❌ Masih gagal. Status: {response.status_code}")
+                print(f"Detail Respon: {response.text}")
 
         except Exception as e:
-            print(f"❌ Request error: {e}")
+            print(f"❌ Kesalahan sistem: {e}")
     else:
         print("✅ Tidak ada artikel baru untuk diposting.")
 
