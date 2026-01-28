@@ -1,23 +1,67 @@
-name: RenovateXXXX
+name: Renovate
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '0 11 * * *' # 18.00 WITA
 
 jobs:
   renovate:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
+      # 1. Cache Docker Image Renovate (format .tzst)
+      - name: Cache Renovate Docker Image
+        id: cache-docker
+        uses: actions/cache@v5
+        with:
+          path: ~/renovate-image.tzst
+          key: renovate-cache-docker
+
+      # 2. Load atau Pull Renovate Image
+      - name: Load or Pull Renovate Image
+        run: |
+          if [ -f ~/renovate-image.tzst ]; then
+            echo "Using cached Renovate image"
+            zstd -d -c -T0 ~/renovate-image.tzst | docker load
+          else
+            echo "Cache miss, pulling Renovate v42"
+            docker pull ghcr.io/renovatebot/renovate
+            docker save ghcr.io/renovatebot/renovate | zstd -T0 -o ~/renovate-image.tzst
+          fi
+
+      # 3. Cache data Renovate (dependency metadata)
+      - name: Cache Renovate Data
+        uses: actions/cache@v5
+        with:
+          path: /tmp/renovate/cache
+          key: renovate-cache-${{ github.run_id }}
+          restore-keys: |
+            renovate-cache-
+
+      # 4. Persiapan direktori Renovate
+      - name: Prepare Renovate Directories
+        run: |
+          sudo mkdir -p /tmp/renovate/cache /tmp/renovate/repos
+          sudo chmod -R 777 /tmp/renovate
+
+      # 5. Jalankan Renovate
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
+          renovate-image: ghcr.io/renovatebot/renovate
+          renovate-version: 42
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_BASE_DIR: /tmp/renovate
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
+          RENOVATE_REPOSITORY_CACHE: "enabled"
+          RENOVATE_REPOSITORY_CACHE_TYPE: "local"
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-      
+          RENOVATE_BINARY_SOURCE: "docker"
