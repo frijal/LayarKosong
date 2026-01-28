@@ -23,13 +23,4 @@ jobs:
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
 
-      - name: Generate & manage renovate snapshots
-        run: |
-          node mini/renovate-snapshot.js
-
-      - name: Commit snapshot changes
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore: update renovate dependency snapshot"
-          file_pattern: mini/renovate-*.md
-
+      
