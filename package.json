@@ -3,6 +3,7 @@
   "version": "2.0.1",
   "type": "module",
   "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator dengan Google Gemini",
+  "main": "index.js",
   "scripts": {
     "fixseo": "node ext/seo-fixer.js",
     "ci-fix-meta-image": "node ext/seo-fixer.js artikelx",
@@ -32,13 +33,11 @@
   "author": "Fakhrul Rijal <frijal@gmail.com>",
   "license": "Unlicense",
   "homepage": "https://dalam.web.id",
+  "bugs": {
+    "url": "https://github.com/frijal/layarkosong/issues"
+  },
   "engines": {
     "node": ">=20.0.0"
-  },
-  "devDependencies": {
-    "depcheck": "^1.4.7",
-    "htmlhint": "^1.8.0",
-    "wrangler": "^4.60.0"
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
@@ -48,14 +47,18 @@
     "cheerio": "^1.2.0",
     "express": "^5.2.1",
     "glob": "^13.0.0",
-    "node-fetch": "^3.3.2",
     "puppeteer": "^24.36.0",
     "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1"
   },
-  "bugs": {
-    "url": "https://github.com/frijal/layarkosong/issues"
+  "devDependencies": {
+    "depcheck": "^1.4.7",
+    "htmlhint": "^1.8.0",
+    "wrangler": "^4.60.0"
   },
-  "main": "index.js"
+  "overrides": {
+    "whatwg-encoding": "^3.1.1",
+    "node-domexception": "^1.0.0"
+  }
 }
