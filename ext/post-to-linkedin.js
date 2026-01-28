@@ -99,7 +99,7 @@ async function postToLinkedIn() {
         await axios.post('https://api.linkedin.com/rest/posts', {
             author: LINKEDIN_PERSON_ID,
             // Tetap menggunakan target.url yang sudah V6.9
-            commentary: `${target.desc}\n${target.url}`,
+            commentary: `${target.url}\n${target.desc}`,
             visibility: 'PUBLIC',
             content: {
                 media: {
