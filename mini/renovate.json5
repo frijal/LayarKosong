@@ -9,31 +9,45 @@
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
   "labels": ["dependencies", "renovate-bot"],
-  
-  // Fitur perapih package-lock.json otomatis
+
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true,
-    "schedule": ["before 8am on monday"]
+    "automerge": true
   },
 
   "packageRules": [
     {
-      "description": "Minor & Patch langsung automerge",
+      "description": "Prod deps: minor & patch auto-merge",
+      "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "platformAutomerge": true,
-      "groupName": "Minor and Patch Updates",
-      "matchPackageNames": ["*"]
+      "groupName": "Production Dependency Updates"
     },
     {
-      "description": "Major Update dibuatkan PR tapi tidak automerge",
+      "description": "Prod deps: major update butuh review",
+      "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["major"],
       "automerge": false,
-      "groupName": null,
-      "matchPackageNames": ["*"]
+      "groupName": null
+    },
+    {
+      "description": "Dev deps: minor & patch auto-merge",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true,
+      "groupName": "Dev Dependency Updates"
+    },
+    {
+      "description": "Dev deps: major update tidak auto-merge",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "groupName": "Dev Dependency Major Updates"
     }
   ],
+
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0
 }
