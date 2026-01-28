@@ -18,7 +18,7 @@ on:
           - facebook
           - linkedin
           - mastodon
-          - patreon
+          - twitter
           - threads
           - tumblr
           - indexnow
@@ -187,15 +187,7 @@ jobs:
             cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
           fi
 
-      - name: 10. Run Patreon Poster Script
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'patreon'
-        continue-on-error: true
-        env:
-          PATREON_ACCESS_TOKEN: ${{ secrets.PATREON_ACCESS_TOKEN }}
-       #   PATREON_CAMPAIGN_ID: ${{ secrets.PATREON_CAMPAIGN_ID }}
-        run: python3 ext/post-to-patreon.py
-
-      - name: 🔍 11. IndexNow Sync (Bash & JQ)
+      - name: 🔍 10. IndexNow Sync (Bash & JQ)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
         continue-on-error: true
         env:
