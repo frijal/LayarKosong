@@ -51,7 +51,7 @@ jobs:
             # Daftar task khusus Node.js
             NODE_ONLY=("diskusi RSS" "cloudflare" "mastodon" "threads" "linkedin" "tumblr")
             # Daftar task khusus Python/Bash
-            PYTHON_ONLY=("bluesky" "indexnow" "llms_index" "facebook")
+            PYTHON_ONLY=("bluesky" "indexnow" "patreon" "llms_index" "facebook")
 
             if [[ " ${NODE_ONLY[@]} " =~ " $TASK " ]]; then
                NEED_PYTHON=false
