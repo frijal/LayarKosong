@@ -10,17 +10,14 @@ const slugify = (text) =>
 
 async function postToPatreon() {
   const ACCESS_TOKEN = process.env.PATREON_ACCESS_TOKEN;
-  const CAMPAIGN_ID = process.env.PATREON_CAMPAIGN_ID || "15483016"; // Pakai ID yang sudah kita temukan tadi
+  const CAMPAIGN_ID = process.env.PATREON_CAMPAIGN_ID;
 
-  if (!ACCESS_TOKEN) {
-    console.error('❌ Patreon token belum diset');
+  if (!ACCESS_TOKEN || !CAMPAIGN_ID) {
+    console.error('❌ Token atau Campaign ID belum diset di ENV');
     process.exit(1);
   }
 
-  if (!fs.existsSync(JSON_FILE)) {
-    console.error('❌ File artikel.json tidak ditemukan');
-    return;
-  }
+  if (!fs.existsSync(JSON_FILE)) return;
 
   const data = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
   let postedDatabase = fs.existsSync(DATABASE_FILE) ? fs.readFileSync(DATABASE_FILE, 'utf8') : "";
@@ -35,10 +32,10 @@ async function postToPatreon() {
       if (!postedDatabase.includes(fileSlug)) {
         allPosts.push({
           title: p[0],
-          slug: fileSlug, // Kita simpan slug saja di db biar rapi
+          slug: fileSlug,
           url: fullUrl,
           date: p[3],
-          desc: p[4] || "Artikel terbaru dari dalam.web.id"
+          desc: p[4] || "Kupas tuntas di Layar Kosong."
         });
       }
     });
@@ -47,54 +44,53 @@ async function postToPatreon() {
   allPosts.sort((a, b) => b.date.localeCompare(a.date));
 
   if (allPosts.length === 0) {
-    console.log("🏁 Patreon: Semua artikel sudah dipost.");
+    console.log("🏁 Semua artikel sudah terupdate.");
     return;
   }
 
   const target = allPosts[0];
-  console.log(`🚀 Posting ke Patreon: ${target.title}`);
+  console.log(`🚀 Mengirim ke Patreon v2: ${target.title}`);
 
-  try {
-    const response = await axios.post(
-      // KITA GUNAKAN RUTE SPESIFIK KAMPANYE
-      `https://www.patreon.com/api/oauth2/v2/campaigns/${CAMPAIGN_ID}/posts`,
-      {
-        data: {
-          type: 'post',
-          attributes: {
-            title: target.title,
-            content: `<p>${target.desc}</p><p>🔗 Kupas Tuntas di: <a href="${target.url}">${target.url}</a></p>`,
-            is_public: true,
-            publish_state: 'published'
-          }
-          // Di rute ini, kita TIDAK PERLU lagi mengirim relationships campaign
-          // karena ID kampanye sudah ada di URL.
-        }
+  // STRUKTUR PAYLOAD JSON:API V2 YANG BENAR
+  const payload = {
+    data: {
+      type: 'post',
+      attributes: {
+        title: target.title,
+        content: `<p>${target.desc}</p><p>Baca selengkapnya di: <a href="${target.url}">${target.url}</a></p>`,
+        is_public: true,
+        publish_state: 'published' // Memaksa langsung tayang
       },
-      {
-        headers: {
-          'Authorization': `Bearer ${ACCESS_TOKEN}`,
-          'Content-Type': 'application/vnd.api+json',
-          'Accept': 'application/vnd.api+json'
+      relationships: {
+        campaign: {
+          data: {
+            type: 'campaign',
+            id: String(CAMPAIGN_ID) // ID harus string
+          }
         }
       }
-    );
-
-    if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
-    fs.appendFileSync(DATABASE_FILE, target.slug + '\n');
-
-    console.log(`✅ AKHIRNYA BERHASIL! "${target.title}" sudah tayang.`);
-  } catch (err) {
-    // JIKA RUTE KAMPANYE MASIH 404, KITA COBA FALLBACK KE RUTE UMUM (UNTUK BERJAGA-JAGA)
-    if (err.response?.status === 404) {
-        console.log("🔄 Rute kampanye 404, mencoba rute umum v2 sebagai cadangan...");
-        // ... (Logika fallback jika diperlukan)
     }
+  };
 
-    console.error(
-      '❌ Patreon Error:',
-      JSON.stringify(err.response?.data || err.message, null, 2)
-    );
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'https://www.patreon.com/api/oauth2/v2/posts',
+      headers: {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json'
+      },
+      data: payload
+    });
+
+    if (response.status === 201 || response.status === 200) {
+      console.log(`✅ SUKSES! "${target.title}" sudah tayang.`);
+      if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
+      fs.appendFileSync(DATABASE_FILE, target.slug + '\n');
+    }
+  } catch (err) {
+    console.error('❌ Detail Error:', JSON.stringify(err.response?.data || err.message, null, 2));
     process.exit(1);
   }
 }
