@@ -79,19 +79,20 @@ def main():
             }
         }
 
-        # Eksekusi ke API Patreon
-        if PATREON_ACCESS_TOKEN:
+# Eksekusi ke API Patreon
+        if PATREON_ACCESS_TOKEN and CAMPAIGN_ID:
             headers = {
                 "Authorization": f"Bearer {PATREON_ACCESS_TOKEN}",
                 "Content-Type": "application/vnd.api+json"
             }
-            api_url = "https://www.patreon.com/api/oauth2/v2/posts"
-            
+
+            # PERBAIKAN: URL harus menyertakan CAMPAIGN_ID
+            api_url = f"https://www.patreon.com/api/oauth2/v2/campaigns/{CAMPAIGN_ID}/posts"
+
             response = requests.post(api_url, json=payload, headers=headers)
-            
+
             if response.status_code in [201, 200]:
                 print(f"✅ Berhasil posting ke Patreon: {target_post['title']}")
-                # Catat ke database
                 with open(DATABASE_FILE, 'a', encoding='utf-8') as f:
                     f.write(target_post['slug'] + '\n')
             else:
