@@ -60,7 +60,7 @@ def main():
         # --- PERSIAPAN KONTEN PATREON ---
         title = f"Latest Update: {target_post['title']}"
         # Patreon mendukung sedikit HTML sederhana
-        body = f"<p>{target_post['desc']}</p><p>Baca selengkapnya di sini: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
+        body = f"<p>{target_post['desc']}</p><p>Buka Faktanya di: <a href='{target_post['url']}'>{target_post['url']}</a></p>"
         
         payload = {
             "data": {
