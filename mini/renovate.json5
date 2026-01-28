@@ -1,13 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
   "extends": [
     "config:recommended",
     ":combinePatchMinorReleases",
-    ":ignoreUnstable"
+    ":ignoreUnstable",
+    ":dependencyDashboard"
   ],
+
   "onboarding": false,
   "dependencyDashboard": true,
   "dependencyDashboardApproval": false,
+
   "timezone": "Asia/Makassar",
   "labels": ["dependencies", "renovate-bot"],
 
@@ -46,19 +50,9 @@
       "matchUpdateTypes": ["major"],
       "automerge": false,
       "groupName": "Dev Dependency Major Updates"
-    }
-  ],
+    },
 
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0
-}
-{
-  "extends": [
-    "config:recommended",
-    ":dependencyDashboard"
-  ],
-
-  "packageRules": [
+    // 🔁 SELF-UPDATE RENOVATE
     {
       "description": "Auto-update Renovate GitHub Action",
       "matchManagers": ["github-actions"],
@@ -75,5 +69,8 @@
       "automergeType": "branch",
       "labels": ["renovate-self-update"]
     }
-  ]
+  ],
+
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0
 }
