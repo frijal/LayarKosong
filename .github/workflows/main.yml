@@ -1,0 +1,68 @@
+name: RenovateX
+on:
+  workflow_dispatch:
+    inputs:
+      repoCache:
+        description: 'Reset atau disable cache?'
+        type: choice
+        default: enabled
+        options:
+          - enabled
+          - disabled
+          - reset
+  schedule:
+    # Jalankan setiap 30 menit
+    - cron: '0,30 * * * *'
+
+env:
+  CACHE_DIR: ${{ github.workspace }}/.renovate/cache
+  CACHE_ARCHIVE: renovate_cache.tar.gz
+  CACHE_KEY: renovate-cache
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Restore Renovate Cache
+        if: github.event.inputs.repoCache != 'disabled'
+        continue-on-error: true
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          name: ${{ env.CACHE_KEY }}
+          path: cache-download
+
+      - name: Extract Renovate Cache
+        if: github.event.inputs.repoCache != 'disabled'
+        run: |
+          mkdir -p $CACHE_DIR
+          if [ -d cache-download ]; then
+            tar -xzf cache-download/$CACHE_ARCHIVE -C $CACHE_DIR
+          fi
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@v44.2.6
+        with:
+          configurationFile: mini/renovate.json
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          renovate-version: full
+        env:
+          RENOVATE_REPOSITORY_CACHE: $CACHE_DIR
+          LOG_LEVEL: info
+        continue-on-error: true
+
+      - name: Compress Renovate Cache
+        if: github.event.inputs.repoCache != 'disabled'
+        run: |
+          mkdir -p $CACHE_DIR
+          tar -czvf $CACHE_ARCHIVE -C $CACHE_DIR .
+
+      - name: Upload Renovate Cache
+        if: github.event.inputs.repoCache != 'disabled'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.CACHE_KEY }}
+          path: ${{ env.CACHE_ARCHIVE }}
+          retention-days: 3
