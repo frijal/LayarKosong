@@ -9,7 +9,7 @@
   "requireConfig": "optional",
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
-  "schedule": ["every weekend"],
+//  "schedule": ["every weekend"], //
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
   "enabledManagers": ["custom.regex", "github-actions", "npm"],
