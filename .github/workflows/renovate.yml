@@ -57,7 +57,7 @@ jobs:
         run: |
           set -x
           # Pull the Renovate full image from GHCR (assumed public)
-          docker pull ghcr.io/renovatebot/renovate:full || true
+          docker pull ghcr.io/renovatebot/renovate:slim || true
           # Optional: show pulled image info
           docker images ghcr.io/renovatebot/renovate --format "table {{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}"
 
@@ -66,7 +66,7 @@ jobs:
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
-          renovate-version: full
+          renovate-version: slim
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
