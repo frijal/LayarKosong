@@ -1,9 +1,9 @@
-name: Renovate Immutable Self-Contained
+name: RenovateX
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 10 * * *' # Tepat 18.00 WITA
+    - cron: '0 10 * * *' # 18.00 WITA
 
 permissions:
   contents: write
@@ -13,45 +13,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
-      # 2️⃣ Prepare folder sementara/ di root project
-      - name: Prepare folder for artifact
+      - name: Prepare transit folder
+        run: mkdir -p sementara
+
+      # 1️⃣ Cek SHA Image di server (Tanpa Pull)
+      - name: Get Remote Image Digest
+        id: check_remote
         run: |
-          mkdir -p sementara
-          chmod 777 sementara
+          IMAGE_TAG="full"
+          DIGEST=$(docker manifest inspect ghcr.io/renovatebot/renovate:$IMAGE_TAG -v | jq -r '.Descriptor.digest' | cut -d: -f2 | cut -c1-12)
+          
+          # Prefix sesuai instruksi user: renovate-cache-
+          echo "CACHE_KEY=renovate-cache-$DIGEST" >> $GITHUB_ENV
+          echo "TAR_PATH=sementara/renovate-image.tar" >> $GITHUB_ENV
 
-      # 3️⃣ Pull image & hitung hash
-      - name: Pull latest Renovate image
-        run: |
-          docker pull ghcr.io/renovatebot/renovate:full
-          IMAGE_HASH=$(docker images --no-trunc --quiet ghcr.io/renovatebot/renovate:full | cut -d: -f2 | cut -c1-12)
-          echo "IMAGE_HASH=$IMAGE_HASH" >> $GITHUB_ENV
-          # Nama file tetap pakai prefix renovate-cache- sesuai preferensimu
-          ARTIFACT_NAME="renovate-cache-${IMAGE_HASH}"
-          echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> $GITHUB_ENV
-          echo "TAR_PATH=sementara/$ARTIFACT_NAME.tar" >> $GITHUB_ENV
-
-      # 4️⃣ Download artifact jika ada (mencoba restore)
-      - name: Download Docker image artifact if exists
-        uses: actions/download-artifact@v4
+      # 2️⃣ Restore dari GitHub Cache
+      - name: Restore Docker Image Cache
+        id: cache-docker
+        uses: actions/cache@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: sementara
-        continue-on-error: true
+          path: sementara/renovate-image.tar
+          key: ${{ env.CACHE_KEY }}
 
-      # 5️⃣ Load dari folder sementara/ jika filenya ada
-      - name: Load Renovate Docker image
+      # 3️⃣ Load atau Pull
+      - name: Load or Pull Renovate Image
         run: |
-          if [ -f "${{ env.TAR_PATH }}" ]; then
-            echo "✅ Loading Docker image from local folder sementara/..."
+          if [ "${{ steps.cache-docker.outputs.cache-hit }}" == "true" ]; then
+            echo "🚀 Cache ditemukan! Loading image..."
             docker load -i "${{ env.TAR_PATH }}"
           else
-            echo "⚠️ File .tar tidak ditemukan di folder sementara/, menggunakan pull terbaru."
+            echo "⚠️ Cache miss atau versi baru tersedia. Pulling..."
+            docker pull ghcr.io/renovatebot/renovate:full
+            docker save ghcr.io/renovatebot/renovate:full -o "${{ env.TAR_PATH }}"
           fi
 
-      # 6️⃣ Run Renovate (Menggunakan RENOVATE_TOKEN)
+      # 4️⃣ Jalankan Renovate
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
@@ -62,40 +60,17 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-          # Cache path disesuaikan dengan preferensi "renovate-cache-"
+          # Cache metadata Renovate juga menggunakan prefix yang sama
           RENOVATE_REPOSITORY_CACHE: /tmp/renovate-cache-inline
 
-      # 7️⃣ Save image ke folder sementara/ untuk siklus berikutnya
-      - name: Save Docker image to local folder
-        run: |
-          docker save ghcr.io/renovatebot/renovate:full -o "${{ env.TAR_PATH }}"
-          ls -lh sementara/
-
-      - name: Upload Docker image artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.TAR_PATH }}
-          retention-days: 1 # Biar gak menuhin storage karena tiap hari ganti
-
-      # 8️⃣ Cleanup old tar files in local folder
-      - name: Cleanup old local files
-        run: |
-          find sementara -name "renovate-cache-*.tar" ! -name "${{ env.ARTIFACT_NAME }}.tar" -delete
-
-      # 9️⃣ Commit & Push (Semua pakai RENOVATE_TOKEN)
+      # 5️⃣ Commit & Push
       - name: Commit & Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           git add .
-
-          if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan file."
-          else
-            git commit -m "chore: 🚀 update files via Renovate"
-            # Menggunakan RENOVATE_TOKEN untuk push agar konsisten
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: 🚀 update via RenovateX"
             git push origin main
           fi
         env:
