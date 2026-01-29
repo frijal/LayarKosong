@@ -12,18 +12,11 @@
   "schedule": ["every weekend"],
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
-  "enabledManagers": [
-    "regex",
-    "github-actions",
-    "npm"
-  ],
+  "enabledManagers": ["custom.regex", "github-actions", "npm"],
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": [
-        "**/*.html",
-        "**/*.json"
-      ],
+      "managerFilePatterns": ["**/*.html", "**/*.json"],
       "description": "CDN npm-style and ESM CDNs (unpkg, jsdelivr npm, skypack, esm.sh, jspm, pika, etc.)",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -41,10 +34,7 @@
     },
     {
       "customType": "regex",
-      "managerFilePatterns": [
-        "**/*.html",
-        "**/*.json"
-      ],
+      "managerFilePatterns": ["**/*.html", "**/*.json"],
       "description": "GitHub raw / gh CDN references (raw.githubusercontent, raw.githack, jsdelivr gh)",
       "matchStrings": [
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -57,10 +47,7 @@
     },
     {
       "customType": "regex",
-      "managerFilePatterns": [
-        "**/*.html",
-        "**/*.json"
-      ],
+      "managerFilePatterns": ["**/*.html", "**/*.json"],
       "description": "cdnjs, Google Ajax libs, Google Fonts (fallback handling)",
       "matchStrings": [
         "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
@@ -74,41 +61,24 @@
   ],
   "packageRules": [
     {
-      "matchManagers": [
-        "regex"
-      ],
+      "matchManagers": ["custom.regex"],
       "groupName": "cdn-updates",
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "separateMajor": true,
+      "matchPackageNames": ["*"],
       "automerge": false,
       "prPriority": 10
     },
     {
-      "matchManagers": [
-        "github-actions"
-      ],
+      "matchManagers": ["github-actions"],
       "groupName": "github-actions-updates",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "platformAutomerge": true
     },
     {
-      "matchFiles": [
-        "package.json"
-      ],
-      "matchManagers": [
-        "npm"
-      ],
+      "matchFileNames": ["package.json"],
+      "matchManagers": ["npm"],
       "groupName": "npm-deps",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
   ],
