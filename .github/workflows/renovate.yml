@@ -77,7 +77,7 @@ jobs:
       # 5️⃣ Upload hasil kerja ke Artifact GitHub
       - name: Save cache to Artifact
         if: github.event.inputs.repoCache != 'disabled'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.CACHE_KEY }}
           path: ${{ env.CACHE_ARCHIVE }}
