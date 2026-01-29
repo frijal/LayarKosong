@@ -22,7 +22,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["\\.html$"],
+      // Kembali ke fileMatch agar lebih kompatibel dengan folder dalam
+      "fileMatch": ["\\.html$"],
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -42,13 +43,13 @@
     },
     {
       "matchManagers": ["github-actions"],
-      "matchPackagePatterns": ["^actions/checkout$"],
-      "allowedVersions": ["v4"],
+      "matchPackageNames": ["/^actions/checkout$/"],
+      "allowedVersions": "v4",
       "automerge": false
     },
     {
       "matchManagers": ["github-actions"],
-      "matchPackagePatterns": ["^actions/.*"],
+      "matchPackageNames": ["/^actions/.*/"],
       "automerge": true,
       "platformAutomerge": true
     }
