@@ -5,6 +5,7 @@
     ":combinePatchMinorReleases",
     ":ignoreUnstable"
   ],
+  "binarySource": "install",
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboard": true,
@@ -15,7 +16,7 @@
   "customManagers": [ 
     {
       "customType": "regex",
-      "fileMatch": ["**/*.html", "**/*.json"],
+      "fileMatch": ["\\.html", "\\.json"],
       "description": "CDN npm-style and ESM CDNs (unpkg, jsdelivr npm, skypack, esm.sh, jspm, pika, etc.)",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -29,12 +30,11 @@
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?\\/.+"
       ],
       "datasourceTemplate": "npm",
-      "versioningTemplate": "semver",
-      "binarySource": "install"
+      "versioningTemplate": "semver"
     },
     {
       "customType": "regex",
-      "fileMatch": ["**/*.html", "**/*.json"],
+      "fileMatch": ["\\.html", "\\.json"],
       "description": "GitHub raw / gh CDN references (raw.githubusercontent, raw.githack, jsdelivr gh)",
       "matchStrings": [
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -47,7 +47,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["**/*.html", "**/*.json"],
+      "fileMatch": ["\\.html", "\\.json"],
       "description": "cdnjs, Google Ajax libs, Google Fonts (fallback handling)",
       "matchStrings": [
         "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
