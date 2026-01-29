@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 11.7
+document_version: 11.8
 last_updated: 2026-01-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 29 January 2026)
-> Menampilkan 826 artikel yang berhasil diindeks dalam versi 11.7.
+> Menampilkan 826 artikel yang berhasil diindeks dalam versi 11.8.
 ## Gaya Hidup
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu/) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/gaya-hidup/panduan-pengasuhan-sains/) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
