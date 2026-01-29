@@ -16,7 +16,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/\\.html$/"], // Sesuai saran migrasi log kamu
+      "managerFilePatterns": ["/\\.html$/"],
       "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -36,12 +36,7 @@
       "groupName": "all-minor-patch-auto"
     },
     {
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["/^actions/checkout$/"],
-      "allowedVersions": "v4",
-      "automerge": false
-    },
-    {
+      // SEKARANG BEBAS: Semua GitHub Actions (termasuk checkout) akan diupdate
       "matchManagers": ["github-actions"],
       "matchPackageNames": ["/^actions/.*/"],
       "automerge": true,
