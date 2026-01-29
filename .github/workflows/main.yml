@@ -49,6 +49,9 @@ jobs:
       # performance significantly when uploading artifacts with lots of files.
       - name: Extract renovate cache
         run: |
+          mkdir -p $cache_dir
+          ls -la $cache_dir || echo "Folder masih kosong"
+          tar -czvf $cache_archive -C $cache_dir .
           set -x
           # Skip if no cache is set, such as the first time it runs.
           if [ ! -d cache-download ] ; then
