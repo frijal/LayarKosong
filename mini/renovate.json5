@@ -5,8 +5,10 @@
     ":combinePatchMinorReleases",
     ":ignoreUnstable"
   ],
-
-  // ✅ DASHBOARD HIDUP (Akan muncul di GitHub Issues)
+  
+  // Memaksa Renovate aktif tanpa nunggu PR onboarding
+  "onboarding": false,
+  "requireConfig": "optional",
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
 
@@ -16,12 +18,20 @@
 
   "labels": ["dependencies", "renovate-bot"],
 
-  "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile", "html-self-hosted"],
+  // PERBAIKAN: Hapus "html-self-hosted" yang bikin error
+  "enabledManagers": [
+    "npm",
+    "github-actions",
+    "pip_setup",
+    "pip_requirements",
+    "dockerfile"
+  ],
 
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.html$"],
+      // PERBAIKAN: Gunakan managerFilePatterns sesuai saran migrasi log
+      "managerFilePatterns": ["\\.html$"],
       "description": "Mendeteksi library JS/CSS di HTML",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -54,6 +64,12 @@
     }
   ],
 
-  "ignorePaths": ["**/node_modules/**", "**/sementara/**", "**/img/**", "**/.git/**"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/sementara/**",
+    "**/img/**",
+    "**/.git/**"
+  ],
+
   "repositoryCache": "enabled"
 }
