@@ -29,7 +29,8 @@
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?\\/.+"
       ],
       "datasourceTemplate": "npm",
-      "versioningTemplate": "semver"
+      "versioningTemplate": "semver",
+      "binarySource": "install"
     },
     {
       "customType": "regex",
@@ -89,5 +90,4 @@
     "ext/fontawesome-webfonts/**"
   ],
   "repositoryCache": "enabled"
-},
-{"binarySource": "install"}
+}
