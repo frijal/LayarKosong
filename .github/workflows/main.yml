@@ -69,7 +69,7 @@ jobs:
 
       - uses: renovatebot/github-action@v44.2.5
         with:
-          configurationFile: renovate.json5
+          configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
           renovate-version: 42.92.4
         env:
