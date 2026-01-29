@@ -6,27 +6,23 @@
     ":ignoreUnstable"
   ],
 
-  // 🚫 MATIKAN DASHBOARD & ONBOARDING
-  "dependencyDashboard": false,
-  "onboarding": false,
-  "timezone": "Asia/Makassar", // Sesuai WITA Balikpapan
+  // ✅ DASHBOARD HIDUP (Akan muncul di GitHub Issues)
+  "dependencyDashboard": true,
+  "timezone": "Asia/Makassar",
 
-  // 🚀 JALAN KAPAN PUN (Tanpa Limit)
   "schedule": ["at any time"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
 
   "labels": ["dependencies", "renovate-bot"],
 
-  // 🔎 MANAGERS: Batasi agar scan lebih cepat
   "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile", "html-self-hosted"],
 
-  // 🧬 REGEX MANAGER: Sapu Jagat untuk semua library JS/CSS di HTML
   "customManagers": [
     {
       "customType": "regex",
       "fileMatch": ["\\.html$"],
-      "description": "Mendeteksi semua library JS/CSS dari CDN populer di ribuan file HTML",
+      "description": "Mendeteksi library JS/CSS di HTML",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -36,15 +32,7 @@
     }
   ],
 
-  // 🛠️ LOCKFILE MAINTENANCE: Langsung update & merge
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "schedule": ["at any time"]
-  },
-
   "packageRules": [
-    // ✅ PROD & DEV: minor & patch auto-merge
     {
       "matchDepTypes": ["dependencies", "devDependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
@@ -52,8 +40,6 @@
       "platformAutomerge": true,
       "groupName": "all-minor-patch-auto"
     },
-
-    // 🌐 HTML CDN: Masukkan ke grup auto-merge juga (karena minor/patch biasanya aman)
     {
       "matchManagers": ["custom.regex"],
       "matchUpdateTypes": ["minor", "patch"],
@@ -61,29 +47,13 @@
       "platformAutomerge": true,
       "groupName": "frontend-cdn-auto"
     },
-
-    // 🛑 SEMUA MAJOR: PR saja (Wajib cek manual)
     {
       "matchUpdateTypes": ["major"],
       "automerge": false,
       "labels": ["major-update", "manual-review"]
-    },
-
-    // 🤖 GITHUB ACTIONS: Selalu auto-merge
-    {
-      "matchManagers": ["github-actions"],
-      "automerge": true,
-      "platformAutomerge": true
     }
   ],
 
-  // 🚫 OPTIMASI SCANNING (Penting untuk repo 3000+ file)
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/sementara/**",
-    "**/img/**",
-    "**/.git/**"
-  ],
-
+  "ignorePaths": ["**/node_modules/**", "**/sementara/**", "**/img/**", "**/.git/**"],
   "repositoryCache": "enabled"
 }
