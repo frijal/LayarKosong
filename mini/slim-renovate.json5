@@ -1,0 +1,93 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable"
+  ],
+  "onboarding": false,
+  "requireConfig": "optional",
+  "dependencyDashboard": true,
+  "timezone": "Asia/Makassar",
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "enabledManagers": ["custom.regex", "github-actions", "npm"],
+  "customManagers": [ 
+    {
+      "customType": "regex",
+      "fileMatch": ["**/*.html", "**/*.json"],
+      "description": "CDN npm-style and ESM CDNs (unpkg, jsdelivr npm, skypack, esm.sh, jspm, pika, etc.)",
+      "matchStrings": [
+        "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdn\\.skypack\\.dev\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/esm\\.sh\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/jspm\\.io\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/ga\\.jspm\\.io\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdn\\.pika\\.dev\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:\\?.*version=(?<currentValue>[^&\\s\"']+))?",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?\\/.+"
+      ],
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver",
+      "binarySource": "install"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["**/*.html", "**/*.json"],
+      "description": "GitHub raw / gh CDN references (raw.githubusercontent, raw.githack, jsdelivr gh)",
+      "matchStrings": [
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/",
+        "https:\\/\\/raw\\.githack\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/",
+        "https:\\/\\/cdn\\.rawgit\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/"
+      ],
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["**/*.html", "**/*.json"],
+      "description": "cdnjs, Google Ajax libs, Google Fonts (fallback handling)",
+      "matchStrings": [
+        "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
+        "https:\\/\\/ajax\\.googleapis\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
+        "https:\\/\\/fonts\\.googleapis\\.com\\/css\\?.*family=(?<depName>[^&\\s\"']+)",
+        "https:\\/\\/fonts\\.gstatic\\.com\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)"
+      ],
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "groupName": "cdn-updates",
+      "matchPackageNames": ["*"],
+      "automerge": false,
+      "prPriority": 10
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions-updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "matchFileNames": ["package.json"],
+      "matchManagers": ["npm"],
+      "groupName": "npm-deps",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "img/**",
+    "ext/icons/**",
+    "ext/fontawesome-webfonts/**"
+  ],
+  "repositoryCache": "enabled"
+}
