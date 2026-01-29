@@ -11,17 +11,24 @@ on:
           - disabled
           - reset
   schedule:
-    - cron: '0,30 * * * *'
+    - cron: '0 */13 * * *'
 
 env:
   cache_archive: renovate_cache.tar.gz
   cache_dir: /tmp/renovate/cache/renovate/repository
   cache_key: renovate-cache-
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   renovate:
     name: Renovate
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -79,8 +86,9 @@ jobs:
 
       - name: Upload cache artifact
         uses: actions/upload-artifact@v6.0.0
-        if: github.event.inputs.repoCache != 'disabled'
+        if: always() && github.event.inputs.repoCache != 'disabled'
         with:
           name: ${{ env.cache_key }}
           path: ${{ env.cache_archive }}
-          retention-days: 3
+          retention-days: 1
+          overwrite: true # Menimpa artifact lama dengan nama yang sama secara otomatis
