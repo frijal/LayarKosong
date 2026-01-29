@@ -29,8 +29,7 @@
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?\\/.+"
       ],
       "datasourceTemplate": "npm",
-      "versioningTemplate": "semver",
-      "binarySource": "install"
+      "versioningTemplate": "semver"
     },
     {
       "customType": "regex",
