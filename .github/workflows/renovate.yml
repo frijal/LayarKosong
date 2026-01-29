@@ -5,20 +5,23 @@ on:
   schedule:
     - cron: '0 10 * * *' # 18.00 WITA
 
+permissions:
+  contents: write
+
 jobs:
   renovate:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      # 1️⃣ Persiapkan folder dengan izin penuh (777) agar kontainer Docker bisa nulis
-      - name: Setup Cache Folder
+      # 1️⃣ Siapkan folder cache di workspace (bukan di /home/runner)
+      - name: Setup local cache directory
         run: |
-          mkdir -p .cache/renovate
+          mkdir -p .cache/renovate/repository
           chmod -R 777 .cache/renovate
 
-      # 2️⃣ Restore Metadata Cache
+      # 2️⃣ Restore cache metadata
       - name: Restore Renovate Cache
         uses: actions/cache@v4
         with:
@@ -27,7 +30,7 @@ jobs:
           restore-keys: |
             renovate-cache-${{ runner.os }}-
 
-      # 3️⃣ Jalankan Renovate dengan mapping yang benar
+      # 3️⃣ Jalankan Renovate dengan konfigurasi folder yang spesifik
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
@@ -36,8 +39,24 @@ jobs:
           renovate-version: full
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          RENOVATE_REPOSITORY_CACHE: enabled
-          # Gunakan path absolut yang aman di dalam Runner
+          # Matikan onboarding agar tidak berisik
+          RENOVATE_ONBOARDING: "false"
+          RENOVATE_REQUIRE_CONFIG: "ignored"
+          # Paksa Renovate menggunakan folder di workspace
           RENOVATE_CACHE_DIR: ${{ github.workspace }}/.cache/renovate
-          # Tambahan: Pakai user root di Docker supaya nggak ada drama permission
+          RENOVATE_REPOSITORY_CACHE: enabled
+          # Jalankan sebagai root di dalam docker untuk bypass EACCES
           RENOVATE_DOCKER_USER: root
+
+      # 4️⃣ Push perubahan jika Renovate mengupdate config/lock file
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: 🚀 update via RenovateX"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
