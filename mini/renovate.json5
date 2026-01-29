@@ -31,9 +31,6 @@
       "datasourceTemplate": "npm",
       "versioningTemplate": "semver"
     },
-   {
-      "binarySource": "install"
-    },
     {
       "customType": "regex",
       "managerFilePatterns": ["**/*.html", "**/*.json"],
@@ -92,4 +89,5 @@
     "ext/fontawesome-webfonts/**"
   ],
   "repositoryCache": "enabled"
-}
+},
+{"binarySource": "install"}
