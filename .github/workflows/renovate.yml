@@ -2,35 +2,58 @@ name: RenovateX
 
 on:
   workflow_dispatch:
+    inputs:
+      repoCache:
+        description: 'Reset atau disable cache?'
+        type: choice
+        default: enabled
+        options:
+          - enabled
+          - disabled
+          - reset
   schedule:
     - cron: '0 10 * * *' # 18.00 WITA
 
-permissions:
-  contents: write
+env:
+  # Sesuai preferensi kamu: renovate-cache-
+  CACHE_KEY: renovate-cache-main
+  CACHE_ARCHIVE: renovate_cache.tar.gz
+  # Path standar Renovate sesuai dokumen yang kamu berikan
+  CACHE_DIR: /tmp/renovate/cache/renovate/repository
 
 jobs:
   renovate:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      # 1️⃣ Setup folder di /tmp (host runner)
-      - name: Setup Cache Directory
-        run: |
-          mkdir -p /tmp/renovate-cache
-          chmod -R 777 /tmp/renovate-cache
-
-      # 2️⃣ Restore Cache dari GitHub
-      - name: Restore Renovate Cache
-        uses: actions/cache@v4
+      # 1️⃣ Ambil cache dari run sebelumnya (Pakai action-download-artifact sesuai saran doc)
+      - name: Download previous cache
+        uses: dawidd6/action-download-artifact@v3
+        if: github.event.inputs.repoCache != 'disabled'
+        continue-on-error: true
         with:
-          path: /tmp/renovate-cache
-          key: renovate-cache-${{ runner.os }}-${{ github.repository }}
-          restore-keys: |
-            renovate-cache-${{ runner.os }}-
+          name: ${{ env.CACHE_KEY }}
+          path: cache-download
+          workflow_conclusion: success
 
-      # 3️⃣ Jalankan Renovate dengan ENV yang lebih ketat
+      # 2️⃣ Ekstrak & Set Permission (Ini "obat" error EACCES tadi)
+      - name: Extract renovate cache
+        run: |
+          if [ -d cache-download ] && [ "${{ github.event.inputs.repoCache }}" != "reset" ]; then
+            echo "📦 Menemukan cache, mengekstrak..."
+            sudo mkdir -p ${{ env.CACHE_DIR }}
+            sudo tar -xzf cache-download/${{ env.CACHE_ARCHIVE }} -C ${{ env.CACHE_DIR }}
+            # Ganti kepemilikan ke user ID Renovate (12021) sesuai dokumentasi
+            sudo chown -R 12021:0 /tmp/renovate/
+          else
+            echo "🆕 Tidak ada cache atau reset diminta. Mulai dari nol."
+            sudo mkdir -p ${{ env.CACHE_DIR }}
+            sudo chown -R 12021:0 /tmp/renovate/
+          fi
+
+      # 3️⃣ Jalankan Renovate (The Real Deal)
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
@@ -41,9 +64,21 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-          # Kita pindahkan SEMUA folder kerja Renovate ke /tmp
-          RENOVATE_BASE_DIR: /tmp/renovate-cache
-          RENOVATE_CACHE_DIR: /tmp/renovate-cache/cache
-          RENOVATE_REPOSITORY_CACHE: enabled
-          # Jalankan sebagai root agar tidak ada masalah permission di /tmp
-          RENOVATE_DOCKER_USER: root
+          RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
+
+      # 4️⃣ Kompres balik buat dipake besok
+      - name: Compress renovate cache
+        if: github.event.inputs.repoCache != 'disabled'
+        run: |
+          # Ambil kembali akses agar bisa di-tar oleh user runner
+          sudo chown -R runner:docker ${{ env.CACHE_DIR }}
+          tar -czvf ${{ env.CACHE_ARCHIVE }} -C ${{ env.CACHE_DIR }} .
+
+      # 5️⃣ Upload hasil kerja ke Artifact GitHub
+      - name: Save cache to Artifact
+        if: github.event.inputs.repoCache != 'disabled'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.CACHE_KEY }}
+          path: ${{ env.CACHE_ARCHIVE }}
+          retention-days: 3
