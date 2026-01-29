@@ -95,4 +95,4 @@ jobs:
           # Since this is updated and restored on every run, we don't need to keep it
           # for long. Just make sure this value is large enough that multiple renovate
           # runs can happen before older cache archives are deleted.
-          retention-days: 1
+          retention-days: 3
