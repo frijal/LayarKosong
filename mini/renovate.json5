@@ -1,65 +1,89 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-
-  extends: [
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
     "config:recommended",
     ":combinePatchMinorReleases",
     ":ignoreUnstable"
   ],
 
-  // 🚫 MATIKAN DASHBOARD TOTAL
-  dependencyDashboard: false,
+  // 🚫 MATIKAN DASHBOARD & ONBOARDING
+  "dependencyDashboard": false,
+  "onboarding": false,
+  "timezone": "Asia/Makassar", // Sesuai WITA Balikpapan
 
-  // 🚀 JALAN KAPAN PUN
-  schedule: ["at any time"],
+  // 🚀 JALAN KAPAN PUN (Tanpa Limit)
+  "schedule": ["at any time"],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
 
-  onboarding: false,
-  timezone: "Asia/Makassar",
+  "labels": ["dependencies", "renovate-bot"],
 
-  labels: ["dependencies", "renovate-bot"],
+  // 🔎 MANAGERS: Batasi agar scan lebih cepat
+  "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile", "html-self-hosted"],
 
-  // 🔧 Lockfile langsung update & merge
-  lockFileMaintenance: {
-    enabled: true,
-    automerge: true,
-    schedule: ["at any time"]
-  },
-
-  packageRules: [
-    // ✅ PROD: minor & patch auto-merge
+  // 🧬 REGEX MANAGER: Sapu Jagat untuk semua library JS/CSS di HTML
+  "customManagers": [
     {
-      matchDepTypes: ["dependencies"],
-      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-      automerge: true,
-      platformAutomerge: true,
-      groupName: "prod-deps-auto"
-    },
-
-    // 🛑 PROD: major → PR saja
-    {
-      matchDepTypes: ["dependencies"],
-      matchUpdateTypes: ["major"],
-      automerge: false
-    },
-
-    // ✅ DEV: minor & patch auto-merge
-    {
-      matchDepTypes: ["devDependencies"],
-      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-      automerge: true,
-      platformAutomerge: true,
-      groupName: "dev-deps-auto"
-    },
-
-    // 🛑 DEV: major → PR saja
-    {
-      matchDepTypes: ["devDependencies"],
-      matchUpdateTypes: ["major"],
-      automerge: false
+      "customType": "regex",
+      "fileMatch": ["\\.html$"],
+      "description": "Mendeteksi semua library JS/CSS dari CDN populer di ribuan file HTML",
+      "matchStrings": [
+        "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^@\\/\\s\"']+)\\/(?<currentValue>[^@\\/\\s\"']+)"
+      ],
+      "datasourceTemplate": "npm"
     }
   ],
 
-  // 🚫 TANPA LIMIT (biar sekali jalan langsung kelar)
-  prConcurrentLimit: 0,
-  prHourlyLimit: 0
+  // 🛠️ LOCKFILE MAINTENANCE: Langsung update & merge
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["at any time"]
+  },
+
+  "packageRules": [
+    // ✅ PROD & DEV: minor & patch auto-merge
+    {
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true,
+      "groupName": "all-minor-patch-auto"
+    },
+
+    // 🌐 HTML CDN: Masukkan ke grup auto-merge juga (karena minor/patch biasanya aman)
+    {
+      "matchManagers": ["custom.regex"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "platformAutomerge": true,
+      "groupName": "frontend-cdn-auto"
+    },
+
+    // 🛑 SEMUA MAJOR: PR saja (Wajib cek manual)
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["major-update", "manual-review"]
+    },
+
+    // 🤖 GITHUB ACTIONS: Selalu auto-merge
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "platformAutomerge": true
+    }
+  ],
+
+  // 🚫 OPTIMASI SCANNING (Penting untuk repo 3000+ file)
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/sementara/**",
+    "**/img/**",
+    "**/.git/**"
+  ],
+
+  "repositoryCache": "enabled"
 }
