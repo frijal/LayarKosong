@@ -22,8 +22,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      // Kembali ke fileMatch agar lebih kompatibel dengan folder dalam
-      "fileMatch": ["\\.html$"],
+      // MENGIKUTI SARAN MIGRASI: Gunakan managerFilePatterns dengan pembungkus /.../
+      "managerFilePatterns": ["/\\.html$/"],
+      "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
