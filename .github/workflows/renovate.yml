@@ -65,7 +65,7 @@ jobs:
 
       - name: Save cache to Artifact
         if: github.event.inputs.repoCache != 'disabled'
-        uses: actions/upload-artifact@v6 # v4 jauh lebih cepat untuk file besar
+        uses: actions/upload-artifact@v4 # v4 jauh lebih cepat untuk file besar
         with:
           name: ${{ env.CACHE_KEY }}
           path: ${{ env.CACHE_ARCHIVE }}
