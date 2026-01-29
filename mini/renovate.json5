@@ -12,18 +12,11 @@
   "schedule": ["at any time"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "enabledManagers": [
-    "npm",
-    "github-actions",
-    "pip_setup",
-    "pip_requirements",
-    "dockerfile"
-  ],
+  "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile"],
   "customManagers": [
     {
       "customType": "regex",
-      // MENGIKUTI SARAN MIGRASI: Gunakan managerFilePatterns dengan pembungkus /.../
-      "managerFilePatterns": ["/\\.html$/"],
+      "managerFilePatterns": ["/\\.html$/"], // Sesuai saran migrasi log kamu
       "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
