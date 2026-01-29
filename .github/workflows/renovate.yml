@@ -10,31 +10,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
-      # 1️⃣ Setup Docker Buildx (Ini kunci buat caching layer)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # 2️⃣ Gunakan cache khusus untuk Docker layer
-      - name: Cache Docker layers
+      # 1️⃣ Restore Metadata Cache (Bukan Image)
+      - name: Restore Renovate Cache
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-renovate-cache-${{ github.run_id }}
+          path: .cache/renovate
+          # Prefix sesuai instruksi kamu: renovate-cache-
+          key: renovate-cache-${{ runner.os }}-${{ github.repository }}
           restore-keys: |
-            ${{ runner.os }}-renovate-cache-
+            renovate-cache-${{ runner.os }}-
 
-      # 3️⃣ Run Renovate
+      # 2️⃣ Jalankan Renovate
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
-          renovate-version: slim
+          renovate-version: full
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          RENOVATE_ONBOARDING: "false"
-          RENOVATE_REQUIRE_CONFIG: "ignored"
-          # Cache metadata Renovate tetap pakai prefix kesukaanmu
-          RENOVATE_REPOSITORY_CACHE: /tmp/renovate-cache-inline
+          # Arahkan cache ke folder yang kita cache tadi
+          RENOVATE_REPOSITORY_CACHE: enabled
+          RENOVATE_CACHE_DIR: ${{ github.workspace }}/.cache/renovate
+
+      # 3️⃣ Commit & Push
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: 🚀 update via RenovateX"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
