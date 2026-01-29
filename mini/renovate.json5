@@ -12,19 +12,13 @@
   "schedule": ["at any time"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "enabledManagers": [
-    "npm",
-    "github-actions",
-    "pip_setup",
-    "pip_requirements",
-    "dockerfile"
-  ],
+  "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile"],
+  
   "customManagers": [
     {
       "customType": "regex",
-      // PERBAIKAN: Mengikuti saran migrasi log & standar regex terbaru
-      "managerFilePatterns": ["\\.html$"],
-      "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
+      // PERBAIKAN: Pakai regex yang paling sederhana untuk scan semua file .html
+      "fileMatch": ["\\.html$"], 
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -47,8 +41,8 @@
     "**/node_modules/**",
     "**/.git/**",
     "**/img/**",
-    "**/ext/fontawesome-webfonts/**",
-    "**/ext/icons/**"
+    "**/ext/icons/**",
+    "**/ext/fontawesome-webfonts/**"
   ],
   "repositoryCache": "enabled"
 }
