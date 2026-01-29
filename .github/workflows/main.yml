@@ -55,7 +55,7 @@ jobs:
           docker images ghcr.io/renovatebot/renovate --format "table {{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}"
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v44.2.5
+        uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
