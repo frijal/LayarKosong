@@ -13,14 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4    
-      # 1️⃣ Cek SHA Image di server (Tanpa Pull)
+      - uses: actions/checkout@v4
+      # 1️⃣ Cek SHA Image (Fix JQ Logic)
       - name: Get Remote Image Digest
         id: check_remote
         run: |
           IMAGE_TAG="full"
-          DIGEST=$(docker manifest inspect ghcr.io/renovatebot/renovate:$IMAGE_TAG -v | jq -r 'if type=="array" then .[0].Descriptor.digest else .Descriptor.digest end' | cut -d: -f2 | cut -c1-12)          
-          # Prefix sesuai instruksi user: renovate-cache-
+          # Logic JQ yang lebih aman untuk menangani array manifest
+          DIGEST=$(docker manifest inspect ghcr.io/renovatebot/renovate:$IMAGE_TAG -v | jq -r 'if type=="array" then .[0].Descriptor.digest else .Descriptor.digest end' | cut -d: -f2 | cut -c1-12)
+          
+          if [ -z "$DIGEST" ] || [ "$DIGEST" == "null" ]; then
+            echo "❌ Gagal mengambil digest!"
+            exit 1
+          fi
+
           echo "CACHE_KEY=renovate-cache-$DIGEST" >> $GITHUB_ENV
           echo "TAR_PATH=sementara/renovate-image.tar" >> $GITHUB_ENV
 
@@ -36,10 +42,10 @@ jobs:
       - name: Load or Pull Renovate Image
         run: |
           if [ "${{ steps.cache-docker.outputs.cache-hit }}" == "true" ]; then
-            echo "🚀 Cache ditemukan! Loading image..."
+            echo "🚀 Cache hit! Loading image dari tar..."
             docker load -i "${{ env.TAR_PATH }}"
           else
-            echo "⚠️ Cache miss atau versi baru tersedia. Pulling..."
+            echo "⚠️ Cache miss. Pulling fresh image..."
             docker pull ghcr.io/renovatebot/renovate:full
             docker save ghcr.io/renovatebot/renovate:full -o "${{ env.TAR_PATH }}"
           fi
@@ -55,7 +61,6 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: "false"
           RENOVATE_REQUIRE_CONFIG: "ignored"
-          # Cache metadata Renovate juga menggunakan prefix yang sama
           RENOVATE_REPOSITORY_CACHE: /tmp/renovate-cache-inline
 
       # 5️⃣ Commit & Push
