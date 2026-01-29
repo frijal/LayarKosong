@@ -24,7 +24,7 @@ jobs:
     name: Renovate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
 
       - name: Download previous cache
         uses: dawidd6/action-download-artifact@v12 # Gunakan v3 yang stabil
@@ -54,7 +54,7 @@ jobs:
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
-          renovate-version: 42.92.4
+          renovate-version: full
         env:
           # SOLUSI FATAL: Memberitahu Renovate repo mana yang harus diproses
           RENOVATE_REPOSITORIES: ${{ github.repository }}
@@ -76,7 +76,7 @@ jobs:
           fi
 
       - name: Upload cache artifact
-        uses: actions/upload-artifact@v4 # Update ke v4/v5
+        uses: actions/upload-artifact@v6.0.0
         if: github.event.inputs.repoCache != 'disabled'
         with:
           name: ${{ env.cache_key }}
