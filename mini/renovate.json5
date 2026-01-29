@@ -1,65 +1,54 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-
-  extends: [
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
     "config:recommended",
     ":combinePatchMinorReleases",
     ":ignoreUnstable"
   ],
-
-  // 🚫 MATIKAN DASHBOARD TOTAL
-  dependencyDashboard: false,
-
-  // 🚀 JALAN KAPAN PUN
-  schedule: ["at any time"],
-
-  onboarding: false,
-  timezone: "Asia/Makassar",
-
-  labels: ["dependencies", "renovate-bot"],
-
-  // 🔧 Lockfile langsung update & merge
-  lockFileMaintenance: {
-    enabled: true,
-    automerge: true,
-    schedule: ["at any time"]
-  },
-
-  packageRules: [
-    // ✅ PROD: minor & patch auto-merge
+  "onboarding": false,
+  "requireConfig": "optional",
+  "dependencyDashboard": true,
+  "timezone": "Asia/Makassar",
+  "schedule": ["at any time"],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "enabledManagers": ["npm", "github-actions", "pip_setup", "pip_requirements", "dockerfile"],
+  "customManagers": [
     {
-      matchDepTypes: ["dependencies"],
-      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-      automerge: true,
-      platformAutomerge: true,
-      groupName: "prod-deps-auto"
-    },
-
-    // 🛑 PROD: major → PR saja
-    {
-      matchDepTypes: ["dependencies"],
-      matchUpdateTypes: ["major"],
-      automerge: false
-    },
-
-    // ✅ DEV: minor & patch auto-merge
-    {
-      matchDepTypes: ["devDependencies"],
-      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-      automerge: true,
-      platformAutomerge: true,
-      groupName: "dev-deps-auto"
-    },
-
-    // 🛑 DEV: major → PR saja
-    {
-      matchDepTypes: ["devDependencies"],
-      matchUpdateTypes: ["major"],
-      automerge: false
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.html$/"],
+      "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
+      "matchStrings": [
+        "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
+        "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^@\\/\\s\"']+)\\/(?<currentValue>[^@\\/\\s\"']+)"
+      ],
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver"
     }
   ],
-
-  // 🚫 TANPA LIMIT (biar sekali jalan langsung kelar)
-  prConcurrentLimit: 0,
-  prHourlyLimit: 0
+  "packageRules": [
+    {
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true,
+      "groupName": "all-minor-patch-auto"
+    },
+    {
+      // SEKARANG BEBAS: Semua GitHub Actions (termasuk checkout) akan diupdate
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["/^actions/.*/"],
+      "automerge": true,
+      "platformAutomerge": true
+    }
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/img/**",
+    "**/ext/icons/**",
+    "**/ext/fontawesome-webfonts/**"
+  ],
+  "repositoryCache": "enabled"
 }
