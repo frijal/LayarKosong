@@ -39,6 +39,18 @@
       "automerge": true,
       "platformAutomerge": true,
       "groupName": "all-minor-patch-auto"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchPackagePatterns": ["^actions/checkout$"],
+      "allowedVersions": ["v4"],
+      "automerge": false
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchPackagePatterns": ["^actions/.*"],
+      "automerge": true,
+      "platformAutomerge": true
     }
   ],
   "ignorePaths": [
