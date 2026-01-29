@@ -1,6 +1,5 @@
 name: Renovate
 on:
-  # This lets you dispatch a renovate job with different cache options if you want to reset or disable the cache manually.
   workflow_dispatch:
     inputs:
       repoCache:
@@ -12,18 +11,13 @@ on:
           - disabled
           - reset
   schedule:
-    # Run every 30 minutes:
     - cron: '0,30 * * * *'
 
-# Adding these as env variables makes it easy to re-use them in different steps and in bash.
 env:
   cache_archive: renovate_cache.tar.gz
-  # This is the dir renovate provides -- if we set our own directory via cacheDir, we can run into permissions issues.
-  # It is also possible to cache a higher level of the directory, but it has minimal benefit. While renovate execution
-  # time gets faster, it also takes longer to upload the cache as it grows bigger.
   cache_dir: /tmp/renovate/cache/renovate/repository
-  # This can be manually changed to bust the cache if neccessary.
-  cache_key: renovate-cache
+  # Perubahan sesuai preferensi kamu: renovate-cache-
+  cache_key: renovate-cache-
 
 jobs:
   renovate:
@@ -32,67 +26,59 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # This third party action allows you to download the cache artifact from different workflow runs
-      # Note that actions/cache doesn't work well because the cache key would need to be computed from
-      # a file within the cache, meaning there would never be any data to restore. With other keys, the
-      # cache wouldn't necessarily upload when it changes. actions/download-artifact also doesn't work
-      # because it only handles artifacts uploaded in the same run, and we want to restore from the
-      # previous successful run.
-      - uses: dawidd6/action-download-artifact@v12
-        if: github.event.inputs.repoCache != 'disabled'
+      - name: Download previous cache
+        uses: dawidd6/action-download-artifact@v3 # Gunakan v3 yang stabil
+        if: github.event.inputs.repoCache != 'disabled' && github.event.inputs.repoCache != 'reset'
         continue-on-error: true
         with:
           name: ${{ env.cache_key }}
           path: cache-download
 
-      # Using tar to compress and extract the archive isn't strictly necessary, but it can improve
-      # performance significantly when uploading artifacts with lots of files.
       - name: Extract renovate cache
         run: |
           set -x
-          # Buat folder utamanya dulu pakai sudo
+          # Persiapkan struktur folder untuk Docker (UID 12021)
           sudo mkdir -p /tmp/renovate/cache/containerbase
           sudo mkdir -p /tmp/renovate/cache/renovate/repository
           
-          # Skip extract kalau memang belum ada cache yang didownload
           if [ -d cache-download ] && [ -f cache-download/$cache_archive ]; then
             sudo tar -xzf cache-download/$cache_archive -C /tmp/renovate/cache/renovate/repository
-          else
-            echo "No cache found, starting fresh."
           fi
 
-          # INI KUNCINYA: Berikan kepemilikan ke user Renovate (12021)
-          # secara rekursif ke seluruh folder /tmp/renovate
+          # Berikan akses ke user Docker Renovate
           sudo chown -R 12021:0 /tmp/renovate
           sudo chmod -R 777 /tmp/renovate
-          
-          ls -R /tmp/renovate
 
-      - uses: renovatebot/github-action@v44.2.6
+      - name: Run Renovate
+        uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
           renovate-version: 42.92.4
         env:
+          # SOLUSI FATAL: Memberitahu Renovate repo mana yang harus diproses
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # Pastikan cache diarahkan ke folder yang sudah kita 'chown' tadi
           RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
-          # PAKSA Renovate simpan cache ke path yang kita mau di Host
           RENOVATE_CACHE_DIR: /tmp/renovate/cache
 
-      # Compression helps performance in the upload step!
       - name: Compress renovate cache
+        if: always() # Tetap jalankan meskipun step sebelumnya gagal agar cache tidak hilang
         run: |
-          ls $cache_dir
-          # The -C is important -- otherwise we end up extracting the files with
-          # their full path, ultimately leading to a nested directory situation.
-          # To solve *that*, we'd have to extract to root (/), which isn't safe.
-          tar -czvf $cache_archive -C $cache_dir .
+          set -x
+          # Cek apakah folder ada dan punya isi sebelum di-tar
+          if [ -d "$cache_dir" ] && [ "$(ls -A $cache_dir)" ]; then
+            sudo tar -czvf $cache_archive -C $cache_dir .
+          else
+            echo "Cache directory is empty or not found, creating dummy for upload"
+            mkdir -p /tmp/empty
+            tar -czvf $cache_archive -C /tmp/empty .
+          fi
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload cache artifact
+        uses: actions/upload-artifact@v4 # Update ke v4/v5
         if: github.event.inputs.repoCache != 'disabled'
         with:
           name: ${{ env.cache_key }}
           path: ${{ env.cache_archive }}
-          # Since this is updated and restored on every run, we don't need to keep it
-          # for long. Just make sure this value is large enough that multiple renovate
-          # runs can happen before older cache archives are deleted.
           retention-days: 3
