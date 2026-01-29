@@ -5,16 +5,13 @@
     ":combinePatchMinorReleases",
     ":ignoreUnstable"
   ],
-  
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboard": true,
   "timezone": "Asia/Makassar",
-
   "schedule": ["at any time"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-
   "enabledManagers": [
     "npm",
     "github-actions",
@@ -22,12 +19,11 @@
     "pip_requirements",
     "dockerfile"
   ],
-
   "customManagers": [
     {
       "customType": "regex",
-      // PERBAIKAN: Cari semua file HTML di semua subfolder
-      "fileMatch": ["\\.html$"],
+      // PERBAIKAN: Mengikuti saran migrasi log & standar regex terbaru
+      "managerFilePatterns": ["\\.html$"],
       "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
@@ -38,7 +34,6 @@
       "versioningTemplate": "semver"
     }
   ],
-
   "packageRules": [
     {
       "matchDepTypes": ["dependencies", "devDependencies"],
@@ -48,14 +43,12 @@
       "groupName": "all-minor-patch-auto"
     }
   ],
-
   "ignorePaths": [
     "**/node_modules/**",
     "**/.git/**",
-    "**/img/**", // Abaikan folder img (berisi 1350+ webp) agar cepat
+    "**/img/**",
     "**/ext/fontawesome-webfonts/**",
     "**/ext/icons/**"
   ],
-
   "repositoryCache": "enabled"
 }
