@@ -12,17 +12,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1️⃣ Restore Metadata Cache (Bukan Image)
+      # 1️⃣ Persiapkan folder dengan izin penuh (777) agar kontainer Docker bisa nulis
+      - name: Setup Cache Folder
+        run: |
+          mkdir -p .cache/renovate
+          chmod -R 777 .cache/renovate
+
+      # 2️⃣ Restore Metadata Cache
       - name: Restore Renovate Cache
         uses: actions/cache@v4
         with:
           path: .cache/renovate
-          # Prefix sesuai instruksi kamu: renovate-cache-
           key: renovate-cache-${{ runner.os }}-${{ github.repository }}
           restore-keys: |
             renovate-cache-${{ runner.os }}-
 
-      # 2️⃣ Jalankan Renovate
+      # 3️⃣ Jalankan Renovate dengan mapping yang benar
       - name: Run Renovate
         uses: renovatebot/github-action@v44.2.6
         with:
@@ -31,19 +36,8 @@ jobs:
           renovate-version: full
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          # Arahkan cache ke folder yang kita cache tadi
           RENOVATE_REPOSITORY_CACHE: enabled
+          # Gunakan path absolut yang aman di dalam Runner
           RENOVATE_CACHE_DIR: ${{ github.workspace }}/.cache/renovate
-
-      # 3️⃣ Commit & Push
-      - name: Commit & Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          if ! git diff --staged --quiet; then
-            git commit -m "chore: 🚀 update via RenovateX"
-            git push origin main
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          # Tambahan: Pakai user root di Docker supaya nggak ada drama permission
+          RENOVATE_DOCKER_USER: root
