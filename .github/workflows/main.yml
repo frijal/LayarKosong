@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Download previous cache
-        uses: dawidd6/action-download-artifact@v3 # Gunakan v3 yang stabil
+        uses: dawidd6/action-download-artifact@v12 # Gunakan v3 yang stabil
         if: github.event.inputs.repoCache != 'disabled' && github.event.inputs.repoCache != 'reset'
         continue-on-error: true
         with:
