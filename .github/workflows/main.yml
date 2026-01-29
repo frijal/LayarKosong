@@ -49,26 +49,24 @@ jobs:
       # performance significantly when uploading artifacts with lots of files.
       - name: Extract renovate cache
         run: |
-          mkdir -p $cache_dir
-          ls -la $cache_dir || echo "Folder masih kosong"
-          tar -czvf $cache_archive -C $cache_dir .
           set -x
-          # Skip if no cache is set, such as the first time it runs.
-          if [ ! -d cache-download ] ; then
-            echo "No cache found."
-            exit 0
+          # Buat folder utamanya dulu pakai sudo
+          sudo mkdir -p /tmp/renovate/cache/containerbase
+          sudo mkdir -p /tmp/renovate/cache/renovate/repository
+          
+          # Skip extract kalau memang belum ada cache yang didownload
+          if [ -d cache-download ] && [ -f cache-download/$cache_archive ]; then
+            sudo tar -xzf cache-download/$cache_archive -C /tmp/renovate/cache/renovate/repository
+          else
+            echo "No cache found, starting fresh."
           fi
 
-          # Make sure the directory exists, and extract it there. Note that it's nested in the download directory.
-          mkdir -p $cache_dir
-          tar -xzf cache-download/$cache_archive -C $cache_dir
-
-          # Unfortunately, the permissions expected within renovate's docker container
-          # are different than the ones given after the cache is restored. We have to
-          # change ownership to solve this. We also need to have correct permissions in
-          # the entire /tmp/renovate tree, not just the section with the repo cache.
-          sudo chown -R 12021:0 /tmp/renovate/
-          ls -R $cache_dir
+          # INI KUNCINYA: Berikan kepemilikan ke user Renovate (12021)
+          # secara rekursif ke seluruh folder /tmp/renovate
+          sudo chown -R 12021:0 /tmp/renovate
+          sudo chmod -R 777 /tmp/renovate
+          
+          ls -R /tmp/renovate
 
       - uses: renovatebot/github-action@v44.2.6
         with:
