@@ -13,18 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepare transit folder
-        run: mkdir -p sementara
-
+      - uses: actions/checkout@v4    
       # 1️⃣ Cek SHA Image di server (Tanpa Pull)
       - name: Get Remote Image Digest
         id: check_remote
         run: |
           IMAGE_TAG="full"
-          DIGEST=$(docker manifest inspect ghcr.io/renovatebot/renovate:$IMAGE_TAG -v | jq -r '.Descriptor.digest' | cut -d: -f2 | cut -c1-12)
-          
+          DIGEST=$(docker manifest inspect ghcr.io/renovatebot/renovate:$IMAGE_TAG -v | jq -r 'if type=="array" then .[0].Descriptor.digest else .Descriptor.digest end' | cut -d: -f2 | cut -c1-12)          
           # Prefix sesuai instruksi user: renovate-cache-
           echo "CACHE_KEY=renovate-cache-$DIGEST" >> $GITHUB_ENV
           echo "TAR_PATH=sementara/renovate-image.tar" >> $GITHUB_ENV
