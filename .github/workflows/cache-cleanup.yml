@@ -23,7 +23,7 @@ jobs:
           set -e
 
           NOW=$(date +%s)
-          LIMIT=$((DAYS * 86400))
+          LIMIT=$((DAYS * 8640))
 
           echo "Fetching caches for $REPO"
           PAGE=1
