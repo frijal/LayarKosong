@@ -6,7 +6,6 @@
     ":ignoreUnstable"
   ],
   
-  // Memaksa Renovate aktif tanpa nunggu PR onboarding
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboard": true,
@@ -16,9 +15,6 @@
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
 
-  "labels": ["dependencies", "renovate-bot"],
-
-  // PERBAIKAN: Hapus "html-self-hosted" yang bikin error
   "enabledManagers": [
     "npm",
     "github-actions",
@@ -30,15 +26,16 @@
   "customManagers": [
     {
       "customType": "regex",
-      // PERBAIKAN: Gunakan managerFilePatterns sesuai saran migrasi log
-      "managerFilePatterns": ["\\.html$"],
-      "description": "Mendeteksi library JS/CSS di HTML",
+      // PERBAIKAN: Cari semua file HTML di semua subfolder
+      "fileMatch": ["\\.html$"],
+      "description": "Mendeteksi library JS/CSS di seluruh file HTML Layar Kosong",
       "matchStrings": [
         "https:\\/\\/unpkg\\.com\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>[^@\\/\\s\"']+)(?:@(?<currentValue>[^\\/\\s\"']+))?",
         "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^@\\/\\s\"']+)\\/(?<currentValue>[^@\\/\\s\"']+)"
       ],
-      "datasourceTemplate": "npm"
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver"
     }
   ],
 
@@ -49,26 +46,15 @@
       "automerge": true,
       "platformAutomerge": true,
       "groupName": "all-minor-patch-auto"
-    },
-    {
-      "matchManagers": ["custom.regex"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "platformAutomerge": true,
-      "groupName": "frontend-cdn-auto"
-    },
-    {
-      "matchUpdateTypes": ["major"],
-      "automerge": false,
-      "labels": ["major-update", "manual-review"]
     }
   ],
 
   "ignorePaths": [
     "**/node_modules/**",
-    "**/sementara/**",
-    "**/img/**",
-    "**/.git/**"
+    "**/.git/**",
+    "**/img/**", // Abaikan folder img (berisi 1350+ webp) agar cepat
+    "**/ext/fontawesome-webfonts/**",
+    "**/ext/icons/**"
   ],
 
   "repositoryCache": "enabled"
