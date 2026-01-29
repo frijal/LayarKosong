@@ -67,14 +67,15 @@ jobs:
           sudo chown -R 12021:0 /tmp/renovate/
           ls -R $cache_dir
 
-      - uses: renovatebot/github-action@v44.2.5
+      - uses: renovatebot/github-action@v44.2.6
         with:
           configurationFile: mini/renovate.json5
           token: ${{ secrets.RENOVATE_TOKEN }}
           renovate-version: 42.92.4
         env:
-          # This enables the cache -- if this is set, it's not necessary to add it to renovate.json.
           RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
+          # PAKSA Renovate simpan cache ke path yang kita mau di Host
+          RENOVATE_CACHE_DIR: /tmp/renovate/cache
 
       # Compression helps performance in the upload step!
       - name: Compress renovate cache
