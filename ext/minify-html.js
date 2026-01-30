@@ -17,7 +17,7 @@ const now = new Date();
 const datePart = now.toISOString().slice(0, 10);
 const timePart = now.toTimeString().slice(0, 5); 
 
-// Pastikan string ini tertutup sempurna
+// Baris 21 yang tadi bermasalah sudah saya fix di sini:
 const SIGNATURE_PREFIX = '`;
 
 // Inisialisasi penghitung
@@ -41,20 +41,19 @@ async function minifyFiles(dir) {
       continue;
     }
 
-    // Lewati index.html dan hanya proses .html
+    // Lewati index.html dan hanya proses file .html
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
 
-      // 1. Skip kalau file kosong
+      // 1. Skip kalau file kosong atau hanya whitespace
       if (!originalHTML || !originalHTML.trim()) continue;
 
-      // 2. Cek Signature pakai Regex agar tidak double minify
+      // 2. Cek Signature pakai Regex (Agar tidak double minify)
       const signatureRegex = new RegExp(SIGNATURE_PREFIX);
       if (signatureRegex.test(originalHTML)) {
         stats.skipped++;
-        // console.log(`⏭️  Skip: ${filePath}`);
         continue;
       }
 
@@ -71,24 +70,23 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // 4. Tempel Signature di baris terakhir
-      // trimEnd() memastikan tidak ada baris kosong sisa di bawah sebelum ditempel
+      // 4. Tempel Signature di baris paling terakhir
       minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
       
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       stats.success++;
-      console.log(`✅ Success: ${filePath}`);
+      console.log(`✅ Sukses: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
       stats.errorFiles.push({ path: filePath, msg: err.message });
-      console.error(`❌ Error pada ${filePath}: ${err.message}`);
+      console.error(`❌ Gagal: ${filePath}`);
     }
   }
 }
 
 // --- JALANKAN PROSES ---
-console.log('🧼 Memulai Minify HTML untuk Layar Kosong...');
+console.log('🧼 Memulai Minify HTML (Layar Kosong Mode)...');
 
 async function run() {
   for (const folder of folders) {
@@ -96,7 +94,7 @@ async function run() {
   }
 
   console.log('\n' + '='.repeat(40));
-  console.log('📊 REKAPITULASI PROSES:');
+  console.log('📊 REKAPITULASI AKHIR:');
   console.log(`✅ Berhasil di-minify : ${stats.success}`);
   console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
   console.log(`❌ Gagal proses       : ${stats.failed}`);
