@@ -1,23 +1,15 @@
-name: 📋 Validasi SEO & Struktur HTML Lengkap
+name: 📋 Audit Komponen SEO Lengkap (Layar Kosong Standard)
 
 on:  
   workflow_dispatch:
 
 jobs:
-  validasi:
+  audit:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout kode
         uses: actions/checkout@v6.0.2
-
-      - name: Cache Node Modules
-        uses: actions/cache@v5.0.3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       - name: Setup Node.js
         uses: actions/setup-node@v6.2.0
@@ -27,115 +19,89 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Validasi HTML & SEO (Hanya Folder Kategori)
+      - name: 🔍 Audit Komponen & Metadata
+        id: run_audit
         run: |
           TANGGAL=$(date +%Y%m%d)
-          TXT="mini/laporan-validasi-$TANGGAL.txt"
-          JSON="mini/laporan-validasi-$TANGGAL.json"
-          echo "📋 Laporan Validasi HTML & SEO" > $TXT
-          echo "[" > $JSON
+          REPORT="mini/laporan-audit-$TANGGAL.md"
+          
+          echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
+          echo "📅 Tanggal: $(date)" >> $REPORT
+          echo "" >> $REPORT
+          echo "| File | Status | Detail Komponen Bermasalah |" >> $REPORT
+          echo "| :--- | :---: | :--- |" >> $REPORT
 
-          FIRST=1          
+          ADA_MASALAH=0
           FOLDERS="./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno"
 
-          # Kita gunakan find hanya pada folder-folder tersebut
           for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
-            GAGAL=0
-            TEMP=""
-            JSON_ENTRY="{\"file\":\"$file\",\"issues\":["
-
-            # Metadata SEO
-            check() {
+            MASALAH_FILE=0
+            TEMP_MSG=""
+            
+            check_tag() {
               if ! grep -q "$1" "$file"; then
-                TEMP+="❌ $2 MISSING\n"
-                JSON_ENTRY="$JSON_ENTRY\"$2 missing\","
-                GAGAL=1
+                TEMP_MSG+="- Missing: $2<br>"
+                MASALAH_FILE=1
+                ADA_MASALAH=1
               fi
             }
 
-            check '<meta name="description"' "description"
-            check '<meta property="og:title"' "og:title"
-            check '<meta property="og:image"' "og:image"
-            check '<meta property="og:description"' "og:description"
-            check '<meta name="twitter:title"' "twitter:title"
-            check '<meta name="twitter:image"' "twitter:image"
-            check '<meta name="twitter:description"' "twitter:description"
-            check '<link rel="canonical"' "canonical"
+            # 1. Core Meta & Branding
+            check_tag '<link rel="canonical"' "Canonical Tag"
+            check_tag '<link rel="icon" href="/favicon.ico">' "Favicon.ico"
+            check_tag '<meta name="author" content="Fakhrul Rijal">' "Author (Fakhrul Rijal)"
+            check_tag '<meta name="theme-color" content="#00b0ed">' "Theme Color (#00b0ed)"
+            check_tag 'creativecommons.org/publicdomain/zero/1.0/' "CC0 License"
 
-            # Struktur HTML
-            check '<html lang=' "html lang"
-            check '<meta charset=' "meta charset"
-            check '<title>' "title"
-            check '<head>' "head"
-            check '<body>' "body"
-            check '<main>' "main"
-            check '<footer>' "footer"
+            # 2. Social Meta (Creators)
+            check_tag 'fediverse:creator" content="@frijal@mastodon.social"' "Fediverse Creator"
+            check_tag 'twitter:creator" content="@responaja"' "Twitter Creator"
+            check_tag 'bluesky:creator" content="@dalam.web.id"' "Bluesky Creator"
 
-            # Heading
-            H1_COUNT=$(grep -o '<h1>' "$file" | wc -l)
-            if [ "$H1_COUNT" -eq 0 ]; then
-              TEMP+="❌ <h1> tidak ditemukan\n"
-              JSON_ENTRY="$JSON_ENTRY\"h1 missing\","
-              GAGAL=1
-            elif [ "$H1_COUNT" -gt 1 ]; then
-              TEMP+="⚠️ Duplikat <h1> ditemukan ($H1_COUNT)\n"
-              JSON_ENTRY="$JSON_ENTRY\"multiple h1 ($H1_COUNT)\","
-              GAGAL=1
+            # 3. Open Graph & Twitter Card
+            check_tag 'og:site_name" content="Layar Kosong"' "OG Site Name"
+            check_tag 'og:locale" content="id_ID"' "OG Locale"
+            check_tag 'twitter:card" content="summary_large_image"' "Twitter Card Large"
+            check_tag 'fb:app_id" content="175216696195384"' "FB App ID"
+
+            # 4. Assets & Feed
+            check_tag 'type="application/rss+xml"' "RSS Feed Link"
+
+            # 5. Schema JSON-LD (Penting!)
+            if ! grep -q 'type="application/ld+json"' "$file"; then
+              TEMP_MSG+="- ❌ **SCHEMA JSON-LD TIDAK DITEMUKAN**<br>"
+              MASALAH_FILE=1; ADA_MASALAH=1
             fi
 
-            HEADINGS=$(grep -o '<h[1-6]>' "$file" | sed 's/<h\([1-6]\)>/\1/' | paste -sd " " -)
-            if echo "$HEADINGS" | grep -qE '(^| )1( |$).*[^2]( |$)'; then
-              TEMP+="⚠️ Urutan heading mungkin melompat: $HEADINGS\n"
-              JSON_ENTRY="$JSON_ENTRY\"heading jump: $HEADINGS\","
-              GAGAL=1
-            fi
+            # 6. Variasi Description (Sesuai contoh kamu)
+            check_tag 'name="description"' "Meta Description"
+            check_tag 'property="og:description"' "OG Description"
+            check_tag 'name="twitter:description"' "Twitter Description"
+            check_tag 'name="promphint"' "Prompt Hint Meta"
 
-            # Jika gagal, tulis ke laporan
-            if [ "$GAGAL" -eq 1 ]; then
-              echo "➡️ File: $file" >> $TXT
-              echo -e "$TEMP" >> $TXT
-              echo "----------------------------------------" >> $TXT
-
-              JSON_ENTRY="${JSON_ENTRY%?}]}" # tutup array dan object
-              if [ "$FIRST" -eq 1 ]; then
-                echo "$JSON_ENTRY" >> $JSON
-                FIRST=0
-              else
-                echo ",$JSON_ENTRY" >> $JSON
-              fi
+            # Masukkan ke tabel jika ada yang bolong
+            if [ "$MASALAH_FILE" -eq 1 ]; then
+              echo "| \`$file\` | ❌ | $TEMP_MSG |" >> $REPORT
             fi
           done
 
-          echo "]" >> $JSON
+          if [ "$ADA_MASALAH" -eq 0 ]; then
+             echo "| Semua file | ✅ | Komponen lengkap sesuai standar. |" >> $REPORT
+          fi
 
-      - name: Run Auto-Fix SEO
-        run: npm run fixseo || echo "ada_error=true" >> $GITHUB_ENV
+          if [ "$ADA_MASALAH" -eq 1 ]; then echo "ada_error=true" >> $GITHUB_ENV; fi
+          cat $REPORT >> $GITHUB_STEP_SUMMARY
 
-      - name: Linting HTML
+      - name: 🧼 Linting HTML (HTMLHint)
+        if: always()
         run: |
-          TANGGAL=$(date +%Y%m%d)
-          TXT="mini/laporan-validasi-$TANGGAL.txt"
-          echo "🧼 Linting HTML dengan HTMLHint..." >> $TXT
-          npm run lint >> $TXT || echo "⚠️ Ada peringatan dari HTMLHint." >> $TXT
+          echo -e "\n## 🧼 Struktur Kode (HTMLHint)\n" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Ada peringatan struktur." >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "🤖 chore: auto-fix SEO & Audit Struktur"
-          branch: auto-fix-seo-bot
-          title: "📝 Perbaikan SEO & Audit Struktur"
-          body: |
-            Halo @frijal! 🤖
-            
-            Saya baru saja memeriksa artikel kamu. 
-            - Jika ada kesalahan struktur (tag tidak seimbang), silakan cek tab **"Files changed"** atau **"Checks"**. Saya sudah memberikan komentar di baris yang bermasalah.
-            - Jika aman, saya sudah melakukan auto-fix untuk SEO, Image Alt, dan Script Defer.
-          labels: automated-pr
-
-      # Jika tadi ada error, kita buat workflow ini gagal di akhir supaya muncul tanda silang merah
-      - name: Check for errors
+      - name: 🚨 Kesimpulan
         if: env.ada_error == 'true'
         run: |
-          echo "Audit menemukan kesalahan struktur pada HTML. Silakan periksa komentar di PR."
+          echo "Beberapa artikel belum memenuhi standar komponen Layar Kosong."
           exit 1
