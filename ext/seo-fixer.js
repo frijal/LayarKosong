@@ -9,8 +9,11 @@ import sharp from 'sharp';
 const escapeHtmlAttr = (text) => {
   if (!text) return '';
   return text
-  .replace(/"/g, '&quot;')
-  .replace(/'/g, '&#39;');
+  .replace(/&/g, '&amp;')   // 1. Simbol & jadi &amp; (HARUS PERTAMA)
+  .replace(/"/g, '&quot;')  // 2. Kutip dua jadi &quot;
+  .replace(/'/g, '&#39;')   // 3. Kutip satu jadi &#39;
+  .replace(/</g, '&lt;')    // 4. Jaga-jaga kalau ada tag <
+  .replace(/>/g, '&gt;');   // 5. Jaga-jaga kalau ada tag >
 };
 
 async function mirrorAndConvert(externalUrl, baseUrl) {
