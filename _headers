@@ -46,6 +46,9 @@ https://:version.:project.pages.dev/*
 /img/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+/site.webmanifest
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 /ext/*
   Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
   Access-Control-Allow-Origin: *
