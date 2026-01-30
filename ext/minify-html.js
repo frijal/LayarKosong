@@ -3,9 +3,15 @@ import path from 'path';
 import { minify } from 'html-minifier-terser';
 
 const folders = ['./gaya-hidup', './jejak-sejarah', './lainnya', './olah-media', './opini-sosial', './sistem-terbuka', './warta-tekno'];
-
-// Stempel personal untuk menandai file yang sudah dioptimasi
 const SIGNATURE = '';
+
+// Inisialisasi penghitung
+let stats = {
+    success: 0,
+    skipped: 0,
+    failed: 0,
+    errorFiles: []
+};
 
 async function minifyFiles(dir) {
     if (!fs.existsSync(dir)) return;
@@ -20,36 +26,57 @@ async function minifyFiles(dir) {
         } else if (file.endsWith('.html') && file !== 'index.html') {
             const originalHTML = fs.readFileSync(filePath, 'utf8');
             
-            // 🔍 CEK: Jika sudah ada stempel 'frijal', lewati file ini
             if (originalHTML.includes(SIGNATURE)) {
-                console.log(`⏭️  Skipped (Signed by frijal): ${filePath}`);
+                stats.skipped++;
+                console.log(`⏭️  Skipped: ${filePath}`);
                 continue;
             }
 
             try {
                 let minifiedHTML = await minify(originalHTML, {
-                    collapseWhitespace: true,      // Menghilangkan spasi & baris kosong
-                    removeComments: true,          // Menghapus komentar bawaan (kecuali signature kita nanti)
-                    minifyJS: true,                // Mengoptimasi script internal
-                    minifyCSS: true,               // Mengoptimasi style internal
-                    processScripts: ['application/ld+json'], // Mengamankan struktur Schema JSON-LD
+                    collapseWhitespace: true,
+                    removeComments: true,
+                    minifyJS: true,
+                    minifyCSS: true,
+                    processScripts: ['application/ld+json'],
                     ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/]
                 });
 
-                // 💉 INJEKSI: Tambahkan stempel 'frijal' di baris paling akhir
-                // Ini berfungsi sebagai flag agar tidak diproses ulang di run berikutnya
                 minifiedHTML += `\n${SIGNATURE}`;
-
                 fs.writeFileSync(filePath, minifiedHTML);
-                console.log(`✅ Berhasil Minify & Sign: ${filePath}`);
+                
+                stats.success++;
+                console.log(`✅ Success: ${filePath}`);
             } catch (err) {
-                console.error(`❌ Gagal pada ${filePath}:`, err.message);
+                stats.failed++;
+                stats.errorFiles.push({ path: filePath, msg: err.message });
+                console.error(`❌ Parse Error pada ${filePath}`);
             }
         }
     }
 }
 
-console.log("🧼 Memulai Minify Berstempel untuk Layar Kosong...");
+// --- EKSEKUSI UTAMA ---
+console.log("🧼 Memulai Minify Cerdas untuk Layar Kosong...");
+
 for (const folder of folders) {
     await minifyFiles(folder);
 }
+
+// --- LAPORAN REKAPITULASI ---
+console.log("\n" + "=".repeat(40));
+console.log("📊 REKAPITULASI PROSES MINIFY");
+console.log("=".repeat(40));
+console.log(`✅ Berhasil di-minify : ${stats.success}`);
+console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
+console.log(`❌ Gagal (Parse Error): ${stats.failed}`);
+
+if (stats.failed > 0) {
+    console.log("\n⚠️ DAFTAR FILE BERMASALAH:");
+    stats.errorFiles.forEach((item, index) => {
+        console.log(`${index + 1}. ${item.path} -> ${item.msg}`);
+    });
+    console.log("\n💡 Tips: Cek tag HTML yang tidak tertutup atau script JS yang rusak pada file di atas.");
+}
+
+console.log("=".repeat(40) + "\n");
