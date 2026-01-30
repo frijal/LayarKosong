@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v6.0.2
 
       - name: Download previous cache
-        uses: dawidd6/action-download-artifact@v12
+        uses: dawidd6/action-download-artifact@v13
         if: github.event.inputs.repoCache != 'disabled' && github.event.inputs.repoCache != 'reset'
         continue-on-error: true
         with:
