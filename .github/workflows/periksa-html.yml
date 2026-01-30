@@ -27,16 +27,22 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Validasi HTML & SEO (hanya yang gagal)
+      - name: Validasi HTML & SEO (Hanya Folder Kategori)
         run: |
           TANGGAL=$(date +%Y%m%d)
           TXT="mini/laporan-validasi-$TANGGAL.txt"
           JSON="mini/laporan-validasi-$TANGGAL.json"
-          echo "📋 Laporan Validasi HTML & SEO (Hanya yang Gagal)" > $TXT
+          echo "📋 Laporan Validasi HTML & SEO" > $TXT
           echo "[" > $JSON
 
           FIRST=1
-          for file in $(find . -name "*.html"); do
+          
+          # Tentukan folder kategori kamu di sini (pisahkan dengan spasi)
+          # Contoh: ./blog ./artikel ./tutorial
+          FOLDERS="./artikel ./kategori ./blog"
+
+          # Kita gunakan find hanya pada folder-folder tersebut
+          for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
             GAGAL=0
             TEMP=""
             JSON_ENTRY="{\"file\":\"$file\",\"issues\":["
