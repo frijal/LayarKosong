@@ -48,11 +48,10 @@ async function minifyFiles(dir) {
       // 1. Skip kalau file kosong
       if (!originalHTML || !originalHTML.trim()) continue;
 
-      // 2. Cek Signature pakai Regex (Anti-Gagal)
+      // 2. Cek Signature pakai Regex (Biar gak double minify)
       const signatureRegex = new RegExp(SIGNATURE_PREFIX);
       if (signatureRegex.test(originalHTML)) {
         stats.skipped++;
-        // console.log(`⏭️  Skipped: ${filePath}`);
         continue;
       }
 
@@ -69,12 +68,12 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // 4. Tempel Signature di baris terakhir
+      // 4. Tempel Signature di baris terakhir dengan rapi
       minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
       
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       stats.success++;
-      console.log(`✅ Sukses: ${filePath}`);
+      console.log(`✅ Berhasil: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
@@ -84,8 +83,8 @@ async function minifyFiles(dir) {
   }
 }
 
-// --- JALANKAN ---
-console.log('🧼 Memulai Minify HTML untuk Layar Kosong...');
+// --- JALANKAN PROSES ---
+console.log('🧼 Memulai Minify HTML (Layar Kosong Mode)...');
 
 async function run() {
   for (const folder of folders) {
@@ -93,13 +92,14 @@ async function run() {
   }
 
   console.log('\n' + '='.repeat(40));
-  console.log(`✅ Berhasil : ${stats.success}`);
-  console.log(`⏭️  Diskip   : ${stats.skipped}`);
-  console.log(`❌ Gagal    : ${stats.failed}`);
+  console.log('📊 REKAPITULASI AKHIR:');
+  console.log(`✅ Berhasil di-minify : ${stats.success}`);
+  console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
+  console.log(`❌ Gagal proses       : ${stats.failed}`);
   console.log('='.repeat(40));
 }
 
 run().catch(err => {
-  console.error(err);
+  console.error('💥 Fatal Error:', err);
   process.exit(1);
 });
