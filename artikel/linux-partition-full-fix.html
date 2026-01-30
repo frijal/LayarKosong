@@ -1,135 +1,119 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full</title>
 
-    <title>Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨</title>
-    <meta name="description" content="Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.">
-    <meta name="news_keywords" content="Linux Partition Full, Root Partition 100%, Disk Usage Linux, Sysadmin Tips, Ubuntu Server Full, Cara Membersihkan Disk Linux">
-    
-    
-    <meta name="prompt_hint" content="Artikel teknis Linux mendalam tentang manajemen disk space dan troubleshooting server produksi.">
-
-    
-    
-    <meta property="og:description" content="Server mogok gara-gara disk full? Jangan asal hapus! Ikuti strategi diagnosa cerdas ini biar server kamu balik normal dalam hitungan menit.">
-    
-    
+    <meta name="description" content="Jangan panik saat partisi root Linux penuh! Pelajari cara diagnosa sistematis, perintah sudo df dan du, serta strategi pembersihan aman untuk server produksi.">
+    <meta name="keywords" content="Linux, SysAdmin, Root Partition Full, Server Maintenance, Ubuntu, Debian, Centos, Perintah Linux, Cara Bersihkan Disk Server">
+    <meta name="news_keywords" content="Linux Server, Disk Full Fix, SysAdmin Tips, Linux Command Line">
     
     
 
     
     
     
+    <meta property="og:description" content="Server macet gara-gara disk penuh? Ikuti langkah-langkah pro untuk menemukan biang kerok penggunaan disk tanpa merusak sistem.">
     
-    <meta name="twitter:description" content="Panduan teknis buat sysadmin yang lagi pusing hadapin partisi / yang merah 100%. Baca selengkapnya di Layar Kosong.">
+    
+
+    
+    
+    
+    <meta name="twitter:description" content="Langkah sistematis diagnosa disk server Linux yang penuh. Temukan file besar dan bersihkan dengan aman.">
     
 
     
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
-        /* Core Web Vitals: Pre-load styling to avoid CLS */
         :root {
             --bg-color: #ffffff;
-            --text-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --link-color: #2980b9;
-            --code-bg: #f8f9fa;
-            --border-color: #eee;
-            --container-width: 900px;
+            --text-color: #1a1a1a;
+            --accent-color: #e63946;
+            --code-bg: #f4f4f4;
+            --border-color: #ddd;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #1a1a1a;
+                --bg-color: #121212;
                 --text-color: #e0e0e0;
-                --accent-color: #ff5e57;
-                --link-color: #3498db;
-                --code-bg: #2d2d2d;
+                --accent-color: #ff4d6d;
+                --code-bg: #1e1e1e;
                 --border-color: #333;
             }
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            transition: 0.3s ease;
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
         }
 
         article {
-            margin-top: 40px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px 20px;
         }
 
-        h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--accent-color); }
-        h2 { font-size: 1.8rem; border-left: 5px solid var(--accent-color); padding-left: 15px; margin-top: 40px; }
-        h3 { font-size: 1.4rem; margin-top: 30px; }
+        h1, h2, h3 { color: var(--accent-color); margin-top: 1.5em; }
 
-        p { margin-bottom: 20px; }
+        .meta-info { font-size: 0.9em; color: #888; margin-bottom: 20px; }
+
+        pre {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 5px solid var(--accent-color);
+            font-family: 'Courier New', Courier, monospace;
+        }
 
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
-            display: block;
-            margin: 30px auto;
-            /* LCP Optimization: aspect ratio prevents layout shift */
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
-        pre {
-            background: var(--code-bg);
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            border-left: 4px solid var(--link-color);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
-        }
-
-        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
 
         .alert-box {
-            background: rgba(231, 76, 60, 0.1);
-            border: 1px dashed var(--accent-color);
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid var(--accent-color);
             padding: 20px;
             border-radius: 8px;
-            margin: 30px 0;
+            margin: 20px 0;
         }
+
+        ul, ol { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
 
         footer {
-            margin-top: 60px;
-            padding: 40px 0;
+            margin-top: 50px;
+            padding: 30px 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.9em;
         }
 
-        .social-links { margin-bottom: 20px; }
         .social-links a {
+            margin: 0 10px;
             text-decoration: none;
             color: var(--text-color);
-            margin: 0 10px;
-            font-size: 1.2rem;
-            transition: color 0.2s;
+            font-size: 1.2em;
         }
-        .social-links a:hover { color: var(--accent-color); }
 
-        /* Responsive */
+        /* Optimization for Core Web Vitals */
+        img { content-visibility: auto; }
+
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .container { padding: 15px; }
+            article { padding: 20px 15px; }
+            h1 { font-size: 1.8em; }
         }
     </style>
 
@@ -147,113 +131,133 @@
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://dalam.web.id/artikel/linux-partition-full-fix">
-    <meta property="og:title" content="Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨">
+    <meta property="og:title" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@responaja">
     <meta property="fb:app_id" content="175216696195384">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
-    <meta property="og:image:alt" content="Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
+    <meta property="og:image:alt" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
-<div class="container">
+<article>
     <header>
-        <div style="font-size: 0.9rem; color: var(--link-color); font-weight: bold; text-transform: uppercase;">
-            <i class="fas fa-terminal"></i> Linux &amp; Server Administration
-        </div>
-        <h1>🚨 Linux Alert: Partisi Root (/) 100% Full! Jangan Panik, Ikuti Cara Cerdas Ini!</h1>
+        <h1>🚨 Linux Alert: / Partition 100% Full – Don’t Panic, Diagnose Smartly!</h1>
 <div id="iposbrowser"></div>
-        <p style="font-style: italic; opacity: 0.8;">Oleh: <strong>Fakhrul Rijal</strong> | Dipublikasikan pada 27 Januari 2026</p>
+        <div class="meta-info">
+            <i class="fa fa-calendar"></i> 30 Januari 2026 | <i class="fa fa-user"></i> Fakhrul Rijal | <i class="fa fa-folder"></i> SysAdmin Tips
+        </div>
     </header>
 
+    <div class="alert-box">
+        <strong><i class="fa fa-exclamation-triangle"></i> Gawat Darurat:</strong> Partisi root (/) yang penuh 100% pada server produksi bisa membuat layanan berhenti total — mulai dari masalah login SSH, aplikasi <i>crash</i>, kegagalan database, hingga masalah kernel yang serius.
+    </div>
 
-    <article>
-        <p>Halo sobat tech! Selamat datang kembali di blog <strong>Layar Kosong</strong>. Pernah nggak sih kamu lagi asyik nge-deploy aplikasi, eh tiba-tiba koneksi SSH putus, database gagal *start*, atau log server isinya cuma `No space left on device`? Beuh, itu rasanya kayak lagi naik motor terus ban bocor di tengah jalan tol—ngeselin banget!</p>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp" alt="Ilustrasi Terminal Linux Disk Full Error" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Ilustrasi Terminal Linux Disk Full Error</small>
+</div>
 
-        <p>Disk yang penuh pada partisi root (`/`) bukan cuma bikin risih, tapi bisa bikin server produksi kamu berhenti total. Seringkali masalah ini muncul tiba-tiba tanpa permisi. Tapi, sebelum kamu mencak-mencak dan asal ketik perintah hapus sana-sini, mari kita tarik napas dalam-dalam. Mengetahui *di mana* ruang disk itu habis jauh lebih penting daripada sekadar tahu kalau disk kamu penuh.</p>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp" alt="Linux Server Disk Full Diagnosis" loading="eager" width="900" height="506">
+    <section id="introduction">
+        <h2>Kenapa Ini Masalah Besar? (Why)</h2>
+        <p>
+            Bayangkan kamu lagi nyetir mobil di jalan protokol Balikpapan, eh tiba-tiba remnya blong karena sistem pelumasnya beku. Begitulah kondisi Linux saat disk-nya menyentuh angka 100%. Sistem operasi Linux membutuhkan ruang kosong untuk menulis log, membuat file temporary, dan mengelola <i>process ID</i>. Kalau ruang ini hilang, sistem akan "tercekik".
+        </p>
+        <p>
+            Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—nggak nyambung dan berisiko fatal.
+        </p>
+    </section>
 
-        <h2>Mengapa Partisi Root Penuh Sangat Berbahaya? ("Why")</h2>
-        <p>Bayangin sistem operasi Linux itu kayak sebuah rumah. Partisi root adalah fondasinya. Kalau fondasinya penuh sesak sama sampah, penghuni rumah (proses sistem seperti SSH, Cron, Web Server) nggak bisa gerak. Beberapa dampak buruknya:</p>
-        <ul>
-            <li><strong>SSH Gagal Login:</strong> Karena sistem nggak bisa nulis *session file* baru.</li>
-            <li><strong>Service Mogok:</strong> Aplikasi kayak Nginx atau Apache butuh ruang buat nulis log dan *temporary files*.</li>
-            <li><strong>Database Corrupt:</strong> Kalau database (MySQL/PostgreSQL) lagi nulis data terus disk penuh, datanya bisa rusak.</li>
-            <li><strong>Kernel Panic:</strong> Dalam kondisi ekstrem, sistem bisa *crash* total.</li>
-        </ul>
+    <hr>
 
-        <h2>Strategi Diagnosa 5 Langkah: Diagnosa Dulu, Eksekusi Kemudian! ("How")</h2>
-        <p>Jangan asal `rm -rf`. Ikuti prosedur standar industri ini biar kamu nggak salah hapus file penting milik sistem.</p>
+    <section id="diagnosis">
+        <h2>🔍 Strategi Diagnosa Langkah-demi-Langkah</h2>
+        <p>Sebelum kita bersih-bersih, kita harus jadi detektif dulu. Di mana tepatnya sampah itu menumpuk? Gunakan prinsip 5W+1H untuk memahami anomali ini.</p>
 
         <h3>1. Cek Penggunaan Filesystem</h3>
-        <p>Langkah pertama adalah memastikan partisi mana yang sebenarnya "berteriak". Gunakan perintah andalan kita:</p>
+        <p>Langkah pertama adalah konfirmasi. Apakah benar partisi root yang penuh? Atau jangan-jangan cuma partisi <code>/home</code>?</p>
         <pre>$ sudo df -Th</pre>
-        <p>Perintah ini bakal kasih tahu kamu daftar semua partisi. Fokuslah pada baris yang punya <code>Mounted on /</code>. Kalau kolom <code>Use%</code> sudah menunjukkan 100%, berarti fix, itu biang keroknya.</p>
+        <p>Perintah ini akan menampilkan daftar partisi, tipe filesystem, dan persentase penggunaan. Fokuslah pada baris yang memiliki <strong>Mounted on /</strong>.</p>
+
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z-PMbUAE3NTn.webp" alt="Output Command df -Th Linux" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Output Command df -Th Linux</small>
+</div>
 
         <h3>2. Identifikasi Direktori Raksasa</h3>
-        <p>Sekarang kita perlu tahu folder mana yang paling rakus makan tempat. Kita mulai dari level teratas:</p>
+        <p>Setelah tahu partisi mana yang penuh, saatnya mencari "pelaku" utamanya. Kita akan cek direktori mana yang paling rakus memakan ruang.</p>
         <pre>$ sudo du -sch /* | sort -rh | head -10</pre>
-        <p>Perintah ini bakal nge-list 10 folder teratas yang ukurannya paling gede. Biasanya folder <code>/var</code> atau <code>/home</code> sering jadi tersangkanya.</p>
+        <p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya tersangka utamanya adalah <code>/var</code> atau <code>/home</code>.</p>
 
-        <h3>3. Telusuri Lebih Dalam (Drill Down)</h3>
-        <p>Kalau ternyata folder <code>/var</code> yang bengkak, masuk lebih dalam buat nyari file atau folder spesifik:</p>
+        <h3>3. Telusuri Area Masalah secara Spesifik</h3>
+        <p>Misalnya kamu menemukan <code>/var</code> sangat besar, masuk lebih dalam lagi:</p>
         <pre>$ sudo du -ah /var | sort -rh | head -10</pre>
-        <p>Seringkali kamu bakal nemu log file berukuran puluhan Gigabyte yang lupa di-*rotate* atau database yang tumbuh di luar kendali.</p>
+        <p>Seringkali di sini kamu akan menemukan log aplikasi yang "ngamuk" atau database yang membengkak tanpa kontrol.</p>
 
-        <h3>4. Cari File yang Baru Berubah</h3>
-        <p>Kadang disk penuh karena ada anomali mendadak setelah *deployment*. Gunakan perintah `find` buat cari file yang ukurannya di atas 100MB dan berubah dalam 2 hari terakhir:</p>
+        <h3>4. Temukan File yang Baru Berubah</h3>
+        <p>Kalau disk penuh secara mendadak dalam hitungan jam, kemungkinan besar ada log yang menulis jutaan baris per menit. Cari file yang ukurannya &gt;100MB yang berubah dalam 2 hari terakhir:</p>
         <pre>$ sudo find /var -type f -mtime -2 -size +100M</pre>
+    </section>
 
-        <div class="alert-box">
-            <i class="fas fa-exclamation-triangle"></i> <strong>Peringatan Produksi:</strong> Selalu analisa file tersebut milik siapa sebelum dihapus. Jangan pernah hapus file database (`.ibd` atau `.sock`) secara manual!
-        </div>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z_NSboAApgLV.webp" alt="Proses Investigasi File Besar di Linux" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Proses Investigasi File Besar di Linux</small>
+</div>
 
-        <h2>Penyebab Umum di Dunia Nyata ("What")</h2>
-        <p>Berdasarkan pengalaman aku mengelola server di <strong>Layar Kosong</strong>, inilah tersangka utamanya:</p>
-        <ol>
-            <li><strong>Log File Tak Terkendali:</strong> File di <code>/var/log</code> yang ukurannya gila-gilaan karena *debug mode* lupa dimatiin.</li>
-            <li><strong>Docker Bloat:</strong> Lapisan (*layers*) container dan image lama yang numpuk. Solusinya seringkali cuma butuh <code>docker system prune</code>.</li>
-            <li><strong>Core Dumps:</strong> Kalau aplikasi kamu sering *crash*, Linux mungkin nyimpen file dump besar buat keperluan analisa.</li>
-            <li><strong>Backup Kadaluarsa:</strong> Script backup otomatis yang nyimpen file di <code>/var</code> atau <code>/tmp</code> tapi lupa dihapus setelah di-upload ke cloud.</li>
-        </ol>
-
-        <h2>Praktik Terbaik Menjaga Kesehatan Server ("When" &amp; "Where")</h2>
-        <p>Kapan harus bertindak? Ya sekarang! Jangan tunggu merah dulu. Dimana saja kamu harus pasang proteksi?</p>
+    <section id="causes">
+        <h2>⚠️ Penyebab Umum di Dunia Nyata</h2>
+        <p>Berdasarkan pengalaman saya mengelola server di <i>Layar Kosong</i>, ada 5 penyebab klasik yang sering bikin pusing:</p>
         <ul>
-            <li><strong>Logrotate:</strong> Pastikan semua service menggunakan `logrotate` biar log nggak bengkak.</li>
-            <li><strong>Monitoring:</strong> Pasang alert (pake Prometheus, Zabbix, atau script sederhana) yang bakal kasih notifikasi Telegram/Email kalau disk sudah mencapai 80%.</li>
-            <li><strong>Mount Point Terpisah:</strong> Untuk data besar (seperti database atau file user), selalu gunakan partisi atau disk tambahan (misal di-mount ke <code>/data</code>), jangan dicampur dengan root.</li>
+            <li><strong>Application Core Dumps:</strong> Saat aplikasi crash, Linux sering menyimpan "bangkai" memori yang ukurannya raksasa.</li>
+            <li><strong>Database Bloat:</strong> Query yang tidak efisien atau log transaksi database yang tidak di-limit.</li>
+            <li><strong>Docker Layers:</strong> Container dan image Docker yang menumpuk bertahun-tahun tanpa dibersihkan (<code>docker system prune</code> adalah kuncinya!).</li>
+            <li><strong>Old Backups:</strong> Lupa memindahkan file backup lama dari folder <code>/tmp</code> atau <code>/var/www</code>.</li>
+            <li><strong>Uncontrolled Log Files:</strong> File log di <code>/var/log</code> yang tidak diputar (rotated) otomatis.</li>
         </ul>
+    </section>
 
+    <section id="best-practices">
+        <h2>🧠 Best Practices di Server Produksi</h2>
+        <p>Biar nggak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p>
+        <ol>
+            <li><strong>Analyze Before Deleting:</strong> Selalu cek apakah file tersebut sedang dipakai sistem (<code>lsof | grep filename</code>).</li>
+            <li><strong>Logrotate:</strong> Pastikan layanan <code>logrotate</code> berjalan dengan benar untuk membatasi ukuran log.</li>
+            <li><strong>Monitoring:</strong> Gunakan tool seperti Zabbix, Netdata, atau script sederhana untuk kirim alert ke Telegram kalau disk sudah 80%.</li>
+            <li><strong>No Panic Mode:</strong> Jangan gunakan <code>rm -rf /</code> (ini mah bunuh diri server!).</li>
+            <li><strong>Separate Mount Points:</strong> Pisahkan <code>/var</code> dan <code>/home</code> ke partisi atau disk fisik yang berbeda.</li>
+        </ol>
+    </section>
 
+    <hr>
 
-        <p>Jadi kesimpulannya, disk penuh itu bukan akhir dari segalanya. Yang bikin gagal itu adalah kalau kita asal hapus tanpa tahu apa yang kita hapus. Selalu inget: <strong>Analisis dulu, hapus kemudian.</strong></p>
+    <section id="conclusion">
+        <h2>Kesimpulan: Disk Penuh Bukanlah Kegagalan</h2>
+        <p>
+            Ingat, kawan: <strong>Disk yang penuh bukanlah sebuah kegagalan sistem, tapi investigasi yang ngawur adalah kegagalan admin.</strong> Mengetahui <i>di mana</i> ruang itu terpakai jauh lebih krusial daripada sekadar tahu kalau disk-nya penuh. Dengan pendekatan sistematis di atas, kamu bisa menyelamatkan server tanpa kehilangan data penting.
+        </p>
+        <p>Sekarang, coba cek server kamu masing-masing. siapa tau servernya malah mogok! 😅</p>
+    </section>
 
-        <p>Kalau kamu punya pengalaman seru (atau ngenes) soal server yang tiba-tiba disk-nya penuh, ceritain dong! Siapa tahu kita bisa berbagi duka sesama pengabdi server. 😁</p>
-
-        <div id="pesbukdiskus"></div>
-         <div id="related-articles-grid"></div>
-    </article>
+    <div id="pesbukdiskus"></div>
+    <div id="related-articles-grid"></div>
 
     <footer>
-        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Balikpapan, Kalimantan Timur.
-                </p><div class="social-links">
-            <a href="https://twitter.com/responaja" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/frijal" title="Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="https://github.com/frijal" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/frijal" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/@frijal" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://dalam.web.id" title="Blog"><i class="fas fa-globe"></i></a>
+        <div class="social-links">
+            <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/frijal" target="_blank"><i class="fab fa-telegram"></i></a>
         </div>
+        <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. Made with <i class="fa fa-heart" style="color:red;"></i> in Balikpapan.</p>
     </footer>
-</div>
+</article>
 
 
 
