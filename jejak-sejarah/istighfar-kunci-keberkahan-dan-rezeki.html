@@ -3,40 +3,160 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Istighfar: Kunci Keberkahan dan Rezeki Muslim</title>
     <meta name="description" content="Istighfar adalah kunci keberkahan hidup dan rezeki, sebagaimana dijelaskan dalam Surah Nuh ayat 10-12.">
-    <meta name"twitter:image"="" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp">
     <style>
-        :root{
-            --bg:#fbfdff; --card:#ffffff; --accent:#2563eb; --muted:#6b7280;
-            --radius:14px;
+        :root {
+            --islamic-green: #064e3b;
+            --gold-accent: #b45309;
+            --soft-bg: #f8faf9;
+            --card-white: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
-        *{box-sizing:border-box}
-        body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Arial; background:linear-gradient(180deg,#f7fbff,#eef7ff); color:#0f172a; -webkit-font-smoothing:antialiased}
-        .wrap{max-width:960px;margin:28px auto;padding:22px;background:var(--card);border-radius:var(--radius);box-shadow:0 12px 30px rgba(16,24,40,0.08)}
-        header{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
-        .kicker{font-weight:600;color:var(--accent);display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(37,99,235,0.08)}
-        h1{font-size:clamp(1.4rem,2.6vw,2.2rem);margin:6px 0 0}
-        .byline{color:var(--muted);font-size:0.95rem}
-        .lead{margin-top:16px;color:#0b1220;line-height:1.8;font-size:1.05rem}
-        /* Meta row (info kecil) di-uncomment jika diperlukan, tapi scriptnya dihapus */
-        .meta-row{display:flex;gap:12px;justify-content:center;margin:18px 0;flex-wrap:wrap}
-        .meta-item{background:#f8fafc;padding:8px 12px;border-radius:10px;display:flex;gap:8px;align-items:center;color:var(--muted);font-size:0.95rem}
-        .meta-item .ico{font-size:1.1rem}
-        /* Konten */
-        article{margin-top:14px;line-height:1.78;color:#0f172a}
-        article h2{margin:18px 0 10px;font-size:1.15rem;color:var(--accent);display:flex;gap:10px;align-items:center}
-        article p{margin:0 0 14px;text-align:justify}
-        /* Galeri */
-        .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:20px 0}
-        .gallery img{width:100%;height:160px;object-fit:cover;border-radius:10px;cursor:pointer;display:block}
-        #lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.8);display:none;place-items:center;padding:20px;z-index:1200}
-        #lightbox img{max-width:96%;max-height:92%;border-radius:10px}
-        #lightbox.show{display:grid}
-        /* Floating buttons removed */
-        /* share & comments */
-        .share{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0}
-        .share a{padding:8px 12px;border-radius:999px;background:#f1f5f9;text-decoration:none;color:#0f172a;font-weight:600}
-        /* Comments removed */
-        @media (max-width:640px){ .wrap{margin:16px 12px;padding:16px} .gallery img{height:140px} }
+
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+            background: var(--soft-bg);
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        /* Progress Bar Modern */
+        #progress {
+            position: fixed;
+            top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(to right, var(--islamic-green), var(--gold-accent));
+            z-index: 2000;
+        }
+
+        .wrap {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 50px 40px;
+            background: var(--card-white);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+            border-top: 6px solid var(--islamic-green);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            background: #fef3c7;
+            padding: 6px 16px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            line-height: 1.2;
+            color: var(--islamic-green);
+            margin: 0.5rem 0 1.5rem;
+            font-weight: 800;
+        }
+
+        .byline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1.5rem;
+            display: block;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: #475569;
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 0 1rem;
+            border-left: 3px solid #cbd5e1;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--islamic-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Article Content Styling */
+        article h2 {
+            font-size: 1.4rem;
+            color: var(--islamic-green);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        article h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        article p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Gallery/Image Box */
+        .gallery {
+            margin: 3rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+            cursor: zoom-in;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            place-items: center;
+            z-index: 3000;
+        }
+
+        #lightbox img { max-width: 90%; max-height: 80vh; border-radius: 12px; border: 4px solid white; }
+        #lightbox.show { display: grid; }
+
+        @media (max-width: 640px) {
+            .wrap { margin: 0; padding: 30px 20px; border-radius: 0; }
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Istighfar adalah kunci keberkahan hidup dan rezeki, sebagaimana dijelaskan dalam Surah Nuh ayat 10-12.">
@@ -46,7 +166,7 @@
     <meta name="author" content="Fakhrul Rijal">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
+    <meta name="theme-color" content="#064e3b">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta name="twitter:creator" content="@responaja">
     <meta name="bluesky:creator" content="@dalam.web.id">
@@ -57,64 +177,76 @@
     <meta property="og:title" content="Istighfar: Kunci Keberkahan dan Rezeki Muslim">
     <meta property="og:description" content="Istighfar adalah kunci keberkahan hidup dan rezeki, sebagaimana dijelaskan dalam Surah Nuh ayat 10-12.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp">
-    <meta property="og:image:alt" content="Istighfar: Kunci Keberkahan dan Rezeki Muslim">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Istighfar: Kunci Keberkahan dan Rezeki Muslim","description":"Istighfar adalah kunci keberkahan hidup dan rezeki, sebagaimana dijelaskan dalam Surah Nuh ayat 10-12.","articleSection":"Jejak Sejarah","keywords":"istighfar, jejak sejarah, keberkahan, kunci, layar kosong, muslim, rezeki","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2014-10-02T08:24:29.849+00:00","dateModified":"2014-10-02T08:24:29.849+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Jejak Sejarah","item":"https://dalam.web.id/jejak-sejarah/"},{"@type":"ListItem","position":3,"name":"Istighfar: Kunci Keberkahan dan Rezeki Muslim","item":"https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki/"}]}]}</script>
 </head>
 <body>
+    <div id="progress"></div>
     <main class="wrap">
         <header>
             <div class="kicker">📖 Artikel Islami</div>
             <h1>🕊️ Istighfar: Kunci Keberkahan dan Rezeki</h1>
-<div id="iposbrowser"></div>
-            <div class="byline">oleh <strong>Penulis Artikel Islami</strong> • 25 Sep 2025</div>
-            <p class="lead">Istighfar bukan sekadar ucapan memohon ampun, ia membuka pintu keberkahan yang nyata: hujan, rezeki, keluarga yang berkah, dan keseimbangan alam. Berikut penjelasan singkat yang mudah dipahami dan bisa dijadikan amalan harian.</p>
+            <div id="iposbrowser"></div>
+            <span class="byline">Oleh <strong>Fakhrul Rijal</strong> • Update: 25 Sep 2025</span>
+            <p class="lead">Istighfar bukan sekadar ucapan memohon ampun, ia adalah pembuka pintu langit yang menjanjikan hujan keberkahan dan kelapangan rezeki.</p>
         </header>
+
         <div class="meta-row">
-            <div class="meta-item"><span class="ico">📜</span>Surah Nuh: 10 - 12</div>
+            <div class="meta-item">📜 Referensi: Surah Nuh Ayat 10 - 12</div>
         </div>
+
         <article>
-            <h2>📌 Apa itu Istighfar?</h2>
-            <p>Istighfar secara harfiah berarti memohon ampun kepada Allah SWT. Lebih dari itu, ia adalah bentuk kesadaran: mengakui keterbatasan diri, menata hati, dan membuka diri untuk rahmat-Nya.</p>
-            <h2>💡 Penjelasan Singkat Surah Nuh (10 - 12)</h2>
-            <p>Dalam ayat-ayat tersebut, Nabi Nuh mengajak kaumnya untuk memohon ampun. Allah menjanjikan bahwa dengan ampunan akan datang hujan lebat, bertambahnya harta dan anak, serta kebun dan sungai, gambaran keberkahan di berbagai aspek kehidupan.</p>
-            <h2>🌱 Dampak Nyata Istighfar</h2>
-            <p>Istighfar membersihkan batin dan juga membuka pintu rezeki: rezeki yang halal, ketenangan keluarga, dan kebaikan lingkungan. Praktik sederhana ini bila konsisten dapat merubah cara kita melihat tantangan menjadi ladang berkah.</p>
-            <h2>🛠️ Amalan Praktis</h2>
-            <p>Mulai dengan rutinitas singkat: pagi dan sore ucapkan istighfar, sertai doa untuk kebaikan keluarga dan lingkungan. Lengkapi dengan usaha nyata, kerja jujur, tolong-menolong, karena istighfar dan ikhtiar berjalan beriringan.</p>
-            <h2>🖼️ Ilustrasi</h2>
+            <h2>📌 Hakikat Istighfar</h2>
+            <p>Istighfar secara harfiah berarti memohon ampun kepada Allah SWT. Namun dalam kedalamannya, ia adalah bentuk kesadaran hamba akan keterbatasannya di hadapan Sang Pencipta. Dengan beristighfar, kita menata ulang hati yang mungkin sempat tertutup noda dosa, sehingga rahmat Allah bisa kembali mengalir tanpa hambatan.</p>
+
+            <h2>💡 Janji Allah dalam Surah Nuh</h2>
+            <p>Dalam al-Qur'an, Nabi Nuh menjanjikan kaumnya bahwa dengan istighfar, Allah akan menurunkan hujan lebat, menambah harta, memperbanyak keturunan, serta menjadikan kebun-kebun dan sungai-sungai mengalir indah. Ini adalah simbol dari kesejahteraan hidup yang menyeluruh.</p>
+
+            <h2>🌱 Dampak Nyata di Kehidupan</h2>
+            <p>Istighfar membersihkan batin dari kecemasan. Saat batin tenang, keputusan yang kita ambil menjadi lebih jernih, rezeki halal pun lebih mudah dijemput, dan ketenangan dalam keluarga akan lebih terasa nyata. Ia mengubah tantangan hidup menjadi ladang hikmah.</p>
+
+            <h2>🛠️ Amalan Praktis Harian</h2>
+            <p>Cobalah untuk mendawamkan (merutinkan) istighfar di waktu sahur atau setelah salat. Sertakan doa tulus untuk keluarga dan sesama muslim. Ingatlah bahwa istighfar harus dibarengi dengan ikhtiar nyata: bekerja jujur dan menebar manfaat, karena keduanya adalah dua sisi mata uang keberkahan.</p>
+
             <div class="gallery">
                 <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfof8b_WaHFT4-HovQc3j-mCReohCCCv0xLSuy8km_uOJkaRjg7g51P_9ebN96s1SLj_7ybh5mSMj4doJYLSImh3i-jhjjWW1DiVm4CHv-lcXOQRd9rpu7tl0iAzJPBO6b9NjQ0n0Z7_QGd23uqFihNMO7V4H_r2270swTvdGFTs-TiKtXBSFb9PjAkFE/s1600/istigfar.webp" alt="Ilustrasi Istighfar" loading="lazy" onclick="openLightbox(this)">
             </div>
-<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-    </article>
+
+            <div id="pesbukdiskus"></div>
+            <div id="related-articles-grid"></div>
+        </article>
     </main>
+
     <div id="lightbox" onclick="this.classList.remove('show')">
-        <img src="" alt="Gambar lebih besar">
+        <img src="" alt="Zoom Image">
     </div>
+
     <script>
-        // lightbox
         function openLightbox(img){
             const lb = document.getElementById('lightbox');
-            // Try to get higher res from Blogger URL
             lb.querySelector('img').src = img.src.replace(/\/s\d+(-[ch])?\//, '/s1600/');
             lb.classList.add('show');
         }
-        // share helpers
-        const canonicalUrl = "https://dalam.web.id/jejak-sejarah/istighfar-kunci-keberkahan-dan-rezeki/.html";
-        function shareFB(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(canonicalUrl),'_blank','width=600,height=400') }
-        function shareTW(){ window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(canonicalUrl),'_blank','width=600,height=400') }
-        function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(canonicalUrl),'_blank') }
+        // Scroll progress bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
     </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+
+    <a id="layar-kosong-header" href="https://dalam.web.id/"></a>
+    <div class="search-floating-container">
+        <input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off">
+        <span id="floatingSearchClear" class="clear-button"></span>
+        <div id="floatingSearchResults" class="floating-results-container"></div>
+    </div>
+    <div id="dynamic-nav-container" class="floating-nav"></div>
+    <div id="internal-nav"></div>
+    <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+    <script defer src="/ext/marquee-url.js"></script>
+    <script defer src="/ext/iposbrowser.js"></script>
+    <script defer src="/ext/markdown.js"></script>
+    <script defer src="/ext/pesbukdiskus.js"></script>
 </body></html>
