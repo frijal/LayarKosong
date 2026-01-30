@@ -17,6 +17,7 @@ const now = new Date();
 const datePart = now.toISOString().slice(0, 10);
 const timePart = now.toTimeString().slice(0, 5); 
 
+// Pastikan string ini tertutup sempurna
 const SIGNATURE_PREFIX = '`;
 
 // Inisialisasi penghitung
@@ -40,6 +41,7 @@ async function minifyFiles(dir) {
       continue;
     }
 
+    // Lewati index.html dan hanya proses .html
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
@@ -48,10 +50,11 @@ async function minifyFiles(dir) {
       // 1. Skip kalau file kosong
       if (!originalHTML || !originalHTML.trim()) continue;
 
-      // 2. Cek Signature pakai Regex (Biar gak double minify)
+      // 2. Cek Signature pakai Regex agar tidak double minify
       const signatureRegex = new RegExp(SIGNATURE_PREFIX);
       if (signatureRegex.test(originalHTML)) {
         stats.skipped++;
+        // console.log(`⏭️  Skip: ${filePath}`);
         continue;
       }
 
@@ -68,23 +71,24 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // 4. Tempel Signature di baris terakhir dengan rapi
+      // 4. Tempel Signature di baris terakhir
+      // trimEnd() memastikan tidak ada baris kosong sisa di bawah sebelum ditempel
       minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
       
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       stats.success++;
-      console.log(`✅ Berhasil: ${filePath}`);
+      console.log(`✅ Success: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
       stats.errorFiles.push({ path: filePath, msg: err.message });
-      console.error(`❌ Gagal: ${filePath}`);
+      console.error(`❌ Error pada ${filePath}: ${err.message}`);
     }
   }
 }
 
 // --- JALANKAN PROSES ---
-console.log('🧼 Memulai Minify HTML (Layar Kosong Mode)...');
+console.log('🧼 Memulai Minify HTML untuk Layar Kosong...');
 
 async function run() {
   for (const folder of folders) {
@@ -92,7 +96,7 @@ async function run() {
   }
 
   console.log('\n' + '='.repeat(40));
-  console.log('📊 REKAPITULASI AKHIR:');
+  console.log('📊 REKAPITULASI PROSES:');
   console.log(`✅ Berhasil di-minify : ${stats.success}`);
   console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
   console.log(`❌ Gagal proses       : ${stats.failed}`);
