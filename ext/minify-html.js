@@ -12,10 +12,10 @@ const folders = [
   './warta-tekno'
 ];
 
-// === SIGNATURE STATIS (Dihitung sekali saat skrip jalan) ===
+// === SIGNATURE STATIS ===
 const now = new Date();
 const datePart = now.toISOString().slice(0, 10);
-const timePart = now.toTimeString().slice(0, 5); // Ambil HH:mm
+const timePart = now.toTimeString().slice(0, 5); 
 
 const SIGNATURE_PREFIX = '`;
 
@@ -42,26 +42,24 @@ async function minifyFiles(dir) {
 
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
-    const originalHTML = fs.readFileSync(filePath, 'utf8');
-
-    // === 1. CEK: JANGAN PROSES KALAU FILE KOSONG ===
-    if (!originalHTML.trim()) {
-      continue;
-    }
-
-    // === 2. CEK: SUDAH PERNAH DI-MINIFY? (LOGIKA ANTI-LOLOS) ===
-    // Menggunakan regex supaya lebih sakti mendeteksi prefix di mana saja
-    const signatureRegex = new RegExp(SIGNATURE_PREFIX);
-    if (signatureRegex.test(originalHTML)) {
-      stats.skipped++;
-      console.log(`⏭️  Skipped (Sudah ada jepitan): ${filePath}`);
-      continue;
-    }
-
     try {
+      const originalHTML = fs.readFileSync(filePath, 'utf8');
+
+      // 1. Skip kalau file kosong
+      if (!originalHTML || !originalHTML.trim()) continue;
+
+      // 2. Cek Signature pakai Regex (Anti-Gagal)
+      const signatureRegex = new RegExp(SIGNATURE_PREFIX);
+      if (signatureRegex.test(originalHTML)) {
+        stats.skipped++;
+        // console.log(`⏭️  Skipped: ${filePath}`);
+        continue;
+      }
+
+      // 3. Proses Minify
       let minifiedHTML = await minify(originalHTML, {
         collapseWhitespace: true,
-        removeComments: true, // Menghapus komentar lama agar bersih
+        removeComments: true,
         minifyJS: true,
         minifyCSS: true,
         processScripts: ['application/ld+json'],
@@ -71,42 +69,37 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // === 3. PASANG SIGNATURE (Ditaruh di baris paling akhir) ===
-      // trimEnd() memastikan tidak ada spasi/baris kosong sisa di bawah
+      // 4. Tempel Signature di baris terakhir
       minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
       
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
-
       stats.success++;
-      console.log(`✅ Success Minify: ${filePath}`);
+      console.log(`✅ Sukses: ${filePath}`);
+
     } catch (err) {
       stats.failed++;
       stats.errorFiles.push({ path: filePath, msg: err.message });
-      console.error(`❌ Parse Error pada ${filePath}`);
+      console.error(`❌ Gagal: ${filePath}`);
     }
   }
 }
 
-// --- EKSEKUSI UTAMA ---
-console.log('🧼 Memulai Minify Cerdas (Statis Signature) untuk Layar Kosong...');
+// --- JALANKAN ---
+console.log('🧼 Memulai Minify HTML untuk Layar Kosong...');
 
-for (const folder of folders) {
-  await minifyFiles(folder);
+async function run() {
+  for (const folder of folders) {
+    await minifyFiles(folder);
+  }
+
+  console.log('\n' + '='.repeat(40));
+  console.log(`✅ Berhasil : ${stats.success}`);
+  console.log(`⏭️  Diskip   : ${stats.skipped}`);
+  console.log(`❌ Gagal    : ${stats.failed}`);
+  console.log('='.repeat(40));
 }
 
-// --- LAPORAN REKAPITULASI ---
-console.log('\n' + '='.repeat(45));
-console.log('📊 REKAPITULASI PROSES MINIFY');
-console.log('='.repeat(45));
-console.log(`✅ Berhasil di-minify : ${stats.success}`);
-console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
-console.log(`❌ Gagal (Parse Error): ${stats.failed}`);
-
-if (stats.failed > 0) {
-  console.log('\n⚠️  DAFTAR FILE BERMASALAH:');
-  stats.errorFiles.forEach((item, index) => {
-    console.log(`${index + 1}. ${item.path} -> ${item.msg}`);
-  });
-}
-
-console.log('='.repeat(45) + '\n');
+run().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
