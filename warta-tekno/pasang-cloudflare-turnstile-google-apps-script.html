@@ -1,16 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis</title>
-    <meta name="description" content="Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!">
-    <meta name="keywords" content="Cloudflare Turnstile, Google Apps Script, Blog Statis, Form Anti Spam, Tutorial, Web Development, Layar Kosong, Balikpapan">
-    <meta name="news_keywords" content="tutorial web dev, anti-spam form, cloudflare turnstile, google apps script, static blog form">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
-        :root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis</title><meta name="description" content="Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!"><meta name="keywords" content="Cloudflare Turnstile, Google Apps Script, Blog Statis, Form Anti Spam, Tutorial, Web Development, Layar Kosong, Balikpapan"><meta name="news_keywords" content="tutorial web dev, anti-spam form, cloudflare turnstile, google apps script, static blog form"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
             --primary-color: #00b0ed; /* Khas Layar Kosong */
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -164,102 +152,7 @@
             .article-title { font-size: 2rem; }
             .widescreen-wrapper { padding: 20px 15px; }
             .hero-image { aspect-ratio: 4 / 3; }
-        }
-    </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/">
-    <meta property="og:title" content="Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis">
-    <meta property="og:description" content="Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp">
-    <meta property="og:image:alt" content="Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis","description":"Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!","articleSection":"Warta Tekno","keywords":"apps, blog, cara, cloudflare, form, google, layar kosong, pasang, script, statis, turnstile, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-06T12:00:00.000+00:00","dateModified":"2026-01-06T12:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis","item":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"}]}]}</script>
-</head>
-<body>
-<div class="widescreen-wrapper">
-    <header>
-        <h1 class="article-title">Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis</h1>
-<div id="iposbrowser"></div>
-        <p class="article-subtitle">Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox email dari spam bot dengan solusi gratis dan powerful ini!</p>
-        <div class="tag-list">
-            <span class="tag">Blog Statis</span>
-            <span class="tag">Cloudflare Turnstile</span>
-            <span class="tag">Form Anti Spam</span>
-            <span class="tag">Google Apps Script</span>
-            <span class="tag">Tutorial</span>
-            <span class="tag">Web Development</span>
-        </div>
-    </header>
-    <div class="hero-image">
-        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp" alt="Ilustrasi Cloudflare Turnstile dan Google Apps Script" loading="eager">
-    </div>
-    <div class="image-caption">Ilustrasi integrasi Cloudflare Turnstile dengan Google Apps Script untuk form blog statis di Layar Kosong</div>
-    <div class="highlight-box">
-        <p><i class="fas fa-lightbulb"></i> <strong>TL;DR:</strong> Kombinasi Cloudflare Turnstile dan Google Apps Script memberikan solusi form anti-spam yang powerful dan gratis untuk blog statis, tanpa perlu server backend yang rumit.</p>
-    </div>
-    <article class="article-content">
-        <h2 id="intro">👋 Selamat Datang di Tutorial Ini!</h2>
-        <p>Sering kali kita merasa dilematis saat membangun blog statis. Di satu sisi, performanya ngebut dan aman karena nggak ada database. Tapi di sisi lain, kita sering kebingungan pas mau bikin fitur interaktif seperti form kontak atau permintaan hapus data tanpa harus sewa VPS atau hosting backend.</p>
-        <p>Dulu, aku juga sempat bingung. Masalah utamanya bukan cuma kirim emailnya, tapi gimana cara nahan gempuran bot spam yang haus banget ngisi form sembarangan. Nah, setelah ngulik sana-sini, akhirnya aku nemu kombinasi "tangguh" yang gratis dan super aman: <strong>Cloudflare Turnstile</strong> dan <strong>Google Apps Script</strong>. Yuk, kita bedah bareng-bareng! 🚀</p>
-        <h2 id="why">🤔 Mengapa Kombinasi Ini Ideal untuk Blog Statis?</h2>
-        <p>Kenapa sih nggak pakai layanan form pihak ketiga aja? Jawabannya simpel: kontrol penuh dan gratis! Dengan cara ini, data nggak "mampir" ke pihak ketiga yang nggak jelas, tapi langsung masuk ke ekosistem Google kamu sendiri.</p>
-        <div class="card-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Anti-Spam Canggih</h3>
-                <p>Turnstile itu ramah banget. Nggak ada lagi drama milih gambar zebra cross. Bot bakal minggat, manusia bakal lancar jaya.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-server"></i></div>
-                <h3>Backend-less</h3>
-                <p>Google Apps Script itu ibarat server gratisan yang siap siaga 24 jam buat dengerin request dari blog kamu.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-gift"></i></div>
-                <h3>Gratis Tis Tis! 🎉</h3>
-                <p>Limitnya gede banget buat ukuran blog pribadi atau web profil UMKM. Nggak bakal bikin kantong jebol.</p>
-            </div>
-        </div>
-        <h2 id="step1">Langkah 1: Mengatur Cloudflare Turnstile 🛡️</h2>
-        <p>Turnstile adalah satpam di gardu depan blog kita. Dia yang bakal mastiin yang masuk itu beneran orang Balikpapan atau bot dari antah-berantah.</p>
-        <div class="step-box">
-            <div class="step-number">1</div>
-            <h3>Daftar di Cloudflare</h3>
-            <p>Langsung aja gas ke <a href="https://dash.cloudflare.com/?to=/:account/turnstile" target="_blank" rel="noopener noreferrer">Dashboard Cloudflare Turnstile</a> kamu. Pilih menu Turnstile, lalu tambahkan situs baru. Pilih mode <strong>Managed</strong> biar Cloudflare yang mikir gimana cara paling pas buat ngetes pengunjung.</p>
-        </div>
-        <div class="step-box">
-            <div class="step-number">2</div>
-            <h3>Pasang Widget di HTML</h3>
-            <p>Masukkan script API Turnstile di bagian atas halaman kamu, lalu tempelkan <code>div</code> widget di dalam form. Ingat, <strong>Site Key</strong> itu ibarat alamat rumah, sedangkan <strong>Secret Key</strong> jangan sampai ada yang tahu selain kamu dan script Google nanti.</p>
-            <pre><code>&lt;div class="cf-turnstile" data-sitekey="SITE_KEY_KAMU" data-callback="onSuccess"&gt;&lt;/div&gt;</code></pre>
-        </div>
-        <h2 id="step2">Langkah 2: Mengatur Google Apps Script 📧</h2>
-        <p>Buka <a href="https://script.google.com/home" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, Sekarang kita siapkan "otak" pengirim emailnya. Google Apps Script bakal nerima data dari form, ngecek validasi Turnstile, baru deh kirim email ke kamu.</p>
-        <div class="step-box">
-            <div class="step-number">3</div>
-            <h3>Tanam Kode di Google Script</h3>
-            <p>Buka <em>Google Script editor</em>, buat project baru, dan masukkan kode sakti di bawah ini. Kode ini udah lengkap dengan fitur verifikasi ke API Cloudflare biar makin aman.</p>
-            <pre><code>function doPost(e) {
+        }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="canonical" href="https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"><meta property="og:title" content="Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis"><meta property="og:description" content="Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp"><meta property="og:image:alt" content="Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp"><meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis","description":"Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox Gmail dari spam bot dengan solusi gratis dan powerful ini!","articleSection":"Warta Tekno","keywords":"apps, blog, cara, cloudflare, form, google, layar kosong, pasang, script, statis, turnstile, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-06T12:00:00.000+00:00","dateModified":"2026-01-06T12:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis","item":"https://dalam.web.id/warta-tekno/pasang-cloudflare-turnstile-google-apps-script/"}]}]}</script></head><body><div class="widescreen-wrapper"><header><h1 class="article-title">Cara Pasang Cloudflare Turnstile dan Google Apps Script untuk Form Blog Statis</h1><div id="iposbrowser"></div><p class="article-subtitle">Tutorial lengkap memasang Cloudflare Turnstile dan Google Apps Script untuk form di blog statis. Jaga inbox email dari spam bot dengan solusi gratis dan powerful ini!</p><div class="tag-list"><span class="tag">Blog Statis</span> <span class="tag">Cloudflare Turnstile</span> <span class="tag">Form Anti Spam</span> <span class="tag">Google Apps Script</span> <span class="tag">Tutorial</span> <span class="tag">Web Development</span></div></header><div class="hero-image"><img src="https://dalam.web.id/img/pbs.twimg.com/media/G97IeipbAAAzTez.webp" alt="Ilustrasi Cloudflare Turnstile dan Google Apps Script" loading="eager"></div><div class="image-caption">Ilustrasi integrasi Cloudflare Turnstile dengan Google Apps Script untuk form blog statis di Layar Kosong</div><div class="highlight-box"><p><i class="fas fa-lightbulb"></i> <strong>TL;DR:</strong> Kombinasi Cloudflare Turnstile dan Google Apps Script memberikan solusi form anti-spam yang powerful dan gratis untuk blog statis, tanpa perlu server backend yang rumit.</p></div><article class="article-content"><h2 id="intro">👋 Selamat Datang di Tutorial Ini!</h2><p>Sering kali kita merasa dilematis saat membangun blog statis. Di satu sisi, performanya ngebut dan aman karena nggak ada database. Tapi di sisi lain, kita sering kebingungan pas mau bikin fitur interaktif seperti form kontak atau permintaan hapus data tanpa harus sewa VPS atau hosting backend.</p><p>Dulu, aku juga sempat bingung. Masalah utamanya bukan cuma kirim emailnya, tapi gimana cara nahan gempuran bot spam yang haus banget ngisi form sembarangan. Nah, setelah ngulik sana-sini, akhirnya aku nemu kombinasi "tangguh" yang gratis dan super aman: <strong>Cloudflare Turnstile</strong> dan <strong>Google Apps Script</strong>. Yuk, kita bedah bareng-bareng! 🚀</p><h2 id="why">🤔 Mengapa Kombinasi Ini Ideal untuk Blog Statis?</h2><p>Kenapa sih nggak pakai layanan form pihak ketiga aja? Jawabannya simpel: kontrol penuh dan gratis! Dengan cara ini, data nggak "mampir" ke pihak ketiga yang nggak jelas, tapi langsung masuk ke ekosistem Google kamu sendiri.</p><div class="card-grid"><div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Anti-Spam Canggih</h3><p>Turnstile itu ramah banget. Nggak ada lagi drama milih gambar zebra cross. Bot bakal minggat, manusia bakal lancar jaya.</p></div><div class="feature-card"><div class="feature-icon"><i class="fas fa-server"></i></div><h3>Backend-less</h3><p>Google Apps Script itu ibarat server gratisan yang siap siaga 24 jam buat dengerin request dari blog kamu.</p></div><div class="feature-card"><div class="feature-icon"><i class="fas fa-gift"></i></div><h3>Gratis Tis Tis! 🎉</h3><p>Limitnya gede banget buat ukuran blog pribadi atau web profil UMKM. Nggak bakal bikin kantong jebol.</p></div></div><h2 id="step1">Langkah 1: Mengatur Cloudflare Turnstile 🛡️</h2><p>Turnstile adalah satpam di gardu depan blog kita. Dia yang bakal mastiin yang masuk itu beneran orang Balikpapan atau bot dari antah-berantah.</p><div class="step-box"><div class="step-number">1</div><h3>Daftar di Cloudflare</h3><p>Langsung aja gas ke <a href="https://dash.cloudflare.com/?to=/:account/turnstile" target="_blank" rel="noopener noreferrer">Dashboard Cloudflare Turnstile</a> kamu. Pilih menu Turnstile, lalu tambahkan situs baru. Pilih mode <strong>Managed</strong> biar Cloudflare yang mikir gimana cara paling pas buat ngetes pengunjung.</p></div><div class="step-box"><div class="step-number">2</div><h3>Pasang Widget di HTML</h3><p>Masukkan script API Turnstile di bagian atas halaman kamu, lalu tempelkan <code>div</code> widget di dalam form. Ingat, <strong>Site Key</strong> itu ibarat alamat rumah, sedangkan <strong>Secret Key</strong> jangan sampai ada yang tahu selain kamu dan script Google nanti.</p><pre><code>&lt;div class="cf-turnstile" data-sitekey="SITE_KEY_KAMU" data-callback="onSuccess"&gt;&lt;/div&gt;</code></pre></div><h2 id="step2">Langkah 2: Mengatur Google Apps Script 📧</h2><p>Buka <a href="https://script.google.com/home" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, Sekarang kita siapkan "otak" pengirim emailnya. Google Apps Script bakal nerima data dari form, ngecek validasi Turnstile, baru deh kirim email ke kamu.</p><div class="step-box"><div class="step-number">3</div><h3>Tanam Kode di Google Script</h3><p>Buka <em>Google Script editor</em>, buat project baru, dan masukkan kode sakti di bawah ini. Kode ini udah lengkap dengan fitur verifikasi ke API Cloudflare biar makin aman.</p><pre><code>function doPost(e) {
   // 1. Cek apakah ada data yang masuk
   if (!e || !e.parameter) {
     return ContentService.createTextOutput("No data received").setMimeType(ContentService.MimeType.TEXT);
@@ -306,23 +199,4 @@
     return ContentService.createTextOutput(JSON.stringify({ "success": false, "error": err.toString() }))
                          .setMimeType(ContentService.MimeType.JSON);
   }
-}</code></pre>
-        </div>
-        <div class="highlight-box">
-            <p><i class="fas fa-exclamation-triangle"></i> <strong>Penting:</strong> Saat melakukan <em>Deployment</em> di Google Script, pastikan pilih akses untuk <strong>"Anyone"</strong> supaya blog kamu bisa kirim data tanpa perlu login akun Google.</p>
-        </div>
-        <h2 id="conclusion">👋 Penutup</h2>
-        <p>Implementasi ini bukan cuma soal teknis, tapi soal kenyamanan pembaca. Dengan Turnstile, kita nggak lagi nyiksa pengunjung blog <strong>Layar Kosong</strong> dengan kuis-kuis gambar yang bikin pusing. Blog tetep statis, tapi fitur tetep dinamis dan aman.</p>
-        <p>Semoga tutorial ini ngebantu kamu yang lagi pengen bikin blog jadi lebih profesional. Kalau ada yang bingung pas pasang kodenya, tanya aja di kolom komentar ya! Sampai ketemu di update-an berikutnya! ✨</p>
-    </article>
-    <div id="pesbukdiskus"></div><div id="related-articles-grid">
-    </div>
-    <footer>
-        <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Layar Kosong</a>. Dibuat dengan ❤️ di Balikpapan.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Dukungan Teknologi: Cloudflare &amp; Google Cloud</p>
-    </footer>
-</div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+}</code></pre></div><div class="highlight-box"><p><i class="fas fa-exclamation-triangle"></i> <strong>Penting:</strong> Saat melakukan <em>Deployment</em> di Google Script, pastikan pilih akses untuk <strong>"Anyone"</strong> supaya blog kamu bisa kirim data tanpa perlu login akun Google.</p></div><h2 id="conclusion">👋 Penutup</h2><p>Implementasi ini bukan cuma soal teknis, tapi soal kenyamanan pembaca. Dengan Turnstile, kita nggak lagi nyiksa pengunjung blog <strong>Layar Kosong</strong> dengan kuis-kuis gambar yang bikin pusing. Blog tetep statis, tapi fitur tetep dinamis dan aman.</p><p>Semoga tutorial ini ngebantu kamu yang lagi pengen bikin blog jadi lebih profesional. Kalau ada yang bingung pas pasang kodenya, tanya aja di kolom komentar ya! Sampai ketemu di update-an berikutnya! ✨</p></article><div id="pesbukdiskus"></div><div id="related-articles-grid"></div><footer><p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Layar Kosong</a>. Dibuat dengan ❤️ di Balikpapan.</p><p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Dukungan Teknologi: Cloudflare &amp; Google Cloud</p></footer></div><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>

@@ -1,15 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch</title>
-    <meta name="description" content="Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang.">
-    <meta name="news_keywords" content="Optimasi Firefox Linux, Bersihkan Cache Firefox Debian, Firefox Diet Arch Linux, Vacuum SQLite Firefox, Folder .mozilla bengkak, Sysadmin Balikpapan, Layar Kosong">
-    <meta name="prompt_hint" content="Artikel panduan teknis mendalam tentang perawatan browser Firefox di sistem operasi Linux menggunakan script Bash otomatis.">
-    <meta property="og:description" content="Jangan biarkan folder .mozilla membengkak! Ikuti panduan script otomatis untuk optimasi database dan cache Firefox kamu sekarang juga.">
-    <meta name="twitter:description" content="Cara cerdas sysadmin Balikpapan dalam mengelola ruang disk browser. Script bash otomatis sekali jalan. Cek di Layar Kosong!">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
-        :root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch</title><meta name="description" content="Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang."><meta name="news_keywords" content="Optimasi Firefox Linux, Bersihkan Cache Firefox Debian, Firefox Diet Arch Linux, Vacuum SQLite Firefox, Folder .mozilla bengkak, Sysadmin Balikpapan, Layar Kosong"><meta name="prompt_hint" content="Artikel panduan teknis mendalam tentang perawatan browser Firefox di sistem operasi Linux menggunakan script Bash otomatis."><meta property="og:description" content="Jangan biarkan folder .mozilla membengkak! Ikuti panduan script otomatis untuk optimasi database dan cache Firefox kamu sekarang juga."><meta name="twitter:description" content="Cara cerdas sysadmin Balikpapan dalam mengelola ruang disk browser. Script bash otomatis sekali jalan. Cek di Layar Kosong!"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
             --accent-color: #e67e22;
@@ -99,71 +88,7 @@
             h1 { font-size: 2.1rem; }
             .widescreen-container { padding: 20px 15px; }
             .article-content { font-size: 1.1rem; }
-        }
-    </style>
-    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/">
-    <meta property="og:title" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
-    <meta property="og:image:alt" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp">
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch","description":"Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang.","articleSection":"Sistem Terbuka","keywords":"arch, cache, cara, debian, firefox, layar kosong, linux, membersihkan, optimasi, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-30T15:02:09Z","dateModified":"2026-01-30T15:02:09Z"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch","item":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"}]}]}</script>
-</head>
-<body>
-<div class="widescreen-container">
-    <header>
-        <div class="meta-data">
-            <span><i class="fas fa-user-circle"></i> Fakhrul Rijal</span>
-            <span><i class="fas fa-folder-open"></i> Linux Optimization</span>
-            <span><i class="fas fa-calendar-check"></i> 27 Jan 2026</span>
-        </div>
-        <h1>Rahasia Firefox Kencang: Cara 'Sedot Lemak' Folder .mozilla di Debian dan Arch Linux 🦊🚀</h1>
-<div id="iposbrowser"></div>
-        <p style="font-size: 1.3rem; opacity: 0.8; font-weight: 300;">Hentikan pembengkakan disk dan percepat loading browser kamu dengan teknik Vacuum SQLite otomatis.</p>
-    </header>
-    <article class="article-content">
-        <p>Halo sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang penuh semangat, kali ini kita bakal bahas masalah klasik yang sering bikin user Linux garuk-garuk kepala: <strong>Kenapa folder Firefox makin hari makin rakus penyimpanan?</strong></p>
-        <p>Aku sering banget nemu kasus di mana folder <code>~/.mozilla/firefox/</code> membengkak sampai 5GB bahkan 10GB hanya untuk satu profil! Padahal isinya cuma histori browsing dan sisa-sisa cache yang sebenarnya sudah "kadaluwarsa". Kalau kamu pake VPS atau laptop dengan SSD terbatas, ini jelas jadi masalah besar. Tapi tenang, hari ini kita bakal bikin Firefox kamu "diet" ketat tanpa kehilangan bookmark atau password penting kamu.</p>
-        <div class="info-panel">
-            <h3><i class="fas fa-microchip"></i> Strategi 5W + 1H Optimasi Firefox</h3>
-            <ul>
-                <li><strong>What:</strong> Proses pembersihan cache fisik dan optimasi database SQLite (Vacuuming) untuk mengecilkan ukuran profil browser.</li>
-                <li><strong>Who:</strong> Ditujukan untuk pengguna Linux (Debian, Arch, Ubuntu, dsb) yang merasa browsernya mulai lemot atau kehabisan ruang disk.</li>
-                <li><strong>Where:</strong> Dilakukan di level sistem file user, khususnya pada direktori tersembunyi <code>.mozilla</code> dan <code>.cache</code>.</li>
-                <li><strong>When:</strong> Disarankan dilakukan secara rutin seminggu sekali atau saat folder profil sudah menyentuh angka di atas 1GB.</li>
-                <li><strong>Why:</strong> Untuk menjaga performa startup browser tetap responsif dan memastikan ketersediaan ruang disk untuk proses sistem lainnya.</li>
-                <li><strong>How:</strong> Menggunakan script Bash otomatis yang mengombinasikan perintah <code>rm</code> dan <code>sqlite3 vacuum</code>.</li>
-            </ul>
-        </div>
-        <h2>Kenapa Folder Firefox Bisa Membengkak? (The Logic)</h2>
-        <p>Firefox menyimpan data kamu dalam format <strong>SQLite</strong>. Bayangin SQLite ini kayak lemari arsip. Setiap kali kamu nambah data (histori), dia nambah laci. Pas kamu hapus datanya, lacinya nggak hilang, cuma kosong aja. Nah, perintah <code>VACUUM</code> gunanya buat buang laci-laci kosong itu dan menyusun ulang lemari biar jadi ringkas lagi.</p>
-        <p>Selain itu, ada folder bernama <code>storage/default</code>. Ini adalah tempat "sampah modern" di mana website menyimpan data <em>offline storage</em>. Website kayak YouTube, Spotify, atau Canva suka banget nyampah di sini. Kalau gak dibersihin, folder ini bisa jadi "lubang hitam" penyedot disk kamu.</p>
-        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp" alt="Firefox Storage Management Visualization" class="featured-image" style="margin-top: 20px;">
-        <h2>1. Solusi untuk Debian dan Ubuntu (Stabil dan Pasti)</h2>
-        <p>Di Debian, stabilitas adalah segalanya. Kita bakal pake script yang sangat aman untuk membersihkan Firefox-ESR atau versi standar. Pastikan kamu sudah install <code>sqlite3</code> ya!</p>
-        <div class="script-box">
-<pre><code>#!/bin/bash
+        }</style><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"><link rel="icon" href="/favicon.ico"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"><meta property="og:title" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp"><meta property="og:image:alt" content="Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp"><meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp"><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch","description":"Tutorial lengkap optimasi Firefox di Linux Debian dan Arch. Cara mengurangi ukuran folder .mozilla, vacuum database SQLite, dan otomatisasi pembersihan cache agar browser makin kencang.","articleSection":"Sistem Terbuka","keywords":"arch, cache, cara, debian, firefox, layar kosong, linux, membersihkan, optimasi, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-30T15:02:09Z","dateModified":"2026-01-30T15:02:09Z"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Cara Membersihkan Cache dan Optimasi Firefox Linux Debian dan Arch","item":"https://dalam.web.id/sistem-terbuka/optimasi-firefox-linux-debian-arch/"}]}]}</script></head><body><div class="widescreen-container"><header><div class="meta-data"><span><i class="fas fa-user-circle"></i> Fakhrul Rijal</span> <span><i class="fas fa-folder-open"></i> Linux Optimization</span> <span><i class="fas fa-calendar-check"></i> 27 Jan 2026</span></div><h1>Rahasia Firefox Kencang: Cara 'Sedot Lemak' Folder .mozilla di Debian dan Arch Linux 🦊🚀</h1><div id="iposbrowser"></div><p style="font-size: 1.3rem; opacity: 0.8; font-weight: 300;">Hentikan pembengkakan disk dan percepat loading browser kamu dengan teknik Vacuum SQLite otomatis.</p></header><article class="article-content"><p>Halo sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang penuh semangat, kali ini kita bakal bahas masalah klasik yang sering bikin user Linux garuk-garuk kepala: <strong>Kenapa folder Firefox makin hari makin rakus penyimpanan?</strong></p><p>Aku sering banget nemu kasus di mana folder <code>~/.mozilla/firefox/</code> membengkak sampai 5GB bahkan 10GB hanya untuk satu profil! Padahal isinya cuma histori browsing dan sisa-sisa cache yang sebenarnya sudah "kadaluwarsa". Kalau kamu pake VPS atau laptop dengan SSD terbatas, ini jelas jadi masalah besar. Tapi tenang, hari ini kita bakal bikin Firefox kamu "diet" ketat tanpa kehilangan bookmark atau password penting kamu.</p><div class="info-panel"><h3><i class="fas fa-microchip"></i> Strategi 5W + 1H Optimasi Firefox</h3><ul><li><strong>What:</strong> Proses pembersihan cache fisik dan optimasi database SQLite (Vacuuming) untuk mengecilkan ukuran profil browser.</li><li><strong>Who:</strong> Ditujukan untuk pengguna Linux (Debian, Arch, Ubuntu, dsb) yang merasa browsernya mulai lemot atau kehabisan ruang disk.</li><li><strong>Where:</strong> Dilakukan di level sistem file user, khususnya pada direktori tersembunyi <code>.mozilla</code> dan <code>.cache</code>.</li><li><strong>When:</strong> Disarankan dilakukan secara rutin seminggu sekali atau saat folder profil sudah menyentuh angka di atas 1GB.</li><li><strong>Why:</strong> Untuk menjaga performa startup browser tetap responsif dan memastikan ketersediaan ruang disk untuk proses sistem lainnya.</li><li><strong>How:</strong> Menggunakan script Bash otomatis yang mengombinasikan perintah <code>rm</code> dan <code>sqlite3 vacuum</code>.</li></ul></div><h2>Kenapa Folder Firefox Bisa Membengkak? (The Logic)</h2><p>Firefox menyimpan data kamu dalam format <strong>SQLite</strong>. Bayangin SQLite ini kayak lemari arsip. Setiap kali kamu nambah data (histori), dia nambah laci. Pas kamu hapus datanya, lacinya nggak hilang, cuma kosong aja. Nah, perintah <code>VACUUM</code> gunanya buat buang laci-laci kosong itu dan menyusun ulang lemari biar jadi ringkas lagi.</p><p>Selain itu, ada folder bernama <code>storage/default</code>. Ini adalah tempat "sampah modern" di mana website menyimpan data <em>offline storage</em>. Website kayak YouTube, Spotify, atau Canva suka banget nyampah di sini. Kalau gak dibersihin, folder ini bisa jadi "lubang hitam" penyedot disk kamu.</p><img src="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp" alt="Firefox Storage Management Visualization" class="featured-image" style="margin-top: 20px;"><h2>1. Solusi untuk Debian dan Ubuntu (Stabil dan Pasti)</h2><p>Di Debian, stabilitas adalah segalanya. Kita bakal pake script yang sangat aman untuk membersihkan Firefox-ESR atau versi standar. Pastikan kamu sudah install <code>sqlite3</code> ya!</p><div class="script-box"><pre><code>#!/bin/bash
 # ======================================================
 # FIREFOX AUTO-CLEANER (DIET MODE) - LAYAR KOSONG
 # Lokasi: Balikpapan | OS: Debian/Ubuntu
@@ -210,20 +135,13 @@ find "$FF_DIR" -type d -name "storage" -exec rm -rf {} +
 rm -f "$FF_DIR"/*.default-release/favicons.sqlite
 echo -e "${BLUE}======================================================${NC}"
 echo -e "${GREEN}BERHASIL! Firefox kamu sekarang lebih enteng.${NC}"
-echo -e "${BLUE}======================================================${NC}"</code></pre>
-        </div>
-        <h2>2. Solusi untuk Arch Linux (Bleeding Edge Speed)</h2>
-        <p>Buat user Arch, kita bikin yang lebih *advanced*. Kita pake <code>xargs</code> biar proses vacuum lebih cepet karena Arch user biasanya punya banyak profil atau data yang lebih kompleks.</p>
-<div class="script-box"><pre><code>#!/bin/bash
+echo -e "${BLUE}======================================================${NC}"</code></pre></div><h2>2. Solusi untuk Arch Linux (Bleeding Edge Speed)</h2><p>Buat user Arch, kita bikin yang lebih *advanced*. Kita pake <code>xargs</code> biar proses vacuum lebih cepet karena Arch user biasanya punya banyak profil atau data yang lebih kompleks.</p><div class="script-box"><pre><code>#!/bin/bash
 # Script Diet Firefox buat Arch Linux
 echo "Arch Linux Maintenance: Slimming down Firefox..."
 rm -rf $HOME/.cache/mozilla/firefox/*
 find $HOME/.mozilla/firefox -name "*.sqlite" -print0 | xargs -0 -I {} sqlite3 "{}" "VACUUM;"
 find $HOME/.mozilla/firefox -type d \( -name "storage" -o -name "sessionstore-backups" \) -exec rm -rf {} +
-echo "Done. Keep your Arch clean!"</code></pre></div>
-<p> atau boleh juga pakai script ini:</p>
-        <div class="script-box">
-<pre><code>#!/bin/bash
+echo "Done. Keep your Arch clean!"</code></pre></div><p>atau boleh juga pakai script ini:</p><div class="script-box"><pre><code>#!/bin/bash
 # ======================================================
 # ARCH LINUX FIREFOX OPTIMIZER - LAYAR KOSONG
 # "Keep your Arch clean and your Firefox fast"
@@ -272,28 +190,4 @@ if [[ $answer == "y" ]]; then
 fi
 echo -e "\n${CYAN}==============================================${NC}"
 echo -e "${CYAN}   ARCH FIREFOX DIET SELESAI - STAY KENCANG!   ${NC}"
-echo -e "${CYAN}==============================================${NC}"</code></pre>
-        </div>
-        <h2>Optimasi Core Web Vitals untuk Browser Kamu</h2>
-        <p>Bukan cuma halaman web ini yang aku optimasi LCP-nya, tapi Firefox kamu juga harus punya <strong>LCP (Largest Contentful Paint)</strong> yang bagus saat loading aplikasi web. Dengan database yang sudah di-vacuum, proses pencarian data profil jadi lebih instan, otomatis browser nggak bakal "hang" pas baru dibuka.</p>
-        <h3>Penutup dan Kesimpulan</h3>
-        <p>Mengelola Linux itu soal disiplin. Browser adalah jendela kamu ke internet, dan jendela yang kotor (penuh cache) bakal menghalangi pemandangan. Dengan script otomatis yang aku kasih, kamu nggak perlu pusing lagi mikirin disk penuh gara-gara Firefox.</p>
-        <div id="pesbukdiskus"></div>
-        <div id="related-articles-grid"></div>
-    </article>
-    <footer>
-        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan cinta dari Balikpapan.</p>
-        <p style="font-size: 0.8rem; opacity: 0.6;">Dukung keberlangsungan blog ini: <a href="https://paypal.me/FakhrulRijal" style="color:inherit;">paypal.me/FakhrulRijal</a></p>
-                <div class="social-links">
-            <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/frijal" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://facebook.com/frijal" target="_blank"><i class="fab fa-facebook"></i></a>
-        </div>
-    </footer>
-</div>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
-</body></html>
+echo -e "${CYAN}==============================================${NC}"</code></pre></div><h2>Optimasi Core Web Vitals untuk Browser Kamu</h2><p>Bukan cuma halaman web ini yang aku optimasi LCP-nya, tapi Firefox kamu juga harus punya <strong>LCP (Largest Contentful Paint)</strong> yang bagus saat loading aplikasi web. Dengan database yang sudah di-vacuum, proses pencarian data profil jadi lebih instan, otomatis browser nggak bakal "hang" pas baru dibuka.</p><h3>Penutup dan Kesimpulan</h3><p>Mengelola Linux itu soal disiplin. Browser adalah jendela kamu ke internet, dan jendela yang kotor (penuh cache) bakal menghalangi pemandangan. Dengan script otomatis yang aku kasih, kamu nggak perlu pusing lagi mikirin disk penuh gara-gara Firefox.</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article><footer><p>🄯 2026 <strong>Fakhrul Rijal</strong>. Ditulis dengan cinta dari Balikpapan.</p><p style="font-size: 0.8rem; opacity: 0.6;">Dukung keberlangsungan blog ini: <a href="https://paypal.me/FakhrulRijal" style="color:inherit;">paypal.me/FakhrulRijal</a></p><div class="social-links"><a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a> <a href="https://t.me/frijal" target="_blank"><i class="fab fa-telegram"></i></a> <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a> <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="https://facebook.com/frijal" target="_blank"><i class="fab fa-facebook"></i></a></div></footer></div><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="defer" src="/ext/marquee-url.js"></script><script defer="defer" src="/ext/iposbrowser.js"></script><script defer="defer" src="/ext/markdown.js"></script><script defer="defer" src="/ext/pesbukdiskus.js"></script></body></html>

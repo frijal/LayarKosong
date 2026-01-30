@@ -1,13 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pembersihan Otomatis Dependencies (Non-Interaktif)</title>
-    <meta name="description" content="Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual.">
-    <meta name="news_keywords" content="cleanup dependencies, npm ci, node_modules, GitHub Actions, CI/CD automation, Node.js cleanup script, depcheck tutorial">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.min.css">
-    <style>
-        :root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pembersihan Otomatis Dependencies (Non-Interaktif)</title><meta name="description" content="Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual."><meta name="news_keywords" content="cleanup dependencies, npm ci, node_modules, GitHub Actions, CI/CD automation, Node.js cleanup script, depcheck tutorial"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.min.css"><style>:root {
             --bg: #ffffff;
             --text: #1a202c;
             --accent: #059669; /* Green Automation */
@@ -85,60 +76,7 @@
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             body { font-size: 1.15rem; }
-        }
-    </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/cleanup-auto/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/cleanup-auto/">
-    <meta property="og:title" content="Pembersihan Otomatis Dependencies (Non-Interaktif)">
-    <meta property="og:description" content="Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Pembersihan Otomatis Dependencies (Non-Interaktif)","description":"Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual.","articleSection":"Warta Tekno","keywords":"auto, cleanup, dependencies, interaktif, layar kosong, otomatis, pembersihan, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/cleanup-auto.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.895+00:00","dateModified":"2025-12-30T09:56:06.895+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Pembersihan Otomatis Dependencies (Non-Interaktif)","item":"https://dalam.web.id/warta-tekno/cleanup-auto/"}]}]}</script>
-</head>
-<body>
-<main>
-    <div class="status-badge">
-        <span style="width: 8px; height: 8px; background: currentColor; border-radius: 50%;"></span>
-        Workflow Active
-    </div>
-    <h1>🧹 Pembersihan Otomatis Dependencies Node.js</h1>
-<div id="iposbrowser"></div>
-    <p>
-        Pernah ngerasa proyek Node.js kamu makin berat gara-gara <em>dependencies</em> yang sebenernya nggak kepakai? Kalau dibiarin, repo kamu cuma jadi "gudang sampah" kode.
-        Di sini saya bagiin cara bersihin itu semua secara <strong>non-interaktif</strong>—cocok banget buat kamu yang pengen automasi di GitHub Actions tanpa drama ketik "y/n" di terminal.
-    </p>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3 style="margin-top:0">🔍 Deteksi Cerdas</h3>
-            <p style="font-size:1rem; margin:0">Mencari paket yang terdaftar di package.json tapi absen di kode sumber.</p>
-        </div>
-        <div class="feature-card">
-            <h3 style="margin-top:0">⚡ Tanpa Konfirmasi</h3>
-            <p style="font-size:1rem; margin:0">Skrip berjalan mandiri, langsung eksekusi tanpa nunggu jawaban kamu.</p>
-        </div>
-        <div class="feature-card">
-            <h3 style="margin-top:0">♻️ Fresh Install</h3>
-            <p style="font-size:1rem; margin:0">Hapus node_modules dan pasang ulang biar semuanya bersih dari cache.</p>
-        </div>
-    </div>
-    <h2>🪄 Skrip Utama: <code>cleanup-auto.js</code></h2>
-    <p>Simpan skrip sakti ini di folder <code>ext/cleanup-auto.js</code>. Skrip ini pakai library <code>depcheck</code> buat nyari mana yang cuma "numpang" doang.</p>
-    <pre><code class="language-js">#!/usr/bin/env node
+        }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="canonical" href="https://dalam.web.id/warta-tekno/cleanup-auto/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/cleanup-auto/"><meta property="og:title" content="Pembersihan Otomatis Dependencies (Non-Interaktif)"><meta property="og:description" content="Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Pembersihan Otomatis Dependencies (Non-Interaktif)","description":"Cara otomatis hapus dependencies Node.js tak terpakai menggunakan depcheck dan skrip non-interaktif di GitHub Actions. Jaga repo tetap ramping tanpa input manual.","articleSection":"Warta Tekno","keywords":"auto, cleanup, dependencies, interaktif, layar kosong, otomatis, pembersihan, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/cleanup-auto.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.895+00:00","dateModified":"2025-12-30T09:56:06.895+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/cleanup-auto/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Pembersihan Otomatis Dependencies (Non-Interaktif)","item":"https://dalam.web.id/warta-tekno/cleanup-auto/"}]}]}</script></head><body><main><div class="status-badge"><span style="width: 8px; height: 8px; background: currentColor; border-radius: 50%;"></span> Workflow Active</div><h1>🧹 Pembersihan Otomatis Dependencies Node.js</h1><div id="iposbrowser"></div><p>Pernah ngerasa proyek Node.js kamu makin berat gara-gara <em>dependencies</em> yang sebenernya nggak kepakai? Kalau dibiarin, repo kamu cuma jadi "gudang sampah" kode. Di sini saya bagiin cara bersihin itu semua secara <strong>non-interaktif</strong>—cocok banget buat kamu yang pengen automasi di GitHub Actions tanpa drama ketik "y/n" di terminal.</p><div class="feature-grid"><div class="feature-card"><h3 style="margin-top:0">🔍 Deteksi Cerdas</h3><p style="font-size:1rem; margin:0">Mencari paket yang terdaftar di package.json tapi absen di kode sumber.</p></div><div class="feature-card"><h3 style="margin-top:0">⚡ Tanpa Konfirmasi</h3><p style="font-size:1rem; margin:0">Skrip berjalan mandiri, langsung eksekusi tanpa nunggu jawaban kamu.</p></div><div class="feature-card"><h3 style="margin-top:0">♻️ Fresh Install</h3><p style="font-size:1rem; margin:0">Hapus node_modules dan pasang ulang biar semuanya bersih dari cache.</p></div></div><h2>🪄 Skrip Utama: <code>cleanup-auto.js</code></h2><p>Simpan skrip sakti ini di folder <code>ext/cleanup-auto.js</code>. Skrip ini pakai library <code>depcheck</code> buat nyari mana yang cuma "numpang" doang.</p><pre><code class="language-js">#!/usr/bin/env node
 /**
  * CLEANUP AUTO v1.1 - Layar Kosong
  * Menghapus paket tidak terpakai secara otomatis
@@ -162,10 +100,7 @@ import fs from 'node:fs';
   console.log('📦 Menjalankan instalasi ulang yang bersih...');
   execSync('npm install', { stdio: 'inherit' });
   console.log('✨ Selesai! Repo kamu sekarang lebih ramping.');
-})();</code></pre>
-    <h2>⚙️ Jadwalkan di GitHub Actions</h2>
-    <p>Ngapain jalanin manual kalau bisa disuruh tiap minggu? Pakai file YAML ini di <code>.github/workflows/cleanup.yml</code>.</p>
-    <pre><code class="language-yaml">name: Weekly Dependency Cleanup
+})();</code></pre><h2>⚙️ Jadwalkan di GitHub Actions</h2><p>Ngapain jalanin manual kalau bisa disuruh tiap minggu? Pakai file YAML ini di <code>.github/workflows/cleanup.yml</code>.</p><pre><code class="language-yaml">name: Weekly Dependency Cleanup
 on:
   schedule:
     - cron: '0 21 * * 0' # Setiap Minggu Malam (WIB menyesuaikan)
@@ -182,20 +117,4 @@ jobs:
       - name: Install Tools
         run: npm ci
       - name: Eksekusi Skrip Pembersihan
-        run: node ext/cleanup-auto.js</code></pre>
-    <div class="tip-box">
-        <h3 style="margin-top:0">💡 Tips:</h3>
-        <p style="margin:0">
-            Pastikan kamu sudah install <code>depcheck</code> di proyek kamu sebelum menjalankan skrip ini (<code>npm install depcheck --save-dev</code>).
-            Gunakan workflow ini di branch <em>development</em> dulu buat mastiin nggak ada paket "ajaib" yang hilang tapi ternyata dibutuhin di produksi!
-        </p>
-    </div>
-    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-javascript.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-yaml.min.js"></script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+        run: node ext/cleanup-auto.js</code></pre><div class="tip-box"><h3 style="margin-top:0">💡 Tips:</h3><p style="margin:0">Pastikan kamu sudah install <code>depcheck</code> di proyek kamu sebelum menjalankan skrip ini (<code>npm install depcheck --save-dev</code>). Gunakan workflow ini di branch <em>development</em> dulu buat mastiin nggak ada paket "ajaib" yang hilang tapi ternyata dibutuhin di produksi!</p></div><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></main><script src="https://cdn.jsdelivr.net/npm/prismjs@latest/prism.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-javascript.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@latest/components/prism-yaml.min.js"></script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>

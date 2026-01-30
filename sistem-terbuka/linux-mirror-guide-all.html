@@ -1,20 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<!-- ===== Basic Meta ===== -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panduan Mirror Linux Tercepat — Semua Distro</title>
-<meta name="description" content="Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil.">
-<meta name="news_keywords" content="mirror Linux tercepat, repository Linux, mirror semua distro, rsync Linux, server mirror Linux, apt mirror, yum mirror">
-<!-- ===== Icons ===== -->
-<link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
-<!-- ===== Open Graph ===== -->
-<!-- ===== Article Meta ===== -->
-<meta name="date" content="2025-09-27">
-<!-- ===== Twitter Card ===== -->
-<!-- ===== Structured Image Hint ===== -->
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-<style>
-  :root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panduan Mirror Linux Tercepat — Semua Distro</title><meta name="description" content="Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil."><meta name="news_keywords" content="mirror Linux tercepat, repository Linux, mirror semua distro, rsync Linux, server mirror Linux, apt mirror, yum mirror"><link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><meta name="date" content="2025-09-27"><link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"><style>:root {
 --bg: #f6f8fb;
 --card: #ffffff;
 --text: #222;
@@ -159,240 +143,44 @@ main {
 header h1 {
   font-size: 1.1rem;
 }
-  }
-</style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/">
-    <meta property="og:title" content="Panduan Mirror Linux Tercepat — Semua Distro">
-    <meta property="og:description" content="Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
-    <meta property="og:image:alt" content="Panduan Mirror Linux Tercepat — Semua Distro">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Mirror Linux Tercepat — Semua Distro","description":"Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil.","articleSection":"Sistem Terbuka","keywords":"distro, guide, layar kosong, linux, mirror, panduan, semua, sistem terbuka, tercepat","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/linux-mirror-guide-all.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-09-27T00:00:00.000+00:00","dateModified":"2025-09-27T00:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Panduan Mirror Linux Tercepat — Semua Distro","item":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"}]}]}</script>
-</head>
-  <body>
-<button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button>
-<header>
-  <h1>Panduan Mirror Linux Tercepat — Semua Distro</h1>
-<div id="iposbrowser"></div>
-  <p>
-Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS —
-cara otomatis &amp; manual
-  </p>
-</header>
-<main>
-  <section>
-<h2>Pengenalan singkat</h2>
-<p>
-  Mirror (repository mirror) adalah server yang menyimpan paket-paket
-  distribusi Linux. Memilih mirror yang cepat dan dekat (geografis)
-  mempercepat <em>apt/pacman/dnf/zypper/nix</em> update dan instalasi
-  paket. Dokumen ini memberi perintah siap pakai untuk memilih mirror
-  tercepat (otomatis) pada berbagai distro populer.
-</p>
-<div class="note">
-  Catatan: jalankan perintah yang butuh menulis konfigurasi dengan
-  <code>sudo</code>. Selalu backup file konfigurasi sebelum mengganti
-  mirror.
-</div>
-  </section>
-  <section>
-<h2>1. Debian &amp; Ubuntu (APT) — netselect-apt</h2>
-<p>
-  Tool <code>netselect-apt</code> menguji mirror dan membuat
-  <code>sources.list</code> sesuai mirror tercepat.
-</p>
-<div class="section-grid">
-  <div>
-<h3>Langkah cepat</h3>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">sudo apt update
+  }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"><meta property="og:title" content="Panduan Mirror Linux Tercepat — Semua Distro"><meta property="og:description" content="Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp"><meta property="og:image:alt" content="Panduan Mirror Linux Tercepat — Semua Distro"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp"><meta itemprop="image" content="https://dalam.web.id/img/linux-mirror-guide-all.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Mirror Linux Tercepat — Semua Distro","description":"Panduan lengkap membangun mirror Linux tercepat untuk semua distro. Cocok untuk server kampus, komunitas, ISP, dan jaringan lokal agar update lebih hemat dan stabil.","articleSection":"Sistem Terbuka","keywords":"distro, guide, layar kosong, linux, mirror, panduan, semua, sistem terbuka, tercepat","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/linux-mirror-guide-all.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-09-27T00:00:00.000+00:00","dateModified":"2025-09-27T00:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Panduan Mirror Linux Tercepat — Semua Distro","item":"https://dalam.web.id/sistem-terbuka/linux-mirror-guide-all/"}]}]}</script></head><body><button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button><header><h1>Panduan Mirror Linux Tercepat — Semua Distro</h1><div id="iposbrowser"></div><p>Debian/Ubuntu • Arch/Manjaro • Fedora • openSUSE • Slackware • NixOS — cara otomatis &amp; manual</p></header><main><section><h2>Pengenalan singkat</h2><p>Mirror (repository mirror) adalah server yang menyimpan paket-paket distribusi Linux. Memilih mirror yang cepat dan dekat (geografis) mempercepat <em>apt/pacman/dnf/zypper/nix</em> update dan instalasi paket. Dokumen ini memberi perintah siap pakai untuk memilih mirror tercepat (otomatis) pada berbagai distro populer.</p><div class="note">Catatan: jalankan perintah yang butuh menulis konfigurasi dengan <code>sudo</code>. Selalu backup file konfigurasi sebelum mengganti mirror.</div></section><section><h2>1. Debian &amp; Ubuntu (APT) — netselect-apt</h2><p>Tool <code>netselect-apt</code> menguji mirror dan membuat <code>sources.list</code> sesuai mirror tercepat.</p><div class="section-grid"><div><h3>Langkah cepat</h3><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">sudo apt update
 sudo apt install -y netselect-apt
 # Cari mirror untuk release (contoh: bookworm atau jammy)
 sudo netselect-apt bookworm   # Debian 12
 # atau
-sudo netselect-apt jammy  # Ubuntu 22.04</code></pre>
-  </div>
-  <div>
-<h3>Pindahkan hasil &amp; update</h3>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># file 'sources.list' akan dibuat di direktori kerja
+sudo netselect-apt jammy  # Ubuntu 22.04</code></pre></div><div><h3>Pindahkan hasil &amp; update</h3><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># file 'sources.list' akan dibuat di direktori kerja
 # Backup lalu ganti sources.list
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo mv sources.list /etc/apt/sources.list
 # Refresh apt
-sudo apt update</code></pre>
-  </div>
-  <div>
-<h3>Tips</h3>
-<ul>
-  <li>
-Jika netselect-apt sulit dijalankan, gunakan
-<code>apt-fast</code> atau pilih mirror manual lewat daftar
-resmi.
-  </li>
-  <li>
-Untuk Ubuntu gunakan GUI
-<strong>Software &amp; Updates → Download from → Other → Select Best
-  Server</strong>.
-  </li>
-</ul>
-  </div>
-</div>
-  </section>
-  <section>
-<h2>2. Arch Linux &amp; Manjaro (pacman) — reflector / pacman-mirrors</h2>
-<p>
-  Arch: pakai <code>reflector</code>. Manjaro: pakai
-  <code>pacman-mirrors</code>.
-</p>
-<div class="section-grid">
-  <div>
-<h3>Arch — contoh</h3>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Install reflector (jika belum ada)
+sudo apt update</code></pre></div><div><h3>Tips</h3><ul><li>Jika netselect-apt sulit dijalankan, gunakan <code>apt-fast</code> atau pilih mirror manual lewat daftar resmi.</li><li>Untuk Ubuntu gunakan GUI <strong>Software &amp; Updates → Download from → Other → Select Best Server</strong>.</li></ul></div></div></section><section><h2>2. Arch Linux &amp; Manjaro (pacman) — reflector / pacman-mirrors</h2><p>Arch: pakai <code>reflector</code>. Manjaro: pakai <code>pacman-mirrors</code>.</p><div class="section-grid"><div><h3>Arch — contoh</h3><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Install reflector (jika belum ada)
 sudo pacman -S --noconfirm reflector
 # Pilih 5 mirror terbaru dari Indonesia, urut menurut speed, simpan ke mirrorlist
 sudo reflector --country "Indonesia" --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Refresh &amp; upgrade
-sudo pacman -Syyu</code></pre>
-  </div>
-  <div>
-<h3>Manjaro — contoh</h3>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Fasttrack pilihan mirror tercepat dan refresh
+sudo pacman -Syyu</code></pre></div><div><h3>Manjaro — contoh</h3><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Fasttrack pilihan mirror tercepat dan refresh
 sudo pacman-mirrors --fasttrack
-sudo pacman -Syyu</code></pre>
-  </div>
-  <div>
-<h3>Tips</h3>
-<ul>
-  <li>
-Jalankan <code>reflector</code> dari koneksi yang mewakili
-kondisi normalmu (Wi-Fi vs kabel).
-  </li>
-  <li>
-Simpan mirrorlist hasil uji untuk rollback jika ada masalah.
-  </li>
-</ul>
-  </div>
-</div>
-  </section>
-  <section>
-<h2>3. Fedora (dnf)</h2>
-<p>
-  Fedora menggunakan MirrorManager; mirror terbaik dipilih otomatis.
-  Untuk memastikan kamu menggunakan metadata terbaru:
-</p>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Bersihkan cache lama dan refresh metadata
+sudo pacman -Syyu</code></pre></div><div><h3>Tips</h3><ul><li>Jalankan <code>reflector</code> dari koneksi yang mewakili kondisi normalmu (Wi-Fi vs kabel).</li><li>Simpan mirrorlist hasil uji untuk rollback jika ada masalah.</li></ul></div></div></section><section><h2>3. Fedora (dnf)</h2><p>Fedora menggunakan MirrorManager; mirror terbaik dipilih otomatis. Untuk memastikan kamu menggunakan metadata terbaru:</p><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Bersihkan cache lama dan refresh metadata
 sudo dnf clean all
 sudo dnf makecache --refresh
 # Update sistem (paksa sinkronisasi ke mirror terbaru)
-sudo dnf upgrade --refresh</code></pre>
-<p class="note">
-  Jika butuh mirror lokal khusus, edit file
-  <code>/etc/yum.repos.d/fedora.repo</code> dan ganti baseurl — tapi
-  hati-hati dan backup file dulu.
-</p>
-  </section>
-  <section>
-<h2>4. openSUSE (zypper)</h2>
-<p>
-  openSUSE memakai MirrorBrain — biasanya otomatis. Untuk refresh dan
-  update:
-</p>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Refresh repo
+sudo dnf upgrade --refresh</code></pre><p class="note">Jika butuh mirror lokal khusus, edit file <code>/etc/yum.repos.d/fedora.repo</code> dan ganti baseurl — tapi hati-hati dan backup file dulu.</p></section><section><h2>4. openSUSE (zypper)</h2><p>openSUSE memakai MirrorBrain — biasanya otomatis. Untuk refresh dan update:</p><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Refresh repo
 sudo zypper refresh
 # Untuk upgrade (Distribution Upgrade)
-sudo zypper dup</code></pre>
-<p>
-  Untuk memilih mirror spesifik, kunjungi situs mirror openSUSE atau
-  gunakan YaST → Software Repositories untuk ubah mirror.
-</p>
-  </section>
-  <section>
-<h2>5. Slackware (slackpkg)</h2>
-<p>
-  Slackware mengandalkan file <code>/etc/slackpkg/mirrors</code>. Pilih
-  mirror terdekat lalu aktifkan (hapus tanda <code>#</code>).
-</p>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit daftar mirror
+sudo zypper dup</code></pre><p>Untuk memilih mirror spesifik, kunjungi situs mirror openSUSE atau gunakan YaST → Software Repositories untuk ubah mirror.</p></section><section><h2>5. Slackware (slackpkg)</h2><p>Slackware mengandalkan file <code>/etc/slackpkg/mirrors</code>. Pilih mirror terdekat lalu aktifkan (hapus tanda <code>#</code>).</p><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit daftar mirror
 sudo nano /etc/slackpkg/mirrors
 # Contoh: aktifkan mirror lokal (hapus #)
 # ftp://kartolo.sby.datautama.net.id/slackware/slackware64-15.0/
 # Update slackpkg
 sudo slackpkg update gpg
-sudo slackpkg update</code></pre>
-<p class="note">
-  Pilih mirror resmi atau komunitas yang terpercaya untuk menghindari
-  paket tidak resmi.
-</p>
-  </section>
-  <section>
-<h2>6. NixOS (nix.conf / substituters)</h2>
-<p>
-  Nix menggunakan substituter (cache) untuk mempercepat pengunduhan
-  store. Tambahkan substituters di <code>/etc/nix/nix.conf</code> atau
-  konfigurasi NixOS.
-</p>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit /etc/nix/nix.conf (contoh)
+sudo slackpkg update</code></pre><p class="note">Pilih mirror resmi atau komunitas yang terpercaya untuk menghindari paket tidak resmi.</p></section><section><h2>6. NixOS (nix.conf / substituters)</h2><p>Nix menggunakan substituter (cache) untuk mempercepat pengunduhan store. Tambahkan substituters di <code>/etc/nix/nix.conf</code> atau konfigurasi NixOS.</p><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash"># Edit /etc/nix/nix.conf (contoh)
 sudo nano /etc/nix/nix.conf
 # Tambahkan substituters. Contoh:
 substituters = https://cache.nixos.org https://mirror.sjtu.edu.cn/nix-channels/store
 trusted-public-keys = cache.nixos.org-1:... mirror.sjtu.edu.cn-1:...
 # Lalu update channels &amp; environment
 sudo nix-channel --update
-nix-env -u</code></pre>
-<p>
-  Untuk daftar mirror resmi: <code>https://nixos.org/mirrors/</code>.
-  Pastikan trusted public keys sesuai mirror yang digunakan.
-</p>
-  </section>
-  <section>
-<h2>Tips Umum Memilih Mirror</h2>
-<ul>
-  <li>Pilih mirror geografis terdekat untuk latency rendah.</li>
-  <li>
-Uji kecepatan dengan tools (netselect, reflector, simple curl/ping
-tests).
-  </li>
-  <li>
-Periksa update frequency mirror — mirror jarang sinkron tidak ideal.
-  </li>
-  <li>
-Backup file konfigurasi repo sebelum mengganti (mis.
-<code>/etc/apt/sources.list</code>,
-<code>/etc/pacman.d/mirrorlist</code>).
-  </li>
-  <li>
-Jika mengalami error paket hilang, rollback ke mirror lama atau
-gunakan daftar resmi distro.
-  </li>
-</ul>
-  </section>
-  <section>
-<h2>Contoh skrip singkat (otomatis pilih mirror Debian/Arch)</h2>
-<p>
-  Berikut contoh skrip kecil untuk mencoba netselect-apt (Debian) atau
-  reflector (Arch). Jalankan sesuai distro.
-</p>
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">#!/bin/bash
+nix-env -u</code></pre><p>Untuk daftar mirror resmi: <code>https://nixos.org/mirrors/</code>. Pastikan trusted public keys sesuai mirror yang digunakan.</p></section><section><h2>Tips Umum Memilih Mirror</h2><ul><li>Pilih mirror geografis terdekat untuk latency rendah.</li><li>Uji kecepatan dengan tools (netselect, reflector, simple curl/ping tests).</li><li>Periksa update frequency mirror — mirror jarang sinkron tidak ideal.</li><li>Backup file konfigurasi repo sebelum mengganti (mis. <code>/etc/apt/sources.list</code>, <code>/etc/pacman.d/mirrorlist</code>).</li><li>Jika mengalami error paket hilang, rollback ke mirror lama atau gunakan daftar resmi distro.</li></ul></section><section><h2>Contoh skrip singkat (otomatis pilih mirror Debian/Arch)</h2><p>Berikut contoh skrip kecil untuk mencoba netselect-apt (Debian) atau reflector (Arch). Jalankan sesuai distro.</p><pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="language-bash">#!/bin/bash
 # quick-mirror.sh (pilih salah satu mode: debian|arch)
 MODE="$1"
 if [ "$MODE" = "debian" ]; then
@@ -408,67 +196,4 @@ elif [ "$MODE" = "arch" ]; then
   sudo pacman -Syyu
 else
   echo "Usage: $0 debian|arch"
-fi</code></pre>
-  </section>
-  <section>
-<h2>Penutup</h2>
-<p>
-  Dengan memilih mirror yang tepat sesuai distro dan lokasi, update &amp;
-  instalasi paket jadi lebih cepat dan nyaman. Jika ragu, jangan lupa
-  backup konfigurasi repo dan coba mirror satu per satu sampai menemukan
-  yang stabil &amp; cepat untuk koneksimu.
-</p>
-<div style="margin-top: 18px; color: var(--muted); font-size: 10px">
-  <span id="current-url" class="small-muted"></span>
-</div>
-<div style="margin-top: 18px">
-  <div class="fb-comments" id="fb-comments" data-href="" data-width="100%" data-numposts="5"></div>
-  <script>
-let currentUrl = window.location.href;
-((document.getElementById("current-url").textContent = currentUrl),
-  document
-.getElementById("fb-comments")
-.setAttribute("data-href", currentUrl),
-  (window.fbAsyncInit = function () {
-if ("undefined" != typeof FB)
-  try {
-FB.XFBML.parse();
-  } catch (t) {}
-  }));
-  </script>
-</div>
-  </section>
-  <section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section>
-    </main>
-<footer>
-  🄯 2025 • Panduan Mirror Linux — Gunakan mirror resmi dan selalu
-  backup konfigurasi sebelum mengganti.
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer=""></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js" defer=""></script>
-<script>
-  function copyCode(t) {
-var e = t.parentElement.querySelector("code");
-e &&
-  navigator.clipboard
-.writeText(e.innerText)
-.then(() => {
-  let e = t.textContent;
-  ((t.textContent = "Copied!"),
-setTimeout(() => (t.textContent = e), 1400));
-})
-.catch(() => {
-  alert("Copy failed — please copy manually.");
-});
-  }
-  let darkToggle = document.getElementById("darkToggle");
-  darkToggle.addEventListener("click", () => {
-document.body.classList.toggle("dark");
-var e = document.body.classList.contains("dark");
-darkToggle.textContent = e ? "☀️ Light Mode" : "🌙 Dark Mode";
-  });
-</script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+fi</code></pre></section><section><h2>Penutup</h2><p>Dengan memilih mirror yang tepat sesuai distro dan lokasi, update &amp; instalasi paket jadi lebih cepat dan nyaman. Jika ragu, jangan lupa backup konfigurasi repo dan coba mirror satu per satu sampai menemukan yang stabil &amp; cepat untuk koneksimu.</p><div style="margin-top: 18px; color: var(--muted); font-size: 10px"><span id="current-url" class="small-muted"></span></div><div style="margin-top: 18px"><div class="fb-comments" id="fb-comments" data-href="" data-width="100%" data-numposts="5"></div><script>let currentUrl=window.location.href;document.getElementById("current-url").textContent=currentUrl,document.getElementById("fb-comments").setAttribute("data-href",currentUrl),window.fbAsyncInit=function(){if("undefined"!=typeof FB)try{FB.XFBML.parse()}catch(t){}}</script></div></section><section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></main><footer>🄯 2025 • Panduan Mirror Linux — Gunakan mirror resmi dan selalu backup konfigurasi sebelum mengganti.</footer><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer=""></script><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js" defer=""></script><script>function copyCode(e){var t=e.parentElement.querySelector("code");t&&navigator.clipboard.writeText(t.innerText).then(()=>{let t=e.textContent;e.textContent="Copied!",setTimeout(()=>e.textContent=t,1400)}).catch(()=>{alert("Copy failed — please copy manually.")})}let darkToggle=document.getElementById("darkToggle");darkToggle.addEventListener("click",()=>{document.body.classList.toggle("dark");var e=document.body.classList.contains("dark");darkToggle.textContent=e?"☀️ Light Mode":"🌙 Dark Mode"})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>

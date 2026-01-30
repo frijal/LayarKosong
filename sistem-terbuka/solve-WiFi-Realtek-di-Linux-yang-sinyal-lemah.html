@@ -1,12 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiFi Realtek Linux: Sinyal Lemah Fix</title>
-    <meta name="description" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.">
-    <meta name="keywords" content="wifi realtek linux, sinyal wifi lemah, rtl8723be, linux wifi fix, driver realtek linux, modprobe, iwconfig">
-    <meta name="date" content="2025-09-27">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WiFi Realtek Linux: Sinyal Lemah Fix</title><meta name="description" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal."><meta name="keywords" content="wifi realtek linux, sinyal wifi lemah, rtl8723be, linux wifi fix, driver realtek linux, modprobe, iwconfig"><meta name="date" content="2025-09-27"><style>body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
         header { text-align: center; color: #c0392b; padding-bottom: 10px; border-bottom: 2px solid #e74c3c; }
         h1, h2 { color: #c0392b; }
@@ -24,54 +16,7 @@
         .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
         pre { background: #2d2d2d; color: #f1f1f1; padding: 15px; border-radius: 8px; overflow-x: auto; position: relative; }
         code { font-family: 'Courier New', Courier, monospace; }
-        .copy-btn { position: absolute; top: 10px; right: 10px; background-color: #e74c3c; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
-    </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<meta name="ai:summary" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.">
-<meta name="ai:prompt_hint" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.">
-    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/">
-    <meta property="og:title" content="WiFi Realtek Linux: Sinyal Lemah Fix">
-    <meta property="og:description" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
-    <meta property="og:image:alt" content="WiFi Realtek Linux: Sinyal Lemah Fix">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"WiFi Realtek Linux: Sinyal Lemah Fix","description":"Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.","articleSection":"Sistem Terbuka","keywords":"Linux, Realtek, WiFi, layar kosong, lemah, linux, realtek, sinyal, sistem terbuka, solve, wifi, yang","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2016-09-13T03:00:00.000+00:00","dateModified":"2016-09-13T03:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"WiFi Realtek Linux: Sinyal Lemah Fix","item":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"}]}]}</script>
-</head>
-<body>
-    <main class="container">
-        <header>
-            <h1>Fix WiFi Realtek di Linux (Sinyal Lemah)</h1>
-<div id="iposbrowser"></div>
-        </header>
-        <article>
-            <p>Jika Anda menggunakan adapter WiFi Realtek di Linux (seperti pada beberapa model laptop) dan mengalami sinyal yang lemah atau tidak stabil, masalah ini seringkali bisa diatasi dengan mengatur ulang modul driver dan memilih antena yang tepat.</p>
-            <section class="gallery">
-                <img loading="lazy" src="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp" alt="Logo WiFi dengan sinyal kuat di atas logo Linux Tux">
-            </section>
-            <section>
-                <h2>Langkah-langkah Perbaikan</h2>
-                <p>Berikut adalah langkah-langkah yang bisa Anda coba melalui terminal. Perintah ini secara spesifik menargetkan driver <code>rtl8723be</code>, salah satu yang paling umum bermasalah.</p>
-                <pre><code id="wifiCode"># Cek nama interface WiFi Anda (misal: wlan0, wlp2s0)
+        .copy-btn { position: absolute; top: 10px; right: 10px; background-color: #e74c3c; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal."><meta name="ai:prompt_hint" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"><meta property="og:title" content="WiFi Realtek Linux: Sinyal Lemah Fix"><meta property="og:description" content="Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp"><meta property="og:image:alt" content="WiFi Realtek Linux: Sinyal Lemah Fix"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp"><meta itemprop="image" content="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"WiFi Realtek Linux: Sinyal Lemah Fix","description":"Panduan mudah memperbaiki sinyal WiFi lemah pada adapter Realtek di Linux menggunakan beberapa perintah sederhana di terminal.","articleSection":"Sistem Terbuka","keywords":"Linux, Realtek, WiFi, layar kosong, lemah, linux, realtek, sinyal, sistem terbuka, solve, wifi, yang","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2016-09-13T03:00:00.000+00:00","dateModified":"2016-09-13T03:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"WiFi Realtek Linux: Sinyal Lemah Fix","item":"https://dalam.web.id/sistem-terbuka/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah/"}]}]}</script></head><body><main class="container"><header><h1>Fix WiFi Realtek di Linux (Sinyal Lemah)</h1><div id="iposbrowser"></div></header><article><p>Jika Anda menggunakan adapter WiFi Realtek di Linux (seperti pada beberapa model laptop) dan mengalami sinyal yang lemah atau tidak stabil, masalah ini seringkali bisa diatasi dengan mengatur ulang modul driver dan memilih antena yang tepat.</p><section class="gallery"><img loading="lazy" src="https://dalam.web.id/img/solve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.webp" alt="Logo WiFi dengan sinyal kuat di atas logo Linux Tux"></section><section><h2>Langkah-langkah Perbaikan</h2><p>Berikut adalah langkah-langkah yang bisa Anda coba melalui terminal. Perintah ini secara spesifik menargetkan driver <code>rtl8723be</code>, salah satu yang paling umum bermasalah.</p><pre><code id="wifiCode"># Cek nama interface WiFi Anda (misal: wlan0, wlp2s0)
 iwconfig
 # Matikan interface WiFi
 sudo ifconfig wlan0 down
@@ -79,51 +24,4 @@ sudo ifconfig wlan0 down
 sudo modprobe -r rtl8723be
 sudo modprobe rtl8723be ant_sel=2
 # Aktifkan kembali interface WiFi
-sudo ifconfig wlan0 up</code><button class="copy-btn" onclick="copyCode()">Copy</button></pre>
-                <p><strong>Catatan:</strong> Ganti <code>wlan0</code> dengan nama interface WiFi Anda. Opsi <code>ant_sel=2</code> memaksa driver untuk menggunakan antena kedua, yang seringkali memiliki penerimaan sinyal lebih baik. Jika tidak berhasil, Anda bisa mencoba <code>ant_sel=1</code>.</p>
-            </section>
-            <section class="social-sharing">
-                <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-            </section>
-            <h2>Diskusi &amp; Jaga Data Pribadi Tetap Aman.</h2>
-    </article>
-    </main>
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">×</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Gambar - WiFi Realtek Linux: Sinyal Lemah Fix">
-    </div>
-    <script>
-        function copyCode() {
-            const code = document.getElementById("wifiCode").innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Perintah berhasil disalin!");
-            });
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = document.querySelectorAll(".gallery img");
-            if (images.length > 0) {
-                const lightbox = document.getElementById("lightbox");
-                const lightboxImg = document.getElementById("lightbox-img");
-                const closeBtn = document.querySelector(".lightbox-close");
-                images.forEach((img) => {
-                    img.addEventListener("click", () => {
-                        lightbox.style.display = "flex";
-                        lightboxImg.src = img.src;
-                    });
-                });
-                function closeLightbox() {
-                    lightbox.style.display = "none";
-                }
-                closeBtn.addEventListener("click", closeLightbox);
-                lightbox.addEventListener("click", (e) => {
-                    if (e.target === lightbox) {
-                        closeLightbox();
-                    }
-                });
-            }
-        });
-    </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+sudo ifconfig wlan0 up</code><button class="copy-btn" onclick="copyCode()">Copy</button></pre><p><strong>Catatan:</strong> Ganti <code>wlan0</code> dengan nama interface WiFi Anda. Opsi <code>ant_sel=2</code> memaksa driver untuk menggunakan antena kedua, yang seringkali memiliki penerimaan sinyal lebih baik. Jika tidak berhasil, Anda bisa mencoba <code>ant_sel=1</code>.</p></section><section class="social-sharing"><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section><h2>Diskusi &amp; Jaga Data Pribadi Tetap Aman.</h2></article></main><div id="lightbox" class="lightbox"><span class="lightbox-close">×</span> <img class="lightbox-content" id="lightbox-img" alt="Gambar - WiFi Realtek Linux: Sinyal Lemah Fix"></div><script>function copyCode(){const e=document.getElementById("wifiCode").innerText;navigator.clipboard.writeText(e).then(()=>{alert("Perintah berhasil disalin!")})}document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".gallery img");if(e.length>0){const n=document.getElementById("lightbox"),i=document.getElementById("lightbox-img"),o=document.querySelector(".lightbox-close");function t(){n.style.display="none"}e.forEach(e=>{e.addEventListener("click",()=>{n.style.display="flex",i.src=e.src})}),o.addEventListener("click",t),n.addEventListener("click",e=>{e.target===n&&t()})}})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>

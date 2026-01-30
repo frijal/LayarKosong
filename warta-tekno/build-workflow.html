@@ -1,19 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<!-- ===== Basic Meta ===== -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</title>
-<meta name="news_keywords" content="GitHub Pages, GitHub Actions, workflow YAML, build otomatis, CI/CD, static site, automation, DevOps">
-<!-- ===== Favicon ===== -->
-<link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
-<!-- ===== Open Graph ===== -->
-<!-- ===== Article Meta ===== -->
-<meta name="date" content="2025-09-28">
-<!-- ===== Twitter Card ===== -->
-<!-- ===== Structured Image Hint ===== -->
-<!-- ===== Schema.org JSON-LD ===== -->
-<style>
-:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</title><meta name="news_keywords" content="GitHub Pages, GitHub Actions, workflow YAML, build otomatis, CI/CD, static site, automation, DevOps"><link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><meta name="date" content="2025-09-28"><style>:root {
   color-scheme: light dark;
   --bg: #f9fafb;
   --text: #1a1a1a;
@@ -89,61 +74,7 @@ footer {
   text-align: center;
   opacity: 0.7;
   font-size: 0.9rem;
-}
-</style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<meta name="description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
-<meta name="ai:summary" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
-<meta name="ai:prompt_hint" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/build-workflow/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/build-workflow/">
-    <meta property="og:title" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages">
-    <meta property="og:description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image:alt" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta itemprop="image" content="https://dalam.web.id/thumbnail.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/build-workflow/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/build-workflow/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages","description":"Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.","articleSection":"Warta Tekno","keywords":"build, files, generate, github, layar kosong, otomatis, pages, site, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/thumbnail.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-01T23:20:38.176+00:00","dateModified":"2025-05-01T23:20:38.176+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/build-workflow/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages","item":"https://dalam.web.id/warta-tekno/build-workflow/"}]}]}</script>
-</head>
-<body>
-<main>
-  <h1>⚙️ Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</h1>
-<div id="iposbrowser"></div>
-  <p>
-    Ketika kamu mengelola proyek berbasis <strong>GitHub Pages</strong>, penting untuk memastikan semua proses build berjalan otomatis.
-    Workflow ini membantu kamu menghasilkan file HTML, JSON, dan aset lain dari direktori sumber (seperti <code>artikel/</code>)
-    setiap kali ada perubahan. Dengan GitHub Actions, semua itu bisa dilakukan tanpa harus menjalankan build manual di lokal.
-  </p>
-  <p>
-    Workflow yang kita bahas di sini akan membangun situs secara otomatis, memperbarui file artikel JSON,
-    dan memastikan hasil akhir siap untuk di-deploy di cabang <code>gh-pages</code> atau <code>main</code>.
-  </p>
-  <h2>📂 Struktur &amp; Lokasi File</h2>
-  <p>
-    Simpan file berikut di direktori:
-  </p>
-  <pre><code class="language-bash">.github/workflows/build.yml</code></pre>
-  <h2>🧩 Isi Lengkap Workflow YAML</h2>
-  <p>Berikut skrip lengkapnya, dengan komentar untuk setiap bagian:</p>
-  <pre><code class="language-yaml"># Nama workflow di-update untuk mencerminkan semua tugasnya
+}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions."><meta name="ai:summary" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions."><meta name="ai:prompt_hint" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions."><link rel="canonical" href="https://dalam.web.id/warta-tekno/build-workflow/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/build-workflow/"><meta property="og:title" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages"><meta property="og:description" content="Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/thumbnail.webp"><meta property="og:image:alt" content="Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp"><meta itemprop="image" content="https://dalam.web.id/thumbnail.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/build-workflow/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/build-workflow/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages","description":"Panduan lengkap membuat workflow otomatis untuk membangun dan menghasilkan file situs di GitHub Pages menggunakan YAML dan GitHub Actions.","articleSection":"Warta Tekno","keywords":"build, files, generate, github, layar kosong, otomatis, pages, site, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/thumbnail.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-01T23:20:38.176+00:00","dateModified":"2025-05-01T23:20:38.176+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/build-workflow/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages","item":"https://dalam.web.id/warta-tekno/build-workflow/"}]}]}</script></head><body><main><h1>⚙️ Workflow Otomatis Build &amp; Generate Site Files di GitHub Pages</h1><div id="iposbrowser"></div><p>Ketika kamu mengelola proyek berbasis <strong>GitHub Pages</strong>, penting untuk memastikan semua proses build berjalan otomatis. Workflow ini membantu kamu menghasilkan file HTML, JSON, dan aset lain dari direktori sumber (seperti <code>artikel/</code>) setiap kali ada perubahan. Dengan GitHub Actions, semua itu bisa dilakukan tanpa harus menjalankan build manual di lokal.</p><p>Workflow yang kita bahas di sini akan membangun situs secara otomatis, memperbarui file artikel JSON, dan memastikan hasil akhir siap untuk di-deploy di cabang <code>gh-pages</code> atau <code>main</code>.</p><h2>📂 Struktur &amp; Lokasi File</h2><p>Simpan file berikut di direktori:</p><pre><code class="language-bash">.github/workflows/build.yml</code></pre><h2>🧩 Isi Lengkap Workflow YAML</h2><p>Berikut skrip lengkapnya, dengan komentar untuk setiap bagian:</p><pre><code class="language-yaml"># Nama workflow di-update untuk mencerminkan semua tugasnya
 name: Build and Generate Site Files
 on:
   push:
@@ -179,41 +110,4 @@ jobs:
           git add .
           git commit -m "🚀 Build otomatis: update site files"
           git push
-</code></pre>
-  <h2>🧠 Penjelasan Tiap Bagian</h2>
-  <p>
-    1️⃣ <b>Trigger (on:)</b> — Workflow ini akan aktif setiap kali ada perubahan pada folder <code>artikel/</code>,
-    bisa juga dijalankan manual (dispatch) atau terjadwal (cron).
-  </p>
-  <p>
-    2️⃣ <b>Setup Node.js</b> — Menggunakan versi terbaru agar kompatibel dengan dependensi modern.
-  </p>
-  <p>
-    3️⃣ <b>Generate site files</b> — Tahap ini menjalankan skrip khusus seperti <code>tools/generate.js</code>
-    untuk membuat struktur konten situs dari artikel HTML.
-  </p>
-  <p>
-    4️⃣ <b>Copy artikel.json</b> — Menyalin metadata hasil build ke folder <code>artikel/</code> agar mudah diakses oleh front-end.
-  </p>
-  <p>
-    5️⃣ <b>Commit &amp; Push otomatis</b> — Menyimpan semua hasil build ke repositori, lengkap dengan pesan commit yang rapi.
-  </p>
-  <h2>💡 Tips</h2>
-  <ul>
-    <li>Pastikan file <code>generate.js</code> dan <code>summary.js</code> berada di folder <code>tools/</code>.</li>
-    <li>Kamu bisa ubah waktu <code>cron</code> sesuai zona waktu lokal (misal UTC+7 = 04:00 UTC untuk jam 11 pagi).</li>
-    <li>Gunakan <code>npm ci</code> alih-alih <code>npm install</code> agar build lebih cepat dan konsisten.</li>
-  </ul>
-  <h2>🎯 Kesimpulan</h2>
-  <p>
-    Dengan workflow YAML ini, proses pembangunan situs jadi otomatis sepenuhnya.
-    Kamu tinggal fokus menulis artikel, dan GitHub Actions yang akan mengurus build serta update file JSON setiap hari.
-    Tidak perlu build manual, tidak ada kekhawatiran lupa commit hasil generate.
-  </p>
-  <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-  <footer>🄯 2025 dalam.web.id · Workflow Otomatis GitHub Pages</footer>
-    </main>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+</code></pre><h2>🧠 Penjelasan Tiap Bagian</h2><p>1️⃣ <b>Trigger (on:)</b> — Workflow ini akan aktif setiap kali ada perubahan pada folder <code>artikel/</code>, bisa juga dijalankan manual (dispatch) atau terjadwal (cron).</p><p>2️⃣ <b>Setup Node.js</b> — Menggunakan versi terbaru agar kompatibel dengan dependensi modern.</p><p>3️⃣ <b>Generate site files</b> — Tahap ini menjalankan skrip khusus seperti <code>tools/generate.js</code> untuk membuat struktur konten situs dari artikel HTML.</p><p>4️⃣ <b>Copy artikel.json</b> — Menyalin metadata hasil build ke folder <code>artikel/</code> agar mudah diakses oleh front-end.</p><p>5️⃣ <b>Commit &amp; Push otomatis</b> — Menyimpan semua hasil build ke repositori, lengkap dengan pesan commit yang rapi.</p><h2>💡 Tips</h2><ul><li>Pastikan file <code>generate.js</code> dan <code>summary.js</code> berada di folder <code>tools/</code>.</li><li>Kamu bisa ubah waktu <code>cron</code> sesuai zona waktu lokal (misal UTC+7 = 04:00 UTC untuk jam 11 pagi).</li><li>Gunakan <code>npm ci</code> alih-alih <code>npm install</code> agar build lebih cepat dan konsisten.</li></ul><h2>🎯 Kesimpulan</h2><p>Dengan workflow YAML ini, proses pembangunan situs jadi otomatis sepenuhnya. Kamu tinggal fokus menulis artikel, dan GitHub Actions yang akan mengurus build serta update file JSON setiap hari. Tidak perlu build manual, tidak ada kekhawatiran lupa commit hasil generate.</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div><footer>🄯 2025 dalam.web.id · Workflow Otomatis GitHub Pages</footer></main><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>

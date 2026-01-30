@@ -1,14 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- prettier-ignore -->
-<title>Mengatasi Git Merge Conflict dengan Santai</title>
-  <!-- SEO Metadata -->
-  <meta name="description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
-  <!-- Open Graph -->
-  <!-- Favicon -->
-  <style>
-body {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mengatasi Git Merge Conflict dengan Santai</title><meta name="description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami."><style>body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #fefefe;
@@ -106,86 +96,11 @@ footer {
   margin-top: 20px;
   font-size: 14px;
   color: #555;
-}
-  </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<meta name="ai:summary" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
-<meta name="ai:prompt_hint" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/git-merge-conflict/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/git-merge-conflict/">
-    <meta property="og:title" content="Mengatasi Git Merge Conflict dengan Santai">
-    <meta property="og:description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/git-merge-conflict.webp">
-    <meta property="og:image:alt" content="Mengatasi Git Merge Conflict dengan Santai">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/git-merge-conflict.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/git-merge-conflict.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Mengatasi Git Merge Conflict dengan Santai","description":"Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.","articleSection":"Warta Tekno","keywords":"conflict, layar kosong, mengatasi, merge, santai, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/git-merge-conflict.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-09-14T03:00:00.000+00:00","dateModified":"2025-09-14T03:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Mengatasi Git Merge Conflict dengan Santai","item":"https://dalam.web.id/warta-tekno/git-merge-conflict/"}]}]}</script>
-</head>
-<body>
-  <header>
-<h1>Mengatasi Git Merge Conflict dengan Santai 🤖</h1>
-<div id="iposbrowser"></div>
-<p>Panduan step-by-step biar nggak panik waktu ketemu tulisan merah di terminal.</p>
-  </header>
-  <main>
-<h2>🔎 Situasi yang Sering Terjadi</h2>
-<p>Kamu lagi kerja di branch <code>main</code>, commit sudah dibuat, lalu tiba-tiba pas <code>git merge origin/main</code> muncul pesan <b>conflict</b>.
-Ini artinya branch lokal dan remote sudah berbeda arah, dan Git minta kamu yang tentukan mana isi file yang benar.</p>
-<h2>🛠 Langkah Penyelesaian</h2>
-<ol>
-  <li><b>Cek status</b> dengan <code>git status</code> biar tahu file mana yang bermasalah.</li>
-  <li><b>Buka file</b> yang kena conflict, biasanya akan ada tanda seperti ini:
-<pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami."><meta name="ai:prompt_hint" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami."><link rel="canonical" href="https://dalam.web.id/warta-tekno/git-merge-conflict/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/git-merge-conflict/"><meta property="og:title" content="Mengatasi Git Merge Conflict dengan Santai"><meta property="og:description" content="Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/git-merge-conflict.webp"><meta property="og:image:alt" content="Mengatasi Git Merge Conflict dengan Santai"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/git-merge-conflict.webp"><meta itemprop="image" content="https://dalam.web.id/img/git-merge-conflict.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Mengatasi Git Merge Conflict dengan Santai","description":"Panduan lengkap mengatasi git merge conflict di branch main dengan penjelasan santai, responsif, dan mudah dipahami.","articleSection":"Warta Tekno","keywords":"conflict, layar kosong, mengatasi, merge, santai, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/git-merge-conflict.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-09-14T03:00:00.000+00:00","dateModified":"2025-09-14T03:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-merge-conflict/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Mengatasi Git Merge Conflict dengan Santai","item":"https://dalam.web.id/warta-tekno/git-merge-conflict/"}]}]}</script></head><body><header><h1>Mengatasi Git Merge Conflict dengan Santai 🤖</h1><div id="iposbrowser"></div><p>Panduan step-by-step biar nggak panik waktu ketemu tulisan merah di terminal.</p></header><main><h2>🔎 Situasi yang Sering Terjadi</h2><p>Kamu lagi kerja di branch <code>main</code>, commit sudah dibuat, lalu tiba-tiba pas <code>git merge origin/main</code> muncul pesan <b>conflict</b>. Ini artinya branch lokal dan remote sudah berbeda arah, dan Git minta kamu yang tentukan mana isi file yang benar.</p><h2>🛠 Langkah Penyelesaian</h2><ol><li><b>Cek status</b> dengan <code>git status</code> biar tahu file mana yang bermasalah.</li><li><b>Buka file</b> yang kena conflict, biasanya akan ada tanda seperti ini:<pre>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 # Versi dari branch lokal
 ...
 =======
 # Versi dari origin/main
 ...
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main
-</pre>
-  </li>
-  <li><b>Edit manual</b> → pilih isi yang kamu butuhkan, atau gabungkan dua-duanya.
-  Jangan lupa hapus tanda <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, dan <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</li>
-  <li><b>Tandai selesai</b> dengan <code>git add</code>.</li>
-  <li><b>Commit merge</b> dengan <code>git commit</code>.</li>
-  <li><b>Push</b> hasil merge ke remote dengan <code>git push origin main</code>.</li>
-</ol>
-<h2>🩹 Kalau Mau Batalin Merge</h2>
-<p>Kadang kita salah edit atau bingung, santai aja. Kamu bisa mundur dengan:</p>
-<pre>git merge --abort</pre>
-   <!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="prev">❮</span>
-  <img id="lightbox-img" src="" alt="Gambar - Mengatasi Git Merge Conflict dengan Santai">
-  <span class="next">❯</span>
-</div>
-<div class="share">
-<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-</div>
-    </main>
-  <footer>
-<p>🄯 2025 Panduan Git Merge Conflict - Dibuat dengan ❤ untuk developer Indonesia</p>
-  </footer>
-  <!-- Lightbox Script -->
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+</pre></li><li><b>Edit manual</b> → pilih isi yang kamu butuhkan, atau gabungkan dua-duanya. Jangan lupa hapus tanda <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, dan <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</li><li><b>Tandai selesai</b> dengan <code>git add</code>.</li><li><b>Commit merge</b> dengan <code>git commit</code>.</li><li><b>Push</b> hasil merge ke remote dengan <code>git push origin main</code>.</li></ol><h2>🩹 Kalau Mau Batalin Merge</h2><p>Kadang kita salah edit atau bingung, santai aja. Kamu bisa mundur dengan:</p><pre>git merge --abort</pre><div class="lightbox" id="lightbox"><span class="prev">❮</span> <img id="lightbox-img" src="" alt="Gambar - Mengatasi Git Merge Conflict dengan Santai"> <span class="next">❯</span></div><div class="share"><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></div></main><footer><p>🄯 2025 Panduan Git Merge Conflict - Dibuat dengan ❤ untuk developer Indonesia</p></footer><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
