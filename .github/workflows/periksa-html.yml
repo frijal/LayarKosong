@@ -35,11 +35,8 @@ jobs:
           echo "📋 Laporan Validasi HTML & SEO" > $TXT
           echo "[" > $JSON
 
-          FIRST=1
-          
-          # Tentukan folder kategori kamu di sini (pisahkan dengan spasi)
-          # Contoh: ./blog ./artikel ./tutorial
-          FOLDERS="./artikel ./kategori ./blog"
+          FIRST=1          
+          FOLDERS="./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno"
 
           # Kita gunakan find hanya pada folder-folder tersebut
           for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
