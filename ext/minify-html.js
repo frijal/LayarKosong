@@ -12,11 +12,12 @@ const folders = [
   './warta-tekno'
 ];
 
-// === SIGNATURE DENGAN TANGGAL ===
-// Format: YYYY-MM-DD (stabil, gampang di-audit)
-const TODAY = new Date().toISOString().slice(0, 10);
-const SIGNATURE_PREFIX = '<!-- jepitan_oleh_Fakhrul_Rijal ';
-const SIGNATURE = `${SIGNATURE_PREFIX}${TODAY} -->`;
+// === SIGNATURE STATIS (Dihitung sekali saat skrip jalan) ===
+const now = new Date();
+const datePart = now.toISOString().slice(0, 10);
+const timePart = now.toTimeString().slice(0, 5); // Ambil HH:mm
+
+const SIGNATURE_PREFIX = '`;
 
 // Inisialisasi penghitung
 let stats = {
@@ -43,18 +44,24 @@ async function minifyFiles(dir) {
 
     const originalHTML = fs.readFileSync(filePath, 'utf8');
 
-    // === CEK: SUDAH PERNAH DI-MINIFY (SIGNATURE DI AKHIR FILE) ===
-    const trimmed = originalHTML.trimEnd();
-    if (trimmed.endsWith('-->') && trimmed.includes(SIGNATURE_PREFIX)) {
+    // === 1. CEK: JANGAN PROSES KALAU FILE KOSONG ===
+    if (!originalHTML.trim()) {
+      continue;
+    }
+
+    // === 2. CEK: SUDAH PERNAH DI-MINIFY? (LOGIKA ANTI-LOLOS) ===
+    // Menggunakan regex supaya lebih sakti mendeteksi prefix di mana saja
+    const signatureRegex = new RegExp(SIGNATURE_PREFIX);
+    if (signatureRegex.test(originalHTML)) {
       stats.skipped++;
-      console.log(`⏭️  Skipped: ${filePath}`);
+      console.log(`⏭️  Skipped (Sudah ada jepitan): ${filePath}`);
       continue;
     }
 
     try {
       let minifiedHTML = await minify(originalHTML, {
         collapseWhitespace: true,
-        removeComments: true,
+        removeComments: true, // Menghapus komentar lama agar bersih
         minifyJS: true,
         minifyCSS: true,
         processScripts: ['application/ld+json'],
@@ -64,12 +71,14 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // Pastikan rapi + signature selalu di baris terakhir
-      minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}\n`;
+      // === 3. PASANG SIGNATURE (Ditaruh di baris paling akhir) ===
+      // trimEnd() memastikan tidak ada spasi/baris kosong sisa di bawah
+      minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
+      
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
 
       stats.success++;
-      console.log(`✅ Success: ${filePath}`);
+      console.log(`✅ Success Minify: ${filePath}`);
     } catch (err) {
       stats.failed++;
       stats.errorFiles.push({ path: filePath, msg: err.message });
@@ -79,26 +88,25 @@ async function minifyFiles(dir) {
 }
 
 // --- EKSEKUSI UTAMA ---
-console.log('🧼 Memulai Minify Cerdas untuk Layar Kosong...');
+console.log('🧼 Memulai Minify Cerdas (Statis Signature) untuk Layar Kosong...');
 
 for (const folder of folders) {
   await minifyFiles(folder);
 }
 
 // --- LAPORAN REKAPITULASI ---
-console.log('\n' + '='.repeat(40));
+console.log('\n' + '='.repeat(45));
 console.log('📊 REKAPITULASI PROSES MINIFY');
-console.log('='.repeat(40));
+console.log('='.repeat(45));
 console.log(`✅ Berhasil di-minify : ${stats.success}`);
 console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
 console.log(`❌ Gagal (Parse Error): ${stats.failed}`);
 
 if (stats.failed > 0) {
-  console.log('\n⚠️ DAFTAR FILE BERMASALAH:');
+  console.log('\n⚠️  DAFTAR FILE BERMASALAH:');
   stats.errorFiles.forEach((item, index) => {
     console.log(`${index + 1}. ${item.path} -> ${item.msg}`);
   });
-  console.log('\n💡 Tips: Cek tag HTML yang tidak tertutup atau script JS yang rusak.');
 }
 
-console.log('='.repeat(40) + '\n');
+console.log('='.repeat(45) + '\n');
