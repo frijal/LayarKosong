@@ -1,4 +1,9 @@
 {
+  "postUpdateOptions": ["npmIfPresent"],
+  "rangeStrategy": "update-lockfile",
+  "rebaseWhen": "behind-base-branch"
+}
+{
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
