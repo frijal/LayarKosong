@@ -96,22 +96,9 @@ jobs:
 
       # --- PERUBAHAN POSISI DI SINI ---
       
-      - name: '7️⃣ Clean Empty Lines (Minify DULU)'
+      - name: '7️⃣ Clean HTML Cerdas (html-minifier-terser)'
         if: env.DO_MINIFY == 'true'
-        run: |
-          echo "🧹 Membersihkan HTML sebelum diinjeksi Schema..."
-          find . -maxdepth 2 -name "*.html" \
-            ! -path "./node_modules/*" \
-            ! -path "./.*" \
-            ! -path "./artikel/*" \
-            ! -path "./artikelx/*" \
-            ! -path "./ext/*" \
-            ! -path "./sementara/*" \
-            ! -path "./mini/*" \
-            ! -path "./img/*" \
-            ! -name "index.html" \
-            -exec sed -i '/^[[:space:]]*$/d' {} +
-          echo "✅ Pembersihan selesai."
+        run: node ext/minify-html.js
 
       - name: '8️⃣ Inject schema.org (BARU KEMUDIAN)'
         if: env.DO_SCHEMA == 'true'
