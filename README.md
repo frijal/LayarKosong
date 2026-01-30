@@ -215,7 +215,6 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 [![🔄 Proses ArtikelX](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml)
 [![☢️ Build and Generate Site Files](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml)
-[![⚠️ Copy ke Branch Site Cloudflare](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/copybranch.yml)
 [![Ping Feeds & Sitemap](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/rssping.yml)
 [![🔆 Pengecekan & Laporan Konten Harian](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
 
