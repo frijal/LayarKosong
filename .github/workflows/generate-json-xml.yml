@@ -1,4 +1,4 @@
-name: ☢️ Build and Generate Site Files
+name: 🚀 Build and Generate Site Files (Schema Safe)
 
 on:
   workflow_run:
@@ -27,7 +27,6 @@ on:
     - cron: '0 20 * * *'
 
 env:
-  # Logika: Jika dipicu manual, ambil input. Jika dipicu cron/workflow_run, default true.
   DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
   DO_SITEMAP_TXT: ${{ github.event.inputs.run_sitemap_txt || 'true' }}
   DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
@@ -63,18 +62,23 @@ jobs:
       - name: '3. Install Dependencies'
         run: npm ci
 
+      - name: '4. Setup Python' # Dibutuhkan untuk step Schema nanti
+        if: env.DO_SCHEMA == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
         run: npm run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
-      - name: '6️⃣ Generate sitemap.txt (Sync V6.9)'
+      - name: '6️⃣ Generate sitemap.txt'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
-          echo "📝 Membuat sitemap.txt dari database V6.9..."
+          echo "📝 Membuat sitemap.txt..."
           BASE_URL="https://dalam.web.id"
-          SITEMAP_FILE="sitemap.txt"
           node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
@@ -87,18 +91,15 @@ jobs:
               });
             }
             ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/'].forEach(u => urls.push('${BASE_URL}' + u));
-            fs.writeFileSync('$SITEMAP_FILE', [...new Set(urls)].join('\n') + '\n');
+            fs.writeFileSync('sitemap.txt', [...new Set(urls)].join('\n') + '\n');
           "
-          echo "✅ sitemap.txt sinkron dengan V6.9"
 
-      - name: 7️⃣ Inject schema.org (smart mode)
-        if: env.DO_SCHEMA == 'true'
-        run: python3 ext/inject_schema.py
-
-      - name: '8️⃣ Clean Empty Lines (HTML Minify V6.9)'
+      # --- PERUBAHAN POSISI DI SINI ---
+      
+      - name: '7️⃣ Clean Empty Lines (Minify DULU)'
         if: env.DO_MINIFY == 'true'
         run: |
-          echo "🧹 Membersihkan baris kosong di folder kategori..."
+          echo "🧹 Membersihkan HTML sebelum diinjeksi Schema..."
           find . -maxdepth 2 -name "*.html" \
             ! -path "./node_modules/*" \
             ! -path "./.*" \
@@ -112,27 +113,23 @@ jobs:
             -exec sed -i '/^[[:space:]]*$/d' {} +
           echo "✅ Pembersihan selesai."
 
-      - name: '9️⃣ Commit and Push Generated Files'
+      - name: '8️⃣ Inject schema.org (BARU KEMUDIAN)'
+        if: env.DO_SCHEMA == 'true'
+        run: python3 ext/inject_schema.py
+
+      # --- AKHIR PERUBAHAN POSISI ---
+
+      - name: '9️⃣ Commit and Push'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan file."
+            echo "✅ Tidak ada perubahan."
           else
-            git commit -m "build: 🚀 generate site assets (webp mirrors, json, rss, sitemap)"
-            git pull --rebase origin main || git pull origin main
+            git commit -m "build: 🚀 site assets (webp mirrors, json, rss, sitemap)"
+            git pull --rebase origin main
             git push origin main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 'Summary'
-        if: always()
-        run: |
-          echo "✅ Build & Mirroring selesai"
-          echo "Triggered by: ${{ github.event_name }}"
-          echo "Generator: ${{ env.DO_GENERATOR }}"
-          echo "Sitemap TXT: ${{ env.DO_SITEMAP_TXT }}"
-          echo "Schema: ${{ env.DO_SCHEMA }}"
-          echo "Minify: ${{ env.DO_MINIFY }}"
