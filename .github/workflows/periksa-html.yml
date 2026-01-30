@@ -6,7 +6,6 @@ on:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    # Memberikan izin untuk menulis (write) kembali ke repositori
     permissions:
       contents: write
 
@@ -22,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: 🔍 Audit Komponen & Metadata
+      - name: 🔍 Audit Komponen Berdasarkan Kelompok
         id: run_audit
         run: |
           mkdir -p mini
@@ -31,85 +30,69 @@ jobs:
           
           echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
           echo "📅 Diperiksa pada: $(date)" >> $REPORT
-          echo "> **Catatan:** Workflow ini bersifat Read-Only (hanya memeriksa). Silakan periksa tabel di bawah untuk perbaikan manual." >> $REPORT
-          echo "" >> $REPORT
-          echo "| File | Status | Detail Komponen Bermasalah |" >> $REPORT
-          echo "| :--- | :---: | :--- |" >> $REPORT
+          echo "> **Catatan:** Laporan ini dikelompokkan berdasarkan jenis komponen untuk memudahkan perbaikan manual." >> $REPORT
 
-          ADA_MASALAH=0
+          # Inisialisasi file sementara untuk tiap kategori
+          echo -e "\n## 🏷️ 1. Core Meta & Branding\n| File | Masalah |\n| :--- | :--- |" > cat1.tmp
+          echo -e "\n## 🌐 2. Social Meta & Creators\n| File | Masalah |\n| :--- | :--- |" > cat2.tmp
+          echo -e "\n## 📊 3. Open Graph & Twitter Card\n| File | Masalah |\n| :--- | :--- |" > cat3.tmp
+          echo -e "\n## 🛠️ 4. Assets & Schema\n| File | Masalah |\n| :--- | :--- |" > cat4.tmp
+          echo -e "\n## 📝 5. Variasi Description\n| File | Masalah |\n| :--- | :--- |" > cat5.tmp
+
           FOLDERS="./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno"
 
           for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
-            MASALAH_FILE=0
-            TEMP_MSG=""
+            ERR1=""; ERR2=""; ERR3=""; ERR4=""; ERR5=""
             
-            check_tag() {
-              if ! grep -q "$1" "$file"; then
-                TEMP_MSG+="- Missing: $2<br>"
-                MASALAH_FILE=1
-                ADA_MASALAH=1
-              fi
+            # Fungsi Check per Kategori
+            check() {
+              if ! grep -q "$1" "$file"; then echo "- Missing: $2<br>"; fi
             }
 
-            # 1. Core Meta & Branding
-            check_tag '<link rel="canonical"' "Canonical Tag"
-            check_tag '<link rel="icon" href="/favicon.ico">' "Favicon.ico"
-            check_tag '<meta name="author" content="Fakhrul Rijal">' "Author"
-            check_tag '<meta name="theme-color" content="#00b0ed">' "Theme Color"
-            check_tag 'creativecommons.org/publicdomain/zero/1.0/' "CC0 License"
+            # 1. Core Meta
+            ERR1=$( (check '<link rel="canonical"' "Canonical Tag"; \
+                      check '<link rel="icon" href="/favicon.ico">' "Favicon.ico"; \
+                      check '<meta name="author" content="Fakhrul Rijal">' "Author"; \
+                      check '<meta name="theme-color" content="#00b0ed">' "Theme Color"; \
+                      check 'creativecommons.org/publicdomain/zero/1.0/' "CC0 License") | tr -d '\n' )
+            
+            # 2. Social Meta
+            ERR2=$( (check 'fediverse:creator" content="@frijal@mastodon.social"' "Fediverse Creator"; \
+                      check 'twitter:creator" content="@responaja"' "Twitter Creator"; \
+                      check 'bluesky:creator" content="@dalam.web.id"' "Bluesky Creator") | tr -d '\n' )
 
-            # 2. Social Meta & Creators
-            check_tag 'fediverse:creator" content="@frijal@mastodon.social"' "Fediverse Creator"
-            check_tag 'twitter:creator" content="@responaja"' "Twitter Creator"
-            check_tag 'bluesky:creator" content="@dalam.web.id"' "Bluesky Creator"
-
-            # 3. Open Graph & Twitter Card
-            check_tag 'og:site_name" content="Layar Kosong"' "OG Site Name"
-            check_tag 'og:locale" content="id_ID"' "OG Locale"
-            check_tag 'twitter:card" content="summary_large_image"' "Twitter Card"
-            check_tag 'fb:app_id" content="175216696195384"' "FB App ID"
+            # 3. OG & Twitter
+            ERR3=$( (check 'og:site_name" content="Layar Kosong"' "OG Site Name"; \
+                      check 'og:locale" content="id_ID"' "OG Locale"; \
+                      check 'twitter:card" content="summary_large_image"' "Twitter Card"; \
+                      check 'fb:app_id" content="175216696195384"' "FB App ID") | tr -d '\n' )
 
             # 4. Assets & Schema
-            check_tag 'type="application/rss+xml"' "RSS Feed Link"
-            if ! grep -q 'type="application/ld+json"' "$file"; then
-              TEMP_MSG+="- ❌ **SCHEMA JSON-LD TIDAK DITEMUKAN**<br>"
-              MASALAH_FILE=1; ADA_MASALAH=1
-            fi
+            ERR4=$( (check 'type="application/rss+xml"' "RSS Feed Link") | tr -d '\n' )
+            if ! grep -q 'type="application/ld+json"' "$file"; then ERR4+="- Missing: **Schema JSON-LD**<br>"; fi
 
-            # 5. Variasi Description
-            check_tag 'name="description"' "Meta Description"
-            check_tag 'property="og:description"' "OG Description"
-            check_tag 'name="twitter:description"' "Twitter Description"
-            check_tag 'name="promphint"' "Prompt Hint"
+            # 5. Descriptions
+            ERR5=$( (check 'name="description"' "Meta Description"; \
+                      check 'property="og:description"' "OG Description"; \
+                      check 'name="twitter:description"' "Twitter Description"; \
+                      check 'name="promphint"' "Prompt Hint") | tr -d '\n' )
 
-            if [ "$MASALAH_FILE" -eq 1 ]; then
-              echo "| \`$file\` | ⚠️ Perlu Cek | $TEMP_MSG |" >> $REPORT
-            fi
+            # Masukkan ke file sementara jika ada error
+            [[ ! -z "$ERR1" ]] && echo "| \`$file\` | $ERR1 |" >> cat1.tmp
+            [[ ! -z "$ERR2" ]] && echo "| \`$file\` | $ERR2 |" >> cat2.tmp
+            [[ ! -z "$ERR3" ]] && echo "| \`$file\` | $ERR3 |" >> cat3.tmp
+            [[ ! -z "$ERR4" ]] && echo "| \`$file\` | $ERR4 |" >> cat4.tmp
+            [[ ! -z "$ERR5" ]] && echo "| \`$file\` | $ERR5 |" >> cat5.tmp
           done
 
-          if [ "$ADA_MASALAH" -eq 0 ]; then
-             echo "| Semua file | ✅ Aman | Komponen lengkap sesuai standar. |" >> $REPORT
-          fi
-          
-          # Kirim ke Summary
+          # Gabungkan semua tabel ke laporan utama
+          cat cat1.tmp cat2.tmp cat3.tmp cat4.tmp cat5.tmp >> $REPORT
           cat $REPORT >> $GITHUB_STEP_SUMMARY
 
-      - name: 🧼 Linting HTML (HTMLHint)
-        if: always()
-        run: |
-          echo -e "\n## 🧼 Struktur Kode (HTMLHint)\n" >> $GITHUB_STEP_SUMMARY
-          echo '```text' >> $GITHUB_STEP_SUMMARY
-          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Linting selesai." >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-
-      - name: 💾 Simpan Laporan ke Repositori
+      - name: 💾 Simpan Laporan
         if: always()
         run: |
           git config --local user.email "frijal@gmail.com"
           git config --local user.name "Layar Kosong Bot"
           git add mini/*.md
-          # Hanya commit jika ada perubahan file agar tidak error
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 docs: update laporan audit SEO $(date +'%Y-%m-%d')" && git push)
-
-      - name: ✅ Selesai
-        run: echo "Audit rampung! Cek folder 'mini/' untuk file laporannya."
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 docs: audit SEO terkelompok $(date +'%Y-%m-%d')" && git push)
