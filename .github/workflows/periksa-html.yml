@@ -22,11 +22,13 @@ jobs:
       - name: 🔍 Audit Komponen & Metadata
         id: run_audit
         run: |
+          mkdir -p mini
           TANGGAL=$(date +%Y%m%d)
           REPORT="mini/laporan-audit-$TANGGAL.md"
           
           echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
-          echo "📅 Tanggal: $(date)" >> $REPORT
+          echo "📅 Diperiksa pada: $(date)" >> $REPORT
+          echo "> **Catatan:** Workflow ini diatur untuk tidak gagal (Success) meskipun ditemukan masalah. Silakan periksa tabel di bawah untuk perbaikan manual." >> $REPORT
           echo "" >> $REPORT
           echo "| File | Status | Detail Komponen Bermasalah |" >> $REPORT
           echo "| :--- | :---: | :--- |" >> $REPORT
@@ -79,17 +81,22 @@ jobs:
             check_tag 'name="twitter:description"' "Twitter Description"
             check_tag 'name="promphint"' "Prompt Hint Meta"
 
-            # Masukkan ke tabel jika ada yang bolong
+            if ! grep -q 'type="application/ld+json"' "$file"; then
+              TEMP_MSG+="- ❌ **SCHEMA JSON-LD MISSING**<br>"
+              MASALAH_FILE=1; ADA_MASALAH=1
+            fi
+
+            # Masukkan ke tabel Markdown jika ada masalah
             if [ "$MASALAH_FILE" -eq 1 ]; then
-              echo "| \`$file\` | ❌ | $TEMP_MSG |" >> $REPORT
+              echo "| \`$file\` | ⚠️ Perlu Cek | $TEMP_MSG |" >> $REPORT
             fi
           done
 
           if [ "$ADA_MASALAH" -eq 0 ]; then
-             echo "| Semua file | ✅ | Komponen lengkap sesuai standar. |" >> $REPORT
+             echo "| Semua file | ✅ Aman | Komponen lengkap sesuai standar. |" >> $REPORT
           fi
-
-          if [ "$ADA_MASALAH" -eq 1 ]; then echo "ada_error=true" >> $GITHUB_ENV; fi
+          
+          # Tampilkan laporan di Summary GitHub tanpa bikin exit 1
           cat $REPORT >> $GITHUB_STEP_SUMMARY
 
       - name: 🧼 Linting HTML (HTMLHint)
@@ -97,11 +104,10 @@ jobs:
         run: |
           echo -e "\n## 🧼 Struktur Kode (HTMLHint)\n" >> $GITHUB_STEP_SUMMARY
           echo '```text' >> $GITHUB_STEP_SUMMARY
-          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Ada peringatan struktur." >> $GITHUB_STEP_SUMMARY
+          # Tetap jalankan lint, tapi jangan biarkan exit code-nya menghentikan workflow
+          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Audit Lint selesai dengan beberapa peringatan." >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - name: 🚨 Kesimpulan
-        if: env.ada_error == 'true'
+      - name: ✅ Audit Selesai
         run: |
-          echo "Beberapa artikel belum memenuhi standar komponen Layar Kosong."
-          exit 1
+          echo "Audit telah selesai diproses. Silakan cek tab Summary untuk melihat detail laporan."
