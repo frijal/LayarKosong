@@ -1,4 +1,23 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian</title><meta name="description" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik."><meta name="keywords" content="github actions, workflow, optimasi, puppeteer, ci/cd, single job, frijal pages"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <!-- Metadata Dasar -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
+    <meta name="keywords" content="github actions, workflow, optimasi, puppeteer, ci/cd, single job, frijal pages">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Open Graph (untuk Facebook, LinkedIn, dll) -->
+     <!-- GANTI DENGAN URL GAMBAR KAMU -->
+     <!-- GANTI DENGAN URL GAMBAR KAMU -->
+     <!-- GANTI DENGAN USERNAME TWITTER KAMU -->
+    <!-- CSS & Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>:root {
     --bg-color: #1a1a2e;
     --primary-color: #16213e;
     --secondary-color: #0f3460;
@@ -179,7 +198,94 @@ footer a { color: var(--header-color); text-decoration: none; }
     main { padding: 20px; }
     .timeline { padding-left: 20px; }
     .timeline-icon { left: -10px; }
-}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik."><meta name="ai:prompt_hint" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik."><link rel="canonical" href="https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"><meta property="og:title" content="Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian"><meta property="og:description" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp"><meta property="og:image:alt" content="Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp"><meta itemprop="image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian","description":"Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.","articleSection":"Warta Tekno","keywords":"actions, cerdas, github, harian, layar kosong, optimasi, perawatan, satu, semua, tugas, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-22T11:53:56.641+00:00","dateModified":"2025-10-22T11:53:56.641+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian","item":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"}]}]}</script></head><body><div class="container"><header><h1>Alur Kerja Cerdas: Satu Job untuk Semua Tugas Perawatan Harian 🚀</h1><div id="iposbrowser"></div><p class="subtitle">Sebuah studi kasus tentang cara mengubah workflow yang terpisah-pisah menjadi satu proses tunggal yang efisien, bersih, dan atomik.</p></header><main><article><h2>Masalahnya: Terlalu Banyak Job, Terlalu Boros</h2><p>Awalnya, saya punya workflow harian yang dibagi menjadi beberapa job: satu untuk membersihkan gambar, satu lagi untuk membuat laporan. Secara logika ini benar, tapi secara teknis sangat tidak efisien. Kenapa?</p><div class="problem-box"><ul><li><i class="fas fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan `checkout` repositori dari awal. Ini membuang waktu.</li><li><i class="fas fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li><li><i class="fas fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li></ul></div><p>Solusinya? Rombak total dan gabungkan semuanya ke dalam <strong>satu job tunggal</strong> dengan urutan proses yang logis.</p><h2>Solusi: Satu Alur Kerja, Satu Tujuan</h2><p>Dengan satu job, kita bisa mengatur urutan tugas dengan sempurna: **buat dulu aset baru**, **bersihkan yang lama**, lalu **laporkan kondisi finalnya**. Semua dalam satu proses yang mulus.</p><div class="timeline"><div class="timeline-item"><div class="timeline-icon generate"><i class="fas fa-camera-retro"></i></div><div class="timeline-content"><h3>Langkah 1: Buat Aset Baru (Generate Screenshots)</h3><p>Proses dimulai dengan membuat aset yang mungkin belum ada. Skrip Puppeteer dijalankan untuk membuat screenshot artikel yang belum memiliki gambar cover.</p></div></div><div class="timeline-item"><div class="timeline-icon cleanup"><i class="fas fa-broom"></i></div><div class="timeline-content"><h3>Langkah 2: Bersihkan Aset Lama (Cleanup Orphans)</h3><p>Setelah semua gambar yang seharusnya ada sudah dibuat, sekarang waktunya bersih-bersih. Skrip akan mencari gambar `.webp` yang artikelnya sudah tidak ada lagi (orphan) dan menghapusnya.</p></div></div><div class="timeline-item"><div class="timeline-icon report"><i class="fas fa-chart-bar"></i></div><div class="timeline-content"><h3>Langkah 3: Laporkan Kondisi Final (Count &amp; Report)</h3><p>Setelah semua aset ada di tempatnya dan yang tidak perlu sudah dibuang, barulah kita menghitung dan membuat laporan. Hasil laporan ini akan menjadi cerminan akurat dari kondisi repo saat itu.</p></div></div><div class="timeline-item"><div class="timeline-icon commit"><i class="fab fa-git-alt"></i></div><div class="timeline-content"><h3>Langkah Final: Satu Commit untuk Semua</h3><p>Inilah bagian terbaiknya. Semua perubahan—gambar baru, gambar yang dihapus, dan laporan baru—dikemas ke dalam <strong>satu commit atomik</strong>. Riwayat Git menjadi bersih dan mudah dibaca.</p></div></div></div><h3>Kode Final Workflow:</h3><p>Inilah wujud akhir dari workflow yang sudah dioptimalkan. Satu job, satu tujuan, efisiensi maksimal.</p><div class="code-block"><pre><code>name: 🔆 Perawatan &amp; Laporan Konten Harian
+}
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
+<meta name="ai:prompt_hint" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/">
+    <meta property="og:title" content="Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian">
+    <meta property="og:description" content="Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp">
+    <meta property="og:image:alt" content="Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian","description":"Tutorial cara mengoptimalkan workflow GitHub Actions dengan menggabungkan beberapa job (screenshots, cleanup, reporting) menjadi satu job tunggal yang efisien dan atomik.","articleSection":"Warta Tekno","keywords":"actions, cerdas, github, harian, layar kosong, optimasi, perawatan, satu, semua, tugas, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/optimasi-workflow-harian-github-actions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-22T11:53:56.641+00:00","dateModified":"2025-10-22T11:53:56.641+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Workflow Cerdas: Satu Job untuk Semua Tugas Perawatan Harian","item":"https://dalam.web.id/warta-tekno/optimasi-workflow-harian-github-actions/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Alur Kerja Cerdas: Satu Job untuk Semua Tugas Perawatan Harian 🚀</h1>
+<div id="iposbrowser"></div>
+            <p class="subtitle">Sebuah studi kasus tentang cara mengubah workflow yang terpisah-pisah menjadi satu proses tunggal yang efisien, bersih, dan atomik.</p>
+        </header>
+        <main>
+            <article>
+                <h2>Masalahnya: Terlalu Banyak Job, Terlalu Boros</h2>
+                <p>Awalnya, saya punya workflow harian yang dibagi menjadi beberapa job: satu untuk membersihkan gambar, satu lagi untuk membuat laporan. Secara logika ini benar, tapi secara teknis sangat tidak efisien. Kenapa?</p>
+                <div class="problem-box">
+                    <ul>
+                        <li><i class="fas fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan `checkout` repositori dari awal. Ini membuang waktu.</li>
+                        <li><i class="fas fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li>
+                        <li><i class="fas fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li>
+                    </ul>
+                </div>
+                <p>Solusinya? Rombak total dan gabungkan semuanya ke dalam <strong>satu job tunggal</strong> dengan urutan proses yang logis.</p>
+                <h2>Solusi: Satu Alur Kerja, Satu Tujuan</h2>
+                <p>Dengan satu job, kita bisa mengatur urutan tugas dengan sempurna: **buat dulu aset baru**, **bersihkan yang lama**, lalu **laporkan kondisi finalnya**. Semua dalam satu proses yang mulus.</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon generate"><i class="fas fa-camera-retro"></i></div>
+                        <div class="timeline-content">
+                            <h3>Langkah 1: Buat Aset Baru (Generate Screenshots)</h3>
+                            <p>Proses dimulai dengan membuat aset yang mungkin belum ada. Skrip Puppeteer dijalankan untuk membuat screenshot artikel yang belum memiliki gambar cover.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon cleanup"><i class="fas fa-broom"></i></div>
+                        <div class="timeline-content">
+                            <h3>Langkah 2: Bersihkan Aset Lama (Cleanup Orphans)</h3>
+                            <p>Setelah semua gambar yang seharusnya ada sudah dibuat, sekarang waktunya bersih-bersih. Skrip akan mencari gambar `.webp` yang artikelnya sudah tidak ada lagi (orphan) dan menghapusnya.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon report"><i class="fas fa-chart-bar"></i></div>
+                        <div class="timeline-content">
+                            <h3>Langkah 3: Laporkan Kondisi Final (Count &amp; Report)</h3>
+                            <p>Setelah semua aset ada di tempatnya dan yang tidak perlu sudah dibuang, barulah kita menghitung dan membuat laporan. Hasil laporan ini akan menjadi cerminan akurat dari kondisi repo saat itu.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon commit"><i class="fab fa-git-alt"></i></div>
+                        <div class="timeline-content">
+                            <h3>Langkah Final: Satu Commit untuk Semua</h3>
+                            <p>Inilah bagian terbaiknya. Semua perubahan—gambar baru, gambar yang dihapus, dan laporan baru—dikemas ke dalam <strong>satu commit atomik</strong>. Riwayat Git menjadi bersih dan mudah dibaca.</p>
+                        </div>
+                    </div>
+                </div>
+                <h3>Kode Final Workflow:</h3>
+                <p>Inilah wujud akhir dari workflow yang sudah dioptimalkan. Satu job, satu tujuan, efisiensi maksimal.</p>
+                <div class="code-block">
+                    <pre><code>name: 🔆 Perawatan &amp; Laporan Konten Harian
 on:
   schedule:
     - cron: '0 21 * * *'
@@ -223,4 +329,43 @@ jobs:
             git push
           else
             echo "✅ Tidak ada perubahan baru."
-          fi</code></pre><button class="copy-btn"><i class="far fa-copy"></i> Salin</button></div></article><div><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></div></main><footer><p>🄯 2025 - <a href="https://dalam.web.id">dalam.web.id</a></p></footer></div><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".copy-btn").forEach(e=>{e.addEventListener("click",e=>{const r=e.currentTarget.previousElementSibling.querySelector("code").innerText;navigator.clipboard.writeText(r).then(()=>{const r=e.currentTarget.innerHTML;e.currentTarget.innerHTML='<i class="fas fa-check"></i> Disalin!',e.currentTarget.disabled=!0,e.currentTarget.style.backgroundColor="#27ae60",setTimeout(()=>{e.currentTarget.innerHTML=r,e.currentTarget.disabled=!1,e.currentTarget.style.backgroundColor="#555"},2e3)}).catch(e=>{console.error("Gagal menyalin teks: ",e)})})})})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+          fi</code></pre>
+                    <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                </div>
+    </article>
+            <div>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </div>
+        </main>
+        <footer>
+            <p>🄯 2025 - <a href="https://dalam.web.id">dalam.web.id</a></p>
+        </footer>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    // --- Fungsi Tombol Salin Kode ---
+    const allCopyButtons = document.querySelectorAll('.copy-btn');
+    allCopyButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const codeBlock = e.currentTarget.previousElementSibling;
+            const code = codeBlock.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = e.currentTarget.innerHTML;
+                e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                e.currentTarget.disabled = true;
+                e.currentTarget.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    e.currentTarget.innerHTML = originalHTML;
+                    e.currentTarget.disabled = false;
+                    e.currentTarget.style.backgroundColor = '#555';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        });
+    });
+   });
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

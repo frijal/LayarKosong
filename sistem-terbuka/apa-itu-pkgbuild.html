@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR</title><meta name="description" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR."><meta name="keywords" content="PKGBUILD, Arch Linux, AUR, makepkg, Paru, Source Code, Kompilasi, Resep Software"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR</title>
+    <meta name="description" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
+    <meta name="keywords" content="PKGBUILD, Arch Linux, AUR, makepkg, Paru, Source Code, Kompilasi, Resep Software">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
             --color-bg: #101010;
             --color-text: #ffffff;
             --color-primary: #f0f8ff; /* Warna terang/putih untuk kontras */
@@ -168,4 +176,170 @@
             h2 { font-size: 1.6em; }
             .container { padding: 10px; }
             .gallery { grid-template-columns: 1fr; }
-        }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR."><meta name="ai:prompt_hint" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"><meta property="og:title" content="Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR"><meta property="og:description" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp"><meta property="og:image:alt" content="Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp"><meta itemprop="image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR","description":"Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.","articleSection":"Sistem Terbuka","keywords":"arch, file, layar kosong, linux, memahami, pkgbuild, rahasia, resep, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/apa-itu-pkgbuild.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-06-04T18:15:06.380+00:00","dateModified":"2025-06-04T18:15:06.380+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR","item":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"}]}]}</script></head><body><header><h1>PKGBUILD: Resep Rahasia Software Arch dan AUR</h1><div id="iposbrowser"></div></header><div class="container"><article><p>Tentu, jangan khawatir! <b>PKGBUILD</b> adalah konsep yang sangat penting dan keren di dunia Arch Linux (termasuk CachyOS dan distro turunannya). Meskipun namanya terlihat teknis, PKGBUILD sebenarnya adalah inti dari bagaimana Arch mengelola <b>software</b>, terutama yang berasal dari AUR.</p><section><h2><i class="fas fa-book-open"></i> Definisi Santai: PKGBUILD = Resep Kue</h2><p>Bayangkan <b>PKGBUILD</b> sebagai <b>resep kue</b> di dunia <b>coding</b>.<br>Ini adalah file <b>script shell</b> (biasanya ditulis dalam Bash) yang berisi semua instruksi yang dibutuhkan oleh program bernama <b>makepkg</b> untuk membuat sebuah paket <b>software</b> yang siap diinstal di sistem Anda.</p><p>Resep ini tidak berisi <b>software</b>-nya secara langsung, tetapi berisi langkah-langkah detail tentang:</p><ol><li><i class="fas fa-shopping-basket"></i> Bahan-bahan apa saja yang dibutuhkan (<b>dependencies</b>).</li><li><i class="fas fa-globe"></i> Di mana tempat membeli bahan (<b>URL source code</b> dari developer asli).</li><li><i class="fas fa-utensils"></i> Bagaimana cara mengolah atau memasaknya (<b>build process</b> atau <b>kompilasi</b>).</li><li><i class="fas fa-box-open"></i> Bagaimana mengemas produk akhir agar siap dijual/dipasang (membuat paket <code>.pkg.tar.zst</code>).</li></ol><p></p></section><hr><section><h2><i class="fas fa-code"></i> Elemen-Elemen Kunci dalam PKGBUILD</h2><p>Setiap file PKGBUILD, terutama yang ada di AUR, wajib memiliki baris-baris ini untuk memberitahu <code>makepkg</code> apa yang harus dilakukan:</p><table><thead><tr><th>Elemen</th><th>Fungsi</th><th>Contoh</th></tr></thead><tbody><tr><td><b>pkgname</b></td><td>Nama paket hasil instalasi.</td><td><code>pkgname=spotify</code></td></tr><tr><td><b>pkgver</b></td><td>Nomor versi <b>software</b> yang diunduh.</td><td><code>pkgver=1.2.3.456</code></td></tr><tr><td><b>depends</b></td><td>Daftar paket lain yang harus terinstal lebih dulu (bahan baku).</td><td><code>depends=('glibc' 'git')</code></td></tr><tr><td><b>source</b></td><td>URL tempat kode sumber program asli berada.</td><td><code>source=("https://.../program.tar.gz")</code></td></tr><tr><td><b>build()</b></td><td>Fungsi yang menjalankan perintah kompilasi (misalnya <code>./configure; make</code>).</td><td>(Langkah pembuatannya)</td></tr></tbody></table></section><hr><section><h2><i class="fas fa-link"></i> Kaitan PKGBUILD dan Paru</h2><p>Anda mungkin bertanya, apa hubungannya dengan <b>Paru</b>? Di sinilah Paru berperan sebagai <b>juru masak otomatis</b> Anda:</p><ol><li><i class="fas fa-search-location"></i> Anda meminta Paru menginstal paket AUR.</li><li><i class="fas fa-download"></i> Paru secara otomatis mengunduh file <b>PKGBUILD</b> dari AUR.</li><li><i class="fas fa-check"></i> Paru menawarkan untuk <b>meninjau</b> (membaca) isi PKGBUILD tersebut kepada Anda (Inilah fitur keamanan utamanya!).</li><li><i class="fas fa-play"></i> Jika Anda setuju, Paru menjalankan <code>makepkg</code>, yang kemudian membaca resep di PKGBUILD dan mengikuti semua langkahnya hingga paket siap diinstal.</li></ol><p>Karena <b>software</b> dari AUR adalah komunitas, <b>meninjau PKGBUILD</b> sebelum kompilasi sangat penting. Paru memudahkan Anda melihat resep tersebut agar Anda yakin tidak ada bahan atau langkah yang mencurigakan (risiko keamanan).</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></article></div><div id="lightbox-modal" class="lightbox" style="display: none;"><span class="close-btn">×</span> <img class="lightbox-content" id="lightbox-img" alt="Gambar penuh"> <a class="prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></a> <a class="next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></a></div><footer><p>🄯 2024 Artikel Frijal. Sekarang Anda sudah lebih paham tentang dapur Arch Linux!</p></footer><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelectorAll(".gallery img"),t=document.getElementById("lightbox-modal"),n=document.getElementById("lightbox-img"),d=document.querySelector(".close-btn");let l=0;e.forEach((e,d)=>{e.addEventListener("click",()=>{t&&n&&(t.style.display="grid",n.src=e.src,l=d)})}),d&&d.addEventListener("click",()=>{t&&(t.style.display="none")}),t&&(window.onclick=function(e){e.target===t&&(t.style.display="none")}),window.changeImage=function(e){}})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
+<meta name="ai:prompt_hint" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/">
+    <meta property="og:title" content="Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR">
+    <meta property="og:description" content="Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp">
+    <meta property="og:image:alt" content="Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/apa-itu-pkgbuild.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR","description":"Penjelasan santai dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.","articleSection":"Sistem Terbuka","keywords":"arch, file, layar kosong, linux, memahami, pkgbuild, rahasia, resep, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/apa-itu-pkgbuild.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-06-04T18:15:06.380+00:00","dateModified":"2025-06-04T18:15:06.380+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Apa Itu PKGBUILD? Memahami File Resep Rahasia di Arch Linux dan AUR","item":"https://dalam.web.id/sistem-terbuka/apa-itu-pkgbuild/"}]}]}</script>
+</head>
+<body>
+    <header>
+        <h1>PKGBUILD: Resep Rahasia Software Arch dan AUR</h1>
+<div id="iposbrowser"></div>
+    </header>
+    <div class="container">
+        <article>
+            <p>
+                Tentu, jangan khawatir! <b>PKGBUILD</b> adalah konsep yang sangat penting dan keren di dunia Arch Linux (termasuk CachyOS dan distro turunannya). Meskipun namanya terlihat teknis, PKGBUILD sebenarnya adalah inti dari bagaimana Arch mengelola <b>software</b>, terutama yang berasal dari AUR.
+            </p>
+            <section>
+                <h2><i class="fas fa-book-open"></i> Definisi Santai: PKGBUILD = Resep Kue</h2>
+                <p>
+                    Bayangkan <b>PKGBUILD</b> sebagai <b>resep kue</b> di dunia <b>coding</b>.
+                    <br>
+                    Ini adalah file <b>script shell</b> (biasanya ditulis dalam Bash) yang berisi semua instruksi yang dibutuhkan oleh program bernama <b>makepkg</b> untuk membuat sebuah paket <b>software</b> yang siap diinstal di sistem Anda.
+                </p>
+                <p>
+                    Resep ini tidak berisi <b>software</b>-nya secara langsung, tetapi berisi langkah-langkah detail tentang:
+                    </p><ol>
+                        <li><i class="fas fa-shopping-basket"></i> Bahan-bahan apa saja yang dibutuhkan (<b>dependencies</b>).</li>
+                        <li><i class="fas fa-globe"></i> Di mana tempat membeli bahan (<b>URL source code</b> dari developer asli).</li>
+                        <li><i class="fas fa-utensils"></i> Bagaimana cara mengolah atau memasaknya (<b>build process</b> atau <b>kompilasi</b>).</li>
+                        <li><i class="fas fa-box-open"></i> Bagaimana mengemas produk akhir agar siap dijual/dipasang (membuat paket <code>.pkg.tar.zst</code>).</li>
+                    </ol>
+                <p></p>
+            </section>
+            <hr>
+            <section>
+                <h2><i class="fas fa-code"></i> Elemen-Elemen Kunci dalam PKGBUILD</h2>
+                <p>
+                    Setiap file PKGBUILD, terutama yang ada di AUR, wajib memiliki baris-baris ini untuk memberitahu <code>makepkg</code> apa yang harus dilakukan:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Elemen</th>
+                            <th>Fungsi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>pkgname</b></td>
+                            <td>Nama paket hasil instalasi.</td>
+                            <td><code>pkgname=spotify</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>pkgver</b></td>
+                            <td>Nomor versi <b>software</b> yang diunduh.</td>
+                            <td><code>pkgver=1.2.3.456</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>depends</b></td>
+                            <td>Daftar paket lain yang harus terinstal lebih dulu (bahan baku).</td>
+                            <td><code>depends=('glibc' 'git')</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>source</b></td>
+                            <td>URL tempat kode sumber program asli berada.</td>
+                            <td><code>source=("https://.../program.tar.gz")</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>build()</b></td>
+                            <td>Fungsi yang menjalankan perintah kompilasi (misalnya <code>./configure; make</code>).</td>
+                            <td>(Langkah pembuatannya)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+            <section>
+                <h2><i class="fas fa-link"></i> Kaitan PKGBUILD dan Paru</h2>
+                <p>
+                    Anda mungkin bertanya, apa hubungannya dengan <b>Paru</b>? Di sinilah Paru berperan sebagai <b>juru masak otomatis</b> Anda:
+                </p>
+                <ol>
+                    <li><i class="fas fa-search-location"></i> Anda meminta Paru menginstal paket AUR.</li>
+                    <li><i class="fas fa-download"></i> Paru secara otomatis mengunduh file <b>PKGBUILD</b> dari AUR.</li>
+                    <li><i class="fas fa-check"></i> Paru menawarkan untuk <b>meninjau</b> (membaca) isi PKGBUILD tersebut kepada Anda (Inilah fitur keamanan utamanya!).</li>
+                    <li><i class="fas fa-play"></i> Jika Anda setuju, Paru menjalankan <code>makepkg</code>, yang kemudian membaca resep di PKGBUILD dan mengikuti semua langkahnya hingga paket siap diinstal.</li>
+                </ol>
+                <p>
+                    Karena <b>software</b> dari AUR adalah komunitas, <b>meninjau PKGBUILD</b> sebelum kompilasi sangat penting. Paru memudahkan Anda melihat resep tersebut agar Anda yakin tidak ada bahan atau langkah yang mencurigakan (risiko keamanan).
+                </p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </section>
+    </article>
+    </div>
+    <div id="lightbox-modal" class="lightbox" style="display: none;">
+        <span class="close-btn">×</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar penuh">
+        <a class="prev" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></a>
+        <a class="next" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    <footer>
+        <p>🄯 2024 Artikel Frijal. Sekarang Anda sudah lebih paham tentang dapur Arch Linux!</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // LIGHTBOX GALLERY & NAVIGATION (Skeletal structure maintained for image interaction)
+            const galleryImages = document.querySelectorAll('.gallery img');
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.close-btn');
+            let currentIndex = 0;
+            galleryImages.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    if (lightboxModal && lightboxImg) {
+                        lightboxModal.style.display = "grid";
+                        lightboxImg.src = img.src;
+                        currentIndex = index;
+                    }
+                });
+            });
+            if (closeBtn) closeBtn.addEventListener('click', () => {
+                if (lightboxModal) lightboxModal.style.display = "none";
+            });
+            if (lightboxModal) {
+                window.onclick = function(event) {
+                    if (event.target === lightboxModal) {
+                        lightboxModal.style.display = "none";
+                    }
+                }
+            }
+            // Dummy changeImage function (as only one image is in the article content now)
+            window.changeImage = function(n) {
+                 // Navigation logic intentionally disabled for a single image layout
+            }
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

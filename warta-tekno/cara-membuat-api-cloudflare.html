@@ -1,4 +1,11 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Cara Membuat API Cloudflare</title><meta name="description" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token."><link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Cara Membuat API Cloudflare</title>
+  <meta name="description" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.">
+  <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+  <style>
+    :root {
       --bg: #0c0c12;
       --grad: radial-gradient(900px 500px at 10% 0%, rgba(243,128,32,.15), transparent 70%),
               radial-gradient(1000px 600px at 90% 20%, rgba(255,205,143,.12), transparent 60%),
@@ -89,8 +96,118 @@
     @media (max-width:768px){
       .hero{flex-direction:column;align-items:flex-start}
       h2 { align-items: flex-start; } /* Biar ikon & teks rata atas di mobile */
-    }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token."><meta name="ai:prompt_hint" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token."><link rel="canonical" href="https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"><meta property="og:title" content="Cara Membuat API Cloudflare"><meta property="og:description" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp"><meta property="og:image:alt" content="Cara Membuat API Cloudflare"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp"><meta itemprop="image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Membuat API Cloudflare","description":"Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.","articleSection":"Warta Tekno","keywords":"cara, cloudflare, layar kosong, membuat, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/cara-membuat-api-cloudflare.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-26T18:18:01.828+00:00","dateModified":"2025-10-26T18:18:01.828+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Membuat API Cloudflare","item":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"}]}]}</script></head><body><header><div class="wrap hero"><div class="brand"><span class="logo"></span> Cloudflare API Token</div><a href="#langkah" class="cta-button">Mulai Panduan</a></div></header><main class="wrap"><article><h1>Cara Membuat API Cloudflare</h1><div id="iposbrowser"></div><a href="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp" data-lightbox="api-gallery" class="gallery-wrapper"><img loading="lazy" class="gallery-image" src="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp" alt="Dashboard Cloudflare API Token"></a><p class="lead">Sering pusing harus bolak-balik buka dashboard Cloudflare cuma buat hapus cache, ubah DNS, atau deploy project? Tenang, ada cara otomatisnya pakai <strong>Cloudflare API Token</strong>. Ini dia panduan lengkap dan santainya, langkah demi langkah.</p><h2 id="langkah"><span>1️⃣</span> Langkah 1 – Masuk ke Halaman API Tokens</h2><p>Pertama-tama, langsung aja meluncur ke dashboard Cloudflare kamu, tepatnya di bagian API Token. Kamu bisa klik link ini buat pintasan:</p><p><a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener nofollow">https://dash.cloudflare.com/profile/api-tokens</a></p><p>Nanti di halaman itu, cari dan klik tombol biru yang tulisannya <em>“Create Token”</em>.</p><h2><span>2️⃣</span> Langkah 2 – Pilih Jenis Token</h2><p>Di sini, Cloudflare ngasih banyak pilihan. Biar gampang dan aman, kamu bisa pakai template yang udah ada. Misalnya, kalau cuma buat hapus cache (purge), pilih aja <strong>“Zone: Cache Purge”</strong>.</p><p>Tapi kalau butuh yang lebih spesifik, kamu bisa pilih "Create Custom Token". Ini contoh setting izin (permission) yang sering dipakai:</p><pre><code>Permissions (Izin):
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.">
+<meta name="ai:prompt_hint" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/">
+    <meta property="og:title" content="Cara Membuat API Cloudflare">
+    <meta property="og:description" content="Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp">
+    <meta property="og:image:alt" content="Cara Membuat API Cloudflare">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Membuat API Cloudflare","description":"Panduan lengkap cara membuat API Token di Cloudflare: langkah-langkah aman, pengaturan izin, integrasi GitHub Actions, hingga pengujian token.","articleSection":"Warta Tekno","keywords":"cara, cloudflare, layar kosong, membuat, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/cara-membuat-api-cloudflare.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-26T18:18:01.828+00:00","dateModified":"2025-10-26T18:18:01.828+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Membuat API Cloudflare","item":"https://dalam.web.id/warta-tekno/cara-membuat-api-cloudflare/"}]}]}</script>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div class="brand"><span class="logo"></span> Cloudflare API Token</div>
+      <a href="#langkah" class="cta-button">Mulai Panduan</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <article>
+      <h1>Cara Membuat API Cloudflare</h1>
+<div id="iposbrowser"></div>
+      <a href="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp" data-lightbox="api-gallery" class="gallery-wrapper">
+        <img loading="lazy" class="gallery-image" src="https://dalam.web.id/img/cara-membuat-api-cloudflare.webp" alt="Dashboard Cloudflare API Token">
+      </a>
+      <p class="lead">Sering pusing harus bolak-balik buka dashboard Cloudflare cuma buat hapus cache, ubah DNS, atau deploy project? Tenang, ada cara otomatisnya pakai <strong>Cloudflare API Token</strong>. Ini dia panduan lengkap dan santainya, langkah demi langkah.</p>
+      <h2 id="langkah"><span>1️⃣</span> Langkah 1 – Masuk ke Halaman API Tokens</h2>
+      <p>Pertama-tama, langsung aja meluncur ke dashboard Cloudflare kamu, tepatnya di bagian API Token. Kamu bisa klik link ini buat pintasan:</p>
+      <p><a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener nofollow">https://dash.cloudflare.com/profile/api-tokens</a></p>
+      <p>Nanti di halaman itu, cari dan klik tombol biru yang tulisannya <em>“Create Token”</em>.</p>
+      <h2><span>2️⃣</span> Langkah 2 – Pilih Jenis Token</h2>
+      <p>Di sini, Cloudflare ngasih banyak pilihan. Biar gampang dan aman, kamu bisa pakai template yang udah ada. Misalnya, kalau cuma buat hapus cache (purge), pilih aja <strong>“Zone: Cache Purge”</strong>.</p>
+      <p>Tapi kalau butuh yang lebih spesifik, kamu bisa pilih "Create Custom Token". Ini contoh setting izin (permission) yang sering dipakai:</p>
+      <pre><code>Permissions (Izin):
 - Zone → Cache Purge → Edit  (Untuk hapus cache)
-- Zone → Zone → Read        (Untuk baca info zona)</code></pre><p>Kalau mau juga sekalian ubah DNS otomatis (misalnya buat ganti IP):</p><pre><code>- Zone → DNS → Edit         (Untuk edit data DNS)</code></pre><h2><span>3️⃣</span> Langkah 3 – Buat dan Simpan Token (PENTING!)</h2><p>Setelah atur semua izin dan klik "Create Token", Cloudflare bakal ngasih kamu satu kode API yang panjang banget. Kayak gini contohnya:</p><pre><code>CF_API_TOKEN = 1a2b3c4d5e6f7g8h9iJkLmNoPqRsTuVwXyZ...</code></pre><p><strong>PERHATIAN:</strong> Langsung salin (copy) dan simpan token ini di tempat yang aman (kayak password manager). Token ini cuma bakal muncul <strong>SATU KALI AJA</strong>. Kalau halaman ini kamu refresh atau tutup, tokennya hilang selamanya dan kamu harus bikin baru lagi.</p><h2><span>4️⃣</span> Langkah 4 – Simpan Token di GitHub Secrets</h2><p>Nah, token ini paling sering dipakai buat otomatisasi di GitHub Actions. Biar aman, jangan taruh tokennya langsung di kode kamu. Simpan di "Secrets".</p><p>Masuk ke repositori GitHub kamu, terus ke:</p><pre><code>Settings → Secrets and variables → Actions → New repository secret</code></pre><p>Lalu isi formulirnya:</p><ul class="list"><li><strong>Name:</strong> <code>CF_API_TOKEN</code></li><li><strong>Value:</strong> <code>tempel_token_rahasia_kamu_di_sini</code></li></ul><h2><span>5️⃣</span> Langkah 5 – Tes Token (Biar Yakin)</h2><p>Mau mastiin tokennya berfungsi? Kamu bisa tes pakai <code>curl</code> di terminal kamu. Ganti <code>&lt;TOKEN_KAMU&gt;</code> dengan token yang tadi kamu salin:</p><pre><code>curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+- Zone → Zone → Read        (Untuk baca info zona)</code></pre>
+      <p>Kalau mau juga sekalian ubah DNS otomatis (misalnya buat ganti IP):</p>
+      <pre><code>- Zone → DNS → Edit         (Untuk edit data DNS)</code></pre>
+      <h2><span>3️⃣</span> Langkah 3 – Buat dan Simpan Token (PENTING!)</h2>
+      <p>Setelah atur semua izin dan klik "Create Token", Cloudflare bakal ngasih kamu satu kode API yang panjang banget. Kayak gini contohnya:</p>
+      <pre><code>CF_API_TOKEN = 1a2b3c4d5e6f7g8h9iJkLmNoPqRsTuVwXyZ...</code></pre>
+      <p><strong>PERHATIAN:</strong> Langsung salin (copy) dan simpan token ini di tempat yang aman (kayak password manager). Token ini cuma bakal muncul <strong>SATU KALI AJA</strong>. Kalau halaman ini kamu refresh atau tutup, tokennya hilang selamanya dan kamu harus bikin baru lagi.</p>
+      <h2><span>4️⃣</span> Langkah 4 – Simpan Token di GitHub Secrets</h2>
+      <p>Nah, token ini paling sering dipakai buat otomatisasi di GitHub Actions. Biar aman, jangan taruh tokennya langsung di kode kamu. Simpan di "Secrets".</p>
+      <p>Masuk ke repositori GitHub kamu, terus ke:</p>
+      <pre><code>Settings → Secrets and variables → Actions → New repository secret</code></pre>
+      <p>Lalu isi formulirnya:</p>
+      <ul class="list">
+        <li><strong>Name:</strong> <code>CF_API_TOKEN</code></li>
+        <li><strong>Value:</strong> <code>tempel_token_rahasia_kamu_di_sini</code></li>
+      </ul>
+      <h2><span>5️⃣</span> Langkah 5 – Tes Token (Biar Yakin)</h2>
+      <p>Mau mastiin tokennya berfungsi? Kamu bisa tes pakai <code>curl</code> di terminal kamu. Ganti <code>&lt;TOKEN_KAMU&gt;</code> dengan token yang tadi kamu salin:</p>
+      <pre><code>curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" \
      -H "Authorization: Bearer &lt;TOKEN_KAMU&gt;" \
-     -H "Content-Type: application/json"</code></pre><p>Kalau balasannya ada <code>"success": true</code>, selamat! 🎉 Token kamu aktif dan siap dipakai buat otomatisasi. Gampang, 'kan?</p><h2>Bermanfaat? Bagikan!</h2><p>Kalau panduan ini ngebantu, jangan ragu buat bagikan ke teman-teman kamu yang mungkin juga butuh.</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article></main><footer><div class="wrap"><p>🄯 2025 dalam.web.id — Panduan santai oleh Fakhrul Rijal</p></div></footer><div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.84); align-items:center; justify-content:center; z-index:9990; cursor: pointer;"><img id="lightbox-img" alt="Preview" style="max-width:92vw; max-height:92vh; border-radius:16px; box-shadow:0 24px 80px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.3)"></div><script>document.addEventListener("click",function(t){const e=t.target.closest("a[data-lightbox]");if(e){t.preventDefault();const n=document.getElementById("lightbox");document.getElementById("lightbox-img").src=e.getAttribute("href"),n.style.display="flex"}}),document.getElementById("lightbox")?.addEventListener("click",function(){this.style.display="none",document.getElementById("lightbox-img").src=""})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+     -H "Content-Type: application/json"</code></pre>
+      <p>Kalau balasannya ada <code>"success": true</code>, selamat! 🎉 Token kamu aktif dan siap dipakai buat otomatisasi. Gampang, 'kan?</p>
+      <h2>Bermanfaat? Bagikan!</h2>
+      <p>Kalau panduan ini ngebantu, jangan ragu buat bagikan ke teman-teman kamu yang mungkin juga butuh.</p>
+      <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>🄯 2025 dalam.web.id — Panduan santai oleh Fakhrul Rijal</p>
+    </div>
+  </footer>
+  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.84); align-items:center; justify-content:center; z-index:9990; cursor: pointer;">
+    <img id="lightbox-img" alt="Preview" style="max-width:92vw; max-height:92vh; border-radius:16px; box-shadow:0 24px 80px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.3)">
+  </div>
+  <script>
+    // --- JAVASCRIPT BARU UNTUK LIGHTBOX ---
+    document.addEventListener('click', function(e) {
+      // Cek apakah yang diklik adalah link dengan data-lightbox
+      const a = e.target.closest('a[data-lightbox]');
+      if (a) {
+        e.preventDefault(); // Hentikan aksi default link
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        img.src = a.getAttribute('href'); // Set gambar di lightbox
+        lb.style.display = 'flex'; // Tampilkan lightbox
+      }
+    });
+    // Cek apakah yang diklik adalah lightbox itu sendiri (untuk menutup)
+    document.getElementById('lightbox')?.addEventListener('click', function() {
+      this.style.display = 'none'; // Sembunyikan lightbox
+      document.getElementById('lightbox-img').src = ''; // Kosongkan src biar gak flash
+    });
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

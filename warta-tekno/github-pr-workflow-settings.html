@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete</title><meta name="description" content="Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!"><meta name="keywords" content="git, github, pull request, workflow, auto-merge, auto-delete, tutorial git, frijal"><link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/ext/fontawesome.css"><style>/* CSS3 Styling untuk Desain Modern & Responsif */
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete</title>
+    <meta name="description" content="Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!">
+    <meta name="keywords" content="git, github, pull request, workflow, auto-merge, auto-delete, tutorial git, frijal">
+    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        /* CSS3 Styling untuk Desain Modern & Responsif */
         :root {
             --bg-color: #1a1a1a;
             --card-bg: #2a2a2a;
@@ -138,4 +150,110 @@
             header h1 { font-size: 2rem; }
             h2 { font-size: 1.8rem; }
             main article { padding: 20px; }
-        }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="canonical" href="https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"><meta property="og:title" content="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete"><meta property="og:description" content="Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp"><meta property="og:image:alt" content="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp"><meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete","description":"Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!","articleSection":"Warta Tekno","keywords":"auto, bikin, delete, gampang, github, hidup, layar kosong, merge, setting, settings, update, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.910+00:00","dateModified":"2025-12-30T09:56:06.910+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete","item":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"}]}]}</script></head><body><div class="container"><header><h1>Bikin Hidup Gampang di GitHub</h1><div id="iposbrowser"></div><p>Tiga Pengaturan Pull Request yang Wajib Kamu Aktifkan!</p></header><main><article><p>Selain strategi merge, ada tiga lagi nih pengaturan di bagian Pull Request yang bisa bikin alur kerja kamu jadi makin sat-set dan rapi. Ketiga fitur ini dirancang buat mengotomatiskan hal-hal kecil yang sering kita lakukan manual, jadi kita bisa lebih fokus ke ngodingnya. Yuk, kita bedah!</p><div class="image-container"><figure><img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp" alt="Pengaturan workflow Pull Request di GitHub"><figcaption>Tiga sekawan yang siap jadi asisten pribadi Anda di GitHub.</figcaption></figure></div><section><h2>1. Always suggest updating pull request branches</h2><p>Kalau opsi ini aktif, GitHub akan menampilkan tombol "Update branch" setiap kali ada perubahan baru di branch utama (misal: <code>main</code>) yang belum ada di branch Pull Request (PR) kamu. Simpel tapi super efektif.</p><blockquote><strong>Analogi:</strong> Kamu lagi ngerjain "Bab 2" (branch PR). Tiba-tiba, editor bikin revisi di "Bab 1" (branch <code>main</code>). Fitur ini kayak asisten yang langsung colek kamu, "Bos, ada update di Bab 1 nih. Mau sekalian disesuaiin di draf Bab 2 nggak, biar ceritanya tetap nyambung?".</blockquote><p class="recommendation">✅ <strong>Rekomendasi:</strong> Sangat disarankan untuk diaktifkan. Ini cara gampang buat menjaga branch kamu tetap up-to-date dan menghindari pusingnya <em>merge conflict</em> di kemudian hari.</p></section><section><h2>2. Allow auto-merge</h2><p>Fitur keren ini memungkinkan kamu mengatur PR untuk di-merge secara otomatis. Jadi, kamu tinggal klik "Auto-merge", dan GitHub akan menunggu sampai semua syarat (misal: lolos pengecekan otomatis/CI) terpenuhi, baru PR-nya digabung.</p><blockquote><strong>Analogi:</strong> Kamu pesan paket online. Dengan auto-merge, kamu bilang ke kurir, "Nanti kalau paketnya sudah sampai lobi dan sudah diperiksa satpam (syarat terpenuhi), langsung saja taruh di depan pintu apartemen saya, ya." Kamu nggak perlu nungguin kurirnya di lobi lagi.</blockquote><p class="recommendation">✅ <strong>Rekomendasi:</strong> Aktifkan saja. Ini fitur penghemat waktu. Kamu bisa setujui PR, aktifkan auto-merge, terus lanjut ngopi atau ngerjain hal lain. Biar GitHub yang jadi asisten buat finalisasi tugasnya.</p></section><section><h2>3. Automatically delete head branches</h2><p>Setelah sebuah PR berhasil digabung, branch asalnya (misal: <code>update-artikel-kopi</code>) biasanya udah nggak dipakai lagi. Kalau fitur ini aktif, GitHub akan otomatis menghapus branch tersebut untukmu.</p><blockquote><strong>Analogi:</strong> Kamu punya setumpuk kertas draf buat nulis "Bab 2". Setelah Bab 2 selesai dan digabung ke dalam buku, fitur ini bakal otomatis membereskan dan membuang semua kertas draf itu dari meja kerjamu. Meja pun kembali bersih dan rapi.</blockquote><p class="recommendation">✅ <strong>Rekomendasi:</strong> SANGAT, SANGAT disarankan untuk diaktifkan. Ini adalah fitur "kebersihan" terbaik. Tanpa ini, repositori kamu bakal cepat penuh sama puluhan branch lama yang sudah jadi sampah. Aktifkan ini biar daftar branch selalu rapi dan relevan.</p></section><section><h2>Ringkasan Rekomendasi</h2><div class="table-container"><table><thead><tr><th>Pengaturan</th><th>Rekomendasi</th><th>Alasan Singkat</th></tr></thead><tbody><tr><td><strong>Suggest updating branches</strong></td><td>✅ Aktifkan</td><td>Mendorong praktik baik &amp; mencegah <em>conflict</em>.</td></tr><tr><td><strong>Allow auto-merge</strong></td><td>✅ Aktifkan</td><td>Menghemat waktu dan mengotomatiskan alur kerja.</td></tr><tr><td><strong>Automatically delete branches</strong></td><td>✅ Aktifkan</td><td>Menjaga kebersihan dan kerapian repositori Anda.</td></tr></tbody></table></div></section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article></main><footer><p>🄯 2025 Frijal.</p></footer></div><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/github-pr-workflow-settings/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/github-pr-workflow-settings/">
+    <meta property="og:title" content="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete">
+    <meta property="og:description" content="Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp">
+    <meta property="og:image:alt" content="Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete","description":"Optimalkan alur kerja GitHub kamu dengan mengaktifkan tiga fitur simpel ini: auto-update, auto-merge, dan auto-delete branches. Bikin development lebih cepat dan rapi!","articleSection":"Warta Tekno","keywords":"auto, bikin, delete, gampang, github, hidup, layar kosong, merge, setting, settings, update, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.910+00:00","dateModified":"2025-12-30T09:56:06.910+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Setting PR GitHub yang Bikin Hidup Gampang: Auto Update, Merge &amp; Delete","item":"https://dalam.web.id/warta-tekno/github-pr-workflow-settings/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bikin Hidup Gampang di GitHub</h1>
+<div id="iposbrowser"></div>
+            <p>Tiga Pengaturan Pull Request yang Wajib Kamu Aktifkan!</p>
+        </header>
+        <main>
+            <article>
+                <p>Selain strategi merge, ada tiga lagi nih pengaturan di bagian Pull Request yang bisa bikin alur kerja kamu jadi makin sat-set dan rapi. Ketiga fitur ini dirancang buat mengotomatiskan hal-hal kecil yang sering kita lakukan manual, jadi kita bisa lebih fokus ke ngodingnya. Yuk, kita bedah!</p>
+                <div class="image-container">
+                    <figure>
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTakb92i_8r0fmlztgc9Ih6FBqS0E5ZPpk0s3JRcT_DK4tptCNVqMh3mfgYb2UCVo99KBfYi4t2V_rZzhnJyVBdjYa06VvCL_fWYbkVdpsye21ii4OO0ggf0bq-hTenlNOABqMegvBL0AEpL8H4lmQFFQQ1r9Fv2iic_GJeOhYXrsRsIPe4fhu75pXUNE/s1600/github-pr-workflow-settings.webp" alt="Pengaturan workflow Pull Request di GitHub">
+                        <figcaption>Tiga sekawan yang siap jadi asisten pribadi Anda di GitHub.</figcaption>
+                    </figure>
+                </div>
+                <section>
+                    <h2>1. Always suggest updating pull request branches</h2>
+                    <p>Kalau opsi ini aktif, GitHub akan menampilkan tombol "Update branch" setiap kali ada perubahan baru di branch utama (misal: <code>main</code>) yang belum ada di branch Pull Request (PR) kamu. Simpel tapi super efektif.</p>
+                    <blockquote><strong>Analogi:</strong> Kamu lagi ngerjain "Bab 2" (branch PR). Tiba-tiba, editor bikin revisi di "Bab 1" (branch <code>main</code>). Fitur ini kayak asisten yang langsung colek kamu, "Bos, ada update di Bab 1 nih. Mau sekalian disesuaiin di draf Bab 2 nggak, biar ceritanya tetap nyambung?".</blockquote>
+                    <p class="recommendation">✅ <strong>Rekomendasi:</strong> Sangat disarankan untuk diaktifkan. Ini cara gampang buat menjaga branch kamu tetap up-to-date dan menghindari pusingnya <em>merge conflict</em> di kemudian hari.</p>
+                </section>
+                <section>
+                    <h2>2. Allow auto-merge</h2>
+                    <p>Fitur keren ini memungkinkan kamu mengatur PR untuk di-merge secara otomatis. Jadi, kamu tinggal klik "Auto-merge", dan GitHub akan menunggu sampai semua syarat (misal: lolos pengecekan otomatis/CI) terpenuhi, baru PR-nya digabung.</p>
+                     <blockquote><strong>Analogi:</strong> Kamu pesan paket online. Dengan auto-merge, kamu bilang ke kurir, "Nanti kalau paketnya sudah sampai lobi dan sudah diperiksa satpam (syarat terpenuhi), langsung saja taruh di depan pintu apartemen saya, ya." Kamu nggak perlu nungguin kurirnya di lobi lagi.</blockquote>
+                    <p class="recommendation">✅ <strong>Rekomendasi:</strong> Aktifkan saja. Ini fitur penghemat waktu. Kamu bisa setujui PR, aktifkan auto-merge, terus lanjut ngopi atau ngerjain hal lain. Biar GitHub yang jadi asisten buat finalisasi tugasnya.</p>
+                </section>
+                <section>
+                    <h2>3. Automatically delete head branches</h2>
+                    <p>Setelah sebuah PR berhasil digabung, branch asalnya (misal: <code>update-artikel-kopi</code>) biasanya udah nggak dipakai lagi. Kalau fitur ini aktif, GitHub akan otomatis menghapus branch tersebut untukmu.</p>
+                    <blockquote><strong>Analogi:</strong> Kamu punya setumpuk kertas draf buat nulis "Bab 2". Setelah Bab 2 selesai dan digabung ke dalam buku, fitur ini bakal otomatis membereskan dan membuang semua kertas draf itu dari meja kerjamu. Meja pun kembali bersih dan rapi.</blockquote>
+                    <p class="recommendation">✅ <strong>Rekomendasi:</strong> SANGAT, SANGAT disarankan untuk diaktifkan. Ini adalah fitur "kebersihan" terbaik. Tanpa ini, repositori kamu bakal cepat penuh sama puluhan branch lama yang sudah jadi sampah. Aktifkan ini biar daftar branch selalu rapi dan relevan.</p>
+                </section>
+                <section>
+                    <h2>Ringkasan Rekomendasi</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pengaturan</th>
+                                    <th>Rekomendasi</th>
+                                    <th>Alasan Singkat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Suggest updating branches</strong></td>
+                                    <td>✅ Aktifkan</td>
+                                    <td>Mendorong praktik baik &amp; mencegah <em>conflict</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Allow auto-merge</strong></td>
+                                    <td>✅ Aktifkan</td>
+                                    <td>Menghemat waktu dan mengotomatiskan alur kerja.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Automatically delete branches</strong></td>
+                                    <td>✅ Aktifkan</td>
+                                    <td>Menjaga kebersihan dan kerapian repositori Anda.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
+        </main>
+        <footer>
+            <p>🄯 2025 Frijal.</p>
+        </footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -1,4 +1,15 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full</title><meta name="description" content="Jangan panik saat partisi root Linux penuh! Pelajari cara diagnosa sistematis, perintah sudo df dan du, serta strategi pembersihan aman untuk server produksi."><meta name="keywords" content="Linux, SysAdmin, Root Partition Full, Server Maintenance, Ubuntu, Debian, Centos, Perintah Linux, Cara Bersihkan Disk Server"><meta name="news_keywords" content="Linux Server, Disk Full Fix, SysAdmin Tips, Linux Command Line"><meta property="og:description" content="Server macet gara-gara disk penuh? Ikuti langkah-langkah pro untuk menemukan biang kerok penggunaan disk tanpa merusak sistem."><meta name="twitter:description" content="Langkah sistematis diagnosa disk server Linux yang penuh. Temukan file besar dan bersihkan dengan aman."><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full</title>
+    <meta name="description" content="Jangan panik saat partisi root Linux penuh! Pelajari cara diagnosa sistematis, perintah sudo df dan du, serta strategi pembersihan aman untuk server produksi.">
+    <meta name="keywords" content="Linux, SysAdmin, Root Partition Full, Server Maintenance, Ubuntu, Debian, Centos, Perintah Linux, Cara Bersihkan Disk Server">
+    <meta name="news_keywords" content="Linux Server, Disk Full Fix, SysAdmin Tips, Linux Command Line">
+    <meta property="og:description" content="Server macet gara-gara disk penuh? Ikuti langkah-langkah pro untuk menemukan biang kerok penggunaan disk tanpa merusak sistem.">
+    <meta name="twitter:description" content="Langkah sistematis diagnosa disk server Linux yang penuh. Temukan file besar dan bersihkan dengan aman.">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
             --accent-color: #e63946;
@@ -73,4 +84,133 @@
         @media (max-width: 600px) {
             article { padding: 20px 15px; }
             h1 { font-size: 1.8em; }
-        }</style><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"><link rel="icon" href="/favicon.ico"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"><meta property="og:title" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp"><meta property="og:image:alt" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp"><meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp"><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨","description":"Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.","articleSection":"Sistem Terbuka","keywords":"cerdas, diagnosa, full, jangan, layar kosong, linux, panduan, panik, partisi, partition, root, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-26T20:30:45Z","dateModified":"2026-01-26T20:30:45Z"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨","item":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"}]}]}</script></head><body><article><header><h1>🚨 Linux Alert: / Partition 100% Full – Don’t Panic, Diagnose Smartly!</h1><div id="iposbrowser"></div><div class="meta-info"><i class="fa fa-calendar"></i> 30 Januari 2026 | <i class="fa fa-user"></i> Fakhrul Rijal | <i class="fa fa-folder"></i> SysAdmin Tips</div></header><div class="alert-box"><strong><i class="fa fa-exclamation-triangle"></i> Gawat Darurat:</strong> Partisi root (/) yang penuh 100% pada server produksi bisa membuat layanan berhenti total — mulai dari masalah login SSH, aplikasi <i>crash</i>, kegagalan database, hingga masalah kernel yang serius.</div><div style="text-align: center; display: block; margin: 15px auto;"><img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp" alt="Ilustrasi Terminal Linux Disk Full Error" style="width: 100%; height: auto; border-radius: 20px;"><br><small style="color:#666; font-style:italic;">Ilustrasi Terminal Linux Disk Full Error</small></div><section id="introduction"><h2>Kenapa Ini Masalah Besar? (Why)</h2><p>Bayangkan kamu lagi nyetir mobil di jalan protokol Balikpapan, eh tiba-tiba remnya blong karena sistem pelumasnya beku. Begitulah kondisi Linux saat disk-nya menyentuh angka 100%. Sistem operasi Linux membutuhkan ruang kosong untuk menulis log, membuat file temporary, dan mengelola <i>process ID</i>. Kalau ruang ini hilang, sistem akan "tercekik".</p><p>Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—nggak nyambung dan berisiko fatal.</p></section><hr><section id="diagnosis"><h2>🔍 Strategi Diagnosa Langkah-demi-Langkah</h2><p>Sebelum kita bersih-bersih, kita harus jadi detektif dulu. Di mana tepatnya sampah itu menumpuk? Gunakan prinsip 5W+1H untuk memahami anomali ini.</p><h3>1. Cek Penggunaan Filesystem</h3><p>Langkah pertama adalah konfirmasi. Apakah benar partisi root yang penuh? Atau jangan-jangan cuma partisi <code>/home</code>?</p><pre>$ sudo df -Th</pre><p>Perintah ini akan menampilkan daftar partisi, tipe filesystem, dan persentase penggunaan. Fokuslah pada baris yang memiliki <strong>Mounted on /</strong>.</p><div style="text-align: center; display: block; margin: 15px auto;"><img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z-PMbUAE3NTn.webp" alt="Output Command df -Th Linux" style="width: 100%; height: auto; border-radius: 20px;"><br><small style="color:#666; font-style:italic;">Output Command df -Th Linux</small></div><h3>2. Identifikasi Direktori Raksasa</h3><p>Setelah tahu partisi mana yang penuh, saatnya mencari "pelaku" utamanya. Kita akan cek direktori mana yang paling rakus memakan ruang.</p><pre>$ sudo du -sch /* | sort -rh | head -10</pre><p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya tersangka utamanya adalah <code>/var</code> atau <code>/home</code>.</p><h3>3. Telusuri Area Masalah secara Spesifik</h3><p>Misalnya kamu menemukan <code>/var</code> sangat besar, masuk lebih dalam lagi:</p><pre>$ sudo du -ah /var | sort -rh | head -10</pre><p>Seringkali di sini kamu akan menemukan log aplikasi yang "ngamuk" atau database yang membengkak tanpa kontrol.</p><h3>4. Temukan File yang Baru Berubah</h3><p>Kalau disk penuh secara mendadak dalam hitungan jam, kemungkinan besar ada log yang menulis jutaan baris per menit. Cari file yang ukurannya &gt;100MB yang berubah dalam 2 hari terakhir:</p><pre>$ sudo find /var -type f -mtime -2 -size +100M</pre></section><div style="text-align: center; display: block; margin: 15px auto;"><img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z_NSboAApgLV.webp" alt="Proses Investigasi File Besar di Linux" style="width: 100%; height: auto; border-radius: 20px;"><br><small style="color:#666; font-style:italic;">Proses Investigasi File Besar di Linux</small></div><section id="causes"><h2>⚠️ Penyebab Umum di Dunia Nyata</h2><p>Berdasarkan pengalaman saya mengelola server di <i>Layar Kosong</i>, ada 5 penyebab klasik yang sering bikin pusing:</p><ul><li><strong>Application Core Dumps:</strong> Saat aplikasi crash, Linux sering menyimpan "bangkai" memori yang ukurannya raksasa.</li><li><strong>Database Bloat:</strong> Query yang tidak efisien atau log transaksi database yang tidak di-limit.</li><li><strong>Docker Layers:</strong> Container dan image Docker yang menumpuk bertahun-tahun tanpa dibersihkan (<code>docker system prune</code> adalah kuncinya!).</li><li><strong>Old Backups:</strong> Lupa memindahkan file backup lama dari folder <code>/tmp</code> atau <code>/var/www</code>.</li><li><strong>Uncontrolled Log Files:</strong> File log di <code>/var/log</code> yang tidak diputar (rotated) otomatis.</li></ul></section><section id="best-practices"><h2>🧠 Best Practices di Server Produksi</h2><p>Biar nggak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p><ol><li><strong>Analyze Before Deleting:</strong> Selalu cek apakah file tersebut sedang dipakai sistem (<code>lsof | grep filename</code>).</li><li><strong>Logrotate:</strong> Pastikan layanan <code>logrotate</code> berjalan dengan benar untuk membatasi ukuran log.</li><li><strong>Monitoring:</strong> Gunakan tool seperti Zabbix, Netdata, atau script sederhana untuk kirim alert ke Telegram kalau disk sudah 80%.</li><li><strong>No Panic Mode:</strong> Jangan gunakan <code>rm -rf /</code> (ini mah bunuh diri server!).</li><li><strong>Separate Mount Points:</strong> Pisahkan <code>/var</code> dan <code>/home</code> ke partisi atau disk fisik yang berbeda.</li></ol></section><hr><section id="conclusion"><h2>Kesimpulan: Disk Penuh Bukanlah Kegagalan</h2><p>Ingat, kawan: <strong>Disk yang penuh bukanlah sebuah kegagalan sistem, tapi investigasi yang ngawur adalah kegagalan admin.</strong> Mengetahui <i>di mana</i> ruang itu terpakai jauh lebih krusial daripada sekadar tahu kalau disk-nya penuh. Dengan pendekatan sistematis di atas, kamu bisa menyelamatkan server tanpa kehilangan data penting.</p><p>Sekarang, coba cek server kamu masing-masing. siapa tau servernya malah mogok! 😅</p></section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div><footer><div class="social-links"><a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a> <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a> <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="https://t.me/frijal" target="_blank"><i class="fab fa-telegram"></i></a></div><p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. Made with <i class="fa fa-heart" style="color:red;"></i> in Balikpapan.</p></footer></article><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="defer" src="/ext/marquee-url.js"></script><script defer="defer" src="/ext/iposbrowser.js"></script><script defer="defer" src="/ext/markdown.js"></script><script defer="defer" src="/ext/pesbukdiskus.js"></script></body></html>
+        }
+    </style>
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/">
+    <meta property="og:title" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
+    <meta property="og:image:alt" content="Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨","description":"Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.","articleSection":"Sistem Terbuka","keywords":"cerdas, diagnosa, full, jangan, layar kosong, linux, panduan, panik, partisi, partition, root, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-26T20:30:45Z","dateModified":"2026-01-26T20:30:45Z"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨","item":"https://dalam.web.id/sistem-terbuka/linux-partition-full-fix/"}]}]}</script>
+</head>
+<body>
+<article>
+    <header>
+        <h1>🚨 Linux Alert: / Partition 100% Full – Don’t Panic, Diagnose Smartly!</h1>
+<div id="iposbrowser"></div>
+        <div class="meta-info">
+            <i class="fa fa-calendar"></i> 30 Januari 2026 | <i class="fa fa-user"></i> Fakhrul Rijal | <i class="fa fa-folder"></i> SysAdmin Tips
+        </div>
+    </header>
+    <div class="alert-box">
+        <strong><i class="fa fa-exclamation-triangle"></i> Gawat Darurat:</strong> Partisi root (/) yang penuh 100% pada server produksi bisa membuat layanan berhenti total — mulai dari masalah login SSH, aplikasi <i>crash</i>, kegagalan database, hingga masalah kernel yang serius.
+    </div>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp" alt="Ilustrasi Terminal Linux Disk Full Error" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Ilustrasi Terminal Linux Disk Full Error</small>
+</div>
+    <section id="introduction">
+        <h2>Kenapa Ini Masalah Besar? (Why)</h2>
+        <p>
+            Bayangkan kamu lagi nyetir mobil di jalan protokol Balikpapan, eh tiba-tiba remnya blong karena sistem pelumasnya beku. Begitulah kondisi Linux saat disk-nya menyentuh angka 100%. Sistem operasi Linux membutuhkan ruang kosong untuk menulis log, membuat file temporary, dan mengelola <i>process ID</i>. Kalau ruang ini hilang, sistem akan "tercekik".
+        </p>
+        <p>
+            Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—nggak nyambung dan berisiko fatal.
+        </p>
+    </section>
+    <hr>
+    <section id="diagnosis">
+        <h2>🔍 Strategi Diagnosa Langkah-demi-Langkah</h2>
+        <p>Sebelum kita bersih-bersih, kita harus jadi detektif dulu. Di mana tepatnya sampah itu menumpuk? Gunakan prinsip 5W+1H untuk memahami anomali ini.</p>
+        <h3>1. Cek Penggunaan Filesystem</h3>
+        <p>Langkah pertama adalah konfirmasi. Apakah benar partisi root yang penuh? Atau jangan-jangan cuma partisi <code>/home</code>?</p>
+        <pre>$ sudo df -Th</pre>
+        <p>Perintah ini akan menampilkan daftar partisi, tipe filesystem, dan persentase penggunaan. Fokuslah pada baris yang memiliki <strong>Mounted on /</strong>.</p>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z-PMbUAE3NTn.webp" alt="Output Command df -Th Linux" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Output Command df -Th Linux</small>
+</div>
+        <h3>2. Identifikasi Direktori Raksasa</h3>
+        <p>Setelah tahu partisi mana yang penuh, saatnya mencari "pelaku" utamanya. Kita akan cek direktori mana yang paling rakus memakan ruang.</p>
+        <pre>$ sudo du -sch /* | sort -rh | head -10</pre>
+        <p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya tersangka utamanya adalah <code>/var</code> atau <code>/home</code>.</p>
+        <h3>3. Telusuri Area Masalah secara Spesifik</h3>
+        <p>Misalnya kamu menemukan <code>/var</code> sangat besar, masuk lebih dalam lagi:</p>
+        <pre>$ sudo du -ah /var | sort -rh | head -10</pre>
+        <p>Seringkali di sini kamu akan menemukan log aplikasi yang "ngamuk" atau database yang membengkak tanpa kontrol.</p>
+        <h3>4. Temukan File yang Baru Berubah</h3>
+        <p>Kalau disk penuh secara mendadak dalam hitungan jam, kemungkinan besar ada log yang menulis jutaan baris per menit. Cari file yang ukurannya &gt;100MB yang berubah dalam 2 hari terakhir:</p>
+        <pre>$ sudo find /var -type f -mtime -2 -size +100M</pre>
+    </section>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z_NSboAApgLV.webp" alt="Proses Investigasi File Besar di Linux" style="width: 100%; height: auto; border-radius: 20px;">
+  <br><small style="color:#666; font-style:italic;">Proses Investigasi File Besar di Linux</small>
+</div>
+    <section id="causes">
+        <h2>⚠️ Penyebab Umum di Dunia Nyata</h2>
+        <p>Berdasarkan pengalaman saya mengelola server di <i>Layar Kosong</i>, ada 5 penyebab klasik yang sering bikin pusing:</p>
+        <ul>
+            <li><strong>Application Core Dumps:</strong> Saat aplikasi crash, Linux sering menyimpan "bangkai" memori yang ukurannya raksasa.</li>
+            <li><strong>Database Bloat:</strong> Query yang tidak efisien atau log transaksi database yang tidak di-limit.</li>
+            <li><strong>Docker Layers:</strong> Container dan image Docker yang menumpuk bertahun-tahun tanpa dibersihkan (<code>docker system prune</code> adalah kuncinya!).</li>
+            <li><strong>Old Backups:</strong> Lupa memindahkan file backup lama dari folder <code>/tmp</code> atau <code>/var/www</code>.</li>
+            <li><strong>Uncontrolled Log Files:</strong> File log di <code>/var/log</code> yang tidak diputar (rotated) otomatis.</li>
+        </ul>
+    </section>
+    <section id="best-practices">
+        <h2>🧠 Best Practices di Server Produksi</h2>
+        <p>Biar nggak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p>
+        <ol>
+            <li><strong>Analyze Before Deleting:</strong> Selalu cek apakah file tersebut sedang dipakai sistem (<code>lsof | grep filename</code>).</li>
+            <li><strong>Logrotate:</strong> Pastikan layanan <code>logrotate</code> berjalan dengan benar untuk membatasi ukuran log.</li>
+            <li><strong>Monitoring:</strong> Gunakan tool seperti Zabbix, Netdata, atau script sederhana untuk kirim alert ke Telegram kalau disk sudah 80%.</li>
+            <li><strong>No Panic Mode:</strong> Jangan gunakan <code>rm -rf /</code> (ini mah bunuh diri server!).</li>
+            <li><strong>Separate Mount Points:</strong> Pisahkan <code>/var</code> dan <code>/home</code> ke partisi atau disk fisik yang berbeda.</li>
+        </ol>
+    </section>
+    <hr>
+    <section id="conclusion">
+        <h2>Kesimpulan: Disk Penuh Bukanlah Kegagalan</h2>
+        <p>
+            Ingat, kawan: <strong>Disk yang penuh bukanlah sebuah kegagalan sistem, tapi investigasi yang ngawur adalah kegagalan admin.</strong> Mengetahui <i>di mana</i> ruang itu terpakai jauh lebih krusial daripada sekadar tahu kalau disk-nya penuh. Dengan pendekatan sistematis di atas, kamu bisa menyelamatkan server tanpa kehilangan data penting.
+        </p>
+        <p>Sekarang, coba cek server kamu masing-masing. siapa tau servernya malah mogok! 😅</p>
+    </section>
+    <div id="pesbukdiskus"></div>
+    <div id="related-articles-grid"></div>
+    <footer>
+        <div class="social-links">
+            <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/frijal" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. Made with <i class="fa fa-heart" style="color:red;"></i> in Balikpapan.</p>
+    </footer>
+</article>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -1,4 +1,11 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬</title><meta name="description" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan."><meta name="keywords" content="HandBrake, preset kustom, encoding video, hardware encoding, tutorial, video encoding, linux, indonesia"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬</title>
+    <meta name="description" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.">
+    <meta name="keywords" content="HandBrake, preset kustom, encoding video, hardware encoding, tutorial, video encoding, linux, indonesia">
+    <style>
+        :root {
             --main-bg: #1a222c;
             --main-fg: #fff;
             --accent: #34ace0;
@@ -131,7 +138,185 @@
             main {padding: 1em 0.2em 1.5em 0.2em;}
             h1 { font-size: 1.4em;}
             .gallery img { width: 95vw; height: 30vw; min-height: 90px;}
-        }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan."><meta name="ai:prompt_hint" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan."><link rel="canonical" href="https://dalam.web.id/olah-media/handbrake-preset-custom/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/olah-media/handbrake-preset-custom/"><meta property="og:title" content="Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬"><meta property="og:description" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/handbrake-preset-custom.webp"><meta property="og:image:alt" content="Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/handbrake-preset-custom.webp"><meta itemprop="image" content="https://dalam.web.id/img/handbrake-preset-custom.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬","description":"Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.","articleSection":"Olah Media","keywords":"baik, custom, encoding, handbrake, kustom, layar kosong, lebih, membuat, olah media, preset, video","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/handbrake-preset-custom.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-02-19T00:31:19.942+00:00","dateModified":"2025-02-19T00:31:19.942+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬","item":"https://dalam.web.id/olah-media/handbrake-preset-custom/"}]}]}</script></head><body><main><h1>🎬 Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik</h1><div id="iposbrowser"></div><p style="margin-top:-22px;color:#9de0ff;"><small><b>Sumber asli:</b> <a href="https://www.linux.org/threads/creating-custom-presets-in-handbrake-for-better-video-encoding.49668/" target="_blank" rel="noopener">Linux.org</a></small></p><hr><section><h2>🔎 Apa itu HandBrake?</h2><p>HandBrake itu aplikasi open-source buat <b>transcoding video</b> alias ngubah-ubah format video. Udah banyak preset bawaan, tapi biar hasil lebih pas sama selera dan device kita, mending bikin <b>preset kustom</b> sendiri. Enaknya, kamu bisa atur kualitas, ukuran file, dan performa sesuai hardware yang dipunya. Simpel tapi powerful!</p><div class="gallery" id="gallery-1"><img data-src="https://dalam.web.id/img/handbrake-preset-custom.webp" alt="Menu Presets di HandBrake" title="Menu Presets di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 1: Menu Presets di HandBrake</i></p></section><hr><section><h2>⚙️ Dukungan Hardware Encoding</h2><p>HandBrake bisa pake akselerasi hardware, biar encode makin ngebut:</p><ul><li><b>NVENC</b> → Nvidia Encoder</li><li><b>QSV</b> → Intel Quick Sync Video</li><li><b>VCN</b> → AMD Video Core Next</li><li><b>MF</b> → ARM Media Foundation</li></ul><p><b>Tips:</b> Pastikan driver GPU udah ready ya!</p><ul><li><b>Nvidia:</b> cek status pake <code>nvidia-smi</code></li><li><b>Intel:</b> install <code>intel-gpu-tools</code> lalu cek pake <code>vainfo</code></li><li><b>AMD:</b> download driver di <a href="https://www.amd.com/en/support/linux-drivers" target="_blank" rel="noopener">sini</a></li></ul><div class="gallery" id="gallery-2"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEgV8AhDM8aK6qmIsSnRmDcYfpyJ30qYuqSqklSf6VJOt-Yk4DVYF5CsusHu8QC3-SjWpC4_cA6PkJoQkEBQ4pYS6tc2OLbBFhOp2rxpd5xbmswSrOlu8LuhANiuDbyLxv1CfcQFTiYKoyn5Rr85-Q8ysMrYYa6OdVTkTBZRCmy9TQE4TsCBT9u9a9nln8I.webp" alt="Preset Hardware di HandBrake" title="Preset Hardware di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 2: Preset Hardware di HandBrake</i></p></section><hr><section><h2>📐 Mengatur Dimensi Video</h2><p>Di tab <b>Dimensions</b>, kamu bebas pilih resolusi output sesuai kebutuhan:</p><ul><li>4320p (8K)</li><li>2160p (4K)</li><li>1080p (Blu-Ray)</li><li>720p (DVD)</li><li>576p (PAL)</li><li>480p (NTSC)</li></ul><div class="gallery" id="gallery-3"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEj692vWDzFlIUfZOAuyBAhE-PW3ONT7xcvgbwm9sc9i7AfcWzVxfKcf-w2Ozc3Es-PCFF_48-DTnddP5YqnrxrOK2kEUtlC7GLcNNcvM7oafNME3qAfIx506Akx5lCyPDaK1Y51HQ3jPF33ZIamfzX57wOZq9nLrG6Vxyqzle7D1szSgGvd_HGYV6mT7Os.webp" alt="Tab Dimensions di HandBrake" title="Tab Dimensions di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 3: Tab Dimensions di HandBrake</i></p></section><hr><section><h2>🎥 Mengatur Encoder Video</h2><p>Di tab <b>Video</b>, kamu bisa pilih encoder sesuai tujuan:</p><ul><li><b>H.265 (x265)</b> → Lebih efisien, file lebih kecil!</li><li>Pilih <b>10-bit</b> atau <b>12-bit</b> kalau video HDR.</li></ul><div class="gallery" id="gallery-4"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEgQ4T_9QMKqOds-39NeLlNjFN02wfm6FG5Q1ApFJDEUUJTjtcu8fRWKBujjYE2PPK3Da_1JbBINs29j_H2LJ3PeSLfsPA4oHkofToE-zEDv6W0IgpmOu-9Hfit5v8anKRfmI9WszgFJf4hihXDqeO0Sdb53kJY_NPX4sr5qj3NvEYEYV8f0YP-wAyoPkoY.webp" alt="Tab Video dengan opsi encoder" title="Tab Video dengan opsi encoder"></div><p style="text-align:center;color:#aad;"><i>Gambar 4: Tab Video dengan opsi encoder</i></p></section><hr><section><h2>🔊 Mengatur Audio</h2><p>Tab <b>Audio</b> buat atur:</p><ul><li>Pilih track audio favorit yang mau dipertahanin.</li><li>Tentukan bahasa default.</li><li>Pakai <b>Passthru</b> (copy codec asli) atau fallback encoder kalo perlu.</li></ul><div class="gallery" id="gallery-5"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjPPmqBS2aOhSNEbWDHp_GRitWUoPXI9oMOt_HpuA5BaKQF9DR7RNnPy9aF1Q-LBSk9QbwAXEPPe_IaDOwzG3k9-POffTPBt8fVh7plAcCOwLnILQ8t0V2mYjYW5OpKUvL-k_TIZr37g5OLuX7AsX4jMiNoMcyhyFV1wQwKQEr-tco6PuZP96abHG_oSBg.webp" alt="Tab Audio di HandBrake" title="Tab Audio di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 5: Tab Audio di HandBrake</i></p></section><hr><section><h2>💬 Mengatur Subtitle</h2><p>Tab <b>Subtitles</b> buat atur opsi subtitle:</p><ul><li><b>Add Closed Captions</b> kalau ada subtitle bawaan.</li><li><b>Add Foreign Audio Scan</b> buat deteksi subtitle paksa (misal terjemahan papan teks).</li><li><b>Burn-in Behavior</b> biar subtitle dibakar permanen ke video.</li></ul><div class="gallery" id="gallery-6"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjFUCMxsc7pz1nZWQkRE9AIf9gWRzXzF8ouYF9Ce4l7l1sBo5uomGFsDqtrkGr9kFtuBVfWDpQAv4GBCAYwi_RgPHx-Pa4vM-B3_EtkDcf0civinOBZD8wCgbf8tJSikhmNG_FspjRbHYmDmRSAQ-ZohTtVQUqDDY_aXm7JbWFNL4NgBZo7p4FDQ6eVsGY.webp" alt="Tab Subtitles di HandBrake" title="Tab Subtitles di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 6: Tab Subtitles di HandBrake</i></p></section><hr><section><h2>💾 Menyimpan Preset Kustom</h2><p>Udah beres setting? Klik <b>Presets → Save As</b>. Kamu bisa:</p><ul><li>Beri nama preset biar gampang dicari.</li><li>Pilih kategori sesuai selera.</li><li>Bisa dijadiin default preset juga!</li></ul><div class="gallery" id="gallery-7"><img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjcZbsltz6bN5b8GweqgwSmwRWkuEDIIqOlqGkc8gBaPO76oxVqAdPETaeEnQotT4N2MvGur2cyYWhnc-aF5bOeeSwyg5hu_hIRuAyyjH_yRaI4KgxBRWUlnXJfBScax0fkB4u-45kT9FH6Eib4DwyvFW5RtmjWPsfYbenOciqqiHgrMmEvYAQwigG4nvQ.webp" alt="Dialog Save Preset di HandBBrake" title="Dialog Save Preset di HandBrake"></div><p style="text-align:center;color:#aad;"><i>Gambar 7: Dialog Save Preset di HandBrake</i></p></section><hr><section><h2>🎯 Kesimpulan</h2><ul><li>Maksimalkan hardware GPU untuk encoding lebih cepat.</li><li>Atur resolusi, codec, audio, subtitle, semua sesuai kebutuhanmu.</li><li>Simpan preset, nggak perlu setting ulang tiap encode.</li></ul><p>Workflow encoding videomu jadi lebih efisien, konsisten, dan pastinya sesuai selera!</p></section><section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></main><div id="lightbox"><button class="lightbox-arrow" id="lightbox-prev">←</button> <img id="lightbox-img" src="" alt="Gambar - Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬"> <button class="lightbox-arrow" id="lightbox-next">→</button> <button class="lightbox-close" id="lightbox-close" title="Tutup">✖</button></div><script>// --- Gallery Lazy Load, Lightbox, Arrow navigation
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.">
+<meta name="ai:prompt_hint" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.">
+    <link rel="canonical" href="https://dalam.web.id/olah-media/handbrake-preset-custom/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/olah-media/handbrake-preset-custom/">
+    <meta property="og:title" content="Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬">
+    <meta property="og:description" content="Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/handbrake-preset-custom.webp">
+    <meta property="og:image:alt" content="Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/handbrake-preset-custom.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/handbrake-preset-custom.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬","description":"Panduan lengkap, santai, dan interaktif untuk membuat preset kustom di HandBrake! Gali tips hardware encoding, dimensi video, codec, audio, subtitle, dan simpan preset sesuai kebutuhan.","articleSection":"Olah Media","keywords":"baik, custom, encoding, handbrake, kustom, layar kosong, lebih, membuat, olah media, preset, video","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/handbrake-preset-custom.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-02-19T00:31:19.942+00:00","dateModified":"2025-02-19T00:31:19.942+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/handbrake-preset-custom/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬","item":"https://dalam.web.id/olah-media/handbrake-preset-custom/"}]}]}</script>
+</head>
+<body>
+    <main>
+        <h1>🎬 Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik</h1>
+<div id="iposbrowser"></div>
+        <p style="margin-top:-22px;color:#9de0ff;">
+            <small>
+                <b>Sumber asli:</b>
+                <a href="https://www.linux.org/threads/creating-custom-presets-in-handbrake-for-better-video-encoding.49668/" target="_blank" rel="noopener">Linux.org</a>
+            </small>
+        </p>
+        <hr>
+        <section>
+            <h2>🔎 Apa itu HandBrake?</h2>
+            <p>HandBrake itu aplikasi open-source buat <b>transcoding video</b> alias ngubah-ubah format video. Udah banyak preset bawaan, tapi biar hasil lebih pas sama selera dan device kita, mending bikin <b>preset kustom</b> sendiri. Enaknya, kamu bisa atur kualitas, ukuran file, dan performa sesuai hardware yang dipunya. Simpel tapi powerful!</p>
+            <div class="gallery" id="gallery-1">
+                <img data-src="https://dalam.web.id/img/handbrake-preset-custom.webp" alt="Menu Presets di HandBrake" title="Menu Presets di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 1: Menu Presets di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>⚙️ Dukungan Hardware Encoding</h2>
+            <p>HandBrake bisa pake akselerasi hardware, biar encode makin ngebut:</p>
+            <ul>
+                <li><b>NVENC</b> → Nvidia Encoder</li>
+                <li><b>QSV</b> → Intel Quick Sync Video</li>
+                <li><b>VCN</b> → AMD Video Core Next</li>
+                <li><b>MF</b> → ARM Media Foundation</li>
+            </ul>
+            <p><b>Tips:</b> Pastikan driver GPU udah ready ya!</p>
+            <ul>
+                <li><b>Nvidia:</b> cek status pake <code>nvidia-smi</code></li>
+                <li><b>Intel:</b> install <code>intel-gpu-tools</code> lalu cek pake <code>vainfo</code></li>
+                <li><b>AMD:</b> download driver di <a href="https://www.amd.com/en/support/linux-drivers" target="_blank" rel="noopener">sini</a></li>
+            </ul>
+            <div class="gallery" id="gallery-2">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEgV8AhDM8aK6qmIsSnRmDcYfpyJ30qYuqSqklSf6VJOt-Yk4DVYF5CsusHu8QC3-SjWpC4_cA6PkJoQkEBQ4pYS6tc2OLbBFhOp2rxpd5xbmswSrOlu8LuhANiuDbyLxv1CfcQFTiYKoyn5Rr85-Q8ysMrYYa6OdVTkTBZRCmy9TQE4TsCBT9u9a9nln8I.webp" alt="Preset Hardware di HandBrake" title="Preset Hardware di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 2: Preset Hardware di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>📐 Mengatur Dimensi Video</h2>
+            <p>Di tab <b>Dimensions</b>, kamu bebas pilih resolusi output sesuai kebutuhan:</p>
+            <ul>
+                <li>4320p (8K)</li>
+                <li>2160p (4K)</li>
+                <li>1080p (Blu-Ray)</li>
+                <li>720p (DVD)</li>
+                <li>576p (PAL)</li>
+                <li>480p (NTSC)</li>
+            </ul>
+            <div class="gallery" id="gallery-3">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEj692vWDzFlIUfZOAuyBAhE-PW3ONT7xcvgbwm9sc9i7AfcWzVxfKcf-w2Ozc3Es-PCFF_48-DTnddP5YqnrxrOK2kEUtlC7GLcNNcvM7oafNME3qAfIx506Akx5lCyPDaK1Y51HQ3jPF33ZIamfzX57wOZq9nLrG6Vxyqzle7D1szSgGvd_HGYV6mT7Os.webp" alt="Tab Dimensions di HandBrake" title="Tab Dimensions di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 3: Tab Dimensions di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>🎥 Mengatur Encoder Video</h2>
+            <p>Di tab <b>Video</b>, kamu bisa pilih encoder sesuai tujuan:</p>
+            <ul>
+                <li><b>H.265 (x265)</b> → Lebih efisien, file lebih kecil!</li>
+                <li>Pilih <b>10-bit</b> atau <b>12-bit</b> kalau video HDR.</li>
+            </ul>
+            <div class="gallery" id="gallery-4">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEgQ4T_9QMKqOds-39NeLlNjFN02wfm6FG5Q1ApFJDEUUJTjtcu8fRWKBujjYE2PPK3Da_1JbBINs29j_H2LJ3PeSLfsPA4oHkofToE-zEDv6W0IgpmOu-9Hfit5v8anKRfmI9WszgFJf4hihXDqeO0Sdb53kJY_NPX4sr5qj3NvEYEYV8f0YP-wAyoPkoY.webp" alt="Tab Video dengan opsi encoder" title="Tab Video dengan opsi encoder">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 4: Tab Video dengan opsi encoder</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>🔊 Mengatur Audio</h2>
+            <p>Tab <b>Audio</b> buat atur:</p>
+            <ul>
+                <li>Pilih track audio favorit yang mau dipertahanin.</li>
+                <li>Tentukan bahasa default.</li>
+                <li>Pakai <b>Passthru</b> (copy codec asli) atau fallback encoder kalo perlu.</li>
+            </ul>
+            <div class="gallery" id="gallery-5">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjPPmqBS2aOhSNEbWDHp_GRitWUoPXI9oMOt_HpuA5BaKQF9DR7RNnPy9aF1Q-LBSk9QbwAXEPPe_IaDOwzG3k9-POffTPBt8fVh7plAcCOwLnILQ8t0V2mYjYW5OpKUvL-k_TIZr37g5OLuX7AsX4jMiNoMcyhyFV1wQwKQEr-tco6PuZP96abHG_oSBg.webp" alt="Tab Audio di HandBrake" title="Tab Audio di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 5: Tab Audio di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>💬 Mengatur Subtitle</h2>
+            <p>Tab <b>Subtitles</b> buat atur opsi subtitle:</p>
+            <ul>
+                <li><b>Add Closed Captions</b> kalau ada subtitle bawaan.</li>
+                <li><b>Add Foreign Audio Scan</b> buat deteksi subtitle paksa (misal terjemahan papan teks).</li>
+                <li><b>Burn-in Behavior</b> biar subtitle dibakar permanen ke video.</li>
+            </ul>
+            <div class="gallery" id="gallery-6">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjFUCMxsc7pz1nZWQkRE9AIf9gWRzXzF8ouYF9Ce4l7l1sBo5uomGFsDqtrkGr9kFtuBVfWDpQAv4GBCAYwi_RgPHx-Pa4vM-B3_EtkDcf0civinOBZD8wCgbf8tJSikhmNG_FspjRbHYmDmRSAQ-ZohTtVQUqDDY_aXm7JbWFNL4NgBZo7p4FDQ6eVsGY.webp" alt="Tab Subtitles di HandBrake" title="Tab Subtitles di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 6: Tab Subtitles di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>💾 Menyimpan Preset Kustom</h2>
+            <p>Udah beres setting? Klik <b>Presets → Save As</b>. Kamu bisa:</p>
+            <ul>
+                <li>Beri nama preset biar gampang dicari.</li>
+                <li>Pilih kategori sesuai selera.</li>
+                <li>Bisa dijadiin default preset juga!</li>
+            </ul>
+            <div class="gallery" id="gallery-7">
+                <img data-src="/img/blogger.googleusercontent.com/img/a/AVvXsEjcZbsltz6bN5b8GweqgwSmwRWkuEDIIqOlqGkc8gBaPO76oxVqAdPETaeEnQotT4N2MvGur2cyYWhnc-aF5bOeeSwyg5hu_hIRuAyyjH_yRaI4KgxBRWUlnXJfBScax0fkB4u-45kT9FH6Eib4DwyvFW5RtmjWPsfYbenOciqqiHgrMmEvYAQwigG4nvQ.webp" alt="Dialog Save Preset di HandBBrake" title="Dialog Save Preset di HandBrake">
+            </div>
+            <p style="text-align:center;color:#aad;">
+                <i>Gambar 7: Dialog Save Preset di HandBrake</i>
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h2>🎯 Kesimpulan</h2>
+            <ul>
+                <li>Maksimalkan hardware GPU untuk encoding lebih cepat.</li>
+                <li>Atur resolusi, codec, audio, subtitle, semua sesuai kebutuhanmu.</li>
+                <li>Simpan preset, nggak perlu setting ulang tiap encode.</li>
+            </ul>
+            <p>Workflow encoding videomu jadi lebih efisien, konsisten, dan pastinya sesuai selera!</p>
+        </section>
+        <section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section>
+    </main>
+    <div id="lightbox">
+        <button class="lightbox-arrow" id="lightbox-prev">←</button>
+        <img id="lightbox-img" src="" alt="Gambar - Membuat Preset Kustom di HandBrake untuk Encoding Video Lebih Baik 🎬">
+        <button class="lightbox-arrow" id="lightbox-next">→</button>
+        <button class="lightbox-close" id="lightbox-close" title="Tutup">✖</button>
+    </div>
+    <script>
+        // --- Gallery Lazy Load, Lightbox, Arrow navigation
         const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
         let lightboxIdx = null;
         const lightbox = document.getElementById('lightbox');
@@ -174,4 +359,9 @@
             // fallback: load all
             galleryImgs.forEach(img => img.src = img.dataset.src);
         }
-        function share(network) {</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+        function share(network) {
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

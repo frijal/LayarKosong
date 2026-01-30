@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Migrasi Windows ke GNU/Linux - Panduan Lengkap</title><meta name="description" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi."><meta name="keywords" content="migrasi windows ke linux, gnu/linux, libreoffice, samba, hemat lisensi, panduan linux"><meta name="date" content="2025-09-28"><style>body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migrasi Windows ke GNU/Linux - Panduan Lengkap</title>
+    <meta name="description" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.">
+    <meta name="keywords" content="migrasi windows ke linux, gnu/linux, libreoffice, samba, hemat lisensi, panduan linux">
+    <meta name="date" content="2025-09-28">
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
         h1, h2, h3 { color: #0078d4; border-bottom: 2px solid #0078d4; padding-bottom: 10px; }
         article, section { margin-bottom: 20px; text-align: justify; }
@@ -24,4 +32,126 @@
       padding: 2rem;
       color: #666;
       font-size: .9rem;
-    }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi."><meta name="ai:prompt_hint" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"><meta property="og:title" content="Migrasi Windows ke GNU/Linux - Panduan Lengkap"><meta property="og:description" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp"><meta property="og:image:alt" content="Migrasi Windows ke GNU/Linux - Panduan Lengkap"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp"><meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Migrasi Windows ke GNU/Linux - Panduan Lengkap","description":"Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.","articleSection":"Sistem Terbuka","keywords":"layar kosong, lengkap, linux, migrasi, panduan, sistem terbuka, windows","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2012-07-23T09:54:08.778+00:00","dateModified":"2012-07-23T09:54:08.778+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Migrasi Windows ke GNU/Linux - Panduan Lengkap","item":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"}]}]}</script></head><body><div class="container"><article><h1>Migrasi Windows ke GNU/Linux - Panduan Lengkap</h1><div id="iposbrowser"></div><p>Artikel ini diketik untuk memberikan petunjuk strategi migrasi dari Microsoft Windows ke GNU/Linux, khususnya untuk aplikasi Office dan File Server guna mencapai efisiensi biaya.</p><section><h2>Latar Belakang</h2><blockquote>Mengapa membuang ratusan juta rupiah untuk lisensi bila tersedia solusi gratis dan handal?</blockquote><figure class="gallery"><img loading="lazy" src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp" alt="Ilustrasi perbandingan logo Windows dan Linux"></figure><p>Perusahaan perlu menyadari bahwa penghematan biaya lisensi adalah hal yang sangat penting. Dengan gencarnya Microsoft Indonesia dan BSA menagih perusahaan untuk kepatuhan lisensi, alternatif sumber terbuka (open-source) menjadi semakin menarik. Biaya lisensi untuk M$ Office Basic bisa mencapai $150/PC, OS Windows $140/PC, dan CAL (Client Access License) untuk server bahkan bisa mencapai miliaran rupiah bagi perusahaan skala menengah.</p></section><section><h2>Strategi Migrasi</h2><ul><li>Lakukan analisa mendalam terhadap penggunaan PC dan aplikasi yang berjalan di setiap unit.</li><li>Identifikasi PC yang memiliki fungsi khusus, seperti untuk tugas administratif atau keuangan.</li><li>Identifikasi PC yang menjalankan aplikasi terikat platform tertentu (misalnya aplikasi yang hanya berjalan di Windows).</li><li>Analisa cakupan deployment untuk memastikan semua kebutuhan PC dapat terpenuhi setelah migrasi.</li></ul></section><section><h2>Langkah Tambahan</h2><ol><li>Lakukan tes kompatibilitas untuk aplikasi berbasis DOS/Windows lama menggunakan emulator seperti `dosemu` atau `Wine`.</li><li>Periksa penggunaan fitur-fitur spesifik Microsoft Office (seperti Macro VBA atau Pivot Table kompleks) pada dokumen pengguna dan cari padanannya di LibreOffice.</li><li>Lakukan backup semua data penting pengguna sebelum memulai proses migrasi.</li><li>Sediakan sesi bimbingan dan pelatihan bagi pengguna untuk beradaptasi dengan aplikasi baru seperti LibreOffice.</li><li>Berikan contoh perbandingan secara langsung antara M$ Office dan LibreOffice untuk menunjukkan bahwa fungsionalitas inti tetap sama.</li></ol></section><p>Demikian pengalaman dan strategi yang dapat diterapkan untuk migrasi dari M$ Windows ke GNU/Linux. Semoga Bermanfaat!</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article><footer><a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a></footer></div><div id="lightbox" class="lightbox"><span class="lightbox-close">×</span> <img class="lightbox-content" id="lightbox-img" alt="Gambar - Migrasi Windows ke GNU/Linux - Panduan Lengkap"> <button class="lightbox-nav prev" onclick="changeImage(-1)">❮</button> <button class="lightbox-nav next" onclick="changeImage(1)">❯</button></div><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".gallery img");if(e.length>0){const n=document.getElementById("lightbox"),c=document.getElementById("lightbox-img"),l=document.querySelector(".lightbox-close");let d;function t(){n.style.display="none"}e.forEach((e,t)=>{e.addEventListener("click",()=>{n.style.display="flex",c.src=e.src,d=t})}),l.addEventListener("click",t),n.addEventListener("click",e=>{e.target===n&&t()}),window.changeImage=function(t){d+=t,d>=e.length&&(d=0),d<0&&(d=e.length-1),c.src=e[d].src},document.addEventListener("keydown",e=>{"flex"===n.style.display&&("ArrowLeft"===e.key?changeImage(-1):"ArrowRight"===e.key?changeImage(1):"Escape"===e.key&&t())})}})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+    }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.">
+<meta name="ai:prompt_hint" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/">
+    <meta property="og:title" content="Migrasi Windows ke GNU/Linux - Panduan Lengkap">
+    <meta property="og:description" content="Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp">
+    <meta property="og:image:alt" content="Migrasi Windows ke GNU/Linux - Panduan Lengkap">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Migrasi Windows ke GNU/Linux - Panduan Lengkap","description":"Panduan strategi migrasi dari Microsoft Windows ke GNU/Linux, termasuk aplikasi Office, File Server, dan tips penghematan biaya lisensi.","articleSection":"Sistem Terbuka","keywords":"layar kosong, lengkap, linux, migrasi, panduan, sistem terbuka, windows","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2012-07-23T09:54:08.778+00:00","dateModified":"2012-07-23T09:54:08.778+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Migrasi Windows ke GNU/Linux - Panduan Lengkap","item":"https://dalam.web.id/sistem-terbuka/migrasi-windows-linux/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <article>
+            <h1>Migrasi Windows ke GNU/Linux - Panduan Lengkap</h1>
+<div id="iposbrowser"></div>
+            <p>Artikel ini diketik untuk memberikan petunjuk strategi migrasi dari Microsoft Windows ke GNU/Linux, khususnya untuk aplikasi Office dan File Server guna mencapai efisiensi biaya.</p>
+            <section>
+                <h2>Latar Belakang</h2>
+                <blockquote>Mengapa membuang ratusan juta rupiah untuk lisensi bila tersedia solusi gratis dan handal?</blockquote>
+                <figure class="gallery">
+                    <img loading="lazy" src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhFd6EHgt4f6xjcA4QvpsjpRJ4uW7zFjfRShxy52StZfhbQ46VX964DgnG1-i1FDi7CVKEGZvx4QaXRueFrtLG-I-9KjUpyQayQ-OvZAWnPkfHTdW_uUWeQrW-6hhmHCUBdG_o7PzsY1zIL1k7rm518WjL0yQc6CfDRjC2Ex6YRdWi5LFyEz2A3OYZhZQ/s1600/20-wallpaper.webp" alt="Ilustrasi perbandingan logo Windows dan Linux">
+                </figure>
+                <p>Perusahaan perlu menyadari bahwa penghematan biaya lisensi adalah hal yang sangat penting. Dengan gencarnya Microsoft Indonesia dan BSA menagih perusahaan untuk kepatuhan lisensi, alternatif sumber terbuka (open-source) menjadi semakin menarik. Biaya lisensi untuk M$ Office Basic bisa mencapai $150/PC, OS Windows $140/PC, dan CAL (Client Access License) untuk server bahkan bisa mencapai miliaran rupiah bagi perusahaan skala menengah.</p>
+            </section>
+            <section>
+                <h2>Strategi Migrasi</h2>
+                <ul>
+                    <li>Lakukan analisa mendalam terhadap penggunaan PC dan aplikasi yang berjalan di setiap unit.</li>
+                    <li>Identifikasi PC yang memiliki fungsi khusus, seperti untuk tugas administratif atau keuangan.</li>
+                    <li>Identifikasi PC yang menjalankan aplikasi terikat platform tertentu (misalnya aplikasi yang hanya berjalan di Windows).</li>
+                    <li>Analisa cakupan deployment untuk memastikan semua kebutuhan PC dapat terpenuhi setelah migrasi.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Langkah Tambahan</h2>
+                <ol>
+                    <li>Lakukan tes kompatibilitas untuk aplikasi berbasis DOS/Windows lama menggunakan emulator seperti `dosemu` atau `Wine`.</li>
+                    <li>Periksa penggunaan fitur-fitur spesifik Microsoft Office (seperti Macro VBA atau Pivot Table kompleks) pada dokumen pengguna dan cari padanannya di LibreOffice.</li>
+                    <li>Lakukan backup semua data penting pengguna sebelum memulai proses migrasi.</li>
+                    <li>Sediakan sesi bimbingan dan pelatihan bagi pengguna untuk beradaptasi dengan aplikasi baru seperti LibreOffice.</li>
+                    <li>Berikan contoh perbandingan secara langsung antara M$ Office dan LibreOffice untuk menunjukkan bahwa fungsionalitas inti tetap sama.</li>
+                </ol>
+            </section>
+            <p>Demikian pengalaman dan strategi yang dapat diterapkan untuk migrasi dari M$ Windows ke GNU/Linux. Semoga Bermanfaat!</p>
+                 <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+ <footer>
+    <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
+  </footer>
+    </div>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar - Migrasi Windows ke GNU/Linux - Panduan Lengkap">
+        <button class="lightbox-nav prev" onclick="changeImage(-1)">❮</button>
+        <button class="lightbox-nav next" onclick="changeImage(1)">❯</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".gallery img");
+            if (images.length > 0) {
+                const lightbox = document.getElementById("lightbox");
+                const lightboxImg = document.getElementById("lightbox-img");
+                const closeBtn = document.querySelector(".lightbox-close");
+                let currentIndex;
+                images.forEach((img, index) => {
+                    img.addEventListener("click", () => {
+                        lightbox.style.display = "flex";
+                        lightboxImg.src = img.src;
+                        currentIndex = index;
+                    });
+                });
+                function closeLightbox() {
+                    lightbox.style.display = "none";
+                }
+                closeBtn.addEventListener("click", closeLightbox);
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+                window.changeImage = function(n) {
+                    currentIndex += n;
+                    if (currentIndex >= images.length) currentIndex = 0;
+                    if (currentIndex < 0) currentIndex = images.length - 1;
+                    lightboxImg.src = images[currentIndex].src;
+                };
+                document.addEventListener("keydown", (e) => {
+                    if (lightbox.style.display === "flex") {
+                        if (e.key === "ArrowLeft") changeImage(-1);
+                        else if (e.key === "ArrowRight") changeImage(1);
+                        else if (e.key === "Escape") closeLightbox();
+                    }
+                });
+            }
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

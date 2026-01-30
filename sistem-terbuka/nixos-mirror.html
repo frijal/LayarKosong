@@ -1,4 +1,11 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</title><meta name="description" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama."><link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</title>
+    <meta name="description" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
+    <style>
+        :root {
             --bg: #1e2a38;
             --fg: #e0e6ec;
             --muted: #a8b0bb;
@@ -38,7 +45,56 @@
         code { font-family: 'Fira Code', 'Consolas', monospace; }
         .copy-btn { position: absolute; top: 12px; right: 12px; background: #3a4857; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
         .copy-btn:hover { background: var(--accent); }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama."><meta name="ai:prompt_hint" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/nixos-mirror/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/nixos-mirror/"><meta property="og:title" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS"><meta property="og:description" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/nixos-mirror.webp"><meta property="og:image:alt" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/nixos-mirror.webp"><meta itemprop="image" content="https://dalam.web.id/img/nixos-mirror.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS","description":"Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.","articleSection":"Sistem Terbuka","keywords":"atur, layar kosong, mirror, nixos, sistem terbuka, skrip, tercepat","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/nixos-mirror.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-25T23:20:38.198+00:00","dateModified":"2025-05-25T23:20:38.198+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS","item":"https://dalam.web.id/sistem-terbuka/nixos-mirror/"}]}]}</script></head><body><div class="wrap"><header class="site"><div class="brand">⚡ dalam.web.id</div></header><main><div class="col"><article><h1>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</h1><div id="iposbrowser"></div><p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p><div class="warning-box"><strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.</div><h2>Kode Skrip</h2><p>Skrip ini akan secara otomatis membuat backup dari file konfigurasi Anda yang ada, lalu menambahkan substituter baru.</p><pre class="language-bash"><code id="code1">#!/bin/bash
+        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
+<meta name="ai:prompt_hint" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/nixos-mirror/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/nixos-mirror/">
+    <meta property="og:title" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS">
+    <meta property="og:description" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/nixos-mirror.webp">
+    <meta property="og:image:alt" content="Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/nixos-mirror.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/nixos-mirror.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS","description":"Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.","articleSection":"Sistem Terbuka","keywords":"atur, layar kosong, mirror, nixos, sistem terbuka, skrip, tercepat","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/nixos-mirror.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-25T23:20:38.198+00:00","dateModified":"2025-05-25T23:20:38.198+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/nixos-mirror/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS","item":"https://dalam.web.id/sistem-terbuka/nixos-mirror/"}]}]}</script>
+</head>
+<body>
+    <div class="wrap">
+        <header class="site">
+            <div class="brand">⚡ dalam.web.id</div>
+        </header>
+        <main>
+            <div class="col">
+                <article>
+                    <h1>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</h1>
+<div id="iposbrowser"></div>
+                    <p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p>
+                    <div class="warning-box">
+                        <strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.
+                    </div>
+                    <h2>Kode Skrip</h2>
+                    <p>Skrip ini akan secara otomatis membuat backup dari file konfigurasi Anda yang ada, lalu menambahkan substituter baru.</p>
+                    <pre class="language-bash"><code id="code1">#!/bin/bash
 # nixos-mirror.sh — atur substituter mirror tercepat NixOS
 set -e
 CONF_FILE="/etc/nix/nix.conf"
@@ -53,4 +109,42 @@ trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDS
 EOF
 echo "[INFO] Update channel..."
 nix-channel --update
-echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CONF_FILE."</code><button class="copy-btn" data-target="code1">Salin</button></pre><h2>Cara Menggunakan</h2><ol><li>Simpan skrip di atas sebagai file, misalnya <code>nixos-mirror.sh</code>.</li><li>Temukan kunci publik yang benar untuk mirror yang ingin Anda tambahkan (misalnya, `mirror.sjtu.edu.cn`). Ganti `PASTE_PUBLIC_KEY_HERE` di dalam skrip dengan kunci yang valid.</li><li>Berikan izin eksekusi pada skrip: <code>chmod +x nixos-mirror.sh</code>.</li><li>Jalankan skrip dengan hak akses root: <code>sudo ./nixos-mirror.sh</code>.</li></ol><p>Setelah selesai, proses build dan update NixOS Anda seharusnya akan berjalan lebih cepat dengan memanfaatkan mirror tambahan tersebut.</p><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article></div></main><footer class="site"><small>🄯 2025 dalam.web.id · Pastikan kunci publik substituter benar agar paket bisa diverifikasi.</small></footer></div><div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer=""></script><script>!function(){const t=document.getElementById("toast");document.querySelectorAll(".copy-btn").forEach(e=>{e.addEventListener("click",()=>{const n=e.getAttribute("data-target"),o=document.getElementById(n);o&&navigator.clipboard.writeText(o.innerText).then(()=>{return e="Kode disalin!",t.textContent=e,t.style.opacity="1",void setTimeout(()=>t.style.opacity="0",2e3);var e})})})}()</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+echo "[DONE] Substituter NixOS berhasil ditambahkan. Silakan verifikasi file $CONF_FILE."</code><button class="copy-btn" data-target="code1">Salin</button></pre>
+                    <h2>Cara Menggunakan</h2>
+                    <ol>
+                        <li>Simpan skrip di atas sebagai file, misalnya <code>nixos-mirror.sh</code>.</li>
+                        <li>Temukan kunci publik yang benar untuk mirror yang ingin Anda tambahkan (misalnya, `mirror.sjtu.edu.cn`). Ganti `PASTE_PUBLIC_KEY_HERE` di dalam skrip dengan kunci yang valid.</li>
+                        <li>Berikan izin eksekusi pada skrip: <code>chmod +x nixos-mirror.sh</code>.</li>
+                        <li>Jalankan skrip dengan hak akses root: <code>sudo ./nixos-mirror.sh</code>.</li>
+                    </ol>
+                    <p>Setelah selesai, proses build dan update NixOS Anda seharusnya akan berjalan lebih cepat dengan memanfaatkan mirror tambahan tersebut.</p>
+                    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+            </div>
+        </main>
+        <footer class="site">
+            <small>🄯 2025 dalam.web.id · Pastikan kunci publik substituter benar agar paket bisa diverifikasi.</small>
+        </footer>
+    </div>
+    <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3a4857; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/autoloader/prism-autoloader.min.js" defer=""></script>
+    <script>
+    (function(){
+        const toast = document.getElementById('toast');
+        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
+        document.querySelectorAll('.copy-btn').forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+                const targetId = btn.getAttribute('data-target');
+                const codeEl = document.getElementById(targetId);
+                if (codeEl) {
+                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                }
+            });
+        });
+    })();
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panduan Mudah Berbagi Folder dengan Samba Server Configuration</title><meta name="description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin."><meta name="keywords" content="samba server, linux file sharing, system-config-samba, berbagi folder linux, smb.conf gui, tutorial samba"><meta name="date" content="2025-09-28"><style>body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mudah Berbagi Folder dengan Samba Server Configuration</title>
+    <meta name="description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+    <meta name="keywords" content="samba server, linux file sharing, system-config-samba, berbagi folder linux, smb.conf gui, tutorial samba">
+    <meta name="date" content="2025-09-28">
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.7; }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 8px; }
         header { text-align: center; color: #005a9e; padding-bottom: 10px; border-bottom: 2px solid #0078d4; }
         h1, h2 { color: #005a9e; }
@@ -14,4 +22,105 @@
         .social-buttons svg { width: 32px; height: 32px; }
         .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
         .lightbox-content { max-width: 90%; max-height: 80%; border-radius: 8px; }
-        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; user-select: none; }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin."><meta name="ai:prompt_hint" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/samba-server-config/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/samba-server-config/"><meta property="og:title" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration"><meta property="og:description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp"><meta property="og:image:alt" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp"><meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Mudah Berbagi Folder dengan Samba Server Configuration","description":"Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.","articleSection":"Sistem Terbuka","keywords":"berbagi, config, configuration, folder, layar kosong, mudah, panduan, samba, server, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-14T18:15:06.420+00:00","dateModified":"2025-10-14T18:15:06.420+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Panduan Mudah Berbagi Folder dengan Samba Server Configuration","item":"https://dalam.web.id/sistem-terbuka/samba-server-config/"}]}]}</script></head><body><main class="container"><header><h1>Panduan Mudah Berbagi Folder dengan Samba</h1><div id="iposbrowser"></div><p>Solusi cepat &amp; praktis untuk berbagi file di jaringan menggunakan Linux.</p></header><article><section><h2>📂 Mengapa Samba?</h2><p>Samba adalah solusi standar industri di Linux untuk berbagi folder dan printer dalam jaringan lokal agar bisa diakses oleh komputer Windows, macOS, dan Linux lainnya. Dengan tool grafis seperti <strong>system-config-samba</strong>, kita bisa mengatur folder bersama tanpa harus menyentuh file konfigurasi yang rumit secara manual.</p></section><section class="gallery"><figure><img loading="lazy" src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp" alt="Tampilan utama aplikasi Samba Server Configuration"><figcaption>Tampilan GUI yang memudahkan pengaturan folder bersama.</figcaption></figure></section><section><h2>✅ Kelebihan Menggunakan GUI</h2><ul><li><strong>Mudah Digunakan:</strong> Antarmuka grafis (GUI) sangat memudahkan pengaturan folder bagi pemula.</li><li><strong>Cepat:</strong> Tidak perlu menghafal dan mengetik perintah di file konfigurasi <code>smb.conf</code>.</li><li><strong>Terintegrasi:</strong> Mudah diakses melalui menu sistem di sebagian besar distro Linux.</li></ul></section><section class="social-sharing"><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></article></main><div id="lightbox" class="lightbox"><span class="lightbox-close">×</span> <img class="lightbox-content" id="lightbox-img" alt="Gambar yang diperbesar"></div><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".gallery img");if(e.length>0){const n=document.getElementById("lightbox"),d=document.getElementById("lightbox-img"),l=document.querySelector(".lightbox-close");function t(){n.style.display="none"}e.forEach(e=>{e.addEventListener("click",()=>{n.style.display="flex",d.src=e.src})}),l.addEventListener("click",t),n.addEventListener("click",e=>{e.target===n&&t()}),window.addEventListener("keydown",e=>{"Escape"===e.key&&"flex"===n.style.display&&t()})}})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; user-select: none; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+<meta name="ai:prompt_hint" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/samba-server-config/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/samba-server-config/">
+    <meta property="og:title" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration">
+    <meta property="og:description" content="Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp">
+    <meta property="og:image:alt" content="Panduan Mudah Berbagi Folder dengan Samba Server Configuration">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Mudah Berbagi Folder dengan Samba Server Configuration","description":"Cara mudah mengatur dan berbagi folder dengan Samba Server Configuration di Linux. Tutorial lengkap, interaktif, dengan perintah yang bisa langsung disalin.","articleSection":"Sistem Terbuka","keywords":"berbagi, config, configuration, folder, layar kosong, mudah, panduan, samba, server, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-14T18:15:06.420+00:00","dateModified":"2025-10-14T18:15:06.420+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/samba-server-config/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Panduan Mudah Berbagi Folder dengan Samba Server Configuration","item":"https://dalam.web.id/sistem-terbuka/samba-server-config/"}]}]}</script>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Panduan Mudah Berbagi Folder dengan Samba</h1>
+<div id="iposbrowser"></div>
+            <p>Solusi cepat &amp; praktis untuk berbagi file di jaringan menggunakan Linux.</p>
+        </header>
+        <article>
+            <section>
+                <h2>📂 Mengapa Samba?</h2>
+                <p>Samba adalah solusi standar industri di Linux untuk berbagi folder dan printer dalam jaringan lokal agar bisa diakses oleh komputer Windows, macOS, dan Linux lainnya. Dengan tool grafis seperti <strong>system-config-samba</strong>, kita bisa mengatur folder bersama tanpa harus menyentuh file konfigurasi yang rumit secara manual.</p>
+            </section>
+            <section class="gallery">
+                <figure>
+                    <img loading="lazy" src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDudjQ85eRiMWKJJdhvtNyhBc0JLaspVNG-mK98M_1jLIGnUhNzIqSuqeUWSxr7Z4uL4QBIXT0nOMQAvbZsZtCoqwcFKOSpfxFjhe3-3AqNCvIKVBBgEpgGgwq-PeM3YY7MMrFcemIi0uB/s1600/sambaserverconfiguratio.webp" alt="Tampilan utama aplikasi Samba Server Configuration">
+                    <figcaption>Tampilan GUI yang memudahkan pengaturan folder bersama.</figcaption>
+                </figure>
+            </section>
+            <section>
+                <h2>✅ Kelebihan Menggunakan GUI</h2>
+                <ul>
+                    <li><strong>Mudah Digunakan:</strong> Antarmuka grafis (GUI) sangat memudahkan pengaturan folder bagi pemula.</li>
+                    <li><strong>Cepat:</strong> Tidak perlu menghafal dan mengetik perintah di file konfigurasi <code>smb.conf</code>.</li>
+                    <li><strong>Terintegrasi:</strong> Mudah diakses melalui menu sistem di sebagian besar distro Linux.</li>
+                </ul>
+            </section>
+            <section class="social-sharing">
+               <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </section>
+    </article>
+    </main>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar yang diperbesar">
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".gallery img");
+            if (images.length > 0) {
+                const lightbox = document.getElementById("lightbox");
+                const lightboxImg = document.getElementById("lightbox-img");
+                const closeBtn = document.querySelector(".lightbox-close");
+                images.forEach(img => {
+                    img.addEventListener("click", () => {
+                        lightbox.style.display = "flex";
+                        lightboxImg.src = img.src;
+                    });
+                });
+                function closeLightbox() {
+                    lightbox.style.display = "none";
+                }
+                closeBtn.addEventListener("click", closeLightbox);
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+                window.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && lightbox.style.display === "flex") {
+                        closeLightbox();
+                    }
+                });
+            }
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

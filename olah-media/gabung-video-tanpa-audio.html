@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif."><meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa-audio, Linux, terminal, shell script, tutorial"><title>Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio</title><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- 🌐 Metadata SEO Lengkap -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa-audio, Linux, terminal, shell script, tutorial">
+  <!-- 🔗 Canonical -->
+  <!-- 🧭 Open Graph -->
+  <!-- 🐦 Twitter Card -->
+  <!-- 🎨 Favicon -->
+  <title>Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio</title>
+  <!-- 💅 CSS: Responsif & Tema Otomatis -->
+  <style>
+    :root {
       --bg-light: #f5f5f5;
       --text-light: #222;
       --card-light: #fff;
@@ -116,7 +129,56 @@
       text-decoration: none;
       margin: 0 0.4rem;
       font-size: 1.3rem;
-    }</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif."><meta name="ai:prompt_hint" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif."><link rel="canonical" href="https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"><meta property="og:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio"><meta property="og:description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp"><meta property="og:image:alt" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp"><meta itemprop="image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio","description":"Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.","articleSection":"Olah Media","keywords":"audio, ffmpeg, gabung, layar kosong, olah media, script, semua, tanpa, versi, video","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/gabung-video-tanpa-audio.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2010-09-13T00:45:47.275+00:00","dateModified":"2010-09-13T00:45:47.275+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio","item":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"}]}]}</script></head><body><header><h1>🎬 Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio 🔇</h1><div id="iposbrowser"></div><p>Kadang kita punya banyak file video `.mp4` yang tersebar di satu folder, dan pengen langsung digabung jadi satu video utuh tanpa ribet. Nah, di bawah ini ada dua script shell siap pakai untuk Linux: versi biasa dan versi tanpa-audio (tanpa suara).</p></header><main><section class="card"><h2>🧩 Script 1 — Gabung Semua .mp4 (dengan suara)</h2><p>Script ini akan membuat daftar semua file `.mp4` di folder kamu, lalu menggabungkannya secara otomatis jadi satu video utuh. Aman dijalankan di Linux terminal.</p><pre><code id="script1">
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+<meta name="ai:prompt_hint" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+    <link rel="canonical" href="https://dalam.web.id/olah-media/gabung-video-tanpa-audio/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/olah-media/gabung-video-tanpa-audio/">
+    <meta property="og:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio">
+    <meta property="og:description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+    <meta property="og:image:alt" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio","description":"Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.","articleSection":"Olah Media","keywords":"audio, ffmpeg, gabung, layar kosong, olah media, script, semua, tanpa, versi, video","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/gabung-video-tanpa-audio.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2010-09-13T00:45:47.275+00:00","dateModified":"2010-09-13T00:45:47.275+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio","item":"https://dalam.web.id/olah-media/gabung-video-tanpa-audio/"}]}]}</script>
+</head>
+<body>
+  <header>
+    <h1>🎬 Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio 🔇</h1>
+<div id="iposbrowser"></div>
+    <p>
+      Kadang kita punya banyak file video `.mp4` yang tersebar di satu folder, dan pengen langsung digabung jadi satu video utuh tanpa ribet.
+      Nah, di bawah ini ada dua script shell siap pakai untuk Linux: versi biasa dan versi tanpa-audio (tanpa suara).
+    </p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>🧩 Script 1 — Gabung Semua .mp4 (dengan suara)</h2>
+      <p>
+        Script ini akan membuat daftar semua file `.mp4` di folder kamu, lalu menggabungkannya secara otomatis jadi satu video utuh.
+        Aman dijalankan di Linux terminal.
+      </p>
+      <pre><code id="script1">
 #!/bin/bash
 # Script: gabung_video.sh
 # Menggabungkan semua file .mp4 menjadi satu video utuh
@@ -128,7 +190,16 @@ done
 ffmpeg -f concat -safe 0 -i daftar.txt -c copy hasil_gabungan.mp4
 rm -f daftar.txt
 echo "✅ Video berhasil digabung: hasil_gabungan.mp4"
-      </code></pre><button class="copy" onclick='copyCode("script1")'>📋 Salin Script</button></section><section class="card"><h2>🔇 Script 2 — Gabung Semua .mp4 Jadi Video Tanpa Audio</h2><p>Ini versi upgrade-nya: selain gabung semua video, script ini otomatis menghapus audio. Cocok buat kamu yang cuma butuh tampilan visual aja tanpa suara.</p><pre><code id="script2">
+      </code></pre>
+      <button class="copy" onclick="copyCode('script1')">📋 Salin Script</button>
+    </section>
+    <section class="card">
+      <h2>🔇 Script 2 — Gabung Semua .mp4 Jadi Video Tanpa Audio</h2>
+      <p>
+        Ini versi upgrade-nya: selain gabung semua video, script ini otomatis menghapus audio.
+        Cocok buat kamu yang cuma butuh tampilan visual aja tanpa suara.
+      </p>
+      <pre><code id="script2">
 #!/bin/bash
 # =========================================
 # Script: gabung_video_tanpa-audio.sh
@@ -165,4 +236,29 @@ fi
 ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
 rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
 echo "✨ Selesai! 📽️ Video tanpa-audio hasil: $OUTPUT"
-      </code></pre><button class="copy" onclick='copyCode("script2")'>📋 Salin Script</button></section><section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></main><footer>🄯 2025 Fakhrul Rijal. Dibuat dengan ☕ dan semangat Linux terminal.</footer><script>function copyCode(t){const e=document.getElementById(t).innerText;navigator.clipboard.writeText(e).then(()=>{const t=event.target,e=t.textContent;t.textContent="✅ Disalin!",setTimeout(()=>t.textContent=e,2e3)})}</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+      </code></pre>
+      <button class="copy" onclick="copyCode('script2')">📋 Salin Script</button>
+    </section>
+<section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+  <footer>
+    🄯 2025 Fakhrul Rijal. Dibuat dengan ☕ dan semangat Linux terminal.
+  </footer>
+  <!-- ⚙️ JavaScript: Tombol Copy -->
+  <script>
+    function copyCode(id) {
+      const code = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = "✅ Disalin!";
+        setTimeout(() => btn.textContent = original, 2000);
+      });
+    }
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

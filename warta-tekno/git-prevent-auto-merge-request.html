@@ -1,4 +1,15 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cara Agar Branch Tidak Minta Merge Otomatis ke Main</title><meta name="keywords" content="git, github, pull request, branch protection, merge, alur kerja git, frijal pages"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root {
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Agar Branch Tidak Minta Merge Otomatis ke Main</title>
+    <meta name="keywords" content="git, github, pull request, branch protection, merge, alur kerja git, frijal pages">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+<style>
+:root {
     --bg-color: #1a1a2e;
     --primary-color: #16213e;
     --secondary-color: #0f3460;
@@ -214,4 +225,130 @@ footer a {
     main {
         padding: 20px;
     }
-}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak"><meta name="ai:prompt_hint" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak"><meta name="description" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak"><link rel="canonical" href="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"><meta property="og:title" content="Cara Agar Branch Tidak Minta Merge Otomatis ke Main"><meta property="og:description" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp"><meta property="og:image:alt" content="Cara Agar Branch Tidak Minta Merge Otomatis ke Main"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp"><meta itemprop="image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Agar Branch Tidak Minta Merge Otomatis ke Main","description":"Tutorial santai cara kerja Git dan GitHub agar anak branch tidak","articleSection":"Warta Tekno","keywords":"agar, auto, branch, cara, layar kosong, main, merge, minta, otomatis, prevent, request, tidak","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/git-prevent-auto-merge-request.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-22T11:53:56.623+00:00","dateModified":"2025-10-22T11:53:56.623+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Agar Branch Tidak Minta Merge Otomatis ke Main","item":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"}]}]}</script></head><body><div class="container"><header><h1>Anak Branch Sering "Minta" Merge? Ini Cara Mengaturnya! 🤫</h1><div id="iposbrowser"></div><p class="subtitle">Memahami bahwa "permintaan merge" dari GitHub hanyalah saran, dan bagaimana cara mengambil alih kontrol penuh atas branch `main` Anda.</p></header><main><article><h2>Itu Bukan Permintaan, Cuma Saran Kok!</h2><p>Pertama-tama, penting untuk tahu kalau anak branch itu sebenarnya gak pernah minta merge otomatis. Notifikasi kuning yang muncul di GitHub setelah kamu nge-push branch baru itu cuma **saran** atau **jalan pintas** yang baik hati dari GitHub. Tujuannya biar kamu gampang bikin Pull Request.</p><p>Nah, kalau kamu mau alur kerjanya beda, ada dua cara utama untuk mengatur ini, dari yang paling gampang sampai yang paling ketat.</p><div class="method-card"><div class="method-header"><i class="fas fa-coffee"></i><h2>Cara 1: Cukup Abaikan Saja (Paling Gampang)</h2></div><div class="method-body"><p>Betul, sesederhana itu. Kamu gak perlu mengubah setelan apa pun di repositori. Cukup ubah kebiasaanmu saja.</p><ol><li><strong>Kerja Seperti Biasa:</strong> Lakukan semua perubahan, commit, dan push ke anak branch-mu (misal: `desain-baru`).</li><li><strong>Push ke Branch Sendiri:</strong> Pastikan kamu hanya push ke branch tersebut.<div class="code-block"><pre><code>git push origin desain-baru</code></pre><button class="copy-btn"><i class="far fa-copy"></i> Salin</button></div></li><li><strong>Cuekin Tombolnya:</strong> Saat notifikasi "Compare &amp; pull request" muncul di GitHub, **jangan diklik**. Anggap saja tidak ada.</li></ol><p>Selama tidak ada yang membuat Pull Request, anak branch akan tetap terpisah. Perubahan hanya akan masuk ke `main` jika kamu sebagai pengelola `main` branch "memanggil"-nya secara manual dengan `git merge`.</p></div></div><div class="method-card"><div class="method-header"><i class="fas fa-shield-halved"></i><h2>Cara 2: Kunci `main` dengan Aturan (Paling Aman)</h2></div><div class="method-body"><p>Kalau kamu kerja bareng tim dan mau memastikan *semua orang* mengikuti aturan, ini adalah setelan yang wajib kamu aktifkan. Namanya <strong>Branch Protection Rules</strong>.</p><h4>Langkah-langkah Mengaktifkan:</h4><ol><li>Buka repositorimu, lalu masuk ke tab <strong>Settings</strong>.</li><li>Di menu kiri, pilih <strong>Branches</strong>.</li><li>Klik tombol <strong>Add rule</strong>.</li><li>Di bagian "Branch name pattern", ketik `main`.</li><li>Centang kotak yang paling penting: ✅ <strong>Require a pull request before merging</strong>.</li></ol><h4>Apa Efek dari Setelan Ini?</h4><p>Dengan mencentang satu kotak itu saja, kamu sudah mendapatkan keamanan luar biasa:</p><ul><li><i class="fas fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan wajib lewat Pull Request.</li><li><i class="fas fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li></ul><div class="tip"><i class="fas fa-lightbulb"></i> <strong>Kesimpulan:</strong> Cara 1 (mengabaikan) adalah tentang mengubah kebiasaan. Cara 2 (Branch Protection) adalah tentang mengubah sistem agar semua orang terpaksa mengikuti kebiasaan yang aman.</div></div></div></article><div><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></div></main><footer><p>🄯 2025 - <a href="https://dalam.web.id">dalam.web.id</a></p></footer></div><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".copy-btn").forEach(e=>{e.addEventListener("click",e=>{const r=e.currentTarget.previousElementSibling.querySelector("code").innerText;navigator.clipboard.writeText(r).then(()=>{const r=e.currentTarget.innerHTML;e.currentTarget.innerHTML='<i class="fas fa-check"></i> Disalin!',e.currentTarget.disabled=!0,setTimeout(()=>{e.currentTarget.innerHTML=r,e.currentTarget.disabled=!1},2e3)}).catch(e=>{console.error("Gagal menyalin teks: ",e)})})})})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
+}
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak">
+<meta name="ai:prompt_hint" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak">
+<meta name="description" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/">
+    <meta property="og:title" content="Cara Agar Branch Tidak Minta Merge Otomatis ke Main">
+    <meta property="og:description" content="Tutorial santai cara kerja Git dan GitHub agar anak branch tidak">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp">
+    <meta property="og:image:alt" content="Cara Agar Branch Tidak Minta Merge Otomatis ke Main">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/git-prevent-auto-merge-request.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Agar Branch Tidak Minta Merge Otomatis ke Main","description":"Tutorial santai cara kerja Git dan GitHub agar anak branch tidak","articleSection":"Warta Tekno","keywords":"agar, auto, branch, cara, layar kosong, main, merge, minta, otomatis, prevent, request, tidak","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/git-prevent-auto-merge-request.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-22T11:53:56.623+00:00","dateModified":"2025-10-22T11:53:56.623+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Agar Branch Tidak Minta Merge Otomatis ke Main","item":"https://dalam.web.id/warta-tekno/git-prevent-auto-merge-request/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Anak Branch Sering "Minta" Merge? Ini Cara Mengaturnya! 🤫</h1>
+<div id="iposbrowser"></div>
+            <p class="subtitle">Memahami bahwa "permintaan merge" dari GitHub hanyalah saran, dan bagaimana cara mengambil alih kontrol penuh atas branch `main` Anda.</p>
+        </header>
+        <main>
+            <article>
+                <h2>Itu Bukan Permintaan, Cuma Saran Kok!</h2>
+                <p>Pertama-tama, penting untuk tahu kalau anak branch itu sebenarnya gak pernah minta merge otomatis. Notifikasi kuning yang muncul di GitHub setelah kamu nge-push branch baru itu cuma **saran** atau **jalan pintas** yang baik hati dari GitHub. Tujuannya biar kamu gampang bikin Pull Request.</p>
+                <p>Nah, kalau kamu mau alur kerjanya beda, ada dua cara utama untuk mengatur ini, dari yang paling gampang sampai yang paling ketat.</p>
+                <div class="method-card">
+                    <div class="method-header">
+                        <i class="fas fa-coffee"></i>
+                        <h2>Cara 1: Cukup Abaikan Saja (Paling Gampang)</h2>
+                    </div>
+                    <div class="method-body">
+                        <p>Betul, sesederhana itu. Kamu gak perlu mengubah setelan apa pun di repositori. Cukup ubah kebiasaanmu saja.</p>
+                        <ol>
+                            <li><strong>Kerja Seperti Biasa:</strong> Lakukan semua perubahan, commit, dan push ke anak branch-mu (misal: `desain-baru`).</li>
+                            <li><strong>Push ke Branch Sendiri:</strong> Pastikan kamu hanya push ke branch tersebut.
+                                <div class="code-block">
+                                    <pre><code>git push origin desain-baru</code></pre>
+                                    <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                                </div>
+                            </li>
+                            <li><strong>Cuekin Tombolnya:</strong> Saat notifikasi "Compare &amp; pull request" muncul di GitHub, **jangan diklik**. Anggap saja tidak ada.</li>
+                        </ol>
+                        <p>Selama tidak ada yang membuat Pull Request, anak branch akan tetap terpisah. Perubahan hanya akan masuk ke `main` jika kamu sebagai pengelola `main` branch "memanggil"-nya secara manual dengan `git merge`.</p>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <i class="fas fa-shield-halved"></i>
+                        <h2>Cara 2: Kunci `main` dengan Aturan (Paling Aman)</h2>
+                    </div>
+                    <div class="method-body">
+                        <p>Kalau kamu kerja bareng tim dan mau memastikan *semua orang* mengikuti aturan, ini adalah setelan yang wajib kamu aktifkan. Namanya <strong>Branch Protection Rules</strong>.</p>
+                        <h4>Langkah-langkah Mengaktifkan:</h4>
+                        <ol>
+                            <li>Buka repositorimu, lalu masuk ke tab <strong>Settings</strong>.</li>
+                            <li>Di menu kiri, pilih <strong>Branches</strong>.</li>
+                            <li>Klik tombol <strong>Add rule</strong>.</li>
+                            <li>Di bagian "Branch name pattern", ketik `main`.</li>
+                            <li>Centang kotak yang paling penting: ✅ <strong>Require a pull request before merging</strong>.</li>
+                        </ol>
+                        <h4>Apa Efek dari Setelan Ini?</h4>
+                        <p>Dengan mencentang satu kotak itu saja, kamu sudah mendapatkan keamanan luar biasa:</p>
+                        <ul>
+                            <li><i class="fas fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan wajib lewat Pull Request.</li>
+                            <li><i class="fas fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li>
+                        </ul>
+                        <div class="tip">
+                           <i class="fas fa-lightbulb"></i>
+                           <strong>Kesimpulan:</strong> Cara 1 (mengabaikan) adalah tentang mengubah kebiasaan. Cara 2 (Branch Protection) adalah tentang mengubah sistem agar semua orang terpaksa mengikuti kebiasaan yang aman.
+                        </div>
+                    </div>
+                </div>
+    </article>
+            <div>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </div>
+        </main>
+        <footer>
+            <p>🄯 2025 - <a href="https://dalam.web.id">dalam.web.id</a></p>
+        </footer>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+    // --- Fungsi Tombol Salin Kode ---
+    const allCopyButtons = document.querySelectorAll('.copy-btn');
+    allCopyButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const codeBlock = e.currentTarget.previousElementSibling;
+            const code = codeBlock.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = e.currentTarget.innerHTML;
+                e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                e.currentTarget.disabled = true;
+                setTimeout(() => {
+                    e.currentTarget.innerHTML = originalHTML;
+                    e.currentTarget.disabled = false;
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        });
+    });
+});</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
