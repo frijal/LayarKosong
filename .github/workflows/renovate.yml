@@ -26,7 +26,7 @@ env:
   cache_key: renovate-cache-
   # Logika dinamis untuk Tag dan File Konfigurasi
   SELECTED_TAG: ${{ github.event.inputs.imageTag || 'slim' }}
-  CONFIG_FILE: ${{ (github.event.inputs.imageTag == 'full') && 'mini/full-renovate.json5' || 'mini/slim-renovate.json5' }}
+  CONFIG_FILE: ${{ (github.event.inputs.imageTag == 'full') && 'mini/renovate-full.json5' || 'mini/renovate-slim.json5' }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
