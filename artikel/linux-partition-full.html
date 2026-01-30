@@ -1,34 +1,32 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨</title>
+    <title>Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨</title>
     <meta name="description" content="Cara mengatasi partisi root (/) Linux yang penuh 100%. Panduan lengkap langkah demi langkah mendiagnosa penyebab disk penuh tanpa menghapus data sembarangan.">
     <meta name="news_keywords" content="Linux Partition Full, Root Partition 100%, Disk Usage Linux, Sysadmin Tips, Ubuntu Server Full, Cara Membersihkan Disk Linux">
-    <link rel="canonical" href="https://dalam.web.id/artikel/linux-partition-full.html">
-    <meta name="author" content="Fakhrul Rijal">
+    
+    
     <meta name="prompt_hint" content="Artikel teknis Linux mendalam tentang manajemen disk space dan troubleshooting server produksi.">
 
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:title" content="Partisi Root Linux Penuh 100%? Ini Cara Beresin Tanpa Panik! 🐧">
+    
+    
     <meta property="og:description" content="Server mogok gara-gara disk full? Jangan asal hapus! Ikuti strategi diagnosa cerdas ini biar server kamu balik normal dalam hitungan menit.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/linux-partition-full.html">
-    <meta property="og:image" content="https://pbs.twimg.com/media/G_nR_JAaIAAnopS.jpg">
-    <meta property="article:published_time" content="2026-01-27T03:00:00+07:00">
+    
+    
+    
+    
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="twitter:title" content="🚨 Linux Alert: Disk Root Penuh! Apa yang Harus Dilakukan?">
+    
+    
+    
+    
     <meta name="twitter:description" content="Panduan teknis buat sysadmin yang lagi pusing hadapin partisi / yang merah 100%. Baca selengkapnya di Layar Kosong.">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/G_nR_JAaIAAnopS.jpg">
+    
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         /* Core Web Vitals: Pre-load styling to avoid CLS */
@@ -134,15 +132,44 @@
             .container { padding: 15px; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/linux-partition-full">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/linux-partition-full">
+    <meta property="og:title" content="Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
+    <meta property="og:image:alt" content="Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas &amp; Solusi Tuntas 🚨">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
 <div class="container">
     <header>
         <div style="font-size: 0.9rem; color: var(--link-color); font-weight: bold; text-transform: uppercase;">
-            <i class="fas fa-terminal"></i> Linux & Server Administration
+            <i class="fas fa-terminal"></i> Linux &amp; Server Administration
         </div>
         <h1>🚨 Linux Alert: Partisi Root (/) 100% Full! Jangan Panik, Ikuti Cara Cerdas Ini!</h1>
+<div id="iposbrowser"></div>
         <p style="font-style: italic; opacity: 0.8;">Oleh: <strong>Fakhrul Rijal</strong> | Dipublikasikan pada 27 Januari 2026</p>
     </header>
 
@@ -151,7 +178,7 @@
         <p>Halo sobat tech! Selamat datang kembali di blog <strong>Layar Kosong</strong>. Pernah nggak sih kamu lagi asyik nge-deploy aplikasi, eh tiba-tiba koneksi SSH putus, database gagal *start*, atau log server isinya cuma `No space left on device`? Beuh, itu rasanya kayak lagi naik motor terus ban bocor di tengah jalan tol—ngeselin banget!</p>
 
         <p>Disk yang penuh pada partisi root (`/`) bukan cuma bikin risih, tapi bisa bikin server produksi kamu berhenti total. Seringkali masalah ini muncul tiba-tiba tanpa permisi. Tapi, sebelum kamu mencak-mencak dan asal ketik perintah hapus sana-sini, mari kita tarik napas dalam-dalam. Mengetahui *di mana* ruang disk itu habis jauh lebih penting daripada sekadar tahu kalau disk kamu penuh.</p>
-    <img src="https://pbs.twimg.com/media/G_nR_JAaIAAnopS.jpg" alt="Linux Server Disk Full Diagnosis" loading="eager" width="900" height="506">
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp" alt="Linux Server Disk Full Diagnosis" loading="eager" width="900" height="506">
 
         <h2>Mengapa Partisi Root Penuh Sangat Berbahaya? ("Why")</h2>
         <p>Bayangin sistem operasi Linux itu kayak sebuah rumah. Partisi root adalah fondasinya. Kalau fondasinya penuh sesak sama sampah, penghuni rumah (proses sistem seperti SSH, Cron, Web Server) nggak bisa gerak. Beberapa dampak buruknya:</p>
@@ -197,7 +224,7 @@
             <li><strong>Backup Kadaluarsa:</strong> Script backup otomatis yang nyimpen file di <code>/var</code> atau <code>/tmp</code> tapi lupa dihapus setelah di-upload ke cloud.</li>
         </ol>
 
-        <h2>Praktik Terbaik Menjaga Kesehatan Server ("When" & "Where")</h2>
+        <h2>Praktik Terbaik Menjaga Kesehatan Server ("When" &amp; "Where")</h2>
         <p>Kapan harus bertindak? Ya sekarang! Jangan tunggu merah dulu. Dimana saja kamu harus pasang proteksi?</p>
         <ul>
             <li><strong>Logrotate:</strong> Pastikan semua service menggunakan `logrotate` biar log nggak bengkak.</li>
@@ -216,8 +243,8 @@
     </article>
 
     <footer>
-        <p>&copy; 2026 <strong>Fakhrul Rijal</strong>. Balikpapan, Kalimantan Timur.
-                <div class="social-links">
+        <p>🄯 2026 <strong>Fakhrul Rijal</strong>. Balikpapan, Kalimantan Timur.
+                </p><div class="social-links">
             <a href="https://twitter.com/responaja" title="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="https://t.me/frijal" title="Telegram"><i class="fab fa-telegram"></i></a>
             <a href="https://github.com/frijal" title="GitHub"><i class="fab fa-github"></i></a>
@@ -228,5 +255,9 @@
     </footer>
 </div>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
