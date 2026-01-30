@@ -6,15 +6,37 @@ on:
     types: [completed]
     branches: ['main']
   workflow_dispatch:
+    inputs:
+      run_generator:
+        description: 'Jalankan Generator (JSON, RSS, Sitemap XML)'
+        type: boolean
+        default: true
+      run_sitemap_txt:
+        description: 'Jalankan Update sitemap.txt'
+        type: boolean
+        default: true
+      run_schema:
+        description: 'Jalankan Inject Schema.org Python'
+        type: boolean
+        default: true
+      run_minify:
+        description: 'Jalankan HTML Minify (Hapus baris kosong)'
+        type: boolean
+        default: true
   schedule:
     - cron: '0 20 * * *'
+
+env:
+  # Logika: Jika dipicu manual, ambil input. Jika dipicu cron/workflow_run, default true.
+  DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
+  DO_SITEMAP_TXT: ${{ github.event.inputs.run_sitemap_txt || 'true' }}
+  DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
+  DO_MINIFY: ${{ github.event.inputs.run_minify || 'true' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Jalankan jika bukan dipicu workflow_run, atau jika workflow_run sukses
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
-
     permissions:
       contents: write
 
@@ -42,49 +64,41 @@ jobs:
         run: npm ci
 
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
-        # Menggunakan generator-pro yang sudah digabung
+        if: env.DO_GENERATOR == 'true'
         run: npm run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
       - name: '6️⃣ Generate sitemap.txt (Sync V6.9)'
-        # Kita ambil datanya langsung dari hasil generator-pro (artikel.json)
-        # Ini cara paling akurat agar sitemap.txt sama persis dengan sitemap.xml
+        if: env.DO_SITEMAP_TXT == 'true'
         run: |
           echo "📝 Membuat sitemap.txt dari database V6.9..."
           BASE_URL="https://dalam.web.id"
           SITEMAP_FILE="sitemap.txt"
-          
-          # Pakai node sebentar buat extract URL dari artikel.json
           node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
             const urls = [];
             const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
-            
             for (const [cat, posts] of Object.entries(data)) {
               posts.forEach(p => {
                 const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
                 urls.push('${BASE_URL}/' + slugify(cat) + '/' + fileSlug + '/');
               });
             }
-            // Tambahkan URL Statis
-            ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/', '/privacy/'].forEach(u => urls.push('${BASE_URL}' + u));
-            
-            fs.writeFileSync('$SITEMAP_FILE', urls.join('\n') + '\n');
+            ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/'].forEach(u => urls.push('${BASE_URL}' + u));
+            fs.writeFileSync('$SITEMAP_FILE', [...new Set(urls)].join('\n') + '\n');
           "
-          echo "✅ sitemap.txt sinkron dengan V6.9"     
-
-  #    - name: 'Generate Screenshots'
-  #      run: npm run ci-screenshot
+          echo "✅ sitemap.txt sinkron dengan V6.9"
 
       - name: 7️⃣ Inject schema.org (smart mode)
+        if: env.DO_SCHEMA == 'true'
         run: python3 ext/inject_schema.py
 
       - name: '8️⃣ Clean Empty Lines (HTML Minify V6.9)'
+        if: env.DO_MINIFY == 'true'
         run: |
           echo "🧹 Membersihkan baris kosong di folder kategori..."
-          # Sekarang kita cari di semua folder kecuali folder sistem
           find . -maxdepth 2 -name "*.html" \
             ! -path "./node_modules/*" \
             ! -path "./.*" \
@@ -96,15 +110,13 @@ jobs:
             ! -path "./img/*" \
             ! -name "index.html" \
             -exec sed -i '/^[[:space:]]*$/d' {} +
-          echo "✅ Pembersihan selesai."     
+          echo "✅ Pembersihan selesai."
 
       - name: '9️⃣ Commit and Push Generated Files'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
           git add .
-
           if git diff --staged --quiet; then
             echo "✅ Tidak ada perubahan file."
           else
@@ -119,7 +131,8 @@ jobs:
         if: always()
         run: |
           echo "✅ Build & Mirroring selesai"
-          echo "🔗 RSS Utama    : https://dalam.web.id/rss.xml"
-          echo "🔗 Sitemap XML  : https://dalam.web.id/sitemap.xml"
-          echo "🔗 Sitemap TXT  : https://dalam.web.id/sitemap.txt"
           echo "Triggered by: ${{ github.event_name }}"
+          echo "Generator: ${{ env.DO_GENERATOR }}"
+          echo "Sitemap TXT: ${{ env.DO_SITEMAP_TXT }}"
+          echo "Schema: ${{ env.DO_SCHEMA }}"
+          echo "Minify: ${{ env.DO_MINIFY }}"
