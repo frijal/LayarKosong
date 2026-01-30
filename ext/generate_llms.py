@@ -164,39 +164,61 @@ document_type: llm_behavior_and_entity_guidance
 
     full_markdown = ai_instructions + "\n".join(header_title) + "\n".join(body_lines)
 
+    # Simpan file TXT dan MD (tetap versi mentah)
     for output_file in [TXT_OUTPUT, MD_OUTPUT]:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(full_markdown)
 
+    # Copy ke .well-known
     if not os.path.exists(WELL_KNOWN_DIR):
         os.makedirs(WELL_KNOWN_DIR)
-
     for filename in [TXT_OUTPUT, MD_OUTPUT]:
-        destination = os.path.join(WELL_KNOWN_DIR, filename)
-        shutil.copy2(filename, destination)
+        shutil.copy2(filename, os.path.join(WELL_KNOWN_DIR, filename))
+
+    # --- LOGIKA KONVERSI HTML AGAR LINK BISA DIKLIK ---
+    # 1. Ubah Markdown Link [Text](URL) menjadi <a href="URL">Text</a>
+    html_body = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank">\1</a>', full_markdown)
+    
+    # 2. Ubah Header Markdown (# Header) menjadi <h3> atau sesuai level
+    html_body = re.sub(r'^### (.*)$', r'<h3>\1</h3>', html_body, flags=re.MULTILINE)
+    html_body = re.sub(r'^## (.*)$', r'<h2>\1</h2>', html_body, flags=re.MULTILINE)
+    html_body = re.sub(r'^# (.*)$', r'<h1>\1</h1>', html_body, flags=re.MULTILINE)
+    
+    # 3. Ubah Bullet Points menjadi <li> (opsional, tapi biar rapi)
+    html_body = re.sub(r'^- (.*)$', r'<li>\1</li>', html_body, flags=re.MULTILINE)
 
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8"><title>Layar Kosong - LLM Index v{new_v}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 100%; padding: 0 1em; line-height: 1.6; color: #333; }}
-        pre {{ background: #1e1e1e; color: #dcdcdc; padding: 1.5em; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; font-size: 0.9em; }}
-        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f9f9f9; }}
-        @media (prefers-color-scheme: dark) {{ body {{ background: #111; color: #eee; }} blockquote {{ background: #222; color: #ccc; }} }}
+        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 900px; padding: 0 1em; line-height: 1.6; color: #333; }}
+        .content-box {{ background: #fefefe; border: 1px solid #ddd; padding: 2em; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word; font-family: monospace; font-size: 0.95em; }}
+        a {{ color: #0066cc; text-decoration: none; }}
+        a:hover {{ text-decoration: underline; }}
+        h1, h2, h3 {{ color: #111; margin-top: 1.5em; font-family: sans-serif; }}
+        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }}
+        li {{ list-style-type: none; margin-bottom: 5px; }}
+        li::before {{ content: "• "; color: #0066cc; }}
+        @media (prefers-color-scheme: dark) {{ 
+            body {{ background: #111; color: #eee; }} 
+            .content-box {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
+            blockquote {{ background: #222; color: #ccc; }}
+            a {{ color: #4da3ff; }}
+            h1, h2, h3 {{ color: #fff; }}
+        }}
     </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <p>File ini disediakan untuk memudahkan AI memahami struktur konten Layar Kosong.</p>
-    <pre>{html.escape(full_markdown)}</pre>
+    <p>File ini disediakan untuk memudahkan AI memahami struktur konten <strong>Layar Kosong</strong>. Link di bawah ini aktif dan dapat diklik.</p>
+    <div class="content-box">{html_body}</div>
 </body>
 </html>"""
 
     with open(HTML_OUTPUT, 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan.")
-
-if __name__ == "__main__":
-    main()
+    print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan dengan link aktif.")
