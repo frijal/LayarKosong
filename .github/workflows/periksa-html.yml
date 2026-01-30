@@ -1,11 +1,14 @@
 name: 📋 Audit Komponen SEO Lengkap (Layar Kosong Standard)
 
-on:  
+on:
   workflow_dispatch:
 
 jobs:
   audit:
     runs-on: ubuntu-latest
+    # Memberikan izin untuk menulis (write) kembali ke repositori
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout kode
@@ -28,7 +31,7 @@ jobs:
           
           echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
           echo "📅 Diperiksa pada: $(date)" >> $REPORT
-          echo "> **Catatan:** Workflow ini diatur untuk tidak gagal (Success) meskipun ditemukan masalah. Silakan periksa tabel di bawah untuk perbaikan manual." >> $REPORT
+          echo "> **Catatan:** Workflow ini bersifat Read-Only (hanya memeriksa). Silakan periksa tabel di bawah untuk perbaikan manual." >> $REPORT
           echo "" >> $REPORT
           echo "| File | Status | Detail Komponen Bermasalah |" >> $REPORT
           echo "| :--- | :---: | :--- |" >> $REPORT
@@ -51,11 +54,11 @@ jobs:
             # 1. Core Meta & Branding
             check_tag '<link rel="canonical"' "Canonical Tag"
             check_tag '<link rel="icon" href="/favicon.ico">' "Favicon.ico"
-            check_tag '<meta name="author" content="Fakhrul Rijal">' "Author (Fakhrul Rijal)"
-            check_tag '<meta name="theme-color" content="#00b0ed">' "Theme Color (#00b0ed)"
+            check_tag '<meta name="author" content="Fakhrul Rijal">' "Author"
+            check_tag '<meta name="theme-color" content="#00b0ed">' "Theme Color"
             check_tag 'creativecommons.org/publicdomain/zero/1.0/' "CC0 License"
 
-            # 2. Social Meta (Creators)
+            # 2. Social Meta & Creators
             check_tag 'fediverse:creator" content="@frijal@mastodon.social"' "Fediverse Creator"
             check_tag 'twitter:creator" content="@responaja"' "Twitter Creator"
             check_tag 'bluesky:creator" content="@dalam.web.id"' "Bluesky Creator"
@@ -63,30 +66,22 @@ jobs:
             # 3. Open Graph & Twitter Card
             check_tag 'og:site_name" content="Layar Kosong"' "OG Site Name"
             check_tag 'og:locale" content="id_ID"' "OG Locale"
-            check_tag 'twitter:card" content="summary_large_image"' "Twitter Card Large"
+            check_tag 'twitter:card" content="summary_large_image"' "Twitter Card"
             check_tag 'fb:app_id" content="175216696195384"' "FB App ID"
 
-            # 4. Assets & Feed
+            # 4. Assets & Schema
             check_tag 'type="application/rss+xml"' "RSS Feed Link"
-
-            # 5. Schema JSON-LD (Penting!)
             if ! grep -q 'type="application/ld+json"' "$file"; then
               TEMP_MSG+="- ❌ **SCHEMA JSON-LD TIDAK DITEMUKAN**<br>"
               MASALAH_FILE=1; ADA_MASALAH=1
             fi
 
-            # 6. Variasi Description (Sesuai contoh kamu)
+            # 5. Variasi Description
             check_tag 'name="description"' "Meta Description"
             check_tag 'property="og:description"' "OG Description"
             check_tag 'name="twitter:description"' "Twitter Description"
-            check_tag 'name="promphint"' "Prompt Hint Meta"
+            check_tag 'name="promphint"' "Prompt Hint"
 
-            if ! grep -q 'type="application/ld+json"' "$file"; then
-              TEMP_MSG+="- ❌ **SCHEMA JSON-LD MISSING**<br>"
-              MASALAH_FILE=1; ADA_MASALAH=1
-            fi
-
-            # Masukkan ke tabel Markdown jika ada masalah
             if [ "$MASALAH_FILE" -eq 1 ]; then
               echo "| \`$file\` | ⚠️ Perlu Cek | $TEMP_MSG |" >> $REPORT
             fi
@@ -96,7 +91,7 @@ jobs:
              echo "| Semua file | ✅ Aman | Komponen lengkap sesuai standar. |" >> $REPORT
           fi
           
-          # Tampilkan laporan di Summary GitHub tanpa bikin exit 1
+          # Kirim ke Summary
           cat $REPORT >> $GITHUB_STEP_SUMMARY
 
       - name: 🧼 Linting HTML (HTMLHint)
@@ -104,10 +99,17 @@ jobs:
         run: |
           echo -e "\n## 🧼 Struktur Kode (HTMLHint)\n" >> $GITHUB_STEP_SUMMARY
           echo '```text' >> $GITHUB_STEP_SUMMARY
-          # Tetap jalankan lint, tapi jangan biarkan exit code-nya menghentikan workflow
-          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Audit Lint selesai dengan beberapa peringatan." >> $GITHUB_STEP_SUMMARY
+          npm run lint >> $GITHUB_STEP_SUMMARY 2>&1 || echo "Linting selesai." >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - name: ✅ Audit Selesai
+      - name: 💾 Simpan Laporan ke Repositori
+        if: always()
         run: |
-          echo "Audit telah selesai diproses. Silakan cek tab Summary untuk melihat detail laporan."
+          git config --local user.email "frijal@gmail.com"
+          git config --local user.name "Layar Kosong Bot"
+          git add mini/*.md
+          # Hanya commit jika ada perubahan file agar tidak error
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 docs: update laporan audit SEO $(date +'%Y-%m-%d')" && git push)
+
+      - name: ✅ Selesai
+        run: echo "Audit rampung! Cek folder 'mini/' untuk file laporannya."
