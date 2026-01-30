@@ -64,7 +64,7 @@ jobs:
 
       - name: '4. Setup Python' # Dibutuhkan untuk step Schema nanti
         if: env.DO_SCHEMA == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
