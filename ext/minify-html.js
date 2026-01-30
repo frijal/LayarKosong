@@ -12,15 +12,15 @@ const folders = [
   './warta-tekno'
 ];
 
-// === SIGNATURE STATIS ===
+// === SIGNATURE CONFIG ===
 const now = new Date();
 const datePart = now.toISOString().slice(0, 10);
 const timePart = now.toTimeString().slice(0, 5); 
 
-// Baris 21 yang tadi bermasalah sudah saya fix di sini:
+// Perbaikan total di baris ini:
 const SIGNATURE_PREFIX = '`;
 
-// Inisialisasi penghitung
+// Inisialisasi statistik
 let stats = {
   success: 0,
   skipped: 0,
@@ -41,16 +41,16 @@ async function minifyFiles(dir) {
       continue;
     }
 
-    // Lewati index.html dan hanya proses file .html
+    // Filter file .html saja dan abaikan index.html
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
 
-      // 1. Skip kalau file kosong atau hanya whitespace
+      // 1. Skip jika file kosong
       if (!originalHTML || !originalHTML.trim()) continue;
 
-      // 2. Cek Signature pakai Regex (Agar tidak double minify)
+      // 2. Cek apakah sudah ada signature (Anti-Double Process)
       const signatureRegex = new RegExp(SIGNATURE_PREFIX);
       if (signatureRegex.test(originalHTML)) {
         stats.skipped++;
@@ -70,38 +70,38 @@ async function minifyFiles(dir) {
         ]
       });
 
-      // 4. Tempel Signature di baris paling terakhir
-      minifiedHTML = minifiedHTML.trimEnd() + `\n${SIGNATURE}`;
+      // 4. Tambahkan Signature di baris terakhir
+      minifiedHTML = minifiedHTML.trimEnd() + '\n' + SIGNATURE;
       
       fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       stats.success++;
-      console.log(`✅ Sukses: ${filePath}`);
+      console.log(`✅ Berhasil: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
       stats.errorFiles.push({ path: filePath, msg: err.message });
-      console.error(`❌ Gagal: ${filePath}`);
+      console.error(`❌ Gagal: ${filePath} -> ${err.message}`);
     }
   }
 }
 
-// --- JALANKAN PROSES ---
-console.log('🧼 Memulai Minify HTML (Layar Kosong Mode)...');
+// --- MAIN RUNNER ---
+console.log('🧼 Memulai proses Minify HTML (Layar Kosong Mode)...');
 
-async function run() {
+async function start() {
   for (const folder of folders) {
     await minifyFiles(folder);
   }
 
   console.log('\n' + '='.repeat(40));
-  console.log('📊 REKAPITULASI AKHIR:');
-  console.log(`✅ Berhasil di-minify : ${stats.success}`);
-  console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
-  console.log(`❌ Gagal proses       : ${stats.failed}`);
+  console.log('📊 REKAPITULASI:');
+  console.log(`✅ Berhasil : ${stats.success}`);
+  console.log(`⏭️  Diskip   : ${stats.skipped}`);
+  console.log(`❌ Gagal    : ${stats.failed}`);
   console.log('='.repeat(40));
 }
 
-run().catch(err => {
+start().catch(err => {
   console.error('💥 Fatal Error:', err);
   process.exit(1);
 });
