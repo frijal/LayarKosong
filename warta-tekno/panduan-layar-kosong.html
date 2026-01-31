@@ -1,14 +1,765 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><meta content="IE=edge" http-equiv=X-UA-Compatible><title>Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages</title><meta content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages" name=title><meta content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!" name=description><meta content="static site, github pages, layar kosong, tutorial html, website gratis, github actions, cloudflare pages, seo, markdown" name=keywords><meta content=Indonesian name=language><meta content="7 days" name=revisit-after><link href=/favicon.png rel=apple-touch-icon><link href=/ext/fontawesome.css rel=stylesheet><style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg-primary:#ffffff;--bg-secondary:#f8f9fa;--bg-code:#f5f5f5;--text-primary:#212529;--text-secondary:#6c757d;--border-color:#dee2e6;--link-color:#0d6efd;--link-hover:#0a58ca;--shadow:rgba(0, 0, 0, 0.1);--accent-color:#0d6efd;--success-color:#198754;--warning-color:#ffc107;--danger-color:#dc3545}@media (prefers-color-scheme:dark){:root{--bg-primary:#1a1a1a;--bg-secondary:#2d2d2d;--bg-code:#2d2d2d;--text-primary:#e9ecef;--text-secondary:#adb5bd;--border-color:#495057;--link-color:#6ea8fe;--link-hover:#9ec5fe;--shadow:rgba(255, 255, 255, 0.1);--accent-color:#6ea8fe;--success-color:#75b798;--warning-color:#ffda6a;--danger-color:#ea868f}}html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.8;color:var(--text-primary);background-color:var(--bg-primary);font-size:16px;transition:background-color .3s ease,color .3s ease}.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}h1,h2,h3,h4,h5,h6{margin-top:2rem;margin-bottom:1rem;font-weight:700;line-height:1.3;color:var(--text-primary)}h1{font-size:2.5rem;margin-top:0;padding-bottom:1rem;border-bottom:3px solid var(--accent-color)}h2{font-size:2rem;padding-bottom:.5rem;border-bottom:2px solid var(--border-color)}h3{font-size:1.5rem;color:var(--accent-color)}h4{font-size:1.25rem}p{margin-bottom:1.5rem;color:var(--text-primary)}strong{font-weight:700;color:var(--accent-color)}em{font-style:italic;color:var(--text-secondary)}a{color:var(--link-color);text-decoration:none;transition:color .2s ease}a:hover{color:var(--link-hover);text-decoration:underline}code{background-color:var(--bg-code);padding:.2rem .4rem;border-radius:4px;font-family:'Courier New',Consolas,monospace;font-size:.9em;color:var(--danger-color)}pre{background-color:var(--bg-code);padding:1.5rem;border-radius:8px;overflow-x:auto;margin-bottom:1.5rem;border-left:4px solid var(--accent-color)}pre code{background:0 0;padding:0;color:var(--text-primary);font-size:.9rem}ol,ul{margin-bottom:1.5rem;padding-left:2rem}li{margin-bottom:.75rem;line-height:1.8}li::marker{color:var(--accent-color);font-weight:700}input[type=checkbox]{width:1.2rem;height:1.2rem;margin-right:.5rem;vertical-align:middle;cursor:pointer}hr{border:none;border-top:2px solid var(--border-color);margin:3rem 0}blockquote{border-left:4px solid var(--warning-color);padding-left:1.5rem;margin:1.5rem 0;font-style:italic;color:var(--text-secondary);background-color:var(--bg-secondary);padding:1rem 1.5rem;border-radius:4px}.card{background-color:var(--bg-secondary);border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid var(--border-color);box-shadow:0 4px 6px var(--shadow);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-4px);box-shadow:0 8px 12px var(--shadow)}.card-icon{font-size:2.5rem;margin-bottom:1rem;display:block}.alert{padding:1rem 1.5rem;border-radius:8px;margin-bottom:1.5rem;border-left:4px solid}.alert-info{background-color:rgba(13,110,253,.1);border-color:var(--accent-color);color:var(--text-primary)}.alert-success{background-color:rgba(25,135,84,.1);border-color:var(--success-color);color:var(--text-primary)}.alert-warning{background-color:rgba(255,193,7,.1);border-color:var(--warning-color);color:var(--text-primary)}.alert-danger{background-color:rgba(220,53,69,.1);border-color:var(--danger-color);color:var(--text-primary)}.btn{display:inline-block;padding:.75rem 1.5rem;border-radius:8px;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent;cursor:pointer}.btn-primary{background-color:var(--accent-color);color:#fff}.btn-primary:hover{background-color:var(--link-hover);text-decoration:none;transform:translateY(-2px);box-shadow:0 4px 8px var(--shadow)}.btn-outline{background-color:transparent;border-color:var(--accent-color);color:var(--accent-color)}.btn-outline:hover{background-color:var(--accent-color);color:#fff;text-decoration:none}details{background-color:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:1rem;margin-bottom:1.5rem}summary{font-weight:700;cursor:pointer;padding:.5rem;user-select:none;color:var(--accent-color)}summary:hover{color:var(--link-hover)}details[open] summary{margin-bottom:1rem;border-bottom:2px solid var(--border-color);padding-bottom:1rem}.badge{display:inline-block;padding:.25rem .6rem;font-size:.85rem;font-weight:600;border-radius:4px;margin-right:.5rem;margin-bottom:.5rem}.badge-success{background-color:var(--success-color);color:#fff}.badge-info{background-color:var(--accent-color);color:#fff}.badge-warning{background-color:var(--warning-color);color:#000}#pesbukdiskus{margin-top:4rem;padding-top:2rem;border-top:2px solid var(--border-color);min-height:200px}footer{margin-top:4rem;padding:2rem 0;border-top:2px solid var(--border-color);text-align:center;color:var(--text-secondary)}footer a{color:var(--link-color);margin:0 .5rem}.footer-links{margin-top:1rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem}.footer-icon{font-size:1.5rem;transition:transform .2s ease}.footer-icon:hover{transform:scale(1.2)}@media (max-width:768px){.container{padding:1rem}h1{font-size:2rem}h2{font-size:1.5rem}h3{font-size:1.25rem}.card{padding:1.5rem}pre{padding:1rem;font-size:.85rem}}::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg-secondary)}::-webkit-scrollbar-thumb{background:var(--accent-color);border-radius:5px}::-webkit-scrollbar-thumb:hover{background:var(--link-hover)}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.container>*{animation:fadeIn .6s ease-out}.status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.5rem;margin:1rem 0}.status-grid img{max-width:100%;height:auto}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!" name=ai:summary><meta content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!" name=ai:prompt_hint><link href=https://dalam.web.id/warta-tekno/panduan-layar-kosong/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/panduan-layar-kosong/ property=og:url><meta content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages" property=og:title><meta content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!" property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/panduan-layar-kosong.webp property=og:image><meta content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/panduan-layar-kosong.webp name=twitter:image><meta content=https://dalam.web.id/img/panduan-layar-kosong.webp itemprop=image><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages","description":"Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!","articleSection":"Warta Tekno","keywords":"github, kosong, layar, layar kosong, lengkap, membuat, pages, panduan, site, static, tutorial, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/panduan-layar-kosong.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-23T09:54:08.782+00:00","dateModified":"2025-12-23T09:54:08.782+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages","item":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/"}]}]}</script><div class=container><h1>Panduan Membuat Static Site dengan Layar Kosong</h1><div id=iposbrowser></div><div class="alert alert-info"><i class="fa-solid fa-mug-saucer"></i> <strong>Selamat datang!</strong> Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan gratis menggunakan <em>repository</em> <strong>Layar Kosong</strong>. Cocok banget buat yang pengen punya website keren tanpa ribet!</div><p>Konsepnya sederhana banget: Kita cuma pakai sekumpulan file HTML yang digabungkan, disimpan rapi, lalu dipanggil menggunakan domain <strong>GitHub Pages</strong> (biasanya <code>usernamekamu.github.io</code>) atau kalau kamu punya, bisa juga pakai domain kustom sendiri. Asyik kan?<p>Yang bikin keren, semuanya <strong>otomatis</strong>! Kamu tinggal fokus nulis konten, sisanya biar sistem yang kerja. Nggak perlu jago coding, nggak perlu bayar hosting, dan yang paling penting: <strong>situsmu bakal super cepat!</strong> <i class="fa-solid fa-bolt"></i><h2><i class="fa-solid fa-screwdriver-wrench"></i> Tahap 1: Persiapan Lingkungan (Install Git)</h2><p>Langkah pertama yang paling krusial sebelum mulai: <strong>Pastikan Git CLI sudah terpasang</strong> di komputer atau laptopmu. Git ini kayak "jembatan" yang menghubungkan komputer kamu dengan GitHub. Tanpa ini, kamu nggak bisa upload atau download file dari repository.<div class=card><span class=card-icon><i class="fa-brands fa-git-alt"></i></span><h3>Apa itu Git?</h3><p>Git adalah sistem kontrol versi yang memungkinkan kamu melacak perubahan kode, berkolaborasi dengan orang lain, dan mengelola halaman dengan lebih terorganisir. Bayangin kayak "mesin waktu" buat kode kamu - bisa balik ke versi lama kapan aja!</div><p>Berikut cara instalasi Git untuk berbagai sistem operasi. Pilih sesuai dengan OS yang kamu pakai:<h3><i class="fa-brands fa-windows"></i> Windows</h3><p>Buat pengguna Windows, ada dua cara gampang:<p><strong>Cara 1:</strong> Download installer resmi dari <a href=https://git-scm.com/download/win rel="noopener noreferrer" target=_blank><i class="fa-solid fa-download"></i> git-scm.com</a>. Tinggal klik "Next, Next, Finish"! Gampang banget.<p><strong>Cara 2:</strong> Kalau kamu suka pakai command line dan punya <code>winget</code>, bisa langsung ketik perintah ini di terminal:<pre><code>winget install --id Git.Git -e --source winget</code></pre><h3><i class="fa-brands fa-apple"></i> macOS</h3><p>Pengguna Mac bisa install Git dengan mudah pakai Homebrew (package manager favorit di macOS). Kalau belum punya Homebrew, install dulu dari <a href=https://brew.sh rel="noopener noreferrer" target=_blank>brew.sh</a>.<p>Setelah itu, buka Terminal dan ketik:<pre><code>brew install git</code></pre><p>Atau kalau mau cara manual, bisa download installer dari <a href=https://git-scm.com/download/mac rel="noopener noreferrer" target=_blank>git-scm.com</a>.<h3><i class="fa-brands fa-linux"></i> Linux</h3><p>Nah, buat pengguna Linux, cara instalasinya tergantung distro yang kamu pakai. Tapi tenang, semuanya gampang kok! Tinggal copas perintah di bawah sesuai distro kamu:<div class=card><h4><i class="fa-brands fa-debian"></i> Debian, Ubuntu, Linux Mint, MX Linux, Kali</h4><pre><code>sudo apt update
-sudo apt install git</code></pre></div><div class=card><h4><i class="fa-brands fa-fedora"></i> Fedora, Red Hat (RHEL), CentOS, AlmaLinux</h4><pre><code>sudo dnf install git
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Primary Meta Tags -->
+    <title>Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages</title>
+    <meta name="title" content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages">
+    <meta name="description" content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!">
+    <meta name="keywords" content="static site, github pages, layar kosong, tutorial html, website gratis, github actions, cloudflare pages, seo, markdown">
+    <meta name="language" content="Indonesian">
+    <meta name="revisit-after" content="7 days">
+    <!-- Canonical URL -->
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <!-- Open Graph / Facebook -->
+    <!-- Font Awesome 7 -->
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <!-- Schema.org JSON-LD -->
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-code: #f5f5f5;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --link-color: #0d6efd;
+            --link-hover: #0a58ca;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent-color: #0d6efd;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --bg-code: #2d2d2d;
+                --text-primary: #e9ecef;
+                --text-secondary: #adb5bd;
+                --border-color: #495057;
+                --link-color: #6ea8fe;
+                --link-hover: #9ec5fe;
+                --shadow: rgba(255, 255, 255, 0.1);
+                --accent-color: #6ea8fe;
+                --success-color: #75b798;
+                --warning-color: #ffda6a;
+                --danger-color: #ea868f;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        h4 {
+            font-size: 1.25rem;
+        }
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        strong {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        /* Links */
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        /* Code Blocks */
+        code {
+            background-color: var(--bg-code);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.9em;
+            color: var(--danger-color);
+        }
+        pre {
+            background-color: var(--bg-code);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+        li::marker {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        /* Checkboxes */
+        input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 3rem 0;
+        }
+        /* Blockquote */
+        blockquote {
+            border-left: 4px solid var(--warning-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+            background-color: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+        }
+        /* Cards */
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 12px var(--shadow);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        /* Alert Boxes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid;
+        }
+        .alert-info {
+            background-color: rgba(13, 110, 253, 0.1);
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+        .alert-success {
+            background-color: rgba(25, 135, 84, 0.1);
+            border-color: var(--success-color);
+            color: var(--text-primary);
+        }
+        .alert-warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-color: var(--warning-color);
+            color: var(--text-primary);
+        }
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            border-color: var(--danger-color);
+            color: var(--text-primary);
+        }
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--link-hover);
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+        }
+        /* Details/Summary */
+        details {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        summary {
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.5rem;
+            user-select: none;
+            color: var(--accent-color);
+        }
+        summary:hover {
+            color: var(--link-hover);
+        }
+        details[open] summary {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .badge-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        .badge-info {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .badge-warning {
+            background-color: var(--warning-color);
+            color: #000;
+        }
+        /* Comments Section */
+        #pesbukdiskus {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            min-height: 200px;
+        }
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        footer a {
+            color: var(--link-color);
+            margin: 0 0.5rem;
+        }
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-icon {
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+        .footer-icon:hover {
+            transform: scale(1.2);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.25rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            pre {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--link-hover);
+        }
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container > * {
+            animation: fadeIn 0.6s ease-out;
+        }
+        /* Status Badges Layout */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .status-grid img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!">
+<meta name="ai:prompt_hint" content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/panduan-layar-kosong/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/panduan-layar-kosong/">
+    <meta property="og:title" content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages">
+    <meta property="og:description" content="Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/panduan-layar-kosong.webp">
+    <meta property="og:image:alt" content="Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/panduan-layar-kosong.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/panduan-layar-kosong.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages","description":"Panduan step-by-step membuat situs statis super cepat menggunakan repository Layar Kosong. Gratis, mudah, dan lengkap dengan otomasi GitHub Actions untuk semua kalangan!","articleSection":"Warta Tekno","keywords":"github, kosong, layar, layar kosong, lengkap, membuat, pages, panduan, site, static, tutorial, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/panduan-layar-kosong.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-23T09:54:08.782+00:00","dateModified":"2025-12-23T09:54:08.782+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Panduan Lengkap Membuat Static Site dengan Layar Kosong - Tutorial GitHub Pages","item":"https://dalam.web.id/warta-tekno/panduan-layar-kosong/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <h1>Panduan Membuat Static Site dengan Layar Kosong</h1>
+<div id="iposbrowser"></div>
+        <div class="alert alert-info">
+            <i class="fa-solid fa-mug-saucer"></i> <strong>Selamat datang!</strong> Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan gratis menggunakan <em>repository</em> <strong>Layar Kosong</strong>. Cocok banget buat yang pengen punya website keren tanpa ribet!
+        </div>
+        <p>Konsepnya sederhana banget: Kita cuma pakai sekumpulan file HTML yang digabungkan, disimpan rapi, lalu dipanggil menggunakan domain <strong>GitHub Pages</strong> (biasanya <code>usernamekamu.github.io</code>) atau kalau kamu punya, bisa juga pakai domain kustom sendiri. Asyik kan?</p>
+        <p>Yang bikin keren, semuanya <strong>otomatis</strong>! Kamu tinggal fokus nulis konten, sisanya biar sistem yang kerja. Nggak perlu jago coding, nggak perlu bayar hosting, dan yang paling penting: <strong>situsmu bakal super cepat!</strong> <i class="fa-solid fa-bolt"></i></p>
+        <h2><i class="fa-solid fa-screwdriver-wrench"></i> Tahap 1: Persiapan Lingkungan (Install Git)</h2>
+        <p>Langkah pertama yang paling krusial sebelum mulai: <strong>Pastikan Git CLI sudah terpasang</strong> di komputer atau laptopmu. Git ini kayak "jembatan" yang menghubungkan komputer kamu dengan GitHub. Tanpa ini, kamu nggak bisa upload atau download file dari repository.</p>
+        <div class="card">
+            <span class="card-icon"><i class="fa-brands fa-git-alt"></i></span>
+            <h3>Apa itu Git?</h3>
+            <p>Git adalah sistem kontrol versi yang memungkinkan kamu melacak perubahan kode, berkolaborasi dengan orang lain, dan mengelola halaman dengan lebih terorganisir. Bayangin kayak "mesin waktu" buat kode kamu - bisa balik ke versi lama kapan aja!</p>
+        </div>
+        <p>Berikut cara instalasi Git untuk berbagai sistem operasi. Pilih sesuai dengan OS yang kamu pakai:</p>
+        <h3><i class="fa-brands fa-windows"></i> Windows</h3>
+        <p>Buat pengguna Windows, ada dua cara gampang:</p>
+        <p><strong>Cara 1:</strong> Download installer resmi dari <a href="https://git-scm.com/download/win" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> git-scm.com</a>. Tinggal klik "Next, Next, Finish"! Gampang banget.</p>
+        <p><strong>Cara 2:</strong> Kalau kamu suka pakai command line dan punya <code>winget</code>, bisa langsung ketik perintah ini di terminal:</p>
+        <pre><code>winget install --id Git.Git -e --source winget</code></pre>
+        <h3><i class="fa-brands fa-apple"></i> macOS</h3>
+        <p>Pengguna Mac bisa install Git dengan mudah pakai Homebrew (package manager favorit di macOS). Kalau belum punya Homebrew, install dulu dari <a href="https://brew.sh" target="_blank" rel="noopener noreferrer">brew.sh</a>.</p>
+        <p>Setelah itu, buka Terminal dan ketik:</p>
+        <pre><code>brew install git</code></pre>
+        <p>Atau kalau mau cara manual, bisa download installer dari <a href="https://git-scm.com/download/mac" target="_blank" rel="noopener noreferrer">git-scm.com</a>.</p>
+        <h3><i class="fa-brands fa-linux"></i> Linux</h3>
+        <p>Nah, buat pengguna Linux, cara instalasinya tergantung distro yang kamu pakai. Tapi tenang, semuanya gampang kok! Tinggal copas perintah di bawah sesuai distro kamu:</p>
+        <div class="card">
+            <h4><i class="fa-brands fa-debian"></i> Debian, Ubuntu, Linux Mint, MX Linux, Kali</h4>
+            <pre><code>sudo apt update
+sudo apt install git</code></pre>
+        </div>
+        <div class="card">
+            <h4><i class="fa-brands fa-fedora"></i> Fedora, Red Hat (RHEL), CentOS, AlmaLinux</h4>
+            <pre><code>sudo dnf install git
 # atau versi lama RHEL/CentOS:
-sudo yum install git</code></pre></div><div class=card><h4><i class="fa-solid fa-mountain"></i> Arch Linux, CachyOS, Manjaro, EndeavourOS</h4><pre><code>sudo pacman -S git</code></pre></div><div class=card><h4><i class="fa-solid fa-snowflake"></i> NixOS</h4><p>Ada dua cara buat NixOS:<p><strong>Cara 1:</strong> Tambahkan <code>git</code> ke <code>environment.systemPackages</code> di file <code>configuration.nix</code> kamu, lalu rebuild.<p><strong>Cara 2:</strong> Pakai nix-env:<pre><code>nix-env -i git</code></pre></div><div class=card><h4><i class="fa-brands fa-suse"></i> openSUSE</h4><pre><code>sudo zypper install git</code></pre></div><div class="alert alert-success"><i class="fa-solid fa-circle-check"></i> <strong>Pro Tip:</strong> Setelah install, cek versi Git dengan mengetik <code>git --version</code> di terminal. Kalau muncul nomor versinya, berarti instalasi sukses! <i class="fa-solid fa-thumbs-up"></i></div><h2><i class="fa-solid fa-dna"></i> Tahap 2: Setup Repository (Fork & Clone)</h2><p>Sekarang Git sudah siap, saatnya kita "duplikat" repository Layar Kosong ke akun GitHub kamu. Proses ini disebut <strong>Fork</strong> - kayak fotokopi repository, jadi punya kamu sendiri deh!<div class=card><span class=card-icon><i class="fa-brands fa-github"></i></span><h3>Langkah-langkah Fork Repository</h3><ol><li><strong>Punya Akun GitHub:</strong> Pastikan kamu sudah punya akun GitHub dan sudah login. Kalau belum punya, bikin dulu di <a href=https://github.com/signup rel="noopener noreferrer" target=_blank>github.com/signup</a> - gratis kok!<li><strong>Fork Repository:</strong> Klik tombol di bawah untuk langsung fork repository Layar Kosong ke akunmu. Pastikan mencentang opsi untuk menyertakan <strong>seluruh branch</strong> (terutama branch <code>site</code> yang penting banget!).<br><br><a href=https://github.com/frijal/LayarKosong/fork rel="noopener noreferrer" target=_blank class="btn btn-primary"><i class="fa-solid fa-code-fork"></i> Klik di sini untuk Fork Repository</a><li><strong>Tunggu Proses Fork:</strong> GitHub bakal proses beberapa detik. Setelah selesai, kamu bakal punya salinan lengkap repository di akunmu sendiri!</ol></div><h3><i class="fa-solid fa-globe"></i> Aktifkan GitHub Pages</h3><p>Setelah berhasil di-fork, sekarang waktunya bikin situsmu jadi online dan bisa diakses siapa aja di internet. Caranya:<ol><li>Masuk ke repository hasil fork kamu (ada di <code>https://github.com/usernamekamu/LayarKosong</code>)<li>Klik tab <strong>Settings</strong> (biasanya ada di kanan atas)<li>Scroll ke bawah, cari menu <strong>Pages</strong> di sidebar kiri<li>Pada bagian "Source", pilih <strong>Deploy from a branch</strong><li>Pilih branch <code>main</code> (atau <code>site</code> sesuai konfigurasi preferensimu) dan folder <code>/ (root)</code><li>Klik tombol <strong>Save</strong></ol><div class="alert alert-success"><i class="fa-solid fa-party-horn"></i> <strong>Selamat!</strong> Situsmu sekarang sudah online dan bisa diakses di:<br><code>https://usernamekamu.github.io/LayarKosong</code> <i class="fa-solid fa-champagne-glasses"></i></div><p>Proses deployment biasanya butuh 1-3 menit. Kalau sudah selesai, kamu bakal dapat notifikasi dan bisa langsung buka situsmu!<h2><i class="fa-solid fa-hammer"></i> Tahap 3: Produksi (Membuat Konten)</h2><p>Oke, sekarang kita masuk ke bagian seru: <strong>ngisi konten!</strong> Tapi sebelum itu, kita perlu bersih-bersih dulu dan aktifkan fitur otomasi yang keren banget.<h3><i class="fa-solid fa-broom"></i> 1. Bersihkan Konten Lama</h3><p>Repository yang baru di-fork masih punya file-file contoh. Kita perlu hapus dulu supaya situsmu bersih dan siap diisi konten fresh dari kamu:<div class=card><ul><li><i class="fa-solid fa-trash"></i> <strong>Hapus semua isi</strong> di dalam folder <code>artikel/</code> (file-file HTML lama)<li><i class="fa-solid fa-image"></i> <strong>Hapus seluruh gambar</strong> di dalam folder <code>img/</code> (gambar-gambar demo)</ul><p><strong>Caranya:</strong> Bisa langsung di GitHub web interface (klik file → klik ikon sampah), atau kalau udah clone ke komputer, hapus lewat file manager biasa.</div><div class="alert alert-warning"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Hati-hati:</strong> Jangan hapus folder-nya, cuma isinya aja! Foldernya tetap harus ada supaya sistem otomasi bisa jalan dengan baik.</div><h3><i class="fa-solid fa-bolt"></i> 2. Aktifkan GitHub Actions</h3><p>Ini adalah fitur <strong>super keren</strong> yang bikin hidup kamu jauh lebih mudah! GitHub Actions adalah sistem otomasi yang bakal:<ul><li><i class="fa-solid fa-wand-magic-sparkles"></i> Otomatis memindahkan artikel dari folder staging ke folder publikasi<li><i class="fa-solid fa-sitemap"></i> Generate sitemap dan feed RSS secara otomatis<li><i class="fa-solid fa-magnifying-glass"></i> Submit URL baru ke search engine (IndexNow)<li><i class="fa-solid fa-clock"></i> Maintenance rutin harian untuk optimasi situs</ul><p>Sayangnya, secara <em>default</em>, GitHub bakal matiin fitur Actions di repository hasil fork (demi keamanan). Jadi kita harus aktifkan manual:<ol><li>Masuk ke tab <strong>Actions</strong> di repository kamu<li>Kamu bakal lihat banner kuning dengan tombol hijau<li>Klik tombol hijau bertuliskan <strong>"I understand my workflows, go ahead and enable them"</strong><li>Semua workflow otomatis sekarang aktif! <i class="fa-solid fa-rocket"></i></ol><h3><i class="fa-solid fa-pen-to-square"></i> 3. Mulai Menulis (Workflow Otomatis)</h3><p>Nah, di sinilah keajaiban terjadi! Sistem Layar Kosong punya konsep unik: <strong>folder staging</strong> dan <strong>folder publikasi</strong>. Kenapa begitu? Supaya kamu bisa nulis draft dulu sebelum publish, dan biar sistem bisa proses artikel otomatis (misalnya generate metadata, optimasi SEO, dll).<div class=card><span class=card-icon><i class="fa-solid fa-diagram-project"></i></span><h3>Alur Kerja Publikasi Artikel</h3><ol><li><i class="fa-solid fa-file-code"></i> <strong>Buat file HTML</strong> artikel barumu. Bisa pakai text editor kesukaan (VS Code, Sublime, Notepad++, dll)<li><i class="fa-solid fa-upload"></i> <strong>Upload ke folder <code>artikelx/</code></strong> (perhatikan ada huruf 'x' di belakang). Ini folder staging - tempat artikel "masak" dulu sebelum publish<li><i class="fa-solid fa-code-commit"></i> <strong>Commit dan Push</strong> perubahanmu ke GitHub<li><i class="fa-solid fa-gears"></i> <strong>Biarkan Action Bekerja:</strong> Sistem otomatis (<em>workflow</em>) bakal:<ul><li>Deteksi file baru di <code>artikelx/</code><li>Proses dan optimasi file<li>Pindahkan ke folder <code>artikel/</code> yang siap tayang<li>Update sitemap dan feed<li>Submit ke search engine</ul><li><i class="fa-solid fa-circle-check"></i> <strong>Artikel Terbit!</strong> Dalam 1-2 menit, artikel kamu sudah online dan bisa diakses!</ol></div><div class="alert alert-success"><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Kamu bisa cek progress Action di tab "Actions". Lihat status real-time proses otomasi kamu - sangat memuaskan melihat semuanya berjalan sendiri! <i class="fa-solid fa-heart"></i></div><p><strong>Selesai!</strong> <i class="fa-solid fa-champagne-glasses"></i> Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya. Gampang kan? Tinggal fokus nulis, sisanya otomatis!<h2><i class="fa-solid fa-palette"></i> Tahap 4: Personalisasi & Konfigurasi</h2><p>Setelah uji coba sukses dan artikel pertama udah terbit, sekarang saatnya <strong>mengklaim situs ini menjadi milikmu sepenuhnya</strong>! Kita perlu ubah semua informasi default supaya mencerminkan identitas kamu dan situsmu.<div class="alert alert-info"><i class="fa-solid fa-circle-info"></i> <strong>Penting:</strong> Personalisasi ini sangat krusial untuk SEO, branding, dan user experience. Jangan skip tahap ini ya!</div><h3><i class="fa-solid fa-folder-tree"></i> Folder <code>ext/</code></h3><p>Folder ini berisi berbagai file konfigurasi eksternal yang dipakai di seluruh situs. Sesuaikan URL dan nama domain pada <strong>seluruh file</strong> di dalam folder ini. Biasanya kamu perlu ganti domain dari <code>dalam.web.id</code> ke domain kamu sendiri.<h3><i class="fa-solid fa-file-lines"></i> File-file Penting di Root (Wajib Diubah)</h3><p>Ini adalah file-file yang ada di folder utama (root) repository. Masing-masing punya fungsi penting, jadi pastikan kamu edit dengan teliti:<div class=card><ul><li><i class="fa-solid fa-triangle-exclamation"></i> <strong><code>404.html</code></strong> - Halaman error saat pengunjung buka URL yang nggak ada. Customize pesan errornya biar lebih friendly!<li><i class="fa-brands fa-microsoft"></i> <strong><code>BingSiteAuth.xml</code></strong> - File verifikasi untuk Bing Webmaster Tools. Ganti dengan kode verifikasi dari Bing kamu.<li><i class="fa-solid fa-handshake"></i> <strong><code>CODE_OF_CONDUCT.md</code></strong> - Kode etik repository. Atur aturan main di halaman kamu.<li><i class="fa-solid fa-user-slash"></i> <strong><code>data-deletion-form.html</code></strong> & <strong><code>data-deletion.html</code></strong> - Halaman untuk handle permintaan penghapusan data user (penting untuk compliance GDPR/privacy).<li><i class="fa-solid fa-shield-halved"></i> <strong><code>disclaimer.html</code></strong> & <strong><code>disclaimer.md</code></strong> - Halaman disclaimer/penafian situs. Penting buat melindungi kamu secara legal.<li><i class="fa-solid fa-icons"></i> <strong><code>favicon.ico</code></strong>, <strong><code>favicon.png</code></strong>, <strong><code>favicon.svg</code></strong> - Icon situs yang muncul di tab browser. Bikin yang unik biar memorable!<li><i class="fa-solid fa-rss"></i> <strong><code>feed.html</code></strong> - Halaman RSS Feed untuk konten terbaru. Berguna banget buat pembaca setia yang pakai feed reader.<li><i class="fa-solid fa-images"></i> <strong><code>img.html</code></strong> - Halaman galeri gambar. Customize layout dan tampilannya sesuai selera.<li><i class="fa-solid fa-house"></i> <strong><code>index.html</code></strong> - Halaman utama/homepage. Ini adalah first impression situsmu - bikin semenarik mungkin!<li><i class="fa-solid fa-robot"></i> <strong><code>robots.txt</code></strong> - Instruksi untuk crawler/bot search engine. Atur mana yang boleh di-crawl, mana yang nggak.<li><i class="fa-solid fa-magnifying-glass"></i> <strong><code>search.html</code></strong> - Halaman pencarian internal. Bantu pengunjung cari konten di situsmu dengan mudah.<li><i class="fa-solid fa-sitemap"></i> <strong><code>sitemap.html</code></strong> - Peta situs versi HTML (user-friendly). Beda sama sitemap.xml yang buat search engine.<li><i class="fa-solid fa-image"></i> <strong><code>thumbnail.jpg</code></strong>, <strong><code>thumbnail.png</code></strong>, <strong><code>thumbnail.webp</code></strong> - Gambar preview saat link situsmu di-share di sosial media (Open Graph). Bikin yang eye-catching!</ul></div><h3><i class="fa-solid fa-list-check"></i> Checklist Konfigurasi</h3><p>Gunakan checklist ini supaya kamu nggak ada yang kelewat:<ul><li><input type=checkbox> Ganti semua URL dari <code>dalam.web.id</code> ke domain kamu<li><input type=checkbox> Update informasi kontak (email, sosial media, dll)<li><input type=checkbox> Update metadata (title, description, keywords) di semua halaman<li><input type=checkbox> Sesuaikan warna, logo, dan branding sesuai identitas kamu<li><input type=checkbox> Test semua link internal - pastikan nggak ada yang broken<li><input type=checkbox> Verifikasi <code>sitemap.html</code> dan <code>robots.txt</code> sudah benar<li><input type=checkbox> Upload favicon dan thumbnail custom kamu<li><input type=checkbox> Test responsiveness di mobile dan desktop<li><input type=checkbox> Submit sitemap ke Google Search Console dan Bing Webmaster</ul><div class="alert alert-warning"><i class="fa-solid fa-stopwatch"></i> <strong>Jangan terburu-buru!</strong> Proses konfigurasi ini penting banget. Lebih baik luangkan waktu 1-2 jam untuk ngatur semuanya dengan benar daripada harus bolak-balik edit nanti.</div><h2><i class="fa-solid fa-globe"></i> Domain Custom (Opsional tapi Keren!)</h2><p>Secara default, situsmu akan accessible di <code>usernamekamu.github.io</code>. Tapi kalau kamu punya domain sendiri (misalnya <code>situskeren.com</code>), kamu bisa pasang juga! Ini bikin situsmu terlihat lebih profesional dan gampang diingat.<div class=card><span class=card-icon><i class="fa-solid fa-link"></i></span><h3>Cara Setup Domain Custom</h3><h4>1. Di GitHub:</h4><ul><li>Buat file baru namanya <code>CNAME</code> (huruf besar semua, tanpa ekstensi) di root repository<li>Isi dengan nama domain kamu, contoh: <code>situskeren.com</code> (tanpa https://, tanpa www)<li>Commit dan push</ul><h4>2. Di Provider Domain:</h4><p>Masuk ke dashboard provider domain kamu (misalnya Cloudflare, Namecheap, GoDaddy, dll), lalu atur DNS:<p><strong>Opsi A: Pakai A Record</strong> (Recommended)<pre><code>Type:
+sudo yum install git</code></pre>
+        </div>
+        <div class="card">
+            <h4><i class="fa-solid fa-mountain"></i> Arch Linux, CachyOS, Manjaro, EndeavourOS</h4>
+            <pre><code>sudo pacman -S git</code></pre>
+        </div>
+        <div class="card">
+            <h4><i class="fa-solid fa-snowflake"></i> NixOS</h4>
+            <p>Ada dua cara buat NixOS:</p>
+            <p><strong>Cara 1:</strong> Tambahkan <code>git</code> ke <code>environment.systemPackages</code> di file <code>configuration.nix</code> kamu, lalu rebuild.</p>
+            <p><strong>Cara 2:</strong> Pakai nix-env:</p>
+            <pre><code>nix-env -i git</code></pre>
+        </div>
+        <div class="card">
+            <h4><i class="fa-brands fa-suse"></i> openSUSE</h4>
+            <pre><code>sudo zypper install git</code></pre>
+        </div>
+        <div class="alert alert-success">
+            <i class="fa-solid fa-circle-check"></i> <strong>Pro Tip:</strong> Setelah install, cek versi Git dengan mengetik <code>git --version</code> di terminal. Kalau muncul nomor versinya, berarti instalasi sukses! <i class="fa-solid fa-thumbs-up"></i>
+        </div>
+        <h2><i class="fa-solid fa-dna"></i> Tahap 2: Setup Repository (Fork &amp; Clone)</h2>
+        <p>Sekarang Git sudah siap, saatnya kita "duplikat" repository Layar Kosong ke akun GitHub kamu. Proses ini disebut <strong>Fork</strong> - kayak fotokopi repository, jadi punya kamu sendiri deh!</p>
+        <div class="card">
+            <span class="card-icon"><i class="fa-brands fa-github"></i></span>
+            <h3>Langkah-langkah Fork Repository</h3>
+            <ol>
+                <li><strong>Punya Akun GitHub:</strong> Pastikan kamu sudah punya akun GitHub dan sudah login. Kalau belum punya, bikin dulu di <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">github.com/signup</a> - gratis kok!</li>
+                <li><strong>Fork Repository:</strong> Klik tombol di bawah untuk langsung fork repository Layar Kosong ke akunmu. Pastikan mencentang opsi untuk menyertakan <strong>seluruh branch</strong> (terutama branch <code>site</code> yang penting banget!).
+                    <br><br>
+                    <a href="https://github.com/frijal/LayarKosong/fork" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="fa-solid fa-code-fork"></i> Klik di sini untuk Fork Repository
+                    </a>
+                </li>
+                <li><strong>Tunggu Proses Fork:</strong> GitHub bakal proses beberapa detik. Setelah selesai, kamu bakal punya salinan lengkap repository di akunmu sendiri!</li>
+            </ol>
+        </div>
+        <h3><i class="fa-solid fa-globe"></i> Aktifkan GitHub Pages</h3>
+        <p>Setelah berhasil di-fork, sekarang waktunya bikin situsmu jadi online dan bisa diakses siapa aja di internet. Caranya:</p>
+        <ol>
+            <li>Masuk ke repository hasil fork kamu (ada di <code>https://github.com/usernamekamu/LayarKosong</code>)</li>
+            <li>Klik tab <strong>Settings</strong> (biasanya ada di kanan atas)</li>
+            <li>Scroll ke bawah, cari menu <strong>Pages</strong> di sidebar kiri</li>
+            <li>Pada bagian "Source", pilih <strong>Deploy from a branch</strong></li>
+            <li>Pilih branch <code>main</code> (atau <code>site</code> sesuai konfigurasi preferensimu) dan folder <code>/ (root)</code></li>
+            <li>Klik tombol <strong>Save</strong></li>
+        </ol>
+        <div class="alert alert-success">
+            <i class="fa-solid fa-party-horn"></i> <strong>Selamat!</strong> Situsmu sekarang sudah online dan bisa diakses di: <br>
+            <code>https://usernamekamu.github.io/LayarKosong</code> <i class="fa-solid fa-champagne-glasses"></i>
+        </div>
+        <p>Proses deployment biasanya butuh 1-3 menit. Kalau sudah selesai, kamu bakal dapat notifikasi dan bisa langsung buka situsmu!</p>
+        <h2><i class="fa-solid fa-hammer"></i> Tahap 3: Produksi (Membuat Konten)</h2>
+        <p>Oke, sekarang kita masuk ke bagian seru: <strong>ngisi konten!</strong> Tapi sebelum itu, kita perlu bersih-bersih dulu dan aktifkan fitur otomasi yang keren banget.</p>
+        <h3><i class="fa-solid fa-broom"></i> 1. Bersihkan Konten Lama</h3>
+        <p>Repository yang baru di-fork masih punya file-file contoh. Kita perlu hapus dulu supaya situsmu bersih dan siap diisi konten fresh dari kamu:</p>
+        <div class="card">
+            <ul>
+                <li><i class="fa-solid fa-trash"></i> <strong>Hapus semua isi</strong> di dalam folder <code>artikel/</code> (file-file HTML lama)</li>
+                <li><i class="fa-solid fa-image"></i> <strong>Hapus seluruh gambar</strong> di dalam folder <code>img/</code> (gambar-gambar demo)</li>
+            </ul>
+            <p><strong>Caranya:</strong> Bisa langsung di GitHub web interface (klik file → klik ikon sampah), atau kalau udah clone ke komputer, hapus lewat file manager biasa.</p>
+        </div>
+        <div class="alert alert-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Hati-hati:</strong> Jangan hapus folder-nya, cuma isinya aja! Foldernya tetap harus ada supaya sistem otomasi bisa jalan dengan baik.
+</div>
+<h3><i class="fa-solid fa-bolt"></i> 2. Aktifkan GitHub Actions</h3>
+    <p>Ini adalah fitur <strong>super keren</strong> yang bikin hidup kamu jauh lebih mudah! GitHub Actions adalah sistem otomasi yang bakal:</p>
+    <ul>
+        <li><i class="fa-solid fa-wand-magic-sparkles"></i> Otomatis memindahkan artikel dari folder staging ke folder publikasi</li>
+        <li><i class="fa-solid fa-sitemap"></i> Generate sitemap dan feed RSS secara otomatis</li>
+        <li><i class="fa-solid fa-magnifying-glass"></i> Submit URL baru ke search engine (IndexNow)</li>
+        <li><i class="fa-solid fa-clock"></i> Maintenance rutin harian untuk optimasi situs</li>
+    </ul>
+    <p>Sayangnya, secara <em>default</em>, GitHub bakal matiin fitur Actions di repository hasil fork (demi keamanan). Jadi kita harus aktifkan manual:</p>
+    <ol>
+        <li>Masuk ke tab <strong>Actions</strong> di repository kamu</li>
+        <li>Kamu bakal lihat banner kuning dengan tombol hijau</li>
+        <li>Klik tombol hijau bertuliskan <strong>"I understand my workflows, go ahead and enable them"</strong></li>
+        <li>Semua workflow otomatis sekarang aktif! <i class="fa-solid fa-rocket"></i></li>
+    </ol>
+    <h3><i class="fa-solid fa-pen-to-square"></i> 3. Mulai Menulis (Workflow Otomatis)</h3>
+    <p>Nah, di sinilah keajaiban terjadi! Sistem Layar Kosong punya konsep unik: <strong>folder staging</strong> dan <strong>folder publikasi</strong>. Kenapa begitu? Supaya kamu bisa nulis draft dulu sebelum publish, dan biar sistem bisa proses artikel otomatis (misalnya generate metadata, optimasi SEO, dll).</p>
+    <div class="card">
+        <span class="card-icon"><i class="fa-solid fa-diagram-project"></i></span>
+        <h3>Alur Kerja Publikasi Artikel</h3>
+        <ol>
+            <li><i class="fa-solid fa-file-code"></i> <strong>Buat file HTML</strong> artikel barumu. Bisa pakai text editor kesukaan (VS Code, Sublime, Notepad++, dll)</li>
+            <li><i class="fa-solid fa-upload"></i> <strong>Upload ke folder <code>artikelx/</code></strong> (perhatikan ada huruf 'x' di belakang). Ini folder staging - tempat artikel "masak" dulu sebelum publish</li>
+            <li><i class="fa-solid fa-code-commit"></i> <strong>Commit dan Push</strong> perubahanmu ke GitHub</li>
+            <li><i class="fa-solid fa-gears"></i> <strong>Biarkan Action Bekerja:</strong> Sistem otomatis (<em>workflow</em>) bakal:
+                <ul>
+                    <li>Deteksi file baru di <code>artikelx/</code></li>
+                    <li>Proses dan optimasi file</li>
+                    <li>Pindahkan ke folder <code>artikel/</code> yang siap tayang</li>
+                    <li>Update sitemap dan feed</li>
+                    <li>Submit ke search engine</li>
+                </ul>
+            </li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Artikel Terbit!</strong> Dalam 1-2 menit, artikel kamu sudah online dan bisa diakses!</li>
+        </ol>
+    </div>
+    <div class="alert alert-success">
+        <i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> Kamu bisa cek progress Action di tab "Actions". Lihat status real-time proses otomasi kamu - sangat memuaskan melihat semuanya berjalan sendiri! <i class="fa-solid fa-heart"></i>
+    </div>
+    <p><strong>Selesai!</strong> <i class="fa-solid fa-champagne-glasses"></i> Halaman pertamamu sudah terbit. Ulangi langkah ini untuk artikel-artikel berikutnya. Gampang kan? Tinggal fokus nulis, sisanya otomatis!</p>
+    <h2><i class="fa-solid fa-palette"></i> Tahap 4: Personalisasi &amp; Konfigurasi</h2>
+    <p>Setelah uji coba sukses dan artikel pertama udah terbit, sekarang saatnya <strong>mengklaim situs ini menjadi milikmu sepenuhnya</strong>! Kita perlu ubah semua informasi default supaya mencerminkan identitas kamu dan situsmu.</p>
+    <div class="alert alert-info">
+        <i class="fa-solid fa-circle-info"></i> <strong>Penting:</strong> Personalisasi ini sangat krusial untuk SEO, branding, dan user experience. Jangan skip tahap ini ya!
+    </div>
+    <h3><i class="fa-solid fa-folder-tree"></i> Folder <code>ext/</code></h3>
+    <p>Folder ini berisi berbagai file konfigurasi eksternal yang dipakai di seluruh situs. Sesuaikan URL dan nama domain pada <strong>seluruh file</strong> di dalam folder ini. Biasanya kamu perlu ganti domain dari <code>dalam.web.id</code> ke domain kamu sendiri.</p>
+    <h3><i class="fa-solid fa-file-lines"></i> File-file Penting di Root (Wajib Diubah)</h3>
+    <p>Ini adalah file-file yang ada di folder utama (root) repository. Masing-masing punya fungsi penting, jadi pastikan kamu edit dengan teliti:</p>
+    <div class="card">
+        <ul>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> <strong><code>404.html</code></strong> - Halaman error saat pengunjung buka URL yang nggak ada. Customize pesan errornya biar lebih friendly!</li>
+            <li><i class="fa-brands fa-microsoft"></i> <strong><code>BingSiteAuth.xml</code></strong> - File verifikasi untuk Bing Webmaster Tools. Ganti dengan kode verifikasi dari Bing kamu.</li>
+            <li><i class="fa-solid fa-handshake"></i> <strong><code>CODE_OF_CONDUCT.md</code></strong> - Kode etik repository. Atur aturan main di halaman kamu.</li>
+            <li><i class="fa-solid fa-user-slash"></i> <strong><code>data-deletion-form.html</code></strong> &amp; <strong><code>data-deletion.html</code></strong> - Halaman untuk handle permintaan penghapusan data user (penting untuk compliance GDPR/privacy).</li>
+            <li><i class="fa-solid fa-shield-halved"></i> <strong><code>disclaimer.html</code></strong> &amp; <strong><code>disclaimer.md</code></strong> - Halaman disclaimer/penafian situs. Penting buat melindungi kamu secara legal.</li>
+            <li><i class="fa-solid fa-icons"></i> <strong><code>favicon.ico</code></strong>, <strong><code>favicon.png</code></strong>, <strong><code>favicon.svg</code></strong> - Icon situs yang muncul di tab browser. Bikin yang unik biar memorable!</li>
+            <li><i class="fa-solid fa-rss"></i> <strong><code>feed.html</code></strong> - Halaman RSS Feed untuk konten terbaru. Berguna banget buat pembaca setia yang pakai feed reader.</li>
+            <li><i class="fa-solid fa-images"></i> <strong><code>img.html</code></strong> - Halaman galeri gambar. Customize layout dan tampilannya sesuai selera.</li>
+            <li><i class="fa-solid fa-house"></i> <strong><code>index.html</code></strong> - Halaman utama/homepage. Ini adalah first impression situsmu - bikin semenarik mungkin!</li>
+            <li><i class="fa-solid fa-robot"></i> <strong><code>robots.txt</code></strong> - Instruksi untuk crawler/bot search engine. Atur mana yang boleh di-crawl, mana yang nggak.</li>
+            <li><i class="fa-solid fa-magnifying-glass"></i> <strong><code>search.html</code></strong> - Halaman pencarian internal. Bantu pengunjung cari konten di situsmu dengan mudah.</li>
+            <li><i class="fa-solid fa-sitemap"></i> <strong><code>sitemap.html</code></strong> - Peta situs versi HTML (user-friendly). Beda sama sitemap.xml yang buat search engine.</li>
+            <li><i class="fa-solid fa-image"></i> <strong><code>thumbnail.jpg</code></strong>, <strong><code>thumbnail.png</code></strong>, <strong><code>thumbnail.webp</code></strong> - Gambar preview saat link situsmu di-share di sosial media (Open Graph). Bikin yang eye-catching!</li>
+        </ul>
+    </div>
+    <h3><i class="fa-solid fa-list-check"></i> Checklist Konfigurasi</h3>
+    <p>Gunakan checklist ini supaya kamu nggak ada yang kelewat:</p>
+    <ul>
+        <li><input type="checkbox"> Ganti semua URL dari <code>dalam.web.id</code> ke domain kamu</li>
+        <li><input type="checkbox"> Update informasi kontak (email, sosial media, dll)</li>
+        <li><input type="checkbox"> Update metadata (title, description, keywords) di semua halaman</li>
+        <li><input type="checkbox"> Sesuaikan warna, logo, dan branding sesuai identitas kamu</li>
+        <li><input type="checkbox"> Test semua link internal - pastikan nggak ada yang broken</li>
+        <li><input type="checkbox"> Verifikasi <code>sitemap.html</code> dan <code>robots.txt</code> sudah benar</li>
+        <li><input type="checkbox"> Upload favicon dan thumbnail custom kamu</li>
+        <li><input type="checkbox"> Test responsiveness di mobile dan desktop</li>
+        <li><input type="checkbox"> Submit sitemap ke Google Search Console dan Bing Webmaster</li>
+    </ul>
+    <div class="alert alert-warning">
+        <i class="fa-solid fa-stopwatch"></i> <strong>Jangan terburu-buru!</strong> Proses konfigurasi ini penting banget. Lebih baik luangkan waktu 1-2 jam untuk ngatur semuanya dengan benar daripada harus bolak-balik edit nanti.
+    </div>
+    <h2><i class="fa-solid fa-globe"></i> Domain Custom (Opsional tapi Keren!)</h2>
+    <p>Secara default, situsmu akan accessible di <code>usernamekamu.github.io</code>. Tapi kalau kamu punya domain sendiri (misalnya <code>situskeren.com</code>), kamu bisa pasang juga! Ini bikin situsmu terlihat lebih profesional dan gampang diingat.</p>
+    <div class="card">
+        <span class="card-icon"><i class="fa-solid fa-link"></i></span>
+        <h3>Cara Setup Domain Custom</h3>
+        <h4>1. Di GitHub:</h4>
+        <ul>
+            <li>Buat file baru namanya <code>CNAME</code> (huruf besar semua, tanpa ekstensi) di root repository</li>
+            <li>Isi dengan nama domain kamu, contoh: <code>situskeren.com</code> (tanpa https://, tanpa www)</li>
+            <li>Commit dan push</li>
+        </ul>
+        <h4>2. Di Provider Domain:</h4>
+        <p>Masuk ke dashboard provider domain kamu (misalnya Cloudflare, Namecheap, GoDaddy, dll), lalu atur DNS:</p>
+        <p><strong>Opsi A: Pakai A Record</strong> (Recommended)</p>
+        <pre><code>Type:
 A:
 Name: @ (atau kosongkan)
 Value:  185.199.108.153
         185.199.109.153
         185.199.110.153
-        185.199.111.153</code></pre><p><strong>Opsi B: Pakai CNAME Record</strong><pre><code>Type: CNAME
+        185.199.111.153</code></pre>
+<p><strong>Opsi B: Pakai CNAME Record</strong></p>
+        <pre><code>Type: CNAME
 Name: www
-Value: usernamekamu.github.io</code></pre><p>Untuk subdomain (misalnya <code>blog.situskeren.com</code>):<pre><code>Type: CNAME
+Value: usernamekamu.github.io</code></pre>
+<p>Untuk subdomain (misalnya <code>blog.situskeren.com</code>):</p>
+        <pre><code>Type: CNAME
 Name: blog
-Value: usernamekamu.github.io</code></pre></div><div class="alert alert-success"><i class="fa-solid fa-lock"></i> <strong>Bonus:</strong> GitHub Pages otomatis kasih HTTPS/SSL gratis buat custom domain kamu! Jadi situsmu aman dan trusted. <i class="fa-solid fa-shield-check"></i></div><div class="alert alert-info"><i class="fa-solid fa-clock"></i> <strong>Sabar ya!</strong> DNS propagation butuh waktu 1-48 jam (biasanya cuma 1-2 jam kok). Setelah itu domain kamu bakal otomatis redirect ke situs GitHub Pages kamu.</div><div class="alert alert-success"><h3><i class="fa-solid fa-mug-saucer fa-shake"></i> Selamat! Kamu Berhasil!</h3><p>Kalau kamu udah sampai di sini dan mengikuti semua langkah, berarti situsmu sekarang sudah online, cepat, dan siap ramaikan dunia maya! <i class="fa-solid fa-rocket"></i><p><strong>Langkah selanjutnya:</strong><ul><li><i class="fa-solid fa-pen"></i> Mulai bikin konten berkualitas secara konsisten<li><i class="fa-solid fa-chart-simple"></i> Monitor traffic pakai Google Analytics<li><i class="fa-solid fa-magnifying-glass-chart"></i> Optimize SEO dan performa situs<li><i class="fa-solid fa-share"></i> Promosikan situsmu di sosial media<li><i class="fa-solid fa-users"></i> Build komunitas dan engage dengan pembaca</ul><p>Happy blogging! <i class="fa-solid fa-heart"></i></div><h2><i class="fa-solid fa-circle-question"></i> Butuh Bantuan?</h2><p>Stuck di suatu langkah? Ada error yang bikin bingung? Atau cuma pengen diskusi dan sharing tips? <strong>Jangan ragu untuk reach out!</strong> Komunitas Layar Kosong sangat welcome dan siap bantu.<div class=card><span class=card-icon><i class="fa-brands fa-github"></i></span><h3>Tempat Diskusi & Support</h3><p>Mari kita ngobrol santai di GitHub Discussions! Tanya apa aja, share pengalaman, atau kasih saran untuk improve Layar Kosong. Semua orang welcome!</p><br><a href=https://github.com/frijal/LayarKosong/discussions rel="noopener noreferrer" target=_blank class="btn btn-primary"><i class="fa-solid fa-comments"></i> Join Diskusi di GitHub</a></div><div class="alert alert-info"><i class="fa-solid fa-users"></i> <strong>Tips Bertanya:</strong><ul><li>Jelaskan masalahmu sedetail mungkin (error message, screenshot, dll)<li>Sebutkan langkah-langkah yang udah kamu coba<li>Mention OS dan browser yang kamu pakai<li>Jangan malu bertanya - nggak ada pertanyaan bodoh! <i class="fa-solid fa-heart"></i></ul></div><p>Kamu juga bisa contribute! Found a bug? Punya ide fitur keren? Atau pengen improve dokumentasi? Pull request always welcome! <i class="fa-solid fa-code-pull-request"></i><h2><i class="fa-solid fa-scale-balanced"></i> Lisensi</h2><p>Layar Kosong adalah halaman open source yang bebas digunakan siapa aja. Untuk informasi lengkap tentang lisensi, silakan cek file <a href=https://github.com/frijal/LayarKosong/blob/main/LICENSE rel="noopener noreferrer" target=_blank><strong>LICENSE</strong></a> di repository.<p><span class="badge badge-success"><i class="fa-solid fa-unlock"></i> 100% Free</span> <span class="badge badge-info"><i class="fa-brands fa-osi"></i> Open Source</span> <span class="badge badge-warning"><i class="fa-solid fa-globe"></i> Public Domain</span><details style="margin-top:40px;border:1px solid var(--border-color);padding:10px;border-radius:8px"><summary style=font-weight:700;cursor:pointer;color:var(--primary-color)><i class="fa-solid fa-toggle-off"></i> Klik untuk Status Teknis & Badge ⚙️</summary><h3 style=margin-top:20px><i class="fa-solid fa-chart-bar"></i> Status Halaman</h3><p><img alt="License: Unlicense" src=/img/img.shields.io/badge/License-Unlicense-blue.webp> <img alt="Public Domain" src=/img/img.shields.io/badge/Public%20Domain-Yes-orange.webp> <img alt="Free 100%" src=/img/img.shields.io/badge/Free-100%25-brightgreen.webp> <img alt="Open Source" src=/img/img.shields.io/badge/Open%20Source-Yes-blue.webp> <img alt="Website Live" src=/img/img.shields.io/badge/Website-Live-2ea44f.webp> <img alt="HTTPS Enabled" src=/img/img.shields.io/badge/HTTPS-Enabled-blue.webp><h3><i class="fa-solid fa-code-commit"></i> Pembaruan & Otomatisasi</h3><p><img alt="GitHub Pages" src=/img/img.shields.io/badge/GitHub%20Pages-Yes-blue.webp> <img alt="Google Drive" src=/img/img.shields.io/badge/Google%20Drive-Available-34A853.webp> <img alt="Release Continuous" src=/img/img.shields.io/badge/Release-Continuous-orange.webp> <img alt="Last Commit" src=/img/img.shields.io/github/last-commit/frijal/dalam.web.webp><h3><i class="fa-brands fa-git-alt"></i> Workflows Aktif:</h3><p><img alt="Proses ArtikelX" src=/img/github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.webp> <img alt="Build and Generate Site Files" src=/img/github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.webp> <img alt="Copy ke Branch Site Cloudflare" src=/img/github.com/frijal/LayarKosong/actions/workflows/copybranch.yml/badge.webp> <img alt="IndexNow Daily Submit" src=/img/github.com/frijal/LayarKosong/actions/workflows/indexnow.yml/badge.webp> <img alt="Ping Feeds & Sitemap" src=/img/github.com/frijal/LayarKosong/actions/workflows/rssping.yml/badge.webp> <img alt="Pengecekan & Laporan Konten Harian" src=/img/github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.webp></details><h2><i class="fa-solid fa-users"></i> Kontributor</h2><p>Terima kasih sebesar-besarnya untuk semua yang telah berkontribusi pada halaman Layar Kosong ini! <i class="fa-solid fa-hands-clapping"></i> Baik itu code, dokumentasi, bug report, ide, atau sekadar moral support - semuanya sangat berarti!<p>Ingin jadi kontributor juga? <a href=https://github.com/frijal/LayarKosong/blob/main/CONTRIBUTING.md rel="noopener noreferrer" target=_blank>Check out contribution guide</a> dan mulai contribute sekarang! <i class="fa-solid fa-rocket"></i><div id=pesbukdiskus></div><div id=related-articles-grid></div><footer><div class=container><p><strong>Layar Kosong</strong> Bangun Situs Statis dengan Mudah <i class="fa-solid fa-heart"></i> 🄯 2025<a href=https://dalam.web.id>dalam.web.id</a><div class=footer-links><a href=https://github.com/frijal/LayarKosong rel="noopener noreferrer" target=_blank title=GitHub><i class="fa-brands footer-icon fa-github"></i> </a><a href=https://twitter.com/responaja rel="noopener noreferrer" target=_blank title=Twitter/X><i class="fa-brands footer-icon fa-x-twitter"></i> </a><a href=https://threads.net/frijal rel="noopener noreferrer" target=_blank title=Threads><i class="fa-brands footer-icon fa-threads"></i> </a><a href=https://linkedin.com/in/frijal rel="noopener noreferrer" target=_blank title=LinkedIn><i class="fa-brands footer-icon fa-linkedin"></i> </a><a href=https://facebook.com/frijal rel="noopener noreferrer" target=_blank title=Facebook><i class="fa-brands footer-icon fa-facebook"></i> </a><a href=https://instagram.com/frijal rel="noopener noreferrer" target=_blank title=Instagram><i class="fa-brands footer-icon fa-instagram"></i> </a><a href=https://tiktok.com/@gibah.dilarang rel="noopener noreferrer" target=_blank title=TikTok><i class="fa-brands footer-icon fa-tiktok"></i> </a><a href=/feed.html title="RSS Feed"><i class="fa-solid fa-rss footer-icon"></i></a></div><p style=margin-top:1rem;font-size:.9em><a href=/disclaimer.html>Disclaimer</a> | <a href=/sitemap.html>Sitemap</a> | <a href=/search.html>Search</a> | <a href=https://github.com/frijal/LayarKosong/discussions>Discussions</a></div></footer></div><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input id=floatingSearchInput placeholder="cari artikel..." autocomplete=off><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
+Value: usernamekamu.github.io</code></pre>
+</div>
+ <div class="alert alert-success">
+        <i class="fa-solid fa-lock"></i> <strong>Bonus:</strong> GitHub Pages otomatis kasih HTTPS/SSL gratis buat custom domain kamu! Jadi situsmu aman dan trusted. <i class="fa-solid fa-shield-check"></i>
+    </div>
+<div class="alert alert-info">
+        <i class="fa-solid fa-clock"></i> <strong>Sabar ya!</strong> DNS propagation butuh waktu 1-48 jam (biasanya cuma 1-2 jam kok). Setelah itu domain kamu bakal otomatis redirect ke situs GitHub Pages kamu.
+    </div>
+<div class="alert alert-success">
+        <h3><i class="fa-solid fa-mug-saucer fa-shake"></i> Selamat! Kamu Berhasil!</h3>
+        <p>Kalau kamu udah sampai di sini dan mengikuti semua langkah, berarti situsmu sekarang sudah online, cepat, dan siap ramaikan dunia maya! <i class="fa-solid fa-rocket"></i></p>
+        <p><strong>Langkah selanjutnya:</strong></p>
+        <ul>
+            <li><i class="fa-solid fa-pen"></i> Mulai bikin konten berkualitas secara konsisten</li>
+            <li><i class="fa-solid fa-chart-simple"></i> Monitor traffic pakai Google Analytics</li>
+            <li><i class="fa-solid fa-magnifying-glass-chart"></i> Optimize SEO dan performa situs</li>
+            <li><i class="fa-solid fa-share"></i> Promosikan situsmu di sosial media</li>
+            <li><i class="fa-solid fa-users"></i> Build komunitas dan engage dengan pembaca</li>
+        </ul>
+        <p>Happy blogging! <i class="fa-solid fa-heart"></i></p>
+    </div>
+    <h2><i class="fa-solid fa-circle-question"></i> Butuh Bantuan?</h2>
+    <p>Stuck di suatu langkah? Ada error yang bikin bingung? Atau cuma pengen diskusi dan sharing tips? <strong>Jangan ragu untuk reach out!</strong> Komunitas Layar Kosong sangat welcome dan siap bantu.</p>
+    <div class="card">
+        <span class="card-icon"><i class="fa-brands fa-github"></i></span>
+        <h3>Tempat Diskusi &amp; Support</h3>
+        <p>Mari kita ngobrol santai di GitHub Discussions! Tanya apa aja, share pengalaman, atau kasih saran untuk improve Layar Kosong. Semua orang welcome!</p>
+        <br>
+        <a href="https://github.com/frijal/LayarKosong/discussions" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <i class="fa-solid fa-comments"></i> Join Diskusi di GitHub
+        </a>
+    </div>
+    <div class="alert alert-info">
+        <i class="fa-solid fa-users"></i> <strong>Tips Bertanya:</strong>
+        <ul>
+            <li>Jelaskan masalahmu sedetail mungkin (error message, screenshot, dll)</li>
+            <li>Sebutkan langkah-langkah yang udah kamu coba</li>
+            <li>Mention OS dan browser yang kamu pakai</li>
+            <li>Jangan malu bertanya - nggak ada pertanyaan bodoh! <i class="fa-solid fa-heart"></i></li>
+        </ul>
+    </div>
+    <p>Kamu juga bisa contribute! Found a bug? Punya ide fitur keren? Atau pengen improve dokumentasi? Pull request always welcome! <i class="fa-solid fa-code-pull-request"></i></p>
+    <h2><i class="fa-solid fa-scale-balanced"></i> Lisensi</h2>
+    <p>Layar Kosong adalah halaman open source yang bebas digunakan siapa aja. Untuk informasi lengkap tentang lisensi, silakan cek file <a href="https://github.com/frijal/LayarKosong/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><strong>LICENSE</strong></a> di repository.</p>
+    <p><span class="badge badge-success"><i class="fa-solid fa-unlock"></i> 100% Free</span> <span class="badge badge-info"><i class="fa-brands fa-osi"></i> Open Source</span> <span class="badge badge-warning"><i class="fa-solid fa-globe"></i> Public Domain</span></p>
+<details style="margin-top: 40px; border: 1px solid var(--border-color); padding: 10px; border-radius: 8px;">
+        <summary style="font-weight: bold; cursor: pointer; color: var(--primary-color);">
+            <i class="fa-solid fa-toggle-off"></i> Klik untuk Status Teknis &amp; Badge ⚙️
+        </summary>
+        <h3 style="margin-top: 20px;"><i class="fa-solid fa-chart-bar"></i> Status Halaman</h3>
+        <p>
+            <img src="/img/img.shields.io/badge/License-Unlicense-blue.webp" alt="License: Unlicense">
+            <img src="/img/img.shields.io/badge/Public%20Domain-Yes-orange.webp" alt="Public Domain">
+            <img src="/img/img.shields.io/badge/Free-100%25-brightgreen.webp" alt="Free 100%">
+            <img src="/img/img.shields.io/badge/Open%20Source-Yes-blue.webp" alt="Open Source">
+            <img src="/img/img.shields.io/badge/Website-Live-2ea44f.webp" alt="Website Live">
+            <img src="/img/img.shields.io/badge/HTTPS-Enabled-blue.webp" alt="HTTPS Enabled">
+        </p>
+        <h3><i class="fa-solid fa-code-commit"></i> Pembaruan &amp; Otomatisasi</h3>
+        <p>
+            <img src="/img/img.shields.io/badge/GitHub%20Pages-Yes-blue.webp" alt="GitHub Pages">
+            <img src="/img/img.shields.io/badge/Google%20Drive-Available-34A853.webp" alt="Google Drive">
+            <img src="/img/img.shields.io/badge/Release-Continuous-orange.webp" alt="Release Continuous">
+            <img src="/img/img.shields.io/github/last-commit/frijal/dalam.web.webp" alt="Last Commit">
+        </p>
+        <h3><i class="fa-brands fa-git-alt"></i> Workflows Aktif:</h3>
+        <p>
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.webp" alt="Proses ArtikelX">
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.webp" alt="Build and Generate Site Files">
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/copybranch.yml/badge.webp" alt="Copy ke Branch Site Cloudflare">
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/indexnow.yml/badge.webp" alt="IndexNow Daily Submit">
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/rssping.yml/badge.webp" alt="Ping Feeds &amp; Sitemap">
+            <img src="/img/github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.webp" alt="Pengecekan &amp; Laporan Konten Harian">
+        </p>
+        </details>
+    <h2><i class="fa-solid fa-users"></i> Kontributor</h2>
+    <p>Terima kasih sebesar-besarnya untuk semua yang telah berkontribusi pada halaman Layar Kosong ini! <i class="fa-solid fa-hands-clapping"></i> Baik itu code, dokumentasi, bug report, ide, atau sekadar moral support - semuanya sangat berarti!</p>
+    <p>Ingin jadi kontributor juga? <a href="https://github.com/frijal/LayarKosong/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Check out contribution guide</a> dan mulai contribute sekarang! <i class="fa-solid fa-rocket"></i></p>
+    <!-- Kolom Komentar -->
+    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p><strong>Layar Kosong</strong> Bangun Situs Statis dengan Mudah <i class="fa-solid fa-heart"></i> 🄯 2025<a href="https://dalam.web.id">dalam.web.id</a></p>
+        <div class="footer-links">
+            <a href="https://github.com/frijal/LayarKosong" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i class="fa-brands fa-github footer-icon"></i>
+            </a>
+            <a href="https://twitter.com/responaja" target="_blank" rel="noopener noreferrer" title="Twitter/X">
+                <i class="fa-brands fa-x-twitter footer-icon"></i>
+            </a>
+            <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer" title="Threads">
+                <i class="fa-brands fa-threads footer-icon"></i>
+            </a>
+            <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i class="fa-brands fa-linkedin footer-icon"></i>
+            </a>
+            <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer" title="Facebook">
+                <i class="fa-brands fa-facebook footer-icon"></i>
+            </a>
+            <a href="https://instagram.com/frijal" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <i class="fa-brands fa-instagram footer-icon"></i>
+            </a>
+            <a href="https://tiktok.com/@gibah.dilarang" target="_blank" rel="noopener noreferrer" title="TikTok">
+                <i class="fa-brands fa-tiktok footer-icon"></i>
+            </a>
+            <a href="/feed.html" title="RSS Feed">
+                <i class="fa-solid fa-rss footer-icon"></i>
+            </a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9em;">
+            <a href="/disclaimer.html">Disclaimer</a> |
+            <a href="/sitemap.html">Sitemap</a> |
+            <a href="/search.html">Search</a> |
+            <a href="https://github.com/frijal/LayarKosong/discussions">Discussions</a>
+        </p>
+    </div></footer></div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+    </body></html>

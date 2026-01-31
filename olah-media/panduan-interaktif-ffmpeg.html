@@ -1,1 +1,327 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Panduan Interaktif FFmpeg Visual: Audio & Video</title><meta content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin." name=description><meta content="FFmpeg, audio, video, command line, tutorial, mp3, ogg, konversi, trim, CLI, resize, normalize" name=keywords><meta content=2025-09-27 name=date><script defer="" src=https://cdn.tailwindcss.com></script><style>body{font-family:Inter,sans-serif}.active-nav{background-color:#e5e7eb;color:#111827;font-weight:600}.code-block{background-color:#1e293b;color:#e2e8f0;border-radius:.5rem;padding:1rem;position:relative;margin-bottom:1rem}.copy-btn{position:absolute;top:.75rem;right:.75rem;background-color:#334155;color:#94a3b8;border:none;padding:.25rem .75rem;border-radius:.375rem;cursor:pointer;font-size:.875rem;transition:all .2s ease;z-index:10}.copy-btn:hover{background-color:#475569;color:#e2e8f0}.diagram-box{border:2px dashed #9ca3af;background-color:#f3f4f6;padding:1rem;display:flex;justify-content:center;align-items:center;min-height:100px;margin-bottom:1rem}.diagram-step{text-align:center;font-family:monospace;font-size:.875rem}.diagram-arrow{font-size:2rem;color:#3b82f6;margin:0 1rem}.social-share a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-weight:600;color:#fff;transition:background-color .2s}.btn-facebook{background-color:#1877f2}.btn-twitter{background-color:#1da1f2}.btn-whatsapp{background-color:#25d366}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin." name=ai:summary><meta content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin." name=ai:prompt_hint><link href=https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/ property=og:url><meta content="Panduan Interaktif FFmpeg Visual: Audio & Video" property=og:title><meta content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp property=og:image><meta content="Panduan Interaktif FFmpeg Visual: Audio & Video" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp name=twitter:image><meta content=https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp itemprop=image><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Interaktif FFmpeg Visual: Audio & Video","description":"Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.","articleSection":"Olah Media","keywords":"audio, ffmpeg, interaktif, layar kosong, olah media, panduan, video, visual","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2012-09-02T23:20:38.199+00:00","dateModified":"2012-09-02T23:20:38.199+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Panduan Interaktif FFmpeg Visual: Audio & Video","item":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/"}]}]}</script><body class="text-gray-800 bg-gray-50"><div class="flex flex-col md:flex-row min-h-screen"><aside class="bg-white border-gray-200 border-r lg:w-1/5 md:fixed md:h-full md:p-6 md:w-1/4 p-4 w-full"><h1 class="font-bold text-gray-900 mb-6 text-xl">Panduan Media</h1><div id=iposbrowser></div><nav class=space-y-4 id=navigation><div><h2 class="mb-2 font-semibold text-gray-500 text-sm tracking-wider uppercase">Audio</h2><ul class=space-y-1><li><a href=#ffmpeg-convert class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">MP3 → OGG</a><li><a href=#ffmpeg-batch class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Batch Convert Audio</a><li><a href=#ffmpeg-wav-mp3 class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">WAV → MP3</a><li><a href=#ffmpeg-normalize class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Normalize Audio</a></ul></div><div><h2 class="mb-2 font-semibold text-gray-500 text-sm tracking-wider uppercase">Video</h2><ul class=space-y-1><li><a href=#ffmpeg-trim class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Trim Video</a><li><a href=#ffmpeg-resize class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Resize Video</a><li><a href=#ffmpeg-extract-audio class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Extract Audio</a><li><a href=#ffmpeg-mp4-webm class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">MP4 → WebM</a><li><a href=#ffmpeg-batch-video class="text-gray-600 block hover:bg-gray-100 nav-link px-3 py-2 rounded-md">Batch Convert Video</a></ul></div></nav></aside><main class="w-full lg:ml-[20%] md:ml-[25%] md:p-10 p-6" id=content-display></main></div><template id=welcome-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="mb-4 font-bold text-3xl text-gray-900">Selamat Datang! 👋</h2><p class="mb-4 text-gray-600 text-lg">Panduan interaktif FFmpeg visual untuk audio & video. Pilih topik di menu sebelah kiri.<p class=text-gray-600>Tiap blok menampilkan diagram visual proses dan tombol "Salin" untuk menyalin perintah.<div class="border-t mt-8 pt-4"><h3 class="mb-4 font-semibold text-gray-800 text-xl">Jaga Data Pribadi Tetap Aman</h3><div class="flex space-x-3"><a href=# class="social-share btn-facebook" id=share-fb target=_blank>Facebook</a> <a href=# class="social-share btn-twitter" id=share-tw target=_blank>Twitter</a> <a href=# class="social-share btn-whatsapp" id=share-wa target=_blank>WhatsApp</a></div></div></div></template><template id=ffmpeg-convert-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Ubah Format Audio MP3 → OGG</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎵<br>input.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp3 output.ogg</div><div class=diagram-arrow>→</div><div class=diagram-step>🎶<br>output.ogg</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp3 output.ogg</code></pre></div></div></template><template id=ffmpeg-batch-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Batch Convert Audio</h2><div class="mb-4 diagram-box"><div class=diagram-step>📁<br>folder/*.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</div><div class=diagram-arrow>→</div><div class=diagram-step>📁<br>folder/*.ogg</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre></div></div></template><template id=ffmpeg-wav-mp3-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">WAV → MP3</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎵 input.wav</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>🎶 output.mp3</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre></div></div></template><template id=ffmpeg-normalize-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Normalize Audio</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎵 input.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>🎶 output.mp3 (normalized)</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</code></pre></div></div></template><template id=ffmpeg-trim-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Trim Video</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎬 input.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>🎬 output.mp4 (trimmed)</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</code></pre></div></div></template><template id=ffmpeg-resize-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Resize Video</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎬 input.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>🎬 output.mp4 (resized)</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre></div></div></template><template id=ffmpeg-extract-audio-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Extract Audio</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎬 input.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</div><div class=diagram-arrow>→</div><div class=diagram-step>🎵 output.mp3</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre></div></div></template><template id=ffmpeg-mp4-webm-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Convert MP4 → WebM</h2><div class="mb-4 diagram-box"><div class=diagram-step>🎬 input.mp4</div><div class=diagram-arrow>→</div><div class=diagram-step>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</div><div class=diagram-arrow>→</div><div class=diagram-step>🎬 output.webm</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</code></pre></div></div></template><template id=ffmpeg-batch-video-content><div class="bg-white p-8 rounded-lg shadow-sm"><h2 class="font-bold text-gray-900 mb-2 text-2xl">Batch Convert Video</h2><div class="mb-4 diagram-box"><div class=diagram-step>📁 folder/*.mov</div><div class=diagram-arrow>→</div><div class=diagram-step>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mov}.mp4"; done</div><div class=diagram-arrow>→</div><div class=diagram-step>📁 folder/*.mp4</div></div><div class=code-block><button class=copy-btn>Salin</button><pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mov}.mp4"; done</code></pre></div></div></template><div style=margin-top:50px;padding:20px;text-align:center><p class="text-gray-500 text-xs">🄯 2025 Command Line Guides | Konten Interaktif</div><div style=margin-top:18px;padding-bottom:200px><div id=pesbukdiskus></div><div id=related-articles-grid></div></div><script defer="" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v23.0" async="" crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",()=>{document.getElementById("navigation");const e=document.getElementById("content-display"),t=document.querySelectorAll(".nav-link"),n={"#ffmpeg-convert":"ffmpeg-convert-content","#ffmpeg-batch":"ffmpeg-batch-content","#ffmpeg-wav-mp3":"ffmpeg-wav-mp3-content","#ffmpeg-normalize":"ffmpeg-normalize-content","#ffmpeg-trim":"ffmpeg-trim-content","#ffmpeg-resize":"ffmpeg-resize-content","#ffmpeg-extract-audio":"ffmpeg-extract-audio-content","#ffmpeg-mp4-webm":"ffmpeg-mp4-webm-content","#ffmpeg-batch-video":"ffmpeg-batch-video-content"};function o(o){e.innerHTML="",t.forEach(e=>e.classList.remove("active-nav"));let a=n[o]||"welcome-content",c=document.getElementById(a);if(c&&e.appendChild(c.content.cloneNode(!0)),t.length>0&&n[o]){const e=document.querySelector(`a[href="${o}"]`);e&&e.classList.add("active-nav")}const i=document.getElementById("current-url");i&&(i.textContent="https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/.html"+o)}window.addEventListener("hashchange",()=>{o(window.location.hash)});const a=window.location.hash;if(a)o(a);else if(t.length>0){const e=t[0].hash;o(e),window.location.hash=e}else o("#welcome");e.addEventListener("click",e=>{if(e.target.classList.contains("copy-btn")){const t=e.target.nextElementSibling.querySelector("code");if(t){const n=t.innerText.trim().replace(/\n{2,}/g,"\n");navigator.clipboard.writeText(n).then(()=>{let t=e.target.innerText;e.target.innerText="Disalin!",setTimeout(()=>{e.target.innerText=t},2e3)}).catch(e=>{console.error("Gagal menyalin: ",e)})}}})})</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Interaktif FFmpeg Visual: Audio &amp; Video</title>
+    <meta name="description" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+    <meta name="keywords" content="FFmpeg, audio, video, command line, tutorial, mp3, ogg, konversi, trim, CLI, resize, normalize">
+    <meta name="date" content="2025-09-27">
+    <script src="https://cdn.tailwindcss.com" defer=""></script>
+    <style>
+        body { font-family: Inter, sans-serif; }
+        .active-nav { background-color: #e5e7eb; color: #111827; font-weight: 600; }
+        .code-block { background-color: #1e293b; color: #e2e8f0; border-radius: 0.5rem; padding: 1rem; position: relative; margin-bottom: 1rem; }
+        .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background-color: #334155; color: #94a3b8; border: none; padding: 0.25rem 0.75rem; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem; transition: all 0.2s ease; z-index: 10; }
+        .copy-btn:hover { background-color: #475569; color: #e2e8f0; }
+        .diagram-box { border: 2px dashed #9ca3af; background-color: #f3f4f6; padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100px; margin-bottom: 1rem; }
+        .diagram-step { text-align: center; font-family: monospace; font-size: 0.875rem; }
+        .diagram-arrow { font-size: 2rem; color: #3b82f6; margin: 0 1rem; }
+        /* Social Sharing Icons */
+        .social-share a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; font-weight: 600; color: white; transition: background-color 0.2s; }
+        .btn-facebook { background-color: #1877f2; }
+        .btn-twitter { background-color: #1da1f2; }
+        .btn-whatsapp { background-color: #25d366; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+<meta name="ai:prompt_hint" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+    <link rel="canonical" href="https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/">
+    <meta property="og:title" content="Panduan Interaktif FFmpeg Visual: Audio &amp; Video">
+    <meta property="og:description" content="Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
+    <meta property="og:image:alt" content="Panduan Interaktif FFmpeg Visual: Audio &amp; Video">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Interaktif FFmpeg Visual: Audio &amp; Video","description":"Panduan FFmpeg visual interaktif: konversi, trim, batch convert, resize, extract audio, normalize menggunakan perintah command line yang mudah disalin.","articleSection":"Olah Media","keywords":"audio, ffmpeg, interaktif, layar kosong, olah media, panduan, video, visual","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/panduan-interaktif-ffmpeg.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2012-09-02T23:20:38.199+00:00","dateModified":"2012-09-02T23:20:38.199+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Olah Media","item":"https://dalam.web.id/olah-media/"},{"@type":"ListItem","position":3,"name":"Panduan Interaktif FFmpeg Visual: Audio &amp; Video","item":"https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/"}]}]}</script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div class="flex flex-col md:flex-row min-h-screen">
+    <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
+        <h1 class="text-xl font-bold text-gray-900 mb-6">Panduan Media</h1>
+<div id="iposbrowser"></div>
+        <nav id="navigation" class="space-y-4">
+            <div>
+                <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Audio</h2>
+                <ul class="space-y-1">
+                    <li><a href="#ffmpeg-convert" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">MP3 → OGG</a></li>
+                    <li><a href="#ffmpeg-batch" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Batch Convert Audio</a></li>
+                    <li><a href="#ffmpeg-wav-mp3" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">WAV → MP3</a></li>
+                    <li><a href="#ffmpeg-normalize" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Normalize Audio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Video</h2>
+                <ul class="space-y-1">
+                    <li><a href="#ffmpeg-trim" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Trim Video</a></li>
+                    <li><a href="#ffmpeg-resize" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Resize Video</a></li>
+                    <li><a href="#ffmpeg-extract-audio" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Extract Audio</a></li>
+                    <li><a href="#ffmpeg-mp4-webm" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">MP4 → WebM</a></li>
+                    <li><a href="#ffmpeg-batch-video" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Batch Convert Video</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+    <main id="content-display" class="w-full md:ml-[25%] lg:ml-[20%] p-6 md:p-10">
+    </main>
+</div>
+<template id="welcome-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Selamat Datang! 👋</h2>
+    <p class="text-lg text-gray-600 mb-4">Panduan interaktif FFmpeg visual untuk audio &amp; video. Pilih topik di menu sebelah kiri.</p>
+    <p class="text-gray-600">Tiap blok menampilkan diagram visual proses dan tombol "Salin" untuk menyalin perintah.</p>
+    <div class="mt-8 border-t pt-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Jaga Data Pribadi Tetap Aman</h3>
+        <div class="flex space-x-3">
+            <a href="#" id="share-fb" class="btn-facebook social-share" target="_blank">Facebook</a>
+            <a href="#" id="share-tw" class="btn-twitter social-share" target="_blank">Twitter</a>
+            <a href="#" id="share-wa" class="btn-whatsapp social-share" target="_blank">WhatsApp</a>
+        </div>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-convert-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Ubah Format Audio MP3 → OGG</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎵<br>input.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp3 output.ogg</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎶<br>output.ogg</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp3 output.ogg</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-batch-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Audio</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">📁<br>folder/*.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">📁<br>folder/*.ogg</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-wav-mp3-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">WAV → MP3</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎵 input.wav</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎶 output.mp3</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-normalize-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Normalize Audio</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎵 input.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp3 -af "loudnorm" output.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎶 output.mp3 (normalized)</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-trim-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Trim Video</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎬 input.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎬 output.mp4 (trimmed)</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-resize-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Resize Video</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎬 input.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎬 output.mp4 (resized)</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-extract-audio-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Extract Audio</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎬 input.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎵 output.mp3</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-mp4-webm-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Convert MP4 → WebM</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">🎬 input.mp4</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">🎬 output.webm</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</code></pre>
+    </div>
+</div>
+</template>
+<template id="ffmpeg-batch-video-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Video</h2>
+    <div class="diagram-box mb-4">
+        <div class="diagram-step">📁 folder/*.mov</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mov}.mp4"; done</div>
+        <div class="diagram-arrow">→</div>
+        <div class="diagram-step">📁 folder/*.mp4</div>
+    </div>
+    <div class="code-block">
+        <button class="copy-btn">Salin</button>
+        <pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mov}.mp4"; done</code></pre>
+    </div>
+</div>
+</template>
+<div style="margin-top:50px;padding:20px;text-align:center;">
+<p class="text-xs text-gray-500">🄯 2025 Command Line Guides | Konten Interaktif</p>
+</div>
+<div style="margin-top:18px;padding-bottom:200px;">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</div>
+<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&amp;version=v23.0"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const navigation = document.getElementById("navigation");
+    const contentDisplay = document.getElementById("content-display");
+    const navLinks = document.querySelectorAll(".nav-link");
+    // Map hash to template IDs
+    const contentMap = {
+        "#ffmpeg-convert":"ffmpeg-convert-content",
+        "#ffmpeg-batch":"ffmpeg-batch-content",
+        "#ffmpeg-wav-mp3":"ffmpeg-wav-mp3-content",
+        "#ffmpeg-normalize":"ffmpeg-normalize-content",
+        "#ffmpeg-trim":"ffmpeg-trim-content",
+        "#ffmpeg-resize":"ffmpeg-resize-content",
+        "#ffmpeg-extract-audio":"ffmpeg-extract-audio-content",
+        "#ffmpeg-mp4-webm":"ffmpeg-mp4-webm-content",
+        "#ffmpeg-batch-video":"ffmpeg-batch-video-content"
+    };
+    function loadContent(hash){
+        contentDisplay.innerHTML = "";
+        navLinks.forEach(l => l.classList.remove("active-nav"));
+        let templateId = contentMap[hash] || "welcome-content";
+        let template = document.getElementById(templateId);
+        if(template){
+            contentDisplay.appendChild(template.content.cloneNode(true));
+        }
+        if(navLinks.length > 0 && contentMap[hash]){
+            const targetLink = document.querySelector(`a[href="${hash}"]`);
+            if (targetLink) targetLink.classList.add("active-nav");
+        }
+        // Update current URL display and Facebook comments data-href
+        const currentCanonicalUrl = "https://dalam.web.id/olah-media/panduan-interaktif-ffmpeg/.html";
+        const currentUrlEl = document.getElementById("current-url");
+        if (currentUrlEl) currentUrlEl.textContent = currentCanonicalUrl + hash;
+    }
+    // Hash change
+    window.addEventListener("hashchange", ()=>{ loadContent(window.location.hash); });
+    // Initial load
+    const initialHash = window.location.hash;
+    if (initialHash) {
+        loadContent(initialHash);
+    } else {
+        // Automatically load the first item's content or welcome page
+        if (navLinks.length > 0) {
+            const firstHash = navLinks[0].hash;
+            loadContent(firstHash);
+            window.location.hash = firstHash; // Set hash for history
+        } else {
+            loadContent("#welcome");
+        }
+    }
+    // Copy button handler
+    contentDisplay.addEventListener("click", (e)=>{
+        if(e.target.classList.contains("copy-btn")){
+            const codeElement = e.target.nextElementSibling.querySelector("code");
+            if(codeElement){
+                // Clean multiple newlines for better clipboard copy
+                const code = codeElement.innerText.trim().replace(/\n{2,}/g, '\n');
+                navigator.clipboard.writeText(code)
+                .then(()=>{
+                    let originalText = e.target.innerText;
+                    e.target.innerText = "Disalin!";
+                    setTimeout(() => {
+                        e.target.innerText = originalText;
+                    }, 2000);
+                })
+                .catch((err) => {
+                    console.error("Gagal menyalin: ", err);
+                });
+            }
+        }
+    });
+});
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -12,7 +12,6 @@ const folders = [
   './warta-tekno'
 ];
 
-// Inisialisasi statistik dan daftar error
 let stats = { 
   success: 0, 
   skipped: 0, 
@@ -33,21 +32,17 @@ async function minifyFiles(dir) {
       continue;
     }
 
-    // Skip file yang bukan HTML atau index.html (sesuai request)
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
-
       if (!originalHTML.trim()) continue;
 
-      // Cek Signature Statis
       if (originalHTML.includes('jepitan_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
       }
 
-      // === PROSES MINIFY DENGAN OPTIMASI DOKUMENTASI ===
       let minifiedHTML = await minify(originalHTML, {
         collapseWhitespace: true,
         removeComments: true,
@@ -55,26 +50,21 @@ async function minifyFiles(dir) {
         minifyCSS: true,
         processScripts: ['application/ld+json'],
         decodeEntities: true,
-        // Tambahan optimasi agresif:
-        removeAttributeQuotes: true,     // Hapus kutip jika aman
-        removeRedundantAttributes: true, // Hapus atribut default
-        removeOptionalTags: true,        // Hapus penutup html/body (agresif)
-        sortAttributes: true,            // Optimasi GZIP
-        sortClassName: true,             // Optimasi GZIP
-        useShortDoctype: true            // <!DOCTYPE html>
+        removeAttributeQuotes: true,
+        removeRedundantAttributes: true,
+        removeOptionalTags: true,
+        sortAttributes: true,
+        sortClassName: true,
+        useShortDoctype: true
       });
 
-      // Buat Signature Jam & Tanggal (Fixed syntax)
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
       const jam = d.toTimeString().slice(0, 5);
       const signature = ``;
 
-      // Gabungkan hasil minify dengan signature di baris terakhir
       fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + signature, 'utf8');
-      
       stats.success++;
-      console.log(`✅ Success: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
@@ -82,6 +72,7 @@ async function minifyFiles(dir) {
         path: filePath,
         error: err.message
       });
+      // Tetap print di konsol supaya Mas Bro tahu ada masalah pas lagi running
       console.error(`❌ Gagal: ${filePath}`);
     }
   }
@@ -94,27 +85,30 @@ async function run() {
     await minifyFiles(f);
   }
 
-  // --- LAPORAN AKHIR DETAIL ---
+  // --- REKAPITULASI RINGKAS ---
   console.log('\n' + '='.repeat(50));
-  console.log('📊 REKAPITULASI PROSES');
+  console.log('📊 REKAP PROSES');
   console.log('='.repeat(50));
-  console.log(`✅ Berhasil di-minify : ${stats.success}`);
-  console.log(`⏭️  Sudah pernah (Skip) : ${stats.skipped}`);
-  console.log(`❌ Gagal total         : ${stats.failed}`);
+  console.log(`✅ Sukses : ${stats.success}`);
+  console.log(`⏭️  Skip   : ${stats.skipped}`);
+  console.log(`❌ Gagal  : ${stats.failed}`);
   
+  // --- HANYA TAMPILKAN DAFTAR GAGAL ---
   if (stats.failed > 0) {
-    console.log('\n⚠️  DAFTAR FILE ERROR:');
+    console.log('\n⚠️  DETAIL FILE BERMASALAH (HARUS DIPERBAIKI):');
     stats.errorList.forEach((item, index) => {
       console.log(`${index + 1}. [${item.path}]`);
-      console.log(`   Pesan: ${item.error}`);
+      console.log(`   Pesan Error: ${item.error}`);
     });
-    console.log('\n💡 Tips: Cek tag HTML yang tidak tertutup atau script JS yang rusak.');
+    console.log('\n💡 Tips: Cek tag yang tidak tertutup atau script JS yang rusak di file tersebut.');
+  } else {
+    console.log('\n✨ Mantap! Semua file berhasil diproses tanpa error.');
   }
   
   console.log('='.repeat(50) + '\n');
 }
 
 run().catch(err => {
-  console.error('💥 Fatal System Error:', err);
+  console.error('💥 Fatal Error:', err);
   process.exit(1);
 });
