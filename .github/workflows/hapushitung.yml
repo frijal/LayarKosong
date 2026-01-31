@@ -179,6 +179,9 @@ jobs:
 
           echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
 
+      - name: 🕵️ Update Dashboard Jadwal
+        run: node ext/workflow-list.js
+
       # ========== REPORT ROTATION ==========
       - name: 6. Rotasi Laporan Lama (Keep Last 7)
         id: rotate_reports
