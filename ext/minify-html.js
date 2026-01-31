@@ -38,13 +38,24 @@ async function minifyFiles(dir) {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // === CEK SIGNATURE (SKIP JIKA ADA TEKS INI) ===
+      // Cek apakah sudah ada jejak kita
       if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
       }
 
-      let minifiedHTML = await minify(originalHTML, {
+      // 1. Siapkan signature duluan
+      const d = new Date();
+      const tgl = d.toISOString().slice(0, 10);
+      const jam = d.toTimeString().slice(0, 5).replace(':', '_');
+      const signature = ``;
+
+      // 2. Tempelkan signature ke HTML ASLI sebelum di-minify
+      // Kita tempel di paling bawah agar minifier tahu ini bagian dari dokumen
+      const htmlWithSignature = originalHTML.trimEnd() + '\n' + signature;
+
+      // 3. Proses Minify (dengan ignoreCustomComments agar signature-nya tidak dihapus)
+      let minifiedHTML = await minify(htmlWithSignature, {
         collapseWhitespace: true,
         removeComments: true,
         minifyJS: true,
@@ -53,24 +64,17 @@ async function minifyFiles(dir) {
         decodeEntities: true,
         removeAttributeQuotes: true,
         removeRedundantAttributes: true,
-        removeOptionalTags: true, // Tetap ON untuk diet maksimal
+        removeOptionalTags: true, 
         sortAttributes: true,
         sortClassName: true,
         useShortDoctype: true,
-        // KUNCI: Kecualikan signature agar tidak ikut terhapus
         ignoreCustomComments: [
-          /udah_dijepit_oleh_Fakhrul_Rijal/
+          /udah_dijepit_oleh_Fakhrul_Rijal/ // Proteksi agar tidak dibuang saat minify
         ]
       });
 
-      // === BUAT SIGNATURE (FORMAT UNDERSCORE) ===
-      const d = new Date();
-      const tgl = d.toISOString().slice(0, 10); // YYYY-MM-DD
-      const jam = d.toTimeString().slice(0, 5).replace(':', '_'); // HH_mm
-      const signature = ``;
-
-      // Simpan hasil minify + signature di baris terakhir
-      fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + signature, 'utf8');
+      // 4. Tulis hasil akhir
+      fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       stats.success++;
 
     } catch (err) {
