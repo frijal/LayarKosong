@@ -23,11 +23,7 @@ jobs:
 
       - name: 🔍 Jalankan Audit SEO (Python)
         id: run_audit
-        run: |
-          # Pastikan folder mini tersedia
-          mkdir -p mini
-          
-          # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
+        run: |   # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
           python ext/audit_seo.py
           
           # Ambil file laporan terbaru untuk Summary
