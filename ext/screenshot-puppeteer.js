@@ -1,9 +1,7 @@
-// server-screenshot.js
-// CI-safe, package.json-aligned, deterministic dengan Filter Ganda
-
-import fs from "fs";
-import path from "path";
-import express from "express";
+import fs from "node:fs";
+import path from "node:path";
+import http from "node:http"; // 🔥 Pakai bawaan Node.js
+import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 
 const ROOT_DIR = process.cwd();
@@ -18,21 +16,37 @@ const TARGET_WIDTH = 1200;
 const TARGET_HEIGHT = 630;
 
 /**
- * Menjalankan server lokal sementara untuk melayani file HTML
+ * Server lokal tanpa Express - Ringan & Tanpa Beban Dependency
  */
 function startServer() {
   return new Promise((resolve, reject) => {
-    const app = express();
+    const server = http.createServer((req, res) => {
+      // Hilangkan query string kalau ada
+      const urlPath = req.url.split('?')[0];
+      const filePath = path.join(ROOT_DIR, decodeURI(urlPath));
 
-    app.use((req, res, next) => {
-      res.set("Cache-Control", "public, max-age=60");
-      next();
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          res.writeHead(404);
+          res.end("File tidak ditemukan");
+          return;
+        }
+        
+        // Cache Control biar Puppeteer nggak rewel
+        res.setHeader("Cache-Control", "public, max-age=60");
+        
+        // Simpel MIME Type
+        if (filePath.endsWith(".html")) res.setHeader("Content-Type", "text/html");
+        if (filePath.endsWith(".css")) res.setHeader("Content-Type", "text/css");
+        if (filePath.endsWith(".js")) res.setHeader("Content-Type", "application/javascript");
+        
+        res.writeHead(200);
+        res.end(data);
+      });
     });
 
-    app.use(express.static(ROOT_DIR));
-
-    const server = app.listen(PORT, () => {
-      console.log(`[🌐] Server lokal aktif di http://localhost:${PORT}`);
+    server.listen(PORT, () => {
+      console.log(`[🌐] Server Native aktif di http://localhost:${PORT}`);
       resolve(server);
     });
 
