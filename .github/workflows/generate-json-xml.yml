@@ -19,8 +19,12 @@ on:
         description: 'Jalankan Inject Schema.org Python'
         type: boolean
         default: true
-      run_minify:
+      run_minify_html:
         description: 'Jalankan HTML Minify (Hapus baris kosong)'
+        type: boolean
+        default: true
+      run_minify_jsonxml:
+        description: 'Jalankan JSONXML Minify (Hapus baris kosong)'
         type: boolean
         default: true
   schedule:
