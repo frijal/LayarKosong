@@ -84,7 +84,7 @@ jobs:
           npm list --depth=0 >> "$LIST_REPORT" || true
 
           echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
-          # Pakai script custom Mas Bro sebagai pengganti depcheck
+          # Pakai script custom Mas Bro sebagai pengganti dependensi check
           node ext/cek-mubazir.js >> "$UNUSED_REPORT"
 
       - name: 🐍 Python Dependency Audit
