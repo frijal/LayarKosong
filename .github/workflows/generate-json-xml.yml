@@ -96,13 +96,15 @@ jobs:
 
       # --- PERUBAHAN POSISI DI SINI ---
       
-      - name: '7️⃣ Clean HTML Cerdas (html-minifier-terser)'
+      - name: '7️⃣ Inject schema.org (BARU KEMUDIAN)'
+        if: env.DO_SCHEMA == 'true'
+        run: python3 ext/inject_schema.py
+        
+      - name: '8️⃣ Clean HTML Cerdas (html-minifier-terser)'
         if: env.DO_MINIFY == 'true'
         run: node ext/minify-html.js
 
-      - name: '8️⃣ Inject schema.org (BARU KEMUDIAN)'
-        if: env.DO_SCHEMA == 'true'
-        run: python3 ext/inject_schema.py
+      
 
       # --- AKHIR PERUBAHAN POSISI ---
 
