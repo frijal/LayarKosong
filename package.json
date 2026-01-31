@@ -12,8 +12,7 @@
     "ci-screenshot": "node ext/screenshot-puppeteer.js",
     "ci-all": "npm run ci-fix-meta-image && npm run ci-generate-xml-rss && npm run ci-screenshot",
     "generate-ai-api": "node ext/generate-ai-api.js",
-    "check-deps": "node ext/cek-mubazir.js",
-    "lint": "html-minifier-terser --collapse-whitespace --remove-comments gaya-hidup/*.html lainnya/*.html opini-sosial/*.html warta-tekno/*.html jejak-sejarah/*.html olah-media/*.html sistem-terbuka/*.html"
+    "check-deps": "node ext/cek-mubazir.js"
   },
   "repository": {
     "type": "git",
