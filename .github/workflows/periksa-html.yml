@@ -1,4 +1,4 @@
-name: 📋 Audit Komponen SEO Lengkap (Layar Kosong Standard)
+name: 📋 Audit Komponen SEO Lengkap
 
 on:
   workflow_dispatch:
@@ -10,93 +10,43 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout kode
-        uses: actions/checkout@v6
+      - name: 🧩 Checkout kode
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 24
-      
-      - name: Install Dependencies
-        run: npm ci
+          python-version: '3.11'
 
-      - name: 🔍 Audit Komponen Berdasarkan Kelompok
+      - name: 📦 Install BeautifulSoup
+        run: pip install beautifulsoup4
+
+      - name: 🔍 Jalankan Audit SEO (Python)
         id: run_audit
         run: |
-          TANGGAL=$(date +%Y%m%d)
-          REPORT="mini/laporan-audit-$TANGGAL.md"
+          # Pastikan folder mini tersedia
+          mkdir -p mini
           
-          echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
-          echo "📅 Diperiksa pada: $(date)" >> $REPORT
-          echo "> **Status:** Audit berbasis Regex Lentur (Aman untuk HTML Minified)." >> $REPORT
+          # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
+          python ext/audit_seo.py
+          
+          # Ambil file laporan terbaru untuk Summary
+          LATEST_REPORT=$(ls -t mini/laporan-audit-*.md | head -1)
+          cat "$LATEST_REPORT" >> $GITHUB_STEP_SUMMARY
+          echo "REPORT_FILE=$LATEST_REPORT" >> $GITHUB_OUTPUT
 
-          # Inisialisasi file sementara
-          echo -e "\n## 🏷️ 1. Core Meta & Branding\n| File | Masalah |\n| :--- | :--- |" > cat1.tmp
-          echo -e "\n## 🌐 2. Social Meta & Creators\n| File | Masalah |\n| :--- | :--- |" > cat2.tmp
-          echo -e "\n## 📊 3. Open Graph & Twitter Card\n| File | Masalah |\n| :--- | :--- |" > cat3.tmp
-          echo -e "\n## 🛠️ 4. Assets & Schema\n| File | Masalah |\n| :--- | :--- |" > cat4.tmp
-          echo -e "\n## 📝 5. Variasi Description\n| File | Masalah |\n| :--- | :--- |" > cat5.tmp
-
-          FOLDERS="./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno"
-
-          for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
-            ERR1=""; ERR2=""; ERR3=""; ERR4=""; ERR5=""
-            
-            # 🔥 FUNGSI BARU: Menggunakan grep -E (Extended Regex) agar fleksibel dengan spasi/petik
-            # regex: [\"']? berarti boleh ada petik dua, petik satu, atau tidak ada sama sekali.
-            check_regex() {
-              if ! grep -Ei "$1" "$file" > /dev/null; then echo "- Missing: $2<br>"; fi
-            }
-
-            # 1. Core Meta (Regex lentur untuk rel=petik)
-            ERR1=$( (check_regex 'rel=[\"'"'"']?canonical' "Canonical Tag"; \
-                      check_regex 'href=[\"'"'"']?/favicon\.ico' "Favicon.ico"; \
-                      check_regex 'name=[\"'"'"']?author[\"'"'"']? content=[\"'"'"']?Fakhrul Rijal' "Author"; \
-                      check_regex 'name=[\"'"'"']?theme-color[\"'"'"']? content=[\"'"'"']?#00b0ed' "Theme Color"; \
-                      check_regex 'creativecommons\.org/publicdomain/zero/1\.0' "CC0 License") | tr -d '\n' )
-            
-            # 2. Social Meta
-            ERR2=$( (check_regex 'fediverse:creator[\"'"'"']? content=[\"'"'"']?@frijal@mastodon\.social' "Fediverse Creator"; \
-                      check_regex 'twitter:creator[\"'"'"']? content=[\"'"'"']?@responaja' "Twitter Creator"; \
-                      check_regex 'bluesky:creator[\"'"'"']? content=[\"'"'"']?@dalam\.web\.id' "Bluesky Creator") | tr -d '\n' )
-
-            # 3. OG & Twitter
-            ERR3=$( (check_regex 'og:site_name[\"'"'"']? content=[\"'"'"']?Layar Kosong' "OG Site Name"; \
-                      check_regex 'og:locale[\"'"'"']? content=[\"'"'"']?id_ID' "OG Locale"; \
-                      check_regex 'twitter:card[\"'"'"']? content=[\"'"'"']?summary_large_image' "Twitter Card"; \
-                      check_regex 'fb:app_id[\"'"'"']? content=[\"'"'"']?175216696195384' "FB App ID") | tr -d '\n' )
-
-            # 4. Assets & Schema
-            ERR4=$( (check_regex 'type=[\"'"'"']?application/rss\+xml' "RSS Feed Link"; \
-                      check_regex 'type=[\"'"'"']?application/ld\+json' "Schema JSON-LD") | tr -d '\n' )
-
-            # 5. Descriptions
-            ERR5=$( (check_regex 'name=[\"'"'"']?description' "Meta Description"; \
-                      check_regex 'og:description' "OG Description"; \
-                      check_regex 'twitter:description' "Twitter Description"; \
-                      check_regex 'name=[\"'"'"']?promphint' "Prompt Hint") | tr -d '\n' )
-
-            # Masukkan ke file sementara jika ada error
-            [[ -n "$ERR1" ]] && echo "| \`$file\` | $ERR1 |" >> cat1.tmp
-            [[ -n "$ERR2" ]] && echo "| \`$file\` | $ERR2 |" >> cat2.tmp
-            [[ -n "$ERR3" ]] && echo "| \`$file\` | $ERR3 |" >> cat3.tmp
-            [[ -n "$ERR4" ]] && echo "| \`$file\` | $ERR4 |" >> cat4.tmp
-            [[ -n "$ERR5" ]] && echo "| \`$file\` | $ERR5 |" >> cat5.tmp
-          done
-
-          # Gabungkan laporan
-          cat cat1.tmp cat2.tmp cat3.tmp cat4.tmp cat5.tmp >> $REPORT
-          cat $REPORT >> $GITHUB_STEP_SUMMARY
-          rm *.tmp
-
-      - name: 💾 Simpan Laporan
+      - name: 💾 Simpan Laporan ke Repo
         if: always()
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add mini/*.md
+          
+          # Commit hanya jika ada file baru atau perubahan
           if ! git diff --cached --quiet; then
-            git commit -m "🤖 docs: audit SEO terkelompok $(date +'%Y-%m-%d')"
+            git commit -m "🤖 docs: audit SEO (Python + Details Format) $(date +'%Y-%m-%d')"
             git push
+          else
+            echo "💤 Tidak ada perubahan pada laporan audit."
           fi
