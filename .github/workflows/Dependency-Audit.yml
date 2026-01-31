@@ -11,10 +11,10 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout Repository
+      - name: 🧩 Checkout Repository
         uses: actions/checkout@v6.0.2
 
-      - name: Cache Node Modules
+      - name: 🗄️ Cache Node Modules
         uses: actions/cache@v5.0.3
         with:
           path: ~/.npm
@@ -25,135 +25,88 @@ jobs:
       # --------------------
       # SETUP RUNTIME
       # --------------------
-      - name: Setup Node.js (LTS + native fetch)
+      - name: ⚙️ Setup Node.js (v24)
         uses: actions/setup-node@v6.2.0
         with:
           node-version: '24'
 
-      - name: Setup Python
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: '3.x'
-
       # --------------------
       # INSTALL DEPENDENCIES
       # --------------------
-      - name: Install Node.js Dependencies (package.json)
+      - name: 📦 Install Dependencies
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+          npm ci || npm install
 
       # --------------------
       # PREPARE WORKDIR
       # --------------------
-      - name: Create Audit Directory
+      - name: 📁 Create Audit Directory
         run: mkdir -p sementara/audit
 
       # ====================
       # BAGIAN 1: INSPECTOR
       # ====================
-      - name: 📝 List Files in ext/
-        run: |
-          echo "--- Isi Folder ext ---"
-          ls -R ext/ || true
-
-      - name: 🧠 JavaScript Syntax Check (Node 20)
+      - name: 🧠 JavaScript Syntax Check
         run: |
           echo "Memeriksa syntax JavaScript di ext/..."
           for file in ext/*.js; do
             if [ -f "$file" ]; then
-              node --check "$file"
-              echo "✅ $file: OK"
+              node --check "$file" && echo "✅ $file: OK" || exit 1
             fi
           done
 
       # ====================
-      # BAGIAN 2: AUTO-FIX
-      # ====================
-      - name: 🛠️ Run Dependency Fixer (optional)
-        run: |
-          if [ -f ext/dependency-fixer.sh ]; then
-            chmod +x ext/dependency-fixer.sh
-            ./ext/dependency-fixer.sh
-          else
-            echo "ℹ️ dependency-fixer.sh tidak ditemukan, skip."
-          fi
-
-      # ====================
-      # BAGIAN 3: AUDIT & REPORT
+      # BAGIAN 2: AUDIT & REPORT (DETECTOR MODE)
       # ====================
       - name: 🕵️ Trace node-fetch Residuals
         run: |
           DATE=$(date +'%Y-%m-%d')
           REPORT="sementara/audit/node_fetch_usage_$DATE.txt"
+          echo "--- Scan node-fetch (Ganti ke native fetch!) ---" > "$REPORT"
+          grep -RIn "node-fetch" . --exclude-dir=node_modules || echo "✅ Clean: node-fetch tidak ditemukan" >> "$REPORT"
 
-          echo "--- Scan node-fetch (legacy) ---" > "$REPORT"
-          grep -RIn "node-fetch" . || echo "✅ node-fetch tidak ditemukan" >> "$REPORT"
-
-      - name: 📦 Node.js Dependency Audit
+      - name: 📦 Node.js Dependency Audit (Internal Detective)
         run: |
           DATE=$(date +'%Y-%m-%d')
+          LIST_REPORT="sementara/audit/npm_list_$DATE.txt"
+          UNUSED_REPORT="sementara/audit/npm_unused_$DATE.txt"
 
-          echo "--- Top-Level Dependencies ---" > sementara/audit/npm_list_$DATE.txt
-          npm list --depth=0 >> sementara/audit/npm_list_$DATE.txt || true
+          echo "--- Top-Level Dependencies ---" > "$LIST_REPORT"
+          npm list --depth=0 >> "$LIST_REPORT" || true
 
-          echo "--- Unused Dependency Report ---" > sementara/audit/npm_unused_$DATE.txt
-          npx depcheck . --json \
-            | jq '{
-              UNUSED_DEPENDENCIES: .dependencies,
-              UNUSED_DEV_DEPENDENCIES: .devDependencies,
-              USED_FILES: .using
-            }' >> sementara/audit/npm_unused_$DATE.txt || true
+          echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
+          # Memanggil script custom Mas Bro yang baru kita buat
+          node ext/cek-mubazir.js >> "$UNUSED_REPORT"
 
-      - name: 🐍 Python Dependency Audit
+      # ====================
+      # BAGIAN 3: AUTO-FIX (Optional)
+      # ====================
+      - name: 🛠️ Run Dependency Fixer
         run: |
-          DATE=$(date +'%Y-%m-%d')
-
-          REQ_PATH=""
-          if [ -f requirements.txt ]; then
-            REQ_PATH="requirements.txt"
-          elif [ -f sementara/audit/requirements.txt ]; then
-            REQ_PATH="sementara/audit/requirements.txt"
-          fi
-
-          if [ -n "$REQ_PATH" ]; then
-            pip install pip-check-reqs
-
-            echo "--- Python Requirements ---" > sementara/audit/python_requirements_$DATE.txt
-            cat "$REQ_PATH" >> sementara/audit/python_requirements_$DATE.txt
-
-            echo "--- Unused Python Packages ---" > sementara/audit/python_unused_$DATE.txt
-            pip-extra-reqs . --requirements "$REQ_PATH" >> sementara/audit/python_unused_$DATE.txt || true
+          if [ -f ext/dependency-fixer.sh ]; then
+            chmod +x ext/dependency-fixer.sh
+            ./ext/dependency-fixer.sh
+          elif [ -f ext/cleanup.js ]; then
+            echo "Menjalankan Cleanup Auto v2.0..."
+            node ext/cleanup.js
           else
-            echo "ℹ️ requirements.txt tidak ditemukan, skip Python audit."
+            echo "ℹ️ Tidak ada script fixer, skip."
           fi
 
       # ====================
       # COMMIT RESULT
       # ====================
-    
-      - name: 💾 Save All Changes (Universal Template)
+      - name: 💾 Save Audit Results
         run: |
-          # 1. Identitas Bot
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 2. Ambil semua perubahan tanpa pilih kasih
           git add . 
           
-          # 3. Cek apakah benar-benar ada yang berubah
           if git diff --staged --quiet; then
-            echo "ℹ️ Ga ada kerjaan baru, skip commit."
+            echo "ℹ️ Tidak ada perubahan atau temuan baru."
           else
-            # 4. Commit dengan timestamp biar rapi di history
-            git commit -m "chore(audit): full inspector & dependency audit $(date +'%Y-%m-%d')"
-            
-            # 5. Tarik data terbaru dengan aman (kunci suksesnya di sini)
+            git commit -m "chore(audit): inspector & internal detective report $(date +'%Y-%m-%d')"
             git pull origin main --rebase --autostash
-            
-            # 6. Gas pol push ke repo
             git push
           fi
