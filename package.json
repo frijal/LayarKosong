@@ -12,7 +12,7 @@
     "ci-screenshot": "node ext/screenshot-puppeteer.js",
     "ci-all": "npm run ci-fix-meta-image && npm run ci-generate-xml-rss && npm run ci-screenshot",
     "generate-ai-api": "node ext/generate-ai-api.js",
-    "check-deps": "depcheck",
+    "check-deps": "node ext/cek-mubazir.js",
     "lint": "html-minifier-terser --lint --collapse-whitespace --remove-comments \"./**/*.html\" --ignore-path .gitignore"
   },
   "repository": {
