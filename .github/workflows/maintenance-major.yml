@@ -53,7 +53,7 @@ jobs:
       - name: 🧪 Audit, Lint & Test
         run: |
           npm audit --omit=dev || true
-          # Sekarang tanpa flag --lint karena html-minifier-terser validasi otomatis lewat proses minifikasi
+          # Linting dilakukan pada 7 folder kategori utama: gaya-hidup, lainnya, dsb.
           npm run lint --if-present || true
           npm run test --if-present || true
 
