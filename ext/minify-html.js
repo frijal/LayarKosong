@@ -17,7 +17,7 @@ let stats = {
   success: 0, 
   skipped: 0, 
   failed: 0,
-  errorList: [] // Tempat curhat file yang gagal
+  errorList: [] 
 };
 
 async function minifyFiles(dir) {
@@ -33,6 +33,7 @@ async function minifyFiles(dir) {
       continue;
     }
 
+    // Skip file yang bukan HTML atau index.html (sesuai request)
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
@@ -40,34 +41,43 @@ async function minifyFiles(dir) {
 
       if (!originalHTML.trim()) continue;
 
-      // Cek apakah sudah ada signature (Anti-Double Process)
+      // Cek Signature Statis
       if (originalHTML.includes('jepitan_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
       }
 
+      // === PROSES MINIFY DENGAN OPTIMASI DOKUMENTASI ===
       let minifiedHTML = await minify(originalHTML, {
         collapseWhitespace: true,
         removeComments: true,
         minifyJS: true,
         minifyCSS: true,
         processScripts: ['application/ld+json'],
-        decodeEntities: true
+        decodeEntities: true,
+        // Tambahan optimasi agresif:
+        removeAttributeQuotes: true,     // Hapus kutip jika aman
+        removeRedundantAttributes: true, // Hapus atribut default
+        removeOptionalTags: true,        // Hapus penutup html/body (agresif)
+        sortAttributes: true,            // Optimasi GZIP
+        sortClassName: true,             // Optimasi GZIP
+        useShortDoctype: true            // <!DOCTYPE html>
       });
 
-      // Buat Signature Jam & Tanggal
+      // Buat Signature Jam & Tanggal (Fixed syntax)
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
       const jam = d.toTimeString().slice(0, 5);
       const signature = ``;
 
+      // Gabungkan hasil minify dengan signature di baris terakhir
       fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + signature, 'utf8');
+      
       stats.success++;
-      console.log(`✅ ${filePath}`);
+      console.log(`✅ Success: ${filePath}`);
 
     } catch (err) {
       stats.failed++;
-      // Catat path file dan pesan error-nya
       stats.errorList.push({
         path: filePath,
         error: err.message
@@ -78,7 +88,7 @@ async function minifyFiles(dir) {
 }
 
 async function run() {
-  console.log('🧼 Memulai Minify HTML untuk Layar Kosong...');
+  console.log('🧼 Memulai Minify Ultra (Layar Kosong Mode)...');
   
   for (const f of folders) {
     await minifyFiles(f);
@@ -98,7 +108,7 @@ async function run() {
       console.log(`${index + 1}. [${item.path}]`);
       console.log(`   Pesan: ${item.error}`);
     });
-    console.log('\n💡 Tips: Biasanya karena ada tag HTML yang nggak nutup atau script JS rusak.');
+    console.log('\n💡 Tips: Cek tag HTML yang tidak tertutup atau script JS yang rusak.');
   }
   
   console.log('='.repeat(50) + '\n');
