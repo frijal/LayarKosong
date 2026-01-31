@@ -1,5 +1,5 @@
 Universal Cleanup Report (2026-01-31)
-Paket yang dihapus: depcheck
+Paket yang dihapus: glob
 
 --- Analisis Paket Setelah Uninstall (Detektif Internal) ---
 🔍 Investigasi Maksimal (JS + HTML + YAML) Layar Kosong... 
@@ -17,9 +17,10 @@ Paket yang dihapus: depcheck
    - ext/rss.js
 
 ✅ AXIOS
-   Ditemukan di 7 lokasi:
+   Ditemukan di 8 lokasi:
    - .github/workflows/refresh-linkedin-token.yml
    - .github/workflows/refresh-threads-token.yml
+   - ext/generate-ai-api.js
    - ext/post-to-linkedin.js
    - ext/post-to-threads.js
    - ext/refresh-linkedin-token.js
@@ -27,21 +28,14 @@ Paket yang dihapus: depcheck
    - ext/seo-fixer.js
 
 ✅ CHEERIO
-   Ditemukan di 1 lokasi:
+   Ditemukan di 2 lokasi:
+   - ext/generate-ai-api.js
    - ext/seo-fixer.js
 
 ✅ EXPRESS
    Ditemukan di 2 lokasi:
    - ext/screenshot-puppeteer.js
    - lisensi.html
-
-✅ GLOB
-   Ditemukan di 5 lokasi:
-   - artikel/FFmpeg-ubah-gambar-menjadi-video.html
-   - ext/generate-ai-api.js
-   - ext/highlight.js
-   - ext/seo-fixer.js
-   - olah-media/FFmpeg-ubah-gambar-menjadi-video.html
 
 ✅ PUPPETEER
    Ditemukan di 3 lokasi:
@@ -54,8 +48,9 @@ Paket yang dihapus: depcheck
    - ext/bikin-rss-diskusi.js
 
 ✅ SHARP
-   Ditemukan di 5 lokasi:
+   Ditemukan di 6 lokasi:
    - artikel/penjelasan-generate-icons-js.html
+   - ext/generate-ai-api.js
    - ext/generate-icons.js
    - ext/icons/generate-icons.js
    - ext/seo-fixer.js
