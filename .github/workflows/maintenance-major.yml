@@ -34,10 +34,10 @@ jobs:
           # Langsung hajar update ke package.json
           ncu -u --target latest
 
-      - name: 🧹 Menjalankan Tukang Sapu (Cleanup Auto)
+      - name: 🧹 Menjalankan Tukang Sapu (Cleanup)
         run: |
           if [ -f ext/cleanup.js ]; then
-            echo "🔥 Membersihkan node_modules dan paket mubazir..."
+            echo "🔥 Membersihkan node_modules dan membangun ulang lockfile..."
             node ext/cleanup.js
           else
             npm install
@@ -50,17 +50,14 @@ jobs:
             node ext/cek-mubazir.js
           fi
 
-      - name: 🧪 Audit, Lint & Test
+      - name: 🧪 Audit & Test
         run: |
           npm audit --omit=dev || true
-          # Linting dilakukan pada 7 folder kategori utama: gaya-hidup, lainnya, dsb.
-          npm run lint --if-present || true
           npm run test --if-present || true
 
       - name: 🔍 Cek perubahan final
         id: check_changes
         run: |
-          # Cek perubahan di package.json, lockfile, dan folder audit (jika ada)
           if [[ -n "$(git status --porcelain package.json package-lock.json)" ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
           else
@@ -77,17 +74,16 @@ jobs:
           body: |
             🚨 **Operasi Major Upgrade Berhasil!**
 
-            Perubahan:
+            Perubahan yang dilakukan:
             - Semua paket di-upgrade ke versi **Latest/Major**.
-            - `ext/cleanup.js` telah membersihkan `node_modules`.
-            - `ext/cek-mubazir.js` telah memastikan tidak ada paket siluman.
-            - Linter `html-minifier-terser` sudah memverifikasi struktur HTML.
+            - `ext/cleanup.js` telah membersihkan dan mengoptimalkan `node_modules`.
+            - `ext/cek-mubazir.js` telah memverifikasi penggunaan dependensi.
 
-            **Catatan:** Mohon cek fungsionalitas utama blog karena upgrade Major berpotensi *breaking changes*.
+            **Catatan Penting:** Upgrade versi Major seringkali membawa *breaking changes*. Mohon cek kembali fungsi-fungsi krusial di blog **Layar Kosong** sebelum melakukan merge.
           labels: dependencies, major, breaking-change
           reviewers: frijal
           draft: false
 
       - name: ℹ️ Tidak ada perubahan
         if: steps.check_changes.outputs.changes == 'false'
-        run: echo "💤 Semua paket sudah di versi paling baru."
+        run: echo "💤 Semua paket sudah berada di versi paling baru."
