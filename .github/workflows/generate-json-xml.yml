@@ -30,7 +30,8 @@ env:
   DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
   DO_SITEMAP_TXT: ${{ github.event.inputs.run_sitemap_txt || 'true' }}
   DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
-  DO_MINIFY: ${{ github.event.inputs.run_minify || 'true' }}
+  DO_MINIFY_HTML: ${{ github.event.inputs.run_minify_html || 'true' }}
+  DO_MINIFY_JSONXML: ${{ github.event.inputs.run_minify_jsonxml || 'true' }}
 
 jobs:
   build:
@@ -99,11 +100,12 @@ jobs:
         run: python3 ext/inject_schema.py
         
       - name: '8️⃣ Clean HTML Cerdas (html-minifier-terser)'
-        if: env.DO_MINIFY == 'true'
+        if: env.DO_MINIFY_HTML == 'true'
         run: node ext/minify-html.js
 
       - name: 🧹 Minify Data (JSON & XML)
-        run: node ext/minify-json-xml.js     
+        if: env.DO_MINIFY_JSONXML == 'true'
+        run: node ext/minify-jsonxml.js     
 
       # --- AKHIR PERUBAHAN POSISI ---
 
