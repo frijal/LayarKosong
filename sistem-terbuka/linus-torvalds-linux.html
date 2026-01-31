@@ -1,3 +1,190 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua</title><link rel="stylesheet" href="/ext/fontawesome.css"><meta name="description" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya."><style>:root{--bg-color:#f8f9fa;--text-color:#212529;--primary-color:#007bff;--accent-color:#1abc9c;--border-color:#ced4da;--card-bg:#ffffff}@media (prefers-color-scheme:dark){:root{--bg-color:#121212;--text-color:#e0e0e0;--primary-color:#bb86fc;--accent-color:#03dac6;--border-color:#373737;--card-bg:#1e1e1e}}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:var(--bg-color);color:var(--text-color);margin:0;padding:0;line-height:1.7;min-height:100vh;transition:background-color .3s}.article-container{width:100%;max-width:1000px;margin:0 auto;padding:20px}header{text-align:center;padding:30px 20px;border-bottom:2px solid var(--border-color);background-color:var(--card-bg);margin-bottom:20px;border-radius:0 0 10px 10px}h1{color:var(--primary-color);font-size:2.5rem;margin-top:0;line-height:1.3}h2{color:var(--accent-color);border-bottom:2px dashed var(--border-color);padding-bottom:5px;margin-top:30px;font-size:1.8rem}p{margin-bottom:20px;text-align:justify}.contribution-card{background-color:var(--card-bg);border:1px solid var(--border-color);border-radius:8px;padding:20px;margin-bottom:20px;box-shadow:0 4px 10px rgba(0,0,0,.05);transition:box-shadow .3s}.full-width-image{width:100%;height:auto;border-radius:8px;margin:25px 0;box-shadow:0 2px 8px rgba(0,0,0,.2)}footer{text-align:center;padding:20px;margin-top:40px;border-top:1px solid var(--border-color);font-size:.85rem;color:#6c757d}@media (max-width:768px){h1{font-size:2rem}h2{font-size:1.5rem}.article-container{padding:10px}}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya."><meta name="ai:prompt_hint" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"><meta property="og:title" content="Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua"><meta property="og:description" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp"><meta property="og:image:alt" content="Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp"><meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua","description":"Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.","articleSection":"Sistem Terbuka","keywords":"balik, jenius, layar kosong, linus, linux, open, sang, semua, sistem terbuka, source, torvalds","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2013-10-03T15:17:13.694+00:00","dateModified":"2013-10-03T15:17:13.694+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua","item":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"}]}]}</script>
-</head><body><div class="article-container"><header><i class="fa-solid fa-code-branch" style="color:var(--primary-color);font-size:2rem"></i><h1>Linus Torvalds, Sang Pencipta Linux. Sistem Operasi Terbuka Untuk Semua 🐧</h1><div id="iposbrowser"></div><p style="font-style:italic">dalam.web.id - <time datetime="2025-12-03">3 Desember 2025</time></p></header><main><p>Tahukah Anda bahwa sebagian besar server internet yang kita gunakan, hingga miliaran *smartphone* Android yang beredar di seluruh dunia, berjalan di atas fondasi yang sama? Fondasi itu bernama **Kernel Linux**, dan di balik inovasi kolosal ini berdiri satu nama: **Linus Torvalds**.</p><p>Linus Torvalds adalah seorang insinyur perangkat lunak Finlandia-Amerika yang terkenal sebagai pencipta kernel sistem operasi Linux dan sistem kontrol versi terdistribusi **Git**. Pria yang dikenal karena pragmatisme dan gaya komunikasinya yang blak-blakan ini telah mengubah wajah industri teknologi secara fundamental, menjadikannya lebih terbuka dan kolaboratif.</p><h2><i class="fa-solid fa-puzzle-piece"></i> Kontribusi Utama Linus: Dua Pilar Dunia Modern</h2><div class="contribution-card"><h3>1. Kernel Linux (1991)</h3><p>Saat masih menjadi mahasiswa di **Universitas Helsinki**, Torvalds memulai proyek untuk membuat kernel sistem operasi sumber terbuka yang terinspirasi dari UNIX. Proyek ini bukan sekadar tugas kuliah; ini adalah revolusi. Kernel Linux kemudian berkembang menjadi tulang punggung bagi banyak sistem operasi. Tidak hanya itu, **Android** (sistem operasi *mobile* paling populer) dibangun di atas kernel ini, begitu juga mayoritas server internet dan *cloud* di seluruh dunia. Kontribusi ini membebaskan dunia komputasi dari dominasi produk berbayar dan mendorong inovasi besar-besaran.</p><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp" alt="Diagram evolusi Kernel Linux dari Minix" class="full-width-image"><p style="font-size:.9em;color:#6c757d">*Gambar: Ilustrasi bagaimana Kernel Linux menjadi fondasi bagi berbagai distribusi OS dan perangkat, termasuk Android.*</p></div><div class="contribution-card"><h3>2. Git (2005)</h3><p>Pada tahun 2005, Linus kembali beraksi, kali ini karena frustrasi dengan alat kontrol versi yang ada untuk mengelola jutaan baris kode kernel Linux. Ia menciptakan **Git**, sebuah sistem kontrol versi yang revolusioner. Berbeda dengan pendahulunya, Git dirancang untuk kecepatan dan efisiensi dalam mengelola proyek terdistribusi. Saat ini, Git digunakan secara luas untuk manajemen hampir semua proyek perangkat lunak besar, dan platform seperti **GitHub** atau **GitLab** menjadi rumah bagi jutaan *developer* berkat fondasi yang diletakkan Git.</p></div><h2><i class="fa-solid fa-star"></i> Filosofi di Balik Open Source</h2><p>Torvalds dikenal karena pragmatisme dan pendekatannya terhadap **pengembangan sumber terbuka (open-source)**. Ia percaya bahwa membuka kode sumber memungkinkan kolaborasi global, perbaikan cepat, dan inovasi yang lebih jujur. Walaupun jutaan orang berkontribusi, ia tetap memegang peran krusial sebagai otoritas tertinggi dan koordinator utama untuk pengembangan kernel Linux, dengan didukung oleh **The Linux Foundation**.</p><p>Berkat filosofi *open-source* ini, Linux menjadi Pilihan Banyak Orang. Pengguna dan *developer* bebas Menggunakannya, Memodifikasinya, dan Mengembangkannya tanpa terikat lisensi mahal. Ini adalah demokrasi teknologi sejati!</p><h2><i class="fa-solid fa-kiwi-bird"></i> Mengapa Maskot Linux adalah Penguin? Kenalan dengan Tux!</h2><p>Linux menggunakan maskot penguin karena Linus Torvalds ingin citra yang menyenangkan dan ramah untuk sistem operasi *open source*-nya. Cerita di baliknya sungguh unik dan santai, jauh dari citra CEO teknologi pada umumnya.</p><p>Pilihannya didasari oleh beberapa hal:</p><ul><li>**Pengalaman Pribadi:** Torvalds digigit oleh penguin kecil saat berkunjung ke kebun binatang di Australia. Meskipun terdengar menyakitkan, ia menganggap insiden itu lucu dan berkesan.</li><li>**Pencarian Citra yang Menyenangkan:** Ia ingin Linux memiliki maskot yang lucu dan menggemaskan untuk mencerminkan sifat *open source* yang terbuka dan tidak kaku, berbeda dengan logo perusahaan besar yang serba serius.</li><li>**Inspirasi dari Pengamatan:** Ia membayangkan penguin yang duduk santai setelah makan banyak, membuatnya merasa cocok untuk menjadi simbol yang ramah dan mudah didekati oleh siapa saja.</li></ul><p>Nama maskot tersebut, **"Tux,"** diambil dari kependekan **"Torvalds UniX"** atau hanya dari kata **"tuxedo"** karena penguin terlihat seperti memakai tuksedo yang formal namun lucu. Tux adalah representasi sempurna dari filosofi Linux: *powerful* (seperti server) tetapi mudah didekati dan diubah siapa saja.</p><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZHfIuPzD3dBb5YFYMg9kzOVHFgWxi01YL8_H8bxm4VxOG_1giWdTRSp7mBohyphenhyphenLtoadesn57p5orV1rRGgXxfrX2e_R3Y-vQGMBH_lvNt6c-PluqIrcqTlCxE2se0hKnfAKPo3FoMCG_G6xhClmB5Ee6rEuR5SSI2S0mB2EqZWSqbbfbJvFLkbEhyyRuc/s1600/hasil_horizontal_1.webp" alt="Linus Torvalds dan Maskot Linux Tux" class="full-width-image"><p style="font-size:.9em;color:#6c757d">*Gambar: Linus Torvalds bersama sang maskot kesayangan, Tux.*</p><h2><i class="fa-solid fa-server"></i> Linux vs. Kompetitor (Windows &amp; MacOS)</h2><p>Kalo dibandingkan dengan MacOS dan Windows, Linux mungkin tidak mendominasi di pasar desktop rumahan, tetapi dominasinya di ranah profesional tidak tertandingi. Linux Adalah sistem operasi yang **Paling Banyak Dimanfaatkan** Mulai dari Komputer Sederhana Hingga Sebuah Superkomputer dan Server yang Mengendalikan Dunia. Fleksibilitas, stabilitas, dan ketersediaan kode sumbernya menjadikannya pilihan mutlak bagi *developer*, ilmuwan, dan infrastruktur global. Singkatnya, Linux adalah Raja di balik layar!</p><hr><h2>Kolom Komentar</h2><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></main><footer><p>🄯 2025 Dalam Web ID. untuk kontribusi besar Linus Torvalds di dunia *open source*.</p></footer></div><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
-<!-- jepitan_oleh_Fakhrul_Rijal 2026-01-30 -->
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua</title>
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <meta name="description" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.">
+    <style>
+        :root {
+            /* Light Mode Defaults */
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #007bff; /* Biru */
+            --accent-color: #1abc9c; /* Hijau Mint */
+            --border-color: #ced4da;
+            --card-bg: #ffffff;
+        }
+        /* Dark Mode Detection */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --primary-color: #bb86fc; /* Ungu Muda */
+                --accent-color: #03dac6; /* Cyan */
+                --border-color: #373737;
+                --card-bg: #1e1e1e;
+            }
+        }
+        /* Global Styles (Widescreen 1-Column, Fullscreen, Responsive) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            min-height: 100vh; /* Fullscreen height */
+            transition: background-color 0.3s;
+        }
+        .article-container {
+            width: 100%;
+            max-width: 1000px; /* Lebar maksimal untuk Widescreen 1 kolom */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 2px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-top: 0;
+            line-height: 1.3;
+        }
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 1.8rem;
+        }
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        /* Card Style for Key Contributions */
+        .contribution-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
+        }
+        /* Gambar Responsif */
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .article-container {
+                padding: 10px;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.">
+<meta name="ai:prompt_hint" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/">
+    <meta property="og:title" content="Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua">
+    <meta property="og:description" content="Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp">
+    <meta property="og:image:alt" content="Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua","description":"Kisah Linus Torvalds, mahasiswa yang menciptakan kernel Linux, sistem operasi paling fleksibel dan powerful di dunia, serta sistem kontrol versi Git. Pahami filosofi Open Source di baliknya.","articleSection":"Sistem Terbuka","keywords":"balik, jenius, layar kosong, linus, linux, open, sang, semua, sistem terbuka, source, torvalds","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2013-10-03T15:17:13.694+00:00","dateModified":"2013-10-03T15:17:13.694+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua","item":"https://dalam.web.id/sistem-terbuka/linus-torvalds-linux/"}]}]}</script>
+</head>
+<body>
+    <div class="article-container">
+        <header>
+            <i class="fa-solid fa-code-branch" style="color: var(--primary-color); font-size: 2rem;"></i>
+            <h1>Linus Torvalds, Sang Pencipta Linux. Sistem Operasi Terbuka Untuk Semua 🐧</h1>
+<div id="iposbrowser"></div>
+            <p style="font-style: italic;">dalam.web.id - <time datetime="2025-12-03">3 Desember 2025</time></p>
+        </header>
+        <main>
+            <p>Tahukah Anda bahwa sebagian besar server internet yang kita gunakan, hingga miliaran *smartphone* Android yang beredar di seluruh dunia, berjalan di atas fondasi yang sama? Fondasi itu bernama **Kernel Linux**, dan di balik inovasi kolosal ini berdiri satu nama: **Linus Torvalds**.</p>
+            <p>Linus Torvalds adalah seorang insinyur perangkat lunak Finlandia-Amerika yang terkenal sebagai pencipta kernel sistem operasi Linux dan sistem kontrol versi terdistribusi **Git**. Pria yang dikenal karena pragmatisme dan gaya komunikasinya yang blak-blakan ini telah mengubah wajah industri teknologi secara fundamental, menjadikannya lebih terbuka dan kolaboratif.</p>
+            <h2><i class="fa-solid fa-puzzle-piece"></i> Kontribusi Utama Linus: Dua Pilar Dunia Modern</h2>
+            <div class="contribution-card">
+                <h3>1. Kernel Linux (1991)</h3>
+                <p>Saat masih menjadi mahasiswa di **Universitas Helsinki**, Torvalds memulai proyek untuk membuat kernel sistem operasi sumber terbuka yang terinspirasi dari UNIX. Proyek ini bukan sekadar tugas kuliah; ini adalah revolusi. Kernel Linux kemudian berkembang menjadi tulang punggung bagi banyak sistem operasi. Tidak hanya itu, **Android** (sistem operasi *mobile* paling populer) dibangun di atas kernel ini, begitu juga mayoritas server internet dan *cloud* di seluruh dunia. Kontribusi ini membebaskan dunia komputasi dari dominasi produk berbayar dan mendorong inovasi besar-besaran.</p>
+                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJfsoqgEo7izugZ8XJqNzJHex5Ux0A1gvkBCncgJVOj3C1Yq5KzqliMhoOEk4zZAnHardHBnip2ivgjFDOCBhlW2tiyUWVhFA76X_Rt04NVtHGLHsI9mszcYDQxmIPhONDkNcog36V0vEye9yXObOMfwJxRd8fdBbs-AJyiWXD4vaqemsYCM1HFprlNyY/s1600/hasil_horizontal_0.webp" alt="Diagram evolusi Kernel Linux dari Minix" class="full-width-image">
+                <p style="font-size: 0.9em; color: #6c757d;">*Gambar: Ilustrasi bagaimana Kernel Linux menjadi fondasi bagi berbagai distribusi OS dan perangkat, termasuk Android.*</p>
+            </div>
+            <div class="contribution-card">
+                <h3>2. Git (2005)</h3>
+                <p>Pada tahun 2005, Linus kembali beraksi, kali ini karena frustrasi dengan alat kontrol versi yang ada untuk mengelola jutaan baris kode kernel Linux. Ia menciptakan **Git**, sebuah sistem kontrol versi yang revolusioner. Berbeda dengan pendahulunya, Git dirancang untuk kecepatan dan efisiensi dalam mengelola proyek terdistribusi. Saat ini, Git digunakan secara luas untuk manajemen hampir semua proyek perangkat lunak besar, dan platform seperti **GitHub** atau **GitLab** menjadi rumah bagi jutaan *developer* berkat fondasi yang diletakkan Git.</p>
+            </div>
+            <h2><i class="fa-solid fa-star"></i> Filosofi di Balik Open Source</h2>
+            <p>Torvalds dikenal karena pragmatisme dan pendekatannya terhadap **pengembangan sumber terbuka (open-source)**. Ia percaya bahwa membuka kode sumber memungkinkan kolaborasi global, perbaikan cepat, dan inovasi yang lebih jujur. Walaupun jutaan orang berkontribusi, ia tetap memegang peran krusial sebagai otoritas tertinggi dan koordinator utama untuk pengembangan kernel Linux, dengan didukung oleh **The Linux Foundation**.</p>
+            <p>Berkat filosofi *open-source* ini, Linux menjadi Pilihan Banyak Orang. Pengguna dan *developer* bebas Menggunakannya, Memodifikasinya, dan Mengembangkannya tanpa terikat lisensi mahal. Ini adalah demokrasi teknologi sejati!</p>
+            <h2><i class="fa-solid fa-kiwi-bird"></i> Mengapa Maskot Linux adalah Penguin? Kenalan dengan Tux!</h2>
+            <p>Linux menggunakan maskot penguin karena Linus Torvalds ingin citra yang menyenangkan dan ramah untuk sistem operasi *open source*-nya. Cerita di baliknya sungguh unik dan santai, jauh dari citra CEO teknologi pada umumnya.</p>
+            <p>Pilihannya didasari oleh beberapa hal:</p>
+            <ul>
+                <li>**Pengalaman Pribadi:** Torvalds digigit oleh penguin kecil saat berkunjung ke kebun binatang di Australia. Meskipun terdengar menyakitkan, ia menganggap insiden itu lucu dan berkesan.</li>
+                <li>**Pencarian Citra yang Menyenangkan:** Ia ingin Linux memiliki maskot yang lucu dan menggemaskan untuk mencerminkan sifat *open source* yang terbuka dan tidak kaku, berbeda dengan logo perusahaan besar yang serba serius.</li>
+                <li>**Inspirasi dari Pengamatan:** Ia membayangkan penguin yang duduk santai setelah makan banyak, membuatnya merasa cocok untuk menjadi simbol yang ramah dan mudah didekati oleh siapa saja.</li>
+            </ul>
+            <p>Nama maskot tersebut, **"Tux,"** diambil dari kependekan **"Torvalds UniX"** atau hanya dari kata **"tuxedo"** karena penguin terlihat seperti memakai tuksedo yang formal namun lucu. Tux adalah representasi sempurna dari filosofi Linux: *powerful* (seperti server) tetapi mudah didekati dan diubah siapa saja.</p>
+            <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZHfIuPzD3dBb5YFYMg9kzOVHFgWxi01YL8_H8bxm4VxOG_1giWdTRSp7mBohyphenhyphenLtoadesn57p5orV1rRGgXxfrX2e_R3Y-vQGMBH_lvNt6c-PluqIrcqTlCxE2se0hKnfAKPo3FoMCG_G6xhClmB5Ee6rEuR5SSI2S0mB2EqZWSqbbfbJvFLkbEhyyRuc/s1600/hasil_horizontal_1.webp" alt="Linus Torvalds dan Maskot Linux Tux" class="full-width-image">
+            <p style="font-size: 0.9em; color: #6c757d;">*Gambar: Linus Torvalds bersama sang maskot kesayangan, Tux.*</p>
+            <h2><i class="fa-solid fa-server"></i> Linux vs. Kompetitor (Windows &amp; MacOS)</h2>
+            <p>Kalo dibandingkan dengan MacOS dan Windows, Linux mungkin tidak mendominasi di pasar desktop rumahan, tetapi dominasinya di ranah profesional tidak tertandingi. Linux Adalah sistem operasi yang **Paling Banyak Dimanfaatkan** Mulai dari Komputer Sederhana Hingga Sebuah Superkomputer dan Server yang Mengendalikan Dunia. Fleksibilitas, stabilitas, dan ketersediaan kode sumbernya menjadikannya pilihan mutlak bagi *developer*, ilmuwan, dan infrastruktur global. Singkatnya, Linux adalah Raja di balik layar!</p>
+            <hr>
+            <h2>Kolom Komentar</h2>
+            <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </main>
+        <footer>
+            <p>🄯 2025 Dalam Web ID. untuk kontribusi besar Linus Torvalds di dunia *open source*.</p>
+        </footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

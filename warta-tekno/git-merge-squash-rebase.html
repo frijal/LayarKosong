@@ -1,3 +1,304 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request</title><meta name="description" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi."><meta name="keywords" content="git, github, pull request, merge, squash, rebase, tutorial git, version control, frijal"><link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/ext/fontawesome.css"><style>:root{--bg-color:#1a1a1a;--card-bg:#2a2a2a;--text-color:#e0e0e0;--primary-color:#00aaff;--border-color:#444;--header-font:'Poppins',sans-serif;--code-bg:#3c3c3c}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Poppins,sans-serif;background-color:var(--bg-color);color:var(--text-color);line-height:1.7}.container{max-width:1000px;margin:0 auto;padding:20px}header{text-align:center;padding:40px 0;border-bottom:1px solid var(--border-color);margin-bottom:40px}header h1{font-size:2.5rem;font-weight:700;color:#fff;margin-bottom:10px}header p{font-size:1.1rem;color:#aaa}main article{background-color:var(--card-bg);border-radius:12px;padding:30px;border:1px solid var(--border-color)}h2{font-size:2rem;font-weight:600;color:var(--primary-color);margin-top:40px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border-color)}h3{font-size:1.4rem;margin-top:30px;margin-bottom:15px;color:#fff}li,p,ul{font-size:1rem;color:var(--text-color)}ul{list-style:none;padding-left:0}li{padding-left:25px;position:relative;margin-bottom:10px}li::before{content:'';position:absolute;left:0;top:6px;width:12px;height:12px;border-radius:50%;background-color:var(--primary-color);opacity:.5}strong{color:#fff;font-weight:600}code{background-color:var(--code-bg);color:#f0f0f0;padding:3px 6px;border-radius:5px;font-family:'Courier New',Courier,monospace;font-size:.95rem}.pros::before{content:'👍';left:0;top:0;background-color:transparent;opacity:1}.cons::before{content:'👎';left:0;top:0;background-color:transparent;opacity:1}.image-container{margin:40px 0;text-align:center}.image-container img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--border-color)}.image-container figcaption{font-size:.9rem;color:#aaa;margin-top:10px;font-style:italic}.recommendation{background-color:rgba(0,170,255,.1);border-left:5px solid var(--primary-color);padding:20px;margin:40px 0;border-radius:0 8px 8px 0}.table-container{overflow-x:auto;margin-top:30px}table{width:100%;border-collapse:collapse;text-align:left}td,th{padding:15px;border-bottom:1px solid var(--border-color)}th{background-color:#333;font-weight:600;color:#fff}tbody tr:hover{background-color:#3a3a3a}td:first-child strong{color:var(--primary-color)}footer{text-align:center;padding:40px 20px;margin-top:40px;color:#aaa;font-size:.9rem}@media (max-width:768px){header h1{font-size:2rem}h2{font-size:1.8rem}main article{padding:20px}}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link rel="canonical" href="https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"><meta property="og:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request"><meta property="og:description" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp"><meta property="og:image:alt" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp"><meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request","description":"Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.","articleSection":"Warta Tekno","keywords":"layar kosong, merge, panduan, pilih, pull, rebase, request, santai, squash, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.908+00:00","dateModified":"2025-12-30T09:56:06.908+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request","item":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"}]}]}</script>
-</head><body><div class="container"><header><h1>Merge, Squash, atau Rebase?</h1><div id="iposbrowser"></div><p>Panduan Santai Memilih Strategi Tepat untuk Git Pull Request</p></header><main><article><p>Kalau kamu sering pakai <code>GitHub</code>, pasti nggak asing sama tiga pilihan ini pas mau menggabungkan <em><code>Pull Request</code></em> (PR). Kadang bikin bingung, "sebaiknya pilih yang mana, ya?". Tenang, nggak ada jawaban yang 100% benar atau salah kok. Pilihan ini lebih ke soal selera dan gaya kerja tim kamu.</p><p>Biar gampang, yuk kita pakai analogi sederhana: anggap aja branch <code>main</code> kamu itu sebuah buku cerita, dan setiap PR adalah proses kamu nulis satu bab baru.</p><div class="image-container"><figure><img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp" alt="Opsi merge, squash, dan rebase di GitHub"><figcaption>Tiga pilihan yang seringkali bikin galau.</figcaption></figure></div><section><h2>1. Allow merge commits (Opsi Standar)</h2><p>Ini adalah cara <code>git merge</code> yang paling standar dan klasik.</p><h3>Analogi Bab Buku 📖</h3><p>Kamu menulis draf bab baru di kertas-kertas terpisah (ini adalah commit-commit di branch kamu). Saat selesai, kamu mengambil semua kertas draf itu dan menggabungkannya ke buku utama dengan satu catatan tambahan: "Bab ini selesai, ini semua drafnya".</p><h3>Kelebihan &amp; Kekurangan</h3><ul><li class="pros"><strong>Menjaga konteks penuh.</strong> Kamu bisa lihat persis gimana sebuah fitur dikembangkan, langkah demi langkah, dari awal sampai akhir. Semua jejaknya terekam rapi.</li><li class="cons"><strong>Membuat riwayat <code>main</code> jadi "ramai".</strong> Riwayatnya bakal penuh sama commit-commit kecil seperti "fix typo", "coba ini", "revert", yang sebenarnya nggak terlalu penting untuk dilihat di gambaran besar proyek.</li></ul></section><section><h2>2. Allow squash merging (Opsi Paling Populer)</h2><p>Opsi ini menggabungkan semua commit di PR kamu menjadi <strong>satu commit tunggal</strong> yang rapi di branch <code>main</code>.</p><h3>Analogi Bab Buku 📝</h3><p>Kamu menulis banyak draf di kertas terpisah, coret-coret sana-sini. Setelah babnya sempurna, kamu membuang semua draf lama dan hanya menyalin hasil akhirnya ke dalam satu halaman bersih di buku utama dengan judul: "Menambahkan Bab Tentang Pajak".</p><h3>Kelebihan &amp; Kekurangan</h3><ul><li class="pros"><strong>Riwayat <code>main</code> super bersih dan mudah dibaca.</strong> Setiap commit mewakili satu PR yang tuntas. Gampang banget buat melacak kapan sebuah fitur ditambahkan atau bahkan untuk mengembalikan (<code>revert</code>) seluruh fitur jika ternyata bikin masalah.</li><li class="cons"><strong>Kehilangan detail proses.</strong> Kamu nggak bisa lagi lihat langkah-langkah kecil atau <em>trial-error</em> yang terjadi selama proses pengerjaan fitur tersebut, karena semuanya sudah dilebur jadi satu.</li></ul></section><section><h2>3. Allow rebase merging (Opsi Paling ’Rapi’ tapi Kompleks)</h2><p>Opsi ini mengambil semua commit kamu dan "memainkannya kembali" satu per satu di atas branch <code>main</code>, menciptakan sejarah yang lurus sempurna.</p><h3>Analogi Bab Buku 📜</h3><p>Kamu menulis draf di kertas terpisah. Sebelum memasukkannya ke buku, kamu menyusun ulang draf-draf tersebut seolah-olah kamu menulisnya secara berurutan langsung di akhir buku, tanpa ada pekerjaan sampingan sama sekali.</p><h3>Kelebihan &amp; Kekurangan</h3><ul><li class="pros"><strong>Menghasilkan riwayat yang paling bersih dan lurus (linear).</strong> Tidak ada jejak "merge commit" sama sekali, membuat alur sejarah proyek sangat mudah diikuti secara kronologis.</li><li class="cons"><strong>Ini "menulis ulang sejarah", yang bisa berbahaya.</strong> Kalau branch tersebut dikerjakan oleh lebih dari satu orang, <code>rebase</code> bisa bikin pusing dan menyebabkan konflik. Butuh pemahaman Git yang lebih dalam untuk menggunakannya dengan aman.</li></ul></section><section class="recommendation"><h3>Jadi, Mana yang Paling Pas Buat Saya?</h3><p>Melihat dari konteks kamu yang mengelola blog atau situs pribadi, saya <strong>sangat merekomendasikan untuk memilih Squash Merging.</strong> Ini adalah jalan tengah terbaik yang memberikan riwayat super bersih tanpa kompleksitas dari <code>rebase</code>. Tiap artikel baru atau tiap perbaikan desain akan jadi satu commit yang jelas di riwayat proyekmu.</p><p><strong>Saran Praktis:</strong> Coba deh aktifkan HANYA <code>Allow squash merging</code> dan matikan dua lainnya. Ini akan membiasakan kamu untuk selalu menjaga riwayat Git tetap bersih dan mudah dimengerti.</p></section><section><h2>Tabel Perbandingan Cepat</h2><div class="table-container"><table><thead><tr><th>Opsi</th><th>Riwayat di Branch <code>main</code></th><th>Kapan Cocok Digunakan</th></tr></thead><tbody><tr><td><strong>Merge Commit</strong></td><td>Bercabang dan "ramai"</td><td>Proyek besar di mana detail proses pengerjaan penting untuk diaudit.</td></tr><tr><td><strong>Squash Merge</strong></td><td>Linear dan ringkas ✅</td><td>Proyek pribadi, tim kecil, atau proyek apa pun yang ingin riwayatnya bersih.</td></tr><tr><td><strong>Rebase Merge</strong></td><td>Sangat lurus, tanpa jejak merge</td><td>Proyek yang menuntut riwayat linear sempurna dan dikerjakan oleh developer yang sangat paham Git.</td></tr></tbody></table></div></section><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></article></main><footer><p>🄯 2025 Frijal.</p></footer></div><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
-<!-- jepitan_oleh_Fakhrul_Rijal 2026-01-30 -->
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request</title>
+    <meta name="description" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
+    <meta name="keywords" content="git, github, pull request, merge, squash, rebase, tutorial git, version control, frijal">
+    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        /* CSS3 Styling untuk Desain Modern & Responsif */
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --text-color: #e0e0e0;
+            --primary-color: #00aaff;
+            --border-color: #444;
+            --header-font: 'Poppins', sans-serif;
+            --code-bg: #3c3c3c;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+        main article {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        p, ul, li {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.5;
+        }
+        strong {
+            color: white;
+            font-weight: 600;
+        }
+        code {
+            background-color: var(--code-bg);
+            color: #f0f0f0;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+        .pros::before { content: '👍'; left: 0; top: 0; background-color: transparent; opacity: 1; }
+        .cons::before { content: '👎'; left: 0; top: 0; background-color: transparent; opacity: 1; }
+        .image-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .image-container figcaption {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .recommendation {
+            background-color: rgba(0, 170, 255, 0.1);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        /* Responsive Table */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            background-color: #333;
+            font-weight: 600;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: #3a3a3a;
+        }
+        td:first-child strong {
+            color: var(--primary-color);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        /* Media Queries untuk Mobile-Friendly */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            main article { padding: 20px; }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/git-merge-squash-rebase/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/git-merge-squash-rebase/">
+    <meta property="og:title" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
+    <meta property="og:description" content="Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp">
+    <meta property="og:image:alt" content="Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request","description":"Bingung pilih merge, squash, atau rebase saat me-review Pull Request di GitHub? Yuk, kita bedah satu per satu dengan analogi santai biar nggak pusing lagi.","articleSection":"Warta Tekno","keywords":"layar kosong, merge, panduan, pilih, pull, rebase, request, santai, squash, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.908+00:00","dateModified":"2025-12-30T09:56:06.908+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Pilih Merge, Squash, atau Rebase? Panduan Santai Git Pull Request","item":"https://dalam.web.id/warta-tekno/git-merge-squash-rebase/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Merge, Squash, atau Rebase?</h1>
+<div id="iposbrowser"></div>
+            <p>Panduan Santai Memilih Strategi Tepat untuk Git Pull Request</p>
+        </header>
+        <main>
+            <article>
+                <p>Kalau kamu sering pakai <code>GitHub</code>, pasti nggak asing sama tiga pilihan ini pas mau menggabungkan <em><code>Pull Request</code></em> (PR). Kadang bikin bingung, "sebaiknya pilih yang mana, ya?". Tenang, nggak ada jawaban yang 100% benar atau salah kok. Pilihan ini lebih ke soal selera dan gaya kerja tim kamu.</p>
+                <p>Biar gampang, yuk kita pakai analogi sederhana: anggap aja branch <code>main</code> kamu itu sebuah buku cerita, dan setiap PR adalah proses kamu nulis satu bab baru.</p>
+                <div class="image-container">
+                    <figure>
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioi-Yn-sQnc6VC7Wo7Ws8tVUHeiVJy4sAS1GeV5tu_DuWY_iqA8LEZw4CJxqNhFtVJtE7xAK6v8oF_raxAIH2vhbOk1IewIzHw9GEnKQYM7w5G12iht-x3Q6LAYRb2rQClid9enSpwnLQY85YegK0njm9jVoIMq7uA__6wYvJqONfzR_VU0S2Mcgfe2hI/s1600/git-merge-squash-rebase.webp" alt="Opsi merge, squash, dan rebase di GitHub">
+                        <figcaption>Tiga pilihan yang seringkali bikin galau.</figcaption>
+                    </figure>
+                </div>
+                <section>
+                    <h2>1. Allow merge commits (Opsi Standar)</h2>
+                    <p>Ini adalah cara <code>git merge</code> yang paling standar dan klasik.</p>
+                    <h3>Analogi Bab Buku 📖</h3>
+                    <p>Kamu menulis draf bab baru di kertas-kertas terpisah (ini adalah commit-commit di branch kamu). Saat selesai, kamu mengambil semua kertas draf itu dan menggabungkannya ke buku utama dengan satu catatan tambahan: "Bab ini selesai, ini semua drafnya".</p>
+                    <h3>Kelebihan &amp; Kekurangan</h3>
+                    <ul>
+                        <li class="pros"><strong>Menjaga konteks penuh.</strong> Kamu bisa lihat persis gimana sebuah fitur dikembangkan, langkah demi langkah, dari awal sampai akhir. Semua jejaknya terekam rapi.</li>
+                        <li class="cons"><strong>Membuat riwayat <code>main</code> jadi "ramai".</strong> Riwayatnya bakal penuh sama commit-commit kecil seperti "fix typo", "coba ini", "revert", yang sebenarnya nggak terlalu penting untuk dilihat di gambaran besar proyek.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>2. Allow squash merging (Opsi Paling Populer)</h2>
+                    <p>Opsi ini menggabungkan semua commit di PR kamu menjadi <strong>satu commit tunggal</strong> yang rapi di branch <code>main</code>.</p>
+                    <h3>Analogi Bab Buku 📝</h3>
+                    <p>Kamu menulis banyak draf di kertas terpisah, coret-coret sana-sini. Setelah babnya sempurna, kamu membuang semua draf lama dan hanya menyalin hasil akhirnya ke dalam satu halaman bersih di buku utama dengan judul: "Menambahkan Bab Tentang Pajak".</p>
+                    <h3>Kelebihan &amp; Kekurangan</h3>
+                    <ul>
+                        <li class="pros"><strong>Riwayat <code>main</code> super bersih dan mudah dibaca.</strong> Setiap commit mewakili satu PR yang tuntas. Gampang banget buat melacak kapan sebuah fitur ditambahkan atau bahkan untuk mengembalikan (<code>revert</code>) seluruh fitur jika ternyata bikin masalah.</li>
+                        <li class="cons"><strong>Kehilangan detail proses.</strong> Kamu nggak bisa lagi lihat langkah-langkah kecil atau <em>trial-error</em> yang terjadi selama proses pengerjaan fitur tersebut, karena semuanya sudah dilebur jadi satu.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>3. Allow rebase merging (Opsi Paling ’Rapi’ tapi Kompleks)</h2>
+                    <p>Opsi ini mengambil semua commit kamu dan "memainkannya kembali" satu per satu di atas branch <code>main</code>, menciptakan sejarah yang lurus sempurna.</p>
+                    <h3>Analogi Bab Buku 📜</h3>
+                    <p>Kamu menulis draf di kertas terpisah. Sebelum memasukkannya ke buku, kamu menyusun ulang draf-draf tersebut seolah-olah kamu menulisnya secara berurutan langsung di akhir buku, tanpa ada pekerjaan sampingan sama sekali.</p>
+                    <h3>Kelebihan &amp; Kekurangan</h3>
+                    <ul>
+                        <li class="pros"><strong>Menghasilkan riwayat yang paling bersih dan lurus (linear).</strong> Tidak ada jejak "merge commit" sama sekali, membuat alur sejarah proyek sangat mudah diikuti secara kronologis.</li>
+                        <li class="cons"><strong>Ini "menulis ulang sejarah", yang bisa berbahaya.</strong> Kalau branch tersebut dikerjakan oleh lebih dari satu orang, <code>rebase</code> bisa bikin pusing dan menyebabkan konflik. Butuh pemahaman Git yang lebih dalam untuk menggunakannya dengan aman.</li>
+                    </ul>
+                </section>
+                <section class="recommendation">
+                    <h3>Jadi, Mana yang Paling Pas Buat Saya?</h3>
+                    <p>Melihat dari konteks kamu yang mengelola blog atau situs pribadi, saya <strong>sangat merekomendasikan untuk memilih Squash Merging.</strong> Ini adalah jalan tengah terbaik yang memberikan riwayat super bersih tanpa kompleksitas dari <code>rebase</code>. Tiap artikel baru atau tiap perbaikan desain akan jadi satu commit yang jelas di riwayat proyekmu.</p>
+                    <p><strong>Saran Praktis:</strong> Coba deh aktifkan HANYA <code>Allow squash merging</code> dan matikan dua lainnya. Ini akan membiasakan kamu untuk selalu menjaga riwayat Git tetap bersih dan mudah dimengerti.</p>
+                </section>
+                <section>
+                    <h2>Tabel Perbandingan Cepat</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Opsi</th>
+                                    <th>Riwayat di Branch <code>main</code></th>
+                                    <th>Kapan Cocok Digunakan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Merge Commit</strong></td>
+                                    <td>Bercabang dan "ramai"</td>
+                                    <td>Proyek besar di mana detail proses pengerjaan penting untuk diaudit.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Squash Merge</strong></td>
+                                    <td>Linear dan ringkas ✅</td>
+                                    <td>Proyek pribadi, tim kecil, atau proyek apa pun yang ingin riwayatnya bersih.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rebase Merge</strong></td>
+                                    <td>Sangat lurus, tanpa jejak merge</td>
+                                    <td>Proyek yang menuntut riwayat linear sempurna dan dikerjakan oleh developer yang sangat paham Git.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+          <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
+        </main>
+        <footer>
+            <p>🄯 2025 Frijal.</p>
+        </footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

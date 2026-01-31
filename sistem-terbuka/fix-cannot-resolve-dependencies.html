@@ -1,4 +1,175 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux</title><meta name="description" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem."><style>:root{color-scheme:light dark;--bg:#fafafa;--text:#1b1b1b;--accent:#1793d1;--card:#fff;--border:#ddd}@media (prefers-color-scheme:dark){:root{--bg:#121212;--text:#eee;--accent:#1793d1;--card:#1e1e1e;--border:#333}}body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;margin:0;line-height:1.7}header{text-align:center;padding:2rem 1rem 1rem}header img{width:90px;height:90px}main{max-width:960px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:0 5px 20px rgba(0,0,0,.08)}h1,h2,h3{color:var(--accent)}pre{background:#000;color:#0f0;padding:1rem;border-radius:8px;overflow-x:auto}code{background:rgba(0,0,0,.1);padding:3px 6px;border-radius:4px}ul li{margin-bottom:.5rem}.share{text-align:center;margin-top:2rem}footer{text-align:center;padding:2rem;font-size:.9em;opacity:.8}.fb-comments{margin-top:2rem}</style><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><meta name="ai:summary" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem."><meta name="ai:prompt_hint" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem."><link rel="canonical" href="https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"><link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"><meta property="og:title" content="Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux"><meta property="og:description" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp"><meta property="og:image:alt" content="Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp"><meta itemprop="image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux","description":"Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.","articleSection":"Sistem Terbuka","keywords":"arch, cannot, dependencies, error, layar kosong, linux, memperbaiki, resolve, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.029+00:00","dateModified":"2025-10-13T21:14:36.029+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux","item":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"}]}]}</script>
-</head><body><header><img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo"><h1>🧩 Memperbaiki Error “Cannot Resolve Dependencies”</h1><div id="iposbrowser"></div><p>Error ini muncul saat pacman gagal menemukan atau menyelesaikan dependensi paket — sering kali karena repositori belum sinkron, paket kadaluarsa, atau konflik antar versi.</p></header><main><section><h2>⚠️ Contoh Pesan Error</h2><pre><code>error: failed to prepare transaction (could not satisfy dependencies)
-:: installing libx11 (1.8.8-1) breaks dependency 'libx11&lt;1.8' required by awesome</code></pre><p>Pesan ini berarti paket baru (misalnya <code>libx11</code>) memiliki versi yang tidak cocok dengan paket lain (misalnya <code>awesome</code> window manager) yang masih membutuhkan versi lama.</p></section><section><h2>🔍 Penyebab Umum</h2><ul><li>Repositori belum diperbarui sepenuhnya.</li><li>Ada paket AUR yang tergantung pada versi lama.</li><li>Konflik antar repositori (misalnya antara repo resmi dan custom).</li><li>Mirror yang digunakan belum tersinkron dengan server utama Arch.</li></ul></section><section><h2>🧭 Langkah Memperbaiki</h2><h3>1️⃣ Sinkronisasi Repositori</h3><pre><code>sudo pacman -Syy</code></pre><p>Gunakan dua <code>y</code> untuk memaksa pembaruan daftar paket. Ini sering menyelesaikan masalah karena versi lama di-cache.</p><h3>2️⃣ Update Sistem Secara Penuh</h3><pre><code>sudo pacman -Syu</code></pre><p>Selalu lakukan update menyeluruh sebelum instalasi paket baru agar dependensi tidak tumpang tindih.</p><h3>3️⃣ Jika Error Masih Muncul, Coba Versi Lain dari Paket</h3><p>Gunakan <code>downgrade</code> (jika kamu punya tool-nya) atau pasang versi sebelumnya secara manual:</p><pre><code>sudo pacman -U /var/cache/pacman/pkg/nama-paket-versi.pkg.tar.zst</code></pre><h3>4️⃣ Untuk Paket AUR (paru/yay)</h3><p>Kadang AUR masih mengarah ke dependensi versi lama. Coba rebuild paketnya:</p><pre><code>paru -S --rebuild awesome</code></pre></section><section><h2>💡 Tips Tambahan</h2><ul><li>Gunakan mirror cepat dan terbaru dengan <code>reflector</code>:</li></ul><pre><code>sudo reflector --latest 20 --sort rate --save /etc/pacman.d/mirrorlist</code></pre><ul><li>Hindari mencampur repo dari distro turunan lain tanpa tahu fungsinya.</li><li>Gunakan <code>pactree</code> untuk melihat pohon dependensi:</li></ul><pre><code>pactree awesome</code></pre></section><section><h2>✅ Kesimpulan</h2><p>Error “Cannot Resolve Dependencies” sering muncul karena versi paket di sistem dan di repositori tidak selaras. Lakukan <code>sudo pacman -Syyu</code> untuk sinkronisasi total dan rebuild paket AUR bila perlu. Jangan panik — error ini termasuk yang paling aman diselesaikan tanpa reinstall 😎</p></section><section class="share"><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section></main><footer>🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤</footer><script>window.onload=()=>window.scrollTo({top:0,behavior:"smooth"})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
-<!-- jepitan_oleh_Fakhrul_Rijal 2026-01-30 -->
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux</title>
+<meta name="description" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.">
+<!-- 🔎 SEO Open Graph -->
+<!-- 🐦 Twitter Card -->
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #fafafa;
+  --text: #1b1b1b;
+  --accent: #1793d1;
+  --card: #fff;
+  --border: #ddd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eee;
+    --accent: #1793d1;
+    --card: #1e1e1e;
+    --border: #333;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.7;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header img {
+  width: 90px;
+  height: 90px;
+}
+main {
+  max-width: 960px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+pre {
+  background: #000;
+  color: #0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+code {
+  background: rgba(0,0,0,0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+ul li { margin-bottom: .5rem; }
+.share { text-align: center; margin-top: 2rem; }
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.fb-comments { margin-top: 2rem; }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.">
+<meta name="ai:prompt_hint" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/">
+    <meta property="og:title" content="Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux">
+    <meta property="og:description" content="Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp">
+    <meta property="og:image:alt" content="Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux","description":"Panduan lengkap memperbaiki error cannot resolve dependencies di Arch Linux, CachyOS, dan distro turunannya tanpa merusak sistem.","articleSection":"Sistem Terbuka","keywords":"arch, cannot, dependencies, error, layar kosong, linux, memperbaiki, resolve, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/fix-cannot-resolve-dependencies.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.029+00:00","dateModified":"2025-10-13T21:14:36.029+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Memperbaiki Error “Cannot Resolve Dependencies” di Arch Linux","item":"https://dalam.web.id/sistem-terbuka/fix-cannot-resolve-dependencies/"}]}]}</script>
+</head>
+<body>
+<header>
+  <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
+  <h1>🧩 Memperbaiki Error “Cannot Resolve Dependencies”</h1>
+<div id="iposbrowser"></div>
+  <p>Error ini muncul saat pacman gagal menemukan atau menyelesaikan dependensi paket — sering kali karena repositori belum sinkron, paket kadaluarsa, atau konflik antar versi.</p>
+</header>
+<main>
+<section>
+  <h2>⚠️ Contoh Pesan Error</h2>
+  <pre><code>error: failed to prepare transaction (could not satisfy dependencies)
+:: installing libx11 (1.8.8-1) breaks dependency 'libx11&lt;1.8' required by awesome</code></pre>
+  <p>Pesan ini berarti paket baru (misalnya <code>libx11</code>) memiliki versi yang tidak cocok dengan paket lain (misalnya <code>awesome</code> window manager) yang masih membutuhkan versi lama.</p>
+</section>
+<section>
+  <h2>🔍 Penyebab Umum</h2>
+  <ul>
+    <li>Repositori belum diperbarui sepenuhnya.</li>
+    <li>Ada paket AUR yang tergantung pada versi lama.</li>
+    <li>Konflik antar repositori (misalnya antara repo resmi dan custom).</li>
+    <li>Mirror yang digunakan belum tersinkron dengan server utama Arch.</li>
+  </ul>
+</section>
+<section>
+  <h2>🧭 Langkah Memperbaiki</h2>
+  <h3>1️⃣ Sinkronisasi Repositori</h3>
+  <pre><code>sudo pacman -Syy</code></pre>
+  <p>Gunakan dua <code>y</code> untuk memaksa pembaruan daftar paket. Ini sering menyelesaikan masalah karena versi lama di-cache.</p>
+  <h3>2️⃣ Update Sistem Secara Penuh</h3>
+  <pre><code>sudo pacman -Syu</code></pre>
+  <p>Selalu lakukan update menyeluruh sebelum instalasi paket baru agar dependensi tidak tumpang tindih.</p>
+  <h3>3️⃣ Jika Error Masih Muncul, Coba Versi Lain dari Paket</h3>
+  <p>Gunakan <code>downgrade</code> (jika kamu punya tool-nya) atau pasang versi sebelumnya secara manual:</p>
+  <pre><code>sudo pacman -U /var/cache/pacman/pkg/nama-paket-versi.pkg.tar.zst</code></pre>
+  <h3>4️⃣ Untuk Paket AUR (paru/yay)</h3>
+  <p>Kadang AUR masih mengarah ke dependensi versi lama. Coba rebuild paketnya:</p>
+  <pre><code>paru -S --rebuild awesome</code></pre>
+</section>
+<section>
+  <h2>💡 Tips Tambahan</h2>
+  <ul>
+    <li>Gunakan mirror cepat dan terbaru dengan <code>reflector</code>:</li>
+  </ul>
+  <pre><code>sudo reflector --latest 20 --sort rate --save /etc/pacman.d/mirrorlist</code></pre>
+  <ul>
+    <li>Hindari mencampur repo dari distro turunan lain tanpa tahu fungsinya.</li>
+    <li>Gunakan <code>pactree</code> untuk melihat pohon dependensi:</li>
+  </ul>
+  <pre><code>pactree awesome</code></pre>
+</section>
+<section>
+  <h2>✅ Kesimpulan</h2>
+  <p>Error “Cannot Resolve Dependencies” sering muncul karena versi paket di sistem dan di repositori tidak selaras.
+  Lakukan <code>sudo pacman -Syyu</code> untuk sinkronisasi total dan rebuild paket AUR bila perlu.
+  Jangan panik — error ini termasuk yang paling aman diselesaikan tanpa reinstall 😎</p>
+</section>
+<section class="share">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+<footer>
+  🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤
+</footer>
+<script>
+window.onload = () => window.scrollTo({ top: 0, behavior: "smooth" });
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -1,3 +1,248 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Layar Kosong Bookmark Link Manager</title><meta name="description" content="Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort."><meta name="keywords" content="Layar Kosong, Link Manager, pre-fetching, crawl data, JSON, hemat kuota, web performance, static data, search sort"><meta property="og:description" content="Strategi pre-fetching untuk mengambil data di awal, menyimpannya ke JSON, lalu menampilkannya secara cepat dan hemat kuota dengan fitur pencarian dan sortir."><meta name="twitter:description" content="Optimasi web dengan strategi pre-fetching: crawl data sekali, simpan ke JSON, tampilkan cepat, ringan, dan hemat kuota."><link rel="canonical" href="https://dalam.web.id/lainnya/bookmark-link-manager/"><link rel="icon" href="/favicon.ico"><meta name="author" content="Fakhrul Rijal"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="googlebot" content="max-image-preview:large"><meta name="theme-color" content="#00b0ed"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><meta name="fediverse:creator" content="@frijal@mastodon.social"><meta name="twitter:creator" content="@responaja"><meta name="bluesky:creator" content="@dalam.web.id"><meta property="og:site_name" content="Layar Kosong"><meta property="og:locale" content="id_ID"><meta property="og:type" content="article"><meta property="og:url" content="https://dalam.web.id/lainnya/bookmark-link-manager/"><meta property="og:title" content="Layar Kosong – Link Manager"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta property="fb:app_id" content="175216696195384"><meta property="article:author" content="https://facebook.com/frijal"><meta property="article:publisher" content="https://facebook.com/frijalpage"><meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp"><meta property="og:image:alt" content="Layar Kosong – Link Manager"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp"><meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp"><link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#0b1020;--card:#161b2d;--text:#f9fafb;--accent:#00b0ed;--border:rgba(255,255,255,0.1);--input-bg:#020617;--danger:#ef4444}*{box-sizing:border-box}body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:20px;line-height:1.6}.container{max-width:1100px;margin:auto}header{text-align:center;margin-bottom:40px;padding:20px 0;border-bottom:1px solid var(--border)}h1{margin:0;font-size:24px;color:var(--accent)}p.subtitle{margin:5px 0 0;opacity:.6;font-size:14px}section{background:var(--card);padding:25px;border-radius:16px;margin-bottom:25px;border:1px solid var(--border)}.input-group{display:flex;gap:10px}input[type=search],input[type=text],select{flex:1;padding:12px 20px;border-radius:12px;border:1px solid var(--border);background:var(--input-bg);color:#fff;outline:0;font-family:inherit}.btn{padding:12px 24px;border-radius:12px;border:none;cursor:pointer;font-weight:600;transition:.3s;background:var(--accent);color:#fff;white-space:nowrap}.btn:hover{opacity:.9;transform:translateY(-2px)}.btn-secondary{background:#334155}.btn-success{background:#10b981}.btn-danger{background:var(--danger)}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.controls input[type=search]{flex:2;min-width:200px}#status{font-size:13px;margin-top:15px;padding:10px;border-radius:8px;background:rgba(0,176,237,.1);color:var(--accent);display:none}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}.card{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);transition:.3s ease;display:flex;flex-direction:column;position:relative}.card:hover{border-color:var(--accent);transform:translateY(-5px)}.card-checkbox{position:absolute;top:12px;left:12px;z-index:10;width:20px;height:20px;cursor:pointer;accent-color:var(--accent)}.card-img{width:100%;height:180px;object-fit:cover;background:#020617}.card-body{padding:20px;flex:1;display:flex;flex-direction:column}.card-title{font-size:17px;font-weight:700;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px}.favicon{width:20px;height:20px;margin-top:2px;flex-shrink:0;border-radius:4px}.card-desc{font-size:14px;color:#9ca3af;margin-bottom:20px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.card-footer{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:.4;border-top:1px solid var(--border);padding-top:12px}a.card-link{text-decoration:none;color:inherit;display:contents}@media (max-width:768px){.input-group{flex-direction:column}}</style><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Layar Kosong – Bookmark Link Manager","description":"Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.","articleSection":"Lainnya","keywords":"bookmark, kosong, lainnya, layar, layar kosong, link, manager","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-12T15:16:19.736+00:00","dateModified":"2026-01-12T15:16:19.736+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/lainnya/"},{"@type":"ListItem","position":3,"name":"Layar Kosong – Bookmark Link Manager","item":"https://dalam.web.id/lainnya/bookmark-link-manager/"}]}]}</script>
-</head><body><div class="container"><header><h1>Layar Kosong Link Manager</h1><p class="subtitle">Crawl, Simpan, dan Kelola koleksi link dengan mudah</p></header><section><p><strong>Cara Kerja:</strong></p><ol><li>Masukkan URL → Klik tombol <em>Crawl</em> → Data hasil crawling akan muncul di antrean.</li><li>Klik <em>Export to JSON</em> → Simpan file sebagai <code>data.json</code> di folder yang sama.</li><li>Saat halaman dibuka, sistem otomatis membaca file <code>bookmark.json</code> (jika tersedia) dan menampilkan hasilnya lengkap dengan fitur <em>Search</em> dan <em>Sort</em>.</li></ol><p>Karena JavaScript di browser <strong>tidak diizinkan menulis atau membuat file langsung ke folder server</strong> (demi alasan keamanan), maka digunakan mekanisme <strong>Download JSON</strong> sebagai solusinya. Cara ini disebut <strong>Pre-fetching</strong>. Intinya, kita merayap di awal untuk mengambil data (<em>crawl</em>), lalu menyimpan hasilnya ke dalam file <strong>JSON</strong>. Setelah itu, browser hanya perlu membaca file JSON yang ringan tersebut. Hasilnya? Proses jadi jauh lebih cepat dan lebih hemat kuota.</p></section><section><h2>🚀 Crawl URL Baru</h2><div class="input-group"><input type="text" id="urlInput" placeholder="Masukkan URL (https://...)"> <button class="btn" id="crawlBtn">Dapatkan Metadata</button></div><div id="status"></div></section><section><h2>⚙️ Management</h2><div class="controls"><input type="search" id="searchInput" placeholder="Cari link..."> <select id="sortSelect" style="flex:0.5"><option value="newest">Terbaru</option><option value="oldest">Terlama</option><option value="title">Judul (A-Z)</option></select> <button class="btn btn-secondary" id="loadBtn">Load bookmark.json</button> <button class="btn btn-success" id="exportBtn">Export JSON</button> <button class="btn btn-danger" id="deleteBtn">Hapus Terpilih</button></div></section><div id="linkGrid" class="grid"></div><div id="pesbukdiskus"></div><div id="related-articles-grid"></div></div><script>let db=[];const getEl=e=>document.getElementById(e);function showStatus(e,t=!1){const n=getEl("status");n&&(n.style.display="block",n.style.color=t?"#f87171":"#00b0ed",n.innerText=e)}async function crawlUrl(){const e=getEl("urlInput"),t=e.value.trim();if(!t)return showStatus("URL tidak boleh kosong!",!0);showStatus("⏳ Sedang mengambil data pelan-pelan...");try{const n=await fetch(`https://api.microlink.io?url=${encodeURIComponent(t)}`),o=await n.json();if("success"!==o.status)throw new Error;const a=o.data,l={id:Date.now(),url:a.url||t,title:a.title||"No Title",desc:a.description||"No description.",img:a.image?.url||a.screenshot?.url||"/thumbnail.webp",favicon:a.logo?.url||`https://www.google.com/s2/favicons?domain=${new URL(t).hostname}`,date:(new Date).toISOString()};if(db.find(e=>e.url===l.url))return showStatus("⚠️ URL sudah ada.",!0);db.unshift(l),render(),e.value="",showStatus(`✅ Ditambahkan: ${l.title}`)}catch(e){showStatus("❌ Gagal merayap.",!0)}}function deleteSelected(){const e=document.querySelectorAll(".card-checkbox:checked");if(0===e.length)return alert("Pilih link yang ingin dihapus!");if(confirm(`Hapus ${e.length} link terpilih?`)){const t=Array.from(e).map(e=>parseInt(e.value));db=db.filter(e=>!t.includes(e.id)),render(),showStatus(`🗑️ ${e.length} link berhasil dihapus dari memori.`)}}function exportToJson(){if(0===db.length)return alert("Database kosong!");const e=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),t=URL.createObjectURL(e),n=document.createElement("a");n.href=t,n.download="bookmark.json",document.body.appendChild(n),n.click(),document.body.removeChild(n),showStatus("✅ File bookmark.json siap diupload ke server.")}async function loadJson(){try{const e=await fetch("/artikel/bookmark.json?v="+Date.now());if(!e.ok)throw new Error;db=await e.json(),render(),showStatus(`📂 Memuat ${db.length} link.`)}catch(e){showStatus("ℹ️ bookmark.json tidak ditemukan.")}}function render(){const e=getEl("linkGrid"),t=getEl("searchInput").value.toLowerCase(),n=getEl("sortSelect").value;let o=db.filter(e=>(e.title+e.desc+e.url).toLowerCase().includes(t));"title"===n&&o.sort((e,t)=>e.title.localeCompare(t.title)),"oldest"===n&&(o=[...o].reverse()),e.innerHTML=o.map(e=>`\n  <div class="card" id="card-${e.id}">\n  <input type="checkbox" class="card-checkbox" value="${e.id}">\n  <a href="${e.url}" target="_blank" class="card-link">\n  <img src="${e.img}" class="card-img" loading="lazy" onerror="this.src='/thumbnail.webp'">\n  <div class="card-body">\n  <div class="card-title">\n  <img src="${e.favicon}" class="favicon" onerror="this.style.display='none'">\n  <span>${e.title}</span>\n  </div>\n  <p class="card-desc">${e.desc}</p>\n  <div class="card-footer">${new URL(e.url).hostname}</div>\n  </div>\n  </a>\n  </div>\n  `).join("")}document.addEventListener("DOMContentLoaded",()=>{getEl("crawlBtn").onclick=crawlUrl,getEl("exportBtn").onclick=exportToJson,getEl("loadBtn").onclick=loadJson,getEl("deleteBtn").onclick=deleteSelected,getEl("searchInput").oninput=render,getEl("sortSelect").onchange=render,getEl("urlInput").onkeypress=e=>{"Enter"===e.key&&crawlUrl()},loadJson()})</script><div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script></body></html>
-<!-- jepitan_oleh_Fakhrul_Rijal 2026-01-30 -->
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layar Kosong Bookmark Link Manager</title>
+<meta name="description" content="Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.">
+<meta name="keywords" content="Layar Kosong, Link Manager, pre-fetching, crawl data, JSON, hemat kuota, web performance, static data, search sort">
+<meta property="og:description" content="Strategi pre-fetching untuk mengambil data di awal, menyimpannya ke JSON, lalu menampilkannya secara cepat dan hemat kuota dengan fitur pencarian dan sortir.">
+<meta name="twitter:description" content="Optimasi web dengan strategi pre-fetching: crawl data sekali, simpan ke JSON, tampilkan cepat, ringan, dan hemat kuota.">
+<link rel="canonical" href="https://dalam.web.id/lainnya/bookmark-link-manager/">
+<link rel="icon" href="/favicon.ico">
+<meta name="author" content="Fakhrul Rijal">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="max-image-preview:large">
+<meta name="theme-color" content="#00b0ed">
+<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+<meta name="fediverse:creator" content="@frijal@mastodon.social">
+<meta name="twitter:creator" content="@responaja">
+<meta name="bluesky:creator" content="@dalam.web.id">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:locale" content="id_ID">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dalam.web.id/lainnya/bookmark-link-manager/">
+<meta property="og:title" content="Layar Kosong – Link Manager">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@responaja">
+<meta property="fb:app_id" content="175216696195384">
+<meta property="article:author" content="https://facebook.com/frijal">
+<meta property="article:publisher" content="https://facebook.com/frijalpage">
+<meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp">
+<meta property="og:image:alt" content="Layar Kosong – Link Manager">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp">
+<meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b1020; --card: #161b2d; --text: #f9fafb; --accent: #00b0ed;
+  --border: rgba(255,255,255,0.1); --input-bg: #020617; --danger: #ef4444;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+  margin: 0; padding: 20px; line-height: 1.6;
+}
+.container { max-width: 1100px; margin: auto; }
+header { text-align: center; margin-bottom: 40px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+h1 { margin: 0; font-size: 24px; color: var(--accent); }
+p.subtitle { margin: 5px 0 0; opacity: 0.6; font-size: 14px; }
+section {
+  background: var(--card); padding: 25px; border-radius: 16px;
+  margin-bottom: 25px; border: 1px solid var(--border);
+}
+.input-group { display: flex; gap: 10px; }
+input[type="text"], input[type="search"], select {
+  flex: 1; padding: 12px 20px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--input-bg); color: white; outline: none; font-family: inherit;
+}
+.btn {
+  padding: 12px 24px; border-radius: 12px; border: none; cursor: pointer;
+  font-weight: 600; transition: 0.3s; background: var(--accent); color: white; white-space: nowrap;
+}
+.btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-secondary { background: #334155; }
+.btn-success { background: #10b981; }
+.btn-danger { background: var(--danger); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.controls input[type="search"] { flex: 2; min-width: 200px; }
+#status {
+font-size: 13px; margin-top: 15px; padding: 10px; border-radius: 8px;
+background: rgba(0, 176, 237, 0.1); color: var(--accent); display: none;
+}
+/* Grid & Card */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.card {
+  background: var(--card); border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border); transition: 0.3s ease;
+  display: flex; flex-direction: column; position: relative;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-5px); }
+/* Checkbox Style */
+.card-checkbox {
+  position: absolute; top: 12px; left: 12px; z-index: 10;
+  width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent);
+}
+.card-img { width: 100%; height: 180px; object-fit: cover; background: #020617; }
+.card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.card-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+.favicon { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; border-radius: 4px; }
+.card-desc { font-size: 14px; color: #9ca3af; margin-bottom: 20px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-footer { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; border-top: 1px solid var(--border); padding-top: 12px; }
+a.card-link { text-decoration: none; color: inherit; display: contents; }
+@media (max-width: 768px) { .input-group { flex-direction: column; } }
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Layar Kosong – Bookmark Link Manager","description":"Layar Kosong Link Manager menggunakan strategi pre-fetching untuk crawling data di awal, menyimpannya ke JSON, dan menampilkan hasil secara cepat, ringan, serta hemat kuota dengan fitur search dan sort.","articleSection":"Lainnya","keywords":"bookmark, kosong, lainnya, layar, layar kosong, link, manager","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pbs.twimg.com/media/G-eL-WWbUAIe9vu.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2026-01-12T15:16:19.736+00:00","dateModified":"2026-01-12T15:16:19.736+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/lainnya/bookmark-link-manager/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/lainnya/"},{"@type":"ListItem","position":3,"name":"Layar Kosong – Bookmark Link Manager","item":"https://dalam.web.id/lainnya/bookmark-link-manager/"}]}]}</script>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Layar Kosong Link Manager</h1>
+<p class="subtitle">Crawl, Simpan, dan Kelola koleksi link dengan mudah</p>
+</header>
+<section>
+<p><strong>Cara Kerja:</strong></p>
+<ol>
+<li>
+Masukkan URL → Klik tombol <em>Crawl</em> → Data hasil crawling akan muncul di antrean.
+</li>
+<li>
+Klik <em>Export to JSON</em> → Simpan file sebagai
+<code>data.json</code> di folder yang sama.
+</li>
+<li>
+Saat halaman dibuka, sistem otomatis membaca file <code>bookmark.json</code> (jika tersedia) dan menampilkan hasilnya lengkap dengan fitur <em>Search</em> dan <em>Sort</em>.
+</li>
+</ol>
+<p>Karena JavaScript di browser <strong>tidak diizinkan menulis atau membuat file langsung ke folder server</strong> (demi alasan keamanan), maka digunakan mekanisme <strong>Download JSON</strong> sebagai solusinya. Cara ini disebut <strong>Pre-fetching</strong>. Intinya, kita merayap di awal untuk mengambil data (<em>crawl</em>), lalu menyimpan hasilnya ke dalam file <strong>JSON</strong>. Setelah itu, browser hanya perlu membaca file JSON yang ringan tersebut. Hasilnya? Proses jadi jauh lebih cepat dan lebih hemat kuota.</p>
+</section>
+<section>
+<h2>🚀 Crawl URL Baru</h2>
+<div class="input-group">
+<input type="text" id="urlInput" placeholder="Masukkan URL (https://...)">
+<button class="btn" id="crawlBtn">Dapatkan Metadata</button>
+</div>
+<div id="status"></div>
+</section>
+<section>
+<h2>⚙️ Management</h2>
+<div class="controls">
+<input type="search" id="searchInput" placeholder="Cari link...">
+<select id="sortSelect" style="flex: 0.5;">
+<option value="newest">Terbaru</option>
+<option value="oldest">Terlama</option>
+<option value="title">Judul (A-Z)</option>
+</select>
+<button class="btn btn-secondary" id="loadBtn">Load bookmark.json</button>
+<button class="btn btn-success" id="exportBtn">Export JSON</button>
+<button class="btn btn-danger" id="deleteBtn">Hapus Terpilih</button>
+</div>
+</section>
+<div id="linkGrid" class="grid"></div>
+    <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+</div>
+<script>
+let db = [];
+const getEl = (id) => document.getElementById(id);
+function showStatus(msg, isError = false) {
+  const el = getEl('status');
+  if (!el) return;
+  el.style.display = 'block';
+  el.style.color = isError ? '#f87171' : '#00b0ed';
+  el.innerText = msg;
+}
+async function crawlUrl() {
+  const urlInput = getEl('urlInput');
+  const url = urlInput.value.trim();
+  if (!url) return showStatus("URL tidak boleh kosong!", true);
+  showStatus("⏳ Sedang mengambil data pelan-pelan...");
+  try {
+    const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+    const res = await response.json();
+    if (res.status !== 'success') throw new Error();
+    const info = res.data;
+    const entry = {
+      id: Date.now(),
+      url: info.url || url,
+      title: info.title || "No Title",
+      desc: info.description || "No description.",
+      img: info.image?.url || info.screenshot?.url || '/thumbnail.webp',
+      favicon: info.logo?.url || `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`,
+      date: new Date().toISOString()
+    };
+    if (db.find(i => i.url === entry.url)) return showStatus("⚠️ URL sudah ada.", true);
+    db.unshift(entry);
+    render();
+    urlInput.value = '';
+    showStatus(`✅ Ditambahkan: ${entry.title}`);
+  } catch (e) { showStatus("❌ Gagal merayap.", true); }
+}
+// FUNGSI HAPUS MASSAL
+function deleteSelected() {
+  const checked = document.querySelectorAll('.card-checkbox:checked');
+  if (checked.length === 0) return alert("Pilih link yang ingin dihapus!");
+  if (confirm(`Hapus ${checked.length} link terpilih?`)) {
+    const idsToDelete = Array.from(checked).map(cb => parseInt(cb.value));
+    db = db.filter(item => !idsToDelete.includes(item.id));
+    render();
+    showStatus(`🗑️ ${checked.length} link berhasil dihapus dari memori.`);
+  }
+}
+function exportToJson() {
+  if (db.length === 0) return alert("Database kosong!");
+  const blob = new Blob([JSON.stringify(db, null, 2)], {type: "application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = "bookmark.json";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  showStatus("✅ File bookmark.json siap diupload ke server.");
+}
+async function loadJson() {
+  try {
+    const res = await fetch('/artikel/bookmark.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    db = await res.json();
+    render();
+    showStatus(`📂 Memuat ${db.length} link.`);
+  } catch (e) { showStatus("ℹ️ bookmark.json tidak ditemukan."); }
+}
+function render() {
+  const grid = getEl('linkGrid');
+  const search = getEl('searchInput').value.toLowerCase();
+  const sort = getEl('sortSelect').value;
+  let filtered = db.filter(i => (i.title+i.desc+i.url).toLowerCase().includes(search));
+  if (sort === 'title') filtered.sort((a,b) => a.title.localeCompare(b.title));
+  if (sort === 'oldest') filtered = [...filtered].reverse();
+  grid.innerHTML = filtered.map(item => `
+  <div class="card" id="card-${item.id}">
+  <input type="checkbox" class="card-checkbox" value="${item.id}">
+  <a href="${item.url}" target="_blank" class="card-link">
+  <img src="${item.img}" class="card-img" loading="lazy" onerror="this.src='/thumbnail.webp'">
+  <div class="card-body">
+  <div class="card-title">
+  <img src="${item.favicon}" class="favicon" onerror="this.style.display='none'">
+  <span>${item.title}</span>
+  </div>
+  <p class="card-desc">${item.desc}</p>
+  <div class="card-footer">${new URL(item.url).hostname}</div>
+  </div>
+  </a>
+  </div>
+  `).join('');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  getEl('crawlBtn').onclick = crawlUrl;
+  getEl('exportBtn').onclick = exportToJson;
+  getEl('loadBtn').onclick = loadJson;
+  getEl('deleteBtn').onclick = deleteSelected;
+  getEl('searchInput').oninput = render;
+  getEl('sortSelect').onchange = render;
+  getEl('urlInput').onkeypress = (e) => { if(e.key === 'Enter') crawlUrl(); };
+  loadJson();
+});
+</script>
+  <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body>
+</html>
