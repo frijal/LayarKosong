@@ -28,7 +28,7 @@ on:
         type: boolean
         default: true
   schedule:
-    - cron: '0 20 * * *'
+    - cron: '0 12 * * *'
 
 env:
   DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
