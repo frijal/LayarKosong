@@ -20,11 +20,11 @@ on:
         type: boolean
         default: true
       run_minify_html:
-        description: 'Jalankan HTML Minify (Hapus baris kosong)'
+        description: 'Jalankan HTML Minify'
         type: boolean
         default: true
       run_minify_jsonxml:
-        description: 'Jalankan JSONXML Minify (Hapus baris kosong)'
+        description: 'Jalankan JSONXML Minify'
         type: boolean
         default: true
   schedule:
