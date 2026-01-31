@@ -38,7 +38,8 @@ async function minifyFiles(dir) {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      if (originalHTML.includes('jepitan_oleh_Fakhrul_Rijal')) {
+      // === CEK SIGNATURE (SKIP JIKA ADA TEKS INI) ===
+      if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
       }
@@ -52,17 +53,23 @@ async function minifyFiles(dir) {
         decodeEntities: true,
         removeAttributeQuotes: true,
         removeRedundantAttributes: true,
-        removeOptionalTags: true,
+        removeOptionalTags: true, // Tetap ON untuk diet maksimal
         sortAttributes: true,
         sortClassName: true,
-        useShortDoctype: true
+        useShortDoctype: true,
+        // KUNCI: Kecualikan signature agar tidak ikut terhapus
+        ignoreCustomComments: [
+          /udah_dijepit_oleh_Fakhrul_Rijal/
+        ]
       });
 
+      // === BUAT SIGNATURE (FORMAT UNDERSCORE) ===
       const d = new Date();
-      const tgl = d.toISOString().slice(0, 10);
-      const jam = d.toTimeString().slice(0, 5);
+      const tgl = d.toISOString().slice(0, 10); // YYYY-MM-DD
+      const jam = d.toTimeString().slice(0, 5).replace(':', '_'); // HH_mm
       const signature = ``;
 
+      // Simpan hasil minify + signature di baris terakhir
       fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + signature, 'utf8');
       stats.success++;
 
@@ -72,14 +79,13 @@ async function minifyFiles(dir) {
         path: filePath,
         error: err.message
       });
-      // Tetap print di konsol supaya Mas Bro tahu ada masalah pas lagi running
       console.error(`❌ Gagal: ${filePath}`);
     }
   }
 }
 
 async function run() {
-  console.log('🧼 Memulai Minify Ultra (Layar Kosong Mode)...');
+  console.log('🧼 Memulai Minify Ultra (Mode Jepit Fakhrul Rijal)...');
   
   for (const f of folders) {
     await minifyFiles(f);
@@ -93,14 +99,13 @@ async function run() {
   console.log(`⏭️  Skip   : ${stats.skipped}`);
   console.log(`❌ Gagal  : ${stats.failed}`);
   
-  // --- HANYA TAMPILKAN DAFTAR GAGAL ---
   if (stats.failed > 0) {
-    console.log('\n⚠️  DETAIL FILE BERMASALAH (HARUS DIPERBAIKI):');
+    console.log('\n⚠️  DETAIL FILE BERMASALAH:');
     stats.errorList.forEach((item, index) => {
       console.log(`${index + 1}. [${item.path}]`);
       console.log(`   Pesan Error: ${item.error}`);
     });
-    console.log('\n💡 Tips: Cek tag yang tidak tertutup atau script JS yang rusak di file tersebut.');
+    console.log('\n💡 Tips: Cek tag yang tidak tertutup atau script JS yang rusak.');
   } else {
     console.log('\n✨ Mantap! Semua file berhasil diproses tanpa error.');
   }
