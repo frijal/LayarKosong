@@ -78,7 +78,7 @@ jobs:
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.detected == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/auto-maintenance
           delete-branch: true
