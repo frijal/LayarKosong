@@ -78,6 +78,11 @@ jobs:
           npm run lint --if-present || true
           npm run test --if-present || true
 
+      - name: 🧹 Cleanup Unused Packages (Internal Detective)
+        run: |
+          node ext/cleanup.js
+          echo "✅ Paket mubazir dibersihkan sebelum PR."
+
       - name: 🔍 Cek perubahan akhir & PR
         id: check_changes
         run: |
