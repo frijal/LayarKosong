@@ -38,7 +38,7 @@ async function minifyFiles(dir) {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // Cek apakah sudah ada jejak kita
+      // === CEK SIGNATURE (DALAM TAG NOSCRIPT) ===
       if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
@@ -48,14 +48,10 @@ async function minifyFiles(dir) {
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
       const jam = d.toTimeString().slice(0, 5).replace(':', '_');
-      const signature = ``;
+      const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}_${jam}</noscript>`;
 
-      // 2. Tempelkan signature ke HTML ASLI sebelum di-minify
-      // Kita tempel di paling bawah agar minifier tahu ini bagian dari dokumen
-      const htmlWithSignature = originalHTML.trimEnd() + '\n' + signature;
-
-      // 3. Proses Minify (dengan ignoreCustomComments agar signature-nya tidak dihapus)
-      let minifiedHTML = await minify(htmlWithSignature, {
+      // 2. Proses Minify murni
+      let minifiedHTML = await minify(originalHTML, {
         collapseWhitespace: true,
         removeComments: true,
         minifyJS: true,
@@ -67,14 +63,12 @@ async function minifyFiles(dir) {
         removeOptionalTags: true, 
         sortAttributes: true,
         sortClassName: true,
-        useShortDoctype: true,
-        ignoreCustomComments: [
-          /udah_dijepit_oleh_Fakhrul_Rijal/ // Proteksi agar tidak dibuang saat minify
-        ]
+        useShortDoctype: true
       });
 
-      // 4. Tulis hasil akhir
-      fs.writeFileSync(filePath, minifiedHTML, 'utf8');
+      // 3. Tulis hasil akhir: Gabungkan hasil minify dengan signature noscript
+      // Ditempel setelah minify agar tidak terkena trimming dari removeOptionalTags
+      fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + signature, 'utf8');
       stats.success++;
 
     } catch (err) {
@@ -89,7 +83,7 @@ async function minifyFiles(dir) {
 }
 
 async function run() {
-  console.log('🧼 Memulai Minify Ultra (Mode Jepit Fakhrul Rijal)...');
+  console.log('🧼 Memulai Minify Ultra (Mode Noscript Jepit)...');
   
   for (const f of folders) {
     await minifyFiles(f);
@@ -109,9 +103,8 @@ async function run() {
       console.log(`${index + 1}. [${item.path}]`);
       console.log(`   Pesan Error: ${item.error}`);
     });
-    console.log('\n💡 Tips: Cek tag yang tidak tertutup atau script JS yang rusak.');
   } else {
-    console.log('\n✨ Mantap! Semua file berhasil diproses tanpa error.');
+    console.log('\n✨ Mantap! Signature noscript sudah terpatri abadi.');
   }
   
   console.log('='.repeat(50) + '\n');
