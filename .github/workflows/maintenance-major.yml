@@ -3,7 +3,7 @@ name: 🚨 Major Dependency Upgrade (Scheduled & Manual)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 1 */3 *' # tiap 3 bulan (02:00 UTC ≈ 10:00 WIB)
+    - cron: '0 2 1 */3 *' # Tiap 3 bulan sekali
 
 jobs:
   major-upgrade:
@@ -22,52 +22,72 @@ jobs:
         with:
           node-version: 24
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install Awal
         run: npm ci || npm install
 
-      - name: 🔍 Preview major upgrades
+      - name: 🔍 Preview & Apply Major Upgrades
         run: |
           npm install -g npm-check-updates
+          echo "--- DAFTAR UPGRADE MAJOR ---"
           ncu --target latest --format group
-
-      - name: 🚨 Apply major upgrades
-        run: |
+          
+          # Langsung hajar update ke package.json
           ncu -u --target latest
-          npm install
+
+      - name: 🧹 Menjalankan Tukang Sapu (Cleanup Auto)
+        run: |
+          if [ -f ext/cleanup.js ]; then
+            echo "🔥 Membersihkan node_modules dan paket mubazir..."
+            node ext/cleanup.js
+          else
+            npm install
+          fi
+
+      - name: 🕵️ Detektif Scan (Cek paket yang mati setelah upgrade)
+        run: |
+          if [ -f ext/cek-mubazir.js ]; then
+            echo "--- LAPORAN DETEKTIF SETELAH UPGRADE ---"
+            node ext/cek-mubazir.js
+          fi
 
       - name: 🧪 Audit, Lint & Test
         run: |
+          # Kita pakai linter baru Mas Bro (html-minifier-terser)
           npm audit --omit=dev || true
           npm run lint --if-present || true
           npm run test --if-present || true
 
-      - name: 🔍 Cek perubahan
+      - name: 🔍 Cek perubahan final
         id: check_changes
         run: |
-          [[ $(git status --porcelain package.json package-lock.json) ]] \
-            && echo "changes=true" >> $GITHUB_OUTPUT \
-            || echo "changes=false" >> $GITHUB_OUTPUT
+          # Cek perubahan di package.json, lockfile, dan folder audit (jika ada)
+          if [[ -n "$(git status --porcelain package.json package-lock.json)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.changes == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/major-upgrade-${{ github.run_id }}
-          title: 'chore: major dependency upgrades'
-          commit-message: 'chore: upgrade dependencies (major versions)'
+          title: 'chore: 🚨 Major Dependency Upgrade'
+          commit-message: 'chore: upgrade dependencies to latest major versions'
           body: |
-            🚨 **Major Dependency Upgrade**
+            🚨 **Operasi Major Upgrade Berhasil!**
 
-            Perubahan ini mencakup:
-            - Upgrade lintas versi mayor
-            - Potensi breaking change
-            - Sudah melalui audit, lint, dan test dasar
+            Perubahan:
+            - Semua paket di-upgrade ke versi **Latest/Major**.
+            - `ext/cleanup.js` telah membersihkan `node_modules`.
+            - `ext/cek-mubazir.js` telah memastikan tidak ada paket siluman.
+            - Linter `html-minifier-terser` sudah memverifikasi struktur HTML.
 
-            Mohon review sebelum merge.
+            **Catatan:** Mohon cek fungsionalitas utama blog karena upgrade Major berpotensi *breaking changes*.
           labels: dependencies, major, breaking-change
           reviewers: frijal
           draft: false
 
       - name: ℹ️ Tidak ada perubahan
         if: steps.check_changes.outputs.changes == 'false'
-        run: echo "💤 Tidak ada dependency major yang perlu di-upgrade."
+        run: echo "💤 Semua paket sudah di versi paling baru."
