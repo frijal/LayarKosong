@@ -23,19 +23,28 @@ jobs:
             ${{ runner.os }}-node-
 
       # --------------------
-      # SETUP RUNTIME
+      # SETUP RUNTIMES (Node + Python)
       # --------------------
       - name: ⚙️ Setup Node.js (v24)
         uses: actions/setup-node@v6.2.0
         with:
           node-version: '24'
 
+      - name: 🐍 Setup Python (3.x)
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.x'
+
       # --------------------
       # INSTALL DEPENDENCIES
       # --------------------
-      - name: 📦 Install Dependencies
+      - name: 📦 Install Dependencies (Node & Python)
         run: |
+          # Install Node deps
           npm ci || npm install
+          
+          # Install Python audit tools
+          pip install pip-check-reqs
 
       # --------------------
       # PREPARE WORKDIR
@@ -62,7 +71,7 @@ jobs:
         run: |
           DATE=$(date +'%Y-%m-%d')
           REPORT="sementara/audit/node_fetch_usage_$DATE.txt"
-          echo "--- Scan node-fetch (Ganti ke native fetch!) ---" > "$REPORT"
+          echo "--- Scan node-fetch (Legacy Trace) ---" > "$REPORT"
           grep -RIn "node-fetch" . --exclude-dir=node_modules || echo "✅ Clean: node-fetch tidak ditemukan" >> "$REPORT"
 
       - name: 📦 Node.js Dependency Audit (Internal Detective)
@@ -75,22 +84,37 @@ jobs:
           npm list --depth=0 >> "$LIST_REPORT" || true
 
           echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
-          # Memanggil script custom Mas Bro yang baru kita buat
+          # Pakai script custom Mas Bro sebagai pengganti depcheck
           node ext/cek-mubazir.js >> "$UNUSED_REPORT"
 
-      # ====================
-      # BAGIAN 3: AUTO-FIX (Optional)
-      # ====================
-      - name: 🛠️ Run Dependency Fixer
+      - name: 🐍 Python Dependency Audit
         run: |
-          if [ -f ext/dependency-fixer.sh ]; then
-            chmod +x ext/dependency-fixer.sh
-            ./ext/dependency-fixer.sh
-          elif [ -f ext/cleanup.js ]; then
+          DATE=$(date +'%Y-%m-%d')
+          
+          # Cari requirements.txt secara dinamis
+          REQ_FILE=$(find . -name "requirements.txt" | head -n 1)
+          
+          if [ -n "$REQ_FILE" ]; then
+            echo "--- Python Requirements ($REQ_FILE) ---" > sementara/audit/python_requirements_$DATE.txt
+            cat "$REQ_FILE" >> sementara/audit/python_requirements_$DATE.txt
+
+            echo "--- Unused Python Packages ---" > sementara/audit/python_unused_$DATE.txt
+            # Scan semua folder (.) untuk mencari import python yang tidak terdaftar di requirements
+            pip-extra-reqs . --requirements "$REQ_FILE" >> sementara/audit/python_unused_$DATE.txt || true
+          else
+            echo "ℹ️ requirements.txt tidak ditemukan, skip Python audit."
+          fi
+
+      # ====================
+      # BAGIAN 3: AUTO-FIX
+      # ====================
+      - name: 🛠️ Run Auto-Fixer
+        run: |
+          if [ -f ext/cleanup.js ]; then
             echo "Menjalankan Cleanup Auto v2.0..."
             node ext/cleanup.js
           else
-            echo "ℹ️ Tidak ada script fixer, skip."
+            echo "ℹ️ Tidak ada script cleanup, skip."
           fi
 
       # ====================
@@ -104,9 +128,9 @@ jobs:
           git add . 
           
           if git diff --staged --quiet; then
-            echo "ℹ️ Tidak ada perubahan atau temuan baru."
+            echo "ℹ️ Tidak ada perubahan."
           else
-            git commit -m "chore(audit): inspector & internal detective report $(date +'%Y-%m-%d')"
+            git commit -m "chore(audit): full inspector & internal detective report $(date +'%Y-%m-%d')"
             git pull origin main --rebase --autostash
             git push
           fi
