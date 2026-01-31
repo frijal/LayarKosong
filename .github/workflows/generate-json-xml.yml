@@ -93,9 +93,7 @@ jobs:
             ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/'].forEach(u => urls.push('${BASE_URL}' + u));
             fs.writeFileSync('sitemap.txt', [...new Set(urls)].join('\n') + '\n');
           "
-
-      # --- PERUBAHAN POSISI DI SINI ---
-      
+     
       - name: '7️⃣ Inject schema.org (BARU KEMUDIAN)'
         if: env.DO_SCHEMA == 'true'
         run: python3 ext/inject_schema.py
@@ -104,7 +102,8 @@ jobs:
         if: env.DO_MINIFY == 'true'
         run: node ext/minify-html.js
 
-      
+      - name: 🧹 Minify Data (JSON & XML)
+        run: node ext/minify-json-xml.js     
 
       # --- AKHIR PERUBAHAN POSISI ---
 
