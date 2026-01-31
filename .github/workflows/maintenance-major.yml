@@ -52,8 +52,8 @@ jobs:
 
       - name: 🧪 Audit, Lint & Test
         run: |
-          # Kita pakai linter baru Mas Bro (html-minifier-terser)
           npm audit --omit=dev || true
+          # Sekarang tanpa flag --lint karena html-minifier-terser validasi otomatis lewat proses minifikasi
           npm run lint --if-present || true
           npm run test --if-present || true
 
