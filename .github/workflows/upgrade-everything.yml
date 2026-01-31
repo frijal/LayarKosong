@@ -3,7 +3,7 @@ name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v5 Compact)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 9 * *' # setiap tanggal 9 pukul 01:00 UTC (08:00 WIB)
+    - cron: '0 1 9 * *' # Setiap tanggal 9 pukul 08:00 WIB
 
 jobs:
   maintenance-pr:
@@ -40,7 +40,7 @@ jobs:
         run: |
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
-          # Highlight.js JS & CSS (CSS selalu dari CDN versi terbaru)
+          # Highlight.js JS & CSS
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           HLJS_LATEST=$(npm view @highlightjs/cdn-assets version)
           curl -s -o ext/default.min.css https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$HLJS_LATEST/styles/default.min.css
@@ -54,7 +54,7 @@ jobs:
           DATE_NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo -e "hljs=$HLJS_LATEST\nfontawesome=$(npm view @fortawesome/fontawesome-free version)\nupdated=$DATE_NOW" > mini/asset-info.txt
 
-      - name: 🔍 Verifikasi Font Awesome
+      - name: 🔍 Verifikasi Integritas Font
         run: |
           FONT_DIR="ext/fontawesome-webfonts"
           OUTPUT="mini/fontawesome-verify.txt"
@@ -72,16 +72,24 @@ jobs:
             echo "alert=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: 🧪 Audit, Lint & Test
+      - name: 🧪 Audit & Detective Scan
         run: |
           npm audit --omit=dev || true
-          npm run lint --if-present || true
+          
+          # Pakai Detektif internal buat cek paket mubazir
+          if [ -f ext/cek-mubazir.js ]; then
+            echo "--- LAPORAN DETEKTIF PEMELIHARAAN ---"
+            node ext/cek-mubazir.js
+          fi
+          
           npm run test --if-present || true
 
-      - name: 🧹 Cleanup Unused Packages (Internal Detective)
+      - name: 🧹 Cleanup Unused Packages
         run: |
-          node ext/cleanup.js
-          echo "✅ Paket mubazir dibersihkan sebelum PR."
+          if [ -f ext/cleanup.js ]; then
+            node ext/cleanup.js
+            echo "✅ Paket mubazir dibersihkan."
+          fi
 
       - name: 🔍 Cek perubahan akhir & PR
         id: check_changes
@@ -94,17 +102,17 @@ jobs:
         with:
           branch: chore/auto-maintenance-${{ github.run_id }}
           title: 'chore: Auto Maintenance (Deps + Assets + Font Integrity)'
-          commit-message: 'chore: upgrade deps, sync Highlight.js & Font Awesome, verify font hash'
+          commit-message: 'chore: upgrade deps, sync assets, verify font integrity'
           body: |
-            🔧 **Pemeliharaan Otomatis Compact**
+            🔧 **Pemeliharaan Otomatis Layar Kosong**
 
             Perubahan:
-            - Upgrade Dependencies
-            - Highlight.js JS & CSS (CSS selalu versi terbaru)
-            - Font Awesome + verifikasi SHA-256 font
-            - Audit & Lint
+            - Upgrade Dependencies (Minor)
+            - Sinkronisasi Highlight.js JS & CSS
+            - Update Font Awesome & Verifikasi SHA-256
+            - Detective Scan (Dependency Audit)
 
-            ${{ steps.check_changes.outputs.changes_detected == 'true' && '🚨 Perubahan terdeteksi pada font/asset!' || '✅ Semua asset aman.' }}
+            ${{ steps.check_changes.outputs.changes_detected == 'true' && '🚨 Perubahan aset/font terdeteksi!' || '✅ Aset aman.' }}
 
           labels: dependencies, chore, automated
           reviewers: frijal
