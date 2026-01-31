@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout kode
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6.2.0
+        uses: actions/setup-node@v4
         with:
           node-version: 24
       
@@ -29,9 +29,9 @@ jobs:
           
           echo "# 📝 Laporan Audit Komponen Layar Kosong" > $REPORT
           echo "📅 Diperiksa pada: $(date)" >> $REPORT
-          echo "> **Catatan:** Laporan ini dikelompokkan berdasarkan jenis komponen untuk memudahkan perbaikan manual." >> $REPORT
+          echo "> **Status:** Audit berbasis Regex Lentur (Aman untuk HTML Minified)." >> $REPORT
 
-          # Inisialisasi file sementara untuk tiap kategori
+          # Inisialisasi file sementara
           echo -e "\n## 🏷️ 1. Core Meta & Branding\n| File | Masalah |\n| :--- | :--- |" > cat1.tmp
           echo -e "\n## 🌐 2. Social Meta & Creators\n| File | Masalah |\n| :--- | :--- |" > cat2.tmp
           echo -e "\n## 📊 3. Open Graph & Twitter Card\n| File | Masalah |\n| :--- | :--- |" > cat3.tmp
@@ -43,50 +43,52 @@ jobs:
           for file in $(find $FOLDERS -maxdepth 2 -name "*.html" 2>/dev/null); do
             ERR1=""; ERR2=""; ERR3=""; ERR4=""; ERR5=""
             
-            # Fungsi Check per Kategori
-            check() {
-              if ! grep -q "$1" "$file"; then echo "- Missing: $2<br>"; fi
+            # 🔥 FUNGSI BARU: Menggunakan grep -E (Extended Regex) agar fleksibel dengan spasi/petik
+            # regex: [\"']? berarti boleh ada petik dua, petik satu, atau tidak ada sama sekali.
+            check_regex() {
+              if ! grep -Ei "$1" "$file" > /dev/null; then echo "- Missing: $2<br>"; fi
             }
 
-            # 1. Core Meta
-            ERR1=$( (check '<link rel="canonical"' "Canonical Tag"; \
-                      check '<link rel="icon" href="/favicon.ico">' "Favicon.ico"; \
-                      check '<meta name="author" content="Fakhrul Rijal">' "Author"; \
-                      check '<meta name="theme-color" content="#00b0ed">' "Theme Color"; \
-                      check 'creativecommons.org/publicdomain/zero/1.0/' "CC0 License") | tr -d '\n' )
+            # 1. Core Meta (Regex lentur untuk rel=petik)
+            ERR1=$( (check_regex 'rel=[\"'"'"']?canonical' "Canonical Tag"; \
+                      check_regex 'href=[\"'"'"']?/favicon\.ico' "Favicon.ico"; \
+                      check_regex 'name=[\"'"'"']?author[\"'"'"']? content=[\"'"'"']?Fakhrul Rijal' "Author"; \
+                      check_regex 'name=[\"'"'"']?theme-color[\"'"'"']? content=[\"'"'"']?#00b0ed' "Theme Color"; \
+                      check_regex 'creativecommons\.org/publicdomain/zero/1\.0' "CC0 License") | tr -d '\n' )
             
             # 2. Social Meta
-            ERR2=$( (check 'fediverse:creator" content="@frijal@mastodon.social"' "Fediverse Creator"; \
-                      check 'twitter:creator" content="@responaja"' "Twitter Creator"; \
-                      check 'bluesky:creator" content="@dalam.web.id"' "Bluesky Creator") | tr -d '\n' )
+            ERR2=$( (check_regex 'fediverse:creator[\"'"'"']? content=[\"'"'"']?@frijal@mastodon\.social' "Fediverse Creator"; \
+                      check_regex 'twitter:creator[\"'"'"']? content=[\"'"'"']?@responaja' "Twitter Creator"; \
+                      check_regex 'bluesky:creator[\"'"'"']? content=[\"'"'"']?@dalam\.web\.id' "Bluesky Creator") | tr -d '\n' )
 
             # 3. OG & Twitter
-            ERR3=$( (check 'og:site_name" content="Layar Kosong"' "OG Site Name"; \
-                      check 'og:locale" content="id_ID"' "OG Locale"; \
-                      check 'twitter:card" content="summary_large_image"' "Twitter Card"; \
-                      check 'fb:app_id" content="175216696195384"' "FB App ID") | tr -d '\n' )
+            ERR3=$( (check_regex 'og:site_name[\"'"'"']? content=[\"'"'"']?Layar Kosong' "OG Site Name"; \
+                      check_regex 'og:locale[\"'"'"']? content=[\"'"'"']?id_ID' "OG Locale"; \
+                      check_regex 'twitter:card[\"'"'"']? content=[\"'"'"']?summary_large_image' "Twitter Card"; \
+                      check_regex 'fb:app_id[\"'"'"']? content=[\"'"'"']?175216696195384' "FB App ID") | tr -d '\n' )
 
             # 4. Assets & Schema
-            ERR4=$( (check 'type="application/rss+xml"' "RSS Feed Link") | tr -d '\n' )
-            if ! grep -q 'type="application/ld+json"' "$file"; then ERR4+="- Missing: **Schema JSON-LD**<br>"; fi
+            ERR4=$( (check_regex 'type=[\"'"'"']?application/rss\+xml' "RSS Feed Link"; \
+                      check_regex 'type=[\"'"'"']?application/ld\+json' "Schema JSON-LD") | tr -d '\n' )
 
             # 5. Descriptions
-            ERR5=$( (check 'name="description"' "Meta Description"; \
-                      check 'property="og:description"' "OG Description"; \
-                      check 'name="twitter:description"' "Twitter Description"; \
-                      check 'name="promphint"' "Prompt Hint") | tr -d '\n' )
+            ERR5=$( (check_regex 'name=[\"'"'"']?description' "Meta Description"; \
+                      check_regex 'og:description' "OG Description"; \
+                      check_regex 'twitter:description' "Twitter Description"; \
+                      check_regex 'name=[\"'"'"']?promphint' "Prompt Hint") | tr -d '\n' )
 
             # Masukkan ke file sementara jika ada error
-            [[ ! -z "$ERR1" ]] && echo "| \`$file\` | $ERR1 |" >> cat1.tmp
-            [[ ! -z "$ERR2" ]] && echo "| \`$file\` | $ERR2 |" >> cat2.tmp
-            [[ ! -z "$ERR3" ]] && echo "| \`$file\` | $ERR3 |" >> cat3.tmp
-            [[ ! -z "$ERR4" ]] && echo "| \`$file\` | $ERR4 |" >> cat4.tmp
-            [[ ! -z "$ERR5" ]] && echo "| \`$file\` | $ERR5 |" >> cat5.tmp
+            [[ -n "$ERR1" ]] && echo "| \`$file\` | $ERR1 |" >> cat1.tmp
+            [[ -n "$ERR2" ]] && echo "| \`$file\` | $ERR2 |" >> cat2.tmp
+            [[ -n "$ERR3" ]] && echo "| \`$file\` | $ERR3 |" >> cat3.tmp
+            [[ -n "$ERR4" ]] && echo "| \`$file\` | $ERR4 |" >> cat4.tmp
+            [[ -n "$ERR5" ]] && echo "| \`$file\` | $ERR5 |" >> cat5.tmp
           done
 
-          # Gabungkan semua tabel ke laporan utama
+          # Gabungkan laporan
           cat cat1.tmp cat2.tmp cat3.tmp cat4.tmp cat5.tmp >> $REPORT
           cat $REPORT >> $GITHUB_STEP_SUMMARY
+          rm *.tmp
 
       - name: 💾 Simpan Laporan
         if: always()
@@ -94,4 +96,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add mini/*.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 docs: audit SEO terkelompok $(date +'%Y-%m-%d')" && git push)
+          if ! git diff --cached --quiet; then
+            git commit -m "🤖 docs: audit SEO terkelompok $(date +'%Y-%m-%d')"
+            git push
+          fi
