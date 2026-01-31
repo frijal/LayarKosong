@@ -1,141 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI</title>
-<meta name="description" content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.">
-<!-- Open Graph -->
-<meta name="color-scheme" content="light dark">
-<style>
-:root {
-  --bg: #fdfdfd;
-  --text: #222;
-  --accent: #0078ff;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --text: #c9d1d9;
-    --accent: #58a6ff;
-  }
-}
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-header {
-  text-align: center;
-  padding: 2rem 1rem 1rem;
-}
-header h1 {
-  font-size: 1.9rem;
-  margin-bottom: 0.2rem;
-}
-article {
-  max-width: 960px;
-  margin: auto;
-  padding: 1rem 2rem 3rem;
-}
-code, pre {
-  background: rgba(127,127,127,0.1);
-  border-radius: 6px;
-  padding: 0.6em 0.8em;
-  font-family: "JetBrains Mono", monospace;
-  overflow-x: auto;
-  display: block;
-}
-pre { margin: 1em 0; }
-section { margin-bottom: 2.5rem; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid rgba(127,127,127,0.2);
-  font-size: 0.9rem;
-}
-.social-share {
-  text-align: center;
-  margin-top: 2rem;
-}
-.social-share a {
-  margin: 0 0.4rem;
-  display: inline-block;
-}
-.social-share img {
-  width: 28px;
-  height: 28px;
-  filter: grayscale(1);
-  transition: 0.3s;
-}
-.social-share img:hover {
-  filter: none;
-  transform: scale(1.1);
-}
-@media (max-width: 600px) {
-  header h1 { font-size: 1.5rem; }
-  article { padding: 1rem; }
-}
-</style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-<meta name="ai:summary" content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.">
-<meta name="ai:prompt_hint" content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.">
-    <link rel="canonical" href="https://dalam.web.id/warta-tekno/gh-force-merge/">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/warta-tekno/gh-force-merge/">
-    <meta property="og:title" content="Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI">
-    <meta property="og:description" content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/gh-force-merge.webp">
-    <meta property="og:image:alt" content="Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/gh-force-merge.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/gh-force-merge.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI","description":"Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.","articleSection":"Warta Tekno","keywords":"fallback, force, github, layar kosong, merge, otomatis, skrip, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/gh-force-merge.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.042+00:00","dateModified":"2025-10-13T21:14:36.042+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Skrip Otomatis gh-force-merge.sh: Merge &amp; Fallback Otomatis via GitHub CLI","item":"https://dalam.web.id/warta-tekno/gh-force-merge/"}]}]}</script>
-</head>
-<body>
-<header>
-  <h1>🤖 Skrip Otomatis gh-force-merge.sh</h1>
-<div id="iposbrowser"></div>
-  <p style="opacity:0.8;">Merge branch GitHub secara cepat dan aman dengan fallback otomatis via GitHub CLI</p>
-</header>
-<article>
-  <section>
-    <p>Pernah punya PR yang nge-stuck karena ada status check belum lewat? Atau butuh merge cepat untuk CI/CD? Nah, skrip <code>gh-force-merge.sh</code> ini bisa jadi penyelamat. 😎</p>
-    <p>Skrip ini menggunakan <strong>GitHub CLI (gh)</strong> untuk mendeteksi PR dari branch lokal, mencoba merge biasa, lalu otomatis <em>fallback</em> ke mode admin-squash kalau merge normal gagal.</p>
-  </section>
-  <section>
-    <h2>🧩 Fitur Utama</h2>
-    <ul>
-      <li>🔍 Deteksi otomatis PR dari branch lokal aktif</li>
-      <li>🚀 Merge otomatis dengan <code>gh pr merge</code></li>
-      <li>💪 Fallback otomatis ke <code>--admin --squash</code> kalau merge normal gagal</li>
-      <li>🧱 Opsi <code>--dry-run</code> (simulasi saja)</li>
-      <li>🤖 Opsi <code>--auto</code> (non-interaktif, cocok untuk CI/CD)</li>
-      <li>🧹 Hapus branch setelah merge berhasil</li>
-    </ul>
-  </section>
-  <section>
-    <h2>⚙️ Isi Skrip: <code>gh-force-merge.sh</code></h2>
-    <pre><code>#!/usr/bin/env bash
+<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI</title><meta content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash." name=description><meta content="light dark" name=color-scheme><style>:root{--bg:#fdfdfd;--text:#222;--accent:#0078ff}@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--text:#c9d1d9;--accent:#58a6ff}}body{background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Roboto,sans-serif;margin:0;padding:0;line-height:1.6}header{text-align:center;padding:2rem 1rem 1rem}header h1{font-size:1.9rem;margin-bottom:.2rem}article{max-width:960px;margin:auto;padding:1rem 2rem 3rem}code,pre{background:rgba(127,127,127,.1);border-radius:6px;padding:.6em .8em;font-family:"JetBrains Mono",monospace;overflow-x:auto;display:block}pre{margin:1em 0}section{margin-bottom:2.5rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}footer{text-align:center;padding:2rem 0;border-top:1px solid rgba(127,127,127,.2);font-size:.9rem}.social-share{text-align:center;margin-top:2rem}.social-share a{margin:0 .4rem;display:inline-block}.social-share img{width:28px;height:28px;filter:grayscale(1);transition:.3s}.social-share img:hover{filter:none;transform:scale(1.1)}@media (max-width:600px){header h1{font-size:1.5rem}article{padding:1rem}}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash." name=ai:summary><meta content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash." name=ai:prompt_hint><link href=https://dalam.web.id/warta-tekno/gh-force-merge/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/gh-force-merge/ property=og:url><meta content="Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI" property=og:title><meta content="Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/gh-force-merge.webp property=og:image><meta content="Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/gh-force-merge.webp name=twitter:image><meta content=https://dalam.web.id/img/gh-force-merge.webp itemprop=image><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI","description":"Panduan membuat skrip otomatis gh-force-merge.sh untuk memaksa merge branch GitHub dengan GitHub CLI (gh). Lengkap dengan deteksi PR, opsi --dry-run, --auto, dan fallback admin-squash.","articleSection":"Warta Tekno","keywords":"fallback, force, github, layar kosong, merge, otomatis, skrip, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/gh-force-merge.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.042+00:00","dateModified":"2025-10-13T21:14:36.042+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/gh-force-merge/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Skrip Otomatis gh-force-merge.sh: Merge & Fallback Otomatis via GitHub CLI","item":"https://dalam.web.id/warta-tekno/gh-force-merge/"}]}]}</script><header><h1>🤖 Skrip Otomatis gh-force-merge.sh</h1><div id=iposbrowser></div><p style=opacity:.8>Merge branch GitHub secara cepat dan aman dengan fallback otomatis via GitHub CLI</header><article><section><p>Pernah punya PR yang nge-stuck karena ada status check belum lewat? Atau butuh merge cepat untuk CI/CD? Nah, skrip <code>gh-force-merge.sh</code> ini bisa jadi penyelamat. 😎<p>Skrip ini menggunakan <strong>GitHub CLI (gh)</strong> untuk mendeteksi PR dari branch lokal, mencoba merge biasa, lalu otomatis <em>fallback</em> ke mode admin-squash kalau merge normal gagal.</section><section><h2>🧩 Fitur Utama</h2><ul><li>🔍 Deteksi otomatis PR dari branch lokal aktif<li>🚀 Merge otomatis dengan <code>gh pr merge</code><li>💪 Fallback otomatis ke <code>--admin --squash</code> kalau merge normal gagal<li>🧱 Opsi <code>--dry-run</code> (simulasi saja)<li>🤖 Opsi <code>--auto</code> (non-interaktif, cocok untuk CI/CD)<li>🧹 Hapus branch setelah merge berhasil</ul></section><section><h2>⚙️ Isi Skrip: <code>gh-force-merge.sh</code></h2><pre><code>#!/usr/bin/env bash
 set -euo pipefail
 RED='\033[0;31m'; GREEN='\033[0;32m'; CYAN='\033[0;36m'; YELLOW='\033[1;33m'; RESET='\033[0m'
 DRY_RUN=false; AUTO=false
@@ -150,9 +13,9 @@ for arg in "$@"; do
 done
 echo -e "${CYAN}🔍 Mengecek branch aktif...${RESET}"
 BRANCH=$(git branch --show-current || true)
-[[ -z "$BRANCH" ]] &amp;&amp; { echo -e "${RED}❌ Tidak ada branch aktif.${RESET}"; exit 1; }
+[[ -z "$BRANCH" ]] && { echo -e "${RED}❌ Tidak ada branch aktif.${RESET}"; exit 1; }
 echo -e "Branch aktif: ${YELLOW}$BRANCH${RESET}"
-if ! gh auth status &amp;&gt;/dev/null; then
+if ! gh auth status &>/dev/null; then
   echo -e "${RED}❌ Belum login ke GitHub CLI.${RESET}"
   exit 1
 fi
@@ -168,7 +31,7 @@ fi
 echo -e "${GREEN}✅ PR #${PR_NUMBER}${RESET} → ${PR_URL}"
 if [[ "$AUTO" == false ]]; then
   read -rp "Merge sekarang? [y/N]: " CONFIRM
-  [[ ! "$CONFIRM" =~ ^[Yy]$ ]] &amp;&amp; { echo -e "${YELLOW}🚫 Dibatalkan.${RESET}"; exit 0; }
+  [[ ! "$CONFIRM" =~ ^[Yy]$ ]] && { echo -e "${YELLOW}🚫 Dibatalkan.${RESET}"; exit 0; }
 fi
 CMD_NORMAL="gh pr merge $PR_NUMBER --merge --delete-branch"
 if [[ "$DRY_RUN" == true ]]; then
@@ -177,36 +40,14 @@ else
   if ! $CMD_NORMAL; then
     echo -e "${YELLOW}⚠️ Merge normal gagal, mencoba admin-squash...${RESET}"
     CMD_ADMIN="gh pr merge $PR_NUMBER --admin --squash --delete-branch"
-    [[ "$DRY_RUN" == true ]] &amp;&amp; echo "[DRY RUN] $CMD_ADMIN" || $CMD_ADMIN
+    [[ "$DRY_RUN" == true ]] && echo "[DRY RUN] $CMD_ADMIN" || $CMD_ADMIN
   fi
 fi
-echo -e "${GREEN}🎉 Merge branch '$BRANCH' selesai.${RESET}"</code></pre>
-  </section>
-  <section>
-    <h2>💡 Cara Menggunakan</h2>
-    <pre><code>chmod +x gh-force-merge.sh
+echo -e "${GREEN}🎉 Merge branch '$BRANCH' selesai.${RESET}"</code></pre></section><section><h2>💡 Cara Menggunakan</h2><pre><code>chmod +x gh-force-merge.sh
 # Mode interaktif
 ./gh-force-merge.sh
 # Mode simulasi (tidak eksekusi merge)
 ./gh-force-merge.sh --dry-run
 # Mode otomatis (tanpa konfirmasi, cocok untuk CI)
 ./gh-force-merge.sh --auto
-</code></pre>
-  </section>
-  <section>
-    <h2>🧠 Catatan Aman</h2>
-    <ul>
-      <li>Pastikan kamu punya hak admin di repo sebelum memakai opsi <code>--admin</code>.</li>
-      <li>Gunakan <code>--dry-run</code> untuk memastikan branch yang akan di-merge benar.</li>
-      <li>Sebaiknya merge biasa dulu; fallback admin hanya untuk keadaan darurat.</li>
-    </ul>
-  </section>
-     <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
-    </article>
-<footer>
-  <p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
-</footer>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
-<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
-</body></html>
+</code></pre></section><section><h2>🧠 Catatan Aman</h2><ul><li>Pastikan kamu punya hak admin di repo sebelum memakai opsi <code>--admin</code>.<li>Gunakan <code>--dry-run</code> untuk memastikan branch yang akan di-merge benar.<li>Sebaiknya merge biasa dulu; fallback admin hanya untuk keadaan darurat.</ul></section><div id=pesbukdiskus></div><div id=related-articles-grid></div></article><footer><p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</footer><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
