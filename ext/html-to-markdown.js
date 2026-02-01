@@ -75,7 +75,9 @@ function processFolder(dir) {
 }
 
 // Tambahkan folder kategori lainnya di sini jika ingin sapu bersih semua
-const targetFolders = 'artikelx gaya-hidup jejak-sejarah lainnya olah-media opini-sosial sistem-terbuka warta-tekno'.split(' ');
+const targetFolders = [
+    'artikelx'
+];
 
 console.log('🚀 Memulai operasi "Layar Kosong Bersih" via ESM...');
 targetFolders.forEach(folder => {
