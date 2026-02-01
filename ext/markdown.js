@@ -15,14 +15,14 @@
     // Cek apakah script tag sudah pernah kita suntikkan sebelumnya di sesi ini
     // untuk menghindari duplikasi tag script
     if (document.querySelector('script[src="/ext/highlight.js"]')) {
-        return new Promise(resolve => {
-            const check = setInterval(() => {
-                if (window.hljs) {
-                    clearInterval(check);
-                    resolve(window.hljs);
-                }
-            }, 100);
-        });
+      return new Promise(resolve => {
+        const check = setInterval(() => {
+          if (window.hljs) {
+            clearInterval(check);
+            resolve(window.hljs);
+          }
+        }, 100);
+      });
     }
 
     // Muat dari file (Gunakan Absolute Path "/")
@@ -39,15 +39,15 @@
   function applyHighlightTheme() {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const existing = document.querySelector("link[data-hljs-theme]");
-    
+
     // Gunakan Absolute Path "/"
     const newHref = prefersDark
-      ? "/ext/github-dark.min.css" // <-- PERBAIKAN PATH
-      : "/ext/github.min.css";     // <-- PERBAIKAN PATH
+    ? "/ext/github-dark.min.css" // <-- PERBAIKAN PATH
+    : "/ext/github.min.css";     // <-- PERBAIKAN PATH
 
     if (existing) {
-      if (existing.href !== newHref && !existing.href.endsWith(newHref)) { 
-          existing.href = newHref;
+      if (existing.href !== newHref && !existing.href.endsWith(newHref)) {
+        existing.href = newHref;
       }
     } else {
       const link = document.createElement("link");
@@ -113,49 +113,28 @@
     });
   }
 
-  // === 4️⃣ Proses Markdown di halaman (Versi Otomatis & Efisien) ==
-  async function enhanceMarkdown() {
-    try {
-      // 1. Ambil daftar 77 class dari file hasil saringan tadi
-      const response = await fetch('/ext/markdown-classes.txt');
-      if (!response.ok) throw new Error('Gagal memuat daftar class');
+  // === 4️⃣ Proses Markdown di halaman ==
+  function enhanceMarkdown() {
+    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .closing, .markdown, .markdown-body, .meta, .card, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert";
 
-      const text = await response.text();
-      const registeredClasses = text.split('\n')
-      .map(c => c.trim())
-      .filter(c => c.length > 0);
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.classList.contains("no-md")) return;
 
-      // 2. Bangun selector (Tag Standar + Class dari txt)
-      const standardTags = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6";
-      const classSelector = registeredClasses.map(cls => `.${cls}`).join(", ");
-      const finalSelector = `${standardTags}, ${classSelector}`;
+      // HAPUS baris check el.querySelector("pre, code, table")
+      // Karena kita mau memproses teks di SEKITAR element tersebut.
 
-      // 3. Batasi area pencarian hanya di dalam konten utama
-      const contentArea = document.querySelector('main, article, .container, .content') || document.body;
+      let original = el.innerHTML;
+      if (!original.trim()) return;
 
-      contentArea.querySelectorAll(finalSelector).forEach(el => {
-        // Keamanan ekstra: jangan sentuh head atau elemen no-md
-        if (el.classList.contains("no-md") || el.closest("head")) return;
+      // Render Markdown
+      const rendered = convertInlineMarkdown(original);
 
-        let original = el.innerHTML;
-        if (!original.trim()) return;
-
-        // Cek cepat: apakah ada karakter markdown? (Hemat CPU)
-        if (!/[#*_`\[]|&gt;/.test(original)) return;
-
-        const rendered = convertInlineMarkdown(original);
-
-        if (rendered !== original) {
-          el.innerHTML = rendered;
-        }
-      });
-
-      console.log(`✅ Markdown sukses diterapkan pada ${registeredClasses.length} tipe konten.`);
-    } catch (err) {
-      console.error("❌ Markdown Enhancer Error:", err);
-    }
+      // Hanya update DOM jika memang ada perubahan (hemat resource)
+      if (rendered !== original) {
+        el.innerHTML = rendered;
+      }
+    });
   }
-
 
   // === 5️⃣ Pastikan inline code tidak menjadi blok ===
   function fixInlineCodeDisplay() {
@@ -164,7 +143,7 @@
       el.style.whiteSpace = "nowrap";
       el.style.margin = "0";
       // Tambahkan padding sedikit agar rapi
-      el.style.padding = "2px 4px"; 
+      el.style.padding = "2px 4px";
       el.style.borderRadius = "4px";
     });
   }
