@@ -65,74 +65,46 @@
   // === 3️⃣ Markdown converter ===
   function convertInlineMarkdown(text) {
     return text
-    // 1. Unescape dasar (supaya > jadi blockquote)
-    .replace(/&gt;/g, ">")
-
-    // 2. Block Code (Triple Backtick) - Harus paling atas!
-    .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
-      const language = lang || "plaintext";
-      return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
-    })
-
-    // 3. Table - Harus diproses sebelum inline formatting
-    .replace(/((?:\|.*\|\n)+)/g, match => {
-      const rows = match.trim().split("\n").filter(r => r.trim());
-      if (rows.length < 2) return match;
-      const header = rows[0].split("|").filter(Boolean).map(c => `<th>${c.trim()}</th>`).join("");
-      const body = rows.slice(2).map(r =>
-      "<tr>" + r.split("|").filter(Boolean).map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
-      ).join("");
-      return `<div style="overflow-x:auto;"><table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></div>`;
-    })
-
-    // 4. Headers (H1-H6)
-    .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
-    .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
-    .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
-    .replace(/^### (.*)$/gm, "<h3>$1</h3>")
-    .replace(/^## (.*)$/gm, "<h2>$1</h2>")
-    .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-
-    // 5. Blockquote
-    .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
-
-    // 6. Bold (Tebal) - Pakai double asterisk
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-
-    // 7. Italic (Miring) - Lebih aman agar tidak bentrok dengan Bold
-    .replace(/(^|[^\*])\*([^\*]+)\*([^\*]|$)/g, "$1<em>$2</em>$3")
-
-    // 8. Inline Code (Single Backtick)
-    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
-
-    // 9. Unordered List (Hanya jika di awal baris)
-    .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
-    // Bungkus li yang berurutan dengan ul
-    .replace(/(<li>.*<\/li>)/gs, match => {
-      return match.includes('<ul>') ? match : `<ul>${match}</ul>`;
-    });
+      .replace(/&gt;/g, ">")
+      .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
+      .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
+      .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
+      .replace(/^### (.*)$/gm, "<h3>$1</h3>")
+      .replace(/^## (.*)$/gm, "<h2>$1</h2>")
+      .replace(/^# (.*)$/gm, "<h1>$1</h1>")
+      .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/(\W|^)\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
+      .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+      .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
+      .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
+      .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
+        const language = lang || "plaintext";
+        return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
+      })
+      .replace(/((?:\|.*\|\n)+)/g, match => {
+        const rows = match.trim().split("\n").filter(r => r.trim());
+        if (rows.length < 2) return match;
+        const header = rows[0].split("|").filter(Boolean).map(c => `<th>${c.trim()}</th>`).join("");
+        const body = rows.slice(2).map(r =>
+          "<tr>" + r.split("|").filter(Boolean).map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
+        ).join("");
+        return `<table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+      });
   }
 
   // === 4️⃣ Proses Markdown di halaman ===
   function enhanceMarkdown() {
-    const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note-box, .warning, .disclaimer, .markdown, .alert";
-
+    const selector = "p, li, blockquote, td, th, header, quote, h1, h2, h3, h4, h5, h6, .note-box, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .markdown, .markdown-body, .alert, .intro-alert";
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
+      if (el.querySelector("pre, code, table")) return; 
 
-      // HAPUS baris check el.querySelector("pre, code, table")
-      // Karena kita mau memproses teks di SEKITAR element tersebut.
+      const original = el.innerHTML.trim();
+      if (!original) return;
 
-      let original = el.innerHTML;
-      if (!original.trim()) return;
-
-      // Render Markdown
-      const rendered = convertInlineMarkdown(original);
-
-      // Hanya update DOM jika memang ada perubahan (hemat resource)
-      if (rendered !== original) {
-        el.innerHTML = rendered;
-      }
+      const singleLine = original.replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
+      el.innerHTML = convertInlineMarkdown(singleLine);
     });
   }
 
