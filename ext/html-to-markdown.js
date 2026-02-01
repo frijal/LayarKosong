@@ -51,13 +51,7 @@ function processFolder(dir) {
 }
 
 const targetFolders = [
-    'gaya-hidup',
-    'jejak-sejarah',
-    'lainnya',
-    'olah-media',
-    'opini-sosial',
-    'sistem-terbuka',
-    'warta-tekno'
+    'artikelx'
 ];
 
 console.log('🚀 Memulai operasi "Layar Kosong Bersih" via ESM...');
