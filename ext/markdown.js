@@ -113,28 +113,49 @@
     });
   }
 
-  // === 4️⃣ Proses Markdown di halaman ==
-  function enhanceMarkdown() {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .closing, .markdown, .markdown-body, .meta, .card, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert";
+  // === 4️⃣ Proses Markdown di halaman (Versi Otomatis & Efisien) ==
+  async function enhanceMarkdown() {
+    try {
+      // 1. Ambil daftar 77 class dari file hasil saringan tadi
+      const response = await fetch('/ext/markdown-classes.txt');
+      if (!response.ok) throw new Error('Gagal memuat daftar class');
 
-    document.querySelectorAll(selector).forEach(el => {
-      if (el.classList.contains("no-md")) return;
+      const text = await response.text();
+      const registeredClasses = text.split('\n')
+      .map(c => c.trim())
+      .filter(c => c.length > 0);
 
-      // HAPUS baris check el.querySelector("pre, code, table")
-      // Karena kita mau memproses teks di SEKITAR element tersebut.
+      // 2. Bangun selector (Tag Standar + Class dari txt)
+      const standardTags = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6";
+      const classSelector = registeredClasses.map(cls => `.${cls}`).join(", ");
+      const finalSelector = `${standardTags}, ${classSelector}`;
 
-      let original = el.innerHTML;
-      if (!original.trim()) return;
+      // 3. Batasi area pencarian hanya di dalam konten utama
+      const contentArea = document.querySelector('main, article, .container, .content') || document.body;
 
-      // Render Markdown
-      const rendered = convertInlineMarkdown(original);
+      contentArea.querySelectorAll(finalSelector).forEach(el => {
+        // Keamanan ekstra: jangan sentuh head atau elemen no-md
+        if (el.classList.contains("no-md") || el.closest("head")) return;
 
-      // Hanya update DOM jika memang ada perubahan (hemat resource)
-      if (rendered !== original) {
-        el.innerHTML = rendered;
-      }
-    });
+        let original = el.innerHTML;
+        if (!original.trim()) return;
+
+        // Cek cepat: apakah ada karakter markdown? (Hemat CPU)
+        if (!/[#*_`\[]|&gt;/.test(original)) return;
+
+        const rendered = convertInlineMarkdown(original);
+
+        if (rendered !== original) {
+          el.innerHTML = rendered;
+        }
+      });
+
+      console.log(`✅ Markdown sukses diterapkan pada ${registeredClasses.length} tipe konten.`);
+    } catch (err) {
+      console.error("❌ Markdown Enhancer Error:", err);
+    }
   }
+
 
   // === 5️⃣ Pastikan inline code tidak menjadi blok ===
   function fixInlineCodeDisplay() {
