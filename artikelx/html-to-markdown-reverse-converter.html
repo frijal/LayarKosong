@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Frijal Reverse Converter — Konversi HTML ke Markdown Otomatis</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="canonical" href="https://dalam.web.id/artikel/html-to-markdown-reverse-converter.html">
+
+<meta name="title" content="Frijal Reverse Converter — Konversi HTML ke Markdown Otomatis">
+<meta name="description" content="Alat konversi HTML ke Markdown yang cerdas. Membersihkan tag HTML menjadi format Markdown rapi tanpa merusak CSS atau ikon.">
+<meta name="keywords" content="HTML to Markdown, Reverse Converter, Frijal Tool, Layar Kosong, Clean Markdown, Web Developer Tools">
+<meta name="author" content="Fakhrul Rijal">
+<meta name="robots" content="index, follow">
+<meta name="news_keywords" content="HTML, Markdown, Converter, Tools, Web Development, Frijal, Layar Kosong">
+<meta name="promphint" content="Gunakan alat ini untuk konversi otomatis HTML ke Markdown yang bersih dan terstruktur.">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dalam.web.id/artikel/html-to-markdown-reverse-converter.html">
+<meta property="og:title" content="Frijal Reverse Converter — HTML ke Markdown Otomatis">
+<meta property="og:description" content="Tempel HTML, ambil Markdown. Bersihkan artikel blogmu dalam hitungan detik dengan logika markdown-enhancer.js.">
+<meta property="og:description" content="Konversi HTML ke Markdown dengan cepat, aman, dan rapi untuk kebutuhan developer.">
+<meta property="og:image" content="https://pbs.twimg.com/media/HAE9QCTbgAEbUm0.jpg">
+<meta property="article:published_time" content="2026-02-01T22:00:00+08:00">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:site" content="@responaja">
+<meta property="twitter:creator" content="@responaja">
+<meta property="twitter:title" content="Frijal Reverse Converter — HTML ke Markdown Otomatis">
+<meta property="twitter:description" content="Script cerdas untuk konversi HTML ke Markdown tanpa ribet.">
+<meta property="twitter:description" content="Bersihkan source code artikel dari tag berlebihan dengan sekali klik.">
+<meta property="twitter:image" content="https://pbs.twimg.com/media/HAE9QCTbgAEbUm0.jpg">
+
+<meta name="theme-color" content="#1360e3">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --text: #1e293b; --accent: #1360e3; --border: #e2e8f0; }
+        @media (prefers-color-scheme: dark) { :root { --bg: #0f172a; --text: #f1f5f9; --border: #334155; } }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 100%; width: 100%; background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
+        h1 { color: var(--accent); text-align: center; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        label { font-weight: bold; margin-bottom: 8px; display: block; }
+        textarea { width: 100%; height: 800px; padding: 15px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--text); font-family: monospace; font-size: 13px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+        .hint { font-size: 0.85rem; opacity: 0.7; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1><i class="fa-solid fa-rotate"></i> Reverse Markdown Converter</h1>
+    <p style="text-align:center">Panduan: Tempel HTML di kiri, ambil Markdown di kanan.</p>
+
+    <div class="grid">
+        <div class="box">
+            <label>Raw HTML (Full Document)</label>
+            <textarea id="inputHTML" oninput="doReverse()" placeholder="Tempel kode HTML di sini..."></textarea>
+        </div>
+        <div class="box">
+            <label>Clean Markdown (Hasil Format MD)</label>
+            <textarea id="outputMD" readonly placeholder="Hasil konversi otomatis..."></textarea>
+        </div>
+    </div>
+    <div class="hint">Didesain khusus mengikuti logika <strong>markdown-enhancer.js</strong></div>
+</div>
+
+<script>
+function doReverse() {
+    let html = document.getElementById('inputHTML').value;
+    if (!html) { document.getElementById('outputMD').value = ""; return; }
+
+    let md = html
+        // 1. Tebal (Strong & B) -> Hanya yang polos tanpa atribut
+        // Jika ada <strong class="red"> tetap jadi HTML, jika <strong> polos jadi **
+        .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
+
+        // 2. Miring (Em & I) -> Hanya yang polos (Tanpa class/FontAwesome)
+        // Regex ini memastikan tidak ada karakter lain (seperti class=) di dalam tag pembuka
+        .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
+
+        // 3. Link -> [text](url)
+        // Kita hanya ambil link standar. Jika ada class di <a>, biarkan tetap HTML.
+        .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
+            // Jika tag <a> punya class atau id, biarkan jadi HTML murni
+            return match.includes('class=') || match.includes('id=') ? match : `[${text}](${url})`;
+        })
+
+        // 4. Inline Code -> `text`
+        .replace(/<code>(.*?)<\/code>/gi, '`$1`');
+
+    document.getElementById('outputMD').value = md;
+}
+</script>
+</body>
+</html>
