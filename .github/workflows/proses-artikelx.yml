@@ -53,6 +53,9 @@ jobs:
       - name: 🧹 Sterilize Schema (Node.js)
         run: node ext/clean-schema.js artikelx/
 
+      - name: 📝 Convert HTML Tags to Markdown (Node.js)
+        run: node ext/html-to-markdown.js
+
       - name: Replace Content (Perl)
         run: |
           set -euo pipefail
