@@ -1,0 +1,24 @@
+name: Bulk Clean Articles
+
+on:
+  workflow_dispatch: # Jalankan manual dari menu Actions GitHub
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run cleaning script
+        run: node ext/html-to-markdown.js
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: mass clean inline HTML to markdown in target folders"
