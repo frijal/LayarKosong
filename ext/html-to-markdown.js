@@ -1,5 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Helper karena di ESM tidak ada __dirname secara default
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Karena file ini ada di folder 'ext', kita perlu naik satu level ke root
+const rootDir = path.join(__dirname, '..');
 
 function cleanHTML(html) {
     return html
@@ -17,13 +24,14 @@ function processFolder(dir) {
         return;
     }
 
-    fs.readdirSync(dir).forEach(file => {
+    const files = fs.readdirSync(dir);
+    
+    files.forEach(file => {
         let fullPath = path.join(dir, file);
         
         if (fs.lstatSync(fullPath).isDirectory()) {
             processFolder(fullPath);
         } else {
-            // Syarat mutlak: Harus .html DAN bukan index.html
             const isHtml = file.toLowerCase().endsWith('.html');
             const isIndex = file.toLowerCase() === 'index.html';
 
@@ -52,8 +60,9 @@ const targetFolders = [
     'warta-tekno'
 ];
 
-console.log('🚀 Memulai operasi "Layar Kosong Bersih" (Kecuali index.html)...');
+console.log('🚀 Memulai operasi "Layar Kosong Bersih" via ESM...');
 targetFolders.forEach(folder => {
-    processFolder(path.join(__dirname, folder));
+    // Arahkan ke folder di root repository
+    processFolder(path.join(rootDir, folder));
 });
-console.log('🏁 Selesai! 800+ Artikel telah diproses dengan aman.');
+console.log('🏁 Selesai!');
