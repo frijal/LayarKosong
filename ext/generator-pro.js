@@ -13,9 +13,9 @@ const CONFIG = {
   rootDir: path.join(__dirname, '..'),
   artikelDir: path.join(__dirname, '..', 'artikel'),
   templateKategori: path.join(__dirname, '..', 'artikel', '-', 'template-kategori.html'),
-  masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
-  jsonOut: path.join(__dirname, '..', 'artikel.json'),
-  sitemapTxt: path.join(__dirname, '..', 'sitemap.txt'),
+  masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'), // Source (Read-Only)
+  jsonOut: path.join(__dirname, '..', 'artikel.json'),               // Output (Etalase)
+  sitemapTxt: path.join(__dirname, '..', 'sitemap.txt'),            // Cache System
 
   // Output Sitemaps
   xmlIndexOut: path.join(__dirname, '..', 'sitemap.xml'),
@@ -130,228 +130,175 @@ const buildRss = (title, items, rssLink, description) => {
 };
 
 // ===================================================================
-// CORE PROCESSOR V7.1 (HYBRID - EFFICIENT & COMPLETE)
+// CORE PROCESSOR V8.2 (HYBRID GUARDIAN)
 // ===================================================================
 const generate = async () => {
-  console.log('🚀 Memulai Generator V7.1 (Hybrid Mode)...');
+  console.log('🚀 Memulai Generator V8.2 (Hybrid Mode: Efisien & Protektif)...');
 
   try {
-    // 1. BACA SITEMAP.TX SEBAGAI CACHE
+    // 1. Baca Cache (Sitemap.txt) & Master JSON
     const sitemapContent = await fs.readFile(CONFIG.sitemapTxt, 'utf8').catch(() => '');
-    const processedUrls = new Set(sitemapContent.split('\n').map(line => line.trim()).filter(line => line !== ''));
+    const processedUrls = new Set(sitemapContent.split('\n').map(l => l.trim()).filter(l => l !== ''));
 
-    // 2. SCAN ARTIKEL DI DISK
+    const masterRaw = await fs.readFile(CONFIG.masterJson, 'utf8').catch(() => '{}');
+    const masterData = JSON.parse(masterRaw);
+
+    // 2. Scan File di Disk
     const filesOnDisk = (await fs.readdir(CONFIG.artikelDir)).filter(f => f.endsWith('.html'));
-
-    // 3. MUAT/INISIALISASI JSON
-    const masterContent = await fs.readFile(CONFIG.masterJson, 'utf8').catch(() => '{}');
-    let grouped = JSON.parse(masterContent);
-
-    let newArticlesCount = 0;
-    let skipArticlesCount = 0;
-    let allItemsFlat = [];
     const diskSet = new Set(filesOnDisk);
-    const validFilesSet = new Set();
 
-    // 4. PROSES FILE BARU ATAU YANG BELUM ADA DI CACHE
-    for (const file of filesOnDisk) {
-      const fileNameOnly = file.replace('.html', '');
-      const tempContent = await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
-      const title = extractTitle(tempContent);
-      const category = titleToCategory(title);
+    let finalRootData = {};
+    let allItemsFlat = [];
+    let processedFilesSet = new Set();
+    let validFilesForCleaning = new Set();
+
+    // 3. PROSES DATA DARI MASTER (Read-Only)
+    for (const [category, articles] of Object.entries(masterData)) {
       const catSlug = slugify(category);
+      for (const art of articles) {
+        const fileName = art[1];
+        if (diskSet.has(fileName)) {
+          const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${fileName.replace('.html', '')}/`;
 
-      // Konstruksi URL Final
-      const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${fileNameOnly}/`;
+          if (!finalRootData[category]) finalRootData[category] = [];
+          finalRootData[category].push(art);
 
-      // CEK CACHE: Skip jika sudah diproses sebelumnya
-      if (processedUrls.has(finalUrl)) {
-        skipArticlesCount++;
+          processedFilesSet.add(fileName);
+          validFilesForCleaning.add(`${catSlug}/${fileName}`);
+          allItemsFlat.push({ title: art[0], file: fileName, img: art[2], lastmod: art[3], desc: art[4], category, loc: finalUrl });
 
-        // Tetap tambahkan ke struktur untuk konsistensi
-        if (grouped[category]) {
-          const existingArticle = grouped[category].find(a => a[1] === file);
-          if (existingArticle) {
-            validFilesSet.add(`${catSlug}/${file}`);
-            allItemsFlat.push({
-              title: existingArticle[0],
-              file: existingArticle[1],
-              img: existingArticle[2],
-              lastmod: existingArticle[3],
-              desc: existingArticle[4],
-              category: category,
-              loc: finalUrl
-            });
+          // Cek Cache: Hanya proses HTML jika belum pernah atau ada perubahan
+          if (!processedUrls.has(finalUrl)) {
+            console.log(`♻️  Mendistribusikan artikel master: ${fileName}`);
+            await processAndDistribute(fileName, category, finalUrl);
+            processedUrls.add(finalUrl);
           }
         }
-        continue;
       }
-
-      // PROSES ARTIKEL BARU/UPDATE
-      console.log(`✨ Memproses artikel baru: [${category}] ${title}`);
-
-      const pubDate = extractPubDate(tempContent) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
-      const desc = extractDesc(tempContent);
-      const img = extractImage(tempContent, file);
-      const dataArt = [title, file, img, formatISO8601(pubDate), desc];
-
-      // Update JSON struktur
-      if (!grouped[category]) grouped[category] = [];
-      const existingIdx = grouped[category].findIndex(a => a[1] === file);
-      if (existingIdx > -1) grouped[category][existingIdx] = dataArt;
-      else grouped[category].push(dataArt);
-
-      // DISTRIBUSI & AUTO-FIX HTML
-      const destFolder = path.join(CONFIG.rootDir, catSlug);
-      await fs.mkdir(destFolder, { recursive: true });
-
-      let content = tempContent;
-      content = content.replace(
-        /<link\s+rel=["']canonical["']\s+href=["'][^"']+["']\s*\/?>/i,
-        `<link rel="canonical" href="${finalUrl}">`
-      );
-      content = content.replace(
-        /<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>/i,
-        `<meta property="og:url" content="${finalUrl}">`
-      );
-
-      // Fix URL internal
-      const oldUrlPattern = new RegExp(`${CONFIG.baseUrl}/artikel/${fileNameOnly}`, 'g');
-      content = content.replace(oldUrlPattern, finalUrl);
-      content = content.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1/');
-
-      await fs.writeFile(path.join(destFolder, file), content);
-
-      // Tambahkan ke set dan cache
-      validFilesSet.add(`${catSlug}/${file}`);
-      processedUrls.add(finalUrl);
-      newArticlesCount++;
-
-      allItemsFlat.push({
-        title: title,
-        file: file,
-        img: img,
-        lastmod: dataArt[3],
-        desc: desc,
-        category: category,
-        loc: finalUrl
-      });
     }
 
-    console.log(`📊 Statistik: ${newArticlesCount} Baru/Update, ${skipArticlesCount} Lewati (Cached).`);
+    // 4. AUTO-DISCOVERY (File baru yang belum ada di Master)
+    for (const file of filesOnDisk) {
+      if (!processedFilesSet.has(file)) {
+        console.log(`✨ Menemukan file baru: ${file}`);
+        const content = await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
+        const title = extractTitle(content);
+        const category = titleToCategory(title);
+        const catSlug = slugify(category);
+        const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
 
-    // 5. SMART CLEANING (Hapus file usang di folder kategori)
+        const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
+        const newData = [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)];
+
+        if (!finalRootData[category]) finalRootData[category] = [];
+        finalRootData[category].push(newData);
+
+        validFilesForCleaning.add(`${catSlug}/${file}`);
+        processedUrls.add(finalUrl);
+        await processAndDistribute(file, category, finalUrl, content);
+
+        allItemsFlat.push({ title, file, img: newData[2], lastmod: newData[3], desc: newData[4], category, loc: finalUrl });
+      }
+    }
+
+    // 5. SMART CLEANING (Proteksi index.html)
     for (const catSlug of VALID_CATEGORIES) {
       const folderPath = path.join(CONFIG.rootDir, catSlug);
       await fs.mkdir(folderPath, { recursive: true });
       const diskFiles = await fs.readdir(folderPath).catch(() => []);
 
       for (const file of diskFiles) {
-        // Hapus file .html jika: bukan index.html DAN tidak terdaftar di validFilesSet
-        if (file.endsWith('.html') && file !== 'index.html' && !validFilesSet.has(`${catSlug}/${file}`)) {
+        // HANYA hapus file .html yang BUKAN index.html dan tidak ada di data valid
+        if (file.endsWith('.html') && file !== 'index.html' && !validFilesForCleaning.has(`${catSlug}/${file}`)) {
           console.log(`🗑️  Menghapus file usang: ${catSlug}/${file}`);
           await fs.unlink(path.join(folderPath, file));
-
-          // Hapus juga dari cache jika ada
           const urlToRemove = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
           processedUrls.delete(urlToRemove);
         }
       }
     }
 
-    // 6. URUTKAN & SORTIR DATA
+    // 6. SORTING & SAVING (Sesuai Logika V7.1)
     allItemsFlat.sort((a, b) => new Date(b.lastmod) - new Date(a.lastmod));
-    Object.keys(grouped).forEach(cat => {
-      grouped[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
-    });
+    for (const cat in finalRootData) finalRootData[cat].sort((a, b) => new Date(b[3]) - new Date(a[3]));
 
-    // 7. UPDATE FILE UTAMA JIKA ADA PERUBAHAN
-    if (newArticlesCount > 0 || skipArticlesCount === 0) {
-      // Update cache file (sitemap.txt)
-      const sortedUrls = Array.from(processedUrls).sort();
-      await fs.writeFile(CONFIG.sitemapTxt, sortedUrls.join('\n'));
+    // Update Cache (sitemap.txt) & Root JSON
+    await fs.writeFile(CONFIG.sitemapTxt, Array.from(processedUrls).sort().join('\n'));
+    await fs.writeFile(CONFIG.jsonOut, JSON.stringify(finalRootData, null, 2));
 
-      // Update JSON files
-      await fs.writeFile(CONFIG.masterJson, JSON.stringify(grouped, null, 2));
-      await fs.writeFile(CONFIG.jsonOut, JSON.stringify(grouped, null, 2));
+    // 7. GENERATE XML SITEMAPS & RSS
+    let xmlPosts = '', xmlImages = '', xmlVideos = '';
+    for (const item of allItemsFlat) {
+      xmlPosts += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n  </url>\n`;
+      xmlImages += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
 
-      // 8. GENERATE SITEMAP XML
-      let xmlPosts = '';
-      let xmlImages = '';
-      let xmlVideos = '';
-
-      for (const item of allItemsFlat) {
-        xmlPosts += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n  </url>\n`;
-        xmlImages += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <image:image>\n      <image:loc>${item.img}</image:loc>\n      <image:caption><![CDATA[${item.title}]]></image:caption>\n    </image:image>\n  </url>\n`;
-
-        const content = await fs.readFile(path.join(CONFIG.artikelDir, item.file), 'utf8');
-        const vids = extractVideos(content, item.title, item.desc).filter(v => v.loc && !v.loc.includes('${'));
-        vids.forEach(v => {
-          xmlVideos += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <video:video>\n      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n      <video:title><![CDATA[${v.title}]]></video:title>\n      <video:description><![CDATA[${v.description}]]></video:description>\n      <video:player_loc>${v.loc.replace(/&/g, '&amp;')}</video:player_loc>\n    </video:video>\n  </url>\n`;
-        });
-      }
-
-      const xslHeader = `<?xml version="1.0" encoding="UTF-8"?>\n\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
-      const latestMod = allItemsFlat[0]?.lastmod || formatISO8601(new Date());
-
-      const writePromises = [
-        fs.writeFile(CONFIG.xmlIndexOut, `${xslHeader}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n</sitemapindex>`),
-        fs.writeFile(CONFIG.xmlPostsOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlPosts}</urlset>`),
-        fs.writeFile(CONFIG.xmlImagesOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlImages}</urlset>`),
-        fs.writeFile(CONFIG.xmlVideosOut, `${xslHeader}<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${xmlVideos}</urlset>`),
-        fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`, `Feed artikel terbaru`))
-      ];
-
-      // 9. LANDING PAGE KATEGORI
-      const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch((err) => {
-        console.warn("⚠️ Template kategori tidak ditemukan:", err.message);
-        return null;
+      const content = await fs.readFile(path.join(CONFIG.artikelDir, item.file), 'utf8');
+      const vids = extractVideos(content, item.title, item.desc).filter(v => v.loc && !v.loc.includes('${'));
+      vids.forEach(v => {
+        xmlVideos += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <video:video>\n      <video:thumbnail_loc>${v.thumbnail}</video:thumbnail_loc>\n      <video:title><![CDATA[${v.title}]]></video:title>\n      <video:description><![CDATA[${v.description}]]></video:description>\n      <video:player_loc>${v.loc.replace(/&/g, '&amp;')}</video:player_loc>\n    </video:video>\n  </url>\n`;
       });
-
-      if (templateHTML) {
-        for (const [cat, articles] of Object.entries(grouped)) {
-          if (articles.length === 0) continue;
-
-          const slug = slugify(cat);
-          const catItems = allItemsFlat.filter(f => f.category === cat);
-
-          // Generate RSS Kategori
-          const rssFilename = `feed-${slug}.xml`;
-          const rssUrl = `${CONFIG.baseUrl}/${rssFilename}`;
-          writePromises.push(
-            fs.writeFile(
-              path.join(CONFIG.rootDir, rssFilename),
-                         buildRss(`${cat} - Layar Kosong`, catItems, rssUrl, `Feed kategori ${cat}`)
-            )
-          );
-
-          // Generate Landing Page Kategori
-          const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
-          const description = `Kumpulan lengkap artikel, tutorial, dan catatan tentang ${cat}.`;
-          const canonicalCat = `${CONFIG.baseUrl}/${slug}/`;
-
-          let pageContent = templateHTML
-          .replace(/%%TITLE%%/g, sanitizeTitle(cat))
-          .replace(/%%DESCRIPTION%%/g, description)
-          .replace(/%%CATEGORY_NAME%%/g, cat)
-          .replace(/%%RSS_URL%%/g, rssUrl)
-          .replace(/%%CANONICAL_URL%%/g, canonicalCat)
-          .replace(/%%ICON%%/g, icon);
-
-          const landingPagePath = path.join(CONFIG.rootDir, slug, 'index.html');
-          writePromises.push(fs.writeFile(landingPagePath, pageContent));
-        }
-      }
-
-      await Promise.all(writePromises);
-      console.log(`✅ SELESAI! ${newArticlesCount} artikel baru diproses.`);
-    } else {
-      console.log('☕ Tidak ada perubahan. Generator dalam mode idle.');
     }
 
+    const xslHeader = `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/${CONFIG.xslLink}"?>\n`;
+    const latestMod = allItemsFlat[0]?.lastmod || formatISO8601(new Date());
+
+    await fs.writeFile(CONFIG.xmlIndexOut, `${xslHeader}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${CONFIG.baseUrl}/sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/image-sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n  <sitemap><loc>${CONFIG.baseUrl}/video-sitemap-1.xml</loc><lastmod>${latestMod}</lastmod></sitemap>\n</sitemapindex>`);
+    await fs.writeFile(CONFIG.xmlPostsOut, `${xslHeader}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlPosts}</urlset>`);
+    await fs.writeFile(CONFIG.xmlImagesOut, `${xslHeader}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlImages}</urlset>`);
+    await fs.writeFile(CONFIG.xmlVideosOut, `${xslHeader}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${xmlVideos}</urlset>`);
+    await fs.writeFile(CONFIG.rssOut, buildRss('Layar Kosong', allItemsFlat.slice(0, CONFIG.rssLimit), `${CONFIG.baseUrl}/rss.xml`, `Feed artikel terbaru`));
+
+    // 8. LANDING PAGE KATEGORI (Clean URL Logic V6.9)
+    const templateHTML = await fs.readFile(CONFIG.templateKategori, 'utf8').catch(() => null);
+    if (templateHTML) {
+      for (const [cat, articles] of Object.entries(finalRootData)) {
+        const slug = slugify(cat);
+        const catItems = allItemsFlat.filter(f => f.category === cat);
+        const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
+
+        // RSS Kategori
+        await fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, catItems, rssUrl, `Feed kategori ${cat}`));
+
+        // index.html Kategori (Landing Page)
+        const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
+        const pageContent = templateHTML
+        .replace(/%%TITLE%%/g, sanitizeTitle(cat))
+        .replace(/%%DESCRIPTION%%/g, `Kumpulan lengkap artikel tentang ${cat}.`)
+        .replace(/%%CATEGORY_NAME%%/g, cat)
+        .replace(/%%RSS_URL%%/g, rssUrl)
+        .replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/${slug}/`)
+        .replace(/%%ICON%%/g, icon);
+
+        await fs.writeFile(path.join(CONFIG.rootDir, slug, 'index.html'), pageContent);
+      }
+    }
+
+    console.log(`✅ SELESAI! Root JSON terupdate, Landing Page aman, Master tetap Suci.`);
+
   } catch (err) {
-    console.error('❌ Error:', err);
+    console.error('❌ Error Fatal:', err);
   }
 };
+
+// Helper untuk Distribusi & Perbaikan HTML
+async function processAndDistribute(file, category, finalUrl, preloadedContent = null) {
+  const catSlug = slugify(category);
+  const destFolder = path.join(CONFIG.rootDir, catSlug);
+  await fs.mkdir(destFolder, { recursive: true });
+
+  let content = preloadedContent || await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
+
+  // Fix Canonical & OG URL
+  content = content.replace(/<link\s+rel=["']canonical["']\s+href=["'][^"']+["']\s*\/?>/i, `<link rel="canonical" href="${finalUrl}">`)
+  .replace(/<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>/i, `<meta property="og:url" content="${finalUrl}">`);
+
+  // Fix Internal Paths (Logika V6.9)
+  const fileNameOnly = file.replace('.html', '');
+  const oldUrlPattern = new RegExp(`${CONFIG.baseUrl}/artikel/${fileNameOnly}`, 'g');
+  content = content.replace(oldUrlPattern, finalUrl);
+  content = content.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1/');
+
+  await fs.writeFile(path.join(destFolder, file), content);
+}
 
 generate();
