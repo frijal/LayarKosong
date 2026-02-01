@@ -1,8 +1,182 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux</title><meta content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust." name=description><style>:root{color-scheme:light dark;--bg:#fdfdfd;--text:#111;--accent:#1793d1;--card:#fff;--border:#ddd}@media (prefers-color-scheme:dark){:root{--bg:#121212;--text:#eee;--accent:#1793d1;--card:#1c1c1c;--border:#333}}body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;margin:0;line-height:1.7}header{text-align:center;padding:2rem 1rem 1rem}header img{width:90px;height:90px}main{max-width:960px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:0 5px 20px rgba(0,0,0,.08)}h1,h2,h3{color:var(--accent)}pre{background:#000;color:#0f0;padding:1rem;border-radius:8px;overflow-x:auto}code{background:rgba(0,0,0,.1);padding:3px 6px;border-radius:4px}ul li{margin-bottom:.5rem}.share{text-align:center;margin-top:2rem}footer{text-align:center;padding:2rem;font-size:.9em;opacity:.8}.fb-comments{margin-top:2rem}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust." name=ai:summary><meta content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust." name=ai:prompt_hint><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux","description":"Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.","articleSection":"Sistem Terbuka","keywords":"arch, error, expired, fix, gpg, invalid, key, layar kosong, linux, memperbaiki, signature, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/fix-gpg-key-error.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.033+00:00","dateModified":"2025-10-13T21:14:36.033+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux","item":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/"}]}]}</script><link href=https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/ property=og:url><meta content="Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux" property=og:title><meta content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/fix-gpg-key-error.webp property=og:image><meta content="Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/fix-gpg-key-error.webp name=twitter:image><meta content=https://dalam.web.id/img/fix-gpg-key-error.webp itemprop=image><header><img alt="Arch Linux Logo" src=/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp><h1>💾 Memperbaiki Error “GPG Key Error (Invalid/Expired Signature)”</h1><div id=iposbrowser></div><p>Error ini muncul ketika kunci verifikasi paket (GPG key) sudah kedaluwarsa, rusak, atau belum diimpor dengan benar. Biasanya terlihat saat update sistem dengan pacman atau paru.</header><main><section><h2>⚠️ Contoh Pesan Error</h2><pre><code>error: failed to commit transaction (invalid or corrupted package)
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux</title>
+<meta name="description" content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.">
+<!-- 🔎 SEO Open Graph -->
+<!-- 🐦 Twitter Card -->
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #fdfdfd;
+  --text: #111;
+  --accent: #1793d1;
+  --card: #fff;
+  --border: #ddd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eee;
+    --accent: #1793d1;
+    --card: #1c1c1c;
+    --border: #333;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.7;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header img {
+  width: 90px;
+  height: 90px;
+}
+main {
+  max-width: 960px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+pre {
+  background: #000;
+  color: #0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+code {
+  background: rgba(0,0,0,0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+ul li { margin-bottom: .5rem; }
+.share { text-align: center; margin-top: 2rem; }
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+.fb-comments { margin-top: 2rem; }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.">
+<meta name="ai:prompt_hint" content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/">
+    <meta property="og:title" content="Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux">
+    <meta property="og:description" content="Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/fix-gpg-key-error.webp">
+    <meta property="og:image:alt" content="Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/fix-gpg-key-error.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/fix-gpg-key-error.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux","description":"Panduan lengkap mengatasi GPG key error di Arch Linux dan turunannya: invalid, expired, atau unknown trust.","articleSection":"Sistem Terbuka","keywords":"arch, error, expired, invalid, layar kosong, linux, memperbaiki, signature, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/fix-gpg-key-error.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.033+00:00","dateModified":"2025-10-13T21:14:36.033+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Memperbaiki Error “GPG Key Error (Invalid or Expired Signature)” di Arch Linux","item":"https://dalam.web.id/sistem-terbuka/fix-gpg-key-error/"}]}]}</script>
+</head>
+<body>
+<header>
+  <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
+  <h1>💾 Memperbaiki Error “GPG Key Error (Invalid/Expired Signature)”</h1>
+<div id="iposbrowser"></div>
+  <p>Error ini muncul ketika kunci verifikasi paket (GPG key) sudah kedaluwarsa, rusak, atau belum diimpor dengan benar. Biasanya terlihat saat update sistem dengan pacman atau paru.</p>
+</header>
+<main>
+<section>
+  <h2>⚠️ Contoh Pesan Error</h2>
+  <pre><code>error: failed to commit transaction (invalid or corrupted package)
 error: GPGME error: No data
 error: key 1234567890ABCDEF could not be looked up remotely
-:: File /var/cache/pacman/pkg/... is corrupted (invalid or corrupted package (PGP signature))</code></pre><p>Pesan ini menandakan pacman tidak bisa memverifikasi integritas paket karena kunci GPG-nya bermasalah.</section><section><h2>🔍 Penyebab Umum</h2><ul><li>Kunci GPG milik developer Arch sudah kedaluwarsa.<li>Database keyring belum diperbarui setelah lama tidak update.<li>Masalah sinkronisasi waktu sistem (clock drift).</ul></section><section><h2>🧭 Langkah-Langkah Memperbaiki</h2><h3>1️⃣ Perbarui Keyring</h3><pre><code>sudo pacman -Sy archlinux-keyring</code></pre><p>Langkah ini memperbarui kumpulan kunci resmi yang digunakan untuk menandatangani paket Arch.<h3>2️⃣ Sinkronkan Semua Kunci</h3><pre><code>sudo pacman-key --init
-sudo pacman-key --populate archlinux</code></pre><p>Jika kamu menggunakan distro turunan (CachyOS, EndeavourOS, Garuda), tambahkan keyring mereka juga:<pre><code>sudo pacman-key --populate cachyos endeavouros garuda</code></pre><h3>3️⃣ Jika Masih Error, Refresh Manual</h3><pre><code>sudo pacman-key --refresh-keys</code></pre><p>Perintah ini akan mengunduh ulang semua kunci dari server keyring Arch. Butuh koneksi internet aktif.<h3>4️⃣ Perbaiki Waktu Sistem</h3><pre><code>timedatectl status
-sudo timedatectl set-ntp true</code></pre><p>Jika jam sistem tidak akurat, GPG bisa gagal memverifikasi tanda tangan paket.</section><section><h2>💡 Tips Tambahan</h2><ul><li>Gunakan server keyring alternatif jika server utama lambat:</ul><pre><code>sudo pacman-key --refresh-keys --keyserver keyserver.ubuntu.com</code></pre><ul><li>Jika kamu pakai <code>paru</code> atau <code>yay</code>, bisa bersihkan cache GPG:</ul><pre><code>rm -rf ~/.cache/paru/clone
-rm -rf ~/.gnupg</code></pre><p>Setelah itu, jalankan ulang langkah 1–3.</section><section><h2>✅ Kesimpulan</h2><p>Masalah GPG Key Error umum terjadi pada sistem Arch Linux yang jarang diperbarui. Solusi paling aman adalah memperbarui keyring dan menyegarkan semua kunci GPG menggunakan perintah di atas. Setelah itu, coba ulangi update sistem dengan:<pre><code>sudo pacman -Syu</code></pre></section><section class=share><div id=pesbukdiskus></div><div id=related-articles-grid></div></section></main><footer>🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤</footer><script>window.onload=()=>window.scrollTo({top:0,behavior:"smooth"})</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+:: File /var/cache/pacman/pkg/... is corrupted (invalid or corrupted package (PGP signature))</code></pre>
+  <p>Pesan ini menandakan pacman tidak bisa memverifikasi integritas paket karena kunci GPG-nya bermasalah.</p>
+</section>
+<section>
+  <h2>🔍 Penyebab Umum</h2>
+  <ul>
+    <li>Kunci GPG milik developer Arch sudah kedaluwarsa.</li>
+    <li>Database keyring belum diperbarui setelah lama tidak update.</li>
+    <li>Masalah sinkronisasi waktu sistem (clock drift).</li>
+  </ul>
+</section>
+<section>
+  <h2>🧭 Langkah-Langkah Memperbaiki</h2>
+  <h3>1️⃣ Perbarui Keyring</h3>
+  <pre><code>sudo pacman -Sy archlinux-keyring</code></pre>
+  <p>Langkah ini memperbarui kumpulan kunci resmi yang digunakan untuk menandatangani paket Arch.</p>
+  <h3>2️⃣ Sinkronkan Semua Kunci</h3>
+  <pre><code>sudo pacman-key --init
+sudo pacman-key --populate archlinux</code></pre>
+  <p>Jika kamu menggunakan distro turunan (CachyOS, EndeavourOS, Garuda), tambahkan keyring mereka juga:</p>
+  <pre><code>sudo pacman-key --populate cachyos endeavouros garuda</code></pre>
+  <h3>3️⃣ Jika Masih Error, Refresh Manual</h3>
+  <pre><code>sudo pacman-key --refresh-keys</code></pre>
+  <p>Perintah ini akan mengunduh ulang semua kunci dari server keyring Arch. Butuh koneksi internet aktif.</p>
+  <h3>4️⃣ Perbaiki Waktu Sistem</h3>
+  <pre><code>timedatectl status
+sudo timedatectl set-ntp true</code></pre>
+  <p>Jika jam sistem tidak akurat, GPG bisa gagal memverifikasi tanda tangan paket.</p>
+</section>
+<section>
+  <h2>💡 Tips Tambahan</h2>
+  <ul>
+    <li>Gunakan server keyring alternatif jika server utama lambat:</li>
+  </ul>
+  <pre><code>sudo pacman-key --refresh-keys --keyserver keyserver.ubuntu.com</code></pre>
+  <ul>
+    <li>Jika kamu pakai <code>paru</code> atau <code>yay</code>, bisa bersihkan cache GPG:</li>
+  </ul>
+  <pre><code>rm -rf ~/.cache/paru/clone
+rm -rf ~/.gnupg</code></pre>
+  <p>Setelah itu, jalankan ulang langkah 1–3.</p>
+</section>
+<section>
+  <h2>✅ Kesimpulan</h2>
+  <p>Masalah GPG Key Error umum terjadi pada sistem Arch Linux yang jarang diperbarui.
+  Solusi paling aman adalah memperbarui keyring dan menyegarkan semua kunci GPG menggunakan perintah di atas.
+  Setelah itu, coba ulangi update sistem dengan:</p>
+  <pre><code>sudo pacman -Syu</code></pre>
+</section>
+<section class="share">
+ <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+<footer>
+  🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · dibuat dengan ❤
+</footer>
+<!-- Facebook SDK -->
+<script>
+window.onload = () => window.scrollTo({ top: 0, behavior: "smooth" });
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

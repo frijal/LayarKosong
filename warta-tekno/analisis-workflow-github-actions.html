@@ -1,12 +1,163 @@
-<!doctype html><html class=scroll-smooth lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site</title><meta content="Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien." name=description><meta content="GitHub Actions, CI/CD, deploy branch, rsync github, workflow automation, web development" name=keywords><script src=https://cdn.tailwindcss.com></script><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel=stylesheet><style>body{font-family:'Plus Jakarta Sans',sans-serif}code,pre{font-family:'JetBrains Mono',monospace}.diagram-container{background:#f8fafc;border:2px dashed #e2e8f0;border-radius:1rem;padding:1.5rem;margin:2rem 0}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site","description":"Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien.","articleSection":"Warta Tekno","keywords":"actions, analisis, branch, cerdas, deploy, github, layar kosong, ngoprek, site, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/analisis-workflow-github-actions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-23T07:03:49.508+00:00","dateModified":"2025-10-23T07:03:49.508+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site","item":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/"}]}]}</script><link href=https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/ property=og:url><meta content="Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site" property=og:title><meta content="Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><body class="bg-gray-50 font-sans leading-relaxed text-gray-800"><header class="bg-white sticky shadow-sm top-0 z-50"><div class="flex items-center container justify-between max-w-5xl mx-auto px-6 py-4"><h1 class="font-black text-xl md:text-2xl text-indigo-700 tracking-tighter">LAYAR KOSONG</h1><div id=iposbrowser></div><nav class="font-bold text-sm uppercase hidden md:block text-gray-500 tracking-widest">Dev Log & Automation</nav></div></header><main class="mx-auto container max-w-4xl md:p-8 mt-10 p-4"><div class="mb-16 text-center"><h2 class="mb-6 font-extrabold md:text-6xl text-4xl text-gray-900 tracking-tight">Ngoprek Workflow <span class=text-indigo-600>GitHub Actions</span></h2><p class="text-gray-600 max-w-2xl md:text-2xl mx-auto text-xl">Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Nggak Boros Waktu!</div><section class=mb-12><h3 class="text-sm uppercase tracking-widest font-black mb-4 text-center text-indigo-500">Visual Alur Kerja</h3><div class="text-sm text-gray-500 italic mt-2 text-center">Diagram: Proses sinkronisasi antar branch dengan filter rsync.</div></section><section class="bg-white border border-indigo-50 mb-10 md:p-12 p-8 rounded-3xl shadow-indigo-100/50 shadow-xl"><h2 class="mb-6 font-extrabold text-3xl text-indigo-600">Tujuan Utamanya Apa Sih?</h2><div class="space-y-6 text-gray-700 text-lg"><p>Intinya, workflow ini dibikin buat nge-handle proses <strong class=text-indigo-900>deploy website statis</strong> kamu. Bayangin kamu punya branch <code class="text-indigo-700 bg-indigo-50 px-2 py-1 rounded">main</code> buat nulis kode, artikel, atau aset lainnya. Nah, workflow ini bakal <strong class="text-indigo-900 decoration-indigo-300 text-bold underline">secara otomatis nyalin file-file penting</strong> saja ke branch <code class="text-indigo-700 bg-indigo-50 px-2 py-1 rounded">site</code>.<div class="gap-4 grid md:grid-cols-2 mt-8"><div class="p-6 border rounded-2xl bg-slate-50 border-slate-100"><span class=text-2xl>📋</span><h4 class="font-bold mt-2">Whitelist System</h4><p class="text-sm text-gray-500 mt-1">Cuma nyomot file yang kita izinkan aja. Folder rahasia? Aman!</div><div class="p-6 border rounded-2xl bg-slate-50 border-slate-100"><span class=text-2xl>⚡</span><h4 class="font-bold mt-2">Smart Check</h4><p class="text-sm text-gray-500 mt-1">Kalau nggak ada perubahan konten, dia diem aja. Hemat kuota runner!</div></div></div></section><section class="mt-20 space-y-12"><h2 class="font-black text-center decoration-4 decoration-indigo-500 italic mb-12 md:text-4xl text-3xl text-gray-900 underline">Bongkar Satu per Satu!</h2><article class="md:pl-0 pl-8 relative"><div class="gap-8 items-start md:grid md:grid-cols-12"><div class="flex justify-center md:col-span-1"><span class="flex items-center bg-indigo-600 font-black h-12 justify-center rounded-full shadow-indigo-200 shadow-lg text-white text-xl w-12">1</span></div><div class="p-6 border rounded-2xl bg-white border-gray-100 md:col-span-11 md:p-8 shadow-sm"><h3 class="font-bold mb-4 text-2xl text-gray-900">Pemicu (Triggers)</h3><p class="text-gray-600 text-lg mb-6">Workflow ini bakal "bangun" dan jalan otomatis kalau salah satu dari dua hal ini terjadi:<ul class="mb-6 space-y-3"><li class="flex items-center gap-3"><span class=text-indigo-500>🚀</span> <strong>Push</strong> commit baru ke branch <code>main</code>.<li class="flex items-center gap-3"><span class=text-indigo-500>🖱️</span> Klik tombol <strong>"Run workflow"</strong> manual di GitHub.</ul><pre class="text-sm bg-slate-900 overflow-x-auto p-6 rounded-xl text-indigo-300 leading-relaxed">on:
+<!DOCTYPE html><html lang="id" class="scroll-smooth" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site</title>
+    <meta name="description" content="Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien.">
+    <meta name="keywords" content="GitHub Actions, CI/CD, deploy branch, rsync github, workflow automation, web development">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        pre, code { font-family: 'JetBrains Mono', monospace; }
+        .diagram-container {
+            background: #f8fafc;
+            border: 2px dashed #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/">
+    <meta property="og:title" content="Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site">
+    <meta property="og:description" content="Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site","description":"Bedah tuntas workflow GitHub Actions untuk deploy otomatis dari branch main ke site dengan sistem whitelist file dan deteksi perubahan efisien.","articleSection":"Warta Tekno","keywords":"actions, analisis, branch, cerdas, deploy, github, layar kosong, ngoprek, site, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/analisis-workflow-github-actions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-23T07:03:49.508+00:00","dateModified":"2025-10-23T07:03:49.508+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Ngoprek Workflow GitHub Actions: Deploy Cerdas ke Branch Site","item":"https://dalam.web.id/warta-tekno/analisis-workflow-github-actions/"}]}]}</script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto max-w-5xl px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-black tracking-tighter text-indigo-700">LAYAR KOSONG</h1>
+<div id="iposbrowser"></div>
+            <nav class="hidden md:block text-sm font-bold text-gray-500 uppercase tracking-widest">
+                Dev Log &amp; Automation
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto max-w-4xl p-4 md:p-8 mt-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                Ngoprek Workflow <span class="text-indigo-600">GitHub Actions</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
+                Bedah Tuntas Proses Deploy Cerdas ke Branch 'site' Biar Nggak Boros Waktu!
+            </p>
+        </div>
+        <section class="mb-12">
+            <h3 class="text-sm font-black text-indigo-500 uppercase tracking-widest mb-4 text-center">Visual Alur Kerja</h3>
+            <div class="text-center text-sm text-gray-500 mt-2 italic">Diagram: Proses sinkronisasi antar branch dengan filter rsync.</div>
+        </section>
+        <section class="bg-white p-8 md:p-12 rounded-3xl shadow-xl shadow-indigo-100/50 mb-10 border border-indigo-50">
+            <h2 class="text-3xl font-extrabold text-indigo-600 mb-6">Tujuan Utamanya Apa Sih?</h2>
+            <div class="space-y-6 text-lg text-gray-700">
+                <p>
+                    Intinya, workflow ini dibikin buat nge-handle proses <strong class="text-indigo-900">deploy website statis</strong> kamu. Bayangin kamu punya branch <code class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded">main</code> buat nulis kode, artikel, atau aset lainnya. Nah, workflow ini bakal <strong class="text-indigo-900 text-bold underline decoration-indigo-300">secara otomatis nyalin file-file penting</strong> saja ke branch <code class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded">site</code>.
+                </p>
+                <div class="grid md:grid-cols-2 gap-4 mt-8">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <span class="text-2xl">📋</span>
+                        <h4 class="font-bold mt-2">Whitelist System</h4>
+                        <p class="text-sm text-gray-500 mt-1">Cuma nyomot file yang kita izinkan aja. Folder rahasia? Aman!</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <span class="text-2xl">⚡</span>
+                        <h4 class="font-bold mt-2">Smart Check</h4>
+                        <p class="text-sm text-gray-500 mt-1">Kalau nggak ada perubahan konten, dia diem aja. Hemat kuota runner!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="space-y-12 mt-20">
+            <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-12 italic underline decoration-indigo-500 decoration-4">
+                Bongkar Satu per Satu!
+            </h2>
+            <article class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-1 flex justify-center">
+                        <span class="bg-indigo-600 text-white rounded-full h-12 w-12 flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-200">1</span>
+                    </div>
+                    <div class="md:col-span-11 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Pemicu (Triggers)</h3>
+                        <p class="text-gray-600 mb-6 text-lg">Workflow ini bakal "bangun" dan jalan otomatis kalau salah satu dari dua hal ini terjadi:</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-3"><span class="text-indigo-500">🚀</span> <strong>Push</strong> commit baru ke branch <code>main</code>.</li>
+                            <li class="flex items-center gap-3"><span class="text-indigo-500">🖱️</span> Klik tombol <strong>"Run workflow"</strong> manual di GitHub.</li>
+                        </ul>
+                        <pre class="bg-slate-900 text-indigo-300 p-6 rounded-xl overflow-x-auto text-sm leading-relaxed">on:
   push:
     branches: [main]
-  workflow_dispatch:</pre></div></div></article><article class="md:pl-0 pl-8 relative"><div class="gap-8 items-start md:grid md:grid-cols-12"><div class="flex justify-center md:col-span-1"><span class="flex items-center bg-indigo-600 font-black h-12 justify-center rounded-full shadow-indigo-200 shadow-lg text-white text-xl w-12">2</span></div><div class="p-6 border rounded-2xl bg-white border-gray-100 md:col-span-11 md:p-8 shadow-sm"><h3 class="font-bold mb-4 text-2xl text-gray-900">Izin (Permissions)</h3><p class="text-gray-600 text-lg mb-6">Bagian ini krusial. Kita ngasih "surat izin" biar dia boleh <strong>nulis (write)</strong> ke repo. Kalau nggak, proses push bakal ditolak mentah-mentah.<pre class="text-sm bg-slate-900 overflow-x-auto p-6 rounded-xl text-indigo-300">permissions:
-  contents: write</pre></div></div></article><article class="md:pl-0 pl-8 relative"><div class="gap-8 items-start md:grid md:grid-cols-12"><div class="flex justify-center md:col-span-1"><span class="flex items-center bg-indigo-600 font-black h-12 justify-center rounded-full shadow-indigo-200 shadow-lg text-white text-xl w-12">3</span></div><div class="p-6 border rounded-2xl bg-white border-gray-100 md:col-span-11 md:p-8 shadow-sm"><h3 class="font-bold mb-4 text-2xl text-gray-900">Pekerjaan (Jobs) Utama</h3><p class="text-gray-600 text-lg mb-8">Di sini proses "sulap" file terjadi. Intip langkah kuncinya:<div class=space-y-10><div class="border-l-4 pl-6 border-indigo-100"><h4 class="font-bold text-sm uppercase mb-2 tracking-tighter text-indigo-700">Sinkronisasi File</h4><p class="mb-4 text-gray-600">Pake <code class=text-pink-600>rsync</code> dengan aturan whitelist yang ketat.<pre class="p-4 bg-slate-900 rounded-lg text-xs text-indigo-300">rsync -a --delete \
+  workflow_dispatch:</pre>
+                    </div>
+                </div>
+            </article>
+            <article class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-1 flex justify-center">
+                        <span class="bg-indigo-600 text-white rounded-full h-12 w-12 flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-200">2</span>
+                    </div>
+                    <div class="md:col-span-11 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Izin (Permissions)</h3>
+                        <p class="text-gray-600 mb-6 text-lg">Bagian ini krusial. Kita ngasih "surat izin" biar dia boleh <strong>nulis (write)</strong> ke repo. Kalau nggak, proses push bakal ditolak mentah-mentah.</p>
+                        <pre class="bg-slate-900 text-indigo-300 p-6 rounded-xl overflow-x-auto text-sm">permissions:
+  contents: write</pre>
+                    </div>
+                </div>
+            </article>
+            <article class="relative pl-8 md:pl-0">
+                <div class="md:grid md:grid-cols-12 gap-8 items-start">
+                    <div class="md:col-span-1 flex justify-center">
+                        <span class="bg-indigo-600 text-white rounded-full h-12 w-12 flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-200">3</span>
+                    </div>
+                    <div class="md:col-span-11 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Pekerjaan (Jobs) Utama</h3>
+                        <p class="text-gray-600 mb-8 text-lg">Di sini proses "sulap" file terjadi. Intip langkah kuncinya:</p>
+                        <div class="space-y-10">
+                            <div class="border-l-4 border-indigo-100 pl-6">
+                                <h4 class="font-bold text-indigo-700 uppercase tracking-tighter text-sm mb-2">Sinkronisasi File</h4>
+                                <p class="text-gray-600 mb-4">Pake <code class="text-pink-600">rsync</code> dengan aturan whitelist yang ketat.</p>
+                                <pre class="bg-slate-900 text-indigo-300 p-4 rounded-lg text-xs">rsync -a --delete \
   --include='artikel/***' \
   --include='ext/***' \
   --exclude='*' \
-  source/ deploy_dir/</pre></div><div class="border-l-4 pl-6 border-emerald-100"><h4 class="font-bold text-sm uppercase mb-2 tracking-tighter text-emerald-700">Deteksi Perubahan</h4><p class="mb-4 text-gray-600">Bandingin folder baru sama yang udah live. Kalau isinya sama, ya nggak usah repot-repot deploy!<pre class="p-4 bg-slate-900 rounded-lg text-xs text-emerald-300">if git diff --no-index --quiet deploy_dir/ site/; then
-  echo "changed=false" >> $GITHUB_OUTPUT
-fi</pre></div></div></div></div></article></section><div class=mt-20 id=pesbukdiskus></div><div id=related-articles-grid></div></main><footer class="bg-white border-gray-100 border-t mt-20"><div class="mx-auto container max-w-5xl p-12 text-center text-gray-400"><p class=mb-2>Dibuat dengan ❤️ <span class="font-bold text-indigo-600">dari Balikpapan.</span><p class=text-xs>🄯 2024-2025. Penjelasan ini hanya untuk tujuan edukasi.</div></footer><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script src=/ext/marquee-url.js defer=""></script><script src=/ext/iposbrowser.js defer=""></script><script src=/ext/markdown.js defer=""></script><script src=/ext/pesbukdiskus.js defer=""></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+  source/ deploy_dir/</pre>
+                            </div>
+                            <div class="border-l-4 border-emerald-100 pl-6">
+                                <h4 class="font-bold text-emerald-700 uppercase tracking-tighter text-sm mb-2">Deteksi Perubahan</h4>
+                                <p class="text-gray-600 mb-4">Bandingin folder baru sama yang udah live. Kalau isinya sama, ya nggak usah repot-repot deploy!</p>
+                                <pre class="bg-slate-900 text-emerald-300 p-4 rounded-lg text-xs">if git diff --no-index --quiet deploy_dir/ site/; then
+  echo "changed=false" &gt;&gt; $GITHUB_OUTPUT
+fi</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <div id="pesbukdiskus" class="mt-20"></div><div id="related-articles-grid"></div>
+    </main>
+    <footer class="bg-white border-t border-gray-100 mt-20">
+        <div class="container mx-auto max-w-5xl p-12 text-center text-gray-400">
+            <p class="mb-2">Dibuat dengan ❤️ <span class="text-indigo-600 font-bold"> dari Balikpapan.</span></p>
+            <p class="text-xs">🄯 2024-2025. Penjelasan ini hanya untuk tujuan edukasi.</p>
+        </div>
+    </footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

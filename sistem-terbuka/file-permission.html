@@ -1,2 +1,222 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Kupas Tuntas File Permission di Linux (chmod, chown)</title><meta content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini." name=description><style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg-color:#ffffff;--text-color:#222222;--header-bg:#f4f4f4;--footer-bg:#333333;--footer-text:#f4f4f4;--border-color:#e0e0e0;--link-color:#098642}@media (prefers-color-scheme:dark){:root{--bg-color:#1a1a1a;--text-color:#f4f4f4;--header-bg:#222222;--footer-bg:#111111;--footer-text:#cccccc;--border-color:#444444;--link-color:#16a085}}body,html{height:100%}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;background-color:var(--bg-color);color:var(--text-color);display:flex;flex-direction:column}#page-container{width:100%;max-width:1200px;margin:0 auto;padding:20px;flex:1 0 auto}.page-header{background-color:var(--header-bg);padding:25px;text-align:center;border-bottom:2px solid var(--border-color);margin-bottom:30px;border-radius:8px}.page-header h1{font-size:2.8rem;font-weight:700}article{width:100%}article p{font-size:1.1rem;margin-bottom:1.5rem}article h2{font-size:2rem;margin-top:2.5rem;margin-bottom:1.5rem;border-bottom:2px solid var(--border-color);padding-bottom:10px}.scribd-container{width:100%;margin-top:20px;margin-bottom:10px;border:1px solid var(--border-color);border-radius:8px;overflow:hidden}.scribd-attribution{margin:12px auto 6px auto;font-family:Helvetica,Arial,Sans-serif;font-size:14px;line-height:normal;display:block;text-align:center}.scribd-attribution a{color:var(--link-color);text-decoration:underline}#pesbukdiskus{margin-top:40px;padding-top:20px;border-top:2px solid var(--border-color)}.page-footer{flex-shrink:0;text-align:center;padding:25px;background-color:var(--footer-bg);color:var(--footer-text);margin-top:40px;width:100%}@media (max-width:768px){#page-container{padding:15px}.page-header h1{font-size:2.2rem}article h2{font-size:1.7rem}article p{font-size:1rem}}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini." name=ai:summary><meta content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini." name=ai:prompt_hint><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/file-permission/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/file-permission/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Kupas Tuntas File Permission di Linux (chmod, chown)","description":"Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.","articleSection":"Sistem Terbuka","keywords":"chmod, chown, file, kupas, layar kosong, linux, permission, sistem terbuka, tuntas","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/file-permission.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2014-06-02T12:14:33.017+00:00","dateModified":"2014-06-02T12:14:33.017+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/file-permission/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Kupas Tuntas File Permission di Linux (chmod, chown)","item":"https://dalam.web.id/sistem-terbuka/file-permission/"}]}]}</script><link href=https://dalam.web.id/sistem-terbuka/file-permission/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/sistem-terbuka/file-permission/ property=og:url><meta content="Kupas Tuntas File Permission di Linux (chmod, chown)" property=og:title><meta content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/file-permission.webp property=og:image><meta content="Kupas Tuntas File Permission di Linux (chmod, chown)" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/file-permission.webp name=twitter:image><meta content=https://dalam.web.id/img/file-permission.webp itemprop=image><div id=page-container><header class=page-header><h1>📂 Kupas Tuntas File Permission di Linux</h1><div id=iposbrowser></div></header><main><article><p>Yo, lagi ngoprek server atau sekadar mainan Linux di laptop? Pasti sering banget kan ketemu sama yang namanya <code>chmod 755</code> atau liat tulisan aneh kayak <code>drwxr-xr-x</code> pas lagi <code>ls -l</code>.<p>Itu tuh namanya <strong>File Permission</strong>, alias izin akses file. Ini konsep penting banget buat keamanan sistem Linux. Kalo kita salah setel izin, bisa-bisa file rahasia kita kebaca sama orang lain, atau lebih parah lagi, ada skrip jahat yang bisa dieksekusi!<p>Nah, dokumen di bawah ini ngebahas tuntas soal itu. Ini dokumen lama tapi ilmunya masih relevan banget sampai sekarang. Di sini dijelasin apa itu <strong>Read (r)</strong>, <strong>Write (w)</strong>, sama <strong>Execute (x)</strong>, terus apa maksud angka-angka kayak <strong>755</strong>, <strong>644</strong>, atau <strong>777</strong> (yang ini bahaya!).<p>Langsung aja disimak dokumennya di bawah ini. Lengkap banget buat nambah pemahaman soal "jeroan" Linux.<h2>🔐 File Permission di Linux</h2><p>Kalau kamu sering main di terminal Linux, pasti sudah nggak asing dengan istilah <code>chmod</code> atau <code>chown</code>. Dua perintah ini berhubungan dengan yang namanya <strong>file permission</strong> — sistem hak akses yang menentukan siapa yang bisa membaca, menulis, atau menjalankan sebuah file.<p>Secara sederhana, setiap file atau folder di Linux punya tiga level izin:<ul><li><b>Owner</b> – biasanya pembuat file.<li><b>Group</b> – kelompok pengguna tertentu.<li><b>Others</b> – semua orang di sistem.</ul><h2>Membaca Format Permission</h2><p>Kalau kamu ketik <code>ls -l</code>, kamu akan melihat hasil seperti ini:<pre>-rw-r--r-- 1 rijal users 2048 Nov 2 2025 artikel.txt</pre><p>Bagian pertama (<code>-rw-r--r--</code>) menunjukkan hak akses file. Kita bisa pecah jadi tiga bagian:<ul><li><code>rw-</code> → hak akses untuk pemilik (read + write)<li><code>r--</code> → untuk group (hanya read)<li><code>r--</code> → untuk others (hanya read)</ul><h2>Mengubah Permission</h2><p>Gunakan <code>chmod</code> untuk mengubah permission. Misalnya:<pre>chmod 755 script.sh</pre><p>Artinya: owner bisa baca/tulis/jalankan, sedangkan group dan others hanya bisa baca dan jalankan.<p>Kalau mau ubah kepemilikan file, gunakan <code>chown</code> (change owner) dan <code>chgrp</code> (change group):<pre>sudo chown rijal:staff laporan.txt</pre><h2>Visualisasi & Panduan Lanjut</h2><p>Supaya makin gampang memahami konsep ini, kamu bisa lihat dokumen berikut yang membahas visualisasi dan contoh kasusnya:<div class=scribd-container><iframe class=scribd_iframe_embed data-aspect-ratio=1.334319526627219 data-auto-height=true frameborder=0 height=600 scrolling=no src="https://www.scribd.com/embeds/99271768/content?start_page=1&view_mode=scroll&access_key=key-hqyhizx1ub69uetmtn2" tabindex=0 title="File Permission" width=100%></iframe></div><p class=scribd-attribution><a href=https://www.scribd.com/doc/99271768/File-Permission#from_embed title="View File Permission on Scribd">File Permission</a> by <a href=https://www.scribd.com/user/295579/Rijal-Fakhrul#from_embed title="View Rijal Fakhrul's profile on Scribd">Rijal Fakhrul</a><p>File permission bukan cuma soal keamanan, tapi juga efisiensi kerja di lingkungan multi-user seperti server atau proyek bersama. Dengan paham struktur <code>r-w-x</code>, kamu bisa mengontrol siapa yang boleh ngapain di sistemmu tanpa perlu ribet.<p>Jadi, mulai sekarang kalau lihat permission file, jangan cuma lewat aja — pahami artinya. Karena di Linux, <em>izin menentukan segalanya</em>.<p>Gimana? Udah mulai paham soal <code>chmod</code> dan <code>chown</code>? Atau mungkin punya pertanyaan, pengalaman, atau trik lain seputar *permission* file di Linux?<div id=pesbukdiskus></div><div id=related-articles-grid></div></article></main></div><footer class=page-footer><p>🄯 2025 Frijal's Pages. Dibuat dengan sepenuh hati di Balikpapan.</footer><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kupas Tuntas File Permission di Linux (chmod, chown)</title>
+    <meta name="description" content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.">
+    <style>
+        /* CSS3 Reset Sederhana */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Variabel Warna untuk Tema */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --header-bg: #f4f4f4;
+            --footer-bg: #333333;
+            --footer-text: #f4f4f4;
+            --border-color: #e0e0e0;
+            --link-color: #098642;
+        }
+        /* Deteksi Tema Gelap (Dark Mode) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #f4f4f4;
+                --header-bg: #222222;
+                --footer-bg: #111111;
+                --footer-text: #cccccc;
+                --border-color: #444444;
+                --link-color: #16a085;
+            }
+        }
+        html, body {
+            height: 100%; /* Untuk layout fullscreen */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+        }
+        /* Kontainer Utama (Widescreen & Terpusat) */
+        #page-container {
+            width: 100%;
+            max-width: 1200px; /* Desain Widescreen */
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1 0 auto; /* Mendorong footer ke bawah */
+        }
+        /* Header */
+        .page-header {
+            background-color: var(--header-bg);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+        /* Konten Artikel */
+        article {
+            width: 100%;
+        }
+        article p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        article h2 {
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        /* Kontainer untuk Scribd Iframe */
+        .scribd-container {
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden; /* Menjaga iframe tetap rapi */
+        }
+        /* Atribut dari Scribd (style asli dipindah ke sini) */
+        .scribd-attribution {
+            margin: 12px auto 6px auto;
+            font-family: Helvetica, Arial, Sans-serif;
+            font-size: 14px;
+            line-height: normal;
+            display: block;
+            text-align: center;
+        }
+        .scribd-attribution a {
+            color: var(--link-color); /* Menggunakan warna link dari tema */
+            text-decoration: underline;
+        }
+        /* Kolom Komentar Disqus */
+        #pesbukdiskus {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+        /* Footer */
+        .page-footer {
+            flex-shrink: 0; /* Mencegah footer mengecil */
+            text-align: center;
+            padding: 25px;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            margin-top: 40px;
+            width: 100%;
+        }
+        /* Mobile-Friendly & Responsif */
+        @media (max-width: 768px) {
+            #page-container {
+                padding: 15px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            article h2 {
+                font-size: 1.7rem;
+            }
+            article p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.">
+<meta name="ai:prompt_hint" content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/file-permission/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/file-permission/">
+    <meta property="og:title" content="Kupas Tuntas File Permission di Linux (chmod, chown)">
+    <meta property="og:description" content="Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/file-permission.webp">
+    <meta property="og:image:alt" content="Kupas Tuntas File Permission di Linux (chmod, chown)">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/file-permission.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/file-permission.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/file-permission/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/file-permission/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Kupas Tuntas File Permission di Linux (chmod, chown)","description":"Belajar soal permission file di Linux. Kenapa ada rwx, angka 755, 644, dan gimana cara pakainya pakai chmod. Simak dokumen lengkapnya di sini.","articleSection":"Sistem Terbuka","keywords":"chmod, chown, file, kupas, layar kosong, linux, permission, sistem terbuka, tuntas","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/file-permission.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2014-06-02T12:14:33.017+00:00","dateModified":"2014-06-02T12:14:33.017+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/file-permission/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Kupas Tuntas File Permission di Linux (chmod, chown)","item":"https://dalam.web.id/sistem-terbuka/file-permission/"}]}]}</script>
+</head>
+<body>
+    <div id="page-container">
+        <header class="page-header">
+            <h1>📂 Kupas Tuntas File Permission di Linux</h1>
+<div id="iposbrowser"></div>
+        </header>
+        <main>
+            <article>
+                <p>Yo, lagi ngoprek server atau sekadar mainan Linux di laptop? Pasti sering banget kan ketemu sama yang namanya <code>chmod 755</code> atau liat tulisan aneh kayak <code>drwxr-xr-x</code> pas lagi <code>ls -l</code>.</p>
+                <p>Itu tuh namanya <strong>File Permission</strong>, alias izin akses file. Ini konsep penting banget buat keamanan sistem Linux. Kalo kita salah setel izin, bisa-bisa file rahasia kita kebaca sama orang lain, atau lebih parah lagi, ada skrip jahat yang bisa dieksekusi!</p>
+                <p>Nah, dokumen di bawah ini ngebahas tuntas soal itu. Ini dokumen lama tapi ilmunya masih relevan banget sampai sekarang. Di sini dijelasin apa itu <strong>Read (r)</strong>, <strong>Write (w)</strong>, sama <strong>Execute (x)</strong>, terus apa maksud angka-angka kayak <strong>755</strong>, <strong>644</strong>, atau <strong>777</strong> (yang ini bahaya!).</p>
+                <p>Langsung aja disimak dokumennya di bawah ini. Lengkap banget buat nambah pemahaman soal "jeroan" Linux.</p>
+<h2>🔐 File Permission di Linux</h2>
+      <p>Kalau kamu sering main di terminal Linux, pasti sudah nggak asing dengan istilah <code>chmod</code> atau <code>chown</code>. Dua perintah ini berhubungan dengan yang namanya <strong>file permission</strong> — sistem hak akses yang menentukan siapa yang bisa membaca, menulis, atau menjalankan sebuah file.</p>
+      <p>Secara sederhana, setiap file atau folder di Linux punya tiga level izin:</p>
+      <ul>
+        <li><b>Owner</b> – biasanya pembuat file.</li>
+        <li><b>Group</b> – kelompok pengguna tertentu.</li>
+        <li><b>Others</b> – semua orang di sistem.</li>
+      </ul>
+      <h2>Membaca Format Permission</h2>
+      <p>Kalau kamu ketik <code>ls -l</code>, kamu akan melihat hasil seperti ini:</p>
+      <pre>-rw-r--r-- 1 rijal users 2048 Nov 2 2025 artikel.txt</pre>
+      <p>Bagian pertama (<code>-rw-r--r--</code>) menunjukkan hak akses file. Kita bisa pecah jadi tiga bagian:</p>
+      <ul>
+        <li><code>rw-</code> → hak akses untuk pemilik (read + write)</li>
+        <li><code>r--</code> → untuk group (hanya read)</li>
+        <li><code>r--</code> → untuk others (hanya read)</li>
+      </ul>
+      <h2>Mengubah Permission</h2>
+      <p>Gunakan <code>chmod</code> untuk mengubah permission. Misalnya:</p>
+      <pre>chmod 755 script.sh</pre>
+      <p>Artinya: owner bisa baca/tulis/jalankan, sedangkan group dan others hanya bisa baca dan jalankan.</p>
+      <p>Kalau mau ubah kepemilikan file, gunakan <code>chown</code> (change owner) dan <code>chgrp</code> (change group):</p>
+      <pre>sudo chown rijal:staff laporan.txt</pre>
+      <h2>Visualisasi &amp; Panduan Lanjut</h2>
+      <p>Supaya makin gampang memahami konsep ini, kamu bisa lihat dokumen berikut yang membahas visualisasi dan contoh kasusnya:</p>
+                <div class="scribd-container">
+                    <iframe class="scribd_iframe_embed" title="File Permission" src="https://www.scribd.com/embeds/99271768/content?start_page=1&amp;view_mode=scroll&amp;access_key=key-hqyhizx1ub69uetmtn2" tabindex="0" data-auto-height="true" data-aspect-ratio="1.334319526627219" scrolling="no" width="100%" height="600" frameborder="0"></iframe>
+                </div>
+                <p class="scribd-attribution">
+                    <a title="View File Permission on Scribd" href="https://www.scribd.com/doc/99271768/File-Permission#from_embed">File Permission</a> by <a title="View Rijal Fakhrul's profile on Scribd" href="https://www.scribd.com/user/295579/Rijal-Fakhrul#from_embed">Rijal Fakhrul</a>
+                </p>
+  <p>File permission bukan cuma soal keamanan, tapi juga efisiensi kerja di lingkungan multi-user seperti server atau proyek bersama. Dengan paham struktur <code>r-w-x</code>, kamu bisa mengontrol siapa yang boleh ngapain di sistemmu tanpa perlu ribet.</p>
+      <p>Jadi, mulai sekarang kalau lihat permission file, jangan cuma lewat aja — pahami artinya. Karena di Linux, <em>izin menentukan segalanya</em>.</p>
+<p>Gimana? Udah mulai paham soal <code>chmod</code> dan <code>chown</code>? Atau mungkin punya pertanyaan, pengalaman, atau trik lain seputar *permission* file di Linux?</p>
+                <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+        </main>
+    </div> <footer class="page-footer">
+        <p>🄯 2025 Frijal's Pages. Dibuat dengan sepenuh hati di Balikpapan.</p>
+    </footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

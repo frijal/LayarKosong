@@ -1,2 +1,276 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN</title><meta content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik." name=description><meta content="git, github, github actions, workflow permissions, github_token, security, ci/cd, tutorial git, frijal" name=keywords><link href=https://dalam.web.id/ext/icons/apple-touch-icon.png rel=apple-touch-icon><link href=https://fonts.googleapis.com rel=preconnect><link href=https://fonts.gstatic.com rel=preconnect><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel=stylesheet><link href=/ext/fontawesome.css rel=stylesheet><style>:root{--bg-color:#1a1a1a;--card-bg:#2a2a2a;--text-color:#e0e0e0;--primary-color:#00aaff;--border-color:#444;--header-font:'Poppins',sans-serif;--code-bg:#3c3c3c}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Poppins,sans-serif;background-color:var(--bg-color);color:var(--text-color);line-height:1.7}.container{max-width:900px;margin:0 auto;padding:20px}header{text-align:center;padding:40px 0;border-bottom:1px solid var(--border-color);margin-bottom:40px}header h1{font-size:2.5rem;font-weight:700;color:#fff;margin-bottom:10px}header p{font-size:1.1rem;color:#aaa}main article{background-color:var(--card-bg);border-radius:12px;padding:30px;border:1px solid var(--border-color)}h2{font-size:2rem;font-weight:600;color:var(--primary-color);margin-top:40px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border-color)}h3{font-size:1.4rem;margin-top:30px;margin-bottom:15px;color:#fff}li,p,ul{font-size:1rem;color:var(--text-color)}strong{color:#fff;font-weight:600}code{background-color:var(--code-bg);color:#f0f0f0;padding:3px 6px;border-radius:5px;font-family:'Courier New',Courier,monospace;font-size:.95rem}blockquote{background-color:rgba(0,170,255,.05);border-left:4px solid var(--primary-color);margin:20px 0;padding:15px 20px;font-style:italic;color:silver}.image-container{margin:40px 0;text-align:center}.image-container img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--border-color)}.image-container figcaption{font-size:.9rem;color:#aaa;margin-top:10px;font-style:italic}.recommendation{padding:20px;margin:40px 0;border-radius:8px}.rec-secure{background-color:#2d4d3f;border-left:5px solid #4dff9d}.rec-flexible{background-color:#2b4556;border-left:5px solid #0af}.recommendation strong{font-size:1.2rem;display:block;margin-bottom:10px}.table-container{overflow-x:auto;margin-top:40px}table{width:100%;border-collapse:collapse;text-align:left}td,th{padding:15px;border-bottom:1px solid var(--border-color)}th{background-color:#333;font-weight:600;color:#fff}tbody tr:hover{background-color:#3a3a3a}footer{text-align:center;padding:40px 20px;margin-top:40px;color:#aaa;font-size:.9rem}@media (max-width:768px){header h1{font-size:2rem}h2{font-size:1.8rem}main article{padding:20px}}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN","description":"Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik.","articleSection":"Warta Tekno","keywords":"actions, baca, github, github_token, izin, layar kosong, mengamankan, permissions, tulis, untuk, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.909+00:00","dateModified":"2025-12-30T09:56:06.909+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN","item":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/"}]}]}</script><link href=https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/ property=og:url><meta content="Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN" property=og:title><meta content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp property=og:image><meta content="Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp name=twitter:image><meta content=https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp itemprop=image><div class=container><header><h1>Mengamankan GitHub Actions</h1><div id=iposbrowser></div><p>Pentingnya Mengatur Izin Workflow untuk <code>GITHUB_TOKEN</code></header><main><article><p>Saat kita membuat automasi dengan GitHub Actions, ada satu aspek krusial yang sering terlewat: keamanan. Pengaturan "Workflow permissions" ini mengontrol seberapa besar "kuasa" yang kita berikan pada skrip automasi kita. Yuk, kita pahami artinya biar repositori kita tetap aman!<div class=image-container><figure><img alt="Pengaturan Workflow Permissions di GitHub" src=https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp><figcaption>Kunci keamanan automasi Anda ada di sini.</figcaption></figure></div><section><h2>1. Izin untuk <code>GITHUB_TOKEN</code></h2><p>Setiap kali GitHub Actions berjalan, ia menggunakan token rahasia sementara bernama <code>GITHUB_TOKEN</code> untuk berinteraksi dengan repositori. Pengaturan ini menentukan level akses standar untuk token tersebut.<h3>Read and write permissions (Izin Baca dan Tulis)</h3><p>Opsi ini memberikan <code>GITHUB_TOKEN</code> kekuasaan penuh. Workflow tidak hanya bisa membaca, tapi juga <strong>menulis/mengubah</strong> data di repositori, seperti push commit baru, membuat rilis, dan lainnya.<blockquote><strong>Analogi:</strong> Ini seperti memberikan kunci master sebuah gedung kepada seorang kontraktor. Dia bisa masuk ke semua ruangan (baca) dan juga merenovasi atau mengubah isi ruangan tersebut (tulis).</blockquote><h3>Read repository contents... (Izin Hanya Baca)</h3><p>Opsi ini membatasi <code>GITHUB_TOKEN</code> agar <strong>hanya bisa membaca</strong> konten. Workflow tidak bisa mengubah apa pun. Ini adalah penerapan "Prinsip Hak Akses Terbatas", standar keamanan yang sangat baik.<blockquote><strong>Analogi:</strong> Ini seperti memberikan kartu akses tamu. Kontraktor bisa masuk dan melihat semua ruangan untuk mengukur (baca), tapi tidak bisa memindahkan barang atau mengecat dinding (tidak bisa tulis).</blockquote><div class="recommendation rec-secure"><strong>💡 Rekomendasi Keamanan</strong><p>Pilih <strong>"Read repository contents and packages permissions"</strong>. Ini adalah praktik terbaik yang direkomendasikan GitHub. Jika ada workflow tertentu yang butuh izin tulis, Anda bisa memberikannya secara spesifik di file <code>.yaml</code> workflow tersebut. Ini jauh lebih aman!</div></section><section><h2>2. Izinkan Actions Membuat & Menyetujui PR</h2><p>Pengaturan ini memberikan kemampuan spesifik kepada workflow untuk membuat <em>Pull Request</em> (PR) baru atau menyetujui PR yang sudah ada. Sangat berguna untuk automasi tingkat lanjut.<blockquote><strong>Analogi:</strong> Ini seperti memberikan wewenang tambahan kepada asisten AI Anda. Selain bisa membaca laporan, ia kini juga bisa mengajukan proposal baru (membuat PR) dan memberikan 'jempol persetujuan' (approve PR) atas nama Anda jika syarat terpenuhi.</blockquote><div class="recommendation rec-flexible"><strong>✅ Rekomendasi Fleksibilitas</strong><p><strong>Biarkan ini tetap tercentang.</strong> Walaupun mungkin belum Anda gunakan sekarang, mengaktifkannya tidak berbahaya dan membuka pintu untuk automasi canggih di masa depan, seperti bot yang meng-update dependensi secara otomatis.</div></section><section><h2>Ringkasan Rekomendasi</h2><div class=table-container><table><thead><tr><th>Pengaturan<th>Pilihan yang Direkomendasikan<th>Alasan Singkat<tbody><tr><td><strong>Workflow permissions</strong><td><strong>Read ... permissions</strong> (Hanya Baca)<td>🔒 Lebih aman (Prinsip Hak Akses Terbatas).<tr><td><strong>Allow Actions to create/approve PR</strong><td>✅ <strong>Aktifkan</strong><td>🤖 Membuka potensi automasi di masa depan.</table></div></section><div id=pesbukdiskus></div><div id=related-articles-grid></div></article></main><footer><p>🄯 2025 Frijal.</footer></div><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN</title>
+    <meta name="description" content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik.">
+    <meta name="keywords" content="git, github, github actions, workflow permissions, github_token, security, ci/cd, tutorial git, frijal">
+    <link rel="apple-touch-icon" href="https://dalam.web.id/ext/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        /* CSS3 Styling untuk Desain Modern & Responsif */
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --text-color: #e0e0e0;
+            --primary-color: #00aaff;
+            --border-color: #444;
+            --header-font: 'Poppins', sans-serif;
+            --code-bg: #3c3c3c;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+        main article {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        p, ul, li {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        strong {
+            color: white;
+            font-weight: 600;
+        }
+        code {
+            background-color: var(--code-bg);
+            color: #f0f0f0;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+        blockquote {
+            background-color: rgba(0, 170, 255, 0.05);
+            border-left: 4px solid var(--primary-color);
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            color: #c0c0c0;
+        }
+        .image-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .image-container figcaption {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .recommendation {
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        .rec-secure {
+            background-color: #2d4d3f;
+            border-left: 5px solid #4dff9d;
+        }
+        .rec-flexible {
+             background-color: #2b4556;
+            border-left: 5px solid #00aaff;
+        }
+        .recommendation strong {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        /* Responsive Table */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            background-color: #333;
+            font-weight: 600;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: #3a3a3a;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            main article { padding: 20px; }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/">
+    <meta property="og:title" content="Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN">
+    <meta property="og:description" content="Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp">
+    <meta property="og:image:alt" content="Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN","description":"Pelajari cara mengamankan repositori dengan mengatur Workflow Permissions di GitHub Actions. Pahami beda Read vs. Write permission untuk GITHUB_TOKEN dan kenapa Read-Only adalah pilihan terbaik.","articleSection":"Warta Tekno","keywords":"actions, baca, github, github_token, izin, layar kosong, mengamankan, permissions, tulis, warta tekno, workflow","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-12-30T09:56:06.909+00:00","dateModified":"2025-12-30T09:56:06.909+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Mengamankan GitHub Actions: Izin Baca vs. Tulis untuk GITHUB_TOKEN","item":"https://dalam.web.id/warta-tekno/github-actions-workflow-permissions/"}]}]}</script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mengamankan GitHub Actions</h1>
+<div id="iposbrowser"></div>
+            <p>Pentingnya Mengatur Izin Workflow untuk <code>GITHUB_TOKEN</code></p>
+        </header>
+        <main>
+            <article>
+                <p>Saat kita membuat automasi dengan GitHub Actions, ada satu aspek krusial yang sering terlewat: keamanan. Pengaturan "Workflow permissions" ini mengontrol seberapa besar "kuasa" yang kita berikan pada skrip automasi kita. Yuk, kita pahami artinya biar repositori kita tetap aman!</p>
+                <div class="image-container">
+                    <figure>
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUOwo5Jn2Du-kshrIfpc2PrVjNeEdUr6ZZ2UGAX2Y4iwQdKEbwpfaQV8pWMv4CCyR_aBCW_WnX5UEKaSfIW-B3z9cIh5T3HVdtfSZygnxAna3ZE7kr7WFIzUX9akN7G9CAjaozXYMI8j-8cseEVhHZ8oEIj0JY1ddQSNhwnmf3F9d8f8rbXP_6tq-clQs/s1600/github-actions-workflow-permissions.webp" alt="Pengaturan Workflow Permissions di GitHub">
+                        <figcaption>Kunci keamanan automasi Anda ada di sini.</figcaption>
+                    </figure>
+                </div>
+                <section>
+                    <h2>1. Izin untuk <code>GITHUB_TOKEN</code></h2>
+                    <p>Setiap kali GitHub Actions berjalan, ia menggunakan token rahasia sementara bernama <code>GITHUB_TOKEN</code> untuk berinteraksi dengan repositori. Pengaturan ini menentukan level akses standar untuk token tersebut.</p>
+                    <h3>Read and write permissions (Izin Baca dan Tulis)</h3>
+                    <p>Opsi ini memberikan <code>GITHUB_TOKEN</code> kekuasaan penuh. Workflow tidak hanya bisa membaca, tapi juga <strong>menulis/mengubah</strong> data di repositori, seperti push commit baru, membuat rilis, dan lainnya.</p>
+                    <blockquote><strong>Analogi:</strong> Ini seperti memberikan kunci master sebuah gedung kepada seorang kontraktor. Dia bisa masuk ke semua ruangan (baca) dan juga merenovasi atau mengubah isi ruangan tersebut (tulis).</blockquote>
+                    <h3>Read repository contents... (Izin Hanya Baca)</h3>
+                    <p>Opsi ini membatasi <code>GITHUB_TOKEN</code> agar <strong>hanya bisa membaca</strong> konten. Workflow tidak bisa mengubah apa pun. Ini adalah penerapan "Prinsip Hak Akses Terbatas", standar keamanan yang sangat baik.</p>
+                     <blockquote><strong>Analogi:</strong> Ini seperti memberikan kartu akses tamu. Kontraktor bisa masuk dan melihat semua ruangan untuk mengukur (baca), tapi tidak bisa memindahkan barang atau mengecat dinding (tidak bisa tulis).</blockquote>
+                    <div class="recommendation rec-secure">
+                        <strong>💡 Rekomendasi Keamanan</strong>
+                        <p>Pilih <strong>"Read repository contents and packages permissions"</strong>. Ini adalah praktik terbaik yang direkomendasikan GitHub. Jika ada workflow tertentu yang butuh izin tulis, Anda bisa memberikannya secara spesifik di file <code>.yaml</code> workflow tersebut. Ini jauh lebih aman!</p>
+                    </div>
+                </section>
+                <section>
+                    <h2>2. Izinkan Actions Membuat &amp; Menyetujui PR</h2>
+                    <p>Pengaturan ini memberikan kemampuan spesifik kepada workflow untuk membuat <em>Pull Request</em> (PR) baru atau menyetujui PR yang sudah ada. Sangat berguna untuk automasi tingkat lanjut.</p>
+                    <blockquote><strong>Analogi:</strong> Ini seperti memberikan wewenang tambahan kepada asisten AI Anda. Selain bisa membaca laporan, ia kini juga bisa mengajukan proposal baru (membuat PR) dan memberikan 'jempol persetujuan' (approve PR) atas nama Anda jika syarat terpenuhi.</blockquote>
+                    <div class="recommendation rec-flexible">
+                        <strong>✅ Rekomendasi Fleksibilitas</strong>
+                        <p><strong>Biarkan ini tetap tercentang.</strong> Walaupun mungkin belum Anda gunakan sekarang, mengaktifkannya tidak berbahaya dan membuka pintu untuk automasi canggih di masa depan, seperti bot yang meng-update dependensi secara otomatis.</p>
+                    </div>
+                </section>
+                <section>
+                    <h2>Ringkasan Rekomendasi</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pengaturan</th>
+                                    <th>Pilihan yang Direkomendasikan</th>
+                                    <th>Alasan Singkat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Workflow permissions</strong></td>
+                                    <td><strong>Read ... permissions</strong> (Hanya Baca)</td>
+                                    <td>🔒 Lebih aman (Prinsip Hak Akses Terbatas).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Allow Actions to create/approve PR</strong></td>
+                                    <td>✅ <strong>Aktifkan</strong></td>
+                                    <td>🤖 Membuka potensi automasi di masa depan.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
+        </main>
+        <footer>
+            <p>🄯 2025 Frijal.</p>
+        </footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

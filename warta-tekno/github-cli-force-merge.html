@@ -1,13 +1,200 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI</title><meta content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik." name=description><meta content="light dark" name=color-scheme><style>:root{--bg:#fdfdfd;--text:#222;--accent:#0078ff}@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--text:#c9d1d9;--accent:#58a6ff}}body{background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Roboto,sans-serif;margin:0;padding:0;line-height:1.6}header{text-align:center;padding:2rem 1rem 1rem}header h1{font-size:1.9rem;margin-bottom:.2rem}article{max-width:960px;margin:auto;padding:1rem 2rem 3rem}code,pre{background:rgba(127,127,127,.1);border-radius:6px;padding:.4em .6em;font-family:"JetBrains Mono",monospace;overflow-x:auto;display:block}pre{margin:1em 0}section{margin-bottom:2.5rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}footer{text-align:center;padding:2rem 0;border-top:1px solid rgba(127,127,127,.2);font-size:.9rem}.social-share{text-align:center;margin-top:2rem}.social-share a{margin:0 .4rem;display:inline-block}.social-share img{width:28px;height:28px;filter:grayscale(1);transition:.3s}.social-share img:hover{filter:none;transform:scale(1.1)}@media (max-width:600px){header h1{font-size:1.5rem}article{padding:1rem}}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik." name=ai:summary><meta content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik." name=ai:prompt_hint><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI","description":"Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.","articleSection":"Warta Tekno","keywords":"branch, cara, cli, force, github, layar kosong, memaksa, menggunakan, merge, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/github-cli-force-merge.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.044+00:00","dateModified":"2025-10-13T21:14:36.044+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI","item":"https://dalam.web.id/warta-tekno/github-cli-force-merge/"}]}]}</script><link href=https://dalam.web.id/warta-tekno/github-cli-force-merge/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/github-cli-force-merge/ property=og:url><meta content="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI" property=og:title><meta content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/github-cli-force-merge.webp property=og:image><meta content="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/github-cli-force-merge.webp name=twitter:image><meta content=https://dalam.web.id/img/github-cli-force-merge.webp itemprop=image><header><h1>💪 Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI</h1><div id=iposbrowser></div><p style=opacity:.8>Langkah aman untuk merge cepat branch yang belum di-merge via <code>gh</code></header><article><section><p>Kalau kamu pernah punya branch di GitHub yang susah di-merge karena ada status check belum lewat, atau PR-nya nge-stuck lama, kamu bisa memanfaatkan <strong>GitHub CLI</strong> untuk memaksa merge dengan cara yang <em>aman dan terkendali</em>. 🧠<p>Kita akan bahas langkah-langkahnya mulai dari merge normal, auto merge, sampai mode admin override alias “paksa merge”.</section><section><h2>🧭 1. Pastikan GitHub CLI Sudah Terhubung</h2><pre><code>gh auth status</code></pre><p>Pastikan akun kamu sudah login ke GitHub CLI dan memiliki akses ke repository tersebut. Kalau belum, login dulu:<pre><code>gh auth login</code></pre></section><section><h2>📦 2. Pastikan Branch Sudah Ada di Remote</h2><pre><code>git push -u origin nama_branch</code></pre><p>Perintah ini memastikan branch kamu sudah di-push ke GitHub sehingga bisa diakses oleh CLI.</section><section><h2>🚀 3. Buat atau Cek Pull Request</h2><p>Kalau belum ada PR, buat dulu dari branch kamu ke <code>main</code>:<pre><code>gh pr create --base main --head nama_branch --title "Merge ${nama_branch}" --body "Merge otomatis via GitHub CLI"</code></pre><p>Kalau sudah ada PR, lihat statusnya:<pre><code>gh pr view --web</code></pre></section><section><h2>🧩 4. Lakukan Merge Biasa Terlebih Dahulu</h2><p>Coba merge lewat GitHub CLI:<pre><code>gh pr merge nama_branch --merge</code></pre><p>Kalau tidak bisa karena konflik, GitHub akan memberi pesan seperti:<blockquote>"This branch cannot be automatically merged due to conflicts."</blockquote></section><section><h2>💪 5. Memaksa Merge dengan Hak Admin</h2><p>Kalau kamu punya hak admin di repository, kamu bisa memaksa merge meski ada check yang belum selesai atau gagal:<pre><code>gh pr merge nama_branch --admin --merge</code></pre><p>Perintah ini akan menggabungkan PR meski status check belum semua hijau. Gunakan hanya kalau kamu yakin hasilnya benar ya 😅</section><section><h2>🧱 6. Gunakan Squash Merge untuk Bersih-Bersih</h2><pre><code>gh pr merge nama_branch --admin --squash</code></pre><p>Dengan <code>--squash</code>, semua commit di branch akan digabung jadi satu commit bersih di branch utama. Cocok kalau branch kamu penuh commit kecil-kecil.</section><section><h2>⚙️ 7. Merge Manual Tanpa PR (Benar-Benar Paksa)</h2><pre><code>git checkout main
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI</title>
+<meta name="description" content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.">
+<meta name="color-scheme" content="light dark">
+<style>
+:root {
+  --bg: #fdfdfd;
+  --text: #222;
+  --accent: #0078ff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header h1 {
+  font-size: 1.9rem;
+  margin-bottom: 0.2rem;
+}
+article {
+  max-width: 960px;
+  margin: auto;
+  padding: 1rem 2rem 3rem;
+}
+code, pre {
+  background: rgba(127,127,127,0.1);
+  border-radius: 6px;
+  padding: 0.4em 0.6em;
+  font-family: "JetBrains Mono", monospace;
+  overflow-x: auto;
+  display: block;
+}
+pre { margin: 1em 0; }
+section { margin-bottom: 2.5rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(127,127,127,0.2);
+  font-size: 0.9rem;
+}
+.social-share {
+  text-align: center;
+  margin-top: 2rem;
+}
+.social-share a {
+  margin: 0 0.4rem;
+  display: inline-block;
+}
+.social-share img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(1);
+  transition: 0.3s;
+}
+.social-share img:hover {
+  filter: none;
+  transform: scale(1.1);
+}
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  article { padding: 1rem; }
+}
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.">
+<meta name="ai:prompt_hint" content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.">
+    <link rel="canonical" href="https://dalam.web.id/warta-tekno/github-cli-force-merge/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/warta-tekno/github-cli-force-merge/">
+    <meta property="og:title" content="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI">
+    <meta property="og:description" content="Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/github-cli-force-merge.webp">
+    <meta property="og:image:alt" content="Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/github-cli-force-merge.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/github-cli-force-merge.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI","description":"Panduan lengkap untuk memaksa merge branch Git yang belum di-merge menggunakan GitHub CLI (gh). Lengkap dengan opsi admin override, auto merge, dan cara aman mengatasi konflik.","articleSection":"Warta Tekno","keywords":"branch, cara, force, github, layar kosong, memaksa, menggunakan, merge, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/github-cli-force-merge.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-10-13T21:14:36.044+00:00","dateModified":"2025-10-13T21:14:36.044+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/github-cli-force-merge/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno/"},{"@type":"ListItem","position":3,"name":"Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI","item":"https://dalam.web.id/warta-tekno/github-cli-force-merge/"}]}]}</script>
+</head>
+<body>
+<header>
+  <h1>💪 Cara Memaksa Merge Branch di GitHub Menggunakan GitHub CLI</h1>
+<div id="iposbrowser"></div>
+  <p style="opacity:0.8;">Langkah aman untuk merge cepat branch yang belum di-merge via <code>gh</code></p>
+</header>
+<article>
+  <section>
+    <p>Kalau kamu pernah punya branch di GitHub yang susah di-merge karena ada status check belum lewat, atau PR-nya nge-stuck lama, kamu bisa memanfaatkan <strong>GitHub CLI</strong> untuk memaksa merge dengan cara yang <em>aman dan terkendali</em>. 🧠</p>
+    <p>Kita akan bahas langkah-langkahnya mulai dari merge normal, auto merge, sampai mode admin override alias “paksa merge”.</p>
+  </section>
+  <section>
+    <h2>🧭 1. Pastikan GitHub CLI Sudah Terhubung</h2>
+    <pre><code>gh auth status</code></pre>
+    <p>Pastikan akun kamu sudah login ke GitHub CLI dan memiliki akses ke repository tersebut. Kalau belum, login dulu:</p>
+    <pre><code>gh auth login</code></pre>
+  </section>
+  <section>
+    <h2>📦 2. Pastikan Branch Sudah Ada di Remote</h2>
+    <pre><code>git push -u origin nama_branch</code></pre>
+    <p>Perintah ini memastikan branch kamu sudah di-push ke GitHub sehingga bisa diakses oleh CLI.</p>
+  </section>
+  <section>
+    <h2>🚀 3. Buat atau Cek Pull Request</h2>
+    <p>Kalau belum ada PR, buat dulu dari branch kamu ke <code>main</code>:</p>
+    <pre><code>gh pr create --base main --head nama_branch --title "Merge ${nama_branch}" --body "Merge otomatis via GitHub CLI"</code></pre>
+    <p>Kalau sudah ada PR, lihat statusnya:</p>
+    <pre><code>gh pr view --web</code></pre>
+  </section>
+  <section>
+    <h2>🧩 4. Lakukan Merge Biasa Terlebih Dahulu</h2>
+    <p>Coba merge lewat GitHub CLI:</p>
+    <pre><code>gh pr merge nama_branch --merge</code></pre>
+    <p>Kalau tidak bisa karena konflik, GitHub akan memberi pesan seperti:</p>
+    <blockquote>"This branch cannot be automatically merged due to conflicts."</blockquote>
+  </section>
+  <section>
+    <h2>💪 5. Memaksa Merge dengan Hak Admin</h2>
+    <p>Kalau kamu punya hak admin di repository, kamu bisa memaksa merge meski ada check yang belum selesai atau gagal:</p>
+    <pre><code>gh pr merge nama_branch --admin --merge</code></pre>
+    <p>Perintah ini akan menggabungkan PR meski status check belum semua hijau. Gunakan hanya kalau kamu yakin hasilnya benar ya 😅</p>
+  </section>
+  <section>
+    <h2>🧱 6. Gunakan Squash Merge untuk Bersih-Bersih</h2>
+    <pre><code>gh pr merge nama_branch --admin --squash</code></pre>
+    <p>Dengan <code>--squash</code>, semua commit di branch akan digabung jadi satu commit bersih di branch utama. Cocok kalau branch kamu penuh commit kecil-kecil.</p>
+  </section>
+  <section>
+    <h2>⚙️ 7. Merge Manual Tanpa PR (Benar-Benar Paksa)</h2>
+    <pre><code>git checkout main
 git pull origin main
 git merge nama_branch --no-ff
-git push origin main</code></pre><p>Kalau masih gagal dan kamu yakin mau override semua isi dari branch lama, gunakan opsi strategi:<pre><code>git merge nama_branch --strategy-option theirs</code></pre><p>Atau sebaliknya, kalau mau semua isi <code>main</code> menimpa branch lama:<pre><code>git checkout nama_branch
+git push origin main</code></pre>
+    <p>Kalau masih gagal dan kamu yakin mau override semua isi dari branch lama, gunakan opsi strategi:</p>
+    <pre><code>git merge nama_branch --strategy-option theirs</code></pre>
+    <p>Atau sebaliknya, kalau mau semua isi <code>main</code> menimpa branch lama:</p>
+    <pre><code>git checkout nama_branch
 git merge main --strategy-option theirs
-git push origin nama_branch</code></pre></section><section><h2>🧠 8. Opsi Lengkap <code>gh pr merge</code></h2><pre><code>gh pr merge &lt;PR> [flags]
+git push origin nama_branch</code></pre>
+  </section>
+  <section>
+    <h2>🧠 8. Opsi Lengkap <code>gh pr merge</code></h2>
+    <pre><code>gh pr merge &lt;PR&gt; [flags]
 --auto             : Aktifkan auto merge
 --delete-branch    : Hapus branch setelah merge
 --merge            : Merge biasa
 --rebase           : Rebase merge
 --squash           : Squash merge
---admin            : Override semua checks (admin only)</code></pre></section><section><h2>💡 Tips Aman Sebelum Paksa Merge</h2><ul><li>Gunakan <code>--auto</code> untuk merge otomatis saat semua status check sudah lulus.<li>Pastikan PR sudah direview minimal oleh satu anggota tim sebelum merge manual.<li>Gunakan <code>--admin</code> hanya di situasi darurat (misalnya CI error atau stuck lama).</ul></section><div id=pesbukdiskus></div><div id=related-articles-grid></div></article><footer><p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</footer><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+--admin            : Override semua checks (admin only)</code></pre>
+  </section>
+  <section>
+    <h2>💡 Tips Aman Sebelum Paksa Merge</h2>
+    <ul>
+      <li>Gunakan <code>--auto</code> untuk merge otomatis saat semua status check sudah lulus.</li>
+      <li>Pastikan PR sudah direview minimal oleh satu anggota tim sebelum merge manual.</li>
+      <li>Gunakan <code>--admin</code> hanya di situasi darurat (misalnya CI error atau stuck lama).</li>
+    </ul>
+  </section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+<footer>
+  <p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</p>
+</footer>
+<!-- Facebook SDK -->
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

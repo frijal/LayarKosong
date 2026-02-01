@@ -1,5 +1,166 @@
-<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Manajemen Dokumen di Multi-Distro Linux</title><meta content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses." name=description><link href=https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css rel=stylesheet><style>:root{--bg:#161d28;--fg:#f6f8fa;--muted:#a8b0bb;--accent:#00b894;--accent-2:#55efc4;--card:#232f3e;--border:#3e4e58;--shadow:0 10px 30px rgba(0,0,0,.35);--maxw:900px}body,html{background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;scroll-behavior:smooth}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}img{max-width:100%;height:auto;border-radius:8px}.wrap{min-height:100vh;display:flex;flex-direction:column}header.site{padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:rgba(22,29,40,.7);backdrop-filter:blur(8px);position:sticky;top:0;z-index:10}.brand{font-weight:700;font-size:1.2rem}main{display:flex;justify-content:center;padding:2rem 1rem 4rem;flex-grow:1}.col{width:100%;max-width:var(--maxw)}article{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:2rem}article h1{font-size:clamp(1.75rem, 5vw, 2.5rem);line-height:1.2;margin:0 0 10px;color:var(--accent)}article h2{font-size:1.5rem;margin-top:2.5rem;border-bottom:1px solid var(--border);padding-bottom:.5rem}.lead{color:var(--muted);margin-bottom:1.5rem;font-size:1.1rem}.share-bar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1.5rem 0}.btn-share{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:#3e4e58;color:var(--fg);cursor:pointer;text-decoration:none}.btn-share:hover{background:#4a5568}ol,ul{margin:1rem 0 1rem 1.5rem}figure{margin:1.5rem 0;text-align:center}figure img{cursor:zoom-in}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}.lightbox{position:fixed;inset:0;background:rgba(22,29,40,.9);display:none;align-items:center;justify-content:center;z-index:9999}.lightbox.open{display:flex}.lightbox img{max-width:92vw;max-height:88vh;border-radius:10px}pre[class*=language-]{position:relative;padding:1.25rem;border-radius:8px;margin-top:1rem}code{font-family:'Fira Code',Consolas,monospace}.copy-btn{position:absolute;top:12px;right:12px;background:#3e4e58;border:none;color:var(--fg);padding:5px 10px;border-radius:5px;font-size:12px;cursor:pointer}.copy-btn:hover{background:var(--accent)}footer.site{padding:1.5rem;color:var(--muted);border-top:1px solid var(--border);text-align:center}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses." name=ai:summary><meta content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses." name=ai:prompt_hint><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/"},"license": "https://creativecommons.org/publicdomain/zero/1.0/","headline":"Manajemen Dokumen di Multi-Distro Linux","description":"Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.","articleSection":"Sistem Terbuka","keywords":"distro, docs, dokumen, layar kosong, linux, manajemen, multi, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/multi-distro-docs.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-25T23:20:38.197+00:00","dateModified":"2025-05-25T23:20:38.197+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Manajemen Dokumen di Multi-Distro Linux","item":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/"}]}]}</script><link href=https://dalam.web.id/sistem-terbuka/multi-distro-docs/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/sistem-terbuka/multi-distro-docs/ property=og:url><meta content="Manajemen Dokumen di Multi-Distro Linux" property=og:title><meta content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/multi-distro-docs.webp property=og:image><meta content="Manajemen Dokumen di Multi-Distro Linux" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/multi-distro-docs.webp name=twitter:image><meta content=https://dalam.web.id/img/multi-distro-docs.webp itemprop=image><div class=wrap><header class=site><div class=brand>📂 dalam.web.id</div></header><main><div class=col><article><h1>Manajemen Dokumen di Lingkungan Multi-Distro</h1><div id=iposbrowser></div><p class=lead>Bagi Anda yang hobi memasang banyak distro Linux dalam satu komputer (multi-boot), seringkali muncul masalah duplikasi dokumen. Solusinya adalah dengan membuat partisi data terpusat dan menggunakan symbolic link.<p>Permasalahan utamanya adalah setiap distro baru memiliki direktori <code>/home</code> sendiri. Jika Anda menyimpan dokumen di sana, file-file tersebut tidak akan bisa diakses dari distro lain, yang berujung pada duplikasi file, pemborosan ruang disk, dan kebingungan versi dokumen.<h2>Langkah 1: Buat Partisi Data Terpusat</h2><p>Gunakan GParted atau alat partisi lainnya untuk membuat satu partisi besar yang akan berfungsi sebagai "gudang" penyimpanan data untuk semua sistem operasi Anda. Format partisi ini dengan filesystem yang kompatibel dengan semua OS Anda (misalnya, NTFS jika Anda juga menggunakan Windows, atau EXT4 jika hanya Linux).<figure><img alt="Partisi data terpusat di GParted" src=/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp></figure><p>Pada contoh di atas, <code>/dev/sda6</code> difungsikan sebagai partisi data bersama.<h2>Langkah 2: Gunakan Symbolic Link (Soft Link)</h2><p>Setelah distro baru terpasang, jangan langsung gunakan folder-folder default di direktori <code>/home</code> Anda (seperti Documents, Downloads, Pictures, dll.). Hapus folder-folder tersebut, lalu buat symbolic link (shortcut) dari direktori <code>/home</code> Anda ke folder yang sesuai di partisi data terpusat.<pre class=language-bash><code id=code1># Hapus folder default (contoh untuk Documents)
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Manajemen Dokumen di Multi-Distro Linux</title>
+    <meta name="description" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" rel="stylesheet">
+    <!-- Styles: 1 kolom, dark theme -->
+    <style>
+        :root {
+            --bg: #161d28;
+            --fg: #f6f8fa;
+            --muted: #a8b0bb;
+            --accent: #00b894; /* Green */
+            --accent-2: #55efc4;
+            --card: #232f3e;
+            --border: #3e4e58;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --maxw: 900px;
+        }
+        html, body {
+            background: var(--bg); color: var(--fg);
+            font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 0; scroll-behavior: smooth;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+        header.site {
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+            background: rgba(22, 29, 40, 0.7); backdrop-filter: blur(8px);
+            position: sticky; top: 0; z-index: 10;
+        }
+        .brand { font-weight: bold; font-size: 1.2rem; }
+        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
+        .col { width: 100%; max-width: var(--maxw); }
+        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
+        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
+        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
+        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3e4e58; color: var(--fg); cursor: pointer; text-decoration: none; }
+        .btn-share:hover { background: #4a5568; }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; }
+        figure { margin: 1.5rem 0; text-align: center; }
+        figure img { cursor: zoom-in; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .lightbox { position: fixed; inset: 0; background: rgba(22,29,40,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+        pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
+        code { font-family: 'Fira Code', 'Consolas', monospace; }
+        .copy-btn { position: absolute; top: 12px; right: 12px; background: #3e4e58; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
+        .copy-btn:hover { background: var(--accent); }
+        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
+<meta name="ai:prompt_hint" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/multi-distro-docs/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/multi-distro-docs/">
+    <meta property="og:title" content="Manajemen Dokumen di Multi-Distro Linux">
+    <meta property="og:description" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/multi-distro-docs.webp">
+    <meta property="og:image:alt" content="Manajemen Dokumen di Multi-Distro Linux">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/multi-distro-docs.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/multi-distro-docs.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Manajemen Dokumen di Multi-Distro Linux","description":"Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.","articleSection":"Sistem Terbuka","keywords":"distro, docs, dokumen, layar kosong, linux, manajemen, multi, sistem terbuka","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/multi-distro-docs.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2025-05-25T23:20:38.197+00:00","dateModified":"2025-05-25T23:20:38.197+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"Manajemen Dokumen di Multi-Distro Linux","item":"https://dalam.web.id/sistem-terbuka/multi-distro-docs/"}]}]}</script>
+</head>
+<body>
+    <div class="wrap">
+        <header class="site">
+            <div class="brand">📂 dalam.web.id</div>
+        </header>
+        <main>
+            <div class="col">
+                <article>
+                    <h1>Manajemen Dokumen di Lingkungan Multi-Distro</h1>
+<div id="iposbrowser"></div>
+                    <p class="lead">Bagi Anda yang hobi memasang banyak distro Linux dalam satu komputer (multi-boot), seringkali muncul masalah duplikasi dokumen. Solusinya adalah dengan membuat partisi data terpusat dan menggunakan symbolic link.</p>
+                    <p>Permasalahan utamanya adalah setiap distro baru memiliki direktori <code>/home</code> sendiri. Jika Anda menyimpan dokumen di sana, file-file tersebut tidak akan bisa diakses dari distro lain, yang berujung pada duplikasi file, pemborosan ruang disk, dan kebingungan versi dokumen.</p>
+                    <h2>Langkah 1: Buat Partisi Data Terpusat</h2>
+                    <p>Gunakan GParted atau alat partisi lainnya untuk membuat satu partisi besar yang akan berfungsi sebagai "gudang" penyimpanan data untuk semua sistem operasi Anda. Format partisi ini dengan filesystem yang kompatibel dengan semua OS Anda (misalnya, NTFS jika Anda juga menggunakan Windows, atau EXT4 jika hanya Linux).</p>
+                    <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDWio645FqdPNh5AUd4HaOQ17kised3R-hUlBYnxaFBXFxbqMFpvM5n6bowIxOTweuCua36J-zJn4nuU_dNuNYMXAtMno30PThv6JMMJLLm7BQxPu2ES16JxPBqIwM_ivh6VfRBp2namd/s320/GParted_005.webp" alt="Partisi data terpusat di GParted"></figure>
+                    <p>Pada contoh di atas, <code>/dev/sda6</code> difungsikan sebagai partisi data bersama.</p>
+                    <h2>Langkah 2: Gunakan Symbolic Link (Soft Link)</h2>
+                    <p>Setelah distro baru terpasang, jangan langsung gunakan folder-folder default di direktori <code>/home</code> Anda (seperti Documents, Downloads, Pictures, dll.). Hapus folder-folder tersebut, lalu buat symbolic link (shortcut) dari direktori <code>/home</code> Anda ke folder yang sesuai di partisi data terpusat.</p>
+                    <pre class="language-bash"><code id="code1"># Hapus folder default (contoh untuk Documents)
 rm -rf ~/Documents
 # Buat symbolic link ke folder di partisi data
-ln -s /media/data/Documents ~/Documents</code><button class=copy-btn data-target=code1>Salin</button></pre><p class=muted>Ulangi proses ini untuk semua folder yang ingin Anda sentralkan (Downloads, Music, Pictures, Videos, dll.). Ganti <code>/media/data/</code> dengan mount point partisi data Anda.<div class=gallery><figure><img alt="Tampilan /home dengan symbolic link" src=/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhreRKZJKh_fSCi7LTgHXbDX14u8tHVaTZAwAg6f8RTl9AD_CenzJF6D022GU3OWxdarVv_L6-9a9bDjZOiV8ZYPARLAlHuHqJZ-Op49Yc_jqYydeOYJMyZPoHoPFXK4JMlOSOZcXRRnaZY/s640/frijal_001.webp></figure><figure><img alt="Akses data yang sama dari distro berbeda" src=/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWLViu8Sxye14RbDTtLolL0LKHDe1ypnStm3HJWLxfd2cJAgfE3fMcWaD2r07U7v7NY-ElG2soK_uTZc4qz2KzlLY2lfrw2oY7lkq8BsN8eypHlWVANouHog7qXvOpdcyP819lERnJbvSi/s640/frijal_002.webp></figure></div><p>Dengan cara ini, semua distro Linux yang Anda instal akan mengakses dan menyimpan file di lokasi yang sama, menghilangkan duplikasi dan membuat manajemen file menjadi jauh lebih mudah.<div id=pesbukdiskus></div><div id=related-articles-grid></div></article></div></main><footer class=site><small>🄯 2025 dalam.web.id · Manajemen data cerdas untuk para penggemar multi-boot.</small></footer></div><div id=lightbox class=lightbox><img alt="Gambar diperbesar" id=lightbox-img></div><div id=toast style="position:fixed;bottom:20px;right:20px;background:#3e4e58;color:#fff;padding:10px 20px;border-radius:8px;z-index:1001;opacity:0;transition:opacity .3s"></div><script>!function(){const e=document.getElementById("toast");const t=document.getElementById("lightbox"),n=document.getElementById("lightbox-img"),o=Array.from(document.querySelectorAll(".gallery img, figure img"));let c=0;function i(){t.classList.remove("open")}o.forEach((e,i)=>{e.addEventListener("click",()=>function(e){c=e;let i=o[c].src;i=i.replace(/\/s\d+(\-c)?\//,"/s0/"),n.src=i,t.classList.add("open")}(i))}),t.addEventListener("click",i),window.addEventListener("keydown",e=>{t.classList.contains("open")&&"Escape"===e.key&&i()}),document.querySelectorAll(".copy-btn").forEach(t=>{t.addEventListener("click",()=>{const n=t.getAttribute("data-target"),o=document.getElementById(n);o&&navigator.clipboard.writeText(o.innerText).then(()=>{return t="Kode disalin!",e.textContent=t,e.style.opacity="1",void setTimeout(()=>e.style.opacity="0",2e3);var t})})})}()</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
-<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-01_04_03</noscript>
+ln -s /media/data/Documents ~/Documents</code><button class="copy-btn" data-target="code1">Salin</button></pre>
+                    <p class="muted">Ulangi proses ini untuk semua folder yang ingin Anda sentralkan (Downloads, Music, Pictures, Videos, dll.). Ganti <code>/media/data/</code> dengan mount point partisi data Anda.</p>
+                    <div class="gallery">
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhreRKZJKh_fSCi7LTgHXbDX14u8tHVaTZAwAg6f8RTl9AD_CenzJF6D022GU3OWxdarVv_L6-9a9bDjZOiV8ZYPARLAlHuHqJZ-Op49Yc_jqYydeOYJMyZPoHoPFXK4JMlOSOZcXRRnaZY/s640/frijal_001.webp" alt="Tampilan /home dengan symbolic link"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWLViu8Sxye14RbDTtLolL0LKHDe1ypnStm3HJWLxfd2cJAgfE3fMcWaD2r07U7v7NY-ElG2soK_uTZc4qz2KzlLY2lfrw2oY7lkq8BsN8eypHlWVANouHog7qXvOpdcyP819lERnJbvSi/s640/frijal_002.webp" alt="Akses data yang sama dari distro berbeda"></figure>
+                    </div>
+                    <p>Dengan cara ini, semua distro Linux yang Anda instal akan mengakses dan menyimpan file di lokasi yang sama, menghilangkan duplikasi dan membuat manajemen file menjadi jauh lebih mudah.</p>
+                    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+            </div>
+        </main>
+        <footer class="site">
+            <small>🄯 2025 dalam.web.id · Manajemen data cerdas untuk para penggemar multi-boot.</small>
+        </footer>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <img id="lightbox-img" alt="Gambar diperbesar">
+    </div>
+    <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3e4e58; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
+    <script>
+    (function(){
+        const toast = document.getElementById('toast');
+        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const galleryImages = Array.from(document.querySelectorAll('.gallery img, figure img'));
+        let currentIndex = 0;
+        function openLightbox(index) {
+            currentIndex = index;
+            let src = galleryImages[currentIndex].src;
+            // Attempt to load higher resolution image from blogger
+            src = src.replace(/\/s\d+(\-c)?\//, '/s0/');
+            lbImg.src = src;
+            lb.classList.add('open');
+        }
+        galleryImages.forEach((el, index) => {
+            el.addEventListener('click', () => openLightbox(index));
+        });
+        function closeLb(){ lb.classList.remove('open'); }
+        lb.addEventListener('click', closeLb);
+        window.addEventListener('keydown', (e) => {
+            if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
+        });
+        document.querySelectorAll('.copy-btn').forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+                const targetId = btn.getAttribute('data-target');
+                const codeEl = document.getElementById(targetId);
+                if (codeEl) {
+                    navigator.clipboard.writeText(codeEl.innerText).then(()=> showToast('Kode disalin!'));
+                }
+            });
+        });
+    })();
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

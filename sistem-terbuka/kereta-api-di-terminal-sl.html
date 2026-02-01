@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- Meta dasar -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik</title>
+  <meta name="description" content="Salah ketik ls jadi sl? Ternyata muncul kereta api lewat di terminal! Yuk kenalan dengan paket SL yang kocak dan nostalgia.">
+  <!-- Canonical + favicon -->
+  <!-- Open Graph -->
+  <!-- JSON-LD Article -->
+  <!-- Styles: Satu kolom, wide, mobile-friendly, tema ceria berbeda -->
+  <style>
+    :root{
+      --bg-1:#FFF7F1;
+      --bg-2:#F1FFF8;
+      --ink:#1E1733;
+      --ink-soft:#4A4660;
+      --accent:#8E7CFF;   /* purple playful */
+      --accent-2:#00C2A8; /* mint */
+      --accent-3:#FFB86B; /* peach/orange */
+      --card:#ffffffee;
+      --shadow:0 14px 40px rgba(18, 16, 28, .08);
+      --radius:20px;
+      --maxw:920px;
+      --gap:22px;
+      --ring:0 0 0 3px rgba(142,124,255,.28);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2) 55%, #fff 100%);color:var(--ink);font:16px/1.7 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,28px)}
+    header.hero{
+      position:relative;overflow:hidden;border-radius:calc(var(--radius) + 8px);
+      background:
+        radial-gradient(1200px 300px at 10% -20%, rgba(142,124,255,.2), transparent 60%),
+        radial-gradient(1200px 300px at 110% 120%, rgba(0,194,168,.18), transparent 60%),
+        #fff;
+      padding:clamp(28px,5vw,50px); box-shadow:var(--shadow);
+      border:1px solid #f0efff;
+    }
+    .hero h1{margin:0 0 12px;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em}
+    .hero p{margin:0;color:var(--ink-soft);font-size:clamp(14px,2.2vw,18px)}
+    .badge{
+      display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:#fff;border:1px solid #eee;
+      padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);margin-top:14px
+    }
+    .badge .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3))}
+    .content{display:block;margin-top:26px}
+    .card{
+      background:var(--card);backdrop-filter:saturate(120%) blur(6px);
+      border:1px solid #f2f0ff;border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden;margin-bottom:var(--gap)
+    }
+    .pad{padding:clamp(16px,2.6vw,24px)}
+    .title{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+    .title .tick{width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent-3))}
+    .title h2{margin:0;font-size:clamp(18px,2.5vw,24px)}
+    .lead{color:var(--ink-soft)}
+    .divider{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3))}
+    pre{
+      background:#171429;color:#f1f0ff;border-radius:16px;padding:16px;overflow:auto;
+      border:1px solid #231e43;position:relative
+    }
+    code,kbd,pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    .copy{
+      position:absolute;top:10px;right:10px;border:0;border-radius:10px;
+      padding:6px 10px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer
+    }
+    .copy:focus{outline:none;box-shadow:var(--ring)}
+    .tips{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+    .tip{padding:16px;border-radius:14px;border:1px dashed #d9d4ff;background:#faf9ff}
+    .tip strong{color:#4a3eff}
+    .gallery{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+    .g-item{position:relative;border-radius:18px;overflow:hidden;border:1px solid #eee;background:#fff}
+    .g-item img{width:100%;height:360px;object-fit:cover;transition:transform .4s ease, filter .3s ease}
+    .g-item:hover img{transform:scale(1.03);filter:contrast(1.05)}
+    .g-cap{position:absolute;left:10px;bottom:10px;background:#0009;color:#fff;padding:6px 10px;border-radius:999px;font-size:12px}
+    .callout{
+      display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,#fff7ec,#ffffff);
+      border:1px solid #ffe3c2;border-radius:14px;padding:12px 14px
+    }
+    .share{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid #efeaff;background:#fff;cursor:pointer
+    }
+    .btn:hover{background:#f8f6ff}
+    .btn svg{width:18px;height:18px}
+    .meta-list{display:grid;gap:10px}
+    .meta-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:#fff;border:1px solid #efeaff}
+    .flag{font-size:20px;line-height:1}
+    footer{
+      margin-top:34px;padding:20px;border-top:1px solid #efeaff;color:var(--ink-soft);display:grid;gap:10px
+    }
+    /* Tombol navigasi layar */
+    .nav-float{
+      position:fixed;z-index:50;display:flex;align-items:center;gap:10px;
+      background:#ffffffcc;backdrop-filter:blur(8px);border:1px solid #efeaff;padding:10px 12px;border-radius:999px;box-shadow:var(--shadow)
+    }
+    .nav-home{left:16px;top:30%}
+    .nav-map{right:16px;bottom:30%}
+    .nav-float a{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#EEE9FF;color:#352a7a;border:1px solid #d8d0ff}
+    /* Lightbox */
+    .lightbox-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:60}
+    .lightbox-backdrop.active{display:flex}
+    .lightbox-content{max-width:min(96vw, 1100px);max-height:90vh}
+    .lightbox-content img{width:100%;height:auto;border-radius:12px}
+    .close-lightbox{position:absolute;top:14px;right:14px;background:#fff;border:0;border-radius:999px;padding:8px 10px;cursor:pointer;font-weight:700}
+    .fb-wrap{background:#fff;border:1px solid #efeaff;border-radius:14px;padding:10px}
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Salah ketik ls jadi sl? Ternyata muncul kereta api lewat di terminal! Yuk kenalan dengan paket SL yang kocak dan nostalgia.">
+<meta name="ai:prompt_hint" content="Salah ketik ls jadi sl? Ternyata muncul kereta api lewat di terminal! Yuk kenalan dengan paket SL yang kocak dan nostalgia.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/">
+    <meta property="og:title" content="SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik">
+    <meta property="og:description" content="Salah ketik ls jadi sl? Ternyata muncul kereta api lewat di terminal! Yuk kenalan dengan paket SL yang kocak dan nostalgia.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGZbA0kod-u1RbKj1qnRoLL-5fxRo_pP8HV-oUiHJ7wOAOXKMpha5_dvIbLQgDG023nfPcKVzhqzW0JLi658am_pkq_CJlikqnJs5xfJicpQDsOVhsOr6nk5_ENfkrNHY0MWZYE0xuNGamDKNN416ZQfIGvYWkDB-LEB357dNToSA6bXw6FxjwdTQD_SM/s1920/sl-linux.webp">
+    <meta property="og:image:alt" content="SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGZbA0kod-u1RbKj1qnRoLL-5fxRo_pP8HV-oUiHJ7wOAOXKMpha5_dvIbLQgDG023nfPcKVzhqzW0JLi658am_pkq_CJlikqnJs5xfJicpQDsOVhsOr6nk5_ENfkrNHY0MWZYE0xuNGamDKNN416ZQfIGvYWkDB-LEB357dNToSA6bXw6FxjwdTQD_SM/s1920/sl-linux.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGZbA0kod-u1RbKj1qnRoLL-5fxRo_pP8HV-oUiHJ7wOAOXKMpha5_dvIbLQgDG023nfPcKVzhqzW0JLi658am_pkq_CJlikqnJs5xfJicpQDsOVhsOr6nk5_ENfkrNHY0MWZYE0xuNGamDKNN416ZQfIGvYWkDB-LEB357dNToSA6bXw6FxjwdTQD_SM/s1920/sl-linux.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/#article","isPartOf":{"@id":"https://dalam.web.id/#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik","description":"Salah ketik ls jadi sl? Ternyata muncul kereta api lewat di terminal! Yuk kenalan dengan paket SL yang kocak dan nostalgia.","articleSection":"Sistem Terbuka","keywords":"gara, kereta, ketik, layar kosong, nyelonong, salah, sistem terbuka, terminal","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGZbA0kod-u1RbKj1qnRoLL-5fxRo_pP8HV-oUiHJ7wOAOXKMpha5_dvIbLQgDG023nfPcKVzhqzW0JLi658am_pkq_CJlikqnJs5xfJicpQDsOVhsOr6nk5_ENfkrNHY0MWZYE0xuNGamDKNN416ZQfIGvYWkDB-LEB357dNToSA6bXw6FxjwdTQD_SM/s1920/sl-linux.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id/#organization"},"datePublished":"2014-12-17T23:20:38.188+00:00","dateModified":"2014-12-17T23:20:38.188+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka/"},{"@type":"ListItem","position":3,"name":"SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik","item":"https://dalam.web.id/sistem-terbuka/kereta-api-di-terminal-sl/"}]}]}</script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>SL di Terminal: Kereta Api Nyelonong Gara-gara Salah Ketik</h1>
+<div id="iposbrowser"></div>
+      <p>Sepoor, kreto, sepur, kereta api - semua sama. Dan kali ini, dia lewat di terminal karena kamu salah ketik <em>ls</em> jadi <em>sl</em>. Serius.</p>
+      <div class="badge" aria-label="Info artikel">
+        <span class="dot" aria-hidden="true"></span>
+        <span>21 Sep 2025</span>
+        <span>•</span>
+        <span>Linux Fun</span>
+      </div>
+    </header>
+    <main class="content" role="main">
+      <!-- Pembuka -->
+      <section class="card">
+        <div class="pad">
+          <div class="title"><span class="tick"></span><h2>Kisah bermula dari salah ketik</h2></div>
+          <p class="lead">
+            Pengen lihat isi direktori, niatnya ngetik <code>ls</code>. Eh jari kebablasan jadi <code>sl</code>. Muncul pesan:
+          </p>
+          <pre>The program 'sl' is currently not installed.
+You can install it by typing: sudo apt-get install sl
+<button class="copy" data-copy="sudo apt-get install -y sl" aria-label="Salin perintah">Salin</button>
+          </pre>
+          <p>Karena penasaran, ya sudah… dipasang saja. Dan begitu ketik <code>sl</code>, jreng - kereta api ASCII melintas gagah di terminal!</p>
+                 <figure class="g-item">
+              <img data-src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGZbA0kod-u1RbKj1qnRoLL-5fxRo_pP8HV-oUiHJ7wOAOXKMpha5_dvIbLQgDG023nfPcKVzhqzW0JLi658am_pkq_CJlikqnJs5xfJicpQDsOVhsOr6nk5_ENfkrNHY0MWZYE0xuNGamDKNN416ZQfIGvYWkDB-LEB357dNToSA6bXw6FxjwdTQD_SM/s1920/sl-linux.webp" alt="Animasi GIF kereta SL di Linux" loading="lazy" width="1920" height="1080">
+              <figcaption class="g-cap">Animasi SL - siap-siap ketagihan.</figcaption>
+            </figure></div>
+        <div class="divider" aria-hidden="true"></div>
+              </section>
+      <!-- Apa itu SL -->
+      <section class="card">
+        <div class="pad">
+          <div class="title"><span class="tick"></span><h2>Apa itu SL?</h2></div>
+          <p>
+            <strong>SL</strong> adalah program kecil nan legendaris yang menampilkan animasi kereta api ASCII di terminal.
+            Didesain untuk “menghibur” (dan sedikit mengejek) kita yang sering salah ketik <code>ls</code>.
+          </p>
+          <div class="tips" role="list">
+            <div class="tip" role="listitem">
+              <strong>Instal cepat</strong><br>
+              sudo apt-get update &amp;&amp; sudo apt-get install -y sl
+            </div>
+            <div class="tip" role="listitem">
+              <strong>Jalankan</strong><br>
+              sl
+            </div>
+            <div class="tip" role="listitem">
+              <strong>Opsi lucu</strong><br>
+              sl -a (mengerikan), sl -l (kereta panjang), sl -F (kereta terbang - iya, serius)
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Galeri -->
+      <section class="card">
+        <div class="pad">
+          <div class="title"><span class="tick"></span><h2>Galeri: bukti nyelonong</h2></div>
+          <div class="gallery" id="gallery">
+            <figure class="g-item">
+              <img data-src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNWwPPW6-eFOYDFhyphenhyphenpx6vj-LKM6zq5OD8FN8_jn5iInyYcWO9H36_jFFnc0ONVSWgUxIMPL1FjchW-Pjhpc_vSiYRA0pGa8fIEpFUkH7vQYsct1oh7p_KLyTsFIfLsY-s271aYqM3Ga4eu/s1600/1untitled.webp" alt="Pesan instalasi SL saat salah ketik" loading="lazy" width="1600" height="900">
+              <figcaption class="g-cap">“The program 'sl' is currently not installed.”</figcaption>
+            </figure>
+            <figure class="g-item">
+              <img data-src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggqGluWEGtgwS-3P-jbxNamwpl74Ek0k2HV9PlEXswXt83NspqF3PHVmgxfUmdpkDaByZHi6rct8Lh8U5i63CVzY7J9G30E8zLJduoCH0OgSg7UboZwksUIA2wrcpd51KFuhg7zk9DiU2r/s1600/2untitled.webp" alt="Instal paket SL di terminal" loading="lazy" width="1600" height="900">
+              <figcaption class="g-cap">Instal SL via apt - secepat kereta Argo.</figcaption>
+            </figure>
+            <figure class="g-item">
+              <img data-src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1SRRL5ZBnP2ELsX7jMP8OyD4CnxZkMzE7Yr2SYHVCi75K-FLJLki1xhb0iGOO7HrfjlmtLRRLRywGb4Ki63s06d0lvt3hDMz0r_tIxwVx2XezE2o0KDb_TUF0XsKlPNneReLFFklXUhFi/s1600/untitled.webp" alt="Kereta ASCII melintas di terminal" loading="lazy" width="1600" height="900">
+              <figcaption class="g-cap">Kereta ASCII lewat. Stasiun? Nanti dulu…</figcaption>
+            </figure>
+                    </div>
+        </div>
+      </section>
+      <!-- Share -->
+      <section class="card">
+        <div class="pad">
+          <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+        </div>
+      </section>
+          <!-- Referensi -->
+      <section class="card">
+        <div class="pad">
+          <div class="title"><span class="tick"></span><h2>Referensi</h2></div>
+          <ul>
+            <li><a href="https://packages.ubuntu.com/search?keywords=sl" target="_blank" rel="noopener">Paket SL (Ubuntu)</a></li>
+            <li><a href="https://github.com/mtoyoda/sl" target="_blank" rel="noopener">Repositori SL (GitHub mirror tidak resmi)</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div>🄯 2025 FRIJAL • Humor terminal kecil yang bikin harimu lebih ringan. Jangan lupa tetap ngetik <code>ls</code> ya. 😉</div>
+      <div>Gambar/animasi digunakan untuk ilustrasi demo.</div>
+    </footer>
+  </div>
+  <!-- Lightbox -->
+  <div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Preview gambar">
+    <button class="close-lightbox" aria-label="Tutup">✕</button>
+    <div class="lightbox-content">
+      <img src="" alt="Preview gambar" id="lightbox-img">
+    </div>
+  </div>
+  <!-- Interaksi, lazy-load, share, env info -->
+  <script>
+    // Copy buttons
+    document.querySelectorAll('.copy').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const text = btn.getAttribute('data-copy') || btn.previousSibling.textContent.trim();
+        navigator.clipboard.writeText(text).then(()=>{
+          const old = btn.textContent;
+          btn.textContent = 'Disalin ✓';
+          setTimeout(()=>btn.textContent = old, 1200);
+        });
+      });
+    });
+    // Native lazy + IntersectionObserver fallback
+    const lazyImgs = document.querySelectorAll('img[data-src]');
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const el = entry.target;
+            el.src = el.dataset.src;
+            el.removeAttribute('data-src');
+            obs.unobserve(el);
+          }
+        });
+      }, {rootMargin: '200px'});
+      lazyImgs.forEach(img=>io.observe(img));
+    } else {
+      lazyImgs.forEach(img=>img.src = img.dataset.src);
+    }
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    document.getElementById('gallery').addEventListener('click', (e)=>{
+      const img = e.target.closest('img');
+      if(!img) return;
+      const src = img.getAttribute('src') || img.getAttribute('data-src');
+      if(!src) return;
+      lbImg.src = src;
+      lb.classList.add('active');
+    });
+    document.querySelector('.close-lightbox').addEventListener('click', ()=>lb.classList.remove('active'));
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.classList.remove('active'); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('active'); });
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/marquee-url.js"></script>
+<script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
