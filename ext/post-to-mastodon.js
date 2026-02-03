@@ -105,7 +105,7 @@ article.title
 /* =====================
  S tatus              **
  ===================== */
-let status = `${article.title}\n\n${article.desc || "Archive."}\n\n${[...hashtags].join(" ")}\n\n${article.url}`;
+let status = `${article.desc || "Archive."}\n\n${[...hashtags].join(" ")}\n\n${article.url}`;
 
 if (status.length > LIMIT) {
   status = status.slice(0, LIMIT - 5) + "...";
