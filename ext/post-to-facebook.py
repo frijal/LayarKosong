@@ -67,7 +67,7 @@ def main():
         cat_hashtag = "#" + cat_raw.replace(" ", "").lower()
         hashtags = f"#fediverse #Repost #Ngopi {cat_hashtag} #Indonesia"
 
-        full_msg = f"{target_post['title']}\n\n{desc}\n\n{hashtags}\n\n{target_url}"
+        full_msg = f"{desc}\n\n{target_post['title']}\n\n{hashtags}\n\n{target_url}"
         encoded_msg = urllib.parse.quote(full_msg)
 
         # Output untuk GitHub Actions
