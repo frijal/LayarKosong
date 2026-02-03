@@ -18,7 +18,7 @@ on:
           - disabled
           - reset
   schedule:
-    - cron: '0 */20 * * *'
+    - cron: '0 20 * * *'
 
 env:
   cache_archive: renovate_cache.tar.gz
