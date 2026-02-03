@@ -32,11 +32,12 @@ jobs:
           # 3. Scanning di 7+ folder (artikel dan kategori lainnya)
           # Menggunakan -PHo agar kuat menghadapi file yang sudah di-minify
           find ./artikel ./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno -name "*.html" -type f 2>/dev/null | \
-          xargs grep -PHo '(?<=href=")[^"]*?ext/[^"]*?\.css' | \
+          xargs grep -PHo '(?<=href=")[^"]*?\.css[^"]*?(?=")' | \
+          grep -vE "marquee-url\.css|fontawesome\.css" | \
           sed 's/^\.\///' | \
           sed 's/:/ | /' | \
           sed 's/^/| /' | \
-          sed 's/$/ |/' >> mini/daftar-css.md
+          sed 's/$/ |/' >> mini/daftar-css.md          
           
           # 4. Tambahkan footer jika tidak ada hasil
           if [ $(wc -l < mini/daftar-css.md) -le 4 ]; then
