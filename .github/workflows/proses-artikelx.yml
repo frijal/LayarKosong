@@ -51,10 +51,7 @@ jobs:
           fi
 
       - name: 🧹 Sterilize Schema (Node.js)
-        run: node ext/clean-schema.js artikelx/
-
-      - name: 📝 Convert HTML Tags to Markdown (Node.js)
-        run: node ext/html-to-markdown.js
+        run: node ext/clean-schema.js artikelx/      
 
       - name: Replace Content (Perl)
         run: |
@@ -99,6 +96,9 @@ jobs:
               sed -i '/<\/body>/i <script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>' "$file"
             fi     
           done
+
+      - name: 📝 Convert HTML Tags to Markdown (Node.js)
+        run: node ext/html-to-markdown.js
 
       - name: Move to artikel/
         run: |
