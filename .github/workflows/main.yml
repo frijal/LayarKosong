@@ -35,29 +35,37 @@ jobs:
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
-          # 1. Install paket terbaru secara temporary (tanpa mencatat ke package.json)
+          # 1. Install paket terbaru secara temporary
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
           
-          # 2. Ambil JS & CSS Highlight.js langsung dari node_modules
+          # 2. Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
           
-          # 3. Urus Font Awesome (Webfonts + CSS)
-          mkdir -p ext/fontawesome-webfonts
+          # 3. Ambil Tema-tema GitHub (Original & Minified)
+          # Kita copy semua varian GitHub yang kamu minta
+          cp node_modules/@highlightjs/cdn-assets/styles/github.css ext/github.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/github.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.css ext/github-dark.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/github-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark-dimmed.css ext/github-dark-dimmed.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github-dark-dimmed.min.css ext/github-dark-dimmed.min.css
+          
+          # 4. Urus Font Awesome (Webfonts + CSS)
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
           
-          # 4. Patch Path CSS Font Awesome agar sesuai struktur folder /ext
+          # 5. Patch Path CSS Font Awesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
           
-          # 5. Ambil versi murni dari package.json lokal (Solusi anti-extraneous)
+          # 6. Ambil versi murni (Anti-Extraneous)
           HLJS_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
           FA_VER=$(node -p "require('./node_modules/@fortawesome/fontawesome-free/package.json').version")
           
-          # 6. Simpan info bersih ke asset-info.txt
+          # 7. Simpan info ke asset-info.txt
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
           
-          echo "✅ Assets updated: Highlight.js v$HLJS_VER & Font Awesome v$FA_VER"
+          echo "✅ All Assets (including GitHub themes) updated to Highlight.js v$HLJS_VER"
 
       - name: 🔍 Verifikasi Integritas Font
         id: font_check
