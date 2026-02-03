@@ -115,7 +115,7 @@
 
   // === 4️⃣ Proses Markdown di halaman ==
   function enhanceMarkdown() {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .container, .closing, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .tip-admin, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert";
+    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .closing, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .tip-admin, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert";
 
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
