@@ -7,27 +7,42 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
+/**
+ * Fungsi utama untuk membersihkan HTML menjadi Markdown ramping
+ * Fokus pada teks: Bold, Italic, Strikethrough, Link, dan Inline Code.
+ */
 function cleanHTML(html) {
     let updated = html;
 
-    // --- FASE 1: SAPU JAGAT (Balikin backtick di dalam <pre> jadi <code>) ---
+    // --- FASE 1: SAPU JAGAT ---
+    // Mengembalikan backtick di dalam <pre> yang salah format menjadi <code> standar
     updated = updated.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
 
-    // --- FASE 2: CLEANUP STANDARD (Bold, Italic, Link) ---
+    // --- FASE 2: CLEANUP TEXT & LINKS ---
     updated = updated
-    .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
-    .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
+    .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')       // Bold
+    .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')             // Italic
+    .replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~')   // Strikethrough
+
+    // Konversi Link dengan Proteksi Atribut
     .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
-        // Abaikan jika link punya class, id, atau style (biar CSS nggak pecah)
-        return (match.includes('class=') || match.includes('id=') || match.includes('style=')) ? match : `[${text}](${url})`;
+        /**
+         * Jangan ubah ke Markdown jika mengandung:
+         * - class, id, style (untuk menjaga desain CSS)
+         * - target, rel (untuk fungsi buka tab baru/target="_blank")
+         */
+        const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
+
+        return isProtected ? match : `[${text}](${url})`;
     });
 
-    // --- FASE 3: SMART INLINE CODE (Hanya ganti yang aman) ---
-    // Logika: Tangkap <pre> dan <code>. Jika <pre>, biarkan. Jika <code> polos, jadikan backtick.
+    // --- FASE 3: SMART INLINE CODE ---
+    // Mengubah <code> sederhana menjadi backtick jika aman (satu baris & tanpa class)
     updated = updated.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
-        if (match.toLowerCase().startsWith('<pre')) return match; // Lindungi blok kode
+        // Abaikan jika ini adalah bagian dari blok <pre>
+        if (match.toLowerCase().startsWith('<pre')) return match;
 
-        // Hanya jadikan backtick jika: satu baris, tidak ada atribut class/id/style
+        // Hanya jadikan backtick jika: satu baris, tidak ada atribut class/id
         if (codeText && !codeContentContainsNewLine(codeText) && !match.includes('class=') && !match.includes('id=')) {
             return `\`${codeText}\``;
         }
@@ -42,6 +57,9 @@ function codeContentContainsNewLine(text) {
     return /\r|\n/.test(text);
 }
 
+/**
+ * Fungsi rekursif untuk memproses semua file di dalam folder
+ */
 function processFolder(dir) {
     if (!fs.existsSync(dir)) {
         console.log(`⚠️ Skip: Folder ${dir} tidak ditemukan.`);
@@ -59,10 +77,12 @@ function processFolder(dir) {
             const isHtml = file.toLowerCase().endsWith('.html');
             const isIndex = file.toLowerCase() === 'index.html';
 
+            // Proses hanya file HTML dan abaikan index.html untuk keamanan struktur
             if (isHtml && !isIndex) {
                 let content = fs.readFileSync(fullPath, 'utf8');
                 let updated = cleanHTML(content);
 
+                // Hanya tulis ulang file jika ada perubahan konten
                 if (content !== updated) {
                     fs.writeFileSync(fullPath, updated, 'utf8');
                     console.log(`✅ Berhasil dibersihkan: ${fullPath}`);
@@ -74,7 +94,7 @@ function processFolder(dir) {
     });
 }
 
-// Tambahkan folder kategori lainnya di sini jika ingin sapu bersih semua
+// Daftar folder target di blog Layar Kosong
 const targetFolders = [
     'artikelx'
 ];
@@ -83,4 +103,4 @@ console.log('🚀 Memulai operasi "Layar Kosong Bersih" via ESM...');
 targetFolders.forEach(folder => {
     processFolder(path.join(rootDir, folder));
 });
-console.log('🏁 Selesai! Semua artikel di "artikelx" kini lebih ramping dan rapi.');
+console.log('🏁 Selesai! Artikel di "artikelx" kini lebih ramping dan link eksternal tetap aman.');
