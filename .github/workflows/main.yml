@@ -35,10 +35,10 @@ jobs:
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
-          # 1. Install paket terbaru secara temporary
+          # 1. Install paket terbaru secara temporary (tanpa mencatat ke package.json)
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
           
-          # 2. Ambil JS & CSS Highlight.js langsung dari node_modules (Lebih sinkron!)
+          # 2. Ambil JS & CSS Highlight.js langsung dari node_modules
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
           
@@ -50,10 +50,11 @@ jobs:
           # 4. Patch Path CSS Font Awesome agar sesuai struktur folder /ext
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
           
-          # 5. Catat info versi untuk audit (Ambil versi dari package yang baru diinstal)
-          HLJS_VER=$(npm list @highlightjs/cdn-assets --depth=0 | grep @highlightjs | cut -d@ -f3)
-          FA_VER=$(npm list @fortawesome/fontawesome-free --depth=0 | grep @fortawesome | cut -d@ -f3)
+          # 5. Ambil versi murni dari package.json lokal (Solusi anti-extraneous)
+          HLJS_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
+          FA_VER=$(node -p "require('./node_modules/@fortawesome/fontawesome-free/package.json').version")
           
+          # 6. Simpan info bersih ke asset-info.txt
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
           
           echo "✅ Assets updated: Highlight.js v$HLJS_VER & Font Awesome v$FA_VER"
