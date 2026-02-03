@@ -1,39 +1,37 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- ===== Basic Metadata ===== -->
 <title>Sosial Media dan Video Embed Generator</title>
 <meta name="description" content="Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.">
 <meta name="keywords" content="embed generator, social embed, video embed, youtube embed, twitter embed, instagram embed, tiktok embed, iframe generator, alat embed">
-<meta name="author" content="Layar Kosong">
-<meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+
 
 <!-- ===== Canonical ===== -->
-<link rel="canonical" href="https://dalam.web.id/artikel/social-video-embed-generator.html">
+
 
 <!-- ===== Open Graph (Facebook, LinkedIn, WhatsApp, dll) ===== -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sosial Media dan Video Embed Generator">
+
+
 <meta property="og:description" content="Buat embed media sosial dan video (YouTube, X/Twitter, Instagram, TikTok, dll) secara instan. Praktis, cepat, dan ramah SEO.">
-<meta property="og:url" content="https://dalam.web.id/artikel/social-video-embed-generator.html">
-<meta property="og:site_name" content="Layar Kosong">
-<meta property="og:locale" content="id_ID">
-<meta property="og:image" content="https://pbs.twimg.com/media/HAQQu41a8AEwCHb.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Sosial Media dan Video Embed Generator">
+
+
+
+
+
+
+
+
 
 <!-- ===== Twitter Card ===== -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sosial Media dan Video Embed Generator">
+
+
 <meta name="twitter:description" content="Generator embed media sosial dan video yang cepat, ringan, dan siap dipakai di blog atau website.">
-<meta name="twitter:image" content="https://pbs.twimg.com/media/HAQQu41a8AEwCHb.jpg">
-<meta name="twitter:site" content="@responaja">
-<meta name="twitter:creator" content="@responaja">
+
+
+
 
 <!-- ===== Web App dan UX ===== -->
 
@@ -52,11 +50,40 @@
         pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'Monaco', monospace; font-size: 13px; margin: 0; color: #9cdcfe; }
         .preview { margin-top: 25px; border: 2px dashed #bbb; padding: 20px; min-height: 200px; background: #fff; border-radius: 8px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/social-video-embed-generator">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/social-video-embed-generator">
+    <meta property="og:title" content="Sosial Media dan Video Embed Generator">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAQQu41a8AEwCHb.webp">
+    <meta property="og:image:alt" content="Sosial Media dan Video Embed Generator">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAQQu41a8AEwCHb.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAQQu41a8AEwCHb.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
 <div class="container">
-    <h1>🚀 Social & Video Embed Generator</h1>
+    <h1>🚀 Social &amp; Video Embed Generator</h1>
+<div id="iposbrowser"></div>
     <p style="text-align:center;">Hasilkan kode responsif untuk halaman HTML.</p>
 
     <label for="platform">Pilih Platform:</label>
@@ -78,10 +105,10 @@
     <label for="videoUrl">URL Postingan/Video:</label>
     <input type="text" id="videoUrl" placeholder="Tempel URL di sini...">
 
-    <button id="main-btn" onclick="generateEmbed()">Hasilkan Kode & Preview</button>
+    <button id="main-btn" onclick="generateEmbed()">Hasilkan Kode &amp; Preview</button>
 
     <div id="resultContainer" style="display:none;">
-        <label>📋 Kode HTML (Rata Tengah & Responsif):</label>
+        <label>📋 Kode HTML (Rata Tengah &amp; Responsif):</label>
         <div class="result-area">
             <button class="copy-btn" onclick="copyCode()">Salin</button>
             <pre id="embedCode"></pre>
@@ -116,7 +143,7 @@
 
             case 'threads':
                 const thUrl = url.split('?')[0];
-                innerContent = `<blockquote class="threads-embed" data-request_type="post" data-url="${thUrl}" data-width="100%"><a href="${thUrl}">Post by Threads</a></blockquote><script async src="https://www.threads.net/embed.js"><\/script>`;
+                innerContent = `<blockquote class="threads-embed" data-request_type="post" data-url="${thUrl}" data-width="100%">[Post by Threads](${thUrl})</blockquote><script async src="https://www.threads.net/embed.js"><\/script>`;
                 break;
 
             case 'mastodon':
@@ -136,7 +163,7 @@
 
             case 'x':
                 const xUrl = url.replace('x.com', 'twitter.com');
-                innerContent = `<blockquote class="twitter-tweet"><a href="${xUrl}"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`;
+                innerContent = `<blockquote class="twitter-tweet">[](${xUrl})</blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`;
                 break;
 
             case 'facebook':
@@ -166,5 +193,9 @@
     }
 </script>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
