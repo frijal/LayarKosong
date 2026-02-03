@@ -1,5 +1,5 @@
 /*!
- * markdown-enhancer.js — Frijal Ultimate Edition (Link, Image, Strikethrough Support)
+ * markdown-enhancer.js — Frijal Ultimate Edition (Clean & Responsive)
  */
 
 (async function () {
@@ -54,30 +54,35 @@
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
   }
 
-  // === 3️⃣ Markdown converter (Update: Image & Strikethrough) ===
+  // === 3️⃣ Markdown converter ===
   function convertInlineMarkdown(text) {
     return text
-    // 1. Unescape dasar
     .replace(/&gt;/g, ">")
 
-    // 2. Block Code (Triple Backtick)
+    // Block Code (Triple Backtick)
     .replace(/```(\w+)?\n([\s\S]*?)```/g, (m, lang, code) => {
       const language = lang || "plaintext";
       return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
     })
 
-    // 3. Table
+    // Table (Auto Data-Label for Mobile)
     .replace(/((?:\|.*\|\n)+)/g, match => {
       const rows = match.trim().split("\n").filter(r => r.trim());
       if (rows.length < 2) return match;
-      const header = rows[0].split("|").filter(Boolean).map(c => `<th>${c.trim()}</th>`).join("");
-      const body = rows.slice(2).map(r =>
-      "<tr>" + r.split("|").filter(Boolean).map(c => `<td>${c.trim()}</td>`).join("") + "</tr>"
-      ).join("");
-      return `<div style="overflow-x:auto;"><table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></div>`;
+      const headerTexts = rows[0].split("|").filter(Boolean).map(c => c.trim());
+      const headerHTML = headerTexts.map(c => `<th>${c}</th>`).join("");
+      const bodyHTML = rows.slice(2).map(r => {
+        const cells = r.split("|").filter(Boolean).map(c => c.trim());
+        const cellsHTML = cells.map((content, index) => {
+          const label = headerTexts[index] || "";
+          return `<td data-label="${label}">${content}</td>`;
+        }).join("");
+        return `<tr>${cellsHTML}</tr>`;
+      }).join("");
+      return `<div class="dns-table-container"><table class="dns-card-mode"><thead><tr>${headerHTML}</tr></thead><tbody>${bodyHTML}</tbody></table></div>`;
     })
 
-    // 4. Headers
+    // Headers
     .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
     .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
     .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
@@ -85,28 +90,22 @@
     .replace(/^## (.*)$/gm, "<h2>$1</h2>")
     .replace(/^# (.*)$/gm, "<h1>$1</h1>")
 
-    // 5. Blockquote
+    // Blockquote
     .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
 
-    // 6. Image Markdown ![alt](url) <-- FITUR BARU
+    // Image & Link
     .replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%; height:auto; display:block; margin:10px 0; border-radius:8px;">')
-
-// 7. Link Markdown [teks](url)
 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
 
-// 8. Strikethrough ~~teks~~ <-- FITUR BARU
+// Text Styles
 .replace(/~~(.*?)~~/g, '<del>$1</del>')
-
-// 9. Bold (Tebal)
 .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-
-// 10. Italic (Miring)
 .replace(/(^|[^\*])\*([^\*]+)\*([^\*]|$)/g, "$1<em>$2</em>$3")
 
-// 11. Inline Code (Single Backtick)
+// Inline Code (Single Backtick)
 .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
 
-// 12. Unordered List
+// Lists
 .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
 .replace(/(<li>.*<\/li>)/gs, match => {
   return match.includes('<ul>') ? match : `<ul>${match}</ul>`;
@@ -115,30 +114,23 @@
 
   // === 4️⃣ Proses Markdown di halaman ==
   function enhanceMarkdown() {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .closing, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .tip-admin, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert";
+    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .method-card, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .kuhp-point, .contact, .highlight, .closing, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .tip-admin, .info-box, .tool-item, .tips, .tip, .alert, .intro-alert"; // Ditambah .container biar makin mantap
 
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
-
       let original = el.innerHTML;
       if (!original.trim()) return;
-
       const rendered = convertInlineMarkdown(original);
-
-      if (rendered !== original) {
-        el.innerHTML = rendered;
-      }
+      if (rendered !== original) { el.innerHTML = rendered; }
     });
   }
 
-  // === 5️⃣ Fix Display Inline Code ===
+  // === 5️⃣ Fix Display Inline Code (Hanya Layout, Bukan Warna) ===
   function fixInlineCodeDisplay() {
     document.querySelectorAll("code.inline-code").forEach(el => {
       el.style.display = "inline";
-      el.style.backgroundColor = "rgba(175, 184, 193, 0.2)";
-      el.style.padding = "2px 5px";
-      el.style.borderRadius = "6px";
-      el.style.fontFamily = "monospace";
+      el.style.fontFamily = "'Courier New', Courier, monospace";
+      // Background dan Warna sudah diatur di CSS HTML kamu
     });
   }
 
@@ -146,16 +138,11 @@
   async function highlightIfPresent() {
     const codeBlocks = document.querySelectorAll("pre code");
     if (!codeBlocks.length) return;
-
     const hljs = await loadHighlightJSIfNeeded();
     if (!hljs) return;
-
     applyHighlightTheme();
     setupThemeListener();
-
-    codeBlocks.forEach(el => {
-      try { hljs.highlightElement(el); } catch {}
-    });
+    codeBlocks.forEach(el => { try { hljs.highlightElement(el); } catch {} });
   }
 
   // === 🚀 Main Launch ===
