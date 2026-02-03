@@ -70,6 +70,7 @@ jobs:
           
           # Logic 'satpam' rsync yang sama persis
           rsync -a --delete \
+            --include='functions/***' \
             --include='gaya-hidup/***' \
             --include='jejak-sejarah/***' \
             --include='lainnya/***' \
