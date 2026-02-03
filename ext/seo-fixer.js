@@ -26,19 +26,24 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     }
 
     const originalPath = url.pathname;
-    const ext = path.extname(originalPath);
-    const webpPathName = ext ? originalPath.replace(ext, '.webp') : `${originalPath}.webp`;
+    const ext = path.extname(originalPath).toLowerCase(); // Ambil ekstensi asli
 
-    const localPath = path.join('img', url.hostname, webpPathName);
+    // Tentukan path lokal (tetap pakai ekstensi asli jika SVG)
+    const isSvg = ext === '.svg';
+    const finalExt = isSvg ? '.svg' : '.webp';
+    const localPathName = ext ? originalPath.replace(ext, finalExt) : `${originalPath}${finalExt}`;
+
+    const localPath = path.join('img', url.hostname, localPathName);
     const dirPath = path.dirname(localPath);
 
+    // Cek apakah file sudah ada di folder lokal
     if (fs.existsSync(localPath)) {
       return `/${localPath.replace(/\\/g, '/')}`;
     }
 
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 
-    console.log(`📥 Mirroring & WebP: ${url.hostname}${originalPath}...`);
+    console.log(`📥 Mirroring ${isSvg ? '(Original SVG)' : '& WebP'}: ${url.hostname}${originalPath}...`);
 
     const response = await axios({
       url: externalUrl,
@@ -48,17 +53,25 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
       timeout: 15000
     });
 
-    await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
+    if (isSvg) {
+      // JIKA SVG: Langsung simpan filenya tanpa diconvert (Curi doang)
+      fs.writeFileSync(localPath, response.data);
+    } else {
+      // JIKA BUKAN SVG: Convert ke WebP pakai Sharp
+      await sharp(response.data).webp({ quality: 85 }).toFile(localPath);
+    }
+
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
+    console.error(`❌ Gagal mirror ${externalUrl}:`, err.message);
     return externalUrl;
   }
 }
 
 async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
-  
-  // 🔥 Menggunakan native glob. Di Node.js native, return-nya adalah AsyncIterable, 
+
+  // 🔥 Menggunakan native glob. Di Node.js native, return-nya adalah AsyncIterable,
   // kita ubah jadi array agar kompatibel dengan perulangan for...of Mas Bro.
   const files = [];
   for await (const entry of glob(`${targetFolder}/*.html`)) {
