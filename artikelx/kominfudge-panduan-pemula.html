@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ========================= -->
+<!-- Metadata SEO Utama -->
+<!-- ========================= -->
+<title>KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="title" content="KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia">
+<meta name="description" content="Panduan komprehensif untuk menembus penyensoran internet di Indonesia. Pelajari cara mengganti DNS, menghindari DPI, memilih ISP, dan alat untuk akses internet bebas.">
+<meta name="keywords" content="kominfo, blokir internet, internet bebas, DNS, DPI, VPN, ISP Indonesia, bypass blokir, unblokir situs">
+<meta name="author" content="Dalam Web">
+<meta name="publisher" content="Dalam Web">
+<meta name="language" content="id-ID">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/kominfudge-panduan-pemula.html">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<!-- ========================= -->
+<!-- Open Graph (Facebook, WA, Telegram, dll) -->
+<!-- ========================= -->
+<meta property="og:title" content="KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia">
+<meta property="og:description" content="Panduan praktis menembus pemblokiran internet oleh Kominfo dengan berbagai metode dari termudah hingga tingkat lanjut.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dalam.web.id/artikel/kominfudge-panduan-pemula.html">
+<meta property="og:site_name" content="Dalam Web">
+<meta property="og:locale" content="id_ID">
+
+<meta property="og:image" content="https://pbs.twimg.com/media/HAKaCU4aMAEoGBR.jpg">
+<meta property="og:image:secure_url" content="https://pbs.twimg.com/media/HAKaCU4aMAEoGBR.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ilustrasi kebebasan akses internet di Indonesia">
+
+<meta property="article:published_time" content="2026-02-03T10:00:00+07:00">
+<meta property="article:author" content="https://dalam.web.id">
+<meta property="article:section" content="Teknologi">
+<meta property="article:tag" content="Kominfo">
+<meta property="article:tag" content="Internet Bebas">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="VPN">
+
+<!-- ========================= -->
+<!-- Twitter / X Card -->
+<!-- ========================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia">
+<meta name="twitter:description" content="Panduan komprehensif untuk menembus penyensoran internet di Indonesia, dari DNS sampai teknik lanjutan.">
+<meta name="twitter:image" content="https://pbs.twimg.com/media/HAKaCU4aMAEoGBR.jpg">
+<meta name="twitter:image:alt" content="Ilustrasi kebebasan akses internet di Indonesia">
+<meta name="twitter:site" content="@responaja">
+<meta name="twitter:creator" content="@responaja">
+
+<!-- ========================= -->
+<!-- News & Advanced Metadata -->
+<!-- ========================= -->
+<meta name="news_keywords" content="internet bebas, kominfo, blokir, DNS, DPI, VPN, ISP Indonesia, bypass, unblokir">
+
+<meta name="prompthint" content="Panduan praktis untuk menembus pemblokiran internet di Indonesia dengan berbagai metode dan alat yang tersedia">
+
+<meta name="theme-color" content="#111827">
+<meta name="color-scheme" content="light dark">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --header-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --accent-color: #4a6fa5;
+            --warning-color: #ff6b6b;
+            --info-color: #17a2b8;
+            --success-color: #28a745;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: #1e1e1e;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --accent-color: #6a9bd8;
+            --warning-color: #ff8a8a;
+            --info-color: #1fc8e3;
+            --success-color: #34c759;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 120px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 1.3rem 0 0.8rem;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .disclaimer {
+            background-color: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .disclaimer p {
+            margin-bottom: 0;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .note {
+            background-color: rgba(23, 162, 184, 0.1);
+            border-left: 4px solid var(--info-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .warning {
+            background-color: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(74, 111, 165, 0.1);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        [data-theme="dark"] tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-icon {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .top-recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .recommendation-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .recommendation-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .recommendation-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.9;
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .nav-link {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            opacity: 0.9;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .app-list, .method-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-list li, .method-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        [data-theme="dark"] .code-block {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .toc {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc h3 {
+            margin-top: 0;
+        }
+
+        .toc ul {
+            margin-left: 1.5rem;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 10px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            .top-recommendations {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+         <h1>📡 KominFudge: Panduan (Pemula)</h1>
+        <p class="tagline">"Tolak diblokir, Terima ngeblokir. Karena Kominfo ngeblokir asal-asalan yang merugikan masyarakat luas, mari kita <i>unblokir!</i>"</p>
+
+        <div class="disclaimer">
+            <p><strong>DISCLAIMER</strong>: <em>KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri.</em></p>
+        </div>
+<div class="video-container" style="position:relative;width:100%;height:0;padding-bottom:56.25%;">
+  <iframe src="https://www.youtube.com/embed/HfgqTq0p8XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+</div>
+
+        <div class="nav-links">
+            <a href="#tentang" class="nav-link"><i class="fas fa-info-circle"></i> Tentang</a>
+            <a href="#isp" class="nav-link"><i class="fas fa-wifi"></i> Memilih ISP</a>
+            <a href="#dns" class="nav-link"><i class="fas fa-server"></i> Memilih DNS</a>
+            <a href="#dpi" class="nav-link"><i class="fas fa-shield-alt"></i> Menghilangkan DPI</a>
+            <a href="#vpn" class="nav-link"><i class="fas fa-user-secret"></i> VPN & Tor</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="tentang" class="card">
+            <h2><i class="fas fa-info-circle section-icon"></i> Tentang KominFudge</h2>
+            <p>KominFudge adalah sebuah dokumentasi tentang penyensoran Internet di Indonesia dan cara untuk menembusnya agar dapat mengakses Internet secara bebas.</p>
+
+            <p>Dokumentasi ini terdiri atas tiga dokumen yaitu:</p>
+
+            <div class="top-recommendations">
+            <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/bebasid/KominFudge/1de32c831e06ee4c4ffe867183d338f5784babe0/assets/icon/logo-black.svg" alt="BEBASID LOGO" width="auto" id="logo-light">
+            <img src="https://raw.githubusercontent.com/bebasid/KominFudge/1de32c831e06ee4c4ffe867183d338f5784babe0/assets/icon/logo.svg" alt="BEBASID LOGO" width="auto" id="logo-dark" style="display: none;">
+        </div>
+                <div class="recommendation-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Panduan (pemula)</h3>
+                    <p>Menjelaskan cara dan aplikasi untuk menembus penyensoran Internet pada umumnya, diurut dari cara termudah hingga tersulit, serta rekomendasi dari KominFudge.</p>
+                </div>
+
+                <div class="recommendation-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Sumber daya (mahir)</h3>
+                    <p>Menjelaskan bagaimana cara penyensoran Internet di Indonesia bekerja secara rinci dan metode menembus penyensoran yang lebih rumit.</p>
+                    <a target="_blank" href="https://github.com/bebasid/KominFudge/blob/reorganize/Advanced-README.md">Lihat panduan</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Penemuan</h3>
+                    <p>Mendokumentasikan penemuan yang kita temui selama penelitian tentang penyensoran internet di Indonesia.</p>
+                    <a target="_blank" href="https://github.com/bebasid/KominFudge/blob/reorganize/FINDINGS.md">Lihat penemuan</a>
+                </div>
+
+            </div>
+
+            <div class="warning">
+                <p><strong>PERHATIAN:</strong> KominFudge tidak bertanggung jawab atas kerusakan perangkat Anda, gunakan informasi yang diberikan dengan risiko Anda sendiri.</p>
+            </div>
+
+            <p>Silahkan baca dari awal sampai akhir, atau lihat bagian "Navigasi" untuk memilih bagian tertentu yang ingin dibaca.</p>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-star section-icon"></i> Pilihan Tertinggi</h2>
+            <p>Berikut adalah rekomendasi terbaik dari KominFudge untuk menembus pemblokiran:</p>
+
+            <div class="top-recommendations">
+                <div class="recommendation-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>DNS: 1.1.1.1</h3>
+                    <p>DNS yang intuitif dan senang untuk dipakai.</p>
+                    <a target="_blank" href="https://1.1.1.1">Kunjungi 1.1.1.1</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <i class="fas fa-tunnel"></i>
+                    <h3>DPI: PowerTunnel</h3>
+                    <p>Intuitif dan Open Source.</p>
+                    <a target="_blank" href="https://github.com/krlvm/PowerTunnel">Kunjungi GitHub</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Filehost: bebasid</h3>
+                    <p>Mempunyai hosts file yang banyak isi pada tersebut.</p>
+                    <a target="_blank" href="https://bebasid.com">Kunjungi bebasid</a>
+                </div>
+
+                <div class="recommendation-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>VPN: ProtonVPN</h3>
+                    <p>Gratis dan Aman.</p>
+                    <a target="_blank" href="https://protonvpn.com">Kunjungi ProtonVPN</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="isp" class="card">
+            <h2><i class="fas fa-wifi section-icon"></i> Memilih ISP yang tidak ketat</h2>
+            <p>ISP adalah provider Internet, daftar isi ini akan membuat lebih tau bagaimana jenis ISP Indonesia memblokir.</p>
+
+            <div class="note">
+                <p><strong>Catatan:</strong> Untuk mengecek IP Transit apa yang ISP gunakan, silahkan check di <a target="_blank" href="https://bgp.tools">bgp.tools</a> atau <a target="_blank" href="https://bgp.he.net">bgp.he.net</a>.</p>
+            </div>
+
+            <h3>IP Transit</h3>
+            <p>ISP yang menggunakan upstream di bawah ini tidak bisa mengganti DNS dengan cara biasa, karena port 53 telah ditutupkan ke provider DNS IP Transit masing-masing sebagaimana DNS Nasional yang diusulkan di IDNOG 2022.</p>
+
+            <h4>IP Transit yang membelokan DNS populer</h4>
+            <p><strong>IP Transit ini membelokan beberapa DNS populer sehingga wajib menggunakan DoH atau DNS yang kurang populer</strong></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ASN</th>
+                        <th>Nama</th>
+                        <th>Pemblokiran menggunakan DNS</th>
+                        <th>DNS yang diblokir</th>
+                        <th>Catatan</th>
+                        <th>Contoh ISP yang kena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/23947">AS23947</a></td>
+                        <td>Mora Telematika Indonesia</td>
+                        <td>Ya</td>
+                        <td>Quad9</td>
+                        <td>Quad9 dibelokin di level IP Transit seperti yang bisa dilihat di hasil traceroute.</td>
+                        <td>Queen Network Indonesia</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/4800">AS4800</a></td>
+                        <td>Aplikanusa Lintasarta</td>
+                        <td>Ya</td>
+                        <td>Semua DNS yang lewat IP Transit Lintasarta AS4800</td>
+                        <td>Provider ini juga memblokir DoH/DoT untuk client IP Transit nya</td>
+                        <td>Trisula, Netciti</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/55685">AS55685</a></td>
+                        <td>Jala Lintas Media</td>
+                        <td>Ya</td>
+                        <td>Cloudflare 1.1.1.1, Google, OpenDNS</td>
+                        <td>Bukti Pembelokan tersedia</td>
+                        <td>Hyperindo Media Perkasa</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <p>Jika di sisi ISP anda tidak mematuhi peraturan DNS Nasional tetapi menggunakan IP Transit di atas, maka akan sama terkena blokir dan harus menggunakan DNS terenkripsi. Atau memakai DNS yang tidak dijalurkan melalui IP Transit diatas <em>jika ada.</em></p>
+            </div>
+
+            <h4>ISP yang wajib menggunakan WARP/VPN, GoodbyeDPI, atau GreenTunnel/PowerTunnel</h4>
+            <p><strong>Sedangkan ISP yang menggunakan upstream dibawah ini, wajib menggunakan WARP/VPN, GoodbyeDPI, atau GreenTunnel/PowerTunnel.</strong></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ASN</th>
+                        <th>Nama</th>
+                        <th>Pemblokiran menggunakan DPI</th>
+                        <th>Catatan</th>
+                        <th>Contoh ISP yang kena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/17995">AS17995</a></td>
+                        <td>iForte Solusi Infotek</td>
+                        <td>Ya</td>
+                        <td>Hasil Traceroute tersedia</td>
+                        <td>Wi-Fi Transjakarta Kena, hati-hati.</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/23947">AS23947</a> / <a target="_blank" href="https://bgp.tools/as/131111">AS131111</a></td>
+                        <td>Mora Telematika Indonesia</td>
+                        <td>Ya</td>
+                        <td>Traceroute ke Moratel tersedia</td>
+                        <td>Queen Network Indonesia</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/4787">AS4787</a></td>
+                        <td>Cyberindo Aditama (CBN)</td>
+                        <td>Ya</td>
+                        <td>DPI CBN lemah. Bukti DPI dan Traceroute tersedia</td>
+                        <td>VPS Exabytes</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/55655">AS55655</a></td>
+                        <td>Saranainsan Mudaselaras (SIMS/MVNET)</td>
+                        <td>Ya</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/55685">AS55685</a></td>
+                        <td>Jala Lintas Media</td>
+                        <td>Ya</td>
+                        <td></td>
+                        <td>PC24, Hyperindo Media Perkasa</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/7713">AS7713</a></td>
+                        <td>Telkom Indonesia</td>
+                        <td>Ya</td>
+                        <td>Provider yang pertama kali yang implemen DPI buat blokir sejak 2016 (Kasus Netflix)</td>
+                        <td>Beberapa Universitas dan ISP lokal yang pake upstream AS7713</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://bgp.tools/as/9341">AS9341</a> / <a target="_blank" href="https://bgp.tools/as/38757">AS38757</a></td>
+                        <td>Indonesia Comnet Plus (ICONNET)</td>
+                        <td>Ya</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <p>Jika ISP anda tidak menggunakan DPI tetapi menggunakan upstream diatas, silahkan gunakan alat anti DPI untuk melewatinya.</p>
+            </div>
+
+            <h3>ISP Fiber</h3>
+            <div class="warning">
+                <p><strong>Catatan Penting:</strong> Hampir semua ISP melanggar kebebasan dengan mengikuti DNS Nasional sehingga pengguna tidak dapat mengganti DNS atau mengecek DNS server selain punya ISP. Hal ini merugikan bagi pengguna yang ingin memakai layanan pemblokiran DNS lain misalkan OpenDNS dan NextDNS sehingga sangat tidak cocok digunakan untuk pengguna atau orang tua yang ingin menggunakan filter selain TrustPositif yang sering memblokir asal-asalan.</p>
+                <p>Namun, implementasi DNS Nasional tersebut berbeda beda di tiap ISP. Ada yang hanya membelokan atau memblokir UDP 53 (Contohnya FirstMedia), ada yang hanya ke arah internasional, adapun yang juga ikut memblokir TCP 53 (Contoh: MyRepublic dan Smartfren).</p>
+            </div>
+
+            <h4>Legenda DNS Nasional:</h4>
+            <ul>
+                <li><strong>International</strong> = Memblokir port 53 menuju internasional</li>
+                <li><strong>Local</strong> = Memblokir port 53 menuju lokal (Sesama Indonesia) di OpenIXP, IIX, CXC, JKT-IX, dan sebagainya</li>
+                <li><strong>TCP</strong> = Memblokir TCP port 53, Sehingga tidak bisa melakukan <i>Zone Transfer</i> bagi yang menggunakan provider yang memiliki tanda ini</li>
+                <li><strong>DoH/DoT</strong> = Melakukan pemblokiran DNS terenkripsi bagi yang menggunakan provider yang memiliki tanda ini sehingga tidak cocok untuk digunakan bagi yang mau privasi</li>
+            </ul>
+
+            <h4>ISP Rumah:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Pemblokiran menggunakan DNS</th>
+                        <th>Pemblokiran menggunakan DPI</th>
+                        <th>Mengirim TCP RST ke server</th>
+                        <th>Catatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Balifiber</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td>?</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Biznet Home</td>
+                        <td>Ya (International, Local)</td>
+                        <td>Tidak</td>
+                        <td>Tidak</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Bnetfit</td>
+                        <td>Ya (International, Local, TCP)</td>
+                        <td>Tidak</td>
+                        <td>Tidak</td>
+                        <td>Punya Jala Lintas Media</td>
+                    </tr>
+                    <tr>
+                        <td>CBN</td>
+                        <td>Ya (Google, OpenDNS, Cloudflare, Quad9) (Including TCP for those servers)</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>FirstMedia</td>
+                        <td>Ya (International, Local)</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Iconnet PLN</td>
+                        <td>Ya (International, Local)</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td>DPI Iconnet juga mengirim TCP RST ke server. Pemblokiran DPI 2 arah. Ikut DNS Nasional, Google, Cisco, Cloudflare, dkk belok ke DNS ICON dan selain itu diblokir</td>
+                    </tr>
+                    <tr>
+                        <td>Indihome</td>
+                        <td>Ya (International, Local)</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td>ISP dari Telkom untuk rumah. DPI Indihome juga mengirim TCP RST ke server</td>
+                    </tr>
+                    <tr>
+                        <td>Indosat HiFi/MNC Play</td>
+                        <td>Ya (International, Local, TCP)</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>MyRepublic</td>
+                        <td>Ya (International, Local, TCP)</td>
+                        <td>Tidak</td>
+                        <td>Tidak</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Oxygen</td>
+                        <td>Ya (DoH/DoT, Google, Quad9)</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td>Nama lain: Moratelindo <br /> DoH dan DoT punya Google diblokir menggunakan teknik BGP Blackholling. IP DNS Google dan Quad9 dibelokin menggunakan metode route hijacking ke server Moratel sehingga tidak dapat digunakan. Provider ini juga menerapkan DPI</td>
+                    </tr>
+                    <tr>
+                        <td>Starlink Indonesia (Starlink)</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td>Tidak</td>
+                        <td>Starlink Indonesia</td>
+                    </tr>
+                    <tr>
+                        <td>XL Home</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>ISP Mobile Seluler:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Pemblokiran menggunakan DNS</th>
+                        <th>Pemblokiran menggunakan DPI</th>
+                        <th>Mengirim TCP RST ke server</th>
+                        <th>Catatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>Ya (International, Local, TCP). Google and OpenDNS are safe from TCP 53 blocking</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Indosat</td>
+                        <td>Ya (Google, OpenDNS)</td>
+                        <td>Ya</td>
+                        <td>Tidak, tetapi melambat koneksi ke domain yg diblok jika Host/SNI header masih kedetek</td>
+                        <td>Sama seperti anaknya, Pada 4/5 Oktober 2023, Indosat mulai menghijack DNS Server Google dan OpenDNS ke punya dia</td>
+                    </tr>
+                    <tr>
+                        <td>Smartfren</td>
+                        <td>Ya (International, Local, TCP, DoH/DoT)</td>
+                        <td>Ya</td>
+                        <td>Tidak</td>
+                        <td>Memblokir DoH/DoT punya Google</td>
+                    </tr>
+                    <tr>
+                        <td>Telkomsel / By.U / KartuHalo</td>
+                        <td>Ya (International, Local, TCP)</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td>DPI Telkomsel juga mengirim TCP RST ke server</td>
+                    </tr>
+                    <tr>
+                        <td>XL / Axis / Live On</td>
+                        <td>Ya (International, Local)</td>
+                        <td>Ya</td>
+                        <td>Ya</td>
+                        <td>DPI XL juga mengirim TCP RST ke server</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Level kepayahan unblok memakai DPI</h3>
+            <p>Seberapa payah dengan cara unblok memakai DPI per ISP:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Kepayahan</th>
+                        <th>Bypass MikroTik & IPTables</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>Rendah</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>CBN</td>
+                        <td>Rendah</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Firstmedia</td>
+                        <td>Sedang</td>
+                        <td>Tidak Bisa (http), Bisa (https)</td>
+                    </tr>
+                    <tr>
+                        <td>Iconnet</td>
+                        <td>Sedang</td>
+                        <td>Tidak Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Indihome</td>
+                        <td>Tinggi</td>
+                        <td>Tidak Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Indosat</td>
+                        <td>Sedang</td>
+                        <td>Tidak Bisa (IM3) & Bisa (Hi-Fi, IP Transit)</td>
+                    </tr>
+                    <tr>
+                        <td>Jala Lintas Media</td>
+                        <td>Sedang</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Mora Telematika Indonesia</td>
+                        <td>Sedang</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>SaranaInsan Mudaselaras (SIMS)</td>
+                        <td>Rendah</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Smartfren</td>
+                        <td>Sedang</td>
+                        <td>Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>Telkomsel / By.U / Kartu Halo</td>
+                        <td>Tinggi</td>
+                        <td>Tidak Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>XL / Axis / Live On</td>
+                        <td>Tinggi</td>
+                        <td>Tidak Bisa</td>
+                    </tr>
+                    <tr>
+                        <td>iForte</td>
+                        <td>Rendah</td>
+                        <td>Bisa</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <p><strong>Catatan:</strong> DATA INI BELUM DILENGKAPI. JIKA BERHARAP UNTUK DILENGKAPKAN, SILAKAN BERI INFORMASI TERLEBIH LANJUT.</p>
+                <p><em>Ambilkan semua dengan sedikit garam, semua ISP akan mengganti dengan cara pemblokirannya.</em></p>
+            </div>
+        </section>
+
+        <section id="dns" class="card">
+            <h2><i class="fas fa-server section-icon"></i> Cara memilih DNS yang tepat</h2>
+            <p>Paling simpel untuk Kominfo ngeblokir. Tapi, DNS bisa digantikan. Berikut daftar server DNS untuk menggantikan server blokir punya Kominfo.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Catatan</th>
+                        <th>IPv4</th>
+                        <th>IPv4 2</th>
+                        <th>IPv6</th>
+                        <th>IPv6 2</th>
+                        <th>DoH</th>
+                        <th>DoT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AdGuard DNS</td>
+                        <td>Memblokir iklan & malware</td>
+                        <td>94.140.14.14</td>
+                        <td>94.140.15.15</td>
+                        <td>2a10:50c0::ad1:ff</td>
+                        <td>2a10:50c0::ad2:ff</td>
+                        <td>https://dns.adguard-dns.com/dns-query</td>
+                        <td>dns.adguard-dns.com</td>
+                    </tr>
+                    <tr>
+                        <td>Cloudflare DNS</td>
+                        <td>-</td>
+                        <td>1.1.1.1</td>
+                        <td>1.0.0.1</td>
+                        <td>2606:4700:4700::1111</td>
+                        <td>2606:4700:4700::1001</td>
+                        <td>cloudflare-dns.com/dns-query</td>
+                        <td>1dot1dot1dot1.cloudflare-dns.com</td>
+                    </tr>
+                    <tr>
+                        <td>Cloudflare Family DNS</td>
+                        <td>Memblokir malware & situs dewasa</td>
+                        <td>1.1.1.3</td>
+                        <td>1.0.0.3</td>
+                        <td>2606:4700:4700::1113</td>
+                        <td>2606:4700:4700::1003</td>
+                        <td>family.cloudflare-dns.com/dns-query</td>
+                        <td>family.cloudflare-dns.com</td>
+                    </tr>
+                    <tr>
+                        <td>Google DNS</td>
+                        <td>-</td>
+                        <td>8.8.8.8</td>
+                        <td>8.8.4.4</td>
+                        <td>2001:4860:4860::8888</td>
+                        <td>2001:4860:4860::8844</td>
+                        <td>dns.google/dns-query</td>
+                        <td>dns.google</td>
+                    </tr>
+                    <tr>
+                        <td>Quad9 Secured</td>
+                        <td>Memblokir malware</td>
+                        <td>9.9.9.9</td>
+                        <td>149.112.112.112</td>
+                        <td>2620:fe::fe</td>
+                        <td>2620:fe::9</td>
+                        <td>dns.quad9.net/dns-query</td>
+                        <td>tls://dns.quad9.net</td>
+                    </tr>
+                    <tr>
+                        <td>OpenDNS</td>
+                        <td>-</td>
+                        <td>208.67.222.222</td>
+                        <td>208.67.220.220</td>
+                        <td>2620:119:35::35</td>
+                        <td>2620:119:53::53</td>
+                        <td>doh.opendns.com/dns-query</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>BebasDNS Default</td>
+                        <td>Layanan DNS oleh bebasid/KINI, memblokir iklan dan malware</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>https://dns.bebasid.com/dns-query</td>
+                        <td>dns.bebasid.com</td>
+                    </tr>
+                    <tr>
+                        <td>ControlD</td>
+                        <td>-</td>
+                        <td>76.76.2.2</td>
+                        <td>76.76.10.2</td>
+                        <td>2606:1a40::2</td>
+                        <td>2606:1a40:1::2</td>
+                        <td>freedns.controld.com/p1</td>
+                        <td>p1.freedns.controld.com</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <p>Daftar isi ini lebih lengkap dan bisa dilihat dari <a target="_blank" href="https://adguard-dns.io/kb/general/dns-providers/">KB AdGuard</a> dan <a target="_blank" href="https://github.com/curl/curl/wiki/DNS-over-HTTPS">Curl Wiki</a>. Dan bisa juga membuat sendiri dengan menggunakan <a target="_blank" href="https://github.com/tina-hello/doh-cf-workers">Cloudflare Workers</a> atau <a target="_blank" href="https://github.com/NotMikeDEV/DoH">server sendiri dengan memakai PHP</a>.</p>
+            </div>
+
+            <h3>Jenis Aplikasi DNS</h3>
+            <p>Aplikasi DNS ini bisa buat memakai DNS lebih senang.</p>
+
+            <div class="warning">
+                <p><strong>PERHATIAN:</strong> Apabila ISP juga melakukan pemblokiran menggunakan DPI, hanya bisa gunakan <a href="#dpi">Jenis Aplikasi untuk menghilangkan DPI</a>.</p>
+            </div>
+
+            <ul class="app-list">
+                <li><strong><a target="_blank" href="https://nebulo.app">Nebulo</a></strong> [Android] - Aplikasi untuk mengganti DNS di Android dengan mudah.</li>
+                <li><strong><a target="_blank" href="https://apps.apple.com/app/id1452162351">DNSCloak</a></strong> [iOS] - Aplikasi untuk mengganti DNS dan mengatur DNSCrypt di iOS.</li>
+                <li><strong><a target="_blank" href="https://dnscrypt.info">DNSCrypt</a></strong> [Windows, macOS, Linux] - DNS untuk selfhost yang dapat melakukan forwarding ke server DNSCrypt dan DNS-over-HTTPS.</li>
+                <li><strong><a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a></strong> [Windows] - Aplikasi penginstalan DNSCrypt.</li>
+                <li><strong><a target="_blank" href="https://dns.notjakob.com/tool.html">DNS Profile Creator</a></strong> [Browser] - Cara membuat dns.mobileconfig Apple dengan senang.</li>
+                <li><strong><a target="_blank" href="https://yogadns.com">YogaDNS</a></strong> [Windows] - Aplikasi pengganti DNS untuk Windows.</li>
+                <li><strong><a target="_blank" href="https://rethinkdns.com">RethinkDNS</a></strong> [Android] - Aplikasi untuk mengganti DNS dan pemblokiran iklan.</li>
+                <li><strong><a target="_blank" href="https://getintra.org">Intra</a></strong> [Android] - Aplikasi pengganti DNS untuk Android.</li>
+                <li><strong><a target="_blank" href="https://github.com/AdguardTeam/AdGuardHome">AdGuard Home</a></strong> [Windows, macOS, Linux] - DNS untuk selfhost dengan AdBlock, encrypted upstream dan downstream.</li>
+            </ul>
+
+            <h3>Cara mengganti lewat DNS</h3>
+            <p>Setelah sudah ada daftar isi DNS, gimana cara memakainya?</p>
+
+            <h4>Android</h4>
+            <ol class="method-list">
+                <li><strong>Settings</strong> > <strong>Other Wireless Connections</strong> > <strong>Private DNS</strong></li>
+                <li>Masukkan hostname DNS lalu klik tombol <strong>Save</strong>.</li>
+            </ol>
+
+            <h4>Windows</h4>
+            <p><strong>Windows 7 sampai ke Windows 10:</strong></p>
+            <ol class="method-list">
+                <li><strong>Control Panel</strong> > <strong>Network and Internet</strong> > <strong>Network and Sharing Center</strong> > <strong>Connections</strong> > <strong>Properties</strong></li>
+                <li>Pencet di Tulisan <strong>Internet Protocol Version 4 (TCP/IPv4)</strong> dengan 2 kali.</li>
+                <li>Ubahkan <strong>Obtain DNS server address automatically</strong> ke <strong>Use the following DNS server addresses</strong>.</li>
+                <li>Masukkan hostname DNS di kolom DNS tersebut lalu klik tombol <strong>Ok</strong>.</li>
+            </ol>
+
+            <h4>Linux</h4>
+            <ol class="method-list">
+                <li>Buka <strong>Terminal</strong>.</li>
+                <li>Jalankan pake perintah <code>nano /etc/resolv.conf</code> untuk mengedit file <code>/etc/resolv.conf</code>.</li>
+                <li>Ubah isi file menjadi seperti berikut (gantikan <code>&lt;hostname dns&gt;</code> menjadi salah satu hostname DNS).</li>
+            </ol>
+
+            <div class="code-block">
+                nameserver &lt;hostname dns&gt;<br>
+                nameserver &lt;hostname dns&gt;
+            </div>
+
+            <p>Catatan: Ada beberapa komponen yang mungkin terpasang pada distro Linux (seperti NetworkManager) dapat mengubah isi file <code>/etc/resolv.conf</code> tanpa disadari, untuk mencegah hal tersebut dapat mengetik perintah <code>chattr +i /etc/resolv.conf</code> setelah selesai mengubah file tersebut. Apabila ingin mengubah isi file <code>/etc/resolv.conf</code> kembali, dapat mengetik perintah <code>chattr -i /etc/resolv.conf</code> tersebut.</p>
+
+            <div class="note">
+                <p><strong>Bagaimana cara tau DNS-nya berhasil?</strong> Pergi ke situs <a target="_blank" href="https://dnsleaktest.com">DNSLeakTest</a> atau <a target="_blank" href="https://browserleaks.com/dns">BrowserLeaks</a> untuk mengeteskan. Jika DNS ISP masih muncul daripada DNS yang sudah diubah, silahkan download <a target="_blank" href="https://dnscrypt.info">DNSCrypt</a> atau <a target="_blank" href="https://simplednscrypt.org">SimpleDNSCrypt</a>.</p>
+            </div>
+        </section>
+
+        <section id="dpi" class="card">
+            <h2><i class="fas fa-shield-alt section-icon"></i> Jenis Aplikasi untuk menghilangkan DPI</h2>
+            <p>Untuk sekarang, hanya banyak ISP blokirnya itu dengan menggunakan Deep Packet Inspection (DPI). Maka itu, DPI bisa dihilangkan dengan mudah dengan aplikasi dibawah ini:</p>
+
+            <div class="warning">
+                <p><strong>PERHATIAN:</strong> Jangan lupa untuk menggantikan DNS terlebih dahulu atau menggunakan Hosts file apabila ISP yang tidak ketat juga menggunakan DNS untuk pemblokiran tersebut.</p>
+            </div>
+
+            <div class="note">
+                <p><strong>Info:</strong> KominFudge juga menyediakan config untuk Aplikasi & ISP di folder, ada <a href="/dpi-circumvention-config">disini</a>.</p>
+            </div>
+
+            <ul class="app-list">
+                <li><strong><a target="_blank" href="https://github.com/ValdikSS/GoodbyeDPI">GoodbyeDPI</a></strong> [Windows] - Aplikasi CLI untuk hilangkan DPI.</li>
+                <li><strong><a target="_blank" href="https://github.com/SadeghHayeri/GreenTunnel">GreenTunnel</a></strong> [Windows, macOS, Linux] - Aplikasi GUI untuk hilangkan DPI dengan yang mudah.</li>
+                <li><strong><a target="_blank" href="https://github.com/krlvm/PowerTunnel">PowerTunnel</a></strong> [Windows, macOS, Linux, Android] - Aplikasi GUI untuk hilangkan DPI dengan banyak fitur.</li>
+                <li><strong><a target="_blank" href="https://github.com/macronut/SNI-Mask">SNI-Mask</a></strong> [Windows] - Proxy untuk menghilangkan DPI.</li>
+                <li><strong><a target="_blank" href="https://github.com/URenko/Accesser">Accesser</a></strong> [Windows, macOS, Linux] - Aplikasi untuk menghilangkan TCP RST. Umumnya digunakan di Tiongkok.</li>
+                <li><strong><a target="_blank" href="https://github.com/macronut/ghostcp">GhosTCP</a></strong> [Windows] - Mengamankan koneksi TCP.</li>
+                <li><strong><a target="_blank" href="https://github.com/vecna/sniffjoke">sniffjoke</a></strong> [Linux] - Mengamankan WireTap/Sniff/IDS.</li>
+                <li><strong><a target="_blank" href="https://github.com/xvzc/SpoofDPI">SpoofDPI</a></strong> [macOS, Linux] - Menipu DPI-mu.</li>
+                <li><strong><a target="_blank" href="https://github.com/bol-van/zapret/blob/master/docs/readme.eng.md">Zapret</a></strong> [Linux, FreeBSD] - Alat penghindaran DPI.</li>
+                <li><strong><a target="_blank" href="https://github.com/zhenyolka/DPITunnel-cli">DPITunnel</a></strong> [Linux, Android] - CLI untuk Linux.</li>
+                <li><strong><a target="_blank" href="https://github.com/kkevsterrr/geneva">Geneva</a></strong> [Linux] - Alat penghindaran DPI berbasis AI.</li>
+            </ul>
+
+            <h3>Trik untuk melewati DPI tanpa aplikasi</h3>
+            <h4>Linux</h4>
+            <p>Untuk Drop TCP RST dan lamanlabuh di IPTables, jalankan perintah:</p>
+
+            <div class="code-block">
+                sudo iptables -I INPUT -p tcp --tcp-flags ALL RST,ACK -j DROP<br>
+                sudo iptables -A INPUT -p tcp -m string --string "Location: http://lamanlabuh.aduankonten.id/" --algo bm -j DROP
+            </div>
+
+            <p>Untuk firewall-cmd, jalankan perintah:</p>
+
+            <div class="code-block">
+                sudo firewall-cmd --direct --add-rule ipv4 filter INPUT 0 -p tcp --tcp-flags ALL RST,ACK -j DROP
+            </div>
+
+            <p>Gunakan firewall-cmd untuk distro yang menggunakan firewalld, seperti Fedora dan OpenSUSE di terminal. Tetapi perintah diatas tidak akan bekerja apabila ISP juga mengirim paket TCP RST ke server (daftar ISP bisa dilihat di kolom mengirim TCP RST ke server pada tabel diatas).</p>
+
+            <h3>Trik untuk melewati DPI memakai router</h3>
+            <h4>OpenWRT</h4>
+            <p>Silahkan ikut tutorial pada <a target="_blank" href="https://github.com/bebasid/bebasit/blob/master/docs/openwrt-tutorial.md">tersebut</a>.</p>
+
+            <h4>MikroTik</h4>
+            <p>Silahkan ikut tutorial pada <a target="_blank" href="https://github.com/bebasid/bebasit/blob/master/docs/mikrotik-tutorial.md">tersebut</a>.</p>
+
+            <h3>Daftar isi hosts file</h3>
+            <p>Hosts file (atau File hosts) tidak terlalu payah menjelaskan ini. Daftar Isi host file untuk orang yang memahami tersebut.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>List</th>
+                        <th>Alternatif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a target="_blank" href="https://gist.github.com/mul14/eb05e88fcec5bb195cbb?permalink_comment_id=3727848#gistcomment-3727848">Binance</a></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://gist.github.com/mul14/eb05e88fcec5bb195cbb?permalink_comment_id=3235083#gistcomment-3235083">Netflix</a></td>
+                        <td><a target="_blank" href="https://gist.github.com/mul14/eb05e88fcec5bb195cbb?permalink_comment_id=3324456#gistcomment-3324456">2</a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://gist.github.com/mul14/eb05e88fcec5bb195cbb?permalink_comment_id=3878656#gistcomment-3878656">Reddit</a></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://gist.github.com/mul14/eb05e88fcec5bb195cbb?permalink_comment_id=4250815#gistcomment-4250815">Steam</a></td>
+                        <td><a target="_blank" href="https://pastebin.com/auhuXvAD">2</a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://raw.githubusercontent.com/bebasid/bebasid/master/releases/hosts">bebasid</a></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://gist.githubusercontent.com/mul14/eb05e88fcec5bb195cbb/raw/611c0693c460fc5bd7037c6d9d43fa6c0ce4fd7c/hosts">mul14</a></td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Cara unblok memakai hosts file</h3>
+            <p>Filenya sudah ada. Sekarang, apalagi yang harus dilakukan?</p>
+
+            <h4>Windows</h4>
+            <ol class="method-list">
+                <li>Salinkan teks di dalam hosts file yang kamu pilih.</li>
+                <li>Buka File Explorer dan pergi ke <code>C:\Windows\System32\drivers\etc</code>.</li>
+                <li>Tempelkan teks ke file <strong>hosts</strong> tersebut.</li>
+            </ol>
+
+            <h4>Android</h4>
+            <p><strong>Perangkat yang sudah di ROOT:</strong></p>
+            <ol class="method-list">
+                <li>Salinkan teks didalam hosts file yang kamu pilih.</li>
+                <li>Buka File Explorer dan pergi ke <code>/system/etc</code>.</li>
+                <li>Tempelkan teks ke file <strong>hosts</strong>.</li>
+            </ol>
+
+            <p><strong>Perangkat yang belum di ROOT:</strong></p>
+            <ol class="method-list">
+                <li>Salin teks didalam hosts file yang kamu pilih.</li>
+                <li>Buatkan file dan tempelkan teksnya di dalam file tersebut.</li>
+                <li>Pasangkan <a target="_blank" href="https://github.com/x-falcon/Virtual-Hosts">Virtual Hosts</a> atau <a target="_blank" href="https://play.google.com/store/apps/details?id=dns.hosts.server.change">Host Go</a>.</li>
+                <li>Lalu, pencet <strong>Select Host File</strong> atau <strong>Import HOSTS file</strong> dan klik file yang kamu sudah buat.</li>
+            </ol>
+        </section>
+
+        <section id="vpn" class="card">
+            <h2><i class="fas fa-user-secret section-icon"></i> Memilih VPN yang aman</h2>
+            <p>Cara yang untuk melewati oleh blokir apabila cara diatas tidak bisa. <em>Tapi, jangan download VPN yang tidak aman & terpercaya!</em> Coba lihat VPN yang aman dan lebih baik dipake, daripada vpn yang tidak terpercaya ada di bawah ini:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Positif</th>
+                        <th>Negatif</th>
+                        <th>Server</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a target="_blank" href="https://expressvpn.com">ExpressVPN</a></td>
+                        <td>Cepat</td>
+                        <td>Tidak begitu aman dan berbayar</td>
+                        <td>148</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://mullvad.net/">Mullvad</a></td>
+                        <td>VPN Berbayar yang aman</td>
+                        <td>Berbayar</td>
+                        <td>867</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://ovpn.com">OVPN</a></td>
+                        <td><strong>Aman</strong></td>
+                        <td>Berbayar</td>
+                        <td>102</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://protonvpn.com">ProtonVPN</a></td>
+                        <td>VPN "gratis" yang "aman"</td>
+                        <td>Tidak ada Split-tunneling di sub gratis</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://psiphon.ca">Psiphon</a></td>
+                        <td>Open Source</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="https://windscribe.com">Windscribe</a></td>
+                        <td>Ada Split-tunneling & banyak fitur lainnya</td>
+                        <td>15GB per bulan</td>
+                        <td>15</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>VPN untuk para Pengguna Tingkat Lanjut</h3>
+            <p>VPN di bagian ini memerlukan konfigurasi, jika hanya ingin VPN yang di luar kotak, silahkan abaikan di bawah ini.</p>
+
+            <ul class="app-list">
+                <li><strong><a target="_blank" href="https://openvpn.net">OpenVPN</a></strong> - Sistem VPN yang mengimplementasikan teknik-teknik untuk membuat koneksi arah-ke-arah atau situs-ke-situs yang aman</li>
+                <li><strong><a target="_blank" href="https://softether.org">Softether</a></strong> - Seperti OpenVPN. Tapi, hanya ada server yang terbatas(?)</li>
+                <li><strong><a target="_blank" href="https://wireguard.com">Wireguard</a></strong> - Seperti OpenVPN</li>
+            </ul>
+
+            <h3>Jenis Aplikasi Tor</h3>
+            <p>Ini adalah bagian yang ekstrim dengan memakai Tor ada di bawah ini.</p>
+
+            <ul class="app-list">
+                <li><strong><a target="_blank" href="https://www.torproject.org">Tor Browser</a></strong> [Windows, macOS, Linux, Android] - Resmi Browser Tor.</li>
+                <li><strong><a target="_blank" href="https://guardianproject.info/apps/org.torproject.android">Orbot</a></strong> [Android] - Proxy dengan Tor.</li>
+                <li><strong><a target="_blank" href="https://onionbrowser.com">Onion Browser</a></strong> [iOS] - Browser Tor untuk iOS.</li>
+                <li><strong><a target="_blank" href="https://github.com/Gedsh/InviZible">InviZible</a></strong> [Android] - Aplikasi Android untuk DNS dan Tor.</li>
+            </ul>
+        </section>
+
+        <!-- Bagian Komentar -->
+        <section class="card">
+            <h2><i class="fas fa-comments section-icon"></i> Diskusi</h2>
+            <p>Bagikan pengalamanmu dalam menembus pemblokiran internet di Indonesia. Apakah ada metode yang berhasil atau ISP yang lebih baik?</p>
+            <div id="pesbukdiskus"></div>
+        </section>
+
+        <!-- Bagian Artikel Terkait -->
+        <section class="card">
+            <h2><i class="fas fa-newspaper section-icon"></i> Artikel Terkait</h2>
+            <p>Berikut adalah artikel lain yang mungkin menarik untuk Anda baca:</p>
+            <div id="related-articles-grid"></div>
+        </section>
+    </main>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Ubah tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <footer>
+        <p><strong>KominFudge</strong> - Panduan Menembus Pemblokiran Indonesia, Dokumentasi ini dibuat untuk edukasi dan membantu masyarakat mengakses internet secara bebas.</p>
+
+        <div class="footer-links">
+            <a target="_blank" href="https://github.com/bebasid/KominFudge" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a target="_blank" href="https://bebasid.com" target="_blank"><i class="fas fa-globe"></i> BebasID</a>
+            <a href="/about"><i class="fas fa-info-circle"></i> Tentang</a>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong>DISCLAIMER:</strong> <em>KominFudge tidak bertanggung jawab atas kerusakan perangkat anda, ambil dengan risiko anda sendiri. Gunakan informasi ini dengan bijak dan bertanggung jawab.</em></p>
+        </div>
+
+        <p>&copy; 2024 KominFudge. Semua informasi bersifat edukatif dan dapat berubah sesuai perkembangan teknologi.</p>
+    </footer>
+
+    <script>
+        // Deteksi dan toggle tema otomatis
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const logoLight = document.getElementById('logo-light');
+        const logoDark = document.getElementById('logo-dark');
+
+        // Cek preferensi tema user
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Cek tema yang disimpan di localStorage
+        const currentTheme = localStorage.getItem('theme');
+
+        // Fungsi untuk mengatur tema
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+
+            // Update ikon tombol
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                logoLight.style.display = 'none';
+                logoDark.style.display = 'block';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                logoLight.style.display = 'block';
+                logoDark.style.display = 'none';
+            }
+        }
+
+        // Terapkan tema berdasarkan preferensi atau localStorage
+        if (currentTheme) {
+            setTheme(currentTheme);
+        } else if (prefersDarkScheme.matches) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+
+        // Toggle tema saat tombol diklik
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // Update tema saat preferensi sistem berubah
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Smooth scroll untuk navigasi internal
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Simulasi konten untuk bagian komentar dan artikel terkait
+        document.addEventListener('DOMContentLoaded', function() {
+                      // Optimasi untuk Core Web Vitals
+            // Pastikan gambar logo sudah dimuat dengan baik
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.loading = 'lazy';
+            });
+        });
+
+        // Optimasi INP (Interaction to Next Paint)
+        let isScrolling;
+        window.addEventListener('scroll', function() {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(function() {
+                // Lakukan tugas non-kritis setelah scroll selesai
+            }, 100);
+        }, false);
+    </script>
+</body>
+</html>
