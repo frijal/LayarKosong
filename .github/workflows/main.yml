@@ -51,7 +51,7 @@ jobs:
 
           # MENGGANTI PRISM DENGAN ANAK HIGHLIGHTJS (Mapping cerdas)
           # prism-tomorrow -> tomorrow-night-eighties (Paling mirip)
-          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-eighties.min.css ext/prism-tomorrow.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css ext/prism-tomorrow.min.css
           # prism-okaidia -> monokai
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/prism-okaidia.min.css
           # prism.min.css -> default (biar nggak broken link)
