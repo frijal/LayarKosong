@@ -16,7 +16,6 @@ GetOptions(
 ) or die "Usage: $0 [--quiet] [--no-backup] [--dry-run]\n";
 
 ## 📂 FILES TO SCAN
-# files to scan (default)
 my @files = glob("*.html artikelx/*.html artikel/*.html");
 unless (@files) {
   print "⚠️ Tidak ada file HTML ditemukan.\n" unless $quiet;
@@ -25,32 +24,28 @@ unless (@files) {
 
 ## 🗺️ REPLACEMENT MAP
 # Map: url-regex => replacement-path
-# NOTE: Regexes updated for better version matching (e.g., v6.0.0-beta3) and replacement strings are clean.
 my @MAP = (
-  # Font Awesome CSS (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/[\d\.\-a-z]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/\@fortawesome/fontawesome-free\@[^/]+/css/all\.min\.css}i, repl => '/ext/fontawesome.css' },
+  # --- PRISM CSS (Berbagai Tema) ---
+  { rx => qr{https://.*/prism-vsc-dark-plus\.min\.css}i, repl => '/ext/vs-dark.min.css' },
+  { rx => qr{https://.*/prism-tomorrow\.min\.css}i, repl => '/ext/prism-tomorrow.min.css' },
+  { rx => qr{https://.*/prism-twilight\.min\.css}i, repl => '/ext/vs-dark.min.css' },
+  { rx => qr{https://.*/prism-okaidia\.min\.css}i, repl => '/ext/monokai.min.css' },
+  { rx => qr{https://.*/prism-one-dark\.min\.css}i, repl => '/ext/atom-one-dark.min.css' },
+  { rx => qr{https://.*/prism-one-light\.min\.css}i, repl => '/ext/atom-one-light.min.css' },
+  { rx => qr{https://.*/prism-coy\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://.*/prism(-toolbar)?\.?min?\.css}i, repl => '/ext/default.min.css' },
+
+  # --- FONT AWESOME ---
+  { rx => qr{https://.*/all(\.min)?\.css}i, repl => '/ext/fontawesome.css' },
   { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
 
-  # Highlight.js JS (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  # --- LEAFLET & MAPS ---
+  { rx => qr{https://.*/leaflet\.css}i, repl => '/ext/leaflet.css' },
 
-  # Highlight.js CSS - default (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-
-  # Highlight.js CSS - github (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github\.min\.css}i, repl => '/ext/github.min.css' },
-
-  # Highlight.js CSS - github-dark (Updated: [\d\.\-a-z]+)
-  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/highlight\.js/[\d\.\-a-z]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/gh/highlightjs/cdn-release\@[^/]+/build/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://cdn\.jsdelivr\.net/npm/highlight\.js\@[^/]+/styles/github-dark\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  # --- HIGHLIGHT.JS (JS & CSS) ---
+  { rx => qr{https://.*/highlight\.min\.js}i, repl => '/ext/highlight.js' },
+  { rx => qr{https://.*/styles/github(-dark)?\.min\.css}i, repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://.*/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
 );
 
 ## 🔄 FUNCTION: URL Replacement
@@ -62,18 +57,17 @@ sub replace_urls_in_string {
     my $rx    = $m->{rx};
     my $repl  = $m->{repl};
 
-    # Replace only inside href="..." or src='...'
+    # Regex ini menangkap href/src dengan kutip tunggal atau ganda
     while ( $$text_ref =~ s{
-      (\b(?:href|src)\b)       # $1 = attribute name
-      (\s*=\s*)                # $2 = equals + spaces
-      (['"])                   # $3 = quote
-      \s* # optional space
-      ($rx)                    # $4 = matched URL
-      \s* # optional space
-      \3                       # closing quote
+      (\b(?:href|src)\b)      # $1: atribut
+      (\s*=\s*)               # $2: equals
+      (['"])                  # $3: quote pembuka
+      \s*
+      ($rx)                   # $4: URL yang cocok
+      \s*
+      \3                      # quote penutup
       }{
-        my ($attr,$eq,$q) = ($1,$2,$3);
-        $attr . $eq . $q . $repl . $q; # Replace URL with local path
+        $1 . $2 . $3 . $repl . $3;
       }gexsi
     ) { $count++; }
   }
@@ -81,20 +75,21 @@ sub replace_urls_in_string {
   return $count;
 }
 
-## 🧹 FUNCTION: Attribute Cleaning (NEW)
+## 🧹 FUNCTION: Attribute Cleaning
 sub clean_attributes {
     my ($content_ref) = @_;
     my $clean_count = 0;
 
-    # Regex untuk menghapus atribut integrity, crossorigin, atau referrerpolicy, dengan atau tanpa nilai
+    # Menghapus sampah atribut yang biasanya menyertai CDN (integrity, dsb)
     while ( $$content_ref =~ s{
-      \s+ # Match one or more leading spaces
+      \s+
       (?:
-        integrity \s*=\s* (['"])[^'"]*?\1 | # integrity="value"
-        crossorigin \s*=\s* (['"])[^'"]*?\2 | # crossorigin="value"
-        referrerpolicy \s*=\s* (['"])[^'"]*?\3 | # referrerpolicy="value"
-        crossorigin | # Standalone crossorigin (e.g. <img crossorigin>)
-        referrerpolicy # Standalone referrerpolicy
+        integrity \s*=\s* (['"])[^'"]*?\1 |
+        crossorigin \s*=\s* (['"])[^'"]*?\2 |
+        referrertarget \s*=\s* (['"])[^'"]*?\3 | # typo umum
+        referrerpolicy \s*=\s* (['"])[^'"]*?\4 |
+        crossorigin |
+        referrerpolicy
       )
     }{}gxsi
     ) { $clean_count++; }
@@ -109,19 +104,23 @@ my $total_cleaned       = 0;
 
 foreach my $file (@files) {
   next unless -f $file;
+
+  # Skip index.html demi keamanan struktur navigasi
+  if ($file =~ /index\.html$/i) {
+      print "⏭️ Proteksi: Melewati $file\n" unless $quiet;
+      next;
+  }
+
   local $/ = undef;
-  
-  # Read file
-  open my $in, '<:raw', $file or do { warn "⚠️ Failed open $file: $!\n"; next; };
+  open my $in, '<:raw', $file or do { warn "⚠️ Gagal buka $file: $!\n"; next; };
   my $content = <$in>;
   close $in;
 
-  # 1. URL Replacement
   my $replaced = replace_urls_in_string(\$content);
   my $cleaned  = 0;
 
   if ($replaced) {
-    # 2. Attribute Cleaning (only if URL was replaced)
+    # Hanya bersihkan atribut jika ada URL yang diganti agar tidak agresif
     $cleaned = clean_attributes(\$content);
   }
 
@@ -130,29 +129,24 @@ foreach my $file (@files) {
     $total_replacements += $replaced;
     $total_cleaned += $cleaned;
 
-    my $summary = "($replaced replacements, $cleaned attributes removed)";
+    my $summary = "($replaced ganti, $cleaned atribut dihapus)";
 
     if ($dry_run) {
-      print "🧪 [DRY-RUN] $file -> $summary (not written)\n" unless $quiet;
+      print "🧪 [DRY-RUN] $file -> $summary\n" unless $quiet;
       next;
     }
 
-    # Backup
     unless ($no_backup) {
-      copy($file, "$file.bak") or warn "⚠️ Backup failed for $file: $!\n";
-      print "🗂️ Backup: $file.bak\n" unless $quiet;
+      copy($file, "$file.bak");
     }
 
-    # Write file
-    open my $out, '>:raw', $file or do { warn "⚠️ Failed write $file: $!\n"; next; };
+    open my $out, '>:raw', $file or do { warn "⚠️ Gagal tulis $file: $!\n"; next; };
     print $out $content;
     close $out;
 
-    print "✅ Updated: $file $summary\n" unless $quiet;
-  } else {
-    print "⏭️ No change: $file\n" unless $quiet;
+    print "✅ Sukses: $file $summary\n" unless $quiet;
   }
 }
 
-print "\n🎯 Done. Files changed: $total_files_changed, total replacements: $total_replacements, total attributes cleaned: $total_cleaned\n" unless $quiet;
+print "\n🎯 Selesai! $total_files_changed file diperbarui. Total URL: $total_replacements, Atribut dibersihkan: $total_cleaned.\n" unless $quiet;
 exit 0;
