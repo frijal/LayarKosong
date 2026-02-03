@@ -37,35 +37,47 @@ jobs:
         run: |
           # 1. Install paket terbaru secara temporary
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
-          
+    
+          # Pastikan folder tujuan tersedia
+          mkdir -p ext/fontawesome-webfonts
+    
           # 2. Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
-          
-          # 3. Ambil Tema-tema GitHub (Original & Minified)
-          # Kita copy semua varian GitHub yang kamu minta
-          cp node_modules/@highlightjs/cdn-assets/styles/github.css ext/github.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github.min.css ext/github.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.css ext/github-dark.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark.min.css ext/github-dark.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark-dimmed.css ext/github-dark-dimmed.css
-          cp node_modules/@highlightjs/cdn-assets/styles/github-dark-dimmed.min.css ext/github-dark-dimmed.min.css
-          
+    
+          # 3. Ambil Tema-tema Highlight.js (Mapping dari Prism & Tema Asli)
+          # Ambil semua varian GitHub
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
+
+          # MENGGANTI PRISM DENGAN ANAK HIGHLIGHTJS (Mapping cerdas)
+          # prism-tomorrow -> tomorrow-night-eighties (Paling mirip)
+          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-eighties.min.css ext/prism-tomorrow.min.css
+          # prism-okaidia -> monokai
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/prism-okaidia.min.css
+          # prism.min.css -> default (biar nggak broken link)
+          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/prism.min.css
+    
+          # Tema populer lainnya yang tetap dipakai
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css ext/atom-one-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css ext/atom-one-light.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/monokai.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css ext/vs.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css ext/vs-dark.min.css
+    
           # 4. Urus Font Awesome (Webfonts + CSS)
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
-          
-          # 5. Patch Path CSS Font Awesome
+    
+          # 5. Patch Path CSS Font Awesome (Masih cara yang paling jenius!)
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
-          
-          # 6. Ambil versi murni (Anti-Extraneous)
+    
+          # 6. Ambil Versi untuk Metadata
           HLJS_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
           FA_VER=$(node -p "require('./node_modules/@fortawesome/fontawesome-free/package.json').version")
-          
-          # 7. Simpan info ke asset-info.txt
+    
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
-          
-          echo "✅ All Assets (including GitHub themes) updated to Highlight.js v$HLJS_VER"
+    
+          echo "✅ All Assets (Prism replaced by HLJS) updated: HLJS v$HLJS_VER, FA v$FA_VER"
 
       - name: 🔍 Verifikasi Integritas Font
         id: font_check
