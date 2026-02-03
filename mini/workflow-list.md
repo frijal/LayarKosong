@@ -13,7 +13,7 @@
 | Delete Cloudflare Preview Deployments | `0 */3 * * *` | Setiap jam */3:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/3_*_*_*) |
 | Token Auto Refresh LinkedIn | `0 0 */50 * *` | Setiap jam 00:00 (UTC), tanggal */50 | [Crontab Guru](https://crontab.guru/#0_0_*/50_*_*) |
 | Token Auto Refresh Threads | `0 0 */49 * *` | Setiap jam 00:00 (UTC), tanggal */49 | [Crontab Guru](https://crontab.guru/#0_0_*/49_*_*) |
-| Renovate | `0 */20 * * *` | Setiap jam */20:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/20_*_*_*) |
+| Renovate | `0 20 * * *` | Setiap jam 20:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_20_*_*_*) |
 | RSS to Discussions Sync Professional | `0 */23 * * *` | Setiap jam */23:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/23_*_*_*) |
 | 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt | `0 7 * * *` | Setiap jam 07:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_7_*_*_*) |
 | 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final) | `0 1 9 * *` | Setiap tanggal 9 jam 08:00 WIB | [Crontab Guru](https://crontab.guru/#0_1_9_*_*) |
