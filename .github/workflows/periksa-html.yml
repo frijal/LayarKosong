@@ -21,6 +21,30 @@ jobs:
       - name: 📦 Install BeautifulSoup
         run: pip install beautifulsoup4
 
+      - name: 🕵️ Audit Penggunaan CSS (Daftar Aset Aktif)
+        run: |         
+          # 2. Buat Header Markdown
+          echo "# 📋 Daftar Penggunaan CSS Lokal" > mini/daftar-css.md
+          echo "Terakhir diperbarui: $(date -u +'%Y-%m-%d %H:%M:%S') UTC" >> mini/daftar-css.md
+          echo -e "\n| File Artikel | Path CSS |" >> mini/daftar-css.md
+          echo "| :--- | :--- |" >> mini/daftar-css.md
+          
+          # 3. Scanning di 7+ folder (artikel dan kategori lainnya)
+          # Menggunakan -PHo agar kuat menghadapi file yang sudah di-minify
+          find ./artikel ./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno -name "*.html" -type f 2>/dev/null | \
+          xargs grep -PHo '(?<=href=")[^"]*?ext/[^"]*?\.css' | \
+          sed 's/^\.\///' | \
+          sed 's/:/ | /' | \
+          sed 's/^/| /' | \
+          sed 's/$/ |/' >> mini/daftar-css.md
+          
+          # 4. Tambahkan footer jika tidak ada hasil
+          if [ $(wc -l < mini/daftar-css.md) -le 4 ]; then
+            echo -e "\n> ℹ️ Tidak ditemukan penggunaan CSS dari folder /ext." >> mini/daftar-css.md
+          fi
+          
+          echo "✅ Laporan aset berhasil dibuat di mini/daftar-css.md"
+
       - name: 🔍 Jalankan Audit SEO (Python)
         id: run_audit
         run: |   # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
