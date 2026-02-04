@@ -124,7 +124,6 @@
 
     <div id="related-articles-grid">    </div>
 </div>
-
 <script>
     function generateEmbed() {
         const platform = document.getElementById('platform').value;
@@ -163,14 +162,34 @@
                 break;
 
             case 'threads':
-                const thUrl = url.split('?')[0];
-                innerContent = `<blockquote class="threads-embed" data-request_type="post" data-url="${thUrl}" data-width="100%"><a href="${thUrl}">Post by Threads</a></blockquote><script async src="https://www.threads.net/embed.js"><\/script>`;
-                break;
+    const thUrl = url.split('?')[0].replace('threads.com', 'threads.net');
+    innerContent = `
+        <blockquote class="text-post-media"
+            data-text-post-permalink="${thUrl}"
+            data-text-post-version="0"
+            data-width="100%">
+        </blockquote>
+        <script async src="https://www.threads.net/embed.js"><\/script>
+    `;
+    break;
 
             case 'mastodon':
-                const mBase = url.endsWith('/') ? url.slice(0, -1) : url;
-                innerContent = `<iframe src="${mBase}/embed" class="mastodon-embed" style="max-width: 100%; border: 0; border-radius:8px;" width="100%" height="450" allowfullscreen="allowfullscreen"></iframe><script src="${mBase.split('/@')[0]}/embed.js" async="async"><\/script>`;
-                break;
+    // Pastikan URL tidak berakhir dengan slash agar penambahan /embed pas
+    const mBase = url.endsWith('/') ? url.slice(0, -1) : url;
+    // Ambil domain server (misal: mastodon.social) untuk script-nya
+    const mServer = mBase.split('/@')[0];
+
+    innerContent = `
+        <iframe src="${mBase}/embed"
+            class="mastodon-embed"
+            style="max-width: 100%; border: 1px solid #C9C4DA; border-radius:8px;"
+            width="100%"
+            height="800"
+            allowfullscreen="allowfullscreen">
+        </iframe>
+        <script src="${mServer}/embed.js" async="async"><\/script>
+    `;
+    break;
 
             case 'youtube':
                 let vId = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('/').pop().split('?')[0];
@@ -183,9 +202,16 @@
                 break;
 
             case 'x':
-                const xUrl = url.replace('x.com', 'twitter.com');
-                innerContent = `<blockquote class="twitter-tweet"><a href="${xUrl}"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`;
-                break;
+    // Pastikan domain selalu twitter.com agar widget.js mengenalinya
+    const xUrl = url.replace('x.com', 'twitter.com').split('?')[0];
+
+    innerContent = `
+        <blockquote class="twitter-tweet" data-media-max-width="560" data-align="center">
+            <a href="${xUrl}"></a>
+        </blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>
+    `;
+    break;
 
             case 'tiktok':
                 const tId = url.split('/video/')[1]?.split('?')[0];
@@ -193,22 +219,45 @@
                 break;
         }
 
-        const finalEmbed = `<div class="embed-kosong" style="display:flex; justify-content:center; margin: 20px auto; width:100%;">\n  ${innerContent}\n</div>`;
+        const finalEmbed = `<div class="embed-kosong" style="display: block; margin: 20px auto; width: 100%; text-align: center;">\n  <div style="display: inline-block; width: 100%; max-width: 500px; text-align: left;">\n    ${innerContent}\n  </div>\n</div>`;
 
         embedOutput.textContent = finalEmbed;
         preview.innerHTML = finalEmbed;
         resultContainer.style.display = 'block';
 
-        // Re-render widget untuk preview (X, Threads, TikTok)
-        if (window.twttr) twttr.widgets.load();
-        // Untuk konten yang baru disuntikkan via innerHTML, script tag di dalamnya tidak otomatis jalan.
-        // Iframe (FB/YT) akan langsung muncul, tapi blockquote (X/TikTok) butuh trigger script asli.
-        if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
-            const scripts = preview.getElementsByTagName('script');
-            for (let n = 0; n < scripts.length; n++) {
-                eval(scripts[n].innerHTML); // Memaksa script jalan di preview
-            }
+// 1. Re-render X (Twitter)
+// Cara resmi Twitter untuk memproses ulang tweet baru di preview
+if (window.twttr && twttr.widgets) {
+    twttr.widgets.load(preview);
+}
+
+// 2. Re-render Threads & Instagram
+if (window.instgrm) {
+    window.instgrm.Threads.process();
+}
+
+// 3. Re-render TikTok
+if (window.tiktok) {
+    // TikTok biasanya butuh trigger ini untuk memproses blockquote baru
+    // Tapi jika tidak ada, eval() di bawah tetap jadi backup
+}
+
+// 4. Backup untuk platform yang tidak punya fungsi re-render resmi
+if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
+    const scripts = preview.getElementsByTagName('script');
+    for (let n = 0; n < scripts.length; n++) {
+        if (scripts[n].src) {
+            // Jika ada src (eksternal), buat tag script baru
+            const newScript = document.createElement('script');
+            newScript.src = scripts[n].src;
+            newScript.async = true;
+            document.body.appendChild(newScript);
+        } else {
+            // Jika script inline, baru pakai eval
+            eval(scripts[n].innerHTML);
         }
+    }
+}
     }
 
     function copyCode() {
