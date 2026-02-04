@@ -102,6 +102,10 @@
         </optgroup>
     </select>
 
+
+
+
+
     <label for="videoUrl">URL Postingan/Video:</label>
     <input type="text" id="videoUrl" placeholder="Tempel URL di sini...">
 
@@ -134,16 +138,33 @@
         let innerContent = "";
 
         switch(platform) {
+           case 'facebook':
+    const encodedFbUrl = encodeURIComponent(url);
+    const isReel = url.toLowerCase().includes('reel');
+
+    // Kita set width=auto sesuai spek FB.
+    // Parameter height kita hapus karena FB memang tidak mengenalnya di URL src.
+    // Kita pakai aspect-ratio di CSS agar iframe-nya menyesuaikan tinggi secara otomatis.
+    const aspectRatio = isReel ? "9/16" : "16/9";
+
+    innerContent = `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodedFbUrl}&show_text=false&width=auto&t=0"
+        width="100%"
+        style="border:none; overflow:hidden; border-radius:8px; width:100%; aspect-ratio:${aspectRatio};"
+        scrolling="no"
+        frameborder="0"
+        allowfullscreen="true"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        loading="lazy"></iframe>`;
+    break;
+
             case 'linkedin':
-                // LinkedIn butuh konversi URL ke format embed
-                // Contoh: linkedin.com/posts/activity-728...
-                // Kita bungkus di iframe
-                innerContent = `<iframe src="https://www.linkedin.com/embed/feed/update/${url.split('activity-')[1]?.split('?')[0]}" height="500" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>`;
+                const liId = url.split('activity-')[1]?.split('?')[0];
+                innerContent = `<iframe src="https://www.linkedin.com/embed/feed/update/${liId}" height="500" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>`;
                 break;
 
             case 'threads':
                 const thUrl = url.split('?')[0];
-                innerContent = `<blockquote class="threads-embed" data-request_type="post" data-url="${thUrl}" data-width="100%">[Post by Threads](${thUrl})</blockquote><script async src="https://www.threads.net/embed.js"><\/script>`;
+                innerContent = `<blockquote class="threads-embed" data-request_type="post" data-url="${thUrl}" data-width="100%"><a href="${thUrl}">Post by Threads</a></blockquote><script async src="https://www.threads.net/embed.js"><\/script>`;
                 break;
 
             case 'mastodon':
@@ -163,11 +184,7 @@
 
             case 'x':
                 const xUrl = url.replace('x.com', 'twitter.com');
-                innerContent = `<blockquote class="twitter-tweet">[](${xUrl})</blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`;
-                break;
-
-            case 'facebook':
-                innerContent = `<div class="fb-video" data-href="${url}" data-width="500" data-show-text="false"></div><script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"><\/script>`;
+                innerContent = `<blockquote class="twitter-tweet"><a href="${xUrl}"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`;
                 break;
 
             case 'tiktok':
@@ -182,14 +199,22 @@
         preview.innerHTML = finalEmbed;
         resultContainer.style.display = 'block';
 
-        // Re-load widgets for preview
+        // Re-render widget untuk preview (X, Threads, TikTok)
         if (window.twttr) twttr.widgets.load();
+        // Untuk konten yang baru disuntikkan via innerHTML, script tag di dalamnya tidak otomatis jalan.
+        // Iframe (FB/YT) akan langsung muncul, tapi blockquote (X/TikTok) butuh trigger script asli.
+        if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
+            const scripts = preview.getElementsByTagName('script');
+            for (let n = 0; n < scripts.length; n++) {
+                eval(scripts[n].innerHTML); // Memaksa script jalan di preview
+            }
+        }
     }
 
     function copyCode() {
         const code = document.getElementById('embedCode').textContent;
         navigator.clipboard.writeText(code);
-        alert("📋 Kode berhasil disalin!");
+        alert("📋 Kode berhasil disalin ke clipboard!");
     }
 </script>
 
