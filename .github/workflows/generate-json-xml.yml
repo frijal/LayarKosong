@@ -27,6 +27,10 @@ on:
         description: 'Jalankan JSONXML Minify'
         type: boolean
         default: true
+      run_convert_markdown:
+        description: 'ubah ke format markdown'
+        type: boolean
+        default: true
   schedule:
     - cron: '0 12 * * *'
 
@@ -36,6 +40,7 @@ env:
   DO_SCHEMA: ${{ github.event.inputs.run_schema || 'true' }}
   DO_MINIFY_HTML: ${{ github.event.inputs.run_minify_html || 'true' }}
   DO_MINIFY_JSONXML: ${{ github.event.inputs.run_minify_jsonxml || 'true' }}
+  DO_CONVERT_MARKDOWN : ${{ github.event.inputs.run_convert_markdown || 'true' }}
 
 jobs:
   build:
@@ -104,6 +109,7 @@ jobs:
         run: python3 ext/inject_schema.py
 
       - name: 📝 Convert HTML Tags to Markdown (Node.js)
+        if: env.DO_CONVERT_MARKDOWN == 'true'
         run: node ext/html-to-markdown.js
         
       - name: '8️⃣ Clean HTML Cerdas (html-minifier-terser)'
