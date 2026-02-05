@@ -1,8 +1,9 @@
+ini script lengkapnya, sebenernya dia sudah membuat file markdown murni, aku hanya tambahkan supaya markdown tersebut bisa dibaca pada halaman html:
 import json
 import os
 import shutil
-import html  # Untuk membersihkan entitas HTML seperti &amp;
-import re    # Untuk membersihkan sisa-sisa tag jika ada
+import html  # Untuk membersihkan entitas HTML seperti &amp;
+import re    # Untuk membersihkan sisa-sisa tag jika ada
 from datetime import datetime, date, timezone
 
 # --- KONFIGURASI PENTING ---
@@ -15,114 +16,114 @@ HTML_OUTPUT = "llms-index.html"
 WELL_KNOWN_DIR = ".well-known"
 
 def slugify(text: str) -> str:
-    """Sinkron dengan generator-pro dan inject_schema"""
-    return text.strip().lower().replace(" ", "-")
+    """Sinkron dengan generator-pro dan inject_schema"""
+    return text.strip().lower().replace(" ", "-")
 
 def get_next_version(version_file):
-    dir_name = os.path.dirname(version_file)
-    if dir_name and not os.path.exists(dir_name):
-        os.makedirs(dir_name)
-    if not os.path.exists(version_file):
-        with open(version_file, 'w') as f: f.write("1.0")
-        return "1.0"
+    dir_name = os.path.dirname(version_file)
+    if dir_name and not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    if not os.path.exists(version_file):
+        with open(version_file, 'w') as f: f.write("1.0")
+        return "1.0"
 
-    with open(version_file, 'r') as f:
-        current_v = f.read().strip()
+    with open(version_file, 'r') as f:
+        current_v = f.read().strip()
 
-    try:
-        major, minor = map(int, current_v.split('.'))
-        minor += 1
-        if minor > 9:
-            major += 1
-            minor = 0
-        new_version = f"{major}.{minor}"
-    except ValueError:
-        new_version = "1.1"
+    try:
+        major, minor = map(int, current_v.split('.'))
+        minor += 1
+        if minor > 9:
+            major += 1
+            minor = 0
+        new_version = f"{major}.{minor}"
+    except ValueError:
+        new_version = "1.1"
 
-    with open(version_file, 'w') as f:
-        f.write(new_version)
-    return new_version
+    with open(version_file, 'w') as f:
+        f.write(new_version)
+    return new_version
 
 def clean_text(text):
-    if not text: return ""
-    text = html.unescape(text)
-    text = re.sub(r'<[^>]+>', '', text)
-    text = " ".join(text.split())
-    return text
+    if not text: return ""
+    text = html.unescape(text)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = " ".join(text.split())
+    return text
 
 def load_and_process_data(file_path):
-    body_lines = []
-    category_rss_links = []
-    total_articles = 0
+    body_lines = []
+    category_rss_links = []
+    total_articles = 0
 
-    if not os.path.exists(file_path):
-        print(f"❌ Error: File {file_path} tidak ditemukan!")
-        return [], [], 0
+    if not os.path.exists(file_path):
+        print(f"❌ Error: File {file_path} tidak ditemukan!")
+        return [], [], 0
 
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
-        for category_key in sorted(data.keys()):
-            articles = data[category_key]
-            if not isinstance(articles, list) or not articles:
-                continue
+        for category_key in sorted(data.keys()):
+            articles = data[category_key]
+            if not isinstance(articles, list) or not articles:
+                continue
 
-            # Generate Link RSS Kategori (V6.9 Style)
-            cat_slug = slugify(category_key)
-            category_rss_links.append(f"- [RSS Feed {category_key.title()}]({DOMAIN}/feed-{cat_slug}.xml)")
+            # Generate Link RSS Kategori (V6.9 Style)
+            cat_slug = slugify(category_key)
+            category_rss_links.append(f"- [RSS Feed {category_key.title()}]({DOMAIN}/feed-{cat_slug}.xml)")
 
-            def get_date_key(item):
-                try:
-                    if len(item) > 3 and item[3]:
-                        iso = item[3].replace('Z', '+00:00')
-                        dt = datetime.fromisoformat(iso.split('.')[0])
-                        return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt
-                except: pass
-                return datetime.min.replace(tzinfo=timezone.utc)
+            def get_date_key(item):
+                try:
+                    if len(item) > 3 and item[3]:
+                        iso = item[3].replace('Z', '+00:00')
+                        dt = datetime.fromisoformat(iso.split('.')[0])
+                        return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt
+                except: pass
+                return datetime.min.replace(tzinfo=timezone.utc)
 
-            sorted_articles = sorted(articles, key=get_date_key, reverse=True)
+            sorted_articles = sorted(articles, key=get_date_key, reverse=True)
 
-            temp_lines = []
-            article_count = 0
-            for item in sorted_articles:
-                if len(item) < 5: continue
+            temp_lines = []
+            article_count = 0
+            for item in sorted_articles:
+                if len(item) < 5: continue
 
-                title = clean_text(item[0])
-                # DI SINI PERUBAHANNYA: Hilangkan .html dan lstrip /
-                filename = item[1].replace('.html', '').lstrip('/')
-                summary = clean_text(item[4])
+                title = clean_text(item[0])
+                # DI SINI PERUBAHANNYA: Hilangkan .html dan lstrip /
+                filename = item[1].replace('.html', '').lstrip('/')
+                summary = clean_text(item[4])
 
-                if not summary: summary = "No description available."
+                if not summary: summary = "No description available."
 
-                # URL V6.9: DOMAIN/CAT_SLUG/FILENAME/
-                article_url = f"{DOMAIN}/{cat_slug}/{filename}"
-                temp_lines.append(f"- [{title}]({article_url}) : {summary}")
-                article_count += 1
+                # URL V6.9: DOMAIN/CAT_SLUG/FILENAME/
+                article_url = f"{DOMAIN}/{cat_slug}/{filename}"
+                temp_lines.append(f"- [{title}]({article_url}) : {summary}")
+                article_count += 1
 
-            if article_count > 0:
-                body_lines.append(f"## {category_key.title()}")
-                body_lines.extend(temp_lines)
-                body_lines.append("")
-                total_articles += article_count
+            if article_count > 0:
+                body_lines.append(f"## {category_key.title()}")
+                body_lines.extend(temp_lines)
+                body_lines.append("")
+                total_articles += article_count
 
-        return body_lines, category_rss_links, total_articles
-    except Exception as e:
-        print(f"❌ Error saat memproses JSON: {e}")
-        return [], [], 0
+        return body_lines, category_rss_links, total_articles
+    except Exception as e:
+        print(f"❌ Error saat memproses JSON: {e}")
+        return [], [], 0
 
 def main():
-    new_v = get_next_version(VERSION_FILE)
-    today_iso = date.today().strftime("%Y-%m-%d")
-    today_readable = date.today().strftime("%d %B %Y")
+    new_v = get_next_version(VERSION_FILE)
+    today_iso = date.today().strftime("%Y-%m-%d")
+    today_readable = date.today().strftime("%d %B %Y")
 
-    body_lines, cat_rss, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
+    body_lines, cat_rss, total_articles = load_and_process_data(ARTIKEL_JSON_PATH)
 
-    if not body_lines:
-        print("⚠️ Tidak ada data untuk diproses. Berhenti.")
-        return
+    if not body_lines:
+        print("⚠️ Tidak ada data untuk diproses. Berhenti.")
+        return
 
-    ai_instructions = f"""# LLM Instructions for AI Models
+    ai_instructions = f"""# LLM Instructions for AI Models
 > Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM systems.
 
 Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rijal yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup di Balikpapan. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi.
@@ -156,41 +157,38 @@ document_type: llm_behavior_and_entity_guidance
 ---
 """
 
-    header_title = [
-        f"## Index Artikel Terbaru (Updated: {today_readable})",
-        f"> Menampilkan {total_articles} artikel yang berhasil diindeks dalam versi {new_v}.",
-        ""
-    ]
+    header_title = [
+        f"## Index Artikel Terbaru (Updated: {today_readable})",
+        f"> Menampilkan {total_articles} artikel yang berhasil diindeks dalam versi {new_v}.",
+        ""
+    ]
 
-    full_markdown = ai_instructions + "\n".join(header_title) + "\n".join(body_lines)
+    full_markdown = ai_instructions + "\n".join(header_title) + "\n".join(body_lines)
 
-    # Simpan file TXT dan MD (tetap versi mentah)
-    for output_file in [TXT_OUTPUT, MD_OUTPUT]:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(full_markdown)
+    # Simpan file TXT dan MD (tetap versi mentah)
+    for output_file in [TXT_OUTPUT, MD_OUTPUT]:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(full_markdown)
 
-    # Copy ke .well-known
-    if not os.path.exists(WELL_KNOWN_DIR):
-        os.makedirs(WELL_KNOWN_DIR)
-    for filename in [TXT_OUTPUT, MD_OUTPUT]:
-        shutil.copy2(filename, os.path.join(WELL_KNOWN_DIR, filename))
+    # Copy ke .well-known
+    if not os.path.exists(WELL_KNOWN_DIR):
+        os.makedirs(WELL_KNOWN_DIR)
+    for filename in [TXT_OUTPUT, MD_OUTPUT]:
+        shutil.copy2(filename, os.path.join(WELL_KNOWN_DIR, filename))
 
-    # --- LOGIKA KONVERSI HTML AGAR LINK BISA DIKLIK ---
-    # 1. Ubah Markdown Link [Text](URL) menjadi <a href="URL">Text</a>
-    html_body = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank">\1</a>', full_markdown)
-    
-    # 2. Ubah Header Markdown (# Header) menjadi <h3> atau sesuai level
-    html_body = re.sub(r'^### (.*)$', r'<h3>\1</h3>', html_body, flags=re.MULTILINE)
-    html_body = re.sub(r'^## (.*)$', r'<h2>\1</h2>', html_body, flags=re.MULTILINE)
-    html_body = re.sub(r'^# (.*)$', r'<h1>\1</h1>', html_body, flags=re.MULTILINE)
-    
-    # 3. Ubah Bullet Points menjadi <li> (opsional, tapi biar rapi)
-    html_body = re.sub(r'^- (.*)$', r'<li>\1</li>', html_body, flags=re.MULTILINE)
+    # --- LOGIKA KONVERSI HTML AGAR LINK BISA DIKLIK ---
+    # 1. Ubah Markdown Link [Text](URL) menjadi <a href="URL">Text</a>
+    html_body = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank">\1</a>', full_markdown)
+    
+    # 2. Ubah Header Markdown (# Header) menjadi <h3> atau sesuai level
+    html_body = re.sub(r'^### (.*)$', r'<h3>\1</h3>', html_body, flags=re.MULTILINE)
+    html_body = re.sub(r'^## (.*)$', r'<h2>\1</h2>', html_body, flags=re.MULTILINE)
+    html_body = re.sub(r'^# (.*)$', r'<h1>\1</h1>', html_body, flags=re.MULTILINE)
+    
+    # 3. Ubah Bullet Points menjadi <li> (opsional, tapi biar rapi)
+    html_body = re.sub(r'^- (.*)$', r'<li>\1</li>', html_body, flags=re.MULTILINE)
 
-# --- LOGIKA UNTUK MARKDOWN.JS ---
-    # Kita TIDAK PERLU lagi melakukan re.sub manual di sini.
-    # Kita masukkan full_markdown murni ke dalam tag penampung.
-    
+   # Menggunakan f-string dengan double curly braces untuk CSS
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -198,47 +196,89 @@ document_type: llm_behavior_and_entity_guidance
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 94%; padding: 0 1em; line-height: 1.6; color: #333; }}
+        * {{ box-sizing: border-box; }}
+        body {{ 
+            font-family: system-ui, -apple-system, sans-serif; 
+            margin: 1.5em auto; 
+            width: 90%; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #fff;
+        }}
         
-        /* Box penampung Markdown */
+        /* Box penampung hasil render */
         #markdown-content {{ 
             background: #fefefe; 
             border: 1px solid #ddd; 
             padding: 2em; 
             border-radius: 8px; 
-            white-space: pre-wrap; /* Penting agar format baris markdown terjaga sebelum di-render */
+            word-wrap: break-word;
         }}
 
-        /* Styling dasar setelah di-render nanti */
-        a {{ color: #0066cc; text-decoration: none; }}
-        a:hover {{ text-decoration: underline; }}
-        h1, h2, h3 {{ color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }}
-        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }}
+        /* Styling dasar untuk elemen hasil render */
+        #markdown-content a {{ color: #0066cc; text-decoration: none; }}
+        #markdown-content a:hover {{ text-decoration: underline; }}
+        #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ 
+            color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; margin-top: 1.5em;
+        }}
+        #markdown-content blockquote {{ 
+            border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; 
+        }}
         
+        @media (max-width: 768px) {{
+            body {{ width: 94%; margin: 1em auto; }}
+            #markdown-content {{ padding: 1.2em; }}
+        }}
+
         @media (prefers-color-scheme: dark) {{ 
             body {{ background: #111; color: #eee; }} 
             #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
-            blockquote {{ background: #222; color: #ccc; }}
-            a {{ color: #4da3ff; }}
-            h1, h2, h3 {{ color: #fff; border-color: #333; }}
+            #markdown-content a {{ color: #4da3ff; }}
+            #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ color: #fff; border-color: #333; }}
+            #markdown-content blockquote {{ background: #222; color: #ccc; }}
         }}
     </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <p>Halaman ini dirancang untuk dokumentasi sistem LLM. Link dan format di bawah dirender secara otomatis.</p>
+    <p>File ini disediakan untuk memudahkan AI memahami struktur konten <strong>Layar Kosong</strong>.</p>
     
-    <div id="markdown-content">{full_markdown}</div>
+    <div id="markdown-content"></div>
 
-    <script defer src="/ext/markdown.js"></script>
+    <script type="text/markdown" id="raw-data">
+{full_markdown}
+    </script>
+
+    <script src="/ext/markdown.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {{
+            const raw = document.getElementById('raw-data').textContent;
+            const target = document.getElementById('markdown-content');
+            
+            // Logika render:
+            // Jika library ext/markdown.js kamu menyediakan fungsi global 'markdown',
+            // gunakan salah satu baris di bawah ini sesuai dokumentasi library-mu:
+            
+            if (window.parseMarkdown) {{
+                target.innerHTML = parseMarkdown(raw);
+            }} else if (window.markdown && window.markdown.toHTML) {{
+                target.innerHTML = window.markdown.toHTML(raw);
+            }} else if (window.marked) {{
+                target.innerHTML = marked.parse(raw);
+            }} else {{
+                // Jika library auto-render, biasanya dia butuh waktu sedetik
+                // atau otomatis mencari tag <script type="text/markdown">
+                console.log("Menunggu library markdown merender...");
+            }}
+        }});
+    </script>
 </body>
 </html>"""
 
-    with open(HTML_OUTPUT, 'w', encoding='utf-8') as f:
-        f.write(html_content)
+    with open(HTML_OUTPUT, 'w', encoding='utf-8') as f:
+        f.write(html_content)
 
-    print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan.")
-    print(f"📄 Output: {HTML_OUTPUT}, {MD_OUTPUT}, {TXT_OUTPUT}")
+    print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan dengan link aktif.")
 
 if __name__ == "__main__":
-    main()
+    main()
