@@ -191,101 +191,74 @@ document_type: llm_behavior_and_entity_guidance
     # Kita TIDAK PERLU lagi melakukan re.sub manual di sini.
     # Kita masukkan full_markdown murni ke dalam tag penampung.
     
+   # Gunakan double {{ dan }} untuk bagian CSS agar tidak bentrok dengan f-string Python
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
-  <style>
-    * {
-        box-sizing: border-box;
-    }
+    <style>
+        * {{
+            box-sizing: border-box;
+        }}
 
-    body { 
-        font-family: system-ui, -apple-system, sans-serif; 
-        margin: 1.5em auto; 
-        width: 90%; /* 5% kiri, 5% kanan */
-        max-width: none; 
-        padding: 0; 
-        line-height: 1.6; 
-        color: #333; 
-        background-color: #fff;
-    }
+        body {{ 
+            font-family: system-ui, -apple-system, sans-serif; 
+            margin: 1.5em auto; 
+            width: 90%; 
+            max-width: none; 
+            padding: 0; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #fff;
+        }}
 
-    /* Penyesuaian khusus untuk Mobile */
-    @media (max-width: 768px) {
-        body {
-            width: 94%; /* 3% kiri, 3% kanan */
-            margin: 1em auto;
-        }
+        @media (max-width: 768px) {{
+            body {{
+                width: 94%;
+                margin: 1em auto;
+            }}
+            #markdown-content {{
+                padding: 1.2em; 
+            }}
+            h1 {{ font-size: 1.6em; }}
+        }}
 
-        #markdown-content {
-            padding: 1.2em; 
-        }
+        #markdown-content {{ 
+            background: #fefefe; 
+            border: 1px solid #ddd; 
+            padding: 2em; 
+            border-radius: 8px; 
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap; 
+        }}
+
+        #markdown-content a {{ color: #0066cc; text-decoration: none; }}
+        #markdown-content a:hover {{ text-decoration: underline; }}
         
-        h1 { font-size: 1.6em; }
-    }
+        #markdown-content h1, #markdown-content h2, #markdown-content h3 {{
+            color: #111;
+            margin-top: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.2em;
+        }}
 
-    /* Box penampung Utama */
-    #markdown-content { 
-        background: #fefefe; 
-        border: 1px solid #ddd; 
-        padding: 2em; 
-        border-radius: 8px; 
-        word-wrap: break-word;
-        overflow-wrap: break-word; /* Tambahan: Mencegah teks meluap */
-        white-space: pre-wrap; 
-    }
-
-    /* --- Tambahan Styling Elemen Renderan --- */
-    #markdown-content a {
-        color: #0066cc;
-        text-decoration: none;
-    }
-
-    #markdown-content a:hover {
-        text-decoration: underline;
-    }
-
-    #markdown-content h1, #markdown-content h2, #markdown-content h3 {
-        color: #111;
-        margin-top: 1.2em;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 0.2em;
-    }
-
-    #markdown-content blockquote {
-        border-left: 4px solid #0066cc;
-        background: #f9f9f9;
-        margin: 1em 0;
-        padding: 0.5em 1em;
-        color: #555;
-    }
-
-    /* Dark Mode - Perbaikan Kontras Link */
-    @media (prefers-color-scheme: dark) { 
-        body { background: #111; color: #eee; } 
-        #markdown-content { background: #1a1a1a; border-color: #333; color: #ccc; }
-        
-        #markdown-content a { color: #4da3ff; } /* Link lebih terang di dark mode */
-        #markdown-content h1, #markdown-content h2, #markdown-content h3 { 
-            color: #fff; 
-            border-bottom-color: #333; 
-        }
-        #markdown-content blockquote {
-            background: #222;
-            color: #bbb;
-        }
-    }
-</style>
+        @media (prefers-color-scheme: dark) {{ 
+            body {{ background: #111; color: #eee; }} 
+            #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
+            #markdown-content a {{ color: #4da3ff; }}
+            #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ 
+                color: #fff; 
+                border-bottom-color: #333; 
+            }}
+        }}
+    </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <p>Halaman ini dirancang untuk dokumentasi sistem LLM. Link dan format di bawah dirender secara otomatis.</p>
-    
     <div id="markdown-content">{full_markdown}</div>
-
     <script defer src="/ext/markdown.js"></script>
 </body>
 </html>"""
