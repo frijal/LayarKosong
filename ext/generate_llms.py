@@ -96,7 +96,7 @@ def load_and_process_data(file_path):
                 if not summary: summary = "No description available."
 
                 # URL V6.9: DOMAIN/CAT_SLUG/FILENAME/
-                article_url = f"{DOMAIN}/{cat_slug}/{filename}/"
+                article_url = f"{DOMAIN}/{cat_slug}/{filename}"
                 temp_lines.append(f"- [{title}]({article_url}) : {summary}")
                 article_count += 1
 
@@ -222,3 +222,6 @@ document_type: llm_behavior_and_entity_guidance
         f.write(html_content)
 
     print(f"🚀 SELESAI! Versi {new_v} berhasil diterbitkan dengan link aktif.")
+
+if __name__ == "__main__":
+    main()
