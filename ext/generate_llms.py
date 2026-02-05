@@ -15,7 +15,6 @@ HTML_OUTPUT = "llms-index.html"
 WELL_KNOWN_DIR = ".well-known"
 
 def slugify(text: str) -> str:
-    """Sinkron dengan generator-pro dan inject_schema"""
     return text.strip().lower().replace(" ", "-")
 
 def get_next_version(version_file):
