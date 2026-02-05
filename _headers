@@ -27,7 +27,7 @@ https://:version.:project.pages.dev/*
 /feed-warta-tekno.xml
   Cache-Control: public, max-age=0, must-revalidate
 /artikel.json
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=0, must-revalidate
 /rss.xml
   Cache-Control: public, max-age=0, must-revalidate
 /sitemap.xml
