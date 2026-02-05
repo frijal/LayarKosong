@@ -258,8 +258,32 @@ document_type: llm_behavior_and_entity_guidance
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <div id="markdown-content">{full_markdown}</div>
-    <script defer src="/ext/markdown.js"></script>
+    
+    <script type="text/markdown" id="markdown-source">
+{full_markdown}
+    </script>
+
+    <div id="markdown-content"></div>
+
+    <script src="/ext/markdown.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const source = document.getElementById('markdown-source');
+            const target = document.getElementById('markdown-content');
+            
+            if (source && target) {
+                // Pastikan fungsi ini sesuai dengan library markdown.js milikmu
+                // Contoh jika menggunakan Marked.js:
+                // target.innerHTML = marked.parse(source.textContent);
+                
+                // Jika library-mu auto-render, biasanya dia butuh pemicu ini:
+                if (window.markdown) {
+                    target.innerHTML = window.markdown.toHTML(source.textContent);
+                }
+            }
+        });
+    </script>
 </body>
 </html>"""
 
