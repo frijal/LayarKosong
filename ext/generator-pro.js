@@ -168,7 +168,7 @@ const generate = async () => {
 
       if (articleData) {
         const catSlug = slugify(category);
-        const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
+        const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}`;
 
         // --- GATE 2: CEK CACHE (sitemap.txt) ---
         // Jika data ada di etalase DAN url ada di sitemap, kita anggap SELESAI.
@@ -189,7 +189,7 @@ const generate = async () => {
         const found = items.find(it => it[1] === file);
         if (found) {
           const catSlug = slugify(cat);
-          const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
+          const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}`;
 
           console.log(`♻️  Gate 3 (Master): Mendistribusikan ${file}`);
           await processAndDistribute(file, cat, finalUrl);
@@ -213,7 +213,7 @@ const generate = async () => {
       const title = extractTitle(content);
       const cat = titleToCategory(title);
       const catSlug = slugify(cat);
-      const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
+      const finalUrl = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}`;
 
       const pubDate = extractPubDate(content) || (await fs.stat(path.join(CONFIG.artikelDir, file))).mtime;
       const newData = [title, file, extractImage(content, file), formatISO8601(pubDate), extractDesc(content)];
@@ -237,7 +237,7 @@ const generate = async () => {
         if (file.endsWith('.html') && file !== 'index.html' && !validFilesForCleaning.has(`${catSlug}/${file}`)) {
           console.log(`🗑️  Menghapus file usang: ${catSlug}/${file}`);
           await fs.unlink(path.join(folderPath, file));
-          const urlToRemove = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}/`;
+          const urlToRemove = `${CONFIG.baseUrl}/${catSlug}/${file.replace('.html', '')}`;
           processedUrls.delete(urlToRemove);
         }
       }
@@ -279,7 +279,7 @@ const generate = async () => {
         const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
         await fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, allItemsFlat.filter(f => f.category === cat), rssUrl, `Feed kategori ${cat}`));
         const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
-        const pageContent = templateHTML.replace(/%%TITLE%%/g, sanitizeTitle(cat)).replace(/%%DESCRIPTION%%/g, `Kumpulan lengkap artikel tentang ${cat}.`).replace(/%%CATEGORY_NAME%%/g, cat).replace(/%%RSS_URL%%/g, rssUrl).replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/${slug}/`).replace(/%%ICON%%/g, icon);
+        const pageContent = templateHTML.replace(/%%TITLE%%/g, sanitizeTitle(cat)).replace(/%%DESCRIPTION%%/g, `Kumpulan lengkap artikel tentang ${cat}.`).replace(/%%CATEGORY_NAME%%/g, cat).replace(/%%RSS_URL%%/g, rssUrl).replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/${slug}`).replace(/%%ICON%%/g, icon);
         await fs.writeFile(path.join(CONFIG.rootDir, slug, 'index.html'), pageContent);
       }
     }
@@ -295,7 +295,7 @@ async function processAndDistribute(file, category, finalUrl, preloadedContent =
   let content = preloadedContent || await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
   content = content.replace(/<link\s+rel=["']canonical["']\s+href=["'][^"']+["']\s*\/?>/i, `<link rel="canonical" href="${finalUrl}">`).replace(/<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>/i, `<meta property="og:url" content="${finalUrl}">`);
   content = content.replace(new RegExp(`${CONFIG.baseUrl}/artikel/${file.replace('.html', '')}`, 'g'), finalUrl);
-  content = content.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1/');
+  content = content.replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
   await fs.writeFile(path.join(destFolder, file), content);
 }
 
