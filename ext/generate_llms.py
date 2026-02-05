@@ -187,18 +187,9 @@ document_type: llm_behavior_and_entity_guidance
     # 3. Ubah Bullet Points menjadi <li> (opsional, tapi biar rapi)
     html_body = re.sub(r'^- (.*)$', r'<li>\1</li>', html_body, flags=re.MULTILINE)
 
-   # --- LOGIKA UNTUK MARKDOWN.JS ---
+# --- LOGIKA UNTUK MARKDOWN.JS ---
     # Kita TIDAK PERLU lagi melakukan re.sub manual di sini.
     # Kita masukkan full_markdown murni ke dalam tag penampung.
-    
-   # Gunakan double {{ dan }} untuk bagian CSS agar tidak bentrok dengan f-string Python
-   # --- LOGIKA UNTUK MARKDOWN.JS ---
-    # Kita TIDAK PERLU lagi melakukan re.sub manual di sini.
-    # Kita masukkan full_markdown murni ke dalam tag penampung.
-    
-   # --- LOGIKA UNTUK MARKDOWN.JS ---
-    # Kita tidak perlu re.sub manual lagi.
-    # Cukup masukkan full_markdown mentah ke dalam tag penampung.
     
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
@@ -207,29 +198,35 @@ document_type: llm_behavior_and_entity_guidance
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 90%; padding: 0 1em; line-height: 1.6; color: #333; }}
+        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 94%; padding: 0 1em; line-height: 1.6; color: #333; }}
+        
+        /* Box penampung Markdown */
         #markdown-content {{ 
             background: #fefefe; 
             border: 1px solid #ddd; 
             padding: 2em; 
             border-radius: 8px; 
+            white-space: pre-wrap; /* Penting agar format baris markdown terjaga sebelum di-render */
         }}
+
+        /* Styling dasar setelah di-render nanti */
         a {{ color: #0066cc; text-decoration: none; }}
         a:hover {{ text-decoration: underline; }}
-        pre {{ background: #f4f4f4; padding: 1em; overflow-x: auto; border-radius: 5px; }}
-        code {{ font-family: monospace; background: #eee; padding: 2px 4px; border-radius: 3px; }}
+        h1, h2, h3 {{ color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }}
+        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }}
+        
         @media (prefers-color-scheme: dark) {{ 
             body {{ background: #111; color: #eee; }} 
             #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
+            blockquote {{ background: #222; color: #ccc; }}
             a {{ color: #4da3ff; }}
-            pre {{ background: #222; }}
-            code {{ background: #333; }}
+            h1, h2, h3 {{ color: #fff; border-color: #333; }}
         }}
     </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <p>File ini dirender secara dinamis dari Markdown untuk kebutuhan dokumentasi LLM.</p>
+    <p>Halaman ini dirancang untuk dokumentasi sistem LLM. Link dan format di bawah dirender secara otomatis.</p>
     
     <div id="markdown-content">{full_markdown}</div>
 
