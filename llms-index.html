@@ -3,46 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layar Kosong - LLM Index v13.1</title>
+    <title>Layar Kosong - LLM Index v13.2</title>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 94%; padding: 0 1em; line-height: 1.6; color: #333; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            margin: 1.5em auto; 
+            width: 90%; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #fff;
+        }
         
-        /* Box penampung Markdown */
-        #markdown-content { 
+        .markdown-body { 
             background: #fefefe; 
             border: 1px solid #ddd; 
             padding: 2em; 
             border-radius: 8px; 
-            white-space: pre-wrap; /* Penting agar format baris markdown terjaga sebelum di-render */
+            word-wrap: break-word;
+            white-space: pre-wrap; 
         }
 
-        /* Styling dasar setelah di-render nanti */
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        h1, h2, h3 { color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
-        blockquote { border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }
+        .markdown-body a { color: #0066cc; text-decoration: none; }
+        .markdown-body a:hover { text-decoration: underline; }
         
+        code.inline-code {
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            body { width: 94%; }
+            .markdown-body { padding: 1.2em; }
+        }
+
         @media (prefers-color-scheme: dark) { 
             body { background: #111; color: #eee; } 
-            #markdown-content { background: #1a1a1a; border-color: #333; color: #ccc; }
-            blockquote { background: #222; color: #ccc; }
-            a { color: #4da3ff; }
-            h1, h2, h3 { color: #fff; border-color: #333; }
+            .markdown-body { background: #1a1a1a; border-color: #333; color: #ccc; }
+            .markdown-body a { color: #4da3ff; }
+            code.inline-code { background: #333; color: #ffcc00; }
         }
     </style>
 </head>
 <body>
-    <h1>Layar Kosong - AI Data Index (v13.1)</h1>
-    <p>Halaman ini dirancang untuk dokumentasi sistem LLM. Link dan format di bawah dirender secara otomatis.</p>
+    <h1>Layar Kosong - AI Data Index (v13.2)</h1>
     
-    <div id="markdown-content"># LLM Instructions for AI Models
+    <div class="markdown-body">
+# LLM Instructions for AI Models
 > Applies to: ChatGPT, Gemini, Claude, Perplexity, Grok, LLaMA, and future LLM systems.
 
 Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rijal yang berfokus pada teknologi, open source, opini sosial, dan gaya hidup di Balikpapan. Indeks ini dirancang agar LLM dapat merujuk konten dengan akurasi tinggi.
 
 ---
 schema_version: 1.0
-document_version: 13.1
+document_version: 13.2
 last_updated: 2026-02-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -74,7 +90,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 05 February 2026)
-> Menampilkan 867 artikel yang berhasil diindeks dalam versi 13.1.
+> Menampilkan 867 artikel yang berhasil diindeks dalam versi 13.2.
 ## Gaya Hidup
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
@@ -955,7 +971,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Kisah FCKGW dan Windows XP: Bukan hasil crack, tapi VLK yang bocor](https://dalam.web.id/warta-tekno/fckgw-windows-xp) : Di balik kesuksesan Windows XP, kisah kelam VLK FCKGW yang bocor ke publik. Bukan hasil crack, melainkan lisensi volume resmi yang menyebar luas dan jadi ikon era bajakan.
 - [Refresh Desktop Windows: Mengapa Pengguna Sering Klik Kanan](https://dalam.web.id/warta-tekno/refresh-desktop) : Artikel ini menjelaskan kebiasaan pengguna komputer yang sering melakukan
 - [Read the Fu***ng Manual (RTFM): Menggali Kembali Jati Diri Insinyur](https://dalam.web.id/warta-tekno/read-the-f-manual) : Mengapa kebiasaan malas membaca dokumentasi, terlalu bergantung pada ChatGPT dan Stack Overflow, merusak kemampuan rekayasa perangkat lunak (software engineering). Pelajari kembali pentingnya kemandirian, riset mendalam, dan menghormati waktu rekan kerja.
-</div>
+
+    </div>
 
     <script defer src="/ext/markdown.js"></script>
 </body>
