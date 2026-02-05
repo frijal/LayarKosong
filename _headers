@@ -13,33 +13,33 @@ https://:version.:project.pages.dev/*
 # 2. DATA & XML (Wajib Fresh / No-Cache)
 # =========================================================
 /feed-gaya-hidup.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-jejak-sejarah.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-lainnya.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-olah-media.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-opini-sosial.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-sistem-terbuka.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /feed-warta-tekno.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /artikel.json
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 /rss.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /sitemap.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /image-sitemap-1.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /sitemap-1.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /video-sitemap-1.xml
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 /sitemap.txt
-  Cache-Control: no-store, no-cache, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 # =========================================================
 # 3. ASSET STATIS (Long-term Cache)
 # =========================================================
