@@ -78,8 +78,8 @@ function updateStats(total, read, term = '') {
 function getCleanUrl(file, category) {
   const catSlug = category.toLowerCase().replace(/\s+/g, '-');
   const fileSlug = file.replace('.html', '');
-  // Hasil: /gaya-hidup/nama-artikel/
-  return `/${catSlug}/${fileSlug}/`;
+    // Hasil: /gaya-hidup/nama-artikel (Tanpa Slash di ujung)
+  return `/${catSlug}/${fileSlug}`;
 }
 
 async function loadTOC() {
