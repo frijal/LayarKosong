@@ -3,7 +3,7 @@ import os
 import re
 
 # ======================================================
-# KONFIGURASI GLOBAL (V6.9 READY)
+# KONFIGURASI GLOBAL (V6.9.3 - Sequential Log Edition)
 # ======================================================
 BASE_URL = "https://dalam.web.id"
 SITE_NAME = "Layar Kosong"
@@ -13,15 +13,9 @@ LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
 HASH_FILE = "mini/LD-JSON-Schema.txt"
 os.makedirs("mini", exist_ok=True)
 
-# DAFTAR FOLDER KATEGORI YANG DIIZINKAN (STRICT)
 ALLOWED_CATEGORIES = {
-    "gaya-hidup",
-    "jejak-sejarah",
-    "lainnya",
-    "olah-media",
-    "opini-sosial",
-    "sistem-terbuka",
-    "warta-tekno"
+    "gaya-hidup", "jejak-sejarah", "lainnya",
+    "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"
 }
 
 SCHEMA_REGEX = re.compile(
@@ -51,15 +45,19 @@ def build_keywords(headline: str, category: str, slug: str) -> str:
     return ", ".join(sorted(base)[:12])
 
 # ======================================================
-# SINGLE SCHEMA BUILDER
+# SINGLE SCHEMA BUILDER (FIXED URL & POSITIONING)
 # ======================================================
 def build_combined_schema(category, article):
     headline, filename, image, iso_date, desc = article
     cat_slug = slugify(category)
     file_slug = filename.replace('.html', '').lstrip('/')
-    article_url = f"{BASE_URL}/{cat_slug}/{file_slug}/"
+    
+    # 🔥 PERBAIKAN: Pastikan semua URL tidak punya trailing slash
+    clean_base = BASE_URL.rstrip('/')
+    article_url = f"{clean_base}/{cat_slug}/{file_slug}".rstrip('/')
+    category_url = f"{clean_base}/{cat_slug}".rstrip('/')
+    
     cat_display_name = category_name_clean(category)
-    category_url = f"{BASE_URL}/{cat_slug}/"
     keywords = build_keywords(headline, cat_display_name, file_slug)
 
     schema_data = {
@@ -67,17 +65,17 @@ def build_combined_schema(category, article):
         "@graph": [
             {
                 "@type": "WebSite",
-                "@id": f"{BASE_URL}/#website",
-                "url": f"{BASE_URL}/",
+                "@id": f"{clean_base}#website",
+                "url": clean_base,
                 "name": SITE_NAME,
                 "publisher": {
                     "@type": "Organization",
-                    "@id": f"{BASE_URL}/#organization",
+                    "@id": f"{clean_base}#organization",
                     "name": SITE_NAME,
-                    "url": BASE_URL,
+                    "url": clean_base,
                     "logo": {
                         "@type": "ImageObject",
-                        "url": f"{BASE_URL}/logo.png",
+                        "url": f"{clean_base}/logo.png",
                         "width": 384,
                         "height": 384
                     }
@@ -86,7 +84,7 @@ def build_combined_schema(category, article):
             {
                 "@type": "Article",
                 "@id": f"{article_url}#article",
-                "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                "isPartOf": {"@id": f"{clean_base}#website"},
                 "mainEntityOfPage": {"@type": "WebPage", "@id": article_url},
                 "license": LICENSE_URL,
                 "headline": headline,
@@ -94,8 +92,8 @@ def build_combined_schema(category, article):
                 "articleSection": cat_display_name,
                 "keywords": keywords,
                 "image": {"@type": "ImageObject", "url": image, "width": 1200, "height": 675},
-                "author": {"@type": "Person", "name": AUTHOR, "url": f"{BASE_URL}/about"},
-                "publisher": {"@id": f"{BASE_URL}/#organization"},
+                "author": {"@type": "Person", "name": AUTHOR, "url": f"{clean_base}/about"},
+                "publisher": {"@id": f"{clean_base}#organization"},
                 "datePublished": iso_date,
                 "dateModified": iso_date
             },
@@ -103,7 +101,7 @@ def build_combined_schema(category, article):
                 "@type": "BreadcrumbList",
                 "@id": f"{article_url}#breadcrumb",
                 "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Beranda", "item": f"{BASE_URL}/"},
+                    {"@type": "ListItem", "position": 1, "name": "Beranda", "item": clean_base},
                     {"@type": "ListItem", "position": 2, "name": cat_display_name, "item": category_url},
                     {"@type": "ListItem", "position": 3, "name": headline, "item": article_url}
                 ]
@@ -118,7 +116,7 @@ def build_combined_schema(category, article):
     )
 
 # ======================================================
-# EKSEKUSI UTAMA (STRICT CATEGORY & FOLDER FILTER)
+# EKSEKUSI UTAMA
 # ======================================================
 if __name__ == "__main__":
     if not os.path.exists("artikel.json"):
@@ -132,14 +130,15 @@ if __name__ == "__main__":
     if os.path.isfile(HASH_FILE):
         with open(HASH_FILE, "r", encoding="utf-8") as f:
             for line in f:
-                processed_urls.add(line.strip())
+                url = line.strip()
+                if url:
+                    processed_urls.add(url)
 
     results = {"changed": 0, "skipped": 0, "missing": 0, "forbidden": 0}
 
     for category, articles in data.items():
         cat_slug = slugify(category)
 
-        # SECURITY CHECK: Hanya proses jika cat_slug ada di daftar ALLOWED
         if cat_slug not in ALLOWED_CATEGORIES:
             results["forbidden"] += len(articles)
             continue
@@ -147,7 +146,7 @@ if __name__ == "__main__":
         for article in articles:
             filename = article[1]
             file_slug = filename.replace('.html', '').lstrip('/')
-            current_article_url = f"{BASE_URL}/{cat_slug}/{file_slug}/"
+            current_article_url = f"{BASE_URL}/{cat_slug}/{file_slug}".rstrip('/')
 
             if current_article_url in processed_urls:
                 results["skipped"] += 1
@@ -164,24 +163,29 @@ if __name__ == "__main__":
             with open(html_path, "r", encoding="utf-8") as f:
                 html_content = f.read()
 
-            # Hapus skema lama dan sisipkan yang baru sebelum </head>
             html_clean = re.sub(SCHEMA_REGEX, "", html_content)
+            inject_code, confirmed_url = build_combined_schema(category, article)
 
-            if "</head>" in html_clean:
-                inject_code, confirmed_url = build_combined_schema(category, article)
-                new_html = html_clean.replace("</head>", inject_code + "</head>")
+            # Sisipkan sebelum <style>
+            if "<style>" in html_clean:
+                new_html = html_clean.replace("<style>", f"{inject_code}<style>")
+            elif "</head>" in html_clean:
+                new_html = html_clean.replace("</head>", f"{inject_code}</head>")
+            else:
+                new_html = inject_code + html_clean
 
-                with open(html_path, "w", encoding="utf-8") as f:
-                    f.write(new_html)
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(new_html)
 
-                with open(HASH_FILE, "a", encoding="utf-8") as f:
-                    f.write(confirmed_url + "\n")
+            # 🔥 Simpan URL saja, berurutan ke bawah
+            with open(HASH_FILE, "a", encoding="utf-8") as f:
+                f.write(confirmed_url + "\n")
 
-                results["changed"] += 1
+            results["changed"] += 1
 
     print("-" * 50)
-    print(f"✅ SEO Schema Injector V6.9 (Strict Mode)")
-    print(f"🆕 Di-inject         : {results['changed']}")
+    print(f"✅ SEO Schema Injector V6.9.3 (Simple Sequential Log)")
+    print(f"🆕 Di-inject          : {results['changed']}")
     print(f"⏭️  Skip (Sudah Ada)   : {results['skipped']}")
     print(f"❌ File Tidak Ada     : {results['missing']}")
     print(f"🚫 Kategori Dilarang  : {results['forbidden']}")
