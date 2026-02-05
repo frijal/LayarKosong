@@ -2,20 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Helper karena di ESM tidak ada __dirname secara default
+// Helper ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+// Menunjuk ke root folder (satu tingkat di atas script ini)
 const rootDir = path.join(__dirname, '..');
 
 /**
  * Fungsi utama untuk membersihkan HTML menjadi Markdown ramping
- * Fokus pada teks: Bold, Italic, Strikethrough, Link, dan Inline Code.
  */
 function cleanHTML(html) {
     let updated = html;
 
     // --- FASE 1: SAPU JAGAT ---
-    // Mengembalikan backtick di dalam <pre> yang salah format menjadi <code> standar
     updated = updated.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
 
     // --- FASE 2: CLEANUP TEXT & LINKS ---
@@ -24,25 +23,15 @@ function cleanHTML(html) {
     .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')             // Italic
     .replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~')   // Strikethrough
 
-    // Konversi Link dengan Proteksi Atribut
+    // Konversi Link dengan Proteksi Atribut (target, class, dll)
     .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
-        /**
-         * Jangan ubah ke Markdown jika mengandung:
-         * - class, id, style (untuk menjaga desain CSS)
-         * - target, rel (untuk fungsi buka tab baru/target="_blank")
-         */
         const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
-
         return isProtected ? match : `[${text}](${url})`;
     });
 
     // --- FASE 3: SMART INLINE CODE ---
-    // Mengubah <code> sederhana menjadi backtick jika aman (satu baris & tanpa class)
     updated = updated.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
-        // Abaikan jika ini adalah bagian dari blok <pre>
         if (match.toLowerCase().startsWith('<pre')) return match;
-
-        // Hanya jadikan backtick jika: satu baris, tidak ada atribut class/id
         if (codeText && !codeContentContainsNewLine(codeText) && !match.includes('class=') && !match.includes('id=')) {
             return `\`${codeText}\``;
         }
@@ -52,17 +41,16 @@ function cleanHTML(html) {
     return updated;
 }
 
-// Helper untuk cek baris baru di dalam tag code
 function codeContentContainsNewLine(text) {
     return /\r|\n/.test(text);
 }
 
 /**
- * Fungsi rekursif untuk memproses semua file di dalam folder
+ * Fungsi rekursif untuk memproses file
  */
 function processFolder(dir) {
     if (!fs.existsSync(dir)) {
-        console.log(`⚠️ Skip: Folder ${dir} tidak ditemukan.`);
+        console.log(`⚠️  Folder tidak ditemukan: ${dir}`);
         return;
     }
 
@@ -77,30 +65,40 @@ function processFolder(dir) {
             const isHtml = file.toLowerCase().endsWith('.html');
             const isIndex = file.toLowerCase() === 'index.html';
 
-            // Proses hanya file HTML dan abaikan index.html untuk keamanan struktur
             if (isHtml && !isIndex) {
                 let content = fs.readFileSync(fullPath, 'utf8');
                 let updated = cleanHTML(content);
 
-                // Hanya tulis ulang file jika ada perubahan konten
                 if (content !== updated) {
                     fs.writeFileSync(fullPath, updated, 'utf8');
-                    console.log(`✅ Berhasil dibersihkan: ${fullPath}`);
+                    console.log(`   ✅ Clean: ...${fullPath.slice(-40)}`);
                 }
-            } else if (isIndex) {
-                console.log(`🚫 Proteksi: Mengabaikan ${fullPath}`);
             }
         }
     });
 }
 
-// Daftar folder target di blog Layar Kosong
+// 🔥 DAFTAR 7 FOLDER KATEGORI LAYAR KOSONG
 const targetFolders = [
-    'artikelx'
+    "gaya-hidup",
+    "jejak-sejarah",
+    "lainnya",
+    "olah-media",
+    "opini-sosial",
+    "sistem-terbuka",
+    "warta-tekno"
 ];
 
-console.log('🚀 Memulai operasi "Layar Kosong Bersih" via ESM...');
+console.log('---------------------------------------------------------');
+console.log('🚀 Memulai Operasi "Layar Kosong Bersih" (7 Kategori)');
+console.log('---------------------------------------------------------');
+
 targetFolders.forEach(folder => {
-    processFolder(path.join(rootDir, folder));
+    const targetPath = path.join(rootDir, folder);
+    console.log(`📂 Processing: /${folder}`);
+    processFolder(targetPath);
 });
-console.log('🏁 Selesai! Artikel di "artikelx" kini lebih ramping dan link eksternal tetap aman.');
+
+console.log('---------------------------------------------------------');
+console.log('🏁 Selesai! Semua artikel kini lebih ramping & SEO Friendly.');
+console.log('---------------------------------------------------------');
