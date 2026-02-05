@@ -87,20 +87,36 @@ jobs:
       - name: '6️⃣ Generate sitemap.txt'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
-          echo "📝 Membuat sitemap.txt..."
+          echo "📝 Membuat sitemap.txt (Clean URL)..."
           BASE_URL="https://dalam.web.id"
           node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
             const urls = [];
             const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
+
+            // 1. Ambil URL Artikel & Kategori (Tanpa Slash)
             for (const [cat, posts] of Object.entries(data)) {
+              const catSlug = slugify(cat);
               posts.forEach(p => {
                 const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
-                urls.push('${BASE_URL}/' + slugify(cat) + '/' + fileSlug + '/');
+                // 🔥 Hapus / di akhir URL artikel
+                urls.push('${BASE_URL}/' + catSlug + '/' + fileSlug);
               });
             }
-            ['/', '/jejak-sejarah/', '/lainnya/', '/olah-media/', '/opini-sosial/', '/sistem-terbuka/', '/warta-tekno/', '/gaya-hidup/', '/about/', '/privacy/', '/search/', '/security-policy/', '/data-deletion-form/', '/disclaimer/', '/feed/', '/img/', '/lisensi/', '/sitemap/'].forEach(u => urls.push('${BASE_URL}' + u));
+
+            // 2. Daftar URL Manual (Tanpa Slash di akhir)
+            // Khusus root '/', tetap dibiarkan '/' atau kosong tergantung selera, 
+            // tapi di sini saya buat konsisten ke root domain.
+            [
+              '', '/jejak-sejarah', '/lainnya', '/olah-media', 
+              '/opini-sosial', '/sistem-terbuka', '/warta-tekno', 
+              '/gaya-hidup', '/about', '/privacy', '/search', 
+              '/security-policy', '/data-deletion-form', '/disclaimer', 
+              '/feed', '/img', '/lisensi', '/sitemap'
+            ].forEach(u => urls.push('${BASE_URL}' + u));
+
+            // 3. Tulis file dengan URL unik
             fs.writeFileSync('sitemap.txt', [...new Set(urls)].join('\n') + '\n');
           "
      
