@@ -224,113 +224,113 @@
       <div id="loading"></div>
       <div id="feed-container"></div>
     </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const RSS_URL = 'rss.xml'
-        const BASE_URL = 'https://dalam.web.id/artikel/'
-        const DEFAULT_THUMBNAIL = 'https://dalam.web.id/thumbnail.webp'
-        const feedContainer = document.getElementById('feed-container')
-        const loadingIndicator = document.getElementById('loading')
-        const parser = new DOMParser()
-        function extractThumbnail(item) {
-          const enclosure = item.querySelector('enclosure')
-          if (enclosure && enclosure.getAttribute('type').startsWith('image')) {
-            let url = enclosure.getAttribute('url')
-            if (url && !url.startsWith('http')) {
-              return `${BASE_URL}${url}`
-            }
-            return url
-          }
-          const mediaThumbnail = item.querySelector(
-            'media\\:thumbnail, thumbnail',
-          )
-          if (mediaThumbnail) return mediaThumbnail.getAttribute('url')
-          const descriptionHTML = item.querySelector('description')?.textContent
-          if (descriptionHTML) {
-            const doc = parser.parseFromString(descriptionHTML, 'text/html')
-            const img = doc.querySelector('img')
-            if (img) return img.getAttribute('src')
-          }
-          return DEFAULT_THUMBNAIL
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const RSS_URL = 'rss.xml';
+    const BASE_URL = 'https://dalam.web.id';
+    const DEFAULT_THUMBNAIL = 'https://dalam.web.id/thumbnail.webp';
+    const feedContainer = document.getElementById('feed-container');
+    const loadingIndicator = document.getElementById('loading');
+    const parser = new DOMParser();
+
+    function extractThumbnail(item) {
+      const enclosure = item.querySelector('enclosure');
+      if (enclosure && enclosure.getAttribute('type').startsWith('image')) {
+        let url = enclosure.getAttribute('url');
+        if (url && !url.startsWith('http')) {
+          return `${BASE_URL}${url}`;
         }
-        const fetchAndDisplayFeed = async () => {
-          try {
-            const response = await fetch(RSS_URL)
-            if (!response.ok) throw new Error(`Status ${response.status}`)
-            const xmlText = await response.text()
-            const doc = parser.parseFromString(xmlText, 'application/xml')
-            const items = doc.querySelectorAll('item')
-            if (items.length === 0) {
-              feedContainer.innerHTML =
-                '<p class="error-message">Tidak ada item ditemukan di dalam feed.</p>'
-              return
-            }
-            let feedHTML = ''
-            items.forEach((item) => {
-              const title =
-                item.querySelector('title')?.textContent || 'Tanpa Judul'
-              const link = item.querySelector('link')?.textContent || '#'
-              const description =
-                item
-                  .querySelector('description')
-                  ?.textContent.replace(/<[^>]*>/g, '')
-                  .substring(0, 150) + '...' || 'Tidak ada deskripsi.'
-              const pubDateStr = item.querySelector('pubDate')?.textContent
-              const category = item.querySelector('category')?.textContent || ''
-              const thumbnailUrl = extractThumbnail(item)
-              let formattedDate = ''
-              if (pubDateStr) {
-                formattedDate = new Intl.DateTimeFormat('id-ID', {
-                  dateStyle: 'long',
-                }).format(new Date(pubDateStr))
-              }
-              const encodedLink = encodeURIComponent(link)
-              const encodedTitle = encodeURIComponent(title)
-              feedHTML += `
-                            <div class="feed-item">
-                                <div class="feed-item-thumbnail">
-                                    <img src="${thumbnailUrl}" alt="${title}">
-                                </div>
-                                <div class="feed-item-content">
-                                    <h2><a href="${link}" rel="noreferrer">${title}</a></h2>
-                                    <div class="feed-meta">
-                                        <span class="feed-meta-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>${formattedDate}</span>
-                                        </span>
-                                        ${
-                                          category
-                                            ? `
-                                        <span class="feed-meta-item">
-                                            <i class="fas fa-folder-open"></i>
-                                            <span>${category.replace('🗂️', '').trim()}</span>
-                                        </span>`
-                                            : ''
-                                        }
-                                    </div>
-                                    <p>${description}</p>
-                                    <div class="social-share">
-                                        <span>Bagikan:</span>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" target="_blank" title="Bagikan ke Facebook"><i class="fa-brands fa-facebook"></i></a>
-                                        <a href="https://twitter.com/intent/tweet?url=${encodedLink}&text=${encodedTitle}" target="_blank" title="Bagikan ke Twitter"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedLink}" target="_blank" title="Bagikan ke WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                                        <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedTitle}" target="_blank" title="Bagikan ke Telegram"><i class="fa-brands fa-telegram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-            })
-            feedContainer.innerHTML = feedHTML
-          } catch (error) {
-            console.error('Terjadi kesalahan:', error)
-            feedContainer.innerHTML = `<div class="error-message"><strong>Oops!</strong> Tidak dapat memuat feed dari ${RSS_URL}.</div>`
-          } finally {
-            loadingIndicator.style.display = 'none'
-          }
+        return url;
+      }
+      const mediaThumbnail = item.querySelector('media\\:thumbnail, thumbnail');
+      if (mediaThumbnail) return mediaThumbnail.getAttribute('url');
+
+      const descriptionHTML = item.querySelector('description')?.textContent;
+      if (descriptionHTML) {
+        const doc = parser.parseFromString(descriptionHTML, 'text/html');
+        const img = doc.querySelector('img');
+        if (img) return img.getAttribute('src');
+      }
+      return DEFAULT_THUMBNAIL;
+    }
+
+    const fetchAndDisplayFeed = async () => {
+      try {
+        const response = await fetch(RSS_URL);
+        if (!response.ok) throw new Error(`Status ${response.status}`);
+        const xmlText = await response.text();
+        const doc = parser.parseFromString(xmlText, 'application/xml');
+        const items = doc.querySelectorAll('item');
+
+        if (items.length === 0) {
+          feedContainer.innerHTML = '<p class="error-message">Tidak ada item ditemukan di dalam feed.</p>';
+          return;
         }
-        fetchAndDisplayFeed()
-      })
-    </script> 
+
+        let feedHTML = '';
+        items.forEach((item) => {
+          const title = item.querySelector('title')?.textContent || 'Tanpa Judul';
+          const link = item.querySelector('link')?.textContent || '#';
+
+          // Mengambil deskripsi utuh untuk teks share (tanpa pangkas substring)
+          const rawDescription = item.querySelector('description')?.textContent || '';
+          const cleanDescription = rawDescription.replace(/<[^>]*>/g, '').trim();
+
+          const pubDateStr = item.querySelector('pubDate')?.textContent;
+          const category = item.querySelector('category')?.textContent || '';
+          const thumbnailUrl = extractThumbnail(item);
+
+          let formattedDate = '';
+          if (pubDateStr) {
+            formattedDate = new Intl.DateTimeFormat('id-ID', {
+              dateStyle: 'long',
+            }).format(new Date(pubDateStr));
+          }
+
+          // Encoding agar aman saat disisipkan ke URL
+          const encodedLink = encodeURIComponent(link);
+          const encodedShareText = encodeURIComponent(cleanDescription);
+
+          feedHTML += `
+            <div class="feed-item">
+              <div class="feed-item-thumbnail">
+                <img src="${thumbnailUrl}" alt="${title}" loading="lazy">
+              </div>
+              <div class="feed-item-content">
+                <h2><a href="${link}" rel="noreferrer">${title}</a></h2>
+                <div class="feed-meta">
+                  <span class="feed-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>${formattedDate}</span>
+                  </span>
+                  ${category ? `
+                  <span class="feed-meta-item">
+                    <i class="fas fa-folder-open"></i>
+                    <span>${category.replace('🗂️', '').trim()}</span>
+                  </span>` : ''}
+                </div>
+                <p>${cleanDescription.substring(0, 150)}...</p>
+                <div class="social-share">
+                  <span>Bagikan:</span>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&quote=${encodedShareText}" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="https://twitter.com/intent/tweet?url=${encodedLink}&text=${encodedShareText}" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://api.whatsapp.com/send?text=${encodedShareText}%20${encodedLink}" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedShareText}" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+              </div>
+            </div>`;
+        });
+        feedContainer.innerHTML = feedHTML;
+      } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+        feedContainer.innerHTML = `<div class="error-message"><strong>Oops!</strong> Gagal memuat data feed.</div>`;
+      } finally {
+        loadingIndicator.style.display = 'none';
+      }
+    };
+    fetchAndDisplayFeed();
+  });
+</script>
 <script defer src="/ext/marquee-url.js"></script><script defer src="/ext/markdown.js"></script>
     </body>
 </html>
