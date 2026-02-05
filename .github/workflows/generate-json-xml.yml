@@ -30,9 +30,7 @@ on:
       run_convert_markdown:
         description: 'ubah ke format markdown'
         type: boolean
-        default: true
-  schedule:
-    - cron: '0 12 * * *'
+        default: true  
 
 env:
   DO_GENERATOR: ${{ github.event.inputs.run_generator || 'true' }}
