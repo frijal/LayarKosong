@@ -52,9 +52,9 @@ async function main() {
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
 
   // --- LOGIKA BARU DI SINI ---
-  if (previews.length <= 26) {
+  if (previews.length <= 6) {
     console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
-    console.log("ℹ Syarat hapus harus > 26 item. Pekerjaan dihentikan (Skip).");
+    console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
     return; // Berhenti di sini
   }
 
