@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧</title>
@@ -8,29 +6,29 @@
     <!-- Metadata SEO & E-E-A-T -->
     <meta name="description" content="Tutorial lengkap cara menghapus kernel lama di Linux Ubuntu Mint Zorin dan Debian. Bersihkan partisi boot yang penuh dengan perintah apt purge dan autoremove secara aman.">
     <meta name="news_keywords" content="hapus kernel linux, cara uninstall kernel lama, linux-image purge, ubuntu boot full, tutorial linux indonesia, membersihkan kernel ubuntu, sistem operasi linux">
-    <meta name="author" content="Rijal">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cara-menghapus-kernel-lama-linux-purge.html">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+    
+    
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/cara-menghapus-kernel-lama-linux-purge.html">
-    <meta property="og:title" content="Panduan Bersihkan Kernel Linux yang Menumpuk Tanpa Error">
+    
+    
+    
     <meta property="og:description" content="Partisi boot penuh karena kernel lama? Jangan panik! Ini panduan langkah demi langkah cara mengidentifikasi dan menghapus kernel lama dengan aman di distro Debian-based.">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HAaB8j-b0AAt4YB.jpg">
-    <meta property="article:published_time" content="2026-02-05T16:00:00+07:00">
+    
+    
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://dalam.web.id/artikel/cara-menghapus-kernel-lama-linux-purge.html">
-    <meta name="twitter:title" content="Linux Kamu Lemot Gara-gara Kernel Numpuk? Sikat Pakai Cara Ini!">
+    
+    
+    
     <meta name="twitter:description" content="Tips ampuh membersihkan file sampah sistem Linux terutama kernel-kernel jadul yang bikin memori penuh. Cek tutorialnya!">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HAaB8j-b0AAt4YB.jpg">
+    
 
     <meta name="promphint" content="Panduan teknis mendalam tentang pemeliharaan kernel Linux dengan pendekatan edukatif dan bahasa yang mudah dipahami pemula.">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         /* CSS Variables - Light/Dark Mode */
@@ -137,6 +135,34 @@
             main { padding: 15px; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-menghapus-kernel-lama-linux-purge">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-menghapus-kernel-lama-linux-purge">
+    <meta property="og:title" content="Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp">
+    <meta property="og:image:alt" content="Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
@@ -147,6 +173,7 @@
         <span><i class="fas fa-tag"></i> Linux Tutorial</span>
     </div>
     <h1>Jangan Biarkan Memori Penuh! Begini Cara Menghapus Kernel Lama di Linux 🐧💻</h1>
+<div id="iposbrowser"></div>
 </header>
 
 <main>
@@ -155,9 +182,9 @@
         <p>Ketika kamu lagi asyik <i>update</i> sistem Linux kesayangan, eh tiba-tiba muncul error yang bilang kalau partisi <code>/boot</code> kamu penuh? Atau mungkin pas kamu nyalain laptop, daftar pilihan di menu GRUB (layar hitam sebelum masuk OS) jadi panjang banget kayak antrean sembako? Kalau iya, itu tandanya kernel Linux kamu sudah menumpuk terlalu banyak, sob!</p>
 
         <p>Di dunia Linux, setiap kali sistem melakukan pembaruan keamanan, ia seringkali mengunduh "jantung" baru yang disebut kernel. Masalahnya, Linux secara default bakal menyimpan versi yang lama buat jaga-jaga kalau versi baru ada <i>bug</i>. Tapi kalau kelamaan didiamkan, file-file ini bakal makan tempat dan bikin sistem terasa "berantakan".</p>
-    <img src="https://pbs.twimg.com/media/HAaB8j-b0AAt4YB.jpg" alt="Ilustrasi Terminal Linux dan Kernel Update" class="main-image" loading="eager">
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp" alt="Ilustrasi Terminal Linux dan Kernel Update" class="main-image" loading="eager">
 
-        <h2>Apa Itu Kernel dan Kenapa Harus Dihapus? (What & Why) 🧐</h2>
+        <h2>Apa Itu Kernel dan Kenapa Harus Dihapus? (What &amp; Why) 🧐</h2>
         <p>Kernel adalah inti dari sistem operasi yang menjembatani antara <i>hardware</i> (perangkat keras) dan <i>software</i> (perangkat lunak). Singkatnya, tanpa kernel, laptop kamu cuma jadi rongsokan besi dan plastik doang.</p>
         <p>Kenapa kita harus menghapus versi lamanya? Pertama, efisiensi ruang penyimpanan. Satu paket kernel bisa memakan ratusan Megabyte. Kalau ada 10 kernel lama, itu sudah bergiga-giga terbuang sia-sia. Kedua, keamanan dan kerapian. Menyimpan terlalu banyak kernel lama di partisi boot yang terbatas bisa bikin sistem gagal <i>booting</i> saat mau melakukan update kernel berikutnya.</p>
 
@@ -216,7 +243,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2026 <a href="https://dalam.web.id" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">Dalam.web.id</a> - Jendela Informasi Teknologi & Open Source.</p>
+    <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">Dalam.web.id</a> - Jendela Informasi Teknologi &amp; Open Source.</p>
     <div style="font-size: 1.5rem; margin-top: 20px;">
         <i class="fab fa-linux"></i>&nbsp;&nbsp;
         <i class="fab fa-ubuntu"></i>&nbsp;&nbsp;
@@ -224,5 +251,8 @@
     </div>
 </footer>
 
-</body>
-</html>
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
