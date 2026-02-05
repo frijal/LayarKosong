@@ -64,7 +64,9 @@
       const language = lang || "plaintext";
       return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
     })
-
+    // --- TAMBAHAN BARU: Horizontal Rule ---
+    // Mencari baris yang isinya hanya --- atau *** atau ___ (minimal 3 karakter)
+    .replace(/^([\-\*_]){3,}\s*$/gm, "<hr>")
     // Table (Auto Data-Label for Mobile)
     .replace(/((?:\|.*\|\n)+)/g, match => {
       const rows = match.trim().split("\n").filter(r => r.trim());
