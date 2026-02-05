@@ -102,13 +102,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const browser = detectBrowser();
   const os = detectOS();
   const geo = await fetchGeoIP();
-   
+
   // [PERBAIKAN] Hapus variabel HTML yang tidak terpakai.
   let geoHTML = '<div class="info-item"><span></span></div>';
   if (geo) {
-    const flag = geo.code
-      ? `<img class="geo-flag" src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="${geo.country}" />`
-      : '';
+	  const flag = geo.code
+	  ? `<img class="geo-flag"
+	  src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png"
+	  alt="${geo.country}"
+	  width="24"
+	  height="18" />` // Style-nya biarkan diatur oleh CSS di bawah
+	  : '';
     geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + ' - ' : ''}${geo.country} • ${geo.ip}</div>`;
   }
 
@@ -121,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // [FIX UTAMA] Gunakan querySelector & pastikan elemen ada sebelum diproses
   const infoBox = target.querySelector('#ipos-browser-info');
-  
+
   if (infoBox) {
     adjustTextColorBasedOnBackground(infoBox);
 
@@ -170,13 +174,20 @@ style.textContent = `
   /* --- SISIPAN SELESAI --- */
 
   #ipos-browser-info .icon svg {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    display: block; /* Mencegah spasi ekstra di bawah SVG */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
   }
-
+  #ipos-browser-info .geo-flag {
+  width: 24px !important;
+  height: 18px !important; /* Sesuai rasio flagcdn 24x18 */
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1); /* Kasih border tipis biar bendera putih gak ilang */
+  }
   #ipos-browser-info .icon svg:hover {
     transform: scale(1.15) rotate(8deg);
     filter: drop-shadow(0 0 6px rgba(88,166,255,0.45));
