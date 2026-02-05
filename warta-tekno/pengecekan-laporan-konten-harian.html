@@ -1,0 +1,140 @@
+<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=utf-8><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name=viewport><title>Pengecekan & Laporan Konten Harian — GitHub Actions 🔆</title><meta content="Workflow GitHub Actions untuk otomatis membersihkan gambar orphan dan membuat laporan konten harian di dalam.web.id. Dilengkapi penjelasan lengkap dan kode siap pakai." name=description><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Pengecekan & Laporan Konten Harian — GitHub Actions 🔆","description":"Workflow GitHub Actions untuk otomatis membersihkan gambar orphan dan membuat laporan konten harian di dalam.web.id. Dilengkapi penjelasan lengkap dan kode siap pakai.","articleSection":"Warta Tekno","keywords":"actions, github, harian, konten, laporan, layar kosong, pengecekan, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/pengecekan-laporan-konten-harian.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2025-10-22T11:53:56.642+00:00","dateModified":"2025-10-22T11:53:56.642+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno"},{"@type":"ListItem","position":3,"name":"Pengecekan & Laporan Konten Harian — GitHub Actions 🔆","item":"https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian"}]}]}</script><style>body{font-family:"Segoe UI",Roboto,sans-serif;line-height:1.7;margin:0;background:#f9fafb;color:#222}header{background:linear-gradient(135deg,#2b5876,#4e4376);color:#fff;text-align:center;padding:3rem 1rem}header h1{font-size:2.2rem;margin-bottom:.3rem}main{max-width:1080px;margin:2rem auto;background:#fff;padding:2rem;border-radius:14px;box-shadow:0 3px 15px rgba(0,0,0,.1)}h2{border-left:5px solid #4e4376;padding-left:.5rem;margin-top:2rem;color:#333}code,pre{font-family:"Fira Code",monospace}pre{background:#1e1e1e;color:#eaeaea;padding:1rem;overflow-x:auto;border-radius:10px}.badge{background:#4e4376;color:#fff;display:inline-block;padding:4px 10px;border-radius:6px;font-size:.85rem;margin-right:.5rem}.highlight{background:#f1f5f9;border-left:4px solid #4e4376;padding:.8rem 1rem;border-radius:8px}footer{text-align:center;padding:2rem;color:#666;font-size:.9rem}.share{display:flex;justify-content:center;gap:12px;margin-top:2rem}.share a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#e0e7ff;transition:background .2s}.share a:hover{background:#c7d2fe}.share img{width:24px;height:24px}@media (max-width:700px){main{margin:1rem;padding:1.2rem}header h1{font-size:1.7rem}}</style><link href=/ext/marquee-url.css rel=stylesheet><link href=https://dalam.web.id/rss.xml rel=alternate title="30 artikel baru bikin." type=application/rss+xml><meta content="Workflow GitHub Actions untuk otomatis membersihkan gambar orphan dan membuat laporan konten harian di dalam.web.id. Dilengkapi penjelasan lengkap dan kode siap pakai." name=ai:summary><meta content="Workflow GitHub Actions untuk otomatis membersihkan gambar orphan dan membuat laporan konten harian di dalam.web.id. Dilengkapi penjelasan lengkap dan kode siap pakai." name=ai:prompt_hint><link href=https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian/ rel=canonical><link href=/favicon.ico rel=icon><link href=https://creativecommons.org/publicdomain/zero/1.0/ rel=license><meta content="Fakhrul Rijal" name=author><meta content="index, follow, max-image-preview:large" name=robots><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@responaja name=twitter:creator><meta content=@dalam.web.id name=bluesky:creator><meta content="Layar Kosong" property=og:site_name><meta content=id_ID property=og:locale><meta content=article property=og:type><meta content=https://dalam.web.id/warta-tekno/pengecekan-laporan-konten-harian/ property=og:url><meta content="Pengecekan & Laporan Konten Harian — GitHub Actions 🔆" property=og:title><meta content="Workflow GitHub Actions untuk otomatis membersihkan gambar orphan dan membuat laporan konten harian di dalam.web.id. Dilengkapi penjelasan lengkap dan kode siap pakai." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@responaja name=twitter:site><meta content=175216696195384 property=fb:app_id><meta content=https://facebook.com/frijal property=article:author><meta content=https://facebook.com/frijalpage property=article:publisher><meta content=https://dalam.web.id/img/pengecekan-laporan-konten-harian.webp property=og:image><meta content="Pengecekan & Laporan Konten Harian — GitHub Actions 🔆" property=og:image:alt><meta content=1200 property=og:image:width><meta content=675 property=og:image:height><meta content=https://dalam.web.id/img/pengecekan-laporan-konten-harian.webp name=twitter:image><meta content=https://dalam.web.id/img/pengecekan-laporan-konten-harian.webp itemprop=image><header><h1>🔆 Pengecekan & Laporan Konten Harian</h1><div id=iposbrowser></div><p>Workflow otomatis untuk menjaga kebersihan folder dan memantau jumlah konten harian di GitHub Pages.</header><main><p>Workflow ini dibuat supaya **repo tetap rapi** dan **laporan konten selalu up to date**. Ia berjalan otomatis setiap hari jam 21:00 UTC (atau sekitar jam 04:00 WIB) dan juga bisa dijalankan manual lewat tombol di GitHub Actions.<h2>🎯 Tujuan Workflow</h2><ul><li>🧹 Membersihkan file gambar *orphan* (.webp) yang tidak memiliki artikel HTML pasangannya.<li>🧾 Menghitung jumlah artikel, cover, dan total file dalam folder `artikel` & `img`.<li>📊 Membuat laporan harian dalam bentuk file teks & badge JSON.</ul><h2>🧩 Job 1: Cleanup Gambar Orphan</h2><div class=highlight>Job pertama akan memindai semua file `.webp` di folder `img/`. Jika tidak ditemukan file HTML dengan nama yang sama di folder `artikel/`, maka file gambar tersebut dianggap yatim dan akan dihapus menggunakan perintah `git rm`.</div><pre><code>for webp_file in img/*.webp; do
+  base_name=$(basename "$webp_file" .webp)
+  html_file="artikel/${base_name}.html"
+  if [ ! -f "$html_file" ]; then
+    git rm -f "$webp_file"
+  fi
+done</code></pre><h2>📊 Job 2: Laporan & Badge</h2><p>Setelah pembersihan, workflow akan menghitung file berdasarkan ekstensi (`html`, `webp`, `png`), membuat file laporan, serta membuat tiga badge:<ul><li><span class=badge>artikel</span> Jumlah file HTML<li><span class=badge>cover</span> Jumlah file WebP<li><span class=badge>html/webp</span> Perbandingan total keduanya</ul><h2>📜 Contoh Laporan Harian</h2><pre><code>LAPORAN KONTEN: artikel & img (10-22)
+=================================
+Total File: 104
+HTML=53, webp=48, PNG=3
+Ringkasan per ekstensi:
+     53 html
+     48 webp
+      3 png
+URL File HTML (dari folder 'artikel'):
+https://dalam.web.id/artikel/nama-artikel.html
+...</code></pre><h2>⚙️ Kode Workflow Lengkap</h2><p>Berikut adalah isi file workflow `.github/workflows/laporan-konten.yml` yang siap digunakan:<pre><code>name: 🔆 Pengecekan & Laporan Konten Harian
+on:
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Cari dan Hapus Gambar Orphan
+        id: cleanup_step
+        run: |
+          echo "🧹 Memulai proses pembersihan gambar orphan..."
+          DELETED_COUNT=0
+          mkdir -p img
+          shopt -s nullglob
+          for webp_file in img/*.webp; do
+            base_name=$(basename "$webp_file" .webp)
+            html_file="artikel/${base_name}.html"
+            if [ ! -f "$html_file" ]; then
+              echo "-> Orphan: '$webp_file' tidak memiliki artikel. Menghapus..."
+              git rm -f "$webp_file"
+              DELETED_COUNT=$((DELETED_COUNT + 1))
+            fi
+          done
+          shopt -u nullglob
+          echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
+      - name: Commit & Push Hasil Pembersihan (jika ada)
+        if: steps.cleanup_step.outputs.deleted_count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(cleanup): Hapus ${{ steps.cleanup_step.outputs.deleted_count }} gambar orphan .webp"
+          git pull origin main --rebase
+          git push
+      - name: No Orphan Found
+        if: steps.cleanup_step.outputs.deleted_count == '0'
+        run: echo "✅ Tidak ada gambar orphan ditemukan."
+  reporting:
+    needs: cleanup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Variables
+        id: vars
+        run: |
+          TARGETS="artikel img"
+          DATE=$(date +'%m-%d')
+          REPORT="mini/${DATE}-laporan_konten.txt"
+          echo "report_path=$REPORT" >> $GITHUB_OUTPUT
+          echo "targets=$TARGETS" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+      - name: Count Files by Extension
+        id: counts
+        run: |
+          TARGETS="${{ steps.vars.outputs.targets }}"
+          declare -A counts
+          for ext in html webp png; do
+            counts[$ext]=$(find $TARGETS -maxdepth 1 -type f -iname "*.$ext" | wc -l)
+          done
+          counts[all]=$(find $TARGETS -maxdepth 1 -type f | wc -l)
+          for key in "${!counts[@]}"; do
+            echo "$key=${counts[$key]}" >> $GITHUB_OUTPUT
+          done
+      - name: Generate Report
+        run: |
+          REPORT="${{ steps.vars.outputs.report_path }}"
+          DATE="${{ steps.vars.outputs.date }}"
+          TARGETS="${{ steps.vars.outputs.targets }}"
+          PREFIX_ARTIKEL="https://dalam.web.id/artikel/"
+          mkdir -p "$(dirname "$REPORT")"
+          {
+            echo "LAPORAN KONTEN: artikel & img ($DATE)"
+            echo "================================="
+            echo "Total File: ${{ steps.counts.outputs.all }}"
+            echo "HTML=${{ steps.counts.outputs.html }}, webp=${{ steps.counts.outputs.webp }}, PNG=${{ steps.counts.outputs.png }}"
+            echo ""
+            echo "Ringkasan per ekstensi:"
+            find $TARGETS -maxdepth 1 -type f -print | sed 's/.*\.//' | sort | uniq -c | sort -nr
+            echo ""
+            echo "URL File HTML:"
+            find artikel -maxdepth 1 -type f -iname "*.html" | sed "s|^artikel/|$PREFIX_ARTIKEL|g" | sort
+          } > "$REPORT"
+          cat "$REPORT"
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Buat Badge JSON
+        run: |
+          mkdir -p mini
+          html=${{ steps.counts.outputs.html }}
+          webp=${{ steps.counts.outputs.webp }}
+          color=$(if (( html > webp )); then echo red; elif (( html &lt; webp )); then echo green; else echo blue; fi)
+          jq -n --arg m "$html" '{schemaVersion:1,label:"artikel",message:$m,color:"blue"}' > mini/html_count_badge.json
+          jq -n --arg m "$webp" '{schemaVersion:1,label:"cover",message:$m,color:"green"}' > mini/webp_count_badge.json
+          jq -n --arg mh "$html" --arg mj "$webp" --arg c "$color" '{schemaVersion:1,label:"html/webp",message:("\($mh) / \($mj)"),color:$c}' > mini/html_webp_badge.json
+      - name: Rotate Reports
+        run: |
+          mkdir -p mini
+          mapfile -t files &lt; &lt;(ls -1t mini/*-laporan_*.txt 2>/dev/null)
+          if ((${#files[@]} > 7)); then
+            printf '%s\n' "${files[@]:7}" | xargs rm -f
+          fi
+      - name: Commit, Pull, and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mini/*
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update laporan & badge konten" --author="frijal &lt;5477182+frijal@users.noreply.github.com>"
+            git pull origin main --rebase
+            git push
+          else
+            echo "✅ Tidak ada perubahan baru untuk di-commit."
+          fi</code></pre><div id=pesbukdiskus></div><div id=related-articles-grid></div></main><footer>🄯 2025 <a href=https://dalam.web.id target=_blank>Frijal</a> — Jaga Data Pribadi Tetap Aman.<br>Artikel ini dibuat otomatis dan diperbarui dengan workflow harian.</footer><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector("header h1");e.style.transition="transform 1s",e.style.transform="scale(1.1)",setTimeout(()=>e.style.transform="scale(1)",1e3)})</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input autocomplete=off id=floatingSearchInput placeholder="cari artikel..."><span class=clear-button id=floatingSearchClear></span><div id=floatingSearchResults class=floating-results-container></div></div><div id=dynamic-nav-container class=floating-nav></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer="" src=/ext/marquee-url.js></script><script defer="" src=/ext/iposbrowser.js></script><script defer="" src=/ext/markdown.js></script><script defer="" src=/ext/pesbukdiskus.js></script>
+<noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-05_11_12</noscript>
