@@ -9,11 +9,11 @@ import sharp from 'sharp';
 const escapeHtmlAttr = (text) => {
   if (!text) return '';
   return text
-    .replace(/&/g, '&amp;')   // 1. Simbol & jadi &amp; (HARUS PERTAMA)
-    .replace(/"/g, '&quot;')  // 2. Kutip dua jadi &quot;
-    .replace(/'/g, '&#39;')   // 3. Kutip satu jadi &#39;
-    .replace(/</g, '&lt;')    // 4. Jaga-jaga kalau ada tag <
-    .replace(/>/g, '&gt;');   // 5. Jaga-jaga kalau ada tag >
+  .replace(/&/g, '&amp;')    // 1. Simbol & jadi &amp; (HARUS PERTAMA)
+  .replace(/"/g, '&quot;')  // 2. Kutip dua jadi &quot;
+  .replace(/'/g, '&#39;')   // 3. Kutip satu jadi &#39;
+  .replace(/</g, '&lt;')    // 4. Jaga-jaga kalau ada tag <
+  .replace(/>/g, '&gt;');   // 5. Jaga-jaga kalau ada tag >
 };
 
 async function mirrorAndConvert(externalUrl, baseUrl) {
@@ -54,7 +54,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     });
 
     if (isSvg) {
-      // JIKA SVG: Langsung simpan filenya tanpa diconvert (Curi doang)
+      // JIKA SVG: Langsung simpan filenya tanpa diconvert
       fs.writeFileSync(localPath, response.data);
     } else {
       // JIKA BUKAN SVG: Convert ke WebP pakai Sharp
@@ -71,14 +71,13 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
 
-  // 🔥 Menggunakan native glob. Di Node.js native, return-nya adalah AsyncIterable,
-  // kita ubah jadi array agar kompatibel dengan perulangan for...of Mas Bro.
   const files = [];
   for await (const entry of glob(`${targetFolder}/*.html`)) {
     files.push(entry);
   }
 
-  const baseUrl = 'https://dalam.web.id';
+  // Bersihkan trailing slash dari baseUrl jika ada
+  const baseUrl = 'https://dalam.web.id'.replace(/\/$/, '');
 
   for (const file of files) {
     const rawContent = fs.readFileSync(file, 'utf8');
@@ -103,7 +102,9 @@ async function fixSEO() {
     // --- 2. LOGIKA DATA SEO ---
     const fileName = path.basename(file);
     const cleanFileName = fileName.replace('.html', '');
-    const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`;
+
+    // 🔥 PERBAIKAN: Pastikan URL tidak berakhir dengan slash (/)
+    const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
 
     const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
     const escapedTitle = escapeHtmlAttr(articleTitle);
@@ -172,10 +173,10 @@ async function fixSEO() {
       if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
     });
 
-    // --- 6. SIMPAN HASIL ---
-    fs.writeFileSync(file, $.html(), 'utf8');
+      // --- 6. SIMPAN HASIL ---
+      fs.writeFileSync(file, $.html(), 'utf8');
   }
-  console.log('\n✅ SEO Fixer & Mirroring: Selesai! Menggunakan Native Glob (Node.js 24).');
+  console.log('\n✅ SEO Fixer & Mirroring: Selesai! URL tanpa trailing slash.');
 }
 
 fixSEO().catch(err => { console.error(err); process.exit(1); });
