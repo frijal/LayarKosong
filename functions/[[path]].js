@@ -2,7 +2,7 @@ export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
   
-  // Ambil slug terakhir, contoh: /kategori/judul-post/ -> judul-post
+  // Ambil slug terakhir, contoh: /kategori/judul-post -> judul-post
   const pathSegments = url.pathname.split('/').filter(Boolean);
   const requestedSlug = pathSegments[pathSegments.length - 1];
 
@@ -30,9 +30,11 @@ export async function onRequest(context) {
 
         if (match) {
           // Build URL baru
-          const catSlug = category.toLowerCase().replace(/\s+/g, '-');
+          const catSlug = category.toLowerCase().trim().replace(/\s+/g, '-');
           const fileSlug = match[1].replace('.html', '').replace(/\//g, '');
-          const targetUrl = `${url.origin}/${catSlug}/${fileSlug}/`;
+          
+          // 🔥 PERBAIKAN: Hapus trailing slash di akhir targetUrl
+          const targetUrl = `${url.origin}/${catSlug}/${fileSlug}`;
           
           // 4. Redirect 301 (Permanent) untuk SEO
           return Response.redirect(targetUrl, 301);
