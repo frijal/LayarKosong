@@ -195,6 +195,13 @@ document_type: llm_behavior_and_entity_guidance
             white-space: pre-wrap; 
         }}
 
+        .markdown-body hr {{
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 2em 0;
+        }}
+
         .markdown-body a {{ color: #0066cc; text-decoration: none; }}
         .markdown-body a:hover {{ text-decoration: underline; }}
         
@@ -215,6 +222,9 @@ document_type: llm_behavior_and_entity_guidance
             .markdown-body {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
             .markdown-body a {{ color: #4da3ff; }}
             code.inline-code {{ background: #333; color: #ffcc00; }}
+            .markdown-body hr {{
+                background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+            }}
         }}
     </style>
 </head>
