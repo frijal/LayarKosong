@@ -38,33 +38,31 @@ async function main() {
   const deployments = json.result;
 
   const previews = deployments
-  .filter(d =>
-  d.production === false ||
-  typeof d.production === "undefined" ||
-  d.environment === "preview"
-  )
-  .sort((a, b) => {
-    const ta = new Date(a.created_on || a.created_at).getTime();
-    const tb = new Date(b.created_on || b.created_at).getTime();
-    return ta - tb;
-  });
+    .filter(d =>
+      d.production === false ||
+      typeof d.production === "undefined" ||
+      d.environment === "preview"
+    )
+    // paling lama → paling baru
+    .sort((a, b) => {
+      const ta = new Date(a.created_on || a.created_at).getTime();
+      const tb = new Date(b.created_on || b.created_at).getTime();
+      return ta - tb;
+    });
 
   console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
+  console.log(`🗑 Preview yang akan dihapus (urut lama → baru): ${previews.length}`);
 
-  // --- LOGIKA BARU DI SINI ---
-  if (previews.length <= 26) {
-    console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
-    console.log("ℹ Syarat hapus harus > 26 item. Pekerjaan dihentikan (Skip).");
-    return; // Berhenti di sini
+  if (previews.length === 0) {
+    console.log("ℹ Tidak ada preview yang memenuhi kriteria penghapusan");
+    return;
   }
-
-  console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
 
   for (const { id } of previews) {
     await deleteDeployment(accountId, projectName, token, id);
   }
 
-  console.log("✅ Selesai! Semua preview diproses karena sudah melebihi kuota 26.");
+  console.log("✅ Selesai! Semua preview diproses dari yang paling lama.");
 }
 
 async function deleteDeployment(accountId, projectName, token, id) {
