@@ -189,6 +189,7 @@ document_type: llm_behavior_and_entity_guidance
     html_body = re.sub(r'^- (.*)$', r'<li>\1</li>', html_body, flags=re.MULTILINE)
 
    # Menggunakan f-string dengan double curly braces untuk CSS
+    # Menggunakan f-string dengan double curly braces untuk CSS
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -206,72 +207,49 @@ document_type: llm_behavior_and_entity_guidance
             background-color: #fff;
         }}
         
-        /* Box penampung hasil render */
-        #markdown-content {{ 
+        /* Box penampung Utama */
+        .markdown-body {{ 
             background: #fefefe; 
             border: 1px solid #ddd; 
             padding: 2em; 
             border-radius: 8px; 
             word-wrap: break-word;
+            white-space: pre-wrap; /* KRUSIAL: Agar library-mu bisa baca per baris */
         }}
 
-        /* Styling dasar untuk elemen hasil render */
-        #markdown-content a {{ color: #0066cc; text-decoration: none; }}
-        #markdown-content a:hover {{ text-decoration: underline; }}
-        #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ 
-            color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; margin-top: 1.5em;
-        }}
-        #markdown-content blockquote {{ 
-            border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; 
-        }}
+        /* Styling tambahan agar link terlihat */
+        .markdown-body a {{ color: #0066cc; text-decoration: none; }}
+        .markdown-body a:hover {{ text-decoration: underline; }}
         
+        /* Styling inline code agar cantik */
+        code.inline-code {{
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }}
+
         @media (max-width: 768px) {{
-            body {{ width: 94%; margin: 1em auto; }}
-            #markdown-content {{ padding: 1.2em; }}
+            body {{ width: 94%; }}
+            .markdown-body {{ padding: 1.2em; }}
         }}
 
         @media (prefers-color-scheme: dark) {{ 
             body {{ background: #111; color: #eee; }} 
-            #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
-            #markdown-content a {{ color: #4da3ff; }}
-            #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ color: #fff; border-color: #333; }}
-            #markdown-content blockquote {{ background: #222; color: #ccc; }}
+            .markdown-body {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
+            .markdown-body a {{ color: #4da3ff; }}
+            code.inline-code {{ background: #333; color: #ffcc00; }}
         }}
     </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
-    <p>File ini disediakan untuk memudahkan AI memahami struktur konten <strong>Layar Kosong</strong>.</p>
     
-    <div id="markdown-content"></div>
-
-    <script type="text/markdown" id="raw-data">
+    <div class="markdown-body">
 {full_markdown}
-    </script>
+    </div>
 
-    <script src="/ext/markdown.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {{
-            const raw = document.getElementById('raw-data').textContent;
-            const target = document.getElementById('markdown-content');
-            
-            // Logika render:
-            // Jika library ext/markdown.js kamu menyediakan fungsi global 'markdown',
-            // gunakan salah satu baris di bawah ini sesuai dokumentasi library-mu:
-            
-            if (window.parseMarkdown) {{
-                target.innerHTML = parseMarkdown(raw);
-            }} else if (window.markdown && window.markdown.toHTML) {{
-                target.innerHTML = window.markdown.toHTML(raw);
-            }} else if (window.marked) {{
-                target.innerHTML = marked.parse(raw);
-            }} else {{
-                // Jika library auto-render, biasanya dia butuh waktu sedetik
-                // atau otomatis mencari tag <script type="text/markdown">
-                console.log("Menunggu library markdown merender...");
-            }}
-        }});
-    </script>
+    <script defer src="/ext/markdown.js"></script>
 </body>
 </html>"""
 
