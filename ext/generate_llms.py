@@ -197,7 +197,7 @@ document_type: llm_behavior_and_entity_guidance
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
-   <style>
+  <style>
     * {
         box-sizing: border-box;
     }
@@ -205,8 +205,7 @@ document_type: llm_behavior_and_entity_guidance
     body { 
         font-family: system-ui, -apple-system, sans-serif; 
         margin: 1.5em auto; 
-        /* Default untuk layar besar (PC): 90% alias -5% kanan-kiri */
-        width: 90%; 
+        width: 90%; /* 5% kiri, 5% kanan */
         max-width: none; 
         padding: 0; 
         line-height: 1.6; 
@@ -214,37 +213,70 @@ document_type: llm_behavior_and_entity_guidance
         background-color: #fff;
     }
 
-    /* Penyesuaian khusus untuk Mobile (Layar di bawah 768px) */
+    /* Penyesuaian khusus untuk Mobile */
     @media (max-width: 768px) {
         body {
-            /* Di HP, kita buat sedikit lebih lebar (94%) supaya teks tidak terlalu terjepit */
-            /* Ini menyisakan 3% di kanan dan 3% di kiri */
-            width: 94%;
+            width: 94%; /* 3% kiri, 3% kanan */
             margin: 1em auto;
         }
 
         #markdown-content {
-            /* Kurangi padding box di HP agar ruang untuk teks lebih luas */
             padding: 1.2em; 
         }
         
-        h1 { font-size: 1.6em; } /* Kecilkan judul dikit biar gak menuai baris */
+        h1 { font-size: 1.6em; }
     }
 
-    /* Box penampung */
+    /* Box penampung Utama */
     #markdown-content { 
         background: #fefefe; 
         border: 1px solid #ddd; 
         padding: 2em; 
         border-radius: 8px; 
         word-wrap: break-word;
+        overflow-wrap: break-word; /* Tambahan: Mencegah teks meluap */
         white-space: pre-wrap; 
     }
 
-    /* Dark Mode tetap sama */
+    /* --- Tambahan Styling Elemen Renderan --- */
+    #markdown-content a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+
+    #markdown-content a:hover {
+        text-decoration: underline;
+    }
+
+    #markdown-content h1, #markdown-content h2, #markdown-content h3 {
+        color: #111;
+        margin-top: 1.2em;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.2em;
+    }
+
+    #markdown-content blockquote {
+        border-left: 4px solid #0066cc;
+        background: #f9f9f9;
+        margin: 1em 0;
+        padding: 0.5em 1em;
+        color: #555;
+    }
+
+    /* Dark Mode - Perbaikan Kontras Link */
     @media (prefers-color-scheme: dark) { 
         body { background: #111; color: #eee; } 
         #markdown-content { background: #1a1a1a; border-color: #333; color: #ccc; }
+        
+        #markdown-content a { color: #4da3ff; } /* Link lebih terang di dark mode */
+        #markdown-content h1, #markdown-content h2, #markdown-content h3 { 
+            color: #fff; 
+            border-bottom-color: #333; 
+        }
+        #markdown-content blockquote {
+            background: #222;
+            color: #bbb;
+        }
     }
 </style>
 </head>
