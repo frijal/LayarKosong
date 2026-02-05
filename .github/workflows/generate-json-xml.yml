@@ -102,6 +102,9 @@ jobs:
       - name: '7️⃣ Inject schema.org (BARU KEMUDIAN)'
         if: env.DO_SCHEMA == 'true'
         run: python3 ext/inject_schema.py
+
+      - name: 📝 Convert HTML Tags to Markdown (Node.js)
+        run: node ext/html-to-markdown.js
         
       - name: '8️⃣ Clean HTML Cerdas (html-minifier-terser)'
         if: env.DO_MINIFY_HTML == 'true'
@@ -110,8 +113,6 @@ jobs:
       - name: 🧹 Minify Data (JSON & XML)
         if: env.DO_MINIFY_JSONXML == 'true'
         run: node ext/minify-jsonxml.js     
-
-      # --- AKHIR PERUBAHAN POSISI ---
 
       - name: '9️⃣ Commit and Push'
         run: |
