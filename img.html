@@ -257,8 +257,8 @@
                     if (item[2] && item[2].startsWith('http')) {
                         const fileName = item[1];
                         const slugOnly = fileName.replace('.html', '');
-                        // Membangun Clean URL V6.9: baseUrl/kategori/slug/
-                        const cleanUrl = `${BASE_URL}/${catSlug}/${slugOnly}/`;
+                        // Membangun Clean URL V6.9: baseUrl/kategori/slug
+                        const cleanUrl = `${BASE_URL}/${catSlug}/${slugOnly}`;
                         extractedData.push({
                             title: item[1],
                             url: item[2],
