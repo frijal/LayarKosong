@@ -1,4 +1,3 @@
-ini script lengkapnya, sebenernya dia sudah membuat file markdown murni, aku hanya tambahkan supaya markdown tersebut bisa dibaca pada halaman html:
 import json
 import os
 import shutil
