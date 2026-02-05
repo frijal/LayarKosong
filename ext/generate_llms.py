@@ -192,6 +192,10 @@ document_type: llm_behavior_and_entity_guidance
     # Kita masukkan full_markdown murni ke dalam tag penampung.
     
    # Gunakan double {{ dan }} untuk bagian CSS agar tidak bentrok dengan f-string Python
+   # --- LOGIKA UNTUK MARKDOWN.JS ---
+    # Kita TIDAK PERLU lagi melakukan re.sub manual di sini.
+    # Kita masukkan full_markdown murni ke dalam tag penampung.
+    
     html_content = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -199,91 +203,39 @@ document_type: llm_behavior_and_entity_guidance
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
     <style>
-        * {{
-            box-sizing: border-box;
-        }}
-
-        body {{ 
-            font-family: system-ui, -apple-system, sans-serif; 
-            margin: 1.5em auto; 
-            width: 90%; 
-            max-width: none; 
-            padding: 0; 
-            line-height: 1.6; 
-            color: #333; 
-            background-color: #fff;
-        }}
-
-        @media (max-width: 768px) {{
-            body {{
-                width: 94%;
-                margin: 1em auto;
-            }}
-            #markdown-content {{
-                padding: 1.2em; 
-            }}
-            h1 {{ font-size: 1.6em; }}
-        }}
-
+        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 90%; padding: 0 1em; line-height: 1.6; color: #333; }}
+        
+        /* Box penampung Markdown */
         #markdown-content {{ 
             background: #fefefe; 
             border: 1px solid #ddd; 
             padding: 2em; 
             border-radius: 8px; 
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap; 
+            white-space: pre-wrap; /* Penting agar format baris markdown terjaga sebelum di-render */
         }}
 
-        #markdown-content a {{ color: #0066cc; text-decoration: none; }}
-        #markdown-content a:hover {{ text-decoration: underline; }}
+        /* Styling dasar setelah di-render nanti */
+        a {{ color: #0066cc; text-decoration: none; }}
+        a:hover {{ text-decoration: underline; }}
+        h1, h2, h3 {{ color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }}
+        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }}
         
-        #markdown-content h1, #markdown-content h2, #markdown-content h3 {{
-            color: #111;
-            margin-top: 1.2em;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.2em;
-        }}
-
         @media (prefers-color-scheme: dark) {{ 
             body {{ background: #111; color: #eee; }} 
             #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
-            #markdown-content a {{ color: #4da3ff; }}
-            #markdown-content h1, #markdown-content h2, #markdown-content h3 {{ 
-                color: #fff; 
-                border-bottom-color: #333; 
-            }}
+            blockquote {{ background: #222; color: #ccc; }}
+            a {{ color: #4da3ff; }}
+            h1, h2, h3 {{ color: #fff; border-color: #333; }}
         }}
     </style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
+    <p>Halaman ini dirancang untuk dokumentasi sistem LLM. Link dan format di bawah dirender secara otomatis.</p>
     
-    <script type="text/markdown" id="markdown-source">
-{full_markdown}
-    </script>
+    <div id="markdown-content">{full_markdown}</div>
 
-    <div id="markdown-content"></div>
-
-    <script src="/ext/markdown.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const source = document.getElementById('markdown-source');
-            const target = document.getElementById('markdown-content');
-            
-            if (source && target) {
-                // Pastikan fungsi ini sesuai dengan library markdown.js milikmu
-                // Contoh jika menggunakan Marked.js:
-                // target.innerHTML = marked.parse(source.textContent);
-                
-                // Jika library-mu auto-render, biasanya dia butuh pemicu ini:
-                if (window.markdown) {
-                    target.innerHTML = window.markdown.toHTML(source.textContent);
-                }
-            }
-        });
-    </script>
+    <script defer src="/ext/markdown.js"></script>
 </body>
 </html>"""
 
