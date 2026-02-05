@@ -215,7 +215,7 @@ document_type: llm_behavior_and_entity_guidance
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
     <p>File ini disediakan untuk memudahkan AI memahami struktur konten <strong>Layar Kosong</strong>. Link di bawah ini aktif dan dapat diklik.</p>
     <div class="content-box">{html_body}</div>
-</body>
+<script defer src="/ext/markdown.js"></body>
 </html>"""
 
     with open(HTML_OUTPUT, 'w', encoding='utf-8') as f:
