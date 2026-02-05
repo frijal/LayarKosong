@@ -197,32 +197,56 @@ document_type: llm_behavior_and_entity_guidance
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layar Kosong - LLM Index v{new_v}</title>
-    <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; margin: 2em auto; max-width: 900px; padding: 0 1em; line-height: 1.6; color: #333; }}
-        
-        /* Box penampung Markdown */
-        #markdown-content {{ 
-            background: #fefefe; 
-            border: 1px solid #ddd; 
-            padding: 2em; 
-            border-radius: 8px; 
-            white-space: pre-wrap; /* Penting agar format baris markdown terjaga sebelum di-render */
-        }}
+   <style>
+    * {
+        box-sizing: border-box;
+    }
 
-        /* Styling dasar setelah di-render nanti */
-        a {{ color: #0066cc; text-decoration: none; }}
-        a:hover {{ text-decoration: underline; }}
-        h1, h2, h3 {{ color: #111; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }}
-        blockquote {{ border-left: 5px solid #0066cc; padding: 0.5em 1em; color: #555; background: #f4f4f4; margin: 1em 0; }}
+    body { 
+        font-family: system-ui, -apple-system, sans-serif; 
+        margin: 1.5em auto; 
+        /* Default untuk layar besar (PC): 90% alias -5% kanan-kiri */
+        width: 90%; 
+        max-width: none; 
+        padding: 0; 
+        line-height: 1.6; 
+        color: #333; 
+        background-color: #fff;
+    }
+
+    /* Penyesuaian khusus untuk Mobile (Layar di bawah 768px) */
+    @media (max-width: 768px) {
+        body {
+            /* Di HP, kita buat sedikit lebih lebar (94%) supaya teks tidak terlalu terjepit */
+            /* Ini menyisakan 3% di kanan dan 3% di kiri */
+            width: 94%;
+            margin: 1em auto;
+        }
+
+        #markdown-content {
+            /* Kurangi padding box di HP agar ruang untuk teks lebih luas */
+            padding: 1.2em; 
+        }
         
-        @media (prefers-color-scheme: dark) {{ 
-            body {{ background: #111; color: #eee; }} 
-            #markdown-content {{ background: #1a1a1a; border-color: #333; color: #ccc; }}
-            blockquote {{ background: #222; color: #ccc; }}
-            a {{ color: #4da3ff; }}
-            h1, h2, h3 {{ color: #fff; border-color: #333; }}
-        }}
-    </style>
+        h1 { font-size: 1.6em; } /* Kecilkan judul dikit biar gak menuai baris */
+    }
+
+    /* Box penampung */
+    #markdown-content { 
+        background: #fefefe; 
+        border: 1px solid #ddd; 
+        padding: 2em; 
+        border-radius: 8px; 
+        word-wrap: break-word;
+        white-space: pre-wrap; 
+    }
+
+    /* Dark Mode tetap sama */
+    @media (prefers-color-scheme: dark) { 
+        body { background: #111; color: #eee; } 
+        #markdown-content { background: #1a1a1a; border-color: #333; color: #ccc; }
+    }
+</style>
 </head>
 <body>
     <h1>Layar Kosong - AI Data Index (v{new_v})</h1>
