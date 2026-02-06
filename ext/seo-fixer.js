@@ -11,7 +11,7 @@ const escapeHtmlAttr = (text) => {
   return text
   .replace(/&/g, '&amp;')    // 1. Simbol & jadi &amp; (HARUS PERTAMA)
   .replace(/"/g, '&quot;')  // 2. Kutip dua jadi &quot;
-  .replace(/'/g, '&#39;')   // 3. Kutip satu jadi &#39;
+  .replace(/'/g, '’')       // 🔥 GANTI: Dari &#39; menjadi Smart Quote (’)
   .replace(/</g, '&lt;')    // 4. Jaga-jaga kalau ada tag <
   .replace(/>/g, '&gt;');   // 5. Jaga-jaga kalau ada tag >
 };
@@ -105,8 +105,8 @@ async function fixSEO() {
 
     // 🔥 PERBAIKAN: Pastikan URL tidak berakhir dengan slash (/)
     const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
-
-    const articleTitle = $('title').text().replace(' - Layar Kosong', '').trim() || 'Layar Kosong';
+    // Ambil title asli, hapus brand, lalu bersihkan
+    const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
     const escapedTitle = escapeHtmlAttr(articleTitle);
 
     let metaImgUrl = $('meta[name="twitter:image"]').attr('content') ||
