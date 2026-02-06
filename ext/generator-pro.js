@@ -277,10 +277,41 @@ const generate = async () => {
       for (const [cat, articles] of Object.entries(finalRootData)) {
         const slug = slugify(cat);
         const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
-        await fs.writeFile(path.join(CONFIG.rootDir, `feed-${slug}.xml`), buildRss(`${cat} - Layar Kosong`, allItemsFlat.filter(f => f.category === cat), rssUrl, `Feed kategori ${cat}`));
+        const canonicalUrl = `${CONFIG.baseUrl}/${slug}`; // Simpan di variabel agar bersih
+
+        // 1. BUAT DAFTAR ARTIKEL UNTUK JSON-LD
+        const hasPartSchema = articles.map(art => ({
+          "@type": "WebPage",
+          "name": art[0],
+          "url": `${CONFIG.baseUrl}/${slug}/${art[1].replace('.html', '')}`,
+                                                   "datePublished": art[3],
+                                                   "description": art[4] || art[0]
+        }));
+
+        // 2. MODIFIKASI TEMPLATE DASAR
         const icon = cat.match(/(\p{Emoji})/u)?.[0] || '📁';
-        const pageContent = templateHTML.replace(/%%TITLE%%/g, sanitizeTitle(cat)).replace(/%%DESCRIPTION%%/g, `Kumpulan lengkap artikel tentang ${cat}.`).replace(/%%CATEGORY_NAME%%/g, cat).replace(/%%RSS_URL%%/g, rssUrl).replace(/%%CANONICAL_URL%%/g, `${CONFIG.baseUrl}/${slug}`).replace(/%%ICON%%/g, icon);
-        await fs.writeFile(path.join(CONFIG.rootDir, slug, 'index.html'), pageContent);
+        let pageContent = templateHTML
+        .replace(/%%TITLE%%/g, sanitizeTitle(cat))
+        .replace(/%%DESCRIPTION%%/g, sanitizeTitle(cat)) // Sesuai permintaan template tadi
+        .replace(/%%CATEGORY_NAME%%/g, cat)
+        .replace(/%%RSS_URL%%/g, rssUrl)
+        .replace(/%%CANONICAL_URL%%/g, canonicalUrl)
+        .replace(/%%ICON%%/g, icon);
+
+        // 3. SUNTIKKAN hasPart KE JSON-LD (Targetkan baris terakhir di CollectionPage)
+        // Kita tambahkan koma sebelum "hasPart" karena dia diletakkan setelah "inLanguage"
+        const schemaInjection = `,\n  "hasPart": ${JSON.stringify(hasPartSchema, null, 2)}`;
+
+        // Suntikkan tepat setelah properti inLanguage di dalam script #seo-schema
+        pageContent = pageContent.replace(/"inLanguage":\s*"id-ID"/,
+                                          `"inLanguage": "id-ID"${schemaInjection}`);
+
+        // 4. SIMPAN INDEX KATEGORI
+        const outputDir = path.join(CONFIG.rootDir, slug);
+        await fs.mkdir(outputDir, { recursive: true }); // Pastikan folder kategori ada
+        await fs.writeFile(path.join(outputDir, 'index.html'), pageContent, 'utf8');
+
+        console.log(`✅ Kategori [${cat}] berhasil dibuat dengan ${articles.length} artikel tersuntik.`);
       }
     }
 

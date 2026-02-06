@@ -10,14 +10,13 @@
       content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
     />
     <link rel="canonical" href="%%CANONICAL_URL%%" />
-    <!-- RSS feed khusus kategori -->
+
     <link
       rel="alternate"
       type="application/rss+xml"
       title="%%CATEGORY_NAME%%"
       href="%%RSS_URL%%"
     />
-    <!-- RSS feed global -->
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -25,7 +24,8 @@
       href="https://dalam.web.id/rss.xml"
     />
 
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
     <meta name="author" content="Fakhrul Rijal">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="googlebot" content="max-image-preview:large">
@@ -77,7 +77,7 @@
       href="/ext/fontawesome.css"
     />
 
-<script type="application/ld+json">
+<script type="application/ld+json" id="seo-schema">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -89,13 +89,10 @@
     "@type": "WebSite",
     "@id": "https://dalam.web.id/#website"
   },
-  "about": {
-    "@type": "Thing",
-    "name": "Lainnya"
-  },
   "inLanguage": "id-ID"
 }
 </script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -110,12 +107,6 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Kategori",
-      "item": "https://dalam.web.id/artikel/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
       "name": "%%CATEGORY_NAME%%",
       "item": "%%CANONICAL_URL%%"
     }
@@ -156,8 +147,7 @@
         background-color: var(--bg-color);
         color: var(--primary-text-color);
         line-height: 1.7;
-        /* DITAMBAHKAN: Padding untuk header fixed baru */
-        padding-top: 8rem; /* Disesuaikan untuk header yang lebih tinggi */
+        padding-top: 8rem;
       }
       .container {
         max-width: 1200px;
@@ -165,7 +155,6 @@
         padding: 2rem 1.5rem;
       }
 
-      /* --- CSS BARU UNTUK HEADER --- */
       .new-header {
         background-color: var(--surface-color);
         border-bottom: 1px solid var(--border-color);
@@ -184,107 +173,78 @@
         padding: 0.75rem 1.5rem;
         display: flex;
         align-items: center;
-        /* Diubah: Tumpuk secara vertikal dan pusatkan logo */
         flex-direction: column;
         justify-content: center;
-        gap: 0rem; /* Dihapus gap di sini, diatur via margin */
       }
 
-      /* DITAMBAHKAN: Kontainer untuk baris bawah header */
       .header-bottom-row {
         display: flex;
-        /* DIUBAH: dari space-between menjadi center */
         justify-content: center;
         align-items: center;
         width: 100%;
         gap: 1rem;
-        flex-wrap: wrap; /* Agar rapi di mobile */
+        flex-wrap: wrap;
       }
 
       .header-left {
         display: flex;
         align-items: center;
         gap: 1rem;
-        /* Mencegah header-left tumbuh terlalu besar */
         min-width: 0;
       }
 
-      /* Style untuk h1 (judul dinamis) di dalam header baru */
       .new-header h1 {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
         color: var(--accent-color);
-        font-size: 1.25rem; /* Lebih kecil agar pas di header */
+        font-size: 1.25rem;
         margin: 0;
         font-weight: 600;
-        /* Mencegah teks panjang merusak layout */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
-      /* Style untuk RSS link di dalam header baru */
       .new-header .rss-link {
         color: var(--accent-color);
         text-decoration: none;
-        font-size: 1.2rem; /* Disesuaikan */
+        font-size: 1.2rem;
         vertical-align: middle;
         transition: color 0.2s ease;
-        flex-shrink: 0; /* Mencegah ikon menyusut */
+        flex-shrink: 0;
       }
       .new-header .rss-link:hover {
         color: orange;
       }
 
       .header-logo-container {
-        display: none; /* DIUBAH: Sembunyi di mobile */
+        display: none;
         align-items: center;
       }
 
       .header-logo {
-        height: 1.5rem; /* DIUBAH: Menyamai tinggi font judul desktop */
+        height: 1.5rem;
         width: auto;
       }
 
-      /* DITAMBAHKAN: Memperbaiki style link pada logo */
-      .header-logo-container a,
-      .header-logo-container a:link,
-      .header-logo-container a:visited,
-      .header-logo-container a:hover,
-      .header-logo-container a:active {
-        text-decoration: none; /* Menghilangkan garis bawah */
-        color: inherit;        /* Mencegah warna link default (biru/ungu) */
-        border-bottom: none;   /* Memastikan tidak ada garis bawah palsu */
-        display: inline-block; /* Menjaga layout SVG tetap konsisten */
-        line-height: 1;        /* Mencegah <a> menambah spasi ekstra */
-      }
-
-      /* --- CSS BARU UNTUK FLOATING SEARCH --- */
       .header-search {
-        /* DIUBAH: Kembali menjadi flex item, bukan fixed */
         position: relative;
-        /* DIHAPUS: flex-grow: 1; agar bisa rata tengah */
-        width: 100%; /* Ditambahkan agar max-width berfungsi */
-        max-width: 350px; /* Batasi lebar maksimum */
-        min-width: 0; /* Izinkan untuk menyusut */
+        width: 100%;
+        max-width: 350px;
+        min-width: 0;
       }
 
-      /* DITAMBAHKAN: Style dasar untuk search-input yang hilang */
       .search-input {
         font-family: 'Poppins', sans-serif;
         width: 100%;
-        padding: 0.5rem 1rem 0.5rem 2.5rem; /* Disesuaikan untuk ikon */
+        padding: 0.5rem 1rem 0.5rem 2.5rem;
         border: 1px solid var(--border-color);
-        border-radius: 8px; /* rounded-lg */
+        border-radius: 8px;
         font-size: 0.9rem;
         background-color: var(--surface-color);
         color: var(--primary-text-color);
         transition: border-color 0.2s, box-shadow 0.2s;
-      }
-
-      .search-input::placeholder {
-        color: var(--secondary-text-color);
       }
 
       .search-input:focus {
@@ -296,27 +256,22 @@
       .search-icon {
         position: absolute;
         top: 50%;
-        left: 0.75rem; /* Disesuaikan dengan padding input */
+        left: 0.75rem;
         transform: translateY(-50%);
         color: var(--secondary-text-color);
-        font-size: 1rem; /* Disesuaikan */
+        font-size: 1rem;
         pointer-events: none;
       }
 
-      /* Media Query untuk (sm:flex) dan (sm:block) */
       @media (min-width: 640px) {
         .header-logo-container {
-          display: flex; /* Tampil di layar sm ke atas */
-          align-items: center;
-          /* DITAMBAHKAN: Memberi jarak di bawah logo */
+          display: flex;
           margin-bottom: 0.5rem;
         }
-
         .new-header h1 {
-          font-size: 1.75rem; /* Kembalikan ukuran di desktop */
+          font-size: 1.75rem;
         }
       }
-      /* --- AKHIR CSS BARU --- */
 
       #article-grid {
         display: grid;
@@ -380,12 +335,24 @@
         font-size: 0.8rem;
         color: var(--secondary-text-color);
       }
-      #loading,
-      .message {
+      #loading, .message {
         text-align: center;
         margin-top: 3rem;
         font-size: 1.1rem;
         color: var(--secondary-text-color);
+      }
+
+      /* CSS Noscript - Jaga-jaga jika JS mati */
+      .noscript-msg {
+        background: #ff6b6b;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        font-weight: bold;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 100;
       }
     </style>
   </head>
@@ -420,10 +387,18 @@
           </a>
         </div>
 
-        <!-- DITAMBAHKAN: Baris Bawah untuk Judul dan Pencarian -->
+    <noscript>
+      <div class="noscript-msg">
+        JavaScript dinonaktifkan. Kamu tetap bisa akses via
+        <a href="%%RSS_URL%%" style="color: white; text-decoration: underline;">RSS Feed</a>
+        atau kembali ke <a href="/" style="color: white; text-decoration: underline;">Beranda</a>.
+      </div>
+    </noscript>
+
+    <header id="main-header" class="new-header">
+      <div class="new-header-container">
         <div class="header-bottom-row">
           <div class="header-left">
-            <!-- Judul Dinamis dan RSS (Struktur dari header asli) -->
             <h1>
               <span id="category-title-text">Memuat...</span>
               <a href="%%RSS_URL%%" class="rss-link" title="Langganan RSS">
@@ -432,14 +407,12 @@
             </h1>
           </div>
 
-          <!-- DIPINDAHKAN: Form pencarian kembali ke header -->
           <form
             action="https://dalam.web.id/search"
             method="get"
             class="header-search"
           >
             <span class="search-icon">
-              <!-- Menggunakan FontAwesome yg sudah di-load -->
               <i class="fa-solid fa-magnifying-glass"></i>
             </span>
             <input
@@ -453,7 +426,6 @@
         </div>
       </div>
     </header>
-    <!-- AKHIR HEADER BARU -->
 
     <div class="container">
       <div id="loading">Memuat...</div>
@@ -463,7 +435,6 @@
    <script>
       document.addEventListener('DOMContentLoaded', () => {
         const TARGET_CATEGORY = '%%CATEGORY_NAME%%';
-        // V6.9: Karena index.html ada di /nama-kategori/, JSON naik satu tingkat saja
         const DATA_URL = '../artikel.json';
         const articleGrid = document.getElementById('article-grid');
         const loadingIndicator = document.getElementById('loading');
@@ -471,46 +442,32 @@
 
         const fetchAndDisplayCategory = async () => {
           if (pageTitleText) {
-            // Hilangkan emoji di depan teks judul jika ada
             const titleText = TARGET_CATEGORY.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
             pageTitleText.textContent = titleText;
           }
 
           try {
-            const response = await fetch(
-              `${DATA_URL}?v=${new Date().getTime()}`
-            );
+            const response = await fetch(`${DATA_URL}?v=${new Date().getTime()}`);
             if (!response.ok) throw new Error(`Status ${response.status}`);
 
             const allData = await response.json();
             const articles = allData[TARGET_CATEGORY];
 
             if (!articles || articles.length === 0) {
-              articleGrid.innerHTML = `<p class="message">Tidak ada artikel ditemukan untuk kategori "${TARGET_CATEGORY}".</p>`;
+              articleGrid.innerHTML = `<p class="message">Tidak ada artikel ditemukan.</p>`;
               return;
             }
 
             let articlesHTML = '';
-            // Sortir terbaru
             articles.sort((a, b) => new Date(b[3]) - new Date(a[3]));
 
             articles.forEach((article) => {
               const [title, fileName, image, pubDate, description] = article;
-
-              // V6.9 Clean URL: Artikel ada di folder yang sama dengan index kategori ini
-              // Kita ubah "judul-artikel.html" menjadi "judul-artikel/"
               const cleanUrl = fileName.replace('.html', '');
+              const formattedDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(pubDate));
 
-              const formattedDate = new Intl.DateTimeFormat('id-ID', {
-                dateStyle: 'long',
-              }).format(new Date(pubDate));
-
-              let displayDesc = description || '';
-              if (displayDesc.length > 100) {
-                displayDesc = displayDesc.substring(0, 100) + '...';
-              } else if (displayDesc.length === 0) {
-                displayDesc = 'Klik untuk membaca selengkapnya...';
-              }
+              let displayDesc = description || 'Klik untuk membaca selengkapnya...';
+              if (displayDesc.length > 100) displayDesc = displayDesc.substring(0, 100) + '...';
 
               articlesHTML += `
                 <a href="${cleanUrl}" class="article-card">
@@ -527,8 +484,8 @@
 
             articleGrid.innerHTML = articlesHTML;
           } catch (error) {
-            console.error('Terjadi kesalahan:', error);
-            articleGrid.innerHTML = `<p class="message" style="color: #ff6b6b;">Oops! Gagal memuat data artikel.</p>`;
+            console.error('Error:', error);
+            articleGrid.innerHTML = `<p class="message" style="color: #ff6b6b;">Gagal memuat data artikel.</p>`;
           } finally {
             loadingIndicator.style.display = 'none';
           }
