@@ -40,6 +40,10 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, must-revalidate
 /sitemap.txt
   Cache-Control: public, max-age=0, must-revalidate
+/llms.txt
+  Cache-Control: public, max-age=0, must-revalidate
+/.well-known/llms.txt
+  Cache-Control: public, max-age=0, must-revalidate
 # =========================================================
 # 3. ASSET STATIS (Long-term Cache)
 # =========================================================
