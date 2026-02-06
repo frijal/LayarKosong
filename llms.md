@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 13.7
+document_version: 13.8
 last_updated: 2026-02-06
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 06 February 2026)
-> Menampilkan 868 artikel yang berhasil diindeks dalam versi 13.7.
+> Menampilkan 871 artikel yang berhasil diindeks dalam versi 13.8.
 ## Gaya Hidup
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
@@ -367,6 +367,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina](https://dalam.web.id/opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51) : Tentang larangan Al-Quran dalam Surat Al-Ma
+- [Mengenal Fenomena Ulama Su: Ketika Ilmu Menjadi Alat Kekuasaan dan Propaganda](https://dalam.web.id/opini-sosial/mengenal-fenomena-ulama-su-dan-integritas-moral) : Mengupas tuntas fenomena Ulama Su dalam dinamika politik Indonesia. Mengapa independensi moral tokoh agama sangat krusial di hadapan kekuasaan? Simak analisis mendalamnya di sini.
 - [Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi?](https://dalam.web.id/opini-sosial/kebijakan-3-kategori-sekolah-2026) : Analisis lengkap kebijakan pemerintah mengelompokkan sekolah menjadi 3 kategori: Sekolah Penggerak, Terintegrasi, dan Reguler. Simak implikasi, pro-kontra, dan masa depan pendidikan Indonesia.
 - [Negara Kecil Tapi Raksasa Ekonomi: Rahasia Pendidikan Singapura yang Mengubah Dunia](https://dalam.web.id/opini-sosial/belajar-dari-pendidikan-singapura) : Bagaimana negara tanpa sumber daya alam seperti Singapura bisa jadi negara maju? Simak analisis mendalam transformasi Singapura melalui sistem pendidikan terbaik dunia.
 - [Analisis Indonesia di Board of Peace: Jebakan Diplomasi atau Strategi Jitu?](https://dalam.web.id/opini-sosial/analisis-indonesia-board-of-peace) : Analisis mendalam mengenai keanggotaan Indonesia dalam Board of Peace (BoP). Membedah risiko diplomasi, dominasi Zionis, dan pengalaman empiris Imam Shamsi Ali di New York.
@@ -721,6 +723,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita](https://dalam.web.id/warta-tekno/misteri-error-418-teko-ajaib) : Eksplorasi mendalam Error 418 I
 - [KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia](https://dalam.web.id/warta-tekno/kominfudge-panduan-pemula) : Panduan komprehensif untuk menembus penyensoran internet di Indonesia. Pelajari cara mengganti DNS, menghindari DPI, memilih ISP, dan alat untuk akses internet bebas.
 - [Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai](https://dalam.web.id/warta-tekno/vpn-bikin-internet-cepat) : Membongkar mitos dan fakta kenapa VPN atau Cloudflare WARP justru bikin internet lebih cepat dan responsif dibanding polosan ISP lokal. Simak analisis routing, throttling, dan pengalaman user.
 - [Microsoft PowerToys: Panduan Lengkap 2026 - Tingkatkan Produktivitas Windows Anda](https://dalam.web.id/warta-tekno/microsoft-powertoys-panduan-lengkap-2026) : Panduan komprehensif Microsoft PowerToys 2026. Temukan 25+ utilitas gratis untuk mengkustomisasi Windows, meningkatkan efisiensi kerja, dan menyederhanakan tugas sehari-hari. Instalasi, fitur terbaru, tips ahli.
