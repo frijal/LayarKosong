@@ -108,6 +108,12 @@ async function fixSEO() {
     // Ambil title asli, hapus brand, lalu bersihkan
     const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
     const escapedTitle = escapeHtmlAttr(articleTitle);
+    // Deskripsi Bersih (Tambahkan ini!)
+    let rawDesc = $('meta[name="description"]').attr('content') ||
+    $('meta[property="og:description"]').attr('content') ||
+    '';
+    // Hilangkan baris baru (enter) dan spasi ganda agar tidak merusak meta tag
+    const cleanDesc = escapeHtmlAttr(rawDesc.replace(/\s+/g, ' ').trim());
 
     let metaImgUrl = $('meta[name="twitter:image"]').attr('content') ||
     $('meta[property="og:image"]').attr('content') ||
@@ -119,7 +125,11 @@ async function fixSEO() {
         metaImgUrl = `${baseUrl}${mirroredMetaPath}`;
       }
     }
-
+    if (!cleanDesc || cleanDesc === '') {
+      const firstParagraph = $('p').first().text().substring(0, 160).trim();
+      cleanDesc = escapeHtmlAttr(firstParagraph);
+      console.log(`ℹ️ Deskripsi kosong di ${fileName}, mengambil dari paragraf pertama.`);
+    }
     // --- 3. BERSIHKAN SEMUA TAG LAMA ---
     $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
     $('link[rel="canonical"]').remove();
@@ -134,10 +144,14 @@ async function fixSEO() {
     $('meta[name="theme-color"]').remove();
     $('meta[name="fediverse:creator"]').remove();
     $('meta[name="bluesky:creator"]').remove();
+    $('meta[name="description"]').remove();
+    $('meta[property="og:description"]').remove();
+    $('meta[name="twitter:description"]').remove();
 
     // --- 4. SUNTIK ULANG ---
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
     head.append(`\n    <link rel="icon" href="/favicon.ico">`);
+    head.append(`\n    <meta name="description" content="${cleanDesc}">`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
     head.append(`\n    <meta name="googlebot" content="max-image-preview:large">`);
@@ -147,11 +161,13 @@ async function fixSEO() {
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
     head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
+    head.append(`\n    <meta property="og:description" content="${cleanDesc}">`);
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:type" content="article">`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
     head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
     head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
+    head.append(`\n    <meta name="twitter:description" content="${cleanDesc}">`);
     head.append(`\n    <meta name="twitter:site" content="@responaja">`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384">`);
     head.append(`\n    <meta property="article:author" content="https://facebook.com/frijal">`);
