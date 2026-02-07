@@ -43,7 +43,7 @@ def main():
             file_slug = file_name.replace('.html', '').replace('/', '')
 
             # Format URL V6.9: https://dalam.web.id/kategori/slug/
-            full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}/"
+            full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}"
 
             # CEK BERDASARKAN SLUG (Anti-Spam)
             if file_slug not in posted_database:

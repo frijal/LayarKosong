@@ -31,7 +31,7 @@ async function postToLinkedIn() {
         posts.forEach(p => {
             const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
             // Format URL Baru: https://dalam.web.id/kategori/slug/
-            const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
+            const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
 
             // Cek apakah slug sudah ada di dalam rekaman database teks
             if (!postedDatabase.includes(fileSlug)) {

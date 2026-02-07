@@ -63,7 +63,7 @@ for (const [category, items] of Object.entries(raw)) {
     const isoDate = item[3];
     const desc = item[4] || "";
 
-    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
+    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
 
     if (!postedDatabase.includes(fileSlug)) {
       articles.push({

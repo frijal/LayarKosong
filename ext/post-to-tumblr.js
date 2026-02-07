@@ -46,7 +46,7 @@ for (const [category, items] of Object.entries(raw)) {
     const fileSlug = item[1].replace('.html', '').replace(/^\//, '');
 
     // Perbaikan di sini: Pastikan variabelnya sama (catSlug)
-    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}/`;
+    const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
 
     // Cek slug di database biar nggak dobel post
     const isPosted = postedDatabase.includes(fileSlug);

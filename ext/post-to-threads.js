@@ -34,7 +34,7 @@ async function postToThreads() {
         posts.forEach(p => {
             const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
             // Bentuk URL Baru: https://dalam.web.id/kategori/slug/
-            const fullUrl = `${DOMAIN_URL}/${catSlug}/${fileSlug}/`;
+            const fullUrl = `${DOMAIN_URL}/${catSlug}/${fileSlug}`;
 
             // Cek apakah slug sudah ada di dalam database teks
             if (!postedDatabase.includes(fileSlug)) {
