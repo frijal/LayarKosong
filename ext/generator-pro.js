@@ -285,8 +285,8 @@ const generate = async () => {
           "@type": "WebPage",
           "name": art[0],
           "url": `${CONFIG.baseUrl}/${slug}/${art[1].replace('.html', '')}`,
-                                                   "datePublished": art[3],
-                                                   "description": art[4] || art[0]
+          "datePublished": art[3],
+          "description": art[4] || art[0]
         }));
 
         // 2. MODIFIKASI TEMPLATE DASAR
@@ -305,13 +305,37 @@ const generate = async () => {
 
         // Suntikkan tepat setelah properti inLanguage di dalam script #seo-schema
         pageContent = pageContent.replace(/"inLanguage":\s*"id-ID"/,
-                                          `"inLanguage": "id-ID"${schemaInjection}`);
+        `"inLanguage": "id-ID"${schemaInjection}`);
 
         // 4. SIMPAN INDEX KATEGORI
         const outputDir = path.join(CONFIG.rootDir, slug);
         await fs.mkdir(outputDir, { recursive: true }); // Pastikan folder kategori ada
         await fs.writeFile(path.join(outputDir, 'index.html'), pageContent, 'utf8');
+/////////////////////////////////
+        // 5. GENERATE RSS PER KATEGORI
+        const categoryItems = articles.map(art => ({
+          title: art[0],
+          file: art[1],
+          img: art[2],
+          lastmod: art[3],
+          desc: art[4],
+          category: cat,
+          loc: `${CONFIG.baseUrl}/${slug}/${art[1].replace('.html', '')}`
+        }));
 
+        const categoryRssContent = buildRss(
+          `Kategori ${sanitizeTitle(cat)} - Layar Kosong`,
+          categoryItems.slice(0, CONFIG.rssLimit),
+          rssUrl,
+          `Kumpulan artikel terbaru di kategori ${cat}`
+        );
+
+        // Simpan file dengan nama feed-nama-kategori.xml di root (sesuai %%RSS_URL%%)
+        const rssFilePath = path.join(CONFIG.rootDir, `feed-${slug}.xml`);
+        await fs.writeFile(rssFilePath, categoryRssContent, 'utf8');
+
+        console.log(`✅ Kategori [${cat}] & RSS Feed [feed-${slug}.xml] berhasil dibuat.`);
+        ///////////////////////////////////
         console.log(`✅ Kategori [${cat}] berhasil dibuat dengan ${articles.length} artikel tersuntik.`);
       }
     }
