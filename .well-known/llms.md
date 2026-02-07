@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 14.2
+document_version: 14.3
 last_updated: 2026-02-07
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 07 February 2026)
-> Menampilkan 878 artikel yang berhasil diindeks dalam versi 14.2.
+> Menampilkan 878 artikel yang berhasil diindeks dalam versi 14.3.
 ## Gaya Hidup
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
