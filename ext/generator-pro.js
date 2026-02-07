@@ -80,9 +80,10 @@ const extractImage = (content, filename) => {
 
 const extractVideos = (content, title, desc) => {
   const videos = [];
-  const iframes = [...content.matchAll(/<iframe[^+]+src=["']([^"']+)["']/gi)];
+  const iframes = [...content.matchAll(/<iframe[^>]+src=["']([^"']+)["']/gi)];
   iframes.forEach(m => {
     let src = m[1];
+    if (src.endsWith('.js')) return;
     if (src.startsWith('//')) src = 'https:' + src;
       const cleanSrc = src.split('?')[0];
     videos.push({
