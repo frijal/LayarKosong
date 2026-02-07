@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 14.1
+document_version: 14.2
 last_updated: 2026-02-07
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 07 February 2026)
-> Menampilkan 873 artikel yang berhasil diindeks dalam versi 14.1.
+> Menampilkan 878 artikel yang berhasil diindeks dalam versi 14.2.
 ## Gaya Hidup
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
@@ -96,6 +96,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Teknologi AI dan Ponsel dalam Pandangan Muhammadiyah Tafsir At Tanwir](https://dalam.web.id/jejak-sejarah/teknologi-ai-ponsel-muhammadiyah) : Menelusuri pandangan Muhammadiyah terhadap teknologi AI dan ponsel berdasarkan spirit Tafsir At Tanwir untuk kemaslahatan umat manusia di era digital
+- [Menara Masjid: Dulu Mata Iman Melihat Lapar Sekarang Simbol Kemewahan](https://dalam.web.id/jejak-sejarah/menara-masjid-fungsi-vs-gengsi) : Refleksi mendalam tentang pergeseran fungsi menara masjid. Dari kebutuhan fungsional dan sosial di masa lalu menjadi sekadar estetika dan gengsi di era modern.
 - [Dukungan Ormas Islam Indonesia pada Board of Peace Trump dan Dampaknya Bagi Palestina](https://dalam.web.id/jejak-sejarah/analisis-kritis-dukungan-ormas-islam-indonesia-board-of-peace-trump) : Analisis mendalam tentang dukungan organisasi masyarakat Islam Indonesia terhadap Board of Peace inisiatif Donald Trump untuk Gaza, implikasi bagi kemerdekaan Palestina, dan prinsip politik luar negeri bebas aktif Indonesia.
 - [Peradaban Materialistik vs Peradaban Masjid: Mana yang Membangun Jiwa?](https://dalam.web.id/jejak-sejarah/peradaban-materialistik-vs-peradaban-masjid) : Mengapa masjid yang megah belum tentu makmur? Simak bedah tuntas perbedaan filosofis peradaban materialistik dan peradaban masjid dalam perspektif sosial dan iman.
 - [Diplomasi Indonesia di Tengah Konflik Palestina-Israel dan Peran Ormas Islam](https://dalam.web.id/jejak-sejarah/diplomasi-indonesia-palestina-israel-analisis) : Analisis mendalam tentang posisi Indonesia dalam konflik Palestina-Israel, tradisi hujjah dalam Islam, dan peran strategis ormas Islam terbesar seperti NU dan Muhammadiyah. Kajian lengkap prinsip 5W+1H dengan data aktual.
@@ -236,6 +238,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi?](https://dalam.web.id/lainnya/malaysia-tolak-board-of-peace-trump) : Malaysia tegas menolak Board of Peace bentukan Donald Trump. Alasannya? Biaya mahal, melemahkan PBB, dan tidak ada jaminan untuk Palestina. Simak analisis lengkapnya.
 - [Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️](https://dalam.web.id/lainnya/sejarah-layout-keyboard-qwerty) : Pernah mikir gak kenapa susunan keyboard itu QWERTY bukan ABCD? Ternyata alasannya bukan biar kita lambat, tapi karena mesin tik zaman dulu gampang macet. Simak sejarah lengkapnya di sini!
 - [Tragedi Hujjah: Ormas, Trump, dan 17 Triliun yang Terbakar di Gaza](https://dalam.web.id/lainnya/tragedi-hujjah-ormas-trump-gaza) : Analisis tajam tentang sikap Ormas Islam dan Pemerintah Indonesia yang bergabung dalam Dewan Perdamaian Trump. Membedah logika 17 Triliun, rekonstruksi Gaza, dan hilangnya hujjah.
 - [Tragedi Buku Tulis di NTT: Evaluasi Prioritas MBG vs Hak Dasar Pendidikan](https://dalam.web.id/lainnya/tragedi-buku-tulis-ntt-prioritas-mbg) : Mengulas tragedi pilu siswa SD di NTT yang mengakhiri hidup karena tak mampu beli buku. Apakah program Makan Bergizi Gratis sudah tepat sasaran di tengah darurat fasilitas sekolah?
@@ -368,6 +371,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Ilusi Transparansi: Mengapa Informasi Viral Seringkali Hanya Sampah Intelijen](https://dalam.web.id/opini-sosial/ilusi-transparansi-intelijen) : Membongkar rahasia di balik kebocoran data viral. Apakah itu transparansi nyata atau sekadar sampah yang sengaja dibuang untuk mengalihkan perhatian kita?
 - [Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina](https://dalam.web.id/opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51) : Tentang larangan Al-Quran dalam Surat Al-Ma
 - [Mengenal Fenomena Ulama Su: Ketika Ilmu Menjadi Alat Kekuasaan dan Propaganda](https://dalam.web.id/opini-sosial/mengenal-fenomena-ulama-su-dan-integritas-moral) : Mengupas tuntas fenomena Ulama Su dalam dinamika politik Indonesia. Mengapa independensi moral tokoh agama sangat krusial di hadapan kekuasaan? Simak analisis mendalamnya di sini.
 - [Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi?](https://dalam.web.id/opini-sosial/kebijakan-3-kategori-sekolah-2026) : Analisis lengkap kebijakan pemerintah mengelompokkan sekolah menjadi 3 kategori: Sekolah Penggerak, Terintegrasi, dan Reguler. Simak implikasi, pro-kontra, dan masa depan pendidikan Indonesia.
@@ -463,6 +467,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Stop Educating Linux: Mengapa Linux Bukan Windows dan Mengapa Itu Keren!](https://dalam.web.id/sistem-terbuka/stop-educating-linux) : Berhenti memaksa Linux menjadi Windows. Pelajari filosofi di balik Linux, mengapa kendali lebih penting daripada kenyamanan semu, dan cara mengubah pola pikir Anda.
 - [Cara Aman Menghapus Kernel Lama di Linux: Panduan Lengkap Anti-Penuh 🐧](https://dalam.web.id/sistem-terbuka/cara-menghapus-kernel-lama-linux-purge) : Tutorial lengkap cara menghapus kernel lama di Linux Ubuntu Mint Zorin dan Debian. Bersihkan partisi boot yang penuh dengan perintah apt purge dan autoremove secara aman.
 - [Kenapa Debian Jadi Pilihan Utama Aku? Analisis Mendalam Perbandingan Distro Linux](https://dalam.web.id/sistem-terbuka/kenapa-debian-pilihan-utama-linux) : Mengapa Debian tetap menjadi raja distribusi Linux untuk server dan desktop? Simak perbandingan mendalam Debian Testing vs Arch Linux Fedora dan Gentoo dalam artikel ini
 - [Panduan Optimasi Systemd Debian: Booting Secepat Kilat dalam 5 Menit](https://dalam.web.id/sistem-terbuka/optimasi-systemd-debian-boot-time) : Pelajari teknik optimasi systemd di Debian untuk mempercepat waktu boot. Panduan praktis menggunakan systemd-analyze dan cara aman mematikan service tidak perlu.
