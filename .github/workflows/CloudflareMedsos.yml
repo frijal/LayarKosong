@@ -92,13 +92,13 @@ jobs:
       # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
       # =========================================================
 
-    #  - name: RSS kirim ke Diskusi Github
-    #    if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'diskusi RSS'
-    #    continue-on-error: true
-    #    env:
+      - name: RSS kirim ke Diskusi Github
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'diskusi RSS'
+        continue-on-error: true
+        env:
         # Token rahasia bawaan GitHub untuk autentikasi API
-    #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #    run: node ext/bikin-rss-diskusi.js
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node ext/bikin-rss-diskusi.js
 
       - name: 🧹 1. Cloudflare Cleanup
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
