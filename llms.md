@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 14.4
+document_version: 14.5
 last_updated: 2026-02-07
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,8 +37,9 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 07 February 2026)
-> Menampilkan 878 artikel yang berhasil diindeks dalam versi 14.4.
+> Menampilkan 881 artikel yang berhasil diindeks dalam versi 14.5.
 ## Gaya Hidup
+- [Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan](https://dalam.web.id/gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan) : Surat terbuka mendalam dari Delima Respek Peduli tentang dampak kebijakan non-aktifasi BPJS PBI massal terhadap pasien rentan di Indonesia. Analisis komprehensif dengan prinsip 5W+1H mengenai dampak kebijakan kesehatan terhadap masyarakat miskin dan sakit.
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
 - [16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda](https://dalam.web.id/gaya-hidup/16-tahun-ojol-tanpa-uu) : Opini mendalam: 16 tahun ojol beroperasi tanpa payung hukum Undang-Undang. Sebuah kritik terbuka untuk Pemerintah, DPR, dan Kemenhub. Driver bukan sekadar sapi perah aplikasi.
 - [Panduan Pengasuhan Berbasis Sains: Dari Balita hingga Remaja](https://dalam.web.id/gaya-hidup/panduan-pengasuhan-sains) : Pelajari panduan lengkap pengasuhan anak berdasarkan riset sains. Mulai dari menangani tantangan remaja, aktivitas tanpa layar, hingga kesehatan mental dan disiplin efektif.
@@ -96,6 +97,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [SKKNI Pengasuh Anak: Melindungi Hak Anak atau Menjauhkan Wanita dari Peran Ibu? | Suara Muslimah Jabar](https://dalam.web.id/jejak-sejarah/skkni-pengasuh-anak-peran-ibu) : Analisis mendalam tentang SKKNI Pengasuh Anak dan dampaknya terhadap peran ibu dalam keluarga menurut perspektif Islam. Kajian lengkap dengan prinsip 5W+1H, studi kasus, dan solusi sistemik.
 - [Teknologi AI dan Ponsel dalam Pandangan Muhammadiyah Tafsir At Tanwir](https://dalam.web.id/jejak-sejarah/teknologi-ai-ponsel-muhammadiyah) : Menelusuri pandangan Muhammadiyah terhadap teknologi AI dan ponsel berdasarkan spirit Tafsir At Tanwir untuk kemaslahatan umat manusia di era digital
 - [Menara Masjid: Dulu Mata Iman Melihat Lapar Sekarang Simbol Kemewahan](https://dalam.web.id/jejak-sejarah/menara-masjid-fungsi-vs-gengsi) : Refleksi mendalam tentang pergeseran fungsi menara masjid. Dari kebutuhan fungsional dan sosial di masa lalu menjadi sekadar estetika dan gengsi di era modern.
 - [Dukungan Ormas Islam Indonesia pada Board of Peace Trump dan Dampaknya Bagi Palestina](https://dalam.web.id/jejak-sejarah/analisis-kritis-dukungan-ormas-islam-indonesia-board-of-peace-trump) : Analisis mendalam tentang dukungan organisasi masyarakat Islam Indonesia terhadap Board of Peace inisiatif Donald Trump untuk Gaza, implikasi bagi kemerdekaan Palestina, dan prinsip politik luar negeri bebas aktif Indonesia.
@@ -371,6 +373,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Disiplin Otoriter di Sekolahan: Ancaman bagi Kreativitas dan Kemajuan Siswa, Analisis Pendidikan Indonesia](https://dalam.web.id/opini-sosial/disiplin-otoriter-sekolahan) : Analisis mendalam tentang bagaimana penerapan disiplin ala otoriter di sekolahan Indonesia dapat merusak kreativitas dan menghambat kemajuan siswa. Kajian berdasarkan pengalaman pendidikan dengan pendekatan 5W+1H.
 - [Ilusi Transparansi: Mengapa Informasi Viral Seringkali Hanya Sampah Intelijen](https://dalam.web.id/opini-sosial/ilusi-transparansi-intelijen) : Membongkar rahasia di balik kebocoran data viral. Apakah itu transparansi nyata atau sekadar sampah yang sengaja dibuang untuk mengalihkan perhatian kita?
 - [Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina](https://dalam.web.id/opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51) : Tentang larangan Al-Quran dalam Surat Al-Ma
 - [Mengenal Fenomena Ulama Su: Ketika Ilmu Menjadi Alat Kekuasaan dan Propaganda](https://dalam.web.id/opini-sosial/mengenal-fenomena-ulama-su-dan-integritas-moral) : Mengupas tuntas fenomena Ulama Su dalam dinamika politik Indonesia. Mengapa independensi moral tokoh agama sangat krusial di hadapan kekuasaan? Simak analisis mendalamnya di sini.
