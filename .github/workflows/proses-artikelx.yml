@@ -64,6 +64,7 @@ jobs:
               s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
               s|&copy;|🄯|g;
               s|Font Awesome 6 Free|Font Awesome 7 Free|g;
+              s|Font Awesome 5 Free|Font Awesome 7 Free|g;
               s|©|🄯|g;
               s| - Layar Kosong||g;
             ' "$file"
