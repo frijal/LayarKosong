@@ -316,25 +316,7 @@
                   <a href="https://twitter.com/intent/tweet?url=${encodedLink}&text=${encodedShareText}" target="_blank" title="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
                   <a href="https://api.whatsapp.com/send?text=${encodedShareText}%20${encodedLink}" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                   
-<a href="javascript:void(0)" onclick="shareToUpScrolled()" title="Share Link">
-    <i class="fa-solid fa-arrow-up-from-bracket"></i>
-</a>
 
-<script>
-function shareToUpScrolled() {
-  if (navigator.share) {
-    navigator.share({
-      title: '${encodedShareText}', // Judul artikel
-      url: '${encodedLink}'       // Link artikel
-    }).then(() => {
-      console.log('Berhasil memanggil menu share');
-    }).catch(console.error);
-  } else {
-    // Fallback jika browser desktop atau tidak support Web Share
-    window.open(`https://upscrolled.com/post?url=${encodedLink}`, '_blank');
-  }
-}
-</script>
 
 
       </div>
