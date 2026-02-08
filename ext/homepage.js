@@ -26,7 +26,7 @@ async function fetchData() {
           category: cat,
           title: item[0],
           // V6.9 Compatible: Mengarah ke folder kategori, bukan lagi folder /artikel/
-          url: '/' + catSlug + '/' + fileSlug + '/',
+          url: '/' + catSlug + '/' + fileSlug,
           img: item[2],
           date: new Date(item[3]),
                      summary: item[4] || ''
