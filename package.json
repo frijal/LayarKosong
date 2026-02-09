@@ -41,15 +41,15 @@
   "dependencies": {
     "@octokit/core": "^7.0.6",
     "@xmldom/xmldom": "^0.9.8",
-    "axios": "^1.13.4",
+    "axios": "^1.13.5",
     "cheerio": "^1.2.0",
-    "puppeteer": "^24.36.1",
+    "puppeteer": "^24.37.2",
     "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1"
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0",
-    "wrangler": "^4.62.0"
+    "wrangler": "^4.63.0"
   }
 }
