@@ -117,28 +117,21 @@ def build_weekly_aggregation():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumpulan Tulisan Layar Kosong: Edisi {monday_str} | Arsip</title>
+    <title>Kumpulan Artikel Layar Kosong: Edisi {monday_str} | Arsip</title>
     <meta name="description" content="Agregasi mingguan artikel blog Layar Kosong periode {monday_str}.">
     <link rel="canonical" href="{page_url}">
 
-    <meta name="author" content="Frijal">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="article">
     <meta property="og:url" content="{page_url}">
     <meta property="og:title" content="Agregasi Mingguan Layar Kosong: Edisi {monday_str}">
     <meta property="og:description" content="Rangkuman artikel terpilih dari blog Layar Kosong untuk periode minggu {monday_str}.">
     <meta property="og:image" content="{main_cover}">
     <meta property="article:published_time" content="{first_date_iso}">
 
-    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Agregasi Mingguan Layar Kosong: Edisi {monday_str}">
     <meta name="twitter:description" content="Baca kumpulan artikel terbaru dan arsip menarik dari Frijal di Layar Kosong.">
     <meta name="twitter:image" content="{main_cover}">
-    <meta name="twitter:site" content="@responaja">
 
     <meta name="promphint" content="Weekly content aggregation from Layar Kosong Blog by Frijal">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
 
