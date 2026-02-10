@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: 🧩 Checkout kode
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.2
 
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v6.0.0
