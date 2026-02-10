@@ -40,8 +40,14 @@ async function run() {
 
       const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
       // Mengambil nama kategori dari title Feed (misal: "Gaya Hidup - Layar Kosong")
-      const rawCategory = feed.title.split(' - ')[0].trim();
-      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
+const rawCategory = feed.title
+  .split(' - ')[0]           // Ambil bagian depan sebelum tanda strip
+  .replace('Kategori ', '')  // Hapus kata "Kategori " (penting!)
+  .trim();                   // Bersihkan spasi sisa
+
+const targetCategory = ghCategories.find(c => 
+  c.name.toLowerCase() === rawCategory.toLowerCase()
+);
 
       if (!targetCategory) {
         console.log(`⚠️ Kategori Discussion "${rawCategory}" tidak ditemukan, skipping...`);
