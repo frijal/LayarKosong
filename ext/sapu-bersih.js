@@ -10,7 +10,7 @@ async function deleteAll() {
     const query = `
       query($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
-          discussions(first: 500) {
+          discussions(first: 100) {
             nodes { id title }
           }
         }
