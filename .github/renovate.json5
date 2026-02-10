@@ -20,8 +20,7 @@
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true,
-    "extends": ["schedule:weekly"] // Tambahkan jadwal agar tidak berisik setiap hari
+    "automerge": true
   },
   "digest": { "automerge": true },
   "pin": { "automerge": true },
