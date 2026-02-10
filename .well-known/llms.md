@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.8
+document_version: 15.9
 last_updated: 2026-02-10
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 10 February 2026)
-> Menampilkan 886 artikel yang berhasil diindeks dalam versi 15.8.
+> Menampilkan 886 artikel yang berhasil diindeks dalam versi 15.9.
 ## Gaya Hidup
 - [Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan](https://dalam.web.id/gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan) : Surat terbuka mendalam dari Delima Respek Peduli tentang dampak kebijakan non-aktifasi BPJS PBI massal terhadap pasien rentan di Indonesia. Analisis komprehensif dengan prinsip 5W+1H mengenai dampak kebijakan kesehatan terhadap masyarakat miskin dan sakit.
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
