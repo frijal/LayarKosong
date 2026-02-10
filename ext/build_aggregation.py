@@ -11,24 +11,21 @@ JSON_FILE = "artikel.json"
 
 def clean_meta_text(text):
     if not text: return ""
-    # Menghapus simbol yang berpotensi merusak meta tag
     return re.sub(r'[^\w\s\-\.\,]', '', text)
 
 def slugify_category(name):
     """Mengubah 'Warta Tekno' menjadi 'warta-tekno' agar URL aman"""
     name = name.lower()
-    name = re.sub(r'\s+', '-', name) # Ganti spasi dengan dash
-    return re.sub(r'[^\w\-]', '', name) # Hapus karakter non-alfanumerik kecuali dash
+    name = re.sub(r'\s+', '-', name)
+    return re.sub(r'[^\w\-]', '', name)
 
 def get_posted_urls():
-    """Membaca daftar URL yang sudah pernah diposting dari database mini"""
     if not os.path.exists(LOG_FILE):
         return set()
     with open(LOG_FILE, 'r', encoding='utf-8') as f:
         return set(line.strip() for line in f if line.strip())
 
 def save_posted_urls(urls):
-    """Mencatat URL baru ke database mini agar tidak duplikasi"""
     if not os.path.exists(LOG_DIR):
         os.makedirs(LOG_DIR)
     with open(LOG_FILE, 'a', encoding='utf-8') as f:
@@ -36,21 +33,18 @@ def save_posted_urls(urls):
             f.write(f"{url}\n")
 
 def get_monday(date):
-    """Mencari hari Senin sebagai acuan awal minggu (Monday start)"""
     return (date - timedelta(days=date.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
 
 def build_weekly_aggregation():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    # 1. Baca data JSON
     with open(JSON_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     posted_urls = get_posted_urls()
     all_pending_articles = []
 
-    # 2. Loop melalui setiap KATEGORI
     for category_raw, articles_list in data.items():
         url_category = slugify_category(category_raw)
         for art in articles_list:
@@ -74,29 +68,24 @@ def build_weekly_aggregation():
                 })
 
     if not all_pending_articles:
-        print("☕ Semua artikel di JSON sudah habis diposting. Chill dulu!")
+        print("☕ Semua artikel sudah masuk agregat.")
         return
 
-    # 3. Urutkan dari yang paling tua
     all_pending_articles.sort(key=lambda x: x['date'])
 
-    # 4. Tentukan Rentang Minggu
     start_monday = get_monday(all_pending_articles[0]['date'])
     end_sunday = start_monday + timedelta(days=6, hours=23, minutes=59, seconds=59)
 
-    # 5. Ambil batch minggu yang sama
     current_batch = [a for a in all_pending_articles if start_monday <= a['date'] <= end_sunday]
 
     if not current_batch:
-        print(f"⚠️ Batch kosong untuk rentang {start_monday.date()}")
+        print(f"⚠️ Batch kosong.")
         return
 
-    # 6. Penamaan File & Meta Data Data
     monday_str = start_monday.strftime('%Y-%m-%d')
     file_name = f"agregat-{monday_str}.html"
     page_url = f"https://dalam.web.id/artikel/{file_name}"
 
-    # Ambil thumbnail artikel pertama sebagai cover agregat
     main_cover = current_batch[0]['thumb'] if current_batch else ""
     first_date_iso = current_batch[0]['date'].isoformat()
 
@@ -104,7 +93,10 @@ def build_weekly_aggregation():
     batch_slugs = []
 
     for a in current_batch:
-        base_link = f"https://dalam.web.id/{a['category_slug']}/{a['slug']}"
+        # HAPUS .html dari slug untuk Clean URL
+        clean_slug = a['slug'].replace('.html', '')
+        base_link = f"https://dalam.web.id/{a['category_slug']}/{clean_slug}"
+
         articles_html += f"""
         <section class="article-block">
             <div class="meta">
@@ -120,14 +112,13 @@ def build_weekly_aggregation():
         """
         batch_slugs.append(a['slug'])
 
-    # 7. Template HTML dengan Meta Tag Contoh yang telah di-integrasikan
     full_html = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumpulan Tulisan Layar Kosong: Edisi {monday_str} | Arsip</title>
-    <meta name="description" content="Agregasi mingguan artikel blog Layar Kosong periode {monday_str}. Menyajikan konten lawas dan baru secara sistematis.">
+    <meta name="description" content="Agregasi mingguan artikel blog Layar Kosong periode {monday_str}.">
     <link rel="canonical" href="{page_url}">
 
     <meta name="author" content="Frijal">
@@ -150,11 +141,12 @@ def build_weekly_aggregation():
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/ext/fontawesome.css">
+
     <style>
         :root {{ --bg: #ffffff; --text: #1a1a1a; --accent: #d70a53; --card: #f8f9fa; }}
         @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0d1117; --text: #c9d1d9; --accent: #58a6ff; --card: #161b22; }} }}
         body {{ font-family: 'Inter', -apple-system, sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }}
-        .container {{ width: 100%; max-width: 1000px; }}
+        .container {{ width: 100%; max-width: 850px; }}
         header {{ text-align: center; border-bottom: 5px solid var(--accent); padding-bottom: 30px; margin-bottom: 50px; }}
         .article-block {{ margin-bottom: 70px; }}
         h1 {{ font-size: 2.3rem; margin-bottom: 10px; }}
@@ -180,19 +172,18 @@ def build_weekly_aggregation():
 
         <footer>
             <p>Dihasilkan secara otomatis oleh sistem kurasi Frijal | Balikpapan</p>
-            <p>&copy; {monday_str} - {end_sunday.strftime('%Y-%m-%d')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
+            <p>&copy; {end_sunday.strftime('%Y-%m-%d')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
         </footer>
     </div>
 </body>
 </html>"""
 
-    # 8. Simpan File & Log
     output_path = os.path.join(OUTPUT_DIR, file_name)
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(full_html)
 
     save_posted_urls(batch_slugs)
-    print(f"✨ Berhasil! File '{file_name}' telah dibuat.")
+    print(f"✨ Berhasil! File '{file_name}' telah dibuat dengan Clean URL.")
 
 if __name__ == "__main__":
     build_weekly_aggregation()
