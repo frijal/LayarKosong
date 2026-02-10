@@ -1,140 +1,131 @@
 import Parser from 'rss-parser';
 import { Octokit } from "@octokit/core";
 import fs from 'fs';
+import path from 'path';
 
 const parser = new Parser();
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-// RSS Files tetap sama sesuai struktur Mas
 const RSS_FILES = [
   'feed-gaya-hidup.xml', 'feed-jejak-sejarah.xml', 'feed-lainnya.xml',
-'feed-olah-media.xml', 'feed-opini-sosial.xml',
-'feed-sistem-terbuka.xml', 'feed-warta-tekno.xml'
+  'feed-olah-media.xml', 'feed-opini-sosial.xml',
+  'feed-sistem-terbuka.xml', 'feed-warta-tekno.xml'
 ];
 
 const REPO_OWNER = 'frijal';
 const REPO_NAME = 'LayarKosong';
+const TRACKER_FILE = 'mini/posted-github.txt';
 
+// Fungsi bantu
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const getRandomColor = () => Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
 
 async function run() {
   try {
-    console.log("🔍 Memulai sinkronisasi GitHub Discussions...");
+    console.log("🛠️ Memulai sinkronisasi dengan sistem Tracker Lokal...");
 
+    // 1. Pastikan folder & file tracker ada
+    const dir = path.dirname(TRACKER_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    if (!fs.existsSync(TRACKER_FILE)) fs.writeFileSync(TRACKER_FILE, '');
+
+    // 2. Baca daftar slug yang sudah pernah di-post
+    const postedSlugs = new Set(
+      fs.readFileSync(TRACKER_FILE, 'utf8')
+        .split('\n')
+        .map(s => s.trim())
+        .filter(s => s !== '')
+    );
+    console.log(`✅ Terdeteksi ${postedSlugs.size} artikel sudah pernah diposting sebelumnya.`);
+
+    // 3. Ambil data Repo & Kategori dari GitHub (Sekali saja di awal)
     const repoRes = await octokit.graphql(`
-    query($owner: String!, $name: String!) {
-      repository(owner: $owner, name: $name) {
-        id
-        discussionCategories(first: 20) { nodes { id name } }
-        labels(first: 100) { nodes { id name } }
+      query($owner: String!, $name: String!) {
+        repository(owner: $owner, name: $name) {
+          id
+          discussionCategories(first: 20) { nodes { id name } }
+        }
       }
-    }
     `, { owner: REPO_OWNER, name: REPO_NAME });
 
     const repoId = repoRes.repository.id;
-    const ghCategories = repoRes.repository.id ? repoRes.repository.discussionCategories.nodes : [];
-    let ghLabels = repoRes.repository.labels.nodes;
+    const ghCategories = repoRes.repository.discussionCategories.nodes;
 
+    let newlyPostedCount = 0;
+
+    // 4. Looping Feed
     for (const fileName of RSS_FILES) {
       if (!fs.existsSync(fileName)) continue;
 
       const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
-      // Mengambil nama kategori dari title Feed (misal: "Gaya Hidup - Layar Kosong")
-const rawCategory = feed.title
-  .split(' - ')[0]           // Ambil bagian depan sebelum tanda strip
-  .replace('Kategori ', '')  // Hapus kata "Kategori " (penting!)
-  .trim();                   // Bersihkan spasi sisa
+      const rawCategory = feed.title.split(' - ')[0].replace('Kategori ', '').trim();
+      const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
 
-const targetCategory = ghCategories.find(c => 
-  c.name.toLowerCase() === rawCategory.toLowerCase()
-);
-
-      if (!targetCategory) {
-        console.log(`⚠️ Kategori Discussion "${rawCategory}" tidak ditemukan, skipping...`);
-        continue;
-      }
+      if (!targetCategory) continue;
 
       for (const item of feed.items) {
-        // --- 1. CEK DUPLIKAT (LOGIKA ANTI-DOUBLE V6.9) ---
-        // Kita ambil slug-nya saja untuk pencarian agar lebih akurat
+        // Ambil Slug
         const urlParts = item.link.split('/');
         const slug = urlParts[urlParts.length - 1] || urlParts[urlParts.length - 2];
 
-        // Cari diskusi yang mengandung slug tersebut di body atau title
-        const searchQuery = `repo:${REPO_OWNER}/${REPO_NAME} is:discussion "${slug}"`;
-        const checkRes = await octokit.graphql(`
-        query($searchQuery: String!) {
-          search(query: $searchQuery, type: DISCUSSION, first: 1) { discussionCount }
-        }
-        `, { searchQuery: searchQuery });
-
-        if (checkRes.search.discussionCount > 0) {
-          console.log(`⏭️ Skip: ${item.title} (Sudah ada diskusi dengan slug ini)`);
+        // --- CEK DI TRACKER LOKAL (Bukan di API GitHub) ---
+        if (postedSlugs.has(slug)) {
+          // console.log(`⏭️ Skip: ${slug} (Sudah ada di catatan)`);
           continue;
         }
 
-        // --- 2. LOGIKA LABEL ---
-        const itemCategory = item.categories && item.categories[0] ? item.categories[0] : rawCategory;
-        let existingLabel = ghLabels.find(l => l.name.toLowerCase() === itemCategory.toLowerCase());
+        console.log(`🚀 Posting Baru: ${item.title}`);
 
-        if (!existingLabel) {
-          try {
-            const newLabel = await octokit.request('POST /repos/{owner}/{repo}/labels', {
-              owner: REPO_OWNER, repo: REPO_NAME, name: itemCategory, color: getRandomColor()
-            });
-            existingLabel = { id: newLabel.data.node_id, name: itemCategory };
-            ghLabels.push(existingLabel);
-          } catch (e) { }
-        }
-
-        // --- 3. LOGIKA GAMBAR (GitHub Raw Support) ---
+        // Logika Gambar
         let displayImage = '';
         if (item.enclosure && item.enclosure.url) {
           let imgUrl = item.enclosure.url;
-          if (imgUrl.startsWith('https://dalam.web.id/')) {
-            const relativePath = imgUrl.replace('https://dalam.web.id/', '');
-            const rawGithubUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${relativePath}`;
-            displayImage = `\n\n![Thumbnail](${rawGithubUrl})`;
-          } else {
-            displayImage = `\n\n![Thumbnail](${imgUrl})`;
-          }
+          const relativePath = imgUrl.replace('https://dalam.web.id/', '');
+          displayImage = imgUrl.startsWith('https://dalam.web.id/') 
+            ? `\n\n![Thumbnail](https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${relativePath})`
+            : `\n\n![Thumbnail](${imgUrl})`;
         }
 
-        // --- 4. POSTING DISKUSI ---
-        console.log(`🚀 Posting: ${item.title}`);
-        const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})`;
-
-        const createRes = await octokit.graphql(`
-        mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
-          createDiscussion(input: {
-            repositoryId: $repoId, categoryId: $catId, body: $body, title: $title
-          }) { discussion { id } }
-        }
-        `, {
-          repoId: repoId,
-          catId: targetCategory.id,
-          title: item.title,
-          body: `### [${item.title}](${item.link})${displayImage}\n\n${item.contentSnippet || item.description || ''}${footer}`
-        });
-
-        // --- 5. TAMBAHKAN LABEL ---
-        if (existingLabel && createRes.createDiscussion.discussion.id) {
-          try {
-            await octokit.graphql(`
-            mutation($labelableId: ID!, $labelIds: [ID!]!) {
-              addLabelsToLabelable(input: {labelableId: $labelableId, labelIds: $labelIds}) { clientMutationId }
+        try {
+          // Eksekusi Post
+          const footer = `\n\n---\n**Baca selengkapnya di:** [${item.link}](${item.link})`;
+          await octokit.graphql(`
+            mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
+              createDiscussion(input: { repositoryId: $repoId, categoryId: $catId, body: $body, title: $title }) {
+                discussion { id }
+              }
             }
-            `, {
-              labelableId: createRes.createDiscussion.discussion.id,
-              labelIds: [existingLabel.id]
-            });
-          } catch (e) { }
+          `, {
+            repoId: repoId,
+            catId: targetCategory.id,
+            title: item.title,
+            body: `### [${item.title}](${item.link})${displayImage}\n\n${item.contentSnippet || item.description || ''}${footer}`
+          });
+
+          // Masukkan ke catatan (Set) jika berhasil
+          postedSlugs.add(slug);
+          newlyPostedCount++;
+
+          // Simpan ulang file catatan setiap kali ada update (supaya aman kalau crash)
+          fs.writeFileSync(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
+
+          // Jeda sedikit biar sopan
+          await sleep(1000); 
+
+        } catch (err) {
+          console.error(`❌ Gagal posting ${slug}:`, err.message);
         }
       }
     }
-    console.log("\n✅ Semua Feed berhasil disinkronkan ke GitHub Discussions!");
+
+    if (newlyPostedCount > 0) {
+      console.log(`\n🎉 Selesai! Berhasil menambah ${newlyPostedCount} postingan baru.`);
+    } else {
+      console.log("\n☕ Tidak ada artikel baru. Catatan lokal sudah sinkron dengan RSS.");
+    }
+
   } catch (err) {
-    console.error("❌ Kesalahan:", err.message);
+    console.error("❌ Kesalahan Fatal:", err.message);
   }
 }
 
