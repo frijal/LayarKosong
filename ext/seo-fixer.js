@@ -130,6 +130,10 @@ async function fixSEO() {
       cleanDesc = escapeHtmlAttr(firstParagraph);
       console.log(`ℹ️ Deskripsi kosong di ${fileName}, mengambil dari paragraf pertama.`);
     }
+    // --- 2.5 GRAB DATA WAKTU (Simpan sebelum dihapus) ---
+    const publishedTime = $('meta[property="article:published_time"]').attr('content');
+    const modifiedTime = $('meta[property="article:modified_time"]').attr('content');
+
     // --- 3. BERSIHKAN SEMUA TAG LAMA ---
     $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
     $('link[rel="canonical"]').remove();
@@ -180,6 +184,14 @@ async function fixSEO() {
       head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}">`);
       head.append(`\n    <meta itemprop="image" content="${metaImgUrl}">`);
+    }
+
+    // Tambahkan ini:
+    if (publishedTime) {
+      head.append(`\n    <meta property="article:published_time" content="${publishedTime}">`);
+    }
+    if (modifiedTime) {
+      head.append(`\n    <meta property="article:modified_time" content="${modifiedTime}">`);
     }
 
     head.append(`\n`);
