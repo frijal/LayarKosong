@@ -1,0 +1,82 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabled": true,
+  "configMigration": true,
+  "dependencyDashboard": true,
+  "branchPrefix": "renovate/",
+  "prConcurrentLimit": 0,
+  "ignoreUnstable": true,
+  "respectLatest": true,
+  "updateNotScheduled": true,
+  "separateMinorPatch": false,
+  "automergeType": "branch",
+  "npm": {
+    "enabled": true
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "addLabels": ["arg0"],
+    "labels": ["arg0"]
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "extends": ["schedule:weekly"]
+  },
+  "digest": { "automerge": true },
+  "pin": { "automerge": true },
+  "minor": { "automerge": true },
+  "patch": { "automerge": true },
+  "packageRules": [
+    {
+      "description": "Global range strategy",
+      "matchPackageNames": ["*"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "description": "Automerge non-major updates for stable versions",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "description": "Require approval for major updates",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Automerge linters and types",
+      "matchPackageNames": ["@types/**"],
+      "extends": ["packages:linters"],
+      "automerge": true
+    },
+    {
+      "description": "NPM safety: 3 days minimum release age",
+      "matchDatasources": ["npm"],
+      "internalChecksFilter": "strict",
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Exception: No minimum release age for maintenance/pin/replacement",
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["lockFileMaintenance", "replacement", "pin"],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "Add OpenSSF Scorecard to PR body for GitHub sources",
+      "matchSourceUrls": ["https://github.com/**"],
+      "prBodyColumns": [
+        "Package",
+        "Type",
+        "Update",
+        "Change",
+        "Pending",
+        "OpenSSF"
+      ],
+      "prBodyDefinitions": {
+        "OpenSSF": "[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{{sourceRepo}}/badge)](https://securityscorecards.dev/viewer/?uri=github.com/{{sourceRepo}})"
+      }
+    }
+  ]
+}
