@@ -1,95 +1,71 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":combinePatchMinorReleases",
-    ":ignoreUnstable"
+    "config:recommended"
   ],
-  "onboarding": false,
-  "requireConfig": "optional",
+  "enabled": true,
+  "configMigration": true,
   "dependencyDashboard": true,
-  "timezone": "Asia/Makassar",
-  "postUpdateOptions": ["npmIfPresent"],
-  "rangeStrategy": "update-lockfile",
-  "rebaseWhen": "behind-base-branch",
+  "branchPrefix": "renovate/",
   "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
-  "enabledManagers": ["custom.regex", "github-actions", "npm"],
-  "customManagers": [ 
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["**/*.html", "**/*.json"],
-      "description": "CDN npm-style and ESM CDNs (unpkg, jsdelivr npm, skypack, esm.sh, jspm, pika, etc.)",
-      "matchStrings": [
-        "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/cdn\\.skypack\\.dev\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/esm\\.sh\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/jspm\\.io\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/ga\\.jspm\\.io\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/cdn\\.pika\\.dev\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/unpkg\\.com\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:\\?.*version=(?<currentValue>[^&\\s\"']+))?",
-        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/(?<depName>@?[^\\/\\s\"']+(?:\\/[^\\/\\s\"']+)?)(?:@(?<currentValue>[^\\/\\s\"']+))?\\/.+"
-      ],
-      "datasourceTemplate": "npm",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["**/*.html", "**/*.json"],
-      "description": "GitHub raw / gh CDN references (raw.githubusercontent, raw.githack, jsdelivr gh)",
-      "matchStrings": [
-        "https:\\/\\/cdn\\.jsdelivr\\.net\\/gh\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)(?:@(?<currentValue>[^\\/\\s\"']+))?",
-        "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/",
-        "https:\\/\\/raw\\.githack\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/",
-        "https:\\/\\/cdn\\.rawgit\\.com\\/(?<depName>[^\\/\\s\"']+\\/[^\"]+?)\\/(?<currentValue>[^\\/\\s\"']+)\\/"
-      ],
-      "datasourceTemplate": "github-tags",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["**/*.html", "**/*.json"],
-      "description": "cdnjs, Google Ajax libs, Google Fonts (fallback handling)",
-      "matchStrings": [
-        "https:\\/\\/cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
-        "https:\\/\\/ajax\\.googleapis\\.com\\/ajax\\/libs\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)",
-        "https:\\/\\/fonts\\.googleapis\\.com\\/css\\?.*family=(?<depName>[^&\\s\"']+)",
-        "https:\\/\\/fonts\\.gstatic\\.com\\/(?<depName>[^\\/\\s\"']+)\\/(?<currentValue>[^\\/\\s\"']+)"
-      ],
-      "datasourceTemplate": "npm",
-      "versioningTemplate": "semver"
-    }
-  ],
+  "ignoreUnstable": true,
+  "respectLatest": true,
+  "updateNotScheduled": true,
+  "separateMinorPatch": false,
+  "automergeType": "branch",
+  "npm": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "extends": [
+      "schedule:weekly"
+    ]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "addLabels": ["arg0"],
+    "labels": ["arg0"]
+  },
+  "digest": {
+    "automerge": true
+  },
+  "pin": {
+    "automerge": true
+  },
+  "minor": {
+    "automerge": true
+  },
+  "patch": {
+    "automerge": true
+  },
   "packageRules": [
     {
-      "matchManagers": ["custom.regex"],
-      "groupName": "cdn-updates",
-      "matchPackageNames": ["*"],
-      "automerge": false,
-      "prPriority": 10
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "groupName": "github-actions-updates",
+      "description": "Automerge non-major updates for stable versions",
       "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "platformAutomerge": true
-    },
-    {
-      "matchFileNames": ["package.json"],
-      "matchManagers": ["npm"],
-      "groupName": "npm-deps",
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
       "automerge": true
+    },
+    {
+      "description": "Require approval for major updates",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Automerge linters",
+      "extends": ["packages:linters"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge types definitions",
+      "matchPackageNames": ["@types/**"],
+      "automerge": true
+    },
+    {
+      "description": "Global range strategy",
+      "matchPackageNames": ["*"],
+      "rangeStrategy": "replace"
     }
-  ],
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/.git/**",
-    "img/**",
-    "ext/icons/**",
-    "ext/fontawesome-webfonts/**"
-  ],
-  "repositoryCache": "enabled"
+  ]
 }
