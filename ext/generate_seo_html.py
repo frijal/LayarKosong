@@ -4,7 +4,7 @@ from slugify import slugify
 from datetime import datetime, timedelta, timezone
 
 SITEMAP_URL = "https://dalam.web.id/sitemap.txt"
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "artikelx"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 NOW = datetime.now(timezone.utc)
