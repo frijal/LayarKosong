@@ -24,7 +24,7 @@ jobs:
 
       - name: Run generator
         run: |
-          python scripts/generate_seo_html.py
+          python ext/generate_seo_html.py
 
       - name: Commit results
         run: |
