@@ -16,17 +16,15 @@
   },
   "vulnerabilityAlerts": {
     "enabled": true,
-    "addLabels": ["arg0"],
     "labels": ["arg0"]
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "extends": ["schedule:weekly"] // Tambahkan jadwal agar tidak berisik setiap hari
   },
   "digest": { "automerge": true },
   "pin": { "automerge": true },
-  "minor": { "automerge": true },
-  "patch": { "automerge": true },
   "packageRules": [
     {
       "description": "Global range strategy",
@@ -66,12 +64,7 @@
       "description": "Add OpenSSF Scorecard to PR body for GitHub sources",
       "matchSourceUrls": ["https://github.com/**"],
       "prBodyColumns": [
-        "Package",
-        "Type",
-        "Update",
-        "Change",
-        "Pending",
-        "OpenSSF"
+        "Package", "Type", "Update", "Change", "Pending", "OpenSSF"
       ],
       "prBodyDefinitions": {
         "OpenSSF": "[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{{sourceRepo}}/badge)](https://securityscorecards.dev/viewer/?uri=github.com/{{sourceRepo}})"
