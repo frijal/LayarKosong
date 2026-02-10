@@ -5,8 +5,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.7
-last_updated: 2026-02-09
+document_version: 15.8
+last_updated: 2026-02-10
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -36,8 +36,8 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 09 February 2026)
-> Menampilkan 885 artikel yang berhasil diindeks dalam versi 15.7.
+## Index Artikel Terbaru (Updated: 10 February 2026)
+> Menampilkan 886 artikel yang berhasil diindeks dalam versi 15.8.
 ## Gaya Hidup
 - [Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan](https://dalam.web.id/gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan) : Surat terbuka mendalam dari Delima Respek Peduli tentang dampak kebijakan non-aktifasi BPJS PBI massal terhadap pasien rentan di Indonesia. Analisis komprehensif dengan prinsip 5W+1H mengenai dampak kebijakan kesehatan terhadap masyarakat miskin dan sakit.
 - [Teknik Berkomunikasi kepada Anak Usia Baligh: Belajar dari Dialog Ibrahim dan Ismail](https://dalam.web.id/gaya-hidup/teknik-komunikasi-anak-baligh) : Panduan lengkap teknik berkomunikasi dengan anak usia baligh berdasarkan siroh Nabi Ibrahim dan Ismail. Temukan cara membangun pola pikir islami pada remaja.
@@ -734,6 +734,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Akhir Hidup Microsoft Publisher: Panduan Lengkap Menyelamatkan File Desain Anda Sebelum 2026](https://dalam.web.id/warta-tekno/akhir-hidup-microsoft-publisher-2026) : Microsoft Publisher resmi dihentikan pada Oktober 2026. Pelajari mengapa ini terjadi, risiko file .PUB Anda terkunci selamanya, dan langkah strategis untuk migrasi data sekarang.
 - [Teknologi AI dan Ponsel dalam Pandangan Muhammadiyah Tafsir At Tanwir](https://dalam.web.id/warta-tekno/teknologi-ai-ponsel-muhammadiyah) : Menelusuri pandangan Muhammadiyah terhadap teknologi AI dan ponsel berdasarkan spirit Tafsir At Tanwir untuk kemaslahatan umat manusia di era digital
 - [9 Pengaturan Firefox yang Wajib Dimatikan demi Keamanan dan Kecepatan Maksimal](https://dalam.web.id/warta-tekno/optimasi-keamanan-firefox-2026) : Panduan lengkap optimasi Firefox untuk privasi dan performa. Pelajari mengapa fitur default bisa berbahaya dan bagaimana cara memperbaikinya secara manual.
 - [Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita](https://dalam.web.id/warta-tekno/misteri-error-418-teko-ajaib) : Eksplorasi mendalam Error 418 I
