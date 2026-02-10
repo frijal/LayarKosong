@@ -1,6 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "enabled": true,
   "configMigration": true,
   "dependencyDashboard": true,
@@ -11,59 +13,103 @@
   "updateNotScheduled": true,
   "separateMinorPatch": false,
   "automergeType": "branch",
+  
+  "//": "--- PENGATURAN IGNORANCE & JADWAL ---",
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "artikel/**",
+    "mini/requirements.txt"
+  ],
+  "schedule": [], 
+
   "npm": {
     "enabled": true
   },
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["arg0"]
+    "labels": [
+      "arg0"
+    ]
   },
   "lockFileMaintenance": {
     "enabled": true,
+    "automerge": true,
+    "schedule": []
+  },
+  "digest": {
     "automerge": true
   },
-  "digest": { "automerge": true },
-  "pin": { "automerge": true },
+  "pin": {
+    "automerge": true
+  },
   "packageRules": [
     {
       "description": "Global range strategy",
-      "matchPackageNames": ["*"],
+      "matchPackageNames": [
+        "*"
+      ],
       "rangeStrategy": "replace"
     },
     {
       "description": "Automerge non-major updates for stable versions",
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
     },
     {
       "description": "Require approval for major updates",
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "dependencyDashboardApproval": true
     },
     {
       "description": "Automerge linters and types",
-      "matchPackageNames": ["@types/**"],
-      "extends": ["packages:linters"],
+      "matchPackageNames": [
+        "@types/**"
+      ],
+      "extends": [
+        "packages:linters"
+      ],
       "automerge": true
     },
     {
       "description": "NPM safety: 3 days minimum release age",
-      "matchDatasources": ["npm"],
+      "matchDatasources": [
+        "npm"
+      ],
       "internalChecksFilter": "strict",
       "minimumReleaseAge": "3 days"
     },
     {
       "description": "Exception: No minimum release age for maintenance/pin/replacement",
-      "matchDatasources": ["npm"],
-      "matchUpdateTypes": ["lockFileMaintenance", "replacement", "pin"],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "lockFileMaintenance",
+        "replacement",
+        "pin"
+      ],
       "minimumReleaseAge": null
     },
     {
       "description": "Add OpenSSF Scorecard to PR body for GitHub sources",
-      "matchSourceUrls": ["https://github.com/**"],
+      "matchSourceUrls": [
+        "https://github.com/**"
+      ],
       "prBodyColumns": [
-        "Package", "Type", "Update", "Change", "Pending", "OpenSSF"
+        "Package",
+        "Type",
+        "Update",
+        "Change",
+        "Pending",
+        "OpenSSF"
       ],
       "prBodyDefinitions": {
         "OpenSSF": "[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{{sourceRepo}}/badge)](https://securityscorecards.dev/viewer/?uri=github.com/{{sourceRepo}})"
