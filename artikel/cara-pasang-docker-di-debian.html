@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Pasang Docker di Debian: Panduan Lengkap & Anti Gagal | Layar Kosong</title>
+    <title>Cara Pasang Docker di Debian: Panduan Lengkap &amp; Anti Gagal | Layar Kosong</title>
 
-    <meta name="description" content="Tutorial cara instal Docker dan Docker Compose di Debian terbaru. Panduan langkah demi langkah menggunakan repositori resmi untuk performa server maksimal.">
+    
     <meta name="news_keywords" content="Instal Docker Debian, Docker Compose Tutorial, Server Debian, Docker Engine, Kontainerisasi, Linux Indonesia, Layar Kosong">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cara-pasang-docker-di-debian.html">
-    <meta name="author" content="Frijal">
-    <meta name="robots" content="index, follow">
+    
+    
+    
 
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/cara-pasang-docker-di-debian.html">
-    <meta property="og:title" content="Cara Pasang Docker di Debian: Panduan Lengkap & Anti Gagal">
-    <meta property="og:description" content="Bikin server Debian kamu makin sakti dengan Docker. Instalasi rapi, aman, dan siap buat deploy aplikasi apa saja!">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HAzb9KrbwAANDxa.jpg">
-    <meta property="article:published_time" content="2026-02-10T14:30:00+08:00">
+    
+    
+    
+    
+    
+    
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tutorial Docker di Debian Buat Pemula">
-    <meta name="twitter:description" content="Nggak usah pusing instal dependensi manual. Pakai Docker di Debian itu solusi paling cerdas buat sysadmin modern!">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HAzb9KrbwAANDxa.jpg">
-    <meta name="twitter:site" content="@responaja">
+    
+    
+    
+    
+    
 
     <meta name="promphint" content="Step-by-step Docker installation on Debian Linux official repository">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         :root {
@@ -86,6 +84,37 @@
             article { font-size: 1.05rem; }
         }
     </style>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-pasang-docker-di-debian">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="Tutorial cara instal Docker dan Docker Compose di Debian terbaru. Panduan langkah demi langkah menggunakan repositori resmi untuk performa server maksimal.">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:description" content="Tutorial cara instal Docker dan Docker Compose di Debian terbaru. Panduan langkah demi langkah menggunakan repositori resmi untuk performa server maksimal.">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cara-pasang-docker-di-debian">
+    <meta property="og:title" content="Cara Pasang Docker di Debian: Panduan Lengkap &amp; Anti Gagal | Layar Kosong">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Tutorial cara instal Docker dan Docker Compose di Debian terbaru. Panduan langkah demi langkah menggunakan repositori resmi untuk performa server maksimal.">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzb9KrbwAANDxa.webp">
+    <meta property="og:image:alt" content="Cara Pasang Docker di Debian: Panduan Lengkap &amp; Anti Gagal | Layar Kosong">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzb9KrbwAANDxa.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HAzb9KrbwAANDxa.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
 
@@ -95,6 +124,7 @@
             <i class="fa-solid fa-tags fa-icon"></i> Tutorial | Debian | Docker
         </p>
         <h1>Panduan Pasang Docker di Debian: Biar Servermu Nggak Cupu! 🐳</h1>
+<div id="iposbrowser"></div>
     </header>
 
 
@@ -108,7 +138,7 @@
                 Jadi, kamu nggak perlu instal PHP, database, atau web server satu per satu di sistem utama Debian kamu yang suci itu. Cukup panggil kontainernya, jalan deh! Ini bikin sistem kamu tetap bersih dan jauh dari drama "tapi di komputer saya jalan kok!".
             </p>
         </section>
-    <img src="https://pbs.twimg.com/media/HAzb9KrbwAANDxa.jpg" alt="Docker Container Concept" class="main-img">
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAzb9KrbwAANDxa.webp" alt="Docker Container Concept" class="main-img">
 
         <section>
             <h2>Kenapa Pakai Docker di Debian? (Why)</h2>
@@ -125,7 +155,7 @@
         </section>
 
         <section>
-            <h2>Kapan dan Di Mana Melakukannya? (When & Where)</h2>
+            <h2>Kapan dan Di Mana Melakukannya? (When &amp; Where)</h2>
             <p>
                 Lakukan ini segera setelah kamu selesai instalasi dasar Debian. Kamu bisa melakukan ini di PC lama, VPS murah, atau bahkan Raspberry Pi. Pastikan kamu punya akses internet dan akses `sudo` atau root.
             </p>
@@ -149,7 +179,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o 
 
             <h3>3. Setup Repositori</h3>
             <p>Masukkan alamat repositori Docker ke daftar belanjaan `apt` kamu:</p>
-            <pre>echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</pre>
+            <pre>echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</pre>
 
             <h3>4. Instal Docker Engine</h3>
             <p>Sekarang, saatnya instalasi inti:</p>
@@ -189,5 +219,9 @@ sudo apt install containerd.io docker-cli docker-compose docker-buildx</pre>
     </footer>
 </div>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
