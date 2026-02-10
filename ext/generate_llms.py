@@ -31,7 +31,7 @@ def get_next_version(version_file):
     try:
         major, minor = map(int, current_v.split('.'))
         minor += 1
-        if minor > 9:
+        if minor > 99:
             major += 1
             minor = 0
         new_version = f"{major}.{minor}"
