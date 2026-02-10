@@ -1,0 +1,46 @@
+name: Weekly Content Aggregation
+
+on:
+  schedule:
+    # Berjalan setiap hari Minggu jam 00:00 UTC (08:00 WITA)
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+    # Tombol manual di tab Actions GitHub untuk ngetes kapan saja
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Wajib supaya bisa push hasil commit
+
+    steps:
+      - name: 🚀 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # Mengambil seluruh history agar tidak ada masalah saat commit
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Opsional: mempercepat run berikutnya
+      
+      - name: ⚙️ Run Aggregation Script
+        run: python3 ext/build_aggregation.py
+
+      - name: 💾 Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Tambahkan file hasil agregasi dan file log
+          git add .        
+          
+          # Cek apakah ada perubahan sebelum commit (biar gak error kalau gak ada artikel baru)
+          if git diff --cached --quiet; then
+            echo "Tidak ada konten baru, skip commit."
+          else
+            git commit -m "chore: auto-generate weekly aggregation $(date +'%Y-%m-%d') [skip ci]"
+            git push
+          fi
