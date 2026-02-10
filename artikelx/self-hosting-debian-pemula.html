@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar!</title>
+
+    <meta name="description" content="Panduan memulai self-hosting di rumah menggunakan Debian. Cara instal Nextcloud, Docker, dan membangun server pribadi tanpa biaya langganan bulanan.">
+    <meta name="news_keywords" content="Self-Hosting, Debian Server, Docker, Nextcloud, Home Lab, Linux Indonesia, Hemat Cloud">
+    <link rel="canonical" href="https://dalam.web.id/artikel/self-hosting-debian-pemula.html">
+    <meta name="author" content="Frijal">
+    <meta name="robots" content="index, follow">
+    <meta property="article:published_time" content="2026-02-10T21:55:59+08:00">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/self-hosting-debian-pemula.html">
+    <meta property="og:title" content="Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar!">
+    <meta property="og:description" content="Kenapa bayar langganan bulanan kalau bisa punya server sendiri? Yuk rakit home lab pakai Debian!">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HAzUlsMaYAEXVZp.jpg"> <meta property="article:published_time" content="2026-02-11T10:00:00+08:00">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bikin Server Rumah Sendiri Pakai Debian? Gampang Kok!">
+    <meta name="twitter:description" content="Tips cerdas manfaatin laptop bekas jadi server pribadi yang tangguh. Aman, privasi terjaga, dan gratis!">
+    <meta name="twitter:site" content="@responaja">
+        <meta name="twitter:image" content="https://pbs.twimg.com/media/HAzUlsMaYAEXVZp.jpg">
+
+
+    <meta name="promphint" content="Guide to starting a home server with Debian Linux and Docker">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #2a9d8f; /* Teal Green */
+            --card-bg: #f8f9fa;
+            --border-color: #eee;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f1f5f9;
+                --accent-color: #4ade80;
+                --card-bg: #1e293b;
+                --border-color: #334155;
+            }
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { width: 100%; max-width: 900px; padding: 30px 20px; }
+        header { border-bottom: 3px solid var(--accent-color); margin-bottom: 40px; }
+        h1 { font-size: 2.8rem; letter-spacing: -1px; }
+        h2 { color: var(--accent-color); margin-top: 50px; }
+        img.main-img { width: 100%; border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; }
+        .meta-info { font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px; }
+        article { font-size: 1.15rem; }
+        .highlight-box { background: var(--card-bg); padding: 20px; border-radius: 10px; border-left: 5px solid var(--accent-color); margin: 30px 0; }
+        footer { margin-top: 80px; padding: 40px; border-top: 1px solid var(--border-color); text-align: center; }
+        .fa-icon { margin-right: 10px; color: var(--accent-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <p class="meta-info">
+            <i class="fa-solid fa-clock fa-icon"></i> 11 Februari 2026 |
+            <i class="fa-solid fa-bolt fa-icon"></i> Seri: Merdeka Digital
+        </p>
+        <h1>Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! 🏠💻</h1>
+    </header>
+
+
+    <article>
+        <section>
+            <h2>Apa Itu Self-Hosting? (What)</h2>
+            <p>
+                Pernah nggak sih kamu merasa was-was naruh semua data foto, dokumen, sampai catatan pribadi di layanan kayak Google Drive atau iCloud? Belum lagi biaya langganan bulanan yang makin lama makin mahal (halo, kurs Dollar!).
+            </p>
+            <p>
+                <strong>Self-hosting</strong> adalah aksi "pemberontakan" digital di mana kamu menjalankan layanan sendiri di hardware milikmu. Alih-alih nyewa "apartemen" digital di server orang lain, kamu bangun "rumah" sendiri di PC bekas atau laptop jadulmu. Pakai apa? Tentu saja Debian Linux, si stabil yang nggak rewel.
+            </p>
+        </section>
+    <img src="https://pbs.twimg.com/media/HAzUlsMaYAEXVZp.jpg" alt="Server rak di rumah" class="main-img">
+
+        <section>
+            <h2>Kenapa Kamu Harus Coba Sekarang? (Why)</h2>
+            <p>
+                Alasannya simpel: <strong>Kedaulatan Data</strong>. Di dunia digital sekarang, data adalah minyak baru. Dengan punya server sendiri, kamu yang pegang kuncinya. Nggak ada iklan yang tiba-tiba muncul karena isi emailmu di-*scan*, dan nggak ada risiko akun tiba-tiba kena *suspend* tanpa alasan jelas.
+            </p>
+            <div class="highlight-box">
+                <i class="fa-solid fa-lightbulb fa-icon"></i>
+                "Privasi bukan berarti kamu punya rahasia, privasi adalah hak untuk menentukan apa yang ingin kamu bagikan ke dunia."
+            </div>
+            <p>
+                Selain itu, ini adalah cara paling efektif buat belajar <em>Sysadmin</em> secara langsung. Di Balikpapan mungkin lowongan admin server nggak sebanyak di Jakarta, tapi punya *Home Lab* bakal bikin portofolio GitHub kamu makin dilirik!
+            </p>
+        </section>
+
+        <section>
+            <h2>Siapa Saja yang Bisa Melakukannya? (Who)</h2>
+            <p>
+                Siapa saja! Nggak perlu jadi *Hacker* yang pakai hoodie di ruangan gelap. Kalau kamu tahu cara instal Debian (yang sekarang gampang banget), kamu sudah 50% sampai. Artikel ini saya tulis buat kamu yang punya laptop nganggur di pojokan kamar yang cuma jadi sarang debu. Yuk, kasih dia nyawa kedua!
+            </p>
+        </section>
+
+        <section>
+            <h2>Di Mana Server Ini Disimpan? (Where)</h2>
+            <p>
+                Cukup di pojok meja kerjamu, dekat router Wi-Fi. Kamu nggak butuh ruangan ber-AC khusus (kecuali kamu mau bangun data center skala kelurahan). Server rumahan ini bisa diakses dari mana saja asalkan ada koneksi internet. Kita bakal pakai trik <em>Cloudflare Tunnel</em> atau <em>Tailscale</em> supaya nggak perlu pusing sama IP Publik yang dinamis dari ISP.
+            </p>
+        </section>
+
+        <section>
+            <h2>Kapan Waktu yang Pas Buat Mulai? (When)</h2>
+            <p>
+                Sekarang! Mumpung kita lagi di awal tahun 2026, semangat baru buat rapi-rapi aset digital. Proses instalasi dasarnya cuma makan waktu kurang dari satu jam. Yang lama itu biasanya "ngulik" fitur-fitur serunya sampai lupa tidur.
+            </p>
+        </section>
+
+        <section>
+            <h2>Bagaimana Cara Memulainya? (How)</h2>
+            <p>
+                Step-by-step yang saya sarankan untuk pemula di "Layar Kosong" adalah:
+            </p>
+            <ul>
+                <li><strong>Instal Debian Minimal:</strong> Tanpa tampilan grafis (GUI) biar enteng banget.</li>
+                <li><strong>Pasang Docker:</strong> Ini hukumnya wajib. Docker bikin kita bisa instal aplikasi kayak Nextcloud, Pi-hole, atau Plex cuma dengan satu baris perintah.</li>
+                <li><strong>Nextcloud:</strong> Pengganti Google Drive. Bisa sinkron foto dari HP otomatis ke server rumah.</li>
+                <li><strong>Vaultwarden:</strong> Buat simpan password dengan aman.</li>
+            </ul>
+            <p>
+                Nantinya, kamu bakal ngerasa puas banget pas buka `serverku.dalam.web.id` dan isinya adalah data-data yang kamu kelola sendiri. Rasanya kayak jadi bos di kerajaan digital sendiri!
+            </p>
+        </section>
+
+        <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+    </article>
+
+    <footer>
+        <p>Curhatan seputar Linux dari Balikpapan untuk dunia.</p>
+        <p>
+            <a href="https://dalam.web.id">Layar Kosong</a> |
+            <a href="https://t.me/frijal">Telegram</a> |
+            <a href="https://paypal.me/FakhrulRijal">Kopi buat Penulis ☕</a>
+        </p>
+    </footer>
+</div>
+
+</body>
+</html>
