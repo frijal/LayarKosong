@@ -172,7 +172,7 @@ def build_weekly_aggregation():
 
         <footer>
             <p>Dihasilkan secara otomatis oleh sistem kurasi Frijal | Balikpapan</p>
-            <p>&copy; {end_sunday.strftime('%Y-%m-%d')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
+            <p>&copy; {end_sunday.strftime('%d-%m-%Y')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
         </footer>
     </div>
 </body>
