@@ -103,7 +103,7 @@ def build_weekly_aggregation():
                 <i class="fa-solid fa-folder-open"></i> {a['category_name']} |
                 <i class="fa-solid fa-calendar"></i> {a['date_raw']}
             </div>
-            <h2>{a['title']}</h2>
+            <h2><a href="{base_link}">{a['title']}</a></h2>
             <a href="{base_link}"><img src="{a['thumb']}" alt="{clean_meta_text(a['title'])}" class="main-img" loading="lazy" width="100%" height="auto"></a>
             <div class="content">{a['content']}</div>
             <p><a href="{base_link}" class="read-more">Baca selengkapnya di {a['category_name']} &rarr;</a></p>
@@ -146,7 +146,7 @@ def build_weekly_aggregation():
         :root {{ --bg: #ffffff; --text: #1a1a1a; --accent: #d70a53; --card: #f8f9fa; }}
         @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0d1117; --text: #c9d1d9; --accent: #58a6ff; --card: #161b22; }} }}
         body {{ font-family: 'Inter', -apple-system, sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }}
-        .container {{ width: 100%; max-width: 850px; }}
+        .container {{ width: 100%; max-width: 1000px; }}
         header {{ text-align: center; border-bottom: 5px solid var(--accent); padding-bottom: 30px; margin-bottom: 50px; }}
         .article-block {{ margin-bottom: 70px; }}
         h1 {{ font-size: 2.3rem; margin-bottom: 10px; }}
