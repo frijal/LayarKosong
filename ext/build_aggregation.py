@@ -103,7 +103,7 @@ def build_weekly_aggregation():
                 <i class="fa-solid fa-folder-open"></i> {a['category_name']} |
                 <i class="fa-solid fa-calendar"></i> {a['date_raw']}
             </div>
-            <h2><a href="{base_link}">{a['title']}</a></h2>
+            <h2><a href="{base_link}" style="text-decoration: none;">{a['title']}</a></h2>
             <a href="{base_link}"><img src="{a['thumb']}" alt="{clean_meta_text(a['title'])}" class="main-img" loading="lazy" width="100%" height="auto"></a>
             <div class="content">{a['content']}</div>
             <p><a href="{base_link}" class="read-more">Baca selengkapnya di {a['category_name']} &rarr;</a></p>
