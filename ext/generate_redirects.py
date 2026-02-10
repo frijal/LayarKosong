@@ -30,7 +30,7 @@ def generate_redirects():
                 file_slug = file_name.replace('.html', '')
                 
                 # Path Target Baru
-                target_path = f"/{cat_slug}/{file_slug}/"
+                target_path = f"/{cat_slug}/{file_slug}"
 
                 # Path Lama 1: Tanpa .html
                 source_clean = f"/artikel/{file_slug}"
