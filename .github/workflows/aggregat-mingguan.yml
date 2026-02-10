@@ -41,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Tidak ada konten baru, skip commit."
           else
-            git commit -m "chore: auto-generate weekly aggregation $(date +'%Y-%m-%d') [skip ci]"
+            git commit -m "chore: auto-generate weekly aggregation $(date +'%Y-%m-%d') "
             git push
           fi
