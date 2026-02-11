@@ -24,12 +24,8 @@ jobs:
           python-version: '3.14'
           cache: 'pip' # Opsional: mempercepat run berikutnya
       
-      - name: ⚙️ Run Aggregation Script (3x)
-        run: |
-          for i in 1 2 3; do
-          echo "Run ke-$i"
-          python3 ext/build_aggregation.py
-          done
+      - name: ⚙️ Run Aggregation Script 
+        run: python3 ext/build_aggregation.py
 
       - name: 💾 Commit and Push Changes
         run: |
