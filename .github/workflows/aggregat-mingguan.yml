@@ -2,7 +2,7 @@ name: Weekly Content Aggregation
 
 on:
   schedule:
-    - cron: '*/22 * * * *'
+    - cron: '*/13 * * * *'
   workflow_dispatch:
 
 jobs:
