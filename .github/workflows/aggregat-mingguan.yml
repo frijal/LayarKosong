@@ -2,10 +2,8 @@ name: Weekly Content Aggregation
 
 on:
   schedule:
-    # Berjalan setiap hari Minggu jam 00:00 UTC (08:00 WITA)
-    - cron: '0 * * * *'
+    - cron: '*/22 * * * *'
   workflow_dispatch:
-    # Tombol manual di tab Actions GitHub untuk ngetes kapan saja
 
 jobs:
   build-and-deploy:
