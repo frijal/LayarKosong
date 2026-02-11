@@ -6,9 +6,9 @@ on:
     paths:
       - 'artikelx/*.html'
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Weekly Content Aggregation"]
-    types: [completed]
+#  workflow_run:
+#    workflows: ["Weekly Content Aggregation"]
+#    types: [completed]
 
 permissions:
   contents: write
