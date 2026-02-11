@@ -14,7 +14,6 @@ def clean_meta_text(text):
     return re.sub(r'[^\w\s\-\.\,]', '', text)
 
 def slugify_category(name):
-    """Mengubah 'Warta Tekno' menjadi 'warta-tekno' agar URL aman"""
     name = name.lower()
     name = re.sub(r'\s+', '-', name)
     return re.sub(r'[^\w\-]', '', name)
@@ -39,12 +38,17 @@ def build_weekly_aggregation():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
+    if not os.path.exists(JSON_FILE):
+        print(f"❌ File {JSON_FILE} tidak ditemukan.")
+        return
+
     with open(JSON_FILE, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     posted_urls = get_posted_urls()
     all_pending_articles = []
 
+    # 1. Kumpulkan semua artikel yang belum pernah diposting
     for category_raw, articles_list in data.items():
         url_category = slugify_category(category_raw)
         for art in articles_list:
@@ -71,48 +75,52 @@ def build_weekly_aggregation():
         print("☕ Semua artikel sudah masuk agregat.")
         return
 
+    # Urutkan berdasarkan tanggal (terlama ke terbaru)
     all_pending_articles.sort(key=lambda x: x['date'])
 
-    start_monday = get_monday(all_pending_articles[0]['date'])
-    end_sunday = start_monday + timedelta(days=6, hours=23, minutes=59, seconds=59)
+    # 2. PROSES LOOPING PER MINGGU
+    while all_pending_articles:
+        # Ambil patokan senin dari artikel paling awal di daftar
+        start_monday = get_monday(all_pending_articles[0]['date'])
+        end_sunday = start_monday + timedelta(days=6, hours=23, minutes=59, seconds=59)
 
-    current_batch = [a for a in all_pending_articles if start_monday <= a['date'] <= end_sunday]
+        # Ambil semua artikel yang masuk dalam rentang minggu ini
+        current_batch = [a for a in all_pending_articles if start_monday <= a['date'] <= end_sunday]
+        
+        if not current_batch:
+            # Jika karena suatu alasan batch kosong (data rusak), hapus item pertama agar tidak loop selamanya
+            all_pending_articles.pop(0)
+            continue
 
-    if not current_batch:
-        print(f"⚠️ Batch kosong.")
-        return
+        monday_str = start_monday.strftime('%Y-%m-%d')
+        file_name = f"agregat-{monday_str}.html"
+        page_url = f"https://dalam.web.id/artikel/{file_name}"
+        main_cover = current_batch[0]['thumb']
+        first_date_iso = current_batch[0]['date'].isoformat()
 
-    monday_str = start_monday.strftime('%Y-%m-%d')
-    file_name = f"agregat-{monday_str}.html"
-    page_url = f"https://dalam.web.id/artikel/{file_name}"
+        articles_html = ""
+        batch_slugs = []
 
-    main_cover = current_batch[0]['thumb'] if current_batch else ""
-    first_date_iso = current_batch[0]['date'].isoformat()
+        for a in current_batch:
+            clean_slug = a['slug'].replace('.html', '')
+            base_link = f"https://dalam.web.id/{a['category_slug']}/{clean_slug}"
+            articles_html += f"""
+            <section class="article-block">
+                <div class="meta">
+                    <i class="fa-solid fa-folder-open"></i> {a['category_name']} |
+                    <i class="fa-solid fa-calendar"></i> {a['date_raw']}
+                </div>
+                <h2><a href="{base_link}" style="text-decoration: none;">{a['title']}</a></h2>
+                <a href="{base_link}"><img src="{a['thumb']}" alt="{clean_meta_text(a['title'])}" class="main-img" loading="lazy"></a>
+                <div class="content">{a['content']}</div>
+                <p><a href="{base_link}" class="read-more">Baca selengkapnya di {a['category_name']} &rarr;</a></p>
+                <hr class="separator">
+            </section>
+            """
+            batch_slugs.append(a['slug'])
 
-    articles_html = ""
-    batch_slugs = []
-
-    for a in current_batch:
-        # HAPUS .html dari slug untuk Clean URL
-        clean_slug = a['slug'].replace('.html', '')
-        base_link = f"https://dalam.web.id/{a['category_slug']}/{clean_slug}"
-
-        articles_html += f"""
-        <section class="article-block">
-            <div class="meta">
-                <i class="fa-solid fa-folder-open"></i> {a['category_name']} |
-                <i class="fa-solid fa-calendar"></i> {a['date_raw']}
-            </div>
-            <h2><a href="{base_link}" style="text-decoration: none;">{a['title']}</a></h2>
-            <a href="{base_link}"><img src="{a['thumb']}" alt="{clean_meta_text(a['title'])}" class="main-img" loading="lazy" width="100%" height="auto"></a>
-            <div class="content">{a['content']}</div>
-            <p><a href="{base_link}" class="read-more">Baca selengkapnya di {a['category_name']} &rarr;</a></p>
-            <hr class="separator">
-        </section>
-        """
-        batch_slugs.append(a['slug'])
-
-    full_html = f"""<!DOCTYPE html>
+        # Susun template HTML
+        full_html = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -155,28 +163,32 @@ def build_weekly_aggregation():
 <body>
     <div class="container">
         <header>
-            <h1>Agregasi Mingguan 🗞️ {first_date_iso}</h1>
+            <h1>Agregasi Mingguan {first_date_iso}</h1>
             <p><strong>Arsip Edisi:</strong> {monday_str} s/d {end_sunday.strftime('%Y-%m-%d')}</p>
         </header>
-
         {articles_html}
-
-        <div id="pesbukdiskus"></div>
-
+                <div id="pesbukdiskus"></div>
         <footer>
             <p>Dihasilkan secara otomatis oleh sistem kurasi Frijal | Balikpapan</p>
-            <p>&copy; {end_sunday.strftime('%d-%m-%Y')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
+            <p> {end_sunday.strftime('%d-%m-%Y')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
         </footer>
     </div>
 </body>
 </html>"""
 
-    output_path = os.path.join(OUTPUT_DIR, file_name)
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(full_html)
+        # Simpan file
+        output_path = os.path.join(OUTPUT_DIR, file_name)
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(full_html)
 
-    save_posted_urls(batch_slugs)
-    print(f"✨ Berhasil! File '{file_name}' telah dibuat dengan Clean URL.")
+        # Catat slug yang sudah diproses agar tidak diproses lagi di masa depan
+        save_posted_urls(batch_slugs)
+        print(f"✅ File '{file_name}' dibuat ({len(current_batch)} artikel).")
+
+        # 3. HAPUS artikel yang sudah diproses dari daftar pending
+        all_pending_articles = [a for a in all_pending_articles if a['slug'] not in batch_slugs]
+
+    print("\n✨ Semua batch mingguan berhasil diproses!")
 
 if __name__ == "__main__":
     build_weekly_aggregation()
