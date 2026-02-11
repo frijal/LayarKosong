@@ -163,7 +163,7 @@ def build_weekly_aggregation():
 <body>
     <div class="container">
         <header>
-            <h1>Agregasi Mingguan {first_date_iso}</h1>
+            <h1>Agregasi Mingguan {end_sunday.strftime('%d-%m-%Y')}</h1>
             <p><strong>Arsip Edisi:</strong> {monday_str} s/d {end_sunday.strftime('%Y-%m-%d')}</p>
         </header>
         {articles_html}
