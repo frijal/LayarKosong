@@ -116,7 +116,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: mass update content (with anti-duplicate check)"
-          branch: "fix/mass-replace-${{ github.run_id }}"
+          branch: "duplicate/mass-replace-${{ github.run_id }}"
           delete-branch: true
           title: "Mass Replace: ${{ github.event.inputs.search }}"
           body: |
