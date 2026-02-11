@@ -26,7 +26,7 @@ const categories = [
 {
   name: "Opini Sosial",
   keywords: [
-    "aci", "adaro", "amanah", "artikel", "audit", "bisnis", "budaya", "bukalapak", "catatan", "cpns", "cuti", "duit", "ekonomi", "ekspedisi", "etika", "fenomena", "golput", "grobogan", "harian", "hormat", "ibu", "indonesia", "integritas", "iwan fals", "jatos", "jne", "kasih", "kebijakan", "kejujuran", "kepemimpinan", "kerja", "kinerja", "kolom", "kopdar", "korporasi", "kota", "kreativitas", "kritik", "masyarakat", "nostalgia", "opini", "organisasi", "pajak", "pemerintah", "penjilat", "perencanaan", "perjalanan", "perusahaan", "poac", "politik", "ppdb", "produktifitas", "pt", "rencana", "renungan", "sktm", "sosial", "subsidi", "uang", "ujian nasional", "umkm", "viral", "whoosh"
+    "aci", "adaro", "amanah", "audit", "bisnis", "budaya", "bukalapak", "catatan", "cpns", "cuti", "duit", "ekonomi", "ekspedisi", "etika", "fenomena", "golput", "grobogan", "harian", "hormat", "ibu", "indonesia", "integritas", "iwan fals", "jatos", "jne", "kasih", "kebijakan", "kejujuran", "kepemimpinan", "kerja", "kinerja", "kolom", "kopdar", "korporasi", "kota", "kreativitas", "kritik", "masyarakat", "nostalgia", "opini", "organisasi", "pajak", "pemerintah", "penjilat", "perencanaan", "perjalanan", "perusahaan", "poac", "politik", "ppdb", "produktifitas", "pt", "rencana", "renungan", "sktm", "sosial", "subsidi", "uang", "ujian nasional", "umkm", "viral", "whoosh"
   ]
 },
 {
