@@ -24,8 +24,16 @@ jobs:
           python-version: '3.14'
           cache: 'pip' # Opsional: mempercepat run berikutnya
       
-      - name: ⚙️ Run Aggregation Script
-        run: python3 ext/build_aggregation.py
+      - name: ⚙️ Run Aggregation Script (retry max 3x)
+        run: |
+          n=0
+          until [ "$n" -ge 3 ]
+          do
+          python3 ext/build_aggregation.py && break
+          n=$((n+1))
+          echo "Retry ke-$n..."
+          sleep 10
+          done
 
       - name: 💾 Commit and Push Changes
         run: |
