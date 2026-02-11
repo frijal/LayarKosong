@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
 
       - name: Buat folder tujuan jika belum ada
         run: |
