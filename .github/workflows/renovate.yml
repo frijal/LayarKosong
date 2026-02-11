@@ -41,6 +41,9 @@ jobs:
       actions: write
     steps:
       - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
 
       - name: Download previous cache
         uses: dawidd6/action-download-artifact@v14
