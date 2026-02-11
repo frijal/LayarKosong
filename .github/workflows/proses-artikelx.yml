@@ -6,6 +6,9 @@ on:
     paths:
       - 'artikelx/*.html'
   workflow_dispatch:
+  workflow_run:
+    workflows: ["☢️ Build and Generate Site Files"]
+    types: [completed]
 
 permissions:
   contents: write
