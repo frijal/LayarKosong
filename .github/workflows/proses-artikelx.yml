@@ -69,7 +69,7 @@ jobs:
               s|&copy;|🄯|g;
               s|Font Awesome 6 Free|Font Awesome 7 Free|g;
               s|Font Awesome 5 Free|Font Awesome 7 Free|g;
-              s|Analisis mendalam||g;
+              s|Analisis mendalam ||g;
               s|©|🄯|g;
               s| - Layar Kosong||g;
             ' "$file"
