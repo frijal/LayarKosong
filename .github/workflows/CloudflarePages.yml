@@ -12,17 +12,8 @@ on:
     paths:
       # Daftar filter trigger tetap sama (untuk efisiensi trigger)
       - 'wrangler.toml'  # Tambahkan ini biar kalau config berubah, dia auto-run
-      - 'llms.md'
       - '_redirects'
       - '_headers'
-      - '*.html'
-      - '*.xml'
-      - '*.txt'
-      - 'favicon.*'
-      - 'icon.*'
-      - 'logo.*'
-      - 'thumbnail.*'
-      - '*.webmanifest'
 
   workflow_dispatch:
 
