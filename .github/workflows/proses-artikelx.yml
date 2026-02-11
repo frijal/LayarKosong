@@ -7,7 +7,7 @@ on:
       - 'artikelx/*.html'
   workflow_dispatch:
   workflow_run:
-    workflows: ["☢️ Build and Generate Site Files"]
+    workflows: ["Weekly Content Aggregation"]
     types: [completed]
 
 permissions:
