@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
 
       - name: Remove files by extension
         run: |
