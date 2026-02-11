@@ -67,7 +67,7 @@ async function postToThreads() {
         // Step 1: Create Container
         const resContainer = await axios.post(`${API_BASE}/${THREADS_USER_ID}/threads`, {
             media_type: 'TEXT',
-            text: `${target.desc}\n\n#Repost #Ngopi #Indonesia #fediverse`,
+            text: `${target.desc}\n\n#Repost`,
             link_attachment: target.url,
             access_token: ACCESS_TOKEN
         });
