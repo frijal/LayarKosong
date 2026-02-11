@@ -38,9 +38,9 @@ jobs:
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v6.0.2
-        with:
-          fetch-depth: 1
-          persist-credentials: true
+   #     with:
+   #       fetch-depth: 1
+   #       persist-credentials: true
 
       - name: "Eksekusi Penggantian Teks"
         shell: bash
