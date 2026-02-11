@@ -35,7 +35,8 @@ jobs:
       - name: 🛰️ Checkout Repository
         uses: actions/checkout@v6.0.2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          persist-credentials: true
 
       # --- 1. LOGIKA PILIH BAHASA (Kuncinya di sini) ---
       - name: 🎯 Check Requirements
@@ -79,9 +80,9 @@ jobs:
       # --- 3. SETUP PYTHON (Hanya jika need_python=true) ---
       - name: 🏗️ Setup Python
         if: steps.check.outputs.need_python == 'true'
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v6.2.0
         with:
-          python-version: '3.x'
+          python-version: '3.14'
           cache: 'pip'
 
       - name: 📦 Install Python Dependencies
