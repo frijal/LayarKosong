@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: 🧩 Checkout kode
         uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
 
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v6.2.0
@@ -37,10 +40,7 @@ jobs:
         run: |
           # 1. Install paket terbaru secara temporary
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
-    
-          # Pastikan folder tujuan tersedia
-          mkdir -p ext/fontawesome-webfonts
-    
+         
           # 2. Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
