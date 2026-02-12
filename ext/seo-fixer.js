@@ -128,7 +128,6 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:description" content="${finalOgDesc}">`);
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
-    head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
     head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
     head.append(`\n    <meta property="og:type" content="article">`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
