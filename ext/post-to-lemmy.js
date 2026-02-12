@@ -14,7 +14,8 @@ const CONFIG = {
   targetCommunities: [
     "world@lemmy.world",
     "indonesia@lemmy.ml",
-"blogs@lemmy.ml"
+"blogs@lemmy.ml",
+"blogspot@lemmy.world"
   ]
 };
 
