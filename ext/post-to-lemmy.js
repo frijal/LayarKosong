@@ -13,7 +13,8 @@ const CONFIG = {
   // DAFTAR KOMUNITAS TARGET (Tambahkan sebanyak yang kamu mau)
   targetCommunities: [
     "world@lemmy.world",
-    "indonesia@lemmy.ml"
+    "indonesia@lemmy.ml",
+"blogs@lemmy.ml"
   ]
 };
 
