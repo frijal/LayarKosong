@@ -2,7 +2,6 @@ import fs from "fs";
 
 /**
  * CONFIGURATION
- * Pastikan DISCORD_WEBHOOK_URL sudah ada di environment variables kamu.
  */
 const CONFIG = {
   articleFile: "artikel.json",
@@ -34,7 +33,7 @@ async function run() {
     process.exit(1);
   }
 
-  // 1. Load Database (Cek histori postingan)
+  // 1. Load Database
   let postedDatabase = "";
   if (fs.existsSync(CONFIG.databaseFile)) {
     postedDatabase = fs.readFileSync(CONFIG.databaseFile, "utf8");
@@ -48,15 +47,16 @@ async function run() {
     const catSlug = slugify(category);
 
     for (const item of items) {
-      const [title, fileName, , isoDate, description] = item;
+      // Struktur array kamu: [Title, FileName, ImageUrl, Date, Description]
+      const [title, fileName, imageUrl, isoDate, description] = item;
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
-      // Cek apakah fileSlug ini sudah pernah tercatat di log
       if (!postedDatabase.includes(fileSlug)) {
         allArticles.push({
           title,
           url: fullUrl,
+          imageUrl: imageUrl, // Mengambil URL gambar dari array index ke-2
           slug: fileSlug,
           date: isoDate,
           desc: description || "Archive.",
@@ -66,7 +66,7 @@ async function run() {
     }
   }
 
-  // 3. Ambil artikel terbaru yang belum dipost
+  // 3. Ambil artikel terbaru
   allArticles.sort((a, b) => b.date.localeCompare(a.date));
   const target = allArticles[0];
 
@@ -87,9 +87,17 @@ async function run() {
         url: target.url,
         description: target.desc,
         color: CONFIG.embedColor,
+        // Menampilkan gambar besar di bawah teks
+        image: {
+          url: target.imageUrl
+        },
+        // Menampilkan logo blog kecil di pojok kanan atas
+        thumbnail: {
+          url: CONFIG.botAvatar
+        },
         fields: [
           { name: "📁 Kategori", value: target.category, inline: true },
-          { name: "📅 Tanggal", value: target.date, inline: true },
+          { name: "📅 Tanggal", value: new Date(target.date).toLocaleDateString('id-ID'), inline: true },
         ],
         footer: {
           text: "Layar Kosong - Personal Blog",
@@ -113,14 +121,12 @@ async function run() {
     }
 
     /* =========================================
-     * 5. SIMPAN LOG (Hanya URL saja)
+     * 5. SIMPAN LOG (URL Saja)
      * ========================================= */
     if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
-    
-    // Sesuai permintaan: Hanya berisi URL lengkap
     fs.appendFileSync(CONFIG.databaseFile, target.url + "\n");
 
-    console.log(`✅ Berhasil! Log URL disimpan di ${CONFIG.databaseFile}`);
+    console.log(`✅ Berhasil! Log disimpan di ${CONFIG.databaseFile}`);
     
   } catch (err) {
     console.error("❌ Gagal posting:", err.message);
