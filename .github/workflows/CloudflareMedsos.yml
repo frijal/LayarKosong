@@ -15,6 +15,7 @@ on:
           - diskusi RSS
           - cloudflare
           - bluesky
+          - discord
           - facebook
           - linkedin
           - mastodon
@@ -49,7 +50,7 @@ jobs:
 
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "$TASK" != "all" ]]; then
             # Daftar task khusus Node.js
-            NODE_ONLY=("diskusi RSS" "cloudflare" "mastodon" "threads" "linkedin" "tumblr")
+            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "mastodon" "threads" "linkedin" "tumblr")
             # Daftar task khusus Python/Bash
             PYTHON_ONLY=("bluesky" "indexnow" "patreon" "llms_index" "facebook")
 
@@ -143,6 +144,13 @@ jobs:
           TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
           TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
         run: node ext/post-to-tumblr.js
+
+      - name: 🦋 6. Discord Feed
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'discord'
+        continue-on-error: true
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node ext/post-to-discord.js
 
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
