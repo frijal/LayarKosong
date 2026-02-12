@@ -90,13 +90,9 @@ async function run() {
         title: target.title,
         url: target.url,
         color: CONFIG.embedColor,
-        // Menampilkan gambar besar di bawah teks
         image: {
           url: target.imageUrl
         },
-        //   thumbnail: {
-        //     url: CONFIG.botAvatar
-        //   },
         description: target.desc || "Archive.",
         footer: {
           text: "Layar Kosong - Personal Blog",
