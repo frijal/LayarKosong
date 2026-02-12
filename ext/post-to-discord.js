@@ -63,7 +63,7 @@ async function run() {
   console.log(`🚀 Mengirim Plain Text ke Discord: ${target.title}`);
 
   // Format Pesan: Judul (Tebal) -> Deskripsi -> URL
-  const messageContent = `**${target.title}**\n${target.desc || "Archive."}\n\n${target.url}`;
+  const messageContent = `${target.url}\n\n**${target.title}**\n${target.desc || "Archive."}`;
 
   const payload = {
     username: CONFIG.botName,
@@ -81,7 +81,6 @@ async function run() {
     if (!response.ok) throw new Error(await response.text());
 
     // Simpan Log (Hanya URL)
-    if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
     fs.appendFileSync(CONFIG.databaseFile, target.url + "\n");
 
     console.log(`✅ Berhasil! Artikel terposting sebagai plain text.`);
