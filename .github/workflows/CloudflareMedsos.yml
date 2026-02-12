@@ -22,6 +22,7 @@ on:
           - threads
           - tumblr
           - indexnow
+          - lemmy
           - llms_index
 
 permissions:
@@ -50,7 +51,7 @@ jobs:
 
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "$TASK" != "all" ]]; then
             # Daftar task khusus Node.js
-            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "mastodon" "threads" "linkedin" "tumblr")
+            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "lemmy" "mastodon" "threads" "linkedin" "tumblr")
             # Daftar task khusus Python/Bash
             PYTHON_ONLY=("bluesky" "indexnow" "patreon" "llms_index" "facebook")
 
@@ -152,11 +153,19 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: node ext/post-to-discord.js
 
+      - name: 🟡 7. Lemmy Post
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
+        continue-on-error: true
+        env:
+          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+        run: node ext/post-to-lemmy.js
+
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
       # =========================================================
 
-  #    - name: 🦋 6. Bluesky Autopost
+  #    - name: 🦋 A. Bluesky Autopost
   #      if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
   #      continue-on-error: true
   #      env:
@@ -168,7 +177,7 @@ jobs:
   #          cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
   #        fi      
 
-      - name: ⚙️ 7. Generate LLMs Index
+      - name: ⚙️ B. Generate LLMs Index
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
         continue-on-error: true
         run: |
@@ -176,13 +185,13 @@ jobs:
             python3 ext/generate_llms.py
           fi
 
-      - name: 🔵 8. Process Facebook (Data Prep)
+      - name: 🔵 C. Process Facebook (Data Prep)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         id: fb_info
         continue-on-error: true
         run: python3 ext/post-to-facebook.py
 
-      - name: 🚀 9. Send to Facebook Page
+      - name: 🚀 D. Send to Facebook Page
         if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
         continue-on-error: true
         run: |
@@ -195,7 +204,7 @@ jobs:
             cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
           fi
 
-      - name: 🔍 10. IndexNow Sync (Bash & JQ)
+      - name: 🔍 E. IndexNow Sync (Bash & JQ)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
         continue-on-error: true
         env:
