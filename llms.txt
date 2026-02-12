@@ -5,8 +5,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.21
-last_updated: 2026-02-11
+document_version: 15.22
+last_updated: 2026-02-12
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -36,8 +36,8 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 11 February 2026)
-> Menampilkan 1118 artikel yang berhasil diindeks dalam versi 15.21.
+## Index Artikel Terbaru (Updated: 12 February 2026)
+> Menampilkan 1118 artikel yang berhasil diindeks dalam versi 15.22.
 ## Gaya Hidup
 - [Mengenal Taktik DARVO: Deny, Attack, Reverse Victim and Offender](https://dalam.web.id/gaya-hidup/mengenal-taktik-darvo-denial-attack-reverse-victim-offender) : Apa itu DARVO? Taktik manipulatif klasik: menyangkal, menyerang, memutarbalikkan posisi korban-pelaku. Analisis 5W+1H lengkap, cara mengenali, dan dampaknya pada korban.
 - [Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan](https://dalam.web.id/gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan) : Surat terbuka mendalam dari Delima Respek Peduli tentang dampak kebijakan non-aktifasi BPJS PBI massal terhadap pasien rentan di Indonesia. Analisis komprehensif dengan prinsip 5W+1H mengenai dampak kebijakan kesehatan terhadap masyarakat miskin dan sakit.
