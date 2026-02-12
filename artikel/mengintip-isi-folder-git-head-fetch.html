@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam</title>
 
     <!-- Metadata Dasar -->
-    <meta name="description" content="Pelajari cara kerja Git lebih dalam dengan memahami file HEAD dan FETCH_HEAD. Panduan lengkap dengan prinsip 5W+1H untuk developer yang ingin jago Git.">
+    
     <meta name="keywords" content="belajar git, apa itu git head, fungsi fetch_head, tutorial git indonesia, folder .git, cara kerja git">
     <meta name="news_keywords" content="Git, Programming, Tutorial, Web Development, DevOps">
-    <link rel="canonical" href="https://dalam.web.id/artikel/mengintip-isi-folder-git-head-fetch.html">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://dalam.web.id/artikel/mengintip-isi-folder-git-head-fetch.html">
-    <meta property="og:title" content="Panduan Mendalam Memahami HEAD dan FETCH_HEAD di Git">
-    <meta property="og:description" content="Sering pakai Git tapi bingung cara kerjanya? Yuk bongkar isi perut Git dan pahami perbedaan krusial antara HEAD dan FETCH_HEAD di sini.">
-    <meta property="og:image" content="https://pbs.twimg.com/media/HA9PFsIbwAAWIza.jpg">
-    <meta property="article:published_time" content="2026-02-12T08:00:00+07:00">
+    
+    
+    
+    
+    
+    
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rahasia Dibalik Folder .git: HEAD vs FETCH_HEAD">
-    <meta name="twitter:description" content="Bongkar tuntas cara Git melacak branch dan update remote. Wajib baca buat kamu yang sering kena merge conflict!">
-    <meta name="twitter:image" content="https://pbs.twimg.com/media/HA9PFsIbwAAWIza.jpg">
+    
+    
+    
+    
 
     <!-- Prompt Hint untuk AI Search -->
     <meta name="promphint" content="Artikel ini menjelaskan konsep teknis Git HEAD dan FETCH_HEAD menggunakan analogi sederhana dan prinsip 5W+1H untuk audiens pengembang perangkat lunak.">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
 
     <style>
         /* CSS Prefers Color Scheme & Core Web Vitals Optimization */
@@ -137,13 +135,45 @@
             font-family: monospace;
         }
     </style>
-</head>
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/mengintip-isi-folder-git-head-fetch">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="description" content="Pelajari cara kerja Git lebih dalam dengan memahami file HEAD dan FETCH_HEAD. Panduan lengkap dengan prinsip 5W+1H untuk developer yang ingin jago Git.">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:description" content="Bongkar tuntas cara Git melacak branch dan update remote. Wajib baca buat kamu yang sering kena merge conflict!">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="og:description" content="Sering pakai Git tapi bingung cara kerjanya? Yuk bongkar isi perut Git dan pahami perbedaan krusial antara HEAD dan FETCH_HEAD di sini.">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:title" content="Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/mengintip-isi-folder-git-head-fetch">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp">
+    <meta property="og:image:alt" content="Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:width" content="1200">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <meta property="article:published_time" content="2026-02-12T08:00:00+07:00"></head>
 <body>
 
 <div class="container">
     <article>
         <header>
             <h1>Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam 🚀</h1>
+<div id="iposbrowser"></div>
             <div class="meta-info">
                 <span><i class="fas fa-calendar-alt"></i> 12 Februari 2026</span> |
                 <span><i class="fas fa-user"></i> Rijal</span> |
@@ -155,7 +185,7 @@
         <section class="content-section">
             <p>👋 Pas lagi asyik nge-code buat project atau lagi rapihin repo di GitHub, kamu tiba-tiba kepikiran: <strong>"Sebenarnya Git itu tahu dari mana ya kalau aku lagi di branch ini?"</strong> atau <strong>"Pas aku ngetik git fetch, datanya lari ke mana sih sebelum aku merge?"</strong>.</p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="https://pbs.twimg.com/media/HA9PFsIbwAAWIza.jpg" alt="gitHEAD gitFETCH_HEAD" style="width: 100%; height: auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp" alt="gitHEAD gitFETCH_HEAD" style="width: 100%; height: auto;">
 </div>
             <p>Nah, buat kamu yang sering bergelut di terminal, memahami folder <code>.git</code> itu ibarat tahu cara kerja mesin mobil. Kamu nggak cuma bisa nyetir (push/pull), tapi juga bisa benerin kalau mogok. Hari ini kita bakal kupas tuntas dua makhluk penting: <code>git/HEAD</code> dan <code>git/FETCH_HEAD</code> menggunakan prinsip 5W+1H agar tercerahkan sampai ke akar-akarnya! 🧭</p>
         </section>
@@ -179,7 +209,7 @@
             <p>Setiap kali kamu berpindah branch (<code>git switch</code> atau <code>git checkout</code>). Saat itu juga, isi file HEAD akan diperbarui untuk menunjuk ke branch yang baru. Selain itu, saat kamu membuat commit baru, HEAD (lewat branch yang ditunjuknya) akan otomatis bergeser maju mengikuti commit terbaru tersebut.</p>
 
             <h3>How: Bagaimana cara kerjanya?</h3>
-            <p>Git bekerja dengan sistem referensi berantai. HEAD biasanya menunjuk ke sebuah Branch, dan Branch menunjuk ke Commit Hash terbaru. Contoh alurnya: <code>HEAD -> refs/heads/master -> a1b2c3d...</code></p>
+            <p>Git bekerja dengan sistem referensi berantai. HEAD biasanya menunjuk ke sebuah Branch, dan Branch menunjuk ke Commit Hash terbaru. Contoh alurnya: <code>HEAD -&gt; refs/heads/master -&gt; a1b2c3d...</code></p>
 
             <div class="highlight-box">
                 <strong>⚠️ Peringatan: Detached HEAD!</strong><br>
@@ -265,9 +295,13 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2026 <a href="https://dalam.web.id">Jaga Data Pribadi, Tetap Aman.</a></p>
+        <p>🄯 2026 <a href="https://dalam.web.id">Jaga Data Pribadi, Tetap Aman.</a></p>
     </div>
 </footer>
 
-</body>
-</html>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
+<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+</body></html>
