@@ -73,7 +73,7 @@ jobs:
           docker images ghcr.io/renovatebot/renovate:${{ env.SELECTED_TAG }} --format "table {{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}"
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v46.0.2
+        uses: renovatebot/github-action@v46.1.0
         with:
           # Otomatis milih file config berdasarkan image
           configurationFile: ${{ env.CONFIG_FILE }}
