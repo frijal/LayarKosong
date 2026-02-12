@@ -9,10 +9,8 @@ const CONFIG = {
   baseUrl: "https://dalam.web.id",
   webhookUrl: process.env.DISCORD_WEBHOOK_URL,
   botName: "Layar Kosong",
-  // Avatar bot di samping nama bot tetap ada agar tidak default,
-  // tapi kita hilangkan dari dalam kotak Embed.
   botAvatar: "https://dalam.web.id/favicon.png",
-  embedColor: 0x00ffcc,
+  embedColor: 0x00ffcc, // Hijau toska
 };
 
 /* =====================
@@ -35,26 +33,40 @@ async function run() {
     process.exit(1);
   }
 
-  let postedDatabase = fs.existsSync(CONFIG.databaseFile)
-  ? fs.readFileSync(CONFIG.databaseFile, "utf8")
-  : "";
+  // 1. Load Database
+  let postedDatabase = "";
+  if (fs.existsSync(CONFIG.databaseFile)) {
+    postedDatabase = fs.readFileSync(CONFIG.databaseFile, "utf8");
+  }
 
+  // 2. Parsing Data Artikel
   const rawData = JSON.parse(fs.readFileSync(CONFIG.articleFile, "utf8"));
   let allArticles = [];
 
   for (const [category, items] of Object.entries(rawData)) {
     const catSlug = slugify(category);
+
     for (const item of items) {
+      // Struktur array kamu: [Title, FileName, ImageUrl, Date, Description]
       const [title, fileName, imageUrl, isoDate, description] = item;
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
       if (!postedDatabase.includes(fileSlug)) {
-        allArticles.push({ title, url: fullUrl, imageUrl, slug: fileSlug, date: isoDate, desc: description, category });
+        allArticles.push({
+          title,
+          url: fullUrl,
+          imageUrl: imageUrl, // Mengambil URL gambar dari array index ke-2
+          slug: fileSlug,
+          date: isoDate,
+          desc: description || "Archive.",
+          category
+        });
       }
     }
   }
 
+  // 3. Ambil artikel terbaru
   allArticles.sort((a, b) => b.date.localeCompare(a.date));
   const target = allArticles[0];
 
@@ -63,6 +75,7 @@ async function run() {
     return;
   }
 
+  // 4. Siapkan Payload untuk Discord
   console.log(`🚀 Mengirim ke Discord: ${target.title}`);
 
   const payload = {
@@ -70,22 +83,24 @@ async function run() {
     avatar_url: CONFIG.botAvatar,
     embeds: [
       {
-        title: target.title,
-        url: target.url,
-        color: CONFIG.embedColor,
-        // Gambar artikel ditaruh di Thumbnail (Pojok Kanan Atas)
-        thumbnail: {
-          url: target.imageUrl
-        },
-        // Deskripsi otomatis akan berada di samping & bawah thumbnail secara mengalir
-        description: target.desc || "Archive.",
         fields: [
           { name: "📁 Kategori", value: target.category, inline: true },
           { name: "📅 Tanggal", value: new Date(target.date).toLocaleDateString('id-ID'), inline: true },
         ],
+        title: target.title,
+        url: target.url,
+        color: CONFIG.embedColor,
+        // Menampilkan gambar besar di bawah teks
+        image: {
+          url: target.imageUrl
+        },
+        //   thumbnail: {
+        //     url: CONFIG.botAvatar
+        //   },
+        description: target.desc || "Archive.",
         footer: {
-          text: "Layar Kosong - Personal Blog"
-          // icon_url Dihapus sesuai permintaan (hilangkan avatar di bawah)
+          text: "Layar Kosong - Personal Blog",
+          icon_url: CONFIG.botAvatar
         },
         timestamp: new Date().toISOString()
       }
@@ -99,11 +114,18 @@ async function run() {
       body: JSON.stringify(payload)
     });
 
-    if (!response.ok) throw new Error(await response.text());
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Discord API Error: ${errorText}`);
+    }
 
+    /* =========================================
+     * 5. SIMPAN LOG (URL Saja)
+     * ========================================= */
     if (!fs.existsSync("mini")) fs.mkdirSync("mini", { recursive: true });
     fs.appendFileSync(CONFIG.databaseFile, target.url + "\n");
-    console.log(`✅ Berhasil! Log URL disimpan.`);
+
+    console.log(`✅ Berhasil! Log disimpan di ${CONFIG.databaseFile}`);
 
   } catch (err) {
     console.error("❌ Gagal posting:", err.message);
