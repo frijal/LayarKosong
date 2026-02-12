@@ -83,6 +83,10 @@ async function run() {
     avatar_url: CONFIG.botAvatar,
     embeds: [
       {
+        fields: [
+          { name: "📁 Kategori", value: target.category, inline: true },
+          { name: "📅 Tanggal", value: new Date(target.date).toLocaleDateString('id-ID'), inline: true },
+        ],
         title: target.title,
         url: target.url,
         color: CONFIG.embedColor,
@@ -90,14 +94,11 @@ async function run() {
         image: {
           url: target.imageUrl
         },
-        description: target.desc,
+
         thumbnail: {
           url: CONFIG.botAvatar
         },
-        fields: [
-          { name: "📁 Kategori", value: target.category, inline: true },
-          { name: "📅 Tanggal", value: new Date(target.date).toLocaleDateString('id-ID'), inline: true },
-        ],
+        description: target.desc,
         footer: {
           text: "Layar Kosong - Personal Blog",
           icon_url: CONFIG.botAvatar
