@@ -94,12 +94,11 @@ async function run() {
         image: {
           url: target.imageUrl
         },
-
-        thumbnail: {
-          url: CONFIG.botAvatar
-        },
-        description: target.desc,
-        footer: {
+     //   thumbnail: {
+     //     url: CONFIG.botAvatar
+     //   },
+description: target.desc || "Archive.",
+footer: {
           text: "Layar Kosong - Personal Blog",
           icon_url: CONFIG.botAvatar
         },
