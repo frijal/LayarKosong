@@ -99,6 +99,10 @@ async function fixSEO() {
 
     const publishedTime = $('meta[property="article:published_time"]').attr('content');
     const modifiedTime = $('meta[property="article:modified_time"]').attr('content');
+    const existingTags = [];
+    $('meta[property="article:tag"]').each((_, el) => {
+      existingTags.push($(el).attr('content'));
+    });
 
     // --- 3. BERSIHKAN TAG LAMA ---
     $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
@@ -141,6 +145,10 @@ async function fixSEO() {
       head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta property="og:image:width" content="1200">`);
     }
+
+    existingTags.forEach(tag => {
+      head.append(`\n    <meta property="article:tag" content="${tag}">`);
+    });
 
     if (publishedTime) head.append(`\n    <meta property="article:published_time" content="${publishedTime}">`);
     if (modifiedTime) head.append(`\n    <meta property="article:modified_time" content="${modifiedTime}">`);
