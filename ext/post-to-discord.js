@@ -85,13 +85,12 @@ async function run() {
       {
         title: target.title,
         url: target.url,
-        description: target.desc,
         color: CONFIG.embedColor,
         // Menampilkan gambar besar di bawah teks
         image: {
           url: target.imageUrl
         },
-        // Menampilkan logo blog kecil di pojok kanan atas
+        description: target.desc,
         thumbnail: {
           url: CONFIG.botAvatar
         },
