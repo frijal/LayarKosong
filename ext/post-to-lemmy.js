@@ -14,8 +14,6 @@ const CONFIG = {
     "Independent_Media@lemmy.today",
     "blogspot@lemmy.world",
     "casualconversation@piefed.social",
-    "communitypromo@lemmy.ca",
-    "fediverse@lemmy.world",
     "main@sh.itjust.works",
     "newcommunities@lemmy.world",
     "wildfeed@sh.itjust.works",
@@ -23,6 +21,7 @@ const CONFIG = {
     "youshouldknow@lemmy.world",
     "youshouldknowfacts@sh.itjust.works"
    // "blogs@lemmy.ml",
+   // "communitypromo@lemmy.ca",
    // "indonesia@lemmy.ml",
   ]
 };
