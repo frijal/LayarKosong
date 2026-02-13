@@ -1,16 +1,12 @@
-name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final)
+name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Lean)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 9 * *' # Setiap tanggal 9 pukul 08:00 WIB
-  pull_request:
-    types: [closed] # Trigger untuk sapu bersih branch saat PR ditutup
+    - cron: '0 8 9 * *' # Setiap tanggal 9 pukul 08:00 WIB
 
 jobs:
-  # JOB 1: Melakukan Pemeliharaan & Buat PR
   maintenance:
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,46 +34,39 @@ jobs:
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
-          # 1. Install paket terbaru secara temporary
+          # Install paket terbaru secara temporary
           npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
-         
-          # 2. Ambil JS & CSS Utama Highlight.js
+
+          # Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
-    
-          # 3. Ambil Tema-tema Highlight.js (Mapping dari Prism & Tema Asli)
-          # Ambil semua varian GitHub
-          cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
 
-          # MENGGANTI PRISM DENGAN ANAK HIGHLIGHTJS (Mapping cerdas)
-          # prism-tomorrow -> tomorrow-night-eighties (Paling mirip)
+          # Mapping cerdas Highlight.js
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
           cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css ext/prism-tomorrow.min.css
-          # prism-okaidia -> monokai
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/prism-okaidia.min.css
-          # prism.min.css -> default (biar nggak broken link)
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/prism.min.css
-    
-          # Tema populer lainnya yang tetap dipakai
+          
+          # Tema populer lainnya
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css ext/atom-one-dark.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css ext/atom-one-light.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/monokai.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css ext/vs.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css ext/vs-dark.min.css
-    
-          # 4. Urus Font Awesome (Webfonts + CSS)
+
+          # Urus Font Awesome (Webfonts + CSS)
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
-    
-          # 5. Patch Path CSS Font Awesome (Masih cara yang paling jenius!)
+
+          # Patch Path CSS Font Awesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
-    
-          # 6. Ambil Versi untuk Metadata
+
+          # Ambil Versi untuk Metadata
           HLJS_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
           FA_VER=$(node -p "require('./node_modules/@fortawesome/fontawesome-free/package.json').version")
-    
+
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
-    
-          echo "✅ All Assets (Prism replaced by HLJS) updated: HLJS v$HLJS_VER, FA v$FA_VER"
+          echo "✅ All Assets updated: HLJS v$HLJS_VER, FA v$FA_VER"
 
       - name: 🔍 Verifikasi Integritas Font
         id: font_check
@@ -88,7 +77,7 @@ jobs:
           [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
           echo "📄 Font + ukuran + hash SHA-256:" > "$OUTPUT"
           find "$FONT_DIR" -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" \) | sort | while read f; do
-            echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
+            echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}")" >> "$OUTPUT"
           done
           if [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
             echo "alert=true" >> $GITHUB_OUTPUT
@@ -99,8 +88,7 @@ jobs:
       - name: 🧪 Audit & Detective Scan
         run: |
           npm audit --omit=dev || true
-          [ -f ext/cek-mubazir.js ] && node ext/cek-mubazir.js
-          [ -f ext/cleanup.js ] && node ext/cleanup.js
+          node ext/cek-mubazir.js && node ext/cleanup.js
 
       - name: 🔍 Cek perubahan akhir
         id: check_changes
@@ -123,25 +111,3 @@ jobs:
             - ${{ steps.font_check.outputs.alert == 'true' && '🚨 **ALERT:** Hash font berubah!' || '✅ Hash font aman.' }}
           labels: automated
           reviewers: frijal
-
-  # JOB 2: Hapus branch jika PR diclose (Tanpa Merge Paksa)
-  cleanup-on-close:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.head_ref == 'chore/auto-maintenance'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: 🗑️ Delete Branch
-        uses: actions/github-script@v8
-        with:
-          script: |
-            try {
-              await github.rest.git.deleteRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: `heads/${context.payload.pull_request.head.ref}`
-              });
-              console.log("✅ Branch berhasil dihapus setelah PR ditutup.");
-            } catch (e) {
-              console.log("ℹ️ Branch sudah tidak ada.");
-            }
