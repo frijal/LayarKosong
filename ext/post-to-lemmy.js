@@ -20,7 +20,8 @@ const CONFIG = {
     "newcommunities@lemmy.world",
     "communitypromo@lemmy.ca",
     "casualconversation@piefed.social",
-    "Independent_Media@lemmy.today"
+    "Independent_Media@lemmy.today",
+    "wildfeed@sh.itjust.works"
   ]
 };
 
