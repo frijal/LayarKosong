@@ -15,13 +15,13 @@ const CONFIG = {
     "blogspot@lemmy.world",
     "casualconversation@piefed.social",
     "newcommunities@lemmy.world",
-    "wildfeed@sh.itjust.works",
     "world@lemmy.world",
     "youshouldknow@lemmy.world",
-    "youshouldknowfacts@sh.itjust.works"
    // "blogs@lemmy.ml",
    // "communitypromo@lemmy.ca",
    // "indonesia@lemmy.ml",
+   // "wildfeed@sh.itjust.works",
+   // "youshouldknowfacts@sh.itjust.works"
   ]
 };
 
