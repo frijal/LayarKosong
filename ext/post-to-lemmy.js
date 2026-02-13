@@ -1,3 +1,4 @@
+apakah script ini bisa berfungsi untuk beragam instance?
 import fs from "fs";
 
 /**
@@ -19,11 +20,11 @@ const CONFIG = {
     "shittyyoushouldknow@lemmy.world",
     "world@lemmy.world",
     "youshouldknow@lemmy.world"
-   // "blogs@lemmy.ml",
-   // "communitypromo@lemmy.ca",
-   // "indonesia@lemmy.ml",
-   // "wildfeed@sh.itjust.works",
-   // "youshouldknowfacts@sh.itjust.works"
+    // "blogs@lemmy.ml",
+    // "communitypromo@lemmy.ca",
+    // "indonesia@lemmy.ml",
+    // "wildfeed@sh.itjust.works",
+    // "youshouldknowfacts@sh.itjust.works"
   ]
 };
 
@@ -35,47 +36,46 @@ async function run() {
     process.exit(1);
   }
 
-  // 1. LOGIN (Cukup sekali ke instance utama)
-  console.log(`🔑 Mencoba login ke ${CONFIG.instanceUrl}...`);
+  // 1. LOGIN
   const loginRes = await fetch(`${CONFIG.instanceUrl}/api/v3/user/login`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "User-Agent": "LayarKosongBot/2.4 (+https://dalam.web.id)"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username_or_email: CONFIG.username, password: CONFIG.password })
   });
-
   const loginData = await loginRes.json();
   const jwt = loginData.jwt;
-  if (!jwt) throw new Error("Gagal login. Cek username/password atau status ban.");
-  console.log("✅ Login Berhasil!");
+  if (!jwt) throw new Error("Gagal login.");
 
   // 2. LOAD SEMUA ARTIKEL
+  const postedLog = fs.existsSync(CONFIG.databaseFile) ? fs.readFileSync(CONFIG.databaseFile, "utf8") : "";
   const rawData = JSON.parse(fs.readFileSync(CONFIG.articleFile, "utf8"));
   let allArticles = [];
 
   for (const [category, items] of Object.entries(rawData)) {
     const catSlug = slugify(category);
     for (const item of items) {
+      // SESUAIKAN DESTRUCTURING ARRAY DI SINI
       const [title, fileName, imageUrl, isoDate, description] = item;
+
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
+      const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
+
       allArticles.push({
         title,
-        url: `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`,
-        image: imageUrl,
+        url: fullUrl,
+        image: imageUrl, // Simpan URL gambar dari indeks [2]
         date: isoDate,
         desc: description
       });
     }
   }
+
   allArticles.sort((a, b) => b.date.localeCompare(a.date));
 
   // 3. PROSES POSTING
   let articlePointer = 0;
 
   for (const communityName of CONFIG.targetCommunities) {
-    const postedLog = fs.existsSync(CONFIG.databaseFile) ? fs.readFileSync(CONFIG.databaseFile, "utf8") : "";
     let successPosting = false;
 
     while (articlePointer < allArticles.length && !successPosting) {
@@ -88,55 +88,57 @@ async function run() {
       }
 
       try {
-        // Ambil ID Komunitas
         const commRes = await fetch(`${CONFIG.instanceUrl}/api/v3/community?name=${communityName}&auth=${jwt}`);
         const commData = await commRes.json();
         const communityId = commData.community_view?.community?.id;
 
         if (!communityId) {
-          console.error(`❌ Komunitas ${communityName} tidak ditemukan/tidak terfederasi.`);
+          console.error(`❌ Komunitas ${communityName} tidak ditemukan.`);
           break;
         }
 
-        console.log(`🚀 Mengirim "${target.title}" ke ${communityName}...`);
+        console.log(`🚀 [Antrean ${articlePointer}] Mengirim "${target.title}" ke ${communityName}...`);
 
         const postRes = await fetch(`${CONFIG.instanceUrl}/api/v3/post`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "User-Agent": "LayarKosongBot/2.4 (+https://dalam.web.id)"
-          },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwt}` },
           body: JSON.stringify({
             name: target.title,
             url: target.url,
             body: target.desc,
-            thumbnail_url: target.image,
+            thumbnail_url: target.image, // MASUKKAN URL GAMBAR KE SINI
             community_id: communityId,
             auth: jwt
           })
         });
 
         if (postRes.ok) {
+          // 1. Baca isi log yang sudah ada
           let currentLogs = fs.existsSync(CONFIG.databaseFile)
           ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(line => line.trim() !== "")
           : [];
-          currentLogs.push(logKey);
+
+          // 2. Tambahkan log baru dengan format: URL [Komunitas]
+          const newEntry = `${target.url} [${communityName}]`;
+          currentLogs.push(newEntry);
+
+          // 3. SORT secara Alphabetical
           currentLogs.sort();
+
+          // 4. Tulis ulang ke file (overwrite) agar urutannya tersimpan
           fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
 
           console.log(`✅ Berhasil di ${communityName}`);
           successPosting = true;
           articlePointer++;
-        } else {
+        }
+        else {
           const errData = await postRes.json();
           console.error(`❌ Gagal di ${communityName}:`, errData.error);
           break;
         }
 
-        // JEDA LEBIH LAMA: 30-60 detik secara acak agar tidak terbaca bot pattern
-        const randomDelay = Math.floor(Math.random() * (60000 - 30000 + 1) + 30000);
-        console.log(`☕ Istirahat dulu ${randomDelay/1000} detik...`);
-        await new Promise(r => setTimeout(r, randomDelay));
+        await new Promise(r => setTimeout(r, 3000));
 
       } catch (err) {
         console.error(`❌ Error di ${communityName}:`, err.message);
