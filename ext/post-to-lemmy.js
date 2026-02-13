@@ -14,6 +14,7 @@ const CONFIG = {
     "Independent_Media@lemmy.today",
     "blogspot@lemmy.world",
     "casualconversation@piefed.social",
+    "lemmyshitpost@lemmy.world",
     "newcommunities@lemmy.world",
     "shittyyoushouldknow@lemmy.world",
     "world@lemmy.world",
