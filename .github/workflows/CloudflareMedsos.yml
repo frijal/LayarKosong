@@ -153,13 +153,13 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: node ext/post-to-discord.js
 
-      - name: 🟡 7. Lemmy Post
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
-        continue-on-error: true
-        env:
-          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-        run: node ext/post-to-lemmy.js
+#      - name: 🟡 7. Lemmy Post
+#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
+#        continue-on-error: true
+#        env:
+#          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+#          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+#        run: node ext/post-to-lemmy.js
 
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
