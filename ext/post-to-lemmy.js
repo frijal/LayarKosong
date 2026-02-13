@@ -72,7 +72,7 @@ async function run() {
 
     while (articlePointer < allArticles.length && !successPosting) {
       const target = allArticles[articlePointer];
-      const logKey = `[${communityName}] ${target.url}`;
+      const logKey = `${target.url} [${communityName}]`;
 
       if (postedLog.includes(logKey)) {
         articlePointer++;
