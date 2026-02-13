@@ -7,7 +7,7 @@ const CONFIG = {
   articleFile: "artikel.json",
   databaseFile: "mini/posted-lemmy.txt",
   baseUrl: "https://dalam.web.id",
-  instanceUrl: "https://hexbear.net",
+  instanceUrl: "https://lemmy.world",
   username: process.env.LEMMY_USERNAME,
   password: process.env.LEMMY_PASSWORD,
   targetCommunities: [
