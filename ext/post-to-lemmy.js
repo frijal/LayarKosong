@@ -34,7 +34,7 @@ async function run() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "User-Agent": "LayarKosongBot/1.1 (+https://dalam.web.id)"
+      "User-Agent": "LayarKosongBot/2.4 (+https://dalam.web.id)"
     },
     body: JSON.stringify({ username_or_email: CONFIG.username, password: CONFIG.password })
   });
@@ -97,7 +97,7 @@ async function run() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "User-Agent": "LayarKosongBot/1.1 (+https://dalam.web.id)"
+            "User-Agent": "LayarKosongBot/2.4 (+https://dalam.web.id)"
           },
           body: JSON.stringify({
             name: target.title,
