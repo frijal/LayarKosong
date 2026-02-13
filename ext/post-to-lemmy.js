@@ -138,7 +138,7 @@ async function run() {
           break;
         }
 
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 6000));
 
       } catch (err) {
         console.error(`❌ Error di ${communityName}:`, err.message);
