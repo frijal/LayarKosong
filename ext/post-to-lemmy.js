@@ -107,6 +107,7 @@ async function run() {
             body: target.desc,
             thumbnail_url: target.image, // MASUKKAN URL GAMBAR KE SINI
             community_id: communityId,
+            language_id: 65, // <--- Bahasa Indonesia (ID: 65)
             auth: jwt
           })
         });
