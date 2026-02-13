@@ -3,9 +3,7 @@ name: 🚀 Filter & Direct Deploy to Cloudflare
 on:
   workflow_run:
     workflows: ["☢️ Build and Generate Site Files"]
-    types: [completed]
-  schedule:
-    - cron: '0 14 * * *'
+    types: [completed]  
   push:
     branches:
       - main  
