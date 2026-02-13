@@ -105,11 +105,26 @@ async function run() {
         });
 
         if (postRes.ok) {
-          fs.appendFileSync(CONFIG.databaseFile, logKey + "\n");
+          // 1. Baca isi log yang sudah ada
+          let currentLogs = fs.existsSync(CONFIG.databaseFile)
+          ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(line => line.trim() !== "")
+          : [];
+
+          // 2. Tambahkan log baru dengan format: URL [Komunitas]
+          const newEntry = `${target.url} [${communityName}]`;
+          currentLogs.push(newEntry);
+
+          // 3. SORT secara Alphabetical
+          currentLogs.sort();
+
+          // 4. Tulis ulang ke file (overwrite) agar urutannya tersimpan
+          fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
+
           console.log(`✅ Berhasil di ${communityName}`);
           successPosting = true;
           articlePointer++;
-        } else {
+        }
+        else {
           const errData = await postRes.json();
           console.error(`❌ Gagal di ${communityName}:`, errData.error);
           break;
