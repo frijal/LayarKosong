@@ -1,150 +1,143 @@
 import fs from "fs";
 
 /**
- * CONFIGURATION
- */
+ * CONFIGURATION
+ */
 const CONFIG = {
-  articleFile: "artikel.json",
-  databaseFile: "mini/posted-lemmy.txt",
-  baseUrl: "https://dalam.web.id",
-  username: process.env.LEMMY_USERNAME,
-  password: process.env.LEMMY_PASSWORD,
-  // Target komunitas dalam format 'nama@domain'
-  targetCommunities: [
-    "world@lemmy.world",
-    "indonesia@lemmy.ml",
-    "blogs@lemmy.ml",
-    "blogspot@lemmy.world",
-    "youshouldknow@lemmy.world",
-    "newcommunities@lemmy.world"
-  ]
+  articleFile: "artikel.json",
+  databaseFile: "mini/posted-lemmy.txt",
+  baseUrl: "https://dalam.web.id",
+  instanceUrl: "https://lemmy.world",
+  username: process.env.LEMMY_USERNAME,
+  password: process.env.LEMMY_PASSWORD,
+  targetCommunities: [
+    "world@lemmy.world",
+    "indonesia@lemmy.ml",
+    "blogs@lemmy.ml",
+    "blogspot@lemmy.world",
+"youshouldknow@lemmy.world",
+"newcommunities@lemmy.world"
+  ]
 };
 
 const slugify = (text) => text.toLowerCase().trim().replace(/\s+/g, '-');
 
 async function run() {
-  if (!CONFIG.username || !CONFIG.password) {
-    console.error("❌ Error: Username/Password belum diset di environment variables.");
-    process.exit(1);
-  }
+  if (!CONFIG.username || !CONFIG.password) {
+    console.error("❌ Error: Secrets belum diset.");
+    process.exit(1);
+  }
 
-  // 1. LOAD SEMUA ARTIKEL (Sama seperti sebelumnya)
-  if (!fs.existsSync(CONFIG.articleFile)) {
-    console.error("❌ File artikel.json tidak ditemukan!");
-    return;
-  }
+  // 1. LOGIN
+  const loginRes = await fetch(`${CONFIG.instanceUrl}/api/v3/user/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username_or_email: CONFIG.username, password: CONFIG.password })
+  });
+  const loginData = await loginRes.json();
+  const jwt = loginData.jwt;
+  if (!jwt) throw new Error("Gagal login.");
 
-  const rawData = JSON.parse(fs.readFileSync(CONFIG.articleFile, "utf8"));
-  let allArticles = [];
+  // 2. LOAD SEMUA ARTIKEL
+  const postedLog = fs.existsSync(CONFIG.databaseFile) ? fs.readFileSync(CONFIG.databaseFile, "utf8") : "";
+  const rawData = JSON.parse(fs.readFileSync(CONFIG.articleFile, "utf8"));
+  let allArticles = [];
 
-  for (const [category, items] of Object.entries(rawData)) {
-    const catSlug = slugify(category);
-    for (const item of items) {
-      const [title, fileName, imageUrl, isoDate, description] = item;
-      const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
-      allArticles.push({
-        title,
-        url: `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`,
-        image: imageUrl,
-        date: isoDate,
-        desc: description
-      });
-    }
-  }
-  allArticles.sort((a, b) => b.date.localeCompare(a.date));
+  for (const [category, items] of Object.entries(rawData)) {
+    const catSlug = slugify(category);
+    for (const item of items) {
+      // SESUAIKAN DESTRUCTURING ARRAY DI SINI
+      const [title, fileName, imageUrl, isoDate, description] = item;
 
-  // 2. PROSES POSTING PER KOMUNITAS
-  let articlePointer = 0;
+      const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
+      const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
-  for (const fullCommunityName of CONFIG.targetCommunities) {
-    // Pecah 'indonesia@lemmy.ml' jadi 'indonesia' dan 'https://lemmy.ml'
-    const [commName, instanceDomain] = fullCommunityName.split('@');
-    const instanceUrl = `https://${instanceDomain}`;
+      allArticles.push({
+        title,
+        url: fullUrl,
+        image: imageUrl, // Simpan URL gambar dari indeks [2]
+        date: isoDate,
+        desc: description
+      });
+    }
+  }
 
-    console.log(`\n--- 🌐 Berpindah ke Instance: ${instanceUrl} ---`);
+  allArticles.sort((a, b) => b.date.localeCompare(a.date));
 
-    try {
-      // STEP A: LOGIN KE INSTANCE TERKAIT
-      const loginRes = await fetch(`${instanceUrl}/api/v3/user/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username_or_email: CONFIG.username, password: CONFIG.password })
-      });
+  // 3. PROSES POSTING
+  let articlePointer = 0;
 
-      const loginData = await loginRes.json();
-      const jwt = loginData.jwt;
+  for (const communityName of CONFIG.targetCommunities) {
+    let successPosting = false;
 
-      if (!jwt) {
-        console.error(`❌ Gagal login ke ${instanceUrl}. Lewati instance ini.`);
-        continue;
-      }
+    while (articlePointer < allArticles.length && !successPosting) {
+      const target = allArticles[articlePointer];
+      const logKey = `${target.url} [${communityName}]`;
 
-      let successPosting = false;
+      if (postedLog.includes(logKey)) {
+        articlePointer++;
+        continue;
+      }
 
-      // STEP B: CARI ARTIKEL YANG BELUM DI-POST KE KOMUNITAS INI
-      while (articlePointer < allArticles.length && !successPosting) {
-        const target = allArticles[articlePointer];
-        const postedLog = fs.existsSync(CONFIG.databaseFile) ? fs.readFileSync(CONFIG.databaseFile, "utf8") : "";
-        const logKey = `${target.url} [${fullCommunityName}]`;
+      try {
+        const commRes = await fetch(`${CONFIG.instanceUrl}/api/v3/community?name=${communityName}&auth=${jwt}`);
+        const commData = await commRes.json();
+        const communityId = commData.community_view?.community?.id;
 
-        if (postedLog.includes(logKey)) {
-          articlePointer++;
-          continue;
-        }
+        if (!communityId) {
+          console.error(`❌ Komunitas ${communityName} tidak ditemukan.`);
+          break;
+        }
 
-        // STEP C: AMBIL COMMUNITY ID DI INSTANCE LOKAL
-        const commRes = await fetch(`${instanceUrl}/api/v3/community?name=${commName}&auth=${jwt}`);
-        const commData = await commRes.json();
-        const communityId = commData.community_view?.community?.id;
+        console.log(`🚀 [Antrean ${articlePointer}] Mengirim "${target.title}" ke ${communityName}...`);
 
-        if (!communityId) {
-          console.error(`❌ Komunitas ${commName} tidak ditemukan di ${instanceUrl}.`);
-          break; // Pindah ke target komunitas berikutnya
-        }
+        const postRes = await fetch(`${CONFIG.instanceUrl}/api/v3/post`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwt}` },
+          body: JSON.stringify({
+            name: target.title,
+            url: target.url,
+            body: target.desc,
+            thumbnail_url: target.image, // MASUKKAN URL GAMBAR KE SINI
+            community_id: communityId,
+            auth: jwt
+          })
+        });
 
-        console.log(`🚀 Mengirim "${target.title}" ke ${fullCommunityName}...`);
+        if (postRes.ok) {
+          // 1. Baca isi log yang sudah ada
+          let currentLogs = fs.existsSync(CONFIG.databaseFile)
+          ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(line => line.trim() !== "")
+          : [];
 
-        // STEP D: EKSEKUSI POSTING
-        const postRes = await fetch(`${instanceUrl}/api/v3/post`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: target.title,
-            url: target.url,
-            body: target.desc,
-            thumbnail_url: target.image,
-            community_id: communityId,
-            auth: jwt // Lemmy API lebih stabil jika auth ditaruh di body
-          })
-        });
+          // 2. Tambahkan log baru dengan format: URL [Komunitas]
+          const newEntry = `${target.url} [${communityName}]`;
+          currentLogs.push(newEntry);
 
-        if (postRes.ok) {
-          // UPDATE LOG
-          let currentLogs = fs.existsSync(CONFIG.databaseFile)
-          ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(l => l.trim() !== "")
-          : [];
+          // 3. SORT secara Alphabetical
+          currentLogs.sort();
 
-          currentLogs.push(logKey);
-          currentLogs.sort();
-          fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
+          // 4. Tulis ulang ke file (overwrite) agar urutannya tersimpan
+          fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
 
-          console.log(`✅ Berhasil di ${fullCommunityName}`);
-          successPosting = true;
-          articlePointer++;
-        } else {
-          const errData = await postRes.json();
-          console.error(`❌ Gagal di ${fullCommunityName}:`, errData.error || "Unknown Error");
-          break;
-        }
+          console.log(`✅ Berhasil di ${communityName}`);
+          successPosting = true;
+          articlePointer++;
+        }
+        else {
+          const errData = await postRes.json();
+          console.error(`❌ Gagal di ${communityName}:`, errData.error);
+          break;
+        }
 
-        // Jeda 10 detik biar gak dianggap spam brutal oleh admin instance
-        await new Promise(r => setTimeout(r, 10000));
-      }
-    } catch (err) {
-      console.error(`⚠️ Error fatal saat memproses ${fullCommunityName}:`, err.message);
-    }
-  }
-  console.log("\n✨ Semua antrean selesai diproses.");
+        await new Promise(r => setTimeout(r, 3000));
+
+      } catch (err) {
+        console.error(`❌ Error di ${communityName}:`, err.message);
+        break;
+      }
+    }
+  }
 }
 
 run();
