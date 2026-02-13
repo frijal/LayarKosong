@@ -100,14 +100,18 @@ async function run() {
 
     const postRes = await fetch(`${CONFIG.instanceUrl}/api/v3/post`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwt}` },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`,
+        "User-Agent": "LayarKosongBlogBot/1.4 (https://dalam.web.id)" // <-- Harus di dalam sini
+      }, // <-- Penutup headers
       body: JSON.stringify({
         name: target.title,
         url: target.url,
         body: target.desc,
         thumbnail_url: target.image,
         community_id: communityId,
-        language_id: 65, // Bahasa Indonesia
+        language_id: 65,
         auth: jwt
       })
     });
