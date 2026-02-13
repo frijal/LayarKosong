@@ -19,7 +19,8 @@ const CONFIG = {
     "youshouldknow@lemmy.world",
     "newcommunities@lemmy.world",
     "communitypromo@lemmy.ca",
-    "casualconversation@piefed.social"
+    "casualconversation@piefed.social",
+    "Independent_Media@lemmy.today"
   ]
 };
 
