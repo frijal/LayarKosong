@@ -99,8 +99,8 @@ async function run() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`,
-        "User-Agent": "LayarKosongBlogBot/1.4 (https://dalam.web.id)" // <-- Harus di dalam sini
+        "Authorization": `Bearer ${jwt}`
+    //    "User-Agent": "LayarKosongBlogBot/1.4 (https://dalam.web.id)" // <-- Harus di dalam sini
       }, // <-- Penutup headers
       body: JSON.stringify({
         name: target.title,
