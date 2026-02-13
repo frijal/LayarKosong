@@ -1,4 +1,3 @@
-apakah script ini bisa berfungsi untuk beragam instance?
 import fs from "fs";
 
 /**
