@@ -180,10 +180,7 @@ jobs:
       - name: ⚙️ B. Generate LLMs Index
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
         continue-on-error: true
-        run: |
-          if [ -f ext/generate_llms.py ]; then
-            python3 ext/generate_llms.py
-          fi
+        run: python3 ext/generate_llms.py
 
       - name: 🔵 C. Process Facebook (Data Prep)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
