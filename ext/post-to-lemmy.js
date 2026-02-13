@@ -11,18 +11,19 @@ const CONFIG = {
   username: process.env.LEMMY_USERNAME,
   password: process.env.LEMMY_PASSWORD,
   targetCommunities: [
-    "world@lemmy.world",
-    "fediverse@lemmy.world",
-   // "indonesia@lemmy.ml",
-   // "blogs@lemmy.ml",
-    "blogspot@lemmy.world",
-    "youshouldknow@lemmy.world",
-    "newcommunities@lemmy.world",
-    "communitypromo@lemmy.ca",
-    "casualconversation@piefed.social",
     "Independent_Media@lemmy.today",
+    "blogspot@lemmy.world",
+    "casualconversation@piefed.social",
+    "communitypromo@lemmy.ca",
+    "fediverse@lemmy.world",
+    "main@sh.itjust.works",
+    "newcommunities@lemmy.world",
     "wildfeed@sh.itjust.works",
-    "main@sh.itjust.works"
+    "world@lemmy.world",
+    "youshouldknow@lemmy.world",
+    "youshouldknowfacts@sh.itjust.works"
+   // "blogs@lemmy.ml",
+   // "indonesia@lemmy.ml",
   ]
 };
 
