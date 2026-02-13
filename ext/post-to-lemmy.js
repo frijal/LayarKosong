@@ -12,6 +12,7 @@ const CONFIG = {
   password: process.env.LEMMY_PASSWORD,
   targetCommunities: [
     "world@lemmy.world",
+    "fediverse@lemmy.world",
     "indonesia@lemmy.ml",
     "blogs@lemmy.ml",
     "blogspot@lemmy.world",
