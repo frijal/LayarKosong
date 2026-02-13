@@ -47,16 +47,14 @@ async function run() {
   for (const [category, items] of Object.entries(rawData)) {
     const catSlug = slugify(category);
     for (const item of items) {
-      // SESUAIKAN DESTRUCTURING ARRAY DI SINI
       const [title, fileName, imageUrl, isoDate, description] = item;
-
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
       allArticles.push({
         title,
         url: fullUrl,
-        image: imageUrl, // Simpan URL gambar dari indeks [2]
+        image: imageUrl,
         date: isoDate,
         desc: description
       });
@@ -65,80 +63,75 @@ async function run() {
 
   allArticles.sort((a, b) => b.date.localeCompare(a.date));
 
-  // 3. PROSES POSTING
-  let articlePointer = 0;
+  // 3. PROSES POSTING (LOGIKA NINJA: 1 POST PER RUN)
+  let selectedTask = null;
 
-  for (const communityName of CONFIG.targetCommunities) {
-    let successPosting = false;
+  // Acak komunitas supaya tidak selalu posting ke yang itu-itu saja tiap 4 jam
+  const shuffledCommunities = [...CONFIG.targetCommunities].sort(() => Math.random() - 0.5);
 
-    while (articlePointer < allArticles.length && !successPosting) {
-      const target = allArticles[articlePointer];
-      const logKey = `${target.url} [${communityName}]`;
+  for (const communityName of shuffledCommunities) {
+    // Cari artikel terbaru yang belum pernah diposting ke komunitas spesifik ini
+    const target = allArticles.find(art => !postedLog.includes(`${art.url} [${communityName}]`));
 
-      if (postedLog.includes(logKey)) {
-        articlePointer++;
-        continue;
-      }
-
-      try {
-        const commRes = await fetch(`${CONFIG.instanceUrl}/api/v3/community?name=${communityName}&auth=${jwt}`);
-        const commData = await commRes.json();
-        const communityId = commData.community_view?.community?.id;
-
-        if (!communityId) {
-          console.error(`❌ Komunitas ${communityName} tidak ditemukan.`);
-          break;
-        }
-
-        console.log(`🚀 [Antrean ${articlePointer}] Mengirim "${target.title}" ke ${communityName}...`);
-
-        const postRes = await fetch(`${CONFIG.instanceUrl}/api/v3/post`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwt}` },
-          body: JSON.stringify({
-            name: target.title,
-            url: target.url,
-            body: target.desc,
-            thumbnail_url: target.image, // MASUKKAN URL GAMBAR KE SINI
-            community_id: communityId,
-            language_id: 65, // <--- Bahasa Indonesia (ID: 65)
-            auth: jwt
-          })
-        });
-
-        if (postRes.ok) {
-          // 1. Baca isi log yang sudah ada
-          let currentLogs = fs.existsSync(CONFIG.databaseFile)
-          ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(line => line.trim() !== "")
-          : [];
-
-          // 2. Tambahkan log baru dengan format: URL [Komunitas]
-          const newEntry = `${target.url} [${communityName}]`;
-          currentLogs.push(newEntry);
-
-          // 3. SORT secara Alphabetical
-          currentLogs.sort();
-
-          // 4. Tulis ulang ke file (overwrite) agar urutannya tersimpan
-          fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
-
-          console.log(`✅ Berhasil di ${communityName}`);
-          successPosting = true;
-          articlePointer++;
-        }
-        else {
-          const errData = await postRes.json();
-          console.error(`❌ Gagal di ${communityName}:`, errData.error);
-          break;
-        }
-
-        await new Promise(r => setTimeout(r, 6000));
-
-      } catch (err) {
-        console.error(`❌ Error di ${communityName}:`, err.message);
-        break;
-      }
+    if (target) {
+      selectedTask = { target, communityName };
+      break;
     }
+  }
+
+  if (!selectedTask) {
+    console.log("✅ Semua artikel sudah terdistribusi merata. Tidak ada tugas sesi ini.");
+    return;
+  }
+
+  const { target, communityName } = selectedTask;
+
+  try {
+    const commRes = await fetch(`${CONFIG.instanceUrl}/api/v3/community?name=${communityName}&auth=${jwt}`);
+    const commData = await commRes.json();
+    const communityId = commData.community_view?.community?.id;
+
+    if (!communityId) {
+      console.error(`❌ Komunitas ${communityName} tidak ditemukan.`);
+      return;
+    }
+
+    console.log(`🚀 Sesi ini: Mengirim "${target.title}" ke ${communityName}...`);
+
+    const postRes = await fetch(`${CONFIG.instanceUrl}/api/v3/post`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${jwt}` },
+      body: JSON.stringify({
+        name: target.title,
+        url: target.url,
+        body: target.desc,
+        thumbnail_url: target.image,
+        community_id: communityId,
+        language_id: 65, // Bahasa Indonesia
+        auth: jwt
+      })
+    });
+
+    if (postRes.ok) {
+      const newEntry = `${target.url} [${communityName}]`;
+
+      // Update Log
+      let currentLogs = fs.existsSync(CONFIG.databaseFile)
+      ? fs.readFileSync(CONFIG.databaseFile, "utf8").split("\n").filter(line => line.trim() !== "")
+      : [];
+
+      currentLogs.push(newEntry);
+      currentLogs.sort();
+      fs.writeFileSync(CONFIG.databaseFile, currentLogs.join("\n") + "\n");
+
+      console.log(`✅ Berhasil diposting!`);
+    } else {
+      const errData = await postRes.json();
+      console.error(`❌ Gagal di ${communityName}:`, errData.error);
+    }
+
+  } catch (err) {
+    console.error(`❌ Error sistem:`, err.message);
   }
 }
 
