@@ -37,6 +37,9 @@ jobs:
           cache: 'pip'
     
       # ========== IMAGE CLEANUP ==========     
+      - name: 🕵️ Update Dashboard Jadwal
+        run: node ext/workflow-list.js
+      
       - name: 3. Scan Unused Images via Python
         id: python_scan
         run: |
@@ -180,8 +183,7 @@ jobs:
 
           echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
 
-      - name: 🕵️ Update Dashboard Jadwal
-        run: node ext/workflow-list.js
+      
 
       # ========== REPORT ROTATION ==========
       - name: 6. Rotasi Laporan Lama (Keep Last 7)
