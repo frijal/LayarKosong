@@ -114,27 +114,32 @@ async function fixSEO() {
 
     // --- 3. BERSIHKAN TAG LAMA ---
     $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-    $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"]').remove();
-    $('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').remove();
-    $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="article:"], meta[itemprop="image"]').remove();
-    $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"]').remove();
+    // Hapus link lama
+    $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"]').remove();
+    // Hapus deskripsi (semua variasi)
+    $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
+    // Hapus semua meta sosmed & meta khusus lainnya (menggunakan wildcard ^=)
+    // Kita hapus twitter: baik yang 'name' maupun 'property'
+    $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="twitter:"], meta[property^="article:"], meta[itemprop="image"]').remove();
+    // Hapus meta author, robot, dan brandings
+    $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
 
-    // --- 4. SUNTIK ULANG ---
+        // --- 4. SUNTIK ULANG ---
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
     head.append(`\n    <link rel="icon" href="/favicon.ico">`);
     head.append(`\n    <meta name="theme-color" content="#00b0ed">`);
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
+    head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
 
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
     head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
-    head.append(`\n    <meta property="og:type" content="article">`);
 
-    head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
     head.append(`\n    <meta name="description" content="${finalMetaDesc}">`);
     head.append(`\n    <meta property="og:description" content="${finalOgDesc}">`);
     head.append(`\n    <meta name="twitter:description" content="${finalTwitterDesc}">`);
+    head.append(`\n    <meta property="og:type" content="article">`);
 
     head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
@@ -145,7 +150,6 @@ async function fixSEO() {
     head.append(`\n    <meta property="article:author" content="https://facebook.com/frijal">`);
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage">`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384">`);
-    head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
 
     if (metaImgUrl) {
       head.append(`\n    <meta itemprop="image" content="${metaImgUrl}">`);
@@ -155,7 +159,7 @@ async function fixSEO() {
       head.append(`\n    <meta property="og:image:alt" content="${escapedTitle}">`);
       head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta property="og:image:width" content="1200">`);
-
+      head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
        }
 
     existingTags.forEach(tag => {
