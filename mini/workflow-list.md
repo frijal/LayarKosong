@@ -5,9 +5,9 @@
 | 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Penjelasan Waktu | 🔗 Link Alat |
 | :--- | :--- | :--- | :--- |
 | "🟢 Layar Kosong: Super Automation & MedSos" | `0 */4 * * *` | Setiap jam */4:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/4_*_*_*) |
-| Weekly Content Aggregation | `0 1 * * 2` | Setiap jam 01:00 (UTC), hari Selasa | [Crontab Guru](https://crontab.guru/#0_1_*_*_2) |
+| Weekly Content Aggregation | `0 1 * * 1` | Setiap jam 01:00 (UTC), hari Senin | [Crontab Guru](https://crontab.guru/#0_1_*_*_1) |
 | XCleanup Old GitHub Actions Cache | `0 0 */6 * *` | Setiap jam 00:00 (UTC), tanggal */6 | [Crontab Guru](https://crontab.guru/#0_0_*/6_*_*) |
-| 🔆 Pengecekan & Laporan Konten Harian | `0 8 * * *` | Setiap jam 08:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_8_*_*_*) |
+| 🔆 Pengecekan & Laporan Konten Harian | `0 11 * * *` | Setiap jam 11:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_11_*_*_*) |
 | 🚨 Major Dependency Upgrade (Scheduled & Manual) | `0 2 1 */3 *` | Setiap jam 02:00 (UTC), tanggal 1, bulan ke-*/3 | [Crontab Guru](https://crontab.guru/#0_2_1_*/3_*) |
 | Delete Cloudflare Preview Deployments | `0 */3 * * *` | Setiap jam */3:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/3_*_*_*) |
 | Token Auto Refresh LinkedIn | `0 0 */50 * *` | Setiap jam 00:00 (UTC), tanggal */50 | [Crontab Guru](https://crontab.guru/#0_0_*/50_*_*) |
