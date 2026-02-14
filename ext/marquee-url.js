@@ -248,8 +248,8 @@
     <a href="/sitemap/" title="Daftar Isi" class="btn-emoji">📄</a>
     <a href="/feed/" title="RSS Feed" class="btn-emoji">📡</a>
     ${total > 1 ? `
-      <a href="${getFullUrl(catInfo.list[nextI][1], allData)}" title="${catInfo.list[nextI][0]}" class="btn-emoji">⏩</a>
-      <a href="${getFullUrl(catInfo.list[prevI][1], allData)}" title="${catInfo.list[prevI][0]}" class="btn-emoji">⏪</a>
+      <a href="${getFullUrl(catInfo.list[prevI][1], allData)}" title="${catInfo.list[prevI][0]}" class="btn-emoji">⏩</a>
+      <a href="${getFullUrl(catInfo.list[nextI][1], allData)}" title="${catInfo.list[nextI][0]}" class="btn-emoji">⏪</a>
       ` : ''}
       </div>`;
 
