@@ -5,8 +5,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.33
-last_updated: 2026-02-13
+document_version: 15.34
+last_updated: 2026-02-14
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -36,8 +36,8 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 13 February 2026)
-> Menampilkan 1123 artikel yang berhasil diindeks dalam versi 15.33.
+## Index Artikel Terbaru (Updated: 14 February 2026)
+> Menampilkan 1123 artikel yang berhasil diindeks dalam versi 15.34.
 ## Gaya Hidup
 - [Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral](https://dalam.web.id/gaya-hidup/generasi-muda-krisis-adab-digital) : Mengapa generasi muda saat ini mengalami krisis adab digital? Simak analisis mendalam mengenai dampak budaya viral, peran keluarga, dan solusi mengembalikan etika di ruang siber.
 - [Mengenal Taktik DARVO: Deny, Attack, Reverse Victim and Offender](https://dalam.web.id/gaya-hidup/mengenal-taktik-darvo-denial-attack-reverse-victim-offender) : Apa itu DARVO? Taktik manipulatif klasik: menyangkal, menyerang, memutarbalikkan posisi korban-pelaku. Analisis 5W+1H lengkap, cara mengenali, dan dampaknya pada korban.
