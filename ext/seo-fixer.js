@@ -110,6 +110,16 @@ async function fixSEO() {
     $('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').remove();
     $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="article:"], meta[itemprop="image"]').remove();
     $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"]').remove();
+    
+        // 🔥 BLOK IMAGE YANG TADI KETINGGALAN (Dah Balik!)
+    if (metaImgUrl) {
+      head.append(`\n    <meta itemprop="image" content="${metaImgUrl}">`);
+      head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}">`);
+      head.append(`\n    <meta property="og:image" content="${metaImgUrl}">`);
+      head.append(`\n    <meta property="og:image:alt" content="${escapedTitle}">`);
+      head.append(`\n    <meta property="og:image:height" content="675">`);
+      head.append(`\n    <meta property="og:image:width" content="1200">`);
+    }
 
     // --- 4. SUNTIK ULANG ---
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
@@ -135,16 +145,6 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
     head.append(`\n    <meta property="og:type" content="article">`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
-
-    // 🔥 BLOK IMAGE YANG TADI KETINGGALAN (Dah Balik!)
-    if (metaImgUrl) {
-      head.append(`\n    <meta itemprop="image" content="${metaImgUrl}">`);
-      head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}">`);
-      head.append(`\n    <meta property="og:image" content="${metaImgUrl}">`);
-      head.append(`\n    <meta property="og:image:alt" content="${escapedTitle}">`);
-      head.append(`\n    <meta property="og:image:height" content="675">`);
-      head.append(`\n    <meta property="og:image:width" content="1200">`);
-    }
 
     existingTags.forEach(tag => {
       head.append(`\n    <meta property="article:tag" content="${tag}">`);
