@@ -125,21 +125,22 @@ async function fixSEO() {
     $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
 
         // --- 4. SUNTIK ULANG ---
+    head.append(`\n    <link rel="icon" href="/favicon.ico">`);
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
-    head.append(`\n    <link rel="icon" href="/favicon.ico">`);
+    head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
+    head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
+    head.append(`\n    <meta property="og:type" content="article">`);
+
     head.append(`\n    <meta name="theme-color" content="#00b0ed">`);
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
     head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
 
-    head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
-    head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
-
     head.append(`\n    <meta name="description" content="${finalMetaDesc}">`);
     head.append(`\n    <meta property="og:description" content="${finalOgDesc}">`);
     head.append(`\n    <meta name="twitter:description" content="${finalTwitterDesc}">`);
-    head.append(`\n    <meta property="og:type" content="article">`);
+
 
     head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
