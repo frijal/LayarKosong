@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.37
+document_version: 15.38
 last_updated: 2026-02-14
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,8 +37,13 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 14 February 2026)
-> Menampilkan 1124 artikel yang berhasil diindeks dalam versi 15.37.
+> Menampilkan 1135 artikel yang berhasil diindeks dalam versi 15.38.
 ## Gaya Hidup
+- [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
+- [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
+- [Manfaat Bangun Subuh dari Pandangan Kedokteran Modern, Rahasia Tubuh Bugar dan Otak Cemerlang](https://dalam.web.id/gaya-hidup/manfaat-bangun-subuh-kedokteran-modern) : Simak penjelasan medis tentang manfaat bangun subuh mulai dari ritme sirkadian hormon kortisol hingga kadar ozon yang sangat baik bagi kesehatan paru dan otak
+- [Rahasia Medis di Balik Sujud Keajaiban Neurologi yang Ditemukan Dr. Fidelma](https://dalam.web.id/gaya-hidup/rahasia-medis-di-balik-sujud) : Temukan bagaimana riset pakar neurologi Amerika Dr. Fidelma mengungkap manfaat sujud bagi aliran darah otak pencernaan dan postur tubuh manusia secara mendalam
+- [Mari Kita Jujur: Mengapa Kesehatan Rakyat Belum Jadi Prioritas Utama di Indonesia](https://dalam.web.id/gaya-hidup/pemerintah-tidak-peduli-kesehatan-rakyat) : Analisis kritis Dr Erta Priadi Wirawijaya SpJP mengenai sistem kesehatan Indonesia, triple burden disease, dan rendahnya anggaran kesehatan dibanding GDP
 - [Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral](https://dalam.web.id/gaya-hidup/generasi-muda-krisis-adab-digital) : Mengapa generasi muda saat ini mengalami krisis adab digital? Simak analisis mendalam mengenai dampak budaya viral, peran keluarga, dan solusi mengembalikan etika di ruang siber.
 - [Mengenal Taktik DARVO: Deny, Attack, Reverse Victim and Offender](https://dalam.web.id/gaya-hidup/mengenal-taktik-darvo-denial-attack-reverse-victim-offender) : Apa itu DARVO? Taktik manipulatif klasik: menyangkal, menyerang, memutarbalikkan posisi korban-pelaku. Analisis 5W+1H lengkap, cara mengenali, dan dampaknya pada korban.
 - [Surat Terbuka untuk Pemilik Pena Kebijakan Kesehatan Indonesia - Suara Rakyat yang Terlupakan](https://dalam.web.id/gaya-hidup/surat-terbuka-pemilik-pena-kebijakan-kesehatan) : Surat terbuka mendalam dari Delima Respek Peduli tentang dampak kebijakan non-aktifasi BPJS PBI massal terhadap pasien rentan di Indonesia. Analisis komprehensif dengan prinsip 5W+1H mengenai dampak kebijakan kesehatan terhadap masyarakat miskin dan sakit.
@@ -100,7 +105,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
-- [Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam](https://dalam.web.id/jejak-sejarah/kewajiban-presiden-menurut-islam) : tentang tugas presiden dan jajarannya dalam Islam. Dari urusan kesejahteraan rakyat hingga tanggung jawab di akhirat kelak.
+- [5 Gerakan Shalat yang Membantu Ketenangan Jiwa Rahasia Sehat Mental dalam Ibadah](https://dalam.web.id/jejak-sejarah/5-gerakan-shalat-ketenangan-jiwa) : Pelajari bagaimana gerakan shalat mulai dari Takbir hingga Salam secara medis dan psikologis mampu menenangkan jiwa mengurangi stres dan menyeimbangkan hormon
 - [Pandangan Kritis Muhammadiyah Terhadap Board of Peace](https://dalam.web.id/jejak-sejarah/pandangan-muhammadiyah-board-of-peace) : pandangan resmi Muhammadiyah terhadap Board of Peace (BoP) yang dibentuk PBB, implikasi bagi Indonesia, dan rekomendasi strategis berdasarkan prinsip keadilan dan kemerdekaan Palestina.
 - [Board of Peace vs Perjanjian Hudaibiyyah: Analisis Perbandingan Mendalam](https://dalam.web.id/jejak-sejarah/board-of-peace-trump-vs-perjanjian-hudaibiyyah) : Analisis kritis mengapa Board of Peace buatan Donald Trump tidak sama dengan Perjanjian Hudaibiyyah Rasulullah. Kajian perbandingan sejarah, politik, dan agama oleh Muhammad Ayyubi.
 - [Menara Masjid: Dulu Mata Iman Melihat Lapar Sekarang Simbol Kemewahan](https://dalam.web.id/jejak-sejarah/menara-masjid-fungsi-vs-gengsi) : Refleksi mendalam tentang pergeseran fungsi menara masjid. Dari kebutuhan fungsional dan sosial di masa lalu menjadi sekadar estetika dan gengsi di era modern.
@@ -591,7 +596,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Tradisi Tahlilan Kematian Antara Dzikir Agung dan Tekanan Sosial Masyarakat](https://dalam.web.id/opini-sosial/mengkritisi-tradisi-tahlilan-kematian) : Analisis kritis mengenai pergeseran tradisi tahlilan dari ibadah dzikir menjadi beban sosial. Mengapa keluarga berduka sering dicap pelit jika tidak mengadakan pesta kematian?
+- [Argo Senyap yang Tak Pernah Mati Paradoks Raksasa Setrum Negara PLN](https://dalam.web.id/opini-sosial/argo-senyap-paradoks-pln) : Mengupas tuntas skema Take or Pay dalam kontrak IPP yang membuat PLN merugi meskipun memonopoli listrik. tentang krisis finansial di balik terangnya lampu kota.
 - [Kenapa Nasi Kotak Tak Dipakai Untuk Melunasi Hutang Whoosh? Analisis Logika Ekonomi Rakyat](https://dalam.web.id/opini-sosial/kenapa-nasi-kotak-tak-dipakai-melunasi-hutang-whoosh) : Mengupas perdebatan anggaran Makan Bergizi Gratis 71 Triliun vs hutang Kereta Cepat Whoosh 1.2 Triliun per tahun. Kenapa pemerintah tidak melunasi hutang saja? Simak analisis mendalamnya di sini.
+- [Satu Anak Satu Lele Satu Dusta Satu Bintang Ironi Gizi di Negeri 1001 Janji](https://dalam.web.id/opini-sosial/satu-anak-satu-lele-satu-dusta-satu-bintang) : Mengupas kontradiksi program Makan Bergizi Gratis antara laporan fantastis pejabat dengan kenyataan pahit di lapangan yang hanya berisi kaldu rasa sapi
+- [Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam](https://dalam.web.id/opini-sosial/kewajiban-presiden-menurut-islam) : tentang tugas presiden dan jajarannya dalam Islam. Dari urusan kesejahteraan rakyat hingga tanggung jawab di akhirat kelak.
 - [Bahaya Tersembunyi Rekan Kerja Narsistik (NPD) bagi Organisasi dan Budaya Kerja](https://dalam.web.id/opini-sosial/bahaya-rekan-kerja-narsistik) : Mengapa merekrut rekan kerja dengan gangguan kepribadian narsistik (NPD) bisa menghancurkan bisnis Anda? Simak analisis mendalam tentang dampak ego di tempat kerja.
 - [Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect](https://dalam.web.id/opini-sosial/makan-bergizi-gratis-pilar-ekonomi-bantahan-telak) : The Architect membongkar kebohongan statistik program Makan Bergizi Gratis sebagai pilar ekonomi. 5 bantahan telak dari utang, impor, inflasi, hingga kanibalisme anggaran. Simak narasi lengkap 5W+1H.
 - [Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza](https://dalam.web.id/opini-sosial/kita-sadar-nggak-sih-jebakan-trump-prabowo-gaza) : di balik sanjungan Trump ke Prabowo. Bukan perdamaian, tapi jebakan psikologis. Tentara Indonesia dikirim jadi tameng hidup? Simak narasi 5W+1H lengkapnya.
@@ -968,6 +977,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Web Tool Generator - All in One](https://dalam.web.id/warta-tekno/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
+- [Mengulik Alat Sadap Canggih KPK Telinga Raksasa yang Membuat Koruptor Gemetar](https://dalam.web.id/warta-tekno/mengulik-alat-sadap-canggih-kpk) : Bedah tuntas teknologi penyadapan KPK mulai dari ATIS Jerman hingga Pegasus Israel. Mengapa pejabat sering kena OTT dan bagaimana sistem Lawful Interception bekerja.
 - [Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam](https://dalam.web.id/warta-tekno/mengintip-isi-folder-git-head-fetch) : Pelajari cara kerja Git lebih dalam dengan memahami file HEAD dan FETCH_HEAD. Panduan lengkap dengan prinsip 5W+1H untuk developer yang ingin jago Git.
 - [Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel](https://dalam.web.id/warta-tekno/akses-nextcloud-cloudflare-tunnel) : Tutorial cara menghubungkan Nextcloud ke internet menggunakan Cloudflare Tunnel dan domain gratis. Akses server rumah dengan aman tanpa port forwarding.
 - [Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar!](https://dalam.web.id/warta-tekno/self-hosting-debian-pemula) : Panduan memulai self-hosting di rumah menggunakan Debian. Cara instal Nextcloud, Docker, dan membangun server pribadi tanpa biaya langganan bulanan.
