@@ -47,8 +47,7 @@ async function minifyFiles(dir) {
       // 1. Siapkan signature duluan
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
-      const jam = d.toTimeString().slice(0, 5).replace(':', '_');
-      const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}_${jam}</noscript>`;
+      const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
       // 2. Proses Minify murni
       let minifiedHTML = await minify(originalHTML, {
