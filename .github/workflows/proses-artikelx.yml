@@ -40,14 +40,6 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Setup Perl environment
-        uses: shogo82148/actions-setup-perl@v1
-        with:
-          perl-version: '5.38'
-          install-modules-with: cpanm  # Opsional: kalau kamu butuh install module
-          enable-modules-cache: true   # Biar run berikutnya lebih ngebut
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Membantu proses rate limit API
-
       - name: Localize Assets
         run: |
           set -euo pipefail
