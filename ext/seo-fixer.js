@@ -81,7 +81,7 @@ async function fixSEO() {
     let rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
     let rawOgDesc = $('meta[property="og:description"], meta[name="og:description"]').attr('content') || '';
     let rawTwitterDesc = $('meta[property="twitter:description"], meta[name="twitter:description"]').attr('content') || '';
-    
+
     // B. Siapkan cadangan dari paragraf pertama
     const firstP = $('p').first().text().trim();
     const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
@@ -95,9 +95,10 @@ async function fixSEO() {
     let finalTwitterDesc = prepareDesc(rawTwitterDesc || bestMeta);
 
     // GAMBAR UNTUK META SOSMED
-    let metaImgUrl = $('meta[name="twitter:image"]').attr('content') ||
-      $('meta[property="og:image"]').attr('content') ||
-      $('img').first().attr('src') || '';
+    let metaImgUrl = $('meta[property="twitter:image"]').attr('content') ||
+    $('meta[name="twitter:image"]').attr('content') ||
+    $('meta[property="og:image"]').attr('content') ||
+    $('img').first().attr('src') || '';
 
     if (metaImgUrl && metaImgUrl.startsWith('http')) {
       const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
@@ -117,7 +118,7 @@ async function fixSEO() {
     $('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').remove();
     $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="article:"], meta[itemprop="image"]').remove();
     $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"]').remove();
-    
+
     // --- 4. SUNTIK ULANG ---
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
@@ -125,19 +126,19 @@ async function fixSEO() {
     head.append(`\n    <link rel="icon" href="/favicon.ico">`);
     head.append(`\n    <meta name="theme-color" content="#00b0ed">`);
     head.append(`\n    <meta name="robots" content="index, follow, max-image-preview:large">`);
-            
+
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
     head.append(`\n    <meta property="og:title" content="${escapedTitle}">`);
     head.append(`\n    <meta property="og:type" content="article">`);
-    
+
     head.append(`\n    <meta name="author" content="Fakhrul Rijal">`);
     head.append(`\n    <meta name="description" content="${finalMetaDesc}">`);
     head.append(`\n    <meta property="og:description" content="${finalOgDesc}">`);
-    head.append(`\n    <meta name="twitter:description" content="${finalTwitterDesc}">`);    
-  
+    head.append(`\n    <meta name="twitter:description" content="${finalTwitterDesc}">`);
+
     head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
-    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);    
+    head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
     head.append(`\n    <meta name="fediverse:creator" content="@frijal@mastodon.social">`);
     head.append(`\n    <meta name="googlebot" content="max-image-preview:large">`);
     head.append(`\n    <meta name="twitter:site" content="@responaja">`);
@@ -145,16 +146,18 @@ async function fixSEO() {
     head.append(`\n    <meta property="article:publisher" content="https://facebook.com/frijalpage">`);
     head.append(`\n    <meta property="fb:app_id" content="175216696195384">`);
     head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
-    
+
     if (metaImgUrl) {
       head.append(`\n    <meta itemprop="image" content="${metaImgUrl}">`);
       head.append(`\n    <meta name="twitter:image" content="${metaImgUrl}">`);
+      head.append(`\n    <meta property="twitter:image" content="${metaImgUrl}">`);
       head.append(`\n    <meta property="og:image" content="${metaImgUrl}">`);
       head.append(`\n    <meta property="og:image:alt" content="${escapedTitle}">`);
       head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta property="og:image:width" content="1200">`);
-    }
-    
+
+       }
+
     existingTags.forEach(tag => {
       head.append(`\n    <meta property="article:tag" content="${tag}">`);
     });
