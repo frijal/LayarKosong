@@ -42,6 +42,10 @@ def main():
             file_name = post[1].strip()
             file_slug = file_name.replace('.html', '').replace('/', '')
 
+# --- FILTER AGREGAT: Skip file rekap tahunan ---
+            if file_slug.startswith("agregat-20"):
+                continue
+
             # Format URL V6.9: https://dalam.web.id/kategori/slug/
             full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}"
 

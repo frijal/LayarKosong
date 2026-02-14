@@ -40,6 +40,10 @@ def main():
             file_name = post[1].strip()
             file_slug = file_name.replace('.html', '').replace('/', '')
 
+            # --- FILTER AGREGAT: Gunakan continue untuk skip ke artikel berikutnya ---
+            if file_slug.startswith("agregat-20"):
+                continue
+
             # Format URL V6.9
             full_url = f"{DOMAIN_URL}/{cat_slug}/{file_slug}"
 

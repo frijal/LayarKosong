@@ -44,6 +44,12 @@ async function run() {
     for (const item of items) {
       const [title, fileName, , isoDate, description] = item;
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
+
+      // --- FILTER AGREGAT: Skip file rekap, lanjut ke artikel reguler ---
+      if (fileSlug.startsWith("agregat-20")) {
+        continue; // Lompat ke artikel berikutnya
+      }
+
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
       if (!postedDatabase.includes(fileSlug)) {

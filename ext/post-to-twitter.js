@@ -25,6 +25,10 @@ async function postToTwitter() {
     const catSlug = slugify(cat);
     posts.forEach(p => {
       const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
+      // 2. Masukkan pengecekanmu di sini
+      if (fileSlug.startsWith("agregat-20")) {
+        return; // Skip artikel ini, lanjut ke artikel berikutnya
+      }
       const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
       if (!postedDatabase.includes(fileSlug)) {
         allPosts.push({ title: p[0], slug: fileSlug, url: fullUrl });

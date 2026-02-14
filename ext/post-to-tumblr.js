@@ -45,6 +45,11 @@ for (const [category, items] of Object.entries(raw)) {
   for (const item of items) {
     const fileSlug = item[1].replace('.html', '').replace(/^\//, '');
 
+    // Filter: Cek apakah ini file agregat?
+    if (fileSlug.startsWith("agregat-20")) {
+      continue; // <--- PAKAI CONTINUE, bukan return!
+    }
+
     // Perbaikan di sini: Pastikan variabelnya sama (catSlug)
     const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
 

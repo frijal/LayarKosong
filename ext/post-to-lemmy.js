@@ -44,6 +44,12 @@ async function run() {
     for (const item of items) {
       const [title, fileName, imageUrl, isoDate, description] = item;
       const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
+
+      // --- FILTER AGREGAT: Pakai continue karena ini loop for...of ---
+      if (fileSlug.startsWith("agregat-20")) {
+        continue; // Lewati rekap, lanjut ke artikel bermanfaat lainnya
+      }
+
       const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
       allArticles.push({

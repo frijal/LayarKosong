@@ -65,6 +65,11 @@ for (const [category, items] of Object.entries(raw)) {
 
     const fullUrl = `${BASE_URL}/${catSlug}/${fileSlug}`;
 
+    // 1. FILTER AGREGAT: Gunakan continue agar tetap lanjut ke item lain
+    if (fileSlug.startsWith("agregat-20")) {
+      continue;
+    }
+
     if (!postedDatabase.includes(fileSlug)) {
       articles.push({
         title,
