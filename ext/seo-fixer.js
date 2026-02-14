@@ -158,8 +158,8 @@ async function fixSEO() {
       head.append(`\n    <meta property="twitter:image" content="${metaImgUrl}">`);
       head.append(`\n    <meta property="og:image" content="${metaImgUrl}">`);
       head.append(`\n    <meta property="og:image:alt" content="${escapedTitle}">`);
-      head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta property="og:image:width" content="1200">`);
+      head.append(`\n    <meta property="og:image:height" content="675">`);
       head.append(`\n    <meta name="twitter:card" content="summary_large_image">`);
        }
 
