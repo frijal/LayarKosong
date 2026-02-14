@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.34
+document_version: 15.35
 last_updated: 2026-02-14
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 14 February 2026)
-> Menampilkan 1123 artikel yang berhasil diindeks dalam versi 15.34.
+> Menampilkan 1124 artikel yang berhasil diindeks dalam versi 15.35.
 ## Gaya Hidup
 - [Generasi Muda dan Krisis Adab Digital: Tantangan Karakter di Era Viral](https://dalam.web.id/gaya-hidup/generasi-muda-krisis-adab-digital) : Mengapa generasi muda saat ini mengalami krisis adab digital? Simak analisis mendalam mengenai dampak budaya viral, peran keluarga, dan solusi mengembalikan etika di ruang siber.
 - [Mengenal Taktik DARVO: Deny, Attack, Reverse Victim and Offender](https://dalam.web.id/gaya-hidup/mengenal-taktik-darvo-denial-attack-reverse-victim-offender) : Apa itu DARVO? Taktik manipulatif klasik: menyangkal, menyerang, memutarbalikkan posisi korban-pelaku. Analisis 5W+1H lengkap, cara mengenali, dan dampaknya pada korban.
@@ -591,6 +591,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Kenapa Nasi Kotak Tak Dipakai Untuk Melunasi Hutang Whoosh? Analisis Logika Ekonomi Rakyat](https://dalam.web.id/opini-sosial/kenapa-nasi-kotak-tak-dipakai-melunasi-hutang-whoosh) : Mengupas perdebatan anggaran Makan Bergizi Gratis 71 Triliun vs hutang Kereta Cepat Whoosh 1.2 Triliun per tahun. Kenapa pemerintah tidak melunasi hutang saja? Simak analisis mendalamnya di sini.
 - [Bahaya Tersembunyi Rekan Kerja Narsistik (NPD) bagi Organisasi dan Budaya Kerja](https://dalam.web.id/opini-sosial/bahaya-rekan-kerja-narsistik) : Mengapa merekrut rekan kerja dengan gangguan kepribadian narsistik (NPD) bisa menghancurkan bisnis Anda? Simak analisis mendalam tentang dampak ego di tempat kerja.
 - [Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect](https://dalam.web.id/opini-sosial/makan-bergizi-gratis-pilar-ekonomi-bantahan-telak) : The Architect membongkar kebohongan statistik program Makan Bergizi Gratis sebagai pilar ekonomi. 5 bantahan telak dari utang, impor, inflasi, hingga kanibalisme anggaran. Simak narasi lengkap 5W+1H.
 - [Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza](https://dalam.web.id/opini-sosial/kita-sadar-nggak-sih-jebakan-trump-prabowo-gaza) : di balik sanjungan Trump ke Prabowo. Bukan perdamaian, tapi jebakan psikologis. Tentara Indonesia dikirim jadi tameng hidup? Simak narasi 5W+1H lengkapnya.
