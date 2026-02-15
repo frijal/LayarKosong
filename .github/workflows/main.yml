@@ -1,11 +1,8 @@
 name: Perbaiki Urutan Script HTML
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '**/*.html'
+  workflow_dispatch:
+  
 
 jobs:
   fix-html-scripts:
