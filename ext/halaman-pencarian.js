@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         matches.forEach(m => {
             // V6.9 Clean URL: /{kategori}/{file}/
             const fileSlug = m.filename ? m.filename.replace('.html', '') : '#';
-            const finalUrl = `/${m.catSlug}/${fileSlug}/`;
+            const finalUrl = `/${m.catSlug}/${fileSlug}`;
 
             const date = m.dateISO ? new Date(m.dateISO).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 
