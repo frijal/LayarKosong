@@ -73,10 +73,31 @@ z-index: 1000;
     margin-right: 20px;
 }
 
-.header-icons-bar a {
-    color: var(--color-text-muted);
-    transition: color 0.2s ease;
+.header-icons-bar {
     display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 15px;
+}
+
+/* Berikan ukuran paksa pada SVG di dalam barisan ini */
+.header-icons-bar svg {
+    width: 20px;   /* Sesuaikan ukuran yang diinginkan */
+    height: 20px;
+    display: block; /* Menghilangkan gap spasi font */
+    fill: currentColor;   /* Mengikuti warna teks a */
+    stroke: currentColor; /* Jika ikonmu menggunakan garis (stroke) */
+}
+
+/* Pastikan tag <a> tidak mengecilkan SVG */
+.header-icons-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted); /* Pastikan variabel ini ada di :root */
+    transition: color 0.2s ease;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .header-icons-bar a:hover {
