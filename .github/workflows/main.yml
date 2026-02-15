@@ -1,0 +1,67 @@
+name: Perbaiki Urutan Script HTML
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.html'
+
+jobs:
+  fix-html-scripts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Jalankan Skrip Perbaikan
+        run: |
+          import os
+
+          # Konfigurasi teks sesuai permintaan
+          TEKS_LAMA = (
+              '<script defer="" src="/ext/marquee-url.js"></script>'
+              '<script defer="" src="/ext/iposbrowser.js"></script>'
+              '<script defer="" src="/ext/markdown.js"></script>'
+              '<script defer="" src="/ext/pesbukdiskus.js"></script>'
+          )
+
+          TEKS_BARU = (
+              '<script defer=defer src=/ext/markdown.js></script>'
+              '<script defer=defer src=/ext/marquee-url.js></script>'
+              '<script defer=defer src=/ext/pesbukdiskus.js></script>'
+              '<script defer=defer src=/ext/iposbrowser.js></script>'
+          )
+
+          count = 0
+          for root, dirs, files in os.walk('.'):
+              for file in files:
+                  if file.endswith(".html"):
+                      path_file = os.path.join(root, file)
+                      with open(path_file, 'r', encoding='utf-8') as f:
+                          konten = f.read()
+
+                      if TEKS_LAMA in konten:
+                          konten_baru = konten.replace(TEKS_LAMA, TEKS_BARU)
+                          with open(path_file, 'w', encoding='utf-8') as f:
+                              f.write(konten_baru)
+                          print(f"✅ Fixed: {path_file}")
+                          count += 1
+          print(f"Total {count} file diperbaiki.")
+        shell: python
+
+      - name: Commit dan Push Perubahan
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: perbaiki urutan dan format script HTML"
+          file_pattern: '**/*.html'
