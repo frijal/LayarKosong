@@ -97,9 +97,6 @@ const article = articles[0];
  ===================== */
 const hashtags = new Set();
 hashtags.add("#fediverse");
-hashtags.add("#Repost");
-hashtags.add("#Indonesia");
-hashtags.add(cleanHashtag(article.category));
 
 article.title
 .split(/\s+/)
