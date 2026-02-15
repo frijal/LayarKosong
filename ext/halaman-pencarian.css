@@ -65,7 +65,23 @@ z-index: 1000;
     height: 70px;
     gap: 1rem;
 }
+.header-icons-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* Mendorong barisan logo ke arah kanan */
+    margin-right: 20px;
+}
 
+.header-icons-bar a {
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+    display: flex;
+}
+
+.header-icons-bar a:hover {
+    color: var(--color-primary);
+}
 .brand-logo {
     font-size: 1.5rem;
     font-weight: 800;
@@ -183,7 +199,22 @@ mark {
     color: var(--color-text-muted);
     font-size: 0.85rem;
 }
+/* Kunci utama: Sembunyikan di versi HP */
+@media (max-width: 767px) {
+    .header-icons-bar {
+        display: none; /* Menghilangkan elemen dari tampilan */
+    }
 
+    /* Di HP, buat kolom pencarian lebih fleksibel */
+    .search-form-container {
+        max-width: none;
+        flex-grow: 1;
+    }
+
+    .brand-logo {
+        font-size: 1.2rem; /* Mengecilkan sedikit teks logo di HP */
+    }
+}
 /* Mobile Responsiveness */
 @media (max-width: 640px) {
     .search-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
