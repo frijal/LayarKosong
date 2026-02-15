@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.41
+document_version: 15.42
 last_updated: 2026-02-15
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 15 February 2026)
-> Menampilkan 1136 artikel yang berhasil diindeks dalam versi 15.41.
+> Menampilkan 1138 artikel yang berhasil diindeks dalam versi 15.42.
 ## Gaya Hidup
 - [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
 - [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
@@ -597,6 +597,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan Sampah Makanan](https://dalam.web.id/opini-sosial/sisi-gelap-makan-bergizi-gratis) : Mengupas tuntas program Makan Bergizi Gratis MBG dari sisi limbah makanan food waste dan inefisiensi dapur sentral. Simak analisis mendalam Indonesia Cerdas mengenai dampak lingkungan dan solusi efektifnya
+- [Cara Menghadapi Razia Saat Pajak Belum Dibayar Karena Hemat Nasional](https://dalam.web.id/opini-sosial/cara-menghadapi-razia-pajak-mati) : Panduan lengkap menghadapi razia polisi saat pajak kendaraan mati karena kondisi keuangan. Simak tips jujur dan pemahaman hukum 5W 1H di sini.
 - [Tradisi Tahlilan Kematian Antara Dzikir Agung dan Tekanan Sosial Masyarakat](https://dalam.web.id/opini-sosial/mengkritisi-tradisi-tahlilan-kematian) : Analisis kritis mengenai pergeseran tradisi tahlilan dari ibadah dzikir menjadi beban sosial. Mengapa keluarga berduka sering dicap pelit jika tidak mengadakan pesta kematian?
 - [Argo Senyap yang Tak Pernah Mati Paradoks Raksasa Setrum Negara PLN](https://dalam.web.id/opini-sosial/argo-senyap-paradoks-pln) : Mengupas tuntas skema Take or Pay dalam kontrak IPP yang membuat PLN merugi meskipun memonopoli listrik. tentang krisis finansial di balik terangnya lampu kota.
 - [Kenapa Nasi Kotak Tak Dipakai Untuk Melunasi Hutang Whoosh? Analisis Logika Ekonomi Rakyat](https://dalam.web.id/opini-sosial/kenapa-nasi-kotak-tak-dipakai-melunasi-hutang-whoosh) : Mengupas perdebatan anggaran Makan Bergizi Gratis 71 Triliun vs hutang Kereta Cepat Whoosh 1.2 Triliun per tahun. Kenapa pemerintah tidak melunasi hutang saja? Simak analisis mendalamnya di sini.
