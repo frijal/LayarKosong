@@ -69,7 +69,7 @@ def main():
         cat_raw = target_post['category']
 
         cat_hashtag = "#" + cat_raw.replace(" ", "").lower()
-        hashtags = f"#fediverse #Repost #Ngopi {cat_hashtag} #Indonesia"
+        hashtags = f"{cat_hashtag}"
 
         full_msg = f"{desc}\n\n{target_post['title']}\n\n{hashtags}\n\n{target_url}"
         encoded_msg = urllib.parse.quote(full_msg)
