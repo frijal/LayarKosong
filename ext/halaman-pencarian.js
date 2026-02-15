@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        resultsContainer.innerHTML = `<p class="text-muted">Menemukan ${matches.length} hasil.</p>`;
+        resultsContainer.innerHTML = `<p class="text-muted">ditemukan ${matches.length} judul artikel...</p>`;
 
         const grid = document.createElement('div');
         grid.className = 'search-grid';
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fileSlug = m.filename ? m.filename.replace('.html', '') : '#';
             const finalUrl = `/${m.catSlug}/${fileSlug}`;
 
-            const date = m.dateISO ? new Date(m.dateISO).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+            const date = m.dateISO ? new Date(m.dateISO).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
 
             const card = document.createElement('div');
             card.className = 'result-card';
@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
             <div style="margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--color-fallback-text);">
             <span>${date}</span>
-            <span style="font-weight: bold; color: var(--color-primary);">Baca Selengkapnya →</span>
             </div>
             </div>
             </a>
