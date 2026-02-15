@@ -3,7 +3,7 @@
  HEADER LOADER (ALL-IN-ONE)
  Skrip ini akan secara otomatis:
  1. Memuat semua dependensi CSS (Font, Ikon, header.css) ke <head>.
- 2. Memuat header.html ke dalam <div id="header-placeholder">.
+ 2. Memuat header-logo-atas.html ke dalam <div id="header-placeholder">.
  3. Menambahkan class 'header-dimuat' ke <body> untuk padding.
  =============================================================
 */
@@ -51,7 +51,7 @@ injectLink('/ext/header.css', 'stylesheet');
 // --- BAGIAN 2: INJEKSI HTML & CLASS BODY ---
 // (Ini menunggu DOM siap)
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Ambil file header.html
+  // 1. Ambil file header-logo-atas.html
   // Menggunakan root-relative path (/) untuk memastikan path selalu benar dari root domain
   fetch('/ext/header-logo-atas')
     .then((response) => {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (placeholder) {
         // Tampilkan pesan error di halaman agar mudah di-debug
         placeholder.innerHTML =
-          '<p style="color:red; text-align:center; padding: 2rem;">[Error: Gagal memuat header.] Pastikan file <b>/ext/header.html</b> ada dan bisa diakses.</p>';
+          '<p style="color:red; text-align:center; padding: 2rem;">[Error: Gagal memuat header.] Pastikan file <b>/ext/header-logo-atas.html</b> ada dan bisa diakses.</p>';
       }
     });
 });
