@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<!-- ===== Basic Meta ===== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memperbaiki GRUB Bootloader (Debian &amp; Turunannya)</title>
+<meta name="description" content="Panduan lengkap memperbaiki GRUB bootloader yang rusak pada Debian dan turunannya seperti Ubuntu dan Linux Mint, mulai dari live USB hingga reinstall GRUB dengan aman.">
+<meta name="news_keywords" content="GRUB, GRUB Bootloader, Debian, Ubuntu, Linux Mint, Bootloader Rusak, Perbaikan Linux, Dual Boot">
+<!-- ===== Icons ===== -->
+<link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
+<!-- ===== Open Graph ===== -->
+<!-- ===== Article Meta ===== -->
+<meta name="date" content="2025-09-27">
+<!-- ===== Twitter Card ===== -->
+<!-- ===== Structured Image Hint ===== -->
+<link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Memperbaiki GRUB Bootloader (Debian & Turunannya)","description":"Panduan lengkap memperbaiki GRUB bootloader yang rusak pada Debian dan turunannya seperti Ubuntu dan Linux Mint, mulai dari live USB hingga reinstall GRUB dengan aman.","articleSection":"Sistem Terbuka","keywords":"Debian, GRUB, bootloader, cara, debian, grub, layar kosong, memperbaiki, pada, rusak, sistem terbuka, turunannya","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2016-06-26T19:00:00.000+00:00","dateModified":"2016-06-26T19:00:00.000+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka"},{"@type":"ListItem","position":3,"name":"Memperbaiki GRUB Bootloader (Debian & Turunannya)","item":"https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya"}]}]}</script>
+<style>
+  :root {
+--accent: #d9534f;
+--bg: #f6f8fa;
+--card: #fff;
+--text: #222;
+--muted: #555;
+--success: #2e8b57;
+  }
+  * {
+box-sizing: border-box;
+  }
+  body {
+margin: 0;
+font-family: Inter, "Segoe UI", Tahoma, Verdana, sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.6;
+transition:
+  background 0.2s,
+  color 0.2s;
+  }
+  header {
+background: var(--accent);
+color: #fff;
+padding: 18px;
+text-align: center;
+  }
+  header h1 {
+margin: 0;
+font-size: 1.3rem;
+  }
+  header p {
+margin: 6px 0 0;
+opacity: 0.95;
+  }
+  main {
+max-width: 980px;
+margin: 20px auto;
+padding: 22px;
+background: var(--card);
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(20, 20, 40, 0.06);
+  }
+  h2 {
+color: var(--accent);
+margin-top: 0;
+  }
+  p {
+margin: 0.6rem 0;
+color: var(--muted);
+  }
+  ul {
+color: var(--muted);
+  }
+  pre {
+position: relative;
+border-radius: 8px;
+overflow: auto;
+margin: 14px 0;
+font-size: 0.95rem;
+background: #2d2d2d;
+  }
+  pre code {
+display: block;
+padding: 16px;
+color: #f8f8f2;
+  }
+  .copy-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+background: var(--accent);
+color: #fff;
+border: none;
+padding: 6px 10px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.85rem;
+  }
+  .note {
+background: #fff4f4;
+border-left: 4px solid var(--accent);
+padding: 10px;
+border-radius: 6px;
+color: var(--muted);
+  }
+  .tip {
+background: #f3fff4;
+border-left: 4px solid var(--success);
+padding: 10px;
+border-radius: 6px;
+color: var(--muted);
+  }
+  footer {
+margin-top: 18px;
+text-align: center;
+padding: 14px;
+color: #777;
+  }
+  body.dark {
+background: #0b0c0f;
+color: #e6e6e6;
+  }
+  body.dark main {
+background: #0f1114;
+  }
+  body.dark .note {
+background: #3b1d1d;
+color: #ffdeda;
+  }
+  body.dark .tip {
+background: #08321a;
+color: #cfeed9;
+  }
+  .toggle {
+position: fixed;
+bottom: 75%;
+right: 18px;
+background: var(--accent);
+color: #fff;
+border: none;
+padding: 10px 14px;
+border-radius: 999px;
+cursor: pointer;
+box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+font-size: 1rem;
+  }
+  @media (max-width: 600px) {
+header h1 {
+  font-size: 1.05rem;
+}
+  }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya">
+    <meta property="og:title" content="Memperbaiki GRUB Bootloader (Debian &amp; Turunannya)">
+    <meta property="og:description" content="Panduan lengkap memperbaiki GRUB bootloader yang rusak pada Debian dan turunannya seperti Ubuntu dan Linux Mint, mulai dari live USB hingga reinstall GRUB dengan aman.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp">
+    <meta property="og:image:alt" content="Memperbaiki GRUB Bootloader (Debian &amp; Turunannya)">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.webp">
+</head>
+  <body>
+<header>
+  <h1>Memperbaiki GRUB Bootloader (Debian &amp; Turunannya)</h1>
+<div id="iposbrowser"></div>
+  <p>
+Panduan step-by-step, mudah dipahami — termasuk metode chroot lewat Live
+USB (jika sistem tidak bisa boot)
+  </p>
+</header>
+<main>
+  <section>
+<h2>Pendahuluan singkat</h2>
+<p>
+  **GRUB** (GRand Unified Bootloader) adalah bootloader
+  yang umum dipakai di Debian, Ubuntu, Mint, dan turunannya. GRUB bisa
+  rusak/hilang setelah update kernel yang gagal, mengubah partisi,
+  instal ulang Windows, atau kesalahan pada konfigurasi disk. Panduan
+  ini menunjukkan cara memperbaikinya dengan aman.
+</p>
+<p class="note">
+  **Perhatian:** Sebelum mengubah bootloader, pastikan kamu
+  memahami partisi disk dan punya backup data penting. Salah memilih
+  device saat menjalankan `grub-install` dapat menyebabkan
+  sistem tidak boot.
+</p>
+  </section>
+  <section>
+<h2>Alur umum perbaikan (ringkas)</h2>
+<ol>
+  <li>
+Cek apakah sistem masih bisa boot.
+<ul>
+  <li>
+Jika ya → lakukan perbaikan langsung di sistem (metode A).
+  </li>
+</ul>
+  </li>
+  <li>
+Jika tidak bisa boot → pakai Live USB/Live CD dan chroot ke sistem
+terpasang (metode B).
+  </li>
+  <li>Tentukan apakah sistem memakai BIOS (Legacy) atau UEFI/GPT.</li>
+  <li>
+Jalankan `grub-install` lalu perbarui konfigurasi GRUB
+(`update-grub`).
+  </li>
+  <li>Reboot dan periksa hasilnya.</li>
+</ol>
+  </section>
+  <section>
+<h2>Metode A — Jika sistem masih bisa boot (perbaikan langsung)</h2>
+<p>
+  Jika kamu bisa masuk ke Debian/Ubuntu, jalankan perintah ini sesuai
+  jenis firmware:
+</p>
+<h3>1) Cek apakah sistem menggunakan UEFI atau BIOS</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># jika ada folder /sys/firmware/efi maka sistem boot via UEFI
+[ -d /sys/firmware/efi ] &amp;&amp; echo "UEFI" || echo "BIOS (legacy)"</code></pre>
+<h3>2) Perbaiki untuk BIOS (Legacy)</h3>
+<p>
+  Ganti `/dev/sdX` dengan device disk (bukan partisi), contoh
+  `/dev/sda` atau `/dev/nvme0n1`:
+</p>
+<pre><button class="copy-btn">Copy</button><code class="language-bash">sudo grub-install --recheck /dev/sdX
+sudo update-grub</code></pre>
+<h3>3) Perbaiki untuk UEFI</h3>
+<p>
+  Pastikan ESP (EFI System Partition) sudah ter-mount di
+  `/boot/efi`:
+</p>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># contoh mount (ubah /dev/sdXY sesuai partisi EFI)
+sudo mount /dev/sdXY /boot/efi
+# lalu instal GRUB untuk UEFI
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian --recheck
+sudo update-grub</code></pre>
+<p class="tip">
+  Jika distro kamu adalah Ubuntu, gunakan
+  <code>--bootloader-id=ubuntu</code> agar nama di firmware muncul
+  sesuai distro.
+</p>
+  </section>
+  <section>
+<h2>
+  Metode B — Jika sistem tidak bisa boot (gunakan Live USB + chroot)
+</h2>
+<p>
+  Gunakan Live USB Debian/Ubuntu (pilih arsitektur yang sama:
+  amd64/arm64...). Boot ke "Try" atau "Live" mode lalu buka terminal.
+  Berikut langkah lengkapnya.
+</p>
+<h3>1) Identifikasi partisi</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># lihat layout partisi
+lsblk -f
+# atau
+sudo fdisk -l</code></pre>
+<p>
+  Catat partisi root (mis. `/dev/sda2` atau
+  `/dev/nvme0n1p2`) dan partisi EFI (jika UEFI) biasanya
+  bertipe `vfat` (~100-500MB).
+</p>
+<h3>2) Mount root dan partisi penting</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># ganti /dev/sdXN dengan partisi rootmu
+sudo mount /dev/sdXN /mnt
+# jika ada /boot terpisah:
+sudo mount /dev/sdXY /mnt/boot
+# jika UEFI: mount EFI partition
+sudo mount /dev/sdXZ /mnt/boot/efi</code></pre>
+<h3>3) Mount virtual filesystems</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash">sudo mount --bind /dev /mnt/dev
+sudo mount --bind /dev/pts /mnt/dev/pts
+sudo mount -t proc /proc /mnt/proc
+sudo mount -t sysfs /sys /mnt/sys
+sudo mount --bind /run /mnt/run || true
+# Copy resolv.conf agar jaringan tersedia (jika perlu)
+sudo cp /etc/resolv.conf /mnt/etc/</code></pre>
+<h3>4) Masuk chroot</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash">sudo chroot /mnt /bin/bash
+# sekarang prompt adalah root di sistem yang terpasang</code></pre>
+<h3>5) Di dalam chroot: instal ulang GRUB</h3>
+<p>Di dalam chroot, jalankan langkah sesuai firmware:</p>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># Cek UEFI?
+[ -d /sys/firmware/efi ] &amp;&amp; echo "UEFI" || echo "BIOS"
+# Jika BIOS:
+grub-install --recheck /dev/sdX
+update-grub
+# Jika UEFI (pastikan /boot/efi ter-mount):
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian --recheck
+update-grub</code></pre>
+<h3>6) Keluar chroot dan unmount</h3>
+<pre><button class="copy-btn">Copy</button><code class="language-bash">exit
+sudo umount /mnt/dev/pts
+sudo umount /mnt/dev
+sudo umount /mnt/proc
+sudo umount /mnt/sys
+sudo umount /mnt/run || true
+sudo umount /mnt/boot/efi || true
+sudo umount /mnt/boot || true
+sudo umount /mnt</code></pre>
+<p>Setelah itu, reboot dan coba boot dari disk.</p>
+  </section>
+  <section>
+<h2>Kasus cepat di grub rescue (sementara)</h2>
+<p>
+  Jika kamu berada di prompt `grub rescue&gt;` dan perlu boot
+  sementara, langkah berikut kadang membantu (contoh sederhana):
+</p>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># contoh, asumsi /boot/grub ada di (hd0,msdos1)
+grub rescue&gt; set root=(hd0,msdos1)
+grub rescue&gt; set prefix=(hd0,msdos1)/boot/grub
+grub rescue&gt; insmod normal
+grub rescue&gt; normal</code></pre>
+<p class="note">
+  Ini hanya cara sementara untuk boot. Setelah masuk sistem, jalankan
+  metode A untuk memperbaiki GRUB secara permanen.
+</p>
+  </section>
+  <section>
+<h2>Masalah umum &amp; solusi singkat</h2>
+<ul>
+  <li>
+**GRUB masih tidak muncul / error:** Periksa apakah
+partisi yang dipilih untuk `grub-install` benar (disk,
+bukan partisi).
+  </li>
+  <li>
+**UEFI: firmware tidak menampilkan boot entry:**
+periksa dengan `efibootmgr -v` dan sesuaikan BootOrder.
+  </li>
+  <li>
+**Root LUKS / LVM:** jika terenkripsi, unlock LUKS dan
+mount LVM sebelum chroot. Contoh:
+`sudo cryptsetup luksOpen /dev/sdX cryptroot` lalu mount
+`/dev/mapper/cryptroot`.
+  </li>
+  <li>
+**Error update-grub:** pastikan paket
+`grub-pc` (BIOS) atau `grub-efi-amd64` (UEFI)
+terpasang.
+  </li>
+  <li>
+**Filesystem corrupt:** jalankan `fsck` pada
+partisi sebelum reinstall GRUB.
+  </li>
+</ul>
+  </section>
+  <section>
+<h2>Ringkasan tindakan cepat</h2>
+<ol>
+  <li>
+Coba boot; kalau bisa, jalankan `grub-install` dan
+`update-grub` di sistem (Metode A).
+  </li>
+  <li>
+Kalau tidak bisa boot, gunakan Live USB → chroot → reinstall GRUB
+(Metode B).
+  </li>
+  <li>
+Untuk UEFI pastikan EFI partition ter-mount di
+`/boot/efi`.
+  </li>
+  <li>
+Jika masih gagal, periksa partisi, LVM/LUKS, dan gunakan
+`efibootmgr` untuk boot order.
+  </li>
+</ol>
+<p class="tip">
+  Butuh bantuan lebih lanjut? Simpan output perintah penting (`lsblk -f`, `efibootmgr -v`, dan error dari
+  `grub-install`) — itu membantu diagnosa.
+</p>
+  </section>
+  <section>
+<h2>Contoh perintah (ringkas untuk copy)</h2>
+<pre><button class="copy-btn">Copy</button><code class="language-bash"># contoh (UEFI):
+sudo mount /dev/sdXZ /boot/efi
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian --recheck
+sudo update-grub
+# contoh (BIOS):
+sudo grub-install --recheck /dev/sdX
+sudo update-grub</code></pre>
+  </section>
+  <div style="margin-top: 18px; color: var(--muted); font-size: 10px">
+<span id="current-url" class="small-muted"></span>
+  </div>
+  <div style="margin-top: 18px">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+  </div>
+    </main>
+<button class="toggle" id="themeBtn">🌙</button>
+<footer>
+  🄯 2025 • Panduan Memperbaiki GRUB — Ikuti dengan hati-hati &amp;
+  cadangkan data penting
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/components/prism-bash.min.js" defer=""></script>
+<script>
+  document.querySelectorAll(".copy-btn").forEach((n) => {
+n.addEventListener("click", async () => {
+  var e = n.nextElementSibling;
+  if (e) {
+e = e.innerText;
+try {
+  await navigator.clipboard.writeText(e);
+  let t = n.textContent;
+  ((n.textContent = "Copied!"),
+setTimeout(() => (n.textContent = t), 1400));
+} catch (t) {
+  ((n.textContent = "Failed"),
+setTimeout(() => (n.textContent = "Copy"), 1400));
+}
+  }
+});
+  });
+  let themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", () => {
+document.body.classList.toggle("dark");
+var t = document.body.classList.contains("dark");
+themeBtn.textContent = t ? "☀️" : "🌙";
+  });
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-02-16</noscript>

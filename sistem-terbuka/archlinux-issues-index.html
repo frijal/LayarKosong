@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masalah Umum Arch Linux dan Cara Mengatasinya</title>
+<meta name="description" content="Kumpulan panduan lengkap untuk mengatasi berbagai masalah umum di Arch Linux dan turunannya seperti CachyOS, EndeavourOS, dan Garuda Linux.">
+<!-- 🔎 SEO Open Graph -->
+<!-- 🐦 Twitter Card -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/sistem-terbuka/archlinux-issues-index#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/sistem-terbuka/archlinux-issues-index"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Masalah Umum Arch Linux dan Cara Mengatasinya","description":"Kumpulan panduan lengkap untuk mengatasi berbagai masalah umum di Arch Linux dan turunannya seperti CachyOS, EndeavourOS, dan Garuda Linux.","articleSection":"Sistem Terbuka","keywords":"arch, archlinux, cara, index, issues, layar kosong, linux, masalah, mengatasinya, sistem terbuka, umum","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/archlinux-issues-index.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2025-10-13T21:14:35.966+00:00","dateModified":"2025-10-13T21:14:35.966+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/sistem-terbuka/archlinux-issues-index#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Sistem Terbuka","item":"https://dalam.web.id/sistem-terbuka"},{"@type":"ListItem","position":3,"name":"Masalah Umum Arch Linux dan Cara Mengatasinya","item":"https://dalam.web.id/sistem-terbuka/archlinux-issues-index"}]}]}</script>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f9f9f9;
+  --text: #222;
+  --accent: #1793d1;
+  --card: #fff;
+  --border: #ccc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eee;
+    --accent: #1793d1;
+    --card: #1e1e1e;
+    --border: #333;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+header img {
+  width: 80px;
+  height: 80px;
+}
+main {
+  max-width: 960px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+.article-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.article-card h3 {
+  margin-top: 0;
+}
+.article-card a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.article-card a:hover {
+  text-decoration: underline;
+}
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Kumpulan panduan lengkap untuk mengatasi berbagai masalah umum di Arch Linux dan turunannya seperti CachyOS, EndeavourOS, dan Garuda Linux.">
+<meta name="ai:prompt_hint" content="Kumpulan panduan lengkap untuk mengatasi berbagai masalah umum di Arch Linux dan turunannya seperti CachyOS, EndeavourOS, dan Garuda Linux.">
+    <link rel="canonical" href="https://dalam.web.id/sistem-terbuka/archlinux-issues-index">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/sistem-terbuka/archlinux-issues-index">
+    <meta property="og:title" content="Masalah Umum Arch Linux dan Cara Mengatasinya">
+    <meta property="og:description" content="Kumpulan panduan lengkap untuk mengatasi berbagai masalah umum di Arch Linux dan turunannya seperti CachyOS, EndeavourOS, dan Garuda Linux.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/archlinux-issues-index.webp">
+    <meta property="og:image:alt" content="Masalah Umum Arch Linux dan Cara Mengatasinya">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/archlinux-issues-index.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/archlinux-issues-index.webp">
+</head>
+<body>
+<header>
+  <img src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
+  <h1>🧩 Seri: Masalah Umum Arch Linux</h1>
+<div id="iposbrowser"></div>
+  <p>Kumpulan artikel panduan untuk mengatasi berbagai error umum di **Arch Linux** dan distro turunannya seperti *CachyOS*, *EndeavourOS*, dan *Garuda Linux*.</p>
+</header>
+<main>
+<section>
+  <div class="article-card">
+    <h3>🧠 [Peringatan “Local is Newer than Repo”](/artikel/fix-local-newer-archlinux)</h3>
+    <p>Menjelaskan arti pesan “local is newer” dan bagaimana cara aman mengabaikan atau menyinkronkan paket agar sesuai dengan repo resmi.</p>
+  </div>
+  <div class="article-card">
+    <h3>🔑 [Kesalahan “Key Expired” atau “Invalid Signature”](/artikel/fix-key-expired-archlinux)</h3>
+    <p>Solusi cepat memperbaiki error tanda tangan PGP yang kedaluwarsa atau rusak saat menjalankan `pacman -Syu`.</p>
+  </div>
+  <div class="article-card">
+    <h3>📦 [Error “Database is Locked”](/artikel/fix-database-is-locked)</h3>
+    <p>Langkah-langkah untuk membuka kunci database pacman yang terkunci karena update gagal atau sistem mati mendadak.</p>
+  </div>
+  <div class="article-card">
+    <h3>🧩 [Cannot Resolve Dependencies](/artikel/fix-cannot-resolve-dependencies)</h3>
+    <p>Cara memperbaiki konflik dependensi saat melakukan pembaruan atau pemasangan paket baru.</p>
+  </div>
+  <div class="article-card">
+    <h3>⚙️ [Peringatan Partial Upgrade](/artikel/fix-partial-upgrade-warning)</h3>
+    <p>Mengapa Arch Linux tidak menyarankan upgrade sebagian dan bagaimana menjaga sistemmu tetap sinkron sepenuhnya.</p>
+  </div>
+</section>
+<section>
+  <h2>💬 Diskusi &amp; Dukungan</h2>
+  <p>Kalau kamu mengalami masalah lain yang belum tercantum di sini, tinggalkan komentar di bawah atau kirimkan lewat halaman GitHub Issues kami.</p>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+<footer>
+  🄯 2025 dalam.web.id — Seri “Masalah Umum Arch Linux” · Dibuat dengan ❤
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
+<noscript>schema_oleh_Fakhrul_Rijal_2026-02-16</noscript>
