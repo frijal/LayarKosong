@@ -2,29 +2,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full</title>
-
     <meta name="description" content="Jangan panik saat partisi root Linux penuh! Pelajari cara diagnosa sistematis, perintah sudo df dan du, serta strategi pembersihan aman untuk server produksi.">
     <meta name="keywords" content="Linux, SysAdmin, Root Partition Full, Server Maintenance, Ubuntu, Debian, Centos, Perintah Linux, Cara Bersihkan Disk Server">
     <meta name="news_keywords" content="Linux Server, Disk Full Fix, SysAdmin Tips, Linux Command Line">
-    
-    
-
-    
-    
-    
     <meta property="og:description" content="Server macet gara-gara disk penuh? Ikuti langkah-langkah pro untuk menemukan biang kerok penggunaan disk tanpa merusak sistem.">
-    
-    
-
-    
-    
-    
     <meta name="twitter:description" content="Langkah sistematis diagnosa disk server Linux yang penuh. Temukan file besar dan bersihkan dengan aman.">
-    
-
-    
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --bg-color: #ffffff;
@@ -33,7 +16,6 @@
             --code-bg: #f4f4f4;
             --border-color: #ddd;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -43,7 +25,6 @@
                 --border-color: #333;
             }
         }
-
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
@@ -54,17 +35,13 @@
             display: flex;
             justify-content: center;
         }
-
         article {
             max-width: 1000px;
             width: 100%;
             padding: 40px 20px;
         }
-
         h1, h2, h3 { color: var(--accent-color); margin-top: 1.5em; }
-
         .meta-info { font-size: 0.9em; color: #888; margin-bottom: 20px; }
-
         pre {
             background: var(--code-bg);
             padding: 15px;
@@ -73,7 +50,6 @@
             border-left: 5px solid var(--accent-color);
             font-family: 'Courier New', Courier, monospace;
         }
-
         img {
             max-width: 100%;
             height: auto;
@@ -81,7 +57,6 @@
             margin: 20px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
         .alert-box {
             background: rgba(230, 57, 70, 0.1);
             border: 1px solid var(--accent-color);
@@ -89,10 +64,8 @@
             border-radius: 8px;
             margin: 20px 0;
         }
-
         ul, ol { margin-bottom: 20px; }
         li { margin-bottom: 10px; }
-
         footer {
             margin-top: 50px;
             padding: 30px 0;
@@ -100,23 +73,19 @@
             text-align: center;
             font-size: 0.9em;
         }
-
         .social-links a {
             margin: 0 10px;
             text-decoration: none;
             color: var(--text-color);
             font-size: 1.2em;
         }
-
         /* Optimization for Core Web Vitals */
         img { content-visibility: auto; }
-
         @media (max-width: 600px) {
             article { padding: 20px 15px; }
             h1 { font-size: 1.8em; }
         }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/linux-partition-full-fix">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -146,7 +115,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <article>
     <header>
         <h1>🚨 Linux Alert: / Partition 100% Full – Don’t Panic, Diagnose Smartly!</h1>
@@ -155,16 +123,13 @@
             <i class="fa fa-calendar"></i> 30 Januari 2026 | <i class="fa fa-user"></i> Fakhrul Rijal | <i class="fa fa-folder"></i> SysAdmin Tips
         </div>
     </header>
-
     <div class="alert-box">
         <strong><i class="fa fa-exclamation-triangle"></i> Gawat Darurat:</strong> Partisi root (/) yang penuh 100% pada server produksi bisa membuat layanan berhenti total — mulai dari masalah login SSH, aplikasi <i>crash</i>, kegagalan database, hingga masalah kernel yang serius.
     </div>
-
 <div style="text-align: center; display: block; margin: 15px auto;">
   <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z9BwbUAEcLtB.webp" alt="Ilustrasi Terminal Linux Disk Full Error" style="width: 100%; height: auto; border-radius: 20px;">
   <br><small style="color:#666; font-style:italic;">Ilustrasi Terminal Linux Disk Full Error</small>
 </div>
-
     <section id="introduction">
         <h2>Kenapa Ini Masalah Besar? (Why)</h2>
         <p>
@@ -174,43 +139,34 @@
             Banyak pemula yang langsung mengambil langkah drastis: <strong>rm -rf</strong> sembarangan. ❌ Jangan lakukan itu! Menghapus file tanpa diagnosa ibarat mengobati sakit perut dengan operasi jantung—nggak nyambung dan berisiko fatal.
         </p>
     </section>
-
     <hr>
-
     <section id="diagnosis">
         <h2>🔍 Strategi Diagnosa Langkah-demi-Langkah</h2>
         <p>Sebelum kita bersih-bersih, kita harus jadi detektif dulu. Di mana tepatnya sampah itu menumpuk? Gunakan prinsip 5W+1H untuk memahami anomali ini.</p>
-
         <h3>1. Cek Penggunaan Filesystem</h3>
         <p>Langkah pertama adalah konfirmasi. Apakah benar partisi root yang penuh? Atau jangan-jangan cuma partisi <code>/home</code>?</p>
         <pre>$ sudo df -Th</pre>
         <p>Perintah ini akan menampilkan daftar partisi, tipe filesystem, dan persentase penggunaan. Fokuslah pada baris yang memiliki <strong>Mounted on /</strong>.</p>
-
 <div style="text-align: center; display: block; margin: 15px auto;">
   <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z-PMbUAE3NTn.webp" alt="Output Command df -Th Linux" style="width: 100%; height: auto; border-radius: 20px;">
   <br><small style="color:#666; font-style:italic;">Output Command df -Th Linux</small>
 </div>
-
         <h3>2. Identifikasi Direktori Raksasa</h3>
         <p>Setelah tahu partisi mana yang penuh, saatnya mencari "pelaku" utamanya. Kita akan cek direktori mana yang paling rakus memakan ruang.</p>
         <pre>$ sudo du -sch /* | sort -rh | head -10</pre>
         <p>Perintah ini akan mengurutkan 10 direktori terbesar di root. Biasanya tersangka utamanya adalah <code>/var</code> atau <code>/home</code>.</p>
-
         <h3>3. Telusuri Area Masalah secara Spesifik</h3>
         <p>Misalnya kamu menemukan <code>/var</code> sangat besar, masuk lebih dalam lagi:</p>
         <pre>$ sudo du -ah /var | sort -rh | head -10</pre>
         <p>Seringkali di sini kamu akan menemukan log aplikasi yang "ngamuk" atau database yang membengkak tanpa kontrol.</p>
-
         <h3>4. Temukan File yang Baru Berubah</h3>
         <p>Kalau disk penuh secara mendadak dalam hitungan jam, kemungkinan besar ada log yang menulis jutaan baris per menit. Cari file yang ukurannya &gt;100MB yang berubah dalam 2 hari terakhir:</p>
         <pre>$ sudo find /var -type f -mtime -2 -size +100M</pre>
     </section>
-
 <div style="text-align: center; display: block; margin: 15px auto;">
   <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_6z_NSboAApgLV.webp" alt="Proses Investigasi File Besar di Linux" style="width: 100%; height: auto; border-radius: 20px;">
   <br><small style="color:#666; font-style:italic;">Proses Investigasi File Besar di Linux</small>
 </div>
-
     <section id="causes">
         <h2>⚠️ Penyebab Umum di Dunia Nyata</h2>
         <p>Berdasarkan pengalaman saya mengelola server di <i>Layar Kosong</i>, ada 5 penyebab klasik yang sering bikin pusing:</p>
@@ -222,7 +178,6 @@
             <li><strong>Uncontrolled Log Files:</strong> File log di <code>/var/log</code> yang tidak diputar (rotated) otomatis.</li>
         </ul>
     </section>
-
     <section id="best-practices">
         <h2>🧠 Best Practices di Server Produksi</h2>
         <p>Biar nggak kejadian lagi (atau minimal lebih siap), terapkan prinsip ini:</p>
@@ -234,9 +189,7 @@
             <li><strong>Separate Mount Points:</strong> Pisahkan <code>/var</code> dan <code>/home</code> ke partisi atau disk fisik yang berbeda.</li>
         </ol>
     </section>
-
     <hr>
-
     <section id="conclusion">
         <h2>Kesimpulan: Disk Penuh Bukanlah Kegagalan</h2>
         <p>
@@ -244,10 +197,8 @@
         </p>
         <p>Sekarang, coba cek server kamu masing-masing. siapa tau servernya malah mogok! 😅</p>
     </section>
-
     <div id="pesbukdiskus"></div>
     <div id="related-articles-grid"></div>
-
     <footer>
         <div class="social-links">
             <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -258,10 +209,7 @@
         <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. Made with <i class="fa fa-heart" style="color:red;"></i> in Balikpapan.</p>
     </footer>
 </article>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

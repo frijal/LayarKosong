@@ -38,9 +38,13 @@ async function minifyFiles(dir) {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // === CEK SIGNATURE (DALAM TAG NOSCRIPT) ===
-      if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
+  // === CEK SIGNATURE (DUAL MODE) ===
+      const hasSchemaSig = originalHTML.includes('schema_oleh_Fakhrul_Rijal');
+      const hasMinifySig = originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal');      
+
+      if (hasSchemaSig || hasMinifySig) {
         stats.skipped++;
+        console.log(`⏭️  Skipping: ${file} (Sudah ada signature)`); // Opsional untuk log
         continue;
       }
 

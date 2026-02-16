@@ -1,26 +1,8 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Web Tool Generator - All in One</title>
-
-
-
-
-
-
-
-
-
-
-
 <meta name="keywords" content="web tool generator, online tools, developer tools, all in one tools, generator gratis, Layar Kosong tools">
-
-
-
-
-
-
     <style>
         :root {
             --primary: #2563eb;
@@ -28,7 +10,6 @@
             --card: #ffffff;
             --text: #1e293b;
         }
-
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg);
@@ -38,7 +19,6 @@
             display: flex;
             justify-content: center;
         }
-
         .container {
             width: 100%;
             max-width: 800px;
@@ -47,7 +27,6 @@
             border-radius: 12px;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
-
         .tabs {
             display: flex;
             gap: 10px;
@@ -55,7 +34,6 @@
             border-bottom: 2px solid #e2e8f0;
             padding-bottom: 10px;
         }
-
         .tab-btn {
             padding: 10px 20px;
             border: none;
@@ -65,19 +43,15 @@
             color: #64748b;
             transition: 0.3s;
         }
-
         .tab-btn.active {
             color: var(--primary);
             border-bottom: 2px solid var(--primary);
             margin-bottom: -12px;
         }
-
         .tool-section { display: none; }
         .tool-section.active { display: block; }
-
         .tool-section { display: none; }
         .tool-section.active { display: block; }
-
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
         input, select, textarea {
@@ -88,17 +62,14 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-
         .row { display: flex; gap: 10px; }
         .row > div { flex: 1; }
-
         .output-container {
             margin-top: 20px;
             background: #f1f5f9;
             padding: 15px;
             border-radius: 8px;
         }
-
         textarea.output-box {
             background: #fff;
             color: #0f172a;
@@ -108,9 +79,7 @@
             border: 2px dashed #cbd5e1;
             transition: 0.3s;
         }
-
         textarea.output-box:hover { border-color: var(--primary); }
-
         .preview {
             margin-top: 15px;
             padding: 15px;
@@ -121,7 +90,6 @@
             background: white;
             overflow-x: auto;
         }
-
         .copy-hint {
             font-size: 0.75rem;
             color: var(--primary);
@@ -129,14 +97,11 @@
             margin-top: 5px;
             font-weight: bold;
         }
-
         figcaption { font-size: 0.9em; color: #64748b; margin-top: 5px; }
         img.preview-img { max-width: 100%; height: auto; border-radius: 4px; }
-
         /* List Preview Styling */
         .preview ul, .preview ol { margin-left: 20px; }
     </style>
-
     <link rel="icon" href="/favicon.ico">
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Layar Kosong">
@@ -169,7 +134,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta name="twitter:card" content="summary_large_image"></head>
 <body>
-
 <div class="container">
 <h1>Web Tool Generator - All in One<span><img src="https://dalam.web.id/favicon.svg" alt="Logo Layar Kosong" height="60" style="float: right; margin-right: 15px; margin-bottom: 10px;"></span></h1>
 <div id="iposbrowser"></div>
@@ -179,7 +143,6 @@
         <button class="tab-btn" onclick="openTab('img-gen')">Image Gen</button>
         <button class="tab-btn" onclick="openTab('li-gen')">List Gen</button>
     </div>
-
     <!-- 1. LINK GENERATOR -->
     <div id="link-gen" class="tool-section active">
         <h3>Link Generator</h3>
@@ -214,7 +177,6 @@
             <div class="copy-hint" id="l-hint"></div>
         </div>
     </div>
-
     <!-- 2. YOUTUBE THUMBNAIL -->
     <div id="yt-gen" class="tool-section">
         <h3>YouTube Thumbnail Downloader</h3>
@@ -229,7 +191,6 @@
             <div class="copy-hint" id="yt-hint"></div>
         </div>
     </div>
-
     <!-- 3. IMAGE CODE GENERATOR -->
     <div id="img-gen" class="tool-section">
         <h3>Image Code Generator</h3>
@@ -294,7 +255,6 @@
             <div class="copy-hint" id="i-hint"></div>
         </div>
     </div>
-
     <!-- 4. LIST GENERATOR -->
     <div id="li-gen" class="tool-section">
         <h3>List Generator (UL/OL)</h3>
@@ -331,7 +291,6 @@ Mangga" oninput="genList()"></textarea>
         </div>
     </div>
 </div>
-
 <script>
     function openTab(tabId) {
         document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
@@ -339,7 +298,6 @@ Mangga" oninput="genList()"></textarea>
         document.getElementById(tabId).classList.add('active');
         event.currentTarget.classList.add('active');
     }
-
     function copyText(el) {
         if (!el.value) return;
         el.select();
@@ -349,7 +307,6 @@ Mangga" oninput="genList()"></textarea>
         hint.innerText = "✓ Tersalin ke clipboard!";
         setTimeout(() => { hint.innerText = ""; }, 2000);
     }
-
     function genLink() {
         const url = document.getElementById('l-url').value || '#';
         const text = document.getElementById('l-text').value || 'Link';
@@ -358,7 +315,6 @@ Mangga" oninput="genList()"></textarea>
         let relAttr = rel !== 'none' ? ` rel="${rel}"` : '';
         document.getElementById('l-output').value = `<a href="${url}" target="${target}"${relAttr}>${text}</a>`;
     }
-
     function genYT() {
         const url = document.getElementById('yt-url').value;
         const output = document.getElementById('yt-output');
@@ -372,12 +328,10 @@ Mangga" oninput="genList()"></textarea>
             preview.innerHTML = `<img src="${thumbUrl}" class="preview-img">`;
             output.value = `<img src="${thumbUrl}" alt="YouTube Thumbnail">`;
         } else" {\n            preview.innerHTML = \"URL tidak valid\";\n            output.value = \"\";\n        }\n    "}
-
     function toggleCustomSize() {
         document.getElementById('custom-size-inputs').style.display = (document.getElementById('i-size').value === 'custom') ? 'flex' : 'none';
         genImg();
     }
-
     function genImg() {
         const url = document.getElementById('i-url').value || 'https://dalam.web.id/thumbnail.webp';
         const alt = document.getElementById('i-alt').value || 'Image';
@@ -386,11 +340,9 @@ Mangga" oninput="genList()"></textarea>
         const sizeMode = document.getElementById('i-size').value;
         let style = "";
         let attrs = "";
-
         if(align === 'center') style = "display: block; margin-left: auto; margin-right: auto;";
         else if(align === 'left') style = "float: left; margin-right: 15px; margin-bottom: 10px;";
         else if(align === 'right') style = "float: right; margin-left: 15px; margin-bottom: 10px;";
-
         if(sizeMode === '100%') attrs = ' width="100%"';
         else if(sizeMode === '300x200') attrs = ' width="300" height="200"';
         else if(sizeMode === 'custom') {
@@ -399,7 +351,6 @@ Mangga" oninput="genList()"></textarea>
             if(w) attrs += ` width="${w}"`;
             if(h) attrs += ` height="${h}"`;
         }
-
         let result = `<img src="${url}" alt="${alt}"${attrs}${style ? ` style="${style}"` : ''}>`;
         if(document.getElementById('i-linkable').value === 'yes') {
             result = `<a href="${url}" target="${document.getElementById('i-tab').value}">${result}</a>`;
@@ -411,41 +362,33 @@ Mangga" oninput="genList()"></textarea>
         document.getElementById('i-output').value = result;
         document.getElementById('i-preview').innerHTML = result;
     }
-
     // 4. LIST GENERATOR LOGIC
     function genList() {
         const input = document.getElementById('li-input').value;
         const type = document.getElementById('li-type').value;
         const output = document.getElementById('li-output');
         const preview = document.getElementById('li-preview');
-
         if (!input.trim()) {
             preview.innerHTML = "Preview list akan muncul di sini";
             output.value = "";
             return;
         }
-
         const items = input.split('\n').filter(item => item.trim() !== "");
         const listItemsHtml = items.map(item => `  <li>${item.trim()}</li>`).join('\n');
-
         let finalHtml = "";
         const [tag, val] = type.split('-');
-
         if (tag === 'ul') {
             const style = val !== 'disc' ? ` style="list-style-type: ${val};"` : '';
             finalHtml = `<ul${style}>\n${listItemsHtml}\n</ul>`;
         } else {
             finalHtml = `<ol type="${val}">\n${listItemsHtml}\n</ol>`;
         }
-
         output.value = finalHtml;
         preview.innerHTML = finalHtml;
     }
-
     // Initialize
     genLink();
 </script>
-
-
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/markdown.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

@@ -1,27 +1,14 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Frijal Reverse Converter — Konversi HTML ke Markdown Otomatis</title>
-
-
-
 <meta name="title" content="Frijal Reverse Converter — Konversi HTML ke Markdown Otomatis">
 <meta name="description" content="Alat konversi HTML ke Markdown yang cerdas. Membersihkan tag HTML menjadi format Markdown rapi tanpa merusak CSS atau ikon.">
 <meta name="keywords" content="HTML to Markdown, Reverse Converter, Frijal Tool, Layar Kosong, Clean Markdown, Web Developer Tools">
-
-
 <meta name="news_keywords" content="HTML, Markdown, Converter, Tools, Web Development, Frijal, Layar Kosong">
 <meta name="promphint" content="Gunakan alat ini untuk konversi otomatis HTML ke Markdown yang bersih dan terstruktur.">
-
-
-
-
 <meta property="og:description" content="Tempel HTML, ambil Markdown. Bersihkan artikel blogmu dalam hitungan detik dengan logika markdown-enhancer.js.">
 <meta property="og:description" content="Konversi HTML ke Markdown dengan cepat, aman, dan rapi untuk kebutuhan developer.">
-
-
-
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:site" content="@responaja">
 <meta property="twitter:creator" content="@responaja">
@@ -29,8 +16,6 @@
 <meta property="twitter:description" content="Script cerdas untuk konversi HTML ke Markdown tanpa ribet.">
 <meta property="twitter:description" content="Bersihkan source code artikel dari tag berlebihan dengan sekali klik.">
 <meta property="twitter:image" content="https://pbs.twimg.com/media/HAE9QCTbgAEbUm0.jpg">
-
-
 <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root { --bg: #f8fafc; --text: #1e293b; --accent: #1360e3; --border: #e2e8f0; }
@@ -44,7 +29,6 @@
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
         .hint { font-size: 0.85rem; opacity: 0.7; margin-top: 10px; text-align: center; }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/html-to-markdown-reverse-converter">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -74,12 +58,10 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <h1><i class="fa-solid fa-rotate"></i> Reverse Markdown Converter</h1>
 <div id="iposbrowser"></div>
     <p style="text-align:center">Panduan: Tempel HTML di kiri, ambil Markdown di kanan.</p>
-
     <div class="grid">
         <div class="box">
             <label>Raw HTML (Full Document)</label>
@@ -92,37 +74,29 @@
     </div>
     <div class="hint">Didesain khusus mengikuti logika **markdown-enhancer.js**</div>
 </div>
-
 <script>
 function doReverse() {
     let html = document.getElementById('inputHTML').value;
     if (!html) { document.getElementById('outputMD').value = ""; return; }
-
     let md = html
         // 1. Tebal (Strong & B) -> Hanya yang polos tanpa atribut
         // Jika ada <strong class="red"> tetap jadi HTML, jika <strong> polos jadi **
         .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
-
         // 2. Miring (Em & I) -> Hanya yang polos (Tanpa class/FontAwesome)
         // Regex ini memastikan tidak ada karakter lain (seperti class=) di dalam tag pembuka
         .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
-
         // 3. Link -> [text](url)
         // Kita hanya ambil link standar. Jika ada class di <a>, biarkan tetap HTML.
         .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
             // Jika tag <a> punya class atau id, biarkan jadi HTML murni
             return match.includes('class=') || match.includes('id=') ? match : `[${text}](${url})`;
         })
-
         // 4. Inline Code -> `text`
         .replace(/<code>(.*?)<\/code>/gi, '`$1`');
-
     document.getElementById('outputMD').value = md;
 }
 </script>
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

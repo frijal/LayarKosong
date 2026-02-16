@@ -2,33 +2,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Ambil Thumbnail YouTube dan Shorts High Resolution</title>
-
     <meta name="description" content="Cara paling santai dan gratis untuk mengambil thumbnail video YouTube serta YouTube Shorts dalam resolusi tinggi HD hingga 4K tanpa aplikasi tambahan.">
     <meta name="keywords" content="ambil thumbnail youtube, download cover youtube shorts, youtube thumbnail grabber, simpan gambar youtube hd">
     <meta name="news_keywords" content="tools kreator, optimasi youtube, cara ambil thumbnail, youtube shorts hd">
-    
-    
-    
-
-    
-    
-    
-    
     <meta property="og:description" content="Dapatkan gambar cover YouTube Shorts dan Video reguler kualitas terbaik langsung dari server Google secara instan dan gratis.">
-    
-    
-
-    
-    
-    
     <meta name="twitter:description" content="Alat praktis untuk mengambil thumbnail YouTube resolusi tinggi tanpa aplikasi. Support Shorts dan Video Biasa.">
-    
-
     <meta name="prompHint" content="Tools ini bekerja dengan mengekstrak ID video unik dari URL YouTube untuk memanggil aset gambar statis dari CDN Google.">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg: #f8fafc; --fg: #1e293b; --accent: #2e62ff; --card: #ffffff;
@@ -48,7 +29,6 @@
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; margin-bottom: 3rem; }
         header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-
         /* Main Card Design */
         .tool-section {
             background: var(--card); border: 1px solid var(--border);
@@ -69,9 +49,7 @@
         }
         button.secondary { background: var(--border); color: var(--fg); }
         button:hover { filter: brightness(1.1); }
-
         .status-area { margin-top: 1.5rem; font-weight: 600; min-height: 1.5rem; }
-
         /* Thumbnail Results */
         .result-grid {
             display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -85,19 +63,16 @@
         .thumb-card.is-shorts img { aspect-ratio: 9/16; }
         .thumb-body { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; gap: 0.8rem; }
         .thumb-body strong { font-size: 0.9rem; color: var(--muted); }
-
         /* Article Section */
         article { margin-top: 4rem; text-align: justify; }
         article h2 { font-size: 1.8rem; border-left: 5px solid var(--accent); padding-left: 1rem; margin: 2rem 0 1rem; }
         .featured-img { width: 100%; border-radius: 15px; margin: 2rem 0; }
-
         footer {
             margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border);
             text-align: center; color: var(--muted); font-size: 0.9rem;
         }
         a { color: var(--accent); text-decoration: none; }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/ambil-thumbnail-youtube-short">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -127,14 +102,12 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <h1><i class="fa-brands fa-youtube" style="color:#ff0000"></i> YouTube Thumbnail Grabber</h1>
 <div id="iposbrowser"></div>
         <p>Solusi cerdas ambil cover Video dan Shorts resolusi tinggi gratis ✨</p>
     </header>
-
     <main class="tool-section">
         <input type="url" id="input-url" placeholder="Tempel link YouTube atau Shorts di sini..." autocomplete="off">
         <div class="btn-group">
@@ -145,39 +118,29 @@
         <div id="status" class="status-area"></div>
         <div id="results" class="result-grid"></div>
     </main>
-
-
     <article>
         <h2>Apa Itu Thumbnail YouTube dan Mengapa Penting? (What dan Why)</h2>
         <p>
             Dalam dunia konten digital, thumbnail adalah pintu gerbang utama. **Apa (What)** sebenarnya fungsi teknisnya? Thumbnail merupakan gambar statis yang mewakili seluruh isi video. Secara psikologis, **Mengapa (Why)** kita membutuhkannya? Karena otak manusia memproses gambar 60.000 kali lebih cepat daripada teks. Thumbnail yang tajam meningkatkan peluang klik (CTR) secara signifikan. Alat ini hadir untuk membantu Anda mendapatkan aset visual tersebut tanpa harus melakukan screenshot yang seringkali menurunkan kualitas gambar.
         </p>
-
         <h2>Siapa yang Membutuhkan Alat Ini dan Di mana Menggunakannya? (Who dan Where)</h2>
         <p>
             **Siapa (Who)** saja bisa menggunakan layanan ini—mulai dari konten kreator, desainer grafis, hingga blogger profesional seperti tim di [Layar Kosong](https://dalam.web.id). Alat ini dirancang agar bisa diakses **Di mana (Where)** saja, baik melalui perangkat mobile Android/iOS maupun desktop. Berkat optimasi 1 kolom widescreen, tampilan tetap lega dan fokus pada konten utama.
         </p>
-
-
-
         <h2>Kapan dan Bagaimana Cara Kerjanya? (When dan How)</h2>
         <p>
             **Kapan (When)** Anda harus mengambil thumbnail? Biasanya saat Anda ingin menganalisis palet warna kompetitor atau memerlukan referensi desain. **Bagaimana (How)** sistem kami bekerja sangatlah sederhana namun teknis. Kami membedah URL yang Anda masukkan menggunakan *Regular Expression* (Regex) untuk menemukan 11 karakter unik Video ID. Setelah ID ditemukan, kami memanggil berbagai tingkatan kualitas dari CDN Google, termasuk format vertikal khusus untuk **YouTube Shorts**.
         </p>
-
         <h2>Standar E-E-A-T dalam Penggunaan Gambar</h2>
         <p>
             Sesuai prinsip **E-E-A-T** (Experience, Expertise, Authoritativeness, Trustworthiness), kami menyarankan Anda menggunakan alat ini dengan bijak. **Pengalaman** menunjukkan bahwa menghargai hak cipta kreator adalah kunci keberlanjutan digital. Gunakan thumbnail yang Anda unduh sebagai referensi atau di bawah payung hukum *Fair Use*. Sebagai pakar di bidangnya, kami memastikan **Keamanan** data Anda; tidak ada link yang disimpan di server kami, semua proses terjadi secara langsung di browser Anda (client-side).
         </p>
-
         <p>
             Selain itu, untuk optimasi **Core Web Vitals**, halaman ini telah diringkas sedemikian rupa agar memiliki skor LCP (Largest Contentful Paint) yang rendah dan meminimalisir pergeseran tata letak (CLS). Dengan desain yang bersih, navigasi menjadi lebih cepat dan responsif (INP).
         </p>
     </article>
-
     <div id="pesbukdiskus"></div>
     <div id="related-articles-grid"></div>
-
     <footer>
         <p>🄯 2026 [Layar Kosong](https://dalam.web.id) - Dibuat dengan ☕ oleh Fakhrul Rijal di Balikpapan.</p>
         <p style="margin-top:0.5rem">Tidak berafiliasi dengan YouTube atau Google.</p>
@@ -191,40 +154,32 @@
     const inputUrl = document.getElementById('input-url');
     const results = document.getElementById('results');
     const status = document.getElementById('status');
-
     // Regex yang lebih solid untuk tangkap ID Video/Shorts
     function getID(url) {
         const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
         const match = url.match(regex);
         return (match && match[1]) ? match[1] : null;
     }
-
     function buildCard(title, imgUrl, isShorts) {
         const card = document.createElement('div');
         // Tambahkan class is-shorts jika terdeteksi shorts agar CSS-nya jalan
         card.className = `thumb-card ${isShorts ? 'is-shorts' : ''}`;
-
         const img = document.createElement('img');
         img.src = imgUrl;
         img.alt = title;
         img.style.cursor = 'pointer';
         img.addEventListener('click', () => window.open(imgUrl, '_blank'));
-
         const body = document.createElement('div');
         body.className = 'thumb-body';
-
         const label = document.createElement('strong');
         label.textContent = title;
-
         const btnRow = document.createElement('div');
         btnRow.style.display = 'flex';
         btnRow.style.gap = '0.5rem';
-
         const bOpen = document.createElement('button');
         bOpen.innerHTML = '<i class="fa-solid fa-eye"></i> Lihat';
         bOpen.style.flex = '1';
         bOpen.addEventListener('click', () => window.open(imgUrl, '_blank'));
-
         const bCopy = document.createElement('button');
         bCopy.className = 'secondary';
         bCopy.innerHTML = '<i class="fa-solid fa-link"></i>';
@@ -237,34 +192,27 @@
                 alert('Gagal menyalin link.');
             }
         });
-
         btnRow.appendChild(bOpen);
         btnRow.appendChild(bCopy);
         body.appendChild(label);
         body.appendChild(btnRow);
         card.appendChild(img);
         card.appendChild(body);
-
         return card;
     }
-
     btnFetch.addEventListener('click', () => {
         const urlValue = inputUrl.value.trim();
         const id = getID(urlValue);
-
         if (!id) {
             status.textContent = '❌ Waduh, URL-nya nggak valid tuh. Coba cek lagi, Jal!';
             status.style.color = 'var(--bad)';
             return;
         }
-
         // Deteksi otomatis apakah link Shorts atau bukan
         const isShorts = urlValue.toLowerCase().includes('/shorts/');
-
         status.textContent = '⏳ Bentar ya, lagi narik gambar dari server...';
         status.style.color = 'var(--accent)';
         results.innerHTML = '';
-
         // Daftar kualitas thumbnail
         const assets = [
             { t: 'Kualitas Tertinggi (HD)', u: `https://img.youtube.com/vi/${id}/maxresdefault.jpg` },
@@ -272,20 +220,16 @@
             { t: 'Ukuran Sedang (HQ)', u: `https://img.youtube.com/vi/${id}/hqdefault.jpg` },
             { t: 'Ukuran Kecil (MQ)', u: `https://img.youtube.com/vi/${id}/mqdefault.jpg` }
         ];
-
         assets.forEach(asset => {
             results.appendChild(buildCard(asset.t, asset.u, isShorts));
         });
-
         status.textContent = '✅ Mantap! Udah muncul semua nih.';
         status.style.color = 'var(--success)';
     });
-
     btnDemo.addEventListener('click', () => {
         inputUrl.value = 'https://youtube.com/shorts/0nMgo2HOIVM?si=zXfWrCSaKE22BKfN';
         btnFetch.click();
     });
-
     btnClear.addEventListener('click', () => {
         inputUrl.value = '';
         results.innerHTML = '';
@@ -293,10 +237,7 @@
     });
 })();
 </script>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

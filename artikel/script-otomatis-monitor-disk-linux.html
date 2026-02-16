@@ -1,32 +1,13 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Otomatisasi Monitoring Disk Linux: Script Bash Anti-Panik 100% Full</title>
     <meta name="description" content="Jangan biarkan server mati mendadak! Pelajari cara membuat script otomatis untuk monitoring penggunaan disk Linux. Solusi cerdas pencegahan disk 100% full.">
     <meta name="news_keywords" content="Script Monitoring Disk, Bash Script Linux, Auto Alert Disk Full, Automation Linux, Sysadmin Balikpapan, Layar Kosong Tech">
-    
-    
     <meta name="prompt_hint" content="Panduan teknis otomasi server menggunakan Bash Script untuk menjaga kesehatan partisi root.">
-
-    
-    
     <meta property="og:description" content="Capek ngecek 'df -h' tiap jam? Pakai script ini aja! Otomatisasi monitoring disk biar nggak kaget pas partition root penuh.">
-    
-    
-    
-    
-
-    
-    
-    
     <meta name="twitter:description" content="Panduan bikin script Bash buat monitor disk space. Cocok buat sysadmin pemula maupun pro. Cek di Layar Kosong!">
-    
-
-    
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --bg-color: #ffffff;
@@ -36,7 +17,6 @@
             --code-text: #f8f8f2;
             --border-color: #eee;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -46,7 +26,6 @@
                 --border-color: #333;
             }
         }
-
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.8;
@@ -56,17 +35,14 @@
             color: var(--text-color);
             transition: background 0.3s ease;
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
-
         h1 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 20px; color: var(--accent-color); }
         h2 { font-size: 1.8rem; margin-top: 50px; border-bottom: 2px solid var(--accent-color); display: inline-block; }
         h3 { font-size: 1.4rem; margin-top: 30px; }
-
         .featured-image {
             width: 100%;
             height: auto;
@@ -76,7 +52,6 @@
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
         .script-container {
             background: var(--code-bg);
             color: var(--code-text);
@@ -89,7 +64,6 @@
             overflow-x: auto;
             border: 1px solid #444;
         }
-
         .highlight-box {
             background: rgba(46, 204, 113, 0.1);
             border-left: 5px solid var(--accent-color);
@@ -97,20 +71,17 @@
             margin: 30px 0;
             border-radius: 0 8px 8px 0;
         }
-
         .step-list {
             counter-reset: step-counter;
             list-style: none;
             padding: 0;
         }
-
         .step-list li {
             counter-increment: step-counter;
             margin-bottom: 20px;
             padding-left: 50px;
             position: relative;
         }
-
         .step-list li::before {
             content: counter(step-counter);
             position: absolute;
@@ -125,14 +96,12 @@
             line-height: 30px;
             font-weight: bold;
         }
-
         footer {
             margin-top: 80px;
             padding: 50px 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
-
         .social-links a {
             font-size: 1.5rem;
             margin: 0 15px;
@@ -140,15 +109,12 @@
             text-decoration: none;
             transition: 0.2s;
         }
-
         .social-links a:hover { color: var(--accent-color); }
-
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .container { padding: 15px; }
         }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/script-otomatis-monitor-disk-linux">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -178,7 +144,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <p style="text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; color: var(--accent-color);">Otomatisasi &amp; DevOps</p>
@@ -188,17 +153,12 @@
             <i class="fas fa-user-edit"></i> Ditulis oleh Fakhrul Rijal | <i class="fas fa-map-marker-alt"></i> Balikpapan, Indonesia
         </div>
     </header>
-
-
     <article>
         <p>Masih kebayang kan horornya partisi root (`/`) tiba-tiba 100% penuh? Nah, daripada kita capek-capek ngetik <code>df -h</code> tiap jam (kayak nungguin balasan chat dari gebetan), mending kita serahkan tugas membosankan ini ke si robot Bash.</p>
-
         <p>Dalam dunia administrasi server, ada prinsip emas: <em>"Anything that can be automated, should be automated."</em> Kenapa? Karena manusia itu tempatnya khilaf, kita bisa aja lupa cek server pas lagi asyik liburan di Pantai Manggar. Tapi script? Dia nggak kenal libur, nggak kenal kopi, dan nggak bakal protes kalau disuruh kerja tengah malam.</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nTwkIbUAAVVdE.webp" alt="Automated Disk Monitoring Linux Script" class="featured-image">
-
         <h2>Siapa yang Butuh Ini? ("Who")</h2>
         <p>Kalau kamu punya VPS murah, server kantor yang kritikal, atau bahkan cuma Raspberry Pi buat belajar di rumah, script ini wajib ada. Gak peduli kamu sysadmin pro atau baru belajar Linux kemarin sore, punya sistem peringatan dini (early warning system) bakal menyelamatkan kamu dari omelan bos atau <em>downtime</em> yang nggak perlu.</p>
-
         <h2>Mengapa Harus Script Otomatis? ("Why")</h2>
         <p>Monitoring otomatis bukan cuma soal gaya-gayaan. Ini soal efisiensi. Dengan script, kamu bisa:</p>
         <ul>
@@ -206,30 +166,22 @@
             <li><strong>Mendeteksi Lonjakan Data:</strong> Tiba-tiba ada log yang bengkak? Script bakal langsung tahu.</li>
             <li><strong>Tidur Lebih Nyenyak:</strong> Lo tahu kalau ada masalah, ponsel kamu bakal bunyi (lewat notifikasi Telegram/Email).</li>
         </ul>
-
         <h2>Ini Dia Script Sakti "Disk-Protector.sh" ("What")</h2>
         <p>Mari kita buat script sederhana tapi sangat berguna. Script ini akan mengecek penggunaan disk dan mengirimkan pesan jika sudah melampaui batas yang kita tentukan (misal 80%).</p>
-
         <div class="script-container">
 <pre><code>#!/bin/bash
-
 # --- KONFIGURASI ---
 THRESHOLD=80                    # Batas aman dalam persen (%)
 PARTITION="/"                   # Partisi yang mau dipantau
 EMAIL="admin@dalam.web.id"     # Ganti dengan email kamu
 HOSTNAME=$(hostname)
-
 # --- PROSES CEK DISK ---
 USAGE=$(df -h "$PARTITION" | awk 'NR==2 {print $5}' | sed 's/%//')
-
 if [ "$USAGE" -ge "$THRESHOLD" ]; then
     MESSAGE="WASPADA! Disk space pada $HOSTNAME partisi $PARTITION sudah mencapai $USAGE%."
-
     echo "$MESSAGE"
-
     # Kirim Email (Pastikan mailutils terinstall)
     # echo "$MESSAGE" | mail -s "Disk Alert: $HOSTNAME" $EMAIL
-
     # OPSIONAL: Notifikasi Telegram (Cukup un-comment dan isi bot token lo)
     # TOKEN="BOT_TOKEN_LO"
     # CHAT_ID="CHAT_ID_LO"
@@ -239,10 +191,8 @@ else
     echo "Aman bos! Disk usage masih $USAGE%."
 fi</code></pre>
         </div>
-
         <h2>Langkah-Langkah Instalasi ("How")</h2>
         <p>Gak usah bingung cara pakenya. Ikuti langkah langkah ala warga Balikpapan yang santai ini:</p>
-
         <ul class="step-list">
             <li>
                 <strong>Buat Filenya:</strong> Masuk ke server, ketik <code>nano disk-monitor.sh</code> dan paste kode di atas.
@@ -261,23 +211,17 @@ fi</code></pre>
                 *(Baris ini artinya: Script bakal jalan otomatis tiap jam).*
             </li>
         </ul>
-
         <div class="highlight-box">
             <strong>Tips Tambahan:</strong> Kalau kamu pake Docker, kamu bisa tambahkan perintah <code>docker system prune -f</code> di dalam blok <code>if</code> jika disk sudah 90% supaya sistem otomatis bersih-bersih sampah container lama. Smart, kan?
         </div>
-
         <h2>Dimana dan Kapan Harus Waspada? ("Where" &amp; "When")</h2>
         <p>Gunakan script ini di semua server Linux yang bersifat <em>public facing</em> atau <em>production</em>. Kapan? Secepatnya! Jangan nunggu besok. Masalah disk penuh itu kayak tagihan listrik, kalau dicuekin makin lama makin numpuk dan akhirnya bikin gelap total.</p>
-
         <h2>Kesimpulan: Jadilah Sysadmin yang Malas (Tapi Cerdas)</h2>
         <p>Sysadmin yang hebat bukan yang rajin ngetik perintah tiap menit, tapi yang rajin bikin sistem otomatis biar dia bisa "malas-malasan" sambil ngopi sementara servernya tetap sehat walafiat. Dengan script monitoring disk ini, kamu selangkah lebih dekat jadi penguasa server yang pro.</p>
-
         <p>Ada kendala pas pasang script-nya? Atau mau request script buat monitor RAM sekalian? Jangan lupa mampir ke artikel lainnya di <strong>Layar Kosong</strong>.</p>
 <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
-
     </article>
-
     <footer>
             <p>🄯 2026 <strong>Layar Kosong</strong> - Catatan Pinggir IT dari Balikpapan.</p>
         <div class="social-links">
@@ -289,10 +233,7 @@ fi</code></pre>
         </div>
     </footer>
 </div>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

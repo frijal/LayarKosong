@@ -1,36 +1,14 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Meta Data Dasar SEO & E-E-A-T -->
     <title>Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026</title>
-    
     <meta name="news_keywords" content="Windows lemot, diagnosa PC, perfmon report, cara mempercepat windows, performa komputer, sistem diagnostik windows, tutorial windows 11, optimasi PC">
     <meta name="promphint" content="Artikel edukasi mendalam mengenai penggunaan alat telemetri internal Windows untuk pemecahan masalah performa sistem secara profesional.">
-    
-    
-
     <!-- Open Graph / Facebook -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Twitter Card -->
-    
-    
-    
-    
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         /* CSS Tanpa JavaScript untuk Tema Terang/Gelap */
         :root {
@@ -43,7 +21,6 @@
             --footer-bg: #2c3e50;
             --footer-text: #ecf0f1;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -56,7 +33,6 @@
                 --footer-text: #bdc3c7;
             }
         }
-
         /* Layout Widescreen 1 Kolom & Responsif */
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -69,14 +45,12 @@
             flex-direction: column;
             align-items: center;
         }
-
         article {
             max-width: 1000px;
             width: 90%;
             padding: 40px 0;
             text-align: left;
         }
-
         /* Optimasi Core Web Vitals (LCP & CLS) */
         header img {
             width: 100%;
@@ -88,16 +62,12 @@
             object-fit: cover;
             display: block;
         }
-
         h1 { font-size: 2.8rem; color: var(--primary-color); line-height: 1.2; margin-bottom: 20px; }
         h2 { font-size: 2rem; color: var(--accent-color); margin-top: 50px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
         h3 { font-size: 1.5rem; margin-top: 30px; }
-
         p { margin-bottom: 25px; font-size: 1.15rem; text-align: justify; }
-
         .meta-info { font-size: 0.95rem; color: #7f8c8d; margin-bottom: 40px; }
         .meta-info i { margin-right: 8px; color: var(--primary-color); }
-
         .callout-box {
             background-color: var(--secondary-color);
             border-left: 6px solid var(--primary-color);
@@ -105,7 +75,6 @@
             border-radius: 8px;
             margin: 40px 0;
         }
-
         .step-list { list-style: none; padding: 0; }
         .step-list li {
             margin-bottom: 20px;
@@ -121,7 +90,6 @@
             color: var(--accent-color);
             margin-top: 5px;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -130,7 +98,6 @@
         }
         th, td { padding: 15px; border: 1px solid var(--border-color); text-align: left; }
         th { background-color: var(--primary-color); color: white; }
-
         footer {
             width: 100%;
             background-color: var(--footer-bg);
@@ -139,14 +106,12 @@
             text-align: center;
             margin-top: 10px;
         }
-
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2" { font-size: 1.6rem; }\n            article { width: 95%; }\n"            p { font-size: 1.05rem; }
         }
     </style>
-
     <link rel="icon" href="/favicon.ico">
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Layar Kosong">
@@ -184,7 +149,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
     <meta property="article:published_time" content="2026-02-16T10:00:00+07:00"></head>
 <body>
-
 <article>
     <header>
         <h1>Bongkar Rahasia PC Windows Lemot dalam 60 Detik: Panduan Lengkap Menggunakan Perfmon Report 🛠️💻</h1>
@@ -195,19 +159,16 @@
             <span><i class="fas fa-clock"></i> Waktu Baca: 15 Menit</span>
         </div>
     </header>
-
     <section id="pengantar">
         <p>Halo sobat Windows! 👋 Ketika kamu lagi asyik kerja atau main game, tiba-tiba komputer kamu kerasa berat banget? Mouse digerakin patah-patah, buka Chrome serasa nunggu antrean sembako, atau bahkan aplikasi sering <em>Not Responding</em>. Kamu buka Task Manager, tapi angkanya berubah-ubah terus dan kamu bingung mana yang sebenarnya jadi biang keroknya. 😫</p>
 <img src="https://dalam.web.id/img/pbs.twimg.com/media/HBQDgyhasAAro5I.webp" alt="Diagnosa Windows Perfmon Report 60 Detik" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
         <p>Tenang, sobat! Sebenarnya Windows punya satu "detektif rahasia" yang sudah tertanam di dalamnya sejak lama. Detektif ini nggak cuma ngasih tahu angka yang lewat sekilas, tapi dia bakal melakukan observasi mendalam selama satu menit penuh, memeriksa kesehatan jantung (CPU), paru-paru (RAM), hingga aliran darah (Disk) komputer kamu. Nama fiturnya adalah **Perfmon Report**. Dalam panduan santai ini, kita akan bedah tuntas gimana cara pakai fitur keren ini biar PC kamu ngebut lagi!</p>
     </section>
-
     <section id="what">
         <h2><i class="fas fa-search"></i> Apa Itu Perfmon Report? (What)</h2>
         <p>Secara teknis, **Perfmon** adalah singkatan dari <em>Performance Monitor</em>. Ini adalah alat telemetri kelas profesional yang biasanya dipakai oleh para ahli sistem administrator untuk memantau server. Tapi, Microsoft berbaik hati memberikan mode "instan" buat kita pengguna biasa.</p>
         <p>Berbeda dengan Task Manager yang cuma kasih liat data <em>real-time</em> (detik ini juga), Perfmon Report akan merekam aktivitas sistem kamu selama **60 detik tepat**. Kenapa 60 detik? Karena seringkali masalah performa itu nggak muncul terus-menerus, tapi dalam bentuk "lonjakan" atau pola tertentu. Dalam satu menit itu, Windows bakal mengecek ratusan sensor hardware, status driver, hingga konfigurasi software kamu, lalu merangkumnya dalam laporan berwarna (Hijau, Kuning, Merah) yang sangat mudah dibaca.</p>
     </section>
-
     <section id="why">
         <h2><i class="fas fa-question-circle"></i> Mengapa Kamu Harus Pakai Alat Ini? (Why)</h2>
         <p>Banyak orang langsung mikir buat instal ulang Windows atau beli RAM baru pas komputer lemot. Padahal, bisa jadi kendalanya cuma sepele, seperti driver yang korup atau antivirus yang lagi "ngamuk" di latar belakang. **Perfmon Report** memberikan kamu fakta, bukan tebakan.</p>
@@ -215,7 +176,6 @@
             <p><strong>Kenapa ini lebih baik dari Task Manager?</strong> Task Manager itu kayak liat foto, sementara Perfmon Report itu kayak liat hasil rekaman CCTV selama satu menit plus hasil diagnosis dokter spesialis. Kamu bakal tahu kalau disk kamu lemot bukan karena rusak, tapi karena ada proses "Search Indexing" yang lagi kerja berlebihan, misalnya.</p>
         </div>
     </section>
-
     <section id="how-to">
         <h2><i class="fas fa-laptop-code"></i> Bagaimana Cara Menjalankannya? (How)</h2>
         <p>Nggak perlu instal aplikasi tambahan yang malah bikin PC makin berat! Ikuti langkah mudah ini:</p>
@@ -250,24 +210,18 @@
             </li>
         </ul>
     </section>
-
     <section id="reading-report">
         <h2><i class="fas fa-book-open"></i> Cara Membaca Hasil Diagnosa: Apa Artinya?</h2>
         <p>Begitu laporan muncul, jangan pusing liat banyak angka! Fokus pada bagian-bagian krusial ini:</p>
-
         <h3>1. Ringkasan Diagnosa (Diagnostic Results)</h3>
         <p>Ini adalah bagian terpenting. Jika kamu melihat simbol **Merah (Error)** atau **Kuning (Warning)**, klik pada bagian tersebut. Windows bakal jelasin dengan bahasa manusia apa kendalanya. Contohnya: *"Disk queue is high"* atau *"Memory pressure is extreme"*. Mereka bahkan sering kasih link cara benerinnya lho!</p>
-
         <h3>2. Bagian CPU (Prosesor)</h3>
         <p>Cek apakah ada proses yang memakan CPU lebih dari 80% secara konsisten. Jika ada, itulah yang bikin PC kamu kerasa lambat. Perhatikan juga bagian <em>Interrupts</em>; kalau angkanya tinggi, biasanya ada masalah pada hardware atau driver yang nggak cocok.</p>
-
         <h3>3. Bagian Memory (RAM)</h3>
         <p>Windows bakal ngasih tau kalau RAM kamu kurang. Jika penggunaan <em>Page File</em> sangat tinggi, itu tandanya RAM fisik kamu sudah penuh dan Windows terpaksa pakai harddisk buat simpan data sementara—ini yang bikin lemot parah!</p>
-
         <h3>4. Bagian Disk (Penyimpanan)</h3>
         <p>Ini biang kerok nomor satu di PC lama. Cek bagian **Average Disk Queue Length**. Kalau angkanya di atas 2 secara terus menerus, berarti harddisk/SSD kamu kewalahan melayani permintaan data. Waktunya ganti ke SSD kalau kamu masih pakai HDD lama!</p>
     </section>
-
     <section id="real-world-fix">
         <h2><i class="fas fa-magic"></i> 6 Langkah Praktis Memperbaiki PC Sesuai Laporannya</h2>
         <p>Setelah kamu tahu kendalanya dari Perfmon, saatnya eksekusi! Berikut tabel solusinya:</p>
@@ -313,36 +267,27 @@
             </tbody>
         </table>
     </section>
-
     <section id="expert-tips">
         <h2><i class="fas fa-user-shield"></i> Tips Lanjutan: Mengapa E-E-A-T itu Penting?</h2>
         <p>Sebagai panduan yang berlandaskan prinsip **Expertise (Keahlian)** dan **Trustworthiness (Kepercayaan)**, aku ingin ingatkan: Perfmon Report adalah data objektif. Namun, jangan telan mentah-mentah satu hasil saja. Kadang, PC lemot saat diagnosa karena memang ada <em>Windows Update</em> yang lagi jalan di latar belakang. Lakukan diagnosa ini setidaknya dua kali dalam kondisi yang berbeda untuk mendapatkan gambaran yang akurat.</p>
         <p>Jika Perfmon bilang "No Issues Detected" tapi PC tetap lemot, mungkin kendalanya ada di **browser extensions** kamu atau serangan malware halus. Selalu pastikan Windows kamu asli dan rutin di-update!</p>
     </section>
-
     <section id="penutup">
         <h2><i class="fas fa-check-circle"></i> Kesimpulan: Data Lebih Baik daripada Tebakan</h2>
         <p>Sobat, jangan biarkan rasa frustasi membuat kamu buru-buru beli hardware baru. Gunakan `perfmon report` sebagai langkah pertama setiap kali PC kerasa lambat. Hanya butuh satu menit, dan kamu bakal punya data valid buat benerin kendalanya. Ingat, PC yang sehat bikin mood kerja dan main jadi jauh lebih baik! 😊</p>
     </section>
-
     <h3><i class="fas fa-comments"></i> Apa Hasil Report Kamu?</h3>
         <p>Coba jalankan sekarang, dan kasih tahu di kolom komentar kalau kamu bingung baca hasilnya. Kita diskusikan bareng-bareng di sini..</p>    <div id="pesbukdiskus">
-
     </div>
-
     <div id="related-articles-grid">
     </div>
-
 </article>
-
 <footer>
 <div style="max-width: 1000px; margin: auto; padding: 0 20px; text-align: center;">
     <p style="display: inline-block; margin-right: 20px;">🄯 2026 <strong>Jaga Data Pribadi Tetap Aman</strong> 🧠✨</p>
     <p style="display: inline-block; font-size: 0.8rem; color: #bdc3c7;">Konten ini dibuat oleh ahli sistem untuk membantu pengguna Windows di seluruh Indonesia.</p>
 </div>
 </footer>
-
-
-
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/markdown.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/pesbukdiskus.js"></script><script defer src="/ext/iposbrowser.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

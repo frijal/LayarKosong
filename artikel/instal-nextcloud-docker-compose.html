@@ -2,30 +2,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian</title>
-
-    
     <meta name="news_keywords" content="Nextcloud Docker Compose, Instal Nextcloud Debian, Self-hosting Cloud, MariaDB Docker, Server Pribadi, Layar Kosong, Frijal">
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
     <meta name="promphint" content="Nextcloud and MariaDB deployment using Docker Compose guide">
-    
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --bg-color: #ffffff;
@@ -36,7 +15,6 @@
             --code-text: #dcdcdc;
             --border-color: #eee;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #111827;
@@ -46,7 +24,6 @@
                 --border-color: #374151;
             }
         }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.8;
@@ -56,13 +33,11 @@
             display: flex;
             justify-content: center;
         }
-
         .container { width: 100%; max-width: 1000px; padding: 40px 20px; }
         header { border-bottom: 4px solid var(--accent-color); margin-bottom: 40px; }
         h1 { font-size: 2.6rem; line-height: 1.1; margin-bottom: 20px; }
         h2 { font-size: 1.9rem; margin-top: 45px; color: var(--accent-color); }
         h3 { font-size: 1.4rem; margin-top: 30px; }
-
         pre {
             background: var(--code-bg);
             color: var(--code-text);
@@ -72,19 +47,15 @@
             font-size: 0.95rem;
             border: 1px solid #444;
         }
-
         .main-img { width: 100%; border-radius: 15px; margin-bottom: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .alert { background: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 6px solid #bee5eb; }
         footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; opacity: 0.8; }
         .fa-icon { margin-right: 10px; color: var(--accent-color); }
-
         ul li { margin-bottom: 10px; }
-
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
         }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/instal-nextcloud-docker-compose">
     <link rel="icon" href="/favicon.ico">
     <meta name="description" content="Cara instal Nextcloud menggunakan Docker Compose di Debian. Panduan lengkap membangun server cloud pribadi untuk simpan data aman dan gratis.">
@@ -117,7 +88,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <p class="meta-info">
@@ -126,9 +96,7 @@
         <h1>Instal Nextcloud Pakai Docker Compose: Cloud Pribadi, Kendali Penuh! ☁️</h1>
 <div id="iposbrowser"></div>
     </header>
-
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAzdHOlbwAAWmsl.webp" alt="Cloud Data Security" class="main-img">
-
     <article>
         <section>
             <h2>Apa Itu Nextcloud? (What)</h2>
@@ -139,29 +107,24 @@
                 Isinya lengkap: bisa simpan foto, kalender, kontak, sampai kolaborasi dokumen ala Google Docs. Dengan bantuan Docker Compose, kita akan menjalankan dua "mesin" sekaligus: aplikasi Nextcloud itu sendiri dan database MariaDB untuk menyimpan semua data pengaturannya.
             </p>
         </section>
-
         <section>
             <h2>Kenapa Pakai Docker Compose? (Why)</h2>
             <p>
                 Bayangkan kamu mau masak nasi goreng. Kamu butuh nasi (aplikasi) dan bumbu (database). Docker Compose itu kayak resep tertulis yang otomatis menyiapkan semuanya. Cukup tulis satu file konfigurasi, ketik satu perintah, dan <em>booom!</em> Semuanya langsung beres terinstal dan saling terhubung secara otomatis. Nggak ada lagi drama database gagal konek!
             </p>
         </section>
-
         <section>
             <h2>Di Mana dan Kapan Kita Mulai? (Where &amp; When)</h2>
             <p>
                 Tentu saja di server Debian yang sudah kita pasang Docker-nya kemarin. Kamu bisa melakukannya sekarang juga lewat terminal atau SSH. Pastikan kamu berada di direktori yang lega, karena semua file cloud kamu bakal mendarat di sini.
             </p>
         </section>
-
         <section>
             <h2>Bagaimana Cara Instalnya? (How)</h2>
             <p>Ikuti langkah-langkah santai berikut ini, jangan sampai ada yang terlewat ya!</p>
-
             <h3>1. Buat Folder Project</h3>
             <p>Kita buat rumah untuk konfigurasi Nextcloud kita:</p>
             <pre>mkdir ~/nextcloud-server &amp;&amp; cd ~/nextcloud-server</pre>
-
             <h3>2. Buat File docker-compose.yml</h3>
             <p>Gunakan editor favoritmu (misal `nano`) untuk membuat file konfigurasi:</p>
             <pre>nano docker-compose.yml</pre>
@@ -178,7 +141,6 @@
       - MYSQL_PASSWORD=ganti_password_user_kamu
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-
   app:
     image: nextcloud
     restart: always
@@ -194,22 +156,18 @@
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db</pre>
             <p><em>*Jangan lupa ganti bagian "ganti_password" dengan password rahasiamu sendiri!</em></p>
-
             <h3>3. Jalankan Kontainer</h3>
             <p>Ini adalah momen kebenaran. Jalankan perintah ini:</p>
             <pre>docker compose up -d</pre>
             <p>Sistem akan mendownload semua yang dibutuhkan. Tunggu sampai selesai sambil ngopi-ngopi santai.</p>
-
             <h3>4. Akses Lewat Browser</h3>
             <p>Buka browser kamu dan ketik alamat IP server kamu diikuti port 8080:</p>
             <pre>http://alamat-ip-servermu:8080</pre>
             <p>Kamu bakal disambut oleh halaman setup Nextcloud. Buat akun admin, dan <em>voila!</em> Cloud pribadi kamu sudah jadi dan siap diisi foto-foto kenangan atau file kerjaan.</p>
         </section>
-
         <div class="alert">
             <i class="fa-solid fa-triangle-exclamation"></i> <strong>Penting:</strong> Folder <code>data</code> dan <code>db</code> di direktori tadi adalah tempat semua datamu disimpan. Jangan sampai terhapus ya, atau datamu bakal hilang selamanya!
         </div>
-
         <section>
             <h2>Kesimpulan</h2>
             <p>
@@ -219,23 +177,17 @@
                 Gimana? Ternyata jadi "raja" di server sendiri itu asik dan nggak susah-susah amat, kan?
             </p>
         </section>
-
         <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
     </article>
-
     <footer>
         <p>Terima kasih sudah berkunjung ke <strong>Layar Kosong</strong>.
             <i class="fa-brands fa-twitter fa-icon"></i> <a href="https://twitter.com/responaja" style="color:inherit;">@responaja</a> |
             <i class="fa-brands fa-telegram fa-icon"></i> <a href="https://t.me/frijal" style="color:inherit;">t.me/frijal</a>
         </p>
-
     </footer>
 </div>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

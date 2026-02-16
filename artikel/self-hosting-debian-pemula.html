@@ -2,31 +2,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar!</title>
-
-    
     <meta name="news_keywords" content="Self-Hosting, Debian Server, Docker, Nextcloud, Home Lab, Linux Indonesia, Hemat Cloud">
-    
-    
-    
-    
-
-    
-    
-    
-    
-     
-
-    
-    
-    
-    
-        
-
-
     <meta name="promphint" content="Guide to starting a home server with Debian Linux and Docker">
-    
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --bg-color: #ffffff;
@@ -35,7 +13,6 @@
             --card-bg: #f8f9fa;
             --border-color: #eee;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0f172a;
@@ -45,7 +22,6 @@
                 --border-color: #334155;
             }
         }
-
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.8;
@@ -55,7 +31,6 @@
             display: flex;
             justify-content: center;
         }
-
         .container { width: 100%; max-width: 900px; padding: 30px 20px; }
         header { border-bottom: 3px solid var(--accent-color); margin-bottom: 40px; }
         h1 { font-size: 2.8rem; letter-spacing: -1px; }
@@ -67,7 +42,6 @@
         footer { margin-top: 80px; padding: 40px; border-top: 1px solid var(--border-color); text-align: center; }
         .fa-icon { margin-right: 10px; color: var(--accent-color); }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/self-hosting-debian-pemula">
     <link rel="icon" href="/favicon.ico">
     <meta name="description" content="Panduan memulai self-hosting di rumah menggunakan Debian. Cara instal Nextcloud, Docker, dan membangun server pribadi tanpa biaya langganan bulanan.">
@@ -100,7 +74,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <p class="meta-info">
@@ -110,8 +83,6 @@
         <h1>Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! 🏠💻</h1>
 <div id="iposbrowser"></div>
     </header>
-
-
     <article>
         <section>
             <h2>Apa Itu Self-Hosting? (What)</h2>
@@ -123,7 +94,6 @@
             </p>
         </section>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAzUlsMaYAEXVZp.webp" alt="Server rak di rumah" class="main-img">
-
         <section>
             <h2>Kenapa Kamu Harus Coba Sekarang? (Why)</h2>
             <p>
@@ -137,28 +107,24 @@
                 Selain itu, ini adalah cara paling efektif buat belajar <em>Sysadmin</em> secara langsung. Di Balikpapan mungkin lowongan admin server nggak sebanyak di Jakarta, tapi punya *Home Lab* bakal bikin portofolio GitHub kamu makin dilirik!
             </p>
         </section>
-
         <section>
             <h2>Siapa Saja yang Bisa Melakukannya? (Who)</h2>
             <p>
                 Siapa saja! Nggak perlu jadi *Hacker* yang pakai hoodie di ruangan gelap. Kalau kamu tahu cara instal Debian (yang sekarang gampang banget), kamu sudah 50% sampai. Artikel ini saya tulis buat kamu yang punya laptop nganggur di pojokan kamar yang cuma jadi sarang debu. Yuk, kasih dia nyawa kedua!
             </p>
         </section>
-
         <section>
             <h2>Di Mana Server Ini Disimpan? (Where)</h2>
             <p>
                 Cukup di pojok meja kerjamu, dekat router Wi-Fi. Kamu nggak butuh ruangan ber-AC khusus (kecuali kamu mau bangun data center skala kelurahan). Server rumahan ini bisa diakses dari mana saja asalkan ada koneksi internet. Kita bakal pakai trik <em>Cloudflare Tunnel</em> atau <em>Tailscale</em> supaya nggak perlu pusing sama IP Publik yang dinamis dari ISP.
             </p>
         </section>
-
         <section>
             <h2>Kapan Waktu yang Pas Buat Mulai? (When)</h2>
             <p>
                 Sekarang! Mumpung kita lagi di awal tahun 2026, semangat baru buat rapi-rapi aset digital. Proses instalasi dasarnya cuma makan waktu kurang dari satu jam. Yang lama itu biasanya "ngulik" fitur-fitur serunya sampai lupa tidur.
             </p>
         </section>
-
         <section>
             <h2>Bagaimana Cara Memulainya? (How)</h2>
             <p>
@@ -174,11 +140,9 @@
                 Nantinya, kamu bakal ngerasa puas banget pas buka `serverku.dalam.web.id` dan isinya adalah data-data yang kamu kelola sendiri. Rasanya kayak jadi bos di kerajaan digital sendiri!
             </p>
         </section>
-
         <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
     </article>
-
     <footer>
         <p>Curhatan seputar Linux dari Balikpapan untuk dunia.</p>
         <p>
@@ -188,10 +152,7 @@
         </p>
     </footer>
 </div>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

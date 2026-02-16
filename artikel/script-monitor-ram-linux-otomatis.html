@@ -1,32 +1,13 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>RAM Server Sering Penuh? Rahasia Script Monitoring RAM Linux Otomatis</title>
     <meta name="description" content="Cegah server down akibat Out of Memory (OOM). Panduan membuat script Bash untuk monitoring RAM Linux otomatis dengan notifikasi real-time. Tips sysadmin cerdas.">
     <meta name="news_keywords" content="Monitor RAM Linux, Script Bash RAM, OOM Killer Linux, Optimasi Server, Sysadmin Balikpapan, Layar Kosong, Monitoring RAM Otomatis">
-    
-    
     <meta name="prompt_hint" content="Artikel tutorial teknis tentang manajemen memori Linux dan otomasi monitoring menggunakan script Bash.">
-
-    
-    
     <meta property="og:description" content="RAM penuh bikin server lemot? Jangan tunggu sampai crash! Pakai script monitoring otomatis ini buat jaga kesehatan server kamu .">
-    
-    
-    
-    
-
-    
-    
-    
     <meta name="twitter:description" content="Panduan lengkap bikin script monitor RAM otomatis. Server aman, tidur pun tenang. Cek tutorialnya di Layar Kosong!">
-    
-
-    
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {
             --bg-color: #ffffff;
@@ -36,7 +17,6 @@
             --code-bg: #1e1e1e;
             --border-color: #eee;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -47,7 +27,6 @@
                 --border-color: #333;
             }
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
@@ -56,28 +35,23 @@
             color: var(--text-color);
             transition: 0.3s;
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-
         header {
             margin-bottom: 40px;
             text-align: left;
         }
-
         h1 { font-size: 2.6rem; line-height: 1.2; color: var(--accent-color); margin-bottom: 10px; }
         h2 { font-size: 1.9rem; margin-top: 40px; color: var(--accent-color); border-left: 6px solid var(--accent-color); padding-left: 15px; }
         h3 { font-size: 1.4rem; margin-top: 30px; }
-
         .meta-data {
             font-size: 0.9rem;
             opacity: 0.7;
             margin-bottom: 20px;
         }
-
         .featured-image {
             width: 100%;
             height: auto;
@@ -86,9 +60,7 @@
             aspect-ratio: 16 / 9;
             object-fit: cover;
         }
-
         .content { font-size: 1.15rem; text-align: justify; }
-
         .script-box {
             background-color: var(--code-bg);
             color: #dcdcdc;
@@ -100,7 +72,6 @@
             border: 1px solid var(--border-color);
             font-size: 0.95rem;
         }
-
         .info-panel {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -108,14 +79,12 @@
             border-radius: 12px;
             margin: 30px 0;
         }
-
         footer {
             margin-top: 60px;
             padding: 40px 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
-
         .social-icons a {
             margin: 0 12px;
             font-size: 1.4rem;
@@ -123,15 +92,12 @@
             text-decoration: none;
             transition: 0.3s;
         }
-
         .social-icons a:hover { color: var(--accent-color); }
-
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .container { padding: 20px; }
         }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/script-monitor-ram-linux-otomatis">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -161,7 +127,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <div class="meta-data">
@@ -171,17 +136,12 @@
 <div id="iposbrowser"></div>
         <p style="font-size: 1.2rem; opacity: 0.8;">Jangan biarkan OOM Killer membunuh proses aplikasi kamu  secara paksa!</p>
     </header>
-
-
     <article class="content">
         <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang nggak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
-
         <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses paling rakus saat RAM sudah kritis. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" alt="Linux RAM Monitoring Dashboard" class="featured-image">
-
         <h2>Apa Masalah Utama RAM di Linux? ("What")</h2>
         <p>Banyak pengguna pemula panik saat liat hasil <code>free -h</code> karena RAM-nya kelihatan hampir habis. Padahal, Linux itu pinter; dia pake sisa RAM buat <em>cache</em> dan <em>buffer</em> biar sistem lebih kencang. Yang jadi masalah itu kalau <strong>Available Memory</strong>-nya sudah menyentuh angka di bawah 10%. Di titik itulah server kamu  mulai berada di zona bahaya.</p>
-
         <div class="info-panel">
             <h3><i class="fas fa-info-circle"></i> Kenapa Harus Monitor RAM?</h3>
             <ul>
@@ -190,46 +150,35 @@
                 <li><strong>Stabilitas Layanan:</strong> Mencegah aplikasi mendadak <em>restart</em> atau <em>error 500</em> gara-gara gak dapet jatah memori.</li>
             </ul>
         </div>
-
         <h2>Siapa yang Perlu Memasang Script Ini? ("Who")</h2>
         <p>Semua orang yang punya server produksi! Baik itu buat blog pribadi, server aplikasi kantor, atau <em>node</em> kripto. Terutama kalau kamu  pake VPS dengan RAM terbatas (misal 1GB atau 2GB), monitor ini adalah "asuransi" biar kamu  gak perlu bolak-balik <em>reboot</em> server secara manual.</p>
-
         <h2>Dimana dan Kapan Harus Bertindak? ("Where" &amp; "When")</h2>
         <p>Idealnya, monitor ini dipasang di setiap unit server kamu . Waktunya? Sebaiknya dari hari pertama server itu <em>online</em>. Jangan tunggu sampai ada laporan "Web nggak bisa diakses" baru kamu  sibuk nyari penyebabnya. Dengan script otomatis, kamu  bakal dapet peringatan <strong>sebelum</strong> musibah terjadi.</p>
-
         <h2>Bagaimana Caranya? Script RAM-Radar.sh ("How")</h2>
         <p>Mari kita buat script Bash yang cerdas. Script ini nggak cuma liat RAM yang "used", tapi liat yang "available" (yang benar-benar bisa dipake sistem). Copy script di bawah ini:</p>
-
         <div class="script-box">
 <pre><code>#!/bin/bash
-
 # --- KONFIGURASI ---
 THRESHOLD=15                   # Notifikasi kalau RAM Available &lt; 15%
 HOSTNAME=$(hostname)
 EMAIL="admin@dalam.web.id"     # Ganti email kamu
-
 # --- AMBIL DATA RAM ---
 # Kita pake perintah 'free' dan ambil data 'available'
 TOTAL_RAM=$(free | grep Mem | awk '{print $2}')
 AVAIL_RAM=$(free | grep Mem | awk '{print $7}')
-
 # Hitung persentase available RAM
 # Formula: (Available / Total) * 100
 PCT_AVAIL=$(( 100 * AVAIL_RAM / TOTAL_RAM ))
-
 # --- LOGIKA PERINGATAN ---
 if [ "$PCT_AVAIL" -le "$THRESHOLD" ]; then
     MSG="🚨 BAHAYA RAM! Server $HOSTNAME sisa RAM Available cuma $PCT_AVAIL%."
     echo "$MSG"
-
     # Kirim ke Email
     # echo "$MSG" | mail -s "RAM Alert: $HOSTNAME" $EMAIL
-
     # OPSIONAL: Kirim ke Telegram (Un-comment kalau mau pake)
     # TOKEN="BOT_TOKEN_LO"
     # CHAT_ID="CHAT_ID_LO"
     # curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage -d chat_id=$CHAT_ID -d text="$MSG"
-
     # OPSIONAL: Auto-Clear Cache (Gunakan dengan bijak!)
     # sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches
     # echo "Cache telah dibersihkan otomatis."
@@ -237,7 +186,6 @@ else
     echo "RAM aman terkendali: $PCT_AVAIL% available."
 fi</code></pre>
         </div>
-
         <h3>Cara Pasang (Step-by-Step):</h3>
         <ol>
             <li>Buka terminal, buat file: <code>nano ram-monitor.sh</code>.</li>
@@ -248,16 +196,12 @@ fi</code></pre>
                 Lalu tambahkan baris: <code>*/5 * * * * /path/ke/script/ram-monitor.sh</code>
             </li>
         </ol>
-
         <h2>Kesimpulan: Jaga RAM-mu, Jaga Kewarasanmu!</h2>
         <p>Mengelola server itu soal proaktif, bukan reaktif. Dengan script monitor RAM dan Disk yang sudah kita bahas, server kamu  sekarang punya "indera" buat ngelaporin kondisinya sendiri. Lo nggak perlu lagi jadi pemadam kebakaran yang sibuk nyari masalah pas api sudah besar.</p>
-
         <p>Ingat, server yang sehat adalah awal dari hati yang tenang. Kalau ada script lain yang kamu  butuhin (misal monitor CPU atau status suhu server), jangan ragu buat colek gue di Telegram atau Twitter ya!</p>
   <div id="pesbukdiskus"></div>
         <div id="related-articles-grid"></div>
-
     </article>
-
     <footer>
             <p>🄯 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a>. <br>
         Dibuat dengan semangat otomasi dari <strong>Balikpapan</strong>.</p>
@@ -269,13 +213,9 @@ fi</code></pre>
             <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.youtube.com/@frijal" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
-
     </footer>
 </div>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

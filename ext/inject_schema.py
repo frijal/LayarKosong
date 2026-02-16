@@ -1,17 +1,15 @@
 import json
 import os
 import re
+from datetime import datetime
 
 # ======================================================
-# KONFIGURASI GLOBAL (V6.9.3 - Sequential Log Edition)
+# KONFIGURASI GLOBAL (V7.0.0 - Self-Signature Edition)
 # ======================================================
 BASE_URL = "https://dalam.web.id"
 SITE_NAME = "Layar Kosong"
 AUTHOR = "Fakhrul Rijal"
 LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
-
-HASH_FILE = "mini/LD-JSON-Schema.txt"
-os.makedirs("mini", exist_ok=True)
 
 ALLOWED_CATEGORIES = {
     "gaya-hidup", "jejak-sejarah", "lainnya",
@@ -22,6 +20,9 @@ SCHEMA_REGEX = re.compile(
     r'<script\s+type="application/ld\+json">.*?</script>',
     re.DOTALL | re.IGNORECASE
 )
+
+# Tanda unik untuk mengecek apakah file sudah diproses
+SIGNATURE_KEY = "schema_oleh_Fakhrul_Rijal"
 
 STOPWORDS = {"yang", "untuk", "dengan", "adalah", "dalam", "dari", "pada", "atau", "itu", "dan", "sebuah", "aku", "ke", "saya", "ini", "gue", "gua", "elu", "elo"}
 
@@ -45,14 +46,13 @@ def build_keywords(headline: str, category: str, slug: str) -> str:
     return ", ".join(sorted(base)[:12])
 
 # ======================================================
-# SINGLE SCHEMA BUILDER (FIXED URL & POSITIONING)
+# SCHEMA BUILDER
 # ======================================================
 def build_combined_schema(category, article):
     headline, filename, image, iso_date, desc = article
     cat_slug = slugify(category)
     file_slug = filename.replace('.html', '').lstrip('/')
     
-    # 🔥 PERBAIKAN: Pastikan semua URL tidak punya trailing slash
     clean_base = BASE_URL.rstrip('/')
     article_url = f"{clean_base}/{cat_slug}/{file_slug}".rstrip('/')
     category_url = f"{clean_base}/{cat_slug}".rstrip('/')
@@ -111,8 +111,7 @@ def build_combined_schema(category, article):
     return (
         '<script type="application/ld+json">'
         + json.dumps(schema_data, ensure_ascii=False, separators=(",", ":"))
-        + "</script>\n",
-        article_url
+        + "</script>\n"
     )
 
 # ======================================================
@@ -126,15 +125,9 @@ if __name__ == "__main__":
     with open("artikel.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    processed_urls = set()
-    if os.path.isfile(HASH_FILE):
-        with open(HASH_FILE, "r", encoding="utf-8") as f:
-            for line in f:
-                url = line.strip()
-                if url:
-                    processed_urls.add(url)
-
     results = {"changed": 0, "skipped": 0, "missing": 0, "forbidden": 0}
+    tgl = datetime.now().strftime("%Y-%m-%d")
+    signature = f"<noscript>{SIGNATURE_KEY}_{tgl}</noscript>"
 
     for category, articles in data.items():
         cat_slug = slugify(category)
@@ -145,28 +138,29 @@ if __name__ == "__main__":
 
         for article in articles:
             filename = article[1]
-            file_slug = filename.replace('.html', '').lstrip('/')
-            current_article_url = f"{BASE_URL}/{cat_slug}/{file_slug}".rstrip('/')
-
-            if current_article_url in processed_urls:
-                results["skipped"] += 1
-                continue
-
             html_path = os.path.join(cat_slug, filename.lstrip('/'))
 
             if not os.path.isfile(html_path):
                 results["missing"] += 1
                 continue
 
-            print(f"🧠 Injecting Schema: {current_article_url}")
-
             with open(html_path, "r", encoding="utf-8") as f:
                 html_content = f.read()
 
-            html_clean = re.sub(SCHEMA_REGEX, "", html_content)
-            inject_code, confirmed_url = build_combined_schema(category, article)
+            # === CEK SIGNATURE (Anti-Duplikat Lokal) ===
+            if SIGNATURE_KEY in html_content:
+                results["skipped"] += 1
+                continue
 
-            # Sisipkan sebelum <style>
+            print(f"🧠 Injecting Schema & Signature: {html_path}")
+
+            # 1. Bersihkan schema lama (jika ada)
+            html_clean = re.sub(SCHEMA_REGEX, "", html_content)
+            
+            # 2. Build schema baru
+            inject_code = build_combined_schema(category, article)
+
+            # 3. Sisipkan schema ke bagian Head
             if "<style>" in html_clean:
                 new_html = html_clean.replace("<style>", f"{inject_code}<style>")
             elif "</head>" in html_clean:
@@ -174,19 +168,18 @@ if __name__ == "__main__":
             else:
                 new_html = inject_code + html_clean
 
-            with open(html_path, "w", encoding="utf-8") as f:
-                f.write(new_html)
+            # 4. Tambahkan signature di paling bawah file (seperti script JS kamu)
+            final_html = new_html.strip() + "\n" + signature
 
-            # 🔥 Simpan URL saja, berurutan ke bawah
-            with open(HASH_FILE, "a", encoding="utf-8") as f:
-                f.write(confirmed_url + "\n")
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(final_html)
 
             results["changed"] += 1
 
     print("-" * 50)
-    print(f"✅ SEO Schema Injector V6.9.3 (Simple Sequential Log)")
-    print(f"🆕 Di-inject          : {results['changed']}")
-    print(f"⏭️  Skip (Sudah Ada)   : {results['skipped']}")
-    print(f"❌ File Tidak Ada     : {results['missing']}")
-    print(f"🚫 Kategori Dilarang  : {results['forbidden']}")
+    print(f"✅ SEO Schema Injector V7.0.0 (Noscript Signature Mode)")
+    print(f"🆕 Di-inject & Terpatri : {results['changed']}")
+    print(f"⏭️  Skip (Sudah Ada)    : {results['skipped']}")
+    print(f"❌ File Tidak Ada      : {results['missing']}")
+    print(f"🚫 Kategori Dilarang   : {results['forbidden']}")
     print("-" * 50)

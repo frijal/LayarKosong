@@ -5,37 +5,12 @@
 <title>Sosial Media dan Video Embed Generator</title>
 <meta name="description" content="Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.">
 <meta name="keywords" content="embed generator, social embed, video embed, youtube embed, twitter embed, instagram embed, tiktok embed, iframe generator, alat embed">
-
-
-
-
 <!-- ===== Canonical ===== -->
-
-
 <!-- ===== Open Graph (Facebook, LinkedIn, WhatsApp, dll) ===== -->
-
-
 <meta property="og:description" content="Buat embed media sosial dan video (YouTube, X/Twitter, Instagram, TikTok, dll) secara instan. Praktis, cepat, dan ramah SEO.">
-
-
-
-
-
-
-
-
-
 <!-- ===== Twitter Card ===== -->
-
-
 <meta name="twitter:description" content="Generator embed media sosial dan video yang cepat, ringan, dan siap dipakai di blog atau website.">
-
-
-
-
 <!-- ===== Web App dan UX ===== -->
-
-
     <link rel="stylesheet" href="/ext/default.min.css">
     <style>
         body { font-family: sans-serif; max-width: 850px; margin: 40px auto; padding: 20px; line-height: 1.6; background: #f4f4f4; color: #333; }
@@ -50,7 +25,6 @@
         pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'Monaco', monospace; font-size: 13px; margin: 0; color: #9cdcfe; }
         .preview { margin-top: 25px; border: 2px dashed #bbb; padding: 20px; min-height: 200px; background: #fff; border-radius: 8px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/social-video-embed-generator">
     <link rel="icon" href="/favicon.ico">
     <meta name="author" content="Fakhrul Rijal">
@@ -80,12 +54,10 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <h1>🚀 Social &amp; Video Embed Generator</h1>
 <div id="iposbrowser"></div>
     <p style="text-align:center;">Hasilkan kode responsif untuk halaman HTML.</p>
-
     <label for="platform">Pilih Platform:</label>
     <select id="platform">
         <optgroup label="Video">
@@ -101,27 +73,18 @@
             <option value="x">X (Twitter)</option>
         </optgroup>
     </select>
-
-
-
-
-
     <label for="videoUrl">URL Postingan/Video:</label>
     <input type="text" id="videoUrl" placeholder="Tempel URL di sini...">
-
     <button id="main-btn" onclick="generateEmbed()">Hasilkan Kode &amp; Preview</button>
-
     <div id="resultContainer" style="display:none;">
         <label>📋 Kode HTML (Rata Tengah &amp; Responsif):</label>
         <div class="result-area">
             <button class="copy-btn" onclick="copyCode()">Salin</button>
             <pre id="embedCode"></pre>
         </div>
-
         <label>🖼️ Live Preview:</label>
         <div class="preview" id="videoPreview"></div>
     </div><div id="pesbukdiskus">    </div>
-
     <div id="related-articles-grid">    </div>
 </div>
 <script>
@@ -131,21 +94,16 @@
         const resultContainer = document.getElementById('resultContainer');
         const embedOutput = document.getElementById('embedCode');
         const preview = document.getElementById('videoPreview');
-
         if (!url) return;
-
         let innerContent = "";
-
         switch(platform) {
            case 'facebook':
     const encodedFbUrl = encodeURIComponent(url);
     const isReel = url.toLowerCase().includes('reel');
-
     // Kita set width=auto sesuai spek FB.
     // Parameter height kita hapus karena FB memang tidak mengenalnya di URL src.
     // Kita pakai aspect-ratio di CSS agar iframe-nya menyesuaikan tinggi secara otomatis.
     const aspectRatio = isReel ? "9/16" : "16/9";
-
     innerContent = `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodedFbUrl}&show_text=false&width=auto&t=0"
         width="100%"
         style="border:none; overflow:hidden; border-radius:8px; width:100%; aspect-ratio:${aspectRatio};"
@@ -155,12 +113,10 @@
         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
         loading="lazy"></iframe>`;
     break;
-
             case 'linkedin':
                 const liId = url.split('activity-')[1]?.split('?')[0];
                 innerContent = `<iframe src="https://www.linkedin.com/embed/feed/update/${liId}" height="500" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>`;
                 break;
-
             case 'threads':
     const thUrl = url.split('?')[0].replace('threads.com', 'threads.net');
     innerContent = `
@@ -172,13 +128,11 @@
         <script async src="https://www.threads.net/embed.js"><\/script>
     `;
     break;
-
             case 'mastodon':
     // Pastikan URL tidak berakhir dengan slash agar penambahan /embed pas
     const mBase = url.endsWith('/') ? url.slice(0, -1) : url;
     // Ambil domain server (misal: mastodon.social) untuk script-nya
     const mServer = mBase.split('/@')[0];
-
     innerContent = `
         <iframe src="${mBase}/embed"
             class="mastodon-embed"
@@ -190,21 +144,17 @@
         <script src="${mServer}/embed.js" async="async"><\/script>
     `;
     break;
-
             case 'youtube':
                 let vId = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('/').pop().split('?')[0];
                 innerContent = `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${vId}" frameborder="0" allowfullscreen loading="lazy" style="border-radius:8px;"></iframe>`;
                 break;
-
             case 'vimeo':
                 const viId = url.split('/').pop().split('?')[0];
                 innerContent = `<iframe src="https://player.vimeo.com/video/${viId}" width="100%" height="400" frameborder="0" allowfullscreen loading="lazy" style="border-radius:8px;"></iframe>`;
                 break;
-
             case 'x':
     // Pastikan domain selalu twitter.com agar widget.js mengenalinya
     const xUrl = url.replace('x.com', 'twitter.com').split('?')[0];
-
     innerContent = `
         <blockquote class="twitter-tweet" data-media-max-width="560" data-align="center">
             <a href="${xUrl}"></a>
@@ -212,36 +162,29 @@
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>
     `;
     break;
-
             case 'tiktok':
                 const tId = url.split('/video/')[1]?.split('?')[0];
                 innerContent = `<blockquote class="tiktok-embed" cite="${url}" data-video-id="${tId}"><section></section></blockquote><script async src="https://www.tiktok.com/embed.js"><\/script>`;
                 break;
         }
-
         const finalEmbed = `<div class="embed-kosong" style="display: block; margin: 20px auto; width: 100%; text-align: center;">\n  <div style="display: inline-block; width: 100%; max-width: 500px; text-align: left;">\n    ${innerContent}\n  </div>\n</div>`;
-
         embedOutput.textContent = finalEmbed;
         preview.innerHTML = finalEmbed;
         resultContainer.style.display = 'block';
-
 // 1. Re-render X (Twitter)
 // Cara resmi Twitter untuk memproses ulang tweet baru di preview
 if (window.twttr && twttr.widgets) {
     twttr.widgets.load(preview);
 }
-
 // 2. Re-render Threads & Instagram
 if (window.instgrm) {
     window.instgrm.Threads.process();
 }
-
 // 3. Re-render TikTok
 if (window.tiktok) {
     // TikTok biasanya butuh trigger ini untuk memproses blockquote baru
     // Tapi jika tidak ada, eval() di bawah tetap jadi backup
 }
-
 // 4. Backup untuk platform yang tidak punya fungsi re-render resmi
 if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
     const scripts = preview.getElementsByTagName('script');
@@ -259,17 +202,13 @@ if (platform === 'x' || platform === 'tiktok' || platform === 'threads') {
     }
 }
     }
-
     function copyCode() {
         const code = document.getElementById('embedCode').textContent;
         navigator.clipboard.writeText(code);
         alert("📋 Kode berhasil disalin ke clipboard!");
     }
 </script>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>

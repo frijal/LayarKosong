@@ -2,31 +2,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debian Kernel Adjustment: Rahasia Performa 'Ngebut' Tanpa Kode Ribet</title>
-
-    
     <meta name="news_keywords" content="Debian, Kernel Linux, Optimasi Sistem, Linux Tuning, Kompilasi Kernel, Performa Gaming Linux, Debian Stable">
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
     <meta name="promphint" content="Debian Linux Kernel Optimization Guide for Performance">
-    
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         /* CSS Variables untuk Dark/Light Mode tanpa JS */
         :root {
@@ -36,7 +14,6 @@
             --card-bg: #f4f4f4;
             --border-color: #ddd;
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #121212;
@@ -46,7 +23,6 @@
                 --border-color: #333;
             }
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
@@ -57,23 +33,19 @@
             display: flex;
             justify-content: center;
         }
-
         .container {
             width: 100%;
             max-width: 1000px;
             padding: 20px;
         }
-
         header {
             border-bottom: 2px solid var(--accent-color);
             margin-bottom: 30px;
             padding-bottom: 10px;
         }
-
         h1 { font-size: 2.5rem; line-height: 1.2; }
         h2 { font-size: 1.8rem; margin-top: 40px; color: var(--accent-color); }
         h3 { font-size: 1.4rem; }
-
         img.main-img {
             width: 100%;
             height: auto;
@@ -81,7 +53,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             content-visibility: auto; /* Optimasi LCP */
         }
-
         .disclaimer {
             background-color: #fff3cd;
             color: #856404;
@@ -91,18 +62,15 @@
             margin: 20px 0;
             font-weight: bold;
         }
-
         article {
             font-size: 1.1rem;
             text-align: justify;
         }
-
         .meta-info {
             font-size: 0.9rem;
             color: #777;
             margin-bottom: 20px;
         }
-
         blockquote {
             border-left: 4px solid var(--accent-color);
             margin: 20px 0;
@@ -110,13 +78,11 @@
             background: var(--card-bg);
             font-style: italic;
         }
-
         .comment-section {
             margin-top: 50px;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
         }
-
         footer {
             margin-top: 100px;
             padding: 40px 0;
@@ -124,7 +90,6 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
         }
-
         /* Responsive Grid for Comments */
         #related-articles-grid {
             display: grid;
@@ -132,14 +97,11 @@
             gap: 20px;
             margin-top: 20px;
         }
-
         /* Utility classes */
         .fa-icon { margin-right: 8px; color: var(--accent-color); }
-
         /* SEO Long-form helper */
         .section-content { margin-bottom: 30px; }
     </style>
-
     <link rel="canonical" href="https://dalam.web.id/artikel/debian-kernel-adjustment">
     <link rel="icon" href="/favicon.ico">
     <meta name="description" content="Cara optimasi kernel Debian untuk performa maksimal. Belajar tuning kernel Linux via menuconfig agar sistem lebih responsif dan gaming makin smooth.">
@@ -172,7 +134,6 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 </head>
 <body>
-
 <div class="container">
     <header>
         <p class="meta-info">
@@ -183,13 +144,10 @@
         <h1>Debian Kernel Adjustment AMAZING! 🚀</h1>
 <div id="iposbrowser"></div>
     </header>
-
-
     <div class="disclaimer">
         <i class="fa-solid fa-triangle-exclamation"></i> DISCLAIMER: JANGAN UBAH SETTING APAPUN KECUALI KAMU TAHU APA YANG KAMU LAKUKAN!
     </div>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAzTGgWaAAcl78L.webp" alt="Debian Kernel Tuning" class="main-img" width="100%" height="auto">
-
     <article>
         <section class="section-content">
             <h2><i class="fa-solid fa-magnifying-glass fa-icon"></i> Apa Itu Debian Kernel Adjustment? (What)</h2>
@@ -200,7 +158,6 @@
                 Ini bukan cuma soal Debian, tapi berlaku buat hampir semua kernel Linux secara umum. Dengan menggunakan alat bernama <strong>menuconfig</strong>, kita bisa memilih fitur mana yang mau diaktifkan atau dimatikan. Bayangkan kayak lagi modif motor; kamu nggak perlu bikin mesin dari nol, cukup ganti knalpot, atur karburator, atau copot part yang nggak penting biar motornya makin enteng dan lari kencang! 🏎️
             </p>
         </section>
-
         <section class="section-content">
             <h2><i class="fa-solid fa-question fa-icon"></i> Kenapa Harus Repot-repot Tuning Kernel? (Why)</h2>
             <p>
@@ -214,28 +171,24 @@
                 Dengan membuang "lemak" yang nggak perlu, CPU kamu bisa fokus ke tugas yang benar-benar penting. Hasilnya? System berasa lebih <em>snappy</em>, animasi window lebih smooth, dan buat para gamer, <strong>frame pacing</strong> jadi lebih stabil. Bahkan ada laporan kalau tuning ini bisa memperbaiki masalah <em>screen tearing</em> saat nonton video atau main game. Ajaib kan? ✨
             </p>
         </section>
-
         <section class="section-content">
             <h2><i class="fa-solid fa-person-digging fa-icon"></i> Siapa yang Cocok Melakukan Ini? (Who)</h2>
             <p>
                 Kustomisasi ini cocok banget buat kamu yang peduli sama setiap tetes performa PC. Tapi ingat, ini bukan buat semua orang. Penulis aslinya sendiri mengaku masih "noob", jadi kamu nggak perlu jadi profesor ilmu komputer buat mencoba. Yang penting adalah <strong>kemauan buat riset</strong>. Kalau kamu merasa PC kamu agak <em>laggy</em> atau pengen belajar lebih dalam soal jeroan Linux, <em>this is for you</em>. Tapi kalau kamu cuma butuh komputer buat ngetik tugas dan nggak mau pusing kalau tiba-tiba sistem nggak mau booting, mending pakai kernel standar saja ya.
             </p>
         </section>
-
         <section class="section-content">
             <h2><i class="fa-solid fa-map-location-dot fa-icon"></i> Di Mana Kita Bisa Melakukannya? (Where)</h2>
             <p>
                 Semua proses ini dilakukan langsung di dalam sistem Debian kamu. Kamu bisa mendownload <em>source code</em> kernel dari repositori resmi Debian. Kenapa pilih Debian kernel daripada vanilla Linux? Karena Debian punya patch stabilitas sendiri yang sudah teruji. Jadi, meskipun kita modif, fondasinya tetap kokoh. Kamu nggak bakal ketemu kejutan aneh yang biasa muncul di kernel "mentah".
             </p>
         </section>
-
         <section class="section-content">
             <h2><i class="fa-solid fa-clock fa-icon"></i> Kapan Waktu yang Tepat? (When)</h2>
             <p>
                 Dulu, kompilasi kernel itu horor. Orang-orang cerita butuh waktu 24 jam di komputer jadul (seperti 386/16 dengan RAM 4MB) cuma buat nungguin prosesnya selesai. Sekarang? Dengan prosesor modern multi-core, proses ini jauh lebih cepat. Kamu bisa melakukannya kapan saja saat merasa sistem sudah mulai terasa "berat" atau saat kamu baru saja upgrade hardware (misalnya ganti GPU atau CPU) dan ingin kernel benar-benar mengenali instruksi spesifik dari hardware baru tersebut.
             </p>
         </section>
-
         <section class="section-content">
             <h2><i class="fa-solid fa-gears fa-icon"></i> Bagaimana Cara Kerjanya? (How)</h2>
             <p>
@@ -251,14 +204,10 @@
                 Meskipun cuma mengubah sekitar 60% pengaturan, efeknya bisa sangat terasa. Bayangkan kernel kamu sekarang jadi baju yang dijahit khusus (custom-tailored) buat badan kamu, bukan baju ukuran XL yang dipaksain buat semua orang.
             </p>
         </section>
-
         <hr>
-
         <section class="comment-section">
             <h3><i class="fa-solid fa-comments fa-icon"></i> Diskusi Komunitas</h3>
             <p>Banyak pro-kontra di komunitas soal ini. Ada yang bilang ini cuma efek placebo, ada juga yang bilang ini "rite of passage" alias syarat sah jadi pengguna Linux sejati. Apa pendapatmu?</p>
-
-
                 <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; margin-bottom: 10px;">
                     <strong>u/Tall-Introduction414:</strong> "Zaman dulu kita harus recompile cuma buat nyalain audio atau ethernet. Sekarang sih udah enak tinggal pakai!"
                 </div>
@@ -269,12 +218,10 @@
                     <strong>u/genesis-5923238:</strong> "Coba cek CONFIG_HZ dan PREEMPT, itu yang paling ngaruh ke latensi!"
                 </div>
             <div id="pesbukdiskus"></div>
-
             <div id="related-articles-grid">
                 </div>
         </section>
     </article>
-
     <footer>
         <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--accent-color); text-decoration: none;">Layar Kosong</a> - Balikpapan.</p>
         <p>
@@ -285,10 +232,7 @@
         </p>
     </footer>
 </div>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
-<section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer src="/ext/marquee-url.js"></script>
-<script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/markdown.js"></script><script defer src="/ext/pesbukdiskus.js"></script>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
 </body></html>
