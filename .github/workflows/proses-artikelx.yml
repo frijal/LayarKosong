@@ -6,9 +6,6 @@ on:
     paths:
       - 'artikelx/*.html'
   workflow_dispatch:
-#  workflow_run:
-#    workflows: ["Weekly Content Aggregation"]
-#    types: [completed]
 
 permissions:
   contents: write
@@ -64,6 +61,7 @@ jobs:
               s|Font Awesome 6 Free|Font Awesome 7 Free|g;
               s|Font Awesome 5 Free|Font Awesome 7 Free|g;
               s|Dalam.web.id|Jaga Data Pribadi Tetap Aman|g;
+              s|>dalam.web.id</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
               s|Analisis mendalam ||g;
               s|Simak ulasan mendalam ||g;
               s|©|🄯|g;
