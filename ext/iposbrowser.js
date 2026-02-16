@@ -1,208 +1,96 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // [FIX] Semua fungsi dan logika digabung ke dalam satu event listener.
+	const target = document.getElementById('iposbrowser');
+	if (!target) return;
 
-  // 1. Utility: parse “rgb(r,g,b)” → [r, g, b]
-  function parseRGB(rgb) {
-    const m = rgb.match(/\d+/g);
-    return m ? m.map(Number) : [255, 255, 255];
-  }
+	// 1. Deteksi Browser & OS (Versi Ringkas)
+	const ua = navigator.userAgent;
+	const browser = /(firefox|fxios)/i.test(ua) ? 'Firefox' : /edg/i.test(ua) ? 'Edge' : /chrome|crios/i.test(ua) ? 'Chrome' : /safari/i.test(ua) ? 'Safari' : 'Unknown';
+	const os = /android/i.test(ua) ? 'Android' : /iphone|ipad|ipod/i.test(ua) ? 'iOS' : ua.includes('Windows') ? 'Windows' : ua.includes('Mac') ? 'macOS' : ua.includes('Linux') ? 'Linux' : 'Unknown';
 
-  // 2. Compute relative luminance (WCAG)
-  function relativeLuminance([r, g, b]) {
-    const a = [r, g, b].map(v => {
-      v /= 255;
-      return v <= 0.03928
-        ? v / 12.92
-        : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
-  }
+	// 2. Fetch GeoIP (Hanya Nama Kota & Negara - Privasi Friendly)
+	async function fetchGeo() {
+		try {
+			// Menggunakan ipapi.co (Gratis, HTTPS Support, Tanpa API Key)
+			const res = await fetch('https://ipapi.co/json/');
+			const d = await res.json();
+			return d.error ? null : { city: d.city, country: d.country_name, code: d.country_code };
+		} catch { return null; }
+	}
 
-  // 3. Walk up the DOM to find the first non-transparent background
-  function findBackgroundColor(el) {
-    while (el && el !== document.documentElement) {
-      const bg = getComputedStyle(el).backgroundColor;
-      if (bg && !/(transparent|rgba\(0,\s*0,\s*0,\s*0\))/.test(bg)) {
-        return bg;
-      }
-      el = el.parentElement;
-    }
-    return getComputedStyle(document.documentElement).backgroundColor;
-  }
+	const geo = await fetchGeo();
+	const geoHTML = geo ? `
+	<div class="geo-block">
+	<img class="geo-flag" src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="">
+	<span>${geo.city ? geo.city + ', ' : ''}${geo.country}</span>
+	</div>` : '';
 
-  // 4. Set text color to black or white for best contrast
-  function adjustTextColorBasedOnBackground(el) {
-    // [FIX UTAMA] Tambahkan pengecekan: Jika elemen tidak ada (null), stop fungsi.
-    if (!el) return;
-
-    const bg = findBackgroundColor(el);
-    const lum = relativeLuminance(parseRGB(bg));
-    el.style.color = lum > 0.5 ? '#222' : '#eee';
-  }
-
-  function detectBrowser() {
-    const ua = navigator.userAgent;
-    if (/(firefox|fxios)/i.test(ua)) return 'Firefox';
-    if (/edg/i.test(ua)) return 'Edge';
-    if (/chrome|crios/i.test(ua) && !/edg/i.test(ua)) return 'Chrome';
-    if (/safari/i.test(ua) && !/chrome|crios|fxios|edg/i.test(ua)) return 'Safari';
-    return 'Unknown';
-  }
-
-  function detectOS() {
-    const ua = navigator.userAgent;
-    if (/android/i.test(ua)) return 'Android';
-    if (/iphone|ipad|ipod/i.test(ua)) return 'iOS';
-    if (ua.includes('Windows')) return 'Windows';
-    if (ua.includes('Mac')) return 'macOS';
-    if (ua.includes('Linux')) return 'Linux';
-    return 'Unknown';
-  }
-
-  async function fetchGeoIP() {
-    let ipAddress = null;
-    try {
-      try {
-        const ip4Res = await fetch('https://api.ipify.org?format=json');
-        if (!ip4Res.ok) throw new Error('API IPv4 tidak merespons');
-        const ip4Data = await ip4Res.json();
-        ipAddress = ip4Data.ip;
-      } catch (ipv4Error) {
-        console.warn('Gagal mendapatkan IPv4, mencoba fallback ke IPv6...', ipv4Error);
-        const ip6Res = await fetch('https://api64.ipify.org?format=json');
-        if (!ip6Res.ok) throw new Error('API IPv6 juga tidak merespons');
-        const ip6Data = await ip6Res.json();
-        ipAddress = ip6Data.ip;
-      }
-
-      const locRes = await fetch(`https://ipapi.co/${ipAddress}/json/`);
-      if (!locRes.ok) throw new Error('Gagal mengambil data lokasi');
-      const locData = await locRes.json();
-
-      // [PERBAIKAN] Tambahkan pengecekan error dari konten JSON
-      if (locData.error) {
-        throw new Error(`Error dari API lokasi: ${locData.reason}`);
-      }
-
-      return {
-        ip: ipAddress,
-        city: locData.city,
-        country: locData.country_name,
-        code: locData.country_code,
-      };
-    } catch (err) {
-      console.error('GeoIP Error Final:', err);
-      return null;
-    }
-  }
-
-  const target = document.getElementById('iposbrowser');
-  if (!target) return;
-
-  const browser = detectBrowser();
-  const os = detectOS();
-  const geo = await fetchGeoIP();
-
-  // [PERBAIKAN] Hapus variabel HTML yang tidak terpakai.
-  let geoHTML = '<div class="info-item"><span></span></div>';
-  if (geo) {
-	  const flag = geo.code
-	  ? `<img class="geo-flag"
-	  src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png"
-	  alt="${geo.country}"
-	  width="24"
-	  height="18" />` // Style-nya biarkan diatur oleh CSS di bawah
-	  : '';
-    geoHTML = `<div class="geo-block">${flag}${geo.city ? geo.city + ' - ' : ''}${geo.country} • ${geo.ip}</div>`;
-  }
-
-  target.innerHTML = `
-    <div id="ipos-browser-info">
-      <div class="browser-block"><span class="icon browser">${browserIcons[browser] || ''}</span><span class="text">${browser}</span></div>
-      <div class="os-block"><span class="icon os">${osIcons[os] || ''}</span><span class="text">${os}</span></div>
-      ${geoHTML}
-    </div>`;
-
-  // [FIX UTAMA] Gunakan querySelector & pastikan elemen ada sebelum diproses
-  const infoBox = target.querySelector('#ipos-browser-info');
-
-  if (infoBox) {
-    adjustTextColorBasedOnBackground(infoBox);
-
-    new MutationObserver(() => adjustTextColorBasedOnBackground(infoBox)).observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class', 'style']
-    });
-  } else {
-    console.warn("Elemen #ipos-browser-info gagal dirender.");
-  }
+	// 3. Render HTML
+	target.innerHTML = `
+	<div id="ipos-browser-info">
+	<div class="browser-block"><span class="icon">${browserIcons[browser] || ''}</span><span class="text">${browser}</span></div>
+	<div class="os-block"><span class="icon">${osIcons[os] || ''}</span><span class="text">${os}</span></div>
+	${geoHTML}
+	</div>`;
 });
 
-// 5. Inject CSS fallback + text-shadow halo
+// 4. CSS Modern (Zero-JS Contrast & Dark Mode)
 const style = document.createElement('style');
 style.textContent = `
-  :root { --ipos-text-color: #222; }
-  @media (prefers-color-scheme: dark) { :root { --ipos-text-color: #eee; } }
-  body.dark-mode { --ipos-text-color: #e6e6e6; }
+:root {
+	--ipos-text: #222;
+	--ipos-shadow: rgba(255, 255, 255, 0.5);
+}
 
-  #ipos-browser-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px; /* Jarak antar blok utama (browser, os, geo) */
-    font-size: 0.9rem;
-    color: var(--ipos-text-color); /* fallback */
-    text-shadow:
-      1px 1px 2px rgba(0, 0, 0, 0.7),
-     -1px -1px 2px rgba(255, 255, 255, 0.7);
-    background: none;
-    border: none;
-    padding: 4px 8px;
-    margin: 0 auto;
-    transition: color 0.3s ease-in-out;
-  }
+/* Deteksi Otomatis Dark Mode Sistem & Class Body */
+@media (prefers-color-scheme: dark) { :root { --ipos-text: #eee; --ipos-shadow: rgba(0, 0, 0, 0.5); } }
+body.dark-mode, body.dark { --ipos-text: #e6e6e6; --ipos-shadow: rgba(0, 0, 0, 0.5); }
 
-  /* --- SISIPAN DIMULAI --- */
-  /* Gaya untuk membuat ikon dan teks sejajar di tengah */
-  #ipos-browser-info .browser-block,
-  #ipos-browser-info .os-block,
-  #ipos-browser-info .geo-block {
-    display: flex;
-    align-items: center;
-    gap: 6px; /* Jarak antara ikon dan teksnya */
-  }
-  /* --- SISIPAN SELESAI --- */
+#ipos-browser-info {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+font-size: 0.85rem;
+color: var(--ipos-text);
+text-shadow: 1px 1px 1px var(--ipos-shadow);
+padding: 5px;
+transition: color 0.3s ease;
+}
 
-  #ipos-browser-info .icon svg {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  display: block;
-  }
-  #ipos-browser-info .geo-flag {
-  width: 24px !important;
-  height: 18px !important; /* Sesuai rasio flagcdn 24x18 */
-  object-fit: cover;
-  display: block;
-  flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,0.1); /* Kasih border tipis biar bendera putih gak ilang */
-  }
-  #ipos-browser-info .icon svg:hover {
-    transform: scale(1.15) rotate(8deg);
-    filter: drop-shadow(0 0 6px rgba(88,166,255,0.45));
-    animation: pulse 0.6s ease-in-out;
-  }
+#ipos-browser-info .browser-block,
+#ipos-browser-info .os-block,
+#ipos-browser-info .geo-block {
+display: flex;
+align-items: center;
+gap: 6px;
+}
 
-  @keyframes pulse {
-    0%   { transform: scale(1) rotate(0deg); }
-    50%  { transform: scale(1.2) rotate(8deg); }
-    100% { transform: scale(1.15) rotate(8deg); }
-  }
+#ipos-browser-info .icon svg {
+width: 22px;
+height: 22px;
+display: block;
+transition: transform 0.3s ease;
+}
 
-  @media (max-width: 600px) {
-    #ipos-browser-info { display: none !important; }
-  }
+/* Inversi Ikon di Dark Mode agar kontras */
+@media (prefers-color-scheme: dark) {
+	#ipos-browser-info .icon svg { filter: drop-shadow(0 0 1px #fff); }
+}
+
+#ipos-browser-info .geo-flag {
+width: 20px;
+height: auto;
+border-radius: 2px;
+border: 1px solid rgba(0,0,0,0.1);
+}
+
+#ipos-browser-info .icon svg:hover {
+transform: scale(1.2) rotate(5deg);
+}
+
+@media (max-width: 600px) {
+	#ipos-browser-info { display: none !important; }
+}
 `;
 document.head.appendChild(style);
 
