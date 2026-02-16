@@ -245,7 +245,7 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 **Sosial Media:**
 
-[![Twitter/X](https://img.shields.io/badge/Twitter-frijal-000000?logo=x&logoColor=white)](https://twitter.com/frijal)
+[![Twitter/X](https://img.shields.io/badge/Twitter-frijal-000000?logo=x&logoColor=white)](https://x.com/frijal)
 [![Threads](https://img.shields.io/badge/Threads-frijal-000000?logo=threads&logoColor=white)](https://www.threads.net/@frijal)
 [![TikTok](https://img.shields.io/badge/TikTok-@gibah.dilarang-000000?logo=tiktok&logoColor=white)](https://www.tiktok.com/@gibah.dilarang)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-frijal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/frijal)
