@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { TwitterApi } from 'twitter-api-v2';
+import { XApi } from 'twitter-api-v2';
 
 const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-twitter.txt';
@@ -7,8 +7,8 @@ const BASE_URL = 'https://dalam.web.id';
 
 const slugify = (text) => text.toLowerCase().trim().replace(/\s+/g, '-');
 
-async function postToTwitter() {
-  const client = new TwitterApi({
+async function postToX() {
+  const client = new XApi({
     appKey: process.env.TWITTER_API_KEY,
     appSecret: process.env.TWITTER_API_SECRET,
     accessToken: process.env.TWITTER_ACCESS_TOKEN,
@@ -37,7 +37,7 @@ async function postToTwitter() {
   }
 
   if (allPosts.length === 0) {
-    console.log("🏁 Tidak ada artikel baru untuk Twitter.");
+    console.log("🏁 Tidak ada artikel baru untuk X.");
     return;
   }
 
@@ -58,4 +58,4 @@ async function postToTwitter() {
   }
 }
 
-postToTwitter();
+postToX();

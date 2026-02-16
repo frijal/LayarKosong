@@ -32,7 +32,7 @@ def audit_files():
 
             # 2. SOCIAL CREATORS
             if not soup.find("meta", attrs={"name": "fediverse:creator"}): issues[2].append("Fediverse Creator")
-            if not soup.find("meta", attrs={"name": "twitter:creator"}): issues[2].append("Twitter Creator")
+            if not soup.find("meta", attrs={"name": "twitter:creator"}): issues[2].append("X Creator")
             if not soup.find("meta", attrs={"name": "bluesky:creator"}): issues[2].append("Bluesky Creator")
 
             # 3. OPEN GRAPH (OG)
@@ -44,15 +44,15 @@ def audit_files():
             if not soup.find("meta", attrs={"property": "fb:app_id"}): issues[3].append("FB App ID")
 
             # 4. TWITTER & FACEBOOK ARTICLE
-            if not soup.find("meta", attrs={"name": "twitter:card"}): issues[4].append("Twitter Card")
-            if not soup.find("meta", attrs={"name": "twitter:site"}): issues[4].append("Twitter Site")
+            if not soup.find("meta", attrs={"name": "twitter:card"}): issues[4].append("X Card")
+            if not soup.find("meta", attrs={"name": "twitter:site"}): issues[4].append("X Site")
             if not soup.find("meta", attrs={"property": "article:author"}): issues[4].append("Article Author (FB)")
             if not soup.find("meta", attrs={"property": "article:publisher"}): issues[4].append("Article Publisher (FB)")
 
-            # 5. IMAGES (OG, Twitter, Itemprop, Body Alt)
+            # 5. IMAGES (OG, X, Itemprop, Body Alt)
             if not soup.find("meta", attrs={"property": "og:image"}): issues[5].append("OG Image")
             if not soup.find("meta", attrs={"property": "og:image:width", "content": "1200"}): issues[5].append("OG Image Width")
-            if not soup.find("meta", attrs={"name": "twitter:image"}): issues[5].append("Twitter Image")
+            if not soup.find("meta", attrs={"name": "twitter:image"}): issues[5].append("X Image")
             if not soup.find("meta", attrs={"itemprop": "image"}): issues[5].append("Itemprop Image")
             
             # Cek jika ada img tanpa alt di body
@@ -78,7 +78,7 @@ def audit_files():
             1: "🏷️ Core Meta & Branding",
             2: "🌐 Social Meta & Creators",
             3: "📊 Open Graph (OG) Tags",
-            4: "🐦 Twitter & Article Meta",
+            4: "🐦 X & Article Meta",
             5: "🖼️ Image Meta & Alt Text",
             6: "🛠️ Assets & Descriptions"
         }
