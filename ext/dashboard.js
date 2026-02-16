@@ -148,24 +148,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Render kategori
-  function renderCategories(renderData) {
+   function renderCategories(renderData) {
     container.innerHTML = ''
     const cols = Array.from({ length: columnCount }, () => {
       const col = document.createElement('div')
       col.className = 'column'
+      // Tambahin style biar kolomnya gak mepet-mepet amat
+      col.style.minWidth = '250px'; 
+      col.style.margin = '0 10px';
       container.appendChild(col)
       return col
     })
 
-    // Gunakan 'categories' yang sudah diurutkan
     categories.forEach((cat, index) => {
       const col = cols[index % columnCount]
-      const catDiv = document.createElement('div')
+      
+      // GANTI div jadi details biar bisa open-close
+      const catDiv = document.createElement('details')
       catDiv.className = 'category'
       catDiv.dataset.category = cat
+      catDiv.open = true // Default-nya terbuka biar kelihatan isinya dulu
 
-      const header = document.createElement('h3')
-      header.textContent = cat
+      // GANTI h3 jadi summary (judul yang bisa diklik)
+      const header = document.createElement('summary')
+      // Kita tambahin jumlah item di judul biar informatif
+      const itemCount = renderData[cat] ? renderData[cat].length : 0
+      header.textContent = `${cat} (${itemCount})`
+      
       catDiv.appendChild(header)
 
       const list = document.createElement('div')
@@ -187,13 +196,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         itemDiv.dataset.image = image
         itemDiv.dataset.lastmod = lastmod
         itemDiv.dataset.description = description
+        
+        // Sedikit styling item biar rapi di dalam scroll
+        itemDiv.style.padding = '8px';
+        itemDiv.style.marginBottom = '5px';
+        itemDiv.style.borderBottom = '1px solid #eee';
+        itemDiv.style.display = 'flex';
+        itemDiv.style.alignItems = 'center';
+        itemDiv.style.gap = '10px';
 
         const img = document.createElement('img')
         img.src = image
         img.alt = title
+        // Pastikan gambar gak kegedean
+        img.style.width = '40px'; 
+        img.style.height = '40px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '4px';
 
         const span = document.createElement('span')
         span.textContent = title
+        span.style.fontSize = '13px';
 
         itemDiv.appendChild(img)
         itemDiv.appendChild(span)
