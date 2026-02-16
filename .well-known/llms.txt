@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.47
+document_version: 15.48
 last_updated: 2026-02-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 16 February 2026)
-> Menampilkan 1140 artikel yang berhasil diindeks dalam versi 15.47.
+> Menampilkan 1147 artikel yang berhasil diindeks dalam versi 15.48.
 ## Gaya Hidup
 - [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
 - [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
@@ -525,6 +525,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Kumpulan Artikel Layar Kosong: Edisi 2009-11-02 | Arsip](https://dalam.web.id/lainnya/agregat-2009-11-02) : Agregasi mingguan artikel blog Layar Kosong periode 2009-11-02.
 
 ## Olah Media
+- [Web Tool Generator - All in One](https://dalam.web.id/olah-media/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
 - [Sosial Media dan Video Embed Generator](https://dalam.web.id/olah-media/social-video-embed-generator) : Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.
 - [Ambil Thumbnail YouTube dan Shorts High Resolution](https://dalam.web.id/olah-media/ambil-thumbnail-youtube-short) : Cara paling santai dan gratis untuk mengambil thumbnail video YouTube serta YouTube Shorts dalam resolusi tinggi HD hingga 4K tanpa aplikasi tambahan.
 - [Ambil Thumbnail YouTube High Resolution Gratis](https://dalam.web.id/olah-media/ambil-gambar-thumbnail-youtube) : Cara paling mudah dan cepat untuk mengambil thumbnail video YouTube dalam resolusi tinggi HD 4K tanpa aplikasi tambahan secara gratis dan aman.
@@ -717,6 +718,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Revolusi Gaming Linux 2026: Nobara vs Bazzite vs Windows - Panduan Lengkap Performa](https://dalam.web.id/sistem-terbuka/revolusi-gaming-linux-nobara-bazzite) : Temukan perbandingan mendalam performa gaming Linux menggunakan Nobara dan Bazzite melawan Windows. Pelajari cara kerja Proton DXVK dan mengapa Linux kini lebih cepat untuk gaming PC
+- [Panduan Lengkap WinApps & WinBoat: Cara Jalankan Aplikasi Windows di Linux Secara Native 2026](https://dalam.web.id/sistem-terbuka/jalankan-aplikasi-windows-di-linux-winapps-winboat) : Pelajari cara mendalam menjalankan aplikasi Windows di Linux menggunakan WinApps dan WinBoat melalui teknologi RemoteApp VM. Solusi terbaik untuk Microsoft Office dan Adobe di Linux tanpa dual-boot.
+- [Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware](https://dalam.web.id/sistem-terbuka/ubuntu-26-04-linux-firmware-split) : Pelajari bagaimana Ubuntu 26.04 LTS Resolute Raccoon memecah paket linux-firmware menjadi 17 bagian untuk menghemat kuota dan mempercepat update sistem Anda secara signifikan
 - [Cara Pasang Docker di Debian: Panduan Lengkap & Anti Gagal | Layar Kosong](https://dalam.web.id/sistem-terbuka/cara-pasang-docker-di-debian) : Tutorial cara instal Docker dan Docker Compose di Debian terbaru. Panduan langkah demi langkah menggunakan repositori resmi untuk performa server maksimal.
 - [Debian Kernel Adjustment: Rahasia Performa 'Ngebut' Tanpa Kode Ribet](https://dalam.web.id/sistem-terbuka/debian-kernel-adjustment) : Cara optimasi kernel Debian untuk performa maksimal. Belajar tuning kernel Linux via menuconfig agar sistem lebih responsif dan gaming makin smooth.
 - [Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian](https://dalam.web.id/sistem-terbuka/instal-nextcloud-docker-compose) : Cara instal Nextcloud menggunakan Docker Compose di Debian. Panduan lengkap membangun server cloud pribadi untuk simpan data aman dan gratis.
@@ -982,7 +986,10 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Web Tool Generator - All in One](https://dalam.web.id/warta-tekno/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
+- [Skandal AI di Departemen Pemasyarakatan: Bahaya Copilot dalam Data Rahasia Negara](https://dalam.web.id/warta-tekno/bahaya-ai-data-sensitif-pemasyarakatan) : Pelajari mengapa penggunaan Microsoft Copilot oleh staf pemasyarakatan dianggap berbahaya dan melanggar privasi dalam menyusun laporan hukum penting.
+- [Cara Diagnosa PC Windows Lambat dalam 60 Detik dengan Perfmon Report Panduan Lengkap 2026](https://dalam.web.id/warta-tekno/diagnosa-pc-windows-lambat-perfmon) : Temukan rahasia mendiagnosa PC Windows yang lemot hanya dalam 60 detik menggunakan tool bawaan Perfmon Report. Pelajari cara membaca data CPU Disk RAM dan Driver secara mendalam untuk mempercepat performa komputer Anda kembali seperti baru.
+- [Kenapa Windows Masih Mendominasi PC Desktop? Analisis Kompatibilitas dan Ekosistem 2026](https://dalam.web.id/warta-tekno/kenapa-windows-mendominasi-desktop) : Pelajari alasan mendalam mengapa Windows tetap menjadi raja sistem operasi desktop. Analisis faktor kompatibilitas perangkat keras familiarity pengguna dan strategi penguncian ekosistem Microsoft
+- [Panduan Aplikasi Windows Gratis 2026 Pengganti Software Berbayar Terbaik](https://dalam.web.id/warta-tekno/aplikasi-windows-gratis-2026-pengganti-berbayar) : Temukan daftar aplikasi Windows gratis 2026 yang mampu menggantikan software berbayar seperti Photoshop Office dan Premiere Pro secara profesional dan hemat biaya
 - [Mengulik Alat Sadap Canggih KPK Telinga Raksasa yang Membuat Koruptor Gemetar](https://dalam.web.id/warta-tekno/mengulik-alat-sadap-canggih-kpk) : Bedah tuntas teknologi penyadapan KPK mulai dari ATIS Jerman hingga Pegasus Israel. Mengapa pejabat sering kena OTT dan bagaimana sistem Lawful Interception bekerja.
 - [Mengintip Isi Perut Git: Mengenal HEAD dan FETCH_HEAD Secara Mendalam](https://dalam.web.id/warta-tekno/mengintip-isi-folder-git-head-fetch) : Pelajari cara kerja Git lebih dalam dengan memahami file HEAD dan FETCH_HEAD. Panduan lengkap dengan prinsip 5W+1H untuk developer yang ingin jago Git.
 - [Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel](https://dalam.web.id/warta-tekno/akses-nextcloud-cloudflare-tunnel) : Tutorial cara menghubungkan Nextcloud ke internet menggunakan Cloudflare Tunnel dan domain gratis. Akses server rumah dengan aman tanpa port forwarding.
