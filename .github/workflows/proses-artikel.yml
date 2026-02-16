@@ -29,7 +29,7 @@ jobs:
       # 2. Setup Perl
       # Gunakan v2 untuk versi yang lebih baru dan support cache yang lebih baik (meski di nonaktifkan)
       - name: Setup Perl 5.36
-        uses: shogo82148/actions-setup-perl@v1.37.0
+        uses: shogo82148/actions-setup-perl@v1.37.1
         with:
           perl-version: '5.36'
           # Menonaktifkan cache modul untuk menghindari WARNING 400
