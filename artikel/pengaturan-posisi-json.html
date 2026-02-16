@@ -6,120 +6,161 @@
   <meta name="keywords" content="JSON, data, JavaScript Object Notation, web, aplikasi, pertukaran data, server, klien, pengaturan posisi JSON">
     <style>
       body {
-        font-family: sans-serif;
-        margin: 0;
-        padding: 20px;
-        background: #f5f5f5;
-      }
-      h1 {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      #categories {
-        display: flex;
-        gap: 20px;
-      }
-      .column {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .category {
-        background: white;
-        border-radius: 8px;
-        padding: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      }
-      .category h3 {
-        margin: 0 0 10px;
-        font-size: 1.1em;
-        background: #eee;
-        padding: 5px;
-        border-radius: 4px;
-      }
-      .item-list {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        min-height: 50px;
-        border: 1px dashed #ccc;
-        padding: 6px;
-        border-radius: 4px;
-      }
-      .item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: #fafafa;
-        border: 1px solid #ddd;
-        padding: 4px 6px;
-        border-radius: 4px;
-        cursor: grab;
-      }
-      .item img {
-        width: 40px;
-        height: 40px;
-        object-fit: cover;
-        border-radius: 4px;
-      }
-      #downloadBtn {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-        background: #2196f3;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-      #downloadBtn:hover {
-        background: #1976d2;
-      }
-      /* Context Menu */
-      #contextMenu {
-        font-family: sans-serif;
-        font-size: 14px;
-        min-width: 180px;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        position: absolute;
-        display: none;
-        z-index: 1000;
-      }
-      #contextMenu div {
-        padding: 8px 12px;
-        cursor: pointer;
-        white-space: nowrap;
-      }
-      #contextMenu div:hover {
-        background: #f0f0f0;
-      }
-      /* Search bar */
-      #searchContainer {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      #searchContainer input {
-        padding: 6px 10px;
-        width: 300px;
-        font-size: 14px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-      }
-      #searchContainer button {
-        margin-left: 5px;
-        padding: 6px 10px;
-        font-size: 14px;
-        cursor: pointer;
-      }
-      mark {
-        background: yellow;
-      }
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#categories {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Biar kolom gak narik kebawah barengan */
+}
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; /* Mencegah overflow pada flex child */
+}
+
+/* Container Kategori menggunakan Details */
+.category {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Menjaga border-radius */
+}
+
+/* Header yang bisa diklik */
+summary {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  background: #eee;
+  padding: 10px;
+  cursor: pointer;
+  list-style: none; /* Hapus panah default */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+summary::-webkit-details-marker {
+  display: none; /* Hapus panah default Safari */
+}
+
+summary::after {
+  content: '▼';
+  font-size: 0.8em;
+  transition: transform 0.3s;
+}
+
+details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+/* List Item dengan Scroll Internal */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 50px;
+  max-height: 400px; /* Batas tinggi scroll */
+  overflow-y: auto;  /* Aktifkan scroll vertikal */
+  padding: 10px;
+  background: #fff;
+}
+
+/* Styling Scrollbar biar lebih cantik */
+.item-list::-webkit-scrollbar {
+  width: 6px;
+}
+.item-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: grab;
+  transition: background 0.2s;
+}
+
+.item:hover {
+  background: #f0f0f0;
+}
+
+.item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0; /* Gambar gak gepeng */
+}
+
+.item span {
+  font-size: 13px;
+  word-break: break-word; /* Mencegah teks kepotong */
+}
+
+#downloadBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#downloadBtn:hover {
+  background: #1976d2;
+}
+
+/* Context Menu */
+#contextMenu {
+  font-family: sans-serif;
+  font-size: 14px;
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+}
+
+#contextMenu div {
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#contextMenu div:hover {
+  background: #f0f0f0;
+}
+
+mark {
+  background: yellow;
+  color: black;
+  padding: 0 2px;
+}
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Fungsi .json adalah untuk menyimpan dan mengirimkan data dalam format JSON (JavaScript Object Notation). JSON adalah format data ringan yang mudah dibaca dan ditulis oleh manusia, serta mudah diurai dan dihasilkan oleh mesin. Format ini sering digunakan dalam pengembangan web dan aplikasi untuk pertukaran data antara server dan klien.">
