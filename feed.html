@@ -312,10 +312,10 @@
                 <p>${cleanDescription.substring(0, 150)}...</p>
                 <div class="social-share">
                   <span>Bagikan:</span>
-                  <a href="https://x.com/intent/post?text=${encodedTitle}&url=${encodedLink}" onclick='return window.open(this.href,"twitter-share","width=550,height=400,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://x.com/intent/post?text=${encodedShareText}&url=${encodedLink}" onclick='return window.open(this.href,"twitter-share","width=550,height=400,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-twitter"></i></a>
                   <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" onclick='return window.open(this.href,"facebook-share","width=580,height=400,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="https://api.whatsapp.com/send?text=${encodedTitle}%0A%0A${encodedLink}" onclick='return window.open(this.href,"whatsapp-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                  <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedTitle}" onclick='return window.open(this.href,"telegram-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                  <a href="https://api.whatsapp.com/send?text=${encodedShareText}%0A%0A${encodedLink}" onclick='return window.open(this.href,"whatsapp-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedShareText}" onclick='return window.open(this.href,"telegram-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-telegram"></i></a>
                 </div>
               </div>
             </div>`;
