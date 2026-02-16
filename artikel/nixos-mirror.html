@@ -40,7 +40,7 @@
         .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
         .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3a4857; color: var(--fg); cursor: pointer; text-decoration: none; }
         .btn-share:hover { background: #4a5568; }
-        .warning-box { border-left: 4px solid var(--warning); background: rgba(245, 158, 11, 0.05); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
+        .zdummy { border-left: 4px solid var(--warning); background: rgba(245, 158, 11, 0.05); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
         pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
         code { font-family: 'Fira Code', 'Consolas', monospace; }
         .copy-btn { position: absolute; top: 12px; right: 12px; background: #3a4857; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
@@ -89,7 +89,7 @@
                     <h1>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</h1>
 <div id="iposbrowser"></div>
                     <p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p>
-                    <div class="warning-box">
+                    <div class="zdummy">
                         <strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.
                     </div>
                     <h2>Kode Skrip</h2>
