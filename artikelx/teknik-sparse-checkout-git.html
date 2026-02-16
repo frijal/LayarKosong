@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teknik Git Sparse Checkout: Solusi Hemat Storage untuk Repo Layar Kosong</title>
+    <meta name="description" content="Pelajari cara menghemat ruang disk dan kuota internet menggunakan Git Sparse Checkout. Panduan lengkap mengelola repositori besar dengan mengabaikan folder berat.">
+    <meta name="keywords" content="Git Sparse Checkout, Tutorial Git Indonesia, Hemat Storage Git, GitHub CLI, Layar Kosong, Optimasi Repositori, Workflow Developer">
+    <meta name="news_keywords" content="Teknologi Git 2026, Optimasi Web Balikpapan, Manajemen Repositori Besar, Sparse Checkout No-Cone">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dalam.web.id/artikel/teknik-sparse-checkout-git.html">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Strategi Diet Repositori: Menguasai Sparse Checkout di Layar Kosong">
+    <meta property="og:description" content="Kenapa harus download semua kalau cuma butuh sebagian? Simak cara aku 'mengaibkan' folder img/ yang berat di Git secara permanen namun aman.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/teknik-sparse-checkout-git.html">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HBSor0dboAEReCZ.jpg">
+    <meta property="article:published_time" content="2026-02-16T21:00:00+08:00">
+    <meta property="article:tag" content="Git Expert">
+    <meta property="article:tag" content="Web Performance">
+    <meta property="article:tag" content="Efficient Dev">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:title" content="Panduan Git Sparse Checkout: Cara Cerdas Kelola Repo Gajah">
+    <meta name="twitter:description" content="Tips hemat storage buat kamu yang punya repo dengan folder aset bejibun. Teknik asli dari dapur Layar Kosong.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HBSor0dboAEReCZ.jpg">
+
+    <meta name="promphint" content="Artikel ini membahas secara mendalam teknik Git Sparse Checkout, perbedaan mode cone dan no-cone, serta implementasi praktis pada repositori Layar Kosong untuk mengabaikan folder spesifik tanpa menghapusnya dari server.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #2d3436;
+        --accent-color: #0984e3;
+        --code-bg: #2d3436;
+        --code-text: #dfe6e9;
+        --border-color: #dfe6e9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-color: #1e272e;
+            --text-color: #d2dae2;
+            --accent-color: #0fbcf9;
+            --code-bg: #050505;
+            --code-text: #00d8d6;
+            --border-color: #485460;
+        }
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        /* Font body diperbesar agar lebih legible */
+        font-size: 1.25rem;
+    }
+
+    .widescreen-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    h1, h2, h3 { color: var(--accent-color); margin-top: 2.5rem; }
+    h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; }
+    h2 { font-size: 2.2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    h3 { font-size: 1.8rem; }
+
+    .hero-img {
+        width: 100%;
+        border-radius: 15px;
+        margin: 40px 0;
+        object-fit: cover;
+    }
+
+    .meta-info {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-bottom: 40px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 15px;
+    }
+
+    pre {
+        background: var(--code-bg);
+        color: var(--code-text);
+        padding: 25px;
+        border-radius: 12px;
+        overflow-x: auto;
+        /* Ukuran font kode diperbesar */
+        font-size: 1.15rem;
+        line-height: 1.6;
+        border: 1px solid var(--accent-color);
+        font-family: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    .content-section { margin-bottom: 50px; }
+
+    .box-warning {
+        background: rgba(255, 121, 121, 0.1);
+        border-left: 6px solid #ff7979;
+        padding: 25px;
+        margin: 30px 0;
+        border-radius: 0 12px 12px 0;
+        font-style: italic;
+    }
+
+    .social-share {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        padding: 40px 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 60px;
+        flex-wrap: wrap;
+    }
+
+    .social-share span { font-weight: bold; font-size: 1.3rem; }
+    .social-share a { color: var(--text-color); font-size: 2rem; text-decoration: none; transition: 0.3s; }
+    .social-share a:hover { color: var(--accent-color); transform: translateY(-5px); }
+
+    footer {
+        text-align: center;
+        padding: 60px 40px;
+        border-top: 1px solid var(--border-color);
+        font-size: 1.1rem;
+    }
+
+    /* Optimasi Mobile View */
+    @media (max-width: 768px) {
+        body { font-size: 1.15rem; }
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.8rem; }
+        pre { font-size: 1rem; padding: 15px; }
+        .social-share a { font-size: 1.8rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="widescreen-wrapper">
+    <header>
+        <h1>Strategi "Diet" Repositori: Menguasai Git Sparse Checkout 🚀</h1>
+        <div class="meta-info">
+            <i class="fa fa-user"></i> Fakhrul Rijal &nbsp; | &nbsp;
+            <i class="fa fa-map-marker"></i> Balikpapan &nbsp; | &nbsp;
+            <i class="fa fa-calendar"></i> 16 Februari 2026
+        </div>
+    </header>
+
+    <main>
+        <img src="https://pbs.twimg.com/media/HBSor0dboAEReCZ.jpg" alt="Git Sparse Checkout Visualization" class="hero-img">
+
+        <section class="content-section">
+            <h2>Why: Mengapa Kita Harus Melakukan Ini? 🤔</h2>
+            <p>Pernahkah kamu merasa repositori proyekmu tumbuh menjadi "monster"? Di blog <strong>Layar Kosong</strong>, ribuan file HTML adalah inti dari segalanya, namun folder <code>img/</code> seringkali berisi ribuan aset visual yang ukurannya bergiga-giga. Masalah muncul saat kita harus bekerja di perangkat dengan penyimpanan terbatas atau saat koneksi internet sedang tidak bersahabat di Balikpapan.</p>
+
+            <p><strong>Sparse Checkout</strong> hadir sebagai solusi "bedah plastik" untuk repositori Git. Alih-alih mengunduh dan menampilkan seluruh isi folder, kita bisa memilih secara spesifik folder mana yang ingin kita munculkan di lokal kita tanpa menghapusnya dari server GitHub.</p>
+        </section>
+
+
+
+        <section class="content-section">
+            <h2>What: Apa Itu Sparse Checkout Sebenarnya? 🧠</h2>
+            <p>Secara harfiah, <em>sparse</em> berarti jarang atau tipis. Dalam konteks Git, teknik ini memungkinkan kita untuk melakukan <code>checkout</code> hanya pada subset file dari pohon kerja (working tree). Bayangkan sebuah perpustakaan raksasa; Sparse Checkout memungkinkan kamu hanya mengambil buku di rak "Teknologi" tanpa perlu menyentuh rak "Sejarah" atau "Seni", meskipun kamu memegang kunci seluruh perpustakaan tersebut.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>How: Langkah Demi Langkah Eksekusi Hemat 🛠️</h2>
+
+            <h3>1. Clone Tanpa Beban (Initial Step)</h3>
+            <p>Langkah pertama pakai github CLI, <img src="https://pbs.twimg.com/media/HBSpNDvbcAESqeL.jpg" alt="Git Sparse Checkout Solusi Hemat Storage Penyimpanan" width="100%" style="display: block; margin-left: auto; margin-right: auto;"> dimulai saat proses <code>clone</code>. Kita menggunakan filter <code>blob:none</code> agar Git tidak mengunduh isi file besar sampai kita benar-benar membutuhkannya.</p>
+            <ul>
+            <li>Linux</li>
+<pre><code>gh auth login
+gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1</code></pre>
+            <li>WIndows</li>
+<pre><code>winget install --id GitHub.cli
+winget install --id Git.Git
+gh auth login
+gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1</code></pre>
+            <li>Mac</li>
+<pre><code>brew install git gh
+gh auth login
+gh repo clone frijal/LayarKosong -- --filter=blob:none --sparse --depth 1</code></pre>
+            </ul>
+            <h3>2. Masuk ke dalam Folder yang barusan di Clone</h3>
+            <p>contoh kita tadi pakai repo bernama LayarKosong.</p>
+            <pre><code>cd LayarKosong</code></pre>
+
+            <h3>2. Keluar dari Mode Cone</h3>
+            <p>Git modern menggunakan mode <em>Cone</em> secara default (hanya mendukung folder utuh). Karena kita ingin menggunakan pola pengecualian (tanda seru <code>!</code>), kita harus mematikannya.</p>
+<pre><code>git config core.sparseCheckoutCone false
+git sparse-checkout init</code></pre>
+
+            <h3>3. Menetapkan Aturan "Gaib"</h3>
+            <p>Ini adalah bagian inti. Kita memberitahu Git untuk mengambil semua file di semua folder (<code>/*</code>), tapi abaikan folder <code>img/</code> dan <code>.github/workflows/</code> secara spesifik.</p>
+<pre><code>git sparse-checkout set --no-cone "/*" "!/img/" "!/.github/workflows/"</code></pre>
+<p>Seketika, folder <code>img/</code> dan <code>.github/workflows/</code> akan menghilang dari File Explorer, namun mereka tetap berada di dalam server repo Github, dan status repositori kamu tetap <code>clean</code>, aman sentosa.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Where & When: Dimana Aturan Ini Disimpan? 📍</h2>
+            <p>Aturan Sparse Checkout tersimpan di folder rahasia, dengan nama <code>.git/info/sparse-checkout</code>. Karena folder <code>.git</code> ini terbawa saat kamu memindahkan hardisk antar komputer, konfigurasi diet ini akan <strong>tetap berlaku otomatis</strong> di mana pun hardisk itu dicolokkan. Kamu tidak perlu melakukan setting ulang setiap kali pindah perangkat!</p>   </section>
+
+        <div class="box-warning">
+            <i class="fa fa-exclamation-triangle"></i> <strong>Penting:</strong> Jika folder yang kamu abaikan tetap muncul, kamu mungkin perlu memicu sinkronisasi ulang index dengan perintah: <br>
+            <code>git read-tree -mu HEAD</code>
+        </div>
+
+        <section class="content-section">
+            <h2>Who: Siapa yang Mendapatkan Manfaat Terbesar? 👥</h2>
+            <p>Teknik ini sangat krusial bagi aku di <strong>Layar Kosong</strong> yang sering melakukan otomasi. Dengan mengabaikan folder gambar dan workflow, proses <code>git status</code>, <code>git add</code>, dan <code>git pull</code> menjadi jauh lebih cepat karena Git tidak perlu memindai ribuan file gambar yang statis.</p>
+        </section>
+
+        </div>
+
+        <div id="pesbukdiskus"></div>
+        <div id="related-articles-grid"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <a href="https://dalam.web.id" style="color:var(--accent-color); text-decoration:none;">Layar Kosong</a> - Catatan Digital Fakhrul Rijal. Optimized for Core Web Vitals | No HERO | No ARIA | Pure Performance.</p>
+    </footer>
+</div>
+
+</body>
+</html>
