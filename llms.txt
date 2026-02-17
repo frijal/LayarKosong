@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.53
+document_version: 15.54
 last_updated: 2026-02-17
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 17 February 2026)
-> Menampilkan 1151 artikel yang berhasil diindeks dalam versi 15.53.
+> Menampilkan 1155 artikel yang berhasil diindeks dalam versi 15.54.
 ## Gaya Hidup
 - [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
 - [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
@@ -250,6 +250,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Menggugat Koperasi Merah Putih: Proyek Rakyat atau Cuan Pejabat?](https://dalam.web.id/lainnya/menggugat-koperasi-merah-putih) : kritik Tere Liye terhadap proyek Koperasi Merah Putih yang menguras 70% Dana Desa. Apakah ini solusi ekonomi atau sekadar proyek mercusuar yang mematikan infrastruktur desa?
 - [Kumpulan Artikel Layar Kosong: Edisi 2026-02-16 | Arsip](https://dalam.web.id/lainnya/agregat-2026-02-16) : Agregasi mingguan artikel blog Layar Kosong periode 2026-02-16.
 - [Kumpulan Artikel Layar Kosong: Edisi 2026-02-09 | Arsip](https://dalam.web.id/lainnya/agregat-2026-02-09) : Agregasi mingguan artikel blog Layar Kosong periode 2026-02-09.
 - [Kumpulan Artikel Layar Kosong: Edisi 2026-02-02 | Arsip](https://dalam.web.id/lainnya/agregat-2026-02-02) : Agregasi mingguan artikel blog Layar Kosong periode 2026-02-02.
@@ -600,6 +601,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Dari Proyek Produktif ke Program Katanya Bergizi – Kritik Utang dan MBG](https://dalam.web.id/opini-sosial/proyek-produktif-orde-baru-kritik-utang-mbg) : Satirei tentang utang produktif Orde Baru vs program Makan Bergizi Gratis (MBG) sekarang. Analisis 5W+1H, dampak utang, dan harapan rakyat.
+- [Hadits Mungkar: Ketika Tangan, Lisan, dan Hati Tak Cukup – Jangan Sekutu Kebatilan](https://dalam.web.id/opini-sosial/hadits-mungkar-tangan-lisan-hati) : Membedah hadits tentang kemungkaran: mengubah dengan tangan, lisan, dan hati. Mengapa tidak ada opsi keempat? Refleksi untuk negara, ulil amri, dan sikap terhadap kezaliman global.
 - [Sisi Gelap Makan Bergizi Gratis: Antara Niat Mulia dan Ancaman Gunungan Sampah Makanan](https://dalam.web.id/opini-sosial/sisi-gelap-makan-bergizi-gratis) : Mengupas tuntas program Makan Bergizi Gratis MBG dari sisi limbah makanan food waste dan inefisiensi dapur sentral. Simak analisis mendalam Indonesia Cerdas mengenai dampak lingkungan dan solusi efektifnya
 - [Cara Menghadapi Razia Saat Pajak Belum Dibayar Karena Hemat Nasional](https://dalam.web.id/opini-sosial/cara-menghadapi-razia-pajak-mati) : Panduan lengkap menghadapi razia polisi saat pajak kendaraan mati karena kondisi keuangan. Simak tips jujur dan pemahaman hukum 5W 1H di sini.
 - [Panduan Lengkap Desil DTSEN Kemensos 2026: Cara Cek dan Klasifikasi Ekonomi Terbaru](https://dalam.web.id/opini-sosial/panduan-desil-dtsen-kemensos) : Temukan panduan lengkap tentang Desil DTSEN Kemensos tahun 2026. Pelajari cara cek status bantuan sosial, pembagian 10 kelompok kesejahteraan, dan syarat penerima bansos secara akurat di sini.
@@ -987,6 +990,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Dengan Langit yang Sama Kita Berbeda Tanggal – Analisis Awal Ramadan 2026](https://dalam.web.id/warta-tekno/langit-sama-tanggal-beda-ramadan-2026) : Menjelang 17 Februari 2026, prediksi awal Ramadan di Indonesia berpotensi berbeda. Pemerintah pakai kriteria MABIMS, Muhammadiyah dengan Kalender Global Tunggal. Simak ulasan lengkapnya.
 - [Teknik Git Sparse Checkout: Solusi Hemat Storage untuk Repo Layar Kosong](https://dalam.web.id/warta-tekno/teknik-sparse-checkout-git) : Pelajari cara menghemat ruang disk dan kuota internet menggunakan Git Sparse Checkout. Panduan lengkap mengelola repositori besar dengan mengabaikan folder berat.
 - [Skandal AI di Departemen Pemasyarakatan: Bahaya Copilot dalam Data Rahasia Negara](https://dalam.web.id/warta-tekno/bahaya-ai-data-sensitif-pemasyarakatan) : Pelajari mengapa penggunaan Microsoft Copilot oleh staf pemasyarakatan dianggap berbahaya dan melanggar privasi dalam menyusun laporan hukum penting.
 - [Cara Cek VRAM di Windows 11: 4 Metode Mudah dan Akurat untuk Cek Memori GPU Kamu](https://dalam.web.id/warta-tekno/cara-cek-vram-windows-11) : Bingung kenapa game kamu patah patah? Yuk pelajari cara cek VRAM Windows 11 dengan 4 metode mudah. Panduan lengkap isolasi masalah GPU untuk performa maksimal.
