@@ -103,6 +103,7 @@ function renderHero() {
 
   heroEl.classList.remove('skeleton');
 
+  // Render Slides
   wrapper.innerHTML = heroData.map((h, i) => `
   <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
   <div class="hero-overlay"></div>
@@ -116,6 +117,19 @@ function renderHero() {
   </div>
   </a>
   `).join('');
+
+  // Tambahkan Tombol Navigasi Manual
+  const navHTML = `
+  <div class="hero-nav">
+  <button class="nav-btn prev" onclick="moveHero(-1); event.preventDefault();"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="nav-btn next" onclick="moveHero(1); event.preventDefault();"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  `;
+
+  // Masukkan nav ke dalam heroEl (pastikan heroEl punya position: relative)
+  const existingNav = heroEl.querySelector('.hero-nav');
+  if (existingNav) existingNav.remove();
+  heroEl.insertAdjacentHTML('beforeend', navHTML);
 
   heroEl.addEventListener('mouseenter', stopHeroSlider);
   heroEl.addEventListener('mouseleave', startHeroSlider);
@@ -151,6 +165,24 @@ function stopHeroSlider() {
 function goToHero(index) {
   currentHeroIndex = index;
   updateHeroPosition();
+  stopHeroSlider();
+  startHeroSlider();
+}
+
+function moveHero(direction) {
+  // Geser index berdasarkan arah (-1 atau 1)
+  currentHeroIndex += direction;
+
+  // Logic Looping: Kalau sudah di ujung, balik ke awal/akhir
+  if (currentHeroIndex >= heroData.length) {
+    currentHeroIndex = 0;
+  } else if (currentHeroIndex < 0) {
+    currentHeroIndex = heroData.length - 1;
+  }
+
+  updateHeroPosition();
+
+  // Reset timer supaya slider nggak langsung geser otomatis setelah kita klik manual
   stopHeroSlider();
   startHeroSlider();
 }
