@@ -74,9 +74,6 @@ def build_semester_aggregation():
 
                 all_pending_articles.append({
                     'title': art[0],
-
-                all_pending_articles.append({
-                    'title': art[0],
                     'slug': slug,
                     'thumb': art[2],
                     'date': dt,
