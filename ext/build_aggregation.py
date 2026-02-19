@@ -32,7 +32,6 @@ def save_posted_urls(urls):
             f.write(f"{url}\n")
 
 def get_semester_range(target_date):
-    """Mengembalikan rentang (start_date, end_date) tipe date (hanya tanggal)."""
     year = target_date.year
     if target_date.month <= 6:
         start = date(year, 1, 1)
@@ -56,7 +55,6 @@ def build_semester_aggregation():
     posted_urls = get_posted_urls()
     all_pending_articles = []
 
-    # 1. Kumpulkan semua artikel
     for category_raw, articles_list in data.items():
         url_category = slugify_category(category_raw)
         for art in articles_list:
@@ -64,7 +62,6 @@ def build_semester_aggregation():
             if slug not in posted_urls:
                 date_raw = art[3]
                 try:
-                    # Ambil 10 karakter pertama (YYYY-MM-DD) saja
                     dt_obj = datetime.fromisoformat(date_raw[:10]).date()
                 except ValueError:
                     dt_obj = datetime.strptime(date_raw[:10], '%Y-%m-%d').date()
@@ -73,7 +70,7 @@ def build_semester_aggregation():
                     'title': art[0],
                     'slug': slug,
                     'thumb': art[2],
-                    'date': dt_obj, # Hanya objek date
+                    'date': dt_obj,
                     'date_raw': art[3],
                     'content': art[4],
                     'category_name': category_raw,
@@ -85,15 +82,11 @@ def build_semester_aggregation():
         return
 
     all_pending_articles.sort(key=lambda x: x['date'])
-    
-    # Ambil tanggal hari ini (hanya date)
     today = date.today()
 
-    # 2. PROSES LOOPING PER SEMESTER
     while all_pending_articles:
         start_date, end_date = get_semester_range(all_pending_articles[0]['date'])
         
-        # JANGAN BUAT jika hari ini belum melewati batas akhir semester
         if today <= end_date:
             print(f"⏳ Semester {start_date.year} ({'Jan-Jun' if start_date.month == 1 else 'Jul-Des'}) belum berakhir.")
             break
@@ -108,6 +101,8 @@ def build_semester_aggregation():
         file_name = f"agregat-{start_date.year}-{label_semester.replace(' ', '').lower()}.html"
         page_url = f"https://dalam.web.id/artikel/{file_name}"
         main_cover = current_batch[0]['thumb']
+        title_page = f"Arsip Layar Kosong: {label_semester} {start_date.year}"
+        desc_page = f"Kumpulan artikel blog Layar Kosong periode {start_date.strftime('%B')} - {end_date.strftime('%B')} {start_date.year}."
 
         articles_html = ""
         batch_slugs = []
@@ -124,43 +119,82 @@ def build_semester_aggregation():
                 <h2><a href="{base_link}" style="text-decoration: none;">{a['title']}</a></h2>
                 <a href="{base_link}"><img src="{a['thumb']}" alt="{clean_meta_text(a['title'])}" class="main-img" loading="lazy"></a>
                 <div class="content">{a['content']}</div>
-                <p><a href="{base_link}" class="read-more">Baca selengkapnya di {a['category_name']} &rarr;</a></p>
+                <p><a href="{base_link}" class="read-more">Baca selengkapnya &rarr;</a></p>
                 <hr class="separator">
             </section>
             """
             batch_slugs.append(a['slug'])
 
-        # Template HTML tetap sama
+        # Susun template HTML dengan Meta Tag Baru
         full_html = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arsip Layar Kosong: {label_semester} {start_date.year}</title>
-    <meta name="description" content="Kumpulan artikel blog Layar Kosong periode {start_date.strftime('%B')} - {end_date.strftime('%B')} {start_date.year}.">
+    <title>{title_page}</title>
+    
+    <meta name="description" content="{desc_page}">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
     <link rel="canonical" href="{page_url}">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{page_url}">
+    <meta property="og:title" content="{title_page}">
+    <meta property="og:description" content="{desc_page}">
     <meta property="og:image" content="{main_cover}">
+    <meta property="og:image:alt" content="{title_page}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta property="twitter:url" content="{page_url}">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta name="twitter:title" content="{title_page}">
+    <meta name="twitter:description" content="{desc_page}">
+    <meta name="twitter:image" content="{main_cover}">
+
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta itemprop="image" content="{main_cover}">
+<meta property="article:published_time" content="{end_date.isoformat()}T23:59:59+08:00">
+
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
-        :root {{ --bg: #ffffff; --text: #1a1a1a; --accent: #d70a53; }}
+        :root {{ --bg: #ffffff; --text: #1a1a1a; --accent: #00b0ed; }}
         @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0d1117; --text: #c9d1d9; --accent: #58a6ff; }} }}
-        body {{ font-family: sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); padding: 20px; }}
+        body {{ font-family: 'Inter', sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); padding: 20px; }}
         .container {{ max-width: 1000px; margin: auto; }}
-        header {{ text-align: center; border-bottom: 5px solid var(--accent); padding-bottom: 20px; margin-bottom: 40px; }}
-        .main-img {{ width: 100%; border-radius: 12px; }}
-        h2 {{ color: var(--accent); }}
-        .separator {{ border-top: 1px dashed #444; margin: 40px 0; }}
+        header {{ text-align: center; border-bottom: 5px solid var(--accent); padding-bottom: 30px; margin-bottom: 50px; }}
+        .main-img {{ width: 100%; border-radius: 12px; margin: 20px 0; }}
+        h2 {{ font-size: 1.8rem; color: var(--accent); }}
+        .meta {{ font-size: 0.85rem; opacity: 0.7; font-weight: bold; }}
+        .separator {{ border: 0; border-top: 1px dashed #444; margin: 50px 0; }}
+        footer {{ text-align: center; margin-top: 60px; padding: 40px 0; border-top: 1px solid #333; font-size: 0.9rem; }}
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Arsip {label_semester} ({start_date.year})</h1>
-            <p>Periode: {start_date.strftime('%d %b')} s/d {end_date.strftime('%d %b %Y')}</p>
+            <h1>{label_semester} ({start_date.year})</h1>
+            <p>Arsip periode {start_date.strftime('%d %B')} s/d {end_date.strftime('%d %B %Y')}</p>
         </header>
         {articles_html}
         <footer>
-            <p>Dihasilkan secara otomatis | <a href="https://dalam.web.id">Layar Kosong</a></p>
+            <p>Dihasilkan secara otomatis oleh sistem kurasi Frijal | Balikpapan</p>
+            <p><a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
         </footer>
     </div>
 </body>
@@ -171,11 +205,11 @@ def build_semester_aggregation():
             f.write(full_html)
 
         save_posted_urls(batch_slugs)
-        print(f"✅ File '{file_name}' dibuat.")
+        print(f"✅ File '{file_name}' berhasil dibuat dengan meta tags lengkap.")
 
         all_pending_articles = [a for a in all_pending_articles if a['slug'] not in batch_slugs]
 
-    print("\n✨ Selesai!")
+    print("\n✨ Proses Agregasi Selesai!")
 
 if __name__ == "__main__":
     build_semester_aggregation()
