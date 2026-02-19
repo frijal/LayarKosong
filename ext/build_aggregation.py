@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # Konfigurasi
 OUTPUT_DIR = "artikelx"
@@ -31,10 +31,18 @@ def save_posted_urls(urls):
         for url in urls:
             f.write(f"{url}\n")
 
-def get_monday(date):
-    return (date - timedelta(days=date.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+def get_semester_range(date):
+    """Mengembalikan rentang (start_date, end_date) untuk semester terkait."""
+    year = date.year
+    if date.month <= 6:
+        start = datetime(year, 1, 1)
+        end = datetime(year, 6, 30, 23, 59, 59)
+    else:
+        start = datetime(year, 7, 1)
+        end = datetime(year, 12, 31, 23, 59, 59)
+    return start, end
 
-def build_weekly_aggregation():
+def build_semester_aggregation():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
@@ -72,28 +80,33 @@ def build_weekly_aggregation():
                 })
 
     if not all_pending_articles:
-        print("☕ Semua artikel sudah masuk agregat.")
+        print("☕ Tidak ada artikel baru untuk diproses.")
         return
 
     # Urutkan berdasarkan tanggal (terlama ke terbaru)
     all_pending_articles.sort(key=lambda x: x['date'])
+    
+    now = datetime.now()
 
-    # 2. PROSES LOOPING PER MINGGU
+    # 2. PROSES LOOPING PER SEMESTER
     while all_pending_articles:
-        # Ambil patokan senin dari artikel paling awal di daftar
-        start_monday = get_monday(all_pending_articles[0]['date'])
-        end_sunday = start_monday + timedelta(days=6, hours=23, minutes=59, seconds=59)
+        # Ambil rentang semester dari artikel tertua yang tersedia
+        start_date, end_date = get_semester_range(all_pending_articles[0]['date'])
+        
+        # JANGAN BUAT jika sekarang belum melewati batas akhir semester tersebut
+        if now <= end_date:
+            print(f"⏳ Semester {start_date.strftime('%Y-%m')} belum berakhir (Batas: {end_date.strftime('%d %B %Y')}). Menunggu...")
+            break
 
-        # Ambil semua artikel yang masuk dalam rentang minggu ini
-        current_batch = [a for a in all_pending_articles if start_monday <= a['date'] <= end_sunday]
+        # Ambil semua artikel yang masuk dalam rentang semester ini
+        current_batch = [a for a in all_pending_articles if start_date <= a['date'] <= end_date]
         
         if not current_batch:
-            # Jika karena suatu alasan batch kosong (data rusak), hapus item pertama agar tidak loop selamanya
             all_pending_articles.pop(0)
             continue
 
-        monday_str = start_monday.strftime('%Y-%m-%d')
-        file_name = f"agregat-{monday_str}.html"
+        label_semester = "Semester 1" if start_date.month == 1 else "Semester 2"
+        file_name = f"agregat-{start_date.year}-{label_semester.replace(' ', '').lower()}.html"
         page_url = f"https://dalam.web.id/artikel/{file_name}"
         main_cover = current_batch[0]['thumb']
         first_date_iso = current_batch[0]['date'].isoformat()
@@ -125,52 +138,34 @@ def build_weekly_aggregation():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumpulan Artikel Layar Kosong: Edisi {monday_str} | Arsip</title>
-    <meta name="description" content="Agregasi mingguan artikel blog Layar Kosong periode {monday_str}.">
+    <title>Arsip Layar Kosong: {label_semester} {start_date.year}</title>
+    <meta name="description" content="Kumpulan artikel blog Layar Kosong periode {start_date.strftime('%B')} - {end_date.strftime('%B')} {start_date.year}.">
     <link rel="canonical" href="{page_url}">
-
-    <meta property="og:url" content="{page_url}">
-    <meta property="og:title" content="Agregasi Mingguan Layar Kosong: Edisi {monday_str}">
-    <meta property="og:description" content="Rangkuman artikel terpilih dari blog Layar Kosong untuk periode minggu {monday_str}.">
     <meta property="og:image" content="{main_cover}">
-    <meta property="article:published_time" content="{first_date_iso}">
-
-    <meta name="twitter:title" content="Agregasi Mingguan Layar Kosong: Edisi {monday_str}">
-    <meta name="twitter:description" content="Baca kumpulan artikel terbaru dan arsip menarik dari Frijal di Layar Kosong.">
-    <meta name="twitter:image" content="{main_cover}">
-
-    <meta name="promphint" content="Weekly content aggregation from Layar Kosong Blog by Frijal">
-
     <link rel="stylesheet" href="/ext/fontawesome.css">
-
     <style>
         :root {{ --bg: #ffffff; --text: #1a1a1a; --accent: #d70a53; --card: #f8f9fa; }}
         @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0d1117; --text: #c9d1d9; --accent: #58a6ff; --card: #161b22; }} }}
-        body {{ font-family: 'Inter', -apple-system, sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }}
+        body {{ font-family: 'Inter', sans-serif; line-height: 1.8; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }}
         .container {{ width: 100%; max-width: 1000px; }}
         header {{ text-align: center; border-bottom: 5px solid var(--accent); padding-bottom: 30px; margin-bottom: 50px; }}
-        .article-block {{ margin-bottom: 70px; }}
-        h1 {{ font-size: 2.3rem; margin-bottom: 10px; }}
-        h2 {{ font-size: 1.9rem; color: var(--accent); margin-top: 5px; }}
-        .main-img {{ width: 100%; height: auto; border-radius: 12px; margin: 20px 0; content-visibility: auto; }}
+        .main-img {{ width: 100%; border-radius: 12px; margin: 20px 0; }}
         .meta {{ font-size: 0.85rem; opacity: 0.6; font-weight: bold; }}
+        h2 {{ color: var(--accent); }}
         .separator {{ border: 0; border-top: 1px dashed #444; margin: 50px 0; }}
-        .read-more {{ font-weight: bold; color: var(--accent); text-decoration: none; border-bottom: 2px solid transparent; transition: 0.3s; }}
-        .read-more:hover {{ border-bottom: 2px solid var(--accent); }}
-        footer {{ text-align: center; margin-top: 80px; padding: 40px 0; border-top: 1px solid #333; font-size: 0.9rem; opacity: 0.7; }}
+        footer {{ text-align: center; margin-top: 80px; padding: 40px 0; border-top: 1px solid #333; }}
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Agregasi Mingguan {end_sunday.strftime('%d-%m-%Y')}</h1>
-            <p><strong>Arsip Edisi:</strong> {monday_str} s/d {end_sunday.strftime('%Y-%m-%d')}</p>
+            <h1>Arsip {label_semester} ({start_date.year})</h1>
+            <p>Periode: {start_date.strftime('%d %b')} s/d {end_date.strftime('%d %b %Y')}</p>
         </header>
         {articles_html}
-                <div id="pesbukdiskus"></div>
         <footer>
             <p>Dihasilkan secara otomatis oleh sistem kurasi Frijal | Balikpapan</p>
-            <p> {end_sunday.strftime('%d-%m-%Y')} <a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
+            <p><a href="https://dalam.web.id" style="color:var(--accent); text-decoration:none;">Layar Kosong</a></p>
         </footer>
     </div>
 </body>
@@ -181,14 +176,14 @@ def build_weekly_aggregation():
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(full_html)
 
-        # Catat slug yang sudah diproses agar tidak diproses lagi di masa depan
+        # Catat slug agar tidak diproses lagi
         save_posted_urls(batch_slugs)
         print(f"✅ File '{file_name}' dibuat ({len(current_batch)} artikel).")
 
-        # 3. HAPUS artikel yang sudah diproses dari daftar pending
+        # Hapus yang sudah diproses dari list pending
         all_pending_articles = [a for a in all_pending_articles if a['slug'] not in batch_slugs]
 
-    print("\n✨ Semua batch mingguan berhasil diproses!")
+    print("\n✨ Proses selesai!")
 
 if __name__ == "__main__":
-    build_weekly_aggregation()
+    build_semester_aggregation()
