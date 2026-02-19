@@ -32,8 +32,11 @@ def save_posted_urls(urls):
             f.write(f"{url}\n")
 
 def get_semester_range(date):
-    """Mengembalikan rentang (start_date, end_date) untuk semester terkait."""
+    """Mengembalikan rentang (start_date, end_date) untuk semester terkait (Naive)."""
     year = date.year
+    # Pastikan date di sini adalah naive (tanpa tzinfo)
+    date = date.replace(tzinfo=None) 
+    
     if date.month <= 6:
         start = datetime(year, 1, 1)
         end = datetime(year, 6, 30, 23, 59, 59)
@@ -67,6 +70,10 @@ def build_semester_aggregation():
                     dt = datetime.fromisoformat(date_raw)
                 except ValueError:
                     dt = datetime.strptime(date_raw[:19], '%Y-%m-%dT%H:%M:%S')
+                    dt = dt.replace(tzinfo=None)
+
+                all_pending_articles.append({
+                    'title': art[0],
 
                 all_pending_articles.append({
                     'title': art[0],
