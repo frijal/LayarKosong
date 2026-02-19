@@ -257,13 +257,13 @@ body { font-family: Inter, sans-serif; }
 <div class="diagram-box">
 <div class="diagram-step">📁 folder/*.mp4</div>
 <div class="diagram-arrow">→</div>
-<div class="diagram-step">for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mkv"; done</div>
+<div class="diagram-step">for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mzdummy"; done</div>
 <div class="diagram-arrow">→</div>
-<div class="diagram-step">📁 folder/*.mkv</div>
+<div class="diagram-step">📁 folder/*.mzdummy</div>
 </div>
 <div class="code-block">
 <button class="copy-btn">Salin</button>
-<pre><code>for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mkv"; done</code></pre>
+<pre><code>for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mzdummy"; done</code></pre>
 </div>
 <p class="text-gray-600 text-sm">Batch convert semua video MP4 ke MKV.</p>
 </div>
