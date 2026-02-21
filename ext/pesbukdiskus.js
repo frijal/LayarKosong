@@ -72,16 +72,27 @@
     // --------------------------------------------------
     // Load Facebook SDK
     // --------------------------------------------------
-    function loadFacebook(callback) {
-        if (window.FB && FB.XFBML) return callback && callback();
-        const s = d.createElement("script");
-        s.async = true;
-        s.defer = true;
-        s.crossOrigin = "anonymous";
-        s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v24.0&appId=175216696195384";
-        s.onload = () => callback && callback();
-        d.body.appendChild(s);
-    }
+function loadFacebook(callback) {
+    if (window.FB) return callback && callback();
+    const s = d.createElement("script");
+    s.async = true;
+    s.defer = true;
+    s.crossOrigin = "anonymous";
+    // Menggunakan v18.0 agar lebih aman
+    s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=175216696195384";
+    s.onload = () => {
+        // Pastikan FB sudah terinisialisasi
+        if (window.FB) {
+            FB.init({
+                appId: '175216696195384',
+                xfbml: true,
+                version: 'v18.0'
+            });
+            callback && callback();
+        }
+    };
+    d.body.appendChild(s);
+}
 
     // --------------------------------------------------
     // Load Disqus
@@ -105,22 +116,31 @@
     // --------------------------------------------------
     // Event handlers
     // --------------------------------------------------
-    btnFB.onclick = function () {
-        dsqBox.style.display = "none";
-        fbBox.style.display = "block";
+btnFB.onclick = function () {
+    dsqBox.style.display = "none";
+    fbBox.style.display = "block";
 
-        if (!fbBox.dataset.loaded) {
-            fbBox.dataset.loaded = "1";
-            fbBox.innerHTML = `
-                <div class="fb-comments"
-                    data-href="${url}"
-                    data-width="100%"
-                    data-numposts="5">
-                </div>
-            `;
-            loadFacebook(() => { if (window.FB && FB.XFBML) FB.XFBML.parse(fbBox); });
-        }
-    };
+    if (!fbBox.dataset.loaded) {
+        fbBox.dataset.loaded = "1";
+        // Gunakan URL absolut untuk testing jika di localhost
+        const finalUrl = url.includes('http') ? url : 'https://dalam.web.id'; 
+        
+        fbBox.innerHTML = `
+            <div class="fb-comments"
+                data-href="${finalUrl}"
+                data-width="100%"
+                data-numposts="5">
+            </div>
+        `;
+        
+        loadFacebook(() => {
+            // Beri sedikit delay agar DOM siap sebelum di-parse
+            setTimeout(() => {
+                if (window.FB) FB.XFBML.parse(fbBox);
+            }, 100);
+        });
+    }
+};
 
     btnDSQ.onclick = function () {
         fbBox.style.display = "none";
