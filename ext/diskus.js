@@ -1,47 +1,84 @@
-(function(){
-  const d=document,w=window,e=d.getElementById("diskus");
-  if(!e)return;
+(function () {
+    const d = document, w = window;
 
-  e.style.display="none";
+    // ==============================================
+    // ⚡ INTEGRASI GOOGLE SWG (Tetap jalan di awal)
+    // ==============================================
+    const isDark = w.matchMedia && w.matchMedia('(prefers-color-scheme: dark)').matches;
+    const swgTheme = isDark ? "dark" : "light";
 
-  const b=d.createElement("button");
-b.style.cssText = "padding:6px 10px;font-size:14px;border:1px solid #ccc;border-radius:6px;background-color:white;cursor:pointer;margin-bottom:12px";
+    const swgScript = d.createElement("script");
+    swgScript.async = true;
+    swgScript.src = "https://news.google.com/swg/js/v1/swg-basic.js";
+    d.head.appendChild(swgScript); 
 
-  const c=d.createElement("span");
-  c.className="disqus-comment-count";
-  c.dataset.disqusIdentifier=location.pathname;
-  c.textContent="…";
-  b.appendChild(c);
+    (self.SWG_BASIC = self.SWG_BASIC || []).push(b => {
+        b.init({
+            type: "NewsArticle",
+            isPartOfType: ["Product"],
+            isPartOfProductId: "CAowztjDDA:openaccess",
+            clientOptions: { theme: swgTheme, lang: "id" },
+        });
+    });
 
-  e.parentNode.insertBefore(b,e);
+    // ==============================================
+    // 💬 LOGIKA DISQUS (ID Baru: "diskus")
+    // ==============================================
+    const container = d.getElementById("diskus"); // ID Baru di sini
+    const thread = d.getElementById("disqus_thread");
+    
+    if (!container || !thread) return;
 
-  function C(){
-    const x=d.createElement("script");
-    x.src="https://layarkosong.disqus.com/count.js";
-    x.async=1;
-    x.id="dsq-count-scr";
-    d.head.appendChild(x);
-  }
+    // Sembunyikan thread komentar di awal
+    thread.style.display = "none";
 
-  "requestIdleCallback" in w ? requestIdleCallback(C) : setTimeout(C,200);
+    // Buat Tombol Interaktif
+    const btn = d.createElement("button");
+    btn.style.cssText = "padding:8px 14px; font-size:14px; border:1px solid #ccc; border-radius:6px; background-color:white; cursor:pointer; margin-bottom:12px; font-family:inherit; transition: 0.2s;";
+    
+    // Efek Hover Sederhana
+    btn.onmouseover = () => btn.style.borderColor = "#999";
+    btn.onmouseout = () => btn.style.borderColor = "#ccc";
 
-  let L=0;
-  b.onclick=function(){
-    if(L)return;
-    L=1;
+    const countSpan = d.createElement("span");
+    countSpan.className = "disqus-comment-count";
+    countSpan.dataset.disqusIdentifier = location.pathname;
+    countSpan.textContent = "Loading comments..."; 
+    
+    btn.innerHTML = "💬 "; 
+    btn.appendChild(countSpan);
+    
+    // Sisipkan tombol sebelum thread
+    container.insertBefore(btn, thread);
 
-    e.style.display="block";
+    // Muat Script Count (Jumlah Komentar)
+    function loadCount() {
+        const x = d.createElement("script");
+        x.src = "https://layarkosong.disqus.com/count.js";
+        x.async = true;
+        x.id = "dsq-count-scr";
+        d.head.appendChild(x);
+    }
+    "requestIdleCallback" in w ? requestIdleCallback(loadCount) : setTimeout(loadCount, 300);
 
-    w.disqus_config=function(){
-      this.page.url=location.href;
-      this.page.identifier=location.pathname;
+    // Event Klik: Muat Disqus Utuh
+    let isLoaded = false;
+    btn.onclick = function () {
+        if (isLoaded) return;
+        isLoaded = true;
+
+        thread.style.display = "block";
+
+        w.disqus_config = function () {
+            this.page.url = container.dataset.href || location.href;
+            this.page.identifier = location.pathname;
+        };
+
+        const x = d.createElement("script");
+        x.src = "https://layarkosong.disqus.com/embed.js";
+        x.setAttribute("data-timestamp", Date.now());
+        d.body.appendChild(x);
+
+        btn.remove(); // Hapus tombol setelah diklik
     };
-
-    const x=d.createElement("script");
-    x.src="https://layarkosong.disqus.com/embed.js";
-    x.setAttribute("data-timestamp",Date.now());
-    d.body.appendChild(x);
-
-    b.remove();
-  };
 })();
