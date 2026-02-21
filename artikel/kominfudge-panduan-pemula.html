@@ -36,7 +36,7 @@
             --card-bg: #ffffff;
             --border-color: #dee2e6;
             --accent-color: #4a6fa5;
-            --warning-color: #ff6b6b;
+            --zdummying-color: #ff6b6b;
             --info-color: #17a2b8;
             --success-color: #28a745;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@
             --card-bg: #1e1e1e;
             --border-color: #333333;
             --accent-color: #6a9bd8;
-            --warning-color: #ff8a8a;
+            --zdummying-color: #ff8a8a;
             --info-color: #1fc8e3;
             --success-color: #34c759;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -126,7 +126,7 @@
         }
         .disclaimer {
             background-color: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--warning-color);
+            border-left: 4px solid var(--zdummying-color);
             padding: 1rem;
             border-radius: 4px;
             margin: 1.5rem 0;
@@ -152,9 +152,9 @@
             border-radius: 4px;
             margin: 1rem 0;
         }
-        .warning {
+        .zdummying {
             background-color: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--warning-color);
+            border-left: 4px solid var(--zdummying-color);
             padding: 1rem;
             border-radius: 4px;
             margin: 1rem 0;
@@ -434,7 +434,7 @@
                     <a target="_blank" href="https://github.com/bebasid/KominFudge/blob/reorganize/FINDINGS.md">Lihat penemuan</a>
                 </div>
             </div>
-            <div class="warning">
+            <div class="zdummying">
                 <p>**PERHATIAN:** KominFudge tidak bertanggung jawab atas kerusakan perangkat Anda, gunakan informasi yang diberikan dengan risiko Anda sendiri.</p>
             </div>
             <p>Silahkan baca dari awal sampai akhir, atau lihat bagian "Navigasi" untuk memilih bagian tertentu yang ingin dibaca.</p>
@@ -588,7 +588,7 @@
                 <p>Jika ISP anda tidak menggunakan DPI tetapi menggunakan upstream diatas, silahkan gunakan alat anti DPI untuk melewatinya.</p>
             </div>
             <h3>ISP Fiber</h3>
-            <div class="warning">
+            <div class="zdummying">
                 <p>**Catatan Penting:** Hampir semua ISP melanggar kebebasan dengan mengikuti DNS Nasional sehingga pengguna tidak dapat mengganti DNS atau mengecek DNS server selain punya ISP. Hal ini merugikan bagi pengguna yang ingin memakai layanan pemblokiran DNS lain misalkan OpenDNS dan NextDNS sehingga sangat tidak cocok digunakan untuk pengguna atau orang tua yang ingin menggunakan filter selain TrustPositif yang sering memblokir asal-asalan.</p>
                 <p>Namun, implementasi DNS Nasional tersebut berbeda beda di tiap ISP. Ada yang hanya membelokan atau memblokir UDP 53 (Contohnya FirstMedia), ada yang hanya ke arah internasional, adapun yang juga ikut memblokir TCP 53 (Contoh: MyRepublic dan Smartfren).</p>
             </div>
@@ -933,7 +933,7 @@
             </div>
             <h3>Jenis Aplikasi DNS</h3>
             <p>Aplikasi DNS ini bisa buat memakai DNS lebih senang.</p>
-            <div class="warning">
+            <div class="zdummying">
                 <p>**PERHATIAN:** Apabila ISP juga melakukan pemblokiran menggunakan DPI, hanya bisa gunakan [Jenis Aplikasi untuk menghilangkan DPI](#dpi).</p>
             </div>
             <ul class="app-list">
@@ -980,7 +980,7 @@
         <section id="dpi" class="card">
             <h2><i class="fas fa-shield-alt section-icon"></i> Jenis Aplikasi untuk menghilangkan DPI</h2>
             <p>Untuk sekarang, hanya banyak ISP blokirnya itu dengan menggunakan Deep Packet Inspection (DPI). Maka itu, DPI bisa dihilangkan dengan mudah dengan aplikasi dibawah ini:</p>
-            <div class="warning">
+            <div class="zdummying">
                 <p>**PERHATIAN:** Jangan lupa untuk menggantikan DNS terlebih dahulu atau menggunakan Hosts file apabila ISP yang tidak ketat juga menggunakan DNS untuk pemblokiran tersebut.</p>
             </div>
             <div class="note">

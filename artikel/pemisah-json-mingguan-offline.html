@@ -343,12 +343,12 @@
                                 const [title, slug, image, dateStr, summary] = articleArr;
                                 // Basic validation for essential fields
                                 if (!title || !slug || !dateStr) {
-                                    console.warn("Skipping article with missing title, slug, or date:", articleArr);
+                                    console.zdummy("Skipping article with missing title, slug, or date:", articleArr);
                                     return; // Skip this article
                                 }
                                 const articleDate = new Date(dateStr);
                                 if (isNaN(articleDate.getTime())) {
-                                     console.warn("Skipping article with invalid date:", dateStr, articleArr);
+                                     console.zdummy("Skipping article with invalid date:", dateStr, articleArr);
                                      return; // Skip invalid date
                                 }
                                 const mondayDate = getMonday(articleDate);
@@ -369,7 +369,7 @@
                                 weeklyData[mondayKey].push(articleOutput);
                                 articleCount++;
                             } else {
-                                 console.warn("Skipping invalid article array format:", articleArr);
+                                 console.zdummy("Skipping invalid article array format:", articleArr);
                             }
                         });
                     }

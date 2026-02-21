@@ -14,9 +14,9 @@
             --code-text-color: #2c3e50;
             --border-color: #eeeeee;
             --link-color: #007bff;
-            --warning-bg: #fff3cd;
-            --warning-text: #664d03;
-            --warning-border: #ffecb5;
+            --zdummying-bg: #fff3cd;
+            --zdummying-text: #664d03;
+            --zdummying-border: #ffecb5;
             --icon-color: #555;
         }
         @media (prefers-color-scheme: dark) {
@@ -29,9 +29,9 @@
                 --code-text-color: #f1f1f1;
                 --border-color: #333333;
                 --link-color: #64b5f6;
-                --warning-bg: #4d442a;
-                --warning-text: #fff3cd;
-                --warning-border: #665a2b;
+                --zdummying-bg: #4d442a;
+                --zdummying-text: #fff3cd;
+                --zdummying-border: #665a2b;
                 --icon-color: #bbb;
             }
         }
@@ -152,20 +152,20 @@
             color: var(--icon-color);
         }
         /* Kotak Peringatan */
-        .warning-box {
-            background-color: var(--warning-bg);
-            color: var(--warning-text);
-            border: 1px solid var(--warning-border);
+        .zdummying-box {
+            background-color: var(--zdummying-bg);
+            color: var(--zdummying-text);
+            border: 1px solid var(--zdummying-border);
             padding: 1.5rem;
             border-radius: 8px;
             margin: 1.5rem 0;
         }
-        .warning-box p {
+        .zdummying-box p {
             margin: 0;
             font-weight: 500;
         }
-        .warning-box strong {
-            color: var(--warning-text);
+        .zdummying-box strong {
+            color: var(--zdummying-text);
             display: block;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
@@ -358,7 +358,7 @@ SystemMaxUse=1G
                 </h2>
                 <p>Ini adalah langkah terakhir jika kedua cara di atas belum cukup (tapi biasanya sih sudah). Kadang, ada aplikasi yang log-nya nggak diurus sama <code>journald</code> atau <code>logrotate</code>.</p>
                 <p>Jika kamu menemukan file log super besar (misalnya <code>/var/log/aplikasi-aneh.log</code>) dari hasil cek di Langkah 1, begini cara aman mengosongkannya:</p>
-                <div class="warning-box">
+                <div class="zdummying-box">
                     <strong>
                         <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="vertical-align: -0.3em;"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
                         PERINGATAN KERAS!

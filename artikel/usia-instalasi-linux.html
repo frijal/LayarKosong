@@ -23,8 +23,8 @@
             --header-bg: #ffffff;
             --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
             --border-color: #dcdcdc;
-            --warning-bg: #fff3cd;
-            --warning-text: #856404;
+            --zdummying-bg: #fff3cd;
+            --zdummying-text: #856404;
             --tip-bg: #e8f5e9;
             --tip-text: #2e7d32;
         }
@@ -38,8 +38,8 @@
                 --header-bg: #181825;
                 --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
                 --border-color: #45475a;
-                --warning-bg: #3e3218;
-                --warning-text: #ffda6a;
+                --zdummying-bg: #3e3218;
+                --zdummying-text: #ffda6a;
                 --tip-bg: #2d3e2d;
                 --tip-text: #a5d6a7;
             }
@@ -85,12 +85,12 @@
             overflow-x: auto; /* Untuk kode yang panjang */
         }
         /* Alert/Warning Boxes */
-        .warning {
-            background-color: var(--warning-bg);
-            color: var(--warning-text);
+        .zdummying {
+            background-color: var(--zdummying-bg);
+            color: var(--zdummying-text);
             padding: 20px;
             border-radius: 10px;
-            border-left: 5px solid var(--warning-text);
+            border-left: 5px solid var(--zdummying-text);
             margin: 20px 0;
             font-weight: 600;
         }
@@ -188,7 +188,7 @@
     </section>
     <section>
         <h2><i class="fa-solid fa-scroll"></i> Script Sakti: Menguak Tanggal Lahir Partisi</h2>
-        <div class="warning">
+        <div class="zdummying">
             <i class="fa-solid fa-triangle-exclamation"></i> <strong>Perhatian Penting!</strong><br>
             Script ini bekerja di <b>SEMUA Distro Linux</b>, namun <b>hanya bekerja</b> jika partisi <em>root</em> kamu menggunakan filesystem <b>ext2, ext3, atau ext4</b>. Jika kamu pakai Btrfs, XFS, atau ZFS, gunakan metode alternatif di bagian bawah.
         </div>

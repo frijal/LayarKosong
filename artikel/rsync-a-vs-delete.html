@@ -14,9 +14,9 @@
             --header-text: #ecf0f1;
             --card-bg: #ffffff;
             --code-bg: #e9ecef;
-            --warning-bg: #fffbe6;
-            --warning-border: #ffe58f;
-            --warning-text: #5e4d03;
+            --zdummying-bg: #fffbe6;
+            --zdummying-border: #ffe58f;
+            --zdummying-text: #5e4d03;
         }
         /* Reset Dasar & Font */
         * {
@@ -105,15 +105,15 @@
             padding: 0;
         }
         /* Kotak Peringatan */
-        .warning-box {
-            background-color: var(--warning-bg);
-            border: 1px solid var(--warning-border);
-            color: var(--warning-text);
+        .zdummying-box {
+            background-color: var(--zdummying-bg);
+            border: 1px solid var(--zdummying-border);
+            color: var(--zdummying-text);
             padding: 20px;
             border-radius: 5px;
             margin-top: 20px;
         }
-        .warning-box strong {
+        .zdummying-box strong {
             display: block;
             font-size: 1.2rem;
             margin-bottom: 5px;
@@ -279,7 +279,7 @@ rsync -a /folder/sumber/ /folder/tujuan/</code></pre>
                 <h2>Contoh di Terminal</h2>
                 <p>Ini dia contoh tampilan `rsync` di terminal, mirip dengan yang kamu kirim. Ini ngebantu banget buat liat file apa aja yang ditransfer.</p>
                 <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsCWWASF3qWLxAxozNMaX5uIOo9DMOA8Je9stiJcPgvUwaA0zM3vntYPPMSg-qVAdM9gRLDZzfXquvzClBBaQk58eDTs_t67CoNRMJTsmpLzoEnn0gtQ-yppewn_ghqWbC_ey-Uq0zGmoXj8SH-sTpXmR4R19uy5TthtBlVtgXEKzjSKPkUQMG43dAv6c/s1600/Screenshot_20251027_092645.webp" alt="Screenshot perintah rsync di terminal" class="article-image" loading="lazy">
-                <div class="warning-box">
+                <div class="zdummying-box">
                     <strong>⚠️ PERINGATAN KERAS!</strong>
                     <p>Selalu, selalu, dan <strong>selalu hati-hati</strong> pas pakai <code>--delete</code>. Kalau kamu salah ketik path (misalnya kebalik antara sumber dan tujuan), kamu bisa secara nggak sengaja menghapus semua data penting kamu di destinasi!</p>
                     <p>Sebelum beneran eksekusi, biasakan pakai <code>--dry-run</code> (atau <code>-n</code>) dulu. Perintah ini cuma simulasi, nunjukin apa yang *akan* `rsync` lakukan tanpa benar-benar melakukannya.</p>

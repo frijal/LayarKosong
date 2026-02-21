@@ -128,7 +128,7 @@
             padding: 0.2rem 0.4rem;
             border-radius: 6px;
             font-size: 0.9em;
-            color: var(--text-color); /* Sesuaikan warnanya */
+            color: var(--text-color); /* Sesuaikan zdummyanya */
         }
         pre { /* Blok Kode */
             background-color: var(--pre-bg);
@@ -143,7 +143,7 @@
         pre code { /* Pastikan style highlight.js tidak menimpa background/padding pre */
             background: none !important;
             padding: 0 !important;
-            color: inherit; /* Ambil warna dari <pre> */
+            color: inherit; /* Ambil zdummya dari <pre> */
         }
         /* --- Blockquote --- */
          blockquote {
@@ -191,7 +191,7 @@
         .social-share svg {
             width: 32px;
             height: 32px;
-            fill: var(--text-color); /* Otomatis ganti warna di dark mode */
+            fill: var(--text-color); /* Otomatis ganti zdummya di dark mode */
         }
         /* --- Footer --- */
         footer {
@@ -264,8 +264,8 @@
             <section id="pendahuluan">
                 <h2>Apa Sih `markdown.js` Itu? 🤔</h2>
                 <p>Gampangnya, <code>markdown.js</code> ini kayak asisten pribadi buat halaman web kamu. Tugasnya simpel tapi keren: <strong>nyulap tulisan bergaya Markdown</strong> (kayak yang biasa kamu pakai di GitHub atau chat) dan <strong>blok kode pemrograman</strong> biar tampil lebih cakep dan rapi di browser.</p>
-                <p>Jadi, kalau kamu nulis <code class="inline">**tebal**</code> atau <code class="inline">*miring*</code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar warnanya sesuai sintaks bahasa pemrograman.</p>
-                <p>Yang lebih asyik, skrip ini pinter! Dia cuma bakal ngunduh pustaka tambahan (namanya <code>highlight.js</code>) kalau di halaman kamu emang ada blok kode yang perlu diwarnai. Hemat kuota, kan? 😉</p>
+                <p>Jadi, kalau kamu nulis <code class="inline">**tebal**</code> atau <code class="inline">*miring*</code> langsung di paragraf HTML, skrip ini bakal otomatis mengubahnya jadi tag <code class="inline">&lt;strong&gt;</code> dan <code class="inline">&lt;em&gt;</code>. Begitu juga buat heading, link, list, bahkan blok kode, biar zdummyanya sesuai sintaks bahasa pemrograman.</p>
+                <p>Yang lebih asyik, skrip ini pinter! Dia cuma bakal ngunduh pustaka tambahan (namanya <code>highlight.js</code>) kalau di halaman kamu emang ada blok kode yang perlu dizdummyai. Hemat kuota, kan? 😉</p>
             </section>
              <section id="ambil-kode">
                  <h2>🚀 Mau Coba Periksa Kodenya?</h2>
@@ -284,7 +284,7 @@
                 <ol>
                     <li>
                         <strong>Cek Kebutuhan Warna Kode (<code>ensureHighlightJS</code>):</strong>
-                        <p>Pertama, dia ngecek dulu, "Eh, ada pustaka buat warnain kode (<code>hljs</code>) belum di halaman ini?".</p>
+                        <p>Pertama, dia ngecek dulu, "Eh, ada pustaka buat zdummyain kode (<code>hljs</code>) belum di halaman ini?".</p>
                         <ul>
                             <li>Kalau udah ada, syukurlah, lanjut!</li>
                             <li>Kalau belum ada, dia bakal otomatis 'manggil' pustaka <code>highlight.js</code> dan tema CSS-nya (pakai gaya GitHub Dark ✨) dari internet (CDN). Dia bakal nungguin sampai pustaka ini siap pakai.</li>
@@ -299,7 +299,7 @@
                             <li><code class="inline">**Tebal**</code>, <code class="inline">*Miring*</code>, dan <code class="inline">`Kode Inline`</code> jadi tag HTML yang sesuai (<code class="inline">&lt;strong&gt;</code>, <code class="inline">&lt;em&gt;</code>, <code class="inline">&lt;code&gt;</code>).</li>
                             <li><code class="inline">[Teks Link](url)</code> jadi link <code class="inline">&lt;a href="..."&gt;</code> yang otomatis buka di tab baru.</li>
                             <li>List <code class="inline">- Item</code> jadi <code class="inline">&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code> (untuk list sederhana).</li>
-                            <li>Blok kode <code class="inline">```...```</code> atau <code class="inline">```js ... ```</code> diubah jadi struktur <code class="inline">&lt;pre&gt;&lt;code class="language-js"&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Bahasa kodenya (kalau ada) bakal dicatat buat pewarnaan nanti.</li>
+                            <li>Blok kode <code class="inline">```...```</code> atau <code class="inline">```js ... ```</code> diubah jadi struktur <code class="inline">&lt;pre&gt;&lt;code class="language-js"&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Bahasa kodenya (kalau ada) bakal dicatat buat pezdummyaan nanti.</li>
                             <li>Tabel Markdown sederhana juga coba diubah jadi tabel HTML (<code class="inline">&lt;table&gt;</code>).</li>
                         </ul>
                     </li>
@@ -316,7 +316,7 @@
                     </li>
                     <li>
                         <strong>Warnai Blok Kode (<code>enhanceCodeBlocks</code>):</strong>
-                        <p>Setelah Markdown diubah, skrip ini nyari semua blok kode (<code class="inline">&lt;pre&gt;&lt;code&gt;</code>). Dengan bantuan <code>highlight.js</code> yang tadi udah disiapin, tiap blok kode bakal diwarnai sesuai bahasa pemrogramannya (kalau dikenali dari kelasnya, misal <code class="inline">language-javascript</code>).</p>
+                        <p>Setelah Markdown diubah, skrip ini nyari semua blok kode (<code class="inline">&lt;pre&gt;&lt;code&gt;</code>). Dengan bantuan <code>highlight.js</code> yang tadi udah disiapin, tiap blok kode bakal dizdummyai sesuai bahasa pemrogramannya (kalau dikenali dari kelasnya, misal <code class="inline">language-javascript</code>).</p>
                     </li>
                     <li>
                         <strong>Mulai Aksi! (Event Listener):</strong>
@@ -330,7 +330,7 @@
                  <ul>
                     <li><strong>Otomatis Jalan:</strong> Tinggal pasang, dia kerja sendiri pas halaman dibuka.</li>
                     <li><strong>Markdown Jadi Kece:</strong> Tulisan Markdown kamu langsung tampil rapi sebagai HTML.</li>
-                    <li><strong>Kode Jadi Warna-warni:</strong> Blok kode lebih enak dibaca pakai <em>syntax highlighting</em>.</li>
+                    <li><strong>Kode Jadi Warna-zdummyi:</strong> Blok kode lebih enak dibaca pakai <em>syntax highlighting</em>.</li>
                     <li><strong>Pinter Hemat Kuota:</strong> Cuma ngunduh <code>highlight.js</code> kalau beneran ada kode di halaman.</li>
                     <li><strong>Nggak Sembarangan:</strong> Cuma ngubah isi elemen target (<code class="inline">p, li, blockquote, .markdown, .markdown-body</code>).</li>
                     <li><strong>Bisa Di-skip:</strong> Tambahin kelas <code class="inline">no-md</code> kalau nggak mau elemen tertentu diubah.</li>

@@ -41,7 +41,7 @@
         .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
         .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3a3633; color: var(--fg); cursor: pointer; text-decoration: none; }
         .btn-share:hover { background: #4a4643; }
-        .warning-box { border-left: 4px solid var(--accent); background: rgba(233, 84, 32, 0.05); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
+        .zdummying-box { border-left: 4px solid var(--accent); background: rgba(233, 84, 32, 0.05); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
         figure { margin: 1.5rem 0; text-align: center; }
         figure img { cursor: zoom-in; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -111,7 +111,7 @@
                     <pre class="language-bash"><code id="code2">sudo apt remove xserver-xorg-video-nouveau
 sudo apt remove xserver-xorg-video-amdgpu
 sudo apt remove xserver-xorg-video-intel</code><button class="copy-btn" data-target="code2">Salin</button></pre>
-                    <div class="warning-box">
+                    <div class="zdummying-box">
                         <strong>Peringatan Keras:</strong> Jangan sekali-kali menghapus driver VGA yang sedang aktif digunakan oleh sistem Anda. Jika ragu, jangan hapus. Menghapus driver yang salah dapat menyebabkan antarmuka grafis gagal dimuat.
                     </div>
                     <p>Setelah membersihkan driver yang tidak perlu, restart komputer Anda. Langkah ini seringkali efektif untuk mengatasi masalah *freeze* atau *not responding* yang disebabkan oleh konflik driver.</p>

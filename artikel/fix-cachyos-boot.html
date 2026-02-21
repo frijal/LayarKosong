@@ -18,8 +18,8 @@
             --code-text: #0f172a;
             --border-color: #e2e8f0;
             --accent: #009688;
-            --warn-bg: #fff7ed;
-            --warn-text: #9a3412;
+            --zdummy-bg: #fff7ed;
+            --zdummy-text: #9a3412;
             --cmd-bg: #1e293b;
             --cmd-text: #38bdf8;
         }
@@ -32,8 +32,8 @@
                 --code-text: #f8fafc;
                 --border-color: #334155;
                 --accent: #2dd4bf;
-                --warn-bg: #431407;
-                --warn-text: #fdba74;
+                --zdummy-bg: #431407;
+                --zdummy-text: #fdba74;
                 --cmd-bg: #020617;
                 --cmd-text: #7dd3fc;
             }
@@ -108,11 +108,11 @@
         }
         /* Alert/Warning Box */
         .alert {
-            background-color: var(--warn-bg);
-            color: var(--warn-text);
+            background-color: var(--zdummy-bg);
+            color: var(--zdummy-text);
             padding: 20px;
             border-radius: 8px;
-            border-left: 5px solid var(--warn-text);
+            border-left: 5px solid var(--zdummy-text);
             margin-bottom: 30px;
         }
         .step-number {
@@ -239,7 +239,7 @@ error: command failed to execute correctly</pre>
             <h3>Langkah 3: Masuk ke Sistem (Arch-Chroot)</h3>
             <p>Sekarang kita akan mengambil alih tubuh sistem kamu. Mantra ajaibnya adalah:</p>
             <pre>sudo arch-chroot /mnt</pre>
-            <p>Kalau terminal kamu berubah (biasanya prompt-nya jadi beda warna atau teks), selamat! Kamu sudah berada di dalam sistem CachyOS utamamu, tapi menggunakan kernel dari Live USB yang sehat.</p>
+            <p>Kalau terminal kamu berubah (biasanya prompt-nya jadi beda zdummya atau teks), selamat! Kamu sudah berada di dalam sistem CachyOS utamamu, tapi menggunakan kernel dari Live USB yang sehat.</p>
             <h3>Langkah 4: Perbaiki Bootloader &amp; Kernel</h3>
             <p>Sekarang kita punya akses penuh dan driver yang benar. Mari kita perbaiki.</p>
             <p><span class="step-number">1</span> <strong>Install ulang Bootloader:</strong></p>
