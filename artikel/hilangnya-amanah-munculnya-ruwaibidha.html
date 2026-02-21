@@ -93,8 +93,8 @@
         .divider { height: 1px; background: var(--meta-color); margin: 3rem 0; opacity: 0.3; }
         /* Footer & Placeholders */
         footer { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--meta-color); padding-bottom: 1rem; }
-        #pesbukdiskus, #related-articles-grid { margin-top: 3rem; min-height: 100px; background: var(--quote-bg); border-radius: 8px; padding: 1rem; text-align: center; border: 1px dashed var(--meta-color); }
-        #pesbukdiskus::before { content: "Kolom Komentar (Loading...)"; }
+        #diskus, #related-articles-grid { margin-top: 3rem; min-height: 100px; background: var(--quote-bg); border-radius: 8px; padding: 1rem; text-align: center; border: 1px dashed var(--meta-color); }
+        #diskus::before { content: "Kolom Komentar (Loading...)"; }
         #related-articles-grid::before { content: "Artikel Terkait (Loading...)"; }
         /* Responsive Fixes */
         @media (max-width: 600px) {
@@ -234,7 +234,7 @@
     <div style="margin-top: 3rem;">
         <h3>Gimana menurut kalian?</h3>
         <p>Pernah ketemu sosok Ruwaibidhah di sekitar kalian? Atau ada pandangan lain? Yuk diskusi santai di bawah ini.</p>
-        <div id="pesbukdiskus"></div>
+        <div id="diskus"></div>
         <div id="related-articles-grid"></div>
     </div>
     <footer>
@@ -247,5 +247,5 @@
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
 </body></html>

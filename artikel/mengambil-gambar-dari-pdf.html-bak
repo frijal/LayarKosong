@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mengambil Semua Gambar dari File PDF dengan pdfimages</title>
+  <meta name="description" content="Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
+  <link href="/ext/default.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" defer=""></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
+    header { background: #c00; color: white; padding: 2rem; text-align: center; }
+    main { max-width: 1100px; margin: auto; padding: 2rem; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
+    h1, h2 { color: #c00; }
+    img { max-width: 200px; }
+    pre { border-radius: 8px; }
+    .share-buttons { margin: 1rem 0; }
+    .share-buttons a { margin: 0 5px; display: inline-block; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 14px; color: white;}
+    .facebook { background: #1877f2; }
+    .twitter { background: #1da1f2; }
+    .whatsapp { background: #25d366; }
+    .telegram { background: #0088cc; }
+    .instagram { background: #e4405f; }
+    .threads { background: #000; }
+    .tiktok { background: #000; }
+    footer { text-align: center; font-size: 14px; padding: 2rem; margin-top: 2rem; background: #f1f1f1; }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
+<meta name="ai:prompt_hint" content="Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/mengambil-gambar-dari-pdf">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/mengambil-gambar-dari-pdf">
+    <meta property="og:title" content="Mengambil Semua Gambar dari File PDF dengan pdfimages">
+    <meta property="og:description" content="Panduan lengkap cara mengambil semua gambar dari file PDF menggunakan perintah pdfimages dengan paket poppler-utils.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.webp">
+    <meta property="og:image:alt" content="Mengambil Semua Gambar dari File PDF dengan pdfimages">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.webp">
+</head>
+<body>
+<header>
+  <h1>Mengambil Semua Gambar dari File PDF dengan pdfimages</h1>
+<div id="iposbrowser"></div>
+</header>
+<main>
+  <article>
+    <p>
+      <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPC5-T4Z4pAHpJgByhF62tTY6cdxdgYPrX9cGRumIFwoJmXckYNwWTXWCVBA_TxqI3Ru_fGfe-n_hE_gOWEso8xBrRnHYdkuRZKL6sT6ZfmnRFBDWwphIggyXkQd-Um4Wv4SDD8wCcdx98/s320/pdf.webp" alt="Ikon PDF" style="float:left; margin:0 1em 1em 0;">
+      Terkadang kita ingin menyimpan semua gambar yang ada dalam sebuah dokumen PDF. Dengan bantuan perintah <b>pdfimages</b>, hal ini dapat dilakukan dengan mudah.
+      Perintah ini merupakan bagian dari paket <b>poppler-utils</b> di Linux.
+    </p>
+    <h2>Perintah Dasar</h2>
+    <pre><code class="language-bash">pdfimages -j file.pdf nama-gambarnya</code></pre>
+    <p>
+      Opsi <code>-j</code> digunakan untuk menjaga kualitas gambar dengan format JPEG.
+      Hasilnya, semua gambar dari <code>file.pdf</code> akan diekstrak menjadi file gambar dengan awalan <code>nama-gambarnya</code>.
+    </p>
+    <h2>Instalasi poppler-utils</h2>
+    <pre><code class="language-bash">sudo apt install poppler-utils</code></pre>
+    <h2>Contoh File Uji</h2>
+    <p>
+      Anda dapat mencoba dengan file PDF berikut:
+      <a href="https://drive.google.com/file/d/1m_3d-8-kglxH1c6Dof01E9tjhSa-Tdny/view?usp=sharing" target="_blank">Perintah Teks (download dari Google Drive)</a>.
+    </p>
+    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+</main>
+<footer>
+  <p>🄯 2025 Media Linux - Jaga Data Pribadi Tetap Aman.</p>
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

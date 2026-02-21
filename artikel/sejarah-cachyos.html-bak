@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah CachyOS: Distro Arch Linux Super Cepat &amp; Optimal</title>
+    <meta name="description" content="Jelajahi sejarah CachyOS, distro berbasis Arch Linux yang dioptimalkan untuk performa maksimal. Pelajari tentang kernel kustom, optimasi compiler, dan masa depannya.">
+    <meta name="keywords" content="cachyos, arch linux, distro linux, linux gaming, performa linux, kernel bore, optimasi linux">
+    <meta name="date" content="2025-09-28">
+    <style>
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #121212; color: #e0e0e0; line-height: 1.7; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #1e1e1e; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-radius: 12px; border: 1px solid #333; }
+        header { text-align: center; color: #9b59b6; padding-bottom: 10px; border-bottom: 2px solid #8e44ad; }
+        h1, h2 { color: #9b59b6; font-weight: 700; text-wrap: balance; }
+        .gallery { margin: 2rem 0; }
+        .gallery img { width: 100%; height: auto; border-radius: 12px; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
+        .gallery img:hover { transform: scale(1.05); }
+        .social-sharing { text-align: center; margin-top: 2rem; }
+        .social-sharing h2 { border: none; font-size: 1.2em; }
+        .social-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .social-buttons a { display: inline-block; transition: transform 0.2s; }
+        .social-buttons a:hover { transform: scale(1.15); }
+        .social-buttons svg { width: 32px; height: 32px; }
+        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
+         footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: .9rem;
+    }
+        .lightbox-content { max-width: 90vw; max-height: 85vh; border-radius: 12px; }
+        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; position: relative; }
+        code { font-family: 'Source Code Pro', monospace; }
+        .copy-btn { position: absolute; top: 10px; right: 10px; background-color: #4a4a4a; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Jelajahi sejarah CachyOS, distro berbasis Arch Linux yang dioptimalkan untuk performa maksimal. Pelajari tentang kernel kustom, optimasi compiler, dan masa depannya.">
+<meta name="ai:prompt_hint" content="Jelajahi sejarah CachyOS, distro berbasis Arch Linux yang dioptimalkan untuk performa maksimal. Pelajari tentang kernel kustom, optimasi compiler, dan masa depannya.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/sejarah-cachyos">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/sejarah-cachyos">
+    <meta property="og:title" content="Sejarah CachyOS: Distro Arch Linux Super Cepat &amp; Optimal">
+    <meta property="og:description" content="Jelajahi sejarah CachyOS, distro berbasis Arch Linux yang dioptimalkan untuk performa maksimal. Pelajari tentang kernel kustom, optimasi compiler, dan masa depannya.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/sejarah-cachyos.webp">
+    <meta property="og:image:alt" content="Sejarah CachyOS: Distro Arch Linux Super Cepat &amp; Optimal">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/sejarah-cachyos.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/sejarah-cachyos.webp">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Sejarah Lengkap CachyOS</h1>
+<div id="iposbrowser"></div>
+        </header>
+        <article>
+            <p>CachyOS adalah distro Linux berbasis Arch yang dirancang untuk performa puncak. Proyek ini bertujuan menyajikan pengalaman Arch yang telah dioptimalkan secara mendalam, langsung dari kotak, untuk mendapatkan kecepatan dan responsivitas maksimal.</p>
+            <section class="gallery">
+                <img loading="lazy" src="https://dalam.web.id/img/sejarah-cachyos.webp" alt="Logo CachyOS">
+            </section>
+            <section>
+                <h2>Awal Mula: Proyek Komunitas untuk Performa</h2>
+                <p>CachyOS lahir dari inisiatif komunitas sekitar tahun <strong>2021</strong>. Tujuannya sederhana: menyediakan Arch Linux yang "lebih cepat" dengan menerapkan berbagai teknik optimasi tingkat lanjut yang biasanya hanya dilakukan oleh pengguna berpengalaman secara manual.</p>
+            </section>
+            <section>
+                <h2>Fitur Unggulan CachyOS</h2>
+                <ul>
+                    <li><strong>Kernel Linux Kustom (<code>linux-cachyos</code>):</strong> Menggunakan *scheduler* proses canggih seperti <strong>BORE</strong> untuk meningkatkan responsivitas desktop dan mengurangi latensi.</li>
+                    <li><strong>Optimasi Compiler Tingkat Lanjut:</strong> Paket-paket di repositori CachyOS dikompilasi dengan flag optimasi agresif (<code>-O3</code>, LTO) dan disesuaikan untuk arsitektur CPU modern (x86-64-v3/v4).</li>
+                    <li><strong>CachyOS Hello:</strong> Aplikasi selamat datang yang membantu pengguna baru melakukan konfigurasi pasca-instalasi, seperti menginstal driver dan memilih kernel.</li>
+                </ul>
+                <p>Sebagai distro berbasis Arch, perintah untuk memperbarui sistem adalah melalui manajer paket `pacman`:</p>
+                <pre><code id="code1">sudo pacman -Syu</code><button class="copy-btn" onclick="copyCode('code1')">Copy</button></pre>
+            </section>
+                <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+         <footer>
+    <a href="https://dalam.web.id/disclaimer/" target="_blank">Jaga Data Pribadi Tetap Aman.</a>
+  </footer>
+        </main>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Gambar - Sejarah CachyOS: Distro Arch Linux Super Cepat &amp; Optimal">
+    </div>
+    <script>
+        function copyCode(id) {
+            const code = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Perintah berhasil disalin!");
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const codeId = this.previousElementSibling.id;
+                    copyCode(codeId);
+                });
+            });
+            const images = document.querySelectorAll(".gallery img");
+            if (images.length > 0) {
+                const lightbox = document.getElementById("lightbox");
+                const lightboxImg = document.getElementById("lightbox-img");
+                const closeBtn = document.querySelector(".lightbox-close");
+                images.forEach((img) => {
+                    img.addEventListener("click", () => {
+                        lightbox.style.display = "flex";
+                        lightboxImg.src = img.src;
+                    });
+                });
+                function closeLightbox() {
+                    lightbox.style.display = "none";
+                }
+                closeBtn.addEventListener("click", closeLightbox);
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

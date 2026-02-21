@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Data Dasar SEO -->
+    <title>Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware</title>
+    <meta name="news_keywords" content="Ubuntu 26.04, Resolute Raccoon, Linux Firmware, Update Ubuntu, Canonical, Sistem Operasi, Penghemat Kuota, Performa Linux">
+    <meta name="promphint" content="Edukasi mendalam mengenai optimasi sistem operasi Ubuntu 26.04 LTS dalam menangani pembaruan hardware firmware">
+    <!-- Open Graph / Facebook -->
+    <!-- Twitter Card -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        /* CSS Variabel untuk Tema Terang/Gelap */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2c3e50;
+            --primary-color: #E95420; /* Warna Khas Ubuntu */
+            --secondary-color: #f7f7f7;
+            --accent-color: #772953;
+            --border-color: #eeeeee;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #f0f0f0;
+                --primary-color: #ef7043;
+                --secondary-color: #2d2d2d;
+                --border-color: #444444;
+            }
+        }
+        /* Layout Widescreen 1 Kolom & Responsif */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        article {
+            max-width: 1000px;
+            width: 90%;
+            padding: 40px 0;
+        }
+        header img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+        h1 { font-size: 2.8rem; color: var(--primary-color); line-height: 1.2; }
+        h2 { font-size: 2rem; color: var(--accent-color); border-left: 6px solid var(--primary-color); padding-left: 15px; margin-top: 50px; }
+        h3 { font-size: 1.5rem; margin-top: 30px; }
+        p { margin-bottom: 25px; font-size: 1.15rem; text-align: justify; }
+        .zdummy {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        ul, ol { margin-bottom: 25px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .info-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        .info-card h3 { margin-top: 0; color: white; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--secondary-color);
+        }
+        th, td { padding: 15px; border: 1px solid var(--border-color); text-align: left; }
+        th { background-color: var(--primary-color); color: white; }
+        footer {
+            width: 100%;
+            background-color: var(--secondary-color);
+            padding: 10px 0;
+            margin-top: 10px;
+            text-align: center;
+            border-top: 2px solid var(--primary-color);
+        }
+        #pesbukdiskus, #related-articles-grid {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+        }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            article { width: 95%; }
+            p { font-size: 1rem; }
+        }
+    </style>
+    <link rel="icon" href="/favicon.ico">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="canonical" href="https://dalam.web.id/artikel/ubuntu-26-04-linux-firmware-split">
+    <meta property="og:url" content="https://dalam.web.id/artikel/ubuntu-26-04-linux-firmware-split">
+    <meta property="og:title" content="Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="description" content="Pelajari bagaimana Ubuntu 26.04 LTS Resolute Raccoon memecah paket linux-firmware menjadi 17 bagian untuk menghemat kuota dan mempercepat update sistem Anda secara signifikan">
+    <meta property="og:description" content="Kabar gembira buat pengguna Ubuntu! Di versi 26.04 LTS, Anda tidak perlu lagi download file raksasa cuma buat update satu driver kecil. Cek detailnya di sini">
+    <meta name="twitter:description" content="Canonical resmi memecah linux-firmware menjadi 17 sub-paket di Ubuntu 26.04. Hemat bandwidth dan ruang disk jadi lebih mudah">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp">
+    <meta property="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp">
+    <meta property="og:image:alt" content="Panduan Lengkap Ubuntu 26.04 Resolute Raccoon: Revolusi Pemisahan Paket Linux Firmware">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="article:tag" content="Ubuntu Linux">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="Teknologi Terbaru">
+    <meta property="article:tag" content="Tutorial Linux">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <meta property="article:published_time" content="2026-02-16T10:00:00+07:00"></head>
+<body>
+<article>
+    <header>
+        <h1>Ubuntu 26.04 LTS "Diet Ketat": Update Firmware Kini Lebih Kecil, Cepat, dan Hemat Kuota! 🦝</h1>
+<div id="iposbrowser"></div>
+        <div class="zdummy">
+            <i class="fas fa-user-edit"></i> <strong>Joey Sneddon - omgubuntu</strong> |
+            <i class="fas fa-calendar-check"></i> 16 Februari 2026 |
+            <i class="fas fa-tags"></i> Ubuntu, Open Source, Linux, SysAdmin
+        </div>
+    </header>
+    <section id="pengantar">
+        <p>Tiba-tiba ada notifikasi update sistem di Ubuntu, terus pas dicek ukurannya sampai 600MB lebih? Padahal, isinya cuma perbaikan kecil buat kartu jaringan yang bahkan nggak kamu pakai. Nah, kalau kamu pernah merasa "gemes" sama hal ini, ada kabar super bahagia dari markas **Canonical**! 🥳</p>
+<img src="https://dalam.web.id/img/pbs.twimg.com/media/HBPyTiHbsAAIbYw.webp" alt="Ubuntu 26.04, Resolute Raccoon" width="100%" style="display: block; margin-left: auto; margin-right: auto;">
+        <p>Di versi terbaru **Ubuntu 26.04 LTS (Resolute Raccoon)**, tim pengembang resmi melakukan revolusi pada cara sistem menangani <em>firmware</em> perangkat keras. Mereka memecah paket raksasa menjadi potongan-potongan kecil yang spesifik. Kenapa ini penting? Karena ini adalah langkah besar untuk efisiensi bandwidth global dan kenyamanan pengguna seperti kita.</p>
+    </section>
+    <section id="apa-itu-firmware">
+        <h2><i class="fas fa-microchip"></i> Apa Itu Masalah Linux Firmware Selama Ini? (What)</h2>
+        <p>Selama bertahun-tahun, Ubuntu (dan banyak distro Linux lainnya) menggunakan satu paket tunggal bernama <code>linux-firmware</code>. Paket ini ibarat sebuah "tas raksasa" yang berisi semua instruksi perangkat lunak (driver/firmware) untuk hampir semua hardware di dunia—mulai dari kartu Wi-Fi Intel, grafis AMD, sampai perangkat khusus server yang sangat jarang dipakai pengguna biasa.</p>
+        <p>Masalahnya? Paket ini terus membengkak! Saat ini, ukurannya sudah tembus **500MB sampai 800MB** saat di-download, dan memakan ruang disk hingga **1GB** setelah diinstal. Bayangkan, setiap kali ada update kecil untuk kartu jaringan Mellanox (yang biasanya cuma dipakai di pusat data/server besar), kamu yang pakai laptop biasa harus tetap men-download keseluruhan 600MB+ paket tersebut. Inefisiensi inilah yang ingin diberantas oleh Ubuntu 26.04.</p>
+    </section>
+    <section id="siapa-dibalik-perubahan">
+        <h2><i class="fas fa-users-cog"></i> Siapa yang Mencetuskan Ide Hebat Ini? (Who)</h2>
+        <p>Inisiatif ini digawangi oleh insinyur senior Canonical, **Juerg Haefliger**. Diskusi ini sebenarnya sudah dimulai sejak tahun 2022 lewat sebuah laporan bug yang menyoroti betapa borosnya infrastruktur Ubuntu jika terus mempertahankan paket tunggal yang masif. </p>
+        <p>Selain para pengembang, perubahan ini sangat ditujukan bagi **pengguna dengan koneksi internet terbatas** atau kuota mahal. Di banyak belahan dunia, mendownload file 600MB setiap minggu hanya untuk update "sampah" (file yang tidak relevan dengan hardware kita) adalah beban yang nyata. Dengan sistem baru, beban ini hilang seketika!</p>
+    </section>
+    <section id="dimana-perubahan-terjadi">
+        <h2><i class="fas fa-archive"></i> Dimana Perubahan Ini Diterapkan? (Where)</h2>
+        <p>Perubahan ini terjadi di dalam repositori resmi (arsip) Ubuntu versi **Resolute Raccoon**. Tim pengembang memperkenalkan apa yang disebut sebagai *meta-packaging*. Jadi, alih-alih satu file <code>.deb</code> raksasa, sekarang ada 17 sub-paket vendor yang berbeda. </p>
+        <p>Hal menarik lainnya adalah penanganan di repositori **-security**. Sebelumnya, update keamanan firmware seringkali membebani server tunggal karena repo security tidak selalu diduplikasi (mirror) ke banyak server seperti repo utama. Dengan paket yang kecil, beban server Canonical pun jadi jauh lebih ringan. Ini adalah kemenangan untuk infrastruktur Ubuntu di seluruh dunia!</p>
+    </section>
+    <div class="info-card">
+        <h3><i class="fas fa-list-ul"></i> Daftar 17 Sub-Paket Baru di Ubuntu 26.04</h3>
+        <p>Ubuntu membagi firmware berdasarkan vendor agar sistem kamu tetap "bersih". Berikut daftarnya:</p>
+        <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+  <li>linux-firmware-amd-graphics</li>
+  <li>linux-firmware-broadcom-wireless</li>
+  <li>linux-firmware-intel-graphics</li>
+  <li>linux-firmware-intel-misc</li>
+  <li>linux-firmware-intel-wireless</li>
+  <li>linux-firmware-marvell-prestera</li>
+  <li>linux-firmware-marvell-wireless</li>
+  <li>linux-firmware-mediatek</li>
+  <li>linux-firmware-mellanox-spectrum</li>
+  <li>linux-firmware-misc</li>
+  <li>linux-firmware-netronome</li>
+  <li>linux-firmware-nvidia-graphics</li>
+  <li>linux-firmware-qlogic</li>
+  <li>linux-firmware-qualcomm-graphics</li>
+  <li>linux-firmware-qualcomm-misc</li>
+  <li>linux-firmware-qualcomm-wireless</li>
+  <li>linux-firmware-realtek</li>
+</ul>
+    </div>
+    <section id="kapan-dan-mengapa">
+        <h2><i class="fas fa-calendar-alt"></i> Kapan Dirilis dan Mengapa Baru Sekarang? (When &amp; Why)</h2>
+        <p>Ubuntu 26.04 LTS dijadwalkan meluncur pada **April 2026**. Kenapa baru sekarang? Karena memecah paket inti seperti ini berisiko tinggi. Jika ada salah satu paket yang tidak terinstal otomatis, hardware pengguna bisa mendadak mati (misalnya Wi-Fi hilang setelah install ulang). </p>
+        <p>Oleh karena itu, Canonical butuh waktu lama untuk memastikan sistem "deteksi hardware" mereka benar-benar cerdas. Alasannya jelas: **Efisiensi Energi dan Bandwidth**. Di dunia yang makin peduli pada jejak karbon, mentransfer data ratusan Megabyte yang tidak berguna ke jutaan komputer adalah pemborosan energi listrik dan sumber daya server yang masif.</p>
+    </section>
+    <section id="bagaimana-kerjanya">
+        <h2><i class="fas fa-cogs"></i> Bagaimana Cara Kerjanya di Komputer Kita? (How)</h2>
+        <p>Tenang saja, sebagai pengguna, kamu nggak perlu melakukan apa-apa secara manual! Secara teknis, Ubuntu tetap menyediakan paket <code>linux-firmware</code>, tapi sekarang paket itu bertindak sebagai **"Meta-Package"**. </p>
+        <p>Artinya, saat kamu instal Ubuntu, paket utama ini akan otomatis menarik ke-17 sub-paket agar komputer kamu tetap bisa mendeteksi hardware apapun (prinsip <em>"Just Works"</em> khas Ubuntu). Namun, keajaibannya terjadi saat **Update**. Jika ada perbaikan untuk driver Intel Wireless, sistem kamu hanya akan men-download paket <code>linux-firmware-intel-wireless</code> yang mungkin ukurannya cuma **5MB**, bukan lagi 600MB! Hemat banget, kan? 😎</p>
+    </section>
+    <section id="eeat-section">
+        <h2><i class="fas fa-award"></i> Analisis Ahli: Dampak Terhadap Ekosistem Linux</h2>
+        <p>Kita harus melihat sisi otoritas dan kepercayaan. Ubuntu sebagai sistem operasi Linux paling populer untuk desktop, seringkali menjadi trendsetter. Langkah Canonical ini kemungkinan besar akan diikuti oleh distro turunan seperti **Linux Mint, Pop!_OS, dan Zorin OS**.</p>
+        <p>Ini bukan sekadar soal ukuran file, tapi soal **Keamanan**. Dengan paket yang terpisah, tim security bisa merilis tambalan darurat untuk satu vendor spesifik dengan jauh lebih cepat tanpa harus melakukan pengujian ulang (re-testing) pada keseluruhan blob firmware vendor lain yang tidak terdampak. Ini adalah standar baru dalam manajemen paket Linux modern.</p>
+    </section>
+    <section id="penutup">
+        <p>Kesimpulannya, Ubuntu 26.04 LTS "Resolute Raccoon" bukan cuma soal wallpaper baru atau kernel terbaru, tapi soal optimasi cerdas di balik layar. Dengan pemisahan paket ini, Ubuntu membuktikan diri tetap relevan untuk semua orang, baik yang punya internet super cepat maupun yang harus berhemat kuota di pelosok negeri. 🌏✨</p>
+    </section>
+        <p>Gimana menurut kamu? Apakah kamu setuju dengan langkah Ubuntu memecah paket ini, atau malah menurutmu ini bikin ribet?</p>
+    <div id="pesbukdiskus">
+        </div>
+    <div id="related-articles-grid">
+           </div>
+</article>
+<footer>
+    <div style="max-width: 1000px; margin: auto;">
+        <p style="font-size: 0.8rem; color: #999;">Dibuat dengan semangat Open Source untuk mencerdaskan kehidupan bangsa.</p>
+        </div>
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

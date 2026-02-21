@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hasil Pencarian Layar Kosong</title>
+    <meta name="description" content="Hasil pencarian artikel di Layar Kosong.">
+    <link rel="canonical" href="https://dalam.web.id/search/" id="canonical-link">
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png" />
+    <meta property="og:title" content="Hasil Pencarian Layar Kosong">
+    <meta property="og:description" content="Hasil pencarian artikel di Layar Kosong.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dalam.web.id/search/">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:image" content="/thumbnail.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pencarian Layar Kosong">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hasil Pencarian Layar Kosong">
+    <meta name="twitter:description" content="Hasil pencarian artikel di Layar Kosong.">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:image" content="/thumbnail.webp">
+    <meta name="twitter:image:alt" content="Pencarian Layar Kosong">
+    <meta name="robots" content="index, follow">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+    <script src="/ext/header.js"></script>
+    <link rel="stylesheet" href="/ext/header.css">
+    <link rel="stylesheet" href="/ext/halaman-pencarian.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","alternateName":"Blog Frijal","publisher":{"@id":"https://dalam.web.id/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://dalam.web.id/search?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id/","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":512,"height":512},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://t.me/frijal"}} ,{"@type":"WebPage","@id":"https://dalam.web.id/search","url":"https://dalam.web.id/search","name":"Pencarian Artikel – Layar Kosong","isPartOf":{"@id":"https://dalam.web.id/#website"},"about":{"@id":"https://dalam.web.id/#organization"},"description":"Halaman pencarian artikel di Layar Kosong untuk menemukan topik teknologi sistem terbuka literasi digital religi Islam dan karier."}]}</script>
+
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main class="area-konten-pencarian">
+        <div class="pembungkus-lebar">
+
+            <header class="status-pencarian">
+                <h2 id="search-query-display">Memuat pencarian...</h2>
+            </header>
+            <div id="search-results">
+                <div id="loading-indicator">
+                    <div class="spinner-pencarian"></div>
+                    <p>Mencari artikel terbaik untukmu...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-pencarian">
+            <p>&copy; <span id="current-year"></span> Layar Kosong. Jaga Data Pribadi Tetap Aman.</p>
+    </footer>
+    <script src="/ext/halaman-pencarian.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!</title>
+    <meta name="description" content="Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.">
+    <meta name="keywords" content="TuxSync, Linux Backup, Migration Assistant Linux, Dotfiles Sync, Chezmoi Linux, Backup Ubuntu Fedora Arch, Layar Kosong">
+    <meta name="news_keywords" content="TuxSync Linux, Tool Migrasi Linux, Cara Backup Dotfiles, Sinkronisasi Linux">
+    <meta name="promphint" content="Review software open-source dan tutorial Linux terbaru">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
+            --primary: #00b0ed;
+            --bg: #ffffff;
+            --text: #222222;
+            --card: #f8f9fa;
+            --code-bg: #2d2d2d;
+            --code-text: #f8f8f2;
+            --border: #e1e4e8;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d1117;
+                --text: #c9d1d9;
+                --card: #161b22;
+                --border: #30363d;
+            }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        header h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        article h2 {
+            margin: 45px 0 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        article h3 { margin: 30px 0 15px; }
+        p { margin-bottom: 20px; }
+        /* Code Block Styling */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 25px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        code { color: var(--primary); font-weight: bold; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--card);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        table th, table td {
+            padding: 15px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        table th { background: var(--primary); color: white; }
+        .info-box {
+            background: var(--card);
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+        }
+        footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        #pesbukdiskus, #related-articles-grid {
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--card);
+            border-radius: 15px;
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            body { font-size: 16px; }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/artikel/tuxsync-migration-assistant-linux">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/tuxsync-migration-assistant-linux">
+    <meta property="og:title" content="TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!">
+    <meta property="og:description" content="Pindah laptop atau distro Linux jadi makin mudah dengan TuxSync. Backup paket aplikasi, bashrc, dan dotfiles secara aman ke GitHub Gist atau server pribadi.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9u_b7RaAAASuM-.webp">
+    <meta property="og:image:alt" content="TuxSync: Cara Paling Gampang Pindah Distro Linux Tanpa Ribet!">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9u_b7RaAAASuM-.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9u_b7RaAAASuM-.webp">
+</head>
+<body>
+<div class="container">
+    <header>
+        <p style="text-transform: uppercase; letter-spacing: 4px; font-weight: 800; color: var(--primary);">Open Source Spotlight</p>
+        <h1>TuxSync</h1>
+<div id="iposbrowser"></div>
+        <p><strong>PROFILE SYNC FOR YOUR LINUX MACHINES</strong></p>
+        <div class="badge-container">
+            <img src="https://dalam.web.id/img/img.shields.io/badge/Linux-FCC624.webp" alt="Tux">
+            <img src="https://dalam.web.id/img/img.shields.io/pypi/v/tuxsync.webp" alt="PyPI">
+            <img src="https://dalam.web.id/img/img.shields.io/badge/python-3.webp" alt="Python">
+            <img src="https://dalam.web.id/img/img.shields.io/badge/license-GPL--3.webp" alt="License">
+        </div>
+    </header>
+    <main>
+        <article>
+            <p><span class="emoji-span">🐧</span> Halo para pejuang terminal! Pernah nggak sih kamu ngerasa males instal ulang distro Linux karena harus *set-up* ulang konfigurasi `.bashrc`, instal ulang ratusan paket `apt` atau `pacman`, sampe pindahin kunci SSH? Nah, perkenalkan **TuxSync**, asisten migrasi buat Linux yang bakal bikin hidup kamu jauh lebih enteng!</p>
+            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Apa itu TuxSync?</h2>
+            <p>Kalau di macOS ada *Migration Assistant* dan di Chrome ada *Sync*, di Linux sekarang ada **TuxSync**. Ini adalah tool *open-source* yang didesain buat nyimpen profil mesin Linux kamu secara rapi. Bedanya sama layanan korporat? TuxSync itu **pribadi, transparan, dan kamu pegang kendali penuh**. Data kamu disimpen di GitHub Gist milik kamu sendiri, bukan di server perusahaan antah berantah.</p>
+            <h2><i class="fa-solid fa-star"></i> Fitur-Fitur Unggulan</h2>
+            <ul>
+                <li><strong>Multi-Distro Support:</strong> Nggak peduli kamu pake Ubuntu (apt), Fedora (dnf), atau Arch Linux (pacman), TuxSync ngerti bahasanya.</li>
+                <li><strong>Privacy First:</strong> Backup ke GitHub Gist secara privat atau pake server kustom sendiri.</li>
+                <li><strong>Chezmoi Integration:</strong> Mau sinkronisasi *dotfiles* yang super kompleks? TuxSync udah integrasi sama Chezmoi.</li>
+                <li><strong>Smart Scanning:</strong> TuxSync pinter, dia cuma backup paket yang emang kamu instal, bukan *library* sampah yang otomatis ikut keinstal.</li>
+                <li><strong>Magic Restore:</strong> Cukup satu baris perintah, laptop baru kamu langsung kerasa kayak laptop lama.</li>
+            </ul>
+            <h2><i class="fa-solid fa-download"></i> Instalasi &amp; Penggunaan</h2>
+            <p>Cara pasangnya gampang banget, tinggal pake `pip` kesayangan lu:</p>
+            <pre><code>pip install tuxsync --upgrade</code></pre>
+            <h3>Quick Start Guide</h3>
+            <p>Mau langsung eksekusi? Ini perintah "sakti" buat harian:</p>
+            <pre><code># Backup mesin lama lu
+tuxsync backup
+# Restore di mesin baru
+tuxsync restore &lt;GIST_ID&gt;
+# Lihat daftar backup yang pernah dibuat
+tuxsync list</code></pre>
+            <div class="info-box">
+                <p><strong><i class="fa-solid fa-lightbulb"></i> Tips Balikpapan:</strong> Kalau kamu mau backup total sampe ke file rahasia yang terenkripsi, pake flag <code>--use-chezmoi</code>. TuxSync bakal otomatis nyiapin "brankas" digital buat lu.</p>
+            </div>
+            <h2><i class="fa-solid fa-gears"></i> Bagaimana Cara Kerjanya?</h2>
+            <p>TuxSync bekerja sebagai dirigen atau orkestrator. Dia nggak sendirian, dia dibantu sama beberapa asisten hebat:</p>
+            <ul>
+                <li><strong>TuxSync:</strong> Otak utamanya yang ngatur alur backup/restore.</li>
+                <li><strong>tuxmate-cli:</strong> Pawang paket yang handle instalasi lintas distro.</li>
+                <li><strong>chezmoi:</strong> Manajer *dotfiles* yang bertugas jaga file `.conf` kamu tetep rapi.</li>
+            </ul>
+            <h2><i class="fa-solid fa-shield-halved"></i> Keamanan &amp; Kredensial</h2>
+            <p>Takut kunci SSH atau token Docker kamu nyebar? Tenang, TuxSync pake enkripsi <code>age</code> atau GPG lewat integrasi Chezmoi. Semua data sensitif bakal dienkripsi **sebelum** ninggalin mesin lu. Jadi, meskipun Gist kamu bocor (amit-amit), isinya tetep cuma karakter acak yang nggak bisa dibaca.</p>
+            <h2><i class="fa-solid fa-list-check"></i> Apa Saja yang Di-backup?</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Basic Backup</th>
+                        <th>With Chezmoi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Paket Aplikasi</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>~/.bashrc</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Semua Dotfiles</td>
+                        <td>❌</td>
+                        <td>✅ (Manual)</td>
+                    </tr>
+                    <tr>
+                        <td>SSH &amp; Secrets</td>
+                        <td>❌</td>
+                        <td>✅ (Encrypted)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Kesimpulan:</strong> TuxSync adalah tool wajib buat kamu yang nggak mau rugi waktu tiap kali instal ulang Linux. Praktis, aman, dan bener-bener ngebantu produktivitas. Selamat mencoba di mesin Linux lu, Jal! <span class="emoji-span">🚀</span></p>
+        </article>
+        <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </main>
+    <footer>
+        <p>🄯 2026 <a href="https://dalam.web.id" style="color: var(--primary); text-decoration: none;">Layar Kosong</a>. Dibuat dengan <i class="fa-solid fa-mug-hot"></i> di Balikpapan.</p>
+        <div style="margin-top: 15px;">
+            <a href="https://github.com/frijal" style="color: #888; margin: 0 10px;"><i class="fa-brands fa-github"></i></a>
+            <a href="https://facebook.com/frijal" style="color: #888; margin: 0 10px;"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+    </footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- Meta dasar -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- prettier-ignore -->
+<title>Kampanye OSS di Sekolah: Hemat Anggaran, Tingkatkan Kreativitas</title>
+  <meta name="description" content="Ajak sekolah beralih ke Perangkat Lunak Bebas Terbuka (OSS): LibreOffice, GIMP, GNUCash, dan GNU/Linux. Hemat anggaran, tingkatkan kreativitas, kemandirian, dan literasi digital. Halaman interaktif dengan tombol berbagi, info perangkat, dan snippet siap pakai.">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
+  <!-- Open Graph -->
+  <!-- JSON-LD: Article -->
+  <!-- JSON-LD: Breadcrumb -->
+  <!-- Prism.js untuk highlighting -->
+  <link rel="stylesheet" href="/ext/monokai.min.css">
+  <!-- CSS: Desain baru (gradient cerah + card neumorfik), wide fullscreen, responsif -->
+  <style>
+:root{
+  --bg1:#0ea5e9; --bg2:#22c55e; --bg3:#1e293b;
+  --ink:#0b1220; --muted:#4b5563; --card:#ffffff;
+  --ring: 0 0 0 3px rgba(14,165,233,.25);
+  --shadow: 0 30px 60px rgba(2,6,23,.18), 0 2px 8px rgba(2,6,23,.08);
+  --radius: 18px;
+  --w: min(1240px, 94vw);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--ink);
+  font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background:
+radial-gradient(1200px 700px at -10% -10%, rgba(14,165,233,.35), transparent 55%),
+radial-gradient(1100px 700px at 110% 0%, rgba(34,197,94,.35), transparent 55%),
+linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  background-attachment: fixed;
+}
+header{
+  position:sticky; top:0; z-index:1000;
+  background: rgba(255,255,255,.8); backdrop-filter: blur(10px) saturate(140%);
+  border-bottom:1px solid rgba(15,23,42,.06);
+}
+.wrap{width:var(--w); margin:0 auto; padding:18px}
+.hero{
+  display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px 0;
+}
+.brand{
+  display:flex; align-items:center; gap:14px;
+  font-weight:900; letter-spacing:.2px; color:#0b1220;
+  font-size: clamp(22px,3.2vw,36px);
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+  background: #e0f2fe; color:#075985; font-weight:800; font-size:12px; border:1px solid #bae6fd;
+}
+.brand .logo{
+  width:38px; height:38px; border-radius:12px; box-shadow: var(--shadow);
+  background: conic-gradient(from 180deg, #22c55e, #0ea5e9, #f59e0b, #22c55e);
+}
+.cta a{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:900;
+  background:#0b1220; color:#fff; padding:10px 14px; border-radius:999px; box-shadow: var(--shadow);
+}
+main{padding:24px 0 60px}
+.grid{display:grid; grid-template-columns: 1.3fr .7fr; gap:22px}
+@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+.card{
+  background: var(--card); border-radius: var(--radius);
+  border:1px solid rgba(2,6,23,.06); box-shadow: var(--shadow); padding:22px;
+}
+h1,h2,h3{margin:0 0 12px}
+h1{font: 900 clamp(22px, 2.6vw, 34px)/1.2 Poppins, Inter, Arial}
+h2{font: 800 clamp(20px, 2.2vw, 28px)/1.25 Poppins, Inter, Arial}
+h3{font: 700 clamp(18px, 1.9vw, 22px)/1.3 Poppins, Inter, Arial; color:#334155}
+p{margin: 0 0 12px}
+.lead{font-size:18px; color:#111827}
+.list{display:grid; gap:10px; margin:10px 0}
+.list li{list-style:none; padding:12px 14px; border-radius:14px; border:1px solid #e5e7eb; background:#fff}
+.note{
+  padding:12px 14px; border-radius:14px; border:1px dashed #93c5fd;
+  background: linear-gradient(135deg, rgba(147,197,253,.18), rgba(134,239,172,.18)); color:#0b1220; margin: 10px 0;
+}
+.share{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+.share a{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; text-decoration:none; color:#fff; font-weight:800}
+.share .fb{background:#1877F2}
+.share .tw{background:#1DA1F2}
+.share .x{background:#0f1419}
+.share .wa{background:#25D366}
+.share .tg{background:#0088cc}
+.share .ig{background:linear-gradient(45deg,#F58529,#FEDA77,#DD2A7B,#8134AF,#515BD4)}
+.share .threads{background:#000}
+.share .tt{background:#111}
+.code-wrap{position:relative}
+.copy-btn{
+  position:absolute; right:8px; top:8px; padding:6px 10px; font-size:12px; border-radius:8px; border:1px solid #e5e7eb;
+  background:#fff; color:#0b1220; cursor:pointer; font-weight:800
+}
+pre{border-radius:14px; border:1px solid #e5e7eb; background:#0b1220 !important}
+blockquote{
+  margin:12px 0; padding:12px 14px; border-left:4px solid #22c55e; background:#f0fdf4; color:#065f46; border-radius:8px
+}
+footer{margin-top:40px; border-top:1px solid rgba(2,6,23,.08); background: rgba(255,255,255,.8); backdrop-filter: blur(8px)}
+.sys{display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:18px 0}
+@media (max-width: 700px){ .sys{grid-template-columns:1fr} }
+.sys-item{display:flex; align-items:center; gap:12px; padding:12px; border-radius:14px; border:1px solid #e5e7eb; background:#fff}
+.flag{height:16px; width:auto; border-radius:3px; box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+.os-ico,.br-ico{width:24px; height:24px}
+  </style>
+<meta name="date" content="2025-09-28">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Ajak sekolah beralih ke Perangkat Lunak Bebas Terbuka (OSS): LibreOffice, GIMP, GNUCash, dan GNU/Linux. Hemat anggaran, tingkatkan kreativitas, kemandirian, dan literasi digital. Halaman interaktif dengan tombol berbagi, info perangkat, dan snippet siap pakai.">
+<meta name="ai:prompt_hint" content="Ajak sekolah beralih ke Perangkat Lunak Bebas Terbuka (OSS): LibreOffice, GIMP, GNUCash, dan GNU/Linux. Hemat anggaran, tingkatkan kreativitas, kemandirian, dan literasi digital. Halaman interaktif dengan tombol berbagi, info perangkat, dan snippet siap pakai.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/oss-di-sekolah">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/oss-di-sekolah">
+    <meta property="og:title" content="Kampanye OSS di Sekolah: Hemat Anggaran, Tingkatkan Kreativitas">
+    <meta property="og:description" content="Ajak sekolah beralih ke Perangkat Lunak Bebas Terbuka (OSS): LibreOffice, GIMP, GNUCash, dan GNU/Linux. Hemat anggaran, tingkatkan kreativitas, kemandirian, dan literasi digital. Halaman interaktif dengan tombol berbagi, info perangkat, dan snippet siap pakai.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/oss-di-sekolah.webp">
+    <meta property="og:image:alt" content="Kampanye OSS di Sekolah: Hemat Anggaran, Tingkatkan Kreativitas">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/oss-di-sekolah.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/oss-di-sekolah.webp">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+<div class="wrap hero">
+  <div class="brand">
+<span class="logo" aria-hidden="true"></span>
+Kampanye OSS di Sekolah
+  </div>
+  <div class="badge" title="Topik">Open Source • Pendidikan • Anggaran Efektif</div>
+  <a class="cta" href="#konten" aria-label="Mulai baca panduan">
+<span style="display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#0b1220; color:#fff;">
+  Mulai Baca
+  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9V5z"></path></svg>
+</span>
+  </a>
+</div>
+  </header>
+  <main class="wrap">
+<div class="grid">
+  <!-- Konten utama -->
+  <article class="card" id="konten" role="main">
+<h1>Hemat anggaran, tingkatkan kreativitas: kenapa sekolah perlu OSS</h1>
+<div id="iposbrowser"></div>
+<p class="lead">
+  Ajak semua orang di sekolah untuk menggunakan perangkat lunak bebas terbuka (OSS). Banyak opsi andal dan gratis:
+  LibreOffice, GIMP, GNUCash, serta GNU/Linux. OSS mengurangi ketergantungan, mendorong eksplorasi, dan menumbuhkan kemandirian teknologi.
+</p>
+<blockquote>
+  Promote the use of free software (OSS) in our schools. LibreOffice, GIMP, GNUCash and other GPL software which is cost free.
+</blockquote>
+<h2>Masalah yang kita hadapi</h2>
+<ul class="list">
+  <li><strong>Biaya lisensi tinggi:</strong> setiap tahun dana pendidikan habis untuk lisensi OS dan aplikasi proprietary.</li>
+  <li><strong>Ketergantungan vendor:</strong> perangkat lunak tertutup cenderung kaku dan sulit disesuaikan kebutuhan lokal.</li>
+  <li><strong>Kreativitas terhambat:</strong> desain yang “misterius” membuat siswa kurang memahami cara kerja perangkat lunak.</li>
+</ul>
+<blockquote>
+  Each year our educational system wastes billions of Rupiahs for proprietary software. The software is rigid and opaque to our children.
+</blockquote>
+<h2>Solusi: migrasi bertahap ke OSS</h2>
+<p>
+  Kami menganjurkan penggantian <em>bertahap</em> perangkat lunak berbayar dengan alternatif berlisensi GPL atau setara.
+  Gunakan perangkat lunak yang selaras dengan definisi “free software” dari Free Software Foundation agar siswa belajar sekaligus memahami filosofi kebebasan.
+</p>
+<blockquote>
+  We advocate the gradual replacement of proprietary software with open source alternatives (GPL). Have students use software that complies with the definition of free software.
+</blockquote>
+<h2>Kenapa GNU/Linux?</h2>
+<p>
+  Sistem operasi GNU/Linux beserta kode sumber, tools, dan dokumentasinya mudah diakses siswa. Gunakan sebagai media belajar yang hemat biaya, fleksibel, dan transparan.
+</p>
+<blockquote>
+  The GNU/Linux OS, source code, tools and docs are readily available to students. Their use should be encouraged as they are cost free.
+</blockquote>
+<h2>Kebebasan memilih itu penting</h2>
+<p>
+  Kebebasan perangkat lunak adalah kunci masa depan teknologi—dan masa depan anak-anak kita. Jika Anda setuju,
+  dorong sekolah, komite, dan dinas terkait untuk membuat kebijakan ramah OSS.
+</p>
+<blockquote>
+  Software freedom is important to the future of technology and our children's futures. Please support if you agree.
+</blockquote>
+<div class="note">
+  Rekomendasi awal: LibreOffice (pengolah kata/spreedsheet), GIMP (grafis), Inkscape (vektor), Audacity (audio),
+  GNUCash (akuntansi), Thunderbird (email), dan distribusi GNU/Linux yang ramah pemula (mis. Ubuntu).
+</div>
+<h2>Snippet siap pakai (Debian/Ubuntu)</h2>
+<p>Gunakan perintah berikut untuk memasang paket dasar di lab komputer sekolah:</p>
+<div class="code-wrap">
+  <button class="copy-btn" data-copy="#snip1">Salin</button>
+  <pre><code id="snip1" class="language-bash">sudo apt update &amp;&amp; sudo apt install -y \
+  libreoffice gimp inkscape audacity gnucash thunderbird \
+  vlc gparted filezilla</code></pre>
+</div>
+<h3>Contoh kebijakan internal (ringkas)</h3>
+<div class="code-wrap">
+  <button class="copy-btn" data-copy="#snip2">Salin</button>
+  <pre><code id="snip2" class="language-markdown"># Kebijakan OSS Sekolah (Ringkas)
+- Prioritas menggunakan perangkat lunak berlisensi bebas/terbuka.
+- Pengadaan lab memasukkan 80% paket OSS inti.
+- Pelatihan guru &amp; siswa minimal 2x per semester.
+- Evaluasi kompatibilitas dokumen (ODF) tiap caturwulan.</code></pre>
+</div>
+<p class="muted">Sebarkan agar lebih banyak sekolah mengambil langkah konkret.</p>
+    </article>
+  <!-- Sisi kanan: ringkasan dan tips implementasi -->
+  <aside class="card">
+<h2>Rencana implementasi 4 langkah</h2>
+<ol class="list" style="counter-reset: s">
+  <li><strong>Audit kebutuhan:</strong> petakan fungsi (ofis, grafis, akuntansi, multimedia), lalu padankan dengan OSS.</li>
+  <li><strong>Uji coba pilot:</strong> 1 lab (10–20 komputer) selama 1 semester; kumpulkan feedback guru–siswa.</li>
+  <li><strong>Pelatihan internal:</strong> modul singkat 2x per semester untuk guru dan operator lab.</li>
+  <li><strong>Skala bertahap:</strong> migrasi bertahap 25% per semester sambil menjaga kompatibilitas dokumen (ODF).</li>
+</ol>
+<h3>Format dokumen yang disarankan</h3>
+<ul class="list">
+  <li><strong>Teks &amp; Spreedsheet:</strong> ODF (odt, ods) untuk interoperabilitas.</li>
+  <li><strong>Grafik:</strong> SVG (vektor) dan PNG (bitmap) untuk kualitas dan keterbukaan.</li>
+  <li><strong>Audio:</strong> FLAC/WAV untuk master; OGG untuk distribusi.</li>
+</ul>
+<h3>Sumber belajar</h3>
+<ul class="list">
+  <li><strong>LibreOffice Help:</strong> panduan fitur dasar–lanjutan.</li>
+  <li><strong>GIMP Docs:</strong> manipulasi gambar dan retouching.</li>
+  <li><strong>Ubuntu Wiki:</strong> administrasi sistem &amp; paket edukasi.</li>
+</ul>
+  </aside>
+</div>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+  </main>
+  <footer>
+<div class="wrap">
+  <p class="muted" style="color:#4b5563">Terima kasih sudah membaca. Dukung OSS untuk pendidikan yang hemat dan berdaya.</p>
+</div>
+  </footer>
+  <!-- Prism Core + Autoloader -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-auto-download="true" defer=""></script>
+  <script>
+// Tombol salin kode
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+const sel = btn.getAttribute('data-copy');
+const el = document.querySelector(sel);
+if(!el) return;
+const text = el.textContent;
+navigator.clipboard.writeText(text).then(()=>{
+  btn.textContent = 'Disalin!';
+  setTimeout(()=> btn.textContent = 'Salin', 1200);
+});
+  });
+});
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

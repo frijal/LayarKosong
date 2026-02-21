@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perbaiki Error “cannot run ssh” di Git — macOS</title>
+  <!-- Open Graph -->
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #eee;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, #181818, #1f1f1f);
+      padding: 2rem 1rem 1rem;
+      text-align: center;
+      border-bottom: 2px solid #333;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    pre {
+      background: #1c1c1c;
+      padding: 1em;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #9ef99e;
+      font-family: "Menlo", monospace;
+    }
+    code {
+      color: #b3e5fc;
+      font-family: "Menlo", monospace;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin: 1.5em auto;
+      cursor: zoom-in;
+      transition: transform 0.3s;
+    }
+    img:hover {
+      transform: scale(1.03);
+    }
+    h2 {
+      margin-top: 2em;
+      color: #b4e8ff;
+    }
+    ul { margin-left: 1.5em; }
+    .share {
+      text-align: center;
+      margin-top: 3em;
+    }
+    .share a {
+      margin: 0 10px;
+      color: #ccc;
+      font-size: 1.6em;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 0.9em;
+    }
+    @media (max-width: 700px) {
+      body { font-size: 16px; }
+      main { padding: 1.5rem; }
+    }
+    #lightbox {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #lightbox img { max-width: 90%; max-height: 90%; }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap memperbaiki error Git">
+<meta name="ai:prompt_hint" content="Panduan lengkap memperbaiki error Git">
+<meta name="description" content="Panduan lengkap memperbaiki error Git">
+    <link rel="canonical" href="https://dalam.web.id/artikel/fix-git-ssh-macos">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/fix-git-ssh-macos">
+    <meta property="og:title" content="Perbaiki Error “cannot run ssh” di Git — macOS">
+    <meta property="og:description" content="Panduan lengkap memperbaiki error Git">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/fix-git-ssh-macos.webp">
+    <meta property="og:image:alt" content="Perbaiki Error “cannot run ssh” di Git — macOS">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/fix-git-ssh-macos.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/fix-git-ssh-macos.webp">
+</head>
+<body>
+<header>
+  <h1>Perbaiki Error “cannot run ssh” di Git (macOS)</h1>
+<div id="iposbrowser"></div>
+  <p>Cara memperbaiki error Git yang gagal menjalankan SSH di Terminal macOS.</p>
+</header>
+<main>
+  <pre><code>error: cannot run ssh: No such file or directory
+fatal: unable to fork</code></pre>
+  <p>Error ini biasanya muncul kalau macOS belum punya <code>ssh</code> yang terdeteksi di PATH, atau Git kamu diinstal tanpa Xcode Command Line Tools.</p>
+  <h2>🧩 1. Cek SSH di macOS</h2>
+  <p>Buka Terminal, lalu jalankan:</p>
+  <pre><code>which ssh</code></pre>
+  <p>Kalau muncul seperti ini:</p>
+  <pre><code>/usr/bin/ssh</code></pre>
+  <p>berarti SSH sudah ada. Kalau tidak muncul, lanjut ke langkah berikut.</p>
+  <h2>⚙️ 2. Instal Command Line Tools</h2>
+  <p>macOS membutuhkan paket <b>Xcode Command Line Tools</b> agar Git dan SSH berfungsi penuh. Jalankan perintah ini:</p>
+  <pre><code>xcode-select --install</code></pre>
+   <h2>💡 3. Jika Kamu Pakai Homebrew</h2>
+  <p>Kalau Git diinstal lewat Homebrew, pastikan <code>openssh</code> juga ikut terinstal:</p>
+  <pre><code>brew install openssh</code></pre>
+  <p>Lalu pastikan PATH mengarah ke folder Homebrew:</p>
+  <pre><code>echo $PATH</code></pre>
+  <p>Jika perlu, tambahkan ke shell config kamu (<code>~/.zshrc</code> atau <code>~/.bash_profile</code>):</p>
+  <pre><code>export PATH="/usr/local/bin:/usr/local/sbin:$PATH"</code></pre>
+  <h2>🧠 4. Cek Integrasi Git dengan SSH</h2>
+  <p>Untuk memastikan Git mengenali SSH, jalankan:</p>
+  <pre><code>GIT_SSH_COMMAND="ssh -v" git fetch</code></pre>
+  <p>Jika muncul log debug SSH tanpa error “cannot run ssh”, berarti sudah aman.</p>
+  <h2>🔧 5. Script Otomatis</h2>
+  <p>Kamu bisa gunakan script kecil ini untuk mengecek dan memperbaiki otomatis di macOS:</p>
+  <pre><code>#!/bin/bash
+# fix-git-ssh-macos.sh
+echo "🔍 Mengecek instalasi SSH dan Git di macOS..."
+if ! command -v ssh &gt;/dev/null; then
+  echo "⚙️ Menginstal Xcode Command Line Tools..."
+  xcode-select --install
+else
+  echo "✅ SSH sudah ada di sistem."
+fi
+if ! command -v git &gt;/dev/null; then
+  echo "⚙️ Menginstal Git melalui Homebrew..."
+  if ! command -v brew &gt;/dev/null; then
+    echo "❌ Homebrew belum terinstal. Instal dulu di https://brew.sh"
+  else
+    brew install git
+  fi
+else
+  echo "✅ Git sudah terinstal."
+fi
+ssh -V
+git --version
+echo "✅ Semua komponen siap digunakan untuk Git SSH!"</code></pre>
+  <p>Tunggu hingga selesai. Setelah itu, cek ulang:</p>
+  <pre><code>git --version
+ssh -V</code></pre>
+  <p>Kalau dua-duanya muncul, berarti sistem sudah lengkap. 🎉</p>
+  <!-- Lightbox -->
+  <div id="lightbox"><img id="lightbox-img" src="" alt="Gambar - Perbaiki Error “cannot run ssh” di Git — macOS"></div>
+  <script>
+    document.querySelectorAll('.separator a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const src = link.querySelector('img').src;
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = src;
+        lb.style.display = 'flex';
+        lb.addEventListener('click', () => lb.style.display = 'none');
+      });
+    });
+  </script>
+  <div class="share">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+  </div>
+    </main>
+<footer>
+  <p>🄯 2025 Frijal — Panduan DevOps &amp; Git di macOS</p>
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

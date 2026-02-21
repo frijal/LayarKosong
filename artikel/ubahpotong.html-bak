@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Memotong Gambar menggunakan ImageMagick - Panduan Interaktif ✂️</title>
+    <meta name="description" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
+    <meta name="keywords" content="ImageMagick, crop gambar, command line, terminal, potong gambar, CLI, convert">
+    <meta name="date" content="2025-09-27">
+    <script src="https://cdn.tailwindcss.com" defer=""></script>
+    <style>
+        body { font-family: Inter, sans-serif; }
+        .active-nav { background-color: #e5e7eb; color: #111827; font-weight: 600; }
+        .code-block { background-color: #1e293b; color: #e2e8f0; border-radius: 0.5rem; padding: 1rem; position: relative; }
+        .copy-btn {
+            position: absolute; top: 0.75rem; right: 0.75rem; background-color: #334155; color: #94a3b8; border: none; padding: 0.25rem 0.75rem; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem; transition: all 0.2s ease; z-index: 10;
+        }
+        .copy-btn:hover { background-color: #475569; color: #e2e8f0; }
+        .diagram-box { border: 2px dashed #9ca3af; background-color: #f3f4f6; padding: 1rem; display: flex; justify-content: center; align-items: center; min-height: 100px; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
+<meta name="ai:prompt_hint" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
+    <link rel="canonical" href="https://dalam.web.id/artikel/ubahpotong">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/ubahpotong">
+    <meta property="og:title" content="Cara Memotong Gambar menggunakan ImageMagick - Panduan Interaktif ✂️">
+    <meta property="og:description" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/ubahpotong.webp">
+    <meta property="og:image:alt" content="Cara Memotong Gambar menggunakan ImageMagick - Panduan Interaktif ✂️">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/ubahpotong.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/ubahpotong.webp">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
+            <h1 class="text-xl font-bold text-gray-900 mb-6">Panduan Media</h1>
+<div id="iposbrowser"></div>
+            <nav id="navigation" class="space-y-4">
+                <div>
+                    <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">ImageMagick</h2>
+                    <ul class="space-y-1">
+                        <li><a href="#imagemagick-crop-h" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Potong Horizontal</a></li>
+                        <li><a href="#imagemagick-crop-v" class="nav-link block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100">Potong Vertikal</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main id="content-display" class="w-full md:ml-[25%] lg:ml-[20%] p-6 md:p-10">
+    </main>
+    </div>
+    <template id="welcome-content">
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Selamat Datang!</h2>
+            <p class="text-lg text-gray-600 mb-4">
+                Ini adalah panduan interaktif untuk beberapa perintah baris perintah yang umum digunakan untuk memanipulasi gambar menggunakan <strong>ImageMagick</strong>.
+            </p>
+            <p class="text-gray-600">
+                Silakan pilih salah satu tugas dari menu navigasi di sebelah kiri untuk melihat detail, contoh perintah, dan visualisasi cara kerjanya. Anda dapat dengan mudah menyalin perintah langsung ke clipboard Anda.
+            </p>
+        </div>
+    </template>
+    <template id="imagemagick-crop-h-content">
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                Memotong Gambar secara Horizontal (Slicing)
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Perintah ini menggunakan opsi `-crop` dengan penanda `@` untuk memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari atas ke bawah.
+            </p>
+            <h3 class="font-semibold mb-2 text-gray-700">Visualisasi (Potong jadi 2)</h3>
+            <div class="diagram-box mb-6 rounded-md flex space-x-2">
+                <div class="w-24 h-24 bg-blue-200 border-2 border-blue-400 rounded-md flex justify-center items-center font-mono">input.jpg</div>
+                <div class="flex items-center text-2xl text-gray-500 mx-4">→</div>
+                <div class="flex flex-col space-y-1">
+                    <div class="w-24 h-11 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">output_0</div>
+                    <div class="w-24 h-11 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">output_1</div>
+                </div>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-700">Perintah (Potong jadi N)</h3>
+            <div class="code-block mb-4">
+                <button class="copy-btn">Salin</button>
+                <pre><code>convert input.jpg -crop 1xN@ +repage output_%d.jpg</code></pre>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan horizontal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian atas/bawah).</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop 1xN@</code>: Membagi gambar menjadi 1 baris dan N kolom. Penanda `@` (chop/slice) penting untuk pembagian rata.</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Menghapus informasi kanvas virtual sehingga file hasil memiliki dimensi yang tepat.</li>
+            </ul>
+        </div>
+    </template>
+    <template id="imagemagick-crop-v-content">
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                Memotong Gambar secara Vertikal (Slicing)
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Perintah ini akan memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari kiri ke kanan.
+            </p>
+            <h3 class="font-semibold mb-2 text-gray-700">Visualisasi (Potong jadi 2)</h3>
+            <div class="diagram-box mb-6 rounded-md flex space-x-2">
+                <div class="w-24 h-24 bg-blue-200 border-2 border-blue-400 rounded-md flex justify-center items-center font-mono">input.jpg</div>
+                <div class="flex items-center text-2xl text-gray-500 mx-4">→</div>
+                <div class="flex space-x-1">
+                    <div class="w-11 h-24 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">out_0</div>
+                    <div class="w-11 h-24 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">out_1</div>
+                </div>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-700">Perintah (Potong jadi N)</h3>
+            <div class="code-block mb-4">
+                <button class="copy-btn">Salin</button>
+                <pre><code>convert input.jpg -crop Nx1@ +repage output_%d.jpg</code></pre>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan vertikal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian kiri/kanan).</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop Nx1@</code>: Membagi gambar menjadi **N kolom** dan 1 baris.</li>
+                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Memastikan file hasil memiliki dimensi yang tepat.</li>
+            </ul>
+        </div>
+    </template>
+    <footer class="md:ml-[25%] lg:ml-[20%] mt-10 p-6 text-center">
+        <p class="text-xs text-gray-500">🄯 2025 Command Line Guides</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navigation = document.getElementById("navigation");
+            const contentDisplay = document.getElementById("content-display");
+            const navLinks = document.querySelectorAll(".nav-link");
+            const contentMap = {
+                "#imagemagick-crop-h": "imagemagick-crop-h-content",
+                "#imagemagick-crop-v": "imagemagick-crop-v-content",
+            };
+            const loadContent = (hash) => {
+                navLinks.forEach((link) => link.classList.remove("active-nav"));
+                contentDisplay.innerHTML = "";
+                const templateId = contentMap[hash] || "welcome-content";
+                const template = document.getElementById(templateId);
+                if (template) {
+                    const clone = template.content.cloneNode(true);
+                    contentDisplay.appendChild(clone);
+                }
+                const activeLink = document.querySelector(`a[href="${hash}"]`);
+                if (activeLink) {
+                    activeLink.classList.add("active-nav");
+                }
+            };
+            navigation.addEventListener("click", (e) => {
+                if (e.target.tagName === "A" && e.target.hash) {
+                    e.preventDefault();
+                    window.location.hash = e.target.hash;
+                }
+            });
+            window.addEventListener("hashchange", () => {
+                loadContent(window.location.hash);
+            });
+            contentDisplay.addEventListener("click", (e) => {
+                if (e.target.classList.contains("copy-btn")) {
+                    const codeElement = e.target.nextElementSibling?.querySelector("code");
+                    if (codeElement) {
+                        navigator.clipboard.writeText(codeElement.innerText.trim())
+                            .then(() => {
+                                const originalText = e.target.innerText;
+                                e.target.innerText = "Disalin!";
+                                setTimeout(() => {
+                                    e.target.innerText = originalText;
+                                }, 2000);
+                            })
+                            .catch((err) => console.error("Gagal menyalin: ", err));
+                    }
+                }
+            });
+            // Initial Load Logic
+            if (window.location.hash && contentMap[window.location.hash]) {
+                loadContent(window.location.hash);
+            } else if (navLinks.length > 0) {
+                // Set the first link's hash to URL which triggers the hashchange event
+                window.location.hash = navLinks[0].hash;
+            } else {
+                loadContent(""); // Fallback to welcome page
+            }
+        });
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

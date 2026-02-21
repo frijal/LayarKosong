@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kisah Migrasi Software Legal di Kutai Kartanegara</title>
+    <meta name="description" content="Cerita seru tentang sosialisasi dan migrasi ke software legal berbasis Open Source Software (OSS) di lingkungan Pemda Kabupaten Kutai Kartanegara pada tahun 2010.">
+    <!-- Styles: 1 kolom, dark theme -->
+    <style>
+        :root {
+            --bg: #1e2a38;
+            --fg: #e0e6ec;
+            --muted: #a8b0bb;
+            --accent: #ff4d6d; /* Red from original */
+            --accent-2: #ff7a8d;
+            --card: #2a3847;
+            --border: #3a4857;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --maxw: 900px;
+        }
+        html, body {
+            background: var(--bg); color: var(--fg);
+            font: 16px/1.7 'Segoe UI', system-ui, sans-serif;
+            margin: 0; scroll-behavior: smooth;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+        header.site {
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+            background: rgba(30, 42, 56, 0.7); backdrop-filter: blur(8px);
+            position: sticky; top: 0; z-index: 10;
+        }
+        .brand { font-weight: bold; font-size: 1.2rem; }
+        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
+        .col { width: 100%; max-width: var(--maxw); }
+        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
+        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
+        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
+        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3a4857; color: var(--fg); cursor: pointer; text-decoration: none; }
+        .btn-share:hover { background: #4a5568; }
+        figure { margin: 1.5rem 0; text-align: center; }
+        figure img { cursor: zoom-in; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .lightbox { position: fixed; inset: 0; background: rgba(30,42,56,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(42, 56, 71, 0.7);
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            z-index: 10000;
+        }
+        .lightbox-nav-btn:hover {
+            background-color: #4a5568;
+        }
+        .lightbox-prev {
+            left: 1rem;
+        }
+        .lightbox-next {
+            right: 1rem;
+        }
+        .lightbox-close {
+             position: absolute;
+             top: 1rem;
+             right: 1rem;
+             background: rgba(42, 56, 71, 0.7);
+             color: white;
+             border: 1px solid var(--border);
+             border-radius: 50%;
+             width: 36px;
+             height: 36px;
+             font-size: 20px;
+             cursor: pointer;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             transition: background-color 0.2s;
+             z-index: 10000;
+        }
+        .lightbox-close:hover {
+            background-color: #ff4d6d;
+        }
+        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Cerita seru tentang sosialisasi dan migrasi ke software legal berbasis Open Source Software (OSS) di lingkungan Pemda Kabupaten Kutai Kartanegara pada tahun 2010.">
+<meta name="ai:prompt_hint" content="Cerita seru tentang sosialisasi dan migrasi ke software legal berbasis Open Source Software (OSS) di lingkungan Pemda Kabupaten Kutai Kartanegara pada tahun 2010.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/kisah-migrasi-oss-kutai">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/kisah-migrasi-oss-kutai">
+    <meta property="og:title" content="Kisah Migrasi Software Legal di Kutai Kartanegara">
+    <meta property="og:description" content="Cerita seru tentang sosialisasi dan migrasi ke software legal berbasis Open Source Software (OSS) di lingkungan Pemda Kabupaten Kutai Kartanegara pada tahun 2010.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.webp">
+    <meta property="og:image:alt" content="Kisah Migrasi Software Legal di Kutai Kartanegara">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.webp">
+</head>
+<body>
+    <div class="wrap">
+        <header class="site">
+            <div class="brand">🚀 Frijal's Blog</div>
+        </header>
+        <main>
+            <div class="col">
+                <article>
+                    <h1>Kisah Ceria dari Kutai Kartanegara: Migrasi ke Software Legal &amp; Open Source!</h1>
+<div id="iposbrowser"></div>
+                    <p class="lead">Sebuah catatan kilas balik dari 4 Oktober 2010, tentang momen spesial ketika Kementerian Riset dan Teknologi bersama Pemda Kutai Kartanegara menggelar acara sosialisasi pemanfaatan perangkat lunak legal dan Open Source Software (OSS).</p>
+                    <p>Acara ini dibuka langsung oleh Wakil Bupati Kutai Kartanegara dan tidak hanya berhenti pada sosialisasi. Kegiatan ini dilanjutkan dengan <strong>Migrasi dan Pelatihan OSS</strong> yang dipandu oleh tim teknis dari Makara UI, Komunitas OSS - KPLI Balikpapan, dan POSS Universitas Mulawarman Samarinda. Mereka turun tangan untuk memandu seluruh SKPD agar mahir menggunakan perangkat lunak legal ini.</p>
+                    <p>Pesertanya pun beragam, mulai dari Kepala SKPD, guru, mahasiswa, hingga komunitas OSS lokal. Narasumber yang hadir juga bukan nama sembarangan, termasuk pakar IT ternama, <strong>Onno Purbo</strong>.</p>
+                    <div class="gallery">
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1UyeLmW3xXbYWK52wxfAaWeToDtM6BVqNXGyDjNQ2LMtvfVSHZVOk5D3t29vj5NncO6vnF7fZzwBXwtl-mqwcXGBuiuEOBuO2ZEVWS8MfQbMo5uBD-jVHeVjZgWK3b4get9paJmAQAxRU_w4CneNqCnIj-wtGfS0RnEd2Ni11bhgcYKMP0QU-owOo914/s1600/Gemini_Generated_Image_rar5ysrar5ysrar5.webp" alt="Suasana sosialisasi OSS"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4xGZROzzRw1_4woVewzXkhNt7Ff8JSrKDYM_4kXJ2ubYCPf7iz4EvM6RrjLrxdcuoughTyeDYYE7cYAY8heVQNZ7dlCLRu8Ml4QaEbFS2OlMroSLvYwP8J0i6Aw35hJEbz-9FQoeed-CA/s1600/CIMG3312.webp" alt="Peserta acara sosialisasi"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRV8y1SzLWfa0fJxmnmT0V6PBPokwFU2znUjZjiTy4EdKt9B_yj-L-K9ezWTL3FAidMuNAaKaIwHiYfINDDbUTnoRApCEpc4BY6xSU4uDmD5WadFxnHMQ939VKP202xPnWiaULYzbcQ0Pg/s1600/CIMG3333.webp" alt="Presentasi narasumber"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgB36hVOitnrc5sNyd9jWXepule9HcNqBpE_wx4zGsNCtPKdUbeROgL5T0BZCONLzJSa93T7sokoeZkniwJHrl7jOrYdg5eWH5tH6d_ct8AlrTuWYq5hU-gGUa8ZRLMKG_sS6TuRjKxQo57/s1600/CIMG3352.webp" alt="Onno Purbo sebagai narasumber"></figure>
+                    </div>
+                    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+            </div>
+        </main>
+        <footer class="site">
+            <small>🄯 2024 Frijal's Blog · Sebuah kenangan dari era komunitas FOSS yang aktif.</small>
+        </footer>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <button id="lb-prev" class="lightbox-nav-btn lightbox-prev" title="Sebelumnya">&lt;</button>
+        <img id="lightbox-img" alt="Gambar diperbesar">
+        <button id="lb-next" class="lightbox-nav-btn lightbox-next" title="Berikutnya">&gt;</button>
+        <button id="lb-close" class="lightbox-close" title="Tutup">×</button>
+    </div>
+    <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3847; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
+    <script>
+    (function(){
+        const toast = document.getElementById('toast');
+        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbPrev = document.getElementById('lb-prev');
+        const lbNext = document.getElementById('lb-next');
+        const lbClose = document.getElementById('lb-close');
+        const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
+        let currentIndex = 0;
+        function showImage(index) {
+            currentIndex = index;
+            let src = galleryImages[currentIndex].src;
+            // Attempt to load higher resolution image from Blogger
+            src = src.replace(/\/s\d+(-c)?\//, '/s0/');
+            lbImg.src = src;
+            lb.classList.add('open');
+        }
+        function showNext() {
+            const newIndex = (currentIndex + 1) % galleryImages.length;
+            showImage(newIndex);
+        }
+        function showPrev() {
+            const newIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            showImage(newIndex);
+        }
+        galleryImages.forEach((el, index) => {
+            el.addEventListener('click', () => showImage(index));
+        });
+        function closeLb(){ lb.classList.remove('open'); }
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb) {
+                closeLb();
+            }
+        });
+        lbClose.addEventListener('click', closeLb);
+        lbPrev.addEventListener('click', showPrev);
+        lbNext.addEventListener('click', showNext);
+        window.addEventListener('keydown', (e) => {
+            if (lb.classList.contains('open')) {
+                if (e.key === 'Escape') closeLb();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            }
+        });
+    })();
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

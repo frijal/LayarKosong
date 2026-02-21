@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?</title>
+    <meta name="description" content="Rencana registrasi kartu SIM berbasis biometrik (wajah) menuai protes keras. Pakar siber ingatkan risiko kebocoran data seumur hidup. Simak analisis lengkap dan suara netizen di sini.">
+    <meta name="news_keywords" content="registrasi sim biometrik, komdigi, keamanan data, privasi, pratama persadha, kebocoran data indonesia, wajah sim card">
+    <meta property="og:description" content="Komdigi didesak batalkan registrasi SIM via biometrik wajah. Netizen: 'Data bocor siapa tanggung jawab?' Simak ulasan tajamnya.">
+    <meta name="twitter:description" content="Ketika wajahmu jadi password seumur hidup yang tak bisa diganti. Siapkah infrastruktur kita?">
+    <meta name="prompt-hint" content="article-opinion-tech-security">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
+            /* Light Mode Variables */
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --link-color: #0066cc;
+            --meta-color: #666666;
+            --border-color: #e0e0e0;
+            --quote-bg: #f9f9f9;
+            --comment-bg: #f0f2f5;
+            --accent-color: #d32f2f; /* Merah untuk warning/risk */
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode Variables */
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --link-color: #66b2ff;
+                --meta-color: #a0a0a0;
+                --border-color: #333333;
+                --quote-bg: #1e1e1e;
+                --comment-bg: #2a2a2a;
+                --accent-color: #ff6659;
+            }
+        }
+        /* Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 18px; /* Readable text size */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Layout - 1 Kolom Widescreen tapi nyaman dibaca */
+        .container {
+            max-width: 1000px; /* Optimal reading width */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Typography */
+        h1 { font-size: 2.2em; font-weight: 800; margin-bottom: 0.5em; line-height: 1.3; }
+        h2 { font-size: 1.5em; margin-top: 1.5em; margin-bottom: 0.8em; border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+        p { margin-bottom: 1.5em; }
+        a { color: var(--link-color); text-decoration: none; border-bottom: 1px dotted var(--link-color); }
+        a:hover { border-bottom: 1px solid var(--link-color); }
+        /* Meta Header */
+        .article-meta {
+            font-size: 0.9em;
+            color: var(--meta-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .article-meta i { margin-right: 5px; }
+        /* Featured Image - Optimasi CLS */
+        .featured-image-wrapper {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--border-color); /* Placeholder color */
+            aspect-ratio: 16/9; /* Menjaga rasio agar tidak layout shift */
+        }
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* Content Styling */
+        .highlight { font-weight: bold; color: var(--accent-color); }
+        blockquote {
+            background: var(--quote-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+        /* List Styling */
+        ul { margin-bottom: 1.5em; padding-left: 1.5em; }
+        li { margin-bottom: 0.5em; }
+        /* Netizen Comments Section Styling */
+        #pesbukdiskuss {
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .comment-item {
+            background: var(--comment-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .comment-user {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--link-color);
+        }
+        .comment-time {
+            font-size: 0.8em;
+            color: var(--meta-color);
+            float: right;
+        }
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--meta-color);
+            padding-bottom: 40px;
+        }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8em; }
+            .container { padding: 15px; }
+            body { font-size: 16px; }
+        }
+    </style>
+    <link rel="canonical" href="https://dalam.web.id/artikel/biometrik-registrasi-sim-wajah-2026">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/biometrik-registrasi-sim-wajah-2026">
+    <meta property="og:title" content="Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-9rUbWXEAA31t8.webp">
+    <meta property="og:image:alt" content="Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-9rUbWXEAA31t8.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-9rUbWXEAA31t8.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="article-meta">
+            <span><i class="fas fa-calendar-alt"></i> 19 Januari 2026</span>
+            <span><i class="fas fa-user"></i> Frijal (Layar Kosong)</span>
+            <span><i class="fas fa-tag"></i> Opini &amp; Keamanan Siber</span>
+        </div>
+        <h1>Wajah Jadi Syarat SIM Card: Keamanan Hakiki atau Celah Baru?</h1>
+<div id="iposbrowser"></div>
+    </header>
+    <article>
+        <p>Balik lagi nih ngomongin isu yang lagi <em>hot</em> banget di jagat maya. Kalian udah denger belum wacana terbaru dari pemerintah soal registrasi kartu SIM? Iya, bener banget, yang katanya bakal wajib pakai <strong>data biometrik</strong> alias scan wajah itu loh!</p>
+        <p>Jujur aja, pas denger kabar ini, kopi saya rasanya jadi agak pait. Bukan karena kurang gula, tapi ngebayangin muka kita—identitas fisik yang gak bisa diganti-ganti—bakal kesimpen di server yang... <em>ehem</em>, rekam jejak keamanannya masih bikin kita sering elus dada.</p>
+    <div class="featured-image-wrapper">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-9rUbWXEAA31t8.webp" alt="Ilustrasi keamanan biometrik dan kartu SIM" class="featured-image" width="800" height="450" fetchpriority="high">
+    </div>
+        <h2>Apa Sih yang Sebenarnya Terjadi? ('What' &amp; 'Who')</h2>
+        <p>Jadi gini ceritanya. Kementerian Komunikasi dan Digital (<strong>Komdigi</strong>) lagi santer didesak sama banyak pihak buat nunda, bahkan kalau perlu <span class="highlight">stop total</span> rencana registrasi kartu SIM berbasis biometrik ini. Alasannya simpel tapi ngeri: <strong>risiko jangka panjangnya gak main-main, Gaes!</strong></p>
+        <p>Pakar keamanan siber kita, Pak <strong>Pratama Persadha</strong>, sampai wanti-wanti keras. Beliau bilang, penggunaan data biometrik kayak pengenalan wajah itu ibarat nyerahin kunci brankas utama kita. Kalau sistem keamanan nasional belum siap, ini sama aja kayak ninggalin kunci rumah di bawah keset tapi diumumin pakai toa masjid.</p>
+        <h2>Kenapa Kita Harus Was-was? ('Why')</h2>
+        <p>Coba deh bayangin skenario ini:</p>
+        <blockquote>
+            "Kalau password email kamu bocor, kamu bisa ganti password dalam 5 menit. Kalau PIN ATM kamu ketahuan, tinggal ganti PIN. Tapi kalau data wajah kamu bocor? Kamu mau ganti muka? Operasi plastik?"
+        </blockquote>
+        <p>Itulah poin krusialnya. Data biometrik itu <strong>immutable</strong> alias tidak bisa diubah. Sekali bocor, ya wassalam. Dampaknya seumur hidup, Bro! Bayangin data wajah itu dipakai buat verifikasi pinjol ilegal, atau lebih parah lagi, dimanipulasi pakai teknologi <em>Deepfake</em> buat kejahatan digital. Ngeri nggak tuh?</p>
+        <p>Kita semua tahu lah ya, rekam jejak perlindungan data di negeri +62 ini masih... <em>menantang</em>. Udah berapa kali kita denger berita kebocoran data? Mulai dari data e-commerce, BPJS, sampai data pemilih. Kalau data wajah ini bocor, ini bukan cuma rugi duit, tapi identitas kita sebagai manusia yang dipertaruhkan.</p>
+        <h2>Niat Pemerintah vs Realita Lapangan ('How')</h2>
+        <p>Sebenarnya, niat pemerintah itu (katanya) baik. Mereka pengen:</p>
+        <ul>
+            <li>✅ Menekan angka penipuan yang pakai nomor seluler (mama minta pulsa, undian palsu, dsb).</li>
+            <li>✅ Meningkatkan validitas data pelanggan (biar gak ada SIM 'hantu').</li>
+        </ul>
+        <p>Tapi, para pengamat—dan pastinya kita sebagai rakyat jelata—menilai tujuan mulia itu harus dibarengi modal yang kuat. Bukan cuma modal aturan, tapi:</p>
+        <ol>
+            <li><strong>Infrastruktur Keamanan Siber Kelas Dewa:</strong> Servernya harus bener-bener aman, bukan yang gampang dibobol hacker magang.</li>
+            <li><strong>Jaminan Hukum yang Kuat:</strong> Kalau data bocor, siapa yang tanggung jawab? Jangan cuma minta maaf terus kasus hilang ditelan bumi.</li>
+            <li><strong>Koordinasi Solid:</strong> Jangan sampai antar lembaga malah saling lempar tanggung jawab kalau ada masalah.</li>
+        </ol>
+        <h2>Di Mana Posisi Kita Sekarang? ('Where' &amp; 'When')</h2>
+        <p>Sampai detik ini (2026), kebijakan ini masih jadi bola panas. Banyak pihak mendorong Komdigi buat <strong>"ngerem dulu"</strong>. Prioritasin benerin pagar rumah (sistem keamanan) sebelum masukin barang berharga (biometrik) ke dalamnya. Tanpa kesiapan itu, kebijakan ini malah bisa jadi bom waktu.</p>
+        <hr>
+        <h2>🔥 Suara Netizen: "Komdongo" hingga Ketakutan Pinjol</h2>
+        <p>Nah, ini bagian paling seru. Saya udah ngumpulin reaksi jujur, pedas, dan apa adanya dari warga +62 di kolom komentar. Asli, sentimennya hampir seragam: <strong>SKEPTIS BERAT!</strong></p>
+        <p>Banyak yang trauma sama kasus kebocoran data sebelumnya. Ada yang bilang ini cuma proyek buang-buang anggaran, ada juga yang takut mukanya dipakai buat pinjol. Yuk, kita simak apa kata mereka di bawah ini.</p>
+        <div id="pesbukdiskuss">
+            <h3>Komentar Terpilih Warga +62</h3>
+            <div class="comment-item">
+                <span class="comment-user">FaeLun KuWwe Ilun</span>
+                <span class="comment-time">12h ago</span>
+                <p>Kebayakan idenya, tapi keamannya gk bisa jamin... Klau ada apa paling lepas tangan, itu yg byk terjadi. Contoh kartu vaksin fungsinya buat apa sekarang, data kita semua masuk disitu...</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Rizky Atr</span>
+                <span class="comment-time">16h ago</span>
+                <p>Datanya mau disimpan dimana? Akan sangat beresiko dan berbahaya kalau data tersebut disimpan oleh provider. Bukankah pemerintah sdh melakukan perekaman sidik jari, retina mata dan pemotretan wajah di sistem e-KTP? Kenapa tidak data ini saja yg diolah... Program ini terlalu beresiko.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Aletheia Philia</span>
+                <span class="comment-time">11m ago</span>
+                <p>Bayangin sidik jari lu dicetak 3D printer lalu digunakan pake sejenis silikon sarung tangan untuk jebakan pembunuhan atau pencurian. 😃 Kalo bocor, seumur hidup yang punya biometrik lu bisa pake data lu untuk apapun. Siapa yang bisa lu tuntut kalo bocor? Gak ada 😃</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Si Lumba-lumba Rezpect</span>
+                <span class="comment-time">16h ago</span>
+                <p>Bikin SIM seumur hidup aja lah.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Muhammad Muhammad</span>
+                <span class="comment-time">9h ago</span>
+                <p>Masih belum kapok ya? Dulu rekaman data biometrik KTP elektronik bocor gara² PDN dibobol hacker. Sekarang mulai lagi ngumpulin data biometrik masyarakat. Yakin datanya aman? Saya kok tidak yakin.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Antarez</span>
+                <span class="comment-time">7h ago</span>
+                <p>Sim yg pegang perusahaan swasta yg tak menjamin privasi dan kebocoran data. Lawong yg pemerintahan saja bobol apalagi swasta.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Scholastique I Leen</span>
+                <span class="comment-time">9h ago</span>
+                <p>Lah kalau bimetrik kan pengenalan wajah... Lagian jika menampilkan wajah di data kartu kan mempermudah pihak kepolisian utk mengecek akun penipuan/judol.. Kasus kejahatan melalui nomer hp juga makin dibatasi..</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Bhen Rhavani (Reply to Scholastique)</span>
+                <span class="comment-time">13h ago</span>
+                <p>Padahal cukup 1 SIM untuk satu NIK, tidak perlu sampai biometrik. Atau 1 NIK maksimal 2/3 SIM.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">M Hasan Afandi</span>
+                <span class="comment-time">2h ago</span>
+                <p>Peretas yang tadinya cuma dapat NIK dan KK, sekarang dapat bonus biometrik 🗿</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Simo Nyong</span>
+                <span class="comment-time">1h ago</span>
+                <p>Apa kabar KTP-el yg masih di photo copy?</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Muhammad Farih Al Habib</span>
+                <span class="comment-time">5h ago</span>
+                <p>Bro, we are the product.</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Daniel Rahardja</span>
+                <span class="comment-time">13h ago</span>
+                <p>Komdigi lebih baik perbaiki dulu keamanan data di indonesia sampe ga gampang kebocoran dan kebobolan baru mikirin biometrik, PSE dan segala macam...</p>
+            </div>
+            <div class="comment-item">
+                <span class="comment-user">Nana Ayu Shinoda</span>
+                <span class="comment-time">2h ago</span>
+                <p>Yang paling ngeselin itu para provider pulsa masih ada tapi jangka pakai cuma seminggu. Kan tai, apa guna register pakai NIK?</p>
+            </div>
+        </div>
+        <h2>Kesimpulan: Jangan Asal Canggih!</h2>
+        <p>Gimana menurut kalian? Apakah kalian setuju kalau wajah kita jadi syarat wajib buat punya nomor HP? Atau kalian tim "NIK aja cukup"?</p>
+        <p>Teknologi itu emang penting, Guys. Tapi kalau teknologi diterapkan tanpa fondasi keamanan yang kuat, itu namanya <strong>bunuh diri digital</strong>. Kita berhak menuntut rasa aman sebelum menyerahkan data paling privat yang kita miliki.</p>
+        <p>Sampai jumpa di artikel selanjutnya, dan tetap waspada! Jangan lupa ganti password berkala (tapi jangan ganti muka ya!). 😉</p>
+    </article>
+<div id="pesbukdiskus"></div>
+        <h2>Baca Juga di Layar Kosong</h2>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 10px;">
+                <a href="https://dalam.web.id/artikel/pasang-cloudflare-turnstile-google-apps-script.html">
+                    <i class="fas fa-file-alt"></i> Cara Pasang Cloudflare Turnstile Biar Form Gak Dispam Bot
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="https://dalam.web.id/artikel/cara-melaporkan-deepfake-komdigi.html">
+                    <i class="fas fa-shield-alt"></i> Panduan Lengkap: Cara Melaporkan Konten Deepfake ke Komdigi
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="https://dalam.web.id/artikel/bedah-pasal-407-kuhp-baru.html">
+                    <i class="fas fa-gavel"></i> Bedah Pasal 407 KUHP Baru: Senjata Lawan Kejahatan Digital
+                </a>
+            </li>
+        </ul>
+    <div id="related-articles-grid" style="margin-top: 50px;"></div>
+    <footer>
+        <p>🄯 2026 Layar Kosong (dalam.web.id). Dibuat dengan <i class="fas fa-heart" style="color: var(--accent-color);"></i> dan Kopi di Balikpapan.
+            <a href="https://twitter.com/responaja" target="_blank"><i class="fab fa-twitter"></i></a> &nbsp;
+            <a href="https://github.com/frijal" target="_blank"><i class="fab fa-github"></i></a> &nbsp;
+            <a href="https://www.linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </p>
+    </footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

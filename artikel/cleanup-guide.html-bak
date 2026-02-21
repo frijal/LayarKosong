@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🪄 Petunjuk Penggunaan Cleanup Script</title>
+<!-- 🧠 Metadata SEO -->
+<meta name="description" content="Panduan lengkap cara menggunakan skrip cleanup.js untuk menghapus dependensi Node.js yang tidak terpakai di proyek GitHub Pages, lengkap dengan reset node_modules dan reinstal otomatis.">
+<!-- 🟦 Open Graph -->
+<!-- 🐦 Twitter Card -->
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #0d1117;
+  --text: #e6edf3;
+  --accent: #58a6ff;
+  --card: #161b22;
+  --border: #30363d;
+}
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+  display: flex;
+  justify-content: center;
+}
+main {
+  max-width: 960px;
+  width: 100%;
+  padding: 2rem;
+}
+h1, h2, h3 {
+  color: var(--accent);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+p {
+  text-align: justify;
+  margin: 1rem 0;
+}
+code, pre {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .5rem .75rem;
+  font-family: "Courier New", monospace;
+}
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+}
+img.lazy {
+  width: 100%;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  filter: blur(8px);
+  transition: filter .4s ease;
+}
+img.lazy.loaded {
+  filter: blur(0);
+}
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: .9rem;
+  opacity: .8;
+}
+.social-share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 2rem 0;
+}
+.social-share a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+.social-share a:hover { transform: scale(1.1); }
+.nav-arrows {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.nav-arrows a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+.lightbox img {
+  max-width: 95%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+.lightbox.visible { display: flex; }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lengkap cara menggunakan skrip cleanup.js untuk menghapus dependensi Node.js yang tidak terpakai di proyek GitHub Pages, lengkap dengan reset node_modules dan reinstal otomatis.">
+<meta name="ai:prompt_hint" content="Panduan lengkap cara menggunakan skrip cleanup.js untuk menghapus dependensi Node.js yang tidak terpakai di proyek GitHub Pages, lengkap dengan reset node_modules dan reinstal otomatis.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cleanup-guide">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/cleanup-guide">
+    <meta property="og:title" content="🪄 Petunjuk Penggunaan Cleanup Script">
+    <meta property="og:description" content="Panduan lengkap cara menggunakan skrip cleanup.js untuk menghapus dependensi Node.js yang tidak terpakai di proyek GitHub Pages, lengkap dengan reset node_modules dan reinstal otomatis.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/cleanup-guide.webp">
+    <meta property="og:image:alt" content="🪄 Petunjuk Penggunaan Cleanup Script">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/cleanup-guide.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/cleanup-guide.webp">
+</head>
+<body>
+<main>
+  <h1>🪄 Petunjuk Penggunaan Cleanup Script</h1>
+<div id="iposbrowser"></div>
+  <p>
+    Skrip <code>ext/cleanup.js</code> ini berfungsi untuk <strong>membersihkan dependensi Node.js yang sudah tidak terpakai</strong> dalam proyek GitHub Pages kamu.
+    Dengan menggunakan paket <code>depcheck</code> dan <code>inquirer</code>, kamu bisa memeriksa paket yang tidak lagi dibutuhkan dan menghapusnya dengan aman.
+  </p>
+  <h2>📦 Persiapan Awal</h2>
+  <p>Langkah pertama, pastikan kamu sudah memasang dua paket pendukung sekali saja:</p>
+  <pre><code>npm install --save-dev depcheck inquirer</code></pre>
+  <p>
+    Kedua paket ini membantu skrip melakukan pemeriksaan otomatis serta menampilkan antarmuka pilihan di terminal agar kamu bisa memilih paket yang ingin dihapus.
+  </p>
+  <h2>🚀 Cara Menjalankan Skrip</h2>
+  <p>Simpan file berikut di dalam folder <code>ext/</code> proyek kamu dengan nama <code>cleanup.js</code>.</p>
+  <p>Lalu jalankan dari terminal:</p>
+  <pre><code>node ext/cleanup.js</code></pre>
+  <p>
+    Setelah dijalankan, daftar paket yang tidak terpakai akan muncul.
+    Tekan <strong>spasi</strong> untuk memilih paket yang ingin dihapus, lalu tekan <strong>Enter</strong>.
+  </p>
+  <img class="lazy" data-src="https://dalam.web.id/img/img/cleanup-terminal-preview.webp" alt="Tampilan terminal cleanup.js">
+  <h2>🧹 Reset Total (Opsional)</h2>
+  <p>
+    Setelah memilih paket, kamu akan ditanya apakah ingin menghapus folder <code>node_modules</code> dan menginstal ulang semua dependensi.
+    Pilih <strong>Ya</strong> untuk melakukan <em>full reset</em>—berguna ketika ingin memastikan lingkungan proyek benar-benar bersih.
+  </p>
+  <pre><code>Hapus node_modules &amp; reinstall? (Y/n)</code></pre>
+  <p>Jika kamu memilih <strong>Ya</strong>, maka:</p>
+  <ul>
+    <li>Folder <code>node_modules</code> akan dihapus.</li>
+    <li>File <code>package-lock.json</code> juga ikut dihapus.</li>
+    <li>Semua dependensi akan diinstal ulang otomatis menggunakan <code>npm install</code>.</li>
+  </ul>
+  <h2>⚡ Shortcut di package.json</h2>
+  <p>Biar lebih cepat, kamu bisa menambahkan shortcut ini di dalam file <code>package.json</code>:</p>
+  <pre><code>"scripts": {
+  "clean": "node ext/cleanup.js"
+}</code></pre>
+  <p>Sehingga cukup jalankan perintah ini dari terminal:</p>
+  <pre><code>npm run clean</code></pre>
+  <p>Sangat membantu ketika kamu sering melakukan pembersihan otomatis sebelum build ulang proyek.</p>
+  <section>
+  <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+  </section>
+  <footer>
+    🄯 2025 dalam.web.id · Panduan Penggunaan Cleanup Script
+  </footer>
+    </main>
+<!-- 🌙 Lazy-load dan Lightbox -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const imgs = document.querySelectorAll("img.lazy");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.src = e.target.dataset.src;
+          e.target.classList.add("loaded");
+          obs.unobserve(e.target);
+        }
+      });
+    });
+    imgs.forEach(img => observer.observe(img));
+  } else {
+    imgs.forEach(img => (img.src = img.dataset.src));
+  }
+  // Lightbox
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+  lightbox.innerHTML = "<img>";
+  document.body.appendChild(lightbox);
+  const imgBox = lightbox.querySelector("img");
+  imgs.forEach(i => i.addEventListener("click", () => {
+    imgBox.src = i.src;
+    lightbox.classList.add("visible");
+  }));
+  lightbox.addEventListener("click", () => lightbox.classList.remove("visible"));
+});
+</script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

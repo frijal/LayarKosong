@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Penjelasan santai tentang urutan workflow GitHub Actions: checkout, setup, cache. Lengkap dengan tips, contoh.">
+    <meta name="keywords" content="workflow GitHub, GitHub Actions, urutan checkout setup cache, CI/CD, tutorial GitHub Indonesia">
+    <meta name="news_keywords" content="GitHub, Actions, workflow, checkout, setup, cache, developer, CI/CD">
+    <meta name="prompt-hint" content="Tutorial urutan workflow GitHub Actions dengan bahasa santai dan lengkap.">
+    <meta property="og:description" content="urutan yang bener di GitHub Actions? Checkout dulu, setup, lalu cache.">
+    <meta name="twitter:description" content="Penjelasan asyik soal workflow GitHub. Mulai dari checkout kode, setup environment, sampe cache dependencies.">
+  <title>Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #f9fafb;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --card: #020617;
+        --accent: #60a5fa;
+        --border: #1e293b;
+      }
+    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  font-size: 18px; /* sebelumnya implicit ~16px */
+}
+.container {
+  max-width: 980px;
+  margin: auto;
+  padding: 28px;
+}
+header h1 {
+  font-size: 2.6rem; /* sebelumnya 2.1rem */
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.meta {
+  color: var(--muted);
+  font-size: 1rem; /* sebelumnya 0.9rem */
+}
+img.hero {
+  width: 100%;
+  border-radius: 14px;
+  margin: 32px 0;
+}
+section {
+  margin-bottom: 52px;
+}
+h2 {
+  font-size: 1.85rem; /* sebelumnya 1.5rem */
+  margin-bottom: 18px;
+}
+h3 {
+  margin-top: 28px;
+  font-size: 1.35rem; /* sebelumnya 1.15rem */
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  margin: 26px 0;
+  font-size: 1.05rem;
+}
+code {
+  background: rgba(125,125,125,.15);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+pre {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  overflow-x: auto;
+  font-size: 0.95rem; /* sebelumnya 0.85rem */
+  line-height: 1.7;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+  }
+  header h1 {
+    font-size: 2.2rem;
+  }
+}
+  </style>
+    <link rel="canonical" href="https://dalam.web.id/artikel/urutan-workflow-github">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/urutan-workflow-github">
+    <meta property="og:title" content="Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-3Vh6hWcAA-6lj.webp">
+    <meta property="og:image:alt" content="Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-3Vh6hWcAA-6lj.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G-3Vh6hWcAA-6lj.webp">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache</h1>
+<div id="iposbrowser"></div>
+  <div class="meta">
+    Fakhrul Rijal · 17 Januari 2026 · GitHub Actions &amp; CI/CD
+  </div>
+</header>
+<section>
+  <p>
+    Salah satu hal yang paling sering disepelekan saat membuat workflow GitHub Actions
+    adalah <strong>urutan langkah</strong>. Banyak developer fokus pada tool, framework,
+    atau script build, tapi lupa bahwa workflow itu pada dasarnya adalah
+    <em>alur logis</em>.
+  </p>
+  <p>
+    Tiga step yang hampir selalu muncul—<code>checkout</code>, <code>setup</code>,
+    dan <code>cache</code>—sebenarnya punya hubungan sebab-akibat yang jelas.
+    Kalau urutannya salah, efeknya bisa berupa workflow lambat,
+    cache selalu nggak cocok, atau bahkan error yang sulit dilacak.
+  </p>
+</section>
+<div style="text-align: center; display: block; margin: 15px auto;">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-3Vh6hWcAA-6lj.webp" alt="Ilustrasi workflow GitHub Actions" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <br><small style="color:#666; font-style:italic;">Ilustrasi workflow GitHub Actions</small>
+</div>
+<section>
+  <h2>Apa Itu Workflow di GitHub Actions?</h2>
+  <p>
+    Workflow adalah serangkaian instruksi otomatis yang dijalankan oleh GitHub
+    setiap kali terjadi suatu event, misalnya <em>push</em>, <em>pull request</em>,
+    atau jadwal tertentu.
+  </p>
+  <p>
+    Workflow ditulis dalam file YAML dan dieksekusi di runner GitHub yang
+    pada awalnya selalu dalam kondisi <strong>kosong</strong>.
+    Tidak ada kode, tidak ada dependency, dan tidak ada cache—semua harus
+    disiapkan dari nol di setiap run.
+  </p>
+</section>
+<section>
+  <h2>Kenapa Urutan Step Itu Penting?</h2>
+  <p>
+    Cara termudah memahami ini adalah dengan analogi dapur.
+    Kamu tidak bisa memasak tanpa bahan,
+    dan kamu tidak bisa menyimpan sisa makanan
+    sebelum masakannya benar-benar ada.
+  </p>
+  <div class="card">
+    <ul>
+      <li><strong>Checkout</strong> = ambil bahan masakan</li>
+      <li><strong>Setup</strong> = siapkan kompor dan alat</li>
+      <li><strong>Cache</strong> = simpan bahan agar masak berikutnya lebih cepat</li>
+    </ul>
+  </div>
+  <p>
+    Kalau urutannya dibalik, workflow memang bisa jalan,
+    tapi hasilnya tidak optimal dan sering membuang waktu.
+  </p>
+</section>
+<section>
+  <h2>Urutan Workflow yang Direkomendasikan</h2>
+  <h3>1. Checkout (Wajib Paling Awal)</h3>
+  <p>
+    Step <code>actions/checkout</code> bertugas mengambil source code
+    repository ke runner.
+    Tanpa step ini, runner tidak tahu apa yang harus dibangun atau diuji.
+  </p>
+<pre><code>- uses: actions/checkout@v4</code></pre>
+  <h3>2. Setup Environment</h3>
+  <p>
+    Setup digunakan untuk menentukan runtime dan toolchain,
+    seperti Node.js, Java, Python, atau Go.
+    Banyak setup membaca file dari repository
+    (<code>package.json</code>, <code>.tool-versions</code>, dll),
+    sehingga harus dilakukan setelah checkout.
+  </p>
+<pre><code>- uses: actions/setup-node@v4
+  with:
+    node-version: 20</code></pre>
+  <h3>3. Cache Dependency</h3>
+  <p>
+    Cache digunakan untuk mempercepat workflow dengan
+    menyimpan dependency dari run sebelumnya.
+    Cache key biasanya bergantung pada:
+  </p>
+  <ul>
+    <li>Sistem operasi runner</li>
+    <li>Versi runtime</li>
+    <li>Lock file dari repository</li>
+  </ul>
+<pre><code>- uses: actions/cache@v4
+  with:
+    path: ~/.npm
+    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    restore-keys: |
+      ${{ runner.os }}-node-</code></pre>
+</section>
+<section>
+  <h2>Contoh Workflow Lengkap</h2>
+<pre><code>name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm test
+</code></pre>
+</section>
+<section>
+  <h2>Kesalahan Umum yang Sering Terjadi</h2>
+  <div class="card">
+    <ul>
+      <li>Cache dijalankan sebelum checkout → cache selalu miss, alias nggak cocok.</li>
+      <li>Setup tanpa checkout → konfigurasi repo tidak terbaca.</li>
+      <li>Menganggap cache adalah pengganti install dependency.</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h2>Penutup</h2>
+  <p>
+    Workflow GitHub Actions yang cepat dan stabil
+    tidak selalu butuh konfigurasi rumit.
+    Sering kali, perbedaannya hanya terletak pada
+    <strong>urutan langkah yang benar</strong>.
+  </p>
+  <p>
+    Ingat satu kalimat ini:
+    <strong>checkout dulu, setup environment, baru cache</strong>.
+    Sisanya tinggal menyesuaikan kebutuhan proyekmu.
+  </p>
+</section>
+<div id="pesbukdiskus"></div>
+    <div id="related-articles-grid"></div>
+<footer>
+  🄯 2026 Fakhrul Rijal ·
+  <a href="https://dalam.web.id">Layar Kosong</a> ·
+  <a href="https://github.com/frijal">GitHub</a> ·
+  <a href="https://twitter.com/responaja">Twitter</a>
+</footer>
+</div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

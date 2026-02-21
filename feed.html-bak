@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="id">
+  <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSS Feed – Artikel Terbaru</title>
+<meta name="description" content="RSS Feed Layar Kosong berisi kumpulan artikel terbaru dari berbagai topik. Ikuti pembaruan konten secara real-time melalui RSS reader favorit Anda.">
+<meta name="news_keywords" content="rss feed, artikel terbaru, feed blog, update konten, layar kosong, teknologi, open source">
+<meta name="promphint" content="Halaman RSS Feed yang menyajikan daftar artikel terbaru secara kronologis untuk pembaca dan aplikasi pembaca RSS.">
+<link rel="canonical" href="https://dalam.web.id/feed">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:title" content="RSS Feed – Artikel Terbaru">
+<meta property="og:description" content="Kumpulan artikel terbaru Layar Kosong dari berbagai topik, tersedia dalam format RSS untuk update otomatis.">
+<meta property="og:url" content="https://dalam.web.id/feed.html">
+<meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+<meta property="og:image:alt" content="RSS Feed Artikel Terbaru Layar Kosong">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSS Feed – Artikel Terbaru">
+<meta name="twitter:description" content="Ikuti artikel terbaru Layar Kosong melalui RSS Feed untuk pembaruan otomatis dari berbagai topik.">
+<meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
+<meta name="twitter:site" content="https://dalam.web.id">
+<meta name="twitter:creator" content="@responaja">
+<meta itemprop="image" content="https://dalam.web.id/thumbnail.webp">
+<script src="/ext/header.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ext/fontawesome.css" />
+<link rel="alternate" type="application/rss+xml" title="RSS Layar Kosong" href="https://dalam.web.id/rss.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://dalam.web.id/feed.html","url":"https://dalam.web.id/feed.html","name":"RSS Feed Layar Kosong","description":"RSS Feed Layar Kosong berisi kumpulan artikel terbaru dari berbagai topik. Ikuti pembaruan konten secara real-time melalui RSS reader favorit Anda.","isPartOf":{"@type":"WebSite","@id":"https://dalam.web.id/#website"},"about":{"@type":"Organization","@id":"https://dalam.web.id/#organization"},"inLanguage":"id-ID","dateModified":"2025-10-30"} </script>
+    <style>
+      :root {
+        --bg-color: #121212;
+        --surface-color: #1e1e1e;
+        --primary-text-color: #e0e0e0;
+        --secondary-text-color: #b3b3b3;
+        --accent-color: #03dac6;
+        --border-color: #2c2c2c;
+        --shadow-color: rgba(3, 218, 198, 0.1);
+        --error-bg: #4e1a1a;
+        --error-text: #ffc4c4;
+        --error-border: #a83c3c;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg-color: #f4f4f9;
+          --surface-color: #ffffff;
+          --primary-text-color: #212121;
+          --secondary-text-color: #666666;
+          --accent-color: #009688;
+          --border-color: #e0e0e0;
+          --shadow-color: rgba(0, 150, 136, 0.15);
+          --error-bg: #ffebee;
+          --error-text: #c62828;
+          --error-border: #ef9a9a;
+        }
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--primary-text-color);
+        line-height: 1.7;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        text-align: center;
+        color: var(--accent-color);
+        margin-bottom: 2.5rem;
+        font-size: 2.5rem;
+      }
+      #feed-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+      }
+      .feed-item {
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background-color 0.3s;
+      }
+      .feed-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px var(--shadow-color);
+      }
+      .feed-item-thumbnail {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: #333;
+        overflow: hidden;
+      }
+      .feed-item-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1; /* Diubah dari 0 menjadi 1 */
+      }
+      .feed-item-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed-item-content h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+      .feed-item-content h2 a {
+        color: var(--primary-text-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .feed-item-content h2 a:hover {
+        color: var(--accent-color);
+      }
+      .feed-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        font-size: 0.8rem;
+        color: var(--secondary-text-color);
+        margin-bottom: 1rem;
+      }
+      .feed-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .feed-meta-item i {
+        color: var(--accent-color);
+      }
+      .feed-item-content p {
+        color: var(--secondary-text-color);
+        font-size: 0.9rem;
+      }
+      .social-share {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+      }
+      .social-share span {
+        font-size: 0.8rem;
+        color: var(--secondary-text-color);
+      }
+      .social-share a {
+        font-size: 1.2rem;
+        color: var(--secondary-text-color);
+        transition:
+          color 0.3s ease,
+          transform 0.3s ease;
+      }
+      .social-share a:hover {
+        transform: scale(1.2);
+        color: var(--accent-color);
+      }
+      #loading {
+        border: 5px solid var(--border-color);
+        border-top: 5px solid var(--accent-color);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 4rem auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .error-message {
+        background-color: var(--error-bg);
+        color: var(--error-text);
+        border: 1px solid var(--error-border);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+        .feed-item-content h2 {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml" />
+    <link rel="stylesheet" href="/ext/marquee-url.css" />
+  </head>
+  <body>
+  <div id="header-placeholder"></div>
+    <div class="container">
+      <h1><a href="/" style="text-decoration: none; color: inherit;">RSS Feed 30 Artikel Terbaru</a></h1>
+      <div id="loading"></div>
+      <div id="feed-container"></div>
+    </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const RSS_URL = 'rss.xml';
+    const BASE_URL = 'https://dalam.web.id';
+    const DEFAULT_THUMBNAIL = 'https://dalam.web.id/thumbnail.webp';
+    const feedContainer = document.getElementById('feed-container');
+    const loadingIndicator = document.getElementById('loading');
+    const parser = new DOMParser();
+
+    function extractThumbnail(item) {
+      const enclosure = item.querySelector('enclosure');
+      if (enclosure && enclosure.getAttribute('type').startsWith('image')) {
+        let url = enclosure.getAttribute('url');
+        if (url && !url.startsWith('http')) {
+          return `${BASE_URL}${url}`;
+        }
+        return url;
+      }
+      const mediaThumbnail = item.querySelector('media\\:thumbnail, thumbnail');
+      if (mediaThumbnail) return mediaThumbnail.getAttribute('url');
+
+      const descriptionHTML = item.querySelector('description')?.textContent;
+      if (descriptionHTML) {
+        const doc = parser.parseFromString(descriptionHTML, 'text/html');
+        const img = doc.querySelector('img');
+        if (img) return img.getAttribute('src');
+      }
+      return DEFAULT_THUMBNAIL;
+    }
+
+    const fetchAndDisplayFeed = async () => {
+      try {
+        const response = await fetch(RSS_URL);
+        if (!response.ok) throw new Error(`Status ${response.status}`);
+        const xmlText = await response.text();
+        const doc = parser.parseFromString(xmlText, 'application/xml');
+        const items = doc.querySelectorAll('item');
+
+        if (items.length === 0) {
+          feedContainer.innerHTML = '<p class="error-message">Tidak ada item ditemukan di dalam feed.</p>';
+          return;
+        }
+
+        let feedHTML = '';
+        items.forEach((item) => {
+          const title = item.querySelector('title')?.textContent || 'Tanpa Judul';
+          const link = item.querySelector('link')?.textContent || '#';
+
+          // Mengambil deskripsi utuh untuk teks share (tanpa pangkas substring)
+          const rawDescription = item.querySelector('description')?.textContent || '';
+          const cleanDescription = rawDescription.replace(/<[^>]*>/g, '').trim();
+
+          const pubDateStr = item.querySelector('pubDate')?.textContent;
+          const category = item.querySelector('category')?.textContent || '';
+          const thumbnailUrl = extractThumbnail(item);
+
+          let formattedDate = '';
+          if (pubDateStr) {
+            formattedDate = new Intl.DateTimeFormat('id-ID', {
+              dateStyle: 'long',
+            }).format(new Date(pubDateStr));
+          }
+
+          // Encoding agar aman saat disisipkan ke URL
+          const encodedLink = encodeURIComponent(link);
+          const encodedShareText = encodeURIComponent(cleanDescription);
+
+          feedHTML += `
+            <div class="feed-item">
+              <div class="feed-item-thumbnail">
+                <img src="${thumbnailUrl}" alt="${title}" loading="lazy">
+              </div>
+              <div class="feed-item-content">
+                <h2><a href="${link}" rel="noreferrer">${title}</a></h2>
+                <div class="feed-meta">
+                  <span class="feed-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>${formattedDate}</span>
+                  </span>
+                  ${category ? `
+                  <span class="feed-meta-item">
+                    <i class="fas fa-folder-open"></i>
+                    <span>${category.replace('🗂️', '').trim()}</span>
+                  </span>` : ''}
+                </div>
+                <p>${cleanDescription.substring(0, 150)}...</p>
+                <div class="social-share">
+                  <span>Bagikan:</span>
+                  <a href="https://x.com/intent/post?text=${encodedShareText}&url=${encodedLink}" onclick='return window.open(this.href,"twitter-share","width=550,height=400,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" onclick='return window.open(this.href,"facebook-share","width=580,height=400,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="https://api.whatsapp.com/send?text=${encodedShareText}%0A%0A${encodedLink}" onclick='return window.open(this.href,"whatsapp-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedShareText}" onclick='return window.open(this.href,"telegram-share","width=600,height=500,personalbar=0,toolbar=0,scrollbars=yes,resizable=yes"),!1' target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+              </div>
+            </div>`;
+        });
+        feedContainer.innerHTML = feedHTML;
+      } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+        feedContainer.innerHTML = `<div class="error-message"><strong>Oops!</strong> Gagal memuat data feed.</div>`;
+      } finally {
+        loadingIndicator.style.display = 'none';
+      }
+    };
+    fetchAndDisplayFeed();
+  });
+</script>
+<script defer src="/ext/markdown.js"></script><script defer src="/ext/marquee-url.js"></script>
+    </body>
+</html>

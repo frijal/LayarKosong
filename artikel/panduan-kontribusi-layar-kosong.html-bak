@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝</title>
+    <meta name="description" content="Selamat datang di Panduan Kontribusi Layar Kosong! Mari berkolaborasi dalam semangat Open Source untuk membangun website yang lebih baik. Temukan cara melaporkan bug, berbagi ide, hingga mengirimkan kode dan artikel.">
+    <meta name="keywords" content="Layar Kosong, kontribusi, Open Source, GitHub, panduan, artikel, HTML, CSS, workflow, Public Domain, SEO, dalam.web.id">
+    <link rel="stylesheet" href="/ext/fontawesome.css">
+    <style>
+        :root {
+            --bg-color-light: #f9fafb; /* Light background for body */
+            --text-color-light: #1f2937; /* Dark text for body */
+            --card-bg-light: #ffffff; /* White card background */
+            --border-color-light: #e5e7eb; /* Light border */
+            --link-color-light: #2563eb; /* Blue link */
+            --bg-color-dark: #111827; /* Dark background for body */
+            --text-color-dark: #e5e7eb; /* Light text for body */
+            --card-bg-dark: #1f2937; /* Darker card background */
+            --border-color-dark: #374151; /* Dark border */
+            --link-color-dark: #60a5fa; /* Lighter blue link */
+        }
+        /* Default (Light Mode) */
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center; /* Center content on widescreen */
+            min-height: 100vh; /* Fullscreen */
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 900px; /* Lebar optimal untuk 1 kolom widescreen */
+            width: 100%;
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color-light);
+            box-sizing: border-box;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-color-light);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+        }
+        a {
+            color: var(--link-color-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease-in-out;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: var(--link-color-light); /* Maintain color on hover */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 1.5em; /* Memberikan sedikit indentasi untuk list */
+        }
+        ul li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        ul li::before {
+            content: '•'; /* Mengganti bullet default dengan custom bullet */
+            position: absolute;
+            left: 0;
+            color: var(--link-color-light);
+            font-weight: bold;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        strong {
+            font-weight: 700;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color-light);
+            margin: 2em 0;
+        }
+        blockquote {
+            background-color: var(--bg-color-light);
+            border-left: 4px solid var(--link-color-light);
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+            color: var(--text-color-light);
+            font-style: italic;
+            border-radius: 4px;
+        }
+        code {
+            background-color: #e0e7ff; /* Light blue background for code */
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.9em;
+            color: #3b82f6; /* Blue text for code */
+        }
+        /* Dark Mode Detection */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--bg-color-dark);
+                color: var(--text-color-dark);
+            }
+            .container {
+                background-color: var(--card-bg-dark);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                border: 1px solid var(--border-color-dark);
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: var(--text-color-dark);
+            }
+            a {
+                color: var(--link-color-dark);
+            }
+            ul li::before {
+                color: var(--link-color-dark);
+            }
+            hr {
+                border-top: 1px solid var(--border-color-dark);
+            }
+            blockquote {
+                background-color: var(--bg-color-dark);
+                border-left-color: var(--link-color-dark);
+                color: var(--text-color-dark);
+            }
+            code {
+                background-color: #374151; /* Darker background for code */
+                color: #93c5fd; /* Lighter blue text for code */
+            }
+        }
+        /* Mobile Adjustments (Responsive) */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            .container {
+                padding: 20px 25px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            ul {
+                margin-left: 1em;
+            }
+            ul li {
+                padding-left: 1.2em;
+            }
+        }
+        /* Footer Styling */
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color-light);
+            text-align: center;
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+        @media (prefers-color-scheme: dark) {
+            footer {
+                border-top: 1px solid var(--border-color-dark);
+                color: #9ca3af;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Selamat datang di Panduan Kontribusi Layar Kosong! Mari berkolaborasi dalam semangat Open Source untuk membangun website yang lebih baik. Temukan cara melaporkan bug, berbagi ide, hingga mengirimkan kode dan artikel.">
+<meta name="ai:prompt_hint" content="Selamat datang di Panduan Kontribusi Layar Kosong! Mari berkolaborasi dalam semangat Open Source untuk membangun website yang lebih baik. Temukan cara melaporkan bug, berbagi ide, hingga mengirimkan kode dan artikel.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-kontribusi-layar-kosong">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/panduan-kontribusi-layar-kosong">
+    <meta property="og:title" content="Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝">
+    <meta property="og:description" content="Selamat datang di Panduan Kontribusi Layar Kosong! Mari berkolaborasi dalam semangat Open Source untuk membangun website yang lebih baik. Temukan cara melaporkan bug, berbagi ide, hingga mengirimkan kode dan artikel.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/panduan-kontribusi-layar-kosong.webp">
+    <meta property="og:image:alt" content="Panduan Kontribusi untuk Layar Kosong - dalam.web.id 🤝">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/panduan-kontribusi-layar-kosong.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/panduan-kontribusi-layar-kosong.webp">
+</head>
+<body>
+    <div class="container">
+        <h1>Panduan Kontribusi untuk Layar Kosong</h1>
+<div id="iposbrowser"></div>
+        <p>Hai para kolaborator keren! 👋 Selamat datang di panduan kontribusi untuk proyek Layar Kosong. Kami super senang kamu punya niat baik buat ikut berkarya! Ingat ya, proyek ini dibangun dengan semangat <strong>Open Source</strong> dan <strong>Public Domain</strong>, jadi sekecil apapun kontribusimu itu <strong>BERHARGA BANGET</strong>! Jangan ragu untuk berpartisipasi. 😊</p>
+        <p>Sebelum kita mulai nge-gas, yuk kita pahami dulu beberapa hal penting biar prosesnya lancar jaya!</p>
+        <hr>
+        <h2><i class="fa-solid fa-scale-balanced"></i> Etika Kontribusi (Code of Conduct)</h2>
+        <p>Proyek ini itu rumah kita bersama, jadi kita pengen lingkungannya tetap terbuka, ramah, dan inklusif buat semua orang. Intinya, kita semua di sini adalah teman-teman yang berniat baik!</p>
+        <ul>
+            <li><i class="fa-solid fa-star"></i> Kita percaya semua orang yang ada di sini punya niat baik. Jadi, mari kita saling menghormati dan bersikap profesional ya.</li>
+            <li><i class="fa-solid fa-flag"></i> Kalau kamu nemu atau ngelihat ada perilaku yang kurang pas, jangan ragu buat laporin via diskusi pribadi di GitHub. Privasimu aman kok!</li>
+            <li><i class="fa-solid fa-book-open"></i> Semua kontributor diharapkan banget buat baca dan patuhi <strong><a href="https://github.com/frijal/LayarKosong/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-contract"></i> CODE_OF_CONDUCT</a></strong> kita. Ini penting banget biar kita semua nyaman.</li>
+        </ul>
+        <hr>
+        <h2><i class="fa-solid fa-gear"></i> Bagaimana Cara Berkontribusi?</h2>
+        <p>Eits, jangan salah! Berkontribusi itu gak melulu soal nulis kode, lho. Ada banyak cara seru lain yang bisa kamu lakuin buat bantuin proyek ini makin kece!</p>
+        <h3>1. Pelaporan *Bug* (Masalah) 🐛</h3>
+        <p>Pernah nemu error atau keanehan waktu browsing Layar Kosong? Atau ada link yang tiba-tiba putus? Nah, ini dia peranmu!</p>
+        <ul>
+            <li><i class="fa-solid fa-bug"></i> Gunakan tab <strong><a href="https://github.com/frijal/LayarKosong/issues" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Issues di GitHub</a></strong>. Ini tempatnya laporan bug!</li>
+            <li><i class="fa-solid fa-clipboard-list"></i> Berikan deskripsi yang sejelas-jelasnya ya. Ceritain apa yang salah dan kalau bisa, kasih tahu langkah-langkah biar kita bisa nyoba ngulangin bug-nya.</li>
+            <li><i class="fa-solid fa-tag"></i> Jangan lupa pakai label (<code>bug</code>) yang pas biar gampang dicari!</li>
+        </ul>
+        <h3>2. Diskusi &amp; Ide Baru 💡</h3>
+        <p>Punya ide gila buat fitur baru, gimana caranya bikin SEO makin ciamik, atau mau ngobrolin teknologi terkini? Jangan pendam sendiri!</p>
+        <ul>
+            <li><i class="fa-solid fa-comments"></i> Langsung aja ke tab <strong><a href="https://github.com/frijal/LayarKosong/discussions" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Discussions di GitHub</a></strong>.</li>
+            <li><i class="fa-solid fa-lightbulb"></i> Ini adalah tempat paling pas buat *brainstorming* ide-ide brilian sebelum kamu mulai nulis satu baris kode pun. Siapa tahu ide dari kamu jadi fitur killer berikutnya!</li>
+        </ul>
+        <h3>3. Kontribusi Kode (Pull Request) 💻</h3>
+        <p>Oke, buat kamu yang suka banget ngoprek kode, ini nih surganya! Baik itu perbaikan bug, update workflow, atau mempercantik CSS, semua diterima dengan tangan terbuka.</p>
+        <h4>A. Persiapan <i class="fa-solid fa-code-branch"></i></h4>
+        <ol>
+            <li><i class="fa-solid fa-code-fork"></i> Pertama, <strong>Fork</strong> Repository ini ke akun GitHub kamu. Anggap aja kamu nyalin buku buat diedit sendiri.</li>
+            <li><i class="fa-solid fa-download"></i> Terus, <strong>Clone</strong> *repo* yang sudah kamu *fork* tadi ke komputer lokalmu. Biar bisa diedit offline.</li>
+            <li><i class="fa-solid fa-folder-tree"></i> Buat <em>branch</em> baru buat perubahanmu (misalnya: <code>feat/perbaikan-css</code> atau <code>fix/workflow-bug</code>). Ini penting biar perubahanmu gak bentrok sama yang lain.</li>
+        </ol>
+        <h4>B. Aturan Penulisan Kode <i class="fa-solid fa-pen-to-square"></i></h4>
+        <ul>
+            <li><i class="fa-brands fa-html5"></i> <strong>HTML/Markdown:</strong> Kita suka yang simpel dan bersih. Pastikan kode HTML-mu valid dan mudah dibaca ya.</li>
+            <li><i class="fa-brands fa-css3-alt"></i> <strong>CSS:</strong> Karena ini proyek <em>static site</em> yang super ringan, usahakan pakai CSS yang efisien atau kalau perlu, pakai <em>inline/scoped</em> aja. Minimalis itu indah!</li>
+            <li><i class="fa-solid fa-code-compare"></i> <strong>Workflow (.yml):</strong> Penting banget nih! Pastikan skrip YAML yang kamu bikin atau ubah itu berfungsi dengan baik dan pastinya aman ya.</li>
+        </ul>
+        <h4>C. Mengirimkan Pull Request (PR) <i class="fa-solid fa-code-pull-request"></i></h4>
+        <ul>
+            <li><i class="fa-solid fa-message"></i> Pastikan <em>commit</em> kamu punya pesan yang jelas (misalnya: <code>fix: Perbaiki link favicon yang rusak</code> atau <code>feat: Tambahkan action ping sitemap</code>). Ini ngebantu banget waktu me-review.</li>
+            <li><i class="fa-solid fa-arrow-right-to-bracket"></i> Buka <strong>Pull Request</strong> ke <em>branch</em> <code>main</code> dari *repository* utama. Ini saatnya karyamu dilihat dunia!</li>
+            <li><i class="fa-solid fa-file-lines"></i> <strong>Deskripsikan</strong> PR-mu dengan detail ya. Ceritain: Apa yang kamu ubah? Kenapa kamu mengubahnya? Dan yang paling penting, apa hasilnya?</li>
+        </ul>
+        <hr>
+        <h2><i class="fa-solid fa-newspaper"></i> Kontribusi Konten (Artikel)</h2>
+        <p>Karena Layar Kosong punya fokus utama buat publikasi konten HTML yang kece, kami pastinya seneng banget kalau kamu mau ikutan nyumbang artikel atau tulisan. Yuk, bagikan ilmu atau cerita-ceritamu di sini!</p>
+        <ol>
+            <li><i class="fa-solid fa-file-code"></i> Bikin file HTML baru (contohnya: <code>artikel-judul-mu.html</code>).</li>
+            <li><i class="fa-solid fa-folder-open"></i> Taruh file tersebut di folder <strong><code>artikelx/</code></strong>.</li>
+            <li><i class="fa-solid fa-arrow-up-from-bracket"></i> Kirimkan <strong>Pull Request</strong> seperti langkah di atas.</li>
+        </ol>
+        <blockquote>
+            <p><i class="fa-solid fa-triangle-exclamation"></i> <strong>Penting Mengenai Lisensi Konten:</strong> Proyek ini memakai lisensi <strong>UNLICENSE</strong> (Public Domain). Itu artinya, dengan kamu mengirimkan artikel ke folder <code>artikelx/</code>, kamu secara otomatis melepaskan hak cipta atas tulisanmu itu ke Domain Publik. Pastikan kamu nyaman dengan keputusan ini ya! Makasih banget atas pengertiannya. 🙏</p>
+        </blockquote>
+        <hr>
+        <h2><i class="fa-solid fa-hand-holding-dollar"></i> Donasi (Opsional)</h2>
+        <p>Kalau kamu suka banget sama proyek Layar Kosong dan pengen mendukung tanpa harus berkontribusi kode atau teks, kamu bisa lho kasih <strong><a href="https://github.com/sponsors/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-heart"></i> donasi</a></strong>. Sekecil apapun donasimu itu sangat berarti buat kami. Terima kasih banyak ya! 💖</p>
+        <hr>
+        <p>Terima kasih banyak sudah menyempatkan waktu buat baca panduan ini sampai selesai. Mari kita bareng-bareng bangun <em>static site</em> yang makin cepet, efisien, dan bermanfaat! Semangat! 💪</p>
+        <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+        <footer>
+            <p>🄯 2024 Layar Kosong. Dibuat dengan semangat <i class="fa-solid fa-heart" style="color:#ef4444;"></i> dan <i class="fa-solid fa-code"></i> untuk Domain Publik.</p>
+        </footer>
+    </div>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+    <script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

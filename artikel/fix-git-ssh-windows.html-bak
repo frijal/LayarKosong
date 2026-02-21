@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perbaiki Error “cannot run ssh” di Git — Windows CMD &amp; PowerShell</title>
+  <!-- Open Graph -->
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: #111;
+      color: #eee;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, #202020, #1b1b1b);
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      border-bottom: 2px solid #333;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin: 1.5em auto;
+      cursor: zoom-in;
+      transition: transform 0.3s;
+    }
+    img:hover {
+      transform: scale(1.03);
+    }
+    pre {
+      background: #1c1c1c;
+      padding: 1em;
+      border-radius: 8px;
+      color: #9ef99e;
+      overflow-x: auto;
+      font-family: "Cascadia Code", monospace;
+    }
+    code {
+      color: #b3e5fc;
+      font-family: "Cascadia Code", monospace;
+    }
+    h2 { margin-top: 2em; }
+    .share {
+      text-align: center;
+      margin-top: 3em;
+    }
+    .share a {
+      color: #ccc;
+      font-size: 1.6em;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 0.9em;
+    }
+    @media (max-width: 700px) {
+      body { font-size: 16px; }
+      main { padding: 1.5rem; }
+    }
+    #lightbox {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan memperbaiki error Git">
+<meta name="ai:prompt_hint" content="Panduan memperbaiki error Git">
+<meta name="description" content="Panduan memperbaiki error Git">
+    <link rel="canonical" href="https://dalam.web.id/artikel/fix-git-ssh-windows">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/fix-git-ssh-windows">
+    <meta property="og:title" content="Perbaiki Error “cannot run ssh” di Git — Windows CMD &amp; PowerShell">
+    <meta property="og:description" content="Panduan memperbaiki error Git">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/fix-git-ssh-windows.webp">
+    <meta property="og:image:alt" content="Perbaiki Error “cannot run ssh” di Git — Windows CMD &amp; PowerShell">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/fix-git-ssh-windows.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/fix-git-ssh-windows.webp">
+</head>
+<body>
+<header>
+  <h1>Perbaiki Error “cannot run ssh” di Git (Windows CMD &amp; PowerShell)</h1>
+<div id="iposbrowser"></div>
+  <p>Cara cepat memperbaiki Git yang gagal menjalankan SSH di Windows, baik dari CMD maupun PowerShell.</p>
+</header>
+<main>
+  <pre><code>error: cannot run ssh: No such file or directory
+fatal: unable to fork</code></pre>
+  <p>Error ini sering muncul di Windows kalau Git tidak bisa menemukan <code>ssh.exe</code> bawaan dari instalasi Git, atau PATH belum dikonfigurasi.</p>
+  <h2>🔍 Langkah 1 — Pastikan Git dan SSH Ada di PATH</h2>
+  <p>Buka PowerShell atau CMD, lalu jalankan:</p>
+  <pre><code>where git
+where ssh</code></pre>
+  <p>Jika hasilnya tidak muncul, artinya sistem belum mengenali lokasi Git atau SSH. Biasanya Git untuk Windows menginstal SSH di:</p>
+  <pre><code>C:\Program Files\Git\usr\bin\ssh.exe</code></pre>
+  <p>Pastikan folder berikut sudah masuk di variabel PATH:</p>
+  <pre><code>C:\Program Files\Git\bin
+C:\Program Files\Git\usr\bin</code></pre>
+  <p>Kamu bisa cek dengan:</p>
+  <pre><code>echo %PATH%</code></pre>
+  <p>atau di PowerShell:</p>
+  <pre><code>$env:Path -split ";"</code></pre>
+  <h2>⚙️ Langkah 2 — Tambahkan PATH Secara Permanen</h2>
+  <p>Masuk ke menu:</p>
+  <ul>
+    <li><b>Control Panel → System → Advanced system settings → Environment Variables</b></li>
+    <li>Edit PATH, lalu tambahkan baris:</li>
+  </ul>
+  <pre><code>C:\Program Files\Git\usr\bin</code></pre>
+  <h2>🧩 Alternatif: Gunakan OpenSSH dari Windows 10+</h2>
+  <p>Sejak Windows 10, Microsoft sudah menyertakan <code>OpenSSH Client</code> sebagai fitur opsional bawaan.</p>
+  <p>Untuk mengaktifkan, jalankan PowerShell sebagai Administrator:</p>
+  <pre><code>Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0</code></pre>
+  <p>Atau aktifkan manual dari menu Settings → Apps → Optional Features → Add a Feature → “OpenSSH Client”.</p>
+  <h2>⚙️ Script PowerShell Otomatis</h2>
+  <p>Kamu bisa gunakan script PowerShell berikut untuk memperbaiki PATH dan memeriksa SSH otomatis:</p>
+  <pre><code># fix-git-ssh.ps1
+Write-Host "🛠️ Mengecek Git SSH di Windows..."
+$gitPath = "C:\Program Files\Git\usr\bin"
+$envPath = [Environment]::GetEnvironmentVariable("Path", "Machine")
+if ($envPath -notmatch [Regex]::Escape($gitPath)) {
+    Write-Host "🔧 Menambahkan Git SSH ke PATH..."
+    $newPath = "$envPath;$gitPath"
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "Machine")
+    Write-Host "✅ PATH diperbarui. Silakan restart PowerShell / CMD."
+} else {
+    Write-Host "✅ PATH sudah benar."
+}
+if (Get-Command ssh -ErrorAction SilentlyContinue) {
+    ssh -V
+    Write-Host "SSH sudah siap digunakan!"
+} else {
+    Write-Host "❌ SSH belum tersedia, pastikan Git sudah diinstal lengkap."
+}</code></pre>
+  <p>Simpan sebagai <code>fix-git-ssh.ps1</code>, lalu jalankan dengan:</p>
+  <pre><code>powershell -ExecutionPolicy Bypass -File .\fix-git-ssh.ps1</code></pre>
+  <p>Setelah disimpan, restart CMD/PowerShell lalu ulangi tes:</p>
+  <pre><code>ssh -V</code></pre>
+  <p>Jika muncul versi seperti <code>OpenSSH_for_Windows_9.x</code> atau <code>OpenSSH_8.x</code>, berarti sudah siap 👍</p>
+   <div id="lightbox">
+    <img id="lightbox-img" src="" alt="Gambar - Perbaiki Error “cannot run ssh” di Git — Windows CMD &amp; PowerShell">
+  </div>
+  <script>
+    document.querySelectorAll('.separator a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const src = link.querySelector('img').src;
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = src;
+        lb.style.display = 'flex';
+        lb.addEventListener('click', () => lb.style.display = 'none');
+      });
+    });
+  </script>
+  <div class="share">
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+  </div>
+    </main>
+<footer>
+  <p>🄯 2025 Frijal — Panduan Git &amp; DevOps di Windows</p>
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

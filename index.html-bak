@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Layar Kosong</title>
+<meta name="description" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." />
+<meta name="author" content="frijal" />
+<meta name="publisher" content="Layar Kosong" />
+<meta name="yandex-verification" content="8ba05f5f00d79c5a" />
+<link rel="canonical" href="https://dalam.web.id/" />
+<link rel="alternate" type="application/rss+xml" title="RSS Feed Layar Kosong" href="https://dalam.web.id/rss.xml" />
+<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="fediverse:creator" content="@frijal@mastodon.social">
+<!-- CSS -->
+<link rel="stylesheet" href="/ext/homepage.css">
+<link rel="stylesheet" href="/ext/fontawesome.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Layar Kosong" />
+<meta property="og:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." />
+<meta property="og:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka." />
+<meta property="og:url" content="https://dalam.web.id/" />
+<meta property="og:image" content="https://dalam.web.id/thumbnail.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+<meta property="og:locale" content="id_ID" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@responaja" />
+<meta name="twitter:creator" content="@responaja" />
+<meta name="twitter:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." />
+<meta name="twitter:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka." />
+<meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp" />
+<!-- Struured Data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","alternateName":"Blog Frijal","publisher":{"@id":"https://dalam.web.id/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://dalam.web.id/search?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id/","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":512,"height":512},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://t.me/frijal"}},{"@type":"WebPage","@id":"https://dalam.web.id/#homepage","url":"https://dalam.web.id/","name":"Layar Kosong – Teknologi, Linux, Religi, & Karir","isPartOf":{"@id":"https://dalam.web.id/#website"},"about":{"@id":"https://dalam.web.id/#organization"},"description":"artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka."},{"@type":"Person","@id":"https://dalam.web.id/#person","name":"Fakhrul Rijal","url":"https://dalam.web.id/","sameAs":["https://twitter.com/responaja","https://github.com/frijal","https://linkedin.com/in/frijal","https://www.youtube.com/@frijal","https://facebook.com/frijal","https://mastodon.social/@frijal"],"jobTitle":"Blogger & Tech Enthusiast","worksFor":{"@id":"https://dalam.web.id/#organization"}}]}</script>
+<script src="/ext/homepage.js"></script>
+
+</head>
+<body>
+<header>
+    <div class="container nav-box">
+        <a href="https://dalam.web.id/" class="logo" rel="home">
+            Layar <span>Kosong</span>
+            <img src="/favicon.svg" alt="Icon" class="logo-icon">
+        </a>
+
+        <div class="header-tools">
+            <div class="archive-box-header">
+            <!--    <a href="/img" class="btn-header">
+                    <i class="fa-solid fa-images"></i> <span>Cover</span>
+                </a> -->
+                <a href="/feed" class="btn-header">
+                    <i class="fa-solid fa-rss"></i> <span>Atom RSS</span>
+                </a>
+                <a href="/sitemap" class="btn-header">
+                    <i class="fa-solid fa-sitemap"></i> <span>Daftar Isi</span>
+                </a>
+
+                <select id="yearFilter"><option value="">Tahun</option></select>
+                <select id="monthFilter" disabled><option value="">Bulan</option></select>
+            </div>
+
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" class="search-bar" placeholder="cari sesuatu...">
+                <button id="clearSearch" class="clear-btn">❌</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div id="hero" class="hero skeleton">
+    <div id="heroSliderWrapper" class="hero-slider-wrapper"></div>
+</div>
+
+    <div class="toolbar">
+        <div class="pills" id="categoryPills">
+            <div class="pill active" onclick="filterByCat('All')">Kategori</div>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <main>
+            <div id="newsFeed" class="news-feed">
+                </div>
+            <div style="text-align: center; margin: 40px 0;">
+                <button id="loadMore" class="pill">Muat Lebih Banyak</button>
+            </div>
+        </main>
+
+        <aside>
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">Rekomendasi Acak <i class="fa-solid fa-recycle"></i></h3>
+                <div id="sidebarRandom"></div>
+                <button onclick="renderSidebar()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-size:1rem; width:100%; text-align:right;"><i class="fa-solid fa-shuffle"></i> Acak Lagi</button>
+            </div>
+
+<div class="contact-card">
+    <h3>Hubungi Kami</h3>
+    <p style="font-size: 0.8rem; margin-bottom: 10px;">Kirim saran atau kerjasama</p>
+
+    <input type="text" id="contact-name" placeholder="Nama" required>
+    <textarea id="contact-message" placeholder="Pesan" required></textarea>
+
+    <button type="button" onclick="sendToWA()" class="pill" style="width:100%; background: var(--secondary); color:black; font-weight:bold; margin-top:10px; border:none; cursor:pointer;">
+        Kirim ke WhatsApp <i class="fa-brands fa-whatsapp"></i>
+    </button>
+</div>
+        </aside>
+    </div>
+</div>
+
+<footer class="page-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p>
+            <div class="footer-social">
+        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-linkedin"></i></i></a>
+        <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-threads"></i></a>
+        <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+        <a rel="me" href="https://mastodon.social/@frijal" target="_blank"><i class="fa-brands fa-mastodon"></i></a>
+        <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a>
+        <!-- <a href="https://lemmy.world/u/frijal4" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-comments"></i></a>
+        <!-- <a href="https://bsky.app/profile/dalam.web.id" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-bluesky"></i></a> -->
+      </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="footer-links">
+                <a href="/rss.xml" target="_blank">RSS Feed</a>
+                <a href="/sitemap.xml" target="_blank">Peta Situs</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/about">Tentang Kita</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/artikel.json" target="_blank">Sumber Terbuka</a>
+            </div>
+            <div class="footer-copyright">
+                <p>🄯 2025 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

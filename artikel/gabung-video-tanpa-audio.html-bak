@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- 🌐 Metadata SEO Lengkap -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+  <meta name="keywords" content="FFmpeg, script bash, gabung video, tanpa suara, video tanpa-audio, Linux, terminal, shell script, tutorial">
+  <!-- 🔗 Canonical -->
+  <!-- 🧭 Open Graph -->
+  <!-- 🐦 Twitter Card -->
+  <!-- 🎨 Favicon -->
+  <title>Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio</title>
+  <!-- 💅 CSS: Responsif & Tema Otomatis -->
+  <style>
+    :root {
+      --bg-light: #f5f5f5;
+      --text-light: #222;
+      --card-light: #fff;
+      --bg-dark: #121212;
+      --text-dark: #eee;
+      --card-dark: #1e1e1e;
+      --accent: #00bfa5;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+      }
+      .card {
+        background-color: var(--card-dark);
+        color: var(--text-dark);
+      }
+      pre {
+        background-color: #202020;
+      }
+      button.copy {
+        background-color: #2e2e2e;
+        color: #eee;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: var(--bg-light);
+        color: var(--text-light);
+      }
+      .card {
+        background-color: var(--card-light);
+        color: var(--text-light);
+      }
+      pre {
+        background-color: #eee;
+      }
+      button.copy {
+        background-color: #f0f0f0;
+        color: #333;
+      }
+    }
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      max-width: 1000px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 90%;
+      max-width: 1000px;
+      margin-bottom: 4rem;
+    }
+    .card {
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    pre {
+      padding: 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    code {
+      font-family: "Fira Code", monospace;
+    }
+    button.copy {
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    button.copy:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+    .icon {
+      vertical-align: middle;
+      width: 1.4em;
+      height: 1.4em;
+      margin-right: 0.4em;
+    }
+    .social-share {
+      margin-top: 1.5rem;
+    }
+    .social-share a {
+      text-decoration: none;
+      margin: 0 0.4rem;
+      font-size: 1.3rem;
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+<meta name="ai:prompt_hint" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/gabung-video-tanpa-audio">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/gabung-video-tanpa-audio">
+    <meta property="og:title" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio">
+    <meta property="og:description" content="Panduan dan script FFmpeg untuk menggabungkan semua file .mp4 di dalam folder menjadi satu video, serta versi tanpa-audio (tanpa suara). Dilengkapi tombol copy dan desain responsif.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+    <meta property="og:image:alt" content="Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/gabung-video-tanpa-audio.webp">
+</head>
+<body>
+  <header>
+    <h1>🎬 Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio 🔇</h1>
+<div id="iposbrowser"></div>
+    <p>
+      Kadang kita punya banyak file video `.mp4` yang tersebar di satu folder, dan pengen langsung digabung jadi satu video utuh tanpa ribet.
+      Nah, di bawah ini ada dua script shell siap pakai untuk Linux: versi biasa dan versi tanpa-audio (tanpa suara).
+    </p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>🧩 Script 1 — Gabung Semua .mp4 (dengan suara)</h2>
+      <p>
+        Script ini akan membuat daftar semua file `.mp4` di folder kamu, lalu menggabungkannya secara otomatis jadi satu video utuh.
+        Aman dijalankan di Linux terminal.
+      </p>
+      <pre><code id="script1">
+#!/bin/bash
+# Script: gabung_video.sh
+# Menggabungkan semua file .mp4 menjadi satu video utuh
+# Dibuat oleh: ChatGPT (Fakhrul Rijal Edition 🎞️)
+rm -f daftar.txt
+for f in *.mp4; do
+  echo "file '$PWD/$f'" &gt;&gt; daftar.txt
+done
+ffmpeg -f concat -safe 0 -i daftar.txt -c copy hasil_gabungan.mp4
+rm -f daftar.txt
+echo "✅ Video berhasil digabung: hasil_gabungan.mp4"
+      </code></pre>
+      <button class="copy" onclick="copyCode('script1')">📋 Salin Script</button>
+    </section>
+    <section class="card">
+      <h2>🔇 Script 2 — Gabung Semua .mp4 Jadi Video Tanpa Audio</h2>
+      <p>
+        Ini versi upgrade-nya: selain gabung semua video, script ini otomatis menghapus audio.
+        Cocok buat kamu yang cuma butuh tampilan visual aja tanpa suara.
+      </p>
+      <pre><code id="script2">
+#!/bin/bash
+# =========================================
+# Script: gabung_video_tanpa-audio.sh
+# Fungsi: Menggabungkan semua file .mp4 menjadi satu video Tanpa Audio (tanpa suara)
+# Fitur: Deteksi otomatis codec/resolusi — re-encode jika tidak seragam
+# =========================================
+set -e
+OUTPUT="${1:-hasil_gabungan_tanpa-audio.mp4}"
+rm -f daftar.txt temp_*.mp4
+FILES=( *.mp4 )
+if [ ${#FILES[@]} -eq 0 ]; then
+  echo "❌ Tidak ditemukan file .mp4 di folder ini."
+  exit 1
+fi
+REF="${FILES[0]}"
+REF_INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$REF")
+REENCODE_NEEDED=false
+for f in "${FILES[@]}"; do
+  INFO=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate -of csv=p=0 "$f")
+  if [ "$INFO" != "$REF_INFO" ]; then
+    REENCODE_NEEDED=true
+  fi
+done
+if [ "$REENCODE_NEEDED" = true ]; then
+  for f in "${FILES[@]}"; do
+    ffmpeg -y -i "$f" -an -c:v libx264 -preset veryfast -crf 23 "temp_$f"
+    echo "file 'temp_$f'" &gt;&gt; daftar.txt
+  done
+else
+  for f in "${FILES[@]}"; do
+    echo "file '$PWD/$f'" &gt;&gt; daftar.txt
+  done
+fi
+ffmpeg -f concat -safe 0 -i daftar.txt -an -c:v libx264 -preset veryfast -crf 23 "$OUTPUT"
+rm -f daftar.txt temp_*.mp4 2&gt;/dev/null || true
+echo "✨ Selesai! 📽️ Video tanpa-audio hasil: $OUTPUT"
+      </code></pre>
+      <button class="copy" onclick="copyCode('script2')">📋 Salin Script</button>
+    </section>
+<section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+</section>
+    </main>
+  <footer>
+    🄯 2025 Fakhrul Rijal. Dibuat dengan ☕ dan semangat Linux terminal.
+  </footer>
+  <!-- ⚙️ JavaScript: Tombol Copy -->
+  <script>
+    function copyCode(id) {
+      const code = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = "✅ Disalin!";
+        setTimeout(() => btn.textContent = original, 2000);
+      });
+    }
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

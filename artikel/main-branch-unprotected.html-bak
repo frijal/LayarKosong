@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="utf-8">
+  <title>GitHub Apakah main branch yang tidak protected itu berbahaya? (Jawaban santai tapi lengkap)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO dasar -->
+  <meta name="description" content="Apakah main branch yang tidak protected berarti semua orang bisa mengubah atau menghapus isi repo? Jawaban singkat: tidak. Penjelasan lengkap tentang hak akses, branch protection, dan best practice.">
+  <!-- Open Graph -->
+  <!-- JSON-LD Schema.org Article -->
+  <!-- Theme CSS (1 kolom, wide fullscreen, mobile-friendly, interaktif) -->
+  <style>
+    :root{
+      --bg: #0f1222;
+      --surface: #141832;
+      --text: #e8ecff;
+      --muted: #b8c0ff;
+      --accent: #7b8cff;
+      --accent-2: #4be1a0;
+      --danger: #ff6b6b;
+      --shadow: 0 12px 40px rgba(0,0,0,0.35);
+      --radius: 16px;
+      --maxw: 880px;
+      --gap: 20px;
+    }
+    html,body{margin:0;padding:0;background:linear-gradient(135deg,#0b0e1a,#141832 60%,#1a1f44);color:var(--text);font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent-2)}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:32px 18px}
+    header.hero{position:relative;margin:32px auto 16px; padding:28px; background:linear-gradient(180deg,rgba(123,140,255,0.12),rgba(75,225,160,0.08)); border:1px solid rgba(123,140,255,0.3); box-shadow:var(--shadow); border-radius:var(--radius)}
+    header.hero h1{margin:0 0 6px;font-size:clamp(22px,5vw,36px);letter-spacing:0.2px}
+    header.hero p{margin:0;color:var(--muted)}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .meta span{background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-size:13px}
+    main.article{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    article{padding:16px}
+    article h2, article h3{margin-top:18px}
+    article h2{font-size:22px}
+    article h3{font-size:19px;color:var(--muted)}
+    .note{border-left:4px solid var(--accent); background:rgba(123,140,255,0.12); padding:12px 14px; border-radius:10px; margin:12px 0; color:#e9ecff}
+    .callout{border:1px dashed rgba(123,140,255,0.45); padding:14px; border-radius:12px; background:rgba(255,255,255,0.03)}
+    .list{display:grid; gap:10px}
+    .list .item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:10px}
+    figure.gallery{margin:20px 0; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px}
+    figure.gallery img{width:100%; height:180px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,0.12); background:#0a0d1a}
+    figcaption{color:var(--muted); font-size:13px; margin-top:6px}
+    /* Lightbox */
+    .lightbox{position:fixed; inset:0; background:rgba(5,8,18,0.84); display:none; align-items:center; justify-content:center; backdrop-filter: blur(4px); z-index:9999}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:92vw; max-height:82vh; border-radius:12px; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.2)}
+    .lb-nav{position:fixed; inset:auto; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:10px}
+    .lb-btn{background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:var(--text); padding:8px 12px; border-radius:999px; cursor:pointer}
+    .lb-close{position:fixed; top:20px; right:20px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); color:var(--text); padding:8px 12px; border-radius:999px; cursor:pointer}
+    /* Share bar */
+    .share{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:18px 0}
+    .share .icon{display:inline-flex; align-items:center; justify-content:center; width:36px;height:36px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); cursor:pointer}
+    .share .icon:hover{background:rgba(123,140,255,0.18)}
+    .share small{color:var(--muted)}
+    /* Info bar */
+    .infobar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:10px; margin:16px 0}
+    .badge{padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); font-size:13px; color:var(--muted)}
+    /* FB comments */
+    .comments{margin:24px 0; padding:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius:12px}
+    /* Floating buttons */
+    .btn-sitemap{position:fixed; left:14px; top:30%; transform:translateY(-50%); z-index:9998}
+    .btn-home{position:fixed; right:14px; bottom:20%; transform:translateY(50%); z-index:9998}
+    .float-btn{display:flex; align-items:center; gap:8px; background:linear-gradient(180deg, rgba(123,140,255,0.4), rgba(75,225,160,0.35)); color:#0b0e1a; padding:10px 14px; border-radius:999px; font-weight:600; border:1px solid rgba(255,255,255,0.28); box-shadow:var(--shadow)}
+    .float-btn svg{width:18px;height:18px}
+    footer{margin:18px 0 28px; color:var(--muted); text-align:center}
+    /* Responsive tweaks */
+    @media (max-width:640px){
+      .lb-nav{bottom:16px}
+      figure.gallery img{height:160px}
+      header.hero{padding:20px}
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Apakah main branch yang tidak protected berarti semua orang bisa mengubah atau menghapus isi repo? Jawaban singkat: tidak. Penjelasan lengkap tentang hak akses, branch protection, dan best practice.">
+<meta name="ai:prompt_hint" content="Apakah main branch yang tidak protected berarti semua orang bisa mengubah atau menghapus isi repo? Jawaban singkat: tidak. Penjelasan lengkap tentang hak akses, branch protection, dan best practice.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/main-branch-unprotected">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/main-branch-unprotected">
+    <meta property="og:title" content="GitHub Apakah main branch yang tidak protected itu berbahaya? (Jawaban santai tapi lengkap)">
+    <meta property="og:description" content="Apakah main branch yang tidak protected berarti semua orang bisa mengubah atau menghapus isi repo? Jawaban singkat: tidak. Penjelasan lengkap tentang hak akses, branch protection, dan best practice.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.webp">
+    <meta property="og:image:alt" content="GitHub Apakah main branch yang tidak protected itu berbahaya? (Jawaban santai tapi lengkap)">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.webp">
+</head>
+<body>
+   <div class="wrap">
+    <header class="hero">
+      <h1>Apakah “main branch isn’t protected” itu berbahaya?</h1>
+<div id="iposbrowser"></div>
+      <p>Jawaban santai tapi lengkap tentang keamanan repo dan branch protection.</p>
+      <div class="meta">
+        <span>Topik: Git &amp; GitHub</span>
+        <span>Waktu baca: 4–6 menit</span>
+        <span>Versi: 1 kolom wide</span>
+      </div>
+    </header>
+    <main class="article">
+    <figure>
+  <img src="https://spectralops.io/wp-content/uploads/2021/09/github-branch-protection-rules.png" alt="Pengaturan branch protection di GitHub" loading="lazy">
+  <figcaption>Pengaturan branch protection di GitHub — menambahkan aturan proteksi pada branch <code>main</code>.</figcaption>
+</figure>
+<figure>
+  <img src="https://docs.wpvip.com/wp-content/uploads/2021/03/github-required-status-checks.png" alt="Status checks sebelum merge" loading="lazy">
+  <figcaption>Status checks wajib lulus sebelum merge — memastikan build/test berjalan sukses.</figcaption>
+</figure>
+<figure>
+  <img src="https://docs.github.com/assets/cb-33223/images/help/pull_requests/pr-review-changes.png" alt="Wajib review PR di GitHub" loading="lazy">
+  <figcaption>Wajib review PR — pull request harus ditinjau dan disetujui sebelum digabung ke <code>main</code>.</figcaption>
+</figure>
+<figure>
+  <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ370qCptJsD7-fxr6zLl_xT9VpZhvoN8Z-thmLcNfCK-s2VIhdivD7hcTYRVGZwGJPXwkwDGn-1t9OucGSDFdHYUVPI2T7jcEoLwBPjNcvFwl3MURH3N_5ln473zIFTzfLESXX9lDsmxQ7UCrAIUyupi6RVFBGEzwFf8ylVV6s4OaxLqNYhHyYb_w6uk/s1600/maxresdefault.webp" style="max-width: 100%;" alt="Wajib review PR di GitHub" loading="lazy">
+  </figure>
+      <article>
+        <div class="note">
+          Intinya: kalau main branch kamu belum di-protect, bukan berarti publik bisa seenaknya mengubah atau menghapus isi repo. Hak akses tetap dikendalikan oleh kepemilikan dan kolaborator.
+        </div>
+        <h2>Pertanyaan asli</h2>
+        <div class="callout">
+          <p>
+            Lalu bagaimana dengan: “Your main branch isn’t protected — Protect this branch from force pushing or deletion, or require status checks before merging.” Apakah berarti semua orang bisa mengubah dan menghapus isi file di dalam repo?
+          </p>
+        </div>
+        <h2>Jawaban cepat</h2>
+        <p>
+          Tidak. Meski branch <code>main</code> kamu tidak dilindungi (unprotected), itu tidak membuat publik bebas push atau delete isi repo. Yang bisa push hanya pemilik, kolaborator yang diundang, serta GitHub Actions yang kamu beri izin eksplisit.
+        </p>
+        <h2>Siapa saja yang bisa push?</h2>
+        <div class="list">
+          <div class="item"><strong>Pemilik repo:</strong> selalu bisa mengelola dan push.</div>
+          <div class="item"><strong>Kolaborator diundang:</strong> bisa push sesuai permission yang kamu berikan.</div>
+          <div class="item"><strong>GitHub Actions:</strong> bisa push kalau <code>GITHUB_TOKEN</code> diberi scope <code>contents: write</code> atau pakai PAT kamu.</div>
+          <div class="item"><strong>Publik:</strong> tidak bisa push langsung. Mereka hanya bisa fork lalu ajukan Pull Request (PR), dan tetap kamu yang memutuskan merge.</div>
+        </div>
+        <h2>Apa arti “main branch isn’t protected”?</h2>
+        <p>
+          Artinya tidak ada aturan tambahan di branch <code>main</code>. Kamu (dan bot yang diizinkan) bisa push langsung. Tidak ada kewajiban review sebelum merge, tidak ada status checks wajib lulus, dan force-push tidak diblokir. Ini bukan berarti publik bebas melakukan apa saja; tetap perlu izin akses.
+        </p>
+        <h2>Kalau mau lebih aman, apa yang bisa diaktifkan?</h2>
+        <div class="list">
+          <div class="item"><strong>Require pull request reviews:</strong>
+            Wajibkan minimal 1–2 review sebelum merge ke <code>main</code>.</div>
+          <div class="item"><strong>Require status checks to pass:</strong>
+            Pastikan CI (test, lint, build) lulus dulu sebelum merge.</div>
+          <div class="item"><strong>Require signed commits:</strong>
+            Dorong penggunaan commit yang ditandatangani (GPG/SSH) untuk integritas.</div>
+          <div class="item"><strong>Prevent force pushes &amp; deletions:</strong>
+            Blokir force-push dan hapus branch agar riwayat aman.</div>
+          <div class="item"><strong>Require linear history / up-to-date:</strong>
+            Wajibkan rebase atau update dari <code>main</code> agar riwayat rapi.</div>
+          <div class="item"><strong>Restrict who can push:</strong>
+            Batasi hanya akun/teams tertentu yang boleh push ke <code>main</code>.</div>
+        </div>
+        <h2>Kapan perlu protection?</h2>
+        <p>
+          Jika repo dikelola oleh tim, punya alur CI/CD, atau proyek publik yang menerima kontribusi aktif, branch protection sangat disarankan. Jika repo personal dan kamu satu-satunya yang pegang, membiarkan <code>main</code> unprotected umumnya aman dan praktis—asal kamu nyaman dengan risiko force-push yang tidak terblokir.
+        </p>
+        <h3>Singkatnya</h3>
+        <div class="note">
+          Publik bisa lihat &amp; fork, tapi tidak bisa push langsung. Branch protection menambah aturan internal; aktifkan jika kolaborasi makin ramai atau butuh kualitas yang konsisten.
+        </div>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+    </main>
+    <footer>
+      🄯 2025 Jaga Data Pribadi Tetap Aman: Branch protection GitHub • Terakhir diperbarui hari ini.
+    </footer>
+  </div>
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lb-close" aria-label="Tutup">Tutup ✕</button>
+    <img id="lb-img" alt="Gambar diperbesar">
+    <div class="lb-nav">
+      <button class="lb-btn" id="lb-prev">⟵ Sebelumnya</button>
+      <button class="lb-btn" id="lb-next">Berikutnya ⟶</button>
+    </div>
+  </div>
+  <!-- Scripts: Lightbox, Share, Info -->
+  <script>
+    // Lightbox & gallery nav
+    const galleryItems = Array.from(document.querySelectorAll('#gallery img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const btnClose = document.getElementById('lb-close');
+    const btnPrev = document.getElementById('lb-prev');
+    const btnNext = document.getElementById('lb-next');
+    let currentIndex = 0;
+    function openLightbox(index){
+      currentIndex = index;
+      const src = galleryItems[index].dataset.full || galleryItems[index].src;
+      lbImg.src = src;
+      lb.classList.add('active');
+      lb.setAttribute('aria-hidden', 'false');
+    }
+    function closeLightbox(){
+      lb.classList.remove('active');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+    }
+    function nav(delta){
+      currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+      openLightbox(currentIndex);
+    }
+    galleryItems.forEach((img, i)=>{
+      img.addEventListener('click', ()=>openLightbox(i));
+      img.style.cursor = 'zoom-in';
+    });
+    btnClose.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', ()=>nav(-1));
+    btnNext.addEventListener('click', ()=>nav(1));
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+    window.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('active')) return;
+      if(e.key==='Escape') closeLightbox();
+      if(e.key==='ArrowLeft') nav(-1);
+      if(e.key==='ArrowRight') nav(1);
+    });
+   </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

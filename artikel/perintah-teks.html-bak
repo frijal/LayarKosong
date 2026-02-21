@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- ✅ Metadata Utama -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perintah Teks di Linux – Panduan Santai &amp; Lengkap</title>
+  <meta name="description" content="Pelajari perintah teks dasar di Linux secara santai dan lengkap. Panduan ini membahas cara menggunakan terminal dengan efisien, disertai contoh dan filosofi di balik perintahnya.">
+  <!-- ✅ Canonical -->
+  <!-- ✅ Favicon -->
+  <!-- ✅ SEO -->
+  <!-- ✅ Open Graph -->
+  <!-- ✅ Twitter Card -->
+  <!-- ✅ CSS3 Responsif + Tema Otomatis -->
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-light: #fafafa;
+      --bg-dark: #0d1117;
+      --text-light: #1a1a1a;
+      --text-dark: #e5e5e5;
+      --accent: #2ea043;
+      --max-width: 980px;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background-color: light-dark(var(--bg-light), var(--bg-dark));
+      color: light-dark(var(--text-light), var(--text-dark));
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    header img {
+      width: 60px;
+      height: 60px;
+      vertical-align: middle;
+    }
+    header h1 {
+      color: var(--accent);
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+    main {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 1.5rem;
+    }
+    article {
+      text-align: justify;
+    }
+    article h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+    article p {
+      margin-bottom: 1.1rem;
+      font-size: 1.1rem;
+    }
+    code {
+      background: light-dark(#f0f0f0, #161b22);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "Fira Code", monospace;
+      font-size: 1rem;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid light-dark(#ddd, #333);
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    @media (max-width: 640px) {
+      body { font-size: 1.05rem; }
+      header img { width: 48px; height: 48px; }
+    }
+  </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Pelajari perintah teks dasar di Linux secara santai dan lengkap. Panduan ini membahas cara menggunakan terminal dengan efisien, disertai contoh dan filosofi di balik perintahnya.">
+<meta name="ai:prompt_hint" content="Pelajari perintah teks dasar di Linux secara santai dan lengkap. Panduan ini membahas cara menggunakan terminal dengan efisien, disertai contoh dan filosofi di balik perintahnya.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/perintah-teks">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/perintah-teks">
+    <meta property="og:title" content="Perintah Teks di Linux – Panduan Santai &amp; Lengkap">
+    <meta property="og:description" content="Pelajari perintah teks dasar di Linux secara santai dan lengkap. Panduan ini membahas cara menggunakan terminal dengan efisien, disertai contoh dan filosofi di balik perintahnya.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/perintah-teks.webp">
+    <meta property="og:image:alt" content="Perintah Teks di Linux – Panduan Santai &amp; Lengkap">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/perintah-teks.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/perintah-teks.webp">
+</head>
+<body>
+  <header>
+    <img src="/img/upload.wikimedia.org/wikipedia/commons/a/af/Tux.webp" alt="Ikon Linux">
+    <h1>Perintah Teks di Linux</h1>
+<div id="iposbrowser"></div>
+    <p><strong>Ditulis oleh:</strong> Rijal Fakhrul</p>
+  </header>
+  <main>
+    <article>
+      <p>
+        Salah satu hal paling menarik dari Linux adalah kekuatannya di terminal.
+        Banyak orang menganggap terminal itu menakutkan, padahal justru di sanalah “jantung” Linux bekerja.
+        Semua hal bisa dilakukan lewat perintah teks: dari memindahkan file, mengatur jaringan, sampai memperbarui sistem.
+      </p>
+      <h2>Mengapa Perintah Teks Itu Penting?</h2>
+      <p>
+        Berbeda dengan sistem operasi berbasis GUI (seperti Windows atau macOS), Linux memberikan kendali penuh kepada pengguna melalui perintah teks.
+        Dengan terminal, kamu bisa melakukan sesuatu lebih cepat, efisien, bahkan otomatis.
+      </p>
+      <p>
+        Misalnya, kalau kamu mau menyalin file di terminal cukup ketik:
+      </p>
+      <pre><code>cp file1.txt /home/rijal/Documents/</code></pre>
+      <p>
+        Bandingkan dengan klik kanan, copy, buka folder, lalu paste — jelas terminal lebih cepat.
+        Begitu kamu terbiasa, rasanya malah nggak bisa lepas dari terminal.
+      </p>
+      <h2>Beberapa Perintah Dasar Linux</h2>
+      <ul>
+        <li><code>ls</code> → Melihat isi direktori.</li>
+        <li><code>cd</code> → Berpindah direktori.</li>
+        <li><code>pwd</code> → Menampilkan lokasi direktori saat ini.</li>
+        <li><code>cp</code> → Menyalin file atau folder.</li>
+        <li><code>mv</code> → Memindahkan atau mengganti nama file.</li>
+        <li><code>rm</code> → Menghapus file (gunakan hati-hati).</li>
+        <li><code>cat</code> → Menampilkan isi file teks.</li>
+        <li><code>grep</code> → Mencari teks di dalam file.</li>
+        <li><code>chmod</code> → Mengatur izin akses file.</li>
+        <li><code>sudo</code> → Menjalankan perintah dengan hak akses administrator.</li>
+      </ul>
+      <h2>Perintah Lanjutan yang Sering Digunakan</h2>
+      <p>
+        Setelah terbiasa, kamu bisa mencoba perintah yang lebih kompleks, seperti menggabungkan beberapa perintah dengan <code>|</code> (pipe).
+        Contoh:
+      </p>
+      <pre><code>ls -l /etc | grep network</code></pre>
+      <p>
+        Artinya: tampilkan semua file di folder <code>/etc</code> lalu saring hasilnya yang mengandung kata “network”.
+        Kombinasi ini sangat berguna untuk menganalisis sistem dengan cepat.
+      </p>
+      <h2>Filosofi di Balik Perintah Linux</h2>
+      <p>
+        Setiap perintah di Linux dibuat sederhana tapi fleksibel.
+        Filosofinya: “Satu program, satu tugas, dan lakukan itu dengan baik.”
+        Artinya, setiap perintah punya fungsi tunggal tapi bisa digabung dengan perintah lain untuk membuat sesuatu yang kompleks.
+      </p>
+      <p>
+        Karena itu, Linux menjadi sistem yang kuat untuk server, pengembangan, hingga AI modern sekalipun.
+        Semua berawal dari terminal sederhana.
+      </p>
+      <h2>Perintah Teks di Linux</h2>
+      <p>
+        Berikut versi lengkap tulisan saya yang diunggah ke Scribd.
+        Kamu bisa membaca langsung dari sini:
+      </p>
+      <!-- ✅ Embed Scribd -->
+      <iframe class="scribd_iframe_embed" title="Perintah-Teks" src="https://www.scribd.com/embeds/99271843/content?start_page=1&amp;view_mode=scroll&amp;access_key=key-1jhrz97ws20war5x8nrp" tabindex="0" data-auto-height="true" scrolling="no" frameborder="0"></iframe>
+      <p style="margin: 12px auto 6px auto; font-family: Helvetica,Arial,Sans-serif; font-size: 14px;">
+        <a title="View Perintah-Teks on Scribd" href="https://www.scribd.com/doc/99271843/Perintah-Teks#from_embed" style="color: #098642;">Perintah-Teks</a>
+        oleh
+        <a title="View Rijal Fakhrul's profile on Scribd" href="https://www.scribd.com/user/295579/Rijal-Fakhrul#from_embed" style="color: #098642;">Rijal Fakhrul</a>
+      </p>
+      <h2>Penutup</h2>
+      <p>
+        Jadi, jangan takut sama terminal.
+        Begitu kamu tahu dasar-dasarnya, kamu akan merasa seperti punya kekuatan super di ujung jari.
+        Terminal bukan cuma alat, tapi bahasa komunikasi antara kamu dan sistem.
+      </p>
+      <!-- ✅ Kolom Komentar Disqus -->
+      <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+  </main>
+  <footer>
+    <p>🄯 2025 Rijal Fakhrul – Dibuat dengan semangat open source 🐧</p>
+  </footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

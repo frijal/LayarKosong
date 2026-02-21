@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="id" dir="ltr" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- Meta dasar -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <!-- prettier-ignore -->
+<title>Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern</title>
+  <meta name="description" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
+  <!-- Open Graph -->
+  <!-- CSS: Tema baru (hijau-emerald x merah-rose, glassmorphism) -->
+  <style>
+:root{
+  --bg:#06080a;
+  --gradient1: rgba(16,185,129,.18);  /* emerald */
+  --gradient2: rgba(244,63,94,.18);   /* rose */
+  --panel: rgba(255,255,255,.06);
+  --ink:#eef8f3;
+  --muted:#c7e9d7;
+  --border: rgba(255,255,255,.16);
+  --brand:#10b981;
+  --brand2:#f43f5e;
+  --radius: 20px;
+  --shadow: 0 16px 44px rgba(0,0,0,.45);
+  --maxw: 1240px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--ink);
+  background:
+radial-gradient(900px 520px at -10% 0%, var(--gradient1), transparent 60%),
+radial-gradient(900px 520px at 110% 10%, var(--gradient2), transparent 60%),
+linear-gradient(180deg, #030407 0%, #0b1013 100%);
+  font:16px/1.7 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 20px 80px }
+/* Header */
+header.hero{
+  text-align:center; padding: min(14vh,140px) 20px 24px; position:relative; overflow:hidden;
+}
+.title{
+  margin:0 0 10px; font-weight:900; letter-spacing:-.02em;
+  font-size: clamp(28px, 4.8vw, 56px);
+  background: linear-gradient(90deg, #ffffff, #c1ffe2 40%, #ffc2cc 80%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 12px 36px rgba(16,185,129,.28);
+}
+.subtitle{ margin:0 auto; max-width:920px; color:var(--muted); font-size: clamp(14px,1.6vw,18px) }
+.chips{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px }
+.chip{ padding:6px 12px; border-radius:999px; border:1px solid var(--border); background: rgba(255,255,255,.06) }
+/* Cards */
+.card{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.card .head{
+  padding:14px 18px; border-bottom:1px solid var(--border);
+  background: linear-gradient(90deg, rgba(16,185,129,.14), rgba(244,63,94,.14));
+}
+.card .head h2{ margin:0; font-size:20px; letter-spacing:-.2px }
+.card .body{ padding:18px }
+.call{
+  padding:12px 14px; border-radius:12px; border:1px dashed var(--border);
+  background: linear-gradient(90deg, rgba(16,185,129,.12), rgba(244,63,94,.12));
+}
+/* Timeline */
+.timeline{ position:relative; padding-left:24px }
+.timeline:before{
+  content:""; position:absolute; left:8px; top:0; bottom:0; width:2px;
+  background: linear-gradient(var(--brand), var(--brand2)); border-radius:2px;
+}
+.titem{
+  position:relative; padding:12px 0 12px 16px;
+  display:grid; gap:6px;
+}
+.titem:before{
+  content:""; position:absolute; left:-2px; top:20px; width:12px; height:12px; border-radius:50%;
+  background: var(--brand); box-shadow: 0 0 0 3px rgba(16,185,129,.25);
+}
+.titem h3{ margin:0; font-size:18px }
+.titem p{ margin:0 }
+.badge{ display:inline-block; padding:2px 8px; border-radius:8px; border:1px solid var(--border); font-size:12px; background: rgba(255,255,255,.06) }
+/* Grid layout */
+.grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:24px }
+@media (max-width: 980px){ .grid{ grid-template-columns: 1fr } }
+/* Gallery + Lightbox */
+.gallery{ display:grid; gap:12px; grid-template-columns: repeat(3,1fr) }
+@media (max-width:780px){ .gallery{ grid-template-columns: repeat(2,1fr) } }
+@media (max-width:520px){ .gallery{ grid-template-columns: 1fr } }
+.gallery figure{ margin:0; border-radius:14px; overflow:hidden; border:1px solid var(--border); aspect-ratio: 16/10; background:#0c1713; position:relative }
+.gallery img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .35s ease }
+.gallery figure:hover img{ transform: scale(1.04) }
+.gallery figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:10px 12px; font-size:13px; color:#e7fff2;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.55));
+}
+.lightbox{
+  position:fixed; inset:0; display:none; place-items:center; padding:24px; z-index:9998;
+  background: rgba(3,7,6,.75); backdrop-filter: blur(6px);
+}
+.lightbox.open{ display:grid }
+.lightbox figure{ margin:0; max-width:96vw; max-height:88vh; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#000; box-shadow: var(--shadow) }
+.lightbox img{ display:block; max-width:100%; max-height:88vh; object-fit:contain }
+.lightbox .close{ position:absolute; top:10px; right:10px; padding:6px 10px; border-radius:10px; border:none; cursor:pointer;
+  font-weight:800; background:linear-gradient(90deg, var(--brand), var(--brand2)); color:#06100c }
+/* Share bar */
+.share{ display:flex; gap:10px; flex-wrap:wrap }
+.share a{ display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:#fff; font-weight:800; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.16); transition: transform .15s ease }
+.share a:hover{ transform: translateY(-2px) }
+.fb{ background:#1877F2 } .tw{ background:#1DA1F2 } .x{ background:#0F1419 }
+.wa{ background:#25D366 } .tg{ background:#229ED9 } .ig{ background:#E1306C }
+.th{ background:#000 } .tt{ background:#010101 }
+/* Code highlight + copy */
+pre[class*="language-"]{ border-radius:14px; border:1px solid var(--border); box-shadow: var(--shadow) }
+.codewrap{ position:relative }
+.copy-btn{
+  position:absolute; top:10px; right:10px; padding:6px 10px; border-radius:10px; border:none; cursor:pointer;
+  background: linear-gradient(90deg, var(--brand), var(--brand2)); color:#0a0a0a; font-weight:800; box-shadow: var(--shadow)
+}
+/* Footer */
+footer{ margin-top:28px; padding:16px 0 44px; border-top:1px dashed var(--border); color:var(--muted) }
+.sys{ display:grid; gap:16px; grid-template-columns: 1.2fr .8fr }
+@media (max-width:780px){ .sys{ grid-template-columns: 1fr } }
+.kv{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+.chip{ display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border-radius:10px; border:1px solid var(--border); background: rgba(255,255,255,.05) }
+.flag{ display:inline-flex; gap:10px; align-items:center; padding:8px 12px; border-radius:12px; border:1px solid var(--border); background: rgba(255,255,255,.05) }
+.flag img{ width:28px; height:20px; object-fit:cover; border-radius:4px }
+/* Tombol Home (perbaikan snippet agar berfungsi) */
+#btn-home-left, #btn-home-right{
+  position: fixed; display: inline-flex; align-items: center; gap:6px;
+  background-color: #10b981; color: #07130d; padding:10px 14px; border-radius:999px;
+  text-decoration:none; font-family:inherit; font-size:14px; font-weight:900;
+  box-shadow: 0 12px 26px rgba(16,185,129,.3);
+  transition: background .3s ease, transform .2s ease; z-index: 9999;
+}
+#btn-home-left:hover, #btn-home-right:hover{ background-color:#34d399; transform: scale(1.05) }
+#btn-home-left{ left:10px; top:30%; transform: translateY(-50%) }
+#btn-home-right{ right:10px; bottom:20%; transform: translateY(50%) }
+#btn-home-left svg, #btn-home-right svg{ width:18px; height:18px; fill: currentColor }
+  </style>
+  <!-- Prism.js -->
+  <link rel="preload" as="style" href="/ext/prism-tomorrow.min.css" onload="this.rel='stylesheet'">
+  <link rel="stylesheet" href="/ext/prism-tomorrow.min.css">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js">
+<meta name="date" content="2025-09-28">
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
+<meta name="ai:prompt_hint" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta property="og:description" content="Versi timeline lengkap perkembangan Maulid Nabi: awal mula pada Dinasti Fathimiyah, penerimaan sebagian ulama, penolakan gerakan tajdid, hingga ragam praktik modern. Disajikan ringkas, berimbang, dan mudah dipahami.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/maulid-timeline">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/maulid-timeline">
+    <meta property="og:title" content="Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/maulid-timeline.webp">
+    <meta property="og:image:alt" content="Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/maulid-timeline.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/maulid-timeline.webp">
+</head>
+<body>
+  <header class="hero">
+<h1 class="title">Timeline Sejarah Maulid Nabi</h1>
+<div id="iposbrowser"></div>
+<p class="subtitle">Dari awal kemunculan pada masa Dinasti Fathimiyah, penerimaan sebagian ulama, hingga dinamika modern—dijelaskan padat, runtut, dan mudah dipahami.</p>
+<div class="chips">
+  <span class="chip">Sejarah</span>
+  <span class="chip">Ikhtilaf Ulama</span>
+  <span class="chip">Budaya &amp; Dakwah</span>
+</div>
+  </header>
+  <main class="wrap">
+<section class="card">
+  <div class="head"><h2>Ringkasan cepat</h2></div>
+  <div class="body">
+<p class="call">**Inti:** Maulid Nabi tidak dikenal pada masa Nabi ﷺ, sahabat, dan tabi’in. Praktiknya muncul kemudian, lalu menjadi ruang perbedaan penilaian ulama: ada yang menolak sebagai bid’ah, ada yang membolehkan dengan syarat kontennya sesuai tuntunan syariat.</p>
+  </div>
+</section>
+<section class="card" style="margin-top:22px">
+  <div class="head"><h2>Timeline perkembangan</h2></div>
+  <div class="body">
+<div class="timeline">
+  <div class="titem">
+<h3>Abad ke-4 H (sekitar 900-an M) <span class="badge">Fathimiyah, Mesir</span></h3>
+<p>- Perayaan Maulid pertama kali dicatat pada masa Dinasti Fathimiyah (Syi’ah).</p>
+<p>- Lebih dekat pada tradisi istana dan politik, bukan sunnah generasi awal.</p>
+  </div>
+  <div class="titem">
+<h3>Abad ke-6–7 H <span class="badge">Syam &amp; Irak</span></h3>
+<p>- Mulai diadopsi kalangan Ahlus Sunnah di beberapa wilayah.</p>
+<p>- Format sederhana: pembacaan sirah, dzikir, dan doa.</p>
+  </div>
+  <div class="titem">
+<h3>Abad ke-8–9 H <span class="badge">Karya ulama</span></h3>
+<p>- Ulama seperti Ibn Hajar al-‘Asqalani dan as-Suyuthi menulis risalah yang membolehkan dengan syarat.</p>
+<p>- Konten disaring: shalawat, dzikir, sedekah, dan pengajaran sirah.</p>
+  </div>
+  <div class="titem">
+<h3>Abad ke-12 H <span class="badge">Gelombang tajdid</span></h3>
+<p>- Gerakan pembaruan, termasuk Ibn Abdul Wahhab, menolak Maulid sebagai bid’ah.</p>
+<p>- Terbentuk dua arus besar: penolakan total vs kebolehan bersyarat.</p>
+  </div>
+  <div class="titem">
+<h3>Masa modern (abad ke-19–sekarang) <span class="badge">Ragam praktik</span></h3>
+<p>- Indonesia, Mesir, Turki, Maroko: perayaan luas, bernuansa dakwah dan budaya.</p>
+<p>- Saudi Arabia dan sebagian Teluk: tidak dirayakan secara resmi.</p>
+  </div>
+</div>
+  </div>
+</section>
+<section class="grid" style="margin-top:22px">
+  <article class="card">
+<div class="head"><h2>Konteks dan penjelasan</h2></div>
+<div class="body">
+  <ul>
+<li>**Landasan keberatan:** Ketiadaan teladan salaf, potensi tasyabbuh, dan ghuluw.</li>
+<li>**Landasan kebolehan:** Substansi kebaikan (shalawat, sirah, sedekah) sebagai wasilah, bukan ibadah khusus yang ditetapkan nash.</li>
+<li>**Prinsip adab:** Jaga persaudaraan, utamakan ilmu, hindari saling menyalahkan, fokus pada amalan yang jelas dalilnya.</li>
+  </ul>
+</div>
+    </article>
+  <aside class="card">
+<div class="head"><h2>Snippet timeline (siap di-copy)</h2></div>
+<div class="body">
+  <div class="codewrap">
+<pre class="language-markup"><code>&lt;ul class="timeline-plain"&gt;
+  &lt;li&gt;&lt;strong&gt;Abad ke-4 H:&lt;/strong&gt; Awal Maulid pada masa Fathimiyah di Mesir.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Abad ke-6–7 H:&lt;/strong&gt; Masuk ke Ahlus Sunnah di Syam &amp; Irak, format sederhana.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Abad ke-8–9 H:&lt;/strong&gt; Sejumlah ulama membolehkan dengan syarat isi yang baik.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Abad ke-12 H:&lt;/strong&gt; Gerakan tajdid menolak sebagai bid’ah.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Modern:&lt;/strong&gt; Praktik beragam; sebagian negara rayakan, sebagian tidak.&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<button class="copy-btn">Copy</button>
+  </div>
+</div>
+  </aside>
+</section>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+<footer>
+ </footer>
+  </main>
+  <!-- Lightbox modal -->
+  <div class="lightbox" id="lightbox">
+<figure>
+  <button class="close" id="lb-close" aria-label="Tutup">Tutup ✕</button>
+  <img id="lb-img" alt="Gambar - Sejarah Maulid Nabi: Dari Fathimiyah hingga Era Modern">
+  <figcaption id="lb-cap" style="color:#e5e7eb; padding:10px 12px"></figcaption>
+</figure>
+  </div>
+  <!-- JSON-LD: Article -->
+  <!-- JSON-LD: Breadcrumb -->
+  <!-- Skrip: Prism, Lightbox, Share, UA parsing, IP & Flag -->
+  <script>
+// Load Prism runtime
+(function(){
+  const add = src => { const s=document.createElement('script'); s.src=src; document.head.appendChild(s); };
+  add("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js");
+  add("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js");
+  add("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.js");
+  add("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js");
+})();
+// Copy button
+document.addEventListener('click', (e)=>{
+  if (e.target.matches('.copy-btn')) {
+const pre = e.target.closest('.codewrap').querySelector('pre');
+const text = pre ? pre.innerText : '';
+if (navigator.clipboard && text) {
+  navigator.clipboard.writeText(text).then(()=>{
+const old = e.target.textContent;
+e.target.textContent = 'Copied!';
+setTimeout(()=> e.target.textContent = old, 1200);
+  });
+}
+  }
+});
+// Lightbox
+(function(){
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img');
+  const cap = document.getElementById('lb-cap');
+  const closeBtn = document.getElementById('lb-close');
+  document.querySelectorAll('a.lb').forEach(a=>{
+a.addEventListener('click', e=>{
+  e.preventDefault();
+  img.src = a.getAttribute('href');
+  cap.textContent = a.getAttribute('data-caption') || '';
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+});
+  });
+  function closeLB(){ lb.classList.remove('open'); img.src=''; cap.textContent=''; document.body.style.overflow=''; }
+  closeBtn.addEventListener('click', closeLB);
+  lb.addEventListener('click', e=>{ if(e.target===lb) closeLB(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
+})();
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

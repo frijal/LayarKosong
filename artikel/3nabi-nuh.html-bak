@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <!-- Basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Nabi Nuh ‘Alaihissalam - Ketabahan, Kapal, dan Kisah Banjir Besar</title>
+  <meta name="description" content="Narasi santai tentang Nabi Nuh: 950 tahun berdakwah, pembangunan kapal di atas gunung, gelombang banjir besar, dan asal-usul keturunan manusia setelahnya.">
+  <link rel="apple-touch-icon" href="https://dalam.web.id/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+  <!-- Open Graph -->
+  <!-- CSS: Single-column, wide fullscreen, mobile-friendly; gaya baru (sunset gradient, soft edges) -->
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #1d2733;
+      --muted: #5e6a78;
+      --line: #e6ebf1;
+      --sunA: #ff7a59;  /* coral */
+      --sunB: #ffd166;  /* amber */
+      --brand: #2563eb; /* blue */
+      --accent: #10b981;/* green */
+      --warn: #ef4444;  /* red */
+      --ok: #16a34a;    /* green */
+      --maxw: 820px;
+      --lh: 1.78;
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(1100px 460px at 50% -40%, rgba(255,122,89,0.08) 0%, transparent 50%) no-repeat,
+        var(--bg);
+      color: var(--ink);
+      line-height: var(--lh);
+    }
+    a { color: var(--brand); text-decoration: none }
+    a:hover { text-decoration: underline }
+    img { max-width: 100%; height: auto; border-radius: 14px }
+    /* Container */
+    main {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 30px clamp(16px, 5vw, 36px) 100px;
+    }
+    /* Title block with gradient banner */
+    .title {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: 0 20px 50px rgba(29,39,51,0.08);
+      overflow: hidden;
+    }
+    .banner {
+      height: 90px;
+      background: linear-gradient(90deg, var(--sunA), var(--sunB));
+    }
+    .title-inner {
+      padding: clamp(18px, 3.2vw, 26px);
+    }
+    .title h1 {
+      margin: 0 0 8px;
+      font-size: clamp(30px, 5.2vw, 46px);
+      letter-spacing: 0.2px;
+      line-height: 1.16;
+    }
+    .dek {
+      margin: 6px 0 14px;
+      color: var(--muted);
+      font-size: clamp(15px, 2.6vw, 18px);
+    }
+    /* Chips row */
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 10px;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 999px;
+      background: #f1f5ff; color: #22365a; border: 1px solid #dbe6ff;
+      font-size: 13px;
+    }
+    .chip svg { width: 16px; height: 16px }
+    /* Blocks */
+    .block {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      padding: clamp(16px, 3vw, 24px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    }
+    .block h2 {
+      font-size: clamp(20px, 3.6vw, 28px);
+      margin: 0 0 10px;
+      border-left: 4px solid var(--brand);
+      padding-left: 10px;
+    }
+    .quote {
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      color: #065f46;
+      border-radius: 8px;
+      font-style: italic;
+    }
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .gallery figure {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #f8fbff;
+      margin: 0;
+    }
+    .gallery figcaption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.48));
+      color: #eef2f7;
+      font-size: 13px;
+    }
+    .zoomable { cursor: zoom-in }
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 50;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(12, 14, 16, 0.92);
+      backdrop-filter: blur(2px);
+    }
+    .lightbox.open { display: flex }
+    .lightbox img { max-width: min(92vw, 1200px); max-height: 86vh; border-radius: 12px }
+    .lb-nav {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .lb-btn {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 999px; background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: #fff; cursor: pointer;
+    }
+    .lb-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 40px; height: 40px;
+    }
+    .lb-index {
+      position: absolute; bottom: 18px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    /* Share strip */
+    .share-strip {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 8px;
+    }
+    .share-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 999px;
+      background: #eef6ff; border: 1px solid #dbe6ff; color: #173058;
+      cursor: pointer; font-size: 14px;
+    }
+    .share-btn svg { width: 18px; height: 18px }
+    .copy-ok { color: var(--ok) }
+      /* Comments */
+    .comments {
+      margin-top: 10px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
+    }
+    /* Accessibility & motion preferences */
+    :focus-visible { outline: 2px solid rgba(37,99,235,0.45); outline-offset: 2px }
+    @media (min-width: 1100px) {
+      :root { --maxw: 900px }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d0f13; --paper: #141822; --ink: #e8ecf1; --muted: #b6c0cc; --line: #213048;
+      }
+      body { background: radial-gradient(1100px 460px at 50% -40%, rgba(255,209,102,0.12) 0%, transparent 50%), var(--bg) }
+      .chip, .share-btn { background: #13223a; color: #e8ecf1; border-color: #223a63 }
+      .gallery figcaption { color: #fff }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important }
+    }
+  </style>
+  <!-- Structured data: Article -->
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Narasi santai tentang Nabi Nuh: 950 tahun berdakwah, pembangunan kapal di atas gunung, gelombang banjir besar, dan asal-usul keturunan manusia setelahnya.">
+<meta name="ai:prompt_hint" content="Narasi santai tentang Nabi Nuh: 950 tahun berdakwah, pembangunan kapal di atas gunung, gelombang banjir besar, dan asal-usul keturunan manusia setelahnya.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/3nabi-nuh">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/3nabi-nuh">
+    <meta property="og:title" content="Nabi Nuh ‘Alaihissalam - Ketabahan, Kapal, dan Kisah Banjir Besar">
+    <meta property="og:description" content="Narasi santai tentang Nabi Nuh: 950 tahun berdakwah, pembangunan kapal di atas gunung, gelombang banjir besar, dan asal-usul keturunan manusia setelahnya.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh0i4EBCNNsEwpS17fS70-9vDZyCIqpUTxZiNduf8bLkSkjweWumPhQRAc8sD5uAICPilYZEBkBRXwnN7FbV89y8_nu08p7GJgDJ3rPVOWAI2sSRvXJU67637G0DQVpNKyFo4-w_MNw_PzonR_CfDzqZzYM1rGLc6xRprWuMHBsUjuz8GSK5OR3OATDl0/s1600/nuh.webp">
+    <meta property="og:image:alt" content="Nabi Nuh ‘Alaihissalam - Ketabahan, Kapal, dan Kisah Banjir Besar">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh0i4EBCNNsEwpS17fS70-9vDZyCIqpUTxZiNduf8bLkSkjweWumPhQRAc8sD5uAICPilYZEBkBRXwnN7FbV89y8_nu08p7GJgDJ3rPVOWAI2sSRvXJU67637G0DQVpNKyFo4-w_MNw_PzonR_CfDzqZzYM1rGLc6xRprWuMHBsUjuz8GSK5OR3OATDl0/s1600/nuh.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh0i4EBCNNsEwpS17fS70-9vDZyCIqpUTxZiNduf8bLkSkjweWumPhQRAc8sD5uAICPilYZEBkBRXwnN7FbV89y8_nu08p7GJgDJ3rPVOWAI2sSRvXJU67637G0DQVpNKyFo4-w_MNw_PzonR_CfDzqZzYM1rGLc6xRprWuMHBsUjuz8GSK5OR3OATDl0/s1600/nuh.webp">
+</head>
+<body>
+  <main>
+    <!-- Title & meta chips -->
+    <section class="title" role="banner">
+      <div class="banner" aria-hidden="true"></div>
+      <div class="title-inner">
+        <h1>Nabi Nuh ‘Alaihissalam</h1>
+<div id="iposbrowser"></div>
+        <p class="dek">Ketabahan 950 tahun, kapal megah di atas gunung, dan banjir besar yang mengubah sejarah manusia.</p>
+        <div class="chips" aria-label="Info artikel">
+          <span class="chip" id="read-time" title="Perkiraan waktu baca">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"></circle><path d="M12 7v6l4 2" stroke="currentColor" stroke-width="1.3"></path></svg>
+            <span>Waktu baca: ~7 menit</span>
+          </span>
+                 </div>
+        <!-- Hero image -->
+        <figure class="zoomable" style="margin:12px 0 0">
+          <img id="hero-image" src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh0i4EBCNNsEwpS17fS70-9vDZyCIqpUTxZiNduf8bLkSkjweWumPhQRAc8sD5uAICPilYZEBkBRXwnN7FbV89y8_nu08p7GJgDJ3rPVOWAI2sSRvXJU67637G0DQVpNKyFo4-w_MNw_PzonR_CfDzqZzYM1rGLc6xRprWuMHBsUjuz8GSK5OR3OATDl0/s1600/nuh.webp" alt="Ilustrasi Nabi Nuh dan Kapal" loading="lazy">
+          <figcaption>Ilustrasi kapal Nabi Nuh - simbol keteguhan iman di tengah gelombang ujian.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <article class="block" id="dakwah">
+      <h2>950 tahun berdakwah tanpa lelah</h2>
+      <ol>
+        <li><strong>Kaum yang syirik</strong><br>Nabi Nuh hidup di zaman kaum yang sudah tidak lagi percaya kepada Allah. Semua kaumnya syirik, kecuali beliau yang tetap teguh beriman.</li>
+        <li><strong>Durasi dakwah yang luar biasa</strong><br>Beliau menghabiskan 950 tahun untuk berdakwah. Selama itu, hanya segelintir orang yang kembali beriman - dan bukan dari kalangan elit.</li>
+        <li><strong>Caci dan penolakan</strong><br>Berbagai cara beliau sampaikan, namun respons yang sering didapat: dicaci, ditutup telinga, diusir, bahkan dituduh sesat.</li>
+        <li><strong>Logika status sosial</strong><br>Orang berpengaruh berkata, “Pengikutmu orang biasa. Kalau mau kami ikut, singkirkan mereka dulu.” Jelas, mereka mengejar status, bukan kebenaran.</li>
+        <li><strong>Setia pada pengikut</strong><br>Nabi Nuh tidak akan meninggalkan pengikutnya. Mereka juga hamba Allah yang mulia.</li>
+        <li><strong>Batas hidayah</strong><br>Allah memberitahu: tidak akan ada lagi yang beriman. Dakwah ditutup sampai di situ. Pedih, tapi itulah keputusan yang paling bijak dari Yang Maha Mengetahui.</li>
+      </ol>
+    </article>
+    <article class="block" id="kapal">
+      <h2>Kapal raksasa di atas gunung</h2>
+      <ol start="7">
+        <li><strong>Perintah membangun</strong><br>Allah memerintahkan Nabi Nuh membangun kapal besar di atas gunung. Proyeknya memakan waktu 100 tahun.</li>
+        <li><strong>Cemoohan yang tak putus</strong><br>Orang ramai mengejek: “Katanya nabi, kok jadi tukang kayu? Kapal itu di tepi laut, bukan di gunung. Kamu gila?”</li>
+        <li><strong>Penghuninya</strong><br>Setelah selesai, Allah memerintahkan membawa pengikut beriman dan semua spesies hewan berpasangan (jantan–betina). Kapal itu sangat besar, setara tinggi gedung pencakar langit; lebarnya pun luar biasa.</li>
+      </ol>
+    </article>
+    <article class="block" id="banjir">
+      <h2>Banjir besar dan penyelamatan</h2>
+      <ol start="10">
+        <li><strong>Air dari langit dan bumi</strong><br>Dengan kuasa Allah, air turun dari langit dan naik dari tanah. Segala yang ada tenggelam, kecuali yang berada di kapal Nabi Nuh.</li>
+        <li><strong>Kisah keluarga</strong><br>Nabi Nuh memiliki empat putra: Yam, Shem, Ham, Japheth. Yam menolak beriman dan tidak mau naik kapal, memilih bertahan di gunung - namun ombak memisahkan dan menenggelamkannya.</li>
+        <li><strong>Menanti reda</strong><br>Selama enam bulan, Nabi Nuh mengirim burung untuk memeriksa keadaan. Tanda harapan muncul saat burung membawa daun; kemudian ada bekas tanah di kakinya - pertanda banjir telah usai.</li>
+        <li><strong>Pendaratan</strong><br>Kapal mendarat di atas sebuah gunung, sebagaimana awal mula kapal dibangun: kisah yang berputar namun penuh makna.</li>
+      </ol>
+    </article>
+    <article class="block" id="keturunan">
+      <h2>Keturunan manusia sesudah banjir</h2>
+      <ol start="14">
+        <li><strong>Zuriat hanya dari keluarganya</strong><br>Dengan kuasa Allah, pengikut yang selamat tidak beranak-pinak; hanya keluarga Nabi Nuh yang memiliki keturunan. Karena itu, Nabi Nuh disebut “The Second Adam”.</li>
+        <li><strong>Usia setelah banjir</strong><br>Nabi Nuh hidup 350 tahun setelah banjir besar - menutup lembaran panjang sebuah perjuangan.</li>
+      </ol>
+      <p class="quote">“#RamadahanTales oleh; Saudari Sharifah Syazreen Al-idrus”</p>
+    </article>
+    <!-- Galeri foto (lazy-load) -->
+    <section class="block" aria-label="Galeri Foto">
+            <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </section>
+  </main>
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Lightbox Gambar">
+    <button class="lb-btn lb-close" aria-label="Tutup lightbox">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.6"></path></svg>
+    </button>
+    <div class="lb-nav">
+      <button class="lb-btn lb-prev" aria-label="Gambar sebelumnya">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18 9 12l6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <button class="lb-btn lb-next" aria-label="Gambar berikutnya">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6 15 12 9 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <img id="lb-image" alt="Gambar - Nabi Nuh ‘Alaihissalam - Ketabahan, Kapal, dan Kisah Banjir Besar">
+    <div class="lb-index" id="lb-index">1 / 2</div>
+  </div>
+  <script>
+    (function() {
+      const safe = (f) => { try { f(); } catch (e) { /* lanjut */ } };
+      // Canonical & OG/Twitter url/image meta auto + fallback artikel/*.jpg
+      safe(() => {
+        const url = new URL(window.location.href);
+        const canonical = document.querySelector('#canonical-link');
+        const ogUrl = document.querySelector('#og-url');
+        const ogImg = document.querySelector('#og-image');
+        const twImg = document.querySelector('#twitter-image');
+        if (canonical) canonical.href = url.href;
+        if (ogUrl) ogUrl.content = url.href;
+        const path = url.pathname; // e.g., /artikel/nabi-nuh.html
+        const jpgFallback = path.endsWith('.html')
+          ? url.origin + path.replace('.html', '.jpg')
+          : url.origin + '/artikel/fallback.jpg';
+        const articleImgs = Array.from(document.querySelectorAll('img'));
+        const firstValid = articleImgs.find(i => i && i.src);
+        const finalImg = firstValid ? firstValid.src : jpgFallback;
+        if (ogImg) ogImg.content = finalImg;
+        if (twImg) twImg.content = finalImg;
+        // Update LD+JSON image juga
+        const ld = document.querySelector('#ld-json');
+        if (ld) {
+          const data = JSON.parse(ld.textContent);
+          data.image = finalImg;
+          ld.textContent = JSON.stringify(data);
+        }
+      });
+      // Estimasi waktu baca ~200 kata/menit
+      safe(() => {
+        const text = document.body.innerText || "";
+        const words = text.trim().split(/\s+/).length;
+        const min = Math.max(3, Math.round(words / 200));
+        const el = document.querySelector('#read-time span');
+        if (el) el.textContent = `Waktu baca: ~${min} menit`;
+      });
+      // Lightbox gallery with arrow keys (include hero image + gallery)
+      safe(() => {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-image');
+        const lbIndex = document.getElementById('lb-index');
+        const prev = lb.querySelector('.lb-prev');
+        const next = lb.querySelector('.lb-next');
+        const close = lb.querySelector('.lb-close');
+        const items = Array.from(document.querySelectorAll('#hero-image, .gallery img'));
+        let idx = 0;
+        const openAt = (i) => {
+          idx = i;
+          lbImg.src = items[idx].src;
+          lb.classList.add('open');
+          lbIndex.textContent = `${idx+1} / ${items.length}`;
+          document.body.style.overflow = 'hidden';
+        };
+        const closeLb = () => {
+          lb.classList.remove('open');
+          lbImg.src = '';
+          document.body.style.overflow = '';
+        };
+        const step = (d) => {
+          idx = (idx + d + items.length) % items.length;
+          lbImg.src = items[idx].src;
+          lbIndex.textContent = `${idx+1} / ${items.length}`;
+        };
+        document.querySelectorAll('.zoomable').forEach((fig, i) => {
+          fig.addEventListener('click', () => openAt(i));
+        });
+        prev.addEventListener('click', () => step(-1));
+        next.addEventListener('click', () => step(+1));
+        close.addEventListener('click', closeLb);
+        lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+        window.addEventListener('keydown', (e) => {
+          if (!lb.classList.contains('open')) return;
+          if (e.key === 'Escape') closeLb();
+          if (e.key === 'ArrowLeft') step(-1);
+          if (e.key === 'ArrowRight') step(+1);
+        });
+      });
+     })();
+  </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

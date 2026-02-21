@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Disclaimer & Batas Tanggung Jawab - Layar Kosong</title>
+<link rel="alternate" hreflang="en" href="https://dalam.web.id/disclaimer/#en">
+<link rel="alternate" hreflang="id" href="https://dalam.web.id/disclaimer">
+<link rel="alternate" hreflang="x-default" href="https://dalam.web.id/disclaimer">
+<link rel="alternate" type="application/rss+xml" title="RSS Feed Layar Kosong" href="https://dalam.web.id/rss.xml">
+<link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png">
+<link rel="canonical" href="https://dalam.web.id/disclaimer">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/ext/fontawesome.css">
+<meta name="author" content="Fakhrul Rijal">
+<meta name="publisher" content="Layar Kosong">
+<meta name="description" content="Disclaimer resmi Layar Kosong yang menjelaskan batas tanggung jawab, penggunaan konten teknis, tautan eksternal, serta keterkaitannya dengan kebijakan privasi dan lisensi.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Disclaimer & Batas Tanggung Jawab - Layar Kosong">
+<meta name="twitter:description" content="Penjelasan resmi batas tanggung jawab penggunaan konten di Layar Kosong.">
+<meta name="twitter:creator" content="@responaja">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Disclaimer & Batas Tanggung Jawab - Layar Kosong">
+<meta property="og:description" content="Dokumen disclaimer resmi Layar Kosong untuk transparansi dan pemahaman pengguna.">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:url" content="https://dalam.web.id/disclaimer">
+<meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LegalDocument",
+  "@id":"https://dalam.web.id/disclaimer#legal",
+  "name":"Disclaimer Layar Kosong",
+  "url":"https://dalam.web.id/disclaimer",
+  "inLanguage":["id","en"],
+  "publisher":{
+    "@type":"Organization",
+    "name":"Layar Kosong",
+    "url":"https://dalam.web.id"
+  },
+  "dateModified":"2026-01-09"
+}
+</script>
+<!-- STYLE TETAP MENGGUNAKAN TEMPLATE ASLI -->
+<style>
+/* === (CSS sama persis dengan template yang kamu kirim) === */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #00b0ed;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --border-color: #e1e8ed;
+    --lk-accent: #00b0ed;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #ecf0f1;
+        --accent-color: #00b0ed;
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --card-bg: #1e1e1e;
+        --border-color: #333;
+    }
+}
+.lk-legal-footer-nav {
+    margin-top: 50px;
+    padding: 30px 0;
+    border-top: 1px dashed var(--border-color, #e1e8ed);
+}
+.lk-legal-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.lk-legal-nav-group h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted, #888);
+    margin-bottom: 15px;
+    border: none !important; /* Biar gak kena style h4 global */
+}
+.lk-legal-nav-group ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.lk-legal-nav-group ul li {
+    margin-bottom: 10px !important;
+    font-size: 0.95rem;
+    list-style-type: none !important;
+}
+.lk-legal-nav-link {
+    color: var(--text-color, #333);
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    transition: all .2s ease-in-out;
+}
+.lk-legal-nav-link:hover {
+    color: var(--lk-accent) !important;
+    opacity: 1;
+    transform: translateX(5px);
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.sticky-header {
+    position: fixed; top: 1rem; left: 1rem; z-index: 1000;
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--card-bg); padding: 0.5rem 0.75rem;
+    border-radius: 12px; border:1px solid var(--border-color);
+    text-decoration: none;
+}
+.sticky-header img { width: 32px; height: 32px; }
+.site-name { font-weight: 700; font-size: 1.1rem; color: var(--text-color); }
+.lang-select {
+    position: fixed; top: 1rem; right: 1rem; z-index: 1000;
+    background: var(--card-bg); padding: 0.4rem 0.7rem;
+    border-radius: 8px; border:1px solid var(--border-color);
+}
+select { background: transparent; border: none; color: var(--text-color); }
+.container {
+    max-width: 900px;
+    margin: 60px auto 40px;
+    padding: 50px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+}
+h1 { text-align:center; font-size:2.4em; margin-bottom:5px; }
+.last-update { text-align:center; font-style:italic; color:#888; margin-bottom:40px; }
+h2 {
+    color: var(--accent-color);
+    border-bottom:2px solid var(--border-color);
+    padding-bottom:10px;
+    margin-top:45px;
+}
+.footer {
+    text-align:center;
+    margin-top:60px;
+    padding:30px;
+    font-size:.9em;
+    color:#888;
+    border-top:1px solid var(--border-color);
+}
+a { color:var(--accent-color); text-decoration:none; }
+</style>
+</head>
+<body>
+<a href="https://dalam.web.id" class="sticky-header" target="_blank" rel="noopener">
+  <img src="https://dalam.web.id/favicon.svg" alt="Layar Kosong">
+  <span class="site-name">dalam.web.id</span>
+</a>
+<div class="lang-select">
+<select id="lang" onchange="switchLang(this.value)">
+<option value="id">Bahasa Indonesia</option>
+<option value="en">English</option>
+</select>
+</div>
+<div class="container">
+<!-- INDONESIA -->
+<div id="content-id">
+<h1>Sangkalan</h1>
+<p class="last-update">Terakhir diperbarui: 9 Januari 2026</p>
+<h2>1. Batas Tanggung Jawab</h2>
+<p>
+Layar Kosong berupaya menyajikan konten yang akurat, relevan, dan terkini.
+Namun, kami tidak memberikan jaminan apa pun terkait kelengkapan,
+keandalan, maupun keakuratan informasi.
+</p>
+<p>
+Segala tindakan yang Anda ambil berdasarkan informasi dari situs ini
+sepenuhnya merupakan tanggung jawab Anda sendiri.
+</p>
+<h2>2. Konten Teknis & Kode</h2>
+<p>
+Seluruh contoh kode, konfigurasi, perintah sistem, dan workflow
+dibagikan dalam kondisi <em>sebagaimana adanya</em> (<em>as is</em>).
+</p>
+<p>
+Gunakan dengan pertimbangan matang, lakukan pengujian mandiri,
+dan pastikan sesuai dengan lingkungan serta kebutuhan Anda.
+</p>
+<h2>3. Tautan Eksternal</h2>
+<p>
+Situs ini dapat memuat tautan ke situs pihak ketiga.
+Kami tidak memiliki kendali atas konten, kebijakan,
+atau layanan yang disediakan oleh situs tersebut.
+</p>
+<h2>4. Keterkaitan Dokumen Hukum</h2>
+<p>
+Disclaimer ini merupakan bagian dari ekosistem dokumen hukum Layar Kosong,
+bersama dengan <a href="/privacy/">Kebijakan Privasi</a>
+dan <a href="/lisensi/">Lisensi Konten</a>.
+</p>
+<h2>5. Perubahan</h2>
+<p>
+Isi halaman ini dapat diperbarui sewaktu-waktu tanpa pemberitahuan sebelumnya.
+Dengan tetap menggunakan situs ini, Anda dianggap menyetujui ketentuan yang berlaku.
+</p>
+<div class="lk-legal-footer-nav">
+    <div class="lk-legal-nav-grid">
+        <div class="lk-legal-nav-group">
+            <h4>Privasi & Data</h4>
+            <ul>
+                <li><a href="privacy" class="lk-legal-nav-link">🔒 Kebijakan Privasi</a></li>
+                <li><a href="data-deletion" class="lk-legal-nav-link">🛡️ Info Penghapusan Data</a></li>
+                <li><a href="data-deletion-form" class="lk-legal-nav-link">📝 Formulir Request Data</a></li>
+            </ul>
+        </div>
+        <div class="lk-legal-nav-group">
+            <h4>Kepatuhan Hukum</h4>
+            <ul>
+                <li><a href="disclaimer" class="lk-legal-nav-link">⚠️ Penyangkal</a></li>
+                <li><a href="security-policy" class="lk-legal-nav-link">⚔️ Kebijakan Keamanan</a></li>
+            </ul>
+        </div>
+        <div class="lk-legal-nav-group">
+            <h4>Karya & Lisensi</h4>
+            <ul>
+                <li><a href="lisensi" class="lk-legal-nav-link">📄 Lisensi Konten (CC0)</a></li>
+                <li><a href="https://dalam.web.id/about" class="lk-legal-nav-link" target="_blank">☕ Tentang Layar Kosong</a></li>
+            </ul>
+        </div>
+    </div>
+</div></div>
+<!-- ENGLISH -->
+<div id="content-en" style="display:none">
+<h1>Disclaimer</h1>
+<p class="last-update">Last updated: January 9, 2026</p>
+<h2>1. Limitation of Liability</h2>
+<p>
+Layar Kosong strives to provide accurate and up-to-date information.
+However, no warranties are made regarding completeness,
+reliability, or accuracy.
+</p>
+<h2>2. Technical Content & Code</h2>
+<p>
+All code snippets, configurations, and workflows are provided
+<em>as is</em>. Use them at your own discretion and risk.
+</p>
+<h2>3. External Links</h2>
+<p>
+This site may contain links to third-party websites.
+We have no control over their content or policies.
+</p>
+<h2>4. Legal Document Relationship</h2>
+<p>
+This disclaimer is part of Layar Kosong’s legal documentation,
+alongside the <a href="/privacy/">Privacy Policy</a>
+and <a href="/lisensi/">Content License</a>.
+</p>
+<h2>5. Changes</h2>
+<p>
+This disclaimer may be updated at any time without prior notice.
+Continued use of this site constitutes acceptance of these terms.
+</p>
+<div class="lk-legal-footer-nav">
+    <div class="lk-legal-nav-grid">
+        <div class="lk-legal-nav-group">
+            <h4>Data & Privacy</h4>
+            <ul>
+                <li><a href="privacy" class="lk-legal-nav-link">🔒 Privacy & Legal Policy</a></li>
+                <li><a href="data-deletion" class="lk-legal-nav-link">🛡️ Data Deletion Instructions</a></li>
+                <li><a href="data-deletion-form" class="lk-legal-nav-link">📝 Data Deletion Form</a></li>
+            </ul>
+        </div>
+        <div class="lk-legal-nav-group">
+            <h4>Legal Compliance</h4>
+            <ul>
+                <li><a href="disclaimer" class="lk-legal-nav-link">⚠️ Disclaimer</a></li>
+                <li><a href="security-policy" class="lk-legal-nav-link">⚔️ Security Policy</a></li>
+            </ul>
+        </div>
+        <div class="lk-legal-nav-group">
+            <h4>Works & Licenses</h4>
+            <ul>
+                <li><a href="lisensi" class="lk-legal-nav-link">📄 Content License (CC0)</a></li>
+                <li><a href="https://dalam.web.id/about" class="lk-legal-nav-link" target="_blank">☕ About Layar Kosong</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+function switchLang(val){
+document.getElementById('content-id').style.display = val==='id'?'block':'none';
+document.getElementById('content-en').style.display = val==='en'?'block':'none';
+document.documentElement.lang = val;
+localStorage.setItem('pref_lang', val);
+}
+const saved = localStorage.getItem('pref_lang') || (navigator.language.startsWith('en')?'en':'id');
+document.getElementById('lang').value = saved;
+switchLang(saved);
+</script>
+</body>
+</html>

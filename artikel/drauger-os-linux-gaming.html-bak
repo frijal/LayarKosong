@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Drauger OS: Distro Linux Khusus Gaming 🎮</title>
+    <meta name="description" content="Drauger OS adalah distro Linux berbasis Ubuntu yang didesain khusus untuk gaming. Artikel ini membahas fitur, instalasi, spesifikasi, dan tips interaktif.">
+    <!-- Styles: 1 kolom, dark theme -->
+    <style>
+        :root {
+            --bg: #1b2036;
+            --fg: #f7f8fc;
+            --muted: #b8c1ec;
+            --accent: #ffb347; /* Orange */
+            --accent-2: #4680ff; /* Blue */
+            --card: #232842;
+            --border: #3e4e6a;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --maxw: 900px;
+        }
+        html, body {
+            background: var(--bg); color: var(--fg);
+            font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 0; scroll-behavior: smooth;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+        header.site {
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+            background: rgba(27, 32, 54, 0.7); backdrop-filter: blur(8px);
+            position: sticky; top: 0; z-index: 10;
+        }
+        .brand { font-weight: bold; font-size: 1.2rem; }
+        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
+        .col { width: 100%; max-width: var(--maxw); }
+        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
+        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
+        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
+        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3a3d5a; color: var(--fg); cursor: pointer; text-decoration: none; }
+        .btn-share:hover { background: #4a4d6a; }
+        ul { margin: 1rem 0 1rem 1.5rem; }
+        figure { margin: 1.5rem 0; text-align: center; }
+        figure img { cursor: zoom-in; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .lightbox { position: fixed; inset: 0; background: rgba(27,32,54,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Drauger OS adalah distro Linux berbasis Ubuntu yang didesain khusus untuk gaming. Artikel ini membahas fitur, instalasi, spesifikasi, dan tips interaktif.">
+<meta name="ai:prompt_hint" content="Drauger OS adalah distro Linux berbasis Ubuntu yang didesain khusus untuk gaming. Artikel ini membahas fitur, instalasi, spesifikasi, dan tips interaktif.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/drauger-os-linux-gaming">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/drauger-os-linux-gaming">
+    <meta property="og:title" content="Drauger OS: Distro Linux Khusus Gaming 🎮">
+    <meta property="og:description" content="Drauger OS adalah distro Linux berbasis Ubuntu yang didesain khusus untuk gaming. Artikel ini membahas fitur, instalasi, spesifikasi, dan tips interaktif.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/drauger-os-linux-gaming.webp">
+    <meta property="og:image:alt" content="Drauger OS: Distro Linux Khusus Gaming 🎮">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/drauger-os-linux-gaming.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/drauger-os-linux-gaming.webp">
+</head>
+<body>
+    <div class="wrap">
+        <header class="site">
+            <div class="brand">🎮 dalam.web.id</div>
+        </header>
+        <main>
+            <div class="col">
+                <article>
+                    <h1>Drauger OS: Distro Linux Khusus Gaming</h1>
+<div id="iposbrowser"></div>
+                    <p class="lead">Drauger OS adalah distro Linux berbasis Ubuntu yang dirancang khusus untuk gaming. Fokus utamanya adalah performa, sehingga aplikasi yang tidak esensial dihilangkan agar sistem tetap ringan dan responsif.</p>
+                    <div class="gallery">
+                        <figure><img src="/img/blogger.googleusercontent.com/img/a/AVvXsEjryNEsRDFR4jmUeSuElEaM_GsRVJTD_9ODeq9q9piZbplFI8ha197OCQrEfsLEgIeHL5OtYesG1lZGAib31wLCgfm6OBMMNN0hvz-dUIqUR_0CtbS5boqCqvBOWQ7R9FYRO9sWMfnJaPVFv17kGTOwUY60Pg-M0CTD4ZXpAyE1jH7bIx-g6cf-UjUt5ns.webp" alt="Tampilan awal Drauger OS"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/a/AVvXsEhVfpG9ri9rmPk67ovivTWd4oWwBquO4xN9WCnX8yFBFS7Rt9rQJ04D-2xqzLJrpP1i_MpdEmzHY0JUMqA3zY42uARdu77Yfrwuu0vRoRhyP73xQi_5lE9JAHCLFns0XD_QDI7q9F8GEi1M4a1wY7bDAdH8n5vu6VWtUQqvfy38JUPrhvN6cq0GD9pc9gU.webp" alt="Drauger OS di VirtualBox"></figure>
+                        <figure><img src="/img/blogger.googleusercontent.com/img/a/AVvXsEgDInz6f2m7KaGe1ln7QCQbJQioszdM18cynZ1nTwbOk3v7ilR5PrqzdS10vj0XPafyEuVxUDG1sVVCzCDK2MonoyRvNpoavXiqYoRzRK4XlahFBsw4H9-id4KOGU6ZS5bmAFJyzj4bT4b_wEskijlfjyuBxikRxsraS9WAg30oFUUTwsvxzYl5DKUtAuA.webp" alt="Steam di Drauger OS"></figure>
+                    </div>
+                    <h2>Spesifikasi Sistem</h2>
+                    <p>Meskipun ringan, Drauger OS tetap memerlukan spesifikasi yang mumpuni untuk pengalaman gaming yang optimal.</p>
+                    <ul>
+                        <li><strong>Minimum:</strong> CPU Dual-core 1.8 GHz, 1 GB RAM, 32 GB Storage.</li>
+                        <li><strong>Rekomendasi:</strong> CPU Quad-core 2 GHz, 6 GB DDR4 RAM, 128 GB NVMe SSD, dan GPU setara Nvidia GTX 950 / AMD RX 450.</li>
+                    </ul>
+                    <h2>Proses Instalasi</h2>
+                    <p>Proses instalasi Drauger OS cukup standar. Setelah boot dari USB, Anda bisa memilih "Try" untuk Live Session atau langsung "Install". Installer menyediakan beberapa mode, termasuk "Normal Installation" untuk pengaturan manual.</p>
+                    <h2>Gaming di Drauger OS</h2>
+                    <p>Drauger OS sudah siap pakai untuk gaming dengan berbagai platform populer yang terinstal secara default:</p>
+                    <ul>
+                        <li><strong>Steam</strong></li>
+                        <li><strong>GameHub</strong></li>
+                        <li><strong>Heroic Games Launcher</strong> (untuk Epic Games Store)</li>
+                        <li><strong>Lutris</strong></li>
+                    </ul>
+                    <p class="muted">Tips: Sebelum menggunakan Lutris, pastikan driver GPU Anda sudah sesuai. Jika diperlukan, install paket <code>meta-vulkan-drivers</code> untuk arsitektur <code>i386</code>.</p>
+                    <h2>Catatan Penting</h2>
+                    <ul>
+                        <li>Jangan melakukan pembaruan sistem sembarangan, karena dapat menyebabkan error saat boot.</li>
+                        <li>Upgrade antar versi besar (misalnya dari 7.6 ke 7.7) memerlukan instalasi ulang.</li>
+                    </ul>
+                    <h2>Kesimpulan</h2>
+                    <p>Jika Anda mencari distro Linux yang fokus pada gaming dengan performa optimal, Drauger OS adalah pilihan yang sangat layak untuk dicoba. Coba dulu di Virtual Machine, dan jika Anda puas, install di PC atau laptop gaming Anda.</p>
+                    <div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+    </article>
+            </div>
+        </main>
+        <footer class="site">
+            <small>🄯 2025 dalam.web.id · Distro Linux untuk para gamer.</small>
+        </footer>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <img id="lightbox-img" alt="Gambar diperbesar">
+    </div>
+    <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #3e4e6a; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
+    <script>
+    (function(){
+        const toast = document.getElementById('toast');
+        function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
+        let currentIndex = 0;
+        function openLightbox(index) {
+            currentIndex = index;
+            lbImg.src = galleryImages[currentIndex].src;
+            lb.classList.add('open');
+        }
+        galleryImages.forEach((el, index) => {
+            el.addEventListener('click', () => openLightbox(index));
+        });
+        function closeLb(){ lb.classList.remove('open'); }
+        lb.addEventListener('click', closeLb);
+        window.addEventListener('keydown', (e) => {
+            if (lb.classList.contains('open') && e.key === 'Escape') closeLb();
+        });
+    })();
+    </script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

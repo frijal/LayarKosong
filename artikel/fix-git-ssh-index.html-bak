@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Lengkap: Perbaiki “cannot run ssh” di Git (Semua Platform)</title>
+<!-- Open Graph -->
+<!-- Twitter -->
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: var(--bg, #0f0f0f);
+    color: var(--fg, #eaeaea);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+  header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    border-bottom: 2px solid #333;
+    background: linear-gradient(90deg, #181818, #1c1c1c);
+  }
+  header h1 {
+    margin-bottom: 0.3em;
+    font-size: 1.8rem;
+  }
+  main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem 1rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .card {
+    border: 1px solid #333;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    transition: transform 0.2s, background 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    background: #202020;
+  }
+  .card img {
+    width: 50px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    color: #7cd5ff;
+  }
+  .os {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  a {
+    color: #5ecaff;
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  .share {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+  .share a {
+    margin: 0 10px;
+    font-size: 1.5em;
+    color: #ccc;
+  }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #333;
+    font-size: 0.9em;
+    color: #999;
+  }
+  @media (max-width: 700px) {
+    main { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 701px) {
+    main { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+<meta name="ai:summary" content="Panduan lintas platform memperbaiki error Git">
+<meta name="ai:prompt_hint" content="Panduan lintas platform memperbaiki error Git">
+<meta name="description" content="Panduan lintas platform memperbaiki error Git">
+    <link rel="canonical" href="https://dalam.web.id/artikel/fix-git-ssh-index">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/fix-git-ssh-index">
+    <meta property="og:title" content="Panduan Lengkap: Perbaiki “cannot run ssh” di Git (Semua Platform)">
+    <meta property="og:description" content="Panduan lintas platform memperbaiki error Git">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/fix-git-ssh-slackware.webp">
+    <meta property="og:image:alt" content="Panduan Lengkap: Perbaiki “cannot run ssh” di Git (Semua Platform)">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/fix-git-ssh-slackware.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/fix-git-ssh-slackware.webp">
+</head>
+<body>
+<header>
+  <h1>🚀 Panduan Git SSH Error di Semua Platform</h1>
+<div id="iposbrowser"></div>
+  <p>Solusi untuk <code>error: cannot run ssh: No such file or directory</code> pada Linux, Windows, dan macOS.</p>
+</header>
+<main>
+    <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/3/34/Slackware_logo.webp" alt="Slackware Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-slackware.html">Slackware &amp; Keluarganya</a></h2>
+    </div>
+    <p>Panduan menggunakan <code>slackpkg</code> untuk menginstal <b>git</b> dan <b>openssh</b>. Termasuk cara cek selinux &amp; izin SSH agent.</p>
+  </div>
+  <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.webp" alt="Arch Linux Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-arch.html">Arch Linux &amp; Turunannya</a></h2>
+    </div>
+    <p>Gunakan <code>pacman</code> untuk memastikan paket <b>openssh</b> dan <b>git</b> terinstal. Termasuk script perbaikan otomatis dengan log dan dry-run.</p>
+  </div>
+  <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.webp" alt="Debian Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-debian.html">Debian, Ubuntu, Mint</a></h2>
+    </div>
+    <p>Perbaikan dengan <code>apt install git openssh-client</code>, pengecekan PATH, dan script otomatis yang kompatibel untuk sistem Debian-based.</p>
+  </div>
+  <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/3/3f/Fedora_logo.webp" alt="Fedora Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-fedora.html">Fedora, RHEL, CentOS</a></h2>
+    </div>
+    <p>Panduan menggunakan <code>dnf</code> atau <code>yum</code> untuk menginstal <b>git</b> dan <b>openssh</b>. Termasuk cara cek selinux &amp; izin SSH agent.</p>
+  </div>
+  <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.webp" alt="Windows Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-windows.html">Windows (CMD &amp; PowerShell)</a></h2>
+    </div>
+    <p>Langkah untuk memperbaiki SSH di Git Bash dan PowerShell: pastikan <b>OpenSSH Client</b> aktif, perbaiki PATH, dan jalankan test koneksi.</p>
+  </div>
+  <div class="card">
+    <div class="os">
+      <img loading="lazy" src="/img/upload.wikimedia.org/wikipedia/commons/f/fc/Mi_icono_principal.webp" alt="Apple Logo">
+      <h2><a href="https://dalam.web.id/artikel/fix-git-ssh-macos.html">macOS</a></h2>
+    </div>
+    <p>Gunakan <code>xcode-select --install</code> untuk mengaktifkan Command Line Tools dan pastikan <code>/usr/bin/ssh</code> terdeteksi di PATH Git.</p>
+  </div>
+    </main>
+<section>  <div id="pesbukdiskus"></div><div id="related-articles-grid"></div></section>
+<footer>
+  <p>🄯 2025 Frijal — Seri Panduan DevOps &amp; Git SSH Error</p>
+</footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>

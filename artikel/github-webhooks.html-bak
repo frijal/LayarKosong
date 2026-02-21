@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apa Gunanya Webhooks di GitHub?</title>
+    <meta name="description" content="Penjelasan santai tentang apa itu Webhooks di GitHub, cara kerjanya, dan contoh penggunaannya untuk otomatisasi CI/CD, notifikasi, dan manajemen proyek.">
+    <style>
+        :root {
+            --bg-color: #f9fafb; /* bg-gray-50 */
+            --text-color: #111827; /* bg-gray-900 */
+            --card-bg: #ffffff;
+            --primary-color: #4f46e5; /* indigo-600 */
+            --border-color: #e5e7eb; /* gray-200 */
+            --max-width: 960px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            font-size: 17px;
+        }
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        header.main-header {
+            background-color: #1f2937; /* gray-800 */
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+        header.main-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        header.main-header p { color: #d1d5db; /* gray-300 */ }
+        /* Konten Utama */
+        main.content {
+            flex-grow: 1; /* Mendorong footer ke bawah */
+            padding: 3rem 0;
+        }
+        article h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        article p, article ul {
+            font-size: 1.1rem;
+            margin-bottom: 1.5em;
+        }
+        /* Styling untuk langkah-langkah */
+        .steps-container {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .step-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .step-card p { font-size: 1rem; margin: 0; }
+        /* Styling untuk contoh penggunaan */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .example-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .example-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        .example-card-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .example-card p { font-size: 1rem; margin: 0; }
+        .example-icon { font-size: 2rem; margin-bottom: 1rem; }
+        /* Gambar */
+        .main-image {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 2.5rem auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+        /* Footer */
+        footer.main-footer {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #4b5563; /* gray-600 */
+            padding: 3rem 0;
+            text-align: center;
+        }
+        footer h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; color: #1f2937; }
+               .footer-copy { margin-top: 2rem; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            header.main-header { padding: 2rem 0; }
+            header.main-header h1 { font-size: 1.8rem; }
+            main.content { padding: 2rem 0; }
+            article h2 { font-size: 1.5rem; }
+            article p, article ul { font-size: 1rem; }
+        }
+    </style>
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="canonical" href="https://dalam.web.id/artikel/github-webhooks">
+    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/github-webhooks">
+    <meta property="og:title" content="Apa Gunanya Webhooks di GitHub?">
+    <meta property="og:description" content="Penjelasan santai tentang apa itu Webhooks di GitHub, cara kerjanya, dan contoh penggunaannya untuk otomatisasi CI/CD, notifikasi, dan manajemen proyek.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJQ9O9Fv4VvwAx4K95ZUkE-DzsncmQG-rv3MCoXp_akUVlk_fDbpS2UnKXaWSfJZbMbBzmrtwBGGd2qSCdEpz6taMMwKC74IGHYD19SV2Epo-V6Icou9q027qF0K0xghEOTDngPm9fy8jw-09EfOe1wfHtPIIQZt7AX3l-GYo06qVqvlpZfyzCbTmeCSk/s1600/github-webhooks.webp">
+    <meta property="og:image:alt" content="Apa Gunanya Webhooks di GitHub?">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJQ9O9Fv4VvwAx4K95ZUkE-DzsncmQG-rv3MCoXp_akUVlk_fDbpS2UnKXaWSfJZbMbBzmrtwBGGd2qSCdEpz6taMMwKC74IGHYD19SV2Epo-V6Icou9q027qF0K0xghEOTDngPm9fy8jw-09EfOe1wfHtPIIQZt7AX3l-GYo06qVqvlpZfyzCbTmeCSk/s1600/github-webhooks.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJQ9O9Fv4VvwAx4K95ZUkE-DzsncmQG-rv3MCoXp_akUVlk_fDbpS2UnKXaWSfJZbMbBzmrtwBGGd2qSCdEpz6taMMwKC74IGHYD19SV2Epo-V6Icou9q027qF0K0xghEOTDngPm9fy8jw-09EfOe1wfHtPIIQZt7AX3l-GYo06qVqvlpZfyzCbTmeCSk/s1600/github-webhooks.webp">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1>Apa Gunanya Webhooks di GitHub?</h1>
+<div id="iposbrowser"></div>
+            <p>Sistem notifikasi otomatis yang canggih untuk developer.</p>
+        </div>
+    </header>
+    <main class="content">
+        <div class="container">
+            <article>
+                <p>Saat menjelajahi pengaturan repositori di GitHub, kamu mungkin menemukan bagian "Webhooks". Ini adalah fitur yang sangat *powerful*, seperti **sistem notifikasi otomatis** yang canggih untuk menghubungkan repositori GitHub Anda dengan dunia luar.</p>
+                <h2>Gampangnya Begini:</h2>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div>
+                            <p><strong>Anda "Berlangganan" Kejadian:</strong> Kamu bilang ke GitHub, "Hei GitHub, kalau ada kejadian A, B, atau C di repo saya, tolong kabari alamat web (URL) ini ya."</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div>
+                            <p><strong>Kejadian Terjadi:</strong> Misalnya, kamu melakukan <code>push</code> kode baru, ada yang membuka *pull request*, atau ada yang membuat *issue* baru.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div>
+                            <p><strong>GitHub Kirim "Pesan":</strong> GitHub akan langsung mengirim "pesan" (data via `POST request`) ke alamat web yang kamu berikan. Isinya adalah detail lengkap tentang kejadian tadi.</p>
+                        </div>
+                    </div>
+                     <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div>
+                            <p><strong>Layanan Lain Merespons:</strong> Alamat web penerima (misalnya server kamu atau layanan lain) bisa langsung melakukan sesuatu secara otomatis berdasarkan "pesan" tersebut.</p>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJQ9O9Fv4VvwAx4K95ZUkE-DzsncmQG-rv3MCoXp_akUVlk_fDbpS2UnKXaWSfJZbMbBzmrtwBGGd2qSCdEpz6taMMwKC74IGHYD19SV2Epo-V6Icou9q027qF0K0xghEOTDngPm9fy8jw-09EfOe1wfHtPIIQZt7AX3l-GYo06qVqvlpZfyzCbTmeCSk/s1600/github-webhooks.webp" alt="Ilustrasi cara kerja Webhooks di GitHub" class="main-image">
+                <h2>Gunanya Apa? Banyak Banget!</h2>
+                <p>Intinya, Webhooks adalah **perekat** yang memungkinkan GitHub berkomunikasi secara *real-time* dengan aplikasi lain untuk **mengotomatiskan berbagai macam alur kerja (workflow)**. Contoh paling umumnya:</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-icon">🚀</div>
+                        <h3 class="example-card-title">Otomatis Deploy Website (CI/CD)</h3>
+                        <p>Saat kamu <code>push</code> ke branch <code>main</code>, webhook memberi tahu Vercel atau Netlify untuk otomatis membangun (*build*) dan menayangkan (*deploy*) versi terbaru website kamu.</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-icon">✅</div>
+                        <h3 class="example-card-title">Update Status Tugas Proyek</h3>
+                        <p>Saat kamu menutup sebuah *issue* di GitHub, webhook bisa memberi tahu Trello atau Jira untuk otomatis memindahkan kartu tugas terkait ke kolom "Selesai".</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-icon">💬</div>
+                        <h3 class="example-card-title">Notifikasi ke Tim</h3>
+                        <p>Saat ada *pull request* baru yang butuh di-review, webhook bisa mengirim notifikasi ke channel Slack atau Discord tim kamu, lengkap dengan link-nya.</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-icon">⚙️</div>
+                        <h3 class="example-card-title">Menjalankan Skrip Otomatis</h3>
+                        <p>Saat *release* baru dibuat, webhook dapat memicu skrip di server kamu untuk melakukan tugas-tugas spesifik, misalnya mengupdate dokumentasi atau membersihkan *cache*.</p>
+                    </div>
+                </div>
+                <h2>Kesimpulan</h2>
+                <p>Jadi, Webhooks adalah alat yang sangat fundamental untuk membangun proses pengembangan yang efisien, modern, dan otomatis. Dengan Webhooks, GitHub tidak lagi hanya menjadi tempat menyimpan kode, tapi menjadi pusat komando untuk semua aktivitas pengembanganmu.</p>
+<div id="pesbukdiskus"></div><div id="related-articles-grid"></div>
+            </article>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+                      <p class="footer-copy">
+                🄯 <span id="current-year"></span> Hak Cipta Terserah Kamu.</p>
+        </div>
+    </footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
+<section id="related-marquee-section"><div id="related-marquee-container"></div></section>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/pesbukdiskus.js"></script>
+</body></html>
