@@ -127,7 +127,7 @@
         function showToast(msg){ toast.textContent=msg; toast.style.opacity = '1'; setTimeout(()=>toast.style.opacity='0', 2000); }
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
-        const galleryImages = Array.from(document.querySelectorAll('figure img, .image-container img'));
+        const galleryImages = Array.from(document.querySelectorAll('figure img, .zdummy img'));
         let currentIndex = 0;
         function openLightbox(index) {
             currentIndex = index;

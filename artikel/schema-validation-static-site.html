@@ -81,11 +81,11 @@
             padding: 15px 25px;
             border-radius: 4px;
         }
-        .image-container {
+        .zdummy {
             text-align: center;
             margin: 30px 0;
         }
-        .image-container img {
+        .zdummy img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
@@ -185,7 +185,7 @@
             <li>**Target Perlindungan:** Bukan lagi Static Site itu sendiri, melainkan **endpoint API** dari *Serverless Function* yang menangani formulir kontak atau pencarian Anda.</li>
             <li>**Kegunaannya:** Anda dapat mendefinisikan skema untuk formulir tersebut. Misalnya, kolom email harus berjenis *string* dan kolom pesan tidak boleh melebihi 500 karakter. Jika *spammer* mengirim data acak dengan string 10.000 karakter, Cloudflare akan **memblokirnya di lapisan Edge** sebelum *Worker* Anda harus mengonsumsi CPU dan durasi eksekusi yang mahal.</li>
         </ul>
-<div class="image-container">
+<div class="zdummy">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQC7Nszo1bkHxdtRkpiTZgOunG6CqyDbSi9U2EJtV1Q_KkKEpsy3AGIgJfpga9IdIst9V8Dicc2SMtJ0Pwj-JaaV_Rn-bxQoxN6Y30QFBId5diryFWWXfzalvAH7_7Kv_Hd-gnrvj6WdGkvkvxRfJMunExkTI3L4b1-JxKbQMg8vejVj6IvnK77rdUZWc/s1600/scemastatis.webp" alt="Ilustrasi data API yang dicek oleh Cloudflare">
             <p style="font-size:0.9em;">**Gambar:** Cloudflare menjalankan pemeriksaan Schema sebelum permintaan mencapai *origin server*.</p>
         </div>
