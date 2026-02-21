@@ -1,19 +1,19 @@
 (function () {
     const d = document;
 
-    // Menentukan target kontainer (id="diskus")
+    // 1. Cari kontainer utama (id="diskus")
     const container = d.getElementById("diskus");
     if (!container) return; 
 
-    // Ambil URL otomatis dari dataset atau current URL
+    // 2. Ambil URL halaman
     const url = container.dataset.href || location.href;
 
-    // Set tampilan awal kontainer
-    container.innerHTML = `<div id="disqus_thread"></div>`;
-
-    // Konfigurasi dan Load Disqus
+    // 3. Fungsi untuk memuat Disqus
     function loadDisqus() {
         if (window.DISQUS) return;
+
+        // Siapkan "panggung" untuk Disqus di dalam kontainer 'diskus'
+        container.innerHTML = `<div id="disqus_thread"></div>`;
 
         window.disqus_config = function () {
             this.page.url = url;
@@ -27,6 +27,21 @@
         d.body.appendChild(s);
     }
 
-    // Langsung jalankan fungsi muat komentar
-    loadDisqus();
+    // 4. Logika Viewport (Lazy Load)
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                loadDisqus();
+                // Matikan observer kalau sudah dimuat sekali
+                observer.unobserve(container);
+            }
+        }, {
+            rootMargin: "0px 0px 300px 0px" // Disqus dimuat pas jaraknya 300px lagi ke bawah (biar user gak nunggu)
+        });
+
+        observer.observe(container);
+    } else {
+        // Fallback buat browser jadul yang gak support Observer
+        loadDisqus();
+    }
 })();
