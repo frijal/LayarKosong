@@ -79,14 +79,14 @@ function loadFacebook(callback) {
     s.defer = true;
     s.crossOrigin = "anonymous";
     // Menggunakan v18.0 agar lebih aman
-    s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v18.0&appId=175216696195384";
+    s.src = "https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v25.0&appId=175216696195384";
     s.onload = () => {
         // Pastikan FB sudah terinisialisasi
         if (window.FB) {
             FB.init({
                 appId: '175216696195384',
                 xfbml: true,
-                version: 'v18.0'
+                version: 'v25.0'
             });
             callback && callback();
         }
