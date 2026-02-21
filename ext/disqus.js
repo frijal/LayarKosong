@@ -1,5 +1,5 @@
 (function(){
-  const d=document,w=window,e=d.getElementById("disqus_thread");
+  const d=document,w=window,e=d.getElementById("diskus");
   if(!e)return;
 
   e.style.display="none";
