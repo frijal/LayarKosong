@@ -316,38 +316,40 @@ fn main() -> Result<()> {
     );
     fs::write("sitemap.xml", sitemap_index)?;
 
+    // ... (kode sebelumnya sama sampai bagian RSS GLOBAL) ...
+
     // --- RSS GLOBAL ---
     let rss_global = build_rss(
         "Layar Kosong",
-        &final_items[..final_items.len().min(RSS_LIMIT)],
+        &final_items[..final_items.len().min(RSS_LIMIT)], // RSS_LIMIT terpakai di sini!
                                &format!("{}/rss.xml", BASE_URL),
                                "Feed artikel terbaru"
     );
     fs::write("rss.xml", rss_global)?;
 
-    // --- RSS PER KATEGORI (Di dalam loop Landing Page) ---
-    // Di bagian loop template kategori yang sudah ada, tambahkan:
-    let cat_items: Vec<Article> = final_items.iter()
-    .filter(|it| it.category == cat)
-    .cloned()
-    .collect();
-
-    let rss_cat = build_rss(
-        &format!("Kategori {} - Layar Kosong", sanitize_title(&cat)),
-                            &cat_items[..cat_items.len().min(RSS_LIMIT)],
-                            &rss_url,
-                            &format!("Kumpulan artikel terbaru di kategori {}", cat)
-    );
-    fs::write(format!("feed-{}.xml", slug), rss_cat)?;
-
-    // 5. LANDING PAGE KATEGORI & RSS
+    // 5. LANDING PAGE KATEGORI & RSS PER KATEGORI
     let template_html = fs::read_to_string(TEMPLATE_KATEGORI).ok();
     if let Some(tpl) = template_html {
         for (cat, articles) in root_map {
             let slug = slugify(&cat);
             let rss_url = format!("{}/feed-{}.xml", BASE_URL, slug);
 
-            // Generate JSON-LD hasPart
+            // --- GENERATE RSS PER KATEGORI ---
+            // Kita ambil artikel yang sesuai dengan kategori ini saja
+            let cat_items: Vec<Article> = final_items.iter()
+            .filter(|it| it.category == cat)
+            .cloned()
+            .collect();
+
+            let rss_cat = build_rss(
+                &format!("Kategori {} - Layar Kosong", sanitize_title(&cat)),
+                                    &cat_items[..cat_items.len().min(RSS_LIMIT)], // Pakai RSS_LIMIT lagi
+                                    &rss_url,
+                                    &format!("Kumpulan artikel terbaru di kategori {}", cat)
+            );
+            fs::write(format!("feed-{}.xml", slug), rss_cat)?;
+
+            // --- GENERATE LANDING PAGE (index.html) ---
             let has_part = articles.iter().map(|a| json!({
                 "@type": "WebPage",
                 "name": a.0,
