@@ -24,7 +24,6 @@ regex = "1"
 anyhow = "1"
 minify-html = "0.15.0"
 
-[dependencies]
 atrium-api = "0.20.0"
 atrium-xrpc-client = "0.1.0"
 tokio = { version = "1", features = ["full"] }
