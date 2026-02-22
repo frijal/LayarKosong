@@ -1,1 +1,1 @@
-/workspaces/LayarKosong/target/release/seo-fixer: /workspaces/LayarKosong/alat/seo-fixer.rs
+/home/runner/work/LayarKosong/LayarKosong/target/release/seo-fixer: /home/runner/work/LayarKosong/LayarKosong/alat/seo-fixer.rs
