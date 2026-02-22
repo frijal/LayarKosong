@@ -21,6 +21,19 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
+      - name: Cache Rust
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Cache Node Modules
         uses: actions/cache@v5.0.3
         with:
@@ -46,7 +59,7 @@ jobs:
           fi
 
       - name: 🧹 Sterilize Schema (Node.js)
-        run: node ext/clean-schema.js artikelx/      
+        run: node ext/clean-schema.js artikelx/
 
       - name: Replace Content (Perl)
         run: |
@@ -82,10 +95,17 @@ jobs:
           done     
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
-      - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
+    #  - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
+    #    run: |
+    #      set -euo pipefail
+    #      npm run ci-fix-meta-image
+
+      - name: Inject SEO, Mirror Images & WebP (Rust Version)
         run: |
           set -euo pipefail
-          npm run ci-fix-meta-image
+          # Jalankan seo-fixer dengan target folder 'artikelx'
+          # Menggunakan --release agar konversi WebP super cepat
+          cargo run --release --bin seo-fixer -- artikelx
 
       - name: Add HTML Elements (Sed)
         run: |
