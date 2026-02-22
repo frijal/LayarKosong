@@ -24,11 +24,11 @@ body { font-family: Inter, sans-serif; }
     
     
     
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
     
-    
-    
-    
-    
+    <meta name="bluesky:creator" content="@dalam.web.id">
     
     
     
@@ -45,45 +45,18 @@ body { font-family: Inter, sans-serif; }
     
     
     
-    
+    <meta itemprop="image" content="https://dalam.web.id/img/ffmpeg-panduan-interaktif.webp">
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Layar Kosong">
     <link rel="icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://dalam.web.id/artikel/ffmpeg-panduan-interaktif">
     <meta property="og:url" content="https://dalam.web.id/artikel/ffmpeg-panduan-interaktif">
-    <meta property="twitter:url" content="https://dalam.web.id/artikel/ffmpeg-panduan-interaktif">
-    <meta property="twitter:domain" content="https://dalam.web.id">
     <meta property="og:title" content="Panduan FFmpeg Lengkap: Audio &amp; Video Interaktif">
-    <meta name="twitter:title" content="Panduan FFmpeg Lengkap: Audio &amp; Video Interaktif">
-    <meta property="og:type" content="article">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="author" content="Fakhrul Rijal">
     <meta name="description" content="Panduan FFmpeg lengkap dengan contoh perintah audio/video, batch convert, trim, resize, extract, merge, overlay, watermark, compress, tips, diagram visual interaktif, dan tombol salin kode.">
     <meta property="og:description" content="Panduan FFmpeg lengkap dengan contoh perintah audio/video, batch convert, trim, resize, extract, merge, overlay, watermark, compress, tips, diagram visual interaktif, dan tombol salin kode.">
-    <meta name="twitter:description" content="Panduan FFmpeg lengkap dengan contoh perintah audio/video, batch convert, trim, resize, extract, merge, overlay, watermark, compress, tips, diagram visual interaktif, dan tombol salin kode.">
-    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="fb:app_id" content="175216696195384">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large"></head>
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
   <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -126,26 +99,283 @@ body { font-family: Inter, sans-serif; }
     </main>
 </div>
 <!-- Templates -->
-<template id="welcome-content"></template>
+<template id="welcome-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Selamat Datang! 👋</h2>
+<p class="text-lg text-gray-600 mb-4">Panduan interaktif FFmpeg lengkap untuk audio &amp; video. Pilih topik di menu sebelah kiri untuk melihat diagram visual, contoh perintah, dan penjelasan parameter.</p>
+<p class="text-gray-600">Gunakan tombol "Salin" untuk menyalin perintah dengan mudah. Semua perintah dapat dicoba langsung di terminal Anda.</p>
+</div>
+</template>
 <!-- ==================== AUDIO BLOCKS ==================== -->
-<template id="mp3-ogg-content"></template>
-<template id="batch-audio-content"></template>
-<template id="wav-mp3-content"></template>
-<template id="normalize-audio-content"></template>
-<template id="change-bitrate-content"></template>
+<template id="mp3-ogg-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">MP3 → OGG</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎵 input.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp3 output.ogg</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎶 output.ogg</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp3 output.ogg</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Format OGG biasanya lebih kecil ukurannya, cocok untuk streaming.</p>
+</div>
+</template>
+<template id="batch-audio-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Audio</h2>
+<div class="diagram-box">
+<div class="diagram-step">📁 folder/*.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">📁 folder/*.ogg</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Mengonversi semua file MP3 di folder ke OGG secara otomatis.</p>
+</div>
+</template>
+<template id="wav-mp3-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">WAV → MP3</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎵 input.wav</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.wav -b:a 192k output.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎶 output.mp3</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.wav -b:a 192k output.mp3</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Konversi WAV ke MP3 dengan bitrate 192kbps.</p>
+</div>
+</template>
+<template id="normalize-audio-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Normalize Audio</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎵 input.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp3 -filter:a loudnorm output.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎶 output.mp3</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp3 -filter:a loudnorm output.mp3</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Menormalkan volume audio sehingga rata-rata output stabil.</p>
+</div>
+</template>
+<template id="change-bitrate-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Ubah Bitrate Audio</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎵 input.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp3 -b:a 128k output.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎶 output.mp3</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp3 -b:a 128k output.mp3</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Mengubah bitrate audio menjadi 128kbps.</p>
+</div>
+</template>
 <!-- ==================== VIDEO BLOCKS ==================== -->
-<template id="trim-video-content"></template>
-<template id="resize-video-content"></template>
-<template id="extract-audio-content"></template>
-<template id="mp4-webm-content"></template>
-<template id="batch-video-content"></template>
-<template id="merge-videos-content"></template>
-<template id="overlay-watermark-content"></template>
+<template id="trim-video-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Trim Video</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎬 input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:30 -c copy output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎬 output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:30 -c copy output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Trim video dari detik 10 sampai 30 tanpa re-encode.</p>
+</div>
+</template>
+<template id="resize-video-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Resize Video</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎬 input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎬 output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Ubah resolusi video menjadi 1280x720 piksel.</p>
+</div>
+</template>
+<template id="extract-audio-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Extract Audio dari Video</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎬 input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎵 output.mp3</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Ekstrak audio terbaik dari video.</p>
+</div>
+</template>
+<template id="mp4-webm-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">MP4 → WebM</h2>
+<div class="diagram-box">
+<div class="diagram-step">🎬 input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -c:v libvpx -c:a libvorbis output.webm</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎬 output.webm</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -c:v libvpx -c:a libvorbis output.webm</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Konversi MP4 ke WebM menggunakan codec VP8 dan Vorbis.</p>
+</div>
+</template>
+<template id="batch-video-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Batch Convert Video</h2>
+<div class="diagram-box">
+<div class="diagram-step">📁 folder/*.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mkv"; done</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">📁 folder/*.mkv</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>for f in *.mp4; do ffmpeg -i "$f" -c:v libx264 -c:a aac "${f%.mp4}.mkv"; done</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Batch convert semua video MP4 ke MKV.</p>
+</div>
+</template>
+<template id="merge-videos-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Merge Videos</h2>
+<div class="diagram-box">
+<div class="diagram-step">file1.mp4 + file2.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -f concat -safe 0 -i list.txt -c copy output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎬 output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -f concat -safe 0 -i list.txt -c copy output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Gabungkan beberapa video tanpa re-encode.</p>
+</div>
+</template>
+<template id="overlay-watermark-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Overlay / Watermark</h2>
+<div class="diagram-box">
+<div class="diagram-step">input.mp4 + logo.png</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -i logo.png -filter_complex "overlay=10:10" output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">🎬 output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -i logo.png -filter_complex "overlay=10:10" output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Tambahkan watermark/logo di pojok kiri atas video.</p>
+</div>
+</template>
 <!-- ==================== ADVANCED BLOCKS ==================== -->
-<template id="change-codec-content"></template>
-<template id="compress-video-content"></template>
-<template id="framerate-content"></template>
-<template id="tips-content"></template>
+<template id="change-codec-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Change Codec</h2>
+<div class="diagram-box">
+<div class="diagram-step">input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -c:v libx265 -c:a aac output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -c:v libx265 -c:a aac output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Ubah codec video ke H.265 dan audio ke AAC.</p>
+</div>
+</template>
+<template id="compress-video-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Compress Video</h2>
+<div class="diagram-box">
+<div class="diagram-step">input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -vcodec libx264 -crf 28 output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Kompresi video dengan CRF 28 (nilai lebih rendah = kualitas lebih baik).</p>
+</div>
+</template>
+<template id="framerate-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Change Framerate</h2>
+<div class="diagram-box">
+<div class="diagram-step">input.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">ffmpeg -i input.mp4 -r 60 output.mp4</div>
+<div class="diagram-arrow">→</div>
+<div class="diagram-step">output.mp4</div>
+</div>
+<div class="code-block">
+<button class="copy-btn">Salin</button>
+<pre><code>ffmpeg -i input.mp4 -r 60 output.mp4</code></pre>
+</div>
+<p class="text-gray-600 text-sm">Ubah framerate video menjadi 60fps.</p>
+</div>
+</template>
+<template id="tips-content">
+<div class="bg-white p-8 rounded-lg shadow-sm">
+<h2 class="text-2xl font-bold text-gray-900 mb-2">Tips &amp; Best Practices</h2>
+<ul class="list-disc list-inside text-gray-600 space-y-2">
+<li>Gunakan <code>-c copy</code> jika tidak ingin re-encode (lebih cepat).</li>
+<li>Gunakan <code>-crf</code> untuk mengontrol kualitas video saat kompresi.</li>
+<li>Gunakan <code>-filter_complex</code> untuk overlay, watermark, dan efek lanjutan.</li>
+<li>Selalu cek codec audio/video sebelum convert untuk kompatibilitas.</li>
+<li>Gunakan batch script untuk menghemat waktu saat banyak file.</li>
+</ul>
+</div>
+</template>
 <div id="iposbrowser"></div>
 <div style="margin-top:50px;padding:20px;text-align:center;">
 <p class="text-xs text-gray-500">🄯 2025 Command Line Guides | Panduan Interaktif FFmpeg Lengkap</p>
