@@ -146,11 +146,11 @@ jobs:
         
       - name: '8️⃣ Clean HTML Cerdas (rust-html-minify)'
         if: env.DO_MINIFY_HTML == 'true'
-        run: node ext/minify-html.js
+        run: cargo run --release --bin minify-html
 
       - name: 🧹 Minify Data (JSON & XML)
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: node ext/minify-jsonxml.js     
+        run: cargo run --release --bin minify-jsonxml
 
       - name: '9️⃣ Commit and Push'
         run: |
