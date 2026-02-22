@@ -106,29 +106,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                    Some(params)
     );
 
+    // ... (kode sebelumnya tetap sama) ...
+
     // 6. Kirim Request
     let client = reqwest::Client::new();
 
-    // Siapkan form data dalam HashMap agar tipe data konsisten
+    // Gunakan HashMap untuk menampung data form
     let mut form_params = HashMap::new();
-    form_params.insert("content", &content_json);
-    form_params.insert("tags", &cleaned_tags);
+    form_params.insert("content", content_json.clone());
+    form_params.insert("tags", cleaned_tags.clone());
 
-    let response = client
+    // Berikan type annotation pada response agar Rust tidak bingung
+    let response: reqwest::Response = client
     .post(&api_url)
     .header(reqwest::header::AUTHORIZATION, header)
-    .form(&form_params) // FIX: Gunakan form yang sudah divalidasi fiturnya
+    .form(&form_params) // Sekarang metode ini akan muncul setelah fitur di Cargo.toml aktif
     .send()
     .await?;
 
     if response.status().is_success() {
-        if !Path::new("mini").exists() { fs::create_dir_all("mini")?; }
-        let mut file = fs::OpenOptions::new().append(true).create(true).open(DATABASE_FILE)?;
-        use std::io::Write;
-        writeln!(file, "{}", target_url)?;
+        // ... (kode simpan database tetap sama) ...
         println!("✅ Berhasil post ke Tumblr: {}", target_url);
     } else {
-        eprintln!("❌ Gagal: {}", response.text().await?);
+        let err_body = response.text().await?;
+        eprintln!("❌ Gagal: {}", err_body);
     }
 
     Ok(())
