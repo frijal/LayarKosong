@@ -333,7 +333,6 @@ itemsHtml += `
         </td>
     </tr>`;
     });
-
     const content = `
         <div class="nota-header">
             <h3>LAUNDRY BERKAH</h3>
@@ -344,8 +343,7 @@ itemsHtml += `
             Tggl : ${tgl} - ${jam}<br>
             Nama : ${nama}
         </div>
-        
-        <table class="nota-table">
+                <table class="nota-table">
 <thead>
     <tr style="border-bottom: 2px solid #000;">
     
@@ -355,8 +353,7 @@ itemsHtml += `
                 ${itemsHtml}
             </tbody>
         </table>
-        
-        <div class="nota-footer">
+                <div class="nota-footer">
             <div class="total-row">
                 <span>TOTAL:</span>
                 <span>Rp ${total}</span>
@@ -364,11 +361,8 @@ itemsHtml += `
             ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
             <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***</p>
         </div>`;
-
 const p = document.getElementById("nota-summary");
 p.innerHTML = content;
-// p.style.display = "block"; // Tidak perlu lagi karena sudah diatur di CSS off-screen
-
 html2canvas(p, { 
     scale: 3, 
     useCORS: true, 
