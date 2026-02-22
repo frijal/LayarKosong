@@ -7,12 +7,11 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use url::Url;
 
-// --- UTILS: Mirror & Convert (Logika Sharp/Axios ke Rust) ---
+// --- UTILS: Mirror & Convert (Logika Sharp + Axios) ---
 async fn mirror_and_convert(external_url: &str, base_url: &str) -> Result<String> {
     let url = Url::parse(external_url)?;
     let base_parsed = Url::parse(base_url)?;
 
-    // Skip jika domain sendiri, localhost, atau schema.org
     if url.host_str() == base_parsed.host_str() || url.host_str() == Some("localhost") || url.host_str() == Some("schema.org") {
         return Ok(external_url.replace(base_url, ""));
     }
@@ -24,7 +23,7 @@ async fn mirror_and_convert(external_url: &str, base_url: &str) -> Result<String
     let is_svg = ext == "svg";
     let final_ext = if is_svg { "svg" } else { "webp" };
 
-    // Path lokal: img/hostname/path.webp
+    // Simpan di img/hostname/path
     let mut local_path = PathBuf::from("../img");
     local_path.push(host);
     let relative_path = path_segments.trim_start_matches('/');
@@ -72,29 +71,34 @@ fn prepare_desc(text: &str) -> String {
 #[tokio::main]
 async fn main() -> Result<()> {
     let base_url = "https://dalam.web.id";
-    let target_folder = std::env::args().nth(2).unwrap_or_else(|| "../artikel".to_string());
-    let pattern = format!("{}/*.html", target_folder);
+    let source_folder = "../artikelx";
+    let dest_folder = "../artikel";
+
+    // Pastikan folder tujuan ada
+    fs::create_dir_all(dest_folder)?;
+
+    let pattern = format!("{}/*.html", source_folder);
     let mut total_processed = 0;
 
     for entry in glob(&pattern)? {
         let path = entry?;
         let raw_content = fs::read_to_string(&path)?;
-        let file_name = path.file_stem().unwrap().to_str().unwrap();
+        let file_name_with_ext = path.file_name().unwrap();
+        let file_name_str = path.file_stem().unwrap().to_str().unwrap();
 
-        println!("🔍 Memproses SEO & Meta Images: {}.html", file_name);
+        println!("\n🔍 Memproses SEO & Meta Images: {}", file_name_with_ext.to_str().unwrap());
 
-        // --- PASS 1: EKSTRAKSI DATA (Mirroring & Data SEO) ---
         let document = Html::parse_document(&raw_content);
         let mut img_map = HashMap::new();
 
-        // A. Title & Canonical
+        // --- 1. DATA EXTRACTION (Pass 1) ---
         let title_tag = document.select(&Selector::parse("title").unwrap()).next()
         .map(|e| e.text().collect::<String>()).unwrap_or_default();
         let article_title = title_tag.split(" - ").next().unwrap_or("Layar Kosong").trim();
         let escaped_title = escape_html_attr(article_title);
-        let canonical_url = format!("{}/artikel/{}", base_url, file_name);
+        let canonical_url = format!("{}/artikel/{}", base_url, file_name_str);
 
-        // B. Mirroring Gambar dalam Body
+        // Mirroring Images in Body
         for el in document.select(&Selector::parse("img").unwrap()) {
             if let Some(src) = el.value().attr("src") {
                 if src.starts_with("http") && !img_map.contains_key(src) {
@@ -105,7 +109,7 @@ async fn main() -> Result<()> {
             }
         }
 
-        // C. Logika Deskripsi (Best Description)
+        // SEO Descriptions (Logika Best Meta)
         let raw_meta_desc = document.select(&Selector::parse("meta[name='description'], meta[property='description']").unwrap())
         .next().and_then(|e| e.value().attr("content")).unwrap_or("");
         let raw_og_desc = document.select(&Selector::parse("meta[property='og:description'], meta[name='og:description']").unwrap())
@@ -129,7 +133,7 @@ async fn main() -> Result<()> {
 
         let final_desc = prepare_desc(best_meta);
 
-        // D. Meta Image Sosial Media
+        // Social Media Image Extraction & Mirroring
         let mut meta_img_url = document.select(&Selector::parse("meta[property='twitter:image'], meta[name='twitter:image'], meta[property='og:image']").unwrap())
         .next().and_then(|e| e.value().attr("content")).unwrap_or("");
 
@@ -144,7 +148,6 @@ async fn main() -> Result<()> {
             }
         }
 
-        // E. Waktu & Tags
         let published_time = document.select(&Selector::parse("meta[property='article:published_time']").unwrap()).next().and_then(|e| e.value().attr("content"));
         let modified_time = document.select(&Selector::parse("meta[property='article:modified_time']").unwrap()).next().and_then(|e| e.value().attr("content"));
         let mut tags = Vec::new();
@@ -152,7 +155,7 @@ async fn main() -> Result<()> {
             if let Some(c) = el.value().attr("content") { tags.push(c.to_string()); }
         }
 
-        // --- PASS 2: REWRITING (Sesuai Logika Suntik Ulang Node.js) ---
+        // --- 2. REWRITING (Pass 2) ---
         let mut output = Vec::new();
         {
             let mut rewriter = HtmlRewriter::new(
@@ -163,12 +166,12 @@ async fn main() -> Result<()> {
                             el.set_attribute("prefix", "og: https://ogp.me/ns# article: https://ogp.me/ns/article#")?;
                             Ok(())
                         }),
-                        // BERSIHKAN TAG LAMA (Sesuai script: link canonical, icon, license, meta desc, og, twitter, robots, dll)
+                        // Hapus tag lama sesuai script Node.js
                         element!("link[rel='canonical'], link[rel='icon'], link[rel='shortcut icon'], link[rel='license']", |el| { el.remove(); Ok(()) }),
                                                  element!("meta[name='description'], meta[property='description'], meta[property^='og:'], meta[name^='twitter:'], meta[property^='twitter:'], meta[property^='article:'], meta[itemprop='image']", |el| { el.remove(); Ok(()) }),
                                                  element!("meta[name='author'], meta[name='robots'], meta[name='googlebot'], meta[name='theme-color'], meta[name^='bluesky:'], meta[name^='fediverse:']", |el| { el.remove(); Ok(()) }),
 
-                                                 // SUNTIK ULANG (Bagian 4 pada script asli)
+                                                 // Suntik ulang head
                                                  element!("head", |el| {
                                                      let mut inject = format!(
                                                          r#"
@@ -226,15 +229,13 @@ async fn main() -> Result<()> {
                                                  el.append(&inject, ContentType::Html);
                                                      Ok(())
                                                  }),
-                                                 // BODY FIXES
+                                                 // Body Fixes (Img Alt)
                                                  element!("img", |el| {
-                                                 // Mirroring body images
                                                  if let Some(src) = el.get_attribute("src") {
                                                      if let Some(local_src) = img_map.get(&src) {
                                                          el.set_attribute("src", local_src)?;
                                                  }
                                                  }
-                                                 // Alt tag
                                                  if el.get_attribute("alt").unwrap_or_default().is_empty() {
                                                      el.set_attribute("alt", article_title)?;
                                                  }
@@ -250,10 +251,14 @@ async fn main() -> Result<()> {
                                                      rewriter.end()?;
                                                  }
 
-                                                 fs::write(&path, output)?;
-                                                 total_processed += 1;
+                                                 // --- 3. SAVE TO DEST & REMOVE SOURCE ---
+                                                 let dest_path = PathBuf::from(dest_folder).join(file_name_with_ext);
+                                                     fs::write(&dest_path, output)?; // Simpan ke artikel/
+                                                     fs::remove_file(&path)?;       // Hapus dari artikelx/
+
+                                                     total_processed += 1;
                                                  }
 
-                                                 println!("\n✅ SEO Fixer: Selesai! {} file sudah dipoles.", total_processed);
+                                                 println!("\n✅ SEO Fixer: Selesai! {} file diproses dan dipindahkan ke folder artikel/.", total_processed);
                                                      Ok(())
                                                  }
