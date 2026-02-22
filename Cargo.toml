@@ -44,3 +44,7 @@ path = "alat/clean-schema.rs"
 [[bin]]
 name = "generator-pro"
 path = "alat/generator-pro.rs"
+
+[[bin]]
+name = "inject-schema"
+path = "alat/inject-schema.rs"
