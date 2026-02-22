@@ -63,19 +63,22 @@ fn minify_file(path: PathBuf, stats: &Stats, errors: &Mutex<Vec<String>>) {
             }).to_string();
 
             // Setup Minify Config yang valid untuk crate minify-html
-            let mut cfg = Cfg::new();
-            cfg.do_not_minify_doctype = false;
-            cfg.ensure_spec_compliant_unquoted_attribute_values = false;
+            let mut cfg = minify_html::Cfg::new();
+            // Ganti do_not_minify_doctype menjadi minify_doctype
+            cfg.minify_doctype = true;
+
+            // Ganti ensure_spec_compliant_unquoted_attribute_values
+            // menjadi allow_noncompliant_unquoted_attribute_values
+            cfg.allow_noncompliant_unquoted_attribute_values = true;
+
+            // Ganti keep_spaces_between_attributes
+            // menjadi allow_removing_spaces_between_attributes
+            cfg.allow_removing_spaces_between_attributes = true;
+
+            // Tambahan opsional agar hasil tetap "aman" tapi ramping
             cfg.keep_comments = false;
             cfg.minify_css = true;
             cfg.minify_js = true;
-            cfg.remove_processing_instructions = true;
-
-            // Di Rust, collapse whitespace adalah perilaku default.
-            // Kita cukup pastikan spasi antar atribut dibuang:
-            cfg.keep_spaces_between_attributes = false;
-            cfg.keep_html_and_head_opening_tags = false;
-            cfg.keep_closing_tags = false; // Bikin makin ramping!
 
             let minified = minify(html.as_bytes(), &cfg);
 
