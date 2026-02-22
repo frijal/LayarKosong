@@ -1,5 +1,5 @@
 use atrium_api::agent::atp_agent::AtpAgent;
-// FIX: Path terbaru untuk Memory Store di versi 0.25.x
+// Di v0.25.x, SessionMemoryStore diekspos langsung di bawah agent
 use atrium_api::agent::SessionMemoryStore;
 use atrium_api::app::bsky::embed::external::{MainData, ExternalData};
 use atrium_api::app::bsky::feed::post::{RecordData, RecordEmbedRefs};
@@ -10,6 +10,11 @@ use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path::Path;
+
+
+
+// ... sisanya tetap sama
+
 
 const JSON_FILE: &str = "artikel.json";
 const DATABASE_FILE: &str = "mini/posted-bluesky.txt";
