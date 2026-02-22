@@ -1,9 +1,9 @@
-import Parser from 'rss-parser';
+import { read } from 'feed-reader'; // Library baru
 import { Octokit } from "@octokit/core";
 import fs from 'fs';
 import path from 'path';
 
-const parser = new Parser();
+// Kita tidak perlu "new Parser()" lagi karena 'read' adalah fungsi langsung
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 const RSS_FILES = [
@@ -20,9 +20,8 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function run() {
   try {
-    console.log("🎨 Memulai sinkronisasi dengan urutan variasi kategori...");
+    console.log("🎨 Memulai sinkronisasi Layar Kosong (Modern Feed Engine)...");
 
-    // 1. Setup Tracker
     const dir = path.dirname(TRACKER_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     if (!fs.existsSync(TRACKER_FILE)) fs.writeFileSync(TRACKER_FILE, '');
@@ -31,7 +30,6 @@ async function run() {
       fs.readFileSync(TRACKER_FILE, 'utf8').split('\n').map(s => s.trim()).filter(s => s !== '')
     );
 
-    // 2. Ambil Info Repo
     const repoRes = await octokit.graphql(`
       query($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
@@ -44,50 +42,51 @@ async function run() {
     const repoId = repoRes.repository.id;
     const ghCategories = repoRes.repository.discussionCategories.nodes;
 
-    // 3. Kumpulkan SEMUA artikel dari SEMUA file ke satu Array besar
     let allArticles = [];
 
     for (const fileName of RSS_FILES) {
       if (!fs.existsSync(fileName)) continue;
       
-      const feed = await parser.parseString(fs.readFileSync(fileName, 'utf8'));
+      const xmlData = fs.readFileSync(fileName, 'utf8');
+      // Feed-reader menggunakan fungsi 'read' yang bisa menerima string XML atau URL
+      const feed = await read(xmlData); 
+      
+      // Mengambil nama kategori dari title (Layar Kosong - Kategori X)
       const rawCategory = feed.title.split(' - ')[0].replace('Kategori ', '').trim();
       const targetCategory = ghCategories.find(c => c.name.toLowerCase() === rawCategory.toLowerCase());
 
       if (!targetCategory) continue;
 
-      feed.items.forEach(item => {
+      // 'feed.entries' adalah pengganti 'feed.items' di library lama
+      feed.entries.forEach(item => {
         const urlParts = item.link.split('/');
         const slug = urlParts[urlParts.length - 1] || urlParts[urlParts.length - 2];
         
-        // Hanya masukkan yang BELUM pernah di-post
         if (!postedSlugs.has(slug)) {
           allArticles.push({
-            ...item,
+            title: item.title,
+            link: item.link,
+            description: item.description || item.content,
+            enclosure: item.enclosures ? item.enclosures[0] : null, // Struktur sedikit berbeda
             slug: slug,
             targetCategoryId: targetCategory.id,
             categoryName: rawCategory,
-            // Simpan tanggal dalam format angka untuk pengurutan
-            pubDateParsed: new Date(item.pubDate).getTime() 
+            pubDateParsed: new Date(item.published).getTime() 
           });
         }
       });
     }
 
-    // 4. URUTKAN: Kita urutkan berdasarkan tanggal (dari yang terlama ke terbaru)
-    // Supaya pas tampil di GitHub Discussion, yang PALING BARU muncul paling atas.
     allArticles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
+    console.log(`📦 Ditemukan ${allArticles.length} artikel baru.`);
 
-    console.log(`📦 Ditemukan ${allArticles.length} artikel baru yang siap diposting secara bervariasi.`);
-
-    // 5. Eksekusi Posting satu per satu
     let count = 0;
     for (const art of allArticles) {
       count++;
-      console.log(`🚀 [${count}/${allArticles.length}] Posting dari kategori [${art.categoryName}]: ${art.title}`);
+      console.log(`🚀 [${count}/${allArticles.length}] Posting: ${art.title}`);
 
-      // Logika Gambar
       let displayImage = '';
+      // Penyesuaian pengecekan enclosure (gambar)
       if (art.enclosure && art.enclosure.url) {
         let imgUrl = art.enclosure.url;
         const relativePath = imgUrl.replace('https://dalam.web.id/', '');
@@ -109,14 +108,12 @@ async function run() {
           repoId: repoId,
           catId: art.targetCategoryId,
           title: art.title,
-          body: `### [${art.title}](${art.link})${displayImage}\n\n${art.contentSnippet || art.description || ''}${footer}`
+          body: `### [${art.title}](${art.link})${displayImage}\n\n${art.description || ''}${footer}`
         });
 
-        // Update Tracker secara real-time
         postedSlugs.add(art.slug);
         fs.writeFileSync(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
 
-        // Jeda 2 detik biar nggak dianggap brutal oleh GitHub
         await sleep(2000); 
 
       } catch (err) {
@@ -124,7 +121,7 @@ async function run() {
       }
     }
 
-    console.log("\n✅ Semua artikel baru telah diposting dengan urutan yang rapi!");
+    console.log("\n✅ Sinkronisasi selesai!");
 
   } catch (err) {
     console.error("❌ Kesalahan Fatal:", err.message);
