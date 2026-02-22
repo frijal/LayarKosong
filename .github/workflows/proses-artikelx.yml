@@ -1,4 +1,5 @@
 name: 🔄 Proses ArtikelX
+
 on:
   push:
     branches: ['main']
@@ -15,23 +16,28 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6 # Update ke v4 biar makin sat-set
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 1
+          persist-credentials: true
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      # Menggunakan Smart Cache yang sama dengan workflow sebelah
-      - name: Rust Cache Engine
-        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+      - name: Cache Node Modules
+        uses: actions/cache@v5.0.3
         with:
-          shared-key: "layarkosong-engine" # Kunci harus sama persis!
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Build Rust Tools
-        run: cargo build --release --quiet
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.2.0
+        with:
+          node-version: 24
 
-      - name: 1. Localize Assets (Perl)
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Localize Assets
         run: |
           set -euo pipefail
           if [[ -f ext/gantifontshighlight.pl ]]; then
@@ -39,58 +45,104 @@ jobs:
             perl ext/gantifontshighlight.pl --quiet --no-backup
           fi
 
-      - name: 2. Sterilize Schema (Rust)
-        run: ./target/release/clean-schema artikelx/
+      - name: 🧹 Sterilize Schema (Node.js)
+        run: node ext/clean-schema.js artikelx/      
 
-      - name: 3. Replace Content (Perl Regex)
+      - name: Replace Content (Perl)
         run: |
           set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            echo "Applying Regex to $file"
+            echo "Processing $file"                      
             perl -i -wpe '
               s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
-              s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
+              s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
               s|&copy;|🄯|g;
-              s|Font Awesome [56] Free|Font Awesome 7 Free|g;
-              s|Dalam\.web\.id|Jaga Data Pribadi Tetap Aman|gi;
+              s|Font Awesome 6 Free|Font Awesome 7 Free|g;
+              s|Font Awesome 5 Free|Font Awesome 7 Free|g;
+              s|Dalam.web.id|Jaga Data Pribadi Tetap Aman|g;
+              s|Dalam Web ID|Jaga Data Pribadi Tetap Aman|g;
+              s|Dalam Web Id|Jaga Data Pribadi Tetap Aman|g;
               s|far fa-copyright|fa-brands fa-creative-commons-zero|g;
-              s|>dalam\.web\.id</a>|>Jaga Data Pribadi Tetap Aman</a>|gi;
-              s|Analisis (mendalam\|tajam) ||g;
+              s|>dalam.web.id</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|>Dalam Web</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|Dalam Web Artikel|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|Analisis mendalam ||g;
               s|Panduan mendalam ||g;
+              s|Analisis tajam ||g;
               s|Simak ulasan mendalam ||g;
-              s|content="(Mengapa\|Simak\|Analisis kritis\|Temukan\|Pelajari) ||g;
+              s|content="Mengapa ||g;
+              s|content="Simak ||g;
+              s|content="Analisis kritis ||g;
+              s|content="Temukan ||g;
+              s|content="Pelajari ||g;          
               s|©|🄯|g;
               s| - Layar Kosong||g;
             ' "$file"
+          done     
+
+      # Menjalankan Mirroring & WebP Optimization di folder artikelx
+      - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
+        run: |
+          set -euo pipefail
+          npm run ci-fix-meta-image
+
+      - name: Add HTML Elements (Sed)
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for file in artikelx/*.html; do
+            # 1. CSS & RSS di Head
+            if ! grep -q 'marquee-url.css' "$file"; then
+              sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">' "$file"
+            fi      
+            
+            # 2. IPosBrowser Container setelah H1
+            if ! grep -q 'id="iposbrowser"' "$file"; then
+              sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
+            fi      
+            
+            # 3. Gabungkan semua elemen Body agar urutan script TIDAK TERBALIK
+            # Kita cek salah satu penanda unik, misal 'search-floating-container'
+            if ! grep -q 'class="search-floating-container"' "$file"; then
+              # Kita susun string raksasa dengan urutan yang BENAR
+              # Urutan: Progress -> Header -> Search -> Section Marquee -> SCRIPTS
+              ELEMENTS='<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>'
+              SECTION='<section id="related-marquee-section"><div id="related-marquee-container"></div></section>'
+              
+              # URUTAN SCRIPT: Markdown -> IPos -> Marquee -> Pesbuk
+              SCRIPTS='<script defer src="/ext/markdown.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/pesbukdiskus.js"></script><script defer src="/ext/iposbrowser.js"></script>'
+              
+              # Masukkan semuanya sekaligus sebelum </body>
+              sed -i "/<\/body>/i $ELEMENTS$SECTION$SCRIPTS" "$file"
+            fi      
           done
-
-      - name: 4. Inject SEO, Mirror Images & WebP (Rust)
-        run: ./target/release/seo-fixer artikelx
-
-      - name: 5. Add HTML Elements (Rust Engine)
-        run: ./target/release/inject-elements artikelx/
-
-      - name: 6. Move to artikel/
+    
+      - name: Move to artikel/
         run: |
           set -euo pipefail
           shopt -s nullglob
           files=(artikelx/*.html)
           if [[ ${#files[@]} -gt 0 ]]; then
             mv -f "${files[@]}" artikel/
-            echo "Pindah ${#files[@]} file ke artikel/"
+            echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
           else
-            echo "Folder artikelx/ kosong."
+            echo "Tidak ada file di artikelx/"
           fi
 
-      - name: 7. Commit & Push
+      - name: Commit & Push
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions@github.com"
+          
+          # PERBAIKAN: img/ ditambahkan agar gambar hasil mirroring ikut ter-upload
           git add .
+          
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan."
-          else
-            git commit -m "build(artikelx): move, mirror & webp optimization via rust"
-            git push origin main
+            exit 0
           fi
+
+          git commit -m "Proses ArtikelX: Move, Mirror & WebP"
+          git push origin main
