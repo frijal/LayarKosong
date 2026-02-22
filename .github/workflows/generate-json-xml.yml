@@ -127,7 +127,7 @@ jobs:
         if: env.DO_CONVERT_MARKDOWN == 'true'
         run: node ext/html-to-markdown.js
         
-      - name: '8️⃣ Clean HTML Cerdas (html-minifier-terser)'
+      - name: '8️⃣ Clean HTML Cerdas (rust-html-minify)'
         if: env.DO_MINIFY_HTML == 'true'
         run: node ext/minify-html.js
 
