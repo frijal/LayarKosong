@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kalkulator Laundry Berkah</title>
-  <meta name="description" content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.">
-  <meta name="keywords" content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry">
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer=""></script>
+<!doctype html><html lang=id prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><meta charset=UTF-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Kalkulator Laundry Berkah</title><meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name=description><meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name=keywords><script defer="" src=https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js></script><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Kalkulator Laundry Berkah","description":"Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.","articleSection":"Lainnya","keywords":"Berkah, Kalkulator, Laundry, berkah, kalkulator, lainnya, laundry, layar kosong","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/Kalkulator-Laundry-Berkah.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2025-10-29T12:21:57.972+00:00","dateModified":"2025-10-29T12:21:57.972+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https://dalam.web.id/lainnya"},{"@type":"ListItem","position":3,"name":"Kalkulator Laundry Berkah","item":"https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah"}]}]}</script>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -43,11 +37,78 @@
     .total-box { text-align: right; font-size: 16px; font-weight: bold; color: #007bff; margin-top: 10px; }
     .catatan-final { margin-top: 15px; }
     textarea { resize: vertical; min-height: 70px; }
-    .nota-summary {
-      display: none; background: white; color: #000; padding: 20px; border-radius: 10px;
-      font-size: 14px; width: 100%; max-width: 700px; box-sizing: border-box;
-    }
-    .nota-summary h3 { text-align: center; margin-bottom: 10px; color: #007bff; }
+    /* Desain Struk Thermal */
+.nota-summary {
+    display: none; /* Sembunyi, hanya muncul saat proses export */
+    background: #fff;
+    color: #000;
+    padding: 20px;
+    width: 300px; /* Lebar standar kertas thermal */
+    font-family: 'Courier New', Courier, monospace; /* Font khas kasir */
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    line-height: 1.2;
+}
+
+.nota-header {
+    text-align: center;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.nota-header h3 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.nota-info {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.nota-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nota-table th {
+    border-bottom: 1px dashed #000;
+    text-align: left;
+    color: #000;
+    background: none;
+    padding: 5px 0;
+}
+
+.nota-table td {
+    padding: 5px 0;
+    vertical-align: top;
+}
+
+.nota-footer {
+    border-top: 1px dashed #000;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.catatan-struk {
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+}
+
+
+    
     @media (max-width: 600px) {
       table, thead, tbody, th, td, tr { display: block; }
       thead tr { display: none; }
@@ -227,69 +288,84 @@ function validasiInput() {
   return true;
 }
 function exportSummary() {
-  if (!validasiInput()) return;
-  hitungTotal();
-  const namaKonsumen = document.getElementById("namaKonsumen").value.trim() || "tanpa-nama";
-  const catatan = document.getElementById("catatan").value.trim();
-  const rows = document.querySelectorAll("#daftar-item tr");
-  const totalHarga = document.getElementById("total-belanja").value;
-  // Kumpulkan data per Nama Barang (Aggregation)
-  const summaryMap = {};
-  rows.forEach(r => {
-    const nama = (r.querySelector('td:nth-child(2) input').value || "-").trim();
-    const jumlah = parseFloat(r.querySelector('.jumlah').value.replace(/\./g, "").replace(",", ".")) || 0;
-    const subtotal = parseFloat(r.querySelector('.subtotal').value.replace(/\./g, "").replace(",", ".")) || 0;
-    if (!summaryMap[nama]) {
-      summaryMap[nama] = { qty: 0, subtotal: 0 };
-    }
-    summaryMap[nama].qty += jumlah;
-    summaryMap[nama].subtotal += subtotal;
-  });
-  const now = new Date();
-  const tgl = String(now.getDate()).padStart(2, "0");
-  const bln = String(now.getMonth() + 1).padStart(2, "0");
-  const thn = String(now.getFullYear()).slice(2);
-  const jam = String(now.getHours()).padStart(2, "0");
-  const mnt = String(now.getMinutes()).padStart(2, "0");
-  const timestamp = `${tgl}-${bln}-${thn}-${jam}${mnt}`;
-  // Buat HTML ringkasan nota
-  let html = `<h3>Nota Laundry Berkah</h3>
-    <p><strong>Nama Konsumen:</strong> ${namaKonsumen}</p>
-    <p><strong>Tanggal:</strong> ${tgl}/${bln}/20${thn} ${jam}:${mnt}</p>
-    <div style="margin-top:12px;padding:10px;border-top:1px solid #ccc;">
-      <p><strong>Detail per Item:</strong></p>
-      <ul style="margin:0;padding-left:18px;line-height:1.6;">`;
-  Object.keys(summaryMap).forEach(nama => {
-    const item = summaryMap[nama];
-    const hargaSatuan = item.qty > 0 ? item.subtotal / item.qty : 0;
-    html += `<li>${nama}: ${item.qty.toString().replace(".", ",")} x ${formatRupiah(hargaSatuan)} = Rp ${formatRupiah(item.subtotal)}</li>`;
-  });
-  html += `</ul></div>
-    <p style="margin-top:10px;"><strong>Total Keseluruhan:</strong> Rp ${totalHarga}</p>`;
-  if (catatan) html += `<p><strong>Catatan:</strong> ${catatan}</p>`;
-  html += `<p style="text-align:center;margin-top:10px;">Terima kasih.</p>`;
-  const notaSummary = document.getElementById("nota-summary");
-  notaSummary.innerHTML = html;
-  notaSummary.style.display = "block";
-  // PROSES EXPORT KE WEBP
-  html2canvas(notaSummary, {
-    scale: 2, // Biar resolusinya 2x lebih tajam (bagus buat teks kecil)
-    useCORS: true,
-    backgroundColor: "#ffffff" // Pastiin background putih biar gak transparan aneh
-  }).then(canvas => {
-    const link = document.createElement("a");
-    // Nama file diganti ekstensinya jadi .webp
-    const namaFile = `${timestamp}-${namaKonsumen.replace(/\s+/g, "_")}.webp`;
-    link.download = namaFile;
-    // MENGGUNAKAN WEBP DENGAN KUALITAS 0.9 (90%)
-    // 0.9 adalah sweet spot: Teks tajem, size jauh lebih kecil dari PNG
-    link.href = canvas.toDataURL("image/webp", 0.9);
-    link.click();
-    // Clean up
-    notaSummary.style.display = "none";
-    localStorage.removeItem("notaBelanja");
-    console.log(`Nota berhasil di-export sebagai WebP: ${namaFile}`);
-  });
+    if (!validasiInput()) return;
+    hitungTotal();
+
+    const nama = document.getElementById("namaKonsumen").value.trim() || "Pelanggan";
+    const catatan = document.getElementById("catatan").value.trim();
+    const total = document.getElementById("total-belanja").value;
+    const items = document.querySelectorAll("#daftar-item tr");
+
+    const o = new Date();
+    const tgl = String(o.getDate()).padStart(2, "0") + "/" + String(o.getMonth() + 1).padStart(2, "0") + "/" + o.getFullYear();
+    const jam = String(o.getHours()).padStart(2, "0") + ":" + String(o.getMinutes()).padStart(2, "0");
+    const fileDate = String(o.getDate()).padStart(2, "0") + String(o.getMonth() + 1).padStart(2, "0") + String(o.getFullYear()).slice(-2) + "-" + String(o.getHours()).padStart(2, "0") + String(o.getMinutes()).padStart(2, "0");
+
+    let itemsHtml = '';
+    items.forEach(tr => {
+        const nBarang = tr.querySelector("td:nth-child(2) input").value;
+        const qty = tr.querySelector(".jumlah").value;
+        const hargaSatuan = tr.querySelector(".harga").value; // Mengambil harga per unit
+        const sub = tr.querySelector(".subtotal").value;
+        
+        itemsHtml += `
+            <tr>
+                <td colspan="3" style="padding-top:8px;">${nBarang}</td>
+            </tr>
+            <tr style="border-bottom: 0.5px solid #eee;">
+                <td style="width: 40%;">${qty} x ${hargaSatuan}</td>
+                <td style="width: 10%;">:</td>
+                <td style="text-align: right; width: 50%;">Rp ${sub}</td>
+            </tr>`;
+    });
+
+    const content = `
+        <div class="nota-header">
+            <h3>LAUNDRY BERKAH</h3>
+            <p style="font-size:11px; margin: 5px 0;">Jl. Perjuangan, Balikpapan<br>Telp: 0812-XXXX-XXXX</p>
+        </div>
+        
+        <div class="nota-info">
+            Tgl : ${tgl} ${jam}<br>
+            Plg : ${nama}
+        </div>
+        
+        <table class="nota-table">
+            <thead>
+                <tr>
+                    <th colspan="2">Deskripsi</th>
+                    <th style="text-align: right;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${itemsHtml}
+            </tbody>
+        </table>
+        
+        <div class="nota-footer">
+            <div class="total-row">
+                <span>TOTAL AKHIR</span>
+                <span>Rp ${total}</span>
+            </div>
+            ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
+            <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***<br>Barang yang sudah diambil<br>tidak dapat ditukar kembali</p>
+        </div>`;
+
+    const p = document.getElementById("nota-summary");
+    p.innerHTML = content;
+    p.style.display = "block";
+
+    html2canvas(p, { 
+        scale: 3, // Skala 3 supaya teks tajam di HP
+        useCORS: true, 
+        backgroundColor: "#ffffff" 
+    }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
+        link.href = canvas.toDataURL("image/webp", 1.0);
+        link.click();
+        p.style.display = "none";
+    });
 }
 function simpanKeLocalStorage() {
   const data = {
@@ -326,5 +402,5 @@ function resetForm() {
   document.getElementById("total-belanja").value = "0";
 }
 window.addEventListener("load", muatDariLocalStorage);
-</script>
+</script><noscript>schema_oleh_Fakhrul_Rijal_2026-02-19</noscript><noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-19</noscript>
 </body></html>
