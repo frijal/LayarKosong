@@ -27,14 +27,20 @@ async function minifyFiles(dir) {
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
-      const originalHTML = fs.readFileSync(filePath, 'utf8');
+      let originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // Cek segel biar gak kerja rodi dua kali
       if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
       }
+
+      // --- PERBAIKAN: Hapus komentar JS satu baris (//) ---
+      // Kita bersihkan dulu supaya saat baris baru dihapus, kode tidak ikut "ter-komentar"
+      originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
+        // Regex ini menghapus komentar // tapi hati-hati jangan hapus URL (http://)
+        return match.replace(/^[ \t]*\/\/(?!#).*/gm, ''); 
+      });
 
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
@@ -42,37 +48,30 @@ async function minifyFiles(dir) {
 
       const input = Buffer.from(originalHTML);
       const output = minifyHtml.minify(input, {
-        // --- OPSI EKSTREM (Gacor Mode) ---
         allow_optimal_entities: true,
         allow_noncompliant_unquoted_attribute_values: true,
         allow_removing_spaces_between_attributes: true,
         minify_doctype: true,
-        
-        // --- OPTIMASI CONTENT (Rust Engine) ---
         minify_css: true,
-        minify_js: true,
+        minify_js: true, // Pastikan engine oxc internal bekerja
         collapse_whitespaces: true,
-        
-        // --- PEMBERSIHAN TOTAL ---
         keep_comments: false,
-        keep_html_and_head_opening_tags: false, // Menghilangkan tag opsional demi byte terakhir
+        keep_html_and_head_opening_tags: false,
         remove_bangs: true,
         remove_processing_instructions: true,
-        
-        // --- OVERRIDE STANDAR ---
         ensure_spec_compliant_unquoted_attribute_values: false,
         keep_spaces_between_attributes: false,
       });
 
       const minifiedHTML = output.toString();
-
-      // Gabungkan hasil tanpa spasi/baris baru sedikitpun
       fs.writeFileSync(filePath, minifiedHTML.trimEnd() + minifySignature, 'utf8');
       
       stats.success++;
       console.log(`✅ Terjepit Sempurna (Rust): ${filePath}`);
 
-    } catch (err) {
+    }
+    
+      catch (err) {
       stats.failed++;
       stats.errorList.push({ path: filePath, error: err.message });
       console.error(`❌ Gagal jepit: ${filePath}`);
