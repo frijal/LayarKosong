@@ -1,7 +1,8 @@
 use atrium_api::agent::atp_agent::AtpAgent;
 use atrium_api::app::bsky::embed::external::{Main as EmbedExternal, External};
-use atrium_api::app::bsky::feed::post::{Record, RecordEmbed};
+use atrium_api::app::bsky::feed::post::Record;
 use atrium_api::types::string::Datetime;
+use atrium_api::types::Union;
 use atrium_xrpc_client::reqwest::ReqwestClient;
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -13,7 +14,6 @@ const JSON_FILE: &str = "artikel.json";
 const DATABASE_FILE: &str = "mini/posted-bluesky.txt";
 const DOMAIN_URL: &str = "https://dalam.web.id";
 
-// Gunakan struct bernama agar akses field lebih manusiawi
 #[derive(Debug, Deserialize)]
 struct Post(String, String, String, String, Option<String>);
 
@@ -38,24 +38,18 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     let mut all_posts = Vec::new();
-
     for (category, posts) in data {
         let cat_slug = slugify(&category);
         for p in posts {
-            let file_name = &p.1; // FIXED: akses tuple pakai titik
-            let file_slug = file_name.trim_start_matches('/').replace(".html", "");
-
+            let file_slug = p.1.trim_start_matches('/').replace(".html", "");
             if file_slug.starts_with("agregat-20") { continue; }
-
             let full_url = format!("{}/{}/{}", DOMAIN_URL, cat_slug, file_slug);
-
             if !posted_database.contains(&file_slug) {
                 all_posts.push((p, full_url, file_slug));
             }
         }
     }
 
-    // Sort by Date (Post.3 adalah ISO Date)
     all_posts.sort_by(|a, b| b.0.3.cmp(&a.0.3));
 
     if all_posts.is_empty() {
@@ -64,29 +58,31 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let (target_data, target_url, _) = &all_posts[0];
-
     let handle = env::var("BSKY_HANDLE").expect("BSKY_HANDLE not set");
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
-    // FIXED: Path agent store
+    // FIX 1: Store location
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-                              atrium_api::agent::SessionMemoryStore::default(),
+                              atrium_api::agent::store::MemorySessionStore::default(),
     );
 
     agent.login(&handle, &password).await?;
 
-    // FIXED: Reqwest bytes type inference
+    // FIX 2: Image bytes download
     let img_url = &target_data.2;
-    let response = reqwest::get(img_url).await?;
-    let img_bytes = response.bytes().await?.to_vec();
+    let img_bytes = reqwest::get(img_url).await?.bytes().await?.to_vec();
 
-    // FIXED: Cara panggil upload_blob
+    // FIX 3: Correct API chaining
     let upload = agent
     .api()
-    .com::atproto::repo::upload_blob(img_bytes)
+    .com()
+    .atproto()
+    .repo()
+    .upload_blob(img_bytes)
     .await?;
 
+    // FIX 4: Correct Embed Construction
     let embed = EmbedExternal {
         external: External {
             description: target_data.4.clone().unwrap_or_else(|| "Archive.".to_string()),
@@ -101,20 +97,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         msg = msg.chars().take(297).collect::<String>() + "...";
     }
 
-    // FIXED: Create post record
+    // FIX 5: Union type for Embed
+    use atrium_api::app::bsky::feed::post::RecordEmbedRefs;
+
     agent
     .api()
-    .app::bsky::feed::post::create(
-        atrium_api::types::Object {
-            data: Record {
-                text: msg,
-                created_at: Datetime::now(),
-                                   embed: Some(RecordEmbed::AppBskyEmbedExternalMain(Box::new(embed))),
-                                   ..Default::default()
-            },
-            extra_data: Default::default(),
-        }
-    )
+    .app()
+    .bsky()
+    .feed()
+    .post()
+    .create(atrium_api::types::Object {
+        data: Record {
+            text: msg,
+            created_at: Datetime::now(),
+            embed: Some(Union::Refs(RecordEmbedRefs::AppBskyEmbedExternalMain(Box::new(embed)))),
+            ..Default::default()
+        },
+        extra_data: Default::default(),
+    })
     .await?;
 
     fs::write("/tmp/temp_new_url_bsky.txt", format!("{}\n", target_url))?;
