@@ -62,7 +62,7 @@ fn minify_file(path: PathBuf, stats: &Stats, errors: &Mutex<Vec<String>>) {
                 caps[0].replace(content, &cleaned_content)
             }).to_string();
 
-            // Setup Minify Config (Sama dengan config Node kamu)
+            // Setup Minify Config yang valid untuk crate minify-html
             let mut cfg = Cfg::new();
             cfg.do_not_minify_doctype = false;
             cfg.ensure_spec_compliant_unquoted_attribute_values = false;
@@ -70,7 +70,12 @@ fn minify_file(path: PathBuf, stats: &Stats, errors: &Mutex<Vec<String>>) {
             cfg.minify_css = true;
             cfg.minify_js = true;
             cfg.remove_processing_instructions = true;
-            cfg.collapse_whitespaces = true;
+
+            // Di Rust, collapse whitespace adalah perilaku default.
+            // Kita cukup pastikan spasi antar atribut dibuang:
+            cfg.keep_spaces_between_attributes = false;
+            cfg.keep_html_and_head_opening_tags = false;
+            cfg.keep_closing_tags = false; // Bikin makin ramping!
 
             let minified = minify(html.as_bytes(), &cfg);
 
