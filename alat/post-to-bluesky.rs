@@ -1,6 +1,6 @@
 use atrium_api::agent::atp_agent::AtpAgent;
-// Lokasi MemorySessionStore yang benar untuk versi 0.25.x
-use atrium_api::agent::store::MemorySessionStore;
+// FIX: Path terbaru untuk Memory Store di versi 0.25.x
+use atrium_api::agent::SessionMemoryStore;
 use atrium_api::app::bsky::embed::external::{MainData, ExternalData};
 use atrium_api::app::bsky::feed::post::{RecordData, RecordEmbedRefs};
 use atrium_api::types::{string::Datetime, Object, Union};
@@ -62,10 +62,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let handle = env::var("BSKY_HANDLE").expect("BSKY_HANDLE not set");
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
-    // FIX 1: Path Agent & Store
+    // FIX 1: Menggunakan SessionMemoryStore
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-                              MemorySessionStore::default(),
+                              SessionMemoryStore::default(),
     );
 
     agent.login(&handle, &password).await?;
@@ -96,7 +96,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         msg = msg.chars().take(297).collect::<String>() + "...";
     }
 
-    // FIX 3: Struktur Post Record dengan field opsional eksplisit
+    // FIX 3: Struktur Post Record
     agent.api().app().bsky().feed().post().create(Object {
         data: RecordData {
             text: msg,
