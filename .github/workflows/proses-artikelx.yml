@@ -103,8 +103,7 @@ jobs:
       - name: Inject SEO, Mirror Images & WebP (Rust Version)
         run: |
           set -euo pipefail
-          # Jalankan seo-fixer dengan target folder 'artikelx'
-          # Menggunakan --release agar konversi WebP super cepat
+          # Cargo akan otomatis mencari path yang sudah didaftarkan di Cargo.toml
           cargo run --release --bin seo-fixer -- artikelx
 
       - name: Add HTML Elements (Sed)
