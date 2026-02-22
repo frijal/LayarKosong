@@ -4,39 +4,34 @@
     "config:recommended",
     ":dependencyDashboard",
     "abandonments:recommended",
-    "replacements:all",
-    "workarounds:all"
+    "replacements:all"
   ],
   "configMigration": true,
   "branchPrefix": "renovate/",
   "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
   "ignoreUnstable": true,
-  "respectLatest": true,
   "dependencyDashboard": true,
   "ignorePaths": [
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/vendor/**",
-    "artikel/**",
-    "target/**"
+    "**/node_modules/**", "**/bower_components/**", "**/vendor/**",
+    "artikel/**", "target/**"
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["security", "critical"]
-  },
-  "prBodyColumns": ["Package", "Type", "Update", "Change", "Pending", "OpenSSF"],
-  "prBodyDefinitions": {
-    "OpenSSF": "[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{{sourceRepo}}/badge)](https://securityscorecards.dev/viewer/?uri=github.com/{{sourceRepo}})"
+    "labels": ["security"]
   },
   "packageRules": [
     {
-      "description": "Aturan Umum: Replace range dengan versi spesifik agar build reproducible",
+      "description": "1. Global Range Strategy (Ditaruh paling atas)",
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "replace"
     },
     {
-      "description": "JS/NPM: Grouping React & Next.js untuk kurangi noise PR",
+      "description": "2. Khusus Rust: Gunakan update-lockfile untuk SEMUA update cargo",
+      "matchDatasources": ["cargo"],
+      "rangeStrategy": "update-lockfile"
+    },
+    {
+      "description": "3. JS/NPM: Grouping & Automerge",
       "matchDatasources": ["npm"],
       "matchPackagePatterns": ["^react", "^next"],
       "groupName": "React Ecosystem",
@@ -44,36 +39,27 @@
       "minimumReleaseAge": "3 days"
     },
     {
-      "description": "Python: Handle Pip & Poetry",
+      "description": "4. Python: Stabilitas Tinggi",
       "matchDatasources": ["pypi"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "minimumReleaseAge": "7 days"
     },
     {
-      "description": "Rust: Menggunakan datasource cargo sesuai info terbaru",
-      "matchDatasources": ["cargo"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "rangeStrategy": "update-lockfile"
-    },
-    {
-      "description": "Docker & GitHub Actions: Pin digest untuk keamanan maksimal",
+      "description": "5. Docker & GitHub Actions: Pin Digests",
       "matchDatasources": ["docker", "github-tags"],
       "pinDigests": true,
       "automerge": true
     },
     {
-      "description": "Governance: Semua Major update wajib persetujuan manual",
+      "description": "6. Governance: Approval untuk Major & 0.x (Semua Bahasa)",
       "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true,
-      "automerge": false
+      "dependencyDashboardApproval": true
     },
     {
-      "description": "Governance: Versi 0.x (Unstable) wajib review manual",
+      "description": "7. Governance: Review manual untuk versi 0.x (Unstable)",
       "matchCurrentVersion": "/^0./",
-      "dependencyDashboardApproval": true,
-      "automerge": false
+      "dependencyDashboardApproval": true
     }
   ]
 }
