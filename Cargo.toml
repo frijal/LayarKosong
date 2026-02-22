@@ -4,39 +4,29 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+# Ganti tokio full ke minimal jika tetap mau pakai async
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 
-# Untuk async runtime (wajib buat urusan network/file)
-tokio = { version = "1", features = ["full"] }
+# Gunakan rustls-tls untuk menghindari dependency ke OpenSSL sistem
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls-tls"] }
 
-# Untuk HTTP request (gantinya Axios)
-reqwest = { version = "0.13", features = ["json", "blocking", "rustls"] }
-
-# Untuk urusan manipulasi HTML kilat
-lol_html = "2.0.0"
-
-# Untuk mencari file (gantinya glob di node)
-glob = "0.3"
-
-# Untuk urusan URL parsing
-url = "2"
-
-# Untuk urusan gambar (gantinya sharp)
-image = "0.25"
-webp = "0.3"
-
-# Untuk handle error supaya kodenya nggak berantakan
-anyhow = "1"
-
-scraper = "0.25"
-
-walkdir = "2"
-
-html-escape = "0.2"
-
+# Tetap gunakan ini untuk manipulasi DOM
 nipper = "0.1"
 
+# Utility lainnya
+image = { version = "0.25", default-features = false, features = ["webp", "jpeg", "png"] }
+webp = "0.3"
+url = "2"
+walkdir = "2"
 regex = "1"
+anyhow = "1"
 
+[profile.release]
+opt-level = 'z'     # Optimasi ukuran
+lto = true          # Link Time Optimization
+codegen-units = 1
+panic = 'abort'     # Buang stack trace
+strip = true        # Buang debug symbols
 
 [[bin]]
 name = "seo-fixer"
