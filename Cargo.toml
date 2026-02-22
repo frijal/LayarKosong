@@ -27,8 +27,8 @@ minify-html = "0.18.0"
 tokio = { version = "1", features = ["full"] }
 atrium-api = { version = "0.25.7", features = ["agent"] }
 atrium-xrpc-client = "0.5.5"
-
 ipld-core = "0.4.3"
+
 
 
 [profile.release]
@@ -75,8 +75,8 @@ name = "inject-script"
 path = "alat/inject-script.rs"
 
 [[bin]]
-name = "post-to-bluesky"
-path = "alat/post-to-bluesky.rs"
+name = "post-to-discord"
+path = "alat/post-to-discord.rs"
 
 
 
