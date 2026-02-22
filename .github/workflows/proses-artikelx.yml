@@ -1,5 +1,4 @@
 name: 🔄 Proses ArtikelX
-
 on:
   push:
     branches: ['main']
@@ -16,29 +15,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@v4 # Update ke v4 biar makin sat-set
         with:
           fetch-depth: 1
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Cache Rust
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+      # Menggunakan Smart Cache yang sama dengan workflow sebelah
+      - name: Rust Cache Engine
+        uses: Swatinem/rust-cache@v2
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          shared-key: "layarkosong-engine" # Kunci harus sama persis!
 
-      # Compile semua tool sekaligus agar step berikutnya tinggal panggil binary-nya
       - name: Build Rust Tools
-        run: cargo build --release
+        run: cargo build --release --quiet
 
       - name: 1. Localize Assets (Perl)
         run: |
