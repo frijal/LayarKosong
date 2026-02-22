@@ -225,6 +225,59 @@ fn main() -> Result<()> {
     fs::write(JSON_OUT, serde_json::to_string_pretty(&root_map)?)?;
     fs::write(SITEMAP_TXT, final_items.iter().map(|it| it.loc.clone()).collect::<Vec<_>>().join("\n"))?;
 
+    // 5. GENERATE XML SITEMAPS & RSS
+    let mut xml_posts = String::new();
+    let mut xml_images = String::new();
+    let mut xml_videos = String::new();
+
+    for item in &final_items {
+        // Post Sitemap
+        xml_posts.push_str(&format!("  <url>\n    <loc>{}</loc>\n    <lastmod>{}</lastmod>\n  </url>\n", item.loc, item.lastmod));
+
+        // Image Sitemap
+        xml_images.push_str(&format!(
+            "  <url>\n    <loc>{}</loc>\n    <lastmod>{}</lastmod>\n    <image:image>\n      <image:loc>{}</image:loc>\n      <image:caption><![CDATA[{}]]></image:caption>\n    </image:image>\n  </url>\n",
+            item.loc, item.lastmod, item.img, item.title
+        ));
+
+        // Video Sitemap Logic
+        if let Ok(content) = fs::read_to_string(Path::new(ARTIKEL_DIR).join(&item.file)) {
+            for cap in RE_IFRAME.captures_iter(&content) {
+                let src = &cap[1];
+                if src.ends_with(".js") { continue; }
+
+                // Get Youtube Thumb simple logic
+                let thumb = if src.contains("embed/") {
+                    let id = src.split("embed/").last().unwrap_or("").split('?').next().unwrap_or("");
+                    format!("https://img.youtube.com/vi/{}/hqdefault.jpg", id)
+                } else {
+                    format!("{}/img/default-video.webp", BASE_URL)
+                };
+
+                xml_videos.push_str(&format!(
+                    "  <url>\n    <loc>{}</loc>\n    <lastmod>{}</lastmod>\n    <video:video>\n      <video:thumbnail_loc>{}</video:thumbnail_loc>\n      <video:title><![CDATA[{}]]></video:title>\n      <video:description><![CDATA[{}]]></video:description>\n      <video:player_loc>{}</video:player_loc>\n    </video:video>\n  </url>\n",
+                    item.loc, item.lastmod, thumb, item.title, item.desc, src.replace('&', "&amp;")
+                ));
+            }
+        }
+    }
+
+    // Write Files
+    let xsl_header = format!("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/sitemap-style.xsl\"?>\n");
+    let latest_mod = final_items.first().map(|i| i.lastmod.clone()).unwrap_or_else(|| Utc::now().to_rfc3339());
+
+    fs::write("sitemap-1.xml", format!("{}<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n{}</urlset>", xsl_header, xml_posts))?;
+    fs::write("image-sitemap-1.xml", format!("{}<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\">\n{}</urlset>", xsl_header, xml_images))?;
+    fs::write("video-sitemap-1.xml", format!("{}<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\">\n{}</urlset>", xsl_header, xml_videos))?;
+
+    // Index Sitemap
+    let sitemap_index = format!(
+        "{}<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <sitemap><loc>{}/sitemap-1.xml</loc><lastmod>{}</lastmod></sitemap>\n  <sitemap><loc>{}/image-sitemap-1.xml</loc><lastmod>{}</lastmod></sitemap>\n  <sitemap><loc>{}/video-sitemap-1.xml</loc><lastmod>{}</lastmod></sitemap>\n</sitemapindex>",
+        xsl_header, BASE_URL, latest_mod, BASE_URL, latest_mod, BASE_URL, latest_mod
+    );
+    fs::write("sitemap.xml", sitemap_index)?;
+
+
     // 5. LANDING PAGE KATEGORI & RSS
     let template_html = fs::read_to_string(TEMPLATE_KATEGORI).ok();
     if let Some(tpl) = template_html {
