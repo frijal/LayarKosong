@@ -7,22 +7,20 @@ use std::path::Path;
 // ======================================================
 const TARGET_FOLDERS: &[&str] = &[
     "gaya-hidup",
-    "jejak-sejarah",
-    "lainnya",
-    "olah-media",
-    "opini-sosial",
-    "sistem-terbuka",
-    "warta-tekno",
+"jejak-sejarah",
+"lainnya",
+"olah-media",
+"opini-sosial",
+"sistem-terbuka",
+"warta-tekno",
 ];
 
 fn clean_html(html: &str) -> String {
     // --- FASE 1: SAPU JAGAT ---
-    // Mengubah <pre>`code`</pre> menjadi <pre><code>code</code></pre>
     let re_sapu = Regex::new(r"(?i)<pre>`([\s\S]*?)`</pre>").unwrap();
     let mut updated = re_sapu.replace_all(html, "<pre><code>$1</code></pre>").to_string();
 
     // --- FASE 2: CLEANUP TEXT ---
-    // Bold, Italic, Strikethrough
     let re_bold = Regex::new(r"(?i)<(?:strong|b)>(.*?)</(?:strong|b)>").unwrap();
     updated = re_bold.replace_all(&updated, "**$1**").to_string();
 
@@ -32,8 +30,9 @@ fn clean_html(html: &str) -> String {
     let re_strike = Regex::new(r"(?i)<(?:del|s|strike)>(.*?)</(?:del|s|strike)>").unwrap();
     updated = re_strike.replace_all(&updated, "~~$1~~").to_string();
 
-    // --- FASE 3: SMART LINK CONVERSION ---
-    let re_link = Regex::new(r"(?i)<a href=[\x22\x27]([^"']*)[\x22\x27][^>]*>([\s\S]*?)</a>").unwrap();
+    // --- FASE 3: SMART LINK CONVERSION (FIXED VERSION) ---
+    // Menggunakan r#"..."# untuk menghindari error 'unterminated character literal'
+    let re_link = Regex::new(r#"(?i)<a href=["']([^"']*)["'][^>]*>([\s\S]*?)</a>"#).unwrap();
     let re_protect = Regex::new(r"(?i)class=|id=|style=|target=|rel=").unwrap();
     let re_img = Regex::new(r"(?i)<img\s[^>]*>").unwrap();
 
@@ -94,13 +93,17 @@ fn process_folder(dir: &Path) {
             } else {
                 let file_name = path.file_name().unwrap().to_string_lossy().to_lowercase();
 
+                // Pastikan hanya memproses file HTML dan bukan index.html
                 if file_name.ends_with(".html") && file_name != "index.html" {
                     if let Ok(content) = fs::read_to_string(&path) {
                         let updated = clean_html(&content);
 
                         if content != updated {
-                            fs::write(&path, updated).expect("Gagal menulis file");
-                            println!("   ✅ Clean: {:?}", path.file_name().unwrap());
+                            if let Err(e) = fs::write(&path, updated) {
+                                println!("❌ Gagal menulis file {:?}: {}", path, e);
+                            } else {
+                                println!("   ✅ Clean: {:?}", path.file_name().unwrap());
+                            }
                         }
                     }
                 }
