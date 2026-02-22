@@ -1,19 +1,15 @@
 use atrium_api::agent::atp_agent::AtpAgent;
+// Lokasi MemorySessionStore yang benar untuk versi 0.25.x
 use atrium_api::agent::store::MemorySessionStore;
-use atrium_xrpc_client::reqwest::ReqwestClient;
 use atrium_api::app::bsky::embed::external::{MainData, ExternalData};
 use atrium_api::app::bsky::feed::post::{RecordData, RecordEmbedRefs};
 use atrium_api::types::{string::Datetime, Object, Union};
+use atrium_xrpc_client::reqwest::ReqwestClient;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path::Path;
-
-
-
-
-
 
 const JSON_FILE: &str = "artikel.json";
 const DATABASE_FILE: &str = "mini/posted-bluesky.txt";
@@ -66,8 +62,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let handle = env::var("BSKY_HANDLE").expect("BSKY_HANDLE not set");
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
-    // FIX 1: Store Path
-    // Gunakan MemorySessionStore langsung dari path yang disarankan compiler
+    // FIX 1: Path Agent & Store
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
                               MemorySessionStore::default(),
@@ -80,7 +75,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let upload = agent.api().com().atproto().repo().upload_blob(img_bytes).await?;
 
-    // FIX 2: Struktur Object untuk Embed (Gunakan field 'data')
+    // FIX 2: Struktur Object untuk Embed (Eksplisit extra_data)
     let embed = Object {
         data: MainData {
             external: Object {
@@ -101,7 +96,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         msg = msg.chars().take(297).collect::<String>() + "...";
     }
 
-    // FIX 3: Struktur Post Record (Gunakan field 'data')
+    // FIX 3: Struktur Post Record dengan field opsional eksplisit
     agent.api().app().bsky().feed().post().create(Object {
         data: RecordData {
             text: msg,
