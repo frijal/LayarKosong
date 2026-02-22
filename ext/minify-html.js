@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as minifyHtml from '@minify-html/node'; // Import library baru
+import minifyHtml from '@minify-html/node';
 
 const folders = [
   './gaya-hidup', './jejak-sejarah', './lainnya',
