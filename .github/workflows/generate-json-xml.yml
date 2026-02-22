@@ -140,9 +140,9 @@ jobs:
         if: env.DO_SCHEMA == 'true'
         run: cargo run --release --bin inject-schema
 
-      - name: 📝 Convert HTML Tags to Markdown (Node.js)
+      - name: 📝 Convert HTML Tags to Markdown (Rust)
         if: env.DO_CONVERT_MARKDOWN == 'true'
-        run: node ext/html-to-markdown.js
+        run: cargo run --release --bin html-to-markdown
         
       - name: '8️⃣ Clean HTML Cerdas (rust-html-minify)'
         if: env.DO_MINIFY_HTML == 'true'
