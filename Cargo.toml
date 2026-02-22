@@ -65,3 +65,8 @@ path = "alat/minify-jsonxml.rs"
 [[bin]]
 name = "sitemap-txt"
 path = "alat/sitemap-txt.rs"
+
+[[bin]]
+name = "inject-script"
+path = "alat/inject-script.rs"
+
