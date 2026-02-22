@@ -30,6 +30,8 @@ atrium-api = { version = "0.25.7", features = ["agent"] }
 atrium-xrpc-client = "0.5.5"
 
 
+
+
 [profile.release]
 opt-level = 'z'     # Fokus kecilkan ukuran
 lto = true          # Buang fungsi yang tidak terpakai

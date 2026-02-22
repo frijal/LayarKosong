@@ -1,5 +1,5 @@
 use atrium_api::agent::atp_agent::AtpAgent;
-use atrium_api::agent::SessionMemoryStore;
+use atrium_api::agent::store::MemorySessionStore;
 use atrium_xrpc_client::reqwest::ReqwestClient;
 use atrium_api::app::bsky::embed::external::{MainData, ExternalData};
 use atrium_api::app::bsky::feed::post::{RecordData, RecordEmbedRefs};
@@ -9,6 +9,11 @@ use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path::Path;
+
+
+
+
+
 
 const JSON_FILE: &str = "artikel.json";
 const DATABASE_FILE: &str = "mini/posted-bluesky.txt";
@@ -65,7 +70,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Gunakan MemorySessionStore langsung dari path yang disarankan compiler
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-                              SessionMemoryStore::default(),
+                              MemorySessionStore::default(),
     );
 
     agent.login(&handle, &password).await?;
