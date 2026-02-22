@@ -322,12 +322,12 @@ function exportSummary() {
     const content = `
         <div class="nota-header">
             <h3>LAUNDRY BERKAH</h3>
-            <p style="font-size:11px; margin: 5px 0;">Jl. Perjuangan, Balikpapan<br>Telp: 0812-XXXX-XXXX</p>
+            <p style="font-size:11px; margin: 5px 0;">Balikpapan</p>
         </div>
         
         <div class="nota-info">
-            Tgl : ${tgl} ${jam}<br>
-            Plg : ${nama}
+            Tggl : ${tgl} ${jam}<br>
+            Nama : ${nama}
         </div>
         
         <table class="nota-table">
@@ -344,11 +344,11 @@ function exportSummary() {
         
         <div class="nota-footer">
             <div class="total-row">
-                <span>TOTAL AKHIR</span>
+                <span>TOTAL:</span>
                 <span>Rp ${total}</span>
             </div>
             ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
-            <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***<br>Barang yang sudah diambil<br>tidak dapat ditukar kembali</p>
+            <p style="text-align:center; margin-top:15px; font-size:11px;">*** TERIMA KASIH ***</p>
         </div>`;
 
     const p = document.getElementById("nota-summary");
