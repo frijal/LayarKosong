@@ -40,13 +40,13 @@ jobs:
       contents: read
       actions: write
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 1
           persist-credentials: true
 
       - name: Download previous cache
-        uses: dawidd6/action-download-artifact@v15
+        uses: dawidd6/action-download-artifact@fe9d59ce33ce92db8a6ac90b2c8be6b6d90417c8 # v15
         if: github.event.inputs.repoCache != 'disabled' && github.event.inputs.repoCache != 'reset'
         continue-on-error: true
         with:
@@ -73,7 +73,7 @@ jobs:
           docker images ghcr.io/renovatebot/renovate:${{ env.SELECTED_TAG }} --format "table {{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}"
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v46.1.1
+        uses: renovatebot/github-action@d65ef9e20512193cc070238b49c3873a361cd50c # v46.1.1
         with:
           # Otomatis milih file config berdasarkan image
           configurationFile: ${{ env.CONFIG_FILE }}
@@ -97,7 +97,7 @@ jobs:
           fi
 
       - name: Upload cache artifact
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always() && github.event.inputs.repoCache != 'disabled'
         with:
           name: ${{ env.cache_key }}
