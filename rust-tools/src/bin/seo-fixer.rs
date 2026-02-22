@@ -187,70 +187,74 @@ async fn main() -> Result<()> {
 
         // --- 4. SUNTIK ULANG ---
         let mut head = document.select("head");
-        let mut tags_to_append = format!(r#"
-        <meta property="og:locale" content="id_ID">
-        <meta property="og:site_name" content="Layar Kosong">
-        <link rel="icon" href="/favicon.ico">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="canonical" href="{canonical_url}">
-        <meta property="og:url" content="{canonical_url}">
-        <meta property="twitter:url" content="{canonical_url}">
-        <meta property="twitter:domain" content="https://dalam.web.id">
-        <meta property="og:title" content="{escaped_title}">
-        <meta name="twitter:title" content="{escaped_title}">
-        <meta property="og:type" content="article">
-        <meta name="theme-color" content="#00b0ed">
-        <meta name="robots" content="index, follow, max-image-preview:large">
-        <meta name="author" content="Fakhrul Rijal">
-        <meta name="description" content="{final_meta_desc}">
-        <meta property="og:description" content="{final_meta_desc}">
-        <meta name="twitter:description" content="{final_meta_desc}">
-        <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-        <meta name="twitter:creator" content="@responaja">
-        <meta name="bluesky:creator" content="@dalam.web.id">
-        <meta name="fediverse:creator" content="@frijal@mastodon.social">
-        <meta name="googlebot" content="max-image-preview:large">
-        <meta name="twitter:site" content="@responaja">
-        <meta property="article:author" content="https://facebook.com/frijal">
-        <meta property="article:publisher" content="https://facebook.com/frijalpage">
-        <meta property="fb:app_id" content="175216696195384">"#);
+
+        // Gunakan Vec untuk menampung baris meta agar lebih rapi dan aman
+        let mut tags = Vec::new();
+        tags.push(format!(r#"<meta property="og:locale" content="id_ID">"#));
+        tags.push(format!(r#"<meta property="og:site_name" content="Layar Kosong">"#));
+        tags.push(format!(r#"<link rel="icon" href="/favicon.ico">"#));
+        tags.push(format!(r#"<link rel="manifest" href="/site.webmanifest">"#));
+        tags.push(format!(r#"<link rel="canonical" href="{}">"#, canonical_url));
+        tags.push(format!(r#"<meta property="og:url" content="{}">"#, canonical_url));
+        tags.push(format!(r#"<meta property="twitter:url" content="{}">"#, canonical_url));
+        tags.push(format!(r#"<meta property="twitter:domain" content="https://dalam.web.id">"#));
+        tags.push(format!(r#"<meta property="og:title" content="{}">"#, escaped_title));
+        tags.push(format!(r#"<meta name="twitter:title" content="{}">"#, escaped_title));
+        tags.push(format!(r#"<meta property="og:type" content="article">"#));
+        tags.push(format!(r#"<meta name="theme-color" content="#00b0ed">"#));
+        tags.push(format!(r#"<meta name="robots" content="index, follow, max-image-preview:large">"#));
+        tags.push(format!(r#"<meta name="author" content="Fakhrul Rijal">"#));
+        tags.push(format!(r#"<meta name="description" content="{}">"#, final_meta_desc));
+        tags.push(format!(r#"<meta property="og:description" content="{}">"#, final_meta_desc));
+        tags.push(format!(r#"<meta name="twitter:description" content="{}">"#, final_meta_desc));
+        tags.push(format!(r#"<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">"#));
+        tags.push(format!(r#"<meta name="twitter:creator" content="@responaja">"#));
+        tags.push(format!(r#"<meta name="bluesky:creator" content="@dalam.web.id">"#));
+        tags.push(format!(r#"<meta name="fediverse:creator" content="@frijal@mastodon.social">"#));
+        tags.push(format!(r#"<meta name="googlebot" content="max-image-preview:large">"#));
+        tags.push(format!(r#"<meta name="twitter:site" content="@responaja">"#));
+        tags.push(format!(r#"<meta property="article:author" content="https://facebook.com/frijal">"#));
+        tags.push(format!(r#"<meta property="article:publisher" content="https://facebook.com/frijalpage">"#));
+        tags.push(format!(r#"<meta property="fb:app_id" content="175216696195384">"#));
 
         if !meta_img_url.is_empty() {
-            tags_to_append.push_str(&format!(r#"
-            <meta itemprop="image" content="{meta_img_url}">
-            <meta name="twitter:image" content="{meta_img_url}">
-            <meta property="twitter:image" content="{meta_img_url}">
-            <meta property="og:image" content="{meta_img_url}">
-            <meta property="og:image:alt" content="{escaped_title}">
-            <meta property="og:image:width" content="1200">
-            <meta property="og:image:height" content="675">
-            <meta name="twitter:card" content="summary_large_image">"#));
-    }
+            tags.push(format!(r#"<meta itemprop="image" content="{}">"#, meta_img_url));
+            tags.push(format!(r#"<meta name="twitter:image" content="{}">"#, meta_img_url));
+            tags.push(format!(r#"<meta property="twitter:image" content="{}">"#, meta_img_url));
+            tags.push(format!(r#"<meta property="og:image" content="{}">"#, meta_img_url));
+            tags.push(format!(r#"<meta property="og:image:alt" content="{}">"#, escaped_title));
+            tags.push(format!(r#"<meta property="og:image:width" content="1200">"#));
+            tags.push(format!(r#"<meta property="og:image:height" content="675">"#));
+            tags.push(format!(r#"<meta name="twitter:card" content="summary_large_image">"#));
+        }
 
-    for tag in existing_tags {
-        tags_to_append.push_str(&format!(r#"
-        <meta property="article:tag" content="{}">"#, tag));
-    }
+        for tag in existing_tags {
+            tags.push(format!(r#"<meta property="article:tag" content="{}">"#, tag));
+        }
 
-    if let Some(t) = published_time { tags_to_append.push_str(&format!(r#"
-        <meta property="article:published_time" content="{}">"#, t)); }
-        if let Some(t) = modified_time { tags_to_append.push_str(&format!(r#"
-            <meta property="article:modified_time" content="{}">"#, t)); }
+        if let Some(t) = published_time {
+            tags.push(format!(r#"<meta property="article:published_time" content="{}">"#, t));
+        }
+        if let Some(t) = modified_time {
+            tags.push(format!(r#"<meta property="article:modified_time" content="{}">"#, t));
+        }
 
-            head.append_html(tags_to_append);
+        // Gabungkan semua tag dengan newline dan indentasi
+        let final_head_html = tags.join("\n    ");
+        head.append_html(format!("\n    {}\n", final_head_html));
 
         // --- 5. BODY FIXES ---
         let mut body_imgs = document.select("img");
         for i in 0..body_imgs.length() {
             let mut img = body_imgs.eq(i);
-        if img.attr("alt").is_none() {
-            img.set_attr("alt", &article_title);
-    }
-    }
+            if img.attr("alt").is_none() {
+                img.set_attr("alt", &article_title);
+            }
+        }
 
-    fs::write(file_path, document.html().to_string())?;
+        fs::write(file_path, document.html().to_string())?;
     }
 
     println!("\n✅ SEO Fixer: Selesai! Deskripsi & Gambar Sosmed aman.");
-        Ok(())
-    }
+    Ok(())
+}
