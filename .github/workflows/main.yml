@@ -1,0 +1,412 @@
+name: Advanced Package Manager with PR and Formatting
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages_to_remove:
+        description: 'Nama paket umum untuk dihapus (pisah spasi, contoh: playwright requests)'
+        required: false
+        default: ''
+      packages_to_add:
+        description: 'Nama paket umum untuk dipasang (pisah spasi, contoh: lodash axios)'
+        required: false
+        default: ''
+      node_dev_add:
+        description: 'Node devDependencies untuk dipasang (pisah spasi, contoh: jest eslint)'
+        required: false
+        default: ''
+      node_dev_remove:
+        description: 'Node devDependencies untuk dihapus (pisah spasi)'
+        required: false
+        default: ''
+      node_dev_save_exact:
+        description: 'Jika true, pasang devDependencies dengan --save-exact (true/false)'
+        required: false
+        default: 'false'
+      python_extras_add:
+        description: 'Python extras untuk dipasang (format: package[extra], pisah spasi)'
+        required: false
+        default: ''
+      python_extras_remove:
+        description: 'Python extras untuk dihapus (format: package[extra], pisah spasi)'
+        required: false
+        default: ''
+      commit_changes:
+        description: 'Commit perubahan ke repo (true/false)'
+        required: false
+        default: 'true'
+      create_pr:
+        description: 'Jika true, buat PR untuk perubahan alih-alih push langsung (true/false)'
+        required: false
+        default: 'false'
+      pr_branch_prefix:
+        description: 'Prefix nama branch untuk PR (default: deps/auto-update)'
+        required: false
+        default: 'deps/auto-update'
+
+jobs:
+  manage-packages:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Normalize inputs
+        id: inputs
+        run: |
+          trim() { echo "$1" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g' | tr -s ' '; }
+          REMOVE="$(trim "${{ github.event.inputs.packages_to_remove }}")"
+          ADD="$(trim "${{ github.event.inputs.packages_to_add }}")"
+          NODE_DEV_ADD="$(trim "${{ github.event.inputs.node_dev_add }}")"
+          NODE_DEV_REMOVE="$(trim "${{ github.event.inputs.node_dev_remove }}")"
+          NODE_DEV_SAVE_EXACT="${{ github.event.inputs.node_dev_save_exact }}"
+          PY_EX_ADD="$(trim "${{ github.event.inputs.python_extras_add }}")"
+          PY_EX_REMOVE="$(trim "${{ github.event.inputs.python_extras_remove }}")"
+          COMMIT="${{ github.event.inputs.commit_changes }}"
+          CREATE_PR="${{ github.event.inputs.create_pr }}"
+          PR_PREFIX="${{ github.event.inputs.pr_branch_prefix }}"
+          echo "remove=$REMOVE" >> $GITHUB_OUTPUT
+          echo "add=$ADD" >> $GITHUB_OUTPUT
+          echo "node_dev_add=$NODE_DEV_ADD" >> $GITHUB_OUTPUT
+          echo "node_dev_remove=$NODE_DEV_REMOVE" >> $GITHUB_OUTPUT
+          echo "node_dev_save_exact=$NODE_DEV_SAVE_EXACT" >> $GITHUB_OUTPUT
+          echo "py_ex_add=$PY_EX_ADD" >> $GITHUB_OUTPUT
+          echo "py_ex_remove=$PY_EX_REMOVE" >> $GITHUB_OUTPUT
+          echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+          echo "create_pr=$CREATE_PR" >> $GITHUB_OUTPUT
+          echo "pr_prefix=$PR_PREFIX" >> $GITHUB_OUTPUT
+
+      # ---------------- NODE ----------------
+      - name: Cache npm
+        if: ${{ exists('package-lock.json') }}
+        uses: actions/cache@v5.0.3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js (if package.json exists)
+        if: ${{ exists('package.json') }}
+        uses: actions/setup-node@v6.2.0
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - name: Node: Manage dependencies and devDependencies
+        if: ${{ exists('package.json') }}
+        run: |
+          set -euo pipefail
+          REMOVE="${{ steps.inputs.outputs.remove }}"
+          ADD="${{ steps.inputs.outputs.add }}"
+          NODE_DEV_ADD="${{ steps.inputs.outputs.node_dev_add }}"
+          NODE_DEV_REMOVE="${{ steps.inputs.outputs.node_dev_remove }}"
+          NODE_DEV_SAVE_EXACT="${{ steps.inputs.outputs.node_dev_save_exact }}"
+
+          echo "Node remove: '$REMOVE'"
+          echo "Node add: '$ADD'"
+          echo "Node dev add: '$NODE_DEV_ADD' (save-exact=$NODE_DEV_SAVE_EXACT)"
+          echo "Node dev remove: '$NODE_DEV_REMOVE'"
+
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund || true
+          fi
+
+          if [ -n "$REMOVE" ]; then
+            npm uninstall $REMOVE --save || true
+          fi
+
+          if [ -n "$ADD" ]; then
+            npm install $ADD --save --no-audit --no-fund || true
+          fi
+
+          if [ -n "$NODE_DEV_REMOVE" ]; then
+            npm uninstall $NODE_DEV_REMOVE --save-dev || true
+          fi
+
+          if [ -n "$NODE_DEV_ADD" ]; then
+            DEV_FLAGS="--save-dev"
+            if [ "$NODE_DEV_SAVE_EXACT" = "true" ]; then
+              DEV_FLAGS="$DEV_FLAGS --save-exact"
+            fi
+            # shellcheck disable=SC2086
+            npm install $NODE_DEV_ADD $DEV_FLAGS --no-audit --no-fund || true
+          fi
+
+          npm prune || true
+
+      # ---------------- PYTHON DETECTION ----------------
+      - name: Detect Python project type and tools
+        id: python_detect
+        run: |
+          HAS_REQ=false
+          HAS_PYPROJECT=false
+          HAS_POETRY=false
+          if [ -f requirements.txt ]; then HAS_REQ=true; fi
+          if [ -f pyproject.toml ]; then HAS_PYPROJECT=true; fi
+          if grep -q '
+
+\[tool.poetry\]
+
+' pyproject.toml 2>/dev/null; then HAS_POETRY=true; fi
+          echo "has_requirements=$HAS_REQ" >> $GITHUB_OUTPUT
+          echo "has_pyproject=$HAS_PYPROJECT" >> $GITHUB_OUTPUT
+          echo "has_poetry=$HAS_POETRY" >> $GITHUB_OUTPUT
+
+      - name: Setup Python
+        if: steps.python_detect.outputs.has_requirements == 'true' || steps.python_detect.outputs.has_pyproject == 'true'
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      - name: Python: Manage packages, extras, and lockfiles safely
+        if: steps.python_detect.outputs.has_requirements == 'true' || steps.python_detect.outputs.has_pyproject == 'true'
+        run: |
+          set -euo pipefail
+          REMOVE="${{ steps.inputs.outputs.remove }}"
+          ADD="${{ steps.inputs.outputs.add }}"
+          PY_EX_ADD="${{ steps.inputs.outputs.py_ex_add }}"
+          PY_EX_REMOVE="${{ steps.inputs.outputs.py_ex_remove }}"
+          HAS_POETRY="${{ steps.python_detect.outputs.has_poetry }}"
+          HAS_PYPROJECT="${{ steps.python_detect.outputs.has_pyproject }}"
+
+          echo "Python remove: '$REMOVE'"
+          echo "Python add: '$ADD'"
+          echo "Python extras add: '$PY_EX_ADD'"
+          echo "Python extras remove: '$PY_EX_REMOVE'"
+          echo "Poetry project: $HAS_POETRY"
+
+          python -m pip install --upgrade pip || true
+          python -m pip install pip-tools tomlkit || true
+
+          if [ "$HAS_POETRY" = "true" ]; then
+            python -m pip install poetry || true
+            if [ -n "$REMOVE" ]; then
+              for pkg in $REMOVE; do
+                poetry remove "$pkg" || true
+              done
+            fi
+            if [ -n "$ADD" ]; then
+              for pkg in $ADD; do
+                poetry add "$pkg" || true
+              done
+            fi
+            if [ -n "$PY_EX_REMOVE" ]; then
+              for ex in $PY_EX_REMOVE; do
+                base=$(echo "$ex" | sed -E 's/
+
+\[.*\]
+
+//')
+                poetry remove "$base" || true
+              done
+            fi
+            if [ -n "$PY_EX_ADD" ]; then
+              for ex in $PY_EX_ADD; do
+                poetry add "$ex" || true
+              done
+            fi
+
+            poetry lock || true
+            poetry export --without-hashes -f requirements.txt -o requirements.txt || true
+
+          else
+            if [ -f requirements.txt ]; then
+              if [ -n "$REMOVE" ]; then
+                for pkg in $REMOVE; do
+                  sed -i "/^\s*${pkg}\(\s*\|==\|>=\|<=\|~=\\)/Id" requirements.txt || true
+                  sed -i "/^\s*${pkg}\s*$/Id" requirements.txt || true
+                done
+              fi
+              if [ -n "$ADD" ]; then
+                for pkg in $ADD; do
+                  if ! grep -i -E "^\s*${pkg}(\s*|==|>=|<=|~=)" requirements.txt >/dev/null 2>&1; then
+                    echo "$pkg" >> requirements.txt
+                  fi
+                done
+              fi
+              if [ -n "$PY_EX_REMOVE" ]; then
+                for ex in $PY_EX_REMOVE; do
+                  base=$(echo "$ex" | sed -E 's/
+
+\[.*\]
+
+//')
+                  sed -i "/^\s*${base}\(\s*\|==\|>=\|<=|~=\\)/Id" requirements.txt || true
+                done
+              fi
+              if [ -n "$PY_EX_ADD" ]; then
+                for ex in $PY_EX_ADD; do
+                  if ! grep -i -E "^\s*${ex}(\s*|==|>=|<=|~=)" requirements.txt >/dev/null 2>&1; then
+                    echo "$ex" >> requirements.txt
+                  fi
+                done
+              fi
+            fi
+
+            if [ "$HAS_PYPROJECT" = "true" ]; then
+              python - <<'PY'
+from pathlib import Path
+import tomlkit,sys
+p=Path('pyproject.toml')
+if p.exists():
+    try:
+        txt=p.read_text(encoding='utf-8')
+        doc=tomlkit.parse(txt)
+        # Re-dump with tomlkit to normalize formatting (best-effort)
+        p.write_text(tomlkit.dumps(doc), encoding='utf-8')
+    except Exception:
+        # ignore formatting errors; leave file as-is
+        pass
+PY
+              # Try pip-compile if requirements.in exists or was generated
+              python -m pip install pip-tools || true
+              if command -v pip-compile >/dev/null 2>&1; then
+                if [ -f requirements.in ]; then
+                  pip-compile requirements.in -o requirements.txt || true
+                fi
+              fi
+            fi
+
+            if [ -n "$REMOVE" ]; then
+              pip uninstall -y $REMOVE || true
+            fi
+            if [ -n "$ADD" ]; then
+              pip install --upgrade $ADD || true
+            fi
+            if [ -n "$PY_EX_ADD" ]; then
+              pip install --upgrade $PY_EX_ADD || true
+            fi
+            if [ -n "$PY_EX_REMOVE" ]; then
+              pip uninstall -y $PY_EX_REMOVE || true
+            fi
+          fi
+
+      # ---------------- LINT / FORMAT CHECK FOR pyproject.toml ----------------
+      - name: pyproject.toml lint/format check (best-effort)
+        if: steps.python_detect.outputs.has_pyproject == 'true'
+        run: |
+          set -euo pipefail
+          # Install tomlkit to normalize formatting (already attempted earlier, but ensure available)
+          python -m pip install tomlkit || true
+          if [ -f pyproject.toml ]; then
+            git checkout -- pyproject.toml || true
+            python - <<'PY'
+from pathlib import Path
+import tomlkit,sys,subprocess
+p=Path('pyproject.toml')
+orig=p.read_text(encoding='utf-8')
+try:
+    doc=tomlkit.parse(orig)
+    formatted=tomlkit.dumps(doc)
+    if formatted != orig:
+        Path('pyproject.toml').write_text(formatted, encoding='utf-8')
+        print('pyproject.toml reformatted')
+        # show diff
+        subprocess.run(['git','--no-pager','diff','--','pyproject.toml'])
+        # leave file changed so commit step can include it
+    else:
+        print('pyproject.toml already formatted')
+except Exception as e:
+    print('pyproject.toml parse/format failed:', e)
+    sys.exit(0)
+PY
+
+      # ---------------- PRE-COMMIT (if configured) ----------------
+      - name: Run pre-commit hooks if configured
+        if: ${{ always() }}
+        run: |
+          if [ -f .pre-commit-config.yaml ]; then
+            python -m pip install pre-commit || true
+            pre-commit run --all-files || true
+          else
+            echo "No pre-commit config found, skipping."
+          fi
+
+      # ---------------- AUDIT / REPORT ----------------
+      - name: Generate Audit Report
+        run: |
+          DATE=$(date +'%Y-%m-%d_%H%M%S')
+          mkdir -p .github/cleanup-audit
+          REPORT=".github/cleanup-audit/cleanup_${DATE}.txt"
+          echo "Advanced Cleanup Report - $DATE" > "$REPORT"
+          echo "Removed: ${{ steps.inputs.outputs.remove }} ${{ steps.inputs.outputs.node_dev_remove }} ${{ steps.inputs.outputs.py_ex_remove }}" >> "$REPORT"
+          echo "Added: ${{ steps.inputs.outputs.add }} ${{ steps.inputs.outputs.node_dev_add }} ${{ steps.inputs.outputs.py_ex_add }}" >> "$REPORT"
+          echo "" >> "$REPORT"
+          if [ -f package.json ]; then
+            echo "--- package.json dependencies ---" >> "$REPORT"
+            jq -r '.dependencies // {} | to_entries[] | "\(.key) \(.value)"' package.json >> "$REPORT" 2>/dev/null || echo "Cannot parse package.json" >> "$REPORT"
+            echo "" >> "$REPORT"
+            echo "--- package.json devDependencies ---" >> "$REPORT"
+            jq -r '.devDependencies // {} | to_entries[] | "\(.key) \(.value)"' package.json >> "$REPORT" 2>/dev/null || echo "No devDependencies or cannot parse" >> "$REPORT"
+          fi
+          if [ -f pyproject.toml ]; then
+            echo "" >> "$REPORT"
+            echo "--- pyproject.toml (snippet) ---" >> "$REPORT"
+            sed -n '1,200p' pyproject.toml >> "$REPORT" || true
+          fi
+          if [ -f requirements.txt ]; then
+            echo "" >> "$REPORT"
+            echo "--- requirements.txt (top 50 lines) ---" >> "$REPORT"
+            head -n 50 requirements.txt >> "$REPORT" || true
+          fi
+          echo "Report saved to $REPORT"
+
+      # ---------------- COMMIT AND PUSH OR CREATE PR ----------------
+      - name: Prepare commit
+        id: prepare_commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+            BRANCH="${{ steps.inputs.outputs.pr_prefix }}-${GITHUB_RUN_ID}"
+            echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+            MSG="chore: package changes - add='${{ steps.inputs.outputs.add }}' remove='${{ steps.inputs.outputs.remove }}' nodeDevAdd='${{ steps.inputs.outputs.node_dev_add }}' nodeDevRemove='${{ steps.inputs.outputs.node_dev_remove }}' pyExtrasAdd='${{ steps.inputs.outputs.py_ex_add }}' pyExtrasRemove='${{ steps.inputs.outputs.py_ex_remove }}'"
+            echo "commit_msg=$MSG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.prepare_commit.outputs.no_changes == 'false' && steps.inputs.outputs.commit == 'true'
+        run: |
+          git commit -m "${{ steps.prepare_commit.outputs.commit_msg }}"
+          # If create_pr is false, push to current branch; else create branch and push for PR
+          if [ "${{ steps.inputs.outputs.create_pr }}" = "false" ]; then
+            git push
+          else
+            BRANCH="${{ steps.prepare_commit.outputs.branch }}"
+            git checkout -b "$BRANCH"
+            git push --set-upstream origin "$BRANCH"
+          fi
+
+      - name: Create Pull Request (if requested)
+        if: steps.prepare_commit.outputs.no_changes == 'false' && steps.inputs.outputs.create_pr == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: ${{ steps.prepare_commit.outputs.commit_msg }}
+          branch: ${{ steps.prepare_commit.outputs.branch }}
+          title: "chore(deps): automated dependency changes"
+          body: |
+            This PR contains automated dependency changes made by the Advanced Package Manager workflow.
+            - Added: ${{ steps.inputs.outputs.add }} ${{ steps.inputs.outputs.node_dev_add }} ${{ steps.inputs.outputs.py_ex_add }}
+            - Removed: ${{ steps.inputs.outputs.remove }} ${{ steps.inputs.outputs.node_dev_remove }} ${{ steps.inputs.outputs.py_ex_remove }}
+          labels: automated-deps, needs-review
+
+      - name: No changes to commit
+        if: steps.prepare_commit.outputs.no_changes == 'true'
+        run: echo "No dependency changes detected; nothing to commit or PR."
+
