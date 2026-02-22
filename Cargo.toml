@@ -48,3 +48,7 @@ path = "alat/generator-pro.rs"
 [[bin]]
 name = "inject-schema"
 path = "alat/inject-schema.rs"
+
+[[bin]]
+name = "html-to-markdown"
+path = "alat/html-to-markdown.rs"
