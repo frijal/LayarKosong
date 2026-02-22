@@ -129,7 +129,7 @@ itemsHtml += `
     <tr style="border-bottom: 1px solid #eee;">
         <td style="padding: 8px 0 0 0; vertical-align: top;">
             <div style="font-weight: bold; font-size: 13px;">${nBarang}</div>
-            <div style="font-size: 11px; color: #555; margin-bottom: 8px;">${qty} x ${hargaSatuan}</div>
+            <div style="font-size: 11px; color: #000; margin-bottom: 8px;">${qty} x ${hargaSatuan}</div>
         </td>
         <td style="width: 5%; text-align: center; vertical-align: middle;">:</td>
         <td style="text-align: right; width: 40%; vertical-align: middle; font-weight: bold;">
@@ -150,12 +150,13 @@ itemsHtml += `
         </div>
         
         <table class="nota-table">
-            <thead>
-                <tr>
-                    <th colspan="2">Deskripsi</th>
-                    <th style="text-align: right;">Total</th>
-                </tr>
-            </thead>
+             <thead>
+    <tr style="border-bottom: 2px solid #000;">
+        <th style="text-align: left; width: 55%; padding-bottom: 5px;">Deskripsi</th>
+        <th style="width: 5%; text-align: center; padding-bottom: 5px;"></th>
+        <th style="text-align: right; width: 40%; padding-bottom: 5px;">Sub Total</th>
+    </tr>
+</thead>
             <tbody>
                 ${itemsHtml}
             </tbody>
@@ -172,7 +173,6 @@ itemsHtml += `
 
 const p = document.getElementById("nota-summary");
 p.innerHTML = content;
-// p.style.display = "block"; // Tidak perlu lagi karena sudah diatur di CSS off-screen
 
 html2canvas(p, { 
     scale: 3, 
