@@ -58,4 +58,7 @@ path = "alat/html-to-markdown.rs"
 name = "minify-html"
 path = "alat/minify-html.rs"
 
+[[bin]]
+name = "minify-jsonxml"
+path = "alat/minify-jsonxml.rs"
 
