@@ -23,11 +23,11 @@ body { font-family: Inter, sans-serif; }
     
     
     
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
     
-    <meta name="bluesky:creator" content="@dalam.web.id">
+    
+    
+    
+    
     
     
     
@@ -44,18 +44,45 @@ body { font-family: Inter, sans-serif; }
     
     
     
-    <meta itemprop="image" content="https://dalam.web.id/img/github-cli-guide.webp">
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Layar Kosong">
     <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-cli-guide">
     <meta property="og:url" content="https://dalam.web.id/artikel/github-cli-guide">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/github-cli-guide">
+    <meta property="twitter:domain" content="https://dalam.web.id">
     <meta property="og:title" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue">
+    <meta name="twitter:title" content="Panduan GitHub CLI Interaktif: Login, Commit, PR, &amp; Issue">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
     <meta name="description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
     <meta property="og:description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large"></head>
+    <meta name="twitter:description" content="Panduan interaktif GitHub CLI (gh) untuk login, clone repo, commit, push, pull request, branch, dan issue. Lengkap dengan contoh perintah dan diagram visual.">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+</head>
 <body class="bg-gray-50 text-gray-800">
 <div class="flex flex-col md:flex-row min-h-screen">
   <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -84,109 +111,13 @@ body { font-family: Inter, sans-serif; }
     </main>
 </div>
 <!-- Templates -->
-<template id="welcome-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-3xl font-bold text-gray-900 mb-4">Selamat Datang! 👋</h2>
-<p class="text-lg text-gray-600 mb-4">Panduan interaktif GitHub CLI (gh). Pilih topik di menu sebelah kiri untuk melihat diagram visual, contoh perintah, dan penjelasan.</p>
-<p class="text-gray-600">Gunakan tombol "Salin" untuk menyalin perintah dengan mudah dan mencoba langsung di terminal Anda.</p>
-</div>
-</template>
-<template id="login-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Login ke GitHub</h2>
-<div class="diagram-box">
-<div class="diagram-step">gh auth login</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">Pilih akun &amp; metode (HTTPS/SSH)</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">Login berhasil</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>gh auth login</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Autentikasi dengan GitHub melalui CLI.</p>
-</div>
-</template>
-<template id="clone-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Clone Repository</h2>
-<div class="diagram-box">
-<div class="diagram-step">gh repo clone username/repo</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">Folder lokal terbuat</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>gh repo clone username/repo</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Mengunduh repository dari GitHub ke lokal.</p>
-</div>
-</template>
-<template id="commit-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Commit &amp; Push</h2>
-<div class="diagram-box">
-<div class="diagram-step">git add .</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">git commit -m "Pesan commit"</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">git push</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>git add .
-git commit -m "Pesan commit"
-git push</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Tambahkan perubahan dan kirim ke GitHub.</p>
-</div>
-</template>
-<template id="pr-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Pull Request</h2>
-<div class="diagram-box">
-<div class="diagram-step">gh pr create --title "Judul" --body "Deskripsi"</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">PR dibuat di repo GitHub</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>gh pr create --title "Judul" --body "Deskripsi"</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Buat pull request langsung dari CLI.</p>
-</div>
-</template>
-<template id="branch-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Branch</h2>
-<div class="diagram-box">
-<div class="diagram-step">git checkout -b feature</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">Bekerja di branch baru</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>git checkout -b feature</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Membuat dan berpindah ke branch baru.</p>
-</div>
-</template>
-<template id="issue-content">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<h2 class="text-2xl font-bold text-gray-900 mb-2">Issue</h2>
-<div class="diagram-box">
-<div class="diagram-step">gh issue create --title "Bug" --body "Deskripsi"</div>
-<div class="diagram-arrow">→</div>
-<div class="diagram-step">Issue dibuat di repo GitHub</div>
-</div>
-<div class="code-block">
-<button class="copy-btn">Salin</button>
-<pre><code>gh issue create --title "Bug" --body "Deskripsi"</code></pre>
-</div>
-<p class="text-gray-600 text-sm">Buat issue baru melalui CLI.</p>
-</div>
-</template>
+<template id="welcome-content"></template>
+<template id="login-content"></template>
+<template id="clone-content"></template>
+<template id="commit-content"></template>
+<template id="pr-content"></template>
+<template id="branch-content"></template>
+<template id="issue-content"></template>
 <div id="diskus"></div><div id="related-articles-grid"></div>
 <!-- Footer -->
 <div style="margin-top:50px;padding:20px;text-align:center;">

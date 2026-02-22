@@ -23,11 +23,11 @@
     
     
     
-    <meta name="googlebot" content="max-image-preview:large">
-    <meta name="theme-color" content="#00b0ed">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
     
-    <meta name="bluesky:creator" content="@dalam.web.id">
+    
+    
+    
+    
     
     
     
@@ -44,18 +44,45 @@
     
     
     
-    <meta itemprop="image" content="https://dalam.web.id/img/ubahpotong.webp">
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <meta property="og:locale" content="id_ID">
     <meta property="og:site_name" content="Layar Kosong">
     <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://dalam.web.id/artikel/ubahpotong">
     <meta property="og:url" content="https://dalam.web.id/artikel/ubahpotong">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/ubahpotong">
+    <meta property="twitter:domain" content="https://dalam.web.id">
     <meta property="og:title" content="Cara Memotong Gambar menggunakan ImageMagick">
+    <meta name="twitter:title" content="Cara Memotong Gambar menggunakan ImageMagick">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
     <meta name="description" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
     <meta property="og:description" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large"></head>
+    <meta name="twitter:description" content="Panduan interaktif cara memotong (crop) gambar secara horizontal dan vertikal menggunakan perintah ImageMagick. Lihat visualisasi dan salin kodenya!">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+</head>
 <body class="bg-gray-50 text-gray-800">
     <div class="flex flex-col md:flex-row min-h-screen">
         <aside class="w-full md:w-1/4 lg:w-1/5 bg-white border-r border-gray-200 p-4 md:p-6 md:fixed md:h-full">
@@ -74,77 +101,9 @@
         <main id="content-display" class="w-full md:ml-[25%] lg:ml-[20%] p-6 md:p-10">
     </main>
     </div>
-    <template id="welcome-content">
-        <div class="bg-white p-8 rounded-lg shadow-sm">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Selamat Datang!</h2>
-            <p class="text-lg text-gray-600 mb-4">
-                Ini adalah panduan interaktif untuk beberapa perintah baris perintah yang umum digunakan untuk memanipulasi gambar menggunakan <strong>ImageMagick</strong>.
-            </p>
-            <p class="text-gray-600">
-                Silakan pilih salah satu tugas dari menu navigasi di sebelah kiri untuk melihat detail, contoh perintah, dan visualisasi cara kerjanya. Anda dapat dengan mudah menyalin perintah langsung ke clipboard Anda.
-            </p>
-        </div>
-    </template>
-    <template id="imagemagick-crop-h-content">
-        <div class="bg-white p-8 rounded-lg shadow-sm">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                Memotong Gambar secara Horizontal (Slicing)
-            </h2>
-            <p class="text-gray-600 mb-6">
-                Perintah ini menggunakan opsi `-crop` dengan penanda `@` untuk memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari atas ke bawah.
-            </p>
-            <h3 class="font-semibold mb-2 text-gray-700">Visualisasi (Potong jadi 2)</h3>
-            <div class="diagram-box mb-6 rounded-md flex space-x-2">
-                <div class="w-24 h-24 bg-blue-200 border-2 border-blue-400 rounded-md flex justify-center items-center font-mono">input.jpg</div>
-                <div class="flex items-center text-2xl text-gray-500 mx-4">→</div>
-                <div class="flex flex-col space-y-1">
-                    <div class="w-24 h-11 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">output_0</div>
-                    <div class="w-24 h-11 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">output_1</div>
-                </div>
-            </div>
-            <h3 class="font-semibold mb-2 text-gray-700">Perintah (Potong jadi N)</h3>
-            <div class="code-block mb-4">
-                <button class="copy-btn">Salin</button>
-                <pre><code>convert input.jpg -crop 1xN@ +repage output_%d.jpg</code></pre>
-            </div>
-            <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
-            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan horizontal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian atas/bawah).</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop 1xN@</code>: Membagi gambar menjadi 1 baris dan N kolom. Penanda `@` (chop/slice) penting untuk pembagian rata.</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Menghapus informasi kanvas virtual sehingga file hasil memiliki dimensi yang tepat.</li>
-            </ul>
-        </div>
-    </template>
-    <template id="imagemagick-crop-v-content">
-        <div class="bg-white p-8 rounded-lg shadow-sm">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                Memotong Gambar secara Vertikal (Slicing)
-            </h2>
-            <p class="text-gray-600 mb-6">
-                Perintah ini akan memotong gambar menjadi <strong>N bagian yang sama rata</strong> dari kiri ke kanan.
-            </p>
-            <h3 class="font-semibold mb-2 text-gray-700">Visualisasi (Potong jadi 2)</h3>
-            <div class="diagram-box mb-6 rounded-md flex space-x-2">
-                <div class="w-24 h-24 bg-blue-200 border-2 border-blue-400 rounded-md flex justify-center items-center font-mono">input.jpg</div>
-                <div class="flex items-center text-2xl text-gray-500 mx-4">→</div>
-                <div class="flex space-x-1">
-                    <div class="w-11 h-24 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">out_0</div>
-                    <div class="w-11 h-24 bg-green-200 border-2 border-green-400 rounded-md flex justify-center items-center font-mono text-sm">out_1</div>
-                </div>
-            </div>
-            <h3 class="font-semibold mb-2 text-gray-700">Perintah (Potong jadi N)</h3>
-            <div class="code-block mb-4">
-                <button class="copy-btn">Salin</button>
-                <pre><code>convert input.jpg -crop Nx1@ +repage output_%d.jpg</code></pre>
-            </div>
-            <h3 class="font-semibold mb-2 text-gray-700">Penjelasan Parameter</h3>
-            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">N</code>: Ganti dengan jumlah potongan vertikal yang Anda inginkan (e.g., 2 untuk memotong jadi dua bagian kiri/kanan).</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">-crop Nx1@</code>: Membagi gambar menjadi **N kolom** dan 1 baris.</li>
-                <li><code class="bg-gray-200 text-sm rounded px-1 py-0.5">+repage</code>: Memastikan file hasil memiliki dimensi yang tepat.</li>
-            </ul>
-        </div>
-    </template>
+    <template id="welcome-content"></template>
+    <template id="imagemagick-crop-h-content"></template>
+    <template id="imagemagick-crop-v-content"></template>
     <footer class="md:ml-[25%] lg:ml-[20%] mt-10 p-6 text-center">
         <p class="text-xs text-gray-500">🄯 2025 Command Line Guides</p>
     </footer>
