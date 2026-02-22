@@ -23,10 +23,16 @@ function cleanHTML(html) {
     .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')             // Italic
     .replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~')   // Strikethrough
 
-    // Konversi Link dengan Proteksi Atribut (target, class, dll)
-    .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, (match, url, text) => {
-        const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
-        return isProtected ? match : `[${text}](${url})`;
+    // Konversi Link - SEKARANG LEBIH SMART!
+    .replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
+    // 1. Cek apakah ada atribut proteksi (class, id, dll)
+    const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
+    
+    // 2. Cek apakah di dalam link ada tag <img> (ini yang bikin galeri rusak)
+    const containsImg = /<img\s[^>]*>/i.test(text);
+
+    // Jika diproteksi ATAU berisi gambar, jangan diubah jadi Markdown. Biarkan tetap HTML.
+    return (isProtected || containsImg) ? match : `[${text}](${url})`;
     });
 
     // --- FASE 3: SMART INLINE CODE ---
