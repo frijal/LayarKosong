@@ -42,26 +42,27 @@ async function minifyFiles(dir) {
 
       const input = Buffer.from(originalHTML);
       const output = minifyHtml.minify(input, {
-  allow_optimal_entities: true,
-  allow_noncompliant_unquoted_attribute_values: true,
-  allow_removing_spaces_between_attributes: true,
-  minify_doctype: true,
-  
-  // Ubah bagian ini agar JS lebih aman
-  minify_css: true,
-  minify_js: true, 
-  
-  collapse_whitespaces: true,
-  keep_comments: false, 
-  
-  // INI PENTING: Jangan hapus tag penutup p atau elemen lain jika ada Markdown manual
-  // karena bisa membingungkan parser browser jika teksnya nempel
-  keep_html_and_head_opening_tags: false,
-  remove_bangs: true,
-  remove_processing_instructions: true,
-  ensure_spec_compliant_unquoted_attribute_values: false,
-  keep_spaces_between_attributes: false,
-});
+        // --- OPSI EKSTREM (Gacor Mode) ---
+        allow_optimal_entities: true,
+        allow_noncompliant_unquoted_attribute_values: true,
+        allow_removing_spaces_between_attributes: true,
+        minify_doctype: true,
+        
+        // --- OPTIMASI CONTENT (Rust Engine) ---
+        minify_css: true,
+        minify_js: true,
+        collapse_whitespaces: true,
+        
+        // --- PEMBERSIHAN TOTAL ---
+        keep_comments: false,
+        keep_html_and_head_opening_tags: false, // Menghilangkan tag opsional demi byte terakhir
+        remove_bangs: true,
+        remove_processing_instructions: true,
+        
+        // --- OVERRIDE STANDAR ---
+        ensure_spec_compliant_unquoted_attribute_values: false,
+        keep_spaces_between_attributes: false,
+      });
 
       const minifiedHTML = output.toString();
 
