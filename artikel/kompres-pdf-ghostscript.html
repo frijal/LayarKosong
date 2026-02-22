@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kompres PDF Hasil Scan dengan Ghostscript di Linux: Cepat, Mudah, Efektif</title>
-  <meta name="description" content="Cara mengecilkan ukuran PDF hasil scan dari puluhan MB menjadi hanya beberapa MB menggunakan Ghostscript di GNU/Linux. Lengkap dengan contoh perintah, opsi kualitas, tips, dan solusi error.">
+  
   <!-- Open Graph -->
   <!-- Prism (syntax highlight) -->
   <link rel="stylesheet" href="/ext/prism-tomorrow.min.css">
@@ -138,33 +138,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Cara mengecilkan ukuran PDF hasil scan dari puluhan MB menjadi hanya beberapa MB menggunakan Ghostscript di GNU/Linux. Lengkap dengan contoh perintah, opsi kualitas, tips, dan solusi error.">
 <meta name="ai:prompt_hint" content="Cara mengecilkan ukuran PDF hasil scan dari puluhan MB menjadi hanya beberapa MB menggunakan Ghostscript di GNU/Linux. Lengkap dengan contoh perintah, opsi kualitas, tips, dan solusi error.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/kompres-pdf-ghostscript">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHzahydQn3VjRRz_RA6o7-ebiPiZr0VvcwxOplhpq6KcPwAQ0XvBq19SoIapkr0Jx0TTBa79YuG7XcjEeVlAMMY2o5Q1xF0O8U2kaClVMjL_c8HFbA_P_1jiWh4aR8xCPAQ39hOYCPUu-35G01-Y67AJJ6GDKSQiGdqmTbs0T9G0sVBEmR3T5nAJgBepE/s1600/photo-1510936111840-65e151ad71bb.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/kompres-pdf-ghostscript">
     <meta property="og:url" content="https://dalam.web.id/artikel/kompres-pdf-ghostscript">
     <meta property="og:title" content="Kompres PDF Hasil Scan dengan Ghostscript di Linux: Cepat, Mudah, Efektif">
+    <meta name="description" content="Cara mengecilkan ukuran PDF hasil scan dari puluhan MB menjadi hanya beberapa MB menggunakan Ghostscript di GNU/Linux. Lengkap dengan contoh perintah, opsi kualitas, tips, dan solusi error.">
     <meta property="og:description" content="Cara mengecilkan ukuran PDF hasil scan dari puluhan MB menjadi hanya beberapa MB menggunakan Ghostscript di GNU/Linux. Lengkap dengan contoh perintah, opsi kualitas, tips, dan solusi error.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHzahydQn3VjRRz_RA6o7-ebiPiZr0VvcwxOplhpq6KcPwAQ0XvBq19SoIapkr0Jx0TTBa79YuG7XcjEeVlAMMY2o5Q1xF0O8U2kaClVMjL_c8HFbA_P_1jiWh4aR8xCPAQ39hOYCPUu-35G01-Y67AJJ6GDKSQiGdqmTbs0T9G0sVBEmR3T5nAJgBepE/s1600/photo-1510936111840-65e151ad71bb.webp">
-    <meta property="og:image:alt" content="Kompres PDF Hasil Scan dengan Ghostscript di Linux: Cepat, Mudah, Efektif">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHzahydQn3VjRRz_RA6o7-ebiPiZr0VvcwxOplhpq6KcPwAQ0XvBq19SoIapkr0Jx0TTBa79YuG7XcjEeVlAMMY2o5Q1xF0O8U2kaClVMjL_c8HFbA_P_1jiWh4aR8xCPAQ39hOYCPUu-35G01-Y67AJJ6GDKSQiGdqmTbs0T9G0sVBEmR3T5nAJgBepE/s1600/photo-1510936111840-65e151ad71bb.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHzahydQn3VjRRz_RA6o7-ebiPiZr0VvcwxOplhpq6KcPwAQ0XvBq19SoIapkr0Jx0TTBa79YuG7XcjEeVlAMMY2o5Q1xF0O8U2kaClVMjL_c8HFbA_P_1jiWh4aR8xCPAQ39hOYCPUu-35G01-Y67AJJ6GDKSQiGdqmTbs0T9G0sVBEmR3T5nAJgBepE/s1600/photo-1510936111840-65e151ad71bb.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHzahydQn3VjRRz_RA6o7-ebiPiZr0VvcwxOplhpq6KcPwAQ0XvBq19SoIapkr0Jx0TTBa79YuG7XcjEeVlAMMY2o5Q1xF0O8U2kaClVMjL_c8HFbA_P_1jiWh4aR8xCPAQ39hOYCPUu-35G01-Y67AJJ6GDKSQiGdqmTbs0T9G0sVBEmR3T5nAJgBepE/s1600/photo-1510936111840-65e151ad71bb.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
   <!-- Hero -->
   <header class="hero">

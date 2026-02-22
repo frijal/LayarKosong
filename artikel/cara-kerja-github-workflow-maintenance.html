@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions</title>
-    <meta name="description" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
+    
     <meta name="news_keywords" content="GitHub Actions, DevOps, Automasi, Web Development, Tutorial, Coding, CI/CD">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
@@ -153,33 +153,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
 <meta name="ai:prompt_hint" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cara-kerja-github-workflow-maintenance">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cara-kerja-github-workflow-maintenance">
     <meta property="og:url" content="https://dalam.web.id/artikel/cara-kerja-github-workflow-maintenance">
     <meta property="og:title" content="Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions">
+    <meta name="description" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
     <meta property="og:description" content="Penjelasan mendalam dan santai tentang cara kerja script GitHub Actions untuk update dependencies, sinkronisasi aset, dan verifikasi keamanan otomatis.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
-    <meta property="og:image:alt" content="Bedah Cara Kerja Workflow Maintenance Otomatis GitHub Actions">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinJZ2ARfyIYR5sgIB5OjxFYsrldiz1eMCc1B23czdeHkNq7SjUxfw46U1DHWCqZXfC6GZtMXDX0wSr983igIq93S5v4ZF8ztHliBOXM4A-dhOwCRWH2A-VijMSGdu2y5tUlKL3eun2FI8xT3D9qLYCurchd5VcwRBQmPYby0Ju4_OZFBda5e5v0lHDhAo/s1600/maintenance.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="container">
         <h1>Bedah Workflow: Bot Pemeliharaan Otomatis</h1>

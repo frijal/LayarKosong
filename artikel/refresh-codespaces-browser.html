@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart</title>
-    <meta name="description" content="Cheat sheet cara refresh GitHub Codespaces langsung dari browser: Restart, Rebuild Container, Full Rebuild. Plus diagram alur singkat kapan pilih yang mana.">
+    
     <!-- Styles: 1 kolom, dark theme -->
     <style>
         :root {
@@ -44,33 +44,45 @@
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-    <link rel="canonical" href="https://dalam.web.id/artikel/refresh-codespaces-browser">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdZa-pG0NQFm0vvZ9VWn65-ohBZn5A6xciMPnHmGWgQSVpu_1_XjpPVZEUlCtcnzw1PG5Z3oa1Q6ACFDXCAYUFQklxluiYtFr3p0I7cpHdtCp9h0zfWg7_XtmDONJS9aJj6pac4gCYHZFYRLm0rSZ6EVRxZANnB6JQwa0I0WphLfm7Wyjjw6HoUCY_CYc/s1600/refresh-codespaces-browser.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/refresh-codespaces-browser">
     <meta property="og:url" content="https://dalam.web.id/artikel/refresh-codespaces-browser">
     <meta property="og:title" content="Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart">
+    <meta name="description" content="Cheat sheet cara refresh GitHub Codespaces langsung dari browser: Restart, Rebuild Container, Full Rebuild. Plus diagram alur singkat kapan pilih yang mana.">
     <meta property="og:description" content="Cheat sheet cara refresh GitHub Codespaces langsung dari browser: Restart, Rebuild Container, Full Rebuild. Plus diagram alur singkat kapan pilih yang mana.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdZa-pG0NQFm0vvZ9VWn65-ohBZn5A6xciMPnHmGWgQSVpu_1_XjpPVZEUlCtcnzw1PG5Z3oa1Q6ACFDXCAYUFQklxluiYtFr3p0I7cpHdtCp9h0zfWg7_XtmDONJS9aJj6pac4gCYHZFYRLm0rSZ6EVRxZANnB6JQwa0I0WphLfm7Wyjjw6HoUCY_CYc/s1600/refresh-codespaces-browser.webp">
-    <meta property="og:image:alt" content="Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdZa-pG0NQFm0vvZ9VWn65-ohBZn5A6xciMPnHmGWgQSVpu_1_XjpPVZEUlCtcnzw1PG5Z3oa1Q6ACFDXCAYUFQklxluiYtFr3p0I7cpHdtCp9h0zfWg7_XtmDONJS9aJj6pac4gCYHZFYRLm0rSZ6EVRxZANnB6JQwa0I0WphLfm7Wyjjw6HoUCY_CYc/s1600/refresh-codespaces-browser.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdZa-pG0NQFm0vvZ9VWn65-ohBZn5A6xciMPnHmGWgQSVpu_1_XjpPVZEUlCtcnzw1PG5Z3oa1Q6ACFDXCAYUFQklxluiYtFr3p0I7cpHdtCp9h0zfWg7_XtmDONJS9aJj6pac4gCYHZFYRLm0rSZ6EVRxZANnB6JQwa0I0WphLfm7Wyjjw6HoUCY_CYc/s1600/refresh-codespaces-browser.webp">
-</head>
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="wrap">
         <header class="site">

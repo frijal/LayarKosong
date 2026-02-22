@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB</title>
-    <meta name="description" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
+    
     <link href="/ext/atom-one-light.min.css" rel="stylesheet">
     <!-- Styles: 1 kolom, light theme -->
     <style>
@@ -57,33 +57,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
 <meta name="ai:prompt_hint" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/hapus-os-ilegal-aman">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/hapus-os-ilegal-aman">
     <meta property="og:url" content="https://dalam.web.id/artikel/hapus-os-ilegal-aman">
     <meta property="og:title" content="Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB">
+    <meta name="description" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
     <meta property="og:description" content="Panduan santai dan aman menghapus sistem operasi ilegal dari komputer, langsung dari Linux tanpa LiveCD/USB: backup data, partisi dengan GParted, dan susun ulang GRUB.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.webp">
-    <meta property="og:image:alt" content="Hapus OS Ilegal dengan Aman, Cepat, dan Tanpa Live USB">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUSC__bnf7_KiML5IdEz2U5LdGH2bD5NsZfO6QvdUIMkONoP4NPKxn6XPuxtwvw_vmJVsdWdaAD98vhSYN5OJNuyAFu3b-rvIfCZBwyvE3rKbA8TlVZWRhNjiPI5Axt2iHYm0g7PnuxVaB/s1600/aboutgparted007.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="wrap">
         <header class="site">

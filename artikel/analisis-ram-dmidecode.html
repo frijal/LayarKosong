@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡</title>
-    <meta name="description" content="Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.">
+    
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <link rel="stylesheet" href="/ext/default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/monokai.min.css" media="(prefers-color-scheme: dark)">
@@ -110,33 +110,43 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.">
 <meta name="ai:prompt_hint" content="Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/analisis-ram-dmidecode">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh039DqQVNWSf6LYEMM0AWBAN1OLtoFz6zSTeScSeD8-2KB-kQ2v30EkEBCkoyEVDb66ZjR6NaFm3dJJNp87bWBOG7BNnhshB6R4aKEo3xPlsDgr9E-nrF-YglCxXijS7dpiUKQfqpozoXcki4u2rSy_htvHd8YJLzv7Aw8EPs1qJJbMDek_pkxp8mhIX4/s1600/sodimmdimm.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/analisis-ram-dmidecode">
     <meta property="og:url" content="https://dalam.web.id/artikel/analisis-ram-dmidecode">
     <meta property="og:title" content="Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡">
+    <meta name="description" content="Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.">
     <meta property="og:description" content="Cara mudah membaca output dmidecode untuk mengetahui tipe RAM (DDR4, SODIMM), kapasitas, kecepatan (PC4-17000), dan status slot kosong untuk upgrade di Linux. Panduan lengkap dan analisis data RAM Samsung 8GB.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh039DqQVNWSf6LYEMM0AWBAN1OLtoFz6zSTeScSeD8-2KB-kQ2v30EkEBCkoyEVDb66ZjR6NaFm3dJJNp87bWBOG7BNnhshB6R4aKEo3xPlsDgr9E-nrF-YglCxXijS7dpiUKQfqpozoXcki4u2rSy_htvHd8YJLzv7Aw8EPs1qJJbMDek_pkxp8mhIX4/s1600/sodimmdimm.webp">
-    <meta property="og:image:alt" content="Analisis RAM Laptop Anda: Tipe, Kapasitas, dan Upgrade (dmidecode) ⚡">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh039DqQVNWSf6LYEMM0AWBAN1OLtoFz6zSTeScSeD8-2KB-kQ2v30EkEBCkoyEVDb66ZjR6NaFm3dJJNp87bWBOG7BNnhshB6R4aKEo3xPlsDgr9E-nrF-YglCxXijS7dpiUKQfqpozoXcki4u2rSy_htvHd8YJLzv7Aw8EPs1qJJbMDek_pkxp8mhIX4/s1600/sodimmdimm.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh039DqQVNWSf6LYEMM0AWBAN1OLtoFz6zSTeScSeD8-2KB-kQ2v30EkEBCkoyEVDb66ZjR6NaFm3dJJNp87bWBOG7BNnhshB6R4aKEo3xPlsDgr9E-nrF-YglCxXijS7dpiUKQfqpozoXcki4u2rSy_htvHd8YJLzv7Aw8EPs1qJJbMDek_pkxp8mhIX4/s1600/sodimmdimm.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large"></head>
 <body>
     <div class="container">
         <h1>⚡ Bongkar Tuntas Spesifikasi RAM Laptop Anda dari Perintah `dmidecode`</h1>

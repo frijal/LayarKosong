@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux</title>
-    <meta name="description" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
+    
     <link href="/ext/vs-dark.min.css" rel="stylesheet">
     <style>
         :root {
@@ -56,33 +56,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
 <meta name="ai:prompt_hint" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/realtek-rtl8723be">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/realtek-rtl8723be">
     <meta property="og:url" content="https://dalam.web.id/artikel/realtek-rtl8723be">
     <meta property="og:title" content="Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux">
+    <meta name="description" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
     <meta property="og:description" content="Catatan singkat dan santai cara memperbaiki tangkapan sinyal Wi‑Fi untuk Realtek RTL8723BE di Linux. Lengkap dengan langkah, tips, dan contoh.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.webp">
-    <meta property="og:image:alt" content="Perbaiki Tangkapan Wi‑Fi Realtek RTL8723BE di Ubuntu Linux">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLrYOkxwe8DdADImRSn9_g_C2hTWVNPV9TIyrbXvkOlE6Y7Ozan0o4NwIAMFeWWQrAidKF_QdlQFN0TKx5KX9DK58WrvmMqlWRraXeihrs6S5B9tTgHKNTtfbqKf8h6DO8quWy77vAhgNv/s1600/realtek_logo.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="wrap">
         <header class="site">

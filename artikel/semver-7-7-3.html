@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- Primary SEO -->
   <title>semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js</title>
-  <meta name="description" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
+  
   <meta name="keywords" content="semver, npm, Node.js, semantic versioning, versi, package.json, CI/CD, range, comparator, prerelease, inc, gt, satisfies">
   <!-- Favicon -->
   <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
@@ -184,33 +184,43 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
 <meta name="ai:prompt_hint" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/semver-7-7-3">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLoHA4rueqN4D9TBDSWC9GsroBSVSvKjHy4TGInZ6ftu4MByzDn2O3Th1MULjbp4JFJeBNCJA9ZkV4ru565pFCBF-TJM-gpEtawY7pTjkYjl4_Yq2riip90JfTiMUjI1NevySS3okYU4dXJvqGSD1DlHta-e7ioXWvoOIZDVp6sCT9I6Yi0_XRSay46jQ/s1600/semver.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/semver-7-7-3">
     <meta property="og:url" content="https://dalam.web.id/artikel/semver-7-7-3">
     <meta property="og:title" content="semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js">
+    <meta name="description" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
     <meta property="og:description" content="Semver@7.7.3 adalah paket npm untuk parsing, membandingkan, dan mengelola versi software sesuai aturan Semantic Versioning. Contoh kode, tabel fitur, dan kapan dipakai di CI/CD. Halaman responsif, widescreen, mode gelap/terang otomatis.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLoHA4rueqN4D9TBDSWC9GsroBSVSvKjHy4TGInZ6ftu4MByzDn2O3Th1MULjbp4JFJeBNCJA9ZkV4ru565pFCBF-TJM-gpEtawY7pTjkYjl4_Yq2riip90JfTiMUjI1NevySS3okYU4dXJvqGSD1DlHta-e7ioXWvoOIZDVp6sCT9I6Yi0_XRSay46jQ/s1600/semver.webp">
-    <meta property="og:image:alt" content="semver@7.7.3 — Panduan Lengkap: Parse, Bandingkan, dan Kelola Versi di Node.js">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLoHA4rueqN4D9TBDSWC9GsroBSVSvKjHy4TGInZ6ftu4MByzDn2O3Th1MULjbp4JFJeBNCJA9ZkV4ru565pFCBF-TJM-gpEtawY7pTjkYjl4_Yq2riip90JfTiMUjI1NevySS3okYU4dXJvqGSD1DlHta-e7ioXWvoOIZDVp6sCT9I6Yi0_XRSay46jQ/s1600/semver.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLoHA4rueqN4D9TBDSWC9GsroBSVSvKjHy4TGInZ6ftu4MByzDn2O3Th1MULjbp4JFJeBNCJA9ZkV4ru565pFCBF-TJM-gpEtawY7pTjkYjl4_Yq2riip90JfTiMUjI1NevySS3okYU4dXJvqGSD1DlHta-e7ioXWvoOIZDVp6sCT9I6Yi0_XRSay46jQ/s1600/semver.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large"></head>
 <body>
   <div class="page">
     <header>

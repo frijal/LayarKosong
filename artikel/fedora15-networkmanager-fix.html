@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Fedora 15: Perbaiki NetworkManager USB Modem yang Ngadat</title>
-  <meta name="description" content="Baru update Fedora 15 dan modem USB gak konek? Ini cara santai tapi tuntas memperbaiki bug NetworkManager versi gnome-0.8.999.3.git20110526 di Fedora 15, lengkap dengan langkah terminal, tautan RPM, dan tips aman.">
+  
   <meta name="keywords" content="Fedora 15, NetworkManager, bug, perbaikan, modem USB, ponsel, RPM, terminal, Linux, Fedora">
   <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
   <link rel="manifest" href="https://dalam.web.id/manifest.webmanifest">
@@ -280,33 +280,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Baru update Fedora 15 dan modem USB gak konek? Ini cara santai tapi tuntas memperbaiki bug NetworkManager versi gnome-0.8.999.3.git20110526 di Fedora 15, lengkap dengan langkah terminal, tautan RPM, dan tips aman.">
 <meta name="ai:prompt_hint" content="Baru update Fedora 15 dan modem USB gak konek? Ini cara santai tapi tuntas memperbaiki bug NetworkManager versi gnome-0.8.999.3.git20110526 di Fedora 15, lengkap dengan langkah terminal, tautan RPM, dan tips aman.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/fedora15-networkmanager-fix">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/fedora15-networkmanager-fix">
     <meta property="og:url" content="https://dalam.web.id/artikel/fedora15-networkmanager-fix">
     <meta property="og:title" content="Fedora 15: Perbaiki NetworkManager USB Modem yang Ngadat">
+    <meta name="description" content="Baru update Fedora 15 dan modem USB gak konek? Ini cara santai tapi tuntas memperbaiki bug NetworkManager versi gnome-0.8.999.3.git20110526 di Fedora 15, lengkap dengan langkah terminal, tautan RPM, dan tips aman.">
     <meta property="og:description" content="Baru update Fedora 15 dan modem USB gak konek? Ini cara santai tapi tuntas memperbaiki bug NetworkManager versi gnome-0.8.999.3.git20110526 di Fedora 15, lengkap dengan langkah terminal, tautan RPM, dan tips aman.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp">
-    <meta property="og:image:alt" content="Fedora 15: Perbaiki NetworkManager USB Modem yang Ngadat">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcZze1B8effjBgy9jbK3ucLENi40tQeX0NRovwwuTQ78TTDM5L1ai2IonB-N-Ms7W2t1ZCURYFCYa_u7kR1Ymotd6hhDPvK5R8dtwqBfqOYEaLrfqGq1GxERW-dSSn61DbmAhfORxhnGJp/s1600/instalasiselesai.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <header class="hero wrap">
         <div>

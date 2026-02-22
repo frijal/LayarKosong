@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Pembaruan Otomatis Fedora: Perlukah?</title>
-  <meta name="description" content="Panduan Fedora Linux mengenai pembaruan otomatis, termasuk kapan aman, cara konfigurasi dnf-automatic, praktik terbaik, dan alternatif lainnya.">
+  
   <!-- Favicon -->
   <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
   <!-- Open Graph -->
@@ -91,33 +91,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Panduan Fedora Linux mengenai pembaruan otomatis, termasuk kapan aman, cara konfigurasi dnf-automatic, praktik terbaik, dan alternatif lainnya.">
 <meta name="ai:prompt_hint" content="Panduan Fedora Linux mengenai pembaruan otomatis, termasuk kapan aman, cara konfigurasi dnf-automatic, praktik terbaik, dan alternatif lainnya.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/pembaruan-otomatis-fedora">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG8lggntpG6-9NKbxcg8vCOSSZR3cwzcHG3B6ncSiiYTikP7W3KPlsEjluY8p3SneHPr6okbd65gHylHbXRoztBT_beWLqyrkvJ2RKvcw_1LOp8SJjc7_g1DUrjM30NX7ykpgRpuEM-nNaNOW4Zpoj9BcE9W6gpzOAJIyeNEAuupH5p_lFe2xLip5MDtw/s1600/229-wallpaper.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/pembaruan-otomatis-fedora">
     <meta property="og:url" content="https://dalam.web.id/artikel/pembaruan-otomatis-fedora">
     <meta property="og:title" content="Pembaruan Otomatis Fedora: Perlukah?">
+    <meta name="description" content="Panduan Fedora Linux mengenai pembaruan otomatis, termasuk kapan aman, cara konfigurasi dnf-automatic, praktik terbaik, dan alternatif lainnya.">
     <meta property="og:description" content="Panduan Fedora Linux mengenai pembaruan otomatis, termasuk kapan aman, cara konfigurasi dnf-automatic, praktik terbaik, dan alternatif lainnya.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG8lggntpG6-9NKbxcg8vCOSSZR3cwzcHG3B6ncSiiYTikP7W3KPlsEjluY8p3SneHPr6okbd65gHylHbXRoztBT_beWLqyrkvJ2RKvcw_1LOp8SJjc7_g1DUrjM30NX7ykpgRpuEM-nNaNOW4Zpoj9BcE9W6gpzOAJIyeNEAuupH5p_lFe2xLip5MDtw/s1600/229-wallpaper.webp">
-    <meta property="og:image:alt" content="Pembaruan Otomatis Fedora: Perlukah?">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG8lggntpG6-9NKbxcg8vCOSSZR3cwzcHG3B6ncSiiYTikP7W3KPlsEjluY8p3SneHPr6okbd65gHylHbXRoztBT_beWLqyrkvJ2RKvcw_1LOp8SJjc7_g1DUrjM30NX7ykpgRpuEM-nNaNOW4Zpoj9BcE9W6gpzOAJIyeNEAuupH5p_lFe2xLip5MDtw/s1600/229-wallpaper.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG8lggntpG6-9NKbxcg8vCOSSZR3cwzcHG3B6ncSiiYTikP7W3KPlsEjluY8p3SneHPr6okbd65gHylHbXRoztBT_beWLqyrkvJ2RKvcw_1LOp8SJjc7_g1DUrjM30NX7ykpgRpuEM-nNaNOW4Zpoj9BcE9W6gpzOAJIyeNEAuupH5p_lFe2xLip5MDtw/s1600/229-wallpaper.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhG8lggntpG6-9NKbxcg8vCOSSZR3cwzcHG3B6ncSiiYTikP7W3KPlsEjluY8p3SneHPr6okbd65gHylHbXRoztBT_beWLqyrkvJ2RKvcw_1LOp8SJjc7_g1DUrjM30NX7ykpgRpuEM-nNaNOW4Zpoj9BcE9W6gpzOAJIyeNEAuupH5p_lFe2xLip5MDtw/s1600/229-wallpaper.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
   <div id="toast" style="position:fixed; bottom:20px; right:20px; background: #2a3a50; color: white; padding: 10px 20px; border-radius: 8px; z-index: 1001; opacity: 0; transition: opacity 0.3s;"></div>
   <!-- Header -->

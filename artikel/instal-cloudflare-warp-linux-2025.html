@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) – Update 2025!</title>
-    <meta name="description" content="Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!">
+    
     <meta name="keywords" content="Cloudflare WARP install Linux, Debian 13 Trixie, Ubuntu, Red Hat CentOS, error unable to locate package, public key update 2025, MyRepublic GitHub lambat">
     <meta name="news_keywords" content="Cloudflare WARP, Linux Install, Debian 13, Ubuntu, RHEL, Key Update 2025">
     <!-- Canonical -->
@@ -105,33 +105,43 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!">
 <meta name="ai:prompt_hint" content="Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!">
-    <link rel="canonical" href="https://dalam.web.id/artikel/instal-cloudflare-warp-linux-2025">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisaeOoP4xqx9OmlXhSNkLMDJq4btwbzOdEP972KJ7g6j8FD_mV7Az4DpIvGGv08LgX4Ul1wFbRgZDP-Ki1_TTOOsyJvIRI5EX9Ej_6h_7ygCISUE-HWsCPtpyv-XH8Af5OoC6sFaEqRUmrkVLfBkjuz39xMiGf9HsX4x51w4fa_zjcbOMWuoADiLiIJ2Q/s1600/cloudflare-warp.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/instal-cloudflare-warp-linux-2025">
     <meta property="og:url" content="https://dalam.web.id/artikel/instal-cloudflare-warp-linux-2025">
     <meta property="og:title" content="Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) – Update 2025!">
+    <meta name="description" content="Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!">
     <meta property="og:description" content="Tutorial santai instal Cloudflare WARP di berbagai distro Linux, termasuk Debian 13 Trixie yang sekarang resmi support. Solusi error Unable to locate package dan notice key update 2025. Cocok buat bypass routing MyRepublic lambat ke GitHub!">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisaeOoP4xqx9OmlXhSNkLMDJq4btwbzOdEP972KJ7g6j8FD_mV7Az4DpIvGGv08LgX4Ul1wFbRgZDP-Ki1_TTOOsyJvIRI5EX9Ej_6h_7ygCISUE-HWsCPtpyv-XH8Af5OoC6sFaEqRUmrkVLfBkjuz39xMiGf9HsX4x51w4fa_zjcbOMWuoADiLiIJ2Q/s1600/cloudflare-warp.webp">
-    <meta property="og:image:alt" content="Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) – Update 2025!">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisaeOoP4xqx9OmlXhSNkLMDJq4btwbzOdEP972KJ7g6j8FD_mV7Az4DpIvGGv08LgX4Ul1wFbRgZDP-Ki1_TTOOsyJvIRI5EX9Ej_6h_7ygCISUE-HWsCPtpyv-XH8Af5OoC6sFaEqRUmrkVLfBkjuz39xMiGf9HsX4x51w4fa_zjcbOMWuoADiLiIJ2Q/s1600/cloudflare-warp.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisaeOoP4xqx9OmlXhSNkLMDJq4btwbzOdEP972KJ7g6j8FD_mV7Az4DpIvGGv08LgX4Ul1wFbRgZDP-Ki1_TTOOsyJvIRI5EX9Ej_6h_7ygCISUE-HWsCPtpyv-XH8Af5OoC6sFaEqRUmrkVLfBkjuz39xMiGf9HsX4x51w4fa_zjcbOMWuoADiLiIJ2Q/s1600/cloudflare-warp.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large"></head>
 <body>
     <header>
         <h1>Cara Instal Cloudflare WARP di Linux – Update Desember 2025!</h1>

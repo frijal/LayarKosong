@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salin Isi HDD dengan dd</title>
 <!-- SEO Metadata -->
-<meta name="description" content="Panduan mudah menyalin isi HDD ke HDD lain menggunakan perintah dd di terminal Linux.">
+
 <!-- Prism.js untuk syntax highlighting -->
 <link href="/ext/default.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/4.1.2/prism.min.js" defer=""></script>
@@ -23,33 +23,45 @@ img.responsive { max-width:100%; height:auto; display:block; margin:auto; paddin
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Panduan mudah menyalin isi HDD ke HDD lain menggunakan perintah dd di terminal Linux.">
 <meta name="ai:prompt_hint" content="Panduan mudah menyalin isi HDD ke HDD lain menggunakan perintah dd di terminal Linux.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/dd-hdd-copy">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0V7CxStcCDAHjWsU-svtZ1XBscBMB7hE4dkGm5SHHpu_W2H1LY9T2-jfMxsEU_6lT8e7E7qjaZJnBDzZtOdtgtkD7IIdLhzaM2ueZUhge7hX3lp5-ycjN-a4SFe_VXA72FsG-SimHUa61aRq0h44nX3-dNoyA6Oo-paborGutLooXcayZv22kJlBRNJI/s1600/Disk-Cloning-using-DD-CAT.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/dd-hdd-copy">
     <meta property="og:url" content="https://dalam.web.id/artikel/dd-hdd-copy">
     <meta property="og:title" content="Salin Isi HDD dengan dd">
+    <meta name="description" content="Panduan mudah menyalin isi HDD ke HDD lain menggunakan perintah dd di terminal Linux.">
     <meta property="og:description" content="Panduan mudah menyalin isi HDD ke HDD lain menggunakan perintah dd di terminal Linux.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0V7CxStcCDAHjWsU-svtZ1XBscBMB7hE4dkGm5SHHpu_W2H1LY9T2-jfMxsEU_6lT8e7E7qjaZJnBDzZtOdtgtkD7IIdLhzaM2ueZUhge7hX3lp5-ycjN-a4SFe_VXA72FsG-SimHUa61aRq0h44nX3-dNoyA6Oo-paborGutLooXcayZv22kJlBRNJI/s1600/Disk-Cloning-using-DD-CAT.webp">
-    <meta property="og:image:alt" content="Salin Isi HDD dengan dd">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0V7CxStcCDAHjWsU-svtZ1XBscBMB7hE4dkGm5SHHpu_W2H1LY9T2-jfMxsEU_6lT8e7E7qjaZJnBDzZtOdtgtkD7IIdLhzaM2ueZUhge7hX3lp5-ycjN-a4SFe_VXA72FsG-SimHUa61aRq0h44nX3-dNoyA6Oo-paborGutLooXcayZv22kJlBRNJI/s1600/Disk-Cloning-using-DD-CAT.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0V7CxStcCDAHjWsU-svtZ1XBscBMB7hE4dkGm5SHHpu_W2H1LY9T2-jfMxsEU_6lT8e7E7qjaZJnBDzZtOdtgtkD7IIdLhzaM2ueZUhge7hX3lp5-ycjN-a4SFe_VXA72FsG-SimHUa61aRq0h44nX3-dNoyA6Oo-paborGutLooXcayZv22kJlBRNJI/s1600/Disk-Cloning-using-DD-CAT.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0V7CxStcCDAHjWsU-svtZ1XBscBMB7hE4dkGm5SHHpu_W2H1LY9T2-jfMxsEU_6lT8e7E7qjaZJnBDzZtOdtgtkD7IIdLhzaM2ueZUhge7hX3lp5-ycjN-a4SFe_VXA72FsG-SimHUa61aRq0h44nX3-dNoyA6Oo-paborGutLooXcayZv22kJlBRNJI/s1600/Disk-Cloning-using-DD-CAT.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
 <h1>Salin Isi HDD dengan dd</h1>
 <div id="iposbrowser"></div>

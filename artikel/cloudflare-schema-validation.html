@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schema Validation Cloudflare: Perlindungan dari Permintaan API Ilegal 🔒</title>
-    <meta name="description" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
+    
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
@@ -110,33 +110,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
 <meta name="ai:prompt_hint" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cloudflare-schema-validation">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cloudflare-schema-validation">
     <meta property="og:url" content="https://dalam.web.id/artikel/cloudflare-schema-validation">
     <meta property="og:title" content="Schema Validation Cloudflare: Perlindungan dari Permintaan API Ilegal 🔒">
+    <meta name="description" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
     <meta property="og:description" content="Penjelasan kegunaan fitur Schema Validation di Cloudflare. Melindungi server origin dari payload berbahaya dan permintaan API yang tidak sesuai dengan skema (cetak biru) data.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp">
-    <meta property="og:image:alt" content="Schema Validation Cloudflare: Perlindungan dari Permintaan API Ilegal 🔒">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipEnWyPoEvpQUveKQTi_0CY89IXf-jsdCSFm9r3A6A7nYDpR8QVXPMS0PlMFrUws6X8ItuSB38a51X9g6BX6YA79Znz7zQ4muu5RtPEkpg2haD0dcJnF_fcxFpEL_B9xXsTNJMm13UyBkbRjxtUcZGq90xAEJYBnlr_bXMuFnhgP7J1b29Tl7-kH1mEoE/s1600/schema.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="container">
         <h1>🔒 Validasi Skema API: Satpam Cerdas di Cloudflare</h1>

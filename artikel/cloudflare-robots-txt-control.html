@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜</title>
-    <meta name="description" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
+    
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
         :root {
@@ -116,33 +116,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
 <meta name="ai:prompt_hint" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/cloudflare-robots-txt-control">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/cloudflare-robots-txt-control">
     <meta property="og:url" content="https://dalam.web.id/artikel/cloudflare-robots-txt-control">
     <meta property="og:title" content="Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜">
+    <meta name="description" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
     <meta property="og:description" content="Panduan memahami tiga opsi Cloudflare untuk konfigurasi robots.txt: Content Signals Policy, Instruct AI bots to not scrape, dan Disable configuration. Pelajari cara memberi instruksi pada AI crawler.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
-    <meta property="og:image:alt" content="Mengelola Robots.txt di Cloudflare: Kontrol Akses AI Bots 📜">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3lZ9HphsF2oxRW2Q3c_7JTQzdeoM1sghM3jV9Ii25oz-h_E6yboxCYemtZrVESZz-B_0tHmf1UcTT1piNBlfDaCmacyKJd-Z5P3KcoyQMB_z_ocbTFLlPVmz7OqmTcLIAZKMPZKLWTFvjJDYJ1kyQ_lFSK3NYLcrTI4CS6i0Phs8z5dFtcHO5gQxdFgA/s1600/robots.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="container">
         <h1>📜 Mengelola `robots.txt` di Cloudflare: Panduan Bot Crawler</h1>

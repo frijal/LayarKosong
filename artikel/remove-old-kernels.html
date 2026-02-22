@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman</title>
-    <meta name="description" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
+    
     <link href="/ext/vs-dark.min.css" rel="stylesheet">
     <style>
         :root {
@@ -55,33 +55,45 @@
 <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
 <meta name="ai:summary" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
 <meta name="ai:prompt_hint" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
-    <link rel="canonical" href="https://dalam.web.id/artikel/remove-old-kernels">
-    <link rel="icon" href="/favicon.ico"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <meta name="author" content="Fakhrul Rijal">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    
+    
+    
     <meta name="googlebot" content="max-image-preview:large">
     <meta name="theme-color" content="#00b0ed">
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <meta name="twitter:creator" content="@responaja">
+    
     <meta name="bluesky:creator" content="@dalam.web.id">
-    <meta property="og:site_name" content="Layar Kosong">
+    
+    
+    
+    
+    
+    
+    
+    
+    <meta property="fb:app_id" content="175216696195384">
+    
+    
+    
+    
+    
+    
+    
+    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.webp">
+
     <meta property="og:locale" content="id_ID">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Layar Kosong">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="https://dalam.web.id/artikel/remove-old-kernels">
     <meta property="og:url" content="https://dalam.web.id/artikel/remove-old-kernels">
     <meta property="og:title" content="Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman">
+    <meta name="description" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
     <meta property="og:description" content="Cara melihat dan menghapus kernel lama di Linux dengan aman. Perintah dpkg, apt purge, autoremove, dan alasan menyimpan minimal dua kernel terakhir.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384">
-    <meta property="article:author" content="https://facebook.com/frijal">
-    <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.webp">
-    <meta property="og:image:alt" content="Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.webp">
-    <meta itemprop="image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.webp">
-</head>
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:image" content="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsm8B5iwfRk-ZAI63qTT5l77StE0dacWDWJZ_W3J0lyi8L20RpY8Sh0w-Zr6L0U_tsnep5VX8MuNX7dNoMau6Cb8vlw9TdbsYDt9I1gZ3cgRAtfkkZ1GBnj6_jNl0TwHy48Rlo8Fuljm8rjfW9A8d1XBGrHBpcbebXq07JdWMKeZ-h-GCz1pc91WkBUdI/s1600/linux-kernel-updates-upgrades-security.webp">
+    <meta name="twitter:card" content="summary_large_image"></head>
 <body>
     <div class="wrap">
         <header class="site">
