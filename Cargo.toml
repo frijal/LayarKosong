@@ -25,6 +25,7 @@ url = "2"
 walkdir = "2"
 regex = "1"
 anyhow = "1"
+minify-html = "0.15.0"
 
 [profile.release]
 opt-level = 'z'     # Fokus kecilkan ukuran
@@ -52,3 +53,9 @@ path = "alat/inject-schema.rs"
 [[bin]]
 name = "html-to-markdown"
 path = "alat/html-to-markdown.rs"
+
+[[bin]]
+name = "minify-html"
+path = "alat/minify-html.rs"
+
+
