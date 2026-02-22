@@ -1,10 +1,9 @@
-use serde_json::{json, Value};
-use std::collections::HashSet;
+use serde_json::json;
+use std::collections::{HashSet, HashMap};
 use std::fs;
 use std::path::Path;
 use chrono::Local;
 use regex::Regex;
-use std::collections::HashMap;
 
 // ======================================================
 // KONFIGURASI GLOBAL
@@ -15,8 +14,10 @@ const AUTHOR: &str = "Fakhrul Rijal";
 const LICENSE_URL: &str = "https://creativecommons.org/publicdomain/zero/1.0/";
 const SIGNATURE_KEY: &str = "schema_oleh_Fakhrul_Rijal";
 
-// Stopwords untuk keyword generator
-static STOPWORDS: &[&str] = &["yang", "untuk", "dengan", "adalah", "dalam", "dari", "pada", "atau", "itu", "dan", "sebuah", "aku", "ke", "saya", "ini", "gue", "gua", "elu", "elo"];
+static STOPWORDS: &[&str] = &[
+    "yang", "untuk", "dengan", "adalah", "dalam", "dari", "pada", "atau",
+"itu", "dan", "sebuah", "aku", "ke", "saya", "ini", "gue", "gua", "elu", "elo"
+];
 
 // ======================================================
 // UTILITIES
@@ -27,26 +28,29 @@ fn slugify(text: &str) -> String {
 
 fn category_name_clean(category: &str) -> String {
     category.trim().replace("-", " ")
-        .split_whitespace()
-        .map(|w| {
-            let mut c = w.chars();
-            match c.next() {
-                None => String::new(),
-                Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
-            }
-        })
-        .collect::<Vec<_>>()
-        .join(" ")
+    .split_whitespace()
+    .map(|w| {
+        let mut c = w.chars();
+        match c.next() {
+            None => String::new(),
+         Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+        }
+    })
+    .collect::<Vec<_>>()
+    .join(" ")
 }
 
 fn build_keywords(headline: &str, category: &str, slug: &str) -> String {
     let re = Regex::new(r"[^\w]+").unwrap();
-    let words = re.split(headline.to_lowercase().as_str());
+
+    // SOLUSI: Simpan String ke variabel agar tidak 'dropped while borrowed'
+    let headline_lower = headline.to_lowercase();
+    let words = re.split(headline_lower.as_str());
 
     let mut base: HashSet<String> = words
-        .filter(|w| w.len() > 3 && !STOPWORDS.contains(w))
-        .map(|w| w.to_string())
-        .collect();
+    .filter(|w| w.len() > 3 && !STOPWORDS.contains(w))
+    .map(|w| w.to_string())
+    .collect();
 
     base.insert(category.to_lowercase());
 
@@ -89,45 +93,45 @@ fn build_combined_schema(category: &str, article: &[String]) -> String {
             {
                 "@type": "WebSite",
                 "@id": format!("{}#website", clean_base),
-                "url": clean_base,
-                "name": SITE_NAME,
-                "publisher": {
-                    "@type": "Organization",
-                    "@id": format!("{}#organization", clean_base),
-                    "name": SITE_NAME,
-                    "url": clean_base,
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": format!("{}/logo.png", clean_base),
-                        "width": 384,
-                        "height": 384
-                    }
-                }
+                       "url": clean_base,
+                       "name": SITE_NAME,
+                       "publisher": {
+                           "@type": "Organization",
+                           "@id": format!("{}#organization", clean_base),
+                       "name": SITE_NAME,
+                       "url": clean_base,
+                       "logo": {
+                           "@type": "ImageObject",
+                       "url": format!("{}/logo.png", clean_base),
+                       "width": 384,
+                       "height": 384
+                       }
+                       }
             },
             {
                 "@type": "Article",
                 "@id": format!("{}#article", article_url),
-                "isPartOf": { "@id": format!("{}#website", clean_base) },
-                "mainEntityOfPage": { "@type": "WebPage", "@id": article_url },
-                "license": LICENSE_URL,
-                "headline": headline,
-                "description": desc,
-                "articleSection": cat_display_name,
-                "keywords": keywords,
-                "image": { "@type": "ImageObject", "url": image, "width": 1200, "height": 675 },
-                "author": { "@type": "Person", "name": AUTHOR, "url": format!("{}/about", clean_base) },
-                "publisher": { "@id": format!("{}#organization", clean_base) },
-                "datePublished": iso_date,
-                "dateModified": iso_date
+                       "isPartOf": { "@id": format!("{}#website", clean_base) },
+                       "mainEntityOfPage": { "@type": "WebPage", "@id": article_url },
+                       "license": LICENSE_URL,
+                       "headline": headline,
+                       "description": desc,
+                       "articleSection": cat_display_name,
+                       "keywords": keywords,
+                       "image": { "@type": "ImageObject", "url": image, "width": 1200, "height": 675 },
+                       "author": { "@type": "Person", "name": AUTHOR, "url": format!("{}/about", clean_base) },
+                       "publisher": { "@id": format!("{}#organization", clean_base) },
+                       "datePublished": iso_date,
+                       "dateModified": iso_date
             },
             {
                 "@type": "BreadcrumbList",
                 "@id": format!("{}#breadcrumb", article_url),
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Beranda", "item": clean_base },
-                    { "@type": "ListItem", "position": 2, "name": cat_display_name, "item": category_url },
-                    { "@type": "ListItem", "position": 3, "name": headline, "item": article_url }
-                ]
+                       "itemListElement": [
+                           { "@type": "ListItem", "position": 1, "name": "Beranda", "item": clean_base },
+                       { "@type": "ListItem", "position": 2, "name": cat_display_name, "item": category_url },
+                       { "@type": "ListItem", "position": 3, "name": headline, "item": article_url }
+                       ]
             }
         ]
     });
@@ -136,7 +140,10 @@ fn build_combined_schema(category: &str, article: &[String]) -> String {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let allowed_categories: HashSet<&str> = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"].iter().cloned().collect();
+    let allowed_categories: HashSet<&str> = [
+        "gaya-hidup", "jejak-sejarah", "lainnya",
+        "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"
+    ].iter().cloned().collect();
 
     let data_str = fs::read_to_string("artikel.json")?;
     let data: HashMap<String, Vec<Vec<String>>> = serde_json::from_str(&data_str)?;
@@ -147,6 +154,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let tgl = Local::now().format("%Y-%m-%d").to_string();
     let signature = format!("<noscript>{}_{}</noscript>", SIGNATURE_KEY, tgl);
+
+    // Regex untuk mencari JSON-LD schema
     let re_schema = Regex::new(r"(?is)<script\s+type=[\x22\x27]application/ld\+json[\x22\x27]>.*?</script>").unwrap();
 
     for (category, articles) in data {
@@ -164,6 +173,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             let mut html_content = fs::read_to_string(&html_path)?;
 
+            // Lewati jika sudah ada signature (berarti sudah diproses hari ini/sebelumnya)
             if html_content.contains(SIGNATURE_KEY) {
                 skipped += 1;
                 continue;
@@ -177,7 +187,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             // 2. Build schema baru
             let inject_code = build_combined_schema(&category, &article);
 
-            // 3. Sisipkan ke Head
+            // 3. Sisipkan ke Head (prioritas ke tag <style> agar rapi di atas)
             let mut new_html = if html_content.contains("<style>") {
                 html_content.replace("<style>", &format!("{}<style>", inject_code))
             } else if html_content.contains("</head>") {
@@ -186,7 +196,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 format!("{}{}", inject_code, html_content)
             };
 
-            // 4. Tambahkan signature
+            // 4. Tambahkan signature di akhir file
             new_html = format!("{}\n{}", new_html.trim(), signature);
 
             fs::write(&html_path, new_html)?;
@@ -194,8 +204,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
+    println!("---");
     println!("✅ SEO Schema Injector Selesai");
     println!("🆕 Di-inject: {}, ⏭️ Skipped: {}, ❌ Missing: {}", changed, skipped, missing);
+    println!("---");
 
     Ok(())
 }
