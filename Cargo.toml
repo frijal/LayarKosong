@@ -9,7 +9,7 @@ edition = "2024"
 tokio = { version = "1", features = ["full"] }
 
 # Untuk HTTP request (gantinya Axios)
-reqwest = { version = "0.11", features = ["json", "blocking", "rustls-tls"] }
+reqwest = { version = "0.13", features = ["json", "blocking", "rustls-tls"] }
 
 # Untuk urusan manipulasi HTML kilat
 lol_html = "0.4.0"
