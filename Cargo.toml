@@ -12,7 +12,7 @@ tokio = { version = "1", features = ["full"] }
 reqwest = { version = "0.13", features = ["json", "blocking", "rustls"] }
 
 # Untuk urusan manipulasi HTML kilat
-lol_html = "0.4.0"
+lol_html = "2.0.0"
 
 # Untuk mencari file (gantinya glob di node)
 glob = "0.3"
