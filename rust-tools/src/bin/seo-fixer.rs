@@ -162,50 +162,59 @@ async fn main() -> Result<()> {
         let mut head = document.select("head");
         let mut injection = Vec::new();
 
-        injection.push(format!(r#"<meta property="og:locale" content="id_ID">"#));
-        injection.push(format!(r#"<meta property="og:site_name" content="Layar Kosong">"#));
-        injection.push(format!(r#"<link rel="icon" href="/favicon.ico">"#));
-        injection.push(format!(r#"<link rel="manifest" href="/site.webmanifest">"#));
-        injection.push(format!(r#"<link rel="canonical" href="{}">"#, canonical_url));
-        injection.push(format!(r#"<meta property="og:url" content="{}">"#, canonical_url));
-        injection.push(format!(r#"<meta property="twitter:url" content="{}">"#, canonical_url));
-        injection.push(format!(r#"<meta property="twitter:domain" content="https://dalam.web.id">"#));
-        injection.push(format!(r#"<meta property="og:title" content="{}">"#, escaped_title));
-        injection.push(format!(r#"<meta name="twitter:title" content="{}">"#, escaped_title));
-        injection.push(format!(r#"<meta property="og:type" content="article">"#));
-        injection.push(format!(r#"<meta name="theme-color" content="#00b0ed">"#));
-        injection.push(format!(r#"<meta name="robots" content="index, follow, max-image-preview:large">"#));
-        injection.push(format!(r#"<meta name="author" content="Fakhrul Rijal">"#));
-        injection.push(format!(r#"<meta name="description" content="{}">"#, final_desc));
-        injection.push(format!(r#"<meta property="og:description" content="{}">"#, final_desc));
-        injection.push(format!(r#"<meta name="twitter:description" content="{}">"#, final_desc));
-        injection.push(format!(r#"<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">"#));
-        injection.push(format!(r#"<meta name="twitter:creator" content="@responaja">"#));
-        injection.push(format!(r#"<meta name="bluesky:creator" content="@dalam.web.id">"#));
-        injection.push(format!(r#"<meta name="fediverse:creator" content="@frijal@mastodon.social">"#));
-        injection.push(format!(r#"<meta name="googlebot" content="max-image-preview:large">"#));
-        injection.push(format!(r#"<meta name="twitter:site" content="@responaja">"#));
-        injection.push(format!(r#"<meta property="article:author" content="https://facebook.com/frijal">"#));
-        injection.push(format!(r#"<meta property="article:publisher" content="https://facebook.com/frijalpage">"#));
-        injection.push(format!(r#"<meta property="fb:app_id" content="175216696195384">"#));
+        // Menggunakan string literal standar ("") bukannya raw string (r#"")
+        // untuk baris yang mengandung simbol # agar tidak membingungkan compiler Rust 2021.
+        injection.push("<meta property=\"og:locale\" content=\"id_ID\">".to_string());
+        injection.push("<meta property=\"og:site_name\" content=\"Layar Kosong\">".to_string());
+        injection.push("<link rel=\"icon\" href=\"/favicon.ico\">".to_string());
+        injection.push("<link rel=\"manifest\" href=\"/site.webmanifest\">".to_string());
+        injection.push(format!("<link rel=\"canonical\" href=\"{}\">", canonical_url));
+        injection.push(format!("<meta property=\"og:url\" content=\"{}\">", canonical_url));
+        injection.push(format!("<meta property=\"twitter:url\" content=\"{}\">", canonical_url));
+        injection.push("<meta property=\"twitter:domain\" content=\"https://dalam.web.id\">".to_string());
+        injection.push(format!("<meta property=\"og:title\" content=\"{}\">", escaped_title));
+        injection.push(format!("<meta name=\"twitter:title\" content=\"{}\">", escaped_title));
+        injection.push("<meta property=\"og:type\" content=\"article\">".to_string());
+
+        // BARIS BERMASALAH: Sekarang kita pakai string literal biasa
+        injection.push("<meta name=\"theme-color\" content=\"#00b0ed\">".to_string());
+
+        injection.push("<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">".to_string());
+        injection.push("<meta name=\"author\" content=\"Fakhrul Rijal\">".to_string());
+        injection.push(format!("<meta name=\"description\" content=\"{}\">", final_desc));
+        injection.push(format!("<meta property=\"og:description\" content=\"{}\">", final_desc));
+        injection.push(format!("<meta name=\"twitter:description\" content=\"{}\">", final_desc));
+        injection.push("<link rel=\"license\" href=\"https://creativecommons.org/publicdomain/zero/1.0/\">".to_string());
+        injection.push("<meta name=\"twitter:creator\" content=\"@responaja\">".to_string());
+        injection.push("<meta name=\"bluesky:creator\" content=\"@dalam.web.id\">".to_string());
+        injection.push("<meta name=\"fediverse:creator\" content=\"@frijal@mastodon.social\">".to_string());
+        injection.push("<meta name=\"googlebot\" content=\"max-image-preview:large\">".to_string());
+        injection.push("<meta name=\"twitter:site\" content=\"@responaja\">".to_string());
+        injection.push("<meta property=\"article:author\" content=\"https://facebook.com/frijal\">".to_string());
+        injection.push("<meta property=\"article:publisher\" content=\"https://facebook.com/frijalpage\">".to_string());
+        injection.push("<meta property=\"fb:app_id\" content=\"175216696195384\">".to_string());
 
         if !meta_img.is_empty() {
-            injection.push(format!(r#"<meta itemprop="image" content="{}">"#, meta_img));
-            injection.push(format!(r#"<meta name="twitter:image" content="{}">"#, meta_img));
-            injection.push(format!(r#"<meta property="twitter:image" content="{}">"#, meta_img));
-            injection.push(format!(r#"<meta property="og:image" content="{}">"#, meta_img));
-            injection.push(format!(r#"<meta property="og:image:alt" content="{}">"#, escaped_title));
-            injection.push(format!(r#"<meta property="og:image:width" content="1200">"#));
-            injection.push(format!(r#"<meta property="og:image:height" content="675">"#));
-            injection.push(format!(r#"<meta name="twitter:card" content="summary_large_image">"#));
+            injection.push(format!("<meta itemprop=\"image\" content=\"{}\">", meta_img));
+            injection.push(format!("<meta name=\"twitter:image\" content=\"{}\">", meta_img));
+            injection.push(format!("<meta property=\"twitter:image\" content=\"{}\">", meta_img));
+            injection.push(format!("<meta property=\"og:image\" content=\"{}\">", meta_img));
+            injection.push(format!("<meta property=\"og:image:alt\" content=\"{}\">", escaped_title));
+            injection.push("<meta property=\"og:image:width\" content=\"1200\">".to_string());
+            injection.push("<meta property=\"og:image:height\" content=\"675\">".to_string());
+            injection.push("<meta name=\"twitter:card\" content=\"summary_large_image\">".to_string());
         }
 
         for tag in tags {
-            injection.push(format!(r#"<meta property="article:tag" content="{}">"#, tag));
+            injection.push(format!("<meta property=\"article:tag\" content=\"{}\">", tag));
         }
 
-        if let Some(t) = published_time { injection.push(format!(r#"<meta property="article:published_time" content="{}">"#, t)); }
-        if let Some(t) = modified_time { injection.push(format!(r#"<meta property="article:modified_time" content="{}">"#, t)); }
+        if let Some(t) = published_time {
+            injection.push(format!("<meta property=\"article:published_time\" content=\"{}\">", t));
+        }
+        if let Some(t) = modified_time {
+            injection.push(format!("<meta property=\"article:modified_time\" content=\"{}\">", t));
+        }
 
         head.append_html(format!("\n    {}\n", injection.join("\n    ")));
 
