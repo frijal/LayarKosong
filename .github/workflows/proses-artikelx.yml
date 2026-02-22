@@ -58,8 +58,13 @@ jobs:
             perl ext/gantifontshighlight.pl --quiet --no-backup
           fi
 
-      - name: 🧹 Sterilize Schema (Node.js)
-        run: node ext/clean-schema.js artikelx/
+   #   - name: 🧹 Sterilize Schema (Node.js)
+   #     run: node ext/clean-schema.js artikelx/
+
+      - name: 🧹 Sterilize Schema (Rust Version)
+        run: |
+          set -euo pipefail
+          cargo run --release --bin clean_schema -- artikelx/
 
       - name: Replace Content (Perl)
         run: |
