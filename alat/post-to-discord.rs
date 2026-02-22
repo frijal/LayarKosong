@@ -14,6 +14,7 @@ const BASE_URL: &str = "https://dalam.web.id";
 const BOT_NAME: &str = "Layar Kosong";
 const BOT_AVATAR: &str = "https://dalam.web.id/favicon.png";
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 struct Post(String, String, String, String, Option<String>);
 
