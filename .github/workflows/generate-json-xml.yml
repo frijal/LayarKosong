@@ -138,7 +138,7 @@ jobs:
      
       - name: '7️⃣ Inject schema.org (BARU KEMUDIAN)'
         if: env.DO_SCHEMA == 'true'
-        run: python3 ext/inject_schema.py
+        run: cargo run --release --bin inject-schema
 
       - name: 📝 Convert HTML Tags to Markdown (Node.js)
         if: env.DO_CONVERT_MARKDOWN == 'true'
