@@ -49,7 +49,7 @@ jobs:
 
     steps:
       - name: '1. Checkout Repository'
-        uses: actions/checkout@v4 # Pakai versi terbaru v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4 # Pakai versi terbaru v4
         with:
           ref: ${{ github.ref }}
           fetch-depth: 1
@@ -59,7 +59,7 @@ jobs:
 
       # GANTI STEP 3 LAMA DENGAN INI
       - name: '3. Rust Cache Engine'
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
         with:
           # Ini penting supaya cache tidak bentrok antar binary
           shared-key: "layarkosong-engine"
