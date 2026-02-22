@@ -1,0 +1,48 @@
+<!doctypehtml><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"lang=id><meta charset=UTF-8><meta content=width=device-width,initial-scale=1.0 name=viewport><title>Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge</title><meta content="light dark"name=color-scheme><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/gh-force-clean#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/gh-force-clean"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge","description":"Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch.","articleSection":"Warta Tekno","keywords":"bersihkan, branch, clean, force, layar kosong, lokal, merge, otomatis, remote, skrip, sudah, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/gh-force-clean.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2025-10-13T21:14:36.042+00:00","dateModified":"2025-10-13T21:14:36.042+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/gh-force-clean#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno"},{"@type":"ListItem","position":3,"name":"Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge","item":"https://dalam.web.id/warta-tekno/gh-force-clean"}]}]}</script><style>:root{--bg:#fdfdfd;--text:#222;--accent:#0078ff}@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--text:#c9d1d9;--accent:#58a6ff}}body{background:var(--bg);color:var(--text);margin:0;padding:0;font-family:Inter,Segoe UI,Roboto,sans-serif;line-height:1.6}header{text-align:center;padding:2rem 1rem 1rem}header h1{margin-bottom:.2rem;font-size:1.9rem}article{max-width:960px;margin:auto;padding:1rem 2rem 3rem}code,pre{background:#7f7f7f1a;border-radius:6px;padding:.6em .8em;font-family:JetBrains Mono,monospace;display:block;overflow-x:auto}pre{margin:1em 0}section{margin-bottom:2.5rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}footer{text-align:center;border-top:1px solid #7f7f7f33;padding:2rem 0;font-size:.9rem}.social-share{text-align:center;margin-top:2rem}.social-share a{margin:0 .4rem;display:inline-block}.social-share img{filter:grayscale();width:28px;height:28px;transition:all .3s}.social-share img:hover{filter:none;transform:scale(1.1)}@media (width<=600px){header h1{font-size:1.5rem}article{padding:1rem}}</style><link href=/ext/marquee-url.css rel=stylesheet><link title="30 artikel baru bikin."href=https://dalam.web.id/rss.xml rel=alternate type=application/rss+xml><meta content="Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch."name=ai:summary><meta content="Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch."name=ai:prompt_hint><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@dalam.web.id name=bluesky:creator><meta content=175216696195384 property=fb:app_id><meta content=https://dalam.web.id/img/gh-force-clean.webp itemprop=image><meta content=id_ID property=og:locale><meta content="Layar Kosong"property=og:site_name><link href=/favicon.ico rel=icon><link href=https://dalam.web.id/warta-tekno/gh-force-clean rel=canonical><meta content=https://dalam.web.id/warta-tekno/gh-force-clean property=og:url><meta content="Skrip Otomatis gh-force-clean.sh: Bersihkan Branch Lokal & Remote yang Sudah Di-Merge"property=og:title><meta content="Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch."name=description><meta content="Panduan membuat skrip otomatis gh-force-clean.sh untuk membersihkan branch Git yang sudah di-merge, baik lokal maupun remote. Lengkap dengan opsi dry-run, auto, dan base branch."property=og:description><meta content="Fakhrul Rijal"name=author><meta content="index, follow, max-image-preview:large"name=robots><body><header><h1>🧹 Skrip Otomatis gh-force-clean.sh</h1><div id=iposbrowser></div><p style=opacity:.8>Bersihkan branch Git yang sudah di-merge (lokal & remote) dengan aman dan cepat</header><article><section><p>Kalau kamu sering kerja di repo Git yang penuh branch lama, skrip ini bisa jadi solusi. Dengan **gh-force-clean.sh**, kamu bisa otomatis menghapus branch lokal dan remote yang sudah di-merge ke `main` (atau branch lain), tanpa repot periksa satu-satu. 🚀<p>Cocok buat developer yang ingin menjaga repo tetap bersih, atau buat pipeline CI/CD yang rapi.</section><section><h2>🧩 Fitur Unggulan</h2><ul><li>🔍 Deteksi otomatis branch yang sudah di-merge ke branch utama<li>🧹 Bersihkan branch lokal & remote sekaligus<li>⚙️ Dukungan opsi `--dry-run` untuk simulasi<li>🤖 Mode `--auto` untuk CI/CD tanpa konfirmasi<li>🔧 Bisa ganti branch utama pakai `--base &LTnama_branch>`<li>🌈 Output berwarna, mudah dibaca di terminal</ul></section><section><h2>⚙️ Isi Skrip: `gh-force-clean.sh`</h2><pre><code>#!/usr/bin/env bash
+set -euo pipefail
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; RESET='\033[0m'
+DRY_RUN=false; AUTO=false; BASE_BRANCH="main"
+usage() {
+  echo "Gunakan: $0 [--dry-run] [--auto] [--base <branch>]"
+  exit 0
+}
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run) DRY_RUN=true; shift ;;
+    --auto) AUTO=true; shift ;;
+    --base) BASE_BRANCH="${2:-main}"; shift 2 ;;
+    -h|--help) usage ;;
+    *) echo "Argumen tidak dikenal: $1"; usage ;;
+  esac
+done
+echo -e "${CYAN}🔍 Mengecek branch utama: ${BASE_BRANCH}${RESET}"
+git fetch -p origin >/dev/null 2>&1
+git checkout "$BASE_BRANCH" >/dev/null 2>&1 || exit 1
+MERGED_BRANCHES=$(git branch --merged "$BASE_BRANCH" | grep -vE "^\*|$BASE_BRANCH$")
+REMOTE_MERGED=$(git branch -r --merged "origin/$BASE_BRANCH" | grep -vE "origin/(HEAD|$BASE_BRANCH)$")
+[[ -z "$MERGED_BRANCHES" ]] && echo "Tidak ada branch lokal yang sudah di-merge"
+[[ -z "$REMOTE_MERGED" ]] && echo "Tidak ada branch remote yang sudah di-merge"
+if [[ "$DRY_RUN" == true ]]; then
+  echo "[DRY RUN] Tidak ada branch dihapus."
+  exit 0
+fi
+if [[ "$AUTO" == false ]]; then
+  read -rp "Lanjut hapus semua branch yang sudah di-merge? [y/N]: " CONFIRM
+  [[ ! "$CONFIRM" =~ ^[Yy]$ ]] && { echo "Dibatalkan."; exit 0; }
+fi
+for BR in $MERGED_BRANCHES; do
+  git branch -d "$BR" >/dev/null 2>&1 || git branch -D "$BR" >/dev/null 2>&1
+done
+for RB in $REMOTE_MERGED; do
+  RB_NAME=$(echo "$RB" | sed 's|origin/||')
+  git push origin --delete "$RB_NAME" >/dev/null 2>&1 || true
+done
+echo -e "${GREEN}✅ Pembersihan selesai.${RESET}"</branch></code></pre></section><section><h2>💡 Cara Menggunakan</h2><pre><code>chmod +x gh-force-clean.sh
+# Mode interaktif (manual)
+./gh-force-clean.sh
+# Simulasi (hanya tampilkan tanpa hapus)
+./gh-force-clean.sh --dry-run
+# Mode otomatis untuk CI/CD
+./gh-force-clean.sh --auto
+# Jika repo kamu pakai branch utama "develop"
+./gh-force-clean.sh --base develop</code></pre></section><section><h2>🧠 Tips Aman</h2><ul><li>Selalu jalankan `--dry-run` dulu sebelum hapus sungguhan.<li>Gunakan `--auto` hanya di pipeline atau repositori yang kamu kontrol penuh.<li>Jika branch belum di-merge atau masih ada konflik, skrip ini tidak akan menghapusnya.</ul></section><div id=diskus></div><div id=related-articles-grid></div></article><footer><p>🄯 2025 Jaga Data Pribadi Tetap Aman Developer Santai</footer><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..."autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/markdown.js></script><script defer src=/ext/marquee-url.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/diskus.js></script></html><noscript>schema_oleh_Fakhrul_Rijal_2026-02-22</noscript><noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-22</noscript>
