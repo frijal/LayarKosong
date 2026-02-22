@@ -126,14 +126,11 @@ function exportSummary() {
         const sub = tr.querySelector(".subtotal").value;
         
         itemsHtml += `
-            <tr>
-                <td colspan="3" style="padding-top:8px;">${nBarang}</td>
-            </tr>
-            <tr style="border-bottom: 0.5px solid #eee;">
-                <td style="width: 40%;">${qty} x ${hargaSatuan}</td>
-                <td style="width: 10%;">:</td>
-                <td style="text-align: right; width: 50%;">Rp ${sub}</td>
-            </tr>`;
+    <tr style="border-bottom: 0.5px solid #eee;">
+        <td style="padding: 5px 0; width: 45%;">${nBarang} (${qty}x)</td>
+        <td style="width: 5%; text-align: center;">:</td>
+        <td style="text-align: right; width: 50%; padding: 5px 0;">${sub}</td>
+    </tr>`;
     });
 
     const content = `
