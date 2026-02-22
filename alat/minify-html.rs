@@ -1,4 +1,4 @@
-use minify_html::{minify, Cfg};
+use minify_html::minify;
 use regex::Regex;
 use std::fs;
 use std::path::{Path, PathBuf};
