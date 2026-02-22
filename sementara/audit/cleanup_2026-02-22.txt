@@ -1,5 +1,5 @@
 Universal Cleanup Report (2026-02-22)
-Paket yang dihapus: html-minifier-terser
+Paket yang dihapus: feed-reader
 
 --- Analisis Paket Setelah Uninstall (Detektif Internal) ---
 🔍 Investigasi Maksimal (JS + HTML + YAML) Layar Kosong... 
@@ -7,6 +7,10 @@ Paket yang dihapus: html-minifier-terser
 ================================================================================
 📊 LAPORAN PENGGUNAAN PAKET (TOTAL SCAN)
 ================================================================================
+✅ @MINIFY-HTML/NODE
+   Ditemukan di 1 lokasi:
+   - ext/minify-html.js
+
 ✅ @OCTOKIT/CORE
    Ditemukan di 2 lokasi:
    - ext/bikin-rss-diskusi.js
@@ -37,10 +41,6 @@ Paket yang dihapus: html-minifier-terser
    - artikel/optimasi-workflow-harian-github-actions.html
    - ext/screenshot-puppeteer.js
    - warta-tekno/optimasi-workflow-harian-github-actions.html
-
-✅ RSS-PARSER
-   Ditemukan di 1 lokasi:
-   - ext/bikin-rss-diskusi.js
 
 ✅ SHARP
    Ditemukan di 6 lokasi:
