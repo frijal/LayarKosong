@@ -116,6 +116,45 @@ fn title_to_category(title: &str) -> String {
     }
 }
 
+fn build_rss(title: &str, items: &[Article], rss_link: &str, description: &str) -> String {
+    let now = Utc::now().to_rfc2822();
+    let items_xml: String = items.iter().map(|it| {
+        // MIME type sederhana
+        let mime_type = if it.img.ends_with(".png") { "image/png" }
+        else if it.img.ends_with(".webp") { "image/webp" }
+        else { "image/jpeg" };
+
+        format!(r#"
+            <item>
+            <title><![CDATA[{}]]></title>
+            <link><![CDATA[{}]]></link>
+            <guid><![CDATA[{}]]></guid>
+            <description><![CDATA[{}]]></description>
+            <pubDate>{}</pubDate>
+            <category><![CDATA[{}]]></category>
+            <enclosure url="{}" length="0" type="{}" />
+            </item>"#,
+            it.title, it.loc, it.loc,
+            if it.desc.is_empty() { &it.title } else { &it.desc },
+                it.lastmod, // Idealnya diconvert ke RFC2822, tapi ISO8601 biasanya diterima
+                it.category, it.img, mime_type)
+    }).collect();
+
+    format!(r#"<?xml version="1.0" encoding="UTF-8" ?>
+        <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+        <channel>
+        <title><![CDATA[{}]]></title>
+        <link><![CDATA[{}/]]></link>
+        <description><![CDATA[{}]]></description>
+        <language>id-ID</language>
+        <atom:link href="{}" rel="self" type="application/rss+xml" />
+        <lastBuildDate>{}</lastBuildDate>
+        {}
+        </channel>
+        </rss>"#, title, BASE_URL, description, rss_link, now, items_xml)
+}
+
+
 // ===================================================================
 // CORE PROCESSOR
 // ===================================================================
@@ -183,12 +222,12 @@ fn main() -> Result<()> {
         if let Some((data, cat)) = article_info {
             let article = Article {
                 title: data.0.clone(),
-                                      file: data.1.clone(),
-                                      img: data.2.clone(),
-                                      lastmod: data.3.clone(),
-                                      desc: data.4.clone(),
-                                      category: cat.clone(),
-                                      loc: format!("{}/{}/{}", BASE_URL, slugify(&cat), file_name.replace(".html", "")),
+                file: data.1.clone(),
+                img: data.2.clone(),
+                lastmod: data.3.clone(),
+                desc: data.4.clone(),
+                category: cat.clone(),
+                loc: format!("{}/{}/{}", BASE_URL, slugify(&cat), file_name.replace(".html", "")),
             };
 
             valid_files_cleaning.lock().unwrap().insert(format!("{}/{}", slugify(&cat), file_name));
@@ -277,6 +316,29 @@ fn main() -> Result<()> {
     );
     fs::write("sitemap.xml", sitemap_index)?;
 
+    // --- RSS GLOBAL ---
+    let rss_global = build_rss(
+        "Layar Kosong",
+        &final_items[..final_items.len().min(RSS_LIMIT)],
+                               &format!("{}/rss.xml", BASE_URL),
+                               "Feed artikel terbaru"
+    );
+    fs::write("rss.xml", rss_global)?;
+
+    // --- RSS PER KATEGORI (Di dalam loop Landing Page) ---
+    // Di bagian loop template kategori yang sudah ada, tambahkan:
+    let cat_items: Vec<Article> = final_items.iter()
+    .filter(|it| it.category == cat)
+    .cloned()
+    .collect();
+
+    let rss_cat = build_rss(
+        &format!("Kategori {} - Layar Kosong", sanitize_title(&cat)),
+                            &cat_items[..cat_items.len().min(RSS_LIMIT)],
+                            &rss_url,
+                            &format!("Kumpulan artikel terbaru di kategori {}", cat)
+    );
+    fs::write(format!("feed-{}.xml", slug), rss_cat)?;
 
     // 5. LANDING PAGE KATEGORI & RSS
     let template_html = fs::read_to_string(TEMPLATE_KATEGORI).ok();
