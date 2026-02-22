@@ -1,7 +1,7 @@
 use anyhow::Result;
 use chrono::{DateTime, Utc};
 use rayon::prelude::*;
-use regex::{Captures, Regex};
+use regex::{Regex};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::collections::{HashMap, HashSet};
@@ -343,8 +343,15 @@ fn process_and_distribute(file: &str, category: &str, final_url: &str, preloaded
         Some(c) => c.to_string(),
         None => fs::read_to_string(Path::new(ARTIKEL_DIR).join(file))?,
     };
-    content = RE_CANONICAL.replace(&content, |_| format!(r#"<link rel="canonical" href="{}">"#, final_url)).to_string();
-    content = RE_OG_URL.replace(&content, |_| format!(r#"<meta property="og:url" content="{}">"#, final_url)).to_string();
+
+    // PAKAI INI (Lebih aman dan bersih):
+    let canonical_tag = format!(r#"<link rel="canonical" href="{}">"#, final_url);
+    content = RE_CANONICAL.replace_all(&content, canonical_tag.as_str()).to_string();
+
+    let og_url_tag = format!(r#"<meta property="og:url" content="{}">"#, final_url);
+    content = RE_OG_URL.replace_all(&content, og_url_tag.as_str()).to_string();
+
+
     let old_base = format!("{}/artikel/{}", BASE_URL, file.replace(".html", ""));
     content = content.replace(&old_base, final_url);
     let re_clean = Regex::new(r"\/artikel\/-\/([a-z-]+)(\.html)?\/?").unwrap();
