@@ -65,7 +65,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Gunakan MemorySessionStore langsung dari path yang disarankan compiler
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-                              atrium_api::agent::SessionMemoryStore::default(),
+                              SessionMemoryStore::default(),
     );
 
     agent.login(&handle, &password).await?;
