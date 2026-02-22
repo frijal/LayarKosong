@@ -1,6 +1,6 @@
 use atrium_api::agent::atp_agent::AtpAgent;
 use atrium_api::app::bsky::embed::external::{Main as EmbedExternal, External};
-use atrium_api::app::bsky::feed::post::Record;
+use atrium_api::app::bsky::feed::post::{Record, RecordEmbed};
 use atrium_api::types::string::Datetime;
 use atrium_xrpc_client::reqwest::ReqwestClient;
 use serde::Deserialize;
@@ -13,25 +13,24 @@ const JSON_FILE: &str = "artikel.json";
 const DATABASE_FILE: &str = "mini/posted-bluesky.txt";
 const DOMAIN_URL: &str = "https://dalam.web.id";
 
+// Gunakan struct bernama agar akses field lebih manusiawi
 #[derive(Debug, Deserialize)]
 struct Post(String, String, String, String, Option<String>);
 
 fn slugify(text: &str) -> String {
     text.to_lowercase()
-        .trim()
-        .replace(|c: char| !c.is_alphanumeric() && c != ' ', "")
-        .replace(' ', "-")
+    .trim()
+    .replace(|c: char| !c.is_alphanumeric() && c != ' ', "")
+    .replace(' ', "-")
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("🦋 Memulai Bluesky Autopost (Rust Engine)...");
 
-    // 1. Load data artikel
     let data_str = fs::read_to_string(JSON_FILE).expect("artikel.json tidak ditemukan");
     let data: HashMap<String, Vec<Post>> = serde_json::from_str(&data_str)?;
 
-    // 2. Load Database posted
     let posted_database = if Path::new(DATABASE_FILE).exists() {
         fs::read_to_string(DATABASE_FILE)?
     } else {
@@ -40,11 +39,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut all_posts = Vec::new();
 
-    // 3. Parsing & Filtering
     for (category, posts) in data {
         let cat_slug = slugify(&category);
         for p in posts {
-            let file_name = &p[1];
+            let file_name = &p.1; // FIXED: akses tuple pakai titik
             let file_slug = file_name.trim_start_matches('/').replace(".html", "");
 
             if file_slug.starts_with("agregat-20") { continue; }
@@ -57,37 +55,38 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    // Sort by Date (Post[3] adalah ISO Date)
-    all_posts.sort_by(|a, b| b.0 .3.cmp(&a.0 .3));
+    // Sort by Date (Post.3 adalah ISO Date)
+    all_posts.sort_by(|a, b| b.0.3.cmp(&a.0.3));
 
     if all_posts.is_empty() {
         println!("✅ Tidak ada artikel baru untuk Bluesky.");
         return Ok(());
     }
 
-    let (target_data, target_url, target_slug) = &all_posts[0];
+    let (target_data, target_url, _) = &all_posts[0];
 
-    // 4. Bluesky Login
     let handle = env::var("BSKY_HANDLE").expect("BSKY_HANDLE not set");
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
+    // FIXED: Path agent store
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-        atrium_api::agent::store::MemorySessionStore::default(),
+                              atrium_api::agent::SessionMemoryStore::default(),
     );
 
     agent.login(&handle, &password).await?;
 
-    // 5. Upload Image for Embed
+    // FIXED: Reqwest bytes type inference
     let img_url = &target_data.2;
-    let img_bytes = reqwest::get(img_url).await?.bytes().await?;
+    let response = reqwest::get(img_url).await?;
+    let img_bytes = response.bytes().await?.to_vec();
 
+    // FIXED: Cara panggil upload_blob
     let upload = agent
-        .api()
-        .com::atproto::repo::upload_blob(img_bytes.to_vec())
-        .await?;
+    .api()
+    .com::atproto::repo::upload_blob(img_bytes)
+    .await?;
 
-    // 6. Create Embed External (Link Card)
     let embed = EmbedExternal {
         external: External {
             description: target_data.4.clone().unwrap_or_else(|| "Archive.".to_string()),
@@ -97,26 +96,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
     };
 
-    // 7. Send Post
     let mut msg = target_data.4.clone().unwrap_or_else(|| "Archive.".to_string());
     if msg.chars().count() > 297 {
         msg = msg.chars().take(297).collect::<String>() + "...";
     }
 
+    // FIXED: Create post record
     agent
-        .api()
-        .app::bsky::feed::post::create(
-            agent.session().await.unwrap().did,
-            Record {
+    .api()
+    .app::bsky::feed::post::create(
+        atrium_api::types::Object {
+            data: Record {
                 text: msg,
                 created_at: Datetime::now(),
-                embed: Some(atrium_api::app::bsky::feed::post::RecordEmbed::AppBskyEmbedExternalMain(Box::new(embed))),
-                ..Default::default()
+                                   embed: Some(RecordEmbed::AppBskyEmbedExternalMain(Box::new(embed))),
+                                   ..Default::default()
             },
-        )
-        .await?;
+            extra_data: Default::default(),
+        }
+    )
+    .await?;
 
-    // 8. Logging untuk GitHub Actions
     fs::write("/tmp/temp_new_url_bsky.txt", format!("{}\n", target_url))?;
     println!("✅ Berhasil posting ke Bluesky: {}", target_url);
 
