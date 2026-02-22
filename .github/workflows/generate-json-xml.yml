@@ -55,6 +55,19 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
+      - name: Cache Rust
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Cache Node Modules
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
@@ -77,11 +90,15 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
+    #  - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
+    #    if: env.DO_GENERATOR == 'true'
+    #    run: npm run ci-generate-xml-rss
+    #    env:
+    #      RSS_LIMIT: 30
+
+      - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS (Rust Engine)'
         if: env.DO_GENERATOR == 'true'
-        run: npm run ci-generate-xml-rss
-        env:
-          RSS_LIMIT: 30
+        run: cargo run --release --bin generator-pro
 
       - name: '6️⃣ Generate sitemap.txt'
         if: env.DO_SITEMAP_TXT == 'true'
