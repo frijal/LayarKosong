@@ -61,9 +61,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
     // FIX 1: Store Path
+    // Gunakan MemorySessionStore langsung dari path yang disarankan compiler
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
-                              atrium_api::agent::store::MemorySessionStore::default(),
+                              atrium_api::agent::SessionMemoryStore::default(),
     );
 
     agent.login(&handle, &password).await?;
