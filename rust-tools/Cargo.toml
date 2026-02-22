@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 
 # Untuk async runtime (wajib buat urusan network/file)
-tokio = { version = "1.36", features = ["full"] }
+tokio = { version = "1", features = ["full"] }
 
 # Untuk HTTP request (gantinya Axios)
 reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
@@ -15,16 +15,16 @@ reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
 lol_html = "0.4.0"
 
 # Untuk mencari file (gantinya glob di node)
-glob = "0.3.1"
+glob = "0.3"
 
 # Untuk urusan URL parsing
-url = "2.5.0"
+url = "2.5"
 
 # Untuk urusan gambar (gantinya sharp)
-image = "0.24.7"
-webp = "0.2.6"
+image = "0.24"
+webp = "0.2"
 
 # Untuk handle error supaya kodenya nggak berantakan
-anyhow = "1.0.80"
+anyhow = "1"
 
 scraper = "0.18"
