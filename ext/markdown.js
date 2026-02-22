@@ -116,7 +116,7 @@
 
   // === 4️⃣ Proses Markdown di halaman ==
   function enhanceMarkdown() {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .lead, .article-container, .meta-info, .author-box, .intro-box, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .contact, .highlight, .warn, .closing, .tip-box, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .info-box, .tips, .tip, .lede, .alert, .intro-alert, .zdummy";
+    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .note, .lead, .article-container, .gallery, .meta-info, .author-box, .intro-box, .code-block, .note-box, .callout, .warning-box, .item, .warning, .quote, .disclaimer, .quote-box, .danger-box, .alert-box, .contact, .highlight, .warn, .closing, .tip-box, .fa-solid, .narasi, .markdown, .markdown-body, .meta, .success-box, .timeline-item, .card, .highlight-box, .info-box, .tips, .tip, .lede, .alert, .intro-alert, .zdummy";
 
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
