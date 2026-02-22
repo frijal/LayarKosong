@@ -30,40 +30,33 @@
   },
   "packageRules": [
     {
-      "description": "Global range strategy for applications",
+      "description": "Global strategy for all dependencies",
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "replace"
     },
     {
-      "description": "Rust/Cargo Specific: Fix datasource name and handle automerge",
+      "description": "Rust/Cargo Logic: Menggunakan datasource 'cargo' untuk trigger update",
       "matchDatasources": ["cargo"],
       "matchUpdateTypes": ["minor", "patch", "digest", "lockFileMaintenance"],
       "automerge": true,
       "rangeStrategy": "update-lockfile"
     },
     {
-      "description": "Automerge stable non-major updates",
-      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "lockFileMaintenance"],
+      "description": "Security: Minimum age for stability",
+      "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
-      "automerge": true,
-      "automergeType": "branch",
-      "minimumReleaseAge": "3 days"
+      "minimumReleaseAge": "3 days",
+      "automerge": true
     },
     {
-      "description": "Require approval for major updates and unstable 0.x versions",
+      "description": "Governance: Require approval for major and unstable 0.x versions",
       "matchUpdateTypes": ["major"],
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Special handling for 0.x versions (unstable ecosystems)",
+      "description": "Governance: 0.x versions follow semver-minor as breaking in Rust",
       "matchCurrentVersion": "/^0/",
       "dependencyDashboardApproval": true
-    },
-    {
-      "description": "NPM safety and strict internal checks",
-      "matchDatasources": ["npm"],
-      "internalChecksFilter": "strict",
-      "minimumReleaseAge": "7 days"
     }
   ]
 }
