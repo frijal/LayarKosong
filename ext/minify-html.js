@@ -8,7 +8,24 @@ const folders = [
   './olah-media', './opini-sosial', './sistem-terbuka', './warta-tekno'
 ];
 
-let stats = { success: 0, skipped: 0, failed: 0, errorList: [] };
+let stats = { 
+  success: 0, 
+  skipped: 0, 
+  failed: 0, 
+  errorList: [], 
+  totalSaved: 0,
+  totalBefore: 0,
+  totalAfter: 0
+};
+
+// Helper untuk format ukuran byte agar manusiawi
+const formatBytes = (bytes) => {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
 
 async function minifyFiles(dir) {
   if (!fs.existsSync(dir)) return;
@@ -23,7 +40,6 @@ async function minifyFiles(dir) {
       continue;
     }
 
-    // Hanya sikat file HTML, lewati index.html agar aman
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
@@ -35,10 +51,11 @@ async function minifyFiles(dir) {
         continue;
       }
 
-      // --- PERBAIKAN: Hapus komentar JS satu baris (//) ---
-      // Kita bersihkan dulu supaya saat baris baru dihapus, kode tidak ikut "ter-komentar"
+      // Ukuran Sebelum
+      const sizeBefore = Buffer.byteLength(originalHTML, 'utf8');
+
+      // --- PERBAIKAN KOMENTAR JS ---
       originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
-        // Regex ini menghapus komentar // tapi hati-hati jangan hapus URL (http://)
         return match.replace(/^[ \t]*\/\/(?!#).*/gm, ''); 
       });
 
@@ -48,30 +65,36 @@ async function minifyFiles(dir) {
 
       const input = Buffer.from(originalHTML);
       const output = minifyHtml.minify(input, {
-        allow_optimal_entities: true,
         allow_noncompliant_unquoted_attribute_values: true,
+        allow_optimal_entities: true,
         allow_removing_spaces_between_attributes: true,
-        minify_doctype: true,
-        minify_css: true,
-        minify_js: true, // Pastikan engine oxc internal bekerja
         collapse_whitespaces: true,
+        ensure_spec_compliant_unquoted_attribute_values: false,
         keep_comments: false,
         keep_html_and_head_opening_tags: false,
+        keep_spaces_between_attributes: false,
+        minify_css: true,
+        minify_doctype: true,
+        minify_js: true, 
         remove_bangs: true,
         remove_processing_instructions: true,
-        ensure_spec_compliant_unquoted_attribute_values: false,
-        keep_spaces_between_attributes: false,
       });
 
-      const minifiedHTML = output.toString();
-      fs.writeFileSync(filePath, minifiedHTML.trimEnd() + minifySignature, 'utf8');
+      const minifiedHTML = output.toString() + minifySignature;
+      const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
+      const saved = sizeBefore - sizeAfter;
+
+      fs.writeFileSync(filePath, minifiedHTML, 'utf8');
       
       stats.success++;
-      console.log(`✅ Terjepit Sempurna (Rust): ${filePath}`);
+      stats.totalBefore += sizeBefore;
+      stats.totalAfter += sizeAfter;
+      stats.totalSaved += saved;
 
-    }
-    
-      catch (err) {
+      const savingPercent = ((saved / sizeBefore) * 100).toFixed(1);
+      console.log(`✅ [${savingPercent}%] : ${filePath} (${formatBytes(sizeBefore)} ➡️  ${formatBytes(sizeAfter)})`);
+
+    } catch (err) {
       stats.failed++;
       stats.errorList.push({ path: filePath, error: err.message });
       console.error(`❌ Gagal jepit: ${filePath}`);
@@ -86,24 +109,30 @@ async function run() {
   const startTime = Date.now();
 
   try {
-    // Memulai semua proses minify folder secara bersamaan
     await Promise.all(folders.map(f => minifyFiles(f)));
     
     const duration = (Date.now() - startTime) / 1000;
+    const totalSavingPercent = stats.totalBefore > 0 
+      ? ((stats.totalSaved / stats.totalBefore) * 100).toFixed(2) 
+      : 0;
 
-    console.log('\n' + '='.repeat(50));
+    console.log('\n' + '='.repeat(60));
     console.log('📊 REKAP PROSES LAYAR KOSONG (PARALEL)');
-    console.log('='.repeat(50));
-    console.log(`⏱️  Waktu Tempuh     : ${duration.toFixed(2)} detik`);
-    console.log(`✅ Berhasil Dijepit : ${stats.success}`);
-    console.log(`⏭️  Sudah Dijepit    : ${stats.skipped}`);
-    console.log(`❌ Gagal Proses     : ${stats.failed}`);
+    console.log('='.repeat(60));
+    console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(2)} detik`);
+    console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
+    console.log(`⏭️  Sudah Dijepit     : ${stats.skipped} file`);
+    console.log(`❌ Gagal Proses      : ${stats.failed} file`);
+    console.log('-'.repeat(60));
+    console.log(`📉 Total Sebelum     : ${formatBytes(stats.totalBefore)}`);
+    console.log(`📉 Total Sesudah     : ${formatBytes(stats.totalAfter)}`);
+    console.log(`🚀 Ruang Dihemat     : ${formatBytes(stats.totalSaved)} (${totalSavingPercent}%)`);
     
     if (stats.failed > 0) {
       console.log('\n⚠️  DETAIL ERROR:');
       stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
     }
-    console.log('='.repeat(50) + '\n');
+    console.log('='.repeat(60) + '\n');
   } catch (err) {
     console.error('💥 Terjadi kesalahan saat eksekusi paralel:', err);
   }
