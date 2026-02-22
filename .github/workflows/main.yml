@@ -394,7 +394,7 @@ PY
 
       - name: Create Pull Request (if requested)
         if: steps.prepare_commit.outputs.no_changes == 'false' && steps.inputs.outputs.create_pr == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: ${{ steps.prepare_commit.outputs.commit_msg }}
