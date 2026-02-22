@@ -103,7 +103,7 @@ jobs:
       - name: Inject SEO, Mirror Images & WebP (Rust Version)
         run: |
           set -euo pipefail
-          # Cargo akan otomatis mencari path yang sudah didaftarkan di Cargo.toml
+          # --release wajib supaya konversi WebP tidak lemot di server GitHub
           cargo run --release --bin seo-fixer -- artikelx
 
       - name: Add HTML Elements (Sed)
