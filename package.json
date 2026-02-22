@@ -39,6 +39,7 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
+    "@minify-html/node": "^0.18.1",
     "@octokit/core": "^7.0.6",
     "@xmldom/xmldom": "^0.9.8",
     "axios": "^1.13.5",
