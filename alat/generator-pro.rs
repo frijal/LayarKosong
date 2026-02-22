@@ -1,5 +1,5 @@
-use anyhow::{Context, Result};
-use chrono::{DateTime, Utc};
+use anyhow::Result;
+use chrono::Utc;
 use rayon::prelude::*;
 use regex::{Captures, Regex};
 use serde::{Deserialize, Serialize};
@@ -127,7 +127,7 @@ fn main() -> Result<()> {
     let etalase_data: HashMap<String, Vec<ArticleTuple>> = serde_json::from_str(&etalase_raw).unwrap_or_default();
 
     let sitemap_content = fs::read_to_string(SITEMAP_TXT).unwrap_or_default();
-    let mut processed_urls: HashSet<String> = sitemap_content.lines().map(|l| l.trim().to_string()).filter(|l| !l.is_empty()).collect();
+    let processed_urls: HashSet<String> = sitemap_content.lines().map(|l| l.trim().to_string()).filter(|l| !l.is_empty()).collect();
 
     let files_on_disk: Vec<PathBuf> = fs::read_dir(ARTIKEL_DIR)?
     .filter_map(|e| e.ok())
@@ -243,7 +243,7 @@ fn main() -> Result<()> {
 
             let schema_injection = format!(",\n  \"hasPart\": {}", serde_json::to_string_pretty(&has_part)?);
 
-            let mut page_content = tpl
+            let page_content = tpl
             .replace("%%TITLE%%", &sanitize_title(&cat))
             .replace("%%CATEGORY_NAME%%", &cat)
             .replace("%%RSS_URL%%", &rss_url)
