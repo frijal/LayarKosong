@@ -4,16 +4,16 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-# Ganti tokio full ke minimal jika tetap mau pakai async
+# Minimalisir fitur tokio
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 
-# Gunakan rustls-tls untuk menghindari dependency ke OpenSSL sistem
-reqwest = { version = "0.13", default-features = false, features = ["json", "rustls-tls"] }
+# Perbaikan nama fitur di sini: "rustls"
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
 
-# Tetap gunakan ini untuk manipulasi DOM
+# Tetap gunakan nipper untuk DOM
 nipper = "0.1"
 
-# Utility lainnya
+# Batasi fitur image hanya yang kamu butuhkan
 image = { version = "0.25", default-features = false, features = ["webp", "jpeg", "png"] }
 webp = "0.3"
 url = "2"
@@ -22,11 +22,11 @@ regex = "1"
 anyhow = "1"
 
 [profile.release]
-opt-level = 'z'     # Optimasi ukuran
-lto = true          # Link Time Optimization
-codegen-units = 1
-panic = 'abort'     # Buang stack trace
-strip = true        # Buang debug symbols
+opt-level = 'z'     # Fokus kecilkan ukuran
+lto = true          # Buang fungsi yang tidak terpakai
+codegen-units = 1   # Optimasi lebih maksimal
+panic = 'abort'     # Buang fitur error recovery yang berat
+strip = true        # Otomatis hapus simbol debug (sangat ampuh potong size)
 
 [[bin]]
 name = "seo-fixer"
