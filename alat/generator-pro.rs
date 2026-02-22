@@ -349,7 +349,7 @@ fn main() -> Result<()> {
             );
             fs::write(format!("feed-{}.xml", slug), rss_cat)?;
 
-            // --- GENERATE LANDING PAGE (index.html) ---
+            // ----- GENERATE LANDING PAGE (index.html) ---
             let has_part = articles.iter().map(|a| json!({
                 "@type": "WebPage",
                 "name": a.0,
