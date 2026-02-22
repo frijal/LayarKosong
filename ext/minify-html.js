@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Buffer } from 'node:buffer';
 import minifyHtml from '@minify-html/node';
 
 const folders = [
@@ -22,13 +23,14 @@ async function minifyFiles(dir) {
       continue;
     }
 
+    // Hindari file non-HTML dan index.html (sesuai permintaanmu)
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // Logika signature tetap sama
+      // Cek signature biar nggak kerja dua kali
       if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
@@ -36,28 +38,41 @@ async function minifyFiles(dir) {
 
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
-      const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
+      const minifySignature = `\n<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
-      // Konfigurasi minify-html (Rust-based)
-      // minify-html memproses CSS/JS di dalam HTML secara otomatis
+      // Konfigurasi Minify-Html (Rust Binding)
+      // Catatan: Properti yang tidak disebutkan di sini defaultnya adalah 'false'
       const input = Buffer.from(originalHTML);
       const output = minifyHtml.minify(input, {
-        do_not_minify_doctype: false,
-        ensure_spec_compliant_unquoted_attribute_values: true,
+        // --- OPSI EKSTREM (Sangat Disarankan untuk Performa) ---
+        allow_optimal_entities: true, // Menggunakan karakter terpendek (UTF-8 vs Entity)
+        allow_noncompliant_unquoted_attribute_values: true, // Hapus tanda kutip attribute jika aman
+        allow_removing_spaces_between_attributes: true, // Hapus spasi antar attribute (misal: class="a"id="b")
+        minify_doctype: true, // Ubah doctype jadi versi paling pendek
+        
+        // --- OPTIMASI CONTENT ---
+        minify_css: true, // Pakai lightningcss (Rust) - Super cepat!
+        minify_js: true,  // Pakai oxc (Rust) - Super cepat!
+        collapse_whitespaces: true, // Sebenarnya otomatis di Rust, tapi baik untuk kejelasan
+        
+        // --- PEMBERSIHAN TOTAL ---
         keep_comments: false,
-        minify_css: true,
-        minify_js: true,
+        keep_html_and_head_opening_tags: false, // Hapus tag <html> dan <head> (browser bakal auto-generate)
         remove_bangs: true,
         remove_processing_instructions: true,
-        collapse_whitespaces: true,
+        
+        // --- KEAMANAN STANDAR ---
+        ensure_spec_compliant_unquoted_attribute_values: false, // Set false karena kita pakai versi noncompliant di atas
+        keep_spaces_between_attributes: false,
       });
 
       const minifiedHTML = output.toString();
 
-      // Tulis hasil akhir
-      fs.writeFileSync(filePath, minifiedHTML.trimEnd() + '\n' + minifySignature, 'utf8');
+      // Tulis hasil akhir + signature di baris baru
+      fs.writeFileSync(filePath, minifiedHTML.trimEnd() + minifySignature, 'utf8');
+      
       stats.success++;
-      console.log(`✅ Minified (Rust): ${filePath}`);
+      console.log(`✅ Minified (Rust Engine): ${filePath}`);
 
     } catch (err) {
       stats.failed++;
@@ -67,16 +82,21 @@ async function minifyFiles(dir) {
   }
 }
 
-// Fungsi run() tetap sama seperti sebelumnya...
 async function run() {
   console.log('🧼 Memulai Minify Ultra (Rust Engine Integration)...');
-  for (const f of folders) { await minifyFiles(f); }
+  console.log('📂 Lokasi: Balikpapan (Layar Kosong Project)');
+  
+  for (const f of folders) { 
+    await minifyFiles(f); 
+  }
+
   console.log('\n' + '='.repeat(50));
   console.log('📊 REKAP PROSES LAYAR KOSONG');
   console.log('='.repeat(50));
   console.log(`✅ Berhasil Minify : ${stats.success}`);
   console.log(`⏭️  Skip (Sudah)     : ${stats.skipped}`);
   console.log(`❌ Gagal           : ${stats.failed}`);
+  
   if (stats.failed > 0) {
     console.log('\n⚠️  DETAIL ERROR:');
     stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
