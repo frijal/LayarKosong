@@ -41,3 +41,7 @@ regex = "1"
 [[bin]]
 name = "seo-fixer"
 path = "alat/seo-fixer.rs"
+
+[[bin]]
+name = "clean-schema"
+path = "alat/clean-schema.rs"
