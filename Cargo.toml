@@ -62,3 +62,6 @@ path = "alat/minify-html.rs"
 name = "minify-jsonxml"
 path = "alat/minify-jsonxml.rs"
 
+[[bin]]
+name = "sitemap-txt"
+path = "alat/sitemap-txt.rs"
