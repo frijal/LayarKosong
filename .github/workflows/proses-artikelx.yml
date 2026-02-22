@@ -64,7 +64,7 @@ jobs:
       - name: 🧹 Sterilize Schema (Rust Version)
         run: |
           set -euo pipefail
-          cargo run --release --bin clean_schema -- artikelx/
+          cargo run --release --bin clean-schema -- artikelx/
 
       - name: Replace Content (Perl)
         run: |
