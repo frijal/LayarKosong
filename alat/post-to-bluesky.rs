@@ -1,8 +1,7 @@
 use atrium_api::agent::atp_agent::AtpAgent;
-use atrium_api::app::bsky::embed::external::{Main as EmbedExternal, External};
-use atrium_api::app::bsky::feed::post::Record;
-use atrium_api::types::string::Datetime;
-use atrium_api::types::Union;
+use atrium_api::app::bsky::embed::external::{MainData, ExternalData};
+use atrium_api::app::bsky::feed::post::{RecordData, RecordEmbedRefs};
+use atrium_api::types::{string::Datetime, Object, Union};
 use atrium_xrpc_client::reqwest::ReqwestClient;
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -61,7 +60,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let handle = env::var("BSKY_HANDLE").expect("BSKY_HANDLE not set");
     let password = env::var("BSKY_PASSWORD").expect("BSKY_PASSWORD not set");
 
-    // FIX 1: Store location
+    // FIX 1: Store Path
     let agent = AtpAgent::new(
         ReqwestClient::new("https://bsky.social".to_string()),
                               atrium_api::agent::store::MemorySessionStore::default(),
@@ -69,27 +68,25 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     agent.login(&handle, &password).await?;
 
-    // FIX 2: Image bytes download
     let img_url = &target_data.2;
     let img_bytes = reqwest::get(img_url).await?.bytes().await?.to_vec();
 
-    // FIX 3: Correct API chaining
-    let upload = agent
-    .api()
-    .com()
-    .atproto()
-    .repo()
-    .upload_blob(img_bytes)
-    .await?;
+    let upload = agent.api().com().atproto().repo().upload_blob(img_bytes).await?;
 
-    // FIX 4: Correct Embed Construction
-    let embed = EmbedExternal {
-        external: External {
-            description: target_data.4.clone().unwrap_or_else(|| "Archive.".to_string()),
-            title: target_data.0.clone(),
-            thumb: Some(upload.data.blob),
-            uri: target_url.clone(),
+    // FIX 2: Struktur Object untuk Embed (Gunakan field 'data')
+    let embed = Object {
+        data: MainData {
+            external: Object {
+                data: ExternalData {
+                    description: target_data.4.clone().unwrap_or_else(|| "Archive.".to_string()),
+                    title: target_data.0.clone(),
+                    thumb: Some(upload.data.blob),
+                    uri: target_url.clone(),
+                },
+                extra_data: ipld_core::ipld::Ipld::Map(Default::default()),
+            },
         },
+        extra_data: ipld_core::ipld::Ipld::Map(Default::default()),
     };
 
     let mut msg = target_data.4.clone().unwrap_or_else(|| "Archive.".to_string());
@@ -97,25 +94,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         msg = msg.chars().take(297).collect::<String>() + "...";
     }
 
-    // FIX 5: Union type for Embed
-    use atrium_api::app::bsky::feed::post::RecordEmbedRefs;
-
-    agent
-    .api()
-    .app()
-    .bsky()
-    .feed()
-    .post()
-    .create(atrium_api::types::Object {
-        data: Record {
+    // FIX 3: Struktur Post Record (Gunakan field 'data')
+    agent.api().app().bsky().feed().post().create(Object {
+        data: RecordData {
             text: msg,
             created_at: Datetime::now(),
-            embed: Some(Union::Refs(RecordEmbedRefs::AppBskyEmbedExternalMain(Box::new(embed)))),
-            ..Default::default()
+                                                  embed: Some(Union::Refs(RecordEmbedRefs::AppBskyEmbedExternalMain(Box::new(embed)))),
+                                                  entities: None,
+                                                  facets: None,
+                                                  labels: None,
+                                                  langs: None,
+                                                  reply: None,
+                                                  tags: None,
         },
-        extra_data: Default::default(),
-    })
-    .await?;
+        extra_data: ipld_core::ipld::Ipld::Map(Default::default()),
+    }).await?;
 
     fs::write("/tmp/temp_new_url_bsky.txt", format!("{}\n", target_url))?;
     println!("✅ Berhasil posting ke Bluesky: {}", target_url);
