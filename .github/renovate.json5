@@ -4,25 +4,26 @@
     "config:recommended",
     ":dependencyDashboard",
     "abandonments:recommended",
-    "replacements:all"
+    "replacements:all",
+    "workarounds:all"
   ],
   "configMigration": true,
   "branchPrefix": "renovate/",
-  "prConcurrentLimit": 0,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
   "ignoreUnstable": true,
   "respectLatest": true,
-  "separateMinorPatch": false,
+  "dependencyDashboard": true,
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
     "**/vendor/**",
     "artikel/**",
-    "mini/requirements.txt",
     "target/**"
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["security", "renovate"]
+    "labels": ["security", "critical"]
   },
   "prBodyColumns": ["Package", "Type", "Update", "Change", "Pending", "OpenSSF"],
   "prBodyDefinitions": {
@@ -30,33 +31,49 @@
   },
   "packageRules": [
     {
-      "description": "Global strategy for all dependencies",
+      "description": "Aturan Umum: Replace range dengan versi spesifik agar build reproducible",
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "replace"
     },
     {
-      "description": "Rust/Cargo Logic: Menggunakan datasource 'cargo' untuk trigger update",
+      "description": "JS/NPM: Grouping React & Next.js untuk kurangi noise PR",
+      "matchDatasources": ["npm"],
+      "matchPackagePatterns": ["^react", "^next"],
+      "groupName": "React Ecosystem",
+      "automerge": true,
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Python: Handle Pip & Poetry",
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "minimumReleaseAge": "7 days"
+    },
+    {
+      "description": "Rust: Menggunakan datasource cargo sesuai info terbaru",
       "matchDatasources": ["cargo"],
-      "matchUpdateTypes": ["minor", "patch", "digest", "lockFileMaintenance"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "rangeStrategy": "update-lockfile"
     },
     {
-      "description": "Security: Minimum age for stability",
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "minimumReleaseAge": "3 days",
+      "description": "Docker & GitHub Actions: Pin digest untuk keamanan maksimal",
+      "matchDatasources": ["docker", "github-tags"],
+      "pinDigests": true,
       "automerge": true
     },
     {
-      "description": "Governance: Require approval for major and unstable 0.x versions",
+      "description": "Governance: Semua Major update wajib persetujuan manual",
       "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true
+      "dependencyDashboardApproval": true,
+      "automerge": false
     },
     {
-      "description": "Governance: 0.x versions follow semver-minor as breaking in Rust",
-      "matchCurrentVersion": "/^0/",
-      "dependencyDashboardApproval": true
+      "description": "Governance: Versi 0.x (Unstable) wajib review manual",
+      "matchCurrentVersion": "/^0./",
+      "dependencyDashboardApproval": true,
+      "automerge": false
     }
   ]
 }
