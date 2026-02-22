@@ -20,7 +20,8 @@
     "**/bower_components/**",
     "**/vendor/**",
     "artikel/**",
-    "mini/requirements.txt"
+    "mini/requirements.txt",
+    "target/**"
   ],
 
   "vulnerabilityAlerts": {
@@ -33,6 +34,13 @@
       "description": "Global range strategy",
       "matchPackageNames": ["*"],
       "rangeStrategy": "replace"
+    },
+    {
+      "description": "Rust/Cargo Specific: Automerge minor/patch and handle locks",
+      "matchDatasources": ["crate"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "lockFileMaintenance"],
+      "automerge": true,
+      "rangeStrategy": "update-lockfile"
     },
     {
       "description": "Automerge non-major updates (stable only)",
@@ -48,21 +56,10 @@
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Automerge linters and types",
-      "matchPackageNames": ["@types/**"],
-      "extends": ["packages:linters"],
-      "automerge": true
-    },
-    {
       "description": "NPM safety: 3 days minimum release age",
       "matchDatasources": ["npm"],
       "internalChecksFilter": "strict",
       "minimumReleaseAge": "3 days"
-    },
-    {
-      "description": "Exception: No minimum release age for maintenance/pin/replacement",
-      "matchUpdateTypes": ["lockFileMaintenance", "replacement", "pin"],
-      "minimumReleaseAge": null
     },
     {
       "description": "Add OpenSSF Scorecard to PR body",
