@@ -93,7 +93,7 @@ async fn main() -> Result<()> {
         let document = Document::from(&raw_content);
 
         // --- 1. MIRRORING GAMBAR DALAM BODY ---
-        let mut images = document.select("img");
+        let images = document.select("img");
         for mut img in images.iter() {
             if let Some(src) = img.attr("src") {
                 let src_str = src.to_string();
@@ -219,7 +219,7 @@ async fn main() -> Result<()> {
         head.append_html(format!("\n    {}\n", injection.join("\n    ")));
 
         // --- 5. BODY FIXES ---
-        let mut body_imgs = document.select("img");
+        let body_imgs = document.select("img");
         for mut img in body_imgs.iter() {
             if img.attr("alt").is_none() {
                 img.set_attr("alt", &article_title);
