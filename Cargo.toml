@@ -4,30 +4,24 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-chrono = "0.4"
-rayon = "1.10"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-
-# Perbaikan nama fitur di sini: "rustls"
-reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
-
-# Tetap gunakan nipper untuk DOM
-nipper = "0.1"
-
-# Batasi fitur image hanya yang kamu butuhkan
-image = { version = "0.25", default-features = false, features = ["webp", "jpeg", "png"] }
-webp = "0.3"
-url = "2"
-walkdir = "2"
-regex = "1"
 anyhow = "1"
-minify-html = "0.18.0"
-
-tokio = { version = "1", features = ["full"] }
 atrium-api = { version = "0.25.7", features = ["agent"] }
 atrium-xrpc-client = "0.5.5"
+chrono = "0.4"
+image = { version = "0.25", default-features = false, features = ["webp", "jpeg", "png"] }
 ipld-core = "0.4.3"
+minify-html = "0.18.0"
+nipper = "0.1"
+oauth1 = "0.4" # Penting untuk Tumblr
+rayon = "1.10"
+regex = "1"
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+url = "2"
+walkdir = "2"
+webp = "0.3"
 
 
 
@@ -78,7 +72,9 @@ path = "alat/inject-script.rs"
 name = "post-to-discord"
 path = "alat/post-to-discord.rs"
 
-
+[[bin]]
+name = "post-to-tumblr"
+path = "alat/post-to-tumblr.js"
 
 
 
