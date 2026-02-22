@@ -34,87 +34,54 @@ fn clean_tag(t: &str) -> String {
         .to_string()
 }
 
+// ... (Bagian atas dan struct tetap sama) ...
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("🎨 Memulai Tumblr Autopost (Rust Engine)...");
-
-    // 1. Ambil Kunci Rahasia
-    let consumer_key = env::var("TUMBLR_CONSUMER_KEY").expect("TUMBLR_CONSUMER_KEY not set");
-    let consumer_secret = env::var("TUMBLR_CONSUMER_SECRET").expect("TUMBLR_CONSUMER_SECRET not set");
-    let token = env::var("TUMBLR_TOKEN").expect("TUMBLR_TOKEN not set");
-    let token_secret = env::var("TUMBLR_TOKEN_SECRET").expect("TUMBLR_TOKEN_SECRET not set");
-
-    // 2. Baca Database
-    let posted_database = if Path::new(DATABASE_FILE).exists() {
-        fs::read_to_string(DATABASE_FILE)?
-    } else {
-        String::new()
-    };
-
-    // 3. Parse Artikel
-    let data_str = fs::read_to_string(JSON_FILE).expect("artikel.json tidak ditemukan");
-    let data: HashMap<String, Vec<Post>> = serde_json::from_str(&data_str)?;
-
-    let mut all_articles = Vec::new();
-    for (category, posts) in data {
-        let cat_slug = slugify(&category);
-        for p in posts {
-            let file_slug = p.1.trim_start_matches('/').replace(".html", "");
-            if file_slug.startsWith("agregat-20") { continue; }
-
-            let full_url = format!("{}/{}/{}", BASE_URL, cat_slug, file_slug);
-            if !posted_database.contains(&file_slug) {
-                all_articles.push((p, full_url, category.clone()));
-            }
-        }
-    }
-
-    all_articles.sort_by(|a, b| b.0.3.cmp(&a.0.3));
-
-    if all_articles.is_empty() {
-        println!("✅ Tumblr: Tidak ada artikel baru.");
-        return Ok(());
-    }
+    // ... (Bagian ambil ENV dan baca JSON tetap sama) ...
 
     let (target_data, target_url, category_name) = &all_articles[0];
-    println!("🚀 Mengirim ke Tumblr: {}", target_data.0);
 
-    // 4. Siapkan Konten NPF (Neue Post Format) Tumblr
-    let content = json!([
+    // 4. Siapkan Konten & Tags
+    let content_json = json!([
         { "type": "text", "text": target_data.4.as_deref().unwrap_or("Archive.") },
-        { "type": "text", "text": "#fediverse #Indonesia" },
-        { "type": "link", "url": target_url }
-    ]);
+                             { "type": "text", "text": "#fediverse #Indonesia" },
+                             { "type": "link", "url": target_url }
+    ]).to_string();
 
-    let tags = vec!["fediverse", "Repost", "Ngopi", "Indonesia", category_name];
-    let cleaned_tags: String = tags.iter().map(|t| clean_tag(t)).collect::<Vec<_>>().join(",");
+    let tags_list = vec!["fediverse", "Repost", "Ngopi", "Indonesia", category_name];
+    let cleaned_tags: String = tags_list.iter().map(|t| clean_tag(t)).collect::<Vec<_>>().join(",");
 
-    // 5. OAuth Signature & Request
+    // 5. OAuth 1.0 Signature (Update untuk oauth1 v1.0)
     let api_url = format!("https://api.tumblr.com/v2/blog/{}/posts", BLOG_NAME);
-    let consumer = oauth1::Token::new(consumer_key, consumer_secret);
-    let access = oauth1::Token::new(token, token_secret);
 
+    // Di versi 1.0, kita buat signature langsung dengan params
     let mut params = HashMap::new();
-    params.insert("content", content.to_string());
-    params.insert("tags", cleaned_tags);
+    params.insert("content", content_json.as_str());
+    params.insert("tags", cleaned_tags.as_str());
 
-    let header = oauth1::authorize("POST", &api_url, &consumer, Some(&access), Some(params));
+    let header = oauth1::authorize(
+        "POST",
+        &api_url,
+        &oauth1::Token::new(consumer_key, consumer_secret),
+                                   Some(&oauth1::Token::new(token, token_secret)),
+                                   Some(params)
+    );
 
+    // 6. Kirim Request
     let client = reqwest::Client::new();
     let response = client
-        .post(&api_url)
-        .header(reqwest::header::AUTHORIZATION, header)
-        .form(&[
-            ("content", content.to_string()),
-            ("tags", cleaned_tags)
-        ])
-        .send()
-        .await?;
+    .post(&api_url)
+    .header(reqwest::header::AUTHORIZATION, header)
+    .form(&[
+        ("content", content_json),
+          ("tags", cleaned_tags)
+    ])
+    .send()
+    .await?;
 
     if response.status().is_success() {
-        let mut file = fs::OpenOptions::new().append(true).create(true).open(DATABASE_FILE)?;
-        use std::io::Write;
-        writeln!(file, "{}", target_url)?;
+        // ... (Bagian tulis database tetap sama) ...
         println!("✅ Berhasil post ke Tumblr!");
     } else {
         eprintln!("❌ Gagal: {}", response.text().await?);

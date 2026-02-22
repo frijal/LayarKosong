@@ -12,7 +12,7 @@ image = { version = "0.25", default-features = false, features = ["webp", "jpeg"
 ipld-core = "0.4.3"
 minify-html = "0.18.0"
 nipper = "0.1"
-oauth1 = "0.4" # Penting untuk Tumblr
+oauth1 = "1.0"
 rayon = "1.10"
 regex = "1"
 reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
