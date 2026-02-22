@@ -60,7 +60,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let cat_slug = slugify(&category);
         for p in posts {
             let file_slug = p.1.trim_start_matches('/').replace(".html", "");
-            if file_slug.startsWith("agregat-20") { continue; }
+
+            // FIX: Gunakan starts_with (bukan startsWith)
+            if file_slug.starts_with("agregat-20") { continue; }
 
             let full_url = format!("{}/{}/{}", BASE_URL, cat_slug, file_slug);
             if !posted_database.contains(&file_slug) {
@@ -106,14 +108,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 6. Kirim Request
     let client = reqwest::Client::new();
+
+    // Siapkan form data dalam HashMap agar tipe data konsisten
+    let mut form_params = HashMap::new();
+    form_params.insert("content", &content_json);
+    form_params.insert("tags", &cleaned_tags);
+
     let response = client
     .post(&api_url)
     .header(reqwest::header::AUTHORIZATION, header)
-    // Gunakan form data untuk POST
-    .form(&[
-        ("content", &content_json),
-          ("tags", &cleaned_tags)
-    ])
+    .form(&form_params) // FIX: Gunakan form yang sudah divalidasi fiturnya
     .send()
     .await?;
 

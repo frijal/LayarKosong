@@ -15,13 +15,16 @@ nipper = "0.1"
 oauth1 = "1.0"
 rayon = "1.10"
 regex = "1"
-reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
+reqwest = { version = "0.13", default-features = false, features = ["json", "multipart", "rustls"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tokio = { version = "1", features = ["full"] }
 url = "2"
 walkdir = "2"
 webp = "0.3"
+
+
+
 
 
 
