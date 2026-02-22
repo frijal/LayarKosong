@@ -23,14 +23,14 @@ async function minifyFiles(dir) {
       continue;
     }
 
-    // Hindari file non-HTML dan index.html (sesuai permintaanmu)
+    // Hanya sikat file HTML, lewati index.html agar aman
     if (!file.endsWith('.html') || file === 'index.html') continue;
 
     try {
       const originalHTML = fs.readFileSync(filePath, 'utf8');
       if (!originalHTML.trim()) continue;
 
-      // Cek signature biar nggak kerja dua kali
+      // Cek segel biar gak kerja rodi dua kali
       if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
         stats.skipped++;
         continue;
@@ -38,70 +38,76 @@ async function minifyFiles(dir) {
 
       const d = new Date();
       const tgl = d.toISOString().slice(0, 10);
-      const minifySignature = `\n<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
+      const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
-      // Konfigurasi Minify-Html (Rust Binding)
-      // Catatan: Properti yang tidak disebutkan di sini defaultnya adalah 'false'
       const input = Buffer.from(originalHTML);
       const output = minifyHtml.minify(input, {
-        // --- OPSI EKSTREM (Sangat Disarankan untuk Performa) ---
-        allow_optimal_entities: true, // Menggunakan karakter terpendek (UTF-8 vs Entity)
-        allow_noncompliant_unquoted_attribute_values: true, // Hapus tanda kutip attribute jika aman
-        allow_removing_spaces_between_attributes: true, // Hapus spasi antar attribute (misal: class="a"id="b")
-        minify_doctype: true, // Ubah doctype jadi versi paling pendek
+        // --- OPSI EKSTREM (Gacor Mode) ---
+        allow_optimal_entities: true,
+        allow_noncompliant_unquoted_attribute_values: true,
+        allow_removing_spaces_between_attributes: true,
+        minify_doctype: true,
         
-        // --- OPTIMASI CONTENT ---
-        minify_css: true, // Pakai lightningcss (Rust) - Super cepat!
-        minify_js: true,  // Pakai oxc (Rust) - Super cepat!
-        collapse_whitespaces: true, // Sebenarnya otomatis di Rust, tapi baik untuk kejelasan
+        // --- OPTIMASI CONTENT (Rust Engine) ---
+        minify_css: true,
+        minify_js: true,
+        collapse_whitespaces: true,
         
         // --- PEMBERSIHAN TOTAL ---
         keep_comments: false,
-        keep_html_and_head_opening_tags: false, // Hapus tag <html> dan <head> (browser bakal auto-generate)
+        keep_html_and_head_opening_tags: false, // Menghilangkan tag opsional demi byte terakhir
         remove_bangs: true,
         remove_processing_instructions: true,
         
-        // --- KEAMANAN STANDAR ---
-        ensure_spec_compliant_unquoted_attribute_values: false, // Set false karena kita pakai versi noncompliant di atas
+        // --- OVERRIDE STANDAR ---
+        ensure_spec_compliant_unquoted_attribute_values: false,
         keep_spaces_between_attributes: false,
       });
 
       const minifiedHTML = output.toString();
 
-      // Tulis hasil akhir + signature di baris baru
+      // Gabungkan hasil tanpa spasi/baris baru sedikitpun
       fs.writeFileSync(filePath, minifiedHTML.trimEnd() + minifySignature, 'utf8');
       
       stats.success++;
-      console.log(`✅ Minified (Rust Engine): ${filePath}`);
+      console.log(`✅ Terjepit Sempurna (Rust): ${filePath}`);
 
     } catch (err) {
       stats.failed++;
       stats.errorList.push({ path: filePath, error: err.message });
-      console.error(`❌ Gagal: ${filePath}`);
+      console.error(`❌ Gagal jepit: ${filePath}`);
     }
   }
 }
 
 async function run() {
-  console.log('🧼 Memulai Minify Ultra (Rust Engine Integration)...');
-  console.log('📂 Lokasi: Balikpapan (Layar Kosong Project)');
+  console.log('🧼 Memulai Minify Ultra (Mode Paralel)...');
+  console.log('📂 Lokasi: Balikpapan | Status: Turbo On 🚀');
   
-  for (const f of folders) { 
-    await minifyFiles(f); 
-  }
+  const startTime = Date.now();
 
-  console.log('\n' + '='.repeat(50));
-  console.log('📊 REKAP PROSES LAYAR KOSONG');
-  console.log('='.repeat(50));
-  console.log(`✅ Berhasil Minify : ${stats.success}`);
-  console.log(`⏭️  Skip (Sudah)     : ${stats.skipped}`);
-  console.log(`❌ Gagal           : ${stats.failed}`);
-  
-  if (stats.failed > 0) {
-    console.log('\n⚠️  DETAIL ERROR:');
-    stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
+  try {
+    // Memulai semua proses minify folder secara bersamaan
+    await Promise.all(folders.map(f => minifyFiles(f)));
+    
+    const duration = (Date.now() - startTime) / 1000;
+
+    console.log('\n' + '='.repeat(50));
+    console.log('📊 REKAP PROSES LAYAR KOSONG (PARALEL)');
+    console.log('='.repeat(50));
+    console.log(`⏱️  Waktu Tempuh     : ${duration.toFixed(2)} detik`);
+    console.log(`✅ Berhasil Dijepit : ${stats.success}`);
+    console.log(`⏭️  Sudah Dijepit    : ${stats.skipped}`);
+    console.log(`❌ Gagal Proses     : ${stats.failed}`);
+    
+    if (stats.failed > 0) {
+      console.log('\n⚠️  DETAIL ERROR:');
+      stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
+    }
+    console.log('='.repeat(50) + '\n');
+  } catch (err) {
+    console.error('💥 Terjadi kesalahan saat eksekusi paralel:', err);
   }
-  console.log('='.repeat(50) + '\n');
 }
 
 run().catch(err => {
