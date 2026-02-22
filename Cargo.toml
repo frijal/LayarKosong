@@ -36,3 +36,8 @@ html-escape = "0.2"
 nipper = "0.1"
 
 regex = "1"
+
+
+[[bin]]
+name = "seo-fixer"
+path = "alat/seo-fixer.rs"
