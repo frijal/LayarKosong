@@ -1,48 +1,33 @@
 name: Ganti Teks dalam File (via PR)
-
 on:
   workflow_dispatch:
     inputs:
       search:
-        description: "Set 1: Teks yang dicari (Wajib)"
+        description: 'Set 1: Teks dicari'
         required: true
-        default: ""
       replace:
-        description: "Set 1: Teks pengganti"
+        description: 'Set 1: Teks pengganti'
         required: false
-        default: ""
       search2:
-        description: "Set 2: Teks dicari (Hanya jika Set 1 Match)"
+        description: 'Set 2: Teks dicari (Hanya jika Set 1 Match)'
         required: false
-        default: ""
-      replace2:
-        description: "Set 2: Teks pengganti"
-        required: false
-        default: ""
       folder:
-        description: "Folder target (kosongkan untuk root)"
+        description: 'Folder target (default: .)'
         required: false
-        default: ""
+        default: '.'
       globs:
-        description: "Ekstensi file (koma-separated)"
+        description: 'Ekstensi file (contoh: *.ts,*.js)'
         required: false
-        default: ""
-
-permissions:
-  contents: write
-  pull-requests: write
+        default: '*'
 
 jobs:
   replace-process:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          fetch-depth: 1
-          persist-credentials: true
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
 
-      - name: "Eksekusi Penggantian Teks"
+      - name: 'Eksekusi Penggantian Teks'
         shell: bash
         env:
           S1: ${{ github.event.inputs.search }}
@@ -51,84 +36,60 @@ jobs:
           R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
         run: |
-          IFS="," read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
+          # Perbaikan parsing GLOBS: Gunakan -name agar rekursif bekerja benar
+          IFS=',' read -ra GLOBS_ARRAY <<< '${{ github.event.inputs.globs }}'
           
-          for g in "${GLOBS[@]}"; do
-            echo "📂 Scanning file dengan pola: $g"
-            SEARCH_DIR="${TARGET:-.}"
+          for g in '${GLOBS_ARRAY[@]}'; do
+            pattern=$(echo $g | xargs) # trim whitespace
+            echo '📂 Scanning file dengan pola: $pattern di $TARGET'
             
-            find "$SEARCH_DIR" -type f -wholename "$g" 2>/dev/null | while read -r file; do
+            # Perbaikan: Gunakan -name untuk mencocokkan pattern file secara rekursif
+            find '${TARGET:-.}' -type f -name '$pattern' | while read -r file; do
+              # Skip node_modules atau vendor secara otomatis demi performa
+              [[ '$file' == *'node_modules'* ]] && continue
+              [[ '$file' == *'vendor'* ]] && continue
+
+              CHANGED_IN_FILE=false
               
-              SET1_SUCCESS=false
-
               # --- PROSES SET 1 ---
-              if [[ -n "$S1" ]]; then
-                CLEAN_CHECK_S="${S1#^}"
-                CLEAN_CHECK_S="${CLEAN_CHECK_S%\$}"
-
-                # 1. Cek apakah teks target (S1) ada
-                # 2. Cek apakah teks pengganti (R1) SUDAH ADA (Anti-Duplikat)
-                if grep -Fq "$CLEAN_CHECK_S" "$file"; then
-                  
-                  if [[ -n "$R1" ]] && grep -Fq "$R1" "$file"; then
-                    echo "  ⚠️ Skip Set 1: Teks pengganti '$R1' sudah ada di $file (Mencegah duplikat)"
-                    # Kita tetap anggap "Sukses" agar Set 2 bisa jalan jika diinginkan, 
-                    # atau ubah ke false jika Set 2 bergantung pada perubahan fisik Set 1.
-                    SET1_SUCCESS=true 
-                  else
-                    echo "  🔍 Match Set 1 di: $file. Mengganti..."
-                    if [[ "$S1" == ^* ]]; then
-                      CLEAN_S="${S1#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R1#g" "$file" && SET1_SUCCESS=true
-                    elif [[ "$S1" == *\$ ]]; then
-                      CLEAN_S="${S1%\$}"; perl -i -pe "s#\Q$CLEAN_S\E\$#$R1#g" "$file" && SET1_SUCCESS=true
-                    else
-                      perl -i -pe "s#\Q$S1\E#$R1#g" "$file" && SET1_SUCCESS=true
-                    fi
-                  fi
+              if grep -Fq '$S1' '$file'; then
+                # Cek jika pengganti sudah ada untuk menghindari redundansi
+                if [[ -n '$R1' ]] && grep -Fq '$R1' '$file' && [[ '$S1' != '$R1' ]]; then
+                  echo ' ⏭️  $file: S1 ditemukan tapi R1 sudah ada. Skip.'
                 else
-                  echo "  ⏭️ Skip: Set 1 tidak ditemukan di $file"
+                  perl -i -pe 's#\Q$S1\E#$R1#g' '$file'
+                  echo ' ✅ $file: Set 1 diganti.'
+                  CHANGED_IN_FILE=true
                 fi
-              else
-                SET1_SUCCESS=true 
               fi
 
-              # --- PROSES SET 2 ---
-              if [[ "$SET1_SUCCESS" == true && -n "$S2" ]]; then
-                # Anti-duplikat untuk Set 2
-                if [[ -n "$R2" ]] && grep -Fq "$R2" "$file"; then
-                   echo "  ⚠️ Skip Set 2: Teks pengganti '$R2' sudah ada di $file"
-                else
-                  echo "  ⏩ Melanjutkan ke Set 2 di: $file"
-                  if [[ "$S2" == ^* ]]; then
-                    CLEAN_S="${S2#^}"; perl -i -pe "s#^\Q$CLEAN_S\E#$R2#g" "$file"
-                  elif [[ "$S2" == *\$ ]]; then
-                    CLEAN_S="${S2%\$}"; perl -i -pe "s#\Q$S2\E\$#$R2#g" "$file"
-                  else
-                    perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
-                  fi
-                fi
+              # --- PROSES SET 2 (Hanya jika Set 1 match/sukses) ---
+              if [[ '$CHANGED_IN_FILE' == true && -n '$S2' ]]; then
+                perl -i -pe 's#\Q$S2\E#$R2#g' '$file'
+                echo ' ⏩ $file: Set 2 diproses.'
               fi
             done
           done
 
-      - name: "Create Pull Request"
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+      - name: 'Check for changes'
+        id: git-check
+        run: |
+          if [[ -z '$(git status --porcelain)' ]]; then
+            echo 'changed=false' >> $GITHUB_OUTPUT
+            echo '::notice::Tidak ada perubahan yang terdeteksi. PR tidak akan dibuat.'
+          else
+            echo 'changed=true' >> $GITHUB_OUTPUT
+          fi
+
+      - name: 'Create Pull Request'
+        if: steps:git-check.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass update content (with anti-duplicate check)"
-          branch: "duplicate/mass-replace-${{ github.run_id }}"
-          delete-branch: true
-          title: "Mass Replace: ${{ github.event.inputs.search }}"
+          commit-message: 'chore: mass update content'
+          branch: 'fix/mass-replace-${{ github.run_id }}'
+          title: 'Mass Replace: ${{ github.event.inputs.search }}'
           body: |
-            ## 📝 Laporan Penggantian Teks (Mode Aman)
-            Sistem mendeteksi dan melewati file yang sudah mengandung teks pengganti untuk mencegah duplikasi.
-            
-            ### Detail:
-            - **Set 1:** `${{ github.event.inputs.search }}` -> `${{ github.event.inputs.replace }}`
-            - **Set 2:** `${{ github.event.inputs.search2 }}` -> `${{ github.event.inputs.replace2 }}`
-            
-            ---
-            *Processed via GitHub Actions.*
-          labels: |
-            automated-pr
-            content-update
+            Automated text replacement report.
+            - Target: `${{ github.event.inputs.search }}`
+            - Replacement: `${{ github.event.inputs.replace }}`
