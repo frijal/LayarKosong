@@ -75,18 +75,39 @@ jobs:
 
       - name: 🔍 Verifikasi Integritas Font
         id: font_check
+        shell: bash
         run: |
           FONT_DIR="ext/fontawesome-webfonts"
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
+          
+          # Backup laporan lama jika ada
           [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
-          echo "📄 Font + ukuran + hash SHA-256:" > "$OUTPUT"
-          find "$FONT_DIR" -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" \) | sort | while read f; do
-            echo "$(basename "$f")|$(stat -c%s "$f")|$(sha256sum "$f" | awk '{print $1}")" >> "$OUTPUT"
+          
+          # Header laporan (pakai printf supaya lebih aman dibanding echo emoji)
+          printf "Font Integrity Report - $(date)\n" > "$OUTPUT"
+          printf "Filename | Size | SHA-256\n" >> "$OUTPUT"
+          
+          # Gunakan find tanpa line continuation yang ribet
+          # Kita simpan hasil find ke variable dulu atau pakai pipe langsung yang bersih
+          find "$FONT_DIR" -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
+              fname=$(basename "$f")
+              fsize=$(stat -c%s "$f")
+              fhash=$(sha256sum "$f" | awk '{print $1}')
+              echo "$fname | $fsize | $fhash" >> "$OUTPUT"
           done
-          if [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
-            echo "alert=true" >> $GITHUB_OUTPUT
+          
+          # Logika perbandingan
+          if [ -f "$PREV" ]; then
+            if ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
+              echo "🚨 Perubahan terdeteksi pada hash font!"
+              echo "alert=true" >> $GITHUB_OUTPUT
+            else
+              echo "✅ Tidak ada perubahan pada font."
+              echo "alert=false" >> $GITHUB_OUTPUT
+            fi
           else
+            echo "ℹ️ Laporan pertama kali dibuat."
             echo "alert=false" >> $GITHUB_OUTPUT
           fi
 
