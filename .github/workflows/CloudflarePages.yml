@@ -22,6 +22,7 @@ permissions:
 jobs:
   deploy-direct:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       # 1. Ambil source code dari main
       - name: Checkout source branch
@@ -30,17 +31,11 @@ jobs:
           path: source
           fetch-depth: 1
           persist-credentials: true
-
-      - name: Cache Node Modules
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: '2. Setup Node.js'
+     
+      - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - name: Install dependencies
         run:  bun install
@@ -80,6 +75,7 @@ jobs:
             --include='thumbnail.*' \
             --include='*.webmanifest' \
             --exclude='*' \
+            --exclude='*.bak' \
             source/ deploy_dir/
             
           echo "✅ Ready to deploy contents of deploy_dir/"
