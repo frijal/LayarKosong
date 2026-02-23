@@ -191,7 +191,7 @@
         <p>Halo warga internet yang budiman! 👋 Ada kejadian aneh bin ajaib: internet di rumah lagi lemot parah, buka sosmed *loading*-nya kayak nunggu jodoh yang nggak dateng-dateng, tapi begitu iseng nyalain VPN atau Cloudflare WARP, tiba-tiba... *wusshhh!* Lancar jaya?</p>
         <p>Logika dasarnya kan begini ya: **VPN = Menambah jarak tempuh data**. Data kita harus mampir dulu ke server VPN, dienkripsi (dibungkus), baru dikirim ke tujuan. Harusnya lebih lambat dong? Tapi kenapa fakta di lapangan sering berkata lain, terutama buat kita-kita yang tinggal di Indonesia tercinta ini?</p>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAJlF6cbgAAF65G.webp" alt="Ilustrasi Routing Jaringan VPN vs ISP Lokal" width="100%" height="450">
-        <p>Baru-baru ini, aku nemu responsei yang bener banget di forum sebelah. Isinya para sepuh jaringan, *gamer* yang frustrasi sama *packet loss*, sampai orang dalam ISP yang buka-bukaan soal dapur mereka. Yuk, kita bedah bareng-bareng pake prinsip 5W+1H biar tuntas!</p>
+        <p>Baru-baru ini, aku nemu diskusi yang bener banget di forum sebelah. Isinya para sepuh jaringan, *gamer* yang frustrasi sama *packet loss*, sampai orang dalam ISP yang buka-bukaan soal dapur mereka. Yuk, kita bedah bareng-bareng pake prinsip 5W+1H biar tuntas!</p>
         <hr>
         <h2><i class="fas fa-search fa-icon"></i> WHAT: Apa yang Sebenarnya Terjadi?</h2>
         <p>Fenomena ini bukan halusinasi atau efek plasebo semata, kawan. Ini nyata. Banyak user melaporkan bahwa saat menggunakan koneksi "polosan" dari ISP (terutama yang plat merah atau ISP *tier* 3), pengalaman *browsing* dan *gaming* terasa berat. Tapi begitu "dibungkus" VPN, latensi jadi stabil dan *bandwidth* terasa lebih plong.</p>
@@ -200,7 +200,7 @@
         </blockquote>
         <p>Jawabannya ada di satu kata kunci: **ROUTING** (Rute). Bayangkan kalian mau pergi dari Balikpapan ke Samarinda. Jalan tol (jalur utama) macet total karena ada pemeriksaan lalu-lintas (filtering) dan perbaikan jalan (maintenance). ISP kamu secara *default* maksa kamu lewat jalan macet itu. Nah, VPN itu ibarat tukang ojek yang tau "jalan rahasia" lewat kebun warga yang sepi dan mulus.</p>
         <h2><i class="fas fa-server fa-icon"></i> WHY: Kenapa ISP Lokal Suka 'Muter-Muter'?</h2>
-        <p>Ada beberapa alasan teknis kenapa koneksi polosan di Indonesia sering terasa menyedihkan, yang aku rangkum dari curhatan para suhu di responsei tersebut:</p>
+        <p>Ada beberapa alasan teknis kenapa koneksi polosan di Indonesia sering terasa menyedihkan, yang aku rangkum dari curhatan para suhu di diskusi tersebut:</p>
         <h3>1. Filtering yang Agresif (DPI)</h3>
         <p>Kita tahu pemerintah punya aturan ketat soal internet positif. ISP wajib melakukan filtering. Masalahnya, metode filtering yang dipakai kadang menggunakan *Deep Packet Inspection* (DPI). Setiap paket data kamu diperiksa dulu, "Eh, ini mau ke situs judi bukan? Ini mau ke situs terlarang nggak?".</p>
         <p>Seperti kata user **Sea-Salt-4813**:</p>
@@ -245,7 +245,7 @@
         </div>
         <hr>
         <h2><i class="fas fa-cogs fa-icon"></i> HOW: Solusi Teknis Buat Kamu (Jangan Cuma Pasrah!)</h2>
-        <p>Oke, kita udah tau masalahnya. Sekarang, gimana cara ngatasinnya? Berdasarkan responsei para suhu di atas, ini tingkatan solusinya dari yang gratisan sampe yang niat banget.</p>
+        <p>Oke, kita udah tau masalahnya. Sekarang, gimana cara ngatasinnya? Berdasarkan diskusi para suhu di atas, ini tingkatan solusinya dari yang gratisan sampe yang niat banget.</p>
         <h3>Level 1: Ganti DNS &amp; Pakai WARP (Pemula)</h3>
         <p>Langkah pertama, coba pake **Cloudflare WARP (1.1.1.1)**. Ini bukan VPN murni yang menyembunyikan IP secara total, tapi lebih ke mengoptimalkan rute DNS. Gratis, simpel, tinggal satu klik. [www.dalam.web.id/instal-cloudflare-warp](https://dalam.web.id/sistem-terbuka/instal-cloudflare-warp-linux-2025)</p>
         <p>*Kelebihan:* Ringan, seringkali memperbaiki routing ISP lokal yang muter-muter.<br>
