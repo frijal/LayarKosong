@@ -22,27 +22,20 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: Cache Node Modules
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          bun-version: latest
 
-      # --- NODE.JS SECTION ---
-      - name: Setup Node.js
-        if: hashFiles('package.json') != ''
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
-        with:
-
-      - name: Node.js Prep & Uninstall
+      - name: '🗑️ Bun Package Uninstall'
         if: hashFiles('package.json') != ''
         run: |
-          echo "Processing Node.js packages..."
-          bun install --package-lock-only || true
-          npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
-          npm prune
+          echo "Processing package removal using Bun..."
+          # Gunakan bun remove, ini jauh lebih cepat daripada npm uninstall
+          bun remove ${{ github.event.inputs.packages_to_remove }}
+          
+          # Hapus dependensi yang tidak terpakai dan bersihkan lockfile
+          bun install --production
 
       # --- PYTHON SECTION (AUTO-SKIP LOGIC) ---
       # Kita cek dulu apakah ada file python, kalau nggak ada, step di bawah bakal di-skip total
@@ -85,11 +78,8 @@ jobs:
           
           if [ -f package.json ]; then
             echo -e "\n--- Analisis Paket Setelah Uninstall (Detektif Internal) ---" >> "$REPORT"
-            if [ -f ext/cek-mubazir.js ]; then
-              bun run ext/cek-mubazir.js >> "$REPORT"
-            else
-              echo "Info: ext/cek-mubazir.js tidak ditemukan, skip audit detail." >> "$REPORT"
-            fi
+            # Langsung panggil detektifnya pakai Bun!
+            bun run ext/cek-mubazir.js >> "$REPORT" || echo "Audit gagal dijalankan." >> "$REPORT"
           fi
 
       - name: Commit and Push Changes
