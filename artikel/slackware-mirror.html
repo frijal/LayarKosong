@@ -186,7 +186,7 @@ sudo slackpkg update
 echo "[DONE] Mirror slackpkg berhasil diatur ke $MIRROR_URL"</code>
         </pre>
         <a href="data:text/plain;charset=utf-8,#!/bin/bash%0A#%20slackware-mirror.sh%20%E2%80%94%20pilih%20mirror%20slackpkg%20otomatis%0A%0Aset%20-e%0A%0AMIRROR_FILE=%22/etc/slackpkg/mirrors%22%0ABACKUP=%22/etc/slackpkg/mirrors.backup%22%0A%0Aecho%20%22[INFO]%20Membackup%20mirror%20lama%20ke%20$BACKUP%20...%22%0Asudo%20cp%20%22$MIRROR_FILE%22%20%22$BACKUP%22%0A%0Aecho%20%22[INFO]%20Menampilkan%20daftar%20mirror%20(resmi%20Slackware):%22%0Agrep%20-v%20'%5E#'%20%22$MIRROR_FILE%22%20%7C%20grep%20-E%20'http%7Cftp'%20%7C%7C%20true%0A%0Aecho%20%22%22%0Aecho%20%22Masukkan%20URL%20mirror%20pilihan%20(contoh:%20http://mirrors.slackware.com/slackware64-15.0/):%22%0Aread%20-r%20MIRROR_URL%0A%0Aif%20%5B%20-z%20%22$MIRROR_URL%22%20%5D;%20then%0A%20%20echo%20%22[ERROR]%20Tidak%20ada%20mirror%20yang%20dipilih.%20Keluar.%22%0A%20%20exit%201%0Afi%0A%0Aecho%20%22[INFO]%20Mengatur%20mirror%20ke%20$MIRROR_URL%20...%22%0Aecho%20%22$MIRROR_URL%22%20%7C%20sudo%20tee%20%22$MIRROR_FILE%22%20%3E%20/dev/null%0A%0Aecho%20%22[INFO]%20Update%20database%20slackpkg...%22%0Asudo%20slackpkg%20update%20gpg%0Asudo%20slackpkg%20update%0A%0Aecho%20%22[DONE]%20Mirror%20slackpkg%20berhasil%20diatur%20ke%20$MIRROR_URL%22" download="slackware-mirror.sh" class="download-btn">⬇️ Download slackware-mirror.sh</a>
-        <div id="diskus"></div><div id="related-articles-grid"></div>
+        <div id="diskuskomen"></div><div id="related-articles-grid"></div>
     </main>
     <footer>
         🄯 2025 • slackware-mirror.sh — pastikan mirror yang dipilih benar-benar tersedia.
@@ -211,5 +211,5 @@ echo "[DONE] Mirror slackpkg berhasil diatur ke $MIRROR_URL"</code>
     </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskuskomen.js"></script>
 </body></html>
