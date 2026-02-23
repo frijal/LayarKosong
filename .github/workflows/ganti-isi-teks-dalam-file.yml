@@ -42,7 +42,7 @@ jobs:
           TARGET_DIR: ${{ github.event.inputs.folder }}
           EXTENSIONS: ${{ github.event.inputs.extensions }}
         run: |
-          cat << 'EOF' > replace-script.ts
+          cat << 'EOF' > sementara/replace-script.ts
           import { join } from "path";
           import { readdir } from "fs/promises";
 
@@ -71,7 +71,7 @@ jobs:
           }
           await processFiles(targetDir);
           EOF
-          bun run replace-script.ts
+          bun run sementara/replace-script.ts
 
       - name: "Check Git Status"
         id: status
