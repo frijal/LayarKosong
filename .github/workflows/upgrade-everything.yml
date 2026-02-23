@@ -32,9 +32,9 @@ jobs:
           # Upgrade package.json (Minor) menggunakan bunx
           bunx npm-check-updates -u --target minor
           
-          # Install ulang untuk memperbarui bun.lockb
+          # Install ulang untuk memperbarui bun.lock
           bun install
-          echo "✅ Dependencies diupgrade dan bun.lockb disinkronkan."
+          echo "✅ Dependencies diupgrade dan bun.lock disinkronkan."
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
