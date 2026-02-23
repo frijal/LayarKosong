@@ -16,21 +16,14 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: true
-
-      - name: 🗄️ Cache Node Modules
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+      
       # --------------------
       # SETUP RUNTIMES (Node + Python)
       # --------------------
-      - name: ⚙️ Setup Node.js (v24)
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
+          bun-version: latest
 
       - name: 🐍 Setup Python (3.x)
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
@@ -44,7 +37,7 @@ jobs:
       - name: 📦 Install Dependencies (Node & Python)
         run: |
           # Install Node deps
-          bun install || bun install
+          bun install
           
           # Install Python audit tools
           pip install pip-check-reqs
