@@ -1,166 +1,122 @@
-name: Mass Replace and Create PR
+name: "🚀 Mass Replace via Bun"
 
 on:
   workflow_dispatch:
     inputs:
-      search:
-        description: 'Teks / Regex yang akan dicari'
+      search_text:
+        description: "Teks yang dicari (Bisa kalimat)"
         required: true
-        type: string
-      replace:
-        description: 'Teks pengganti'
+      replace_text:
+        description: "Teks pengganti"
         required: true
-        type: string
-      path:
-        description: 'Root path untuk pencarian (default .)'
+      folder:
+        description: "Lokasi folder (default: .)"
         required: false
-        default: '.'
-        type: string
+        default: "."
       extensions:
-        description: 'Filter ekstensi file (contoh: .md,.txt,.js). Kosong = semua file teks'
+        description: "Ekstensi file (koma-separated, misal: .ts,.js,.md)"
         required: false
-        default: ''
-        type: string
-      case_insensitive:
-        description: 'Case-insensitive replace? (true/false)'
-        required: true
-        default: 'false'
-        type: string
-      use_regex:
-        description: 'Gunakan regex? (true/false)'
-        required: true
-        default: 'false'
-        type: string
+        default: ".ts,.tsx,.js,.jsx,.md"
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  mass-replace:
+  replace:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          fetch-depth: 0
+          bun-version: latest
 
-      - name: Set up git user
+      - name: Run Replacement Script
+        id: replacement
+        env:
+          SEARCH: ${{ github.event.inputs.search_text }}
+          REPLACE: ${{ github.event.inputs.replace_text }}
+          TARGET_DIR: ${{ github.event.inputs.folder }}
+          EXTENSIONS: ${{ github.event.inputs.extensions }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cat << 'EOF' > replace-script.ts
+          import { join } from "path";
+          import { readdir } from "fs/promises";
 
-      - name: Run search and replace
-        id: replace
+          const targetDir = process.env.TARGET_DIR || ".";
+          const search = process.env.SEARCH;
+          const replace = process.env.REPLACE;
+          const extensions = process.env.EXTENSIONS?.split(",").map(e => e.trim()) || [".ts", ".js", ".md"];
+
+          console.log(`🚀 Memulai pemindaian di: ${targetDir}`);
+          console.log(`🔍 Mencari: "${search}" -> Mengganti dengan: "${replace}"`);
+
+          async function processFiles(dir: string) {
+            const entries = await readdir(dir, { withFileTypes: true });
+            for (const entry of entries) {
+              const fullPath = join(dir, entry.name);
+              
+              if (entry.isDirectory()) {
+                if (["node_modules", ".git", "dist", "target", "artikel"].includes(entry.name)) continue;
+                await processFiles(fullPath);
+              } else {
+                if (extensions.some(ext => entry.name.endsWith(ext))) {
+                  const file = Bun.file(fullPath);
+                  const content = await file.text();
+                  
+                  if (content.includes(search!)) {
+                    // Cek Idempotensi: Jangan ganti jika teks pengganti sudah ada (dan bukan penggantian yang sama)
+                    if (content.includes(replace!) && search !== replace) {
+                      console.log(`⚠️  Skip ${fullPath}: Teks pengganti sudah ada.`);
+                      continue;
+                    }
+                    
+                    const updatedContent = content.split(search!).join(replace!);
+                    await Bun.write(fullPath, updatedContent);
+                    console.log(`✅ Updated: ${fullPath}`);
+                  }
+                }
+              }
+            }
+          }
+
+          await processFiles(targetDir);
+          console.log("🏁 Selesai.");
+          EOF
+          bun run replace-script.ts
+
+      - name: "Check Git Status"
+        id: status
         run: |
-          set -euo pipefail
-          SEARCH="${{ github.event.inputs.search }}"
-          REPLACE="${{ github.event.inputs.replace }}"
-          ROOT="${{ github.event.inputs.path }}"
-          EXTENSIONS="${{ github.event.inputs.extensions }}"
-          CASE_INSENSITIVE="${{ github.event.inputs.case_insensitive }}"
-          USE_REGEX="${{ github.event.inputs.use_regex }}"
-
-          python3 - <<'PY'
-          import os
-          import re
-          from pathlib import Path
-
-          search = os.environ['SEARCH']
-          replace = os.environ['REPLACE']
-          root = Path(os.environ['ROOT'])
-          extensions_raw = os.environ['EXTENSIONS']
-          case_insensitive = os.environ['CASE_INSENSITIVE'].lower() == 'true'
-          use_regex = os.environ['USE_REGEX'].lower() == 'true'
-
-          skip_dirs = {'.git', 'node_modules', '.venv', 'venv', '.pytest_cache', '.gradle', 'build'}
-          binary_signatures = [b'\x00']
-
-          def is_binary(path: Path) -> bool:
-              try:
-                  with path.open('rb') as f:
-                      return b'\x00' in f.read(1024)
-              except Exception:
-                  return True
-
-          extensions = []
-          if extensions_raw.strip():
-              extensions = [e.strip().lower() for e in extensions_raw.split(',') if e.strip()]
-
-          flags = re.IGNORECASE if case_insensitive else 0
-          pattern = re.compile(search, flags) if use_regex else None
-
-          changed = []
-
-          for p in root.rglob('*'):
-              if p.is_dir() and p.name in skip_dirs:
-                  continue
-
-              if not p.is_file():
-                  continue
-
-              if any(part in skip_dirs for part in p.parts):
-                  continue
-
-              if extensions:
-                  if p.suffix.lower() not in extensions:
-                      continue
-
-              try:
-                  if is_binary(p):
-                      continue
-                  text = p.read_text(encoding='utf-8')
-              except Exception:
-                  continue
-
-              if use_regex:
-                  new_text, count = pattern.subn(replace, text)
-              else:
-                  if case_insensitive:
-                      new_text, count = re.subn(re.escape(search), replace, text, flags=re.IGNORECASE)
-                  else:
-                      count = text.count(search)
-                      new_text = text.replace(search, replace)
-
-              if count > 0 and new_text != text:
-                  p.write_text(new_text, encoding='utf-8')
-                  changed.append(f"{p} ({count} replace)")
-
-          if changed:
-              print("Changed files:")
-              for f in changed:
-                  print("-", f)
-          else:
-              print("No changes detected.")
-          PY
-
-      - name: Check git changes
-        id: git-check
-        run: |
-          set -euo pipefail
-          git add -A
-          if git diff --cached --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "::notice::Tidak ada perubahan teks yang ditemukan. PR dibatalkan."
           fi
 
-      - name: Create Pull Request
-        if: ${{ steps.git-check.outputs.changed == 'true' }}
+      - name: "Create Pull Request"
+        if: steps.status.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass replace '${{ github.event.inputs.search }}'"
-          branch: "chore/mass-replace-${{ github.run_id }}"
-          title: "Mass replace: '${{ github.event.inputs.search }}'"
+          commit-message: "chore: automated text replacement via Bun"
+          branch: "automation/mass-replace-${{ github.run_id }}"
+          delete-branch: true
+          title: "Mass Replace: ${{ github.event.inputs.search_text }}"
           body: |
-            🔁 **Automated Mass Replace**
-
-            **Target:** `${{ github.event.inputs.search }}`
-            **Replacement:** `${{ github.event.inputs.replace }}`
-            **Path:** `${{ github.event.inputs.path }}`
-            **Extensions:** `${{ github.event.inputs.extensions || 'ALL' }}`
-            **Case-insensitive:** `${{ github.event.inputs.case_insensitive }}`
-            **Regex:** `${{ github.event.inputs.use_regex }}`
-
-            Silakan review PR ini sebelum merge 🚀
+            ## 🤖 Automated Replacement Report
+            Replacement executed using **Bun Runtime** for better reliability.
+            
+            - **Search:** `${{ github.event.inputs.search_text }}`
+            - **Replace:** `${{ github.event.inputs.replace_text }}`
+            - **Target Folder:** `${{ github.event.inputs.folder }}`
+            - **Extensions:** `${{ github.event.inputs.extensions }}`
+            
+            *This PR was automatically generated.*
+          labels: |
+            automated-refactor
+            bun-tooling
