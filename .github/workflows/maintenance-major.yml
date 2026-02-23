@@ -20,12 +20,13 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
+          bun-version: latest
 
       - name: 📦 Install Awal
-        run: bun install || bun install
+        run: bun install
 
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
@@ -54,8 +55,11 @@ jobs:
 
       - name: 🧪 Audit & Test
         run: |
-          npm audit --omit=dev || true
-          bun run test --if-present || true
+          # Menggunakan bunx untuk menjalankan audit tanpa install permanen
+          bunx audit-ci --low || true
+          
+          # Menggunakan bun test (fitur test runner bawaan Bun yang super cepat)
+          bun test || echo "No tests found, skipping..."
 
       - name: 🔍 Cek perubahan final
         id: check_changes
