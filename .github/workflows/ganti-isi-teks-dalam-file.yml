@@ -36,36 +36,44 @@ jobs:
           REPLACE="${{ github.event.inputs.replace_text }}"
           TARGET="${{ github.event.inputs.folder }}"
           EXT="${{ github.event.inputs.extensions }}"
+
+          # Membangun array argumen pencarian ekstensi
+          # Menggunakan Array jauh lebih aman daripada string + eval
+          FIND_EXT_ARGS=()
           
-          # Membangun argumen pencarian ekstensi untuk 'find'
-          # Jika input: md,ts -> akan diubah jadi: -name "*.md" -o -name "*.ts"
-          EXT_ARGS=""
           if [ -n "$EXT" ]; then
             IFS=',' read -ra ADDR <<< "$EXT"
+            FIND_EXT_ARGS+=("(")
+            first=true
             for i in "${ADDR[@]}"; do
-              if [ -z "$EXT_ARGS" ]; then
-                EXT_ARGS="-name \"*.${i// /}\""
+              clean_ext="*.${i// /}"
+              if [ "$first" = true ]; then
+                FIND_EXT_ARGS+=("-name" "$clean_ext")
+                first=false
               else
-                EXT_ARGS="$EXT_ARGS -o -name \"*.${i// /}\""
+                FIND_EXT_ARGS+=("-o" "-name" "$clean_ext")
               fi
             done
-            EXT_ARGS="( $EXT_ARGS )"
+            FIND_EXT_ARGS+=(")")
           else
-            EXT_ARGS="-type f"
+            FIND_EXT_ARGS+=("-type" "f")
           fi
 
           echo "🔍 Mencari: \"$SEARCH\" -> \"$REPLACE\""
           echo "📂 Filter Ekstensi: $EXT"
 
-          # Eksekusi find dengan filter folder dan ekstensi
-          eval "find \"$TARGET\" -type f $EXT_ARGS \
+          # Eksekusi find TANPA eval. 
+          # "${FIND_EXT_ARGS[@]}" akan diekspansi dengan benar beserta tanda kurungnya.
+          find "$TARGET" -type f "${FIND_EXT_ARGS[@]}" \
             -not -path '*/.*' \
             -not -path '*/node_modules/*' \
             -not -path '*/functions/*' \
             -not -path '*/img/*' \
             -not -path '*/mini/*' \
             -not -path '*/sementara/*' \
-            -exec sed -i \"s|$SEARCH|$REPLACE|g\" {} +"
+            -exec sed -i "s#$SEARCH#$REPLACE#g" {} +
+          
+          echo "✅ Penggantian selesai!"
 
       - name: "Check Git Status"
         id: status
