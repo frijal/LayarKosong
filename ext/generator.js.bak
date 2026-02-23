@@ -130,7 +130,7 @@ async function processArticleFile(file, existingFiles) {
   
   const fullPath = path.join(CONFIG.artikelDir, file);
   try {
-    let content = await Bun.file(fullPath).text();
+    let content = await fs.readFile(fullPath, 'utf8');
     let needsSave = false;
     
     // 1. Merapikan Judul
@@ -164,7 +164,7 @@ async function processArticleFile(file, existingFiles) {
     
     if (needsSave) {
       // I/O: Menulis kembali file jika ada perubahan (merapikan title/menambahkan tanggal)
-      await Bun.write(fullPath, content, 'utf8');
+      await fs.writeFile(fullPath, content, 'utf8');
     }
 
     const lastmod = formatISO8601(pubDate);
@@ -192,7 +192,7 @@ async function generateCategoryPages(groupedData) {
 
   try {
     await fs.access(templatePath);
-    const templateContent = await Bun.file(templatePath).text();
+    const templateContent = await fs.readFile(templatePath, 'utf8');
     
     const categoryWritePromises = [];
     

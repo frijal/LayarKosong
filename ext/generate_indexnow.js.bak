@@ -50,7 +50,7 @@ async function main() {
 
         // Simpan file JSON untuk IndexNow
         const outJsonPath = path.join('mini', 'artikel-indexnow.json');
-        await Bun.write(outJsonPath, JSON.stringify(indexnowPayload, null, 2), 'utf-8');
+        await fs.writeFile(outJsonPath, JSON.stringify(indexnowPayload, null, 2), 'utf-8');
 
         // Buat file log dengan timestamp unik
         const now = new Date();
@@ -59,7 +59,7 @@ async function main() {
         
         const outLogPath = path.join('mini', `indexnow-log-${timestamp}.txt`);
         const logContent = `Timestamp (UTC): ${timestamp}\nTotal URL submitted: ${urlList.length}\n`;
-        await Bun.write(outLogPath, logContent, 'utf-8');
+        await fs.writeFile(outLogPath, logContent, 'utf-8');
 
         console.log(`✅ Berhasil membuat ${outJsonPath} dengan ${urlList.length} URL.`);
         console.log(`✅ Log disimpan di ${outLogPath}`);

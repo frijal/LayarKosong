@@ -54,7 +54,7 @@ function categoryToSlug(name) {
 async function loadSitemapMap() {
     try {
         await fs.access(sitemapPath);
-        const sitemapContent = await Bun.file(sitemapPath).text();
+        const sitemapContent = await fs.readFile(sitemapPath, 'utf8');
         const doc = new DOMParser().parseFromString(sitemapContent, 'text/xml');
         const urls = doc.getElementsByTagName('url');
         const map = {};
@@ -102,7 +102,7 @@ async function generateAllFeeds() {
     let artikelData;
     try {
         await fs.access(artikelJsonPath);
-        artikelData = JSON.parse(await Bun.file(artikelJsonPath).text());
+        artikelData = JSON.parse(await fs.readFile(artikelJsonPath, 'utf8'));
     } catch {
         console.error('❌ ERROR: File artikel.json tidak ditemukan. Proses dibatalkan.');
         process.exit(1);
@@ -170,7 +170,7 @@ ${mainItemsXml}
   </channel>
 </rss>`;
     
-    await Bun.write(mainRssPath, mainRss, 'utf8');
+    await fs.writeFile(mainRssPath, mainRss, 'utf8');
     console.log(`✅ rss.xml berhasil dibuat (${latestItems.length} item).`);
 
     // ==========================================================

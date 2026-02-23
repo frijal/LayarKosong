@@ -29,13 +29,13 @@ const getMetaImage = (html) => {
 
 const processFiles = async () => {
   try {
-    const files = await (async () => { const glob = new Bun.Glob("*.html"); return [...glob.scanSync(folder)]; })()
+    const files = await fs.readdir(folder)
 
     for (const f of files) {
       if (!f.endsWith('.html')) continue
 
       const filePath = path.join(folder, f)
-      let html = await Bun.file(filePath).text()
+      let html = await fs.readFile(filePath, 'utf8')
 
       const baseName = path.basename(f, '.html')
       const fallbackImage = `${baseUrl}/img/${baseName}.webp`
@@ -113,7 +113,7 @@ const processFiles = async () => {
         )
       }
 
-      await Bun.write(filePath, html, 'utf8')
+      await fs.writeFile(filePath, html, 'utf8')
       console.log('✔ Diproses:', f)
     }
 
