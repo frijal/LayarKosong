@@ -206,7 +206,7 @@
                 <h1>Membongkar Misteri: Mencari Paket yang Diinstal Manual di Debian (Bukan Dependensi!)</h1>
 <div id="iposbrowser"></div>
                 <p>
-                    Sebagai pengguna Debian, kita seringkali ingin tahu: "Paket apa saja sih yang pernah saya instal sendiri secara eksplisit, bukan cuma dependensinya?" Pertanyaan ini terdengar simpel, tapi jawabannya ternyata cukup kompleks dan sering bikin pusing kepala. Sebuah diskusi menarik di forum Reddit r/debian membahas tuntas masalah ini, mencari cara paling efektif untuk melihat daftar paket **"top-level"** yang diinstal pengguna, bukan ribuan dependensi yang ikut terpasang. Yuk, kita bedah hasil diskusi serunya!
+                    Sebagai pengguna Debian, kita seringkali ingin tahu: "Paket apa saja sih yang pernah saya instal sendiri secara eksplisit, bukan cuma dependensinya?" Pertanyaan ini terdengar simpel, tapi jawabannya ternyata cukup kompleks dan sering bikin pusing kepala. Sebuah responsei menarik di forum Reddit r/debian membahas tuntas masalah ini, mencari cara paling efektif untuk melihat daftar paket **"top-level"** yang diinstal pengguna, bukan ribuan dependensi yang ikut terpasang. Yuk, kita bedah hasil responsei serunya!
                 </p>
                 <div class="image-container">
                     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhXrk8f9bCSBpoV0GvqtWu1HbsQs7sGVX42clz3-YCeZ1fEtNjYcCtc7Lx5si8bRS5ksie5UdNVTNz9Ll8I5Y1EtCtMb4lyIiIzzTenXHT8fAJfPJS_6_g61iWYN4CZviwJg6CBaFbKBt_4JzVGTSJXSQFz5i0sd_SYI1opphz8p4Go9M0ZxSxSlJkC1A/s1600/apt-debian.webp" alt="Ilustrasi terminal Debian dengan perintah APT.">
@@ -299,11 +299,11 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                     Semoga rangkuman ini membantu Anda lebih memahami seluk-beluk manajemen paket di Debian dan menemukan metode yang paling sesuai untuk kebutuhan Anda. Selamat bereksperimen\!
                 </p>
                 <p class="text-right" style="text-align: right; font-size: 0.85em; margin-top: 30px;">
-                    <i class="fas fa-laptop-code"></i> Artikel ini diolah dari diskusi di r/debian (Original Poster: AncientAgrippa).
+                    <i class="fas fa-laptop-code"></i> Artikel ini diolah dari responsei di r/debian (Original Poster: AncientAgrippa).
                 </p>
     </article>
             <h2><i class="fas fa-comments"></i> Kolom Komentar</h2>
-            <div id="diskus"></div><div id="related-articles-grid"></div>
+            <div id="response"></div><div id="related-articles-grid"></div>
         </div>
     </div>
     <footer>
@@ -311,5 +311,5 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
     </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>
-<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/diskus.js"></script>
+<script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 </body></html>
