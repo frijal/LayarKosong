@@ -75,7 +75,6 @@ jobs:
             --include='thumbnail.*' \
             --include='*.webmanifest' \
             --exclude='*' \
-            --exclude='*.bak' \
             source/ deploy_dir/
             
           echo "✅ Ready to deploy contents of deploy_dir/"
