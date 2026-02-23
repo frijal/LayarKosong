@@ -72,12 +72,11 @@ jobs:
         if: steps.check.outputs.need_node == 'true'
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
-          node-version: 24
           cache: 'npm'
 
       - name: 📦 Install Node Dependencies
         if: steps.check.outputs.need_node == 'true'
-        run: npm ci
+        run: bun install
 
       # --- 3. SETUP PYTHON (Hanya jika need_python=true) ---
       - name: 🏗️ Setup Python
@@ -101,7 +100,7 @@ jobs:
         env:
         # Token rahasia bawaan GitHub untuk autentikasi API
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node ext/bikin-rss-diskusi.js
+        run: bun run ext/bikin-rss-diskusi.js
 
       - name: 🧹 1. Cloudflare Cleanup
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
@@ -110,7 +109,7 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: node ext/rapikan-cloudflare.js
+        run: bun run ext/rapikan-cloudflare.js
 
       - name: 🐘 2. Mastodon Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'mastodon'
@@ -118,7 +117,7 @@ jobs:
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        run: node ext/post-to-mastodon.js
+        run: bun run ext/post-to-mastodon.js
 
       - name: ⚙️ 3. Threads Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'threads'
@@ -126,7 +125,7 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
-        run: node ext/post-to-threads.js     
+        run: bun run ext/post-to-threads.js     
 
       - name: 🆕 4. LinkedIn Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
@@ -134,7 +133,7 @@ jobs:
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
-        run: node ext/post-to-linkedin.js
+        run: bun run ext/post-to-linkedin.js
 
       - name: 🎨 5. Tumblr Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'tumblr'
@@ -144,14 +143,14 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
           TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
-        run: node ext/post-to-tumblr.js
+        run: bun run ext/post-to-tumblr.js
 
       - name: 🦋 6. Discord Feed
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'discord'
         continue-on-error: true
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: node ext/post-to-discord.js
+        run: bun run ext/post-to-discord.js
 
    #   - name: 🟡 7. Lemmy Post
    #     if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
@@ -159,7 +158,7 @@ jobs:
    #     env:
    #       LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
    #       LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-   #     run: node ext/post-to-lemmy.js
+   #     run: bun run ext/post-to-lemmy.js
 
       # =========================================================
       # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS

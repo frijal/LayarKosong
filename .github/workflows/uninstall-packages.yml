@@ -35,13 +35,12 @@ jobs:
         if: hashFiles('package.json') != ''
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: Node.js Prep & Uninstall
         if: hashFiles('package.json') != ''
         run: |
           echo "Processing Node.js packages..."
-          npm ci --package-lock-only || true
+          bun install --package-lock-only || true
           npm uninstall ${{ github.event.inputs.packages_to_remove }} --save
           npm prune
 
@@ -87,7 +86,7 @@ jobs:
           if [ -f package.json ]; then
             echo -e "\n--- Analisis Paket Setelah Uninstall (Detektif Internal) ---" >> "$REPORT"
             if [ -f ext/cek-mubazir.js ]; then
-              node ext/cek-mubazir.js >> "$REPORT"
+              bun run ext/cek-mubazir.js >> "$REPORT"
             else
               echo "Info: ext/cek-mubazir.js tidak ditemukan, skip audit detail." >> "$REPORT"
             fi

@@ -32,10 +32,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: Install Node dependencies
-        run: npm ci
+        run: bun install
 
       - name: Localize Assets
         run: |
@@ -46,7 +45,7 @@ jobs:
           fi
 
       - name: 🧹 Sterilize Schema (Node.js)
-        run: node ext/clean-schema.js artikelx/      
+        run: bun run ext/clean-schema.js artikelx/      
 
       - name: Replace Content (Perl)
         run: |
@@ -85,7 +84,7 @@ jobs:
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
         run: |
           set -euo pipefail
-          npm run ci-fix-meta-image
+          bun run ci-fix-meta-image
 
       - name: Add HTML Elements (Sed)
         run: |

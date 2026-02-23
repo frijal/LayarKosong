@@ -29,7 +29,6 @@ jobs:
       - name: 2. Setup Node.js & Python
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
       
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
@@ -38,7 +37,7 @@ jobs:
     
       # ========== IMAGE CLEANUP ==========     
       - name: 🕵️ Update Dashboard Jadwal
-        run: node ext/workflow-list.js
+        run: bun run ext/workflow-list.js
       
       - name: 3. Scan Unused Images via Python
         id: python_scan
@@ -182,8 +181,6 @@ jobs:
           } > "$REPORT_PATH"
 
           echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
-
-      
 
       # ========== REPORT ROTATION ==========
       - name: 6. Rotasi Laporan Lama (Keep Last 7)

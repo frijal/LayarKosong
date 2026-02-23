@@ -26,10 +26,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: Install axios
-        run: npm ci #axios
+        run: bun install #axios
 
       - name: Get New Token
         id: refresh_token
@@ -38,7 +37,7 @@ jobs:
         run: |
           # Jalankan script yang ada di folder ext/
           # Kita simpan outputnya ke environment variable GitHub
-          NEW_TOKEN=$(node ext/refresh-threads-token.js)
+          NEW_TOKEN=$(bun run ext/refresh-threads-token.js)
           echo "NEW_THREADS_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
 
       - name: Update GitHub Secret

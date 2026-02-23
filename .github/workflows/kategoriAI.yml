@@ -24,13 +24,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: Process Categories
         env:
           # Mengambil semua 12 secret API Key (0-11)
           GEMINI_KEYS: ${{ secrets.GEMINI_API_KEY }},${{ secrets.GEMINI_API_KEY2 }},${{ secrets.GEMINI_API_KEY3 }},${{ secrets.GEMINI_API_KEY4 }},${{ secrets.GEMINI_API_KEY5 }},${{ secrets.GEMINI_API_KEY6 }},${{ secrets.GEMINI_API_KEY7 }},${{ secrets.GEMINI_API_KEY8 }},${{ secrets.GEMINI_API_KEY9 }},${{ secrets.GEMINI_API_KEY10 }},${{ secrets.GEMINI_API_KEY11 }}
-        run: node ext/kategoriAI.js
+        run: bun run ext/kategoriAI.js
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8

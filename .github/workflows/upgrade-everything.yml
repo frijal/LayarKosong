@@ -22,20 +22,19 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
           cache: 'npm'
 
       - name: 📦 Install & Upgrade Dependencies
         run: |
-          npm ci || npm install
-          npm install -g npm-check-updates
+          bun install || bun install
+          bun install -g npm-check-updates
           ncu -u --target minor
           echo "✅ Dependencies diupgrade."
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
           # Install paket terbaru secara temporary
-          npm install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
+          bun install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
@@ -88,7 +87,7 @@ jobs:
       - name: 🧪 Audit & Detective Scan
         run: |
           npm audit --omit=dev || true
-          node ext/cek-mubazir.js && node ext/cleanup.js
+          bun run ext/cek-mubazir.js && bun run ext/cleanup.js
 
       - name: 🔍 Cek perubahan akhir
         id: check_changes

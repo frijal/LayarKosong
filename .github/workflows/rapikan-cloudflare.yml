@@ -27,14 +27,13 @@ jobs:
       - name: Setup Node.js (package.json compliant)
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: Install dependencies (lockfile authoritative)
-        run: npm ci
+        run: bun install
 
       - name: Run Cloudflare cleanup script
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: node ext/rapikan-cloudflare.js
+        run: bun run ext/rapikan-cloudflare.js

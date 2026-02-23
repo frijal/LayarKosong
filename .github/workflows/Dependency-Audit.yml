@@ -31,7 +31,6 @@ jobs:
       - name: ⚙️ Setup Node.js (v24)
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: '24'
 
       - name: 🐍 Setup Python (3.x)
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
@@ -45,7 +44,7 @@ jobs:
       - name: 📦 Install Dependencies (Node & Python)
         run: |
           # Install Node deps
-          npm ci || npm install
+          bun install || bun install
           
           # Install Python audit tools
           pip install pip-check-reqs
@@ -89,7 +88,7 @@ jobs:
 
           echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
           # Pakai script custom Mas Bro sebagai pengganti dependensi check
-          node ext/cek-mubazir.js >> "$UNUSED_REPORT"
+          bun run ext/cek-mubazir.js >> "$UNUSED_REPORT"
 
       - name: 🐍 Python Dependency Audit
         run: |
@@ -116,7 +115,7 @@ jobs:
         run: |
           if [ -f ext/cleanup.js ]; then
             echo "Menjalankan Cleanup Auto v2.0..."
-            node ext/cleanup.js
+            bun run ext/cleanup.js
           else
             echo "ℹ️ Tidak ada script cleanup, skip."
           fi

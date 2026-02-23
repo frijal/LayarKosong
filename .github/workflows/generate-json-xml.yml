@@ -66,10 +66,9 @@ jobs:
       - name: '2. Setup Node.js'
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: '24'
 
       - name: '3. Install Dependencies'
-        run: npm ci
+        run: bun install
 
       - name: '4. Setup Python' # Dibutuhkan untuk step Schema nanti
         if: env.DO_SCHEMA == 'true'
@@ -79,7 +78,7 @@ jobs:
 
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
-        run: npm run ci-generate-xml-rss
+        run: bun run ci-generate-xml-rss
         env:
           RSS_LIMIT: 30
 
@@ -125,15 +124,15 @@ jobs:
 
       - name: 📝 Convert HTML Tags to Markdown (Node.js)
         if: env.DO_CONVERT_MARKDOWN == 'true'
-        run: node ext/html-to-markdown.js
+        run: bun run ext/html-to-markdown.js
         
       - name: '8️⃣ Clean HTML Cerdas (rust-html-minify)'
         if: env.DO_MINIFY_HTML == 'true'
-        run: node ext/minify-html.js
+        run: bun run ext/minify-html.js
 
       - name: 🧹 Minify Data (JSON & XML)
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: node ext/minify-jsonxml.js     
+        run: bun run ext/minify-jsonxml.js     
 
       - name: '9️⃣ Commit and Push'
         run: |

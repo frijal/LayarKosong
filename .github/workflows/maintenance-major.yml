@@ -23,14 +23,13 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
 
       - name: 📦 Install Awal
-        run: npm ci || npm install
+        run: bun install || bun install
 
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
-          npm install -g npm-check-updates
+          bun install -g npm-check-updates
           echo "--- DAFTAR UPGRADE MAJOR ---"
           ncu --target latest --format group
           
@@ -41,22 +40,22 @@ jobs:
         run: |
           if [ -f ext/cleanup.js ]; then
             echo "🔥 Membersihkan node_modules dan membangun ulang lockfile..."
-            node ext/cleanup.js
+            bun run ext/cleanup.js
           else
-            npm install
+            bun install
           fi
 
       - name: 🕵️ Detektif Scan (Cek paket yang mati setelah upgrade)
         run: |
           if [ -f ext/cek-mubazir.js ]; then
             echo "--- LAPORAN DETEKTIF SETELAH UPGRADE ---"
-            node ext/cek-mubazir.js
+            bun run ext/cek-mubazir.js
           fi
 
       - name: 🧪 Audit & Test
         run: |
           npm audit --omit=dev || true
-          npm run test --if-present || true
+          bun run test --if-present || true
 
       - name: 🔍 Cek perubahan final
         id: check_changes

@@ -27,11 +27,10 @@ jobs:
       - name: '2. Setup Node.js'
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24
       - name: Install
-        run: npm ci
+        run: bun install
       - name: Run Delete Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node ext/sapu-bersih.js
+        run: bun run ext/sapu-bersih.js
