@@ -36,12 +36,13 @@ jobs:
           R2: ${{ github.event.inputs.replace2 }}
           TARGET: ${{ github.event.inputs.folder }}
         run: |
-          # Perbaikan parsing GLOBS: Gunakan -name agar rekursif bekerja benar
-          IFS="," read -ra GLOBS_ARRAY <<< "${{ github.event.inputs.globs }}"
-          
-          for g in "${GLOBS_ARRAY[@]}"; do
-            pattern=$(echo $g | xargs) # trim whitespace
-            echo "📂 Scanning file dengan pola: $pattern di $TARGET"
+          IFS="," read -ra GLOBS <<< "${{ github.event.inputs.globs }}"
+      
+          for g in "${GLOBS[@]}"; do
+            echo "📂 Scanning file dengan pola: $g"
+          SEARCH_DIR="${TARGET:-.}"
+        
+          find "$SEARCH_DIR" -type f -wholename "$g" 2>/dev/null | while read -r file; do
             
             # Perbaikan: Gunakan -name untuk mencocokkan pattern file secara rekursif
             find "${TARGET:-.}" -type f -name "$pattern" | while read -r file; do
