@@ -3,31 +3,31 @@ on:
   workflow_dispatch:
     inputs:
       search:
-        description: 'Set 1: Teks dicari'
+        description: "Set 1: Teks dicari"
         required: true
       replace:
-        description: 'Set 1: Teks pengganti'
+        description: "Set 1: Teks pengganti"
         required: false
       search2:
-        description: 'Set 2: Teks dicari (Hanya jika Set 1 Match)'
+        description: "Set 2: Teks dicari (Hanya jika Set 1 Match)"
         required: false
       folder:
-        description: 'Folder target (default: .)'
+        description: "Folder target (default: .)"
         required: false
-        default: '.'
+        default: "."
       globs:
-        description: 'Ekstensi file (contoh: *.ts,*.js)'
+        description: "Ekstensi file (contoh: *.ts,*.js)"
         required: false
-        default: '*'
+        default: "*"
 
 jobs:
   replace-process:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout Repository'
+      - name: "Checkout Repository"
         uses: actions/checkout@v4
 
-      - name: 'Eksekusi Penggantian Teks'
+      - name: "Eksekusi Penggantian Teks"
         shell: bash
         env:
           S1: ${{ github.event.inputs.search }}
@@ -37,59 +37,59 @@ jobs:
           TARGET: ${{ github.event.inputs.folder }}
         run: |
           # Perbaikan parsing GLOBS: Gunakan -name agar rekursif bekerja benar
-          IFS=',' read -ra GLOBS_ARRAY <<< '${{ github.event.inputs.globs }}'
+          IFS="," read -ra GLOBS_ARRAY <<< "${{ github.event.inputs.globs }}"
           
-          for g in '${GLOBS_ARRAY[@]}'; do
+          for g in "${GLOBS_ARRAY[@]}"; do
             pattern=$(echo $g | xargs) # trim whitespace
-            echo '📂 Scanning file dengan pola: $pattern di $TARGET'
+            echo "📂 Scanning file dengan pola: $pattern di $TARGET"
             
             # Perbaikan: Gunakan -name untuk mencocokkan pattern file secara rekursif
-            find '${TARGET:-.}' -type f -name '$pattern' | while read -r file; do
+            find "${TARGET:-.}" -type f -name "$pattern" | while read -r file; do
               # Skip node_modules atau vendor secara otomatis demi performa
-              [[ '$file' == *'node_modules'* ]] && continue
-              [[ '$file' == *'vendor'* ]] && continue
+              [[ "$file" == *"node_modules"* ]] && continue
+              [[ "$file" == *"vendor"* ]] && continue
 
               CHANGED_IN_FILE=false
               
               # --- PROSES SET 1 ---
-              if grep -Fq '$S1' '$file'; then
+              if grep -Fq "$S1" "$file"; then
                 # Cek jika pengganti sudah ada untuk menghindari redundansi
-                if [[ -n '$R1' ]] && grep -Fq '$R1' '$file' && [[ '$S1' != '$R1' ]]; then
-                  echo ' ⏭️  $file: S1 ditemukan tapi R1 sudah ada. Skip.'
+                if [[ -n "$R1" ]] && grep -Fq "$R1" "$file" && [[ "$S1" != "$R1" ]]; then
+                  echo " ⏭️  $file: S1 ditemukan tapi R1 sudah ada. Skip."
                 else
-                  perl -i -pe 's#\Q$S1\E#$R1#g' '$file'
-                  echo ' ✅ $file: Set 1 diganti.'
+                  perl -i -pe "s#\Q$S1\E#$R1#g" "$file"
+                  echo " ✅ $file: Set 1 diganti."
                   CHANGED_IN_FILE=true
                 fi
               fi
 
               # --- PROSES SET 2 (Hanya jika Set 1 match/sukses) ---
-              if [[ '$CHANGED_IN_FILE' == true && -n '$S2' ]]; then
-                perl -i -pe 's#\Q$S2\E#$R2#g' '$file'
-                echo ' ⏩ $file: Set 2 diproses.'
+              if [[ "$CHANGED_IN_FILE" == true && -n "$S2" ]]; then
+                perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
+                echo " ⏩ $file: Set 2 diproses."
               fi
             done
           done
 
-      - name: 'Check for changes'
+      - name: "Check for changes"
         id: git-check
         run: |
-          if [[ -z '$(git status --porcelain)' ]]; then
-            echo 'changed=false' >> $GITHUB_OUTPUT
-            echo '::notice::Tidak ada perubahan yang terdeteksi. PR tidak akan dibuat.'
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "::notice::Tidak ada perubahan yang terdeteksi. PR tidak akan dibuat."
           else
-            echo 'changed=true' >> $GITHUB_OUTPUT
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: 'Create Pull Request'
-        if: steps:git-check.outputs.changed == 'true'
+      - name: "Create Pull Request"
+        if: ${{ steps.git-check.outputs.changed == 'true' }}
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: mass update content'
-          branch: 'fix/mass-replace-${{ github.run_id }}'
-          title: 'Mass Replace: ${{ github.event.inputs.search }}'
-          body: |
-            Automated text replacement report.
-            - Target: `${{ github.event.inputs.search }}`
-            - Replacement: `${{ github.event.inputs.replace }}`
+            token: ${{ secrets.GITHUB_TOKEN }}
+            commit-message: "chore: mass update content"
+            branch: "fix/mass-replace-${{ github.run_id }}"
+            title: "Mass Replace: ${{ github.event.inputs.search }}"
+            body: |
+              Automated text replacement report.
+              - Target: `${{ github.event.inputs.search }}`
+              - Replacement: `${{ github.event.inputs.replace }}`
