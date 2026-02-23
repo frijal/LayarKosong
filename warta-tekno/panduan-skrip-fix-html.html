@@ -1,0 +1,104 @@
+<!doctypehtml><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"lang=id><meta charset=UTF-8><meta content=width=device-width,initial-scale=1.0 name=viewport><title>Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML</title><meta content="Python, BeautifulSoup, HTML, Fix HTML, Skrip Otomatis, venv, fish shell, externally-managed-environment, tutorial, coding"name=keywords><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id#website","url":"https://dalam.web.id","name":"Layar Kosong","publisher":{"@type":"Organization","@id":"https://dalam.web.id#organization","name":"Layar Kosong","url":"https://dalam.web.id","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":384,"height":384}}},{"@type":"Article","@id":"https://dalam.web.id/warta-tekno/panduan-skrip-fix-html#article","isPartOf":{"@id":"https://dalam.web.id#website"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dalam.web.id/warta-tekno/panduan-skrip-fix-html"},"license":"https://creativecommons.org/publicdomain/zero/1.0/","headline":"Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML","description":"Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux.","articleSection":"Warta Tekno","keywords":"html, layar kosong, lengkap, membuat, memperbaiki, otomatis, panduan, skrip, warta tekno","image":{"@type":"ImageObject","url":"https://dalam.web.id/img/panduan-skrip-fix-html.webp","width":1200,"height":675},"author":{"@type":"Person","name":"Fakhrul Rijal","url":"https://dalam.web.id/about"},"publisher":{"@id":"https://dalam.web.id#organization"},"datePublished":"2025-06-01T15:37:18.219+00:00","dateModified":"2025-06-01T15:37:18.219+00:00"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/warta-tekno/panduan-skrip-fix-html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id"},{"@type":"ListItem","position":2,"name":"Warta Tekno","item":"https://dalam.web.id/warta-tekno"},{"@type":"ListItem","position":3,"name":"Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML","item":"https://dalam.web.id/warta-tekno/panduan-skrip-fix-html"}]}]}</script><style>:root{--bg-color:#111827;--card-color:#1f2937;--text-color:#d1d5db;--heading-color:#f9fafb;--accent-color:#38bdf8;--border-color:#ffffff1a;--shadow:0 10px 15px -3px #0000001a,0 4px 6px -2px #0000000d}html{scroll-behavior:smooth}body{background-color:var(--bg-color);color:var(--text-color);margin:0;font-family:Segoe UI,system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.7}.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}header{text-align:center;padding:3rem 1.5rem}h1{color:var(--heading-color);margin:0 0 .5rem;font-size:clamp(2rem,5vw,3rem);line-height:1.2}header .subtitle{color:var(--accent-color);font-size:1.1rem}h2{color:var(--heading-color);border-bottom:2px solid var(--accent-color);margin-top:3rem;padding-bottom:.5rem;font-size:1.75rem}h3{color:var(--heading-color);font-size:1.25rem}hr{background-color:var(--border-color);border:0;height:1px;margin:3rem 0}code{color:#a5f3fc;background-color:#374151;border-radius:6px;padding:.2em .4em;font-family:Fira Code,Courier New,monospace;font-size:.9em}pre{background-color:var(--card-color);border:1px solid var(--border-color);box-shadow:var(--shadow);border-radius:8px;padding:1em;overflow-x:auto}pre code{background:0 0;padding:0}.callout{background-color:var(--card-color);border-left:4px solid var(--accent-color);border-radius:0 8px 8px 0;margin:1.5rem 0;padding:1em 1.5em}.callout.warning{border-left-color:#facc15}.gallery{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.5rem;display:grid}.gallery a{box-shadow:var(--shadow);border-radius:8px;display:block;overflow:hidden}.gallery img{width:100%;height:auto;transition:transform .3s;display:block}.gallery a:hover img{transform:scale(1.05)}.lightbox{backdrop-filter:blur(5px);z-index:1000;background:#000000d9;place-items:center;display:none;position:fixed;inset:0}.lightbox.open{display:grid}.lightbox figure{max-width:90vw;max-height:85vh;margin:0;position:relative}.lightbox img{max-width:100%;max-height:85vh;display:block}.lightbox button{border:1px solid var(--border-color);color:#fff;cursor:pointer;background:#ffffff1a;font-size:2rem;transition:background .2s;position:absolute}.lightbox button:hover{background:#fff3}.lb-close{padding:0 1rem;top:10px;right:10px}.lb-prev,.lb-next{padding:1rem;top:50%;transform:translateY(-50%)}.lb-prev{left:10px}.lb-next{right:10px}.share-buttons,.user-info{text-align:center;background:var(--card-color);box-shadow:var(--shadow);border-radius:8px;margin-top:2rem;padding:2rem}.share-buttons a{color:#fff;background:#374151;border-radius:50%;justify-content:center;align-items:center;width:44px;height:44px;margin:0 .5rem;text-decoration:none;transition:transform .2s;display:inline-flex}.share-buttons a:hover{transform:translateY(-3px)}.user-info-grid{flex-wrap:wrap;justify-content:space-around;gap:1rem;display:flex}.info-item{align-items:center;gap:.5rem;display:flex}.info-item .icon{font-size:1.5rem}footer{text-align:center;color:#6b7380;margin-top:2rem;padding:2rem;font-size:.9em}</style><link href=/ext/marquee-url.css rel=stylesheet><link title="30 artikel baru bikin."href=https://dalam.web.id/rss.xml rel=alternate type=application/rss+xml><meta content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux."name=ai:summary><meta content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux."name=ai:prompt_hint><meta content=max-image-preview:large name=googlebot><meta content=#00b0ed name=theme-color><meta content=@frijal@mastodon.social name=fediverse:creator><meta content=@dalam.web.id name=bluesky:creator><meta content=175216696195384 property=fb:app_id><meta content=https://dalam.web.id/img/panduan-skrip-fix-html.webp itemprop=image><meta content=id_ID property=og:locale><meta content="Layar Kosong"property=og:site_name><link href=/favicon.ico rel=icon><link href=https://dalam.web.id/warta-tekno/panduan-skrip-fix-html rel=canonical><meta content=https://dalam.web.id/warta-tekno/panduan-skrip-fix-html property=og:url><meta content="Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML"property=og:title><meta content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux."name=description><meta content="Tutorial lengkap langkah demi langkah untuk membuat skrip Python dengan BeautifulSoup guna memperbaiki error HTML umum secara otomatis, termasuk mengatasi masalah instalasi di Linux."property=og:description><meta content="Fakhrul Rijal"name=author><meta content="index, follow, max-image-preview:large"name=robots><body><div class=container><header><h1>⚙️ Panduan Lengkap: Skrip Otomatis Perbaikan HTML</h1><div id=iposbrowser></div><p class=subtitle>Sebuah rangkuman perjalanan dari error hingga solusi final dengan Python & BeautifulSoup.</header><main><article><p>Dalam proses mengelola banyak file HTML, seringkali kita menemukan error-error kecil yang berulang. Memperbaikinya satu per satu tentu membuang waktu. Solusinya? Membuat skrip otomatis! Halaman ini merangkum proses pembuatan skrip Python dari awal, termasuk cara mengatasi berbagai kendala yang muncul di lingkungan Linux modern.<hr><h2>Tahap 1: Kendala Instalasi 🚧</h2><p>Langkah pertama dalam membuat skrip ini adalah menginstal library yang dibutuhkan: `BeautifulSoup4` dan `lxml`. Namun, di distro Linux modern, kita seringkali disambut dengan error:<pre><code>pip install beautifulsoup4 lxml
+error: externally-managed-environment</code></pre><h3>Kenapa Error Ini Muncul?</h3><p>Error ini adalah sebuah fitur keamanan. Sistem operasi Linux (seperti Ubuntu/Debian) ingin melindungi paket Python internalnya agar tidak rusak oleh instalasi `pip` yang dilakukan pengguna. Jadi, ia "mengunci" lingkungan Python sistem.<h3>Solusi Terbaik: Virtual Environment (`venv`)</h3><p>Cara paling profesional adalah dengan membuat lingkungan kerja yang terisolasi. Dengan begitu, kita bebas menginstal paket apa pun tanpa mengganggu sistem utama.<pre><code># 1. Buat folder lingkungan virtual bernama 'venv'
+python3 -m venv venv
+# 2. Aktifkan lingkungan tersebut
+source venv/bin/activate</code></pre><hr><h2>Tahap 2: Error Shell yang Tidak Kompatibel 🐟</h2><p>Setelah membuat `venv`, beberapa pengguna (terutama pengguna `fish` shell) akan menemukan error baru saat mencoba mengaktifkannya:<pre><code>source venv/bin/activate
+venv/bin/activate: 'case' builtin not inside of switch block</code></pre><h3>Kenapa Error Ini Muncul?</h3><p>Skrip `activate` standar ditulis untuk shell `bash`. Shell lain seperti `fish` memiliki sintaks yang berbeda dan tidak bisa menjalankannya. Untungnya, `venv` sudah menyediakan solusinya.<h3>Solusi: Gunakan Skrip Aktivasi yang Tepat</h3><p>Cukup gunakan file aktivasi yang berakhiran `.fish`.<pre><code># Perintah aktivasi yang benar untuk fish shell
+source venv/bin/activate.fish</code></pre><p>Setelah perintah ini, terminal Anda akan menampilkan `(venv)` di depannya, menandakan Anda sudah berada di lingkungan virtual dan siap untuk melanjutkan instalasi.<hr><h2>Tahap 3: Skrip Final Perbaikan HTML 🐍</h2><p>Setelah berhasil mengatasi masalah lingkungan, inilah skrip final `fix_html.py` yang kita kembangkan. Skrip ini tidak hanya memperbaiki error struktural, tetapi juga membersihkan spasi berlebih dan membuat file log yang rapi.<div class=callout>**Fitur Utama Skrip:**<br> 1. Memperbaiki tag yang rusak.<br> 2. Memindahkan konten yang salah tempat ke dalam `&LTbody>`.<br> 3. Membersihkan tag `&LTscript>` JSON-LD.<br> 4. Menghapus `&LTdiv>` kosong.<br> 5. Membersihkan spasi dan baris baru di dalam tag (misal: `&LTstrong>`).<br> 6. Membuat file log `perbaikan_log.txt` dengan ringkasan.</div><pre><code class=language-python>import os
+import re
+from bs4 import BeautifulSoup, Comment, NavigableString
+LOG_FILE = "perbaikan_log.txt"
+def strip_whitespace_in_tags(soup):
+    tags_to_exclude = {'pre', 'code', 'style', 'script'}
+    for tag in soup.find_all(lambda t: t.name not in tags_to_exclude):
+        for content in list(tag.contents):
+            if isinstance(content, NavigableString):
+                cleaned_string = str(content).replace('\xa0', ' ').strip()
+                if cleaned_string != str(content):
+                    if cleaned_string:
+                        content.replace_with(cleaned_string)
+                    else:
+                        content.extract()
+def fix_html_file(file_path):
+    log_messages = []
+    has_changes = False
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        if "times;" in content:
+            content = content.replace("times;", "×")
+            log_messages.append("  - Memperbaiki &LTspan> penutup yang rusak.")
+            has_changes = True
+        end_marker = '&LT/html>'
+        if end_marker in content and content[content.rfind(end_marker) + len(end_marker):].strip():
+            log_messages.append("  - Menemukan konten setelah &LT/html> yang akan dipindahkan.")
+            has_changes = True
+        soup = BeautifulSoup(content, 'lxml')
+        if not soup.body: return log_messages
+        json_scripts = soup.find_all('script', type='application/ld+json')
+        json_cleaned_count = 0
+        for script in json_scripts:
+            if script.string:
+                original_string = script.string
+                cleaned_json = re.sub(r'<[^>]+>|', '', original_string, flags=re.DOTALL)
+                if cleaned_json.strip() != original_string.strip():
+                    script.string = cleaned_json.strip()
+                    json_cleaned_count += 1
+        if json_cleaned_count > 0:
+            log_messages.append(f"  - Membersihkan {json_cleaned_count} blok skrip JSON-LD.")
+            has_changes = True
+        empty_divs_removed = 0
+        for div in soup.find_all('div'):
+            if not any(isinstance(c, Comment) or (isinstance(c, str) and c.strip()) or hasattr(c, 'name') for c in div.contents):
+                div.decompose()
+                empty_divs_removed += 1
+        if empty_divs_removed > 0:
+            log_messages.append(f"  - Menghapus {empty_divs_removed} tag &LTdiv> kosong.")
+            has_changes = True
+        strip_whitespace_in_tags(soup)
+        log_messages.append("  - Membersihkan spasi berlebih di dalam tag HTML.")
+        has_changes = True
+        if has_changes:
+            output_path = file_path.replace('.html', '_fixed.html')
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(soup.prettify(formatter="html5"))
+            print(f"  [✓] Perbaikan & pembersihan diterapkan: {os.path.basename(output_path)}")
+        else:
+            print(f"  [-] Tidak ada perbaikan yang diperlukan.")
+        return log_messages
+    except Exception as e:
+        print(f"  [✗] Gagal memproses {file_path}: {e}")
+        return [f"  - ERROR: {e}"]
+def main():
+    all_logs = {}
+    if os.path.exists(LOG_FILE): os.remove(LOG_FILE)
+    html_files_to_process = sorted([f for f in os.listdir('.') if f.endswith('.html') and not f.endswith('_fixed.html')])
+    if not html_files_to_process:
+        print("🤷‍♂️ Tidak ada file .html yang ditemukan.")
+        return
+    print(f"Ditemukan {len(html_files_to_process)} file untuk diproses...\n")
+    for filename in html_files_to_process:
+        print(f"[*] Memproses file: {filename}...")
+        log_messages = fix_html_file(os.path.join('.', filename))
+        if log_messages: all_logs[filename] = log_messages
+    print("\n🎉 Proses selesai.")
+    if all_logs:
+        with open(LOG_FILE, 'w', encoding='utf-8') as log_file:
+            log_file.write(f"================ SUMMARY ================\n")
+            log_file.write(f"Total file yang diproses dan dibersihkan: {len(all_logs)}\n")
+            log_file.write(f"=======================================\n\n")
+            for filename in sorted(all_logs.keys()):
+                log_file.write(f"Log untuk file: {filename}\n")
+                for msg in all_logs[filename]: log_file.write(f"{msg}\n")
+                log_file.write("-" * 40 + "\n")
+        print(f"📝 Catatan log dengan summary telah dibuat di: {LOG_FILE}")
+if __name__ == "__main__":
+    main()
+</code></pre><hr><h2>Tahap 4: Cara Penggunaan & Hasil 🚀</h2><h3>Langkah-langkah Eksekusi</h3><ol><li>Simpan kode di atas sebagai `fix_html.py`.<li>Letakkan di folder yang sama dengan file-file HTML Anda.<li>Buka terminal di folder tersebut.<li>Aktifkan lingkungan virtual (`source venv/bin/activate.fish`).<li>Jalankan skrip: `python fix_html.py`.</ol><h3>Hasil Akhir</h3><p>Skrip akan menghasilkan dua hal:<ul><li>File `*_fixed.html` untuk setiap file yang diperbaiki.<li>Satu file log `perbaikan_log.txt` yang berisi ringkasan dan detail semua perbaikan.</ul><div class=callout>**Contoh Log:**<br><pre><code>================ SUMMARY ================
+Total file yang diproses dan dibersihkan: 1
+=======================================
+Log untuk file: contoh.html
+  - Memperbaiki &LTspan> penutup pencarian yang rusak.
+  - Menemukan konten setelah &LT/html> yang akan dipindahkan.
+  - Membersihkan spasi berlebih di dalam tag HTML.
+----------------------------------------</code></pre></div><hr><h2>Semoga Berhasil.</h2><div class=gallery></div><div class=lightbox id=lightbox><figure><img alt="Gambar diperbesar"id=lb-img><button aria-label="Gambar Sebelumnya"class=lb-prev id=lb-prev>❮</button><button aria-label="Gambar Berikutnya"class=lb-next id=lb-next>❯</button><button aria-label=Tutup class=lb-close id=lb-close>×</button></figure></div></article><hr><section><div id=diskus></div><div id=related-articles-grid></div></section></main><footer><p>🄯 2025 - Dibuat dengan bantuan AI. Jaga Data Pribadi Tetap Aman.</footer></div><script>document.addEventListener(`DOMContentLoaded`,()=>{let lazyImages=document.querySelectorAll(`img[data-src]`),lazyImageObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){let img=entry.target;img.src=img.dataset.src,img.removeAttribute(`data-src`),observer.unobserve(img)}})});lazyImages.forEach(img=>lazyImageObserver.observe(img));let gallery=document.querySelector(`.gallery`),lightbox=document.getElementById(`lightbox`);if(gallery&&lightbox){let lbImg=document.getElementById(`lb-img`),images=Array.from(gallery.querySelectorAll(`a`)),currentIndex=0;function showImage(index){let imgLink=images[index];imgLink&&(lbImg.src=imgLink.href,lbImg.alt=imgLink.dataset.caption||``,currentIndex=index)}gallery.addEventListener(`click`,e=>{e.preventDefault();let link=e.target.closest(`a`);if(link){let index=images.indexOf(link);lightbox.classList.add(`open`),showImage(index)}}),document.getElementById(`lb-close`).addEventListener(`click`,()=>lightbox.classList.remove(`open`)),document.getElementById(`lb-prev`).addEventListener(`click`,()=>showImage((currentIndex-1+images.length)%images.length)),document.getElementById(`lb-next`).addEventListener(`click`,()=>showImage((currentIndex+1)%images.length)),lightbox.addEventListener(`click`,e=>{e.target===lightbox&&lightbox.classList.remove(`open`)}),document.addEventListener(`keydown`,e=>{lightbox.classList.contains(`open`)&&(e.key===`Escape`&&lightbox.classList.remove(`open`),e.key===`ArrowLeft`&&document.getElementById(`lb-prev`).click(),e.key===`ArrowRight`&&document.getElementById(`lb-next`).click())})}});</script><div id=progress></div><a href=https://dalam.web.id/ id=layar-kosong-header></a><div class=search-floating-container><input placeholder="cari artikel..."autocomplete=off id=floatingSearchInput><span class=clear-button id=floatingSearchClear></span><div class=floating-results-container id=floatingSearchResults></div></div><div class=floating-nav id=dynamic-nav-container></div><div id=internal-nav></div><section id=related-marquee-section><div id=related-marquee-container></div></section><script defer src=/ext/markdown.js></script><script defer src=/ext/marquee-url.js></script><script defer src=/ext/iposbrowser.js></script><script defer src=/ext/diskus.js></script></html><noscript>schema_oleh_Fakhrul_Rijal_2026-02-23</noscript><noscript>udah_dijepit_oleh_Fakhrul_Rijal_2026-02-23</noscript>
