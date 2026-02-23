@@ -1,89 +1,68 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: [
-    'config:recommended',
-    ':dependencyDashboard',
-    'abandonments:recommended',
-    'replacements:all',
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    "abandonments:recommended",
+    "replacements:all"
   ],
-  configMigration: true,
-  branchPrefix: 'renovate/',
-  prConcurrentLimit: 5,
-  ignoreUnstable: true,
-  dependencyDashboard: true,
-  ignorePaths: [
-    '**/node_modules/**',
-    '**/bower_components/**',
-    '**/vendor/**',
-    'artikel/**',
-    'target/**',
+  "configMigration": true,
+  "branchPrefix": "renovate/",
+  "prConcurrentLimit": 5,
+  "ignoreUnstable": true,
+  "dependencyDashboard": true,
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "artikel/**",
+    "target/**"
   ],
-  vulnerabilityAlerts: {
-    enabled: true,
-    labels: [
-      'security',
-    ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
   },
-  packageRules: [
+  "packageRules": [
     {
-      description: '1. Global Range Strategy (Ditaruh paling atas)',
-      rangeStrategy: 'replace',
-      matchPackageNames: [
-        '*',
-      ],
+      "description": "1. Global Range Strategy",
+      "rangeStrategy": "replace",
+      "matchPackageNames": ["*"]
     },
     {
-      description: '2. Khusus Rust: Gunakan update-lockfile untuk SEMUA update cargo',
-      matchDatasources: [
-        'cargo',
-      ],
-      rangeStrategy: 'update-lockfile',
+      "description": "2. Bun & JS Ecosystem: Grouping & Automerge",
+      "matchDatasources": ["npm"],
+      "groupName": "Bun Ecosystem",
+      "automerge": true,
+      "minimumReleaseAge": "3 days",
+      "matchPackageNames": [
+        "/^react/",
+        "/^next/",
+        "bun-types",
+        "hono"
+      ]
     },
     {
-      description: '3. JS/NPM: Grouping & Automerge',
-      matchDatasources: [
-        'npm',
-      ],
-      groupName: 'React Ecosystem',
-      automerge: true,
-      minimumReleaseAge: '3 days',
-      matchPackageNames: [
-        '/^react/',
-        '/^next/',
-      ],
+      "description": "3. Python: Stabilitas Tinggi",
+      "matchDatasources": ["pypi"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "minimumReleaseAge": "7 days"
     },
     {
-      description: '4. Python: Stabilitas Tinggi',
-      matchDatasources: [
-        'pypi',
-      ],
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
-      automerge: true,
-      minimumReleaseAge: '7 days',
+      "description": "4. Docker & GitHub Actions: Pin Digests",
+      "matchDatasources": ["docker", "github-tags"],
+      "pinDigests": true,
+      "automerge": true
     },
     {
-      description: '5. Docker & GitHub Actions: Pin Digests',
-      matchDatasources: [
-        'docker',
-        'github-tags',
-      ],
-      pinDigests: true,
-      automerge: true,
+      "description": "5. Governance: Approval untuk Major & 0.x",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
     },
     {
-      description: '6. Governance: Approval untuk Major & 0.x (Semua Bahasa)',
-      matchUpdateTypes: [
-        'major',
-      ],
-      dependencyDashboardApproval: true,
-    },
-    {
-      description: '7. Governance: Review manual untuk versi 0.x (Unstable)',
-      matchCurrentVersion: '/^0./',
-      dependencyDashboardApproval: true,
-    },
-  ],
+      "description": "6. Governance: Review manual untuk versi 0.x (Unstable)",
+      "matchCurrentVersion": "/^0./",
+      "dependencyDashboardApproval": true
+    }
+  ]
 }
