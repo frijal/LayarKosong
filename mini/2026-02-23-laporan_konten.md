@@ -1,5 +1,5 @@
 # 🔆 Laporan Konten Harian Layar Kosong
-Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
+Dihasilkan pada: 23 February 2026 03:44:47 Balikpapan Time
 
 ### 📂 Folder: .
 
@@ -12,19 +12,51 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 🌐 html     |     15 | ▇ |
 | 🔑 ico      |      1 | ▇ |
 | 🖼️ jpg      |      1 | ▇ |
+| 📜 js       |      2 | ▇ |
 | 🗂️ json     |      3 | ▇ |
+| 📄 lock     |      1 | ▇ |
 | 📝 md       |      6 | ▇ |
 | 📄 nojekyll |      1 | ▇ |
 | 🖼️ png      |      4 | ▇ |
-| 🐍 py       |      1 | ▇ |
+| 🐍 py       |      2 | ▇ |
 | ✏️ svg      |      1 | ▇ |
 | 📄 toml     |      1 | ▇ |
-| 📄 txt      |      5 | ▇ |
+| 📄 txt      |      6 | ▇ |
 | 📄 webmanifest |      1 | ▇ |
 | 🖼️ webp     |      1 | ▇ |
 | 📄 wranglerignore |      1 | ▇ |
 | 📄 xml      |     13 | ▇ |
 | 📄 xsl      |      1 | ▇ |
+
+### 📂 Folder: ./.git
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 git/FETCH_HEAD |      1 | ▇ |
+| 📄 git/HEAD |      1 | ▇ |
+| 📄 git/config |      1 | ▇ |
+| 📄 git/description |      1 | ▇ |
+| 📄 git/index |      1 | ▇ |
+| 📄 git/shallow |      1 | ▇ |
+| 📄 worktree |      1 | ▇ |
+
+### 📂 Folder: ./.git/info
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 git/info/exclude |      1 | ▇ |
+
+### 📂 Folder: ./.git/hooks
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 sample   |     14 | ▇ |
+
+### 📂 Folder: ./.git/logs
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 git/logs/HEAD |      1 | ▇ |
 
 ### 📂 Folder: ./img
 
@@ -49,45 +81,40 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: ./warta-tekno
+### 📂 Folder: ./.github
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    213 | ▇ |
+| 📄 json5    |      1 | ▇ |
+| 📄 json5X   |      1 | ▇ |
+| 📝 md       |      1 | ▇ |
+| 🖼️ png      |      1 | ▇ |
+| 📄 yml      |      1 | ▇ |
 
-### 📂 Folder: ./artikel
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🌐 html     |   1147 | ▇▇▇▇▇ |
-| 🔑 ico      |      1 | ▇ |
-| 📜 js       |      2 | ▇ |
-| 🗂️ json     |      1 | ▇ |
-| 📄 pl       |      1 | ▇ |
-| 🖼️ png      |     34 | ▇ |
-| 🐍 py       |      1 | ▇ |
-| 💻 sh       |      4 | ▇ |
-| ✏️ svg      |      1 | ▇ |
-| 📄 txt      |      6 | ▇ |
-
-### 📂 Folder: ./artikel/-
+### 📂 Folder: ./.github/workflows
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |      8 | ▇ |
-| 📄 html-bak |      8 | ▇ |
-| 📄 txt      |      1 | ▇ |
+| 📄 yml      |     24 | ▇ |
+
+### 📂 Folder: ./.github/ISSUE_TEMPLATE
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📝 md       |      2 | ▇ |
 
 ### 📂 Folder: ./ext
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
+| 📄 bak      |     62 | ▇ |
 | 🎨 css      |     26 | ▇ |
 | 🌐 html     |      4 | ▇ |
 | 📜 js       |     62 | ▇ |
+| 📄 jsX      |      1 | ▇ |
 | 🗂️ json     |      1 | ▇ |
 | 📄 pl       |      1 | ▇ |
-| 🐍 py       |      9 | ▇ |
+| 🐍 py       |     10 | ▇ |
 | 💻 sh       |      5 | ▇ |
 | 📄 txt      |      4 | ▇ |
 
@@ -106,11 +133,23 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 📄 woff2    |      4 | ▇ |
 
-### 📂 Folder: ./sistem-terbuka
+### 📂 Folder: ./warta-tekno
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    267 | ▇▇ |
+| 🌐 html     |    220 | ▇▇ |
+
+### 📂 Folder: ./alat
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 rs       |     12 | ▇ |
+
+### 📂 Folder: ./gaya-hidup
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🌐 html     |     64 | ▇ |
 
 ### 📂 Folder: ./artikelx
 
@@ -121,23 +160,33 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 💻 sh       |      3 | ▇ |
 | 📄 txt      |      2 | ▇ |
 
-### 📂 Folder: ./gaya-hidup
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🌐 html     |     65 | ▇ |
-
-### 📂 Folder: ./olah-media
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🌐 html     |     73 | ▇ |
-
 ### 📂 Folder: ./jejak-sejarah
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    144 | ▇ |
+| 🌐 html     |    149 | ▇ |
+
+### 📂 Folder: ./artikel
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🌐 html     |    971 | ▇▇▇▇▇ |
+| 🔑 ico      |      1 | ▇ |
+| 📜 js       |      2 | ▇ |
+| 🗂️ json     |      1 | ▇ |
+| 📄 pl       |      1 | ▇ |
+| 🖼️ png      |     34 | ▇ |
+| 🐍 py       |      1 | ▇ |
+| 💻 sh       |      4 | ▇ |
+| ✏️ svg      |      1 | ▇ |
+| 📄 txt      |      6 | ▇ |
+
+### 📂 Folder: ./artikel/-
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🌐 html     |      8 | ▇ |
+| 📄 txt      |      1 | ▇ |
 
 ### 📂 Folder: ./.well-known
 
@@ -149,25 +198,17 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 well-known/atproto-did |      1 | ▇ |
 | 📄 well-known/discord |      1 | ▇ |
 
-### 📂 Folder: ./.github
+### 📂 Folder: ./sistem-terbuka
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 📄 json5    |      1 | ▇ |
-| 📝 md       |      1 | ▇ |
-| 📄 yml      |      1 | ▇ |
+| 🌐 html     |    268 | ▇▇ |
 
-### 📂 Folder: ./.github/workflows
+### 📂 Folder: ./olah-media
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 📄 yml      |     25 | ▇ |
-
-### 📂 Folder: ./.github/ISSUE_TEMPLATE
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 📝 md       |      2 | ▇ |
+| 🌐 html     |     74 | ▇ |
 
 ### 📂 Folder: ./functions
 
@@ -187,12 +228,19 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 📄 /sementara/audit/jurukunci |      1 | ▇ |
+| 📄 txt      |      6 | ▇ |
 
 ### 📂 Folder: ./opini-sosial
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    118 | ▇ |
+| 🌐 html     |    127 | ▇ |
+
+### 📂 Folder: ./lainnya
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🌐 html     |     76 | ▇ |
 
 ### 📂 Folder: ./mini
 
@@ -204,43 +252,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📝 md       |     26 | ▇ |
 | 🐍 py       |      1 | ▇ |
 | 💻 sh       |      1 | ▇ |
-| 📄 txt      |     21 | ▇ |
-
-### 📂 Folder: ./lainnya
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🌐 html     |    274 | ▇▇ |
-
-### 📂 Folder: ./.git
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 📄 git/FETCH_HEAD |      1 | ▇ |
-| 📄 git/HEAD |      1 | ▇ |
-| 📄 git/config |      1 | ▇ |
-| 📄 git/description |      1 | ▇ |
-| 📄 git/index |      1 | ▇ |
-| 📄 git/shallow |      1 | ▇ |
-| 📄 worktree |      1 | ▇ |
-
-### 📂 Folder: ./.git/logs
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 📄 git/logs/HEAD |      1 | ▇ |
-
-### 📂 Folder: ./.git/info
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 📄 git/info/exclude |      1 | ▇ |
-
-### 📂 Folder: ./.git/hooks
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 📄 sample   |     14 | ▇ |
+| 📄 txt      |     20 | ▇ |
 
 ### 📂 Folder: .git/hooks
 
@@ -296,7 +308,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 📄 yml      |     25 | ▇ |
+| 📄 yml      |     24 | ▇ |
 
 ### 📂 Folder: .well-known
 
@@ -308,11 +320,17 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 well-known/atproto-did |      1 | ▇ |
 | 📄 well-known/discord |      1 | ▇ |
 
+### 📂 Folder: alat
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 📄 rs       |     12 | ▇ |
+
 ### 📂 Folder: artikel
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |   1147 | ▇▇▇▇▇ |
+| 🌐 html     |    971 | ▇▇▇▇▇ |
 | 🔑 ico      |      1 | ▇ |
 | 📜 js       |      2 | ▇ |
 | 🗂️ json     |      1 | ▇ |
@@ -328,7 +346,6 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🌐 html     |      8 | ▇ |
-| 📄 html-bak |      8 | ▇ |
 | 📄 txt      |      1 | ▇ |
 
 ### 📂 Folder: artikel/-
@@ -336,7 +353,6 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🌐 html     |      8 | ▇ |
-| 📄 html-bak |      8 | ▇ |
 | 📄 txt      |      1 | ▇ |
 
 ### 📂 Folder: artikelx
@@ -352,12 +368,14 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
+| 📄 bak      |     62 | ▇ |
 | 🎨 css      |     26 | ▇ |
 | 🌐 html     |      4 | ▇ |
 | 📜 js       |     62 | ▇ |
+| 📄 jsX      |      1 | ▇ |
 | 🗂️ json     |      1 | ▇ |
 | 📄 pl       |      1 | ▇ |
-| 🐍 py       |      9 | ▇ |
+| 🐍 py       |     10 | ▇ |
 | 💻 sh       |      5 | ▇ |
 | 📄 txt      |      4 | ▇ |
 
@@ -401,7 +419,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |     65 | ▇ |
+| 🌐 html     |     64 | ▇ |
 
 ### 📂 Folder: img
 
@@ -414,31 +432,19 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 txt2     |      1 | ▇ |
 | 🖼️ webp     |    299 | ▇▇ |
 
-### 📂 Folder: img/images.unsplash.com
+### 📂 Folder: img/static.wixstatic.com/media
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🖼️ webp     |     16 | ▇ |
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/pbs.twimg.com/media
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |    234 | ▇▇ |
 
 ### 📂 Folder: img/www.quality-assurance-solutions.com/images
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/linux-cdn.softpedia.com/screenshots
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/img.shields.io/badge
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |     12 | ▇ |
-
-### 📂 Folder: img/img.freepik.com/free-photo
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -450,19 +456,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/pbs.twimg.com/media
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |    200 | ▇ |
-
 ### 📂 Folder: img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/user-images.githubusercontent.com/98482
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -474,13 +468,37 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
+### 📂 Folder: img/user-images.githubusercontent.com/98482
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.shields.io/badge
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |     12 | ▇ |
+
+### 📂 Folder: img/images.unsplash.com
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |     16 | ▇ |
+
 ### 📂 Folder: img/github.com
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/static.wixstatic.com/media
+### 📂 Folder: img/img.freepik.com/free-photo
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/linux-cdn.softpedia.com/screenshots
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -540,19 +558,13 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/i.ytimg.com/vi/0h-xyR6Axh8
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
 ### 📂 Folder: img/i.ytimg.com/vi/H6E9Gg847lo
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/i.ytimg.com/vi/ha9kUA1vdvE
+### 📂 Folder: img/i.ytimg.com/vi/UNSf6O3ukPU
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -564,7 +576,13 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/i.ytimg.com/vi/UNSf6O3ukPU
+### 📂 Folder: img/i.ytimg.com/vi/ha9kUA1vdvE
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/i.ytimg.com/vi/0h-xyR6Axh8
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -594,13 +612,55 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
+### 📂 Folder: img/img.youtube.com/vi/wVj08oL_iKo
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/YVz0XyiKkls
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/LSbZfasf-OI
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/HgHK5mbBpGs
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/IUXGTiC04Qk
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/0nMgo2HOIVM
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      1 | ▇ |
+
+### 📂 Folder: img/img.youtube.com/vi/1QW72jFLkis
+
+| Jenis File | Jumlah | Histogram |
+|:-----------|-------:|:----------|
+| 🖼️ webp     |      2 | ▇ |
+
 ### 📂 Folder: img/img.youtube.com/vi/4ypuNPqRoJo
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/img.youtube.com/vi/wVj08oL_iKo
+### 📂 Folder: img/img.youtube.com/vi/xf0cNi91bhk
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -613,36 +673,6 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 🖼️ webp     |      1 | ▇ |
 
 ### 📂 Folder: img/img.youtube.com/vi/4BJZMnmckDA
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/img.youtube.com/vi/xf0cNi91bhk
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/img.youtube.com/vi/LSbZfasf-OI
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/img.youtube.com/vi/1QW72jFLkis
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      2 | ▇ |
-
-### 📂 Folder: img/img.youtube.com/vi/IUXGTiC04Qk
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
-### 📂 Folder: img/img.youtube.com/vi/HgHK5mbBpGs
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -666,12 +696,6 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/img.youtube.com/vi/0nMgo2HOIVM
-
-| Jenis File | Jumlah | Histogram |
-|:-----------|-------:|:----------|
-| 🖼️ webp     |      1 | ▇ |
-
 ### 📂 Folder: img/limble.com/wp-content/uploads
 
 | Jenis File | Jumlah | Histogram |
@@ -688,7 +712,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🖼️ webp     |    200 | ▇ |
+| 🖼️ webp     |    234 | ▇▇ |
 
 ### 📂 Folder: img/placehold.co/900x450/4a5568
 
@@ -714,13 +738,13 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/user-images.githubusercontent.com/98482
+### 📂 Folder: img/user-images.githubusercontent.com/1578458
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 🖼️ webp     |      1 | ▇ |
 
-### 📂 Folder: img/user-images.githubusercontent.com/1578458
+### 📂 Folder: img/user-images.githubusercontent.com/98482
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
@@ -742,25 +766,25 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    144 | ▇ |
+| 🌐 html     |    149 | ▇ |
 
 ### 📂 Folder: lainnya
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    274 | ▇▇ |
+| 🌐 html     |     76 | ▇ |
 
 ### 📂 Folder: olah-media
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |     73 | ▇ |
+| 🌐 html     |     74 | ▇ |
 
 ### 📂 Folder: opini-sosial
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    118 | ▇ |
+| 🌐 html     |    127 | ▇ |
 
 ### 📂 Folder: sementara
 
@@ -774,24 +798,26 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 📄 sementara/audit/jurukunci |      1 | ▇ |
+| 📄 txt      |      6 | ▇ |
 
 ### 📂 Folder: sementara/audit
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
 | 📄 sementara/audit/jurukunci |      1 | ▇ |
+| 📄 txt      |      6 | ▇ |
 
 ### 📂 Folder: sistem-terbuka
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    267 | ▇▇ |
+| 🌐 html     |    268 | ▇▇ |
 
 ### 📂 Folder: warta-tekno
 
 | Jenis File | Jumlah | Histogram |
 |:-----------|-------:|:----------|
-| 🌐 html     |    213 | ▇ |
+| 🌐 html     |    220 | ▇▇ |
 
 ---
 ## 📊 Ringkasan Statistik Global
@@ -807,6 +833,7 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 /sementara/audit/jurukunci |      1 | ▇ | ./sementara/audit |
 | 📄 /sementara/jurukunci |      1 | ▇ | ./sementara |
 | 📄 artikelx/jurukunci |      1 | ▇ | artikelx |
+| 📄 bak      |    124 | ▇ | ./ext, ext |
 | 🎨 css      |     52 | ▇ | ./ext, ext |
 | 📄 git/FETCH_HEAD |      1 | ▇ | ./.git |
 | 📄 git/HEAD |      1 | ▇ | ./.git |
@@ -821,32 +848,35 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 git/refs/remotes/origin/main |      2 | ▇ | ./.git/refs/remotes/origin, .git/refs/remotes/origin |
 | 📄 git/shallow |      1 | ▇ | ./.git |
 | 📄 gitignore |      1 | ▇ | . |
-| 🌐 html     |   4649 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ., ./artikel, ./artikel/-, ./ext, ./gaya-hidup, ./jejak-sejarah, ./lainnya, ./olah-media, ./opini-sosial, ./sistem-terbuka, ./warta-tekno, artikel, artikel/-, ext, gaya-hidup, jejak-sejarah, lainnya, olah-media, opini-sosial, sistem-terbuka, warta-tekno |
-| 📄 html-bak |     24 | ▇ | ./artikel/-, artikel/- |
+| 🌐 html     |   3945 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ | ., ./artikel, ./artikel/-, ./ext, ./gaya-hidup, ./jejak-sejarah, ./lainnya, ./olah-media, ./opini-sosial, ./sistem-terbuka, ./warta-tekno, artikel, artikel/-, ext, gaya-hidup, jejak-sejarah, lainnya, olah-media, opini-sosial, sistem-terbuka, warta-tekno |
 | 🔑 ico      |      6 | ▇ | ., ./artikel, ./ext/icons, artikel, ext/icons |
 | 📄 idx      |      2 | ▇ | ./.git/objects/pack, .git/objects/pack |
 | 📄 img/jurukunci |      1 | ▇ | img |
 | 🖼️ jpg      |      3 | ▇ | ., ./artikelx, artikelx |
-| 📜 js       |    133 | ▇ | ./artikel, ./ext, ./ext/icons, ./functions, artikel, ext, ext/icons, functions |
+| 📜 js       |    135 | ▇ | ., ./artikel, ./ext, ./ext/icons, ./functions, artikel, ext, ext/icons, functions |
+| 📄 jsX      |      2 | ▇ | ./ext, ext |
 | 🗂️ json     |     10 | ▇ | ., ./.well-known, ./artikel, ./ext, ./mini, .well-known, artikel, ext |
 | 📄 json5    |      3 | ▇ | ./.github, ./mini |
+| 📄 json5X   |      1 | ▇ | ./.github |
+| 📄 lock     |      1 | ▇ | . |
 | 📝 md       |     38 | ▇ | ., ./.github, ./.github/ISSUE_TEMPLATE, ./.well-known, ./mini, .github/ISSUE_TEMPLATE, .well-known |
 | 📄 nojekyll |      1 | ▇ | . |
 | 📄 pack     |      2 | ▇ | ./.git/objects/pack, .git/objects/pack |
 | 📄 pl       |      4 | ▇ | ./artikel, ./ext, artikel, ext |
-| 🖼️ png      |    167 | ▇ | ., ./artikel, ./ext/icons, ./img, artikel, ext/icons, img |
-| 🐍 py       |     22 | ▇ | ., ./artikel, ./ext, ./mini, artikel, ext |
+| 🖼️ png      |    168 | ▇ | ., ./.github, ./artikel, ./ext/icons, ./img, artikel, ext/icons, img |
+| 🐍 py       |     25 | ▇ | ., ./artikel, ./ext, ./mini, artikel, ext |
 | 📄 rev      |      2 | ▇ | ./.git/objects/pack, .git/objects/pack |
+| 📄 rs       |     24 | ▇ | ./alat, alat |
 | 📄 sample   |     28 | ▇ | ./.git/hooks, .git/hooks |
 | 📄 sementara/audit/jurukunci |      2 | ▇ | sementara/audit |
 | 📄 sementara/jurukunci |      1 | ▇ | sementara |
 | 💻 sh       |     29 | ▇ | ./artikel, ./artikelx, ./ext, ./mini, ./sementara, artikel, artikelx, ext, sementara |
-| ✏️ svg      |     16 | ▇ | ., ./artikel, ./ext/icons, ./img, artikel, ext/icons, img |
+| ✏️ svg      |     22 | ▇ | ., ./artikel, ./ext/icons, ./img, artikel, ext/icons, img, img/upload.wikimedia.org/wikipedia/commons/2/2c, img/upload.wikimedia.org/wikipedia/commons/3/3b, img/upload.wikimedia.org/wikipedia/commons/3/3e, img/upload.wikimedia.org/wikipedia/commons/6/66, img/upload.wikimedia.org/wikipedia/commons/7/77, img/upload.wikimedia.org/wikipedia/commons/8/87 |
 | 📄 toml     |      1 | ▇ | . |
-| 📄 txt      |     59 | ▇ | ., ./.well-known, ./artikel, ./artikel/-, ./artikelx, ./ext, ./img, ./mini, .well-known, artikel, artikel/-, artikelx, ext, img |
+| 📄 txt      |     77 | ▇ | ., ./.well-known, ./artikel, ./artikel/-, ./artikelx, ./ext, ./img, ./mini, ./sementara/audit, .well-known, artikel, artikel/-, artikelx, ext, img, sementara/audit |
 | 📄 txt2     |      2 | ▇ | ./img, img |
 | 📄 webmanifest |      1 | ▇ | . |
-| 🖼️ webp     |   1659 | ▇▇▇▇▇▇▇▇ | ., ./img, ./img/blogger.googleusercontent.com/img/a, ./img/cdn-icons-png.flaticon.com/512/2910, ./img/cdn-icons-png.flaticon.com/512/3135, ./img/cdn-icons-png.flaticon.com/512/337, ./img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, ./img/cli.github.com/assets/images, ./img/faciliworks.com/wp-content/uploads, ./img/github.com, ./img/github.com/user-attachments/assets, ./img/i.ytimg.com/vi/00sDqK1K2xA, ./img/i.ytimg.com/vi/0h-xyR6Axh8, ./img/i.ytimg.com/vi/H6E9Gg847lo, ./img/i.ytimg.com/vi/UNSf6O3ukPU, ./img/i.ytimg.com/vi/ha9kUA1vdvE, ./img/images.unsplash.com, ./img/img.freepik.com/free-photo, ./img/img.shields.io/badge, ./img/img.shields.io/pypi/v, ./img/img.youtube.com/vi/0nMgo2HOIVM, ./img/img.youtube.com/vi/1QW72jFLkis, ./img/img.youtube.com/vi/4BJZMnmckDA, ./img/img.youtube.com/vi/4ypuNPqRoJo, ./img/img.youtube.com/vi/C4ShJaXCcLc, ./img/img.youtube.com/vi/HgHK5mbBpGs, ./img/img.youtube.com/vi/IUXGTiC04Qk, ./img/img.youtube.com/vi/LSbZfasf-OI, ./img/img.youtube.com/vi/TTHxxDkEQfw, ./img/img.youtube.com/vi/ZICVhIAXUCE, ./img/img.youtube.com/vi/rsG-b5KdVRI, ./img/img.youtube.com/vi/wVj08oL_iKo, ./img/img.youtube.com/vi/xf0cNi91bhk, ./img/limble.com/wp-content/uploads, ./img/linux-cdn.softpedia.com/screenshots, ./img/pbs.twimg.com/media, ./img/placehold.co/900x450/3182ce, ./img/placehold.co/900x450/4a5568, ./img/static.wixstatic.com/media, ./img/thumbs.dreamstime.com/b, ./img/user-images.githubusercontent.com/1578458, ./img/user-images.githubusercontent.com/98482, ./img/www.quality-assurance-solutions.com/images, ./img/www.ventoy.net/static/img, img, img/2143ae8866e9254bc7952416d0b811d4.cdn.bubble.io/cdn-cgi/image/w=, h=, f=auto, dpr=1, fit=contain/f1684407832928x356875103525200900, img/blog.fleetx.io/content/images/2022/11, img/blog.openreplay.com/images/setting-up-github-actions-for-nodejs-projects/images, img/blogger.googleusercontent.com/img/a, img/cdn-icons-png.flaticon.com/512/2910, img/cdn-icons-png.flaticon.com/512/3135, img/cdn-icons-png.flaticon.com/512/337, img/cdn.jsdelivr.net/npm/simple-icons@v11/icons, img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, img/cli.github.com/assets/images, img/deps.rs/repo/github/notashelf/microfetch, img/devconnected.com/wp-content/uploads/2019/08, img/faciliworks.com/wp-content/uploads, img/github.blog/wp-content/uploads/2022/01, img/github.com, img/github.com/user-attachments/assets, img/github.com/zoicware/RemoveWindowsAI/assets/118035521, img/hyperproof.io/wp-content/uploads/2023/08, img/i.ytimg.com/vi/00sDqK1K2xA, img/i.ytimg.com/vi/0h-xyR6Axh8, img/i.ytimg.com/vi/H6E9Gg847lo, img/i.ytimg.com/vi/UNSf6O3ukPU, img/i.ytimg.com/vi/ha9kUA1vdvE, img/idcon.com/wp-content/uploads/2014/04, img/idcon.com/wp-content/uploads/2020/12, img/images.ctfassets.net/kftzwdyauwt9/4XRlgv6c3jHpFYqWS3C5q5/1bb4beeaae428129b3fe2a2d511e01d2, img/images.unsplash.com, img/img.freepik.com/free-photo, img/img.icons8.com/color/48/000000, img/img.shields.io/badge, img/img.shields.io/github/downloads/ventoy/Ventoy, img/img.shields.io/github/last-commit/frijal, img/img.shields.io/github/license/ventoy, img/img.shields.io/github/release/ventoy, img/img.shields.io/github/stars/notashelf, img/img.shields.io/github/stars/ventoy, img/img.shields.io/pypi/v, img/img.youtube.com/vi/0nMgo2HOIVM, img/img.youtube.com/vi/1QW72jFLkis, img/img.youtube.com/vi/4BJZMnmckDA, img/img.youtube.com/vi/4ypuNPqRoJo, img/img.youtube.com/vi/C4ShJaXCcLc, img/img.youtube.com/vi/HgHK5mbBpGs, img/img.youtube.com/vi/IUXGTiC04Qk, img/img.youtube.com/vi/LSbZfasf-OI, img/img.youtube.com/vi/TTHxxDkEQfw, img/img.youtube.com/vi/ZICVhIAXUCE, img/img.youtube.com/vi/rsG-b5KdVRI, img/img.youtube.com/vi/wVj08oL_iKo, img/img.youtube.com/vi/xf0cNi91bhk, img/itsfoss.com/content/images/2025/06, img/itsfoss.com/content/images/2025/11, img/itsfoss.com/content/images/2025/12, img/itsfoss.com/content/images/icon, img/itsfoss.com/content/images/thumbnail, img/kevinsguides.com/wp-content/uploads/2024/06, img/limble.com/wp-content/uploads, img/linux-cdn.softpedia.com/screenshots, img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190, img/opensource.com/sites/default/files/2023-02, img/opensource.com/sites/default/files/lead-images, img/pbs.twimg.com/media, img/picsum.photos/id/1015/800, img/picsum.photos/id/1035/800, img/picsum.photos/id/1045/800, img/placehold.co/900x450/3182ce, img/placehold.co/900x450/4a5568, img/proud2ride.wordpress.com/wp-content/uploads/2016/05, img/raw.githubusercontent.com/canonical/ubuntu-pro-for-wsl/main/img, img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main, img/regmedia.co.uk/2026/01/22, img/static.wixstatic.com/media, img/techrefreshing.com/wp-content/uploads/2026/01, img/thumbs.dreamstime.com/b, img/upload.wikimedia.org/wikipedia/commons/0/02, img/upload.wikimedia.org/wikipedia/commons/0/05, img/upload.wikimedia.org/wikipedia/commons/0/09, img/upload.wikimedia.org/wikipedia/commons/0/0d, img/upload.wikimedia.org/wikipedia/commons/1/13, img/upload.wikimedia.org/wikipedia/commons/1/18, img/upload.wikimedia.org/wikipedia/commons/1/1b, img/upload.wikimedia.org/wikipedia/commons/1/1f, img/upload.wikimedia.org/wikipedia/commons/2/22, img/upload.wikimedia.org/wikipedia/commons/3/34, img/upload.wikimedia.org/wikipedia/commons/3/35, img/upload.wikimedia.org/wikipedia/commons/3/36, img/upload.wikimedia.org/wikipedia/commons/3/3f, img/upload.wikimedia.org/wikipedia/commons/4/4a, img/upload.wikimedia.org/wikipedia/commons/5/5f, img/upload.wikimedia.org/wikipedia/commons/6/6b, img/upload.wikimedia.org/wikipedia/commons/6/6f, img/upload.wikimedia.org/wikipedia/commons/9/9e, img/upload.wikimedia.org/wikipedia/commons/9/9f, img/upload.wikimedia.org/wikipedia/commons/a/ab, img/upload.wikimedia.org/wikipedia/commons/a/af, img/upload.wikimedia.org/wikipedia/commons/b/bc, img/upload.wikimedia.org/wikipedia/commons/c/c0, img/upload.wikimedia.org/wikipedia/commons/f/fc, img/user-images.githubusercontent.com/1578458, img/user-images.githubusercontent.com/98482, img/worktrek.com/wp-content/uploads/2024/11, img/www.accelix.com/wp-content/uploads/2021/06, img/www.advancedtech.com/wp-content/uploads/2022/04, img/www.emaint.com/wp-content/uploads/2024/04, img/www.emaint.com/wp-content/uploads/2024/05, img/www.quality-assurance-solutions.com/images, img/www.selecthub.com/wp-content/uploads/2019/08, img/www.smartsheet.com/sites/default/files/2025-10, img/www.ventoy.net/static/img, img/www.ventoy.net/static/img/screen, img/yoast.com/app/uploads/2019/08 |
+| 🖼️ webp     |   1764 | ▇▇▇▇▇▇▇▇▇ | ., ./img, ./img/blogger.googleusercontent.com/img/a, ./img/cdn-icons-png.flaticon.com/512/2910, ./img/cdn-icons-png.flaticon.com/512/3135, ./img/cdn-icons-png.flaticon.com/512/337, ./img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, ./img/cli.github.com/assets/images, ./img/faciliworks.com/wp-content/uploads, ./img/github.com, ./img/github.com/user-attachments/assets, ./img/i.ytimg.com/vi/00sDqK1K2xA, ./img/i.ytimg.com/vi/0h-xyR6Axh8, ./img/i.ytimg.com/vi/H6E9Gg847lo, ./img/i.ytimg.com/vi/UNSf6O3ukPU, ./img/i.ytimg.com/vi/ha9kUA1vdvE, ./img/images.unsplash.com, ./img/img.freepik.com/free-photo, ./img/img.shields.io/badge, ./img/img.shields.io/pypi/v, ./img/img.youtube.com/vi/0nMgo2HOIVM, ./img/img.youtube.com/vi/1QW72jFLkis, ./img/img.youtube.com/vi/4BJZMnmckDA, ./img/img.youtube.com/vi/4ypuNPqRoJo, ./img/img.youtube.com/vi/C4ShJaXCcLc, ./img/img.youtube.com/vi/HgHK5mbBpGs, ./img/img.youtube.com/vi/IUXGTiC04Qk, ./img/img.youtube.com/vi/LSbZfasf-OI, ./img/img.youtube.com/vi/TTHxxDkEQfw, ./img/img.youtube.com/vi/YVz0XyiKkls, ./img/img.youtube.com/vi/ZICVhIAXUCE, ./img/img.youtube.com/vi/rsG-b5KdVRI, ./img/img.youtube.com/vi/wVj08oL_iKo, ./img/img.youtube.com/vi/xf0cNi91bhk, ./img/limble.com/wp-content/uploads, ./img/linux-cdn.softpedia.com/screenshots, ./img/pbs.twimg.com/media, ./img/placehold.co/900x450/3182ce, ./img/placehold.co/900x450/4a5568, ./img/static.wixstatic.com/media, ./img/thumbs.dreamstime.com/b, ./img/user-images.githubusercontent.com/1578458, ./img/user-images.githubusercontent.com/98482, ./img/www.quality-assurance-solutions.com/images, ./img/www.ventoy.net/static/img, img, img/2143ae8866e9254bc7952416d0b811d4.cdn.bubble.io/cdn-cgi/image/w=, h=, f=auto, dpr=1, fit=contain/f1684407832928x356875103525200900, img/blog.fleetx.io/content/images/2022/11, img/blog.openreplay.com/images/setting-up-github-actions-for-nodejs-projects/images, img/blogger.googleusercontent.com/img/a, img/cdn-icons-png.flaticon.com/512/2910, img/cdn-icons-png.flaticon.com/512/3135, img/cdn-icons-png.flaticon.com/512/337, img/cdn.jsdelivr.net/npm/simple-icons@v11/icons, img/cdn.prod.website-files.com/637491fa6c624315fc0d4fdc, img/cli.github.com/assets/images, img/deps.rs/repo/github/notashelf/microfetch, img/devconnected.com/wp-content/uploads/2019/08, img/faciliworks.com/wp-content/uploads, img/github.blog/wp-content/uploads/2022/01, img/github.com, img/github.com/user-attachments/assets, img/github.com/zoicware/RemoveWindowsAI/assets/118035521, img/hyperproof.io/wp-content/uploads/2023/08, img/i.ytimg.com/vi/00sDqK1K2xA, img/i.ytimg.com/vi/0h-xyR6Axh8, img/i.ytimg.com/vi/H6E9Gg847lo, img/i.ytimg.com/vi/UNSf6O3ukPU, img/i.ytimg.com/vi/ha9kUA1vdvE, img/idcon.com/wp-content/uploads/2014/04, img/idcon.com/wp-content/uploads/2020/12, img/images.ctfassets.net/kftzwdyauwt9/4XRlgv6c3jHpFYqWS3C5q5/1bb4beeaae428129b3fe2a2d511e01d2, img/images.unsplash.com, img/img.freepik.com/free-photo, img/img.icons8.com/color/48/000000, img/img.shields.io/badge, img/img.shields.io/github/downloads/ventoy/Ventoy, img/img.shields.io/github/last-commit/frijal, img/img.shields.io/github/license/ventoy, img/img.shields.io/github/release/ventoy, img/img.shields.io/github/stars/notashelf, img/img.shields.io/github/stars/ventoy, img/img.shields.io/pypi/v, img/img.youtube.com/vi/0nMgo2HOIVM, img/img.youtube.com/vi/1QW72jFLkis, img/img.youtube.com/vi/4BJZMnmckDA, img/img.youtube.com/vi/4ypuNPqRoJo, img/img.youtube.com/vi/C4ShJaXCcLc, img/img.youtube.com/vi/HgHK5mbBpGs, img/img.youtube.com/vi/IUXGTiC04Qk, img/img.youtube.com/vi/LSbZfasf-OI, img/img.youtube.com/vi/TTHxxDkEQfw, img/img.youtube.com/vi/YVz0XyiKkls, img/img.youtube.com/vi/ZICVhIAXUCE, img/img.youtube.com/vi/rsG-b5KdVRI, img/img.youtube.com/vi/wVj08oL_iKo, img/img.youtube.com/vi/xf0cNi91bhk, img/itsfoss.com/content/images/2025/06, img/itsfoss.com/content/images/2025/11, img/itsfoss.com/content/images/2025/12, img/itsfoss.com/content/images/icon, img/itsfoss.com/content/images/thumbnail, img/kevinsguides.com/wp-content/uploads/2024/06, img/limble.com/wp-content/uploads, img/linux-cdn.softpedia.com/screenshots, img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190, img/opensource.com/sites/default/files/2023-02, img/opensource.com/sites/default/files/lead-images, img/pbs.twimg.com/media, img/picsum.photos/id/1015/800, img/picsum.photos/id/1035/800, img/picsum.photos/id/1045/800, img/placehold.co/900x450/3182ce, img/placehold.co/900x450/4a5568, img/proud2ride.wordpress.com/wp-content/uploads/2016/05, img/raw.githubusercontent.com/canonical/ubuntu-pro-for-wsl/main/img, img/raw.githubusercontent.com/frijal/refind-conf-archcachyos/main, img/regmedia.co.uk/2026/01/22, img/static.wixstatic.com/media, img/techrefreshing.com/wp-content/uploads/2026/01, img/thumbs.dreamstime.com/b, img/upload.wikimedia.org/wikipedia/commons/0/02, img/upload.wikimedia.org/wikipedia/commons/0/05, img/upload.wikimedia.org/wikipedia/commons/0/09, img/upload.wikimedia.org/wikipedia/commons/0/0d, img/upload.wikimedia.org/wikipedia/commons/1/13, img/upload.wikimedia.org/wikipedia/commons/1/18, img/upload.wikimedia.org/wikipedia/commons/1/1b, img/upload.wikimedia.org/wikipedia/commons/1/1f, img/upload.wikimedia.org/wikipedia/commons/2/22, img/upload.wikimedia.org/wikipedia/commons/3/34, img/upload.wikimedia.org/wikipedia/commons/3/35, img/upload.wikimedia.org/wikipedia/commons/3/36, img/upload.wikimedia.org/wikipedia/commons/3/3f, img/upload.wikimedia.org/wikipedia/commons/4/4a, img/upload.wikimedia.org/wikipedia/commons/5/5f, img/upload.wikimedia.org/wikipedia/commons/6/6b, img/upload.wikimedia.org/wikipedia/commons/6/6f, img/upload.wikimedia.org/wikipedia/commons/9/9e, img/upload.wikimedia.org/wikipedia/commons/9/9f, img/upload.wikimedia.org/wikipedia/commons/a/ab, img/upload.wikimedia.org/wikipedia/commons/a/af, img/upload.wikimedia.org/wikipedia/commons/b/bc, img/upload.wikimedia.org/wikipedia/commons/c/c0, img/upload.wikimedia.org/wikipedia/commons/f/fc, img/user-images.githubusercontent.com/1578458, img/user-images.githubusercontent.com/98482, img/worktrek.com/wp-content/uploads/2024/11, img/www.accelix.com/wp-content/uploads/2021/06, img/www.advancedtech.com/wp-content/uploads/2022/04, img/www.emaint.com/wp-content/uploads/2024/04, img/www.emaint.com/wp-content/uploads/2024/05, img/www.quality-assurance-solutions.com/images, img/www.selecthub.com/wp-content/uploads/2019/08, img/www.smartsheet.com/sites/default/files/2025-10, img/www.ventoy.net/static/img, img/www.ventoy.net/static/img/screen, img/yoast.com/app/uploads/2019/08 |
 | 📄 well-known/atproto-did |      2 | ▇ | ./.well-known, .well-known |
 | 📄 well-known/discord |      2 | ▇ | ./.well-known, .well-known |
 | 📄 woff2    |     12 | ▇ | ./ext/fontawesome-webfonts, ext/fontawesome-webfonts |
@@ -854,5 +884,5 @@ Dihasilkan pada: 16 February 2026 11:37:44 Balikpapan Time
 | 📄 wranglerignore |      1 | ▇ | . |
 | 📄 xml      |     13 | ▇ | . |
 | 📄 xsl      |      1 | ▇ | . |
-| 📄 yml      |     51 | ▇ | ./.github, ./.github/workflows, .github/workflows |
-| **TOTAL** | **6524** | | |
+| 📄 yml      |     49 | ▇ | ./.github, ./.github/workflows, .github/workflows |
+| **TOTAL** | **6039** | | |
