@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Repository"
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: "Eksekusi Penggantian Teks"
         shell: bash
@@ -83,7 +83,7 @@ jobs:
 
       - name: "Create Pull Request"
         if: ${{ steps.git-check.outputs.changed == 'true' }}
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
             commit-message: "chore: mass update content"
