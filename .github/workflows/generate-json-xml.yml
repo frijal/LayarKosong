@@ -71,7 +71,7 @@ jobs:
 
       - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
-        run: bun run ci-generate-xml-rss
+        run: bun run ext/generator-pro.js
         env:
           RSS_LIMIT: 30
 
