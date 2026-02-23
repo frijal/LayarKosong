@@ -53,19 +53,12 @@ jobs:
         with:
           ref: ${{ github.ref }}
           fetch-depth: 1
-          persist-credentials: true
+          persist-credentials: true      
 
-      - name: Cache Node Modules
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: '2. Setup Node.js'
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
-        with:
+          bun-version: latest
 
       - name: '3. Install Dependencies'
         run: bun install
