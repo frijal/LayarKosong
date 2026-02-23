@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       search:
-        description: 'Teks yang akan dicari (literal string)'
+        description: 'Teks / Regex yang akan dicari'
         required: true
         type: string
       replace:
@@ -15,6 +15,21 @@ on:
         description: 'Root path untuk pencarian (default .)'
         required: false
         default: '.'
+        type: string
+      extensions:
+        description: 'Filter ekstensi file (contoh: .md,.txt,.js). Kosong = semua file teks'
+        required: false
+        default: ''
+        type: string
+      case_insensitive:
+        description: 'Case-insensitive replace? (true/false)'
+        required: true
+        default: 'false'
+        type: string
+      use_regex:
+        description: 'Gunakan regex? (true/false)'
+        required: true
+        default: 'false'
         type: string
 
 permissions:
@@ -42,14 +57,21 @@ jobs:
           SEARCH="${{ github.event.inputs.search }}"
           REPLACE="${{ github.event.inputs.replace }}"
           ROOT="${{ github.event.inputs.path }}"
+          EXTENSIONS="${{ github.event.inputs.extensions }}"
+          CASE_INSENSITIVE="${{ github.event.inputs.case_insensitive }}"
+          USE_REGEX="${{ github.event.inputs.use_regex }}"
 
           python3 - <<'PY'
           import os
+          import re
           from pathlib import Path
 
           search = os.environ['SEARCH']
           replace = os.environ['REPLACE']
           root = Path(os.environ['ROOT'])
+          extensions_raw = os.environ['EXTENSIONS']
+          case_insensitive = os.environ['CASE_INSENSITIVE'].lower() == 'true'
+          use_regex = os.environ['USE_REGEX'].lower() == 'true'
 
           skip_dirs = {'.git', 'node_modules', '.venv', 'venv', '.pytest_cache', '.gradle', 'build'}
           binary_signatures = [b'\x00']
@@ -61,30 +83,53 @@ jobs:
               except Exception:
                   return True
 
-          changed_files = []
+          extensions = []
+          if extensions_raw.strip():
+              extensions = [e.strip().lower() for e in extensions_raw.split(',') if e.strip()]
+
+          flags = re.IGNORECASE if case_insensitive else 0
+          pattern = re.compile(search, flags) if use_regex else None
+
+          changed = []
 
           for p in root.rglob('*'):
               if p.is_dir() and p.name in skip_dirs:
                   continue
 
-              if p.is_file() and not any(part in skip_dirs for part in p.parts):
-                  try:
-                      if is_binary(p):
-                          continue
-                      text = p.read_text(encoding='utf-8')
-                  except Exception:
+              if not p.is_file():
+                  continue
+
+              if any(part in skip_dirs for part in p.parts):
+                  continue
+
+              if extensions:
+                  if p.suffix.lower() not in extensions:
                       continue
 
-                  if search in text:
-                      new_text = text.replace(search, replace)
-                      if new_text != text:
-                          p.write_text(new_text, encoding='utf-8')
-                          changed_files.append(str(p))
+              try:
+                  if is_binary(p):
+                      continue
+                  text = p.read_text(encoding='utf-8')
+              except Exception:
+                  continue
 
-          if changed_files:
+              if use_regex:
+                  new_text, count = pattern.subn(replace, text)
+              else:
+                  if case_insensitive:
+                      new_text, count = re.subn(re.escape(search), replace, text, flags=re.IGNORECASE)
+                  else:
+                      count = text.count(search)
+                      new_text = text.replace(search, replace)
+
+              if count > 0 and new_text != text:
+                  p.write_text(new_text, encoding='utf-8')
+                  changed.append(f"{p} ({count} replace)")
+
+          if changed:
               print("Changed files:")
-              for f in changed_files:
-                  print(f"- {f}")
+              for f in changed:
+                  print("-", f)
           else:
               print("No changes detected.")
           PY
@@ -114,5 +159,8 @@ jobs:
             **Target:** `${{ github.event.inputs.search }}`
             **Replacement:** `${{ github.event.inputs.replace }}`
             **Path:** `${{ github.event.inputs.path }}`
+            **Extensions:** `${{ github.event.inputs.extensions || 'ALL' }}`
+            **Case-insensitive:** `${{ github.event.inputs.case_insensitive }}`
+            **Regex:** `${{ github.event.inputs.use_regex }}`
 
-            Silakan review perubahan di PR ini sebelum merge 🙏
+            Silakan review PR ini sebelum merge 🚀
