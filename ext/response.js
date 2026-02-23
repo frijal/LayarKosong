@@ -1,8 +1,7 @@
 (function () {
     const d = document;
 
-    // 1. Cari kontainer utama (id="diskus")
-    const container = d.getElementById("diskus");
+    const container = d.getElementById("response");
     if (!container) return; 
 
     // 2. Ambil URL halaman
