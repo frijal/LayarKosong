@@ -13,10 +13,10 @@
   'dependencyDashboard': true,
   'ignorePaths': [
     '**/node_modules/**',
-    '**/bower_components/**',
-    '**/vendor/**',
     'artikel/**',
-    'target/**'
+    'artikelx/**',
+    'target/**',
+    'mini/**'
   ],
   'vulnerabilityAlerts': {
     'enabled': true,
@@ -24,45 +24,54 @@
   },
   'packageRules': [
     {
-      'description': '1. Global Range Strategy',
-      'rangeStrategy': 'replace',
-      'matchPackageNames': ['*']
+      'description': '1. Strategi Penggantian Versi',
+      'matchPackageNames': ['*'],
+      'rangeStrategy': 'replace'
     },
     {
-      'description': '2. Bun & JS Ecosystem: Grouping & Automerge',
+      'description': '2. Grup Paket Utama Layar Kosong (Automerge Minor/Patch)',
       'matchDatasources': ['npm'],
-      'groupName': 'Bun Ecosystem',
-      'automerge': true,
-      'minimumReleaseAge': '3 days',
       'matchPackageNames': [
-        '/^react/',
-        '/^next/',
-        'bun-types',
-        'hono'
-      ]
-    },
-    {
-      'description': '3. Python: Stabilitas Tinggi',
-      'matchDatasources': ['pypi'],
-      'matchUpdateTypes': ['minor', 'patch'],
+        'wrangler',
+        'puppeteer',
+        'sharp',
+        'axios',
+        'cheerio',
+        'fast-xml-parser',
+        '@octokit/core'
+      ],
       'automerge': true,
-      'minimumReleaseAge': '7 days'
+      'minimumReleaseAge': '3 days'
     },
     {
-      'description': '4. Docker & GitHub Actions: Pin Digests',
-      'matchDatasources': ['docker', 'github-tags'],
+      'description': '3. Paket XML & HTML (Grup Pendukung)',
+      'matchPackageNames': [
+        '@xmldom/xmldom',
+        '@minify-html/node',
+        'tumblr.js'
+      ],
+      'groupName': 'web-parsers',
+      'automerge': true
+    },
+    {
+      'description': '4. GitHub Actions: Pin Digests & Automerge',
+      'matchDatasources': ['github-tags'],
       'pinDigests': true,
       'automerge': true
     },
     {
-      'description': '5. Governance: Approval untuk Major & 0.x',
+      'description': '5. Kontrol Major Update (Butuh Klik Manual)',
       'matchUpdateTypes': ['major'],
       'dependencyDashboardApproval': true
     },
     {
-      'description': '6. Governance: Review manual untuk versi 0.x (Unstable)',
+      'description': '6. Review Manual untuk versi 0.x (Unstable)',
       'matchCurrentVersion': '/^0./',
       'dependencyDashboardApproval': true
     }
-  ]
+  ],
+  'constraints': {
+    'bun': '>=1.0.0'
+  },
+  'postUpdateOptions': ['bun-lock']
 }
