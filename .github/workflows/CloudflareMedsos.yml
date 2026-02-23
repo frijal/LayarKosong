@@ -68,11 +68,11 @@ jobs:
           echo "need_python=$NEED_PYTHON" >> $GITHUB_OUTPUT
 
       # --- 2. SETUP NODE.JS (Hanya jika need_node=true) ---
-      - name: 🏗️ Setup Node.js
+      - name: '2. Setup Bun.js'
         if: steps.check.outputs.need_node == 'true'
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          cache: 'npm'
+          bun-version: latest
 
       - name: 📦 Install Node Dependencies
         if: steps.check.outputs.need_node == 'true'
