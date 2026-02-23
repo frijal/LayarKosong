@@ -30,12 +30,16 @@ jobs:
 
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
-          bun install -g npm-check-updates
+          # 1. Jalankan ncu tanpa install global (-g), lebih cepat & bersih
           echo "--- DAFTAR UPGRADE MAJOR ---"
-          ncu --target latest --format group
+          bunx npm-check-updates --target latest --format group
           
-          # Langsung hajar update ke package.json
-          ncu -u --target latest
+          # 2. Update package.json secara otomatis
+          bunx npm-check-updates -u --target latest
+          
+          # 3. PENTING: Sinkronisasi ulang agar bun.lockb diperbarui
+          # Tanpa ini, build selanjutnya bisa error karena mismatch versi
+          bun install
 
       - name: 🧹 Menjalankan Tukang Sapu (Cleanup)
         run: |
