@@ -210,7 +210,7 @@ const generate = async () => {
       // --- GATE 4: AUTO-DISCOVERY (Bongkar File) ---
       // Upaya terakhir jika benar-benar file asing.
       console.log(`✨ Gate 4 (Discovery): Memproses file baru ${file}`);
-      const content = await fs.readFile(path.join(CONFIG.artikelDir, file), 'utf8');
+      const content = await Bun.file(path.join(CONFIG.artikelDir, file)).text();
       const title = extractTitle(content);
       const cat = titleToCategory(title);
       const catSlug = slugify(cat);
@@ -310,7 +310,7 @@ const generate = async () => {
         // 4. SIMPAN INDEX KATEGORI
         const outputDir = path.join(CONFIG.rootDir, slug);
         await fs.mkdir(outputDir, { recursive: true }); // Pastikan folder kategori ada
-        await Bun.write(path.join(outputDir, 'index.html'), pageContent, 'utf8');
+        await Bun.write(path.join(outputDir, 'index.html'), pageContent);
 /////////////////////////////////
         // 5. GENERATE RSS PER KATEGORI
         const categoryItems = articles.map(art => ({
@@ -332,7 +332,7 @@ const generate = async () => {
 
         // Simpan file dengan nama feed-nama-kategori.xml di root (sesuai %%RSS_URL%%)
         const rssFilePath = path.join(CONFIG.rootDir, `feed-${slug}.xml`);
-        await Bun.write(rssFilePath, categoryRssContent, 'utf8');
+        await Bun.write(rssFilePath, categoryRssContent);
 
         console.log(`✅ Kategori [${cat}] & RSS Feed [feed-${slug}.xml] berhasil dibuat.`);
         ///////////////////////////////////
