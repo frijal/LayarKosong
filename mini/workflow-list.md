@@ -4,7 +4,7 @@
 
 | 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Penjelasan Waktu | 🔗 Link Alat |
 | :--- | :--- | :--- | :--- |
-| 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Lean) | `0 8 9 * *` | Setiap jam 08:00 (UTC), tanggal 9 | [Crontab Guru](https://crontab.guru/#0_8_9_*_*) |
+| 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Bun Edition) | `0 8 9 * *` | Setiap jam 08:00 (UTC), tanggal 9 | [Crontab Guru](https://crontab.guru/#0_8_9_*_*) |
 | 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt | `0 7 * * *` | Setiap jam 07:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_7_*_*_*) |
 | 🔆 Pengecekan & Laporan Konten Harian | `0 11 * * *` | Setiap jam 11:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_11_*_*_*) |
 | 🚨 Major Dependency Upgrade (Scheduled & Manual) | `0 2 1 */3 *` | Setiap jam 02:00 (UTC), tanggal 1, bulan ke-*/3 | [Crontab Guru](https://crontab.guru/#0_2_1_*/3_*) |
