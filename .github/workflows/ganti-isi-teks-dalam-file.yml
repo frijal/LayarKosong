@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -43,8 +43,6 @@ jobs:
           REPLACE="${{ github.event.inputs.replace }}"
           ROOT="${{ github.event.inputs.path }}"
 
-          # Find text files and replace in-place. Skip .git and common binary dirs.
-          # This Python approach avoids corrupting binary files.
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -53,42 +51,45 @@ jobs:
           replace = os.environ['REPLACE']
           root = Path(os.environ['ROOT'])
 
-          # file extensions to skip (add more if needed)
           skip_dirs = {'.git', 'node_modules', '.venv', 'venv', '.pytest_cache', '.gradle', 'build'}
           binary_signatures = [b'\x00']
 
           def is_binary(path: Path) -> bool:
               try:
                   with path.open('rb') as f:
-                      chunk = f.read(1024)
-                      return any(sig in chunk for sig in binary_signatures)
+                      return b'\x00' in f.read(1024)
               except Exception:
                   return True
 
-          for p in root.rglob('*'):
-              if p.is_dir():
-                  if p.name in skip_dirs:
-                      continue
+          changed_files = []
 
-              if p.is_file():
-                  if any(part in skip_dirs for part in p.parts):
-                      continue
+          for p in root.rglob('*'):
+              if p.is_dir() and p.name in skip_dirs:
+                  continue
+
+              if p.is_file() and not any(part in skip_dirs for part in p.parts):
                   try:
                       if is_binary(p):
                           continue
                       text = p.read_text(encoding='utf-8')
                   except Exception:
-                      # skip files we can't decode as utf-8
                       continue
 
                   if search in text:
-                      new = text.replace(search, replace)
-                      if new != text:
-                          p.write_text(new, encoding='utf-8')
-                          print(f"Replaced in: {p}")
+                      new_text = text.replace(search, replace)
+                      if new_text != text:
+                          p.write_text(new_text, encoding='utf-8')
+                          changed_files.append(str(p))
+
+          if changed_files:
+              print("Changed files:")
+              for f in changed_files:
+                  print(f"- {f}")
+          else:
+              print("No changes detected.")
           PY
 
-      - name: Stage changes and check if anything changed
+      - name: Check git changes
         id: git-check
         run: |
           set -euo pipefail
@@ -101,14 +102,17 @@ jobs:
 
       - name: Create Pull Request
         if: ${{ steps.git-check.outputs.changed == 'true' }}
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass update content"
-          branch: "fix/mass-replace-${{ github.run_id }}"
-          title: "Mass Replace: ${{ github.event.inputs.search }}"
+          commit-message: "chore: mass replace '${{ github.event.inputs.search }}'"
+          branch: "chore/mass-replace-${{ github.run_id }}"
+          title: "Mass replace: '${{ github.event.inputs.search }}'"
           body: |
-            Automated text replacement report.
-            - **Target**: `${{ github.event.inputs.search }}`
-            - **Replacement**: `${{ github.event.inputs.replace }}`
-            - **Path**: `${{ github.event.inputs.path }}`
+            🔁 **Automated Mass Replace**
+
+            **Target:** `${{ github.event.inputs.search }}`
+            **Replacement:** `${{ github.event.inputs.replace }}`
+            **Path:** `${{ github.event.inputs.path }}`
+
+            Silakan review perubahan di PR ini sebelum merge 🙏
