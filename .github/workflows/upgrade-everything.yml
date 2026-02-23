@@ -1,4 +1,4 @@
-name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Lean)
+name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Bun Edition)
 
 on:
   workflow_dispatch:
@@ -19,22 +19,27 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      - name: ⚙️ Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          cache: 'npm'
+          bun-version: latest
 
       - name: 📦 Install & Upgrade Dependencies
         run: |
-          bun install || bun install
-          bun install -g npm-check-updates
-          ncu -u --target minor
-          echo "✅ Dependencies diupgrade."
+          # Install awal untuk sinkronisasi
+          bun install
+          
+          # Upgrade package.json (Minor) menggunakan bunx
+          bunx npm-check-updates -u --target minor
+          
+          # Install ulang untuk memperbarui bun.lockb
+          bun install
+          echo "✅ Dependencies diupgrade dan bun.lockb disinkronkan."
 
       - name: 🌈 Update Assets Highlight.js & Font Awesome
         run: |
-          # Install paket terbaru secara temporary
-          bun install @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
+          # Install paket terbaru secara temporary (Bun sangat cepat di sini)
+          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Ambil JS & CSS Utama Highlight.js
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
@@ -54,15 +59,16 @@ jobs:
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css ext/vs-dark.min.css
 
           # Urus Font Awesome (Webfonts + CSS)
+          mkdir -p ext/fontawesome-webfonts/
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
 
           # Patch Path CSS Font Awesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
 
-          # Ambil Versi untuk Metadata
-          HLJS_VER=$(node -p "require('./node_modules/@highlightjs/cdn-assets/package.json').version")
-          FA_VER=$(node -p "require('./node_modules/@fortawesome/fontawesome-free/package.json').version")
+          # Ambil Versi untuk Metadata (Ganti node -p dengan jq yang lebih ringan)
+          HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
+          FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
 
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
           echo "✅ All Assets updated: HLJS v$HLJS_VER, FA v$FA_VER"
@@ -86,8 +92,10 @@ jobs:
 
       - name: 🧪 Audit & Detective Scan
         run: |
-          npm audit --omit=dev || true
-          bun run ext/cek-mubazir.js && bun run ext/cleanup.js
+          # Gunakan audit-ci yang lebih bersahabat dengan Bun
+          bunx audit-ci --low || true
+          bun run ext/cek-mubazir.js
+          bun run ext/cleanup.js
 
       - name: 🔍 Cek perubahan akhir
         id: check_changes
@@ -104,8 +112,8 @@ jobs:
           title: 'chore: Auto Maintenance (Deps + Assets)'
           commit-message: 'chore: automated maintenance'
           body: |
-            🔧 **Pemeliharaan Otomatis Layar Kosong**
-            - Upgrade Dependencies (Minor)
+            🔧 **Pemeliharaan Otomatis Layar Kosong (Bun Engine)**
+            - Upgrade Dependencies (Minor) via Bun
             - Update Assets (Highlight.js & Font Awesome)
             - ${{ steps.font_check.outputs.alert == 'true' && '🚨 **ALERT:** Hash font berubah!' || '✅ Hash font aman.' }}
           labels: automated
