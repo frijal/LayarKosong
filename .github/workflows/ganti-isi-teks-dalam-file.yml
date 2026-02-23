@@ -1,14 +1,18 @@
-name: "🚀 Mass Replace via Sed"
+name: "Mass Replace via Sed (PR)"
 
 on:
   workflow_dispatch:
     inputs:
       search_text:
-        description: "Teks yang dicari"
+        description: "Teks/Kalimat yang dicari"
         required: true
       replace_text:
-        description: "Teks pengganti"
+        description: "Teks/Kalimat pengganti"
         required: true
+      extensions:
+        description: "Ekstensi file (koma-separated, misal: md,ts,js). Kosongkan untuk semua file."
+        required: false
+        default: "md,ts,tsx,js,jsx"
       folder:
         description: "Lokasi folder (default: .)"
         required: false
@@ -23,20 +27,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@v4
 
-      - name: Run Fast Replacement
+      - name: Run Filtered Replacement
         shell: bash
         run: |
           SEARCH="${{ github.event.inputs.search_text }}"
           REPLACE="${{ github.event.inputs.replace_text }}"
           TARGET="${{ github.event.inputs.folder }}"
+          EXT="${{ github.event.inputs.extensions }}"
           
-          echo "🔍 Mencari: $SEARCH di folder $TARGET"
-          
-          # Menggunakan find untuk mencari file dan sed untuk mengganti teksnya
-          # Kita kecualikan folder .git dan node_modules agar tidak berat
-          find "$TARGET" -type f -not -path '*/.*' -not -path '*/node_modules/*' -not -path '*/functions/*' -not -path '*/img/*' -exec sed -i "s|$SEARCH|$REPLACE|g" {} +
+          # Membangun argumen pencarian ekstensi untuk 'find'
+          # Jika input: md,ts -> akan diubah jadi: -name "*.md" -o -name "*.ts"
+          EXT_ARGS=""
+          if [ -n "$EXT" ]; then
+            IFS=',' read -ra ADDR <<< "$EXT"
+            for i in "${ADDR[@]}"; do
+              if [ -z "$EXT_ARGS" ]; then
+                EXT_ARGS="-name \"*.${i// /}\""
+              else
+                EXT_ARGS="$EXT_ARGS -o -name \"*.${i// /}\""
+              fi
+            done
+            EXT_ARGS="( $EXT_ARGS )"
+          else
+            EXT_ARGS="-type f"
+          fi
+
+          echo "🔍 Mencari: \"$SEARCH\" -> \"$REPLACE\""
+          echo "📂 Filter Ekstensi: $EXT"
+
+          # Eksekusi find dengan filter folder dan ekstensi
+          eval "find \"$TARGET\" -type f $EXT_ARGS \
+            -not -path '*/.*' \
+            -not -path '*/node_modules/*' \
+            -not -path '*/functions/*' \
+            -not -path '*/img/*' \
+            -not -path '*/mini/*' \
+            -not -path '*/sementara/*' \
+            -exec sed -i \"s|$SEARCH|$REPLACE|g\" {} +"
 
       - name: "Check Git Status"
         id: status
@@ -45,15 +74,22 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "::notice::Tidak ada perubahan yang ditemukan."
+            echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
           fi
 
       - name: "Create Pull Request"
         if: steps.status.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass replace via sed"
-          branch: "automation/sed-replace-${{ github.run_id }}"
-          title: "Mass Replace: ${{ github.event.inputs.search_text }}"
-          body: "Automated replacement using `sed` command."
+          commit-message: "chore: mass replace in $EXT files"
+          branch: "automation/replace-ext-${{ github.run_id }}"
+          delete-branch: true
+          title: "Mass Replace (${{ github.event.inputs.extensions }}): ${{ github.event.inputs.search_text }}"
+          body: |
+            ## 🤖 Automated Replacement Report
+            
+            - **Cari:** `${{ github.event.inputs.search_text }}`
+            - **Ganti:** `${{ github.event.inputs.replace_text }}`
+            - **Ekstensi:** `${{ github.event.inputs.extensions }}`
+            - **Folder:** `${{ github.event.inputs.folder }}`
