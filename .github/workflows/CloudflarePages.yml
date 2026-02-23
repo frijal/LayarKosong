@@ -33,7 +33,7 @@ jobs:
           persist-credentials: true
      
       - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
           bun-version: latest
 
