@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       search_text:
-        description: "Teks yang dicari (Bisa kalimat)"
+        description: "Teks yang dicari"
         required: true
       replace_text:
         description: "Teks pengganti"
@@ -14,7 +14,7 @@ on:
         required: false
         default: "."
       extensions:
-        description: "Ekstensi file (koma-separated, misal: .ts,.js,.md)"
+        description: "Ekstensi file (misal: .ts,.js,.md)"
         required: false
         default: ".ts,.tsx,.js,.jsx,.md"
 
@@ -27,10 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -51,72 +51,45 @@ jobs:
           const replace = process.env.REPLACE;
           const extensions = process.env.EXTENSIONS?.split(",").map(e => e.trim()) || [".ts", ".js", ".md"];
 
-          console.log(`🚀 Memulai pemindaian di: ${targetDir}`);
-          console.log(`🔍 Mencari: "${search}" -> Mengganti dengan: "${replace}"`);
-
           async function processFiles(dir: string) {
             const entries = await readdir(dir, { withFileTypes: true });
             for (const entry of entries) {
               const fullPath = join(dir, entry.name);
-              
               if (entry.isDirectory()) {
-                if (["node_modules", ".git", "dist", "img", "mini", "sementara", "ext", "functions"].includes(entry.name)) continue;
+                if (["node_modules", ".git", "dist"].includes(entry.name)) continue;
                 await processFiles(fullPath);
-              } else {
-                if (extensions.some(ext => entry.name.endsWith(ext))) {
-                  const file = Bun.file(fullPath);
-                  const content = await file.text();
-                  
-                  if (content.includes(search!)) {
-                    // Cek Idempotensi: Jangan ganti jika teks pengganti sudah ada (dan bukan penggantian yang sama)
-                    if (content.includes(replace!) && search !== replace) {
-                      console.log(`⚠️  Skip ${fullPath}: Teks pengganti sudah ada.`);
-                      continue;
-                    }
-                    
-                    const updatedContent = content.split(search!).join(replace!);
-                    await Bun.write(fullPath, updatedContent);
-                    console.log(`✅ Updated: ${fullPath}`);
-                  }
+              } else if (extensions.some(ext => entry.name.endsWith(ext))) {
+                const file = Bun.file(fullPath);
+                const content = await file.text();
+                if (content.includes(search!)) {
+                  const updatedContent = content.split(search!).join(replace!);
+                  await Bun.write(fullPath, updatedContent);
+                  console.log(`✅ Updated: ${fullPath}`);
                 }
               }
             }
           }
-
           await processFiles(targetDir);
-          console.log("🏁 Selesai.");
           EOF
           bun run replace-script.ts
 
       - name: "Check Git Status"
         id: status
         run: |
+          git status
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "::notice::Tidak ada perubahan teks yang ditemukan. PR dibatalkan."
+            echo "::notice::Tidak ada perubahan ditemukan."
           fi
 
       - name: "Create Pull Request"
         if: steps.status.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: automated text replacement via Bun"
-          branch: "automation/mass-replace-${{ github.run_id }}"
-          delete-branch: true
+          commit-message: "chore: mass replace ${{ github.event.inputs.search_text }}"
+          branch: "automation/replace-${{ github.run_id }}"
           title: "Mass Replace: ${{ github.event.inputs.search_text }}"
-          body: |
-            ## 🤖 Automated Replacement Report
-            Replacement executed using **Bun Runtime** for better reliability.
-            
-            - **Search:** `${{ github.event.inputs.search_text }}`
-            - **Replace:** `${{ github.event.inputs.replace_text }}`
-            - **Target Folder:** `${{ github.event.inputs.folder }}`
-            - **Extensions:** `${{ github.event.inputs.extensions }}`
-            
-            *This PR was automatically generated.*
-          labels: |
-            automated-refactor
-            bun-tooling
+          body: "Automated replacement of `${{ github.event.inputs.search_text }}` with `${{ github.event.inputs.replace_text }}`"
