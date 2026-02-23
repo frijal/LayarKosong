@@ -1,4 +1,4 @@
-name: "Mass Replace via Bun"
+name: "🚀 Mass Replace via Sed"
 
 on:
   workflow_dispatch:
@@ -13,10 +13,6 @@ on:
         description: "Lokasi folder (default: .)"
         required: false
         default: "."
-      extensions:
-        description: "Ekstensi file (misal: .ts,.js,.md)"
-        required: false
-        default: ".ts,.tsx,.js,.jsx,.md"
 
 permissions:
   contents: write
@@ -27,69 +23,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
-        with:
-          bun-version: latest
-
-      - name: Run Replacement Script
-        id: replacement
-        env:
-          SEARCH: ${{ github.event.inputs.search_text }}
-          REPLACE: ${{ github.event.inputs.replace_text }}
-          TARGET_DIR: ${{ github.event.inputs.folder }}
-          EXTENSIONS: ${{ github.event.inputs.extensions }}
+      - name: Run Fast Replacement
+        shell: bash
         run: |
-          cat << 'EOF' > sementara/replace-script.ts
-          import { join } from "path";
-          import { readdir } from "fs/promises";
-
-          const targetDir = process.env.TARGET_DIR || ".";
-          const search = process.env.SEARCH;
-          const replace = process.env.REPLACE;
-          const extensions = process.env.EXTENSIONS?.split(",").map(e => e.trim()) || [".ts", ".js", ".md"];
-
-          async function processFiles(dir: string) {
-            const entries = await readdir(dir, { withFileTypes: true });
-            for (const entry of entries) {
-              const fullPath = join(dir, entry.name);
-              if (entry.isDirectory()) {
-                if (["node_modules", ".git", "dist"].includes(entry.name)) continue;
-                await processFiles(fullPath);
-              } else if (extensions.some(ext => entry.name.endsWith(ext))) {
-                const file = Bun.file(fullPath);
-                const content = await file.text();
-                if (content.includes(search!)) {
-                  const updatedContent = content.split(search!).join(replace!);
-                  await Bun.write(fullPath, updatedContent);
-                  console.log(`✅ Updated: ${fullPath}`);
-                }
-              }
-            }
-          }
-          await processFiles(targetDir);
-          EOF
-          bun run sementara/replace-script.ts
+          SEARCH="${{ github.event.inputs.search_text }}"
+          REPLACE="${{ github.event.inputs.replace_text }}"
+          TARGET="${{ github.event.inputs.folder }}"
+          
+          echo "🔍 Mencari: $SEARCH di folder $TARGET"
+          
+          # Menggunakan find untuk mencari file dan sed untuk mengganti teksnya
+          # Kita kecualikan folder .git dan node_modules agar tidak berat
+          find "$TARGET" -type f -not -path '*/.*' -not -path '*/node_modules/*' -not -path '*/functions/*' -not -path '*/img/*' -exec sed -i "s|$SEARCH|$REPLACE|g" {} +
 
       - name: "Check Git Status"
         id: status
         run: |
-          git status
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "::notice::Tidak ada perubahan ditemukan."
+            echo "::notice::Tidak ada perubahan yang ditemukan."
           fi
 
       - name: "Create Pull Request"
         if: steps.status.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: mass replace ${{ github.event.inputs.search_text }}"
-          branch: "automation/replace-${{ github.run_id }}"
+          commit-message: "chore: mass replace via sed"
+          branch: "automation/sed-replace-${{ github.run_id }}"
           title: "Mass Replace: ${{ github.event.inputs.search_text }}"
-          body: "Automated replacement of `${{ github.event.inputs.search_text }}` with `${{ github.event.inputs.replace_text }}`"
+          body: "Automated replacement using `sed` command."
