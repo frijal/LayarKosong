@@ -77,7 +77,7 @@ jobs:
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
         run: |
           set -euo pipefail
-          bun run ci-fix-meta-image
+          bun run ext/seo-fixer.js artikelx/
 
       - name: Add HTML Elements (Sed)
         run: |
