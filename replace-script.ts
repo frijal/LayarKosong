@@ -15,7 +15,7 @@ async function processFiles(dir: string) {
     const fullPath = join(dir, entry.name);
     
     if (entry.isDirectory()) {
-      if (["node_modules", ".git", "dist", "img", "mini", "sementara", "ext", "function"].includes(entry.name)) continue;
+      if (["node_modules", ".git", "dist", "img", "mini", "sementara", "ext", "functions"].includes(entry.name)) continue;
       await processFiles(fullPath);
     } else {
       if (extensions.some(ext => entry.name.endsWith(ext))) {
