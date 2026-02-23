@@ -1,95 +1,114 @@
-name: Ganti Teks dalam File (via PR)
+name: Mass Replace and Create PR
+
 on:
   workflow_dispatch:
     inputs:
       search:
-        description: "Set 1: Teks dicari"
+        description: 'Teks yang akan dicari (literal string)'
         required: true
+        type: string
       replace:
-        description: "Set 1: Teks pengganti"
+        description: 'Teks pengganti'
+        required: true
+        type: string
+      path:
+        description: 'Root path untuk pencarian (default .)'
         required: false
-      search2:
-        description: "Set 2: Teks dicari (Hanya jika Set 1 Match)"
-        required: false
-      folder:
-        description: "Folder target (default: .)"
-        required: false
-        default: "."
-      globs:
-        description: "Ekstensi file (contoh: *.ts,*.js)"
-        required: false
-        default: "*"
+        default: '.'
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  replace-process:
+  mass-replace:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: "Eksekusi Penggantian Teks"
-        shell: bash
-        env:
-          S1: ${{ github.event.inputs.search }}
-          R1: ${{ github.event.inputs.replace }}
-          S2: ${{ github.event.inputs.search2 }}
-          R2: ${{ github.event.inputs.replace2 }}
-          TARGET: ${{ github.event.inputs.folder }}
+      - name: Set up git user
         run: |
-          # Perbaikan parsing GLOBS: Gunakan -name agar rekursif bekerja benar
-          IFS="," read -ra GLOBS_ARRAY <<< "${{ github.event.inputs.globs }}"
-          
-          for g in "${GLOBS_ARRAY[@]}"; do
-            pattern=$(echo $g | xargs) # trim whitespace
-            echo "📂 Scanning file dengan pola: $pattern di $TARGET"
-            
-            # Perbaikan: Gunakan -name untuk mencocokkan pattern file secara rekursif
-            find "${TARGET:-.}" -type f -name "$pattern" | while read -r file; do
-              # Skip node_modules atau vendor secara otomatis demi performa
-              [[ "$file" == *"node_modules"* ]] && continue
-              [[ "$file" == *"vendor"* ]] && continue
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-              CHANGED_IN_FILE=false
-              
-              # --- PROSES SET 1 ---
-              if grep -Fq "$S1" "$file"; then
-                # Cek jika pengganti sudah ada untuk menghindari redundansi
-                if [[ -n "$R1" ]] && grep -Fq "$R1" "$file" && [[ "$S1" != "$R1" ]]; then
-                  echo " ⏭️  $file: S1 ditemukan tapi R1 sudah ada. Skip."
-                else
-                  perl -i -pe "s#\Q$S1\E#$R1#g" "$file"
-                  echo " ✅ $file: Set 1 diganti."
-                  CHANGED_IN_FILE=true
-                fi
-              fi
+      - name: Run search and replace
+        id: replace
+        run: |
+          set -euo pipefail
+          SEARCH="${{ github.event.inputs.search }}"
+          REPLACE="${{ github.event.inputs.replace }}"
+          ROOT="${{ github.event.inputs.path }}"
 
-              # --- PROSES SET 2 (Hanya jika Set 1 match/sukses) ---
-              if [[ "$CHANGED_IN_FILE" == true && -n "$S2" ]]; then
-                perl -i -pe "s#\Q$S2\E#$R2#g" "$file"
-                echo " ⏩ $file: Set 2 diproses."
-              fi
-            done
-          done
+          # Find text files and replace in-place. Skip .git and common binary dirs.
+          # This Python approach avoids corrupting binary files.
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
 
-      - name: "Check for changes"
+          search = os.environ['SEARCH']
+          replace = os.environ['REPLACE']
+          root = Path(os.environ['ROOT'])
+
+          # file extensions to skip (add more if needed)
+          skip_dirs = {'.git', 'node_modules', '.venv', 'venv', '.pytest_cache', '.gradle', 'build'}
+          binary_signatures = [b'\x00']
+
+          def is_binary(path: Path) -> bool:
+              try:
+                  with path.open('rb') as f:
+                      chunk = f.read(1024)
+                      return any(sig in chunk for sig in binary_signatures)
+              except Exception:
+                  return True
+
+          for p in root.rglob('*'):
+              if p.is_dir():
+                  if p.name in skip_dirs:
+                      continue
+
+              if p.is_file():
+                  if any(part in skip_dirs for part in p.parts):
+                      continue
+                  try:
+                      if is_binary(p):
+                          continue
+                      text = p.read_text(encoding='utf-8')
+                  except Exception:
+                      # skip files we can't decode as utf-8
+                      continue
+
+                  if search in text:
+                      new = text.replace(search, replace)
+                      if new != text:
+                          p.write_text(new, encoding='utf-8')
+                          print(f"Replaced in: {p}")
+          PY
+
+      - name: Stage changes and check if anything changed
         id: git-check
         run: |
-          if [[ -z "$(git status --porcelain)" ]]; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "::notice::Tidak ada perubahan yang terdeteksi. PR tidak akan dibuat."
+          set -euo pipefail
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: "Create Pull Request"
+      - name: Create Pull Request
         if: ${{ steps.git-check.outputs.changed == 'true' }}
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@v6
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            commit-message: "chore: mass update content"
-            branch: "fix/mass-replace-${{ github.run_id }}"
-            title: "Mass Replace: ${{ github.event.inputs.search }}"
-            body: |
-              Automated text replacement report.
-              - Target: `${{ github.event.inputs.search }}`
-              - Replacement: `${{ github.event.inputs.replace }}`
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: mass update content"
+          branch: "fix/mass-replace-${{ github.run_id }}"
+          title: "Mass Replace: ${{ github.event.inputs.search }}"
+          body: |
+            Automated text replacement report.
+            - **Target**: `${{ github.event.inputs.search }}`
+            - **Replacement**: `${{ github.event.inputs.replace }}`
+            - **Path**: `${{ github.event.inputs.path }}`
