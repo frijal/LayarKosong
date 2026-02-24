@@ -4,8 +4,9 @@ FROM oven/bun:latest
 # 2. Set working directory
 WORKDIR /app
 
-# 3. Install dependencies & Google Chrome (Pakai pola modern yang kamu mau)
+# 3. Install dependencies sistem & Google Chrome (Versi Fix SSL)
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
     wget \
     curl \
     gnupg \
@@ -17,17 +18,18 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     xdg-utils \
     --no-install-recommends && \
-    # Buat folder keyring (tanpa sudo karena di Docker kita sudah root)
+    # Pastikan sertifikat terupdate
+    update-ca-certificates && \
+    # Buat folder keyring
     mkdir -p /etc/apt/keyrings && \
-    # Ambil kunci Google Chrome
+    # Download kunci Google (Pakai -k jika tetap error 77, tapi coba tanpa -k dulu)
     curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg && \
-    # Tambahkan repo Chrome pakai signed-by
+    # Tambahkan repo
     echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    # Update dan install Chrome
+    # Install Chrome
     apt-get update && apt-get install -y google-chrome-stable --no-install-recommends && \
-    # Bersihkan sampah
+    # Bersih-bersih
     rm -rf /var/lib/apt/lists/*
-
 # 4. Copy file package & Install dependencies aplikasi
 COPY package.json bun.lock* ./
 RUN bun install
