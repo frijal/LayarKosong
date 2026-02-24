@@ -7,6 +7,8 @@ on:
       - 'Dockerfile'
       - 'package.json'
       - 'bun.lock*'
+  schedule:
+      - cron: '0 0 * * 0' # Jalan otomatis setiap hari Minggu jam 12 malam
   workflow_dispatch:
 
 # Tambahkan izin untuk menulis ke Registry
@@ -74,3 +76,16 @@ jobs:
             git commit -m "chore: sync lockfiles 🧹"
             git push origin main
           fi
+
+      - name: 📋 Version Report
+        run: |
+          echo "## 📦 Software Versions in Image" >> $GITHUB_STEP_SUMMARY
+          docker run --rm ghcr.io/frijal/layarkosong:latest sh -c "
+            echo '- **Bun:** ' \$(bun --version) >> summary.txt
+            echo '- **Node:** ' \$(node --version) >> summary.txt
+            echo '- **Python:** ' \$(python3 --version) >> summary.txt
+            echo '- **Chrome:** ' \$(google-chrome --version) >> summary.txt
+            echo '- **Perl:** ' \$(perl -v | head -n 2 | tail -n 1) >> summary.txt
+          "
+          # (Opsional) Catat ke log GitHub
+          docker run --rm ghcr.io/frijal/layarkosong:latest bun --version
