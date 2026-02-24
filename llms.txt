@@ -5,8 +5,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.91
-last_updated: 2026-02-23
+document_version: 15.92
+last_updated: 2026-02-24
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -36,8 +36,8 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 23 February 2026)
-> Menampilkan 977 artikel yang berhasil diindeks dalam versi 15.91.
+## Index Artikel Terbaru (Updated: 24 February 2026)
+> Menampilkan 977 artikel yang berhasil diindeks dalam versi 15.92.
 ## Gaya Hidup
 - [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
 - [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
