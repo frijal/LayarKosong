@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.93
+document_version: 15.94
 last_updated: 2026-02-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 24 February 2026)
-> Menampilkan 977 artikel yang berhasil diindeks dalam versi 15.93.
+> Menampilkan 982 artikel yang berhasil diindeks dalam versi 15.94.
 ## Gaya Hidup
 - [Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang](https://dalam.web.id/gaya-hidup/rahasia-tidur-berkualitas-tanpa-bangun-siang) : Pelajari rahasia medis mendapatkan tidur berkualitas tanpa harus bangun siang. Pahami ritme sirkadian siklus REM dan cara bangun segar setiap pagi.
 - [Kenapa Tidur Setelah Subuh Tidak Disarankan Medis Bahaya Tersembunyi di Balik Mager Pagi](https://dalam.web.id/gaya-hidup/kenapa-tidur-setelah-subuh-tidak-disarankan-medis) : Simak penjelasan medis mendalam tentang bahaya tidur setelah subuh bagi jantung metabolisme dan kesehatan mental serta gangguan ritme sirkadian tubuh
@@ -104,7 +104,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Kuat & Menenangkan: Dalil Taat kepada Pemerintahan dalam Islam](https://dalam.web.id/jejak-sejarah/dalil-taat-kepada-pemerintah-islam) : Apakah ketaatan kepada pemimpin itu mutlak? Temukan jawaban mendalam berdasarkan manhaj Ahlus Sunnah wal Jamaah di sini.
 - [Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak](https://dalam.web.id/jejak-sejarah/al-baqarah-11-12-tafsir-kerusakan) : Tafsir lengkap Surat Al-Baqarah ayat 11-12 tentang larangan membuat kerusakan di bumi dan tipu daya orang munafik yang mengaku melakukan perbaikan. Renungan islami untuk kehidupan sehari-hari.
+- [Satu Akar Sejarah Mengapa Nama Tokoh Agama Islam dan Kristen Terasa Mirip](https://dalam.web.id/jejak-sejarah/kenapa-nama-tokoh-agama-mirip) : mengenai kemiripan nama tokoh dalam Islam dan Kristen seperti David dan Dawud Gabriel dan Jibril serta analisis rumpun bahasa Semit
 - [Zakat untuk MBG: Dari Rukun Islam Jadi Rukun Anggaran? Analisis Ekonomi dan Syariat](https://dalam.web.id/jejak-sejarah/zakat-untuk-mbg-analisis) : wacana penggunaan dana zakat untuk program Makan Bergizi Gratis MBG. Benarkah zakat beralih fungsi menjadi instrumen fiskal? Simak ulasan ekonomi dan dampak bagi keluarga miskin
 - [Menuju Islam Kemajon: Bahaya Merasa Paling Pintar dan Hilangnya Adab | Jaga Data Pribadi Tetap Aman](https://dalam.web.id/jejak-sejarah/menuju-islam-kemajon) : Apa itu Islam Kemajon? Mengenal istilah kemajon dalam perilaku beragama, bahaya sifat sombong, dan pentingnya merendah hati dengan ucapan Insya Allah sesuai sunnah Nabi.
 - [Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia?](https://dalam.web.id/jejak-sejarah/keindahan-surga-tak-terbayangkan) : Eksplorasi mendalam tentang hakikat surga berdasarkan Al-Quran dan Hadits. Mengapa kita harus mengejar akhirat dan bagaimana gambaran kenikmatan yang tak pernah terlihat mata?
@@ -255,6 +257,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Budi Pekerti yang Luntur: Kita Kehilangan Moral, atau Kehilangan Keberanian?](https://dalam.web.id/lainnya/budi-pekerti-luntur) : Membahas fenomena lunturnya budi pekerti di era digital. Apakah ini krisis moralitas, krisis integritas, atau sekadar hilangnya keberanian sosial di tengah hiruk pikuk algoritma?
 - [Defisit di Meja Perundingan Analisis Kedaulatan Pangan dan Komitmen Impor 2026](https://dalam.web.id/lainnya/defisit-di-meja-perundingan) : Yurnaldi Paduka Raja mengenai dampak perjanjian dagang Indonesia AS terhadap kedaulatan pangan petani lokal dan konsistensi kebijakan swasembada
 - [Barter Besar di Washington: Akses Ekspor Ditukar Pasar Domestik Dipertaruhkan](https://dalam.web.id/lainnya/barter-besar-washington-art-agreement) : Agus M Maksum tentang perjanjian ART antara Indonesia dan Amerika Serikat. Dampak industri tekstil vs ancaman impor kedelai GMO dan daging sapi bagi petani lokal.
 - [Jejak Geopolitik: Barter Iuran BoP dan Gurita Freeport di Danantara](https://dalam.web.id/lainnya/jejak-negosiasi-geopolitik-gaza-freeport-danantara) : tentang keputusan pemerintah menahan dana Gaza demi lobi ekonomi Amerika Serikat, perpanjangan Freeport 2061, dan peran Danantara.
@@ -537,6 +540,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Agrinas & Koperasi Merah Putih: Antara Mimpi Energi & Kontroversi Impor Mobil](https://dalam.web.id/sistem-terbuka/agrinas-palma-nusantara-kontroversi-koperasi-merah-putih) : Mengupas tuntas PT Agrinas Palma Nusantara, BUMN sawit di bawah Danantara, yang tiba‑tiba dipercaya mengelola Koperasi Merah Putih. Ditambah rencana gila beli 105.000 mobil dari India. Analisis 5W+1H, fakta, opini, dan reaksi publik.
 - [Windows dan Linux Bukan Musuh: Panduan Workflow Cross-Platform Masa Depan](https://dalam.web.id/sistem-terbuka/windows-linux-complementary-tools) : Hentikan debat Windows vs Linux. Pelajari cara menggabungkan Windows dan Linux sebagai alat pelengkap untuk produktivitas kerja dan pengembangan software yang maksimal.
 - [Linux Bukan Windows Cara Beradaptasi dan Meningkatkan Produktivitas Secara Maksimal](https://dalam.web.id/sistem-terbuka/linux-bukan-windows-adaptasi-produktivitas) : mengapa Linux bukan pengganti Windows dan bagaimana cara bermigrasi dengan mentalitas yang benar untuk meningkatkan efisiensi kerja
 - [Revolusi Gaming Linux 2026: Nobara vs Bazzite vs Windows - Panduan Lengkap Performa](https://dalam.web.id/sistem-terbuka/revolusi-gaming-linux-nobara-bazzite) : Temukan perbandingan mendalam performa gaming Linux menggunakan Nobara dan Bazzite melawan Windows. Pelajari cara kerja Proton DXVK dan mengapa Linux kini lebih cepat untuk gaming PC
@@ -807,6 +811,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Firefox 148 AI Controls: Cara Mematikan Fitur AI Secara Total di Browser Kamu](https://dalam.web.id/warta-tekno/firefox-148-ai-controls) : cara menggunakan fitur AI Controls di Firefox 148 untuk memblokir fitur generative AI. Pelajari cara kerja master switch dan dampaknya bagi privasi data Anda.
 - [Copilot Memory Sekarang Pakai Data Edge Bing dan MSN Secara Default – Cara Amankan Privasi Kamu](https://dalam.web.id/warta-tekno/copilot-memory-privacy-management) : Ketahui pembaruan terbaru Microsoft Copilot yang kini otomatis merekam aktivitas dari Edge Bing dan MSN ke dalam fitur Memory. Pelajari cara mengelola privasi dan menghapus data yang tersimpan.
 - [Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty](https://dalam.web.id/warta-tekno/jangan-larang-medsos-anak-regulasi-platform) : Komisaris HAM Eropa Michael O Flaherty memperingatkan pemerintah agar tidak asal melarang anak main medsos tapi fokus pada regulasi platform digital
 - [Copilot Kini Hadir di Taskbar dan File Explorer Windows 11 Makin Sat Set dan Pintar](https://dalam.web.id/warta-tekno/copilot-windows-11-taskbar-file-explorer) : Microsoft membawa Copilot lebih dalam ke Windows 11 melalui Taskbar dan File Explorer. Simak analisis lengkap fitur Ask Copilot AI Agents dan cara optimasi produktivitas kerja kamu di sini.
