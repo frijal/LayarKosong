@@ -1,0 +1,27 @@
+name: Docker Build Layar Kosong
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Build Docker Image
+        run: |
+          docker build -t layarkosong-app .
+          
+      - name: Test Running Container
+        run: |
+          # Tes apakah kontainer bisa nyala dan menjalankan skrip
+          docker run --rm layarkosong-app bun --version
