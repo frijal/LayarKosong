@@ -7,7 +7,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 # pakai Debian Trixie (base image terbaru Bun)
-# 3. Install dependencies sistem & Google Chrome (Cara Modern)
+# 3. Install dependencies sistem & Google Chrome
 RUN apt-get update && apt-get install -y \
     libgbm-dev \
     fonts-liberation \
@@ -17,13 +17,14 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     xdg-utils \
     wget \
+    curl \
     gnupg \
     --no-install-recommends && \
-    # CARA BARU: Download kunci GPG dan simpan ke keyring folder
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg && \
-    # Daftarkan repo pakai kunci yang baru disimpan
+    # Gunakan CURL agar lebih robust dibanding WGET untuk ambil kunci
+    curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /usr/share/keyrings/googlechrome-linux-keyring.gpg > /dev/null && \
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && apt-get install -y google-chrome-stable --no-install-recommends && \
+    apt-get update && \
+    apt-get install -p google-chrome-stable -y --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
 # 4. Set working directory
