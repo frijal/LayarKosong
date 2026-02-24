@@ -1,8 +1,17 @@
 {
-  "name": "Bun Project",
+  "name": "Full Bun Migration",
   "image": "oven/bun:latest",
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {}
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ovensh.bun-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
   },
-  "postCreateCommand": "bun install"
+
+  "postCreateCommand": "bun install",
+
+  "remoteUser": "root"
 }
