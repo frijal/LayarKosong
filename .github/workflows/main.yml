@@ -1,0 +1,31 @@
+name: Auto Clean Hidden Unicode (HTML)
+
+on:
+  push:
+    paths:
+      - "**/*.html"
+  workflow_dispatch:
+
+jobs:
+  autoclean:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clean hidden unicode in HTML
+        run: |
+          find . -type f -name "*.html" -print0 | xargs -0 perl -i -CSD -pe 's/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
+
+      - name: Commit changes if any
+        run: |
+          if ! git diff --quiet; then
+            git config user.name "unicode-bot"
+            git config user.email "unicode-bot@users.noreply.github.com"
+            git add .
+            git commit -m "chore: remove hidden unicode characters from HTML"
+            git push
+          else
+            echo "No changes to commit."
+          fi
