@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # 4. Copy package.json dan bun.lockb duluan (biar caching kenceng)
-COPY package.json bun.lock ./
+COPY package.json bun.lockb ./
 
 # 5. Install dependencies pakai Bun
 RUN bun install --frozen-lockfile
