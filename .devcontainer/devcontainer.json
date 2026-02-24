@@ -2,7 +2,7 @@
   "name": "Bun Project",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/oven-sh/bun-install:1": {} 
   },
   "postCreateCommand": "bun install"
