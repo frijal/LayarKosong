@@ -52,5 +52,5 @@ RUN bun install
 # 6. Copy seluruh file project Layar Kosong
 COPY . .
 
-# Secara default jalankan ci-all
-CMD ["bun", "run", "ci-all"]
+# Secara default tampilkan Versi
+CMD ["bun", "--version"]
