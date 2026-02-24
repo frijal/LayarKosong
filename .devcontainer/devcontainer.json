@@ -1,29 +1,37 @@
 {
   "name": "Layar Kosong - Debian Trixie Bun",
-  // Kita pakai base Debian dari Microsoft yang paling mendekati
-  "image": "mcr.microsoft.com/devcontainers/base:debian",
-  
+  // Gunakan image Bun resmi agar tidak perlu install manual lewat curl yang sering gagal path-nya
+  "image": "oven/bun:latest",
+
   "features": {
-    // Docker-in-Docker biasanya butuh penyesuaian di Debian terbaru
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest",
       "moby": true
     }
   },
 
-  // Menggunakan postCreateCommand untuk install Bun secara manual (lebih aman di Debian 13)
-  "postCreateCommand": "curl -fsSL https://bun.sh/install | bash && export BUN_INSTALL=\"$HOME/.bun\" && export PATH=\"$BUN_INSTALL/bin:$PATH\" && bun install",
+  // Kita gunakan 'updateContentCommand' untuk install dependencies project
+  // Ini lebih stabil dijalankan setelah container siap
+  "postCreateCommand": "bun install",
 
   "customizations": {
     "vscode": {
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
+        // Mastiin terminal pakai bash dan path bun terbaca
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.env.linux": {
+          "PATH": "${containerEnv:PATH}:/root/.bun/bin:/home/vscode/.bun/bin"
+        }
       },
       "extensions": [
-        "ovensh.bun-vscode"
+        "ovensh.bun-vscode",
+        "dariofuzinato.bun-test-explorer",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
 
-  "remoteUser": "vscode"
+  // Jika pakai image oven/bun, usernya biasanya root,
+  // tapi kalau mau tetap pakai vscode user, kita sesuaikan
+  "remoteUser": "root"
 }
