@@ -74,7 +74,7 @@ def main():
     if os.path.exists(LOG_FILE): os.remove(LOG_FILE)
     html_files_to_process = sorted([f for f in os.listdir('.') if f.endswith('.html') and not f.endswith('_fixed.html')])
     if not html_files_to_process:
-        print("🤷‍♂️ Tidak ada file .html yang ditemukan.")
+        print("🤷♂️ Tidak ada file .html yang ditemukan.")
         return
     print(f"Ditemukan {len(html_files_to_process)} file untuk diproses...\n")
     for filename in html_files_to_process:
