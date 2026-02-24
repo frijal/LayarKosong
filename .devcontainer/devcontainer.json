@@ -1,18 +1,29 @@
 {
-  "name": "Full Bun & Docker Migration",
-  "image": "oven/bun:latest",
+  "name": "Layar Kosong - Debian Trixie Bun",
+  // Kita pakai base Debian dari Microsoft yang paling mendekati
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  
   "features": {
-    // Tambahkan baris sakti ini:
+    // Docker-in-Docker biasanya butuh penyesuaian di Debian terbaru
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
-        "version": "latest",
-        "moby": true
+      "version": "latest",
+      "moby": true
     }
   },
+
+  // Menggunakan postCreateCommand untuk install Bun secara manual (lebih aman di Debian 13)
+  "postCreateCommand": "curl -fsSL https://bun.sh/install | bash && export BUN_INSTALL=\"$HOME/.bun\" && export PATH=\"$BUN_INSTALL/bin:$PATH\" && bun install",
+
   "customizations": {
     "vscode": {
-      "extensions": ["ovensh.bun-vscode"]
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ovensh.bun-vscode"
+      ]
     }
   },
-  "postCreateCommand": "bun install",
-  "remoteUser": "root"
+
+  "remoteUser": "vscode"
 }
