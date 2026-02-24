@@ -1,17 +1,18 @@
 {
-  "name": "Full Bun Migration",
+  "name": "Full Bun & Docker Migration",
   "image": "oven/bun:latest",
-
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ovensh.bun-vscode",
-        "dbaeumer.vscode-eslint"
-      ]
+  "features": {
+    // Tambahkan baris sakti ini:
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {
+        "version": "latest",
+        "moby": true
     }
   },
-
+  "customizations": {
+    "vscode": {
+      "extensions": ["ovensh.bun-vscode"]
+    }
+  },
   "postCreateCommand": "bun install",
-
   "remoteUser": "root"
 }
