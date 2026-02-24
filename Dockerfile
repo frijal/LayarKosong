@@ -22,7 +22,7 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 
 # 5. Install dependencies pakai Bun
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # 6. Copy semua sisa kode skrip kamu
 COPY . .
