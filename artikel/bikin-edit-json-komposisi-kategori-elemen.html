@@ -346,11 +346,11 @@
   <script>
     // ... Seluruh JavaScript Anda dari file asli ...
     // (Tidak perlu diubah)
-  let existingData = {};
-  const elementsContainer = document.getElementById('elementsContainer');
-  const addElementBtn = document.getElementById('addElementBtn');
-  const generateJsonBtn = document.getElementById('generateJsonBtn');
-  const categoryNameInput = document.getElementById('categoryName');
+  let existingData = {};
+  const elementsContainer = document.getElementById('elementsContainer');
+  const addElementBtn = document.getElementById('addElementBtn');
+  const generateJsonBtn = document.getElementById('generateJsonBtn');
+  const categoryNameInput = document.getElementById('categoryName');
   const loadJsonFile = document.getElementById('loadJsonFile');
   const categoryList = document.getElementById('categoryList');
   loadJsonFile.addEventListener('change', (event) => {
@@ -444,10 +444,10 @@
       elementsContainer.appendChild(createElementRow());
     }
   });
-  // Fungsi buat satu baris input elemen baru
-  function createElementRow(data = {}) {
-    const div = document.createElement('div');
-    div.classList.add('element-row');
+  // Fungsi buat satu baris input elemen baru
+  function createElementRow(data = {}) {
+    const div = document.createElement('div');
+    div.classList.add('element-row');
     // Ambil yyyy-mm-dd dari ISO string (jika ada)
     const dateValue = data.date ? data.date.substring(0, 10) : '';
     const placeholderImg = 'https://dalam.web.id/thumbnail.webp';
@@ -456,7 +456,7 @@
     const titlePreview = escapeHtml(data.title || 'Judul...');
     const descPreview = escapeHtml(data.desc || 'Deskripsi...');
     const datePreview = dateValue || 'Tanggal...';
-    div.innerHTML = `
+    div.innerHTML = `
       <button class="remove-btn" title="Hapus elemen ini">×</button>
       <div class="element-row-flex">
         <div class="element-inputs">
@@ -481,67 +481,67 @@
             </div>
           </div>
         </div>
-      </div>     `;
-    // Event tombol hapus elemen
-    div.querySelector('.remove-btn').addEventListener('click', () => {
-      if(confirm('Hapus elemen ini?')) {
-        div.remove();
-      }
-    });
-    return div;
-  }
-  function escapeHtml(text) {
-    if (!text) return '';
-    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g,"&quot;");
-  }
-  addElementBtn.addEventListener('click', () => {
-    const newRow = createElementRow();
-    elementsContainer.appendChild(newRow);
-  });
-  generateJsonBtn.addEventListener('click', () => {
-    const categoryName = categoryNameInput.value.trim();
-    if(!categoryName) {
-      alert('Nama kategori harus diisi!');
-      categoryNameInput.focus();
-      return;
-    }
-    const elementDivs = [...elementsContainer.querySelectorAll('.element-row')];
-    if(elementDivs.length === 0) {
-      alert('Tambahkan minimal satu elemen!');
-      return;
-    }
-    const elementsData = [];
-    for(let div of elementDivs) {
-      const title = div.querySelector('.field-title').value.trim();
-      const file = div.querySelector('.field-file').value.trim();
-      const image = div.querySelector('.field-image').value.trim();
-      const date = div.querySelector('.field-date').value.trim();
-      const desc = div.querySelector('.field-desc').value.trim();
-      if(!title || !file) {
-        alert('Judul dan File HTML harus diisi di semua elemen.');
-        return;
-      }
-      const dateISO = date ? (new Date(date)).toISOString() : ""; 
-      elementsData.push([title, file, image, dateISO, desc]);
-    }
-    existingData[categoryName] = elementsData;
-    const jsonStr = JSON.stringify(existingData, null, 2);
-    downloadJSON(jsonStr, 'data_kategori_updated.json');
-  });
-  function downloadJSON(content, filename) {
-    const blob = new Blob([content], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-    }, 100);
-  }
-  window.addEventListener('load', () => {
-    addElementBtn.click();
-  });
+      </div>     `;
+    // Event tombol hapus elemen
+    div.querySelector('.remove-btn').addEventListener('click', () => {
+      if(confirm('Hapus elemen ini?')) {
+        div.remove();
+      }
+    });
+    return div;
+  }
+  function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g,"&quot;");
+  }
+  addElementBtn.addEventListener('click', () => {
+    const newRow = createElementRow();
+    elementsContainer.appendChild(newRow);
+  });
+  generateJsonBtn.addEventListener('click', () => {
+    const categoryName = categoryNameInput.value.trim();
+    if(!categoryName) {
+      alert('Nama kategori harus diisi!');
+      categoryNameInput.focus();
+      return;
+    }
+    const elementDivs = [...elementsContainer.querySelectorAll('.element-row')];
+    if(elementDivs.length === 0) {
+      alert('Tambahkan minimal satu elemen!');
+      return;
+    }
+    const elementsData = [];
+    for(let div of elementDivs) {
+      const title = div.querySelector('.field-title').value.trim();
+      const file = div.querySelector('.field-file').value.trim();
+      const image = div.querySelector('.field-image').value.trim();
+      const date = div.querySelector('.field-date').value.trim();
+      const desc = div.querySelector('.field-desc').value.trim();
+      if(!title || !file) {
+        alert('Judul dan File HTML harus diisi di semua elemen.');
+        return;
+      }
+      const dateISO = date ? (new Date(date)).toISOString() : ""; 
+      elementsData.push([title, file, image, dateISO, desc]);
+    }
+    existingData[categoryName] = elementsData;
+    const jsonStr = JSON.stringify(existingData, null, 2);
+    downloadJSON(jsonStr, 'data_kategori_updated.json');
+  });
+  function downloadJSON(content, filename) {
+    const blob = new Blob([content], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 100);
+  }
+  window.addEventListener('load', () => {
+    addElementBtn.click();
+  });
   </script>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>

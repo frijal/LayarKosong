@@ -1,18 +1,18 @@
 {
   "name": "layarkosong",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
   "main": "index.js",
-  "scripts": {
-    "fixseo": "node ext/seo-fixer.js",
-    "ci-fix-meta-image": "node ext/seo-fixer.js artikelx",
-    "ci-fix-meta-main": "node ext/seo-fixer.js artikel",
-    "ci-generate-xml-rss": "node ext/generator-pro.js",
-    "ci-screenshot": "node ext/screenshot-puppeteer.js",
-    "ci-all": "npm run ci-fix-meta-image && npm run ci-generate-xml-rss && npm run ci-screenshot",
-    "generate-ai-api": "node ext/generate-ai-api.js",
-    "check-deps": "node ext/cek-mubazir.js"
+   "scripts": {
+    "fixseo": "bun run ext/seo-fixer.js",
+    "ci-fix-meta-image": "bun run ext/seo-fixer.js artikelx",
+    "ci-fix-meta-main": "bun run ext/seo-fixer.js artikel",
+    "ci-generate-xml-rss": "bun run ext/generator-pro.js",
+    "ci-screenshot": "bun run ext/screenshot-puppeteer.js",
+    "ci-all": "bun run ci-fix-meta-image && bun run ci-generate-xml-rss && bun run ci-screenshot",
+    "generate-ai-api": "bun run ext/generate-ai-api.js",
+    "check-deps": "bun run ext/cek-mubazir.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "url": "https://github.com/frijal/layarkosong/issues"
   },
   "engines": {
+    "bun": ">=1.0.0",
     "node": ">=20.0.0"
   },
   "dependencies": {
