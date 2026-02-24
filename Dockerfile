@@ -3,9 +3,9 @@ FROM oven/bun:latest
 
 # 2. Install library sistem yang dibutuhin Puppeteer/Chrome
 # Ini krusial karena Bun image basic nggak punya library GUI Linux
+# 2. Install dependencies untuk Headless Chrome
 RUN apt-get update && apt-get install -y \
     libgbm-dev \
-    nss \
     fonts-liberation \
     libasound2 \
     libnspr4 \
@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
-
 # 3. Set working directory
 WORKDIR /app
 
