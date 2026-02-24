@@ -24,13 +24,7 @@ jobs:
       - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          bun-version: latest
-
-      - name: Cache Bun dependencies
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          bun-version: latest     
 
       - name: Install Node dependencies
         run: bun install
