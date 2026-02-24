@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO & Metadata Dasar -->
+    <title>Firefox 148 AI Controls: Cara Mematikan Fitur AI Secara Total di Browser Kamu</title>
+    <meta name="description" content="Panduan lengkap cara menggunakan fitur AI Controls di Firefox 148 untuk memblokir fitur generative AI. Pelajari cara kerja master switch dan dampaknya bagi privasi data Anda.">
+    <meta name="news_keywords" content="Firefox 148, AI Controls, Blokir AI Browser, Mozilla Firefox, Privasi Digital, Matikan Generative AI, Etika Teknologi, Fitur Browser Baru">
+    <link rel="canonical" href="https://dalam.web.id/artikel/firefox-148-ai-controls.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikel/firefox-148-ai-controls.html">
+    <meta property="og:title" content="Firefox 148 AI Controls: Kendali Penuh di Tangan Pengguna">
+    <meta property="og:description" content="Mozilla akhirnya merilis fitur 'Tombol Pemutus' AI di Firefox 148. Simak ulasan mendalam tentang cara kerjanya di sini.">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HB58Rw1boAAyX6u.jpg">
+    <meta property="article:published_time" content="2026-02-24T14:00:00+07:00">
+    <meta property="article:tag" content="Teknologi Peramban">
+    <meta property="article:tag" content="Privasi Data">
+    <meta property="article:tag" content="Mozilla Firefox">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bosan dengan AI di Mana-Mana? Firefox 148 Berikan Solusinya">
+    <meta name="twitter:description" content="Pelajari cara menggunakan Master Switch AI di Firefox 148 untuk memblokir semua fitur generatif.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HB58Rw1boAAyX6u.jpg">
+
+    <!-- PrompHint -->
+    <meta name="promphint" content="Artikel ini membahas secara mendalam fitur AI Controls pada Firefox 148, termasuk cara kerja teknis dan implikasi privasi bagi pengguna Windows dan Linux.">
+
+    <!-- Font & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #e66000; /* Firefox Orange */
+            --secondary-text: #4b5563;
+            --border-color: #e5e7eb;
+            --code-bg: #f3f4f6;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f1f5f9;
+                --accent-color: #fb923c;
+                --secondary-text: #94a3b8;
+                --border-color: #1e293b;
+                --code-bg: #1e293b;
+            }
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        article { font-family: 'Lora', serif; }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-top: 1.5em;
+        }
+
+        h1 { font-size: 2.8rem; color: var(--accent-color); margin-top: 0; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 30px 0;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .meta-info {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+        }
+
+        .callout {
+            background-color: var(--code-bg);
+            padding: 25px;
+            border-left: 6px solid var(--accent-color);
+            border-radius: 8px;
+            margin: 40px 0;
+            font-style: italic;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 20px;
+            overflow-x: auto;
+            border-radius: 10px;
+        }
+
+        ul, ol { margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        #response, #related-articles-grid {
+            margin-top: 60px;
+            padding: 30px;
+            background: var(--code-bg);
+            border-radius: 12px;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            body { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <article>
+        <header>
+            <div class="meta-info">
+                <i class="fas fa-folder-open"></i> Artikel Teknologi &bull; <i class="fas fa-user-edit"></i> Admin Jalanan &bull; <i class="fas fa-calendar-day"></i> 24 Februari 2026
+            </div>
+            <h1>Firefox 148 AI Controls: Jawaban Buat Kamu yang Eneg Sama "AI di Mana-Mana" <i class="fas fa-toggle-on"></i></h1>
+        </header>
+
+
+        <section id="pembukaan">
+            <p>Apakah kita ngerasa kalau sekarang ini semua aplikasi maksa kita buat pakai AI? Mulai dari nulis email, bikin gambar, sampai sekadar nyari barang di marketplace, tiba-tiba ada asisten AI yang nongol. Nah, kalau kamu termasuk tim yang merasa "AI itu oke, tapi jangan maksa dong," ada kabar gembira dari Mozilla. 🦊</p>
+                    <img src="https://pbs.twimg.com/media/HB58Rw1boAAyX6u.jpg" alt="Antarmuka AI Controls di Firefox 148" class="featured-image">
+
+            <p>Mulai hari ini, tepatnya Selasa, 24 Februari 2026, Firefox versi 148 resmi meluncur. Di versi terbaru ini, Firefox nggak cuma nambah fitur, tapi justru ngasih kita "hak untuk menolak". Mereka ngerilis fitur bernama <strong>AI Controls</strong>. Ini adalah semacam sakelar utama (<em>master switch</em>) buat mematikan semua fitur Generative AI yang ada di browser. Jadi, kendali tetap ada di tangan kita, bukan di tangan algoritma.</p>
+        </section>
+
+        <h2>Apa Itu AI Controls di Firefox 148? <i class="fas fa-question-circle"></i></h2>
+        <p>Gampangnya gini: Mozilla sadar kalau penggunanya itu terbelah. Ada yang suka banget dibantu AI, ada juga yang skeptis soal privasi dan merasa AI cuma bikin browser jadi berat. Sebagai jawaban, di Firefox 148 ada bagian baru di menu Settings yang isinya khusus buat ngatur AI.</p>
+
+        <p>Fitur utamanya disebut <strong>"Block AI enhancements"</strong>. Sekali klik tombol ini, Firefox bakal langsung masuk ke mode "Bebas AI". Nggak ada lagi rekomendasi tab, nggak ada lagi rangkuman teks otomatis, dan nggak ada lagi asisten yang nongol di sidebar kalau kamu nggak mau.</p>
+
+        <div class="callout">
+            "Kehadiran AI Controls adalah janji Mozilla bahwa kamu tetap bisa pakai Firefox tanpa gangguan AI, sementara mereka tetap ngembangin fitur AI opsional buat mereka yang emang butuh."
+        </div>
+
+        <h2>5W+1H: Bedah Tuntas Fitur AI Kill Switch <i class="fas fa-microchip"></i></h2>
+
+        <h3>1. Apa (What) saja yang dikontrol?</h3>
+        <p>Panel AI Controls ini nggak cuma soal satu tombol mati/nyala. Di dalamnya, kamu bisa ngatur fitur-fitur ini secara spesifik:</p>
+        <ul>
+            <li><strong>AI-enhanced Tab Grouping:</strong> Pengelompokan tab otomatis biar browser nggak berantakan.</li>
+            <li><strong>Alt Text in PDFs:</strong> Pembuatan deskripsi gambar otomatis buat aksesibilitas di file PDF.</li>
+            <li><strong>Link Previews / Key Points:</strong> Rangkuman singkat isi link sebelum kamu klik.</li>
+            <li><strong>Sidebar Chatbot:</strong> Integrasi dengan chatbot pihak ketiga kayak ChatGPT, Claude, Gemini, atau Mistral.</li>
+            <li><strong>Translations:</strong> Fitur terjemahan halaman web berbasis AI.</li>
+        </ul>
+
+        <h3>2. Siapa (Who) yang paling butuh fitur ini?</h3>
+        <p>Fitur ini dibuat buat kamu para pengabdi privasi, pengguna laptop spek lama yang nggak mau RAM-nya dimakan model AI, sampai admin IT di perkantoran yang mau mastiin data perusahaan nggak "bocor" ke mesin pelatih AI pihak ketiga.</p>
+
+        <h3>3. Di mana (Where) bisa nemuin pengaturannya?</h3>
+        <p>Kamu nggak perlu ribet buka terminal. Cukup klik menu <strong>Settings</strong> > cari bagian <strong>AI Controls</strong> di panel kiri. Atau kalau mau cepet, ketik <code>about:preferences#ai</code> di alamat bar.</p>
+
+        <h3>4. Kapan (When) fitur ini tersedia?</h3>
+        <p>Resminya mulai <strong>24 Februari 2026</strong>. Tapi kalau kamu pakai Firefox Nightly atau Beta, sebenernya fitur ini udah bisa diintip sejak beberapa minggu lalu lewat pengaturan tersembunyi.</p>
+
+        <h3>5. Mengapa (Why) Mozilla ngelakuin ini?</h3>
+        <p>Beda sama Chrome atau Edge yang kesannya "maksa" masukin AI ke setiap sudut browser, Mozilla mau tetep setia sama nilai utamanya: <strong>User Agency</strong> (kehendak bebas pengguna). Mereka tau kalau integritas digital itu dimulai dari pilihan. Kalau kita kehilangan keberanian buat bilang 'tidak' pada teknologi yang invasif, kita bakal kehilangan privasi kita selamanya.</p>
+
+        <h3>6. Bagaimana (How) cara kerjanya secara teknis?</h3>
+        <p>Ini yang keren. Pas kamu nyalain fitur "Block AI enhancements", Firefox nggak cuma nyembunyiin menu-nya doang. Buat fitur yang jalan langsung di perangkat (<em>on-device</em>), Firefox bakal <strong>menghapus model data</strong> yang udah didownload ke laptop kamu. Jadi bener-bener bersih dan hemat ruang disk!</p>
+
+        <h2>Cara Coba di Firefox Nightly (Buat Kamu yang Nggak Sabaran) <i class="fas fa-flask"></i></h2>
+        <p>Kalau kamu tipe orang yang suka eksperimen, kamu bisa coba fitur ini sekarang juga di versi Nightly. Caranya:</p>
+        <pre><code>1. Buka Firefox Nightly.
+2. Ketik 'about:config' di address bar.
+3. Cari: browser.preferences.aiControls
+4. Ubah jadi 'true' dengan klik dua kali.
+5. Buka Settings, dan taraaa! Menu AI Controls sudah muncul.</code></pre>
+
+        <h2>Etika Digital: Mengapa Kendali AI itu Penting? <i class="fas fa-user-shield"></i></h2>
+        <p>Dalam konteks <strong>Budi Pekerti Digital</strong>, punya pilihan untuk menolak AI adalah bentuk kemandirian berpikir. Kita hidup di era di mana algoritma seringkali mendikte apa yang harus kita baca dan bagaimana kita bekerja. Dengan adanya <em>Master Switch</em> ini, kita diajak untuk kembali berdaulat atas alat kerja kita sendiri.</p>
+
+        <p>Keberanian Mozilla untuk menghadirkan fitur ini patut diacungi jempol. Di tengah perlombaan senjata AI, mereka justru memberikan "rem" kepada penggunanya. Ini adalah bentuk tanggung jawab moral sebuah perusahaan teknologi terhadap kesehatan mental dan privasi penggunanya.</p>
+
+        <p>Namun, perlu diingat juga ya: tombol ini nggak bakal otomatis bikin internet kamu 100% bebas AI. Kalau kamu buka web yang emang di dalamnya ada AI-nya (kayak buka langsung web ChatGPT), ya tombol ini nggak bisa ngapa-ngapain. Tombol ini cuma buat fitur bawaan browser aja.</p>
+
+        <h2>Kesimpulan <i class="fas fa-check-double"></i></h2>
+        <p>Firefox 148 dengan AI Controls-nya adalah sebuah langkah besar. Ia mengakui bahwa AI adalah masa depan, tapi ia juga menghormati bahwa tidak semua orang ingin hidup di masa depan itu sekarang juga. Apakah kamu bakal mematikan semua fitur AI, atau cuma pilih yang bermanfaat aja?</p>
+
+        <p>Keputusan ada di tanganmu. Karena pada akhirnya, teknologi harusnya melayani manusia, bukan sebaliknya. Mari kita jadi pengguna yang kritis dan berani menentukan pilihan kita sendiri! Apakah fitur AI di browser ngebantu kamu, atau malah bikin risih?</p>
+
+    </article>
+
+    <!-- Slot Komentar -->
+    <div id="response">
+    </div>
+
+    <!-- Grid Artikel Terkait -->
+    <div id="related-articles-grid">
+         </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 <a href="https://dalam.web.id" style="color: inherit; font-weight: bold;">dalam.web.id</a> - Dibangun dengan prinsip kesederhanaan, kecepatan, dan kejujuran data. <i class="fas fa-shield-alt"></i></p>
+</footer>
+
+</body>
+</html>
