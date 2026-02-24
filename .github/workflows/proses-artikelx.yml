@@ -52,25 +52,26 @@ jobs:
               s|&copy;|🄯|g;
               s|Font Awesome 6 Free|Font Awesome 7 Free|g;
               s|Font Awesome 5 Free|Font Awesome 7 Free|g;
-              s|Dalam.web.id|Jaga Data Pribadi Tetap Aman|g;
-              s|Dalam Web ID|Jaga Data Pribadi Tetap Aman|g;
-              s|Dalam Web Id|Jaga Data Pribadi Tetap Aman|g;
-              s|far fa-copyright|fa-brands fa-creative-commons-zero|g;
-              s|>dalam.web.id</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|>Dalam Web</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|Dalam Web Artikel|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|Analisis mendalam ||g;
-              s|Panduan mendalam ||g;
-              s|Penjelasan mendalam ||g;              
-              s|Analisis tajam ||g;
-              s|Simak ulasan mendalam ||g;
-              s|content="Mengapa ||g;
-              s|content="Simak ||g;
-              s|content="Analisis kritis ||g;
-              s|content="Temukan ||g;
-              s|content="Pelajari ||g;          
-              s|©|🄯|g;
               s| - Layar Kosong||g;
+              s|©|🄯|g;
+              s|>Dalam Web</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|>dalam.web.id</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|Analisis mendalam ||g;
+              s|Analisis tajam ||g;
+              s|content="Analisis kritis ||g;
+              s|content="Mengapa ||g;
+              s|content="Pelajari ||g;          
+              s|content="Simak ||g;
+              s|content="Temukan ||g;
+              s|Dalam Web Artikel|>Jaga Data Pribadi Tetap Aman</a>|g;
+              s|Dalam Web Id|Jaga Data Pribadi Tetap Aman|g;
+              s|Dalam Web ID|Jaga Data Pribadi Tetap Aman|g;
+              s|Dalam.web.id|Jaga Data Pribadi Tetap Aman|g;
+              s|far fa-copyright|fa-brands fa-creative-commons-zero|g;
+              s|Panduan lengkap ||g;
+              s|Panduan mendalam ||g;
+              s|Penjelasan mendalam ||g;
+              s|Simak ulasan mendalam ||g;
             ' "$file"
           done     
 
