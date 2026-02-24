@@ -9,6 +9,11 @@ on:
 jobs:
   autoclean:
     runs-on: ubuntu-latest
+    # --- BAGIAN YANG DITAMBAHKAN ---
+    container:
+      image: ghcr.io/frijal/layarkosong:latest
+      options: --user root
+    # -------------------------------
     permissions:
       contents: write
     steps:
