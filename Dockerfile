@@ -1,45 +1,37 @@
-# 1. Gunakan image Bun versi terbaru sebagai base
+# 1. Base image tetap Bun
 FROM oven/bun:latest
 
-# 2. Set environment agar Puppeteer tidak mendownload Chrome sendiri 
-# (Opsional, tapi bagus untuk kontrol versi)
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+# 2. Set working directory
+WORKDIR /app
 
-# pakai Debian Trixie (base image terbaru Bun)
-# 3. Install dependencies sistem & Google Chrome
+# 3. Install dependencies & Google Chrome (Pakai pola modern yang kamu mau)
 RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gnupg \
+    lsb-release \
     libgbm-dev \
     fonts-liberation \
     libasound2 \
     libnspr4 \
     libnss3 \
-    lsb-release \
     xdg-utils \
-    wget \
-    curl \
-    gnupg \
     --no-install-recommends && \
-    # Gunakan CURL agar lebih robust dibanding WGET untuk ambil kunci
-    curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /usr/share/keyrings/googlechrome-linux-keyring.gpg > /dev/null && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && \
-    apt-get install -p google-chrome-stable -y --no-install-recommends && \
+    # Buat folder keyring (tanpa sudo karena di Docker kita sudah root)
+    mkdir -p /etc/apt/keyrings && \
+    # Ambil kunci Google Chrome
+    curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg && \
+    # Tambahkan repo Chrome pakai signed-by
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    # Update dan install Chrome
+    apt-get update && apt-get install -y google-chrome-stable --no-install-recommends && \
+    # Bersihkan sampah
     rm -rf /var/lib/apt/lists/*
 
-# 4. Set working directory
-WORKDIR /app
-
-# 5. Copy file konfigurasi package
-# Kita copy bun.lock (jika ada) dan package.json saja dulu untuk caching layer
+# 4. Copy file package & Install dependencies aplikasi
 COPY package.json bun.lock* ./
-
-# 6. Install dependensi
-# Tanpa --frozen-lockfile agar Bun bisa otomatis migrasi format lockfile jika perlu
 RUN bun install
 
-# 7. Copy seluruh sisa kode aplikasi
+# 5. Copy sisa kode & Command jalan
 COPY . .
-
-# 8. Jalankan aplikasi (sesuaikan dengan command kamu)
 CMD ["bun", "run", "ci-all"]
