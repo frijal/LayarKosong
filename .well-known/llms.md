@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 15.98
+document_version: 15.99
 last_updated: 2026-02-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -37,7 +37,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 ## Index Artikel Terbaru (Updated: 24 February 2026)
-> Menampilkan 994 artikel yang berhasil diindeks dalam versi 15.98.
+> Menampilkan 994 artikel yang berhasil diindeks dalam versi 15.99.
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
 - [Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar?](https://dalam.web.id/gaya-hidup/regulasi-agen-properti-permendag-33-2025) : tentang Regulasi Agen Properti dalam Permendag 33 Tahun 2025. Apakah kebijakan ini benar melindungi konsumen atau justru meningkatkan barrier to entry dan konsolidasi pasar? Simak ulasan lengkapnya di sini.
