@@ -262,3 +262,11 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 </details>
 
 ---
+
+## Container Image
+
+[![GHCR Image](https://img.shields.io/badge/ghcr.io-frijal%2Flayarkosong:latest-blue?logo=github&logoColor=white)](https://github.com/frijal/layarkosong/pkgs/container/layarkosong)
+
+```bash
+docker pull ghcr.io/frijal/layarkosong:latest
+```
