@@ -85,7 +85,7 @@
         }
         h2 i { font-size: 1.5rem; opacity: 0.8; }
         /* Code & Step Styling */
-        .step-card {
+        .zdummy {
             background: rgba(30, 41, 59, 0.5);
             padding: 30px;
             border-radius: 16px;
@@ -196,7 +196,7 @@
     </div>
     <section>
         <h2><i class="fa-solid fa-download"></i> Tahap 1: Instalasi</h2>
-        <div class="step-card">
+        <div class="zdummy">
             <p>Pertama, kita butuh mesin utamanya. Jangan khawatir, Conky sangat ringan dan tersedia di hampir semua distro.</p>
             <pre><code class="language-bash"># Pilih sesuai distro andalanmu:
 sudo apt install conky-all       # Debian/Ubuntu/Mint
@@ -204,7 +204,7 @@ sudo pacman -S conky             # Arch/Manjaro
 sudo dnf install conky           # Fedora</code><button class="copy-btn">SALIN</button></pre>
         </div>
         <h2><i class="fa-solid fa-scroll"></i> Tahap 2: Script Anti-Error</h2>
-        <div class="step-card">
+        <div class="zdummy">
             <p>Seringkali Conky muncul duluan sebelum wallpaper siap, akhirnya tampilannya jadi berantakan (glitch). Solusinya, kita buat skrip jeda 10 detik.</p>
             <pre><code class="language-bash"># Buat file: ~/.mulaiconky.sh
 #!/bin/bash
@@ -215,7 +215,7 @@ sleep 10 &amp;&amp; conky -c "$HOME/.conkyrc" &amp;</code><button class="copy-bt
             </div>
         </div>
         <h2><i class="fa-solid fa-code"></i> Tahap 3: Konfigurasi .conkyrc</h2>
-        <div class="step-card">
+        <div class="zdummy">
             <p>Ini adalah bagian intinya. Copy kode di bawah ini ke dalam file <code>~/.conkyrc</code> di home directory kamu.</p>
             <pre><code class="language-lua">-- Konfigurasi Conky Minimalis Indonesia
 conky.config = {
