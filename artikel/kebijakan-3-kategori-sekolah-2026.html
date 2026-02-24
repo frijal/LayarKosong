@@ -272,7 +272,7 @@
         .faq-section {
             margin: 3rem 0;
         }
-        .faq-item {
+        .zdummy {
             margin-bottom: 1rem;
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
@@ -297,7 +297,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
         }
-        .faq-item.active .faq-answer {
+        .zdummy.active .faq-answer {
             padding: 1.25rem;
             max-height: 1000px;
         }
@@ -838,7 +838,7 @@
             <!-- FAQ Section -->
             <section class="faq-section">
                 <h2><i class="far fa-question-circle"></i> Pertanyaan yang Sering Diajukan (FAQ)</h2>
-                <div class="faq-item">
+                <div class="zdummy">
                     <div class="faq-question">
                         <span>Apakah kebijakan ini melanggar prinsip "keadilan sosial bagi seluruh rakyat Indonesia" dalam Pancasila?</span>
                         <i class="fas fa-chevron-down"></i>
@@ -847,7 +847,7 @@
                         <p>Ini menjadi perdebatan utama. Pemerintah berargumen bahwa keadilan bukan berarti keseragaman, tetapi memberikan apa yang dibutuhkan sesuai konteks (equity vs equality). Namun, banyak pakar pendidikan khawatir kebijakan ini justru mengerdilkan makna keadilan sosial dengan menciptakan strata dalam pendidikan yang akan memperkuat ketimpangan sosial yang sudah ada.</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="zdummy">
                     <div class="faq-question">
                         <span>Bagaimana dengan sekolah di bawah Kementerian Agama (madrasah)?</span>
                         <i class="fas fa-chevron-down"></i>
@@ -856,7 +856,7 @@
                         <p>Sampai saat ini belum ada kejelasan tentang posisi madrasah dalam kebijakan ini. Banyak komentar netizen menanyakan hal ini, menunjukkan kekhawatiran bahwa pendidikan agama akan terpinggirkan. Kemungkinan besar Kementerian Agama akan mengembangkan skema serupa yang menyesuaikan dengan karakteristik pendidikan keagamaan, tetapi hal ini masih perlu dikonfirmasi.</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="zdummy">
                     <div class="faq-question">
                         <span>Apakah siswa bisa berpindah dari sekolah reguler ke sekolah penggerak?</span>
                         <i class="fas fa-chevron-down"></i>
@@ -865,7 +865,7 @@
                         <p>Secara teori, mekanisme perpindahan dimungkinkan melalui seleksi ketat. Namun, dalam praktiknya, kesenjangan fasilitas dan kualitas pembelajaran sejak dini akan membuat siswa dari sekolah reguler sulit bersaing dengan siswa yang telah menikmati fasilitas dan metode pengajaran lebih baik di sekolah penggerak.</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="zdummy">
                     <div class="faq-question">
                         <span>Bagaimana dampaknya terhadap guru honorer dan kesejahteraan guru?</span>
                         <i class="fas fa-chevron-down"></i>
@@ -1076,7 +1076,7 @@
             question.addEventListener('click', () => {
                 const item = question.parentElement;
                 const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(otherItem => otherItem.classList.remove('active'));
+                document.querySelectorAll('.zdummy').forEach(otherItem => otherItem.classList.remove('active'));
                 if (!isActive) item.classList.add('active');
             });
         });
