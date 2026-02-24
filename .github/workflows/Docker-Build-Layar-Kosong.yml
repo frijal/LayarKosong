@@ -1,25 +1,60 @@
-name: Docker Build Layar Kosong
+name: 🐳 Docker Build & Cleanup
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Dockerfile'
+      - 'package.json'
+      - 'bun.lock*'
+  workflow_dispatch: # Supaya bisa dijalankan manual dari tab Actions
+
+permissions:
+  contents: write # Dibutuhkan untuk menghapus package-lock.json secara otomatis
 
 jobs:
-  build:
+  build-and-clean:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ambil history lengkap untuk keperluan git push
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+      - name: 🥟 Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Build Docker Image
+      - name: 🧹 Clean & Sync Lockfiles
         run: |
-          docker build -t layarkosong-app .
+          # 1. Hapus package-lock.json jika masih bandel ada di repo
+          if [ -f package-lock.json ]; then
+            echo "Nemu package-lock.json, kita sikat! 🗑️"
+            rm -f package-lock.json
+          fi
+
+          # 2. Re-generate bun.lock agar selalu fresh
+          echo "Syncing bun.lock... 🥟"
+          bun install
+
+      - name: 🛠️ Build Docker Image
+        run: |
+          # Menggunakan Docker BuildKit=0 sesuai preferensi Codespaces kamu
+          # agar tetap konsisten dengan cara manual tadi
+          DOCKER_BUILDKIT=0 docker build -t layarkosong-app .
+
+      - name: 🚀 Auto-Commit Cleanup (Optional)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
           
-      - name: Test Running Container
-        run: |
-          # Tes apakah kontainer bisa nyala dan menjalankan skrip
-          docker run --rm layarkosong-app bun --version
+          # Tambahkan perubahan jika package-lock.json terhapus atau bun.lock berubah
+          git add .
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: cleanup lockfiles and sync bun.lock 🧹"
+            git push origin main
+          else
+            echo "Semua sudah bersih, tidak ada yang perlu di-commit."
+          fi
