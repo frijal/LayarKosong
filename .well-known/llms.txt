@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.2
+document_version: 16.3
 last_updated: 2026-02-25
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -36,8 +36,10 @@ document_type: llm_behavior_and_entity_guidance
 - **Accuracy:** Stick to summaries provided and avoid hallucination.
 
 ---
-## Index Artikel Terbaru (Updated: 25 February 2026)
-> Menampilkan 995 artikel yang berhasil diindeks dalam versi 16.2.
+
+## Index Artikel Terbaru (Updated: 25 Februari 2026)
+> Menampilkan 976 artikel yang berhasil diindeks dalam versi 16.3.
+
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
 - [Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar?](https://dalam.web.id/gaya-hidup/regulasi-agen-properti-permendag-33-2025) : tentang Regulasi Agen Properti dalam Permendag 33 Tahun 2025. Apakah kebijakan ini benar melindungi konsumen atau justru meningkatkan barrier to entry dan konsolidasi pasar? Simak ulasan lengkapnya di sini.
@@ -289,34 +291,19 @@ document_type: llm_behavior_and_entity_guidance
 - [Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya](https://dalam.web.id/lainnya/tarif-listrik-januari-maret-2026) : Kabar gembira! PLN pastikan tarif listrik Januari-Maret 2026 tetap. Cek daftar tarif per kWh terbaru dan cara hitung tagihan listrik rumahmu di sini.
 - [Kalkulator Listrik Real-Time 2026](https://dalam.web.id/lainnya/kalkulator-listrik-real-time-2026) : Hitung tagihan listrik secara real-time. Masukkan alat, jumlah unit, dan durasi, hasil langsung muncul otomatis. Gratis dari Layar Kosong!
 - [Kado Tahun Baru 2026: Harga BBM Non-Subsidi Turun! Pertamina, Shell, BP, Vivo Kompak Kasih Diskon 🚀](https://dalam.web.id/lainnya/harga-bbm-turun-2026) : Mulai 1 Januari 2026, harga BBM non-subsidi seperti Pertamax, Pertamax Turbo, Dexlite turun signifikan. Cek daftar harga baru Pertamina dan badan usaha lain. Solar & Pertalite tetap, ini kado awal tahun buat pengendara!
-- [Arsip Layar Kosong: Semester 2 2025](https://dalam.web.id/lainnya/agregat-2025-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2025.
 - [Kalkulator Laundry Berkah](https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah) : Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.
 - [Mengapa Dilarang Mengecas Powerbank di Kereta? Ini Alasan Keamanannya!](https://dalam.web.id/lainnya/larangan-cas-powerbank-di-kereta) : Penjelasan lengkap kenapa KAI melarang cas powerbank di kereta. Ini alasannya, dari risiko overload, listrik padam satu gerbong, hingga bahaya kebakaran.
 - [Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara!](https://dalam.web.id/lainnya/revolusi-dapur-dme) : Era tabung gas melon akan berakhir! Pemerintah finalisasi proyek penggantian LPG impor dengan DME (Dimethyl Ether) dari batu bara. Simak alasannya, plus minusnya, dan apa dampaknya bagi dapur kita.
 - [Ujian Nasional: catatan singkat, video, dan visual](https://dalam.web.id/lainnya/ujian-nasional-catatan-video) : Sedikit catatan tentang dampak Ujian Nasional: video, komentar santai, dan foto suasana pelaksanaan. Desain fullscreen, interaktif, dan mobile-friendly.
-- [Arsip Layar Kosong: Semester 1 2025](https://dalam.web.id/lainnya/agregat-2025-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2025.
-- [Arsip Layar Kosong: Semester 1 2024](https://dalam.web.id/lainnya/agregat-2024-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2024.
 - [Fakhrul Rijal - HRGA Supervisor - Talent Acquisition Specialist](https://dalam.web.id/lainnya/fakhrul-rijal-hrga-supervisor-talent-acquisition) : HRGA Supervisor - Talent Acquisition Specialist dengan 10+ tahun pengalaman di bidang industri. Ahli dalam HRIS, perekrutan, dan manajemen tenaga kerja.
-- [Arsip Layar Kosong: Semester 2 2017](https://dalam.web.id/lainnya/agregat-2017-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2017.
-- [Arsip Layar Kosong: Semester 2 2016](https://dalam.web.id/lainnya/agregat-2016-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2016.
-- [Arsip Layar Kosong: Semester 1 2016](https://dalam.web.id/lainnya/agregat-2016-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2016.
-- [Arsip Layar Kosong: Semester 2 2015](https://dalam.web.id/lainnya/agregat-2015-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2015.
-- [Arsip Layar Kosong: Semester 1 2015](https://dalam.web.id/lainnya/agregat-2015-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2015.
-- [Arsip Layar Kosong: Semester 2 2014](https://dalam.web.id/lainnya/agregat-2014-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2014.
-- [Arsip Layar Kosong: Semester 1 2014](https://dalam.web.id/lainnya/agregat-2014-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2014.
 - [PT Adaro Indonesia — Profil Perusahaan & Fakta Penting](https://dalam.web.id/lainnya/adaro-perusahaan-tambang-batu-bara) : No description available.
 - [Bikin Kata Sandi Kuat — Generator](https://dalam.web.id/lainnya/password-generator-bikin-kata-sandi) : Generator kata sandi sederhana dan aman. Pilih panjang, jenis karakter (angka, simbol, huruf besar/kecil), lalu buat kata sandi kuat secara instan.
-- [Arsip Layar Kosong: Semester 2 2013](https://dalam.web.id/lainnya/agregat-2013-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2013.
 - [Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012](https://dalam.web.id/lainnya/Cuti-Tahun-2012) : Daftar lengkap cuti bersama dan hari libur nasional Indonesia tahun 2012 sebagai arsip dan referensi kalender.
-- [Arsip Layar Kosong: Semester 1 2013](https://dalam.web.id/lainnya/agregat-2013-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2013.
-- [Arsip Layar Kosong: Semester 2 2012](https://dalam.web.id/lainnya/agregat-2012-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2012.
 - [Kisah Sang Panglima Gerilya, Jenderal Soedirman](https://dalam.web.id/lainnya/kisah-jenderal-soedirman) : Kisah lengkap Jenderal Soedirman. Dari guru Muhammadiyah, komandan PETA, panglima besar TKR, hingga perang gerilya di atas tandu. Simbol integritas dan perjuangan.
 - [Pulang - Nostalgia, Rindu, dan Senyum Kecil](https://dalam.web.id/lainnya/lirik-pulang-nostalgia) : Lirik bernuansa rindu dan pulang: nostalgia kamar, wibawa ayah, hangatnya ibu, plus selipan humor kehidupan. Baca, dengar, dan nikmati.
-- [Arsip Layar Kosong: Semester 1 2012](https://dalam.web.id/lainnya/agregat-2012-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2012.
 - [WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap](https://dalam.web.id/lainnya/wigo-balikpapan) : Dokumentasi lengkap kunjungan Komunitas Blogger Balikpapan ke kantor WiGO (PT. Berca Global Access) pada 27 April 2012. Laporan, spesifikasi modem, dan galeri foto interaktif.
 - [10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙](https://dalam.web.id/lainnya/10-kalimat-muslim) : Tingkatkan kualitas lisan dengan 10 kalimat mulia dalam Islam. Lengkap dengan makna, waktu pengucapan, dan keutamaannya untuk keseharian yang lebih berkah.
 - [Kontroversi Larangan Jilbab di Sekolah Negeri (1980-1990)](https://dalam.web.id/lainnya/larangan-jilbab-1980-1990) : Pada dekade 1980-an hingga awal 1990-an, kebijakan mengenai atribut sekolah di Indonesia menghadapi salah satu kontroversi terbesarnya.
-- [Arsip Layar Kosong: Semester 2 2011](https://dalam.web.id/lainnya/agregat-2011-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2011.
 - [PT Badak NGL — Lokasi, Ringkasan & Fakta | Panduan Singkat](https://dalam.web.id/lainnya/pt-badak-ngl) : PT Badak NGL — profil singkat dan lokasi fasilitas. Informasi: alamat kota Bontang, Kalimantan Timur; ringkasan operasi; FAQ singkat.
 - [Aku Cinta Indonesia - Warisan Nilai dari Film Anak 'ACI' (1985)](https://dalam.web.id/lainnya/aku-cinta-indonesia) : Sejarah singkat film serial anak ACI (Aku Cinta Indonesia), nilai karakter yang diajarkan, lirik lagu, dan relevansinya untuk generasi masa kini.
 - [100 Perintah Allah Kepada Manusia di Dalam Al-Qur'an](https://dalam.web.id/lainnya/100-perintah-allah-dalam-quran) : Daftar 100 perintah dan larangan Allah SWT kepada manusia yang tercatat di dalam Al-Qur
@@ -329,9 +316,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Lir Sepo Asepah Samun: Makna Ampas yang Tersembunyi dari Serat Wedhatama](https://dalam.web.id/lainnya/lir-sepo-asepah-samun-wedhatama) : Frasa "Lir Sepo Asepah Samun" dari Serat Wedhatama menggambarkan seseorang di usia senja yang hampa batin dan tidak memiliki kebijaksanaan, sehingga hidupnya menjadi tidak berguna seperti ampas yang tersembunyi. Ini adalah kritik sosial dan refleksi spiritual mendalam yang mengingatkan manusia untuk hidup bermakna dan meninggalkan warisan kebijaksanaan.
 - [Mburu Uceng Kelangan Deleg: Pepatah Jawa yang Ngena Banget! 🐟](https://dalam.web.id/lainnya/mburu-uceng-kelangan-deleg) : Pepatah Jawa "Mburu uceng kelangan deleg" mengajarkan untuk tidak fokus pada hal sepele hingga mengabaikan yang lebih penting, karena bisa berujung pada kerugian besar. Ini adalah nasihat timeless tentang prioritas dan manajemen fokus dalam hidup, relevan di berbagai aspek kehidupan modern.
 - [Axel: Download Accelerator Ampuh Solusi Koneksi Mobile Lambat](https://dalam.web.id/lainnya/axel-download) : Cerita nemu
-- [Arsip Layar Kosong: Semester 1 2011](https://dalam.web.id/lainnya/agregat-2011-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2011.
-- [Arsip Layar Kosong: Semester 2 2010](https://dalam.web.id/lainnya/agregat-2010-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2010.
-- [Arsip Layar Kosong: Semester 1 2010](https://dalam.web.id/lainnya/agregat-2010-semester1) : Kumpulan artikel blog Layar Kosong periode January - June 2010.
 - [Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan](https://dalam.web.id/lainnya/anak-raja-vs-adab-malik-badri) : Artikel ini mengkritik bahaya pola asuh yang memanjakan anak seperti "raja kecil" hingga dewasa, terpengaruh worldview Hollywood, yang menghasilkan generasi rapuh dan egois. Mengutip Prof. Malik Badri, penulis menyerukan kembali pada prinsip pengasuhan Islam yang menanamkan adab dan disiplin sesuai usia untuk membentuk pemimpin bangsa yang kuat.
 - [Iwan Fals — Bangunlah Putra Putri Pertiwi (Lirik & Video)](https://dalam.web.id/lainnya/iwan-fals-bangunlah-putra-putri-pertiwi) : Baca lirik dan putar video Iwan Fals — Bangunlah Putra Putri Pertiwi. Nuansa semangat kebangsaan dengan desain fullscreen, interaktif, dan mobile-friendly.
 - [Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳](https://dalam.web.id/lainnya/waktu-sangat-terbatas) : Waktu adalah karunia yang sangat terbatas dan tidak dapat kembali, jauh lebih berharga dari harta benda. Penting untuk memanfaatkan setiap detiknya dengan niat dan tujuan yang benar, mengarahkan aktivitas duniawi untuk membangun bekal akhirat.
@@ -340,7 +324,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Silaturahmi atau Silaturahim? Mana yang Benar?](https://dalam.web.id/lainnya/silaturahmi-vs-silaturahim) : Sering bingung pakai kata silaturahmi atau silaturahim? Ternyata keduanya benar dan baku menurut KBBI! Pahami beda makna, asal kata, dan konteks penggunaannya di sini.
 - [Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati](https://dalam.web.id/lainnya/qanaah-kekayaan-hati-keberuntungan) : Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 - [Menepis Gelap, Menyambut Terang – Perspektif Baru tentang Ujian Hidup](https://dalam.web.id/lainnya/menepis-gelap-menyambut-terang) : Perspektif santai dan hangat tentang ujian hidup: kejujuran menghitung nikmat, makna Al-Insyirah, serta langkah praktis menyempurnakan ikhtiar. Responsif, interaktif, dan SEO-ready.
-- [Arsip Layar Kosong: Semester 2 2009](https://dalam.web.id/lainnya/agregat-2009-semester2) : Kumpulan artikel blog Layar Kosong periode July - December 2009.
 
 ## Olah Media
 - [ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka](https://dalam.web.id/olah-media/odf-vs-ooxml-libreoffice-onlyoffice) : debat standar dokumen ODF vs OOXML. Mengapa LibreOffice menuduh ONLYOFFICE sebagai fake open-source? Simak panduan kedaulatan digital ini.
