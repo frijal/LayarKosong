@@ -152,6 +152,25 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: bun run ext/post-to-discord.js
 
+      - name: 🔵 7a. Process Facebook (Data Prep)
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
+        id: fb_info
+        continue-on-error: true
+        run: bun run ext/post-to-facebook.js
+
+      - name: 🚀 7b. Send to Facebook Page
+        if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
+        continue-on-error: true
+        run: |
+          curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_ID }}/feed" \
+            -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
+            -d "link=${{ steps.fb_info.outputs.url }}" \
+            -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
+          
+          if [ -f /tmp/temp_new_url_facebook.txt ]; then
+            cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
+          fi
+
    #   - name: 🟡 7. Lemmy Post
    #     if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
    #     continue-on-error: true
@@ -181,24 +200,7 @@ jobs:
         continue-on-error: true
         run: python3 ext/generate_llms.py
 
-      - name: 🔵 C. Process Facebook (Data Prep)
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
-        id: fb_info
-        continue-on-error: true
-        run: bun run ext/post-to-facebook.js
-
-      - name: 🚀 D. Send to Facebook Page
-        if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
-        continue-on-error: true
-        run: |
-          curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_ID }}/feed" \
-            -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
-            -d "link=${{ steps.fb_info.outputs.url }}" \
-            -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
-          
-          if [ -f /tmp/temp_new_url_facebook.txt ]; then
-            cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
-          fi
+      
 
       - name: 🔍 E. IndexNow Sync (Bash & JQ)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
