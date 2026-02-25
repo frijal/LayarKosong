@@ -118,7 +118,7 @@
     .comments{ padding: clamp(18px, 3.5vw, 28px); background:#0f2740; border-top:1px solid var(--border); }
     .comments h3{ margin:0 0 10px; color: var(--acc); }
     /* Floating action buttons */
-    .fab{
+    .fa-brands{
       position:fixed; z-index:1100; width:56px; height:56px; border-radius:50%;
       display:flex; align-items:center; justify-content:center;
       background: linear-gradient(135deg, var(--acc3), var(--acc));
@@ -126,11 +126,11 @@
       box-shadow: 0 20px 40px rgba(0,0,0,.35); cursor:pointer; text-decoration:none;
       transition: transform .15s ease;
     }
-    .fab:hover{ transform: scale(1.06); }
-    .fab-sitemap{ left: 18px; top: 30%; }
-    .fab-home{ right: 18px; bottom: 20%; }
+    .fa-brands:hover{ transform: scale(1.06); }
+    .fa-brands-sitemap{ left: 18px; top: 30%; }
+    .fa-brands-home{ right: 18px; bottom: 20%; }
     @media(prefers-reduced-motion: reduce){
-      .g-item:hover img, .btn-share:hover, .chip:hover, .fab:hover{ transform:none }
+      .g-item:hover img, .btn-share:hover, .chip:hover, .fa-brands:hover{ transform:none }
       .g-item img{ transition:none }
     }
   </style>

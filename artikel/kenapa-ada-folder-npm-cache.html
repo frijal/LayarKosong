@@ -260,7 +260,7 @@
                 <div class="section">
                     <h2><i class="fas fa-check-circle"></i>Solusi Biar Gak Muncul Lagi</h2>
                     <p>Untungnya, solusinya gampang banget. Ada beberapa cara:</p>
-                    <h3>1. Abaikan Folder Cache di Git <i class="fab fa-git-alt"></i></h3>
+                    <h3>1. Abaikan Folder Cache di Git <i class="fa-brands fa-git-alt"></i></h3>
                     <p>Ini cara paling dasar dan wajib dilakukan. Tambahkan baris berikut ke file <code class="kbd">.gitignore</code> di root project kamu:</p>
                     <pre><code class="language-ignore"># NPM cache
 .npm-cache/
@@ -269,7 +269,7 @@ yarn-debug.log*
 yarn-error.log*
 </code></pre>
                     <p>Dengan ini, Git akan cuek bebek sama folder <code class="kbd">.npm-cache</code> dan isinya. Dia nggak akan muncul lagi di status Git atau ikut ter-commit.</p>
-                    <h3>2. Gunakan Cache Bawaan GitHub Actions <i class="fab fa-github"></i></h3>
+                    <h3>2. Gunakan Cache Bawaan GitHub Actions <i class="fa-brands fa-github"></i></h3>
                     <p>Kalau masalahnya muncul spesifik di workflow GitHub Actions, cara terbaik adalah pakai fitur cache bawaan dari action <code class="kbd">actions/setup-node</code>. Ini lebih efisien karena cache-nya disimpan di infrastruktur GitHub, bukan di dalam repo kita.</p>
                     <p>Caranya gampang, cukup tambahkan opsi <code class="kbd">cache: 'npm'</code> di step setup Node:</p>
                     <pre><code class="language-yaml">- name: Setup Node.js
