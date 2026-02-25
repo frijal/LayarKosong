@@ -8,7 +8,7 @@ on:
       - 'package.json'
       - 'bun.lock*'
   schedule:
-      - cron: '0 0 * * 0' # Jalan otomatis setiap hari Minggu jam 12 malam
+      - cron: '0 0 4 * *'
   workflow_dispatch:
 
 # Tambahkan izin untuk menulis ke Registry
