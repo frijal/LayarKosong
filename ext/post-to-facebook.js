@@ -81,10 +81,6 @@ async function main() {
 
     console.log(`✅ Berhasil memproses untuk Facebook: ${targetPost.url}`);
 
-    // Note: Jika kamu punya API Facebook Page, kamu bisa panggil di sini.
-    // Jika tidak, GitHub Actions bisa menggunakan 'encoded_msg' ini
-    // untuk dikirim via bot lain (seperti Messenger/Telegram bot).
-
   } else {
     console.log("✅ Tidak ada artikel baru untuk Facebook.");
   }
