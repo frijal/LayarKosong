@@ -146,25 +146,25 @@ jobs:
             cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
           fi
 
-      - name: 🦋 10. Bluesky Autopost (Bun Version)
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
-        continue-on-error: true
-        env:
-          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-        run: |
-          bun run ext/post-to-bluesky.js
-          if [ -f /tmp/temp_new_url_bsky.txt ]; then
-            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-          fi
+#      - name: 🦋 10. Bluesky Autopost (Bun Version)
+#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
+#        continue-on-error: true
+#        env:
+#          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+#          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
+#        run: |
+#          bun run ext/post-to-bluesky.js
+#          if [ -f /tmp/temp_new_url_bsky.txt ]; then
+#            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
+#          fi
 
-      - name: 🟡 11. Lemmy Post
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
-        continue-on-error: true
-        env:
-          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-        run: bun run ext/post-to-lemmy.js
+#      - name: 🟡 11. Lemmy Post
+#        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
+#        continue-on-error: true
+#        env:
+#          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+#          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+#        run: bun run ext/post-to-lemmy.js
 
       # =========================================================
       # 💾 FINAL COMMIT
