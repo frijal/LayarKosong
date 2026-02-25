@@ -57,7 +57,11 @@ jobs:
                    .replace(/(Panduan|Penjelasan) (lengkap|mendalam) /g, '')
                    .replace(/Simak ulasan mendalam /g, '')
                    .replace(/far fa-copyright/g, 'fa-brands fa-creative-commons-zero')
-                   .replace(/fas fa-copyright/g, 'fa-brands fa-creative-commons-zero');
+                   .replace(/fas fa-copyright/g, 'fa-brands fa-creative-commons-zero')
+                   .replace(/fab fa-copyright/g, 'fa-brands fa-creative-commons-zero')
+                   .replace(/fab /g, 'fa-brands ')
+                   .replace(/far /g, 'fa-regular ')
+                   .replace(/fas /g, 'fa-solid ');
               await Bun.write('$file', t);
             "
           done
