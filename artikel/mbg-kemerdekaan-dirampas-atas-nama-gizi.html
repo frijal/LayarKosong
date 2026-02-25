@@ -454,7 +454,7 @@
         <h1 class="site-title"><a href="https://dalam.web.id">🏠 Jaga Data Pribadi Tetap Aman</a></h1>
 <div id="iposbrowser"></div>
         <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
+            <i class="fa-solid fa-moon"></i>
             <span>Mode Gelap</span>
         </button>
     </header>
@@ -473,7 +473,7 @@
                     </div>
                 </div>
                 <div>
-                    <i class="fas fa-tags"></i> Analisis Sosial, Kebijakan Publik, Pendidikan, Nutrisi
+                    <i class="fa-solid fa-tags"></i> Analisis Sosial, Kebijakan Publik, Pendidikan, Nutrisi
                 </div>
             </div>
         </header>
@@ -496,42 +496,42 @@
                 <div class="fivew-grid">
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-question-circle"></i>
+                            <i class="fa-solid fa-question-circle"></i>
                             <h3>WHAT (Apa itu MBG?)</h3>
                         </div>
                         <p>MBG atau Makan Bergizi Gratis adalah program pemerintah yang menyediakan makanan secara gratis kepada anak-anak, terutama di sekolah. Program ini bertujuan meningkatkan asupan gizi anak-anak Indonesia yang dianggap kurang mendapatkan makanan bergizi di rumah.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-user"></i>
+                            <i class="fa-solid fa-user"></i>
                             <h3>WHO (Siapa yang terlibat?)</h3>
                         </div>
                         <p>Pemerintah sebagai penyelenggara, penyedia katering sebagai pelaksana, guru sebagai pengawas, orang tua sebagai pihak yang "dipersilakan" menerima, dan anak-anak sebagai penerima pasif yang harus makan apa yang diberikan.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-calendar"></i>
+                            <i class="fa-solid fa-calendar"></i>
                             <h3>WHEN (Kapan dilaksanakan?)</h3>
                         </div>
                         <p>Program ini biasanya dilaksanakan pada jam sekolah, seringkali sebagai bagian dari program makan siang. Beberapa daerah menerapkannya setiap hari, lainnya beberapa kali dalam seminggu, tergantung anggaran dan kebijakan lokal.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fa-solid fa-map-marker-alt"></i>
                             <h3>WHERE (Di mana dilaksanakan?)</h3>
                         </div>
                         <p>Utamanya di sekolah-sekolah, mulai dari PAUD, TK, SD, hingga SMP. Beberapa program juga mencakup posyandu atau pusat kegiatan anak lainnya di daerah yang dianggap rawan gizi.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-bullseye"></i>
+                            <i class="fa-solid fa-bullseye"></i>
                             <h3>WHY (Mengapa program ini ada?)</h3>
                         </div>
                         <p>Alasan resmi: mengatasi masalah gizi buruk, stunting, dan memastikan anak-anak mendapat asupan nutrisi yang cukup. Alasan terselubung: memenuhi target program, menggunakan anggaran, dan menciptakan kesan pemerintah peduli.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-cogs"></i>
+                            <i class="fa-solid fa-cogs"></i>
                             <h3>HOW (Bagaimana implementasinya?)</h3>
                         </div>
                         <p>Melalui tender penyediaan makanan, distribusi makanan ke sekolah-sekolah, pengawasan oleh guru, dan pemaksaan kepada anak untuk menghabiskan makanan yang diberikan tanpa mempertimbangkan preferensi atau kondisi anak.</p>
@@ -670,21 +670,21 @@
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
             document.body.classList.add('dark-mode');
-            themeIcon.className = 'fas fa-sun';
+            themeIcon.className = 'fa-solid fa-sun';
             themeText.textContent = 'Mode Terang';
         } else {
-            themeIcon.className = 'fas fa-moon';
+            themeIcon.className = 'fa-solid fa-moon';
             themeText.textContent = 'Mode Gelap';
         }
         // Toggle theme
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                themeIcon.className = 'fas fa-sun';
+                themeIcon.className = 'fa-solid fa-sun';
                 themeText.textContent = 'Mode Terang';
                 localStorage.setItem('theme', 'dark');
             } else {
-                themeIcon.className = 'fas fa-moon';
+                themeIcon.className = 'fa-solid fa-moon';
                 themeText.textContent = 'Mode Gelap';
                 localStorage.setItem('theme', 'light');
             }

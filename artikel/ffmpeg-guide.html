@@ -126,62 +126,62 @@
             <h2 id="ubah-mp3-ogg">🎵 Ubah Format Audio MP3 → OGG</h2>
             <p>Command sederhana buat konversi satu file. OGG biasanya lebih ringan dan open source.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 output.ogg</code></pre>
             </div>
             <h2 id="batch-audio">🔄 Batch Convert Audio</h2>
             <p>Kalau punya banyak file di satu folder, command ini ubah semuanya sekaligus. Praktis banget!</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>for f in *.mp3; do ffmpeg -i "$f" "${f%.mp3}.ogg"; done</code></pre>
             </div>
             <h2 id="wav-mp3">🎵 WAV → MP3</h2>
             <p>WAV biasanya besar, ubah ke MP3 biar lebih kompak dengan kualitas bagus.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3</code></pre>
             </div>
             <h2 id="bitrate-audio">📊 Change Audio Bitrate</h2>
             <p>Kontrol ukuran file dengan atur bitrate. Semakin tinggi, semakin bagus suara tapi file lebih besar.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 -b:a 192k output.mp3</code></pre>
             </div>
             <h2 id="normalize-audio">🔊 Normalize Audio</h2>
             <p>Bikin volume semua file rata, biar gak ada yang kenceng banget atau pelan.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp3 -af "loudnorm" output.mp3</code></pre>
             </div>
             <img src="https://dalam.web.id/img/thumbs.dreamstime.com/b/video-production-line-icons-editing-color-grading-adding-special-effects-animation-music-movie-vector-set-designs-images-film-159703911.webp" alt="Ikons manipulasi video editing" class="illus">
             <h2 id="trim-video">✂️ Trim Video</h2>
             <p>Potong bagian video tanpa re-encode (cepet!), dari detik 10 sampai 20.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -ss 00:00:10 -to 00:00:20 -c copy output.mp4</code></pre>
             </div>
             <h2 id="resize-video">🖼️ Resize Video</h2>
             <p>Ubah resolusi video, misalnya ke 720p.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</code></pre>
             </div>
             <h2 id="extract-audio">🔊 Extract Audio dari Video</h2>
             <p>Ambil suara doang dari video, jadi file MP3.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -q:a 0 -map a output.mp3</code></pre>
             </div>
             <h2 id="mp4-webm">🔄 Convert MP4 → WebM</h2>
             <p>WebM bagus buat web, lebih efisien.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>ffmpeg -i input.mp4 -c:v libvpx -b:v 1M -c:a libvorbis output.webm</code></pre>
             </div>
             <h2 id="batch-video">🔄 Batch Convert Video</h2>
             <p>Ubah semua file MOV jadi MP4 sekaligus.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>for f in *.mov; do ffmpeg -i "$f" -c:v libx264 -crf 23 -c:a aac "${f%.mov}.mp4"; done</code></pre>
             </div>
             <h2>💡 Tips Bonus FFmpeg</h2>
@@ -209,8 +209,8 @@
             btn.addEventListener('click', () => {
                 const code = btn.nextElementSibling.querySelector('code').innerText;
                 navigator.clipboard.writeText(code).then(() => {
-                    btn.innerHTML = '<i class="fas fa-check"></i> Disalin!';
-                    setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Salin', 2000);
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
+                    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
                 });
             });
         });

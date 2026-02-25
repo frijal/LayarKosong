@@ -156,7 +156,7 @@
         <p>Fitur **Schema Validation** di Cloudflare adalah bagian dari Web Application Firewall (WAF) yang sangat canggih, dirancang khusus untuk melindungi **API** (Antarmuka Pemrograman Aplikasi) Anda dari serangan dan permintaan data yang aneh. </p>
         <p>Bayangkan ini: API Anda adalah pintu masuk ke jantung data Anda. Validasi Skema memastikan bahwa setiap orang yang mencoba masuk harus menunjukkan ID yang bentuk, ukuran, dan jenis datanya sudah sesuai dengan "aturan main" atau kontrak yang Anda buat.</p>
         <hr>
-        <h2><i class="fas fa-file-contract"></i> 1. Apa Itu Skema (Schema) dalam Konteks API?</h2>
+        <h2><i class="fa-solid fa-file-contract"></i> 1. Apa Itu Skema (Schema) dalam Konteks API?</h2>
         <p>Skema adalah **cetak biru resmi** dari struktur data yang boleh diterima atau dikirim oleh API Anda. Biasanya skema ditulis dalam format seperti **OpenAPI Specification (Swagger)** atau **JSON Schema**.</p>
         <p>Skema mendefinisikan secara detail:</p>
         <ul>
@@ -169,7 +169,7 @@
             <p style="font-size:0.9em;">**Gambar:** Cloudflare menjalankan pemeriksaan struktur data di *edge network* sebelum permintaan mencapai *origin server*.</p>
         </div>
         <hr>
-        <h2><i class="fas fa-bolt"></i> 2. Mengapa Validasi Skema Penting di Cloudflare?</h2>
+        <h2><i class="fa-solid fa-bolt"></i> 2. Mengapa Validasi Skema Penting di Cloudflare?</h2>
         <p>Validasi Skema Cloudflare sangat efektif karena dilakukan di **Edge Network** (jaringan tepi), yang berarti pemeriksaan dilakukan di lokasi Cloudflare terdekat dengan pengguna, **sebelum** permintaan tersebut diteruskan ke *origin server* (server *hosting* Anda).</p>
         <table class="specs-table">
             <thead>
@@ -194,7 +194,7 @@
             </tbody>
         </table>
         <hr>
-        <h2><i class="fas fa-cogs"></i> 3. Mekanisme Kerja</h2>
+        <h2><i class="fa-solid fa-cogs"></i> 3. Mekanisme Kerja</h2>
         <p>Cara kerja fitur ini cukup *straightforward*:</p>
         <ol>
             <li>**Anda Unggah Skema:** Anda mengunggah atau mendefinisikan skema API Anda (misalnya, file `.json` atau `.yaml` yang mendeskripsikan API Anda) ke Cloudflare.</li>
@@ -208,10 +208,10 @@
             </li>
         </ol>
         <blockquote style="border-left: 6px solid #2ECC71;">
-            <p><i class="fas fa-check-shield"></i> **Penting:** Schema Validation adalah salah satu bentuk pertahanan paling efektif terhadap serangan injeksi *payload* yang menargetkan logika atau struktur data API Anda, menjadikannya fitur wajib bagi siapa pun yang mengelola API dengan volume tinggi.</p>
+            <p><i class="fa-solid fa-check-shield"></i> **Penting:** Schema Validation adalah salah satu bentuk pertahanan paling efektif terhadap serangan injeksi *payload* yang menargetkan logika atau struktur data API Anda, menjadikannya fitur wajib bagi siapa pun yang mengelola API dengan volume tinggi.</p>
         </blockquote>
         <p style="margin-top: 30px;">Dengan mengaktifkan Schema Validation, Anda bisa tidur lebih nyenyak karena tahu bahwa Cloudflare sudah menyaring semua permintaan API yang "mencurigakan" sebelum permintaan tersebut bahkan menyentuh *server* Anda! Luar biasa bukan? 🎉</p>
-        <h2 style="margin-top: 50px;"><i class="fas fa-comments"></i> Kolom Diskusi</h2>
+        <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Kolom Diskusi</h2>
         <p>Apakah Anda sudah menggunakan validasi skema di API Anda?</p><p>Tantangan apa yang Anda hadapi saat mengimplementasikannya?</p>
         <div id="response"></div><div id="related-articles-grid"></div>
         <footer class="footer">

@@ -232,7 +232,7 @@
                 <p>Mantap, Fakhrul 👍. Biar folder seperti <code class="kbd">.npm-cache/_cacache</code> atau <code class="kbd">node_modules</code> nggak ikut ke‑commit lagi ke Git repo kamu, penting banget pakai file <code class="kbd">.gitignore</code> yang bener. File ini ngasih tau Git file atau folder mana aja yang harus diabaikan.</p>
                 <p>Berikut contoh <code class="kbd">.gitignore</code> standar yang sudah siap pakai dan cukup lengkap untuk project Node.js:</p>
                 <div class="section">
-                    <h2><i class="fas fa-file-code"></i>Contoh <code class="kbd">.gitignore</code> untuk Node.js</h2>
+                    <h2><i class="fa-solid fa-file-code"></i>Contoh <code class="kbd">.gitignore</code> untuk Node.js</h2>
                     <pre><code class="language-ignore"># =========================================
 # Node.js dependencies &amp; cache
 # =========================================
@@ -307,7 +307,7 @@ Thumbs.db
 </code></pre>
                 </div>
                 <div class="section">
-                    <h2><i class="fas fa-star"></i>Catatan Penting</h2>
+                    <h2><i class="fa-solid fa-star"></i>Catatan Penting</h2>
                     <ul>
                         <li><strong>Wajib:</strong> <code class="kbd">node_modules/</code> dan <code class="kbd">.npm-cache/</code> → Ini dia biang kerok utama yang bikin repo jadi berat dan lambat kalau sampai ikut ke‑commit. Isinya cuma hasil download/cache yang bisa digenerate ulang kapan aja.</li>
                         <li><strong>Opsional (Lockfiles):</strong> <code class="kbd">package-lock.json</code>, <code class="kbd">yarn.lock</code>, <code class="kbd">pnpm-lock.yaml</code> → Mengabaikan file lock (<code class="kbd">#</code> di depannya berarti diabaikan oleh `.gitignore` ini) berarti setiap kali orang lain atau CI/CD install dependencies, mereka bisa dapat versi paket yang sedikit berbeda (tapi masih sesuai range di `package.json`). Kalau kamu ingin dependency selalu *fresh* dengan versi patch/minor terbaru, bisa diabaikan. **Tapi**, kalau kamu butuh *reproducible build* (hasil build yang pasti sama persis di mana pun), **sebaiknya file lock ini tetap di‑commit** (hapus tanda <code class="kbd">#</code> di depannya). Ini praktik yang paling umum dan disarankan.</li>

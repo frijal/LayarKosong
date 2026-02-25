@@ -268,7 +268,7 @@ footer a {
                 <p>Bayangin aja, kamu mau mulai sesuatu yang bener-bener baru di proyekmu. Misalnya, mau bikin halaman dokumentasi atau deploy website statis pakai GitHub Pages. Nah, kamu gak mau kan riwayat commit dari kode utama (`main` atau `master`) ikut kebawa? Di sinilah <strong>orphan branch</strong> jadi pahlawan. Dia ini branch kosong, tanpa orang tua, tanpa sejarah commit, siap untuk diisi dari nol!</p>
                 <h2>Langkah-Langkah Eksekusi</h2>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-code-branch"></i></div>
+                    <div class="step-icon"><i class="fa-solid fa-code-branch"></i></div>
                     <div class="step-content">
                         <h3>Langkah 1: Ciptakan Branch "Yatim Piatu"</h3>
                         <p>Buka terminal di folder proyekmu, lalu ketik perintah sakti ini. Perintah ini bakal bikin branch baru (misal: `gh-pages`) dan langsung pindah ke sana, tapi isinya masih "kosong" secara riwayat.</p>
@@ -277,13 +277,13 @@ footer a {
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <div class="tip">
-                            <i class="fas fa-lightbulb"></i>
+                            <i class="fa-solid fa-lightbulb"></i>
                             <strong>Info:</strong> Kamu bebas ganti `gh-pages` dengan nama branch lain yang kamu suka, misalnya `dokumentasi` atau `v2-release`.
                         </div>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-broom"></i></div>
+                    <div class="step-icon"><i class="fa-solid fa-broom"></i></div>
                     <div class="step-content">
                         <h3>Langkah 2: Operasi Bersih-Bersih</h3>
                         <p>Eits, walaupun riwayatnya kosong, file-file dari branch `main` masih ada di *staging area*. Kita harus usir mereka dulu biar gak ikut di commit pertama. Sapu bersih dengan perintah ini.</p>
@@ -292,13 +292,13 @@ footer a {
                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                          <div class="tip warning">
-                            <i class="fas fa-exclamation-triangle"></i>
+                            <i class="fa-solid fa-exclamation-triangle"></i>
                             <strong>Penting:</strong> Perintah ini cuma menghapus file dari *index* Git, bukan dari hardisk-mu (selama kamu belum commit). Jadi tenang aja, file-mu di branch `main` tetap aman sentosa.
                         </div>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="step-icon"><i class="fa-solid fa-file-alt"></i></div>
                     <div class="step-content">
                         <h3>Langkah 3: Letakkan Batu Pertama (Commit Awal)</h3>
                         <p>Sekarang branch-mu sudah suci. Saatnya membuat kehidupan baru. Buat satu file, apa aja, biar ada sesuatu untuk di-commit. Contohnya kita bikin `index.html`.</p>
@@ -311,7 +311,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
                     <div class="step-content">
                         <h3>Langkah 4: Terbangkan ke GitHub!</h3>
                         <p>Semua sudah siap di lokal. Tinggal kita dorong (*push*) branch baru ini ke rumahnya di repositori GitHub.</p>
@@ -342,7 +342,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
             const code = codeBlock.querySelector('code').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 // Beri feedback visual
-                e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 setTimeout(() => {
                     e.currentTarget.innerHTML = '<i class="fa-regular fa-copy"></i> Salin';
                 }, 2000);

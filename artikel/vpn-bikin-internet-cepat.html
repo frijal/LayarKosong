@@ -175,9 +175,9 @@
 <div class="container">
     <header>
         <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--accent-color); font-weight: bold; margin-bottom: 0.5rem;">
-            <i class="fas fa-bolt fa-icon"></i> NETWORKING &amp; TECH
+            <i class="fa-solid fa-bolt fa-icon"></i> NETWORKING &amp; TECH
         </div>
-        <h1><i class="fas fa-globe-asia fa-icon" style="color: var(--link-color);"></i> Logikanya VPN Bikin Lambat, Kok Malah Jadi Ngebut?</h1>
+        <h1><i class="fa-solid fa-globe-asia fa-icon" style="color: var(--link-color);"></i> Logikanya VPN Bikin Lambat, Kok Malah Jadi Ngebut?</h1>
 <div id="iposbrowser"></div>
         <div style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; opacity: 0.7; margin-bottom: 2rem; font-family: 'Inter', sans-serif;">
             <span><i class="fa-regular fa-calendar fa-icon"></i> 02 Februari 2026</span>
@@ -193,13 +193,13 @@
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAJlF6cbgAAF65G.webp" alt="Ilustrasi Routing Jaringan VPN vs ISP Lokal" width="100%" height="450">
         <p>Baru-baru ini, aku nemu diskusi yang bener banget di forum sebelah. Isinya para sepuh jaringan, *gamer* yang frustrasi sama *packet loss*, sampai orang dalam ISP yang buka-bukaan soal dapur mereka. Yuk, kita bedah bareng-bareng pake prinsip 5W+1H biar tuntas!</p>
         <hr>
-        <h2><i class="fas fa-search fa-icon"></i> WHAT: Apa yang Sebenarnya Terjadi?</h2>
+        <h2><i class="fa-solid fa-search fa-icon"></i> WHAT: Apa yang Sebenarnya Terjadi?</h2>
         <p>Fenomena ini bukan halusinasi atau efek plasebo semata, kawan. Ini nyata. Banyak user melaporkan bahwa saat menggunakan koneksi "polosan" dari ISP (terutama yang plat merah atau ISP *tier* 3), pengalaman *browsing* dan *gaming* terasa berat. Tapi begitu "dibungkus" VPN, latensi jadi stabil dan *bandwidth* terasa lebih plong.</p>
         <blockquote>
             <p>"Logikanya kan VPN bikin internet lambat karena data harus muter dulu, tapi kok kadang buat buka situs tertentu atau main game malah kerasa lebih responsif ya?" — **MuchDrive4744 (OP)**</p>
         </blockquote>
         <p>Jawabannya ada di satu kata kunci: **ROUTING** (Rute). Bayangkan kalian mau pergi dari Balikpapan ke Samarinda. Jalan tol (jalur utama) macet total karena ada pemeriksaan lalu-lintas (filtering) dan perbaikan jalan (maintenance). ISP kamu secara *default* maksa kamu lewat jalan macet itu. Nah, VPN itu ibarat tukang ojek yang tau "jalan rahasia" lewat kebun warga yang sepi dan mulus.</p>
-        <h2><i class="fas fa-server fa-icon"></i> WHY: Kenapa ISP Lokal Suka 'Muter-Muter'?</h2>
+        <h2><i class="fa-solid fa-server fa-icon"></i> WHY: Kenapa ISP Lokal Suka 'Muter-Muter'?</h2>
         <p>Ada beberapa alasan teknis kenapa koneksi polosan di Indonesia sering terasa menyedihkan, yang aku rangkum dari curhatan para suhu di diskusi tersebut:</p>
         <h3>1. Filtering yang Agresif (DPI)</h3>
         <p>Kita tahu pemerintah punya aturan ketat soal internet positif. ISP wajib melakukan filtering. Masalahnya, metode filtering yang dipakai kadang menggunakan *Deep Packet Inspection* (DPI). Setiap paket data kamu diperiksa dulu, "Eh, ini mau ke situs judi bukan? Ini mau ke situs terlarang nggak?".</p>
@@ -227,7 +227,7 @@
         <p>Nggak semua ISP itu setara. Ada ISP Tier 1 (punya kabel laut sendiri), Tier 2, dan Tier 3 (yang cuma nyewa jalur). Kalau kamu pake ISP Tier 3 (biasanya ISP rumahan murah meriah), data kamu sering dioper-oper dulu ke berbagai ISP lain sebelum sampai ke tujuan. Kebanyakan operan = latensi tinggi.</p>
         <p>User **DutyCorp** menjelaskan bahwa Cloudflare WARP sangat membantu jika ISP kamu ada di Tier 3 tapi punya koneksi ke IX (Internet Exchange). Cloudflare punya node di IX lokal, jadi dia memotong jalur birokrasi yang berbelit-belit itu.</p>
         <hr>
-        <h2><i class="fas fa-users fa-icon"></i> WHO &amp; WHERE: Siapa yang Paling Terdampak?</h2>
+        <h2><i class="fa-solid fa-users fa-icon"></i> WHO &amp; WHERE: Siapa yang Paling Terdampak?</h2>
         <p>Tentu saja kita semua, tapi kasus paling parah dialami oleh:</p>
         <ol>
             <li>**Gamer Kompetitif:** User seperti **Local_Community_7510** cerita pas main Minecraft server luar, tanpa VPN langsung *timed out* dalam 10 menit. Pake Cloudflare? Lancar berjam-jam.</li>
@@ -235,7 +235,7 @@
             <li>**Pengguna Plat Merah:** Ya, maaf-maaf aja nih, tapi banyak testimoni mengarah ke sana. Filtering mereka terkenal paling "rajin" tapi kadang salah sasaran (blokir library coding, dll).</li>
         </ol>
         <div class="highlight-box">
-            <h3><i class="fas fa-gamepad fa-icon"></i> Studi Kasus Gaming: WuWa &amp; Silver Palace</h3>
+            <h3><i class="fa-solid fa-gamepad fa-icon"></i> Studi Kasus Gaming: WuWa &amp; Silver Palace</h3>
             <p>**MuchDrive4744** (OP) lagi persiapan main *Wuthering Waves* (WuWa). Dia butuh ping stabil buat mekanisme *parry*/tangkisan yang butuh presisi tinggi. Solusi dari komunitas?</p>
             <ul>
                 <li>**Cloudflare WARP:** Bagus buat umum, tapi routingnya kadang "gacha".</li>
@@ -244,7 +244,7 @@
             </ul>
         </div>
         <hr>
-        <h2><i class="fas fa-cogs fa-icon"></i> HOW: Solusi Teknis Buat Kamu (Jangan Cuma Pasrah!)</h2>
+        <h2><i class="fa-solid fa-cogs fa-icon"></i> HOW: Solusi Teknis Buat Kamu (Jangan Cuma Pasrah!)</h2>
         <p>Oke, kita udah tau masalahnya. Sekarang, gimana cara ngatasinnya? Berdasarkan diskusi para suhu di atas, ini tingkatan solusinya dari yang gratisan sampe yang niat banget.</p>
         <h3>Level 1: Ganti DNS &amp; Pakai WARP (Pemula)</h3>
         <p>Langkah pertama, coba pake **Cloudflare WARP (1.1.1.1)**. Ini bukan VPN murni yang menyembunyikan IP secara total, tapi lebih ke mengoptimalkan rute DNS. Gratis, simpel, tinggal satu klik. [www.dalam.web.id/instal-cloudflare-warp](https://dalam.web.id/sistem-terbuka/instal-cloudflare-warp-linux-2025)</p>
@@ -261,7 +261,7 @@
             <p>"Untuk A+ (di waveform bufferbloat test) butuh OpenWRT router. Dengan ini bisa solved masalah koneksi fisik, konfigurasi, dan ISP throttling." — **dusk3dawn**</p>
         </blockquote>
         <hr>
-        <h2><i class="fas fa-lightbulb fa-icon"></i> Kesimpulan: Jadi Mending Pake Apa?</h2>
+        <h2><i class="fa-solid fa-lightbulb fa-icon"></i> Kesimpulan: Jadi Mending Pake Apa?</h2>
         <p>Jawabannya: **Tergantung kebutuhan dan dompetmu.**</p>
         <p>Kalau kamu cuma pengen buka Reddit atau situs yang diblokir tanpa pusing settingan, **Cloudflare WARP** atau **DNS over HTTPS (DoH)** udah cukup. Gratis dan lumayan nge-*bypass* filtering lemot ISP.</p>
         <p>Tapi kalau kamu *gamer* yang butuh kestabilan (bukan cuma speed download), atau kerjaan kamu butuh koneksi steril dari "tangan-tangan jahil" filtering ISP, investasi ke **VPN berbayar** atau setup **OpenWRT** di rumah adalah jalan ninjanya. Ingat kata pepatah user Reddit: *"Routing itu masalah ribet dan nggak konstan."* Jadi, eksperimenlah!</p>
@@ -274,7 +274,7 @@
     <div id="related-articles-grid"></div>
     <footer style="margin-top: 4rem; font-size: 0.8rem; text-align: center; opacity: 0.6; font-family: 'Inter', sans-serif;">
         <p>🄯 2026 Layar Kosong - Frijal.</p>
-        <p>Dibuat dengan <i class="fas fa-heart" style="color: red;"></i> dan kopi sachet.</p>
+        <p>Dibuat dengan <i class="fa-solid fa-heart" style="color: red;"></i> dan kopi sachet.</p>
     </footer>
 </div>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
