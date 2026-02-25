@@ -1,13 +1,6 @@
 name: Auto Post Twitter
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'artikel.json' # Hanya jalan kalau file ini berubah
-  schedule:
-    - cron: '0 */6 * * *' # Cek tiap 6 jam
+on:    
   workflow_dispatch: # Tombol manual di tab Actions
 
 jobs:
@@ -16,10 +9,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
           bun-version: latest
 
