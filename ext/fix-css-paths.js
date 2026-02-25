@@ -3,7 +3,7 @@ import path from "node:path";
 
 // Daftar file CSS yang ingin kita "lokalkan"
 const cssFiles = [
-  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css",
+  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js",
   "fontawesome.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css",
   "github-dark.css", "github-dark.min.css", "github.css", "github.min.css",
   "halaman-pencarian.css", "header.css", "homepage.css", "indexhtml.css",
