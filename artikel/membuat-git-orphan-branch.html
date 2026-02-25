@@ -274,7 +274,7 @@ footer a {
                         <p>Buka terminal di folder proyekmu, lalu ketik perintah sakti ini. Perintah ini bakal bikin branch baru (misal: `gh-pages`) dan langsung pindah ke sana, tapi isinya masih "kosong" secara riwayat.</p>
                         <div class="code-block">
                             <pre><code>git checkout --orphan gh-pages</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <div class="tip">
                             <i class="fas fa-lightbulb"></i>
@@ -289,7 +289,7 @@ footer a {
                         <p>Eits, walaupun riwayatnya kosong, file-file dari branch `main` masih ada di *staging area*. Kita harus usir mereka dulu biar gak ikut di commit pertama. Sapu bersih dengan perintah ini.</p>
                         <div class="code-block">
                             <pre><code>git rm -rf .</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                          <div class="tip warning">
                             <i class="fas fa-exclamation-triangle"></i>
@@ -306,7 +306,7 @@ footer a {
                             <pre><code>echo "Halo Dunia Baru!" &gt; index.html
 git add index.html
 git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                     </div>
                 </div>
@@ -317,7 +317,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                         <p>Semua sudah siap di lokal. Tinggal kita dorong (*push*) branch baru ini ke rumahnya di repositori GitHub.</p>
                         <div class="code-block">
                             <pre><code>git push origin gh-pages</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                     </div>
                 </div>
@@ -344,7 +344,7 @@ git commit -m "Initial commit: Memulai kehidupan baru di branch gh-pages"</code>
                 // Beri feedback visual
                 e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
                 setTimeout(() => {
-                    e.currentTarget.innerHTML = '<i class="far fa-copy"></i> Salin';
+                    e.currentTarget.innerHTML = '<i class="fa-regular fa-copy"></i> Salin';
                 }, 2000);
             }).catch(err => {
                 console.error('Gagal menyalin teks: ', err);
