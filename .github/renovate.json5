@@ -8,7 +8,7 @@
   ],
   "configMigration": true,
   "branchPrefix": "renovate/",
-  "prConcurrentLimit": 5,
+  "prConcurrentLimit": 20,
   "ignoreUnstable": true,
   "dependencyDashboard": true,
   "ignorePaths": [
@@ -81,24 +81,17 @@
     }
   ],
   "constraints": {
-    "bun": ">=1.0.0"
+    "bun": ">=1.2.0"
   },
+  "enabledManagers": ["bun", "github-actions"],
   "postUpdateOptions": [
     "bun-lock"
   ],
-
   "bun": {
-    "managerFilePatterns": [
-      "/(^|/)bun\\.lockb?$/",
-      "/(^|/)package\\.json$/"
-    ],
-    "digest": {
-      "prBodyDefinitions": {
-        "Change": "{{#if displayFrom}}`{{{displayFrom}}}` → {{else}}{{#if currentValue}}`{{{currentValue}}}` → {{/if}}{{/if}}{{#if displayTo}}`{{{displayTo}}}`{{else}}`{{{newValue}}}`{{/if}}"
-      }
-    },
-    "prBodyDefinitions": {
-      "Change": "[{{#if displayFrom}}`{{{displayFrom}}}` → {{else}}{{#if currentValue}}`{{{currentValue}}}` → {{/if}}{{/if}}{{#if displayTo}}`{{{displayTo}}}`{{else}}`{{{newValue}}}`{{/if}}]({{#if depName}}https://renovatebot.com/diffs/npm/{{replace '/' '%2f' depName}}/{{{currentVersion}}}/{{{newVersion}}}{{/if}})"
-    }
+    "enabled": true,
+    "fileMatch": [
+      "(^|/)package\\.json$",
+      "(^|/)bun\\.lock$"
+    ]
   }
 }
