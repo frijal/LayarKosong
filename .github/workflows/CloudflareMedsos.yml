@@ -1,8 +1,8 @@
-name: "🟢 Layar Kosong: Super Automation & MedSos"
+name: "🟢 Layar Kosong: Super Automation & MedSos (Full Bun)"
 
 on:
   schedule:
-    - cron: "0 */4 * * *" # Eksekusi otomatis tiap 2 jam
+    - cron: "0 */4 * * *" # Eksekusi tiap 4 jam
   workflow_dispatch:
     inputs:
       task:
@@ -28,77 +28,33 @@ on:
 permissions:
   contents: write
   discussions: write
-  issues: write # Dibutuhkan oleh Octokit untuk membuat label baru
-  
+  issues: write
+
 jobs:
   everything-job:
     runs-on: ubuntu-latest
     steps:
       - name: 🛰️ Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          persist-credentials: true
 
-      # --- 1. LOGIKA PILIH BAHASA (Kuncinya di sini) ---
-      - name: 🎯 Check Requirements
-        id: check
-        run: |
-          TASK="${{ inputs.task }}"
-          # Default: jalankan semua kalau schedule atau inputnya 'all'
-          NEED_NODE=true
-          NEED_PYTHON=true
-
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "$TASK" != "all" ]]; then
-            # Daftar task khusus Node.js
-            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "facebook" "lemmy" "mastodon" "threads" "linkedin" "llms_index" "tumblr")
-            # Daftar task khusus Python/Bash
-            PYTHON_ONLY=("bluesky" "indexnow" "patreon")
-
-            if [[ " ${NODE_ONLY[@]} " =~ " $TASK " ]]; then
-               NEED_PYTHON=false
-               echo "ℹ️ Task '$TASK' terdeteksi hanya butuh Node.js. Skip Python."
-            elif [[ " ${PYTHON_ONLY[@]} " =~ " $TASK " ]]; then
-               NEED_NODE=false
-               echo "ℹ️ Task '$TASK' terdeteksi hanya butuh Python. Skip Node.js."
-            fi
-          fi
-          
-          echo "need_node=$NEED_NODE" >> $GITHUB_OUTPUT
-          echo "need_python=$NEED_PYTHON" >> $GITHUB_OUTPUT
-
-      # --- 2. SETUP NODE.JS (Hanya jika need_node=true) ---
-      - name: '2. Setup Bun.js'
-        if: steps.check.outputs.need_node == 'true'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+      - name: 🚀 Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
 
-      - name: 📦 Install Node Dependencies
-        if: steps.check.outputs.need_node == 'true'
+      - name: 📦 Install Dependencies
         run: bun install
 
-      # --- 3. SETUP PYTHON (Hanya jika need_python=true) ---
-      - name: 🏗️ Setup Python
-        if: steps.check.outputs.need_python == 'true'
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
-        with:
-          python-version: '3.x'
-          cache: 'pip'
-
-      - name: 📦 Install Python Dependencies
-        if: steps.check.outputs.need_python == 'true'
-        run: pip install -r mini/requirements.txt
-
       # =========================================================
-      # 🟢 BAGIAN 1: NODE.JS SCRIPTS (.js)
+      # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
       # =========================================================
 
       - name: RSS kirim ke Diskusi Github
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'diskusi RSS'
         continue-on-error: true
         env:
-        # Token rahasia bawaan GitHub untuk autentikasi API
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bun run ext/bikin-rss-diskusi.js
 
@@ -159,7 +115,7 @@ jobs:
         run: bun run ext/post-to-facebook.js
 
       - name: 🚀 7b. Send to Facebook Page
-        if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
+        if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != ''
         continue-on-error: true
         run: |
           curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_ID }}/feed" \
@@ -176,7 +132,7 @@ jobs:
         continue-on-error: true
         run: bun run ext/generate_llms.js
 
-      - name: 🔍 9. IndexNow Sync (Bash & JQ)
+      - name: 🔍 9. IndexNow Sync
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
         continue-on-error: true
         env:
@@ -190,61 +146,40 @@ jobs:
             cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
           fi
 
-   #   - name: 🟡 10. Lemmy Post
-   #     if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
-   #     continue-on-error: true
-   #     env:
-   #       LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
-   #       LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-   #     run: bun run ext/post-to-lemmy.js
-
-  #     - name: 🦋 11. Bluesky Autopost
-  #      if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
-  #      continue-on-error: true
-  #      env:
-  #        BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-  #        BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-  #      run: |
-  #        bun run ext/post-to-bluesky.js
-  #        if [ -f /tmp/temp_new_url_bsky.txt ]; then
-  #          cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-  #        fi
-
-      # =========================================================
-      # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
-      # =========================================================
-
-  #    
-
-      
-
-      
-
-      
-
-      # =========================================================
-      # 💾 BAGIAN 3: FINAL COMMIT
-      # =========================================================
-      
-      - name: 💾 Save All Changes (Universal Template)
+      - name: 🦋 10. Bluesky Autopost (Bun Version)
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
+        continue-on-error: true
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: |
-          # 1. Identitas Bot
+          bun run ext/post-to-bluesky.js
+          if [ -f /tmp/temp_new_url_bsky.txt ]; then
+            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
+          fi
+
+      - name: 🟡 11. Lemmy Post
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
+        continue-on-error: true
+        env:
+          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
+          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
+          LEMMY_INSTANCE: ${{ secrets.LEMMY_INSTANCE }}
+        run: bun run ext/post-to-lemmy.js
+
+      # =========================================================
+      # 💾 FINAL COMMIT
+      # =========================================================
+      
+      - name: 💾 Save All Changes
+        run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 2. Ambil semua perubahan tanpa pilih kasih
           git add . 
-          
-          # 3. Cek apakah benar-benar ada yang berubah
           if git diff --staged --quiet; then
             echo "ℹ️ Ga ada kerjaan baru, skip commit."
           else
-            # 4. Commit dengan timestamp biar rapi di history
             git commit -m "chore: automation MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
-            
-            # 5. Tarik data terbaru dengan aman (kunci suksesnya di sini)
             git pull origin main --rebase --autostash
-            
-            # 6. Gas pol push ke repo
             git push
           fi
