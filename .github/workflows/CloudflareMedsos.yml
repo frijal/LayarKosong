@@ -176,6 +176,20 @@ jobs:
         continue-on-error: true
         run: bun run ext/generate_llms.js
 
+      - name: 🔍 9. IndexNow Sync (Bash & JQ)
+        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          touch mini/indexnow-cache.txt
+          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
+          if [ -s /tmp/new_urls.txt ]; then
+            jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
+            curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
+            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
+          fi
+
    #   - name: 🟡 7. Lemmy Post
    #     if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
    #     continue-on-error: true
@@ -204,19 +218,7 @@ jobs:
 
       
 
-      - name: 🔍 E. IndexNow Sync (Bash & JQ)
-        if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
-        continue-on-error: true
-        env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-        run: |
-          touch mini/indexnow-cache.txt
-          grep -v -F -x -f mini/indexnow-cache.txt sitemap.txt > /tmp/new_urls.txt || true
-          if [ -s /tmp/new_urls.txt ]; then
-            jq -n --arg host "dalam.web.id" --arg key "$INDEXNOW_KEY" --argjson urls "$(jq -R . < /tmp/new_urls.txt | jq -s .)" '{host: $host, key: $key, urlList: $urls}' > /tmp/payload.json
-            curl -X POST "https://bing.com/indexnow" -H "Content-Type: application/json; charset=utf-8" --data-binary @/tmp/payload.json --fail
-            cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
-          fi
+      
 
       # =========================================================
       # 💾 BAGIAN 3: FINAL COMMIT
