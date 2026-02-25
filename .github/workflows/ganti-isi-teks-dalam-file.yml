@@ -12,7 +12,7 @@ on:
       extensions:
         description: "Ekstensi file (koma-separated, misal: md,ts,js). Kosongkan untuk semua file."
         required: false
-        default: "md,ts,tsx,js,jsx"
+        default: "html"
       folder:
         description: "Lokasi folder (default: .)"
         required: false
