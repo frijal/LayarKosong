@@ -1,97 +1,100 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    ":dependencyDashboard",
-    "abandonments:recommended",
-    "replacements:all"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    ':dependencyDashboard',
+    'abandonments:recommended',
+    'replacements:all',
   ],
-  "configMigration": true,
-  "branchPrefix": "renovate/",
-  "prConcurrentLimit": 20,
-  "ignoreUnstable": true,
-  "dependencyDashboard": true,
-  "ignorePaths": [
-    "**/node_modules/**",
-    "artikelx/**",
-    "sementara/**",
-    "mini/**",
-    "functions/**"
+  configMigration: true,
+  branchPrefix: 'renovate/',
+  prConcurrentLimit: 20,
+  ignoreUnstable: true,
+  dependencyDashboard: true,
+  ignorePaths: [
+    '**/node_modules/**',
+    'artikelx/**',
+    'sementara/**',
+    'mini/**',
+    'functions/**',
   ],
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "security"
-    ]
+  vulnerabilityAlerts: {
+    enabled: true,
+    labels: [
+      'security',
+    ],
   },
-  "packageRules": [
+  packageRules: [
     {
-      "description": "1. Strategi Penggantian Versi",
-      "matchPackageNames": [
-        "*"
+      description: '1. Strategi Penggantian Versi',
+      matchPackageNames: [
+        '*',
       ],
-      "rangeStrategy": "replace"
+      rangeStrategy: 'replace',
     },
     {
-      "description": "2. Grup Paket Utama Layar Kosong (Automerge Minor/Patch)",
-      "matchDatasources": [
-        "npm"
+      description: '2. Grup Paket Utama Layar Kosong (Automerge Minor/Patch)',
+      matchDatasources: [
+        'npm',
       ],
-      "matchPackageNames": [
-        "wrangler",
-        "puppeteer",
-        "sharp",
-        "axios",
-        "cheerio",
-        "fast-xml-parser",
-        "@octokit/core"
+      matchPackageNames: [
+        'wrangler',
+        'puppeteer',
+        'sharp',
+        'axios',
+        'cheerio',
+        'fast-xml-parser',
+        '@octokit/core',
       ],
-      "automerge": true,
-      "minimumReleaseAge": "3 days"
+      automerge: true,
+      minimumReleaseAge: '3 days',
     },
     {
-      "description": "3. Paket XML & HTML (Grup Pendukung)",
-      "matchPackageNames": [
-        "@xmldom/xmldom",
-        "@minify-html/node",
-        "tumblr.js"
+      description: '3. Paket XML & HTML (Grup Pendukung)',
+      matchPackageNames: [
+        '@xmldom/xmldom',
+        '@minify-html/node',
+        'tumblr.js',
       ],
-      "groupName": "web-parsers",
-      "automerge": true
+      groupName: 'web-parsers',
+      automerge: true,
     },
     {
-      "description": "4. GitHub Actions: Pin Digests & Automerge",
-      "matchDatasources": [
-        "github-tags"
+      description: '4. GitHub Actions: Pin Digests & Automerge',
+      matchDatasources: [
+        'github-tags',
       ],
-      "pinDigests": true,
-      "automerge": true
+      pinDigests: true,
+      automerge: true,
     },
     {
-      "description": "5. Kontrol Major Update (Butuh Klik Manual)",
-      "matchUpdateTypes": [
-        "major"
+      description: '5. Kontrol Major Update (Butuh Klik Manual)',
+      matchUpdateTypes: [
+        'major',
       ],
-      "dependencyDashboardApproval": true
+      dependencyDashboardApproval: true,
     },
     {
-      "description": "6. Review Manual untuk versi 0.x (Unstable)",
-      "matchCurrentVersion": "/^0./",
-      "dependencyDashboardApproval": true
-    }
+      description: '6. Review Manual untuk versi 0.x (Unstable)',
+      matchCurrentVersion: '/^0./',
+      dependencyDashboardApproval: true,
+    },
   ],
-  "constraints": {
-    "bun": ">=1.2.0"
+  constraints: {
+    bun: '>=1.2.0',
   },
-  "enabledManagers": ["bun", "github-actions"],
-  "postUpdateOptions": [
-    "bun-lock"
+  enabledManagers: [
+    'bun',
+    'github-actions',
   ],
-  "bun": {
-    "enabled": true,
-    "fileMatch": [
-      "(^|/)package\\.json$",
-      "(^|/)bun\\.lock$"
-    ]
-  }
+  postUpdateOptions: [
+    'bun-lock',
+  ],
+  bun: {
+    enabled: true,
+    managerFilePatterns: [
+      '/(^|/)package\\.json$/',
+      '/(^|/)bun\\.lock$/',
+    ],
+  },
 }
