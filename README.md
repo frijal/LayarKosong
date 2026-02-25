@@ -265,6 +265,8 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 
 ## Container Image
 
+[![🐳 Build and Push to GHCR](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml)
+
 [![GHCR Image](https://img.shields.io/badge/ghcr.io-frijal%2Flayarkosong:latest-blue?logo=github&logoColor=white)](https://github.com/frijal/layarkosong/pkgs/container/layarkosong)
 
 ```bash
