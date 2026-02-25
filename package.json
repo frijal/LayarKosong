@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Layar Kosong - Auto RSS Generator, Website Screenshot, dan AI-Powered Index Generator",
   "main": "index.js",
-   "scripts": {
+  "scripts": {
     "fixseo": "bun run ext/seo-fixer.js",
     "ci-fix-meta-image": "bun run ext/seo-fixer.js artikelx",
     "ci-fix-meta-main": "bun run ext/seo-fixer.js artikel",
@@ -45,10 +45,11 @@
     "@xmldom/xmldom": "^0.9.8",
     "axios": "^1.13.5",
     "cheerio": "^1.2.0",
+    "fast-xml-parser": "^5.3.7",
     "puppeteer": "^24.37.5",
     "sharp": "^0.34.5",
     "tumblr.js": "^5.0.1",
-    "fast-xml-parser": "^5.3.7"
+    "twitter-api-v2": "^1.29.0"
   },
   "devDependencies": {
     "wrangler": "^4.67.0"
