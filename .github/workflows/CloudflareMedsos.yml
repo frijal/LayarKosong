@@ -198,21 +198,23 @@ jobs:
    #       LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
    #     run: bun run ext/post-to-lemmy.js
 
-      # =========================================================
-      # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
-      # =========================================================
-
-  #    - name: 🦋 A. Bluesky Autopost
+  #     - name: 🦋 11. Bluesky Autopost
   #      if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'bluesky'
   #      continue-on-error: true
   #      env:
   #        BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
   #        BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
   #      run: |
-  #        python3 ext/post-to-bluesky.py
+  #        bun run ext/post-to-bluesky.js
   #        if [ -f /tmp/temp_new_url_bsky.txt ]; then
   #          cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
-  #        fi      
+  #        fi
+
+      # =========================================================
+      # 🟡 BAGIAN 2: PYTHON & BASH SCRIPTS
+      # =========================================================
+
+  #    
 
       
 
