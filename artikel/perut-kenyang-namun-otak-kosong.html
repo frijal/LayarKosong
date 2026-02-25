@@ -530,7 +530,7 @@
         <h1 class="site-title"><a href="https://dalam.web.id">🏛️ Jaga Data Pribadi Tetap Aman</a></h1>
 <div id="iposbrowser"></div>
         <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
+            <i class="fa-solid fa-moon"></i>
             <span>Mode Gelap</span>
         </button>
     </header>
@@ -550,7 +550,7 @@
                     </div>
                 </div>
                 <div>
-                    <i class="fas fa-tags"></i> Pendidikan, Anggaran, Kebijakan Publik, Analisis Sosial
+                    <i class="fa-solid fa-tags"></i> Pendidikan, Anggaran, Kebijakan Publik, Analisis Sosial
                 </div>
             </div>
         </header>
@@ -574,42 +574,42 @@
                 <div class="fivew-grid">
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-question-circle"></i>
+                            <i class="fa-solid fa-question-circle"></i>
                             <h3>WHAT (Apa yang terjadi?)</h3>
                         </div>
                         <p>Anggaran pendidikan Indonesia dialihkan untuk membiayai program makan gratis yang bersifat populis, sementara kebutuhan mendasar pendidikan seperti infrastruktur sekolah, kesejahteraan guru, dan akses pendidikan tinggi tetap terbengkalai.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-user-friends"></i>
+                            <i class="fa-solid fa-user-friends"></i>
                             <h3>WHO (Siapa yang terlibat?)</h3>
                         </div>
                         <p>Pemerintah sebagai pembuat kebijakan, anak sekolah sebagai penerima program makan gratis, guru dan dosen sebagai korban sistem, orang tua yang terjepit biaya pendidikan, dan penyedia layanan katering sebagai penerima manfaat bisnis.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fa-solid fa-calendar-alt"></i>
                             <h3>WHEN (Kapan terjadi?)</h3>
                         </div>
                         <p>Masalah ini semakin mengemuka dalam dekade terakhir, dengan puncaknya pada tahun-tahun politik ketika program populis dijadikan alat kampanye. Namun akar masalahnya sudah ada sejak lama dalam sistem penganggaran pendidikan kita.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fa-solid fa-map-marker-alt"></i>
                             <h3>WHERE (Di mana terjadi?)</h3>
                         </div>
                         <p>Di seluruh Indonesia, dari sekolah dasar di pedesaan hingga universitas negeri di kota besar. Masalah ini bersifat sistemik dan menyeluruh, meski dengan tingkat keparahan yang berbeda-beda di setiap daerah.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-bullseye"></i>
+                            <i class="fa-solid fa-bullseye"></i>
                             <h3>WHY (Mengapa terjadi?)</h3>
                         </div>
                         <p>Karena prioritas kebijakan yang keliru, politik populis yang mengutamakan pencitraan jangka pendek, sistem anggaran yang tidak transparan, dan kurangnya keberpihakan pada pendidikan sebagai investasi jangka panjang bangsa.</p>
                     </div>
                     <div class="fivew-item">
                         <div class="fivew-title">
-                            <i class="fas fa-cogs"></i>
+                            <i class="fa-solid fa-cogs"></i>
                             <h3>HOW (Bagaimana mekanismenya?)</h3>
                         </div>
                         <p>Melalui pengalihan anggaran fungsi pendidikan ke program non-pendidikan, pemotongan anggaran infrastruktur dan kesejahteraan guru, serta pengabaian terhadap kebutuhan mendasar sektor pendidikan demi program yang terlihat "seksi" secara politis.</p>
@@ -798,21 +798,21 @@
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
             document.body.classList.add('dark-mode');
-            themeIcon.className = 'fas fa-sun';
+            themeIcon.className = 'fa-solid fa-sun';
             themeText.textContent = 'Mode Terang';
         } else {
-            themeIcon.className = 'fas fa-moon';
+            themeIcon.className = 'fa-solid fa-moon';
             themeText.textContent = 'Mode Gelap';
         }
         // Toggle theme
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                themeIcon.className = 'fas fa-sun';
+                themeIcon.className = 'fa-solid fa-sun';
                 themeText.textContent = 'Mode Terang';
                 localStorage.setItem('theme', 'dark');
             } else {
-                themeIcon.className = 'fas fa-moon';
+                themeIcon.className = 'fa-solid fa-moon';
                 themeText.textContent = 'Mode Gelap';
                 localStorage.setItem('theme', 'light');
             }

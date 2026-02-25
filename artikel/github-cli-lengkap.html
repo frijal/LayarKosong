@@ -126,20 +126,20 @@
             <h2 id="login">🔑 Login ke GitHub</h2>
             <p>Langkah pertama: autentikasi akun GitHub kamu via CLI. Bakal buka browser otomatis buat approve.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh auth login</code></pre>
             </div>
             <img src="https://dalam.web.id/img/user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.webp" alt="Diagram alur login GitHub CLI" class="illus">
             <h2 id="clone">📥 Clone Repository</h2>
             <p>Unduh repo orang lain atau punya sendiri ke lokal dengan cepat.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo clone username/repo</code></pre>
             </div>
             <h2 id="commit">📝 Commit &amp; Push</h2>
             <p>Workflow dasar Git tetep dipake, tapi gh bisa bantu shortcut.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>git add .
 git commit -m "Pesan commit"
 git push</code></pre>
@@ -147,32 +147,32 @@ git push</code></pre>
             <h2 id="pr">🔀 Pull Request</h2>
             <p>Bikin PR langsung dari branch kamu tanpa buka web.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh pr create --title "Judul PR" --body "Deskripsi detail"</code></pre>
             </div>
             <img src="https://dalam.web.id/img/nulab.com/static/f1e365e555c594cf25c35e4d56c5dedc/5a190/01.webp" alt="Diagram workflow pull request GitHub" class="illus">
             <h2 id="branch">🌿 Branch</h2>
             <p>Bikin branch baru buat fitur tanpa ganggu main.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>git checkout -b nama-branch-baru</code></pre>
             </div>
             <h2 id="issue">🐛 Issue</h2>
             <p>Lapor bug atau request fitur langsung dari terminal.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh issue create --title "Judul Issue" --body "Deskripsi lengkap"</code></pre>
             </div>
             <h2 id="fork">🔱 Fork Repository</h2>
             <p>Fork repo orang lain sekaligus clone ke lokal.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo fork username/repo --clone=true</code></pre>
             </div>
             <h2 id="merge">🔄 Merge Branch</h2>
             <p>Gabung branch fitur ke main setelah review.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>git checkout main
 git merge nama-branch</code></pre>
             </div>
@@ -180,13 +180,13 @@ git merge nama-branch</code></pre>
             <h2 id="release">📦 Release</h2>
             <p>Bikin tag release baru plus upload asset.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh release create v1.0.0 file.zip --title "Version 1.0.0"</code></pre>
             </div>
             <h2 id="watch-star">⭐ Watch &amp; Star</h2>
             <p>Pantau update repo dan beri star biar support author.</p>
             <div class="code-block">
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button>
                 <pre><code>gh repo watch username/repo
 gh repo star username/repo</code></pre>
             </div>
@@ -215,8 +215,8 @@ gh repo star username/repo</code></pre>
             btn.addEventListener('click', () => {
                 const code = btn.nextElementSibling.querySelector('code').innerText;
                 navigator.clipboard.writeText(code).then(() => {
-                    btn.innerHTML = '<i class="fas fa-check"></i> Disalin!';
-                    setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Salin', 2000);
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
+                    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> Salin', 2000);
                 });
             });
         });

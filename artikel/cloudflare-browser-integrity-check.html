@@ -149,13 +149,13 @@
         <p>Fitur **Browser Integrity Check** (Pemeriksaan Integritas Peramban) di Cloudflare adalah salah satu lapisan keamanan yang paling penting karena ia bertindak sebagai **petugas pemeriksa identitas** di pintu gerbang situs Anda. Fungsinya sangat spesifik: mendeteksi dan memblokir lalu lintas yang tampaknya berasal dari *bot* atau *script* otomatis yang berpura-pura menjadi *browser* manusia (seperti Chrome atau Firefox) yang sah.</p>
         <p>Fitur ini menghemat sumber daya *origin server* Anda dengan membuang *traffic* sampah sejak di **Cloudflare Edge**.</p>
         <hr>
-        <h2><i class="fas fa-binoculars"></i> 1. Fokus Utama: Evaluasi Header HTTP</h2>
+        <h2><i class="fa-solid fa-binoculars"></i> 1. Fokus Utama: Evaluasi Header HTTP</h2>
         <p>Bagaimana Cloudflare tahu apakah Anda manusia atau *script* bot yang buruk? Jawabannya ada di **HTTP Header**. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi (*header*) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIN3IHYdd3q3H_1LKwEk9pB25RsuXyYwufFtf5WslgMMRCSRSsVZLwf9W3FhfKL4WqHORtixomyiJx34pMFjHTHO49t8n4ez7HDF-4ugelYE0yvT3oGq6CqvZo9mWgPB6JCI54R1Os0Ahdx6mZOejOELOS2i3r6xPYuNYWQ4ojZOnH0_TJ4PaU9b0QlhU/s1600/integrity.webp" alt="Diagram proses pemeriksaan integritas browser oleh Cloudflare">
             <p style="font-size:0.9em;">**Gambar:** Proses pemindaian dan pemeriksaan *header* yang dilakukan Cloudflare di lapisan Edge Network.</p>
         </div>
-        <h3><i class="fas fa-bug"></i> Anomali yang Dicari Cloudflare</h3>
+        <h3><i class="fa-solid fa-bug"></i> Anomali yang Dicari Cloudflare</h3>
         <p>Bot sederhana sering kali gagal meniru *header* ini dengan sempurna, dan disitulah Cloudflare memergoki mereka:</p>
         <ul>
             <li><b>Header yang Hilang atau Tidak Lengkap:</b> Peramban sungguhan harus memiliki <em>header</em> standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika <em>header</em> ini hilang atau terlalu singkat, maka adalah tanda bahwa itu bukan peramban sungguhan.</li>
@@ -163,15 +163,15 @@
             <li>**Ketidaksesuaian Logika:** Misalnya, *browser* menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta *header* tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku *browser* normal).</li>
         </ul>
         <hr>
-        <h2><i class="fas fa-clipboard-check"></i> 2. Mekanisme Blokir dan Keuntungannya</h2>
+        <h2><i class="fa-solid fa-clipboard-check"></i> 2. Mekanisme Blokir dan Keuntungannya</h2>
         <p>Jika lalu lintas gagal dalam pemeriksaan integritas ini (dikenal sebagai *mal-formed traffic*), Cloudflare akan bereaksi segera, **sebelum** *request* tersebut mencapai server Anda.</p>
-        <h3><i class="fas fa-stop-circle"></i> Apa yang Terjadi Ketika Bot Ditemukan?</h3>
+        <h3><i class="fa-solid fa-stop-circle"></i> Apa yang Terjadi Ketika Bot Ditemukan?</h3>
         <p>Bila ancaman terdeteksi, Cloudflare akan memberikan respons yang keras:</p>
         <ul>
             <li>**Block Page Delivered:** Bot tersebut tidak akan pernah melihat konten situs Anda. Mereka akan langsung mendapatkan halaman blokir standar dari Cloudflare dengan kode error, yang menghentikan upaya *scraping* atau serangan mereka.</li>
             <li>**Log Peringatan:** Cloudflare mencatat peristiwa ini, memungkinkan Anda melihat seberapa banyak *traffic* bot yang buruk yang berhasil dihalau oleh fitur ini.</li>
         </ul>
-        <h3><i class="fas fa-hand-holding-usd"></i> Keuntungan Nyata untuk Situs Anda</h3>
+        <h3><i class="fa-solid fa-hand-holding-usd"></i> Keuntungan Nyata untuk Situs Anda</h3>
         <table class="specs-table">
             <thead>
                 <tr>
@@ -195,10 +195,10 @@
             </tbody>
         </table>
         <blockquote style="border-left: 6px solid #3498db;">
-            <p><i class="fas fa-comment-dots"></i> **Catatan Santai:** Jangan khawatir! Peramban modern dan bot pencari yang sah (seperti Googlebot atau Bingbot) selalu lulus pemeriksaan ini karena mereka mematuhi standar HTTP dan dirancang untuk berperilaku sebagai klien web yang terpercaya.</p>
+            <p><i class="fa-solid fa-comment-dots"></i> **Catatan Santai:** Jangan khawatir! Peramban modern dan bot pencari yang sah (seperti Googlebot atau Bingbot) selalu lulus pemeriksaan ini karena mereka mematuhi standar HTTP dan dirancang untuk berperilaku sebagai klien web yang terpercaya.</p>
         </blockquote>
         <p style="margin-top: 30px;">Browser Integrity Check adalah fitur "set-it-and-forget-it" (atur sekali dan lupakan) yang memberikan nilai keamanan yang besar, terutama bagi situs yang sering menjadi target *scraping* atau *scanning* otomatis. Aktifkan saja, dan biarkan Cloudflare yang bekerja di latar belakang! 💪</p>
-        <h2 style="margin-top: 50px;"><i class="fas fa-comments"></i> Kolom Diskusi</h2>
+        <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Kolom Diskusi</h2>
         <p>Apakah Anda pernah melihat fitur ini memblokir lalu lintas di log Cloudflare Anda?</p>
         <div id="response"></div><div id="related-articles-grid"></div>
         <footer class="footer">

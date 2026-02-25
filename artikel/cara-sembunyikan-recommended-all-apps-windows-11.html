@@ -213,12 +213,12 @@
 
 <article>
     <header>
-        <h1><i class="fas fa-desktop"></i> Cara Menghilangkan Recommended dan All Apps di Start Menu Windows 11: Panduan Praktis dan Teknis</h1>
+        <h1><i class="fa-solid fa-desktop"></i> Cara Menghilangkan Recommended dan All Apps di Start Menu Windows 11: Panduan Praktis dan Teknis</h1>
 <div id="iposbrowser"></div>
         <div class="meta-info">
-            <span><i class="fas fa-user"></i> Oleh: Rijal</span> |
-            <span><i class="fas fa-calendar"></i> 20 Februari 2026</span> |
-            <span><i class="fas fa-clock"></i> Waktu Baca: 15 Menit</span>
+            <span><i class="fa-solid fa-user"></i> Oleh: Rijal</span> |
+            <span><i class="fa-solid fa-calendar"></i> 20 Februari 2026</span> |
+            <span><i class="fa-solid fa-clock"></i> Waktu Baca: 15 Menit</span>
         </div>
     </header>
 
@@ -233,7 +233,7 @@
     </section>
 
     <section id="5w1h">
-        <h2><i class="fas fa-question-circle"></i> Analisis Strategis: Prinsip 5W+1H</h2>
+        <h2><i class="fa-solid fa-question-circle"></i> Analisis Strategis: Prinsip 5W+1H</h2>
 
         <div class="highlight-box">
             <ul>
@@ -248,7 +248,7 @@
     </section>
 
     <section id="background">
-        <h2><i class="fas fa-history"></i> Latar Belakang dan Evolusi Start Menu</h2>
+        <h2><i class="fa-solid fa-history"></i> Latar Belakang dan Evolusi Start Menu</h2>
         <p>Ketika Windows 11 diluncurkan, Microsoft membagi Start Menu menjadi area tersemat dan area Recommended. Area Recommended ini secara otomatis menampilkan file yang baru saja dibuka, aplikasi baru, dan saran dari Microsoft. Meskipun tujuannya adalah memudahkan akses, bagi banyak orang, ini justru memakan ruang vertikal yang signifikan.</p>
 
         <p>Administrator dan pengguna berpengalaman segera menemukan bahwa kebijakan Group Policy dan kunci registri tertentu dapat menyembunyikan blok Recommended ini sepenuhnya. Microsoft sendiri mendokumentasikan kebijakan <code>HideRecommendedSection</code> yang ditujukan untuk perangkat yang dikelola. Namun, seiring berjalannya waktu dan berbagai pembaruan Windows, perilaku kebijakan ini terus berevolusi.</p>
@@ -257,7 +257,7 @@
     </section>
 
     <section id="quick-choices">
-        <h2><i class="fas fa-bolt"></i> Pilihan Cepat Sekilas Mata</h2>
+        <h2><i class="fa-solid fa-bolt"></i> Pilihan Cepat Sekilas Mata</h2>
         <ol>
             <li><strong>Gunakan Settings (Mudah):</strong> Mematikan konten yang muncul, tapi biasanya tetap menyisakan <em>header</em> kosong.</li>
             <li><strong>Gunakan Group Policy (Pro/Enterprise):</strong> Kontrol resmi untuk menghapus blok Recommended dan daftar All Apps.</li>
@@ -269,7 +269,7 @@
     </section>
 
     <section id="method-1">
-        <h2><i class="fas fa-cog"></i> Metode 1: Lewat Menu Settings (Cara Resmi dan Paling Aman)</h2>
+        <h2><i class="fa-solid fa-cog"></i> Metode 1: Lewat Menu Settings (Cara Resmi dan Paling Aman)</h2>
         <p>Jika kamu lebih suka pendekatan grafis dan ingin mencoba kontrol resmi terlebih dahulu, ini adalah langkah awal yang tepat. Meskipun cara ini tidak selalu menghapus <em>ruang</em> yang digunakan oleh Recommended, ia akan menghapus <em>kontennya</em>.</p>
 
         <h3>Langkah-langkah:</h3>
@@ -284,7 +284,7 @@
     </section>
 
     <section id="method-2">
-        <h2><i class="fas fa-shield-alt"></i> Metode 2: Group Policy Editor (Untuk Pro, Enterprise, dan Education)</h2>
+        <h2><i class="fa-solid fa-shield-alt"></i> Metode 2: Group Policy Editor (Untuk Pro, Enterprise, dan Education)</h2>
         <p>Group Policy (GP) menyediakan kontrol "resmi" yang paling jelas, namun memiliki beberapa catatan penting (caveat).</p>
 
         <h3>Cara Menggunakan:</h3>
@@ -300,7 +300,7 @@
     </section>
 
     <section id="method-3">
-        <h2><i class="fas fa-terminal"></i> Metode 3: Registry Edits (Untuk Pengguna Home dan Otomatisasi)</h2>
+        <h2><i class="fa-solid fa-terminal"></i> Metode 3: Registry Edits (Untuk Pengguna Home dan Otomatisasi)</h2>
         <p>Jika kamu menggunakan Windows 11 Home atau ingin membuat skrip perubahan, kamu bisa membuat nilai DWORD di registri berikut ini.</p>
 
         <h3>Menyembunyikan Bagian Recommended:</h3>
@@ -324,14 +324,14 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies
     </section>
 
     <section id="behavior-expectations">
-        <h2><i class="fas fa-exclamation-triangle"></i> Apa yang Diharapkan Setelah Perubahan?</h2>
+        <h2><i class="fa-solid fa-exclamation-triangle"></i> Apa yang Diharapkan Setelah Perubahan?</h2>
         <p>Kita harus menekankan bahwa hasil modifikasi ini bisa bervariasi. Pada beberapa build Windows 11, bagian Recommended benar-benar hilang sehingga area Pinned Apps bisa meluas memenuhi Start Menu. Namun pada build lain, area tersebut mungkin hanya menjadi ruang kosong yang tidak bisa digunakan.</p>
 
         <p>Selain itu, Microsoft sering mengubah perilaku UI pada update mingguan. Tweak yang bekerja hari ini mungkin akan tereset atau diabaikan oleh pembaruan fitur di masa depan. Oleh karena itu, selalu simpan dokumentasi perubahan yang kamu buat agar mudah dikembalikan jika terjadi ketidakstabilan.</p>
     </section>
 
     <section id="troubleshooting">
-        <h2><i class="fas fa-tools"></i> Troubleshooting: Jika Tidak Berubah</h2>
+        <h2><i class="fa-solid fa-tools"></i> Troubleshooting: Jika Tidak Berubah</h2>
         <ul>
             <li>Pastikan tipe data adalah <strong>DWORD (32-bit)</strong> meskipun kamu menggunakan sistem 64-bit.</li>
             <li>Cek apakah ada konflik dengan kebijakan MDM jika PC kamu adalah milik kantor (domain-joined).</li>
@@ -340,7 +340,7 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies
     </section>
 
     <section id="alternatives">
-        <h2><i class="fas fa-sync-alt"></i> Alternatif Jika Cara Native Gagal</h2>
+        <h2><i class="fa-solid fa-sync-alt"></i> Alternatif Jika Cara Native Gagal</h2>
         <p>Jika kebijakan resmi Microsoft masih menyisakan ruang kosong yang mengganggu, ada opsi pihak ketiga yang sangat populer di komunitas power user:</p>
         <ul>
             <li><strong>ExplorerPatcher:</strong> Tool open-source yang sangat kuat untuk mengembalikan fungsionalitas taskbar dan Start Menu ke gaya yang lebih klasik atau lebih bersih.</li>
@@ -351,7 +351,7 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies
     </section>
 
     <section id="conclusion">
-        <h2><i class="fas fa-check-circle"></i> Kesimpulan dan Rekomendasi Akhir</h2>
+        <h2><i class="fa-solid fa-check-circle"></i> Kesimpulan dan Rekomendasi Akhir</h2>
         <p>Mencapai Start Menu yang minimalis di Windows 11 memerlukan sedikit usaha lebih karena filosofi desain Microsoft yang berfokus pada konten rekomendasi. Bagi sebagian besar pengguna, menonaktifkan konten di menu Settings sudah cukup. Namun bagi kamu yang mengejar estetika <em>pixel-perfect</em> dan efisiensi ruang, metode Registry dan Group Policy adalah jalan yang harus ditempuh.</p>
 
         <p>Selalu lakukan pengujian pada satu perangkat sebelum menerapkan skrip ini ke seluruh komputer di kantor. Dokumentasikan setiap langkah, dan jangan lupa untuk selalu menyiapkan jalan pulang (rollback plan) dengan System Restore. Selamat berkreasi dengan desktop kamu!</p>
@@ -364,7 +364,7 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies
         </div>
 
     <footer>
-        <p>🄯 2026 Jaga Data Pribadi Tetap Aman - Panduan Teknis Windows Terpercaya, <i class="fas fa-info-circle"></i> Artikel ini disusun berdasarkan prinsip Experience, Expertise, Authoritativeness, Trustworthiness.</p>
+        <p>🄯 2026 Jaga Data Pribadi Tetap Aman - Panduan Teknis Windows Terpercaya, <i class="fa-solid fa-info-circle"></i> Artikel ini disusun berdasarkan prinsip Experience, Expertise, Authoritativeness, Trustworthiness.</p>
     </footer>
 </article>
 

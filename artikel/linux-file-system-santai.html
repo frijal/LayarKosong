@@ -265,12 +265,12 @@
                 <p style="margin-top:12px; font-size:0.9rem; color:#7f8c8d;">Sumber: Infografis Linux File System (2025)</p>
             </div>
             <div class="highlight">
-                <i class="fas fa-lightbulb" style="margin-right:8px; color:#f39c12;"></i>
+                <i class="fa-solid fa-lightbulb" style="margin-right:8px; color:#f39c12;"></i>
                 Linux itu rapi banget ngatur filenya. Bayangin kayak rumah besar — semua punya tempatnya masing-masing!
             </div>
             <!-- /bin -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-terminal"></i> /bin</div>
+                <div class="folder-name"><i class="fa-solid fa-terminal"></i> /bin</div>
                 <div class="folder-desc">“Tempatnya perintah-perintah dasar yang wajib ada.”</div>
                 <p>Isinya: <code>ls</code>, <code>cat</code>, <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>echo</code>, dll.</p>
                 <p>Semua orang bisa pakai, bahkan saat sistem lagi “rusak parah”.</p>
@@ -279,7 +279,7 @@
             </div>
             <!-- /boot -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-power-off"></i> /boot</div>
+                <div class="folder-name"><i class="fa-solid fa-power-off"></i> /boot</div>
                 <div class="folder-desc">“Rumahnya file-file buat nyalain Linux.”</div>
                 <p>Ada: <code>vmlinuz</code> (kernel), <code>initramfs</code>, <code>grub.cfg</code>.</p>
                 <p>GRUB baca dari sini buat nampilin menu boot.</p>
@@ -288,7 +288,7 @@
             </div>
             <!-- /dev -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-microchip"></i> /dev</div>
+                <div class="folder-name"><i class="fa-solid fa-microchip"></i> /dev</div>
                 <div class="folder-desc">“Semua hardware di sini jadi 'file'.”</div>
                 <p>Contoh: <code>/dev/sda</code> = harddisk pertama, <code>/dev/null</code> = lubang hitam, <code>/dev/random</code> = angka acak.</p>
                 <p>Keren, kan? Linux bilang: <strong>“Semua adalah file!”</strong></p>
@@ -296,7 +296,7 @@
             </div>
             <!-- /etc -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-cogs"></i> /etc</div>
+                <div class="folder-name"><i class="fa-solid fa-cogs"></i> /etc</div>
                 <div class="folder-desc">“Pusat pengaturan sistem.”</div>
                 <p>Isinya: <code>/etc/passwd</code>, <code>/etc/fstab</code>, <code>/etc/hosts</code>, config Apache, SSH, dll.</p>
                 <p>Tempat favorit sysadmin buat ngoprek setting.</p>
@@ -304,7 +304,7 @@
             </div>
             <!-- /home -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-home"></i> /home</div>
+                <div class="folder-name"><i class="fa-solid fa-home"></i> /home</div>
                 <div class="folder-desc">“Rumah pribadi tiap user.”</div>
                 <p><code>/home/frijal/</code> → folder kamu. Isi: dokumen, foto, <code>.bashrc</code>, <code>.config/</code>.</p>
                 <p>Root nggak punya rumah di sini. Dia tinggal di <code>/root</code>.</p>
@@ -312,7 +312,7 @@
             </div>
             <!-- /lib -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-book"></i> /lib</div>
+                <div class="folder-name"><i class="fa-solid fa-book"></i> /lib</div>
                 <div class="folder-desc">“Perpustakaan buat program-program.”</div>
                 <p>File <code>.so</code> — kayak DLL di Windows.</p>
                 <p>Tanpa <code>/lib</code>, banyak aplikasi error: <em>“library not found”</em>.</p>
@@ -320,28 +320,28 @@
             </div>
             <!-- /media -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-usb"></i> /media</div>
+                <div class="folder-name"><i class="fa-solid fa-usb"></i> /media</div>
                 <div class="folder-desc">“Tempat flashdisk, CD, atau HDD eksternal numpang.”</div>
                 <p>Colok USB → otomatis muncul di <code>/media/nama-kamu/USB-NAME</code>.</p>
                 <p>Bisa di-unmount aman lewat file manager.</p>
             </div>
             <!-- /mnt -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-folder-open"></i> /mnt</div>
+                <div class="folder-name"><i class="fa-solid fa-folder-open"></i> /mnt</div>
                 <div class="folder-desc">“Tempat numpang sementara, biasanya buat sysadmin.”</div>
                 <p>Dulu dipakai buat mount manual. Sekarang lebih sering <code>/media</code>.</p>
                 <p>Contoh: <code>mount /dev/sdb1 /mnt/backup</code></p>
             </div>
             <!-- /opt -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-box"></i> /opt</div>
+                <div class="folder-name"><i class="fa-solid fa-box"></i> /opt</div>
                 <div class="folder-desc">“Rumah aplikasi dari luar (bukan dari repo resmi).”</div>
                 <p>Contoh: Google Chrome, VS Code, Zoom.</p>
                 <p>Struktur: <code>/opt/nama-app/</code></p>
             </div>
             <!-- /proc -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-brain"></i> /proc</div>
+                <div class="folder-name"><i class="fa-solid fa-brain"></i> /proc</div>
                 <div class="folder-desc">“Cermin dari apa yang lagi jalan di sistem.”</div>
                 <p><strong>Bukan file beneran</strong>, tapi virtual!</p>
                 <p>Contoh: <code>/proc/cpuinfo</code>, <code>/proc/meminfo</code>, <code>/proc/1234/</code> → proses PID 1234.</p>
@@ -349,35 +349,35 @@
             </div>
             <!-- /root -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-user-secret"></i> /root</div>
+                <div class="folder-name"><i class="fa-solid fa-user-secret"></i> /root</div>
                 <div class="folder-desc">“Rumahnya si Bos Besar: root.”</div>
                 <p>Bukan di <code>/home/root</code>, tapi langsung <code>/root</code>.</p>
                 <p>Jangan masuk kalau nggak perlu. Bahaya! ⚠️</p>
             </div>
             <!-- /run -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-running"></i> /run</div>
+                <div class="folder-name"><i class="fa-solid fa-running"></i> /run</div>
                 <div class="folder-desc">“Data sementara yang cuma hidup pas sistem nyala.”</div>
                 <p>PID file, socket, status service. Hilang pas reboot.</p>
                 <p>Contoh: <code>/run/user/1000/</code> → data user kamu saat login.</p>
             </div>
             <!-- /sbin -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-shield-alt"></i> /sbin</div>
+                <div class="folder-name"><i class="fa-solid fa-shield-alt"></i> /sbin</div>
                 <div class="folder-desc">“Perintah khusus admin (superuser).”</div>
                 <p>Isi: <code>fdisk</code>, <code>reboot</code>, <code>ifconfig</code>, <code>fsck</code>.</p>
                 <p>Harus pake <code>sudo</code> atau login root.</p>
             </div>
             <!-- /srv -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-server"></i> /srv</div>
+                <div class="folder-name"><i class="fa-solid fa-server"></i> /srv</div>
                 <div class="folder-desc">“Data buat layanan (server).”</div>
                 <p>Contoh: <code>/srv/www/</code> → file website, <code>/srv/ftp/</code> → file FTP.</p>
                 <p>Jarang dipakai di desktop, tapi wajib di server.</p>
             </div>
             <!-- /sys -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-microchip"></i> /sys</div>
+                <div class="folder-name"><i class="fa-solid fa-microchip"></i> /sys</div>
                 <div class="folder-desc">“Jendela langsung ke kernel Linux.”</div>
                 <p>Mirip <code>/proc</code>, tapi lebih modern.</p>
                 <p>Bisa ubah setting kernel real-time.</p>
@@ -385,28 +385,28 @@
             </div>
             <!-- /tmp -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-trash-alt"></i> /tmp</div>
+                <div class="folder-name"><i class="fa-solid fa-trash-alt"></i> /tmp</div>
                 <div class="folder-desc">“Tempat sampah sementara.”</div>
                 <p>File di sini otomatis dihapus pas reboot.</p>
                 <p>Kadang penuh → bikin sistem lemot.</p>
             </div>
             <!-- /usr -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-archive"></i> /usr</div>
+                <div class="folder-name"><i class="fa-solid fa-archive"></i> /usr</div>
                 <div class="folder-desc">“Pusat aplikasi dan data user.”</div>
                 <p>Strukturnya: <code>/usr/bin</code>, <code>/usr/lib</code>, <code>/usr/share</code>, <code>/usr/local</code>.</p>
                 <p>Besar banget, isinya ratusan MB sampai GB.</p>
             </div>
             <!-- /var -->
             <div class="folder-section">
-                <div class="folder-name"><i class="fas fa-exchange-alt"></i> /var</div>
+                <div class="folder-name"><i class="fa-solid fa-exchange-alt"></i> /var</div>
                 <div class="folder-desc">“Data yang selalu berubah.”</div>
                 <p>Contoh: <code>/var/log/</code> → log sistem, <code>/var/www/</code> → web files.</p>
                 <p>Kalau penuh → sistem bisa error!</p>
                 <div class="folder-details">sudo tail -f /var/log/syslog</div>
             </div>
             <div class="tips">
-                <h3><i class="fas fa-check-circle" style="margin-right:10px;"></i> Tips Praktis Buat Pemula Linux</h3>
+                <h3><i class="fa-solid fa-check-circle" style="margin-right:10px;"></i> Tips Praktis Buat Pemula Linux</h3>
                 <ul>
                     <li><strong>Jangan takut buka terminal:</strong> <code>ls -la /</code> → lihat semua folder root</li>
                     <li><strong>Coba jelajahi:</strong> <code>cd /proc &amp;&amp; cat cpuinfo</code> → info CPU</li>
@@ -416,7 +416,7 @@
                 </ul>
             </div>
             <div class="highlight">
-                <i class="fas fa-home" style="margin-right:8px;"></i>
+                <i class="fa-solid fa-home" style="margin-right:8px;"></i>
                 Linux itu kayak rumah besar: <br>
                 <code>/home</code> = kamar pribadi<br>
                 <code>/etc</code> = ruang kontrol<br>

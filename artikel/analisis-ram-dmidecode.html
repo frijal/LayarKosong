@@ -154,7 +154,7 @@
         <p>Halo! Senang sekali bisa membantu Anda membaca dan menganalisis data hardware yang sering kali terlihat rumit. Anda telah menggunakan perintah `dmidecode -t 17` yang luar biasa akurat untuk mendapatkan informasi langsung dari BIOS/UEFI. Data ini adalah kunci utama untuk menentukan upgrade RAM yang tepat.</p>
         <p>Berikut adalah penjelasan detail dari hasil yang Anda berikan, termasuk status slot RAM Anda saat ini dan rekomendasi terbaik untuk upgrade!</p>
         <hr>
-        <h2><i class="fas fa-terminal"></i> 1. Hasil Eksekusi Perintah `dmidecode -t 17`</h2>
+        <h2><i class="fa-solid fa-terminal"></i> 1. Hasil Eksekusi Perintah `dmidecode -t 17`</h2>
         <p>Perintah ini mencari semua modul memori (tipe 17) yang terdeteksi oleh sistem Anda. Terlihat jelas ada dua "Handle" (slot), yaitu <code>Handle 0x0004</code> dan <code>Handle 0x0005</code>.</p>
         <pre><code class="bash"># dmidecode 3.6
 Getting SMBIOS data from sysfs.
@@ -197,9 +197,9 @@ Memory Device
     Type Detail: None
 </code></pre>
         <hr>
-        <h2><i class="fas fa-chart-bar"></i> 2. Analisis Lengkap Setiap Slot Memori</h2>
+        <h2><i class="fa-solid fa-chart-bar"></i> 2. Analisis Lengkap Setiap Slot Memori</h2>
         <p>Kami telah memecah data di atas untuk memberikan pemahaman yang jelas tentang apa yang sudah terpasang dan apa yang masih tersedia. Perhatikan baik-baik perbedaan bentuk fisik **SODIMM** (Laptop) dan **DIMM** (Desktop) agar tidak salah beli!</p>
-               <h3><i class="fas fa-check-circle"></i> Slot 1: Channel A (Handle 0x0004) - Terisi</h3>
+               <h3><i class="fa-solid fa-check-circle"></i> Slot 1: Channel A (Handle 0x0004) - Terisi</h3>
         <p>Slot utama Anda terisi dengan memori Samsung 8GB, dengan detail sebagai berikut:</p>
         <table class="specs-table">
             <thead>
@@ -242,17 +242,17 @@ Memory Device
                 </tr>
             </tbody>
         </table>
-         <h3><i class="fas fa-exclamation-circle"></i> Slot 2: Channel B (Handle 0x0005) - Status Upgrade!</h3>
+         <h3><i class="fa-solid fa-exclamation-circle"></i> Slot 2: Channel B (Handle 0x0005) - Status Upgrade!</h3>
         <p>Pada data `Handle 0x0005`, terlihat detail berikut:</p>
         <ul>
             <li><code>Size: <b>No Module Installed</b></code></li>
             <li><code>Form Factor: <b>Unknown</b></code></li>
         </ul>
         <blockquote style="border-left: 5px solid #00c41f;">
-            <p><i class="fas fa-lightbulb"></i> **Kesimpulan:** Slot memori kedua Anda (Channel B) **masih kosong**! Total RAM Anda saat ini adalah 8 GB. Ini berarti Anda bisa melakukan upgrade RAM menjadi 16 GB tanpa perlu mencopot modul lama, cukup pasang modul baru di slot kosong ini.</p>
+            <p><i class="fa-solid fa-lightbulb"></i> **Kesimpulan:** Slot memori kedua Anda (Channel B) **masih kosong**! Total RAM Anda saat ini adalah 8 GB. Ini berarti Anda bisa melakukan upgrade RAM menjadi 16 GB tanpa perlu mencopot modul lama, cukup pasang modul baru di slot kosong ini.</p>
         </blockquote>
         <hr>
-        <h2><i class="fas fa-cart-plus"></i> 3. Rekomendasi Belanja dan Upgrade</h2>
+        <h2><i class="fa-solid fa-cart-plus"></i> 3. Rekomendasi Belanja dan Upgrade</h2>
         <p>Untuk mendapatkan performa **Dual-Channel** yang optimal dan total kapasitas **16 GB**, Anda disarankan mencari modul baru dengan kriteria berikut:</p>
         <table class="specs-table">
             <thead>
@@ -291,10 +291,10 @@ Memory Device
             </tbody>
         </table>
              <blockquote>
-            <p><i class="fas fa-exclamation-triangle"></i> **Catatan Penting Part Number:** Part Number RAM Anda (`M471A1K43CB1-CRC`) sebenarnya adalah modul Samsung yang umumnya dirating pada **2400 MHz (PC4-19200)**. Sistem Anda membatasi kecepatannya di 2133 MHz. Jika Anda membeli RAM baru dengan rating 2400 MHz, kemungkinan besar kedua modul akan berjalan sempurna di 2133 MHz, memanfaatkan kualitas chip yang sedikit lebih baik.</p>
+            <p><i class="fa-solid fa-exclamation-triangle"></i> **Catatan Penting Part Number:** Part Number RAM Anda (`M471A1K43CB1-CRC`) sebenarnya adalah modul Samsung yang umumnya dirating pada **2400 MHz (PC4-19200)**. Sistem Anda membatasi kecepatannya di 2133 MHz. Jika Anda membeli RAM baru dengan rating 2400 MHz, kemungkinan besar kedua modul akan berjalan sempurna di 2133 MHz, memanfaatkan kualitas chip yang sedikit lebih baik.</p>
         </blockquote>
         <p style="margin-top: 30px;">Semoga penjelasan ini bisa membantu Anda dalam menentukan langkah upgrade berikutnya! Sekarang Anda sudah punya semua informasi yang diperlukan untuk belanja dan upgrade RAM. Selamat mencoba! 🎉</p>
-        <h2 style="margin-top: 50px;"><i class="fas fa-comments"></i> Tombol Diskusi</h2>
+        <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Tombol Diskusi</h2>
         <div id="response"></div><div id="related-articles-grid"></div>
         <footer class="footer">
             <p>🄯 2025 Jaga Data Pribadi Tetap Aman | Analisis RAM Dibuat Berdasarkan Data | <a href="https://dalam.web.id/disclaimer.html">Kebijakan Privasi</a></p>

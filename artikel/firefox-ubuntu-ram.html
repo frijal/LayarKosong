@@ -321,7 +321,7 @@
         <div class="container">
             <div class="header-content">
                 <a href="/" class="logo">
-                    <i class="fas fa-firefox-browser"></i> Jaga Data Pribadi Tetap Aman.
+                    <i class="fa-solid fa-firefox-browser"></i> Jaga Data Pribadi Tetap Aman.
                 </a>
                             </div>
         </div>
@@ -333,38 +333,38 @@
                     <h1>Kenapa Firefox di Ubuntu Nggak Boros RAM?</h1>
 <div id="iposbrowser"></div>
                     <div class="meta">
-                        <span><i class="fas fa-user"></i> Frijal</span>
-                        <span><i class="fas fa-calendar"></i> 7 November 2025</span>
-                        <span><i class="fas fa-clock"></i> 10 menit baca</span>
+                        <span><i class="fa-solid fa-user"></i> Frijal</span>
+                        <span><i class="fa-solid fa-calendar"></i> 7 November 2025</span>
+                        <span><i class="fa-solid fa-clock"></i> 10 menit baca</span>
                     </div>
                 </div>
                 <div class="original-question">
-                    <h3><i class="fas fa-quote-left"></i> Pertanyaan Asli dari Forum</h3>
+                    <h3><i class="fa-solid fa-quote-left"></i> Pertanyaan Asli dari Forum</h3>
                     <p><strong>"Why is Firefox on Ubuntu doesn't eat too much RAM compared to Windows or any other Linux distro (Arch, Endeavour, Mint) eats too much RAM?"</strong></p>
                 </div>
                 <p>Pertanyaan ini muncul di forum tech, dan jawabannya rame banget! Dari yang serius ngomongin <em>MSVC vs GCC</em>, sampe yang cuma bilang <strong>"Windows = spyware"</strong>. Tapi intinya: <strong>Firefox di Ubuntu emang jauh lebih hemat RAM</strong>. Kenapa? Yuk kita bongkar satu-satu.</p>
-                <h2><i class="fas fa-microchip"></i> 1. Windows = Bloatware + Proses Latar Belakang</h2>
+                <h2><i class="fa-solid fa-microchip"></i> 1. Windows = Bloatware + Proses Latar Belakang</h2>
                 <p>Bayangin pas boot, Windows nyalain <strong>60–100+ proses</strong>: telemetry, Cortana, Copilot, Edge auto-start, Windows Defender, update service, cloud sync, dll. Linux? Cuma <strong>10–15 daemon esensial</strong>.</p>
                 <ul>
                     <li><strong>Idle RAM Windows 11</strong>: 2.5 – 3.5 GB</li>
                     <li><strong>Idle RAM Ubuntu (KDE/XFCE)</strong>: 600 MB – 1 GB</li>
                 </ul>
                 <p>Jadi sebelum buka Firefox, Windows udah "makan dulu" 3 GB. Firefox cuma korban lingkungan!</p>
-                <h2><i class="fas fa-code"></i> 2. Kompilasi Firefox: GCC (Linux) vs MSVC (Windows)</h2>
+                <h2><i class="fa-solid fa-code"></i> 2. Kompilasi Firefox: GCC (Linux) vs MSVC (Windows)</h2>
                 <p>Firefox di Windows dikompilasi pake <strong>MSVC</strong> (Microsoft Visual C++). Ini nyimpan metadata buat debugging, RTTI, dan <strong>Structured Exception Handling (SEH)</strong>. Hasilnya? Binary lebih gede, RAM footprint lebih berat.</p>
                 <p>Di Linux? Pake <strong>GCC/Clang</strong> → lebih ringan, nggak ada overhead SEH, dan dynamic linking lebih efisien.</p>
                 <div class="img-container">
                     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxYgQa3_0A_VmW8uZscr5ZHApSDD1nXd9ieYrtz94kjHcM_WCieqhP4tu7L1lSqYWhS_aBkc5qeovbfw9mr7zytUERrdztkD78bzw0D6GjnZdRxbUzjoIL_pl_zaUM0fmfwUzZmk68yfu1sd4HY4WwcU4CqpPJbkLxRWyR0Ivt7SZavq9cuv_P67w8zyc/s1600/aboutconfigfirefox.webp" alt="Firefox about:config tweak untuk hemat RAM">
                     <div class="img-caption">Tweak about:config — senjata rahasia hemat RAM!</div>
                 </div>
-                <h2><i class="fas fa-memory"></i> 3. Linux Kelola Memori Lebih Pintar</h2>
+                <h2><i class="fa-solid fa-memory"></i> 3. Linux Kelola Memori Lebih Pintar</h2>
                 <p>Linux pake <strong>cache cerdas</strong>: data yang jarang dipake bisa langsung dibuang. Ada juga <strong>zram/zswap</strong> buat kompresi swap. Windows? Suka "nyimpan dulu buat jaga-jaga" → RAM bengkak.</p>
                 <div class="tip-box">
                     <p><strong>Tips Pro</strong>: Pakai <code>zram-generator</code> di Ubuntu → swap dikompresi, performa naik, RAM hemat!</p>
                 </div>
-                <h2><i class="fas fa-home"></i> 4. Ubuntu = "Rumah" Firefox</h2>
+                <h2><i class="fa-solid fa-home"></i> 4. Ubuntu = "Rumah" Firefox</h2>
                 <p>Firefox dikembangkan bareng tim Debian/Ubuntu. Jadi build-nya <strong>dioptimasi khusus</strong> buat ekosistem .deb. Di Arch/Mint? Kadang pake build AUR atau Snap → beda optimasi, bisa lebih berat.</p>
-                <h2><i class="fas fa-wrench"></i> 5. Tweak Firefox Biar Nggak Rakus</h2>
+                <h2><i class="fa-solid fa-wrench"></i> 5. Tweak Firefox Biar Nggak Rakus</h2>
                 <p>Buka <code>about:config</code>, cari dan ubah:</p>
                 <pre>browser.cache.disk.enable → false
 browser.cache.memory.capacity → 52428 (51 MB)
@@ -382,12 +382,12 @@ sidebar.revamp → false
 ui.prefersReducedMotion → 1
 </pre>
                 <p>Matikan juga: <strong>Pocket, Telemetry, Sync (kalau nggak dipake)</strong>.</p>
-                <h2><i class="fas fa-shield-alt"></i> 6. Windows = Spyware? Banyak yang Bilang Iya!</h2>
+                <h2><i class="fa-solid fa-shield-alt"></i> 6. Windows = Spyware? Banyak yang Bilang Iya!</h2>
                 <p>Telemetry, ads di Start Menu, Copilot always-on → semua makan RAM &amp; CPU. Linux? Kamu yang kontrol. Mau hapus apa aja? Bisa!</p>
-                <h2><i class="fas fa-exchange-alt"></i> 7. Pindah ke Wayland!</h2>
+                <h2><i class="fa-solid fa-exchange-alt"></i> 7. Pindah ke Wayland!</h2>
                 <p>Di X11, memori grafik dihitung di X server → keliatan dobel. Di <strong>Wayland</strong>? Semua di-handle per proses → akurasi lebih baik, performa lebih smooth.</p>
                 <div class="conclusion">
-                    <h2><i class="fas fa-trophy"></i> Kesimpulan Akhir</h2>
+                    <h2><i class="fa-solid fa-trophy"></i> Kesimpulan Akhir</h2>
                     <p><strong>Firefox nggak boros di Ubuntu karena:</strong></p>
                     <p>OS ringan + build optimal + nggak ada bloat Windows + memori dikelola cerdas.</p>
                     <p>Di Windows atau distro lain? Bloatware + kompilasi berat = RAM jebol.</p>
@@ -399,7 +399,7 @@ ui.prefersReducedMotion → 1
     </main>
     <footer>
         <div class="container">
-            <p>🄯 2025 Dibuat dengan <i class="fas fa-heart" style="color:#e11d48"></i> di Balikpapan.</p>
+            <p>🄯 2025 Dibuat dengan <i class="fa-solid fa-heart" style="color:#e11d48"></i> di Balikpapan.</p>
         </div>
     </footer>
     <!-- Auto Dark Mode -->
