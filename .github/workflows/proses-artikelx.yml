@@ -29,51 +29,37 @@ jobs:
       - name: Install Node dependencies
         run: bun install
 
-      - name: Localize Assets
-        run: |
-          set -euo pipefail
-          if [[ -f ext/gantifontshighlight.pl ]]; then
-            chmod +x ext/gantifontshighlight.pl
-            perl ext/gantifontshighlight.pl --quiet --no-backup
-          fi
+      - name: 🛠️ Localize Assets
+        run: bun run ext/gantifontshighlight.js --quiet --no-backup
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
 
-      - name: Replace Content (Perl)
+      - name: 🛠️ Replace Content (Bun)
         run: |
-          set -euo pipefail
           shopt -s nullglob
           for file in artikelx/*.html; do
-            echo "Processing $file"                      
-            perl -i -wpe '
-              s|https://dalam[.]web[.]id/assets/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;
-              s|https://dalam[.]web[.]id/apple-touch-icon[.]png|https://dalam.web.id/ext/icons/apple-touch-icon.png|g;                          
-              s|&copy;|🄯|g;
-              s|Font Awesome 6 Free|Font Awesome 7 Free|g;
-              s|Font Awesome 5 Free|Font Awesome 7 Free|g;
-              s| - Layar Kosong||g;
-              s|©|🄯|g;
-              s|>Dalam Web</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|>dalam.web.id</a>|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|Analisis mendalam ||g;
-              s|Analisis tajam ||g;
-              s|content="Analisis kritis ||g;
-              s|content="Mengapa ||g;
-              s|content="Pelajari ||g;          
-              s|content="Simak ||g;
-              s|content="Temukan ||g;
-              s|Dalam Web Artikel|>Jaga Data Pribadi Tetap Aman</a>|g;
-              s|Dalam Web Id|Jaga Data Pribadi Tetap Aman|g;
-              s|Dalam Web ID|Jaga Data Pribadi Tetap Aman|g;
-              s|Dalam.web.id|Jaga Data Pribadi Tetap Aman|g;
-              s|far fa-copyright|fa-brands fa-creative-commons-zero|g;
-              s|Panduan lengkap ||g;
-              s|Panduan mendalam ||g;
-              s|Penjelasan mendalam ||g;
-              s|Simak ulasan mendalam ||g;
-            ' "$file"
-          done     
+            echo "Processing $file"
+            bun -e "
+              let f = Bun.file('$file');
+              let t = await f.text();
+              t = t.replace(/https:\/\/dalam\[\.\]web\[\.\]id\/assets\/apple-touch-icon\.png/g, 'https://dalam.web.id/ext/icons/apple-touch-icon.png')
+                   .replace(/https:\/\/dalam\[\.\]web\[\.\]id\/apple-touch-icon\.png/g, 'https://dalam.web.id/ext/icons/apple-touch-icon.png')
+                   .replace(/&copy;|©/g, '🄯')
+                   .replace(/Font Awesome [56] Free/g, 'Font Awesome 7 Free')
+                   .replace(/ - Layar Kosong/g, '')
+                   .replace(/>Dalam Web<\/a>|>Jaga Data Pribadi Tetap Aman<\/a>/g, '')
+                   .replace(/>dalam\.web\.id<\/a>/g, '>Jaga Data Pribadi Tetap Aman</a>')
+                   .replace(/Analisis (mendalam|tajam) /g, '')
+                   .replace(/content=\"(Analisis kritis |Mengapa |Pelajari |Simak |Temukan )/g, 'content=\"')
+                   .replace(/Dalam Web Artikel/g, 'Jaga Data Pribadi Tetap Aman')
+                   .replace(/Dalam Web (Id|ID)|Dalam\.web\.id/gi, 'Jaga Data Pribadi Tetap Aman')
+                   .replace(/(Panduan|Penjelasan) (lengkap|mendalam) /g, '')
+                   .replace(/Simak ulasan mendalam /g, '')
+                   .replace(/far fa-copyright/g, 'fa-brands fa-creative-commons-zero');
+              await Bun.write('$file', t);
+            "
+          done
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
