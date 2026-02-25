@@ -262,14 +262,14 @@ npm-debug.log
 # Abaikan folder hasil build
 /dist
 /build</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <h4>Langkah 2: "Un-track" `node_modules` (Jika Terlanjur di-`add`)</h4>
                         <p>Kalau kamu pernah tidak sengaja menjalankan `git add .` dan `node_modules` ikut masuk, kita perlu mengeluarkannya dari pelacakan Git.</p>
                         <div class="code-block">
                             <pre><code># Perintah ini HANYA menghapus dari Git, BUKAN dari komputermu
 git rm -r --cached node_modules</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <h4>Langkah 3: Simpan Perubahanmu</h4>
                         <p>Terakhir, commit `.gitignore` dan perubahan "untracking" tadi agar aturan ini berlaku selamanya.</p>
@@ -277,7 +277,7 @@ git rm -r --cached node_modules</code></pre>
                             <pre><code>git add .gitignore
 git commit -m "feat: Add .gitignore and untrack node_modules"
 git push</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                     </div>
                 </div>
@@ -293,7 +293,7 @@ git push</code></pre>
                         <div class="code-block">
                             <pre><code># Hanya akan menarik 1 commit terakhir, ukurannya jadi super kecil!
 git clone --depth 1 https://github.com/user/repo.git</code></pre>
-                            <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <div class="tip"><i class="fas fa-info-circle"></i> <strong>Kelemahan:</strong> Kamu tidak bisa melihat atau kembali ke commit-commit lama di komputermu.</div>
                         <h4>Opsi B: Cara "Pembersihan Total" (Menulis Ulang Sejarah)</h4>
@@ -315,7 +315,7 @@ pip3 install git-filter-repo
 git filter-repo --path node_modules --invert-paths
 # 3. Dorong paksa riwayat baru ke GitHub
 git push origin --force --all</code></pre>
-                             <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                             <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
                         <p>Setelah ini, repositorimu akan "sembuh" dan ukurannya menyusut drastis. Semua anggota tim harus menghapus folder lama mereka dan melakukan `git clone` yang baru.</p>
                     </div>
