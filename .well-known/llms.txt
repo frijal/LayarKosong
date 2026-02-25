@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.5
+document_version: 16.6
 last_updated: 2026-02-25
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -38,7 +38,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 25 Februari 2026)
-> Menampilkan 976 artikel yang berhasil diindeks dalam versi 16.5.
+> Menampilkan 977 artikel yang berhasil diindeks dalam versi 16.6.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -807,6 +807,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang Harus Kamu Tahu di 2026](https://dalam.web.id/warta-tekno/youtube-ad-blockers-vs-mv3-2026) : YouTube Ad Blockers vs MV3: deskripsi dan komentar tersembunyi. Ketahui bagaimana Manifest V3 mengubah pemblokiran iklan, membatasi perbaikan, dan memengaruhi jutaan pengguna di seluruh dunia.
 - [Firefox 148 AI Controls: Cara Mematikan Fitur AI Secara Total di Browser Kamu](https://dalam.web.id/warta-tekno/firefox-148-ai-controls) : cara menggunakan fitur AI Controls di Firefox 148 untuk memblokir fitur generative AI. Pelajari cara kerja master switch dan dampaknya bagi privasi data Anda.
 - [Copilot Memory Sekarang Pakai Data Edge Bing dan MSN Secara Default – Cara Amankan Privasi Kamu](https://dalam.web.id/warta-tekno/copilot-memory-privacy-management) : Ketahui pembaruan terbaru Microsoft Copilot yang kini otomatis merekam aktivitas dari Edge Bing dan MSN ke dalam fitur Memory. Pelajari cara mengelola privasi dan menghapus data yang tersimpan.
 - [Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty](https://dalam.web.id/warta-tekno/jangan-larang-medsos-anak-regulasi-platform) : Komisaris HAM Eropa Michael O Flaherty memperingatkan pemerintah agar tidak asal melarang anak main medsos tapi fokus pada regulasi platform digital
