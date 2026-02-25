@@ -51,9 +51,9 @@ jobs:
 
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "$TASK" != "all" ]]; then
             # Daftar task khusus Node.js
-            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "lemmy" "mastodon" "threads" "linkedin" "tumblr")
+            NODE_ONLY=("diskusi RSS" "cloudflare" "discord" "facebook" "lemmy" "mastodon" "threads" "linkedin" "tumblr")
             # Daftar task khusus Python/Bash
-            PYTHON_ONLY=("bluesky" "indexnow" "patreon" "llms_index" "facebook")
+            PYTHON_ONLY=("bluesky" "indexnow" "patreon" "llms_index")
 
             if [[ " ${NODE_ONLY[@]} " =~ " $TASK " ]]; then
                NEED_PYTHON=false
@@ -185,7 +185,7 @@ jobs:
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         id: fb_info
         continue-on-error: true
-        run: python3 ext/post-to-facebook.py
+        run: bun run ext/post-to-facebook.js
 
       - name: 🚀 D. Send to Facebook Page
         if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != '' && steps.fb_info.outputs.url != null
