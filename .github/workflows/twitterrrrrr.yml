@@ -1,0 +1,43 @@
+name: Auto Post Twitter
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'artikel.json' # Hanya jalan kalau file ini berubah
+  schedule:
+    - cron: '0 */6 * * *' # Cek tiap 6 jam
+  workflow_dispatch: # Tombol manual di tab Actions
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Run Twitter Script
+        run: bun run twitter-post.js
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+
+      - name: Commit Updated Database
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add mini/posted-twitter.txt
+          git commit -m "Update posted-twitter database [skip ci]" || echo "No changes to commit"
+          git push
