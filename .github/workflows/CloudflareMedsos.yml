@@ -164,7 +164,6 @@ jobs:
         env:
           LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
           LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-          LEMMY_INSTANCE: ${{ secrets.LEMMY_INSTANCE }}
         run: bun run ext/post-to-lemmy.js
 
       # =========================================================
