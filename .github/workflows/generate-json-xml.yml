@@ -16,7 +16,7 @@ on:
         type: boolean
         default: true
       run_schema:
-        description: 'Jalankan Inject Schema.org Python'
+        description: 'Jalankan Inject Schema.org'
         type: boolean
         default: true
       run_minify_html:
@@ -28,7 +28,7 @@ on:
         type: boolean
         default: true
       run_convert_markdown:
-        description: 'ubah ke format markdown'
+        description: 'Ubah ke format Markdown'
         type: boolean
         default: true  
 
@@ -49,85 +49,75 @@ jobs:
 
     steps:
       - name: '1. Checkout Repository'
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
           fetch-depth: 1
           persist-credentials: true      
 
       - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
 
       - name: '3. Install Dependencies'
         run: bun install
 
-      - name: '4. Setup Python' # Dibutuhkan untuk step Schema nanti
-        if: env.DO_SCHEMA == 'true'
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
-        with:
-          python-version: '3.x'
+      # Python Setup dihapus karena Schema Injector sudah pakai Bun (.js)
 
-      - name: '5️⃣ Generate artikel.json, Sitemap XML & RSS'
+      - name: '4️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
         run: bun run ext/generator-pro.js
         env:
           RSS_LIMIT: 30
 
-      - name: '6️⃣ Generate sitemap.txt'
+      - name: '5️⃣ Update sitemap.txt (Native Bun)'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
           echo "📝 Membuat sitemap.txt (Clean URL)..."
-          BASE_URL="https://dalam.web.id"
-          node -e "
+          bun -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
             const urls = [];
             const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
+            const BASE_URL = 'https://dalam.web.id';
 
-            // 1. Ambil URL Artikel & Kategori (Tanpa Slash)
             for (const [cat, posts] of Object.entries(data)) {
               const catSlug = slugify(cat);
               posts.forEach(p => {
                 const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
-                // 🔥 Hapus / di akhir URL artikel
-                urls.push('${BASE_URL}/' + catSlug + '/' + fileSlug);
+                urls.push(BASE_URL + '/' + catSlug + '/' + fileSlug);
               });
             }
 
-            // 2. Daftar URL Manual (Tanpa Slash di akhir)
-            // Khusus root '/', tetap dibiarkan '/' atau kosong tergantung selera, 
-            // tapi di sini saya buat konsisten ke root domain.
-            [
+            const manualUrls = [
               '', '/jejak-sejarah', '/lainnya', '/olah-media', 
               '/opini-sosial', '/sistem-terbuka', '/warta-tekno', 
               '/gaya-hidup', '/about', '/privacy', '/search', 
               '/security-policy', '/data-deletion-form', '/disclaimer', 
               '/feed', '/img', '/lisensi', '/sitemap'
-            ].forEach(u => urls.push('${BASE_URL}' + u));
+            ];
+            manualUrls.forEach(u => urls.push(BASE_URL + u));
 
-            // 3. Tulis file dengan URL unik
             fs.writeFileSync('sitemap.txt', [...new Set(urls)].join('\n') + '\n');
           "
-     
-      - name: '7️⃣ Inject schema.org (BARU KEMUDIAN)'
+      
+      - name: '6️⃣ Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
-        run: python3 ext/inject_schema.py
+        run: bun run ext/inject-schema.js
 
-      - name: 📝 Convert HTML Tags to Markdown (Node.js)
+      - name: '7️⃣ Convert HTML to Markdown'
         if: env.DO_CONVERT_MARKDOWN == 'true'
         run: bun run ext/html-to-markdown.js
         
-      - name: '8️⃣ Clean HTML Cerdas (rust-html-minify)'
+      - name: '8️⃣ Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
         run: bun run ext/minify-html.js
 
-      - name: 🧹 Minify Data (JSON & XML)
+      - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
         run: bun run ext/minify-jsonxml.js     
 
-      - name: '9️⃣ Commit and Push'
+      - name: '🔟 Commit and Push'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -135,7 +125,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "✅ Tidak ada perubahan."
           else
-            git commit -m "build: 🚀 site assets (webp mirrors, json, rss, sitemap)"
+            git commit -m "build: 🚀 optimized site assets (schema, minify, sitemap) [$(date +'%Y-%m-%d %H:%M')]"
             git pull --rebase origin main
             git push origin main
           fi
