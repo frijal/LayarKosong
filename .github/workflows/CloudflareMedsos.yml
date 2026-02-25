@@ -190,7 +190,7 @@ jobs:
             cat /tmp/new_urls.txt >> mini/indexnow-cache.txt
           fi
 
-   #   - name: 🟡 7. Lemmy Post
+   #   - name: 🟡 10. Lemmy Post
    #     if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'lemmy'
    #     continue-on-error: true
    #     env:
