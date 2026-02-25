@@ -62,8 +62,6 @@ jobs:
       - name: '3. Install Dependencies'
         run: bun install
 
-      # Python Setup dihapus karena Schema Injector sudah pakai Bun (.js)
-
       - name: '4️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
         run: bun run ext/generator-pro.js
