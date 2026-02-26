@@ -65,7 +65,7 @@ jobs:
           # Eksekusi find TANPA eval. 
           # "${FIND_EXT_ARGS[@]}" akan diekspansi dengan benar beserta tanda kurungnya.
           find "$TARGET" -type f "${FIND_EXT_ARGS[@]}" \
-            -not -path '*/.*' \
+          #  -not -path '*/.*' \
             -not -path '*/node_modules/*' \
             -not -path '*/functions/*' \
             -not -path '*/img/*' \
@@ -90,7 +90,7 @@ jobs:
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: ganti text"
+          commit-message: "chore: ganti text pada file $EXT"
           branch: "ganti-txt/${{ github.run_id }}"
           delete-branch: true
           title: "Mass Replace (${{ github.event.inputs.extensions }}): ${{ github.event.inputs.search_text }}"
