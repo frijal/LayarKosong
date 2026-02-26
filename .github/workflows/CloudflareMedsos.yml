@@ -35,12 +35,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛰️ Checkout Repository
-        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       - name: 🚀 Setup Bun
-        uses: oven-sh/setup-bun@ab8cb4e8f89912a29b87e4abc4554f2301648a5c
+        uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest         
       
