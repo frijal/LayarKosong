@@ -52,58 +52,54 @@ jobs:
         id: generate_report
         run: |
           echo "📊 Membuat laporan markdown dinamis V6.9 (Auto-detect Categories)..."
-          
+
+          # 1. Setup Awal
           DATE=$(date +'%Y-%m-%d')
-          # Simpan DATE ke environment agar bisa dipakai di step commit
-          echo "DATE=$DATE" >> $GITHUB_ENV
-          mkdir -p mini
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           MAX_BLOCKS=20
+          mkdir -p mini
 
-          # Fungsi Escape Markdown agar karakter # tidak merusak tabel
-          escape_md() {
-            echo "$1" | sed 's/[_#*`\[\]]/\\&/g'
-          }
-
-          # --- DETEKSI FOLDER DINAMIS (Anti-Error) ---
-          SKIP_PATTERN="^\./(\.git|\.github|node_modules|mini)$"
-          # Simpan daftar folder ke file temp untuk menghindari masalah subshell
-          find . -maxdepth 2 -type d -not -path '*/.*' | grep -vE "$SKIP_PATTERN" | sed 's|^\./||' | sort -u > folders_list.txt
-
+          # Emoji mapping
           declare -A ext_emoji=(
-            [css]="🎨" [html]="🌐" [ico]="🔑" [jpeg]="🖼️" [jpg]="🖼️" 
-            [js]="📜" [json]="🗂️" [png]="🖼️" [py]="🐍" [sh]="💻" 
+            [css]="🎨" [html]="🌐" [ico]="🔑" [jpeg]="🖼️" [jpg]="🖼️"
+            [js]="📜" [json]="🗂️" [png]="🖼️" [py]="🐍" [sh]="💻"
             [svg]="✏️" [txt]="📄" [webp]="🖼️" [md]="📝" [no-ext]="❓"
           )
 
-          # Inisialisasi variabel global
-          total_global=0
+          # === DETEKSI FOLDER DINAMIS ===
+          SKIP_PATTERN="^\./(\.git|\.github|node_modules|mini)$"
+          # Ambil folder dan bersihkan prefix ./
+          find . -maxdepth 2 -type d -not -path '*/.*' | grep -vE "$SKIP_PATTERN" | sed 's|^\./||' | sort -u > folders.txt
+
           declare -A global_ext_count
           declare -A global_ext_folders
           max_global_count=0
+          total_global=0
 
-          # 1. Collect global statistics (Pre-scan)
+          # 2. Pengumpulan Statistik Global & Lokasi
           while read -r folder; do
             [[ -z "$folder" || "$folder" == "." ]] && continue
             while IFS= read -r -d $'\0' file; do
               ext="${file##*.}"
               [[ "$file" != *.* ]] && ext="no-ext"
-              global_ext_count["$ext"]=$(( ${global_ext_count["$ext"]:-0} + 1 ))
               
-              dir_name=$(dirname "$file")
-              if [[ ! "${global_ext_folders["$ext"]}" =~ "$dir_name" ]]; then
-                global_ext_folders["$ext"]+="$dir_name | "
+              global_ext_count["$ext"]=$(( ${global_ext_count["$ext"]:-0} + 1 ))
+              dir_path=$(dirname "$file")
+              
+              # Catat folder unik untuk setiap ekstensi
+              if [[ ! "${global_ext_folders["$ext"]}" =~ "$dir_path" ]]; then
+                global_ext_folders["$ext"]+="$dir_path "
               fi
             done < <(find "$folder" -maxdepth 5 -type f -print0 2>/dev/null)
-          done < folders_list.txt
+          done < folders.txt
 
-          # Hitung max untuk histogram
-          for count in "${global_ext_count[@]}"; do
-            (( count > max_global_count )) && max_global_count=$count
+          # Cari nilai maksimal untuk scaling histogram
+          for c in "${global_ext_count[@]}"; do
+            (( c > max_global_count )) && max_global_count=$c
           done
           (( max_global_count == 0 )) && max_global_count=1
 
-          # 2. Mulai Menulis Laporan (Line by line agar tidak kosong)
+          # 3. Generate Body Laporan
           {
             echo "# 🔆 Laporan Konten Harian Layar Kosong"
             echo "Dihasilkan pada: $(date '+%d %B %Y %H:%M:%S') Balikpapan Time"
@@ -113,7 +109,7 @@ jobs:
             while read -r folder; do
               [[ -z "$folder" || "$folder" == "." ]] && continue
               
-              # Subfolder scan
+              # Scan subfolder termasuk dirinya sendiri
               find "$folder" -maxdepth 2 -type d -print0 2>/dev/null | while IFS= read -r -d $'\0' subfolder; do
                 declare -A subf_count
                 has_files=false
@@ -126,8 +122,7 @@ jobs:
                 done < <(find "$subfolder" -maxdepth 1 -type f -print0 2>/dev/null)
 
                 if [ "$has_files" = true ]; then
-                  safe_name=$(escape_md "$subfolder")
-                  echo "### 📂 Folder: $safe_name"
+                  echo "### 📂 Folder: $subfolder"
                   echo ""
                   echo "| Jenis File | Jumlah | Histogram |"
                   echo "|:-----------|-------:|:----------|"
@@ -135,18 +130,21 @@ jobs:
                   for ext in $(printf "%s\n" "${!subf_count[@]}" | sort); do
                     count=${subf_count["$ext"]}
                     total_global=$(( total_global + count ))
+                    
                     blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
                     [[ $blocks -gt $MAX_BLOCKS ]] && blocks=$MAX_BLOCKS
                     histogram=$(printf '▇%.0s' $(seq 1 "$blocks" 2>/dev/null || echo 1))
                     emoji=${ext_emoji["$ext"]:-📄}
+                    
                     printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
                   done
                   echo ""
                 fi
+                unset subf_count
               done
-            done < folders_list.txt
+            done < folders.txt
 
-            # Ringkasan Global
+            # 4. Ringkasan Global
             echo "---"
             echo "## 📊 Ringkasan Statistik Global"
             echo ""
@@ -156,29 +154,20 @@ jobs:
             for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
               count=${global_ext_count["$ext"]}
               blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
+              [[ $blocks -gt $MAX_BLOCKS ]] && blocks=$MAX_BLOCKS
               histogram=$(printf '▇%.0s' $(seq 1 "$blocks" 2>/dev/null || echo 1))
               emoji=${ext_emoji["$ext"]:-📄}
-              safe_locs=$(escape_md "${global_ext_folders["$ext"]% | }")
-              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$safe_locs"
+              
+              # Merapikan list folder unik
+              folder_unique=$(echo "${global_ext_folders["$ext"]}" | tr ' ' '\n' | grep -v "^$" | sort -u | tr '\n' ',' | sed 's/,$//; s/,/, /g')
+              
+              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
             done
             echo "| **TOTAL** | **$total_global** | | |"
           } > "$REPORT_PATH"
 
           echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
-
-      # ========== REPORT ROTATION ==========
-      - name: 🧹 Rotasi Laporan Lama (Keep Last 7)
-        run: |
-          files=(mini/*-laporan_konten.md)
-          if [ ${#files[@]} -gt 7 ]; then
-            echo "🗑️ Menghapus laporan lama..."
-            sorted_files=($(printf '%s\n' "${files[@]}" | sort))
-            files_to_delete=("${sorted_files[@]:0:${#sorted_files[@]}-7}")
-            for file in "${files_to_delete[@]}"; do
-              rm -f "$file"
-            done
-          fi
-
+          rm folders.txt
       # ========== COMMIT & PUSH ==========
       - name: 📮 Commit & Push All Changes
         run: |
