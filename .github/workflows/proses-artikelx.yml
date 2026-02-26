@@ -70,6 +70,7 @@ jobs:
             # SEO fluff (dipisah)
             s/Analisis mendalam //g;
             s/Analisis tajam //g;
+            s/Artikel mendalam //g;
             s/Panduan lengkap //g;
             s/Panduan mendalam //g;
             s/Penjelasan lengkap //g;
