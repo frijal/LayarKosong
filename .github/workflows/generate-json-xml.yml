@@ -60,7 +60,7 @@ jobs:
           bun-version: latest
 
       - name: '3. Install Dependencies'
-        run: bun install --frozen-lockfile
+        run: bun install 
 
       - name: '4️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
