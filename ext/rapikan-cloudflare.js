@@ -107,15 +107,15 @@ async function run() {
     console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
     console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
 
-    // jika preview <= 6, hentikan
+    // jika preview <= 1, hentikan
     if (previews.length <= 1) {
       console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
-      console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
+      console.log("ℹ Syarat hapus harus > 1 item. Pekerjaan dihentikan (Skip).");
       return;
     }
 
     // Pilih preview yang akan dihapus: ambil dari paling tua sampai tersisa 6 terbaru
-    const numToKeep = 6;
+    const numToKeep = 1;
     const numToDelete = previews.length - numToKeep;
     const previewsToDelete = previews.slice(0, numToDelete);
 
