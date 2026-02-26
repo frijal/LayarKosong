@@ -16,7 +16,7 @@ if (!accountId || !projectName || !token) {
 
 // Fungsi ambil data dengan parameter per_page maksimal
 async function fetchDeployments() {
-  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments?per_page=100`;
+  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments?per_page=25`;
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
