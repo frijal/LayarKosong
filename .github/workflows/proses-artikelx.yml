@@ -27,7 +27,7 @@ jobs:
           bun-version: latest     
 
       - name: Install Node dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: 🛠️ Localize Assets
         run: bun run ext/gantifontshighlight.js --quiet --no-backup
