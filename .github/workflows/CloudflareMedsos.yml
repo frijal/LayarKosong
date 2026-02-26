@@ -48,7 +48,9 @@ jobs:
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          key: ${{ runner.os }}-bun-cache-static
+          restore-keys: |
+            ${{ runner.os }}-bun-
 
       - name: 📦 Install
         run: bun install --frozen-lockfile --no-progress --no-summary
