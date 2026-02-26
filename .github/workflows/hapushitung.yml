@@ -1,8 +1,9 @@
 name: 🔆 Pengecekan & Laporan Konten Harian
+
 on:
   schedule:
-    - cron: '0 11 * * *'
-  workflow_dispatch:
+    - cron: '0 11 * * *' # Jam 11 UTC / 19:00 WITA
+  workflow_dispatch: # Bisa dijalankan manual dari tab Actions
 
 jobs:
   maintenance_and_reporting:
@@ -13,116 +14,120 @@ jobs:
     steps:
       # ========== SETUP ENVIRONMENT ==========
       - name: 1. Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0 # Ambil history lengkap untuk keperluan push & rebase
           persist-credentials: true
 
-      - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+      - name: 🚀 Setup Bun.js
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-          
+
+      - name: 📂 Cache Bun Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-cache-static
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
       - name: 🛠️ Maintenance & Update
         run: |
           bun upgrade
           bun update
           bun install --no-progress
-    
-      # ========== IMAGE CLEANUP ==========     
+
+      # ========== AUTOMATION SCRIPTS ==========
       - name: 🕵️ Update Dashboard Jadwal
-        run: bun run ext/workflow-list.js
-      
-      - name: 3. Scan Unused Images via Python
-        id: Bun_scan
+        run: bun run ext/workflow-list.js || echo "Script dashboard tidak ditemukan, skip."
+
+      - name: 📸 Scan Unused Images
         run: |
-          echo "🐍 Menjalankan cek_gambar.py..."
-          bun run ext/cek-gambar.js
-          
-      # ========== CONTENT REPORT GENERATION ==========
-      - name: 5. Generate Detailed Content Report
+          echo "🔎 Menjalankan pengecekan gambar..."
+          bun run ext/cek-gambar.js || echo "Script cek-gambar tidak ditemukan, skip."
+
+      # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
+      - name: 📊 Generate Detailed Content Report
         id: generate_report
         run: |
-          echo "📊 Membuat laporan markdown dinamis V6.9 (Auto-detect Categories)..."
-
+          echo "📝 Membuat laporan markdown dinamis V7.0 (Auto-Escape Mode)..."
+          
           DATE=$(date +'%Y-%m-%d')
+          echo "REPORT_DATE=$DATE" >> $GITHUB_ENV
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           MAX_BLOCKS=20
 
-          # === DETEKSI FOLDER DINAMIS ===
-          # Mencari semua folder di root, tapi abaikan folder sistem GitHub & Node
-          SKIP_PATTERN="^\./(\.git|\.github|node_modules|mini)$"
-          # Ambil folder yang berisi file .html (ini pasti folder kategori) + folder wajib
-          MAP_FOLDERS=($(find . -maxdepth 2 -type d | grep -vE "$SKIP_PATTERN" | sed 's|^\./||' | sort -u))
-          
-          echo "📂 Folder yang dipantau: ${MAP_FOLDERS[*]}"
+          # Fungsi Escape karakter Markdown agar nama folder # tidak merusak tabel
+          escape_md() {
+            echo "$1" | sed 's/[_#*`\[\]]/\\&/g'
+          }
 
-          # Emoji mapping
+          # Deteksi Folder - Print0 untuk menangani karakter spesial
+          SKIP_PATTERN="^\./(\.git|\.github|node_modules|mini)$"
+          mapfile -d $'\0' MAP_FOLDERS < <(find . -maxdepth 2 -type d -not -path '*/.*' | grep -vE "$SKIP_PATTERN" | sort -z -u)
+
           declare -A ext_emoji=(
             [css]="🎨" [html]="🌐" [ico]="🔑" [jpeg]="🖼️" [jpg]="🖼️" 
             [js]="📜" [json]="🗂️" [png]="🖼️" [py]="🐍" [sh]="💻" 
-            [svg]="✏️" [txt]="📄" [webp]="🖼️" [md]="📝"
+            [svg]="✏️" [txt]="📄" [webp]="🖼️" [md]="📝" [no-ext]="❓"
           )
 
           declare -A global_ext_count
           declare -A global_ext_folders
           max_global_count=0
 
-          # 1. Collect global statistics
+          # Scan Statistik Global
           for folder in "${MAP_FOLDERS[@]}"; do
-            [ -d "$folder" ] || continue
-            while IFS= read -r file; do
+            [[ -d "$folder" ]] || continue
+            while IFS= read -r -d $'\0' file; do
               ext="${file##*.}"
-              global_ext_count[$ext]=$(( ${global_ext_count[$ext]:-0} + 1 ))
+              [[ "$file" != *.* ]] && ext="no-ext"
+              global_ext_count["$ext"]=$(( ${global_ext_count["$ext"]:-0} + 1 ))
               dir_path=$(dirname "$file")
-              global_ext_folders[$ext]+="${dir_path} "
-            done < <(find "$folder" -maxdepth 5 -type f 2>/dev/null || true)
+              global_ext_folders["$ext"]+="$dir_path|"
+            done < <(find "$folder" -maxdepth 5 -type f -print0 2>/dev/null || true)
           done
 
-          # Find max count for histogram scaling
           for c in "${global_ext_count[@]}"; do
             (( c > max_global_count )) && max_global_count=$c
           done
           (( max_global_count == 0 )) && max_global_count=1
 
-          # 2. Generate report
+          # Mulai Menulis File Markdown
           {
             echo "# 🔆 Laporan Konten Harian Layar Kosong"
             echo "Dihasilkan pada: $(date '+%d %B %Y %H:%M:%S') Balikpapan Time"
             echo ""
-
             total_global=0
 
-            # 3. Per-folder analysis (Iterasi Folder Kategori)
             for folder in "${MAP_FOLDERS[@]}"; do
-              [ -d "$folder" ] || continue
-              
-              # Subfolder scan (untuk kategori yang punya sub-kategori)
-              mapfile -t subfolders < <(find "$folder" -maxdepth 2 -type d 2>/dev/null || true)
+              [[ -d "$folder" ]] || continue
+              mapfile -d $'\0' subfolders < <(find "$folder" -maxdepth 2 -type d -print0 2>/dev/null || true)
 
               for subfolder in "${subfolders[@]}"; do
                 declare -A subf_count
-                while IFS= read -r file; do
+                while IFS= read -r -d $'\0' file; do
                   ext="${file##*.}"
-                  subf_count[$ext]=$(( ${subf_count[$ext]:-0} + 1 ))
-                done < <(find "$subfolder" -maxdepth 1 -type f 2>/dev/null || true)
+                  [[ "$file" != *.* ]] && ext="no-ext"
+                  subf_count["$ext"]=$(( ${subf_count["$ext"]:-0} + 1 ))
+                done < <(find "$subfolder" -maxdepth 1 -type f -print0 2>/dev/null || true)
 
                 (( ${#subf_count[@]} == 0 )) && continue
 
-                echo "### 📂 Folder: $subfolder"
+                safe_subfolder=$(escape_md "$subfolder")
+                echo "### 📂 Folder: $safe_subfolder"
                 echo ""
                 echo "| Jenis File | Jumlah | Histogram |"
                 echo "|:-----------|-------:|:----------|"
 
                 for ext in $(printf "%s\n" "${!subf_count[@]}" | sort); do
-                  count=${subf_count[$ext]}
+                  count=${subf_count["$ext"]}
                   total_global=$(( total_global + count ))
-                  
                   blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
                   [ $blocks -gt $MAX_BLOCKS ] && blocks=$MAX_BLOCKS
                   histogram=$(printf '▇%.0s' $(seq 1 "$blocks" 2>/dev/null || echo 1))
-                  emoji=${ext_emoji[$ext]:-📄}
-
+                  emoji=${ext_emoji["$ext"]:-📄}
                   printf "| %s %-8s | %6d | %s |\n" "$emoji" "$ext" "$count" "$histogram"
                 done
                 echo ""
@@ -130,7 +135,6 @@ jobs:
               done
             done
 
-            # 4. Global summary
             echo "---"
             echo "## 📊 Ringkasan Statistik Global"
             echo ""
@@ -138,79 +142,56 @@ jobs:
             echo "|:---------|------:|:----------|:-------|"
 
             for ext in $(printf "%s\n" "${!global_ext_count[@]}" | sort); do
-              count=${global_ext_count[$ext]}
+              count=${global_ext_count["$ext"]}
               blocks=$(( (count * MAX_BLOCKS + max_global_count - 1) / max_global_count ))
-              [ $blocks -gt $MAX_BLOCKS ] && blocks=$MAX_BLOCKS
               histogram=$(printf '▇%.0s' $(seq 1 "$blocks" 2>/dev/null || echo 1))
-              emoji=${ext_emoji[$ext]:-📄}
-
-              # Merapikan list folder unik
-              folder_unique=$(echo "${global_ext_folders[$ext]}" | tr ' ' '\n' | grep -v "^$" | sort -u | tr '\n' ',' | sed 's/,$//; s/,/, /g')
-
-              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$folder_unique"
+              emoji=${ext_emoji["$ext"]:-📄}
+              folder_unique=$(echo "${global_ext_folders["$ext"]}" | tr '|' '\n' | grep -v "^$" | sort -u | tr '\n' ',' | sed 's/,$//; s/,/, /g')
+              safe_folders=$(escape_md "$folder_unique")
+              printf "| %s %-8s | %6d | %s | %s |\n" "$emoji" "$ext" "$count" "$histogram" "$safe_folders"
             done
             echo "| **TOTAL** | **$total_global** | | |"
-
           } > "$REPORT_PATH"
 
-          echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
-
       # ========== REPORT ROTATION ==========
-      - name: 6. Rotasi Laporan Lama (Keep Last 7)
-        id: rotate_reports
+      - name: 🧹 Rotasi Laporan Lama (Keep Last 7)
         run: |
           files=(mini/*-laporan_konten.md)
           if [ ${#files[@]} -gt 7 ]; then
             echo "🗑️ Menghapus laporan lama..."
-            # Sort by date in filename
             sorted_files=($(printf '%s\n' "${files[@]}" | sort))
             files_to_delete=("${sorted_files[@]:0:${#sorted_files[@]}-7}")
-            
             for file in "${files_to_delete[@]}"; do
-              echo "→ Menghapus: $file"
               rm -f "$file"
             done
-            echo "Total dihapus: ${#files_to_delete[@]} file"
-          else
-            echo "ℹ️  Tidak ada laporan yang perlu dihapus (${#files[@]}/7)"
           fi
 
-    #  - name: 🔍 Run Ultimate Global Audit
-    #    run: |
-    #      python3 mini/periksa-unused.py
-
-      # ========== COMMIT CHANGES ==========
-      - name: 7. Commit & Push All Changes
-        id: commit_changes
+      # ========== COMMIT & PUSH ==========
+      - name: 📮 Commit & Push All Changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-          # Configure Git
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          
-          # Add all modified directories
-          git add .
-          fi
-          # Check for changes
-          if ! git diff --staged --quiet; then
-            echo "📝 Perubahan ditemukan, membuat commit..."
+            echo "📝 Perubahan ditemukan, melakukan commit..."
             
-            # Get changes summary
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            
+            git add .
+            
+            DATE=${{ env.REPORT_DATE }}
             added_count=$(git diff --staged --name-status | grep -c "^A" || true)
             deleted_count=$(git diff --staged --name-status | grep -c "^D" || true)
             
-            git commit -m "chore: Daily maintenance report ($DATE) 📊
-            
+            # [skip ci] sangat penting untuk mencegah infinite loop!
+            git commit -m "chore: Daily maintenance report ($DATE) 📊 [skip ci]
+
             - Added: $added_count file(s)
             - Deleted: $deleted_count file(s)
             - Report: ${DATE}-laporan_konten.md" \
-              --author="frijal <5477182+frijal@users.noreply.github.com>"
+            --author="frijal <5477182+frijal@users.noreply.github.com>"
             
-            # Pull latest changes and push
             git pull origin main --rebase --strategy-option=theirs
             git push origin main
-            
-            echo "✅ Perubahan berhasil di-commit dan di-push"
+            echo "✅ Sukses di-push ke main!"
           else
-            echo "✅ Tidak ada perubahan baru untuk di-commit."
+            echo "✅ Tidak ada perubahan yang perlu di-commit."
           fi
