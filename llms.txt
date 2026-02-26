@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.18
+document_version: 16.19
 last_updated: 2026-02-26
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -38,7 +38,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 26 Februari 2026)
-> Menampilkan 989 artikel yang berhasil diindeks dalam versi 16.18.
+> Menampilkan 990 artikel yang berhasil diindeks dalam versi 16.19.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -111,6 +111,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Ghulul dan Fasad fil Ardh: 7 Bahaya Besar yang Menghancurkan Amanah dan Peradaban](https://dalam.web.id/jejak-sejarah/ghulul-dan-fasad-fil-ardh) : Ghulul dan Fasad fil Ardh adalah dua konsep penting dalam hukum Islam yang menjelaskan pengkhianatan amanah dan kerusakan sosial. Pelajari makna, dalil, dampak, dan solusi menurut syariat Islam.
 - [Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam](https://dalam.web.id/jejak-sejarah/beda-hadis-dengan-sunnah) : Beda Hadis dengan Sunnah sering dianggap sama, padahal keduanya memiliki perbedaan mendasar dalam makna dan fungsi. Simak penjelasan lengkap, dalil, serta pandangan ulama dalam artikel ini.
 - [Hukum Islam Tentang Berpihak kepada Penjajah: Penjelasan Tegas, Dalil Kuat, dan Prinsip Penting](https://dalam.web.id/jejak-sejarah/hukum-islam-berpihak-penjajah) : Hukum islam tentang berpihak kepada penjajah dijelaskan secara lengkap berdasarkan Al-Qur’an, hadis, dan pandangan ulama, disertai dalil kuat dan prinsip syariah yang tegas. Artikel ini mengupas tuntas 5W+1H, konteks sejarah, serta dampak sosial-spiritual.
 - [Ramadhan Datang dalam Keprihatinan: Refleksi Iman di Tengah Luka Dunia](https://dalam.web.id/jejak-sejarah/ramadhan-dalam-keprihatinan) : Menyambut Ramadhan dengan refleksi mendalam tentang penderitaan saudara kita di Palestina dan dunia. Simak ulasan lengkap tentang empati, doa, dan aksi nyata dalam iman.
