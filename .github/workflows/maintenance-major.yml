@@ -26,7 +26,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install Awal
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
