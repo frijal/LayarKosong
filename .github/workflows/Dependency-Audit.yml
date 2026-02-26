@@ -37,7 +37,7 @@ jobs:
       - name: 📦 Install Dependencies (Node & Python)
         run: |
           # Install Node deps
-          bun install
+          bun install --frozen-lockfile
           
           # Install Python audit tools
           pip install pip-check-reqs
