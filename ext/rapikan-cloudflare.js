@@ -125,7 +125,7 @@ async function run() {
     // Hapus serial untuk menghindari rate limit
     await runDeletesSerial(previewsToDelete);
 
-    console.log("✅ Selesai! Preview lama telah dihapus sehingga tersisa 6 terbaru.");
+    console.log("✅ Selesai! Preview lama telah dihapus sehingga tersisa ${numToKeep} terbaru.");
   } catch (err) {
     if (err.name === "AbortError") {
       console.error("❌ Request timeout.");
