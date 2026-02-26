@@ -57,7 +57,6 @@ jobs:
           DATE=$(date +'%Y-%m-%d')
           REPORT_PATH="mini/${DATE}-laporan_konten.md"
           MAX_BLOCKS=20
-          mkdir -p mini
 
           # Emoji mapping
           declare -A ext_emoji=(
@@ -69,7 +68,7 @@ jobs:
           # === DETEKSI FOLDER DINAMIS ===
           SKIP_PATTERN="^\./(\.git|\.github|node_modules|mini)$"
           # Ambil folder dan bersihkan prefix ./
-          find . -maxdepth 2 -type d -not -path '*/.*' | grep -vE "$SKIP_PATTERN" | sed 's|^\./||' | sort -u > folders.txt
+          find . -maxdepth 99 -type d -not -path '*/.*' | grep -vE "$SKIP_PATTERN" | sed 's|^\./||' | sort -u > folders.txt
 
           declare -A global_ext_count
           declare -A global_ext_folders
@@ -90,7 +89,7 @@ jobs:
               if [[ ! "${global_ext_folders["$ext"]}" =~ "$dir_path" ]]; then
                 global_ext_folders["$ext"]+="$dir_path "
               fi
-            done < <(find "$folder" -maxdepth 5 -type f -print0 2>/dev/null)
+            done < <(find "$folder" -maxdepth 99 -type f -print0 2>/dev/null)
           done < folders.txt
 
           # Cari nilai maksimal untuk scaling histogram
@@ -110,7 +109,7 @@ jobs:
               [[ -z "$folder" || "$folder" == "." ]] && continue
               
               # Scan subfolder termasuk dirinya sendiri
-              find "$folder" -maxdepth 2 -type d -print0 2>/dev/null | while IFS= read -r -d $'\0' subfolder; do
+              find "$folder" -maxdepth 99 -type d -print0 2>/dev/null | while IFS= read -r -d $'\0' subfolder; do
                 declare -A subf_count
                 has_files=false
                 
@@ -168,6 +167,7 @@ jobs:
 
           echo "✅ Laporan V6.9 sukses: $REPORT_PATH"
           rm folders.txt
+          
       # ========== COMMIT & PUSH ==========
       - name: 📮 Commit & Push All Changes
         run: |
