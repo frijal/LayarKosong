@@ -116,7 +116,7 @@
 
   // === 4️⃣ Proses Markdown di halaman ==
   function enhanceMarkdown() {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .alert, .alert-box, .article-container, .author-box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy";
+    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .alert, .alert-box, .article-container, .author-box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy";
 
     document.querySelectorAll(selector).forEach(el => {
       if (el.classList.contains("no-md")) return;
