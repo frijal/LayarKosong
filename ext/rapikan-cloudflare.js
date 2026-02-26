@@ -1,21 +1,22 @@
+// cloudflare-pages-clean.js
 const API = "https://api.cloudflare.com/client/v4";
 
-async function main() {
-  const {
-    CF_ACCOUNT_ID: accountId,
-    CF_PROJECT_NAME: projectName,
-    CF_API_TOKEN: token
-  } = process.env;
+// Destructuring ENV
+const {
+  CF_ACCOUNT_ID: accountId,
+  CF_PROJECT_NAME: projectName,
+  CF_API_TOKEN: token
+} = process.env;
 
-  if (!accountId || !projectName || !token) {
-    console.error("❌ Environment variable belum lengkap");
-    process.exit(1);
-  }
+// Validasi awal
+if (!accountId || !projectName || !token) {
+  console.error("❌ Environment variable belum lengkap.");
+  process.exit(1);
+}
 
-  console.log("🚀 Mengambil daftar deployment…");
-
-  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments`;
-
+// Fungsi ambil data dengan parameter per_page maksimal
+async function fetchDeployments() {
+  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments?per_page=100`;
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -23,76 +24,57 @@ async function main() {
     }
   });
 
-  if (!res.ok) {
-    console.error("❌ HTTP Error:", res.status, res.statusText);
-    process.exit(1);
-  }
-
   const json = await res.json();
-
-  if (!json.success || !Array.isArray(json.result)) {
-    console.error("❌ API Error:", json.errors ?? "Response tidak valid");
-    process.exit(1);
-  }
-
-  const deployments = json.result;
-
-  const previews = deployments
-  .filter(d =>
-  d.production === false ||
-  typeof d.production === "undefined" ||
-  d.environment === "preview"
-  )
-  .sort((a, b) => {
-    const ta = new Date(a.created_on || a.created_at).getTime();
-    const tb = new Date(b.created_on || b.created_at).getTime();
-    return ta - tb;
-  });
-
-  console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-
-  // --- LOGIKA BARU DI SINI ---
-  if (previews.length <= 6) {
-    console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
-    console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
-    return; // Berhenti di sini
-  }
-
-  console.log(`🗑 Preview yang akan dihapus: ${previews.length}`);
-
-  for (const { id } of previews) {
-    await deleteDeployment(accountId, projectName, token, id);
-  }
-
-  console.log("✅ Selesai! Semua preview diproses karena sudah melebihi kuota 26.");
+  if (!json.success) throw new Error(`API Error: ${JSON.stringify(json.errors)}`);
+  return json.result;
 }
 
-async function deleteDeployment(accountId, projectName, token, id) {
+// Fungsi hapus
+async function deleteDeployment(id) {
   const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments/${id}`;
-
   const res = await fetch(url, {
     method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/json" }
   });
-
-  if (!res.ok) {
-    console.error(`❌ HTTP Error hapus ${id}:`, res.status, res.statusText);
-    return;
-  }
-
   const json = await res.json();
-
-  if (!json.success) {
-    console.error(`❌ Gagal hapus ${id}`, json.errors);
-  } else {
-    console.log(`✔ Berhasil hapus ${id}`);
-  }
+  return json.success;
 }
 
-main().catch(err => {
-  console.error("❌ Fatal error:", err);
+try {
+  const deployments = await fetchDeployments();
+  
+  // Filter hanya preview & urutkan dari TERLAMA ke TERBARU
+  const previews = deployments
+    .filter(d => d.environment === "preview" || d.production === false)
+    .sort((a, b) => new Date(a.created_on) - new Date(b.created_on));
+
+  console.log(`📦 Total Preview: ${previews.length}`);
+
+  // 👉 LOGIKA BARU: Simpan 6 terbaru, hapus sisanya.
+  const LIMIT = 6;
+  if (previews.length <= LIMIT) {
+    console.log(`✅ Preview masih di bawah limit (${LIMIT}). Tidak ada yang dihapus.`);
+    process.exit(0);
+  }
+
+  // Ambil list yang mau dihapus (semua kecuali 6 item terakhir)
+  const toDelete = previews.slice(0, previews.length - LIMIT);
+
+  console.log(`🗑 Menghapus ${toDelete.length} preview lama, menyisakan ${LIMIT} terbaru...`);
+
+  
+
+  for (const p of toDelete) {
+    const success = await deleteDeployment(p.id);
+    if (success) {
+      console.log(`✔ Deleted: ${p.id} (${p.deployment_trigger?.metadata?.branch || 'no-branch'})`);
+    } else {
+      console.log(`❌ Failed: ${p.id}`);
+    }
+  }
+
+  console.log("✅ Pembersihan selesai!");
+} catch (err) {
+  console.error("❌ Fatal:", err.message);
   process.exit(1);
-});
+}
