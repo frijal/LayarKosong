@@ -38,7 +38,7 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run:  bun install --frozen-lockfile
+        run:  bun install
         working-directory: source
                     
       # 2. Buat folder bersih & Filter file (Bagian PENTING ini tetap ada)
