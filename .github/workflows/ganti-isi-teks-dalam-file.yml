@@ -8,7 +8,7 @@ on:
         required: true
       replace_text:
         description: "Teks/Kalimat pengganti"
-        required: true
+        required: false
       extensions:
         description: "Ekstensi file (koma-separated, misal: md,ts,js). Kosongkan untuk semua file."
         required: false
