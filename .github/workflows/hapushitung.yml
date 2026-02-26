@@ -14,18 +14,18 @@ jobs:
     steps:
       # ========== SETUP ENVIRONMENT ==========
       - name: 1. Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0 # Ambil history lengkap untuk keperluan push & rebase
           persist-credentials: true
 
       - name: 🚀 Setup Bun.js
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
           bun-version: latest
 
       - name: 📂 Cache Bun Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.bun/install/cache
           key: ${{ runner.os }}-bun-cache-static
