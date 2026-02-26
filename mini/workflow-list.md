@@ -6,7 +6,6 @@
 | :--- | :--- | :--- | :--- |
 | "🟢 Layar Kosong: Super Automation & MedSos (Full Bun)" | `0 */4 * * *` | Setiap jam */4:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/4_*_*_*) |
 | 🔆 Pengecekan & Laporan Konten Harian | `0 11 * * *` | Setiap jam 11:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_11_*_*_*) |
-| RSS to Discussions Sync Professional | `0 */23 * * *` | Setiap jam */23:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/23_*_*_*) |
 | 🚨 Major Dependency Upgrade (Scheduled & Manual) | `0 2 1 */3 *` | Setiap jam 02:00 (UTC), tanggal 1, bulan ke-*/3 | [Crontab Guru](https://crontab.guru/#0_2_1_*/3_*) |
 | Zemester Content Aggregation | `0 1 1 1,7 *` | Setiap jam 01:00 (UTC), tanggal 1, bulan ke-1,7 | [Crontab Guru](https://crontab.guru/#0_1_1_1,7_*) |
 | 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt | `0 7 * * *` | Setiap jam 07:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_7_*_*_*) |
