@@ -614,10 +614,10 @@
             <h1><span class="emoji">🖥️</span>Wayland vs X11: Mana yang Lebih Baik untuk Linux?</h1>
 <div id="iposbrowser"></div>
             <div class="header-meta">
-                <span><i class="fas fa-calendar-alt"></i> 5 Januari 2026</span>
-                <span><i class="fas fa-user"></i> Fakhrul Rijal</span>
-                <span><i class="fas fa-clock"></i> 12 menit baca</span>
-                <span><i class="fas fa-tag"></i> Linux, Display Server</span>
+                <span><i class="fa-solid fa-calendar-alt"></i> 5 Januari 2026</span>
+                <span><i class="fa-solid fa-user"></i> Fakhrul Rijal</span>
+                <span><i class="fa-solid fa-clock"></i> 12 menit baca</span>
+                <span><i class="fa-solid fa-tag"></i> Linux, Display Server</span>
             </div>
         </div>
     </header>
@@ -631,7 +631,7 @@
             </div>
             <!-- Understanding Fundamentals -->
             <section>
-                <h2><i class="fas fa-cube"></i> Mari Kita Pahami Dasarnya: Apa Itu Display Server?</h2>
+                <h2><i class="fa-solid fa-cube"></i> Mari Kita Pahami Dasarnya: Apa Itu Display Server?</h2>
                 <p>
                     Sebelum kita lompat ke perbandingan, penting untuk memahami apa itu display server. Display server adalah program yang mengelola komunikasi antara aplikasi GUI (graphical user interface) dan hardware display kamu. Secara simple, ia bertanggung jawab untuk:
                 </p>
@@ -650,72 +650,72 @@
             </section>
             <!-- X11 Section -->
             <section>
-                <h2><i class="fas fa-landmark"></i> X11 (X.Org): Standar Lama yang Masih Solid</h2>
-                <h3><i class="fas fa-history"></i> Sejarah Singkat X11</h3>
+                <h2><i class="fa-solid fa-landmark"></i> X11 (X.Org): Standar Lama yang Masih Solid</h2>
+                <h3><i class="fa-solid fa-history"></i> Sejarah Singkat X11</h3>
                 <p>
                     X11 (atau X Window System) pertama kali dikembangkan pada tahun <span class="highlight">1984</span> di MIT (Massachusetts Institute of Technology). Ini adalah display server yang most dominant di Linux ecosystem selama puluhan tahun. Versi yang paling banyak digunakan saat ini adalah <span class="highlight">X.Org Server</span>, yang merupakan open-source implementation dari X11 protocol.
                 </p>
                 <p>
                     X11 dirancang dengan filosofi <strong>"network transparency"</strong> - artinya, aplikasi dan display server tidak harus running di mesin yang sama. Kamu bisa run aplikasi di server jauh dan display output-nya di komputer lokal kamu. Ini sangat powerful untuk era ketika networking menjadi penting.
                 </p>
-                <h3><i class="fas fa-check"></i> Kelebihan X11</h3>
+                <h3><i class="fa-solid fa-check"></i> Kelebihan X11</h3>
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Stability &amp; Maturity</h4>
+                    <h4><i class="fa-solid fa-check-circle"></i> Stability &amp; Maturity</h4>
                     <p>
                         X11 sudah ada puluhan tahun dan sangat stabil. Ini adalah yang most tested dan battle-hardened display server di Linux. Jika kamu jalankan X11, kamu tahu apa yang bakal kamu dapat - reliability yang proven.
                     </p>
                 </div>
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Universal Compatibility</h4>
+                    <h4><i class="fa-solid fa-check-circle"></i> Universal Compatibility</h4>
                     <p>
                         Hampir semua aplikasi Linux support X11. Software lama, software baru, niche applications - semua typically works dengan X11 tanpa issue. Backward compatibility adalah kekuatan utama X11.
                     </p>
                 </div>
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Remote Display Capability</h4>
+                    <h4><i class="fa-solid fa-check-circle"></i> Remote Display Capability</h4>
                     <p>
                         X11 bisa remote display dengan mudah. Kamu bisa SSH ke remote server dan jalankan GUI aplikasi yang displaynya muncul di local machine kamu. Ini fitur yang sangat powerful untuk server management dan collaborative work.
                     </p>
                 </div>
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Flexible Input Handling</h4>
+                    <h4><i class="fa-solid fa-check-circle"></i> Flexible Input Handling</h4>
                     <p>
                         X11 punya architecture yang flexible untuk input handling, memungkinkan berbagai keyboard layout, mouse acceleration profiles, dan input method yang kompleks tanpa recompile.
                     </p>
                 </div>
                 <div class="feature-card pros-card">
-                    <h4><i class="fas fa-check-circle"></i> Long-Term Support</h4>
+                    <h4><i class="fa-solid fa-check-circle"></i> Long-Term Support</h4>
                     <p>
                         Banyak Linux distributions akan terus support X11 untuk tahun-tahun mendatang. Jadi kamu tidak perlu khawatir bahwa X11 akan disappear dalam waktu dekat.
                     </p>
                 </div>
-                <h3><i class="fas fa-times"></i> Kekurangan X11</h3>
+                <h3><i class="fa-solid fa-times"></i> Kekurangan X11</h3>
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> Outdated Architecture</h4>
+                    <h4><i class="fa-solid fa-times-circle"></i> Outdated Architecture</h4>
                     <p>
                         X11 dirancang pada era 1980an dengan assumptions yang sudah tidak relevan di era modern. Architecture-nya yang client-server memiliki overhead yang significant untuk use cases modern. Banyak fitur yang ditambahkan secara patchwork, membuat codebase menjadi kompleks dan sulit untuk di-maintain.
                     </p>
                 </div>
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> Performa Suboptimal</h4>
+                    <h4><i class="fa-solid fa-times-circle"></i> Performa Suboptimal</h4>
                     <p>
                         Karena architecture-nya yang client-server dengan network protocol, X11 memiliki latency yang higher dan throughput yang lower dibanding modern display servers. Animasi bisa terasa less smooth, dan GPU acceleration tidak as efficient.
                     </p>
                 </div>
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> Security Concerns</h4>
+                    <h4><i class="fa-solid fa-times-circle"></i> Security Concerns</h4>
                     <p>
                         X11 memiliki beberapa architectural decisions yang problematic dari security perspective. Semua window bisa saling spy input dari window lain, membuat keystroke sniffing trivial. Ini sudah known issue tapi sangat sulit untuk di-fix di architecture yang existing.
                     </p>
                 </div>
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> High-DPI &amp; Multi-Monitor Struggles</h4>
+                    <h4><i class="fa-solid fa-times-circle"></i> High-DPI &amp; Multi-Monitor Struggles</h4>
                     <p>
                         X11 tidak native support high-DPI displays dan handling untuk multi-monitor setups bisa inconsistent. Scaling menjadi complicated dan seringkali applications tidak scale correctly.
                     </p>
                 </div>
                 <div class="feature-card cons-card">
-                    <h4><i class="fas fa-times-circle"></i> Complex Codebase</h4>
+                    <h4><i class="fa-solid fa-times-circle"></i> Complex Codebase</h4>
                     <p>
                         X11 codebase sangat besar dan kompleks (jutaan lines of code). Ini membuat sulit untuk fix bugs, add features, atau maintain code. Contributing ke X.Org bisa intimidating bahkan untuk experienced developers.
                     </p>
@@ -723,8 +723,8 @@
             </section>
             <!-- Wayland Section -->
             <section>
-                <h2><i class="fas fa-rocket"></i> Wayland: Display Server Modern untuk Era Sekarang</h2>
-                <h3><i class="fas fa-lightbulb"></i> Apa Itu Wayland?</h3>
+                <h2><i class="fa-solid fa-rocket"></i> Wayland: Display Server Modern untuk Era Sekarang</h2>
+                <h3><i class="fa-solid fa-lightbulb"></i> Apa Itu Wayland?</h3>
                 <p>
                     Wayland pertama kali diperkenalkan oleh <strong>Kristian Høgsberg</strong> pada tahun <span class="highlight">2008</span> sebagai answer to shortcomings dari X11. Wayland adalah display server protocol dan compositor yang dirancang from scratch dengan filosofi yang completely different dari X11. Daripada network transparency, Wayland fokus pada simplicity, security, dan performance.
                 </p>
@@ -733,76 +733,76 @@
                         <strong>🎯 Key Difference:</strong> Wayland adalah complete reimagining dari display server architecture. Daripada client-server model yang separate seperti X11, Wayland menggunakan model yang lebih integrated di mana client (aplikasi) dan compositor (display server) bekerja lebih closely together.
                     </p>
                 </div>
-                <h3><i class="fas fa-plus"></i> Kelebihan Wayland</h3>
+                <h3><i class="fa-solid fa-plus"></i> Kelebihan Wayland</h3>
                 <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Modern Architecture</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Modern Architecture</h4>
                 <p>
                     Wayland dirancang dari nol dengan mempertimbangkan modern computing landscape. Architecture-nya lebih simple dan elegant, dengan fewer layers dan less unnecessary abstraction. Ini membuat codebase lebih manageable dan maintainable.
                 </p>
             </div>
             <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Superior Performance</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Superior Performance</h4>
                 <p>
                     Karena less overhead dan better GPU integration, Wayland secara general performs lebih baik daripada X11. Animasi lebih smooth, input latency lebih rendah, dan battery life lebih baik karena efficiency yang improved. Untuk gaming dan high-refresh-rate displays, Wayland adalah clear winner.
                 </p>
             </div>
             <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Better Security Model</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Better Security Model</h4>
                 <p>
                     Wayland memiliki security model yang fundamentally lebih baik. Applications tidak bisa spy on each other, keystroke sniffing adalah impossible, dan permission model lebih granular. Ini adalah huge improvement untuk security-conscious users.
                 </p>
             </div>
             <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Native High-DPI Support</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Native High-DPI Support</h4>
                 <p>
                     Wayland dari awal dirancang dengan high-DPI displays dalam pikiran. Scaling berjalan native dan consistent across all applications. Multi-monitor setups juga handled dengan lebih elegant, dengan fractional scaling support.
                 </p>
             </div>
             <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Better Wayland Ecosystem</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Better Wayland Ecosystem</h4>
                 <p>
                     Modern desktop environments seperti GNOME, KDE Plasma, Weston, dan others semuanya actively developing Wayland support. New frameworks dan libraries dari awal didesain dengan Wayland support, yang berarti ecosystem semakin mature.
                 </p>
             </div>
             <div class="feature-card pros-card">
-                <h4><i class="fas fa-plus-circle"></i> Cleaner Protocol</h4>
+                <h4><i class="fa-solid fa-plus-circle"></i> Cleaner Protocol</h4>
                 <p>
                     Wayland protocol jauh lebih simple dan clean dibanding X11. Ini membuat untuk implementors lebih mudah untuk create Wayland server atau client, membuka possibilities untuk innovation dan specialization.
                 </p>
             </div>
-            <h3><i class="fas fa-minus"></i> Kekurangan Wayland</h3>
+            <h3><i class="fa-solid fa-minus"></i> Kekurangan Wayland</h3>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> Compatibility Issues</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> Compatibility Issues</h4>
                 <p>
                     Tidak semua aplikasi support Wayland dengan sempurna. Aplikasi yang write directly to X11 protokol akan tidak bekerja. XWayland (X11 compatibility layer) membantu tapi tidak 100% perfect. Old dan niche applications bisa menjadi problematic.
                 </p>
             </div>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> Relatively Young Ecosystem</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> Relatively Young Ecosystem</h4>
                 <p>
                     Wayland masih relatively young dibanding X11. Tools, debugging utilities, dan community knowledge tidak as comprehensive. Kalau kamu encounter issues, terkadang lebih sulit untuk find solutions.
                 </p>
             </div>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> No Remote Display (Currently)</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> No Remote Display (Currently)</h4>
                 <p>
                     Wayland dari awal tidak dirancang untuk remote display. Meskipun ada experimental projects dan RDP backends, ini bukan elegant seperti X11. Untuk use cases yang require remote display, ini bisa be dealbreaker.
                 </p>
             </div>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> Fragmented Implementation</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> Fragmented Implementation</h4>
                 <p>
                     Setiap desktop environment (GNOME, KDE, etc.) punya own Wayland compositor implementation. Ini berarti behavior bisa inconsistent across different environments, dan bugs di satu compositor tidak necessarily fixed di compositor lain.
                 </p>
             </div>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> Still Evolving</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> Still Evolving</h4>
                 <p>
                     Wayland protocol masih terus berkembang dan evolve. Ini berarti sometimes breaking changes atau new features bisa affect compatibility. Aplikasi yang di-write hari ini mungkin butuh update di masa depan untuk support newest Wayland protocol versions.
                 </p>
             </div>
             <div class="feature-card cons-card">
-                <h4><i class="fas fa-minus-circle"></i> Adoption Challenges</h4>
+                <h4><i class="fa-solid fa-minus-circle"></i> Adoption Challenges</h4>
                 <p>
                     Some organizations masih prefer X11 karena stability dan compatibility yang proven. Migration ke Wayland bisa require significant testing dan investment, yang not semua orang willing untuk do.
                 </p>
@@ -810,7 +810,7 @@
         </section>
         <!-- Detailed Comparison Table -->
         <section>
-            <h2><i class="fas fa-balance-scale"></i> Perbandingan Rinci: X11 vs Wayland</h2>
+            <h2><i class="fa-solid fa-balance-scale"></i> Perbandingan Rinci: X11 vs Wayland</h2>
             <p>
                 Untuk memberikan clear picture, berikut adalah tabel perbandingan yang comprehensive:
             </p>
@@ -888,10 +888,10 @@
         </section>
         <!-- Side-by-Side Comparison -->
         <section>
-            <h2><i class="fas fa-columns"></i> Gambaran Cepat: Wayland vs X11</h2>
+            <h2><i class="fa-solid fa-columns"></i> Gambaran Cepat: Wayland vs X11</h2>
             <div class="comparison-boxes">
                 <div class="comparison-box x11">
-                    <h4><i class="fas fa-landmark"></i> X11</h4>
+                    <h4><i class="fa-solid fa-landmark"></i> X11</h4>
                     <ul>
                         <li>Proven stability (40+ years)</li>
                         <li>Universal application support</li>
@@ -904,7 +904,7 @@
                     </ul>
                 </div>
                 <div class="comparison-box wayland">
-                    <h4><i class="fas fa-rocket"></i> Wayland</h4>
+                    <h4><i class="fa-solid fa-rocket"></i> Wayland</h4>
                     <ul>
                         <li>Modern, clean architecture</li>
                         <li>Better performance &amp; efficiency</li>
@@ -920,31 +920,31 @@
         </section>
         <!-- Migration Status -->
         <section>
-            <h2><i class="fas fa-exchange-alt"></i> Status Migrasi: Di Mana Linux Environments Sekarang?</h2>
+            <h2><i class="fa-solid fa-exchange-alt"></i> Status Migrasi: Di Mana Linux Environments Sekarang?</h2>
             <p>
                 Berikut adalah status terkini dari berbagai Linux distributions dan desktop environments dalam adoption Wayland:
             </p>
-            <h3><i class="fas fa-desktop"></i> Desktop Environments</h3>
+            <h3><i class="fa-solid fa-desktop"></i> Desktop Environments</h3>
             <div class="feature-card">
-                <h4><i class="fab fa-gnome"></i> GNOME</h4>
+                <h4><i class="fa-brands fa-gnome"></i> GNOME</h4>
                 <p>
                     GNOME adalah aggressive dalam Wayland adoption. GNOME 3.x sudah punya working Wayland session, dan modern GNOME (4.0+) treat Wayland sebagai primary dan X11 sebagai fallback. GNOME on Wayland sangat polished dan recommended untuk most users.
                 </p>
             </div>
             <div class="feature-card">
-                <h4><i class="fas fa-cube"></i> KDE Plasma</h4>
+                <h4><i class="fa-solid fa-cube"></i> KDE Plasma</h4>
                 <p>
                     KDE Plasma juga actively develop Wayland support. Plasma 5.x mulai introduce Wayland session, dan Plasma 6.0+ significantly improve Wayland integration. Saat ini, Plasma on Wayland sudah quite stable dan banyak users successfully using it.
                 </p>
             </div>
             <div class="feature-card">
-                <h4><i class="fas fa-wind"></i> Xfce</h4>
+                <h4><i class="fa-solid fa-wind"></i> Xfce</h4>
                 <p>
                     Xfce lebih conservative dan masih primarily X11-focused. Wayland support adalah work-in-progress dan tidak recommended untuk production use yet. Jika kamu prefer lightweight Xfce, X11 masih adalah best choice.
                 </p>
             </div>
             <div class="feature-card">
-                <h4><i class="fas fa-cinnamon"></i> Cinnamon</h4>
+                <h4><i class="fa-solid fa-cinnamon"></i> Cinnamon</h4>
                 <p>
                     Cinnamon (used by Linux Mint) juga masih X11-primary. Wayland support exists tapi not mature. Developers lebih focus pada X11 stability dan improvements sebelum push heavy Wayland migration.
                 </p>
@@ -980,41 +980,41 @@
         </section>
         <!-- Mana Yang Harus Dipilih -->
         <section>
-            <h2><i class="fas fa-question-circle"></i> Jadi, Mana yang Harus Aku Pilih?</h2>
+            <h2><i class="fa-solid fa-question-circle"></i> Jadi, Mana yang Harus Aku Pilih?</h2>
             <p>
                 Pertanyaan juta dollar! Jawabannya tergantung dari use case dan preferensi kamu. Mari kita breakdown berdasarkan scenario:
             </p>
-            <h3><i class="fas fa-user"></i> Untuk Casual Desktop Users</h3>
+            <h3><i class="fa-solid fa-user"></i> Untuk Casual Desktop Users</h3>
             <div class="feature-card">
-                <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Wayland (jika available)</h4>
+                <h4><i class="fa-solid fa-arrow-right"></i> Rekomendasi: Wayland (jika available)</h4>
                 <p>
                     Kalau kamu cukup baru di Linux atau tidak punya special requirements, Wayland adalah future dan worth trying. GNOME on Wayland atau KDE Plasma on Wayland sudah mature dan stabil enough untuk casual use. Performance dan security benefits significant.
                 </p>
             </div>
-            <h3><i class="fas fa-code"></i> Untuk Developers &amp; Sysadmins</h3>
+            <h3><i class="fa-solid fa-code"></i> Untuk Developers &amp; Sysadmins</h3>
             <div class="feature-card">
-                <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Depends on Workflow</h4>
+                <h4><i class="fa-solid fa-arrow-right"></i> Rekomendasi: Depends on Workflow</h4>
                 <p>
                     Jika kamu heavily rely on remote display (SSH X forwarding), X11 masih lebih reliable. Kalau remote display bukan critical, dan kamu ingin better performance dan modern features, Wayland bisa worth trying. Consider testing di secondary machine dulu.
                 </p>
             </div>
-            <h3><i class="fas fa-gamepad"></i> Untuk Gamers</h3>
+            <h3><i class="fa-solid fa-gamepad"></i> Untuk Gamers</h3>
             <div class="feature-card">
-                <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Wayland (dengan caveats)</h4>
+                <h4><i class="fa-solid fa-arrow-right"></i> Rekomendasi: Wayland (dengan caveats)</h4>
                 <p>
                     Wayland potentially give better gaming performance dan lower input latency. Tapi game compatibility bisa masih be issue tergantung game dan steam/proton setup. Test game favorit kamu di Wayland sebelum full migration.
                 </p>
             </div>
-            <h3><i class="fas fa-industry"></i> Untuk Enterprise/Legacy Systems</h3>
+            <h3><i class="fa-solid fa-industry"></i> Untuk Enterprise/Legacy Systems</h3>
             <div class="feature-card">
-                <h4><i class="fas fa-arrow-right"></i> Rekomendasi: X11</h4>
+                <h4><i class="fa-solid fa-arrow-right"></i> Rekomendasi: X11</h4>
                 <p>
                     Untuk production systems yang require stability proven dan compatibility dengan banyak legacy software, X11 masih adalah safe choice. Wait sampai Wayland ecosystem lebih mature dan tested dalam production environments.
                 </p>
             </div>
             <h3><i class="fa-brands fa-accessible-icon"></i> Untuk Accessibility Needs</h3>
             <div class="feature-card">
-                <h4><i class="fas fa-arrow-right"></i> Rekomendasi: Check Compatibility</h4>
+                <h4><i class="fa-solid fa-arrow-right"></i> Rekomendasi: Check Compatibility</h4>
                 <p>
                     Kalau kamu punya specific accessibility requirements (screen readers, magnifiers, switch controls), check bahwa applications dan desktop environment kamu support di Wayland dengan baik sebelum switch. Accessibility support di Wayland terus improve tapi masih ada gaps.
                 </p>
@@ -1026,7 +1026,7 @@
             <p>
                 Based pada trend dan momentum saat ini, berikut adalah prediksi reasonable untuk masa depan:
             </p>
-            <h3><i class="fas fa-calendar-alt"></i> Short Term (1-2 Tahun)</h3>
+            <h3><i class="fa-solid fa-calendar-alt"></i> Short Term (1-2 Tahun)</h3>
             <ul>
                 <li>More distributions akan shift ke Wayland as default</li>
                 <li>GNOME dan KDE Plasma akan continue improve Wayland support</li>
@@ -1034,7 +1034,7 @@
                 <li>X11 masih akan be supported tapi increasingly sebagai fallback/compatibility layer</li>
                 <li>Gaming pada Wayland akan improve dengan Proton dan driver updates</li>
             </ul>
-            <h3><i class="fas fa-calendar-check"></i> Medium Term (3-5 Tahun)</h3>
+            <h3><i class="fa-solid fa-calendar-check"></i> Medium Term (3-5 Tahun)</h3>
             <ul>
                 <li>Wayland akan be default di majority dari major distributions</li>
                 <li>XWayland akan mostly handle X11 compatibility needs</li>
@@ -1042,7 +1042,7 @@
                 <li>Ecosystem stabilize, breaking changes akan diminimize</li>
                 <li>X11 akan still supported tapi increasingly niche use cases saja</li>
             </ul>
-            <h3><i class="fas fa-forward"></i> Long Term (5+ Tahun)</h3>
+            <h3><i class="fa-solid fa-forward"></i> Long Term (5+ Tahun)</h3>
             <ul>
                 <li>X11 akan be deprecated oleh major distributions</li>
                 <li>Wayland akan be undisputed standard untuk Linux graphics</li>
@@ -1057,8 +1057,8 @@
         </section>
         <!-- Technical Deep Dive -->
         <section>
-            <h2><i class="fas fa-gears"></i> Technical Deep Dive: Bagaimana Mereka Bekerja Berbeda?</h2>
-            <h3><i class="fas fa-sitemap"></i> X11 Architecture</h3>
+            <h2><i class="fa-solid fa-gears"></i> Technical Deep Dive: Bagaimana Mereka Bekerja Berbeda?</h2>
+            <h3><i class="fa-solid fa-sitemap"></i> X11 Architecture</h3>
             <p>
                 X11 menggunakan <strong>client-server architecture</strong> dengan clear separation of concerns:
             </p>
@@ -1079,7 +1079,7 @@ GPU &amp; Display Hardware
                 <li>Protocol overhead dan latency inherent</li>
                 <li>Security window spit vulnerability (one app bisa listen ke events dari apps lain)</li>
             </ul>
-            <h3><i class="fas fa-project-diagram"></i> Wayland Architecture</h3>
+            <h3><i class="fa-solid fa-project-diagram"></i> Wayland Architecture</h3>
             <p>
                 Wayland menggunakan <strong>direct model</strong> dengan compositor yang integrated:
             </p>
@@ -1098,32 +1098,32 @@ GPU &amp; Display Hardware
         </code></div></section><code>
         <!-- Common Questions -->
         <section>
-            <h2><i class="fas fa-comments"></i> Pertanyaan Umum &amp; Jawaban</h2>
-            <h3><i class="fas fa-question"></i> Q: Bisakah aku run both X11 dan Wayland di komputer yang sama?</h3>
+            <h2><i class="fa-solid fa-comments"></i> Pertanyaan Umum &amp; Jawaban</h2>
+            <h3><i class="fa-solid fa-question"></i> Q: Bisakah aku run both X11 dan Wayland di komputer yang sama?</h3>
             <div class="info-box">
                 <p>
                     <strong>A:</strong> Ya! Kamu bisa install both dan choose session saat login. Banyak distributions punya selection di login screen. Ini powerful untuk testing dan migration gradually.
                 </p>
             </div>
-            <h3><i class="fas fa-question"></i> Q: Apakah XWayland adalah perfect X11 compatibility?</h3>
+            <h3><i class="fa-solid fa-question"></i> Q: Apakah XWayland adalah perfect X11 compatibility?</h3>
             <div class="info-box">
                 <p>
                     <strong>A:</strong> No, XWayland adalah compatibility layer tapi bukan 100% perfect. Majority dari X11 applications work fine, tapi beberapa edge cases atau specific applications mungkin have issues. XWayland terus improve tapi tidak semua X11 quirks bisa di-handle perfectly.
                 </p>
             </div>
-            <h3><i class="fas fa-question"></i> Q: Apakah Wayland siap untuk production use sekarang?</h3>
+            <h3><i class="fa-solid fa-question"></i> Q: Apakah Wayland siap untuk production use sekarang?</h3>
             <div class="info-box">
                 <p>
                     <strong>A:</strong> Untuk casual users dengan modern hardware dan standard applications, yes. Untuk enterprise dengan specific requirements atau legacy systems, maybe not yet. Test thoroughly di environment kamu sebelum production deployment.
                 </p>
             </div>
-            <h3><i class="fas fa-question"></i> Q: Apakah X11 akan completely disappear?</h3>
+            <h3><i class="fa-solid fa-question"></i> Q: Apakah X11 akan completely disappear?</h3>
             <div class="info-box">
                 <p>
                     <strong>A:</strong> Not completely disappear tapi akan gradually deprecated. Major distributions akan eventually stop shipping it, tapi legacy systems dan niche use cases akan maintain it. Think seperti how obsolete technologies still exist tapi tidak actively developed.
                 </p>
             </div>
-            <h3><i class="fas fa-question"></i> Q: Mana yang lebih baik untuk productivity work?</h3>
+            <h3><i class="fa-solid fa-question"></i> Q: Mana yang lebih baik untuk productivity work?</h3>
             <div class="info-box">
                 <p>
                     <strong>A:</strong> Untuk productivity (office, coding, browsing), keduanya fine. Wayland potentially lebih smooth dan responsive, tapi perbedaannya subtle untuk most tasks. Pilih based on stability dan compatibility dengan tools spesifik kamu.
@@ -1134,7 +1134,7 @@ GPU &amp; Display Hardware
             <div class="image-caption">Perbandingan visual architecture antara X11 client-server model dan Wayland compositor direct model</div>
         <!-- Conclusion -->
         <section>
-            <h2><i class="fas fa-check-double"></i> Kesimpulan Akhir</h2>
+            <h2><i class="fa-solid fa-check-double"></i> Kesimpulan Akhir</h2>
             <p>
                 Jadi, mana yang lebih baik, Wayland atau X11? Jawabannya adalah: <strong>Wayland adalah masa depan, tapi X11 masih sangat relevant dan functional saat ini</strong>.
             </p>
@@ -1158,13 +1158,13 @@ GPU &amp; Display Hardware
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
-                <h4><i class="fas fa-blog"></i> Tentang Blog</h4>
+                <h4><i class="fa-solid fa-blog"></i> Tentang Blog</h4>
                 <p>
                     Layar Kosong adalah blog personal yang membahas teknologi, Linux, development, dan berbagai topik menarik lainnya. Di sini kami berbagi knowledge dan insights dengan cara yang mudah dipahami dan accessible untuk semua.
                 </p>
             </div>
             <div class="footer-section">
-                <h4><i class="fas fa-link"></i> Link Penting</h4>
+                <h4><i class="fa-solid fa-link"></i> Link Penting</h4>
                 <ul>
                     <li><a href="https://dalam.web.id">Homepage Blog</a></li>
                     <li><a href="https://github.com/frijal">GitHub Profile</a></li>
@@ -1173,36 +1173,36 @@ GPU &amp; Display Hardware
                 </ul>
             </div>
             <div class="footer-section">
-                <h4><i class="fas fa-share-alt"></i> Ikuti Kami</h4>
+                <h4><i class="fa-solid fa-share-alt"></i> Ikuti Kami</h4>
                 <p>Temui kami di berbagai platform media sosial untuk updates terbaru:</p>
 <div class="social-links">
 <a href="https://twitter.com/responaja" title="Twitter" aria-label="Follow di Twitter">
-<i class="fab fa-twitter"></i>
+<i class="fa-brands fa-twitter"></i>
 </a>
 <a href="https://threads.net/frijal" title="Threads" aria-label="Follow di Threads">
-<i class="fab fa-threads"></i>
+<i class="fa-brands fa-threads"></i>
 </a>
 <a href="https://www.youtube.com/@frijal" title="YouTube" aria-label="Subscribe di YouTube">
-<i class="fab fa-youtube"></i>
+<i class="fa-brands fa-youtube"></i>
 </a>
 <a href="https://tiktok.com/@gibah.dilarang" title="TikTok" aria-label="Follow di TikTok">
-<i class="fab fa-tiktok"></i>
+<i class="fa-brands fa-tiktok"></i>
 </a>
 <a href="https://mastodon.social/@frijal" title="Mastodon" aria-label="Follow di Mastodon">
-<i class="fab fa-mastodon"></i>
+<i class="fa-brands fa-mastodon"></i>
 </a>
 <a href="https://t.me/frijal" title="Telegram" aria-label="Connect di Telegram">
-<i class="fab fa-telegram"></i>
+<i class="fa-brands fa-telegram"></i>
 </a>
 <a href="https://facebook.com/frijal" title="Facebook" aria-label="Like di Facebook">
-<i class="fab fa-facebook"></i>
+<i class="fa-brands fa-facebook"></i>
 </a>
 </div>
 </div>
 </div>
 <div class="footer-bottom">
             <p>
-                🄯 2026 <a href="https://dalam.web.id">Layar Kosong</a> - Dibuat dengan <i class="fas fa-heart"></i> oleh <a href="https://www.linkedin.com/in/frijal">Fakhrul Rijal</a>
+                🄯 2026 <a href="https://dalam.web.id">Layar Kosong</a> - Dibuat dengan <i class="fa-solid fa-heart"></i> oleh <a href="https://www.linkedin.com/in/frijal">Fakhrul Rijal</a>
             </p>
             <p style="margin-top: 10px; font-size: 0.85rem;">
                 Catatan: Semua views dan opinions dalam blog ini adalah personal dan tidak mewakili organisasi apapun.

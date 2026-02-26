@@ -173,7 +173,7 @@
 <body>
     <div class="calc-wrapper">
         <header>
-            <h1><i class="fas fa-bolt"></i> Kalkulator Listrik Real-Time</h1>
+            <h1><i class="fa-solid fa-bolt"></i> Kalkulator Listrik Real-Time</h1>
 <div id="iposbrowser"></div>
             <p style="font-size: 0.9rem; opacity: 0.8;">Otomatis update setiap perubahan data</p>
         </header>
@@ -209,16 +209,16 @@
                     <label>Menyala Berapa Jam/Hari?</label>
                     <input type="number" class="dev-hours" placeholder="berapa Jam?" oninput="hitungOtomatis()">
                 </div>
-                <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
+                <button class="btn-remove" onclick="removeRow(this)"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
-        <button class="btn-add" onclick="addRow()"><i class="fas fa-plus"></i> Tambah Alat Lain</button>
+        <button class="btn-add" onclick="addRow()"><i class="fa-solid fa-plus"></i> Tambah Alat Lain</button>
         <div class="share-grid">
             <button class="btn-share" style="background: #e74c3c;" onclick="downloadPDF()">
-                <i class="fas fa-file-pdf"></i> Simpan ke PDF
+                <i class="fa-solid fa-file-pdf"></i> Simpan ke PDF
             </button>
             <button class="btn-share" style="background: var(--wa-green);" onclick="shareWA()">
-                <i class="fab fa-whatsapp"></i> Share ke WA
+                <i class="fa-brands fa-whatsapp"></i> Share ke WA
             </button>
         </div>
         <footer>
@@ -237,7 +237,7 @@
         <div><input type="number" class="dev-qty" value="1" min="1" oninput="hitungOtomatis()"></div>
         <div><input type="number" class="dev-watt" placeholder="Watt" oninput="hitungOtomatis()"></div>
         <div><input type="number" class="dev-hours" placeholder="Jam" oninput="hitungOtomatis()"></div>
-        <button class="btn-remove" onclick="removeRow(this)"><i class="fas fa-trash"></i></button>
+        <button class="btn-remove" onclick="removeRow(this)"><i class="fa-solid fa-trash"></i></button>
     `;
     container.appendChild(newRow);
     hitungOtomatis();

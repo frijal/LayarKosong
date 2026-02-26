@@ -165,10 +165,10 @@
             <p style="font-size:0.9em;">**Gambar:** File `robots.txt` berada di direktori *root* situs Anda, sebagai panduan pertama bagi semua *crawler*.</p>
         </div>
         <hr>
-        <h2><i class="fas fa-hammer"></i> Tiga Opsi Pengelolaan Robots.txt oleh Cloudflare</h2>
+        <h2><i class="fa-solid fa-hammer"></i> Tiga Opsi Pengelolaan Robots.txt oleh Cloudflare</h2>
         <p>Cloudflare memberikan tiga cara untuk memublikasikan atau menonaktifkan file `robots.txt` di situs Anda. Pilihan ini sebagian besar didasarkan pada seberapa besar Anda ingin Cloudflare turun tangan dalam mengatur kebijakan akses konten Anda.</p>
         <div class="option-detail">
-            <h3><i class="fas fa-signal"></i> 1. Content Signals Policy (Kebijakan Sinyal Konten)</h3>
+            <h3><i class="fa-solid fa-signal"></i> 1. Content Signals Policy (Kebijakan Sinyal Konten)</h3>
             <p>**Deskripsi Opsi:** *Cloudflare deploys a robots.txt file that displays a content access framework for any bots that visit your site. This file will only include the framework and will not disallow any crawlers.*</p>
             <p>Ini adalah opsi yang paling ringan dan informatif. Cloudflare akan memastikan file `robots.txt` Anda ada dan menyertakan semacam "pernyataan hak" atau kerangka kerja akses konten yang terstandarisasi. </p>
             <ul>
@@ -182,7 +182,7 @@ Allow: /</pre>
             </ul>
         </div>
         <div class="option-detail">
-            <h3><i class="fas fa-user-slash"></i> 2. Instruct AI bots to not scrape content (Menginstruksikan bot AI untuk tidak mengumpulkan konten)</h3>
+            <h3><i class="fa-solid fa-user-slash"></i> 2. Instruct AI bots to not scrape content (Menginstruksikan bot AI untuk tidak mengumpulkan konten)</h3>
             <p>**Deskripsi Opsi:** *Creates or updates your robots.txt file to signal that your content should not be used for AI training.*</p>
             <p>Ini adalah pilihan yang paling spesifik untuk melindungi konten Anda dari AI, dan ini adalah langkah yang sangat direkomendasikan jika Anda tidak ingin konten Anda digunakan untuk pelatihan model AI. </p>
             <ul>
@@ -197,7 +197,7 @@ Disallow: /</pre>
             </ul>
         </div>
         <div class="option-detail">
-            <h3><i class="fas fa-times-circle"></i> 3. Disable robots.txt configuration (Nonaktifkan konfigurasi robots.txt)</h3>
+            <h3><i class="fa-solid fa-times-circle"></i> 3. Disable robots.txt configuration (Nonaktifkan konfigurasi robots.txt)</h3>
             <p>**Deskripsi Opsi:** *Turn off Cloudflare’s robots.txt configuration to stop managing how bots and crawlers access your site.*</p>
             <p>Opsi ini memberikan kendali 100% kembali kepada Anda, tanpa intervensi dari Cloudflare.</p>
             <ul>
@@ -207,7 +207,7 @@ Disallow: /</pre>
             </ul>
         </div>
         <hr>
-        <h2><i class="fas fa-shield-alt"></i> Kesimpulan dan Rekomendasi Perlindungan Penuh</h2>
+        <h2><i class="fa-solid fa-shield-alt"></i> Kesimpulan dan Rekomendasi Perlindungan Penuh</h2>
         <p>Pengaturan `robots.txt` ini bekerja sebagai **panduan etika**. Untuk mendapatkan perlindungan konten yang paling kuat dari *AI training bots*, Anda perlu menggabungkannya dengan pengaturan pemblokiran yang berada di lapisan HTTP (yang sudah kita bahas sebelumnya).</p>
         <table class="specs-table">
             <thead>
@@ -231,7 +231,7 @@ Disallow: /</pre>
             </tbody>
         </table>
         <p style="margin-top: 25px;">Dengan menggabungkan kedua lapisan ini, Anda memastikan bahwa *bot* yang bertanggung jawab mendapat instruksi untuk menolak, dan *bot* yang mungkin kurang bertanggung jawab akan diblokir di lapisan jaringan Cloudflare. Perlindungan ganda yang cerdas! ✨</p>
-        <h2 style="margin-top: 50px;"><i class="fas fa-comments"></i> Kolom Diskusi</h2>
+        <h2 style="margin-top: 50px;"><i class="fa-solid fa-comments"></i> Kolom Diskusi</h2>
         <p>Apakah Anda lebih suka mengelola `robots.txt` sendiri atau mengandalkan konfigurasi dari Cloudflare?</p>
         <div id="response"></div><div id="related-articles-grid"></div>
         <footer class="footer">

@@ -74,7 +74,7 @@
             color: #2c3e50;
         }
         .article-content h2 .fas,
-        .article-content h2 .fab {
+        .article-content h2 .fa-brands {
             color: #3498db;
             font-size: 1.5rem;
         }
@@ -88,7 +88,7 @@
             align-items: center;
             gap: 10px;
         }
-        .article-content h3 .fas {
+        .article-content h3 .fa-solid {
             color: #777;
             font-size: 1.1rem;
         }
@@ -281,7 +281,7 @@
                     <li>Membuat file <code>album.json</code> yang berisi daftar path relatif dari gambar-gambar tersebut.</li>
                 </ul>
                 <div class="info-box">
-                    <h2><i class="fas fa-rocket"></i>Cara Pakai (Penting!)</h2>
+                    <h2><i class="fa-solid fa-rocket"></i>Cara Pakai (Penting!)</h2>
                     <ol>
                         <li>Letakkan <em>semua</em> gambar dan subfolder album Anda di dalam satu folder utama (misalnya, <code>album-liburan</code>).</li>
                         <li>Pilih <strong>salah satu</strong> dari script di bawah ini (Python atau Node.js).</li>
@@ -292,7 +292,7 @@
                     </ol>
                 </div>
                 <hr>
-                <h2><i class="fab fa-python"></i>Opsi 1: Script Python (<code>.py</code>)</h2>
+                <h2><i class="fa-brands fa-python"></i>Opsi 1: Script Python (<code>.py</code>)</h2>
                 <p>Ini adalah cara yang paling simpel jika Anda punya Python. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.py</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
 <pre><code class="language-python">import os
 import json
@@ -333,7 +333,7 @@ try:
 except IOError as e:
     print(f"\n❌ Gagal menulis file: {e}")
 </code></pre>
-                <h3><i class="fas fa-terminal"></i>Cara Menjalankan (Python)</h3>
+                <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Python)</h3>
                 <p>1. Buka terminal atau Command Prompt.<br>
                    2. Masuk ke folder album Anda:<br>
                    <code class="terminal-code">cd path/ke/album-liburan</code><br>
@@ -341,7 +341,7 @@ except IOError as e:
                    <code class="terminal-code">python buat_json.py</code> (atau <code>python3 buat_json.py</code>)
                 </p>
                 <hr>
-                <h2><i class="fab fa-node-js"></i>Opsi 2: Script Node.js (<code>.js</code>)</h2>
+                <h2><i class="fa-brands fa-node-js"></i>Opsi 2: Script Node.js (<code>.js</code>)</h2>
                 <p>Gunakan ini jika Anda sudah meng-install Node.js di komputer Anda. Buat file baru di dalam folder album Anda, beri nama <code>buat_json.js</code>, lalu salin dan tempel kode di bawah ini ke dalamnya.</p>
 <pre><code class="language-javascript">const fs = require('fs');
 const path = require('path');
@@ -398,7 +398,7 @@ try {
   console.error(`\n❌ Gagal menulis file: ${err}`);
 }
 </code></pre>
-                <h3><i class="fas fa-terminal"></i>Cara Menjalankan (Node.js)</h3>
+                <h3><i class="fa-solid fa-terminal"></i>Cara Menjalankan (Node.js)</h3>
                 <p>1. Buka terminal atau Command Prompt.<br>
                    2. Masuk ke folder album Anda:<br>
                    <code class="terminal-code">cd path/ke/album-liburan</code><br>

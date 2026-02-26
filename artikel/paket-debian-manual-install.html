@@ -212,21 +212,21 @@
                     <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhXrk8f9bCSBpoV0GvqtWu1HbsQs7sGVX42clz3-YCeZ1fEtNjYcCtc7Lx5si8bRS5ksie5UdNVTNz9Ll8I5Y1EtCtMb4lyIiIzzTenXHT8fAJfPJS_6_g61iWYN4CZviwJg6CBaFbKBt_4JzVGTSJXSQFz5i0sd_SYI1opphz8p4Go9M0ZxSxSlJkC1A/s1600/apt-debian.webp" alt="Ilustrasi terminal Debian dengan perintah APT.">
                 </div>
                 <hr>
-                <h2><i class="fas fa-question-circle"></i> Mengapa Begitu Sulit?</h2>
+                <h2><i class="fa-solid fa-question-circle"></i> Mengapa Begitu Sulit?</h2>
                 <p>
                     Awalnya, banyak pengguna mengira perintah seperti `dpkg -l`, `apt --installed list`, atau bahkan `apt-mark showmanual` sudah cukup. Tapi nyatanya, perintah-perintah ini seringkali menampilkan daftar yang sangat panjang, termasuk paket-paket dasar yang sudah terinstal otomatis sejak awal instalasi Debian, atau paket-paket yang menjadi dependensi dari instalasi manual kita. Ini yang bikin frustrasi! Karena status **"manual installed"** di APT punya makna yang sedikit lebih luas dari sekadar "saya ketik `apt install` ini".
                 </p>
                 <hr>
-                <h2><i class="fas fa-toolbox"></i> Solusi dan Alat yang Direkomendasikan oleh Komunitas</h2>
+                <h2><i class="fa-solid fa-toolbox"></i> Solusi dan Alat yang Direkomendasikan oleh Komunitas</h2>
                 <p>
                     Para ahli dan pengguna berpengalaman di forum kemudian menyajikan berbagai pendekatan, dari yang paling sederhana hingga yang lebih kompleks, untuk mengatasi masalah ini.
                 </p>
-                <h3>1. `apt-mark showmanual` <i class="fas fa-check"></i> (Dasar yang Tepat, Tapi Perlu Filter)</h3>
+                <h3>1. `apt-mark showmanual` <i class="fa-solid fa-check"></i> (Dasar yang Tepat, Tapi Perlu Filter)</h3>
                 <p>
                     Ini adalah perintah yang secara teknis paling tepat untuk melihat paket yang ditandai sebagai "manual" oleh APT. Namun, seperti yang dikeluhkan OP, daftar ini seringkali mencakup paket-paket sistem dasar yang diinstal oleh *installer* Debian, bukan hanya yang ditambahkan sendiri.
                 </p>
                 <div class="code-block"><code>$ apt-mark showmanual</code></div>
-                <h3>2. `history | grep "apt install"` <i class="fas fa-history"></i> (Solusi "Malas" &amp; Praktis)</h3>
+                <h3>2. `history | grep "apt install"` <i class="fa-solid fa-history"></i> (Solusi "Malas" &amp; Praktis)</h3>
                 <p>
                     Ini adalah trik cepat yang digunakan oleh OP sendiri sebagai solusi praktis. Dengan melihat riwayat perintah *shell*, kita bisa mencari semua perintah `apt install` yang pernah kita ketik.
                 </p>
@@ -234,7 +234,7 @@
                 <p>
                     **Catatan:** Cara ini berguna jika riwayat *shell* Anda masih lengkap, tapi tidak mencerminkan status "manual" atau "otomatis" di sistem APT. Ini juga tidak ideal untuk otomatisasi.
                 </p>
-                <h3>3. Melihat Log APT <i class="fas fa-file-alt"></i> (Detail Tapi Membutuhkan Analisis)</h3>
+                <h3>3. Melihat Log APT <i class="fa-solid fa-file-alt"></i> (Detail Tapi Membutuhkan Analisis)</h3>
                 <p>
                     Berkas log APT yang terletak di `/var/log/apt` menyimpan catatan rinci tentang setiap instalasi, *upgrade*, dan *removal*.
                 </p>
@@ -242,7 +242,7 @@
                 <p>
                     **Catatan:** Log ini bisa sangat panjang dan perlu dianalisis lebih lanjut untuk mengekstrak hanya paket tingkat atas.
                 </p>
-                <h3>4. Menggunakan *Reverse Depends* untuk Filter Lanjutan <i class="fas fa-filter"></i> (Solusi Ahli)</h3>
+                <h3>4. Menggunakan *Reverse Depends* untuk Filter Lanjutan <i class="fa-solid fa-filter"></i> (Solusi Ahli)</h3>
                 <p>
                     Pengguna `michaelpaoli` menyajikan solusi yang lebih canggih. Ini melibatkan memfilter hasil `apt-mark showmanual` dengan mengecualikan paket-paket yang menjadi dependensi bagi paket lain. Tujuannya adalah untuk benar-benar menampilkan hanya paket "tingkat atas" yang tidak diinstal sebagai dependensi.
                 </p>
@@ -252,7 +252,7 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                 <p>
                     **Makna:** Perintah ini secara signifikan bisa mengurangi daftar. Contoh di forum menunjukkan penurunan dari 792 paket menjadi 297 paket, yang lebih mendekati keinginan OP.
                 </p>
-                <h3>5. Menandai Paket sebagai Otomatis <i class="fas fa-sync-alt"></i> (`apt-mark auto`)</h3>
+                <h3>5. Menandai Paket sebagai Otomatis <i class="fa-solid fa-sync-alt"></i> (`apt-mark auto`)</h3>
                 <p>
                     Jika Anda tahu ada paket yang sebenarnya merupakan dependensi tapi entah mengapa ditandai `manual`, Anda bisa mengubah statusnya menjadi `auto`.
                 </p>
@@ -260,7 +260,7 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                 <p>
                     **Catatan:** Ini butuh pengetahuan manual tentang paket mana yang harusnya otomatis. Perintah ini tidak bekerja tanpa nama paket di belakangnya (seperti yang OP alami).
                 </p>
-                <h3>6. Menggunakan *Pattern* APT Lanjutan <i class="fas fa-cogs"></i> (Filter Berdasarkan Prioritas)</h3>
+                <h3>6. Menggunakan *Pattern* APT Lanjutan <i class="fa-solid fa-cogs"></i> (Filter Berdasarkan Prioritas)</h3>
                 <p>
                     Pengguna `BCMM` menawarkan pendekatan cerdas lain dengan memfilter berdasarkan prioritas paket. Tujuannya adalah menghilangkan paket-paket sistem yang punya prioritas tinggi (`required`, `important`, `standard`).
                 </p>
@@ -272,7 +272,7 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                 <p>
                     **Catatan:** Solusi ini cukup efektif, tetapi masih mungkin ada "false positive" (paket penting sistem yang ikut terfilter) atau "false negative" (paket non-standar yang terlewat).
                 </p>
-                <h3>7. Menggunakan Virtual Machine (VM) sebagai *Baseline* <i class="fas fa-clone"></i> (Paling Akurat, Tapi Memakan Waktu)</h3>
+                <h3>7. Menggunakan Virtual Machine (VM) sebagai *Baseline* <i class="fa-solid fa-clone"></i> (Paling Akurat, Tapi Memakan Waktu)</h3>
                 <p>
                     Saran ini melibatkan instalasi Debian baru di VM dengan konfigurasi awal yang sama persis. Kemudian, jalankan `apt-mark showmanual` di VM dan di sistem utama Anda, lalu bandingkan hasilnya dengan perintah `diff`. Perbedaannya akan menunjukkan paket yang Anda instal secara manual setelah instalasi awal.
                 </p>
@@ -283,7 +283,7 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                     **Makna:** Ini adalah metode paling akurat untuk melihat *tambahan* paket yang Anda instal sendiri, karena menghilangkan semua paket dasar bawaan sistem. Namun, tentu saja butuh usaha ekstra untuk menyiapkan VM.
                 </p>
                 <hr>
-                <h2><i class="fas fa-lightbulb"></i> Kesimpulan: Tidak Ada Solusi Satu Ukuran untuk Semua</h2>
+                <h2><i class="fa-solid fa-lightbulb"></i> Kesimpulan: Tidak Ada Solusi Satu Ukuran untuk Semua</h2>
                 <p>
                     Diskusi di r/debian ini menunjukkan bahwa tidak ada satu perintah tunggal yang secara sempurna dapat menjawab pertanyaan "paket apa yang saya instal sendiri tanpa dependensi" dengan mudah. Konsep "manual installed" di APT lebih kompleks dari yang dibayangkan.
                 </p>
@@ -299,15 +299,15 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                     Semoga rangkuman ini membantu Anda lebih memahami seluk-beluk manajemen paket di Debian dan menemukan metode yang paling sesuai untuk kebutuhan Anda. Selamat bereksperimen\!
                 </p>
                 <p class="text-right" style="text-align: right; font-size: 0.85em; margin-top: 30px;">
-                    <i class="fas fa-laptop-code"></i> Artikel ini diolah dari diskusi di r/debian (Original Poster: AncientAgrippa).
+                    <i class="fa-solid fa-laptop-code"></i> Artikel ini diolah dari diskusi di r/debian (Original Poster: AncientAgrippa).
                 </p>
     </article>
-            <h2><i class="fas fa-comments"></i> Kolom Komentar</h2>
+            <h2><i class="fa-solid fa-comments"></i> Kolom Komentar</h2>
             <div id="response"></div><div id="related-articles-grid"></div>
         </div>
     </div>
     <footer>
-        <p>🄯 2025 Diskusi Reddit r/debian. Tetap semangat mengoprek Linux\! <i class="fab fa-linux"></i></p>
+        <p>🄯 2025 Diskusi Reddit r/debian. Tetap semangat mengoprek Linux\! <i class="fa-brands fa-linux"></i></p>
     </footer>
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>
 <section id="related-marquee-section"><div id="related-marquee-container"></div></section>

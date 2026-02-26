@@ -173,22 +173,22 @@
 <p>Jika kamu mencari solusi konversi PDF ke gambar yang hasilnya <b>terjamin 100% akurat</b>, memiliki kontrol penuh atas resolusi (DPI), dan kecepatan yang <em>gila</em>, maka kamu wajib kenalan dengan <b>Poppler Utilities</b>. Alat utamanya? Tentu saja, <code>pdftoppm</code>!</p>
         <p>Metode ini sempurna untuk kamu yang sering mengolah dokumen besar dan mengutamakan kualitas, tanpa perlu khawatir soal privasi karena semua proses dilakukan di komputer **lokal** kamu. Yuk, kita bedah langkah-langkahnya!</p>
     <section>
-        <h2><i class="fas fa-download"></i> Langkah 1: Instalasi Poppler Utilities</h2>
+        <h2><i class="fa-solid fa-download"></i> Langkah 1: Instalasi Poppler Utilities</h2>
         <p>Sebelum kita mulai, kamu harus memastikan Poppler sudah terinstal di sistem operasi kamu. Ini adalah pondasi utamanya:</p>
         <ul>
-            <li><strong><i class="fab fa-linux"></i> Pengguna Linux (Debian/Ubuntu):</strong> Buka Terminal dan ketik perintah ini:
+            <li><strong><i class="fa-brands fa-linux"></i> Pengguna Linux (Debian/Ubuntu):</strong> Buka Terminal dan ketik perintah ini:
                 <pre><code class="language-bash">sudo apt install poppler-utils</code></pre>
             </li>
-            <li><strong><i class="fab fa-apple"></i> Pengguna macOS (dengan Homebrew):</strong> Buka Terminal dan ketik:
+            <li><strong><i class="fa-brands fa-apple"></i> Pengguna macOS (dengan Homebrew):</strong> Buka Terminal dan ketik:
                 <pre><code class="language-bash">brew install poppler</code></pre>
             </li>
-            <li><strong><i class="fab fa-windows"></i> Pengguna Windows:</strong> Sedikit lebih rumit, kamu bisa menginstal <b>Chocolatey</b> terlebih dahulu (manajer paket seperti Homebrew) dan kemudian menginstal Poppler melalui paketnya. Atau, cari paket Poppler yang sudah di-kompilasi (.zip) dan tambahkan ke <code>PATH</code> sistemmu.</li>
+            <li><strong><i class="fa-brands fa-windows"></i> Pengguna Windows:</strong> Sedikit lebih rumit, kamu bisa menginstal <b>Chocolatey</b> terlebih dahulu (manajer paket seperti Homebrew) dan kemudian menginstal Poppler melalui paketnya. Atau, cari paket Poppler yang sudah di-kompilasi (.zip) dan tambahkan ke <code>PATH</code> sistemmu.</li>
         </ul>
         <p>Setelah instalasi, uji dengan mengetik <code>pdftoppm -v</code>. Jika muncul versi, berarti kamu siap lanjut!</p>
     </section>
     <hr>
     <section>
-        <h2><i class="fas fa-file-image"></i> Langkah 2: Perintah Konversi Kualitas Tertinggi (PNG Lossless)</h2>
+        <h2><i class="fa-solid fa-file-image"></i> Langkah 2: Perintah Konversi Kualitas Tertinggi (PNG Lossless)</h2>
         <p>Ini adalah resep rahasia untuk mendapatkan gambar dengan kualitas 100%. Kita akan menggunakan format **PNG** (yang *lossless* atau tanpa kehilangan data) dan resolusi **300 DPI** (standar cetak). Kalau kamu cuma pakai 72 DPI, gambarmu pasti pecah saat dicetak atau diperbesar!</p>
         <h3>Sintaks Dasar pdftoppm</h3>
         <pre><code class="language-bash">pdftoppm -png -r 300 [nama_file_input].pdf [nama_file_output_prefix]</code></pre>
@@ -200,7 +200,7 @@
            </section>
     <hr>
     <section>
-        <h2><i class="fas fa-compress-alt"></i> Langkah 3: Konversi Alternatif (JPEG Kualitas 100%)</h2>
+        <h2><i class="fa-solid fa-compress-alt"></i> Langkah 3: Konversi Alternatif (JPEG Kualitas 100%)</h2>
         <p>PNG memang sempurna, tapi kadang ukurannya bisa membengkak. Kalau kamu butuh file yang lebih kecil untuk diunggah ke web atau media sosial, **JPEG** adalah pilihan yang bagus. Tapi ingat, JPEG itu format *lossy* (ada kompresi), jadi kita harus memaksa kualitasnya ke level 100%!</p>
         <h3>Contoh Nyata Konversi JPEG (Kualitas 100%)</h3>
         <pre><code class="language-bash">pdftoppm -jpeg -r 300 -jpegopt quality=100 "Dokumen Rahasia.pdf" hasil_jpg</code></pre>
@@ -208,22 +208,22 @@
     </section>
     <hr>
     <section>
-        <h2><i class="fas fa-info-circle"></i> Mengapa Metode Command Line Ini Lebih Baik?</h2>
+        <h2><i class="fa-solid fa-info-circle"></i> Mengapa Metode Command Line Ini Lebih Baik?</h2>
         <p>Beberapa keunggulan kenapa metode ini jadi pilihan para profesional:</p>
         <ul>
-            <li><i class="fas fa-cogs"></i> **Kontrol Mutlak (DPI):** Kamu bisa mengatur resolusi sesukamu (misalnya 600 DPI untuk arsip super detail).</li>
-            <li><i class="fas fa-lock"></i> **Privasi 100%:** File tidak pernah menyentuh server internet mana pun. Semua diolah di perangkat pribadimu.</li>
-            <li><i class="fas fa-bolt"></i> **Kecepatan:** Setelah terinstal, prosesnya jauh lebih cepat daripada mengunggah dan mengunduh file besar dari layanan *online*.</li>
+            <li><i class="fa-solid fa-cogs"></i> **Kontrol Mutlak (DPI):** Kamu bisa mengatur resolusi sesukamu (misalnya 600 DPI untuk arsip super detail).</li>
+            <li><i class="fa-solid fa-lock"></i> **Privasi 100%:** File tidak pernah menyentuh server internet mana pun. Semua diolah di perangkat pribadimu.</li>
+            <li><i class="fa-solid fa-bolt"></i> **Kecepatan:** Setelah terinstal, prosesnya jauh lebih cepat daripada mengunggah dan mengunduh file besar dari layanan *online*.</li>
         </ul>
         <p>Nah, sekarang kamu punya alat konversi PDF paling *powerful* dan terpercaya di gudang senjatamu. Selamat mencoba! Jangan lupa *share* artikel ini kalau merasa terbantu, ya. 😊</p>
     </section>
     <hr>
-    <h2><i class="fas fa-comments"></i> Apakah ada *tool* Command lain yang kamu pakai? Cerita pengalamanmu mengkonversi PDF.</h2>
+    <h2><i class="fa-solid fa-comments"></i> Apakah ada *tool* Command lain yang kamu pakai? Cerita pengalamanmu mengkonversi PDF.</h2>
     <div id="response"></div><div id="related-articles-grid"></div>
 </div>
 <footer>
-    <p>🄯 2025 Layar Kosong by Fakhrul Rijal. | <a href="https://dalam.web.id/artikel/konversi-pdf-lokal-poppler.html">Artikel ini</a> | Dibuat dengan <i class="fas fa-heart" style="color: red;"></i> di Balikpapan.</p>
-    <p>Mari terhubung di <a href="https://facebook.com/frijal" target="_blank"><i class="fab fa-facebook"></i> Facebook</a> | <a href="https://www.youtube.com/@frijal" target="_blank"><i class="fab fa-youtube"></i> YouTube</a> | <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>.</p>
+    <p>🄯 2025 Layar Kosong by Fakhrul Rijal. | <a href="https://dalam.web.id/artikel/konversi-pdf-lokal-poppler.html">Artikel ini</a> | Dibuat dengan <i class="fa-solid fa-heart" style="color: red;"></i> di Balikpapan.</p>
+    <p>Mari terhubung di <a href="https://facebook.com/frijal" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a> | <a href="https://www.youtube.com/@frijal" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a> | <a href="https://linkedin.com/in/frijal" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>.</p>
 </footer>
 <script src="/ext/highlight.js" defer=""></script>
 <script>

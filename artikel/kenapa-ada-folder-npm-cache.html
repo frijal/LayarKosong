@@ -233,7 +233,7 @@
                 </div>
                 <p>Pernah nggak sih, pas lagi kerja pakai Node.js, tiba-tiba muncul folder aneh bernama <code class="kbd">.npm-cache</code> di root project kamu? Apalagi kalau pakai GitHub Actions, folder ini suka ikut ke-commit kalau nggak hati-hati. Tenang, ini bukan error kok. Yuk kita bahas kenapa bisa muncul dan gimana cara ngatasinnya!</p>
                 <div class="section">
-                    <h2><i class="fas fa-search"></i>Penyebab Utama</h2>
+                    <h2><i class="fa-solid fa-search"></i>Penyebab Utama</h2>
                     <p>Folder <code class="kbd">.npm-cache/_cacache</code> itu muncul karena <strong>npm secara default membuat cache lokal</strong> setiap kali kamu menjalankan <code class="kbd">npm install</code> (atau perintah npm lain yang butuh download paket).</p>
                     <ul>
                         <li>
@@ -258,9 +258,9 @@
                      </div>
                 </div>
                 <div class="section">
-                    <h2><i class="fas fa-check-circle"></i>Solusi Biar Gak Muncul Lagi</h2>
+                    <h2><i class="fa-solid fa-check-circle"></i>Solusi Biar Gak Muncul Lagi</h2>
                     <p>Untungnya, solusinya gampang banget. Ada beberapa cara:</p>
-                    <h3>1. Abaikan Folder Cache di Git <i class="fab fa-git-alt"></i></h3>
+                    <h3>1. Abaikan Folder Cache di Git <i class="fa-brands fa-git-alt"></i></h3>
                     <p>Ini cara paling dasar dan wajib dilakukan. Tambahkan baris berikut ke file <code class="kbd">.gitignore</code> di root project kamu:</p>
                     <pre><code class="language-ignore"># NPM cache
 .npm-cache/
@@ -269,7 +269,7 @@ yarn-debug.log*
 yarn-error.log*
 </code></pre>
                     <p>Dengan ini, Git akan cuek bebek sama folder <code class="kbd">.npm-cache</code> dan isinya. Dia nggak akan muncul lagi di status Git atau ikut ter-commit.</p>
-                    <h3>2. Gunakan Cache Bawaan GitHub Actions <i class="fab fa-github"></i></h3>
+                    <h3>2. Gunakan Cache Bawaan GitHub Actions <i class="fa-brands fa-github"></i></h3>
                     <p>Kalau masalahnya muncul spesifik di workflow GitHub Actions, cara terbaik adalah pakai fitur cache bawaan dari action <code class="kbd">actions/setup-node</code>. Ini lebih efisien karena cache-nya disimpan di infrastruktur GitHub, bukan di dalam repo kita.</p>
                     <p>Caranya gampang, cukup tambahkan opsi <code class="kbd">cache: 'npm'</code> di step setup Node:</p>
                     <pre><code class="language-yaml">- name: Setup Node.js
@@ -279,7 +279,7 @@ yarn-error.log*
     cache: 'npm' # &lt;-- Tambahkan ini!
 </code></pre>
                     <p>Dengan begini, <code class="kbd">actions/setup-node</code> akan otomatis mengurus caching <code class="kbd">node_modules</code> dan cache npm global di runner. Folder <code class="kbd">.npm-cache</code> kemungkinan besar nggak akan dibuat lagi di direktori kerja repo kamu.</p>
-                    <h3>3. Atur Lokasi Cache Secara Eksplisit (Kalau Perlu) <i class="fas fa-wrench"></i></h3>
+                    <h3>3. Atur Lokasi Cache Secara Eksplisit (Kalau Perlu) <i class="fa-solid fa-wrench"></i></h3>
                     <p>Kalau kamu punya alasan khusus untuk *tetap* pakai cache manual (misalnya di environment build yang lain, bukan Actions), kamu bisa paksa npm untuk menyimpan cache-nya di lokasi lain di luar repo. Misalnya, arahkan ke folder home runner (yang biasanya aman):</p>
                     <pre><code class="language-bash"># Set lokasi cache npm ke ~/.npm secara global di runner
 npm config set cache ~/.npm --global
@@ -289,7 +289,7 @@ npm install
                     <p>Perintah ini memberitahu npm, "Hei, simpan cache-nya di folder <code class="kbd">.npm</code> di home direktori ya, jangan di tempat lain!"</p>
                 </div>
                  <div class="section">
-                    <h2><i class="fas fa-thumbs-up"></i>Jadi Singkatnya...</h2>
+                    <h2><i class="fa-solid fa-thumbs-up"></i>Jadi Singkatnya...</h2>
                     <p>Folder <code class="kbd">.npm-cache/_cacache</code> itu muncul karena npm menyimpan cache hasil download paket di dalam repo kamu (seringnya karena setup di CI/CD seperti GitHub Actions). Folder ini **nggak penting dan nggak perlu ikut masuk ke repo Git**.</p>
                     <p>Solusi paling gampang dan direkomendasikan:</p>
                     <ol>

@@ -35,30 +35,56 @@ jobs:
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
 
-      - name: 🛠️ Replace Content (Bun)
+      - name: 🛠️ Replace Content (Perl, SAFE)
         run: |
           shopt -s nullglob
           for file in artikelx/*.html; do
-            echo "Processing $file"
-            bun -e "
-              let f = Bun.file('$file');
-              let t = await f.text();
-              t = t.replace(/https:\/\/dalam\[\.\]web\[\.\]id\/assets\/apple-touch-icon\.png/g, 'https://dalam.web.id/ext/icons/apple-touch-icon.png')
-                   .replace(/https:\/\/dalam\[\.\]web\[\.\]id\/apple-touch-icon\.png/g, 'https://dalam.web.id/ext/icons/apple-touch-icon.png')
-                   .replace(/&copy;|©/g, '🄯')
-                   .replace(/Font Awesome [56] Free/g, 'Font Awesome 7 Free')
-                   .replace(/ - Layar Kosong/g, '')
-                   .replace(/>Dalam Web<\/a>|>Jaga Data Pribadi Tetap Aman<\/a>/g, '')
-                   .replace(/>dalam\.web\.id<\/a>/g, '>Jaga Data Pribadi Tetap Aman</a>')
-                   .replace(/Analisis (mendalam|tajam) /g, '')
-                   .replace(/content=\"(Analisis kritis |Mengapa |Pelajari |Simak |Temukan )/g, 'content=\"')
-                   .replace(/Dalam Web Artikel/g, 'Jaga Data Pribadi Tetap Aman')
-                   .replace(/Dalam Web (Id|ID)|Dalam\.web\.id/gi, 'Jaga Data Pribadi Tetap Aman')
-                   .replace(/(Panduan|Penjelasan) (lengkap|mendalam) /g, '')
-                   .replace(/Simak ulasan mendalam /g, '')
-                   .replace(/far fa-copyright/g, 'fa-brands fa-creative-commons-zero');
-              await Bun.write('$file', t);
-            "
+          echo "Processing $file"
+
+          perl -0777 -i -pe '
+            # URL icon
+            s#https://dalam\[.\]web\[.\]id/assets/apple-touch-icon\.png#https://dalam.web.id/ext/icons/apple-touch-icon.png#g;
+            s#https://dalam\[.\]web\[.\]id/apple-touch-icon\.png#https://dalam.web.id/ext/icons/apple-touch-icon.png#g;
+
+            # copyright symbol
+            s/&copy;/🄯/g;
+            s/©/🄯/g;
+
+            # Font Awesome version
+            s/Font Awesome 5 Free/Font Awesome 7 Free/g;
+            s/Font Awesome 6 Free/Font Awesome 7 Free/g;
+
+            # branding title
+            s/ - Layar Kosong//g;
+
+            # hapus anchor branding (pisah, tidak digabung)
+            s#<a[^>]*>\s*Dalam Web\s*</a>##g;
+            s#<a[^>]*>\s*Jaga Data Pribadi Tetap Aman\s*</a>##g;
+
+            # ganti teks anchor dalam.web.id -> Jaga Data Pribadi Tetap Aman
+            s#(<a[^>]*>)\s*dalam\.web\.id\s*(</a>)#$1Jaga Data Pribadi Tetap Aman$2#g;
+            s/Dalam Web Artikel/Jaga Data Pribadi Tetap Aman/g;
+
+            # SEO fluff (dipisah)
+            s/Analisis mendalam //g;
+            s/Analisis tajam //g;
+            s/Panduan lengkap //g;
+            s/Panduan mendalam //g;
+            s/Penjelasan lengkap //g;
+            s/Penjelasan mendalam //g;
+            s/Simak ulasan mendalam //g;
+            s/content=\"Analisis kritis /content=\"/g;
+            s/content=\"Mengapa /content=\"/g;
+            s/content=\"Pelajari /content=\"/g;
+            s/content=\"Simak /content=\"/g;
+            s/content=\"Temukan /content=\"/g;
+
+            # Font Awesome class mapping (dipisah)
+            s/fas fa-copyright/fa-brands fa-creative-commons-zero/g;
+            s/\bfab /fa-brands /g;
+            s/\bfar /fa-regular /g;
+            s/\bfas /fa-solid /g;
+          ' "$file"
           done
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx

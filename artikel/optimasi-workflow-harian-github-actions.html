@@ -253,9 +253,9 @@ footer a { color: var(--header-color); text-decoration: none; }
                 <p>Awalnya, saya punya workflow harian yang dibagi menjadi beberapa job: satu untuk membersihkan gambar, satu lagi untuk membuat laporan. Secara logika ini benar, tapi secara teknis sangat tidak efisien. Kenapa?</p>
                 <div class="problem-box">
                     <ul>
-                        <li><i class="fas fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan `checkout` repositori dari awal. Ini membuang waktu.</li>
-                        <li><i class="fas fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li>
-                        <li><i class="fas fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li>
+                        <li><i class="fa-solid fa-undo"></i> <strong>Boros `checkout`</strong>: Setiap job harus melakukan `checkout` repositori dari awal. Ini membuang waktu.</li>
+                        <li><i class="fa-solid fa-random"></i> <strong>Riwayat Commit Berantakan</strong>: Setiap job membuat commit-nya sendiri-sendiri, menghasilkan riwayat Git yang "berisik".</li>
+                        <li><i class="fa-solid fa-hourglass-half"></i> <strong>Potensi Masalah Timing</strong>: Data yang digunakan oleh job kedua mungkin sudah usang karena tidak melihat perubahan yang dibuat oleh job pertama.</li>
                     </ul>
                 </div>
                 <p>Solusinya? Rombak total dan gabungkan semuanya ke dalam <strong>satu job tunggal</strong> dengan urutan proses yang logis.</p>
@@ -263,28 +263,28 @@ footer a { color: var(--header-color); text-decoration: none; }
                 <p>Dengan satu job, kita bisa mengatur urutan tugas dengan sempurna: **buat dulu aset baru**, **bersihkan yang lama**, lalu **laporkan kondisi finalnya**. Semua dalam satu proses yang mulus.</p>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-icon generate"><i class="fas fa-camera-retro"></i></div>
+                        <div class="timeline-icon generate"><i class="fa-solid fa-camera-retro"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 1: Buat Aset Baru (Generate Screenshots)</h3>
                             <p>Proses dimulai dengan membuat aset yang mungkin belum ada. Skrip Puppeteer dijalankan untuk membuat screenshot artikel yang belum memiliki gambar cover.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-icon cleanup"><i class="fas fa-broom"></i></div>
+                        <div class="timeline-icon cleanup"><i class="fa-solid fa-broom"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 2: Bersihkan Aset Lama (Cleanup Orphans)</h3>
                             <p>Setelah semua gambar yang seharusnya ada sudah dibuat, sekarang waktunya bersih-bersih. Skrip akan mencari gambar `.webp` yang artikelnya sudah tidak ada lagi (orphan) dan menghapusnya.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-icon report"><i class="fas fa-chart-bar"></i></div>
+                        <div class="timeline-icon report"><i class="fa-solid fa-chart-bar"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah 3: Laporkan Kondisi Final (Count &amp; Report)</h3>
                             <p>Setelah semua aset ada di tempatnya dan yang tidak perlu sudah dibuang, barulah kita menghitung dan membuat laporan. Hasil laporan ini akan menjadi cerminan akurat dari kondisi repo saat itu.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-icon commit"><i class="fab fa-git-alt"></i></div>
+                        <div class="timeline-icon commit"><i class="fa-brands fa-git-alt"></i></div>
                         <div class="timeline-content">
                             <h3>Langkah Final: Satu Commit untuk Semua</h3>
                             <p>Inilah bagian terbaiknya. Semua perubahan—gambar baru, gambar yang dihapus, dan laporan baru—dikemas ke dalam <strong>satu commit atomik</strong>. Riwayat Git menjadi bersih dan mudah dibaca.</p>
@@ -339,7 +339,7 @@ jobs:
           else
             echo "✅ Tidak ada perubahan baru."
           fi</code></pre>
-                    <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                 </div>
     </article>
             <div>
@@ -359,7 +359,7 @@ jobs:
             const code = codeBlock.querySelector('code').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const originalHTML = e.currentTarget.innerHTML;
-                e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 e.currentTarget.disabled = true;
                 e.currentTarget.style.backgroundColor = '#27ae60';
                 setTimeout(() => {

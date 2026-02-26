@@ -282,7 +282,7 @@ footer a {
                 <p>Nah, kalau kamu mau alur kerjanya beda, ada dua cara utama untuk mengatur ini, dari yang paling gampang sampai yang paling ketat.</p>
                 <div class="zdummy">
                     <div class="method-header">
-                        <i class="fas fa-coffee"></i>
+                        <i class="fa-solid fa-coffee"></i>
                         <h2>Cara 1: Cukup Abaikan Saja (Paling Gampang)</h2>
                     </div>
                     <div class="method-body">
@@ -292,7 +292,7 @@ footer a {
                             <li><strong>Push ke Branch Sendiri:</strong> Pastikan kamu hanya push ke branch tersebut.
                                 <div class="code-block">
                                     <pre><code>git push origin desain-baru</code></pre>
-                                    <button class="copy-btn"><i class="far fa-copy"></i> Salin</button>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> Salin</button>
                                 </div>
                             </li>
                             <li><strong>Cuekin Tombolnya:</strong> Saat notifikasi "Compare &amp; pull request" muncul di GitHub, **jangan diklik**. Anggap saja tidak ada.</li>
@@ -302,7 +302,7 @@ footer a {
                 </div>
                 <div class="zdummy">
                     <div class="method-header">
-                        <i class="fas fa-shield-halved"></i>
+                        <i class="fa-solid fa-shield-halved"></i>
                         <h2>Cara 2: Kunci `main` dengan Aturan (Paling Aman)</h2>
                     </div>
                     <div class="method-body">
@@ -318,11 +318,11 @@ footer a {
                         <h4>Apa Efek dari Setelan Ini?</h4>
                         <p>Dengan mencentang satu kotak itu saja, kamu sudah mendapatkan keamanan luar biasa:</p>
                         <ul>
-                            <li><i class="fas fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan wajib lewat Pull Request.</li>
-                            <li><i class="fas fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li>
+                            <li><i class="fa-solid fa-ban"></i> <strong>Push Langsung Diblokir:</strong> Tidak ada lagi yang bisa secara tidak sengaja (atau sengaja) melakukan `git push origin main`. Semua perubahan wajib lewat Pull Request.</li>
+                            <li><i class="fa-solid fa-check-double"></i> <strong>Kontrol Penuh:</strong> Kamu bisa menambahkan aturan turunan, seperti "wajib ada 1 *approval* dari rekan setim" sebelum PR bisa di-merge.</li>
                         </ul>
                         <div class="tip">
-                           <i class="fas fa-lightbulb"></i>
+                           <i class="fa-solid fa-lightbulb"></i>
                            <strong>Kesimpulan:</strong> Cara 1 (mengabaikan) adalah tentang mengubah kebiasaan. Cara 2 (Branch Protection) adalah tentang mengubah sistem agar semua orang terpaksa mengikuti kebiasaan yang aman.
                         </div>
                     </div>
@@ -345,7 +345,7 @@ footer a {
             const code = codeBlock.querySelector('code').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const originalHTML = e.currentTarget.innerHTML;
-                e.currentTarget.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Disalin!';
                 e.currentTarget.disabled = true;
                 setTimeout(() => {
                     e.currentTarget.innerHTML = originalHTML;
