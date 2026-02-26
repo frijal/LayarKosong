@@ -65,7 +65,6 @@ jobs:
           # Eksekusi find TANPA eval. 
           # "${FIND_EXT_ARGS[@]}" akan diekspansi dengan benar beserta tanda kurungnya.
           find "$TARGET" -type f "${FIND_EXT_ARGS[@]}" \
-          #  -not -path '*/.*' \
             -not -path '*/node_modules/*' \
             -not -path '*/functions/*' \
             -not -path '*/img/*' \
