@@ -4,7 +4,7 @@ import { execSync } from 'node:child_process';
 
 const IMG_FOLDER = './img/';
 const OUTPUT_FILE = './img/gambarnganggur.txt';
-const SKIP_FOLDERS = ['node_modules', '.git', 'img', 'sementara', 'artikelx', 'functions', 'mini', 'ext', '.github'];
+const SKIP_FOLDERS = ['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'ext', '.github'];
 
 /**
  * Fungsi Rekursif untuk ambil SEMUA .webp di dalam img/ sub-sub-sub folder
