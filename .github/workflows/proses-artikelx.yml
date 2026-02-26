@@ -64,6 +64,8 @@ jobs:
             # ganti teks anchor dalam.web.id -> Jaga Data Pribadi Tetap Aman
             s#(<a[^>]*>)\s*dalam\.web\.id\s*(</a>)#$1Jaga Data Pribadi Tetap Aman$2#g;
             s/Dalam Web Artikel/Jaga Data Pribadi Tetap Aman/g;
+            
+            s#\b dalam.web.id # Jaga Data Pribadi Tetap Aman #g;
 
             # SEO fluff (dipisah)
             s/Analisis mendalam //g;
