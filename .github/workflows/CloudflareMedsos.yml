@@ -45,7 +45,7 @@ jobs:
           bun-version: latest         
       
       - name: 📦 Install
-        run: bun install
+        run: bun install --frozen-lockfile
 
       # =========================================================
       # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
