@@ -1,6 +1,5 @@
 // cloudflare-pages-clean.js
 const API = "https://api.cloudflare.com/client/v4";
-
 const {
   CF_ACCOUNT_ID: accountId,
   CF_PROJECT_NAME: projectName,
@@ -14,9 +13,22 @@ if (!accountId || !projectName || !token) {
 
 console.log("🚀 Mengambil daftar deployment…");
 
+const DEFAULT_TIMEOUT = 30_000; // ms
+
+async function fetchWithTimeout(url, opts = {}, timeout = DEFAULT_TIMEOUT) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  try {
+    const res = await fetch(url, { ...opts, signal: controller.signal });
+    return res;
+  } finally {
+    clearTimeout(id);
+  }
+}
+
 async function fetchDeployments() {
   const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments`;
-  const res = await fetch(url, {
+  const res = await fetchWithTimeout(url, {
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/json"
@@ -49,7 +61,7 @@ function getCreatedTime(d) {
 
 async function deleteDeployment(id) {
   const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments/${id}`;
-  const res = await fetch(url, {
+  const res = await fetchWithTimeout(url, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -72,38 +84,56 @@ async function deleteDeployment(id) {
   return true;
 }
 
-try {
-  const deployments = await fetchDeployments();
-
-  const previews = deployments
-    .filter(isPreviewDeployment)
-    .sort((a, b) => getCreatedTime(a) - getCreatedTime(b));
-
-  console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-  console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
-
-  // LOGIKA: jika preview <= 6, hentikan
-  if (previews.length <= 6) {
-    console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
-    console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
-    process.exit(0);
-  }
-
-  console.log(`🗑 Preview yang akan diproses: ${previews.length}`);
-
-  // Jika ingin menghapus semua preview (sesuai kode awal), lakukan loop serial:
+// Hapus serial untuk menghindari rate limit
+async function runDeletesSerial(previews) {
   for (const p of previews) {
-    const id = p.id;
     try {
-      await deleteDeployment(id);
+      await deleteDeployment(p.id);
     } catch (err) {
-      console.error(`⚠️ Error saat menghapus ${id}:`, err);
+      console.error(`⚠️ Error saat menghapus ${p.id}:`, err);
     }
   }
-
-  console.log("✅ Selesai! Semua preview diproses karena sudah melebihi kuota.");
-  process.exit(0);
-} catch (err) {
-  console.error("❌ Fatal error:", err.message ?? err);
-  process.exit(1);
 }
+
+async function run() {
+  try {
+    const deployments = await fetchDeployments();
+
+    // urutkan dari paling tua ke paling baru
+    const previews = deployments
+      .filter(isPreviewDeployment)
+      .sort((a, b) => getCreatedTime(a) - getCreatedTime(b));
+
+    console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
+    console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
+
+    // jika preview <= 6, hentikan
+    if (previews.length <= 6) {
+      console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
+      console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
+      return;
+    }
+
+    // Pilih preview yang akan dihapus: ambil dari paling tua sampai tersisa 6 terbaru
+    const numToKeep = 6;
+    const numToDelete = previews.length - numToKeep;
+    const previewsToDelete = previews.slice(0, numToDelete);
+
+    console.log(`🗑 Preview total akan dihapus: ${previewsToDelete.length}`);
+    console.log(`🧾 Menyisakan ${numToKeep} preview terbaru.`);
+
+    // Hapus serial untuk menghindari rate limit
+    await runDeletesSerial(previewsToDelete);
+
+    console.log("✅ Selesai! Preview lama telah dihapus sehingga tersisa 6 terbaru.");
+  } catch (err) {
+    if (err.name === "AbortError") {
+      console.error("❌ Request timeout.");
+    } else {
+      console.error("❌ Fatal error:", err.message ?? err);
+    }
+    process.exit(1);
+  }
+}
+
+await run();
