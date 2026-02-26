@@ -43,9 +43,17 @@ jobs:
         uses: oven-sh/setup-bun@ab8cb4e8f89912a29b87e4abc4554f2301648a5c
         with:
           bun-version: latest
+      - name: 📂 Cache Bun
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
 
-      - name: 📦 Install Dependencies
-        run: bun install
+      - name: 📦 Install
+        run: bun install --frozen-lockfile --no-progress --no-summary
+
+  #    - name: 📦 Install Dependencies
+  #      run: bun install
 
       # =========================================================
       # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
