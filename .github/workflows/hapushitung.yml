@@ -28,31 +28,10 @@ jobs:
         run: bun run ext/workflow-list.js
       
       - name: 3. Scan Unused Images via Python
-        id: python_scan
+        id: Bun_scan
         run: |
           echo "🐍 Menjalankan cek_gambar.py..."
           bun run ext/cek-gambar.js
-          
-          LIST_FILE="img/gambarnganggur.txt"
-          if [ -f "$LIST_FILE" ]; then
-            echo "📑 Membaca daftar dari $LIST_FILE..."
-            cleaned_py_count=0
-            while IFS= read -r filename; do
-              if [[ -n "$filename" && "$filename" == *.webp ]]; then
-                TARGET="img/$filename"
-                if [ -f "$TARGET" ]; then
-                  echo "→ Menghapus (dari daftar Python): $TARGET"
-                  git rm -f "$TARGET"
-                  cleaned_py_count=$((cleaned_py_count + 1))
-                fi
-              elif [[ -n "$filename" && "$filename" != "Semua gambar terpakai" ]]; then
-                echo "⚠️  Baris tidak diproses: $filename"
-              fi
-            done < "$LIST_FILE"
-            echo "Jumlah yang dihapus (Python): $cleaned_py_count"
-          else
-            echo "ℹ️  File daftar tidak ditemukan: $LIST_FILE"
-          fi    
           
       # ========== CONTENT REPORT GENERATION ==========
       - name: 5. Generate Detailed Content Report
