@@ -21,12 +21,7 @@ jobs:
       - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          bun-version: latest
-      
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
-        with:
-          python-version: '3.x'
-          cache: 'pip'
+          bun-version: latest     
     
       # ========== IMAGE CLEANUP ==========     
       - name: 🕵️ Update Dashboard Jadwal
@@ -36,7 +31,7 @@ jobs:
         id: python_scan
         run: |
           echo "🐍 Menjalankan cek_gambar.py..."
-          python3 ext/cek_gambar.py
+          bun run ext/cek-gambar.js
           
           LIST_FILE="img/gambarnganggur.txt"
           if [ -f "$LIST_FILE" ]; then
