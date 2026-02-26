@@ -5,17 +5,17 @@
     "": {
       "name": "layarkosong",
       "dependencies": {
-        "@minify-html/node": "^0.18.1",
-        "@octokit/core": "^7.0.6",
-        "@xmldom/xmldom": "^0.9.8",
-        "axios": "^1.13.5",
-        "cheerio": "^1.2.0",
-        "fast-xml-parser": "^5.4.1",
-        "sharp": "^0.34.5",
-        "tumblr.js": "^5.0.1",
+        "@minify-html/node": "latest",
+        "@octokit/core": "latest",
+        "@xmldom/xmldom": "latest",
+        "axios": "latest",
+        "cheerio": "latest",
+        "fast-xml-parser": "latest",
+        "sharp": "latest",
+        "tumblr.js": "latest",
       },
       "devDependencies": {
-        "wrangler": "^4.69.0",
+        "wrangler": "latest",
       },
     },
   },
@@ -188,7 +188,7 @@
 
     "@types/oauth": ["@types/oauth@0.9.6", "", { "dependencies": { "@types/node": "*" } }, "sha512-H9TRCVKBNOhZZmyHLqFt9drPM9l+ShWiqqJijU1B8P3DX3ub84NjxDuy+Hjrz+fEca5Kwip3qPMKNyiLgNJtIA=="],
 
-    "@xmldom/xmldom": ["@xmldom/xmldom@0.9.8", "", {}, "sha512-p96FSY54r+WJ50FIOsCOjyj/wavs8921hG5+kVMmZgKcvIKxMXHTrjNJvRgWa/zuX3B6t2lijLNFaOyuxUH+2A=="],
+    "@xmldom/xmldom": ["@xmldom/xmldom@0.8.11", "", {}, "sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw=="],
 
     "asynckit": ["asynckit@0.4.0", "", {}, "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="],
 

@@ -15,5 +15,4 @@
 | "🟢 Layar Kosong: Super Automation & MedSos" | `0 */4 * * *` | Setiap jam */4:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/4_*_*_*) |
 | Token Auto Refresh LinkedIn | `0 0 */50 * *` | Setiap jam 00:00 (UTC), tanggal */50 | [Crontab Guru](https://crontab.guru/#0_0_*/50_*_*) |
 | 🐳 Build and Push to GHCR | `0 0 4 * *` | Setiap jam 00:00 (UTC), tanggal 4 | [Crontab Guru](https://crontab.guru/#0_0_4_*_*) |
-| Delete Cloudflare Preview Deployments | `0 */3 * * *` | Setiap jam */3:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/3_*_*_*) |
 | Token Auto Refresh Threads | `0 0 */49 * *` | Setiap jam 00:00 (UTC), tanggal */49 | [Crontab Guru](https://crontab.guru/#0_0_*/49_*_*) |
