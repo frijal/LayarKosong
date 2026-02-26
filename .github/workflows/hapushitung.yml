@@ -35,6 +35,7 @@ jobs:
       - name: 🛠️ Maintenance & Update
         run: |
           bun update --latest
+          bun install --frozen-lockfile
 
       # ========== AUTOMATION SCRIPTS ==========
       - name: 🕵️ Update Dashboard Jadwal
