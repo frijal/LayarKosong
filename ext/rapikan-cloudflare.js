@@ -108,7 +108,7 @@ async function run() {
     console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
 
     // jika preview <= 6, hentikan
-    if (previews.length <= 6) {
+    if (previews.length <= 1) {
       console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
       console.log("ℹ Syarat hapus harus > 6 item. Pekerjaan dihentikan (Skip).");
       return;
