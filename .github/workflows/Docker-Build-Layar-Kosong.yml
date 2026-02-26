@@ -1,12 +1,6 @@
 name: 🐳 Build and Push to GHCR
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'Dockerfile'
-      - 'package.json'
-      - 'bun.lock*'
   schedule:
       - cron: '0 0 4 * *'
   workflow_dispatch:
