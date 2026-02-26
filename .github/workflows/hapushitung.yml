@@ -21,7 +21,13 @@ jobs:
       - name: '2. Setup Bun.js'
         uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          bun-version: latest     
+          bun-version: latest
+          
+      - name: 🛠️ Maintenance & Update
+        run: |
+          bun upgrade
+          bun update
+          bun install --no-progress
     
       # ========== IMAGE CLEANUP ==========     
       - name: 🕵️ Update Dashboard Jadwal
@@ -177,13 +183,14 @@ jobs:
       - name: 7. Commit & Push All Changes
         id: commit_changes
         run: |
+          if [[ -n $(git status --porcelain) ]]; then
           # Configure Git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           
           # Add all modified directories
           git add .
-          
+          fi
           # Check for changes
           if ! git diff --staged --quiet; then
             echo "📝 Perubahan ditemukan, membuat commit..."
