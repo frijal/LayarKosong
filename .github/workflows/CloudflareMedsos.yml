@@ -42,21 +42,10 @@ jobs:
       - name: 🚀 Setup Bun
         uses: oven-sh/setup-bun@ab8cb4e8f89912a29b87e4abc4554f2301648a5c
         with:
-          bun-version: latest
-          
-      - name: 📂 Cache Bun
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-cache-static
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
+          bun-version: latest         
+      
       - name: 📦 Install
-        run: bun install --frozen-lockfile --no-progress --no-summary
-
-  #    - name: 📦 Install Dependencies
-  #      run: bun install
+        run: bun install
 
       # =========================================================
       # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
