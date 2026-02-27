@@ -1,4 +1,4 @@
-import { Glob, $, Bun } from "bun"; // Tambahkan $ dan Bun di sini
+import { Glob, $ } from "bun"; // Hapus 'Bun' dari sini
 import { load } from 'cheerio';
 import path from 'path';
 import sharp from 'sharp';
@@ -69,7 +69,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 }
 
 async function processFile(file, baseUrl) {
-  const rawContent = await Bun.file(file).text();
+const rawContent = await globalThis.Bun.file(file).text();
   const baseName = path.basename(file);
   console.log(`🚀 SEO Turbo: ${baseName}`);
 
