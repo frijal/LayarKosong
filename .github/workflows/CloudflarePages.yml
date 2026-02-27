@@ -80,7 +80,7 @@ jobs:
           echo "✅ Ready to deploy contents of deploy_dir/"
 
       - name: Deploy to Cloudflare Pages
-        run: bun run build && bunx rangler pages deploy --branch=main
+        run: bunx wrangler pages deploy --branch=main
         working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
