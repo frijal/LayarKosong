@@ -29,7 +29,7 @@ jobs:
       - name: Install Node dependencies
         run: bun install 
 
-      - name: 🛠️ Localize Assets (Bun Mode)
+      - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: bun run ext/gantifontshighlight.js --no-backup
 
       - name: 🧹 Sterilize Schema (Node.js)
