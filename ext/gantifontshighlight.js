@@ -9,7 +9,7 @@ const DRY_RUN = args.includes("--dry-run");
 
 // 1. Daftar file CSS untuk Regex Dinamis (Fast Match)
 const cssFiles = [
-"atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "fontawesome.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.css", "github-dark.min.css", "github.css", "github.min.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "prism.min.css", "vs-dark.min.css", "vs.min.css"
+	"atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "fontawesome.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.css", "github-dark.min.css", "github.css", "github.min.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "prism.min.css", "vs-dark.min.css", "vs.min.css"
 ];
 
 // 2. Mapping Manual untuk pola yang tidak standar (Regex Specific)
@@ -17,7 +17,7 @@ const MANUAL_MAP = [
 	{ rx: /https?:\/\/.*?prism-vsc-dark-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-coy\.min\.css/gi, repl: "/ext/default.min.css" },
-{ rx: /https?:\/\/use\.fontawesome\.com\/releases\/v[\d\.\-a-z]+\/css\/all\.css/gi, repl: "/ext/fontawesome.css" },
+{ rx: /https?:\/\/use\.fontawesome\.com\/releases\/v[\d\.\-a-z]+\/css\/all\.css(?:\?[^"']*)?/gi, repl: "/ext/fontawesome.css" },
 ];
 
 // Regex Otomatis berdasarkan daftar cssFiles
@@ -32,39 +32,35 @@ function log(...parts) {
 }
 
 async function processFile(filePath) {
-	// Skip index.html demi keamanan
 	if (filePath.endsWith("index.html")) return;
 
 	const file = Bun.file(filePath);
 	let content = await file.text();
 	let changed = false;
 	let replaceCount = 0;
-	let cleanCount = 0;
 
-	// A. Jalankan Manual Mapping dulu
+	// --- A. PERBAIKAN: Jalankan Manual Mapping Langsung ---
 	for (const m of MANUAL_MAP) {
-		const attrPattern = /(\b(?:href|src)\b)(\s*=\s*)(['"])([^'"]+?)\3/gi;
-		content = content.replace(attrPattern, (match, attrName, eq, quote, url) => {
-			if (m.rx.test(url)) {
-				changed = true;
-				replaceCount++;
-				m.rx.lastIndex = 0;
-				return `${attrName}${eq}${quote}${m.repl}${quote}`;
-			}
-			m.rx.lastIndex = 0;
-			return match;
-		});
+		// Kita hitung jumlah kecocokan sebelum ganti (opsional, untuk log)
+		const matches = content.match(m.rx);
+		if (matches) {
+			changed = true;
+			replaceCount += matches.length;
+			// Langsung ganti seluruh konten tanpa loop tambahan
+			content = content.replace(m.rx, m.repl);
+		}
 	}
 
-	// B. Jalankan Auto Mapping (Daftar File)
+	// --- B. Auto Mapping (Sudah Oke, tapi pastikan reset lastIndex) ---
 	if (autoPattern.test(content)) {
-		autoPattern.lastIndex = 0;
+		autoPattern.lastIndex = 0; // Penting!
 		content = content.replace(autoPattern, (match, fileName) => {
 			changed = true;
 			replaceCount++;
 			return `/ext/${fileName}`;
 		});
 	}
+
 
 	// C. Jika ada perubahan, bersihkan atribut sampah
 	if (changed) {
