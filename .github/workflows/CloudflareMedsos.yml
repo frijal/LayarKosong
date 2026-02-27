@@ -81,7 +81,7 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
-        run: bun run ext/post-to-threads.js     
+        run: bun run ext/post-to-threads.ts   
 
       - name: 🆕 4. LinkedIn Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
