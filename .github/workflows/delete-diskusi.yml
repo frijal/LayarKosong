@@ -16,21 +16,16 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: Cache Node Modules
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+      - name: 🚀 Setup Bun
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            
-      - name: '2. Setup Node.js'
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
-        with:
-      - name: Install
-        run: bun install 
+          bun-version: latest         
+      
+      - name: 📦 Install
+        run: bun install
+        
       - name: Run Delete Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: bun run ext/sapu-bersih.js
+        run: bun run dapur/sapu-bersih.js
