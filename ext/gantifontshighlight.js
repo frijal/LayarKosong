@@ -1,115 +1,65 @@
 import { Glob } from "bun";
 
-// -------------------- CONFIG & CLI --------------------
+// Konfigurasi CLI
 const args = Bun.argv.slice(2);
-const QUIET = args.includes("--quiet");
 const NO_BACKUP = args.includes("--no-backup");
-const DRY_RUN = args.includes("--dry-run");
 
-const cssFiles = [
-  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", 
-  "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", 
-  "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", 
-  "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
+// Mapping yang persis dengan daftar Perl kamu
+const MAP = [
+    { rx: /https:\/\/.*?\/(?:all|fontawesome)(\.min)?\.css/i, repl: '/ext/fontawesome.css' },
+    { rx: /https:\/\/.*?\/(?:prism|vs-dark|default|github|monokai|atom-one).*?\.css/i, repl: '/ext/default.min.css' }, // Catch-all CSS
+    { rx: /https:\/\/.*?\/leaflet\.css/i, repl: '/ext/leaflet.css' },
+    { rx: /https:\/\/.*?\/highlight\.min\.js/i, repl: '/ext/highlight.js' }
 ];
 
-// 2. Mapping Manual - DIBUAT SANGAT AGRESIF
-const MANUAL_MAP = [
-    // --- FONT AWESOME (SPESIFIK CDNJS & RELEASES) ---
-    // Target: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css
-    { 
-        rx: /https?:\/\/[^"']+?\/ajax\/libs\/font\-awesome\/[^"']+?\/all(?:\.min)?\.css(?:\?[^"']*)?/gi, 
-        repl: "/ext/fontawesome.css" 
-    },
-    // Target: font-awesome umum
-    { 
-        rx: /https?:\/\/[^"']+?\/(?:font-awesome|fontawesome)\/.*?\/(?:all|fontawesome)(?:\.min)?\.css(?:\?[^"']*)?/gi, 
-        repl: "/ext/fontawesome.css" 
-    },
-    { 
-        rx: /https?:\/\/(?:use|kit|cdnjs)\.fontawesome\.com\/.*?\/all(?:\.min)?\.css(?:\?[^"']*)?/gi, 
-        repl: "/ext/fontawesome.css" 
-    },
-
-    // --- PRISM & LAINNYA ---
-    { rx: /https?:\/\/.*?prism\-vsc\-dark\-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
-    { rx: /https?:\/\/.*?prism\-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
-    { rx: /https?:\/\/.*?prism\-coy\.min\.css/gi, repl: "/ext/default.min.css" },
-    { rx: /https?:\/\/[^"']+?\/prism(?:\-[\w\-]+)?(?:\.min)?\.css/gi, repl: "/ext/default.min.css" }
-];
-
-// Regex Otomatis yang lebih longgar (Catch-all)
-// Kita gunakan [^"']+? untuk melompati folder versi di CDN mana pun
-const autoPattern = new RegExp(`(\\b(?:href|src)\\b\\s*=\\s*['"])\\s*https?:\\/\\/[^"']+?\\/([^"']+?\\/)?(${cssFiles.join("|").replace(/\./g, "\\.")})\\s*(['"])`, "gi");
-
-// Regex Pembersihan Atribut (Pindah ke global agar lebih bersih)
-const attrRegex = /\s+(?:integrity|crossorigin|referrertarget|referrerpolicy)(?:\s*=\s*(['"])[^'"]*?\1|(?=\s|>))/gi;
-
-function log(...parts) {
-    if (!QUIET) console.log(...parts);
-}
+// Regex Sapu Jagat untuk menangkap atribut href/src DAN membersihkan sisa sampah (integrity, dsb)
+// Ini adalah versi JS dari regex 'while' milik Perl kamu
+const SUPER_REGEX = /(\b(?:href|src)\b)\s*=\s*(['"])\s*https?:\/\/[^"']+?\/([^"']+?\.(?:css|js))(?:\?[^"']*)?\s*\2([^>]*)/gi;
 
 async function processFile(filePath) {
     if (filePath.endsWith("index.html")) return;
-    const bunRef = globalThis.Bun || Bun;
-    const file = bunRef.file(filePath);
     
+    const file = Bun.file(filePath);
     let content = await file.text();
-    let originalContent = content;
-    let replaceCount = 0;
-    let cleanCount = 0;
+    let changed = false;
 
-    // STEP A: Manual Mapping (Font Awesome tertangkap di sini)
-    for (const m of MANUAL_MAP) {
-        content = content.replace(m.rx, () => {
-            replaceCount++;
-            return m.repl;
-        });
-    }
+    // 1. Eksekusi Penggantian URL & Pembersihan Atribut sekaligus (Mirip Perl)
+    content = content.replace(SUPER_REGEX, (match, attr, quote, fileName, extraAttr) => {
+        let replacement = null;
 
-    // STEP B: Auto Mapping (File CSS lainnya tertangkap di sini)
-    content = content.replace(autoPattern, (match, head, mid, fileName, tail) => {
-        replaceCount++;
-        return `${head}/ext/${fileName}${tail}`;
+        // Cek apakah file ini ada di MAP
+        for (const m of MAP) {
+            if (match.match(m.rx)) {
+                replacement = m.repl;
+                break;
+            }
+        }
+
+        if (replacement) {
+            changed = true;
+            // Kita kembalikan hanya atribut utama, 'extraAttr' (integrity, crossorigin) dibuang!
+            return `${attr}=${quote}${replacement}${quote}`;
+        }
+        
+        return match; // Tidak ada yang cocok, kembalikan aslinya
     });
 
-    // STEP C: Pembersihan Atribut (Hanya jika ada perubahan)
-    if (content !== originalContent) {
-        // Hapus sisa-sisa atribut CDN
-        content = content.replace(attrRegex, () => {
-            cleanCount++;
-            return "";
-        });
-
-        const summary = `(${replaceCount} ganti, ${cleanCount} bersih)`;
-
-        if (DRY_RUN) {
-            log(`🧪 [DRY-RUN] ${filePath} -> ${summary}`);
-            return;
-        }
-
-        if (!NO_BACKUP) {
-            await bunRef.write(`${filePath}.bak`, originalContent);
-        }
-
-        await bunRef.write(filePath, content);
-        log(`✅ Fixed: ${filePath} ${summary}`);
+    if (changed) {
+        if (!NO_BACKUP) await Bun.write(`${filePath}.bak`, await file.text());
+        await Bun.write(filePath, content);
+        console.log(`✅ Fixed: ${filePath}`);
     }
 }
 
 async function run() {
-    log("🔍 Memulai pemindaian Turbo (Bun.Glob)...");
-    
-    // Perhatikan: Saya tambahkan glob agar mencari di semua folder sesuai Perl
+    console.log("🚀 Menantang Perl: Memulai pemindaian...");
     const glob = new Glob("{*.html,artikelx/*.html,artikel/*.html}");
-
-    const tasks = [];
-    for await (const file of glob.scan(".")) {
-        tasks.push(processFile(file));
-    }
-
-    await Promise.all(tasks);
-    log("✨ Selesai! Layar Kosong sekarang sudah bersih dari CDN eksternal.");
+    
+    const files = [];
+    for await (const file of glob.scan(".")) files.push(file);
+    
+    await Promise.all(files.map(processFile));
+    console.log("✨ Selesai! Link cdnjs font-awesome 6.4.0? Tumbang!");
 }
 
-run().catch(console.error);
+run();
