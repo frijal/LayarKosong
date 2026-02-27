@@ -29,8 +29,8 @@ jobs:
       - name: Install Node dependencies
         run: bun install 
 
-      - name: 🛠️ Localize Assets
-        run: perl ext/gantifontshighlight.pl
+      - name: 🛠️ Localize Assets (Bun Mode)
+        run: bun ext/gantifontshighlight.js --no-backup
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
