@@ -28,18 +28,6 @@ jobs:
             chmod +x ext/gantifontshighlight.pl
             perl ext/gantifontshighlight.pl --quiet --no-backup
           fi
-
-      - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
-        with:
-          bun-version: latest     
-
-      - name: Install Node dependencies
-        run: bun install      
-
-      - name: 🧹 Sterilize Schema (Node.js)
-        run: bun run ext/clean-schema.js artikelx/      
-
       - name: 🛠️ Replace Content (Perl, SAFE)
         run: |
           shopt -s nullglob
@@ -94,6 +82,19 @@ jobs:
             s/\bfas /fa-solid /g;
           ' "$file"
           done
+
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        with:
+          bun-version: latest     
+
+      - name: Install Node dependencies
+        run: bun install      
+
+      - name: 🧹 Sterilize Schema (Node.js)
+        run: bun run ext/clean-schema.js artikelx/      
+
+      
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
