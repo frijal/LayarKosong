@@ -74,8 +74,8 @@ jobs:
 
       - name: ⚙️ Generate LLMs index
         run: |
-          if [ -f ext/generate_llms.py ]; then
-            python3 ext/generate_llms.py
+          if [ -f dapur/generate_llms.py ]; then
+            python3 dapur/generate_llms.py
           fi
 
       # =========================================================
