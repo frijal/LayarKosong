@@ -1,19 +1,28 @@
-import { watch } from "node:fs";
-import { join, dirname } from "node:path";
+import { watch, existsSync, unlinkSync } from "node:fs";
+import { join } from "node:path";
 import { $ } from "bun";
 
-// Karena koki.ts ada di dalam /dapur, kita ambil path folder tersebut
-const sourceDir = import.meta.dir; 
-const targetDir = join(sourceDir, "../ext"); // Naik satu tingkat ke root, lalu masuk ke ext/
+// --- PENGATURAN KURASI ---
+// Masukkan nama file yang ada di dapur/ yang BOLEH dikirim ke ext/
+const menuAndalan = [
+  "iposbrowser.ts", 
+  "style.css",
+  "tools.py"
+];
 
-console.log("👨‍🍳 Koki Bun sudah stand-by di dalam Dapur!");
-console.log(`📂 Memantau: ${sourceDir}`);
-console.log(`📦 Etalase: ${targetDir}`);
+const sourceDir = import.meta.dir; 
+const targetDir = join(sourceDir, "../ext");
+
+console.log("👨‍🍳 Koki Selektif sudah stand-by!");
+console.log(`📋 Menu yang akan dimasak: ${menuAndalan.join(", ")}`);
 console.log("------------------------------------------");
 
 async function masak(fileName: string) {
-  // Abaikan koki.ts itu sendiri supaya nggak masak dirinya sendiri (Insepsi!)
-  if (fileName === "koki.ts") return;
+  // Cek apakah file ini masuk dalam daftar menuAndalan
+  if (!menuAndalan.includes(fileName)) {
+    // Kalau tidak ada di daftar, abaikan saja
+    return;
+  }
 
   const sourcePath = join(sourceDir, fileName);
   const ext = fileName.split('.').pop();
@@ -38,8 +47,25 @@ async function masak(fileName: string) {
 }
 
 // Pantau folder dapur/
-watch(sourceDir, (event, filename) => {
-  if (filename && !filename.startsWith(".")) {
-    masak(filename);
+watch(sourceDir, async (event, filename) => {
+  if (!filename || filename.startsWith(".") || filename === "koki.ts") return;
+
+  // Cek apakah file yang berubah ada di daftar menuAndalan
+  if (menuAndalan.includes(filename)) {
+    const sourcePath = join(sourceDir, filename);
+    
+    // Logika Sinkronisasi Hapus
+    let targetFileName = filename;
+    if (filename.endsWith(".ts")) targetFileName = filename.replace(/\.ts$/, ".js");
+    const targetPath = join(targetDir, targetFileName);
+
+    if (!existsSync(sourcePath)) {
+      if (existsSync(targetPath)) {
+        console.log(`🗑️  [Cleanup] Menghapus dari etalase: ${targetFileName}`);
+        unlinkSync(targetPath);
+      }
+    } else {
+      masak(filename);
+    }
   }
 });
