@@ -9,7 +9,6 @@ const packages = [
   { name: 'octokit', module: '@octokit/core' },
   { name: 'xmldom', module: '@xmldom/xmldom' },
   { name: 'cheerio', module: 'cheerio' },
-  { name: 'fast-xml-parser', module: 'fast-xml-parser' },
   { name: 'sharp', module: 'sharp' },
   { name: 'tumblr', module: 'tumblr.js' }
 ];
