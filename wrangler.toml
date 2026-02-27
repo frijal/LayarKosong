@@ -4,3 +4,7 @@ compatibility_date = "2025-12-01"
 
 # Pakai ../ karena Wrangler jalan di dalam folder 'source'
 pages_build_output_dir = "../deploy_dir"
+
+[vars]
+BUN_VERSION = "latest"
+NODE_VERSION = "20" # Beberapa plugin butuh ini sebagai fallback
