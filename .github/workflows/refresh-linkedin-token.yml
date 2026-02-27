@@ -30,7 +30,7 @@ jobs:
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
           LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
         run: |
-          NEW_TOKEN=$(bun run ext/refresh-linkedin-token.js)
+          NEW_TOKEN=$(bun run dapur/refresh-linkedin-token.js)
           echo "NEW_LI_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
 
       - name: Update GitHub Secret
