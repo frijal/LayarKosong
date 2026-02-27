@@ -1,4 +1,4 @@
-import { Glob } from "bun";
+import { Glob, $, Bun } from "bun"; // Tambahkan $ dan Bun di sini
 import { load } from 'cheerio';
 import path from 'path';
 import sharp from 'sharp';
@@ -34,13 +34,15 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 
     // Path Management Lokal
     const localPathName = ext ? url.pathname.replace(ext, finalExt) : `${url.pathname}${finalExt}`;
-    const localPath = path.join('img', url.hostname, localPathName);
+    // Pastikan path aman untuk sistem operasi (menghindari karakter aneh di hostname)
+    const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
+    const localPath = path.join('img', safeHostname, localPathName);
 
     // Bun.file check jauh lebih cepat
     const fileTarget = Bun.file(localPath);
     if (await fileTarget.exists()) return `/${localPath.replace(/\\/g, '/')}`;
 
-    // Download pakai Fetch Native Bun (Ganti Axios)
+    // Download pakai Fetch Native Bun
     const response = await fetch(externalUrl, {
       headers: { 'User-Agent': 'Mozilla/5.0' }
     });
@@ -49,17 +51,19 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
+    // Pastikan folder tujuan ada
+    const dirPath = path.dirname(localPath);
+    await $`mkdir -p ${dirPath}`; 
+
     if (isSvg) {
       await Bun.write(localPath, buffer);
     } else {
-      // Pastikan folder ada (Bun.write otomatis bikin folder, tapi Sharp butuh foldernya ada)
-      const dirPath = path.dirname(localPath);
-      await $`mkdir -p ${dirPath}`; // Gunakan Shell Bun buat kilat
       await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
     }
 
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
+    // console.error(`Gagal mirror ${externalUrl}:`, err.message);
     return externalUrl;
   }
 }
@@ -72,23 +76,23 @@ async function processFile(file, baseUrl) {
   const $ = load(rawContent, { decodeEntities: false });
   const head = $('head');
 
-  // 1. MIRRORING GAMBAR DALAM BODY (Paralel di dalam file)
-  const imgPromises = $('img').toArray().map(async (el) => {
+  // 1. MIRRORING GAMBAR DALAM BODY (Paralel)
+  const imgElements = $('img').toArray();
+  await Promise.all(imgElements.map(async (el) => {
     const src = $(el).attr('src');
     if (src && src.startsWith('http')) {
       const localPath = await mirrorAndConvert(src, baseUrl);
-      if (localPath.startsWith('/')) $(el).attr('src', `${baseUrl}${localPath}`);
+      // Pastikan hasil mirror valid (berupa path lokal)
+      if (localPath.startsWith('/img')) $(el).attr('src', `${baseUrl}${localPath}`);
     }
-  });
-  await Promise.all(imgPromises);
+  }));
 
-  // --- 2. LOGIKA DATA SEO (CLEAN VERSION) ---
+  // --- 2. LOGIKA DATA SEO ---
   const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
   const escapedTitle = escapeHtmlAttr(articleTitle);
   const cleanFileName = baseName.replace('.html', '');
   const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
 
-  // A. Scrape Metadata Lama
   const rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
   const rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
   const rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
@@ -102,35 +106,27 @@ async function processFile(file, baseUrl) {
       if (tag) existingTags.push(tag);
   });
 
-      // B. Fallback dari paragraf pertama (Jaring pengaman jika deskripsi kosong)
-      const firstP = $('p').first().text().trim();
-      const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
+  const firstP = $('p').first().text().trim();
+  const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
 
-      // C. Penentuan Deskripsi Terbaik (Prioritas: Meta > OG > Twitter > P1)
-      const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
-      const finalMetaDesc = prepareDesc(bestMeta);
-      const finalOgDesc = finalMetaDesc; // Samakan saja biar konsisten
-      const finalTwitterDesc = finalMetaDesc;
+  const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
+  const finalMetaDesc = prepareDesc(bestMeta);
 
-      // D. Pengolahan Gambar Meta (Sosmed Image)
-      let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
-      $('meta[name="twitter:image"]').attr('content') ||
-      $('img').first().attr('src') || '';
+  let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
+                   $('meta[name="twitter:image"]').attr('content') ||
+                   $('img').first().attr('src') || '';
 
-      if (metaImgUrl && metaImgUrl.startsWith('http')) {
-          const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
-          if (mirroredPath.startsWith('/')) {
-              metaImgUrl = `${baseUrl}${mirroredPath}`;
-          }
+  if (metaImgUrl && metaImgUrl.startsWith('http')) {
+      const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
+      if (mirroredPath.startsWith('/img')) {
+          metaImgUrl = `${baseUrl}${mirroredPath}`;
       }
+  }
 
-  // 3. BERSIHKAN & SUNTIK ULANG (Gaya Ringan)
+  // 3. CLEANUP & INJECT
   $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-
-  // Hapus tag lama
   $('link[rel="canonical"], link[rel="icon"], meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]').remove();
 
-  // --- 4. SUNTIK ULANG (Metode Array Join - Lebih Cepat) ---
   const metaTags = [
     `<meta property="og:locale" content="id_ID">`,
     `<meta property="og:site_name" content="Layar Kosong">`,
@@ -147,8 +143,8 @@ async function processFile(file, baseUrl) {
     `<meta name="robots" content="index, follow, max-image-preview:large">`,
     `<meta name="author" content="Fakhrul Rijal">`,
     `<meta name="description" content="${finalMetaDesc}">`,
-    `<meta property="og:description" content="${finalOgDesc}">`,
-    `<meta name="twitter:description" content="${finalTwitterDesc}">`,
+    `<meta property="og:description" content="${finalMetaDesc}">`,
+    `<meta name="twitter:description" content="${finalMetaDesc}">`,
     `<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`,
     `<meta name="twitter:creator" content="@responaja">`,
     `<meta name="bluesky:creator" content="@dalam.web.id">`,
@@ -160,7 +156,6 @@ async function processFile(file, baseUrl) {
     `<meta property="fb:app_id" content="175216696195384">`
   ];
 
-  // Tambahkan Meta Gambar jika ada
   if (metaImgUrl) {
     metaTags.push(
       `<meta itemprop="image" content="${metaImgUrl}">`,
@@ -174,16 +169,10 @@ async function processFile(file, baseUrl) {
     );
   }
 
-  // Tambahkan Tags artikel
-  existingTags.forEach(tag => {
-    metaTags.push(`<meta property="article:tag" content="${tag}">`);
-  });
-
-  // Tambahkan Time Metadata
+  existingTags.forEach(tag => metaTags.push(`<meta property="article:tag" content="${tag}">`));
   if (publishedTime) metaTags.push(`<meta property="article:published_time" content="${publishedTime}">`);
   if (modifiedTime) metaTags.push(`<meta property="article:modified_time" content="${modifiedTime}">`);
 
-  // SUNTIK SEKALI JALAN! 🚀
   head.append('\n    ' + metaTags.join('\n    ') + '\n');
 
   // 4. BODY FIXES
@@ -191,7 +180,6 @@ async function processFile(file, baseUrl) {
     if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
   });
 
-  // Simpan pakai Bun.write
   await Bun.write(file, $.html());
 }
 
@@ -208,12 +196,16 @@ async function fixSEO() {
     files.push(file);
   }
 
-  // Proses semua file secara paralel (Batasi kalau ribuan file agar tidak OOM)
+  if (files.length === 0) {
+    console.log(`⚠️ Tidak ada file HTML ditemukan di folder: ${targetFolder}`);
+    return;
+  }
+
+  // Proses semua file secara paralel
   await Promise.all(files.map(file => processFile(file, baseUrl)));
 
   const duration = (Bun.nanoseconds() - startTime) / 1e9;
-  console.log(`\n✅ Selesai dalam ${duration.toFixed(2)} detik!`);
+  console.log(`\n✅ Selesai! ${files.length} file diproses dalam ${duration.toFixed(2)} detik.`);
 }
 
 fixSEO().catch(err => console.error(err));
-
