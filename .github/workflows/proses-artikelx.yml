@@ -30,7 +30,12 @@ jobs:
         run: bun install 
 
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
-        run: bun run ext/gantifontshighlight.js artikelx/ --no-backup
+        run: |
+          set -euo pipefail
+          if [[ -f ext/gantifontshighlight.pl ]]; then
+            chmod +x ext/gantifontshighlight.pl
+            perl ext/gantifontshighlight.pl --quiet --no-backup
+          fi
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
