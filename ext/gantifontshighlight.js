@@ -69,29 +69,35 @@ async function processFile(filePath) {
         log(`✅ Fixed: ${filePath} (${replaceCount} link diganti)`);
     }
 }
-
 async function run() {
-    log("🧼 Memulai Pembersihan CDN Layar Kosong (Bun Mode)...");
+    log("🔍 Memulai pemindaian Turbo (Bun.Glob)...");
     const startTime = performance.now();
 
-    // Scan file di root, artikel/, dan artikelx/ sesuai pola Perl
-    const glob = new Glob("{*.html,artikel/*.html,artikelx/*.html}");
+    // 1. Gunakan pattern yang lebih sederhana tapi mencakup semua
+    // **/*.html artinya: cari semua file .html di folder ini dan semua subfoldernya
+    const glob = new Glob("**/*.html");
     const files = [];
 
-    for await (const file of glob.scan(".")) {
-        files.push(file);
+    // 2. Scan dari directory saat ini
+    for await (const file of glob.scan({ cwd: ".", onlyFiles: true })) {
+        // Kita tetap jaga-jaga filter manual agar tidak merusak folder node_modules atau .git
+        if (!file.includes("node_modules") && !file.includes(".git")) {
+            files.push(file);
+        }
     }
 
     if (files.length === 0) {
-        log("⚠️ Tidak ada file HTML ditemukan.");
+        log("⚠️ Tidak ada file HTML ditemukan. Coba cek apakah kamu menjalankan script dari root project?");
         return;
     }
 
-    // Jalankan secara paralel biar kencang
+    log(`📂 Ditemukan ${files.length} file. Menjalankan operasi 'Cari & Hancurkan' CDN...`);
+
+    // 3. Jalankan paralel
     await Promise.all(files.map(processFile));
 
     const duration = ((performance.now() - startTime) / 1000).toFixed(2);
-    log(`\n🎯 Selesai! ${files.length} file diperiksa dalam ${duration} detik.`);
+    log(`\n🎯 Selesai! Semua link CDN tumbang dalam ${duration} detik.`);
 }
 
 run().catch(err => {
