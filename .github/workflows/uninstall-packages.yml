@@ -79,7 +79,7 @@ jobs:
           if [ -f package.json ]; then
             echo -e "\n--- Analisis Paket Setelah Uninstall (Detektif Internal) ---" >> "$REPORT"
             # Langsung panggil detektifnya pakai Bun!
-            bun run ext/cek-mubazir.js >> "$REPORT" || echo "Audit gagal dijalankan." >> "$REPORT"
+            bun run dapur/cek-mubazir.js >> "$REPORT" || echo "Audit gagal dijalankan." >> "$REPORT"
           fi
 
       - name: Commit and Push Changes
