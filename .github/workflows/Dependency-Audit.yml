@@ -53,8 +53,8 @@ jobs:
       # ====================
       - name: 🧠 JavaScript Syntax Check
         run: |
-          echo "Memeriksa syntax JavaScript di ext/..."
-          for file in ext/*.js; do
+          echo "Memeriksa syntax JavaScript di dapur/..."
+          for file in dapur/*.js; do
             if [ -f "$file" ]; then
               node --check "$file" && echo "✅ $file: OK" || exit 1
             fi
@@ -81,7 +81,7 @@ jobs:
 
           echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
           # Pakai script custom Mas Bro sebagai pengganti dependensi check
-          bun run ext/cek-mubazir.js >> "$UNUSED_REPORT"
+          bun run dapur/cek-mubazir.js >> "$UNUSED_REPORT"
 
       - name: 🐍 Python Dependency Audit
         run: |
@@ -106,9 +106,9 @@ jobs:
       # ====================
       - name: 🛠️ Run Auto-Fixer
         run: |
-          if [ -f ext/cleanup.js ]; then
+          if [ -f dapur/cleanup.js ]; then
             echo "Menjalankan Cleanup Auto v2.0..."
-            bun run ext/cleanup.js
+            bun run dapur/cleanup.js
           else
             echo "ℹ️ Tidak ada script cleanup, skip."
           fi
