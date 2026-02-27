@@ -1,11 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { Buffer } from 'node:buffer';
-import minifyHtml from '@minify-html/node';
+import { minify } from '@minify-html/node';
+import { Glob } from "bun";
 
+// Konfigurasi Folder
 const folders = [
-  './gaya-hidup', './jejak-sejarah', './lainnya',
-  './olah-media', './opini-sosial', './sistem-terbuka', './warta-tekno'
+  'gaya-hidup', 'jejak-sejarah', 'lainnya',
+  'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 
 let stats = { 
@@ -18,7 +17,6 @@ let stats = {
   totalAfter: 0
 };
 
-// Helper untuk format ukuran byte agar manusiawi
 const formatBytes = (bytes) => {
   if (bytes === 0) return '0 B';
   const k = 1024;
@@ -27,118 +25,110 @@ const formatBytes = (bytes) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
 
-async function minifyFiles(dir) {
-  if (!fs.existsSync(dir)) return;
-  const files = fs.readdirSync(dir);
+async function processFile(filePath) {
+  try {
+    const file = Bun.file(filePath);
+    let originalHTML = await file.text();
 
-  for (const file of files) {
-    const filePath = path.join(dir, file);
-    const stat = fs.statSync(filePath);
+    if (!originalHTML.trim()) return;
 
-    if (stat.isDirectory()) {
-      await minifyFiles(filePath);
-      continue;
+    // Skip jika sudah diproses atau ini index.html utama
+    if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal') || filePath.endsWith('index.html')) {
+      stats.skipped++;
+      return;
     }
 
-    if (!file.endsWith('.html') || file === 'index.html') continue;
+    const sizeBefore = Buffer.byteLength(originalHTML, 'utf8');
 
-    try {
-      let originalHTML = fs.readFileSync(filePath, 'utf8');
-      if (!originalHTML.trim()) continue;
+    // --- PERBAIKAN KOMENTAR JS (Optimized Regex) ---
+    originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
+      return match.replace(/^[ \t]*\/\/(?!#).*/gm, ''); 
+    });
 
-      if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
-        stats.skipped++;
-        continue;
-      }
+    const tgl = new Date().toISOString().slice(0, 10);
+    const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
-      // Ukuran Sebelum
-      const sizeBefore = Buffer.byteLength(originalHTML, 'utf8');
+    // Minify menggunakan Bun Buffer yang lebih efisien
+    const output = minify(Buffer.from(originalHTML), {
+      allow_noncompliant_unquoted_attribute_values: true,
+      allow_optimal_entities: true,
+      allow_removing_spaces_between_attributes: true,
+      collapse_whitespaces: true,
+      ensure_spec_compliant_unquoted_attribute_values: false,
+      keep_comments: false,
+      keep_html_and_head_opening_tags: false,
+      keep_spaces_between_attributes: false,
+      minify_css: true,
+      minify_doctype: true,
+      minify_js: true, 
+      remove_bangs: true,
+      remove_processing_instructions: true,
+    });
 
-      // --- PERBAIKAN KOMENTAR JS ---
-      originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
-        return match.replace(/^[ \t]*\/\/(?!#).*/gm, ''); 
-      });
+    const minifiedHTML = output.toString() + minifySignature;
+    const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
+    const saved = sizeBefore - sizeAfter;
 
-      const d = new Date();
-      const tgl = d.toISOString().slice(0, 10);
-      const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
+    // Bun.write jauh lebih cepat daripada fs.writeFileSync
+    await Bun.write(filePath, minifiedHTML);
+    
+    stats.success++;
+    stats.totalBefore += sizeBefore;
+    stats.totalAfter += sizeAfter;
+    stats.totalSaved += saved;
 
-      const input = Buffer.from(originalHTML);
-      const output = minifyHtml.minify(input, {
-        allow_noncompliant_unquoted_attribute_values: true,
-        allow_optimal_entities: true,
-        allow_removing_spaces_between_attributes: true,
-        collapse_whitespaces: true,
-        ensure_spec_compliant_unquoted_attribute_values: false,
-        keep_comments: false,
-        keep_html_and_head_opening_tags: false,
-        keep_spaces_between_attributes: false,
-        minify_css: true,
-        minify_doctype: true,
-        minify_js: true, 
-        remove_bangs: true,
-        remove_processing_instructions: true,
-      });
+    const savingPercent = ((saved / sizeBefore) * 100).toFixed(1);
+    console.log(`✅ [${savingPercent}%] : ${filePath} (${formatBytes(sizeBefore)} ➡️  ${formatBytes(sizeAfter)})`);
 
-      const minifiedHTML = output.toString() + minifySignature;
-      const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
-      const saved = sizeBefore - sizeAfter;
-
-      fs.writeFileSync(filePath, minifiedHTML, 'utf8');
-      
-      stats.success++;
-      stats.totalBefore += sizeBefore;
-      stats.totalAfter += sizeAfter;
-      stats.totalSaved += saved;
-
-      const savingPercent = ((saved / sizeBefore) * 100).toFixed(1);
-      console.log(`✅ [${savingPercent}%] : ${filePath} (${formatBytes(sizeBefore)} ➡️  ${formatBytes(sizeAfter)})`);
-
-    } catch (err) {
-      stats.failed++;
-      stats.errorList.push({ path: filePath, error: err.message });
-      console.error(`❌ Gagal jepit: ${filePath}`);
-    }
+  } catch (err) {
+    stats.failed++;
+    stats.errorList.push({ path: filePath, error: err.message });
+    console.error(`❌ Gagal jepit: ${filePath} -> ${err.message}`);
   }
 }
 
 async function run() {
-  console.log('🧼 Memulai Minify Ultra (Mode Paralel)...');
-  console.log('📂 Lokasi: Balikpapan | Status: Turbo On 🚀');
+  console.log('🧼 Memulai Minify Ultra (Bun Native Mode)...');
+  console.log('📂 Lokasi: Balikpapan | Status: Turbo Bun 🚀');
   
-  const startTime = Date.now();
+  const startTime = Bun.nanoseconds();
 
-  try {
-    await Promise.all(folders.map(f => minifyFiles(f)));
-    
-    const duration = (Date.now() - startTime) / 1000;
-    const totalSavingPercent = stats.totalBefore > 0 
-      ? ((stats.totalSaved / stats.totalBefore) * 100).toFixed(2) 
-      : 0;
-
-    console.log('\n' + '='.repeat(60));
-    console.log('📊 REKAP PROSES LAYAR KOSONG (PARALEL)');
-    console.log('='.repeat(60));
-    console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(2)} detik`);
-    console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
-    console.log(`⏭️  Sudah Dijepit     : ${stats.skipped} file`);
-    console.log(`❌ Gagal Proses      : ${stats.failed} file`);
-    console.log('-'.repeat(60));
-    console.log(`📉 Total Sebelum     : ${formatBytes(stats.totalBefore)}`);
-    console.log(`📉 Total Sesudah     : ${formatBytes(stats.totalAfter)}`);
-    console.log(`🚀 Ruang Dihemat     : ${formatBytes(stats.totalSaved)} (${totalSavingPercent}%)`);
-    
-    if (stats.failed > 0) {
-      console.log('\n⚠️  DETAIL ERROR:');
-      stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
+  // Gunakan Glob untuk mencari file secara super cepat
+  const tasks = [];
+  for (const folder of folders) {
+    const glob = new Glob(`${folder}/**/*.html`);
+    for await (const file of glob.scan(".")) {
+      tasks.push(processFile(file));
     }
-    console.log('='.repeat(60) + '\n');
-  } catch (err) {
-    console.error('💥 Terjadi kesalahan saat eksekusi paralel:', err);
   }
+
+  // Jalankan semua task secara paralel
+  await Promise.all(tasks);
+  
+  const endTime = Bun.nanoseconds();
+  const duration = (endTime - startTime) / 1e9; // Convert nanoseconds to seconds
+
+  const totalSavingPercent = stats.totalBefore > 0 
+    ? ((stats.totalSaved / stats.totalBefore) * 100).toFixed(2) 
+    : 0;
+
+  console.log('\n' + '='.repeat(60));
+  console.log('📊 REKAP PROSES LAYAR KOSONG (BUN NATIVE)');
+  console.log('='.repeat(60));
+  console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(4)} detik`);
+  console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
+  console.log(`⏭️  Sudah Dijepit      : ${stats.skipped} file`);
+  console.log(`❌ Gagal Proses       : ${stats.failed} file`);
+  console.log('-'.repeat(60));
+  console.log(`📉 Total Sebelum      : ${formatBytes(stats.totalBefore)}`);
+  console.log(`📉 Total Sesudah      : ${formatBytes(stats.totalAfter)}`);
+  console.log(`🚀 Ruang Dihemat      : ${formatBytes(stats.totalSaved)} (${totalSavingPercent}%)`);
+  
+  if (stats.failed > 0) {
+    console.log('\n⚠️  DETAIL ERROR:');
+    stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
+  }
+  console.log('='.repeat(60) + '\n');
 }
 
-run().catch(err => {
-  console.error('💥 Fatal Error:', err);
-  process.exit(1);
-});
+run();
