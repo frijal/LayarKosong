@@ -53,7 +53,7 @@ jobs:
       - name: 🔍 Jalankan Audit SEO (Python)
         id: run_audit
         run: |   # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
-          python ext/audit_seo.py
+          python dapur/audit_seo.py
           
           # Ambil file laporan terbaru untuk Summary
           LATEST_REPORT=$(ls -t mini/laporan-audit-*.md | head -1)
