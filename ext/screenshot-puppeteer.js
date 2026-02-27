@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-const res = await fetch(url);
-const html = await res.text();
+import http from "node:http"; // 🔥 Pakai bawaan Node.js
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 
