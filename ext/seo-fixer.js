@@ -188,8 +188,8 @@ async function fixSEO() {
   const baseUrl = 'https://dalam.web.id';
 
   console.log('🧼 Memulai SEO Fixer (Bun Paralel Mode)...');
-  const startTime = Bun.nanoseconds();
-
+const startTime = performance.now();
+  
   const glob = new Glob(`${targetFolder}/*.html`);
   const files = [];
   for await (const file of glob.scan(".")) {
@@ -204,8 +204,8 @@ async function fixSEO() {
   // Proses semua file secara paralel
   await Promise.all(files.map(file => processFile(file, baseUrl)));
 
-  const duration = (Bun.nanoseconds() - startTime) / 1e9;
-  console.log(`\n✅ Selesai! ${files.length} file diproses dalam ${duration.toFixed(2)} detik.`);
+const duration = (performance.now() - startTime) / 1000;
+console.log(`\n✅ Selesai! ${files.length} file diproses dalam ${duration.toFixed(2)} detik.`);
 }
 
 fixSEO().catch(err => console.error(err));
