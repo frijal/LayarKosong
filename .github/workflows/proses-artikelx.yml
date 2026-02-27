@@ -28,6 +28,7 @@ jobs:
             chmod +x ext/gantifontshighlight.pl
             perl ext/gantifontshighlight.pl --quiet --no-backup
           fi
+          
       - name: 🛠️ Replace Content (Perl, SAFE)
         run: |
           shopt -s nullglob
@@ -93,8 +94,6 @@ jobs:
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
-
-      
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
