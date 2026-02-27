@@ -24,9 +24,9 @@ jobs:
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
           set -euo pipefail
-          if [[ -f ext/gantifontshighlight.pl ]]; then
-            chmod +x ext/gantifontshighlight.pl
-            perl ext/gantifontshighlight.pl --quiet --no-backup
+          if [[ -f dapur/gantifontshighlight.pl ]]; then
+            chmod +x dapur/gantifontshighlight.pl
+            perl dapur/gantifontshighlight.pl --quiet --no-backup
           fi
           
       - name: 🛠️ Replace Content (Perl, SAFE)
@@ -93,13 +93,13 @@ jobs:
         run: bun install      
 
       - name: 🧹 Sterilize Schema (Node.js)
-        run: bun run ext/clean-schema.js artikelx/      
+        run: bun run dapur/clean-schema.js artikelx/      
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
         run: |
           set -euo pipefail
-          bun run ext/seo-fixer.ts artikelx/
+          bun run dapur/seo-fixer.ts artikelx/
 
       - name: Add HTML Elements (Sed)
         run: |
