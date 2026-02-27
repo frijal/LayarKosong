@@ -21,36 +21,52 @@ interface Article {
   pubDateParsed: number;
 }
 
-// Inisialisasi Octokit (Ambil dari Bun.env)
 const octokit = new Octokit({ auth: Bun.env.GITHUB_TOKEN });
-
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
- * Pengganti fast-xml-parser: Simple RSS Parser menggunakan Regex
- * Karena kita hanya butuh data spesifik, cara ini jauh lebih ringan (0 dependency).
+ * Pengganti Parser: Lebih stabil dari Regex RegExp()
+ * Memakai split untuk menghindari error "unmatched parentheses"
  */
-function quickParseRSS(xml: string) {
-  const items: any[] = [];
-  const itemMatches = xml.matchAll(/<item>([\s\S]*?)<\/item>/g);
+function extractTag(content: string, tag: string): string {
+  const startTag = `<${tag}>`;
+  const endTag = `</${tag}>`;
+  const parts = content.split(startTag);
+  if (parts.length < 2) return "";
+  const val = parts[1].split(endTag)[0];
   
-  // Ambil judul channel untuk kategori
-  const channelTitle = xml.match(/<channel>[\s\S]*?<title>(.*?)<\/title>/)?.[1] || "";
+  // Bersihkan CDATA jika ada
+  return val.replace("<![CDATA[", "").replace("]]>", "").trim();
+}
 
-  for (const match of itemMatches) {
-    const content = match[1];
-    const getTag = (tag: string) => content.match(new RegExp(`<${tag}>(.*?)<\/${tag}>`))?.[1] || "";
-    const getCdata = (tag: string) => content.match(new RegExp(`<${tag}><\!\[CDATA\[([\s\S]*?)\]\]><\/${tag}>`))?.[1] || getTag(tag);
+function parseRSSSafe(xml: string) {
+  const items: any[] = [];
+  
+  // Ambil judul channel
+  const channelTitle = extractTag(xml, "title");
+
+  // Pecah per item
+  const rawItems = xml.split("<item>");
+  rawItems.shift(); // Buang bagian sebelum item pertama
+
+  for (const rawItem of rawItems) {
+    const content = rawItem.split("</item>")[0];
     
-    // Cari image di enclosure atau media:content
-    const imgMatch = content.match(/<(?:enclosure|media:content)[^>]*url="([^"]+)"/);
+    // Cari image URL secara manual di string
+    let imageUrl: string | null = null;
+    const imgMatch = content.match(/url="([^"]+)"/);
+    if (imgMatch) imageUrl = imgMatch[1];
+
+    const description = extractTag(content, "description")
+      .replace(/<[^>]*>?/gm, '') // Hapus tag HTML
+      .substring(0, 300);
 
     items.push({
-      title: getCdata("title"),
-      link: getTag("link"),
-      description: getCdata("description").replace(/<[^>]*>?/gm, '').substring(0, 300) + "...", // Clean HTML tags
-      pubDate: getTag("pubDate"),
-      image: imgMatch ? imgMatch[1] : null
+      title: extractTag(content, "title"),
+      link: extractTag(content, "link"),
+      description: description + "...",
+      pubDate: extractTag(content, "pubDate"),
+      image: imageUrl
     });
   }
 
@@ -58,19 +74,18 @@ function quickParseRSS(xml: string) {
 }
 
 async function run() {
-  console.log("🚀 Memulai sinkronisasi Bun + TypeScript (Zero XML Dep)...");
+  console.log("🚀 Memulai sinkronisasi Bun + TS (Safe Manual Parser)...");
 
-  // 1. Load Tracker (Set asinkron)
-  const trackerFile = Bun.file(TRACKER_FILE);
-  let postedSlugs = new Set<string>();
-  
-  if (await trackerFile.exists()) {
-    const text = await trackerFile.text();
-    postedSlugs = new Set(text.split('\n').map(s => s.trim()).filter(Boolean));
-  }
-
-  // 2. Ambil ID Repo & Kategori
   try {
+    const trackerFile = Bun.file(TRACKER_FILE);
+    let postedSlugs = new Set<string>();
+    
+    if (await trackerFile.exists()) {
+      const text = await trackerFile.text();
+      postedSlugs = new Set(text.split('\n').map(s => s.trim()).filter(Boolean));
+    }
+
+    // GraphQL Query
     const repoRes: any = await octokit.graphql(`
       query($owner: String!, $name: String!) {
         repository(owner: $owner, name: $name) {
@@ -84,31 +99,26 @@ async function run() {
     const ghCategories = repoRes.repository.discussionCategories.nodes;
     const allArticles: Article[] = [];
 
-    // 3. Iterasi file RSS
     for (const fileName of RSS_FILES) {
       const file = Bun.file(fileName);
-      if (!(await file.exists())) continue;
+      if (!(await file.exists())) {
+        console.warn(`⚠️ File ${fileName} tidak ada.`);
+        continue;
+      }
       
       const xmlData = await file.text();
-      const { title: channelTitle, items } = quickParseRSS(xmlData);
+      const { title: channelTitle, items } = parseRSSSafe(xmlData);
 
       const rawCategory = channelTitle.split(' - ')[0].replace(/Kategori\s+/i, '').trim();
       const targetCategory = ghCategories.find((c: any) => c.name.toLowerCase() === rawCategory.toLowerCase());
 
-      if (!targetCategory) {
-        console.warn(`⚠️ Kategori "${rawCategory}" tidak ditemukan di GitHub.`);
-        continue;
-      }
+      if (!targetCategory) continue;
 
       for (const item of items) {
         const slug = item.link.split('/').filter(Boolean).pop();
-        
         if (slug && !postedSlugs.has(slug)) {
           allArticles.push({
-            title: item.title,
-            link: item.link,
-            description: item.description,
-            image: item.image,
+            ...item,
             slug,
             targetCategoryId: targetCategory.id,
             categoryName: rawCategory,
@@ -118,18 +128,21 @@ async function run() {
       }
     }
 
-    // 4. Sortir & Posting
     allArticles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
-    console.log(`📦 Ada ${allArticles.length} artikel baru.`);
+    console.log(`📦 Terdeteksi ${allArticles.length} artikel baru.`);
 
     for (const art of allArticles) {
-      console.log(`📤 Posting: ${art.title}`);
+      console.log(`📤 Posting ke GitHub: ${art.title}`);
 
-      const displayImage = art.image 
-        ? `\n\n![Thumbnail](${art.image.replace('dalam.web.id', `raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main`)})`
-        : '';
+      let displayImage = "";
+      if (art.image) {
+        const imgUrl = art.image.includes('dalam.web.id')
+          ? art.image.replace(/https?:\/\/dalam.web.id\//, `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/`)
+          : art.image;
+        displayImage = `\n\n![Thumbnail](${imgUrl})`;
+      }
 
-      const bodyContent = `### [${art.title}](${art.link})${displayImage}\n\n${art.description}\n\n---\n**Baca di:** [Layar Kosong](${art.link})`;
+      const bodyContent = `### [${art.title}](${art.link})${displayImage}\n\n${art.description}\n\n---\n**Baca selengkapnya di:** [Layar Kosong](${art.link})`;
 
       await octokit.graphql(`
         mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
@@ -144,17 +157,16 @@ async function run() {
         body: bodyContent
       });
 
-      // Update tracker langsung lewat Bun.write
       postedSlugs.add(art.slug);
       await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
       
-      await sleep(2000); 
+      await sleep(2500); 
     }
 
-    console.log("✨ Selesai, Om!");
+    console.log("✨ Done! Semua lancar jaya.");
 
   } catch (err: any) {
-    console.error("❌ Error:", err.message);
+    console.error("❌ Fatal Error:", err.message);
     process.exit(1);
   }
 }
