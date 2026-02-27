@@ -3,7 +3,7 @@ import { glob } from 'node:fs/promises';
 import { load } from 'cheerio';
 import path from 'path';
 import axios from 'axios';
-import sharp from 'sharp-wasm';;
+import sharp from 'sharp';;
 
 const escapeHtmlAttr = (text) => {
   if (!text) return '';
