@@ -13,42 +13,32 @@ const escapeHtmlAttr = (text) => {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 };
-
 const prepareDesc = (text) => escapeHtmlAttr(text.replace(/\s+/g, ' ').trim());
-
 // --- CORE FUNCTIONS ---
-
 async function mirrorAndConvert(externalUrl, baseUrl) {
   try {
     const url = new URL(externalUrl);
     const baseHostname = new URL(baseUrl).hostname;
-
     // Filter Internal atau URL Skema
     if (url.hostname === baseHostname || url.hostname === 'localhost' || url.hostname === 'schema.org') {
       return externalUrl.replace(baseUrl, '');
     }
-
     const ext = path.extname(url.pathname).toLowerCase();
     const isSvg = ext === '.svg';
     const finalExt = isSvg ? '.svg' : '.webp';
-
     // Path Management Lokal
     const localPathName = ext ? url.pathname.replace(ext, finalExt) : `${url.pathname}${finalExt}`;
     const localPath = path.join('img', url.hostname, localPathName);
-
     // Bun.file check jauh lebih cepat
     const fileTarget = Bun.file(localPath);
     if (await fileTarget.exists()) return `/${localPath.replace(/\\/g, '/')}`;
-
     // Download pakai Fetch Native Bun (Ganti Axios)
     const response = await fetch(externalUrl, {
       headers: { 'User-Agent': 'Mozilla/5.0' }
     });
     if (!response.ok) throw new Error('Download Gagal');
-
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-
     if (isSvg) {
       await Bun.write(localPath, buffer);
     } else {
@@ -56,76 +46,53 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
       const dirPath = path.dirname(localPath);
       await $`mkdir -p ${dirPath}`; // Gunakan Shell Bun buat kilat
       await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
-    }
-
     return `/${localPath.replace(/\\/g, '/')}`;
   } catch (err) {
     return externalUrl;
   }
 }
-
 async function processFile(file, baseUrl) {
   const rawContent = await Bun.file(file).text();
   const baseName = path.basename(file);
   console.log(`🚀 SEO Turbo: ${baseName}`);
-
   const $ = load(rawContent, { decodeEntities: false });
   const head = $('head');
-
   // 1. MIRRORING GAMBAR DALAM BODY (Paralel di dalam file)
   const imgPromises = $('img').toArray().map(async (el) => {
     const src = $(el).attr('src');
     if (src && src.startsWith('http')) {
       const localPath = await mirrorAndConvert(src, baseUrl);
       if (localPath.startsWith('/')) $(el).attr('src', `${baseUrl}${localPath}`);
-    }
   });
   await Promise.all(imgPromises);
-
   // 2. LOGIKA DATA SEO
   const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
   const escapedTitle = escapeHtmlAttr(articleTitle);
-
   // Ambil deskripsi yang ada (jika ada)
   let rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
   let rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
   let rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
-
   // Cadangan dari paragraf pertama
   const firstP = $('p').first().text().trim();
   const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
-
   // Tentukan deskripsi terbaik (pilih yang tidak kosong, atau gunakan fallback)
   const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
-
   // Definisikan variabel yang dibutuhkan oleh metaTags
   const finalMetaDesc = prepareDesc(rawMetaDesc || bestMeta);
   const finalOgDesc = prepareDesc(rawOgDesc || bestMeta);
   const finalTwitterDesc = prepareDesc(rawTwitterDesc || bestMeta);
-
-
-
   const cleanFileName = baseName.replace('.html', '');
   const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
-
-  const firstP = $('p').first().text().trim();
-  const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
-
   const rawMetaDesc = $('meta[name="description"]').attr('content') || '';
   const finalMetaDesc = prepareDesc(rawMetaDesc || fallback);
-
   let metaImgUrl = $('meta[property="og:image"]').attr('content') || $('img').first().attr('src') || '';
   if (metaImgUrl && metaImgUrl.startsWith('http')) {
     const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
     if (mirroredPath.startsWith('/')) metaImgUrl = `${baseUrl}${mirroredPath}`;
-  }
-
   // 3. BERSIHKAN & SUNTIK ULANG (Gaya Ringan)
   $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-
   // Hapus tag lama
   $('link[rel="canonical"], link[rel="icon"], meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]').remove();
-
   // --- 4. SUNTIK ULANG (Metode Array Join - Lebih Cepat) ---
   const metaTags = [
     `<meta property="og:locale" content="id_ID">`,
@@ -155,7 +122,6 @@ async function processFile(file, baseUrl) {
     `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
     `<meta property="fb:app_id" content="175216696195384">`
   ];
-
   // Tambahkan Meta Gambar jika ada
   if (metaImgUrl) {
     metaTags.push(
@@ -168,47 +134,30 @@ async function processFile(file, baseUrl) {
       `<meta property="og:image:height" content="675">`,
       `<meta name="twitter:card" content="summary_large_image">`
     );
-  }
-
   // Tambahkan Tags artikel
   existingTags.forEach(tag => {
     metaTags.push(`<meta property="article:tag" content="${tag}">`);
-  });
-
   // Tambahkan Time Metadata
   if (publishedTime) metaTags.push(`<meta property="article:published_time" content="${publishedTime}">`);
   if (modifiedTime) metaTags.push(`<meta property="article:modified_time" content="${modifiedTime}">`);
-
   // SUNTIK SEKALI JALAN! 🚀
   head.append('\n    ' + metaTags.join('\n    ') + '\n');
-
   // 4. BODY FIXES
   $('img').each((_, el) => {
     if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
-  });
-
   // Simpan pakai Bun.write
   await Bun.write(file, $.html());
-}
-
 async function fixSEO() {
   const targetFolder = process.argv[2] || 'artikel';
   const baseUrl = 'https://dalam.web.id';
-
   console.log('🧼 Memulai SEO Fixer (Bun Paralel Mode)...');
   const startTime = Bun.nanoseconds();
-
   const glob = new Glob(`${targetFolder}/*.html`);
   const files = [];
   for await (const file of glob.scan(".")) {
     files.push(file);
-  }
-
   // Proses semua file secara paralel (Batasi kalau ribuan file agar tidak OOM)
   await Promise.all(files.map(file => processFile(file, baseUrl)));
-
   const duration = (Bun.nanoseconds() - startTime) / 1e9;
   console.log(`\n✅ Selesai dalam ${duration.toFixed(2)} detik!`);
-}
-
 fixSEO().catch(err => console.error(err));
