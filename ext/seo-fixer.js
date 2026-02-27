@@ -85,6 +85,26 @@ async function processFile(file, baseUrl) {
   // 2. LOGIKA DATA SEO
   const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
   const escapedTitle = escapeHtmlAttr(articleTitle);
+
+  // Ambil deskripsi yang ada (jika ada)
+  let rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
+  let rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
+  let rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
+
+  // Cadangan dari paragraf pertama
+  const firstP = $('p').first().text().trim();
+  const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
+
+  // Tentukan deskripsi terbaik (pilih yang tidak kosong, atau gunakan fallback)
+  const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
+
+  // Definisikan variabel yang dibutuhkan oleh metaTags
+  const finalMetaDesc = prepareDesc(rawMetaDesc || bestMeta);
+  const finalOgDesc = prepareDesc(rawOgDesc || bestMeta);
+  const finalTwitterDesc = prepareDesc(rawTwitterDesc || bestMeta);
+
+
+
   const cleanFileName = baseName.replace('.html', '');
   const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
 
