@@ -1,5 +1,5 @@
 // ext/generate-icons.mjs
-import sharp from 'sharp'
+import sharp from 'sharp-wasm';
 import fs from 'fs/promises'
 import path from 'path'
 

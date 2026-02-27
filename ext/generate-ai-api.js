@@ -3,7 +3,7 @@ import { glob } from 'node:fs/promises'; // 🔥 Pakai Native Glob bawaan Node.j
 import { load } from 'cheerio';
 import path from 'path';
 import axios from 'axios';
-import sharp from 'sharp';
+import sharp from 'sharp-wasm';;
 
 // 🔥 FUNGSI BARU: Mencegah tanda kutip merusak atribut HTML
 const escapeHtmlAttr = (text) => {
