@@ -1,45 +1,32 @@
 {
   "name": "LayarKosong-Turbo-Bun",
-  // Menggunakan variant Bookworm (Debian 12) yang stabil dan ringan
   "image": "mcr.microsoft.com/devcontainers/base:latest",
-  
   "features": {
-    // Ganti Node dengan Bun - Jauh lebih cepat dan ringan!
     "ghcr.io/devcontainers/features/bun:1": {
       "version": "latest"
     },
-    // Common utils tetap perlu untuk zsh dan tools dasar
     "ghcr.io/devcontainers/features/common-utils:1": {
       "installZsh": true,
       "configureZshAsDefaultShell": true
     }
   },
-
   "customizations": {
     "vscode": {
       "settings": {
-        // --- OPTIMASI SPEED & RAM ---
         "editor.minimap.enabled": false,
         "editor.guides.indentation": false,
         "editor.renderWhitespace": "none",
         "workbench.startupEditor": "none",
         "git.autorefresh": true,
-        // Mematikan telemetri biar nggak makan bandwidth Balikpapan
-        "telemetry.telemetryLevel": "off",
-        // Setting tambahan untuk Bun
-        "bun.runtime": "bun"
+        "telemetry.telemetryLevel": "off"
       },
       "extensions": [
-        "ms-ceintl.vscode-language-pack-id", // Bahasa Indonesia
-        "ritwickdey.LiveServer",             // Cek HTML secara real-time
-        "ovyn.bun-vscode"                    // Extension resmi Bun untuk VS Code
+        "ms-ceintl.vscode-language-pack-id",
+        "ritwickdey.LiveServer",
+        "ovyn.bun-vscode"
       ]
     }
   },
-
-  // Menghapus file sampah dan warming up Bun
-  "postCreateCommand": "sudo apt-get clean && rm -rf /var/lib/apt/lists/* && bun --version",
-
-  // Pakai user vscode (non-root)
-  "remoteUser": "frijal"
+  "postCreateCommand": "bun --version",
+  "remoteUser": "vscode"
 }
