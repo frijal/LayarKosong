@@ -1,6 +1,6 @@
 {
   "name": "LayarKosong-Turbo-Bun",
-  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "image": "mcr.microsoft.com/devcontainers/base:debian-13",
   "features": {
     "ghcr.io/devcontainers/features/bun:1": {
       "version": "latest"
