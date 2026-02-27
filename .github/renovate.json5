@@ -1,0 +1,97 @@
+{
+  '$schema': 'https://docs.renovatebot.com/renovate-schema.json',
+  'extends': [
+    'config:recommended',
+    ':dependencyDashboard',
+    'abandonments:recommended',
+    'replacements:all'
+  ],
+  'configMigration': true,
+  'branchPrefix': 'renovate/',
+  'prConcurrentLimit': 20,
+  'ignoreUnstable': true,
+  'dependencyDashboard': true,
+  'ignorePaths': [
+    '**/node_modules/**',
+    'artikelx/**',
+    'sementara/**',
+    'mini/**',
+    'functions/**'
+  ],
+  'vulnerabilityAlerts': {
+    'enabled': true,
+    'labels': ['security']
+  },
+  'packageRules': [
+    {
+      'description': '1. Strategi Penggantian Versi',
+      'matchPackageNames': ['*'],
+      'rangeStrategy': 'replace'
+    },
+    {
+      'description': '2. Grup Paket Utama (Automerge Minor/Patch)',
+      'matchDatasources': ['npm'],
+      'matchPackageNames': [
+        'wrangler',
+        'sharp',
+        'cheerio',
+        'fast-xml-parser',
+        '@octokit/core'
+      ],
+      'automerge': true
+    },
+    {
+      'description': '3. Paket XML & HTML (Grup Pendukung)',
+      'matchPackageNames': [
+        '@xmldom/xmldom',
+        '@minify-html/node',
+        'tumblr.js'
+      ],
+      'groupName': 'web-parsers',
+      'automerge': true
+    },
+    {
+      'description': '4. GitHub Actions: Pin Digests & Automerge',
+      'matchDatasources': ['github-tags'],
+      'pinDigests': true,
+      'automerge': true
+    },
+    {
+      'description': '5. Kontrol Major Update (Butuh Klik Manual)',
+      'matchUpdateTypes': ['major'],
+      'dependencyDashboardApproval': true
+    },
+    {
+      'description': '6. Review Manual untuk versi 0.x (Unstable)',
+      'matchCurrentVersion': '/^0./',
+      'dependencyDashboardApproval': true
+    }
+  ],
+  'constraints': {
+    'bun': '>=1.2.0'
+  },
+  'enabledManagers': [
+    'bun',
+    'github-actions',
+    'regex'
+  ],
+  'postUpdateOptions': ['bun-lock'],
+  'bun': {
+    'enabled': true,
+    'managerFilePatterns': [
+      '/(^|/)package\\.json$/',
+      '/(^|/)bun\\.lock$/'
+    ]
+  },
+  'regexManagers': [
+    {
+      'fileMatch': ['^\\.devcontainer/devcontainer\\.json$'],
+      'matchStrings': [
+        '\'ghcr.io/devcontainers/features/bun:(?<currentValue>\\d+)\''
+      ],
+      'depNameTemplate': 'bun',
+      'datasourceTemplate': 'npm',
+      'versioningTemplate': 'semver'
+    }
+  ]
+}
