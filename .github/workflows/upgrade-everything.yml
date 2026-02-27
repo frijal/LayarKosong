@@ -42,29 +42,29 @@ jobs:
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
           # Ambil JS & CSS Utama Highlight.js
-          cp node_modules/@highlightjs/cdn-assets/highlight.min.js ext/highlight.js
-          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/default.min.css
+          cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
+          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/default.min.css
 
           # Mapping cerdas Highlight.js
-          cp node_modules/@highlightjs/cdn-assets/styles/github*.css ext/
-          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css ext/prism-tomorrow.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/prism-okaidia.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css ext/prism.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
+          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/prism-okaidia.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/prism.min.css
           
           # Tema populer lainnya
-          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css ext/atom-one-dark.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css ext/atom-one-light.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css ext/monokai.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css ext/vs.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css ext/vs-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css dapur/atom-one-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css dapur/atom-one-light.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/monokai.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
 
           # Urus Font Awesome (Webfonts + CSS)
-          mkdir -p ext/fontawesome-webfonts/
-          cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* ext/fontawesome-webfonts/
-          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css ext/fontawesome.css
+          mkdir -p dapur/fontawesome-webfonts/
+          cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
+          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
 
           # Patch Path CSS Font Awesome
-          sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' ext/fontawesome.css
+          sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
           # Ambil Versi untuk Metadata (Ganti node -p dengan jq yang lebih ringan)
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
@@ -77,7 +77,7 @@ jobs:
         id: font_check
         shell: bash
         run: |
-          FONT_DIR="ext/fontawesome-webfonts"
+          FONT_DIR="dapur/fontawesome-webfonts"
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
           
@@ -115,8 +115,8 @@ jobs:
         run: |
           # Gunakan audit-ci yang lebih bersahabat dengan Bun
           bunx audit-ci --low || true
-          bun run ext/cek-mubazir.js
-          bun run ext/cleanup.js
+          bun run dapur/cek-mubazir.js
+          bun run dapur/cleanup.js
 
       - name: 🔍 Cek perubahan akhir
         id: check_changes
