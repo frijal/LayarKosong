@@ -29,7 +29,7 @@ jobs:
         env:
           # Mengambil semua 12 secret API Key (0-11)
           GEMINI_KEYS: ${{ secrets.GEMINI_API_KEY }},${{ secrets.GEMINI_API_KEY2 }},${{ secrets.GEMINI_API_KEY3 }},${{ secrets.GEMINI_API_KEY4 }},${{ secrets.GEMINI_API_KEY5 }},${{ secrets.GEMINI_API_KEY6 }},${{ secrets.GEMINI_API_KEY7 }},${{ secrets.GEMINI_API_KEY8 }},${{ secrets.GEMINI_API_KEY9 }},${{ secrets.GEMINI_API_KEY10 }},${{ secrets.GEMINI_API_KEY11 }}
-        run: bun run ext/kategoriAI.js
+        run: bun run dapur/kategoriAI.js
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
@@ -42,7 +42,7 @@ jobs:
           body: |
             Workflow ini dijalankan secara manual melalui dispatch.
             AI telah memindai `artikel.json` dan menyusun kata kunci baru.
-            Silakan tinjau perubahan di `ext/titleToCategory.js`.
+            Silakan tinjau perubahan di `dapur/titleToCategory.js`.
           labels: |
             manual-trigger
             ai-processed
