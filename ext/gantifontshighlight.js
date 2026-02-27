@@ -13,11 +13,19 @@ const cssFiles = [
 
 // 2. Mapping Manual dengan Pola Regex yang Lebih Aman (Mirip Perl)
 const MANUAL_MAP = [
-	{ rx: /https?:\/\/.*?prism-vsc-dark-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
+{ rx: /https?:\/\/[^"']+?\/prism(?:\-[\w\-]+)?(?:\.min)?\.css/gi, repl: "/ext/default.min.css" }
+{ rx: /https?:\/\/.*?prism-vsc-dark-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-coy\.min\.css/gi, repl: "/ext/default.min.css" },
+
+
 // Regex FontAwesome yang lebih tangguh menangkap v5, v6, dan query strings
+{ rx: /https?:\/\/[^"']+?\/(?:font-awesome|fontawesome)\/.*?\/(?:all|fontawesome)(?:\.min)?\.css(?:\?[^"']*)?/gi, repl: "/ext/fontawesome.css" },
+
+
 { rx: /https?:\/\/(?:use|kit|cdnjs)\.fontawesome\.com\/.*?\/all(?:\.min)?\.css(?:\?[^"']*)?/gi, repl: "/ext/fontawesome.css" },
+
+
 // Catch-all untuk file fontawesome yang mungkin cuma bernama all.css di CDN lain
 { rx: /https?:\/\/.*?\/(?:font-awesome|fontawesome)\/.*?\/all(?:\.min)?\.css/gi, repl: "/ext/fontawesome.css" }
 ];
