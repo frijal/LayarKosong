@@ -82,42 +82,47 @@ async function processFile(file, baseUrl) {
   });
   await Promise.all(imgPromises);
 
-  // 2. LOGIKA DATA SEO
+  // --- 2. LOGIKA DATA SEO (CLEAN VERSION) ---
   const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
   const escapedTitle = escapeHtmlAttr(articleTitle);
-
-  // Ambil deskripsi yang ada (jika ada)
-  let rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
-  let rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
-  let rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
-
-  // Cadangan dari paragraf pertama
-  const firstP = $('p').first().text().trim();
-  const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
-
-  // Tentukan deskripsi terbaik (pilih yang tidak kosong, atau gunakan fallback)
-  const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
-
-  // Definisikan variabel yang dibutuhkan oleh metaTags
-  const finalMetaDesc = prepareDesc(rawMetaDesc || bestMeta);
-  const finalOgDesc = prepareDesc(rawOgDesc || bestMeta);
-  const finalTwitterDesc = prepareDesc(rawTwitterDesc || bestMeta);
-
-
-
   const cleanFileName = baseName.replace('.html', '');
   const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
 
+  // A. Scrape Metadata Lama
+  const rawMetaDesc = $('meta[name="description"], meta[property="description"]').attr('content') || '';
+  const rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
+  const rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
 
+  const publishedTime = $('meta[property="article:published_time"]').attr('content');
+  const modifiedTime = $('meta[property="article:modified_time"]').attr('content');
 
-  const rawMetaDesc = $('meta[name="description"]').attr('content') || '';
-  const finalMetaDesc = prepareDesc(rawMetaDesc || fallback);
+  const existingTags = [];
+  $('meta[property="article:tag"]').each((_, el) => {
+      const tag = $(el).attr('content');
+      if (tag) existingTags.push(tag);
+  });
 
-  let metaImgUrl = $('meta[property="og:image"]').attr('content') || $('img').first().attr('src') || '';
-  if (metaImgUrl && metaImgUrl.startsWith('http')) {
-    const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
-    if (mirroredPath.startsWith('/')) metaImgUrl = `${baseUrl}${mirroredPath}`;
-  }
+      // B. Fallback dari paragraf pertama (Jaring pengaman jika deskripsi kosong)
+      const firstP = $('p').first().text().trim();
+      const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
+
+      // C. Penentuan Deskripsi Terbaik (Prioritas: Meta > OG > Twitter > P1)
+      const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
+      const finalMetaDesc = prepareDesc(bestMeta);
+      const finalOgDesc = finalMetaDesc; // Samakan saja biar konsisten
+      const finalTwitterDesc = finalMetaDesc;
+
+      // D. Pengolahan Gambar Meta (Sosmed Image)
+      let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
+      $('meta[name="twitter:image"]').attr('content') ||
+      $('img').first().attr('src') || '';
+
+      if (metaImgUrl && metaImgUrl.startsWith('http')) {
+          const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
+          if (mirroredPath.startsWith('/')) {
+              metaImgUrl = `${baseUrl}${mirroredPath}`;
+          }
+      }
 
   // 3. BERSIHKAN & SUNTIK ULANG (Gaya Ringan)
   $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
