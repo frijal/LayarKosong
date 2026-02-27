@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { Buffer } from 'node:buffer';
-import minifyHtml from '@minify-html/node';
+// import minifyHtml from '@minify-html/node';
+import { minify } from '@minify-html/wasm';
 
 const folders = [
   './gaya-hidup', './jejak-sejarah', './lainnya',
