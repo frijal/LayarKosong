@@ -1,8 +1,7 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 import { Buffer } from 'node:buffer';
-// import minifyHtml from '@minify-html/node';
-import { minify } from '@minify-html/wasm';
+import minifyHtml from '@minify-html/node';
 
 const folders = [
   './gaya-hidup', './jejak-sejarah', './lainnya',
@@ -65,24 +64,23 @@ async function minifyFiles(dir) {
       const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
       const input = Buffer.from(originalHTML);
-const output = minify(input, {
-  allow_noncompliant_unquoted_attribute_values: true,
-  allow_optimal_entities: true,
-  allow_removing_spaces_between_attributes: true,
-  collapse_whitespaces: true,
-  ensure_spec_compliant_unquoted_attribute_values: false,
-  keep_comments: false,
-  keep_html_and_head_opening_tags: false,
-  keep_spaces_between_attributes: false,
-  minify_css: true,
-  minify_doctype: true,
-  minify_js: true, 
-  remove_bangs: true,
-  remove_processing_instructions: true,
-});
+      const output = minifyHtml.minify(input, {
+        allow_noncompliant_unquoted_attribute_values: true,
+        allow_optimal_entities: true,
+        allow_removing_spaces_between_attributes: true,
+        collapse_whitespaces: true,
+        ensure_spec_compliant_unquoted_attribute_values: false,
+        keep_comments: false,
+        keep_html_and_head_opening_tags: false,
+        keep_spaces_between_attributes: false,
+        minify_css: true,
+        minify_doctype: true,
+        minify_js: true, 
+        remove_bangs: true,
+        remove_processing_instructions: true,
+      });
 
-// WASM return Uint8Array → convert ke string
-const minifiedHTML = Buffer.from(output).toString('utf8') + minifySignature;
+      const minifiedHTML = output.toString() + minifySignature;
       const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
       const saved = sizeBefore - sizeAfter;
 
@@ -96,14 +94,11 @@ const minifiedHTML = Buffer.from(output).toString('utf8') + minifySignature;
       const savingPercent = ((saved / sizeBefore) * 100).toFixed(1);
       console.log(`✅ [${savingPercent}%] : ${filePath} (${formatBytes(sizeBefore)} ➡️  ${formatBytes(sizeAfter)})`);
 
-} catch (err) {
-  stats.failed++;
-  stats.errorList.push({ 
-    path: filePath, 
-    error: err?.message || String(err) 
-  });
-  console.error(`❌ Gagal jepit: ${filePath}`);
-}
+    } catch (err) {
+      stats.failed++;
+      stats.errorList.push({ path: filePath, error: err.message });
+      console.error(`❌ Gagal jepit: ${filePath}`);
+    }
   }
 }
 
