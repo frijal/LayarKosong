@@ -13,7 +13,7 @@ const cssFiles = [
 
 // 2. Mapping Manual dengan Pola Regex yang Lebih Aman (Mirip Perl)
 const MANUAL_MAP = [
-{ rx: /https?:\/\/[^"']+?\/prism(?:\-[\w\-]+)?(?:\.min)?\.css/gi, repl: "/ext/default.min.css" }
+{ rx: /https?:\/\/[^"']+?\/prism(?:\-[\w\-]+)?(?:\.min)?\.css/gi, repl: "/ext/default.min.css" },
 { rx: /https?:\/\/.*?prism-vsc-dark-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-coy\.min\.css/gi, repl: "/ext/default.min.css" },
