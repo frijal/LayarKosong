@@ -30,7 +30,7 @@ jobs:
         run: bun install 
 
       - name: 🛠️ Localize Assets
-        run: bun run ext/gantifontshighlight.js --quiet --no-backup
+        run: perl ext/gantifontshighlight.pl
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run ext/clean-schema.js artikelx/      
