@@ -1,65 +1,99 @@
-import { Glob } from "bun";
+import { Glob, $ } from "bun";
 
-// Konfigurasi CLI
+/**
+ * LAYAR KOSONG - CDN TO LOCAL REPLACEMENT (BUN EDITION)
+ * Lokasi: Balikpapan | Strategy: Predator Tag Rebuilding
+ */
+
+// 1. CONFIG & CLI
 const args = Bun.argv.slice(2);
+const QUIET = args.includes("--quiet");
 const NO_BACKUP = args.includes("--no-backup");
+const DRY_RUN = args.includes("--dry-run");
 
-// Mapping yang persis dengan daftar Perl kamu
-const MAP = [
-    { rx: /https:\/\/.*?\/(?:all|fontawesome)(\.min)?\.css/i, repl: '/ext/fontawesome.css' },
-    { rx: /https:\/\/.*?\/(?:prism|vs-dark|default|github|monokai|atom-one).*?\.css/i, repl: '/ext/default.min.css' }, // Catch-all CSS
-    { rx: /https:\/\/.*?\/leaflet\.css/i, repl: '/ext/leaflet.css' },
-    { rx: /https:\/\/.*?\/highlight\.min\.js/i, repl: '/ext/highlight.js' }
+// 2. TARGET MAPPING
+// Selama URL mengandung 'key', maka akan diganti ke 'repl'
+const TARGETS = [
+    { key: "font-awesome", repl: "/ext/fontawesome.css" },
+    { key: "all.min.css",  repl: "/ext/fontawesome.css" }, // Catch-all untuk FA di cdnjs
+    { key: "prism",        repl: "/ext/default.min.css" },
+    { key: "leaflet",      repl: "/ext/leaflet.css" },
+    { key: "highlight",    repl: "/ext/highlight.js" },
+    { key: "github-dark",  repl: "/ext/github-dark.min.css" }
 ];
 
-// Regex Sapu Jagat untuk menangkap atribut href/src DAN membersihkan sisa sampah (integrity, dsb)
-// Ini adalah versi JS dari regex 'while' milik Perl kamu
-const SUPER_REGEX = /(\b(?:href|src)\b)\s*=\s*(['"])\s*https?:\/\/[^"']+?\/([^"']+?\.(?:css|js))(?:\?[^"']*)?\s*\2([^>]*)/gi;
+// Regex Predator: Menangkap seluruh tag <link> atau <script> yang punya href/src berisi http
+const TAG_REGEX = /<(link|script)[^>]+(?:href|src)=["'](https?:\/\/[^"']+)["'][^>]*>/gi;
+
+function log(...parts) {
+    if (!QUIET) console.log(...parts);
+}
 
 async function processFile(filePath) {
+    // Abaikan index.html untuk menjaga struktur navigasi utama
     if (filePath.endsWith("index.html")) return;
-    
+
     const file = Bun.file(filePath);
-    let content = await file.text();
-    let changed = false;
+    const content = await file.text();
+    let replaceCount = 0;
 
-    // 1. Eksekusi Penggantian URL & Pembersihan Atribut sekaligus (Mirip Perl)
-    content = content.replace(SUPER_REGEX, (match, attr, quote, fileName, extraAttr) => {
-        let replacement = null;
-
-        // Cek apakah file ini ada di MAP
-        for (const m of MAP) {
-            if (match.match(m.rx)) {
-                replacement = m.repl;
-                break;
+    // Proses penggantian dengan logika rakit ulang tag
+    const newContent = content.replace(TAG_REGEX, (fullTag, type, url) => {
+        for (const target of TARGETS) {
+            if (url.toLowerCase().includes(target.key)) {
+                replaceCount++;
+                
+                // Rakit ulang tag dari nol (Otomatis buang integrity, crossorigin, dsb)
+                if (type === 'link') {
+                    return `<link rel="stylesheet" href="${target.repl}">`;
+                } else {
+                    return `<script src="${target.repl}"></script>`;
+                }
             }
         }
-
-        if (replacement) {
-            changed = true;
-            // Kita kembalikan hanya atribut utama, 'extraAttr' (integrity, crossorigin) dibuang!
-            return `${attr}=${quote}${replacement}${quote}`;
-        }
-        
-        return match; // Tidak ada yang cocok, kembalikan aslinya
+        return fullTag; // Tidak cocok? Kembalikan tag aslinya
     });
 
-    if (changed) {
-        if (!NO_BACKUP) await Bun.write(`${filePath}.bak`, await file.text());
-        await Bun.write(filePath, content);
-        console.log(`✅ Fixed: ${filePath}`);
+    // Jika ada perubahan, tulis ke file
+    if (replaceCount > 0) {
+        if (DRY_RUN) {
+            log(`🧪 [DRY-RUN] ${filePath} -> Terdeteksi ${replaceCount} link CDN`);
+            return;
+        }
+
+        if (!NO_BACKUP) {
+            await Bun.write(`${filePath}.bak`, content);
+        }
+
+        await Bun.write(filePath, newContent);
+        log(`✅ Fixed: ${filePath} (${replaceCount} link diganti)`);
     }
 }
 
 async function run() {
-    console.log("🚀 Menantang Perl: Memulai pemindaian...");
-    const glob = new Glob("{*.html,artikelx/*.html,artikel/*.html}");
-    
+    log("🧼 Memulai Pembersihan CDN Layar Kosong (Bun Mode)...");
+    const startTime = performance.now();
+
+    // Scan file di root, artikel/, dan artikelx/ sesuai pola Perl
+    const glob = new Glob("{*.html,artikel/*.html,artikelx/*.html}");
     const files = [];
-    for await (const file of glob.scan(".")) files.push(file);
-    
+
+    for await (const file of glob.scan(".")) {
+        files.push(file);
+    }
+
+    if (files.length === 0) {
+        log("⚠️ Tidak ada file HTML ditemukan.");
+        return;
+    }
+
+    // Jalankan secara paralel biar kencang
     await Promise.all(files.map(processFile));
-    console.log("✨ Selesai! Link cdnjs font-awesome 6.4.0? Tumbang!");
+
+    const duration = ((performance.now() - startTime) / 1000).toFixed(2);
+    log(`\n🎯 Selesai! ${files.length} file diperiksa dalam ${duration} detik.`);
 }
 
-run();
+run().catch(err => {
+    console.error("❌ Terjadi kesalahan fatal:", err.message);
+});
