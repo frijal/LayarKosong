@@ -1,91 +1,94 @@
-import { watch, existsSync, unlinkSync, readdirSync } from "node:fs";
+import { watch, existsSync, unlinkSync, readdirSync, cpSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { $ } from "bun";
 
 // --- PENGATURAN KURASI ---
 const menuAndalan = [
-"iposbrowser.js",
+"icons" ,
+"fontawesome-webfonts",
+"iposbrowser.ts",
 "style.css",
 "tools.py"
+
 ];
 
 const sourceDir = import.meta.dir;
 const targetDir = join(sourceDir, "../ext");
 
-// --- FUNGSI SAPU JAGAT (Auto Purge) ---
-function sapuJagat() {
-  console.log("🧹 Memulai inspeksi etalase (Auto Purge)...");
-  const filesInEtalase = readdirSync(targetDir);
+// --- FUNGSI MASAK (Ditingkatkan) ---
+async function masak(name: string) {
+  if (!menuAndalan.includes(name)) return;
 
-  // Daftar nama file yang BOLEH ada di etalase (hasil transformasi .ts ke .js)
-  const allowedInEtalase = menuAndalan.map(name => name.replace(/\.ts$/, ".js"));
+  const sourcePath = join(sourceDir, name);
+  if (!existsSync(sourcePath)) return;
 
-  filesInEtalase.forEach(file => {
-    // Kita biarkan file .gitkeep atau file sistem lainnya jika ada
-    if (file.startsWith(".")) return;
-
-    if (!allowedInEtalase.includes(file)) {
-      console.log(`🚫 [Purge] File '${file}' tidak ada di menu. Menghapus...`);
-      unlinkSync(join(targetDir, file));
-    }
-  });
-  console.log("✨ Etalase sekarang bersih dan sesuai menu!");
-}
-
-async function masak(fileName: string) {
-  if (!menuAndalan.includes(fileName)) return;
-
-  const sourcePath = join(sourceDir, fileName);
-  const ext = fileName.split('.').pop();
+  const isFolder = statSync(sourcePath).isDirectory();
 
   try {
-    if (ext === 'ts' || ext === 'js') {
-      const outName = fileName.replace(/\.ts$/, '.js');
-      console.log(`⚡ [JS/TS] Masak: ${fileName} -> ${outName}`);
-      await $`bun build ${sourcePath} --outfile ${join(targetDir, outName)} --minify`;
-    }
-    else if (ext === 'css') {
-      console.log(`🎨 [CSS] Masak: ${fileName}`);
-      await $`bun build ${sourcePath} --outfile ${join(targetDir, fileName)} --minify`;
-    }
-    else if (ext === 'py') {
-      console.log(`🐍 [Python] Geser: ${fileName}`);
-      await $`cp ${sourcePath} ${join(targetDir, fileName)}`;
+    if (isFolder) {
+      // 📂 JIKA FOLDER: Copy seluruh isinya ke etalase
+      console.log(`📁 [Folder] Mengirim folder '${name}' ke etalase...`);
+      cpSync(sourcePath, join(targetDir, name), { recursive: true });
+    } else {
+      // 📄 JIKA FILE: Masak sesuai ekstensinya
+      const ext = name.split('.').pop();
+      if (ext === 'ts' || ext === 'js') {
+        const outName = name.replace(/\.ts$/, '.js');
+        console.log(`⚡ [JS/TS] Masak: ${name} -> ${outName}`);
+        await $`bun build ${sourcePath} --outfile ${join(targetDir, outName)} --minify`;
+      }
+      else if (ext === 'css') {
+        console.log(`🎨 [CSS] Masak: ${name}`);
+        await $`bun build ${sourcePath} --outfile ${join(targetDir, name)} --minify`;
+      }
+      else {
+        // Untuk .py atau file lainnya, copy langsung
+        console.log(`📄 [Copy] Memindahkan: ${name}`);
+        cpSync(sourcePath, join(targetDir, name));
+      }
     }
   } catch (err) {
-    console.error(`❌ Gagal masak ${fileName}:`, err);
+    console.error(`❌ Gagal memproses ${name}:`, err);
   }
 }
 
-// 1. Jalankan Sapu Jagat saat pertama kali koki bangun
+// --- FUNGSI SAPU JAGAT (Ditingkatkan untuk Folder) ---
+function sapuJagat() {
+  console.log("🧹 Memulai inspeksi etalase (Auto Purge)...");
+  if (!existsSync(targetDir)) return;
+
+  const filesInEtalase = readdirSync(targetDir);
+  const allowedInEtalase = menuAndalan.map(name => name.replace(/\.ts$/, ".js"));
+
+  filesInEtalase.forEach(file => {
+    if (file.startsWith(".")) return;
+    if (!allowedInEtalase.includes(file)) {
+      console.log(`🚫 [Purge] Menghapus '${file}' dari etalase (tidak ada di menu).`);
+      const pathToRemove = join(targetDir, file);
+      // Hapus file atau folder
+      $ `rm -rf ${pathToRemove}`;
+    }
+  });
+}
+
+// 1. Bersihkan & Siapkan awal
 sapuJagat();
-
-// 2. Masak semua yang ada di menu saat startup (biar fresh)
 console.log("🍳 Menyiapkan menu andalan...");
-menuAndalan.forEach(file => {
-  if (existsSync(join(sourceDir, file))) masak(file);
-});
+menuAndalan.forEach(name => masak(name));
 
-console.log("\n👨‍🍳 Koki Selektif siap jaga dapur!");
+console.log("\n👨‍🍳 Koki Selektif siap (Support Folder & File)!");
 console.log("------------------------------------------");
 
-// 3. Pantau perubahan secara real-time
-watch(sourceDir, async (event, filename) => {
+// 2. Pantau dapur
+watch(sourceDir, (event, filename) => {
   if (!filename || filename.startsWith(".") || filename === "koki.ts") return;
 
-  if (menuAndalan.includes(filename)) {
-    const sourcePath = join(sourceDir, filename);
+  // Jika file yang berubah ada di menu atau merupakan bagian dari folder di menu
+  const isInMenu = menuAndalan.some(item => filename === item || filename.startsWith(item + "/"));
 
-    if (!existsSync(sourcePath)) {
-      // Jika file dihapus dari dapur secara fisik
-      let targetFileName = filename.replace(/\.ts$/, ".js");
-      const targetPath = join(targetDir, targetFileName);
-      if (existsSync(targetPath)) {
-        console.log(`🗑️  [Cleanup] Menghapus: ${targetFileName}`);
-        unlinkSync(targetPath);
-      }
-    } else {
-      masak(filename);
-    }
+  if (isInMenu) {
+    // Kalau ada perubahan di dalam folder icons, kita masak ulang foldernya
+    const rootName = menuAndalan.find(item => filename.startsWith(item)) || filename;
+    masak(rootName);
   }
 });
