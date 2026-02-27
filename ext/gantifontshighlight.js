@@ -1,5 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
+import { Glob } from "bun";
 
 // -------------------- CONFIG & CLI --------------------
 const args = Bun.argv.slice(2);
@@ -7,26 +6,28 @@ const QUIET = args.includes("--quiet");
 const NO_BACKUP = args.includes("--no-backup");
 const DRY_RUN = args.includes("--dry-run");
 
-// 1. Daftar file CSS untuk Regex Dinamis (Fast Match)
+// 1. Daftar file CSS (Sama seperti acuan Perl)
 const cssFiles = [
-	"atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "fontawesome.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.css", "github-dark.min.css", "github.css", "github.min.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "prism.min.css", "vs-dark.min.css", "vs.min.css"
+"atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
 ];
 
-// 2. Mapping Manual untuk pola yang tidak standar (Regex Specific)
+// 2. Mapping Manual dengan Pola Regex yang Lebih Aman (Mirip Perl)
 const MANUAL_MAP = [
 	{ rx: /https?:\/\/.*?prism-vsc-dark-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
 { rx: /https?:\/\/.*?prism-coy\.min\.css/gi, repl: "/ext/default.min.css" },
-{ rx: /https?:\/\/use\.fontawesome\.com\/releases\/v[\d\.\-a-z]+\/css\/all\.css(?:\?[^"']*)?/gi, repl: "/ext/fontawesome.css" },
+// Regex FontAwesome yang lebih tangguh menangkap v5, v6, dan query strings
+{ rx: /https?:\/\/(?:use|kit|cdnjs)\.fontawesome\.com\/.*?\/all(?:\.min)?\.css(?:\?[^"']*)?/gi, repl: "/ext/fontawesome.css" },
+// Catch-all untuk file fontawesome yang mungkin cuma bernama all.css di CDN lain
+{ rx: /https?:\/\/.*?\/(?:font-awesome|fontawesome)\/.*?\/all(?:\.min)?\.css/gi, repl: "/ext/fontawesome.css" }
 ];
 
-// Regex Otomatis berdasarkan daftar cssFiles
-const autoPattern = new RegExp(`https?:\\/\\/[^\\s"'<>]+?\\/(${cssFiles.join("|").replace(/\./g, "\\.")})`, "gi");
+// Regex Otomatis (Membungkus URL di dalam atribut href/src agar akurat)
+const autoPattern = new RegExp(`(\\b(?:href|src)\\b\\s*=\\s*['"])\\s*https?:\\/\\/[^\\s"'<>]+?\\/(${cssFiles.join("|").replace(/\./g, "\\.")})\\s*(['"])`, "gi");
 
-// Regex untuk membersihkan atribut integritas/crossorigin
-const attrRegex = /\s+(?:integrity\s*=\s*(['"])[^'"]*?\1|crossorigin\s*=\s*(['"])[^'"]*?\2|referrertarget\s*=\s*(['"])[^'"]*?\3|referrerpolicy\s*=\s*(['"])[^'"]*?\4|crossorigin\b|referrerpolicy\b)/gi;
+// Regex untuk membersihkan atribut integritas (Sama seperti Perl)
+const attrRegex = /\s+(?:integrity|crossorigin|referrertarget|referrerpolicy)(?:\s*=\s*(['"])[^'"]*?\1|(?=\s|>))/gi;
 
-// -------------------- HELPERS --------------------
 function log(...parts) {
 	if (!QUIET) console.log(...parts);
 }
@@ -36,40 +37,32 @@ async function processFile(filePath) {
 
 	const file = Bun.file(filePath);
 	let content = await file.text();
-	let changed = false;
+	let originalContent = content;
 	let replaceCount = 0;
+	let cleanCount = 0;
 
-	// --- A. PERBAIKAN: Jalankan Manual Mapping Langsung ---
+	// A. Manual Mapping (Menerapkan pola substitusi yang aman)
 	for (const m of MANUAL_MAP) {
-		// Kita hitung jumlah kecocokan sebelum ganti (opsional, untuk log)
-		const matches = content.match(m.rx);
-		if (matches) {
-			changed = true;
-			replaceCount += matches.length;
-			// Langsung ganti seluruh konten tanpa loop tambahan
-			content = content.replace(m.rx, m.repl);
-		}
-	}
-
-	// --- B. Auto Mapping (Sudah Oke, tapi pastikan reset lastIndex) ---
-	if (autoPattern.test(content)) {
-		autoPattern.lastIndex = 0; // Penting!
-		content = content.replace(autoPattern, (match, fileName) => {
-			changed = true;
+		content = content.replace(m.rx, (match) => {
 			replaceCount++;
-			return `/ext/${fileName}`;
+			return m.repl;
 		});
 	}
 
+	// B. Auto Mapping (Hanya ganti jika di dalam href/src)
+	content = content.replace(autoPattern, (match, head, fileName, tail) => {
+		replaceCount++;
+		return `${head}/ext/${fileName}${tail}`;
+	});
 
-	// C. Jika ada perubahan, bersihkan atribut sampah
-	if (changed) {
+	// C. Pembersihan Atribut (Hanya jika ada yang berubah)
+	if (content !== originalContent) {
 		content = content.replace(attrRegex, () => {
 			cleanCount++;
 			return "";
 		});
 
-		const summary = `(${replaceCount} ganti, ${cleanCount} bersih)`;
+		const summary = `(${replaceCount} ganti, ${cleanCount} atribut bersih)`;
 
 		if (DRY_RUN) {
 			log(`🧪 [DRY-RUN] ${filePath} -> ${summary}`);
@@ -77,7 +70,7 @@ async function processFile(filePath) {
 		}
 
 		if (!NO_BACKUP) {
-			await Bun.write(`${filePath}.bak`, file);
+			await Bun.write(`${filePath}.bak`, originalContent);
 		}
 
 		await Bun.write(filePath, content);
@@ -85,23 +78,19 @@ async function processFile(filePath) {
 	}
 }
 
-async function scanRecursive(dir) {
-	const entries = fs.readdirSync(dir, { withFileTypes: true });
+async function run() {
+	log("🔍 Memulai pemindaian Turbo dengan Bun.Glob...");
 
-	for (const entry of entries) {
-		const fullPath = path.join(dir, entry.name);
-		if (entry.isDirectory()) {
-			if (entry.name !== "node_modules" && entry.name !== ".git") {
-				await scanRecursive(fullPath);
-			}
-		} else if (entry.isFile() && entry.name.endsWith(".html")) {
-			await processFile(fullPath);
-		}
+	// Mencari file .html di root, artikel/, dan artikelx/ (Sama seperti Perl glob)
+	const glob = new Glob("{artikelx/*.html}");
+
+	const tasks = [];
+	for await (const file of glob.scan(".")) {
+		tasks.push(processFile(file));
 	}
+
+	await Promise.all(tasks);
+	log("✨ Selesai! Semua link CDN Layar Kosong sekarang sudah lokal.");
 }
 
-// -------------------- RUN --------------------
-log("🔍 Memulai pemindaian recursive assets di seluruh folder...");
-scanRecursive("./").then(() => {
-	log("✨ Selesai! Semua link CDN sekarang sudah lokal ke /ext/.");
-});
+run().catch(console.error);
