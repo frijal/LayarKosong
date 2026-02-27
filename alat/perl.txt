@@ -1,0 +1,3 @@
+perl -pi -w -e 's#</title>#</title><link rel="stylesheet" href="/ext/related.css">#g' *.html
+
+perl -pi -w -e 's#</body>#<div id="related-posts-container"><h3>Artikel Terkait</h3><ul id="related-posts-list"></ul></div><script src="/ext/related.js"></script></body>#g' *.html

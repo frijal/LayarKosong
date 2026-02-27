@@ -1,0 +1,408 @@
+ini css yang aku pakai pada halaman index.html
+/* =================================================
+ *  1. GLOBAL VARIABLES & THEMES (Light & Dark)
+ *  ================================================= */
+:root {
+    /* DEFAULT: Light Mode */
+    --bg-page: #f1f5f9;
+    --bg-section: #ffffff;
+    --bg-card: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #4f46e5;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --accent-light: #f0f6ff;
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-page: #0f172a;
+        --bg-section: #1e293b;
+        --bg-card: #283447;
+        --text-primary: #e2e8f0;
+        --text-secondary: #818cf8;
+        --text-muted: #94a3b8;
+        --border-color: #334155;
+        --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        --accent-light: rgba(129, 140, 248, 0.1);
+    }
+}
+
+/* Manual Theme Overrides (via JS) */
+body.light-mode {
+    --bg-page: #f1f5f9;
+    --bg-section: #ffffff;
+    --bg-card: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #4f46e5;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode {
+    --bg-page: #0f172a;
+    --bg-section: #1e293b;
+    --bg-card: #283447;
+    --text-primary: #e2e8f0;
+    --text-secondary: #818cf8;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* =================================================
+ *  2. RESET & BASE STYLES
+ *  ================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* =================================================
+ *  3. LAYOUT & HEADER
+ *  ================================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--border-color);
+    background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0));
+}
+
+@media (prefers-color-scheme: dark) {
+    .page-header {
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+    }
+}
+
+.page-header h1, .site-title {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.site-tagline {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+
+h2 {
+    color: var(--text-secondary);
+    border-left: 4px solid var(--text-secondary);
+    padding-left: 15px;
+    margin: 2rem 0 1.5rem;
+    font-size: 1.8rem;
+}
+
+/* =================================================
+ *  4. FILTERS & SEARCH COMPONENTS
+ *  ================================================= */
+.filter-wrapper {
+    background: var(--bg-section);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dropdown-group select {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-group select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Reset Button */
+.btn-reset {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.btn-reset:hover {
+    background: var(--text-secondary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.filter-info-text {
+    background: var(--accent-light);
+    color: var(--text-secondary);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+/* =================================================
+ *  5. ARTICLE GRID & CARDS
+ *  ================================================= */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 3rem;
+}
+
+.article-grid a.article-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background-color: var(--border-color);
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.article-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-card:hover h3 {
+    color: var(--text-secondary);
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* =================================================
+ *  6. THEME TOGGLE (Floating Button)
+ *  ================================================= */
+.theme-switch {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-section);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.theme-switch:hover { transform: scale(1.1); }
+
+/* Toggle Icons Logic */
+.light-mode .icon-sun, .dark-mode .icon-moon { display: none; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .icon-moon { display: none; }
+    body:not(.light-mode) .icon-sun { display: block; }
+}
+@media (prefers-color-scheme: light) {
+    body:not(.dark-mode) .icon-sun { display: none; }
+    body:not(.dark-mode) .icon-moon { display: block; }
+}
+
+/* =================================================
+ *  7. FOOTER
+ *  ================================================= */
+.page-footer {
+    /* Background dihapus agar transparan/menyatu */
+    padding: 4rem 1.5rem 2rem;
+    margin-top: 5rem;
+    color: var(--text-primary);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Ubah menjadi 3 kolom agar teks keamanan, link, dan sosmed berjajar rapi */
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    align-items: center; /* Menjaga semua elemen sejajar di tengah secara vertikal */
+}
+
+.footer-section h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Lebih renggang agar elegan */
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Link Mendatar & Tanpa Garis Bawah */
+.footer-links {
+    justify-content: center;
+}
+
+.footer-links a {
+    text-decoration: none !important;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--text-secondary);
+}
+
+/* Media Sosial */
+.footer-social {
+    justify-content: flex-end;
+}
+
+.footer-social a {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    text-decoration: none !important;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--text-secondary);
+    transform: translateY(-3px);
+}
+
+/* Garis Tipis Pemisah Copyright */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color); /* Hanya garis tipis di bawah */
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* =================================================
+ *  8. RESPONSIVE DESIGN
+ *  ================================================= */
+@media (max-width: 1024px) {
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .article-grid { grid-template-columns: 1fr; }
+    .site-tagline { display: none; }
+    .page-header { padding: 2.5rem 1rem 2rem; margin-bottom: 2rem; }
+    .page-header h1 { font-size: 2rem; }
+    .dropdown-group { flex-direction: column; align-items: stretch; }
+    .btn-reset { width: 100%; }
+    .footer-content { grid-template-columns: 1fr; text-align: center; }
+    .footer-links, .footer-social { justify-content: center; }
+}
