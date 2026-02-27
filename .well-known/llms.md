@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.22
+document_version: 16.23
 last_updated: 2026-02-27
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -38,7 +38,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 27 Februari 2026)
-> Menampilkan 992 artikel yang berhasil diindeks dalam versi 16.22.
+> Menampilkan 993 artikel yang berhasil diindeks dalam versi 16.23.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -111,6 +111,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Mekanisme Pemakzulan Presiden di Indonesia: Proses Hukum Tegas Berdasarkan UUD 1945 dan 3 Lembaga Kunci](https://dalam.web.id/jejak-sejarah/mekanisme-pemakzulan-presiden) : Pemakzulan presiden di Indonesia diatur dalam UUD 1945 melalui peran DPR, MK, dan MPR. Simak proses lengkap, syarat, dan dasar hukumnya secara jelas dan sistematis. Disajikan dengan bahasa santai dan mendalam.
 - [Ghulul dan Fasad fil Ardh: 7 Bahaya Besar yang Menghancurkan Amanah dan Peradaban](https://dalam.web.id/jejak-sejarah/ghulul-dan-fasad-fil-ardh) : Ghulul dan Fasad fil Ardh adalah dua konsep penting dalam hukum Islam yang menjelaskan pengkhianatan amanah dan kerusakan sosial. Pelajari makna, dalil, dampak, dan solusi menurut syariat Islam.
 - [Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam](https://dalam.web.id/jejak-sejarah/beda-hadis-dengan-sunnah) : Beda Hadis dengan Sunnah sering dianggap sama, padahal keduanya memiliki perbedaan mendasar dalam makna dan fungsi. Simak penjelasan lengkap, dalil, serta pandangan ulama dalam artikel ini.
 - [Hukum Islam Tentang Berpihak kepada Penjajah: Penjelasan Tegas, Dalil Kuat, dan Prinsip Penting](https://dalam.web.id/jejak-sejarah/hukum-islam-berpihak-penjajah) : Hukum islam tentang berpihak kepada penjajah dijelaskan secara lengkap berdasarkan Al-Qur’an, hadis, dan pandangan ulama, disertai dalil kuat dan prinsip syariah yang tegas. Artikel ini mengupas tuntas 5W+1H, konteks sejarah, serta dampak sosial-spiritual.
@@ -407,12 +408,12 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
-- [Kontroversi Zakat 7 Juta: Analisis Kritis Nishab, Regulasi, dan Realitas Ekonomi Indonesia](https://dalam.web.id/opini-sosial/kontroversi-zakat-7-juta) : Kontroversi Zakat 7 Juta memicu perdebatan tentang nishab 85 gram emas aturan Baznas dan kewajiban zakat penghasilan di Indonesia Simak analisis kritis lengkapnya
-- [Nishab, Regulasi, dan Realitas Ekonomi Indonesia - Kontroversi Kritis Zakat 7 Juta](https://dalam.web.id/opini-sosial/kontroversi-kritis-zakat-7-juta) : Kontroversi Zakat 7 Juta memicu perdebatan tentang nishab 85 gram emas aturan Baznas dan kewajiban zakat penghasilan di Indonesia Simak analisis kritis lengkapnya
 - [Waspadai Empat Isi Kerja Sama Indonesia–AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan?](https://dalam.web.id/opini-sosial/kerja-sama-indonesia-as-analisis-kritis) : terhadap narasi kerja sama Indonesia–AS, isu Board of Peace, impor besar, dan dampaknya pada kedaulatan ekonomi serta politik luar negeri Indonesia.
 - [Sesat Pikir Ketua Bappenas: 5 Dampak Serius Jika Makan Gratis Lebih Diprioritaskan dari Lapangan Kerja](https://dalam.web.id/opini-sosial/sesat-pikir-bappenas-makan-gratis-vs-lapangan-kerja) : Sesat Pikir Ketua Bappenas: Menyuapi Anak, Membiarkan Orangtuanya Menganggur — analisis kritis tentang prioritas Makan Bergizi Gratis dibanding penciptaan lapangan kerja di Indonesia.
 - [REZIM SAKAU: 7 Fakta Mengejutkan soal Utang, Impor, dan Ancaman Kedaulatan Ekonomi](https://dalam.web.id/opini-sosial/rezim-sakau-utang-impor-ancaman-ekonomi) : REZIM SAKAU: MEMBAYAR NAPAS BANGSA DENGAN UTANG DAN IMPOR — analisis kritis tentang lonjakan utang, gelombang impor, dan dampaknya terhadap industri serta kedaulatan ekonomi Indonesia.
 - [Rangkap Jabatan di Indonesia, Standar Ganda Hukum di Indonesia: 9 Fakta Tajam yang Mengungkap Realitas Ketimpangan Kekuasaan](https://dalam.web.id/opini-sosial/rangkap-jabatan-standar-ganda-hukum) : Rangkap Jabatan di Indonesia, Standar Ganda Hukum di Indonesia menjadi sorotan. regulasi, konflik kepentingan, dan dampaknya terhadap kepercayaan publik. Baca selengkapnya.
+- [Kontroversi Zakat 7 Juta: Analisis Kritis Nishab, Regulasi, dan Realitas Ekonomi Indonesia](https://dalam.web.id/opini-sosial/kontroversi-zakat-7-juta) : Kontroversi Zakat 7 Juta memicu perdebatan tentang nishab 85 gram emas aturan Baznas dan kewajiban zakat penghasilan di Indonesia. Simak analisis kritis lengkapnya.
+- [Nishab, Regulasi, dan Realitas Ekonomi Indonesia – Kontroversi Kritis Zakat 7 Juta](https://dalam.web.id/opini-sosial/kontroversi-kritis-zakat-7-juta) : Kontroversi Zakat 7 Juta memicu perdebatan tentang nishab 85 gram emas, aturan Baznas, dan kewajiban zakat penghasilan di Indonesia. Simak analisis kritis lengkapnya.
 - [Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026)](https://dalam.web.id/opini-sosial/doa-buruk-penguasa-zalim) : Bolehkah Berdoa Buruk Untuk Penguasa Zalim? Artikel ini membahas dalil Al-Qur’an, hadis, dan pendapat ulama tentang hukum mendoakan keburukan bagi pemimpin zalim secara lengkap dan bijak.
 - [Dampak Perjanjian ART: Mengapa Indonesia Tidak Menarik Pajak Digital dari Perusahaan AS?](https://dalam.web.id/opini-sosial/dampak-perjanjian-art-pajak-digital) : tentang keputusan Indonesia tidak memungut PPh dan Digital Service Tax dari perusahaan AS dalam perjanjian Agreement on Reciprocal Trade (ART). Apa dampaknya bagi ekonomi dan kedaulatan pajak? Simak ulasan lengkapnya.
 - [Jago Ngomong = Gak Bisa Kerja? Bongkar Mitos Pemimpin yang Cuma ‘Omon-Omon’](https://dalam.web.id/opini-sosial/jago-ngomong-vs-gak-bisa-kerja) : Jago Ngomong = Gak Bisa Kerja? Bongkar Mitos Pemimpin yang Cuma Omon-Omon dan pahami mengapa komunikasi justru menjadi senjata utama dalam kepemimpinan modern yang transparan dan bertanggung jawab.
