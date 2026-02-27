@@ -11,15 +11,6 @@ const cssFiles = [
   "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
 ];
 
-// 2. Mapping Manual - Urutkan dari yang paling spesifik (FontAwesome dulu!)
-// 1. Daftar file CSS (Hapus 'all.min.css' jika ada agar tidak bentrok dengan FA)
-const cssFiles = [
-  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", 
-  "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", 
-  "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", 
-  "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
-];
-
 // 2. Mapping Manual - Kita buat sangat agresif untuk FontAwesome
 const MANUAL_MAP = [
     // --- FONT AWESOME (Target Utama) ---
