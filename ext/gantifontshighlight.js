@@ -8,14 +8,24 @@ const DRY_RUN = args.includes("--dry-run");
 
 // 1. Daftar file CSS (Sama seperti acuan Perl)
 const cssFiles = [
-"atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
+  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
 ];
 
 // 2. Mapping Manual - Urutkan dari yang paling spesifik (FontAwesome dulu!)
+// 1. Daftar file CSS (Hapus 'all.min.css' jika ada agar tidak bentrok dengan FA)
+const cssFiles = [
+  "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", 
+  "highlight.js", "github-dark-dimmed.css", "github-dark.css", "github.css", 
+  "leaflet.css", "monokai.min.css", "prism-okaidia.min.css", 
+  "prism-tomorrow.min.css", "prism.min.css", "vs-dark.min.css"
+];
+
+// 2. Mapping Manual - Kita buat sangat agresif untuk FontAwesome
 const MANUAL_MAP = [
-    // --- FONT AWESOME (Capture cdnjs, v6, v5, query strings) ---
+    // --- FONT AWESOME (Target Utama) ---
+    // Kita tangkap semua URL yang mengandung 'font-awesome' atau 'all.min.css' atau 'all.css'
     { 
-        rx: /https?:\/\/[^"']+?\/(?:font-awesome|fontawesome|font\-awesome)\/.*?\/(?:all|fontawesome)(?:\.min)?\.css(?:\?[^"']*)?/gi, 
+        rx: /https?:\/\/[^"']+?\/(?:font-awesome|fontawesome|ajax\/libs\/font\-awesome)\/.*?\/(?:all|fontawesome)(?:\.min)?\.css(?:\?[^"']*)?/gi, 
         repl: "/ext/fontawesome.css" 
     },
     { 
@@ -23,15 +33,17 @@ const MANUAL_MAP = [
         repl: "/ext/fontawesome.css" 
     },
 
-    // --- PRISM CSS (Spesifik dulu baru umum) ---
+    // --- PRISM & OTHERS ---
     { rx: /https?:\/\/.*?prism\-vsc\-dark\-plus\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
     { rx: /https?:\/\/.*?prism\-twilight\.min\.css/gi, repl: "/ext/vs-dark.min.css" },
     { rx: /https?:\/\/.*?prism\-coy\.min\.css/gi, repl: "/ext/default.min.css" },
+    // Catch-all Prism yang lebih aman
     { rx: /https?:\/\/[^"']+?\/prism(?:\-[\w\-]+)?(?:\.min)?\.css/gi, repl: "/ext/default.min.css" }
 ];
 
-// Regex Otomatis - Diperbaiki agar mendukung subfolder di CDN (seperti /6.4.0/css/)
-const autoPattern = new RegExp(`(\\b(?:href|src)\\b\\s*=\\s*['"])\\s*https?:\\/\\/[^\\s"'<>]+?\\/([^\\s"'<>]+?\\/)?(${cssFiles.join("|").replace(/\./g, "\\.")})\\s*(['"])`, "gi");
+// Regex Otomatis - Kita buat lebih simpel tapi kuat
+// Menangkap: href/src="http...(apapun di tengah)...namafile.css"
+const autoPattern = new RegExp(`(\\b(?:href|src)\\b\\s*=\\s*['"])\\s*https?:\\/\\/[^"']+?\\/(${cssFiles.join("|").replace(/\./g, "\\.")})\\s*(['"])`, "gi");
 
 // Regex untuk membersihkan atribut integritas (Sama seperti Perl)
 const attrRegex = /\s+(?:integrity|crossorigin|referrertarget|referrerpolicy)(?:\s*=\s*(['"])[^'"]*?\1|(?=\s|>))/gi;
@@ -60,9 +72,8 @@ async function processFile(filePath) {
     }
 
     // B. Auto Mapping
-    content = content.replace(autoPattern, (match, head, mid, fileName, tail) => {
+   content = content.replace(autoPattern, (match, head, fileName, tail) => {
         replaceCount++;
-        // mid adalah subfolder CDN yang tertangkap regex baru
         return `${head}/ext/${fileName}${tail}`;
     });
 
