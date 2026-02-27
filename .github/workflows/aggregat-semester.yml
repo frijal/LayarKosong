@@ -25,7 +25,7 @@ jobs:
           cache: 'pip' # Opsional: mempercepat run berikutnya
       
       - name: ⚙️ Run Aggregation Script 
-        run: python3 ext/build_aggregation.py
+        run: python3 dapur/build_aggregation.py
 
       - name: 💾 Commit and Push Changes
         run: |
