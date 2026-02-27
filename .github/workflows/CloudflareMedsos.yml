@@ -56,7 +56,7 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bun run ext/bikin-rss-diskusi.ts
+        run: bun run dapur/bikin-rss-diskusi.ts
 
       - name: 🧹 1. Cloudflare Cleanup
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'cloudflare'
@@ -65,7 +65,7 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: bun run ext/rapikan-cloudflare.js
+        run: bun run dapur/rapikan-cloudflare.js
 
       - name: 🐘 2. Mastodon Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'mastodon'
@@ -73,7 +73,7 @@ jobs:
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        run: bun run ext/post-to-mastodon.js
+        run: bun run dapur/post-to-mastodon.js
 
       - name: ⚙️ 3. Threads Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'threads'
@@ -81,7 +81,7 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
-        run: bun run ext/post-to-threads.ts   
+        run: bun run dapur/post-to-threads.ts   
 
       - name: 🆕 4. LinkedIn Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
@@ -89,7 +89,7 @@ jobs:
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
-        run: bun run ext/post-to-linkedin.ts
+        run: bun run dapur/post-to-linkedin.ts
 
       - name: 🎨 5. Tumblr Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'tumblr'
@@ -99,20 +99,20 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
           TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
-        run: bun run ext/post-to-tumblr.js
+        run: bun run dapur/post-to-tumblr.js
 
       - name: 🦋 6. Discord Feed
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'discord'
         continue-on-error: true
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: bun run ext/post-to-discord.js
+        run: bun run dapur/post-to-discord.js
 
       - name: 🔵 7a. Process Facebook (Data Prep)
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         id: fb_info
         continue-on-error: true
-        run: bun run ext/post-to-facebook.js
+        run: bun run dapur/post-to-facebook.js
 
       - name: 🚀 7b. Send to Facebook Page
         if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != ''
@@ -130,7 +130,7 @@ jobs:
       - name: ⚙️ 8. Generate LLMs Index
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
         continue-on-error: true
-        run: bun run ext/generate_llms.js
+        run: bun run dapur/generate_llms.js
 
       - name: 🔍 9. IndexNow Sync
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
@@ -153,7 +153,7 @@ jobs:
 #          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
 #          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
 #        run: |
-#          bun run ext/post-to-bluesky.js
+#          bun run dapur/post-to-bluesky.js
 #          if [ -f /tmp/temp_new_url_bsky.txt ]; then
 #            cat /tmp/temp_new_url_bsky.txt >> mini/posted-bluesky.txt
 #          fi
@@ -164,7 +164,7 @@ jobs:
 #        env:
 #          LEMMY_USERNAME: ${{ secrets.LEMMY_USERNAME }}
 #          LEMMY_PASSWORD: ${{ secrets.LEMMY_PASSWORD }}
-#        run: bun run ext/post-to-lemmy.js
+#        run: bun run dapur/post-to-lemmy.js
 
       # =========================================================
       # 💾 FINAL COMMIT
