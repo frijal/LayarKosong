@@ -48,6 +48,11 @@
     "tumblr.js": "^5.0.1"
   },
   "devDependencies": {
-    "wrangler": "^4.69.0"
+    "wrangler": "^4.69.0",
+    "@types/bun": "latest"
+  },
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
