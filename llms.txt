@@ -5,7 +5,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.27
+document_version: 16.28
 last_updated: 2026-02-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -38,7 +38,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Februari 2026)
-> Menampilkan 994 artikel yang berhasil diindeks dalam versi 16.27.
+> Menampilkan 995 artikel yang berhasil diindeks dalam versi 16.28.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -549,6 +549,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [GNOME Resources 1.10: Monitor Sistem Modern dengan Dukungan NPU AMD Ryzen AI](https://dalam.web.id/sistem-terbuka/gnome-resources-110-monitor-sistem-npu-amd) : GNOME Resources 1.10 hadir dengan dukungan pemantauan NPU AMD Ryzen AI, pencarian proses dengan operator |, deteksi AppImage, dan pengurangan beban CPU. Simak ulasan lengkapnya.
 - [cpx: Alternatif Modern untuk cp di Linux yang Lebih Cepat dengan Rust](https://dalam.web.id/sistem-terbuka/cpx-pengganti-modern-cp-linux) : cpx adalah alat baris perintah berbasis Rust untuk menyalin file di Linux dengan fitur paralel, progress bar, resume, dan konfigurasi fleksibel. Simak ulasan lengkapnya.
 - [Distro Linux untuk Pengguna Windows: 5 Pilihan Andal dan Tanpa Rasa Sakit untuk Transisi Mulus](https://dalam.web.id/sistem-terbuka/distro-linux-untuk-pengguna-windows) : Bingung mau pindah dari Windows ke Linux? Tenang, ada banyak distro Linux yang mirip Windows dan mudah digunakan. Baca rekomendasi lengkapnya di sini!
 - [Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0: Evolusi dan Artinya](https://dalam.web.id/sistem-terbuka/linux-torvalds-konfirmasi-linux-70) : Linus Torvalds Konfirmasi Kernel Berikutnya Adalah Linux 7.0 setelah merilis Linux 6.19 stable. Simak dampaknya bagi developer, perusahaan, dan komunitas open-source.
