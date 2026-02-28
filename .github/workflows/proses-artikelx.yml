@@ -78,7 +78,7 @@ jobs:
             s/content=\"Temukan /content=\"/g;
 
             # Font Awesome class mapping (dipisah)
-            s/fa-regular fa-copyright/fa-brands fa-creative-commons-zero/g;
+            s/far fa-copyright/fa-brands fa-creative-commons-zero/g;
             s/fas fa-copyright/fa-brands fa-creative-commons-zero/g;
             s/\bfab /fa-brands /g;
             s/\bfar /fa-regular /g;
