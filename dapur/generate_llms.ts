@@ -103,7 +103,7 @@ const buildHtmlPage = (v: string, md: string) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layar Kosong - LLM Index v${newV}</title>
+    <title>Layar Kosong - LLM Index v${v}</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -152,7 +152,7 @@ const buildHtmlPage = (v: string, md: string) => `
     </style>
 </head>
 <body>
-    <h1>Layar Kosong - AI Data Index (v${newV})</h1>
+    <h1>Layar Kosong - AI Data Index (v${v})</h1>
 
     <div class="markdown-body">
 ${escapeHtmlForHtmlBlock(fullMarkdown)}
