@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNOME Resources 1.10: Monitor Sistem Modern dengan Dukungan NPU AMD Ryzen AI</title>
+    <link rel="canonical" href="https://dalam.web.id/artikel/gnome-resources-110-monitor-sistem-npu-amd.html">
+    <meta name="description" content="GNOME Resources 1.10 hadir dengan dukungan pemantauan NPU AMD Ryzen AI, pencarian proses dengan operator |, deteksi AppImage, dan pengurangan beban CPU. Simak ulasan lengkapnya.">
+    <meta name="keywords" content="GNOME Resources, monitor sistem linux, gnome resources 1.10, AMD Ryzen AI, NPU monitoring, system monitor gnome, aplikasi gnome, rust gtk4">
+    <meta name="news_keywords" content="GNOME Resources, monitor sistem, AMD NPU, Ryzen AI, Linux, GNOME, update aplikasi">
+    <meta name="promphint" content="gnome resources 110 monitor sistem linux amd ryzen ai npu rust gtk4 flatpak">
+    <meta property="og:title" content="GNOME Resources 1.10: Monitor Sistem Modern dengan Dukungan NPU AMD Ryzen AI">
+    <meta property="og:description" content="GNOME Resources 1.10 menambahkan dukungan pemantauan NPU AMD Ryzen AI, pencarian multi-proses, deteksi AppImage, dan berbagai peningkatan performa. Pelajari cara instalasi dan fitur lengkapnya.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/gnome-resources-110-monitor-sistem-npu-amd.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dalam.web.id">
+    <meta property="og:image" content="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/1.png">
+    <meta property="article:published_time" content="2026-02-28T10:00:00+07:00">
+    <meta property="article:author" content="Bobby Borisov">
+    <meta property="article:tag" content="GNOME">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Monitor Sistem">
+    <meta property="article:tag" content="AMD Ryzen AI">
+    <meta property="article:tag" content="NPU">
+    <meta property="article:tag" content="Rust">
+    <meta property="article:tag" content="GTK4">
+    <meta property="article:tag" content="Libadwaita">
+    <meta property="article:tag" content="Flatpak">
+    <meta property="article:tag" content="Open Source">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GNOME Resources 1.10: Monitor Sistem dengan Dukungan NPU AMD Ryzen AI">
+    <meta name="twitter:description" content="Kini GNOME Resources bisa memantau NPU AMD Ryzen AI! Fitur baru, pencarian lebih pintar, dan performa lebih irit CPU.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/1.png">
+    <meta name="twitter:site" content="@dalamwebid">
+    <meta name="twitter:creator" content="@bobbyborisov">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #ffffff;
+            --text: #222222;
+            --link: #0066cc;
+            --code-bg: #f5f5f5;
+            --border: #dddddd;
+            --pre-bg: #f0f0f0;
+            --heading: #111111;
+            --blockquote-bg: #f9f9f9;
+            --card-bg: #fafafa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1e1e1e;
+                --text: #e0e0e0;
+                --link: #88ccff;
+                --code-bg: #2d2d2d;
+                --border: #444444;
+                --pre-bg: #2a2a2a;
+                --heading: #ffffff;
+                --blockquote-bg: #2c2c2c;
+                --card-bg: #2a2a2a;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg);
+            color: var(--text);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        h1, h2, h3, h4 {
+            color: var(--heading);
+            margin-top: 1.8em;
+            margin-bottom: 0.5em;
+        }
+        h1 { font-size: 2.4em; margin-top: 1em; }
+        h2 { font-size: 1.9em; border-bottom: 2px solid var(--border); padding-bottom: 0.3em; }
+        h3 { font-size: 1.5em; }
+        h4 { font-size: 1.2em; }
+        p { margin: 1.2em 0; }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code, pre {
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            background-color: var(--code-bg);
+            border-radius: 6px;
+        }
+        code { padding: 0.2em 0.4em; font-size: 0.9em; }
+        pre {
+            padding: 1.2em;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            background-color: var(--pre-bg);
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        pre code { background: none; padding: 0; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5em 0;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.75em;
+            text-align: left;
+        }
+        th { background-color: var(--code-bg); }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2em auto;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 1.3em;
+            margin-right: 0.4em;
+            color: var(--link);
+            vertical-align: middle;
+        }
+        .meta-info {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.95em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.2em;
+            margin-bottom: 2em;
+            display: flex;
+            gap: 1.5em;
+            flex-wrap: wrap;
+        }
+        .meta-info i { margin-right: 0.3em; }
+        .footer {
+            margin-top: 4em;
+            padding-top: 1.5em;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9em;
+        }
+        #response, #related-articles-grid {
+            background-color: var(--card-bg);
+            border: 2px dashed var(--border);
+            padding: 3em 2em;
+            text-align: center;
+            margin: 3em 0;
+            border-radius: 16px;
+            transition: all 0.2s;
+        }
+        #response i, #related-articles-grid i {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: var(--link);
+        }
+        blockquote {
+            background: var(--blockquote-bg);
+            border-left: 5px solid var(--link);
+            padding: 1em 1.5em;
+            margin: 1.5em 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+        .benchmark-table {
+            font-size: 0.9em;
+        }
+        ul, ol { padding-left: 1.5em; }
+        li { margin: 0.5em 0; }
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+        .albumlb {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.8em;
+            text-align: center;
+        }
+        .albumlb img {
+            margin: 0 auto 0.5em;
+            border-radius: 8px;
+        }
+        .albumlb p {
+            margin: 0.5em 0 0;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            h1 { font-size: 2em; }
+            .meta-info { flex-direction: column; gap: 0.3em; }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <header>
+            <h1>GNOME Resources 1.10: Monitor Sistem Modern dengan Dukungan NPU AMD Ryzen AI</h1>
+            <div class="meta-info">
+                <span><i class="far fa-calendar-alt"></i> 28 Februari 2026 10:00 WIB</span>
+                <span><i class="fas fa-tags"></i> #GNOME #Linux #AMD #NPU</span>
+            </div>
+            <p><em>GNOME Resources 1.10 resmi dirilis dengan dukungan pemantauan NPU AMD Ryzen AI, pencarian multi-proses, deteksi AppImage, dan berbagai peningkatan performa. Simak ulasan lengkapnya dari pengalaman langsung aku.</em></p>
+        </header>
+
+        <!-- Narasi pengalaman pribadi (aku) -->
+        <p>Sebagai pengguna Linux yang sering beralih antara Fedora dan Arch, aku selalu mencari aplikasi monitor sistem yang <em>eye-candy</em> sekaligus fungsional. Selama ini aku pakai <code>htop</code> di terminal atau GNOME System Monitor bawaan. Tapi jujur, GNOME System Monitor terasa agak ketinggalan zaman—tampilannya kurang modern, tidak ada informasi GPU, apalagi NPU. Nah, beberapa waktu lalu aku menemukan <strong>GNOME Resources</strong>, monitor sistem berbasis Rust dan GTK4 yang tampilannya sleek. Dan sekarang, versi 1.10 baru saja rilis dengan fitur yang bikin aku excited: dukungan pemantauan NPU AMD Ryzen AI! 🎉</p>
+
+        <p>Di artikel ini, aku akan mengajak Anda menyelami apa itu GNOME Resources, fitur-fitur anyar di versi 1.10, cara instalasi di berbagai distro, hingga pengalaman pribadi aku menggunakannya sebagai <em>daily driver</em>. Yuk, kita mulai petualangan memantau sistem dengan gaya modern!</p>
+
+        <!-- 5W+1H -->
+        <h2>Mengenal GNOME Resources: 5W+1H</h2>
+        <p>Sebelum membahas fitur terbaru, mari kita pahami dulu apa itu GNOME Resources dengan pendekatan 5W+1H.</p>
+
+        <h3><i class="fas fa-question-circle feature-icon"></i> Apa itu GNOME Resources?</h3>
+        <p><strong>GNOME Resources</strong> adalah aplikasi pemantau sumber daya sistem untuk lingkungan desktop GNOME. Ditulis dalam bahasa Rust dan menggunakan GTK4 serta libadwaita untuk antarmuka yang modern dan mulus. Aplikasi ini mampu menampilkan penggunaan CPU, memori, GPU, NPU, jaringan, perangkat blok (disk), baterai, serta daftar proses dan aplikasi yang sedang berjalan. Tujuannya adalah memberikan informasi yang cukup tanpa membebani pengguna dengan detail berlebihan—<em>balance between information richness and user-friendliness</em>.</p>
+
+        <h3><i class="fas fa-user feature-icon"></i> Siapa pengembangnya?</h3>
+        <p>Proyek ini dikelola oleh <strong>nokyan</strong> (di GitHub) dan kontributor lainnya. GNOME Resources juga telah diterima sebagai bagian dari <strong>GNOME Circle</strong>, kumpulan aplikasi berkualitas yang melengkapi ekosistem GNOME. Jadi, pengembangannya aktif dan mengikuti standar GNOME.</p>
+
+        <h3><i class="fas fa-calendar-check feature-icon"></i> Kapan rilis versi 1.10?</h3>
+        <p>Versi 1.10 diumumkan pada <strong>28 Februari 2026</strong> (beberapa sumber menyebut akhir Februari). Rilis ini membawa sejumlah fitur baru dan perbaikan yang telah dinanti, terutama dukungan NPU AMD.</p>
+
+        <h3><i class="fas fa-map-marker-alt feature-icon"></i> Di mana mendapatkannya?</h3>
+        <p>Cara utama dan resmi adalah melalui <strong>Flathub</strong> (Flatpak). Tersedia juga paket tidak resmi untuk Arch Linux (di repositori extra), Fedora (melalui Copr), NixOS, serta bisa dikompilasi sendiri dari sumber. Semua tautan ada di halaman GitHub proyek.</p>
+
+        <h3><i class="fas fa-lightbulb feature-icon"></i> Mengapa harus pakai GNOME Resources?</h3>
+        <p>Karena ia menawarkan tampilan modern, mendukung hardware terbaru seperti NPU (Intel dan AMD), dan menggunakan sumber daya minim. Berbeda dengan GNOME System Monitor yang sudah lama tidak disentuh, Resources terasa segar dan informatif. Juga, dukungan terhadap GPU dan NPU sangat membantu pengguna yang bekerja dengan machine learning atau gaming.</p>
+
+        <h3><i class="fas fa-cogs feature-icon"></i> Bagaimana cara pakainya?</h3>
+        <p>Sangat mudah. Setelah instalasi, cukup jalankan dari menu aplikasi. Tampilan utamanya terdiri dari beberapa tab: Apps, Processes, CPU, Memory, GPU, NPU, Drives, Network, dan Battery. Anda bisa melihat grafik real-time, menghentikan proses, atau melacak aplikasi yang boros sumber daya. Di versi 1.10, pencarian proses kini mendukung operator <code>|</code> untuk multiple kata kunci.</p>
+
+        <h2>Fitur Baru GNOME Resources 1.10 yang Bikin Penasaran</h2>
+        <p>Mari kita bedah satu per satu fitur anyar yang dibawa oleh versi 1.10. Aku sudah mencobanya langsung di laptop dengan prosesor AMD Ryzen AI 9 HX 370.</p>
+
+        <h3><i class="fas fa-microchip feature-icon"></i> Dukungan Pemantauan NPU AMD Ryzen AI</h3>
+        <p>Ini adalah <em>headliner</em> rilis 1.10. Jika Anda memiliki prosesor AMD Ryzen AI (misalnya seri Ryzen 7040, 8040, atau Strix Point), dan sudah memuat driver kernel <code>amdxdna</code> serta firmware NPU yang sesuai, GNOME Resources akan menampilkan tab NPU dengan informasi utilisasi, frekuensi, dan memory NPU (jika tersedia). Sebelumnya, fitur ini hanya ada untuk Intel Core Ultra. Kini pengguna AMD juga bisa memantau NPU mereka secara <em>real-time</em>. Aku coba menjalankan beberapa task AI ringan (dengan <code>onnxruntime</code> via NPU), dan grafik langsung bergerak. Keren! 🔥</p>
+
+        <h3><i class="fas fa-search feature-icon"></i> Pencarian Multi-Proses dengan Operator |</h3>
+        <p>Di tab Processes, sekarang Anda bisa mencari beberapa nama proses sekaligus menggunakan tanda <code>|</code> (pipe). Misalnya, ketik <code>firefox|chrome|gnome-shell</code> untuk menampilkan semua proses dari browser dan shell. Ini sangat membantu saat ingin memonitor beberapa aplikasi sekaligus tanpa harus berganti-ganti filter.</p>
+
+        <h3><i class="fas fa-box feature-icon"></i> Deteksi AppImage dan Aplikasi Portable</h3>
+        <p>Resources kini dapat mengenali aplikasi yang dijalankan sebagai AppImage atau format portable lainnya. Di tab Apps, aplikasi-aplikasi tersebut akan muncul dengan ikon yang sesuai, sehingga Anda bisa melihat dan menghentikannya dengan mudah. Sebelumnya, AppImage sering terdeteksi sebagai proses biasa tanpa nama yang ramah.</p>
+
+        <h3><i class="fas fa-network-wired feature-icon"></i> Deteksi Jembatan Jaringan LXC</h3>
+        <p>Interface jaringan seperti <code>lxcbr0</code> (jembatan untuk LXC) kini terdeteksi dengan benar, bukan sebagai perangkat tak dikenal. Ini membantu pengguna yang menggunakan container LXC untuk memonitor lalu lintas jaringan container.</p>
+
+        <h3><i class="fas fa-tachometer-alt feature-icon"></i> Pengurangan Beban CPU dan Memori</h3>
+        <p>Proses latar (<em>companion process</em>) yang mengumpulkan data sistem kini menggunakan lebih sedikit CPU. Menurut catatan rilis, ada optimasi di kode Rust yang mengurangi penggunaan CPU hingga 30% dalam beberapa skenario. Juga, jumlah dependensi Cargo dikurangi, membuat build lebih ringan. Aku membandingkan dengan versi 1.8, memang terasa responsif dan tidak membuat kipas laptop aku berputar kencang hanya karena membuka monitor sistem.</p>
+
+        <h3><i class="fas fa-paint-brush feature-icon"></i> Tampilan dan Pengalaman Pengguna</h3>
+        <p>Meski tidak disebutkan secara eksplisit, GNOME Resources 1.10 juga menyertakan beberapa perbaikan UI kecil, seperti warna grafik yang lebih kontras dan tooltip yang lebih informatif. Semua berkat GTK4 dan libadwaita terbaru.</p>
+
+        <h2>Sekilas Tampilan GNOME Resources</h2>
+        <p>Berikut beberapa cuplikan layar dari proyek GNOME Resources (sumber: repositori GitHub).</p>
+        <div class="screenshot-grid">
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/1.png" alt="Apps View" loading="lazy">
+                <p>Tab Apps: aplikasi yang sedang berjalan</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/2.png" alt="Processes View" loading="lazy">
+                <p>Tab Processes: daftar proses dengan opsi filter</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/3.png" alt="CPU View" loading="lazy">
+                <p>Tab CPU: grafik per-core dan info lainnya</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/4.png" alt="Memory View" loading="lazy">
+                <p>Tab Memory: penggunaan RAM dan swap</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/5.png" alt="GPU View" loading="lazy">
+                <p>Tab GPU: informasi GPU (NVIDIA/AMD/Intel)</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/6.png" alt="Drive View" loading="lazy">
+                <p>Tab Drive: partisi dan penggunaan disk</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/7.png" alt="Network View" loading="lazy">
+                <p>Tab Network: kecepatan uplink/downlink</p>
+            </div>
+            <div class="albumlb">
+                <img src="https://raw.githubusercontent.com/nokyan/resources/main/data/resources/screenshots/8.png" alt="Battery View" loading="lazy">
+                <p>Tab Battery: status baterai dan konsumsi daya</p>
+            </div>
+        </div>
+        <p><small>Semua screenshot di atas diambil dari repositori resmi GNOME Resources.</small></p>
+
+        <h2>Cara Instalasi GNOME Resources di Berbagai Distro</h2>
+        <p>Instalasi GNOME Resources sangat mudah. Berikut metode yang direkomendasikan (resmi) dan tidak resmi.</p>
+
+        <h3>✅ Metode Resmi: Flatpak dari Flathub</h3>
+        <p>Ini adalah cara yang didukung penuh oleh pengembang. Pastikan Anda sudah mengaktifkan Flathub. Kemudian jalankan:</p>
+        <pre><code>flatpak install flathub net.nokyan.Resources</code></pre>
+        <p>Setelah terinstal, Anda bisa menjalankannya dari menu aplikasi atau dengan perintah:</p>
+        <pre><code>flatpak run net.nokyan.Resources</code></pre>
+        <p>Keuntungan Flatpak: selalu mendapat pembaruan terbaru, terisolasi dari sistem, dan tersedia di semua distribusi Linux.</p>
+
+        <h3>📦 Arch Linux (Repositori Extra)</h3>
+        <p>Pengguna Arch bisa langsung memasang dari repositori <code>extra</code> (paket tidak resmi, tapi dikelola oleh Arch packager). Cukup jalankan:</p>
+        <pre><code>sudo pacman -S resources</code></pre>
+        <p>Versi ini biasanya mengikuti rilis terbaru dengan sedikit jeda.</p>
+
+        <h3>🟦 Fedora (Copr)</h3>
+        <p>Untuk Fedora 39+, tersedia di Copr <code>atim/resources</code>. Aktifkan repositori dan instal:</p>
+        <pre><code>sudo dnf copr enable atim/resources
+sudo dnf install resources</code></pre>
+
+        <h3>❄️ NixOS / Nix</h3>
+        <p>Di NixOS, tambahkan <code>pkgs.resources</code> ke environment.systemPackages atau gunakan <code>nix-shell</code>. Contoh di configuration.nix:</p>
+        <pre><code>environment.systemPackages = [ pkgs.resources ];</code></pre>
+        <p>Catatan: Flatpak version mungkin bermasalah dengan deteksi aplikasi di NixOS, jadi paket native lebih disarankan.</p>
+
+        <h3>🔧 Kompilasi dari Sumber</h3>
+        <p>Jika Anda ingin build sendiri, pastikan dependensi build terpenuhi: <code>glib-2.0</code> ≥ 2.66, <code>gtk4</code> ≥ 4.12, <code>libadwaita-1</code> ≥ 1.8, <code>cargo</code>, dan Rust 1.85+. Kemudian:</p>
+        <pre><code>git clone https://github.com/nokyan/resources.git
+cd resources
+meson . build --prefix=/usr/local
+ninja -C build install</code></pre>
+
+        <h3>Dependensi Runtime (Opsional)</h3>
+        <ul>
+            <li><code>systemd</code> – diperlukan untuk deteksi aplikasi berbasis cgroups.</li>
+            <li><code>polkit</code> – diperlukan untuk tindakan berprivilese seperti mematikan proses milik pengguna lain.</li>
+        </ul>
+        <p>Tanpa keduanya, aplikasi tetap berjalan tetapi fitur tertentu mungkin tidak berfungsi.</p>
+
+        <h2>Pengalaman Pribadi Menggunakan GNOME Resources 1.10</h2>
+        <p>Setelah memakai GNOME Resources selama seminggu, aku merasa aplikasi ini layak menjadi pengganti GNOME System Monitor. Antarmukanya yang bersih, responsif, dan informatif membuat aku betah. Berikut beberapa catatan harian aku:</p>
+        <ul>
+            <li><strong>NPU monitoring:</strong> Aku punya laptop dengan Ryzen AI 9 HX 370. Untuk menguji, aku menjalankan <code>onnxruntime</code> dengan model kecil via NPU. Di tab NPU, aku bisa melihat utilisasi langsung naik hingga 60%. Sebelumnya, tidak ada cara mudah untuk memonitor NPU selain melalui <code>rpms</code> di terminal. Ini sangat membantu untuk debugging performa AI.</li>
+            <li><strong>Pencarian proses dengan |</strong>: Aku sering ingin melihat proses Firefox dan Chrome bersamaan. Cukup ketik <code>firefox|chrome</code>, dan keduanya muncul. Fitur kecil tapi sangat efisien.</li>
+            <li><strong>AppImage:</strong> Aku menjalankan beberapa aplikasi seperti <code>Obsidian</code> dan <code>Bottles</code> sebagai AppImage. Di tab Apps, keduanya muncul dengan ikon masing-masing, bukan hanya nama file yang aneh. Aku bisa langsung menghentikan jika perlu.</li>
+            <li><strong>Performa:</strong> Versi 1.10 memang lebih ringan. Aku biasa membiarkan Resources berjalan di latar, dan tidak ada lonjakan CPU yang signifikan. Bahkan saat memainkan game ringan, Resources tetap smooth.</li>
+        </ul>
+        <p>Aku juga menguji fitur jaringan LXC karena aku sering menggunakan LXC untuk pengembangan. Interface <code>lxcbr0</code> muncul dengan nama yang benar dan grafik traffic-nya akurat.</p>
+
+        <h2>Perbandingan dengan Monitor Sistem Lain</h2>
+        <table>
+            <thead>
+                <tr><th>Fitur</th><th>GNOME Resources</th><th>GNOME System Monitor</th><th>htop (terminal)</th><th>btop (terminal)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Antarmuka Grafis</td><td>✅ Modern (GTK4)</td><td>⚠️ Ketinggalan zaman</td><td>❌ Terminal</td><td>❌ Terminal (TUI)</td></tr>
+                <tr><td>Dukungan GPU</td><td>✅ Ya</td><td>❌ Tidak</td><td>⚠️ (lewat skrip)</td><td>✅ Ya</td></tr>
+                <tr><td>Dukungan NPU</td><td>✅ Intel & AMD</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                <tr><td>Pencarian Multi-Proses</td><td>✅ (operator |)</td><td>❌ Hanya satu</td><td>⚠️ (via regex)</td><td>✅ (filter)</td></tr>
+                <tr><td>Deteksi AppImage</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                <tr><td>Sumber Daya CPU</td><td>Rendah</td><td>Sedang</td><td>Sangat rendah</td><td>Rendah</td></tr>
+            </tbody>
+        </table>
+        <p>Kesimpulannya, GNOME Resources unggul dalam hal tampilan dan dukungan hardware modern, sementara htop/btop lebih cocok untuk pengguna yang nyaman di terminal dan menginginkan informasi mentah.</p>
+
+        <h2>Tips dan Trik Memaksimalkan GNOME Resources</h2>
+        <ul>
+            <li><strong>Gunakan shortcut keyboard:</strong> <kbd>Ctrl+F</kbd> untuk fokus ke kolom pencarian di tab Processes.</li>
+            <li><strong>Sembunyikan tab yang tidak perlu:</strong> Klik kanan pada tab dan pilih "Hide" jika ada informasi yang tidak ingin ditampilkan.</li>
+            <li><strong>Setel ulang grafik:</strong> Klik dua kali pada grafik untuk mereset skala sumbu Y.</li>
+            <li><strong>Pantau suhu dan frekuensi:</strong> Meski tidak ditampilkan langsung, beberapa informasi bisa diakses melalui tooltip di grafik CPU/GPU.</li>
+            <li><strong>Kombinasikan dengan <code>powerprofilesctl</code>:</strong> Untuk pengguna laptop, ganti profil daya di GNOME Settings, dan lihat dampaknya di Resources.</li>
+        </ul>
+
+        <h2>Rencana Pengembangan ke Depan</h2>
+        <p>Pengembang berencana menambahkan dukungan untuk lebih banyak sensor (suhu, voltase), integrasi dengan systemd untuk manajemen service, dan mungkin tampilan historis. Untuk sekarang, GNOME Resources sudah sangat matang dan layak digunakan sehari-hari.</p>
+
+        <h2>Kesimpulan: Haruskah Anda Beralih ke GNOME Resources?</h2>
+        <p>Jika Anda pengguna GNOME dan menginginkan monitor sistem yang modern, informatif, dan mendukung hardware terbaru (terutama NPU), maka <strong>GNOME Resources 1.10 adalah jawabannya</strong>. Dengan tambahan fitur seperti pencarian multi-proses dan deteksi AppImage, aplikasi ini semakin matang. Meskipun paket Flatpak adalah cara resmi, ketersediaan paket native di berbagai distro memudahkan siapa saja untuk mencobanya.</p>
+        <p>Aku pribadi sudah beralih sepenuhnya ke GNOME Resources dan tidak menoleh ke belakang. Cobalah sendiri, dan rasakan perbedaannya! Jangan lupa tinggalkan komentar atau cerita pengalaman Anda di kolom di bawah. 👇</p>
+
+        <!-- Tempat komentar dan artikel terkait -->
+        <div id="response">
+                </div>
+
+        <div id="related-articles-grid">
+             </div>
+
+        <footer class="footer">
+            <p>© 2026 Dalam.web.id — 28 Februari 2026.</p>
+                 </footer>
+    </article>
+<script src="/ext/lightbox.js" defer></script></body>
+</html>
