@@ -1,213 +1,422 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 • Halaman Tidak Ditemukan</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan</title>
     <style>
-      :root {
-        color-scheme: dark;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      * {
-        box-sizing: border-box;
-      }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        display: grid;
-        place-items: center;
-        padding: 1rem;
-        background: radial-gradient(circle at top, #1e293b 0%, #020617 60%, #020617 100%);
-        color: #e2e8f0;
-      }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.6s ease-out;
+        }
 
-      .card {
-        width: min(100%, 640px);
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        border-radius: 1rem;
-        padding: clamp(1rem, 4vw, 2rem);
-        background: rgba(15, 23, 42, 0.8);
-        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
-        backdrop-filter: blur(8px);
-      }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      h1 {
-        margin: 0;
-        font-size: clamp(1.5rem, 5vw, 2rem);
-      }
+        .error-code {
+            font-size: clamp(100px, 20vw, 180px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(233, 69, 96, 0.3);
+            margin-bottom: 10px;
+        }
 
-      .desc {
-        margin: 0.5rem 0 1.5rem;
-        color: #94a3b8;
-        font-size: clamp(0.9rem, 3vw, 1rem);
-      }
+        .error-title {
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
 
-      .grid {
-        display: grid;
-        gap: 0.75rem;
-      }
+        .error-message {
+            font-size: clamp(14px, 3vw, 18px);
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
 
-      .item {
-        display: grid;
-        grid-template-columns: 2rem 1fr;
-        align-items: center;
-        gap: 0.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 0.75rem;
-        padding: 0.75rem;
-        background: rgba(30, 41, 59, 0.45);
-      }
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-      .icon {
-        display: grid;
-        place-items: center;
-        font-size: 1.35rem;
-      }
+        .info-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e94560;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-      .label {
-        color: #94a3b8;
-        font-size: 0.82rem;
-        margin-bottom: 0.1rem;
-      }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
 
-      .value {
-        font-size: clamp(0.9rem, 3.3vw, 1.05rem);
-        word-break: break-word;
-      }
+        .info-item {
+            text-align: center;
+        }
 
-      .countdown {
-        margin-top: 1rem;
-        font-size: 0.95rem;
-        color: #cbd5e1;
-      }
+        .info-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            word-break: break-word;
+        }
+
+        .location-loading {
+            color: #888;
+            font-style: italic;
+        }
+
+        .countdown-container {
+            margin-top: 25px;
+        }
+
+        .countdown-text {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-bottom: 15px;
+        }
+
+        .countdown-number {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 auto;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(233, 69, 96, 0);
+            }
+        }
+
+        .redirect-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid #e94560;
+            color: #e94560;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .redirect-link:hover {
+            background: #e94560;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .info-card {
+                padding: 20px 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .info-item {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                gap: 15px;
+            }
+
+            .info-icon {
+                margin-bottom: 0;
+                font-size: 24px;
+            }
+
+            .info-content {
+                flex: 1;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+                color: #333;
+            }
+
+            .error-title {
+                color: #1a1a2e;
+            }
+
+            .error-message {
+                color: #666;
+            }
+
+            .info-card {
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .info-value {
+                color: #1a1a2e;
+            }
+
+            .countdown-text {
+                color: #666;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <main class="card" aria-live="polite">
-      <h1>404 • Halaman Tidak Ditemukan</h1>
-      <p class="desc">Kamu akan diarahkan ke <strong>/sitemap</strong> dalam 4 detik.</p>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Halaman Tidak Ditemukan</h1>
+        <p class="error-message">
+            Maaf, halaman yang Anda cari tidak dapat ditemukan. 
+            Anda akan dialihkan ke sitemap dalam beberapa detik.
+        </p>
 
-      <section class="grid">
-        <article class="item">
-          <div class="icon" id="browserIcon">🌐</div>
-          <div>
-            <div class="label">Browser</div>
-            <div class="value" id="browserName">Mendeteksi...</div>
-          </div>
-        </article>
+        <div class="info-card">
+            <div class="info-title">Informasi Perangkat</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">🌐</div>
+                    <div class="info-content">
+                        <div class="info-label">Browser</div>
+                        <div class="info-value" id="browser">Mendeteksi...</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">💻</div>
+                    <div class="info-content">
+                        <div class="info-label">Sistem Operasi</div>
+                        <div class="info-value" id="os">Mendeteksi...</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <div class="info-label">Lokasi</div>
+                        <div class="info-value" id="location">
+                            <span class="location-loading">Mendeteksi...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <article class="item">
-          <div class="icon" id="osIcon">💻</div>
-          <div>
-            <div class="label">Operating System</div>
-            <div class="value" id="osName">Mendeteksi...</div>
-          </div>
-        </article>
+        <div class="countdown-container">
+            <p class="countdown-text">Mengalihkan ke sitemap dalam</p>
+            <div class="countdown-number" id="countdown">4</div>
+        </div>
 
-        <article class="item">
-          <div class="icon" id="countryFlag">🏳️</div>
-          <div>
-            <div class="label">Kota & Negara (berdasarkan IP)</div>
-            <div class="value" id="locationText">Mengambil data IP...</div>
-          </div>
-        </article>
-      </section>
-
-      <p class="countdown" id="countdownText">Redirect dalam 4 detik...</p>
-    </main>
+        <a href="/sitemap" class="redirect-link">Ke Sitemap Sekarang</a>
+    </div>
 
     <script>
-      const browserNameEl = document.getElementById('browserName');
-      const browserIconEl = document.getElementById('browserIcon');
-      const osNameEl = document.getElementById('osName');
-      const osIconEl = document.getElementById('osIcon');
-      const countryFlagEl = document.getElementById('countryFlag');
-      const locationTextEl = document.getElementById('locationText');
-      const countdownTextEl = document.getElementById('countdownText');
+        // Deteksi Browser
+        function detectBrowser() {
+            const userAgent = navigator.userAgent;
+            let browserName = "Browser Tidak Dikenal";
+            let browserIcon = "🌐";
 
-      function getBrowserInfo() {
-        const ua = navigator.userAgent;
+            if (userAgent.match(/chrome|chromium|crios/i)) {
+                browserName = "Google Chrome";
+                browserIcon = "🧭";
+            } else if (userAgent.match(/firefox|fxios/i)) {
+                browserName = "Mozilla Firefox";
+                browserIcon = "🦊";
+            } else if (userAgent.match(/safari/i)) {
+                browserName = "Safari";
+                browserIcon = "🧭";
+            } else if (userAgent.match(/edg/i)) {
+                browserName = "Microsoft Edge";
+                browserIcon = "🌊";
+            } else if (userAgent.match(/opera|opr/i)) {
+                browserName = "Opera";
+                browserIcon = "🔴";
+            } else if (userAgent.match(/samsungbrowser/i)) {
+                browserName = "Samsung Browser";
+                browserIcon = "📱";
+            }
 
-        if (ua.includes('Edg/')) return { name: 'Microsoft Edge', icon: '🧭' };
-        if (ua.includes('OPR/') || ua.includes('Opera')) return { name: 'Opera', icon: '🅾️' };
-        if (ua.includes('Firefox/')) return { name: 'Mozilla Firefox', icon: '🦊' };
-        if (ua.includes('Chrome/') && !ua.includes('Edg/')) return { name: 'Google Chrome', icon: '🔵' };
-        if (ua.includes('Safari/') && !ua.includes('Chrome/')) return { name: 'Safari', icon: '🧭' };
-
-        return { name: 'Browser tidak dikenali', icon: '🌐' };
-      }
-
-      function getOSInfo() {
-        const ua = navigator.userAgent;
-
-        if (ua.includes('Windows')) return { name: 'Windows', icon: '🪟' };
-        if (ua.includes('Mac OS X')) return { name: 'macOS', icon: '🍎' };
-        if (ua.includes('Android')) return { name: 'Android', icon: '🤖' };
-        if (ua.includes('iPhone') || ua.includes('iPad')) return { name: 'iOS', icon: '📱' };
-        if (ua.includes('Linux')) return { name: 'Linux', icon: '🐧' };
-
-        return { name: 'OS tidak dikenali', icon: '💻' };
-      }
-
-      function countryCodeToFlag(code) {
-        if (!code || code.length !== 2) return '🏳️';
-
-        return String.fromCodePoint(
-          ...code
-            .toUpperCase()
-            .split('')
-            .map((char) => 127397 + char.charCodeAt())
-        );
-      }
-
-      async function loadLocationByIP() {
-        try {
-          const response = await fetch('https://ipapi.co/json/');
-          if (!response.ok) throw new Error('ipapi gagal');
-
-          const data = await response.json();
-          const city = data.city || 'Kota tidak diketahui';
-          const countryName = data.country_name || 'Negara tidak diketahui';
-          const countryCode = data.country_code || '';
-
-          locationTextEl.textContent = `${city}, ${countryName}`;
-          countryFlagEl.textContent = countryCodeToFlag(countryCode);
-        } catch (_error) {
-          locationTextEl.textContent = 'Lokasi tidak dapat dimuat dari IP.';
-          countryFlagEl.textContent = '🏳️';
+            return { name: browserName, icon: browserIcon };
         }
-      }
 
-      function startRedirectCountdown() {
-        let remaining = 4;
-        countdownTextEl.textContent = `Redirect dalam ${remaining} detik...`;
+        // Deteksi Sistem Operasi
+        function detectOS() {
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            let osName = "OS Tidak Dikenal";
+            let osIcon = "💻";
 
-        const timer = setInterval(() => {
-          remaining -= 1;
+            if (userAgent.match(/Windows NT 10.0/i)) {
+                osName = "Windows 10/11";
+                osIcon = "🪟";
+            } else if (userAgent.match(/Windows NT 6.3/i)) {
+                osName = "Windows 8.1";
+                osIcon = "🪟";
+            } else if (userAgent.match(/Windows NT 6.2/i)) {
+                osName = "Windows 8";
+                osIcon = "🪟";
+            } else if (userAgent.match(/Windows NT 6.1/i)) {
+                osName = "Windows 7";
+                osIcon = "🪟";
+            } else if (userAgent.match(/Mac OS X|macOS/i)) {
+                osName = "macOS";
+                osIcon = "🍎";
+            } else if (userAgent.match(/iPhone|iPad|iPod/i)) {
+                osName = "iOS";
+                osIcon = "📱";
+            } else if (userAgent.match(/Android/i)) {
+                osName = "Android";
+                osIcon = "🤖";
+            } else if (userAgent.match(/Linux/i)) {
+                osName = "Linux";
+                osIcon = "🐧";
+            }
 
-          if (remaining <= 0) {
-            clearInterval(timer);
-            window.location.href = '/sitemap';
-            return;
-          }
+            return { name: osName, icon: osIcon };
+        }
 
-          countdownTextEl.textContent = `Redirect dalam ${remaining} detik...`;
-        }, 1000);
-      }
+        // Deteksi Lokasi menggunakan IP Geolocation API
+        async function detectLocation() {
+            const locationElement = document.getElementById('location');
+            
+            try {
+                // Menggunakan ipapi.co (free tier)
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                if (data.city && data.country_name) {
+                    locationElement.textContent = `${data.city}, ${data.country_name}`;
+                } else if (data.country_name) {
+                    locationElement.textContent = data.country_name;
+                } else {
+                    locationElement.textContent = "Tidak dapat terdeteksi";
+                }
+            } catch (error) {
+                // Fallback: coba dengan ipinfo.io
+                try {
+                    const response = await fetch('https://ipinfo.io/json');
+                    const data = await response.json();
+                    
+                    if (data.city && data.country) {
+                        locationElement.textContent = `${data.city}, ${data.country}`;
+                    } else if (data.country) {
+                        locationElement.textContent = data.country;
+                    } else {
+                        locationElement.textContent = "Tidak dapat terdeteksi";
+                    }
+                } catch (fallbackError) {
+                    locationElement.textContent = "Tidak tersedia";
+                }
+            }
+        }
 
-      const browser = getBrowserInfo();
-      browserNameEl.textContent = browser.name;
-      browserIconEl.textContent = browser.icon;
+        // Countdown dan Redirect
+        function startCountdown() {
+            let seconds = 4;
+            const countdownElement = document.getElementById('countdown');
+            
+            const interval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = '/sitemap';
+                }
+            }, 1000);
+        }
 
-      const os = getOSInfo();
-      osNameEl.textContent = os.name;
-      osIconEl.textContent = os.icon;
-
-      loadLocationByIP();
-      startRedirectCountdown();
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tampilkan informasi browser
+            const browser = detectBrowser();
+            document.getElementById('browser').textContent = browser.name;
+            
+            // Tampilkan informasi OS
+            const os = detectOS();
+            document.getElementById('os').textContent = os.name;
+            
+            // Deteksi lokasi
+            detectLocation();
+            
+            // Mulai countdown
+            startCountdown();
+        });
     </script>
-  </body>
+</body>
 </html>
