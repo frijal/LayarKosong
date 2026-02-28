@@ -65,7 +65,7 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: bun run dapur/rapikan-cloudflare.js
+        run: bun run dapur/rapikan-cloudflare.ts
 
       - name: 🐘 2. Mastodon Autopost
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'mastodon'
