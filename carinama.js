@@ -1,61 +1,81 @@
+#!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
 
 // --- KONFIGURASI ---
-// Ganti baris SEARCH_QUERY menjadi:
-const SEARCH_QUERY = process.argv[2]; 
+const SEARCH_QUERY = process.argv[2];
 if (!SEARCH_QUERY) {
-    console.error("Tolong masukkan kata kunci! Contoh: node cari.js logo.webp");
+    console.error('Tolong masukkan kata kunci! Contoh: node cari.js logo.webp');
     process.exit(1);
 }
-const SEARCH_DIR = './'; // Mulai cari dari root
-const SKIP_FOLDERS = ['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'ext', '.github'];
+const SEARCH_DIR = './';
+const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', '.github']);
+
+// Ekstensi yang akan dipindai (tambahkan atau kurangi sesuai kebutuhan)
+const EXTENSIONS = new Set(['.html', '.js', '.yml', '.ts', '.py', '.css']);
 
 /**
- * Fungsi rekursif untuk mencari string di dalam file HTML
+ * Cari string di dalam file dengan mengembalikan array baris yang cocok
  */
-function findStringInHtml(dir) {
-    let foundCount = 0;
-    const files = fs.readdirSync(dir, { withFileTypes: true });
-
-    for (const file of files) {
-        const fullPath = path.join(dir, file.name);
-
-        if (file.isDirectory()) {
-            // Lewati folder yang masuk daftar skip
-            if (SKIP_FOLDERS.includes(file.name)) continue;
-            foundCount += findStringInHtml(fullPath);
-        } else if (file.name.endsWith('.html')) {
-            try {
-                const content = fs.readFileSync(fullPath, 'utf8');
-                
-                // Cek apakah string ada di dalam konten
-                if (content.includes(SEARCH_QUERY)) {
-                    // Cari nomor baris (opsional tapi sangat membantu)
-                    const lines = content.split(/\r?\n/);
-                    lines.forEach((line, index) => {
-                        if (line.includes(SEARCH_QUERY)) {
-                            console.log(`📍 Ditemukan di: ${fullPath} (Baris: ${index + 1})`);
-                        }
-                    });
-                    foundCount++;
-                }
-            } catch (err) {
-                console.warn(`⚠️ Gagal membaca ${fullPath}: ${err.message}`);
+function findMatchesInFile(filePath, query) {
+    try {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const lines = content.split(/\r?\n/);
+        const matches = [];
+        for (let i = 0; i < lines.length; i++) {
+            if (lines[i].includes(query)) {
+                matches.push({ line: i + 1, text: lines[i].trim() });
             }
         }
+        return matches;
+    } catch (err) {
+        console.warn(`⚠️ Gagal membaca ${filePath}: ${err.message}`);
+        return [];
     }
-    return foundCount;
 }
 
-console.log(`🔍 Mencari string: "${SEARCH_QUERY}"...`);
+/**
+ * Rekursif: cari di folder, lewati folder yang ada di SKIP_FOLDERS
+ * Mengembalikan jumlah file unik yang mengandung query
+ */
+function searchDir(dir, query) {
+    let foundFiles = 0;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+
+        if (entry.isDirectory()) {
+            if (SKIP_FOLDERS.has(entry.name)) continue;
+            foundFiles += searchDir(fullPath, query);
+            continue;
+        }
+
+        const ext = path.extname(entry.name).toLowerCase();
+        if (!EXTENSIONS.has(ext)) continue;
+
+        const matches = findMatchesInFile(fullPath, query);
+        if (matches.length > 0) {
+            console.log(`\n📍 Ditemukan di: ${fullPath}`);
+            matches.forEach(m => {
+                console.log(`   Baris ${m.line}: ${m.text}`);
+            });
+            foundFiles++;
+        }
+    }
+
+    return foundFiles;
+}
+
+// --- Eksekusi ---
+console.log(`🔍 Mencari string: "${SEARCH_QUERY}" di ekstensi: ${[...EXTENSIONS].join(', ')}`);
 console.log('---');
 
-const totalFiles = findStringInHtml(SEARCH_DIR);
+const total = searchDir(SEARCH_DIR, SEARCH_QUERY);
 
 console.log('---');
-if (totalFiles > 0) {
-    console.log(`✅ Selesai! Ditemukan di ${totalFiles} file berbeda.`);
+if (total > 0) {
+    console.log(`✅ Selesai! Ditemukan di ${total} file berbeda.`);
 } else {
-    console.log(`❌ String "${SEARCH_QUERY}" tidak ditemukan di file HTML mana pun.`);
+    console.log(`❌ String "${SEARCH_QUERY}" tidak ditemukan di file dengan ekstensi yang dicari.`);
 }

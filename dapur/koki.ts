@@ -4,13 +4,12 @@ import { $ } from "bun";
 
 // --- PENGATURAN KURASI ---
 const menuAndalan = [
-"icons", "fontawesome-webfonts", "atom-one-dark.min.css", "atom-one-light.min.css",  "bookmark.json", "darkmode.js", "dashboard.html", "dashboard.js", "default.min.css", "fontawesome.css", "github.css", "github-dark.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "indexhtml.css", "indexhtml.js", "indexhtml-main.js", "indexhtml-render.js", "indexhtml-util.js", "index.js", "iposbrowser.js", "json-xml.html", "leaflet.css", "lightbox.css", "lightbox.js", "markdown.js", "marquee.js", "marquee-url.css", "marquee-url.js", "monokai.min.css", "pesbukdiskus.js", "pesbuk.js", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "related-articles.css", "related-articles.js", "related-by-topic.js", "response.js", "rss.js", "sitemap.css", "sitemap-init.js", "sitemap.js", "terjemah.js", "titleToCategory.js", "toc.js", "ujihalaman.html", "visited.js", "vs-dark.min.css", "vs.min.css"
+  "icons", "fontawesome-webfonts", "atom-one-dark.min.css", "atom-one-light.min.css",  "bookmark.json", "dashboard.html", "dashboard.js", "default.min.css", "fontawesome.css", "github.css", "github-dark.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "iposbrowser.js", "json-xml.html", "lightbox.css", "lightbox.js", "markdown.js", "marquee-url.css", "marquee-url.js", "monokai.min.css", "pesbukdiskus.js", "pesbuk.js", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "response.js", "sitemap.css", "sitemap.js", "ujihalaman.html", "vs-dark.min.css", "vs.min.css"
 ];
 
 const sourceDir = import.meta.dir;
 const targetDir = join(sourceDir, "../ext");
 
-// --- FUNGSI MASAK (Ditingkatkan) ---
 async function masak(name: string) {
   if (!menuAndalan.includes(name)) return;
 
@@ -18,71 +17,81 @@ async function masak(name: string) {
   if (!existsSync(sourcePath)) return;
 
   const isFolder = statSync(sourcePath).isDirectory();
+  const targetPath = join(targetDir, name);
 
   try {
     if (isFolder) {
-      // 📂 JIKA FOLDER: Copy seluruh isinya ke etalase
-      console.log(`📁 [Folder] Mengirim folder '${name}' ke etalase...`);
-      cpSync(sourcePath, join(targetDir, name), { recursive: true });
+      console.log(`📁 [Folder] Mengirim: ${name}`);
+      cpSync(sourcePath, targetPath, { recursive: true });
     } else {
-      // 📄 JIKA FILE: Masak sesuai ekstensinya
       const ext = name.split('.').pop();
+
       if (ext === 'ts' || ext === 'js') {
         const outName = name.replace(/\.ts$/, '.js');
-        console.log(`⚡ [JS/TS] Masak: ${name} -> ${outName}`);
-        await $`bun build ${sourcePath} --outfile ${join(targetDir, outName)} --minify`;
+        const finalOutPath = join(targetDir, outName);
+
+        try {
+          console.log(`⚡ [JS/TS] Mencoba Minify: ${name}`);
+          // Gunakan --no-bundle jika hanya ingin transpile+minify satu file
+          await $`bun build ${sourcePath} --outfile ${finalOutPath} --minify`.quiet();
+        } catch (err) {
+          console.warn(`⚠️  [Skip] Bun gagal minify ${name}, kirim apa adanya...`);
+          // Kalau gagal minify, copy file asli tapi ganti ekstensinya jadi .js (biar HTML tetap jalan)
+          cpSync(sourcePath, finalOutPath);
+        }
       }
       else if (ext === 'css') {
-        console.log(`🎨 [CSS] Masak: ${name}`);
-        await $`bun build ${sourcePath} --outfile ${join(targetDir, name)} --minify`;
+        try {
+          console.log(`🎨 [CSS] Mencoba Minify: ${name}`);
+          await $`bun build ${sourcePath} --outfile ${targetPath} --minify`.quiet();
+        } catch (err) {
+          console.warn(`⚠️  [Skip] CSS error, kirim original: ${name}`);
+          cpSync(sourcePath, targetPath);
+        }
       }
       else {
-        // Untuk .py atau file lainnya, copy langsung
+        // File lain (.py, .jpg, dll) langsung copy
         console.log(`📄 [Copy] Memindahkan: ${name}`);
-        cpSync(sourcePath, join(targetDir, name));
+        cpSync(sourcePath, targetPath);
       }
     }
   } catch (err) {
-    console.error(`❌ Gagal memproses ${name}:`, err);
+    console.error(`❌ Gagal total memproses ${name}:`, err);
   }
 }
 
-// --- FUNGSI SAPU JAGAT (Ditingkatkan untuk Folder) ---
+// --- FUNGSI SAPU JAGAT (Tetap Sama) ---
 function sapuJagat() {
   console.log("🧹 Memulai inspeksi etalase (Auto Purge)...");
   if (!existsSync(targetDir)) return;
-
   const filesInEtalase = readdirSync(targetDir);
   const allowedInEtalase = menuAndalan.map(name => name.replace(/\.ts$/, ".js"));
 
   filesInEtalase.forEach(file => {
     if (file.startsWith(".")) return;
     if (!allowedInEtalase.includes(file)) {
-      console.log(`🚫 [Purge] Menghapus '${file}' dari etalase (tidak ada di menu).`);
+      console.log(`🚫 [Purge] Menghapus '${file}'`);
       const pathToRemove = join(targetDir, file);
-      // Hapus file atau folder
-      $ `rm -rf ${pathToRemove}`;
+      if (statSync(pathToRemove).isDirectory()) {
+        unlinkSync(pathToRemove); // Atau pakai rm -rf via Bun shell
+      } else {
+        unlinkSync(pathToRemove);
+      }
     }
   });
 }
 
-// 1. Bersihkan & Siapkan awal
+// Menjalankan Sapu Jagat & Masak Awal
 sapuJagat();
-console.log("🍳 Menyiapkan menu andalan...");
 menuAndalan.forEach(name => masak(name));
 
-console.log("\n👨‍🍳 Koki Selektif siap (Support Folder & File)!");
+console.log("\n👨‍🍳 Koki Toleran Siap! (Gagal masak = Kirim Mentah)");
 console.log("------------------------------------------");
 
-// 2. Pantau dapur
 watch(sourceDir, (event, filename) => {
   if (!filename || filename.startsWith(".") || filename === "koki.ts") return;
-
-  // Jika file yang berubah ada di menu atau merupakan bagian dari folder di menu
   const isInMenu = menuAndalan.some(item => filename === item || filename.startsWith(item + "/"));
-
   if (isInMenu) {
-    // Kalau ada perubahan di dalam folder icons, kita masak ulang foldernya
     const rootName = menuAndalan.find(item => filename.startsWith(item)) || filename;
     masak(rootName);
   }
