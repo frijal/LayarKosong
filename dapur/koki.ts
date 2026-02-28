@@ -3,13 +3,14 @@ import { join } from "node:path";
 import { $ } from "bun";
 
 // --- PENGATURAN KURASI ---
+// File yang akan di-minify (TS/JS/CSS)
 const menuAndalan = [
-"bookmark.json", "dashboard.html", "dashboard.js", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "iposbrowser.js", "json-xml.html", "lightbox.js", "markdown.js", "marquee-url.css", "marquee-url.js", "pesbukdiskus.js", "pesbuk.js", "response.js", "sitemap.css", "sitemap.js", "ujihalaman.html"
+  "bookmark.json", "dashboard.html", "dashboard.js", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "iposbrowser.js", "json-xml.html", "lightbox.js", "markdown.js", "marquee-url.css", "marquee-url.js", "pesbukdiskus.js", "pesbuk.js", "response.js", "sitemap.css", "sitemap.js", "ujihalaman.html"
 ];
 
 // File/Folder yang ingin dikirim APA ADANYA (Tanpa Minify)
 const menuAsli = [
-"icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "lightbox.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "monokai.min.css", "vs-dark.min.css", "vs.min.css"
+  "icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "lightbox.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "monokai.min.css", "vs-dark.min.css", "vs.min.css"
 ];
 
 const sourceDir = import.meta.dir;
@@ -64,13 +65,12 @@ async function masak(name: string) {
   }
 }
 
-// --- FUNGSI SAPU JAGAT (Update untuk semuaMenu) ---
+// --- FUNGSI SAPU JAGAT ---
 function sapuJagat() {
   console.log("🧹 Memulai inspeksi etalase (Auto Purge)...");
   if (!existsSync(targetDir)) return;
   const filesInEtalase = readdirSync(targetDir);
 
-  // File yang diizinkan (termasuk hasil transformasi .ts ke .js)
   const allowedInEtalase = semuaMenu.map(name => name.replace(/\.ts$/, ".js"));
 
   filesInEtalase.forEach(file => {
@@ -85,21 +85,31 @@ function sapuJagat() {
   });
 }
 
-// Menjalankan Sapu Jagat & Masak Awal
+// --- EKSEKUSI UTAMA ---
 sapuJagat();
-semuaMenu.forEach(name => masak(name));
+// Bungkus dalam Promise.all agar mode CI menunggu semua proses selesai
+await Promise.all(semuaMenu.map(name => masak(name)));
 
 console.log("\n👨‍🍳 Koki Selektif + Menu Asli Siap!");
 console.log("------------------------------------------");
 
-watch(sourceDir, (event, filename) => {
-  if (!filename || filename.startsWith(".") || filename === "koki.ts") return;
+// --- LOGIKA DUAL MODE ---
+// CI akan bernilai true jika berjalan di GitHub Actions atau Cloudflare Pages
+const isCI = process.env.CI === "true" || process.argv.includes("--once");
 
-  const isInMenu = semuaMenu.some(item => filename === item || filename.startsWith(item + "/"));
+if (isCI) {
+  console.log("🚀 Mode Produksi: Selesai memasak sekali jalan. Menutup dapur...");
+  process.exit(0);
+} else {
+  console.log("⌚ Mode Laptop: Koki stand-by menunggu perubahan file...");
+  watch(sourceDir, (event, filename) => {
+    if (!filename || filename.startsWith(".") || filename === "koki.ts") return;
 
-  if (isInMenu) {
-    // Cari nama utama di menu (bisa dari menuAndalan atau menuAsli)
-    const rootName = semuaMenu.find(item => filename.startsWith(item)) || filename;
-    masak(rootName);
-  }
-});
+    const isInMenu = semuaMenu.some(item => filename === item || filename.startsWith(item + "/"));
+
+    if (isInMenu) {
+      const rootName = semuaMenu.find(item => filename.startsWith(item)) || filename;
+      masak(rootName);
+    }
+  });
+}
