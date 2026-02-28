@@ -126,7 +126,7 @@ jobs:
               SECTION='<section id="related-marquee-section"><div id="related-marquee-container"></div></section>'
               
               # URUTAN SCRIPT: Markdown -> IPos -> Marquee -> Pesbuk
-              SCRIPTS='<script defer src="/ext/markdown.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script>'
+              SCRIPTS='<script defer src="/ext/markdown.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script>'
               
               # Masukkan semuanya sekaligus sebelum </body>
               sed -i "/<\/body>/i $ELEMENTS$SECTION$SCRIPTS" "$file"
