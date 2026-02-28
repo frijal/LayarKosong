@@ -250,15 +250,25 @@ function renderFeed(reset: boolean = false): void {
 
   const loadMoreBtn = document.getElementById('loadMore') as HTMLElement | null;
   if (loadMoreBtn) {
-    if (limit >= filteredItems.length) {
-      loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
+    const remaining = filteredItems.length - limit; // Hitung sisa artikel
+
+    if (remaining <= 0) {
+      // Jika sudah habis atau pas
+      loadMoreBtn.innerHTML = 'Semua konten sudah dimuat • Kembali ke Atas ↑';
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
+      // Jika masih ada sisa, tampilkan counter N
+      loadMoreBtn.innerHTML = `Muat Lebih Banyak, <br> <small style="opacity:0.8; font-size: 0.8rem;">Masih ada ${remaining} judul di bawah ini...</small>`;
+
       loadMoreBtn.onclick = () => {
-        limit += 6;
-        renderFeed();
-        renderSidebar();
+        // Efek loading sederhana saat diklik
+        loadMoreBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...';
+
+        setTimeout(() => {
+          limit += 6;
+          renderFeed();
+          renderSidebar();
+        }, 300); // Delay 300ms buat gimmick loading biar smooth
       };
     }
   }
