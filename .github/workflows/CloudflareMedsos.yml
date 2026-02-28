@@ -99,7 +99,7 @@ jobs:
           TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
           TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
           TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
-        run: bun run dapur/post-to-tumblr.js
+        run: bun run dapur/post-to-tumblr.ts
 
       - name: 🦋 6. Discord Feed
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'discord'
