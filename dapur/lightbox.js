@@ -6,12 +6,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = {
-    // Selector diperingkas agar lebih luas jangkauannya
-    selectors: 'article img, main img, .gallery img, .artikel-gambar img',
+    selectors: 'article img, main img, .albumlb img, .gallery img, .artikel-gambar img',
     minWidth: 50,
     allowedExt: /\.(jpe?g|png|webp|avif)$/i,
-                          id: 'auto-lightbox'
+    id: 'auto-lightbox'
   };
+
 
   let galleryImages = [];
   let currentIndex = 0;
