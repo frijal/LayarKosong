@@ -152,11 +152,8 @@ const buildHtmlPage = (v: string, md: string) => `
     </style>
 </head>
 <body>
-    <h1>Layar Kosong - AI Data Index (v${v})</h1>
-
-    <div class="markdown-body">
-${escapeHtmlForHtmlBlock(fullMarkdown)}
-    </div>
+<h1>Layar Kosong - AI Data Index (v${v})</h1>
+<div class="markdown-body">${escapeHtml(fullMarkdown)}</div>
 
     <script defer src="/ext/markdown.js"></script>
 </body>
