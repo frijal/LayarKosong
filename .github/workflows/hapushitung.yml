@@ -38,6 +38,9 @@ jobs:
           bun install 
 
       # ========== AUTOMATION SCRIPTS ==========
+      - name: Jalankan Koki (Mode Sekali Jalan)
+        run: bun run dapur/koki.ts --once
+      
       - name: 🕵️ Update Dashboard Jadwal
         run: bun run dapur/workflow-list.js || echo "Script dashboard tidak ditemukan, skip."
 
