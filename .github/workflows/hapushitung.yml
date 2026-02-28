@@ -24,23 +24,12 @@ jobs:
         with:
           bun-version: latest
 
-      - name: 📂 Cache Bun Dependencies
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-cache-static
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
       - name: 🛠️ Maintenance & Update
         run: |
           bun update --latest
           bun install 
 
       # ========== AUTOMATION SCRIPTS ==========
-      - name: Jalankan Koki (Mode Sekali Jalan)
-        run: bun run dapur/koki.ts --once
-      
       - name: 🕵️ Update Dashboard Jadwal
         run: bun run dapur/workflow-list.js || echo "Script dashboard tidak ditemukan, skip."
 
@@ -171,6 +160,9 @@ jobs:
           rm folders.txt
           
       # ========== COMMIT & PUSH ==========
+      - name: Jalankan Koki (Mode Sekali Jalan)
+        run: bun run dapur/koki.ts --once
+        
       - name: 📮 Commit & Push All Changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
