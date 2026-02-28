@@ -53,7 +53,7 @@ async function fetchData(): Promise<void> {
           url: `/${catSlug}/${fileSlug}`, // URL Cantik V6.9
           img: item[2],
           date: new Date(item[3]),
-          summary: item[4] || ''
+                     summary: item[4] || ''
         });
       });
     }
@@ -98,8 +98,8 @@ function initSite(): void {
       }
 
       displayedData = allData.filter(i =>
-        i.title.toLowerCase().includes(val) ||
-        (i.summary && i.summary.toLowerCase().includes(val))
+      i.title.toLowerCase().includes(val) ||
+      (i.summary && i.summary.toLowerCase().includes(val))
       );
 
       renderFeed(true);
@@ -138,24 +138,24 @@ function renderHero(): void {
   heroEl.classList.remove('skeleton');
 
   wrapper.innerHTML = heroData.map((h) => `
-    <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="hero-cat">${h.category}</span>
-        <h1 class="hero-title">${h.title}</h1>
-        <p class="hero-summary">
-          ${h.summary.substring(0, 270)}...
-          <strong style="color:var(--secondary);">Ungkap Faktanya →</strong>
-        </p>
-      </div>
-    </a>
+  <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+  <span class="hero-cat">${h.category}</span>
+  <h1 class="hero-title">${h.title}</h1>
+  <p class="hero-summary">
+  ${h.summary.substring(0, 270)}...
+  <strong style="color:var(--secondary);">Ungkap Faktanya →</strong>
+  </p>
+  </div>
+  </a>
   `).join('');
 
   const navHTML = `
-    <div class="hero-nav">
-      <button class="nav-btn prev" id="heroPrev"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="nav-btn next" id="heroNext"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
+  <div class="hero-nav">
+  <button class="nav-btn prev" id="heroPrev"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="nav-btn next" id="heroNext"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
   `;
 
   const existingNav = heroEl.querySelector('.hero-nav');
@@ -230,53 +230,35 @@ function renderFeed(reset: boolean = false): void {
 
   itemsToDisplay.forEach(item => {
     container.innerHTML += `
-      <div class="card" style="animation: fadeIn 0.5s ease">
-        <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='/thumbnail.webp'">
-        <div class="card-body">
-          <a href="${item.url}" class="card-link">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
-              <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
-                ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
-              </time>
-            </div>
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>
-          </a>
-        </div>
-      </div>
+    <div class="card" style="animation: fadeIn 0.5s ease">
+    <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='/thumbnail.webp'">
+    <div class="card-body">
+    <a href="${item.url}" class="card-link">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
+    <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
+    ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
+    </time>
+    </div>
+    <h3 class="card-title">${item.title}</h3>
+    <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>
+    </a>
+    </div>
+    </div>
     `;
   });
 
   const loadMoreBtn = document.getElementById('loadMore') as HTMLElement | null;
   if (loadMoreBtn) {
-    const remaining = filteredItems.length - limit; // Hitung sisa artikel
-
-    if (remaining <= 0) {
-      // Jika sudah habis atau pas
-      loadMoreBtn.innerHTML = 'Semua konten sudah dimuat • Kembali ke Atas ↑';
+    if (limit >= filteredItems.length) {
+      loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Jika masih ada sisa, tampilkan counter N
-      // Di dalam fungsi renderFeed(), bagian else untuk loadMoreBtn
-      loadMoreBtn.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 0;">
-      <span style="font-weight: bold;">Muat Lebih Banyak,</span>
-      <span style="font-size: 0.85rem; line-height: 1.2; max-width: 90%; margin: 0 auto;">
-      Masih ada ${remaining} judul di bawah ini...
-      </span>
-      </div>
-      `;
-
+      loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
       loadMoreBtn.onclick = () => {
-        // Efek loading sederhana saat diklik
-        loadMoreBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...';
-
-        setTimeout(() => {
-          limit += 6;
-          renderFeed();
-          renderSidebar();
-        }, 300); // Delay 300ms buat gimmick loading biar smooth
+        limit += 6;
+        renderFeed();
+        renderSidebar();
       };
     }
   }
@@ -291,7 +273,7 @@ function renderSidebar(): void {
   const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
 
   const availableForSidebar = allData.filter(item =>
-    !displayedTitles.includes(item.title) && !titlesInHero.includes(item.title)
+  !displayedTitles.includes(item.title) && !titlesInHero.includes(item.title)
   );
 
   const randoms = [...availableForSidebar].sort(() => 0.5 - Math.random()).slice(0, 5);
@@ -300,17 +282,17 @@ function renderSidebar(): void {
     const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
     const cleanTitle = item.title.replace(/"/g, '&quot;');
     side.innerHTML += `
-      <div class="mini-item" style="animation: fadeIn 0.5s ease">
-        <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'">
-        <div class="mini-text">
-          <h4 data-tooltip="${cleanSummary}">
-            <a href="${item.url}" title="${cleanTitle}" style="text-decoration:none; color:inherit;">
-              ${item.title.substring(0, 50)}...
-            </a>
-          </h4>
-          <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
-        </div>
-      </div>
+    <div class="mini-item" style="animation: fadeIn 0.5s ease">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'">
+    <div class="mini-text">
+    <h4 data-tooltip="${cleanSummary}">
+    <a href="${item.url}" title="${cleanTitle}" style="text-decoration:none; color:inherit;">
+    ${item.title.substring(0, 50)}...
+    </a>
+    </h4>
+    <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
+    </div>
+    </div>
     `;
   });
 }
@@ -321,7 +303,7 @@ function renderCategories(): void {
   if (!container) return;
 
   const pillsHTML = cats.map(c =>
-    `<div class="pill" id="pill-${c.replace(/\s+/g, '')}">${c}</div>`
+  `<div class="pill" id="pill-${c.replace(/\s+/g, '')}">${c}</div>`
   ).join('');
 
   container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>` + pillsHTML;
