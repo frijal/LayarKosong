@@ -260,24 +260,13 @@ function renderFeed(reset: boolean = false): void {
       // Jika masih ada sisa, tampilkan counter N
       // Di dalam fungsi renderFeed(), bagian else untuk loadMoreBtn
       loadMoreBtn.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 0;">
       <span style="font-weight: bold;">Muat Lebih Banyak,</span>
-      <span style="opacity: 0.8; font-size: 0.85rem; line-height: 1.2; max-width: 90%; margin: 0 auto;">
+      <span style="font-size: 0.85rem; line-height: 1.2; max-width: 90%; margin: 0 auto;">
       Masih ada ${remaining} judul di bawah ini...
       </span>
       </div>
       `;
-
-      loadMoreBtn.onclick = () => {
-        // Efek loading sederhana saat diklik
-        loadMoreBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...';
-
-        setTimeout(() => {
-          limit += 6;
-          renderFeed();
-          renderSidebar();
-        }, 300); // Delay 300ms buat gimmick loading biar smooth
-      };
     }
   }
 }
