@@ -120,7 +120,7 @@ jobs:
       - name: ⚙️ 8. Generate LLMs Index
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
         continue-on-error: true
-        run: bun run dapur/generate_llms.js
+        run: bun run dapur/generate_llms.ts
 
       - name: 🔍 9. IndexNow Sync
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'indexnow'
