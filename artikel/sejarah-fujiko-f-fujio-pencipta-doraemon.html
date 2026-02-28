@@ -358,8 +358,8 @@
                 left: 0;
             }
             .timeline-content:after {
-                left: -10px !important;
-                right: auto !important;
+                left: -10px !zdummy;
+                right: auto !zdummy;
             }
         }
         @media (max-width: 768px) {
@@ -756,10 +756,10 @@
             }, 300 + (index * 200));
         });
         // Preload gambar penting
-        const importantImages = [
+        const zdummyImages = [
             'https://dalam.web.id/img/pbs.twimg.com/media/G-EBZsQa8AAnYa0.webp'
         ];
-        importantImages.forEach(src => {
+        zdummyImages.forEach(src => {
             const img = new Image();
             img.src = src;
         });

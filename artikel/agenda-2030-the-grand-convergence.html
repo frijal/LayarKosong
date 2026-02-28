@@ -137,7 +137,7 @@
             font-size: 0.9rem;
         }
         /* Blockquote */
-        .important-quote {
+        .zdummy-quote {
             border-left: 4px solid var(--accent-color);
             padding: 20px 25px;
             margin: 30px 0;
@@ -256,7 +256,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .content-section, .article-image, .important-quote, .info-box {
+        .content-section, .article-image, .zdummy-quote, .info-box {
             animation: fadeIn 0.8s ease-out;
         }
         /* Efek Hover */
@@ -354,7 +354,7 @@
     <!-- Konten Artikel -->
     <main class="article-content">
         <!-- Quote Penting -->
-        <div class="important-quote">
+        <div class="zdummy-quote">
             <p class="quote-text">"Anda menyebutnya 'Teori Konspirasi'. Kami menyebutnya 'Pembangunan Berkelanjutan'. Rencana kami bukan satu hal tunggal. Rencana kami adalah sebuah Konvergensi Besar (The Grand Convergence)."</p>
             <p class="quote-author">— The Architect</p>
         </div>
@@ -469,7 +469,7 @@
                 <li><strong>Menolak dengan sadar:</strong> Pahami apa yang ditawarkan dan apa yang diminta sebagai imbalan sebelum menerima "bantuan" atau "kenyamanan" digital.</li>
             </ol>
             <p><strong>Pertanyaan terakhir: Apakah ini konspirasi?</strong> Kata "konspirasi" menyiratkan rahasia. Yang sedang terjadi justru sebaliknya — ini semua diumumkan secara terbuka dalam dokumen PBB, World Economic Forum, dan berbagai lembaga global. Mereka menyebutnya "Pembangunan Berkelanjutan", "Transisi Hijau", "Inklusi Keuangan Digital". Kita hanya perlu mendengarkan apa yang sebenarnya mereka katakan, dan melihat pola yang muncul dari berbagai inisiatif yang tampaknya terpisah.</p>
-            <div class="important-quote">
+            <div class="zdummy-quote">
                 <p class="quote-text">"Pertahanan terbaik terhadap tirani adalah populasi yang tidak bisa dimanipulasi, yang memahami alat kontrol dan menolak untuk menukar kebebasan untuk kenyamanan semu."</p>
                 <p class="quote-author">— Analisis Akhir</p>
             </div>
@@ -576,7 +576,7 @@
                 });
             });
             // Optimasi INP (Interaction to Next Paint)
-            const interactiveElements = document.querySelectorAll('button, a, .info-box, .important-quote');
+            const interactiveElements = document.querySelectorAll('button, a, .info-box, .zdummy-quote');
             interactiveElements.forEach(el => {
                 el.style.touchAction = 'manipulation';
             });

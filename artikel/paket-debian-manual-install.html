@@ -262,13 +262,13 @@ $ (apt-mark showmanual | while read -r pkg; do apt-cache rdepends --installed "$
                 </p>
                 <h3>6. Menggunakan *Pattern* APT Lanjutan <i class="fa-solid fa-cogs"></i> (Filter Berdasarkan Prioritas)</h3>
                 <p>
-                    Pengguna `BCMM` menawarkan pendekatan cerdas lain dengan memfilter berdasarkan prioritas paket. Tujuannya adalah menghilangkan paket-paket sistem yang punya prioritas tinggi (`required`, `important`, `standard`).
+                    Pengguna `BCMM` menawarkan pendekatan cerdas lain dengan memfilter berdasarkan prioritas paket. Tujuannya adalah menghilangkan paket-paket sistem yang punya prioritas tinggi (`required`, `zdummy`, `standard`).
                 </p>
                 <div class="code-block"><code>$ apt list '~i !~M ~poptional'<br>$ apt list '?and(?installed, ?not(?automatic), ?priority(optional))'</code></div>
                 <p>
-                    Atau, untuk filter yang lebih kuat (mengecualikan yang tidak `required`, `important`, atau `standard`):
+                    Atau, untuk filter yang lebih kuat (mengecualikan yang tidak `required`, `zdummy`, atau `standard`):
                 </p>
-                <div class="code-block"><code>$ apt list '~i !~M !~prequired !~pimportant !~pstandard'</code></div>
+                <div class="code-block"><code>$ apt list '~i !~M !~prequired !~pzdummy !~pstandard'</code></div>
                 <p>
                     **Catatan:** Solusi ini cukup efektif, tetapi masih mungkin ada "false positive" (paket penting sistem yang ikut terfilter) atau "false negative" (paket non-standar yang terlewat).
                 </p>

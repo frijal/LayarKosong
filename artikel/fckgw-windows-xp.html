@@ -283,10 +283,10 @@
     (function(){
       function forceResponsive(img) {
         if (!img) return;
-        img.style.setProperty("max-width", "100%", "important");
-        img.style.setProperty("height", "auto", "important");
-        img.style.setProperty("width", "auto", "important");
-        img.style.setProperty("display", "block", "important");
+        img.style.setProperty("max-width", "100%", "zdummy");
+        img.style.setProperty("height", "auto", "zdummy");
+        img.style.setProperty("width", "auto", "zdummy");
+        img.style.setProperty("display", "block", "zdummy");
       }
       function applyAll(){
         document.querySelectorAll('img').forEach(forceResponsive);
