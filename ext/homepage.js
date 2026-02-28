@@ -31,7 +31,14 @@ var U=[],$=[],_=[],Z=0,j=null,W=6;async function E(){try{let q=await fetch("arti
           </a>
         </div>
       </div>
-    `});let R=document.getElementById("loadMore");if(R){let Q=J.length-W;if(Q<=0)R.innerHTML="Semua konten sudah dimuat • Kembali ke Atas ↑",R.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});else R.innerHTML=`Muat Lebih Banyak, <br> <small style="opacity:0.8; font-size: 0.8rem;">Masih ada ${Q} judul di bawah ini...</small>`,R.onclick=()=>{R.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...',setTimeout(()=>{W+=6,k(),A()},300)}}}function A(){let q=document.getElementById("sidebarRandom");if(!q)return;q.innerHTML="";let z=_.map((J)=>J.title),K=$.slice(0,W).map((J)=>J.title);[...U.filter((J)=>!K.includes(J.title)&&!z.includes(J.title))].sort(()=>0.5-Math.random()).slice(0,5).forEach((J)=>{let X=(J.summary||"").replace(/"/g,"&quot;"),R=J.title.replace(/"/g,"&quot;");q.innerHTML+=`
+    `});let R=document.getElementById("loadMore");if(R){let Q=J.length-W;if(Q<=0)R.innerHTML="Semua konten sudah dimuat • Kembali ke Atas ↑",R.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});else R.innerHTML=`
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;">
+      <span style="font-weight: bold;">Muat Lebih Banyak,</span>
+      <span style="opacity: 0.8; font-size: 0.85rem; line-height: 1.2; max-width: 90%; margin: 0 auto;">
+      Masih ada ${Q} judul di bawah ini...
+      </span>
+      </div>
+      `,R.onclick=()=>{R.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...',setTimeout(()=>{W+=6,k(),A()},300)}}}function A(){let q=document.getElementById("sidebarRandom");if(!q)return;q.innerHTML="";let z=_.map((J)=>J.title),K=$.slice(0,W).map((J)=>J.title);[...U.filter((J)=>!K.includes(J.title)&&!z.includes(J.title))].sort(()=>0.5-Math.random()).slice(0,5).forEach((J)=>{let X=(J.summary||"").replace(/"/g,"&quot;"),R=J.title.replace(/"/g,"&quot;");q.innerHTML+=`
       <div class="mini-item" style="animation: fadeIn 0.5s ease">
         <img src="${J.img}" class="mini-thumb" alt="${R}" onerror="this.src='/thumbnail.webp'">
         <div class="mini-text">

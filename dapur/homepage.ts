@@ -258,7 +258,15 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Jika masih ada sisa, tampilkan counter N
-      loadMoreBtn.innerHTML = `Muat Lebih Banyak, <br> <small style="opacity:0.8; font-size: 0.8rem;">Masih ada ${remaining} judul di bawah ini...</small>`;
+      // Di dalam fungsi renderFeed(), bagian else untuk loadMoreBtn
+      loadMoreBtn.innerHTML = `
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0;">
+      <span style="font-weight: bold;">Muat Lebih Banyak,</span>
+      <span style="opacity: 0.8; font-size: 0.85rem; line-height: 1.2; max-width: 90%; margin: 0 auto;">
+      Masih ada ${remaining} judul di bawah ini...
+      </span>
+      </div>
+      `;
 
       loadMoreBtn.onclick = () => {
         // Efek loading sederhana saat diklik
