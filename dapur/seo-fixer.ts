@@ -35,7 +35,10 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
 
         const ext = path.extname(url.pathname).toLowerCase();
         const isSvg = ext === '.svg';
-        const finalExt = isSvg ? '.svg' : '.webp';
+        const isGif = ext === '.gif'; // Deteksi GIF
+
+        // Jika SVG/GIF, pakai ekstensi asli. Selain itu, paksa ke .webp (JPG/PNG).
+        const finalExt = (isSvg || isGif) ? ext : '.webp';
 
         const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
         const localPathName = ext ? url.pathname.replace(ext, finalExt) : `${url.pathname}${finalExt}`;
@@ -56,9 +59,12 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
         // Pastikan folder tujuan ada
         await mkdir(path.dirname(localPath), { recursive: true });
 
-        if (isSvg) {
+        // LOGIKA SELEKSI:
+        if (isSvg || isGif) {
+            // Langsung tulis apa adanya (Kopi murni)
             await Bun.write(localPath, buffer);
         } else {
+            // Hanya JPG/PNG yang diproses Sharp ke WebP
             await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
         }
 
