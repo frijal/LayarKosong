@@ -6,7 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = {
-    selectors: 'article img, main img, .albumlb img, .gallery img, .artikel-gambar img',
+    selectors: 'article img, main img, .image-grid img, .albumlb img, .gallery img, .artikel-gambar img',
     minWidth: 50,
     allowedExt: /\.(jpe?g|png|webp|avif)$/i,
     id: 'auto-lightbox'
