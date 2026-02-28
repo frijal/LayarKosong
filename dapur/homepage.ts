@@ -267,6 +267,17 @@ function renderFeed(reset: boolean = false): void {
       </span>
       </div>
       `;
+
+      loadMoreBtn.onclick = () => {
+        // Efek loading sederhana saat diklik
+        loadMoreBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membuka artikel...';
+
+        setTimeout(() => {
+          limit += 6;
+          renderFeed();
+          renderSidebar();
+        }, 300); // Delay 300ms buat gimmick loading biar smooth
+      };
     }
   }
 }
