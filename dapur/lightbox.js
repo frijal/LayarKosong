@@ -1,159 +1,103 @@
 /**
  * =================================================================================
- * Auto Lightbox Creator v3.0 (Final)
- *
- * Deskripsi:
- * - Bekerja dalam dua mode: Melengkapi lightbox yang ada atau Membuat dari nol.
- * - Mendukung atribut `data-full` untuk gambar resolusi tinggi.
- * - [BARU] Lingkup pencarian dibatasi hanya di dalam <body>.
- * - [BARU] Hanya menyertakan gambar dengan ekstensi .jpg, .jpeg, .png, .webp.
+ * Auto Lightbox Creator v4.0 (Optimized)
  * =================================================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // --- [KONFIGURASI UNIVERSAL] ---
   const CONFIG = {
-    // [DIPERBARUI] Semua selector kini diawali dengan 'body'
-    galleryImageSelectors: [
-      'body .image-gallery img',
-      'body .gallery-image',
-      'body .gallery',
-      'body .artikel-gambar',
-      'body main .wp-block-image img',
-      'body article img',
-      'body main img',
-      'body separator'
-
-    ],
-
-    minImageWidth: 50,
-    lightboxId: 'auto-generated-lightbox'
+    // Selector diperingkas agar lebih luas jangkauannya
+    selectors: 'article img, main img, .gallery img, .artikel-gambar img',
+    minWidth: 50,
+    allowedExt: /\.(jpe?g|png|webp|avif)$/i,
+                          id: 'auto-lightbox'
   };
-  // -----------------------------
 
-  const findElements = (selectors) => {
-    for (const selector of selectors) {
-      const elements = document.querySelectorAll(selector);
-      if (elements.length > 0) return elements;
+  let galleryImages = [];
+  let currentIndex = 0;
+  let lightbox, lightboxImg;
+
+  // 1. Filter gambar yang valid saat halaman dimuat
+  const refreshGallery = () => {
+    const allImgs = document.querySelectorAll(CONFIG.selectors);
+    galleryImages = Array.from(allImgs).filter(img => {
+      const isWide = img.naturalWidth >= CONFIG.minWidth || img.width >= CONFIG.minWidth;
+      const isAlt = img.src.split('?')[0];
+      return isWide && CONFIG.allowedExt.test(isAlt);
+    });
+
+    // Set cursor pointer hanya ke gambar yang valid
+    galleryImages.forEach(img => img.style.cursor = 'zoom-in');
+  };
+
+  const createLightbox = () => {
+    if (document.getElementById(CONFIG.id)) return;
+
+    lightbox = document.createElement('div');
+    lightbox.id = CONFIG.id;
+    // Pakai template literal agar lebih rapi
+    lightbox.innerHTML = `
+    <style>
+    #${CONFIG.id} { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 100000; transition: opacity 0.3s; opacity: 0; }
+    #${CONFIG.id}.open { display: flex; opacity: 1; }
+    .lb-img { max-width: 95vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    .lb-close { position: absolute; top: 20px; right: 25px; font-size: 35px; color: #fff; cursor: pointer; background: none; border: none; }
+    .lb-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
+    .lb-btn { pointer-events: auto; background: rgba(255,255,255,0.1); color: #fff; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: 0.2s; }
+    .lb-btn:hover { background: rgba(255,255,255,0.2); }
+    </style>
+    <button class="lb-close" aria-label="Close">&times;</button>
+    <img class="lb-img" src="" alt="Lightbox">
+    <div class="lb-nav">
+    <button class="lb-btn lb-prev" aria-label="Previous">&#9664;</button>
+    <button class="lb-btn lb-next" aria-label="Next">&#9654;</button>
+    </div>
+    `;
+
+    document.body.appendChild(lightbox);
+    lightboxImg = lightbox.querySelector('.lb-img');
+
+    // Event Listeners Internal
+    lightbox.querySelector('.lb-close').onclick = close;
+    lightbox.querySelector('.lb-prev').onclick = (e) => { e.stopPropagation(); move(-1); };
+    lightbox.querySelector('.lb-next').onclick = (e) => { e.stopPropagation(); move(1); };
+    lightbox.onclick = (e) => { if(e.target === lightbox) close(); };
+  };
+
+  const updateImg = () => {
+    const target = galleryImages[currentIndex];
+    if (!target) return;
+    // Gunakan data-full jika ada, kalau tidak pakai src asli
+    lightboxImg.src = target.dataset.full || target.src;
+  };
+
+  const move = (step) => {
+    currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
+    updateImg();
+  };
+
+  const close = () => lightbox.classList.remove('open');
+
+  // --- INIT ---
+  refreshGallery();
+  if (galleryImages.length < 1) return; // Jangan buat apapun jika tak ada gambar
+  createLightbox();
+
+  // Event Delegation: Pantau klik di seluruh body
+  document.body.addEventListener('click', (e) => {
+    const clickedImg = e.target.closest(CONFIG.selectors);
+    if (clickedImg && galleryImages.includes(clickedImg)) {
+      currentIndex = galleryImages.indexOf(clickedImg);
+      updateImg();
+      lightbox.classList.add('open');
     }
-    return document.querySelectorAll('.non-existent-class-for-empty-nodelist');
-  };
-
-  // 1. Temukan dan filter semua gambar yang relevan
-  const potentialImages = findElements(CONFIG.galleryImageSelectors);
-
-  // [DIPERBARUI] Filter kini memeriksa lebar DAN ekstensi file
-  const galleryImages = Array.from(potentialImages).filter(img => {
-    const isWideEnough = img.naturalWidth >= CONFIG.minImageWidth || img.width >= CONFIG.minImageWidth;
-    if (!isWideEnough) return false;
-
-    const allowedExtensions = /\.(jpe?g|png|webp)$/i;
-    const srcPath = img.src.split('?')[0];
-    return allowedExtensions.test(srcPath);
   });
 
-  let currentIndex = 0;
-
-  // 2. [KONDISI UTAMA] Jika tidak cukup gambar valid, hentikan.
-  if (galleryImages.length <= 2) {
-    return;
-  }
-
-  if (document.getElementById(CONFIG.lightboxId)) {
-    return;
-  }
-
-  let lightbox, lightboxImage;
-
-  const createLightboxHTML = () => {
-    lightbox = document.createElement('div');
-    lightbox.id = CONFIG.lightboxId;
-    lightbox.className = 'auto-lightbox-overlay';
-    const closeButton = document.createElement('button');
-    closeButton.className = 'auto-lightbox-close';
-    closeButton.innerHTML = '&times;';
-    closeButton.onclick = closeLightbox;
-    lightboxImage = document.createElement('img');
-    lightboxImage.className = 'auto-lightbox-image';
-    const navContainer = document.createElement('div');
-    navContainer.className = 'auto-lightbox-nav';
-    const prevButton = document.createElement('button');
-    prevButton.className = 'auto-lightbox-nav-btn prev';
-    prevButton.innerHTML = '&#9664;';
-    prevButton.onclick = showPrevImage;
-    const nextButton = document.createElement('button');
-    nextButton.className = 'auto-lightbox-nav-btn next';
-    nextButton.innerHTML = '&#9654;';
-    nextButton.onclick = showNextImage;
-    navContainer.appendChild(prevButton);
-    navContainer.appendChild(nextButton);
-    lightbox.appendChild(closeButton);
-    lightbox.appendChild(lightboxImage);
-    lightbox.appendChild(navContainer);
-    document.body.appendChild(lightbox);
-  };
-
-  const injectStyles = () => {
-    const style = document.createElement('style');
-    style.id = 'auto-lightbox-styles';
-    style.innerHTML = `
-      .auto-lightbox-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none; align-items: center; justify-content: center; z-index: 99999; }
-      .auto-lightbox-overlay.open { display: flex; }
-      .auto-lightbox-image { max-width: 90vw; max-height: 85vh; border-radius: 8px; border: 1px solid rgba(255,255,255,.1); }
-      .auto-lightbox-close { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: white; background: transparent; border: none; cursor: pointer; line-height: 1; }
-      .auto-lightbox-nav { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; padding: 0 1rem; pointer-events: none; }
-      .auto-lightbox-nav-btn { font-size: 2rem; background: rgba(0,0,0,0.3); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; cursor: pointer; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; user-select: none; pointer-events: auto; }
-    `;
-    document.head.appendChild(style);
-  };
-
-  const openLightbox = (index) => {
-    currentIndex = index;
-    updateLightboxImage();
-    lightbox.classList.add('open');
-  };
-
-  const closeLightbox = () => {
-    lightbox.classList.remove('open');
-  };
-
-  const updateLightboxImage = () => {
-    const targetImage = galleryImages[currentIndex];
-    let imageUrl = targetImage.dataset.full || targetImage.src;
-    imageUrl = imageUrl.replace(/\/s\d+(-c)?\//, '/s0/');
-    lightboxImage.src = imageUrl;
-  };
-
-  const showNextImage = () => {
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    updateLightboxImage();
-  };
-
-  const showPrevImage = () => {
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateLightboxImage();
-  };
-
-  const init = () => {
-    createLightboxHTML();
-    injectStyles();
-    galleryImages.forEach((img, index) => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
-        openLightbox(index);
-      });
-    });
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'ArrowRight') showNextImage();
-      if (e.key === 'ArrowLeft') showPrevImage();
-      if (e.key === 'Escape') closeLightbox();
-    });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  };
-
-  init();
+  // Shortcut Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') move(1);
+    if (e.key === 'ArrowLeft') move(-1);
+    if (e.key === 'Escape') close();
+  });
 });
