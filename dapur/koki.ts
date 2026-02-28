@@ -5,12 +5,12 @@ import { $ } from "bun";
 // --- PENGATURAN KURASI ---
 // File yang akan di-minify (TS/JS/CSS)
 const menuAndalan = [
-  "bookmark.json", "dashboard.html", "dashboard.js", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "iposbrowser.js", "json-xml.html", "lightbox.js", "markdown.js", "marquee-url.css", "marquee-url.js", "pesbukdiskus.js", "pesbuk.js", "response.js", "sitemap.css", "sitemap.js", "ujihalaman.html"
+  "bookmark.json", "dashboard.html", "dashboard.js", "github.css", "github-dark.css", "github-dark-dimmed.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "iposbrowser.js", "json-xml.html", "lightbox.js", "markdown.js", "marquee-url.css", "marquee-url.js", "pesbukdiskus.js", "pesbuk.js", "response.js", "sitemap.css", "sitemap.js", "ujihalaman.html"
 ];
 
 // File/Folder yang ingin dikirim APA ADANYA (Tanpa Minify)
 const menuAsli = [
-  "icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "lightbox.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "monokai.min.css", "vs-dark.min.css", "vs.min.css"
+  "icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "homepage.js", "lightbox.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "monokai.min.css", "vs-dark.min.css", "vs.min.css"
 ];
 
 const sourceDir = import.meta.dir;
