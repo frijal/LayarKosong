@@ -108,11 +108,20 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: bun run dapur/post-to-discord.ts
 
-      - name: 🔵 7a. Process Facebook (Data Prep)
+      - name: 🚀 7. Process & Send to Facebook Page
+        # Gabungkan kondisi agar lebih rapi
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
-        id: fb_info
         continue-on-error: true
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: bun run dapur/post-to-facebook.ts
+
+ #     - name: 🔵 7a. Process Facebook (Data Prep)
+ #       if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
+ #       id: fb_info
+ #       continue-on-error: true
+ #       run: bun run dapur/post-to-facebook.ts
 
   #    - name: 🚀 7b. Send to Facebook Page
   #      if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != ''
