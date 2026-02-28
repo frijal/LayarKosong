@@ -4,12 +4,7 @@ import { $ } from "bun";
 
 // --- PENGATURAN KURASI ---
 const menuAndalan = [
-"icons" ,
-"fontawesome-webfonts",
-"iposbrowser.ts",
-"style.css",
-"tools.py"
-
+"icons", "fontawesome-webfonts", "atom-one-dark.min.css", "atom-one-light.min.css",  "bookmark.json", "darkmode.js", "dashboard.html", "dashboard.js", "default.min.css", "fontawesome.css", "github.css", "github-dark.css", "github-dark-dimmed.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "halaman-pencarian.css", "halaman-pencarian.js", "header.css", "header.js", "header-logo-atas.html", "highlight.js", "homepage.css", "homepage.js", "indexhtml.css", "indexhtml.js", "indexhtml-main.js", "indexhtml-render.js", "indexhtml-util.js", "index.js", "iposbrowser.js", "json-xml.html", "leaflet.css", "lightbox.css", "lightbox.js", "markdown.js", "marquee.js", "marquee-url.css", "marquee-url.js", "monokai.min.css", "pesbukdiskus.js", "pesbuk.js", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "related-articles.css", "related-articles.js", "related-by-topic.js", "response.js", "rss.js", "sitemap.css", "sitemap-init.js", "sitemap.js", "terjemah.js", "titleToCategory.js", "toc.js", "ujihalaman.html", "visited.js", "vs-dark.min.css", "vs.min.css"
 ];
 
 const sourceDir = import.meta.dir;
