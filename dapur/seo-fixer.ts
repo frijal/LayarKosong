@@ -105,12 +105,16 @@ async function processFile(file: string, baseUrl: string) {
         if (tag) existingTags.push(tag);
     });
 
+        // Buat Fallback dari paragraf pertama jika deskripsi kosong
         const firstP = $('p').first().text().trim();
-        const fallback = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
+        const fallbackDesc = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
 
-        const bestMeta = rawMetaDesc || rawOgDesc || rawTwitterDesc || fallback;
-        const finalMetaDesc = prepareDesc(bestMeta);
+        // DIFERENSIASI: Masing-masing platform punya variabel sendiri
+        const finalMetaDesc = prepareDesc(rawMetaDesc || fallbackDesc); // Untuk Google
+        const finalOgDesc = prepareDesc(rawOgDesc || rawMetaDesc || fallbackDesc); // Untuk FB/WA (Lebih luwes)
+        const finalTwitterDesc = prepareDesc(rawTwitterDesc || rawMetaDesc || fallbackDesc); // Untuk X (Singkat/Punchy)
 
+        // Logika Gambar Meta (Tetap Mirroring)
         let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
         $('meta[name="twitter:image"]').attr('content') ||
         $('img').first().attr('src') || '';
@@ -122,10 +126,24 @@ async function processFile(file: string, baseUrl: string) {
             }
         }
 
-        // 3. CLEANUP & INJECT
+        // --- 3. OPERASI STERILISASI (CLEANUP) ---
+        // 1. Set Identitas Dokumen
         $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-        $('link[rel="canonical"], link[rel="icon"], meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]').remove();
 
+        // 2. Sapu Bersih Semua Link Lama (Canonical, Icon, License)
+        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"]').remove();
+
+        // 3. Sapu Bersih Deskripsi (Semua platform & variasi penulisan)
+        $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
+
+        // 4. Sapu Bersih Meta Sosmed & Identitas (Gunakan Selector Wildcard agar ringkas)
+        // Ini menghapus og:, twitter:, article:, bluesky:, fediverse:, dll.
+        $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="twitter:"], meta[property^="article:"], meta[itemprop="image"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
+
+        // 5. Sapu Bersih Meta Branding & Crawler
+        $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[property="fb:app_id"]').remove();
+
+        // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
         const metaTags = [
             `<meta property="og:locale" content="id_ID">`,
             `<meta property="og:site_name" content="Layar Kosong">`,
@@ -142,8 +160,8 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="robots" content="index, follow, max-image-preview:large">`,
             `<meta name="author" content="Fakhrul Rijal">`,
             `<meta name="description" content="${finalMetaDesc}">`,
-            `<meta property="og:description" content="${finalMetaDesc}">`,
-            `<meta name="twitter:description" content="${finalMetaDesc}">`,
+            `<meta property="og:description" content="${finalOgDesc}">`,
+            `<meta name="twitter:description" content="${finalTwitterDesc}">`,
             `<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`,
             `<meta name="twitter:creator" content="@responaja">`,
             `<meta name="bluesky:creator" content="@dalam.web.id">`,
@@ -157,14 +175,14 @@ async function processFile(file: string, baseUrl: string) {
 
         if (metaImgUrl) {
             metaTags.push(
-                `<meta itemprop="image" content="${metaImgUrl}">`,
-                `<meta name="twitter:image" content="${metaImgUrl}">`,
-                `<meta property="twitter:image" content="${metaImgUrl}">`,
-                `<meta property="og:image" content="${metaImgUrl}">`,
-                `<meta property="og:image:alt" content="${escapedTitle}">`,
-                `<meta property="og:image:width" content="1200">`,
-                `<meta property="og:image:height" content="675">`,
-                `<meta name="twitter:card" content="summary_large_image">`
+        `<meta itemprop="image" content="${metaImgUrl}">`,
+        `<meta name="twitter:image" content="${metaImgUrl}">`,
+        `<meta property="twitter:image" content="${metaImgUrl}">`,
+        `<meta property="og:image" content="${metaImgUrl}">`,
+        `<meta property="og:image:alt" content="${escapedTitle}">`,
+        `<meta property="og:image:width" content="1200">`,
+        `<meta property="og:image:height" content="675">`,
+        `<meta name="twitter:card" content="summary_large_image">`
             );
         }
 

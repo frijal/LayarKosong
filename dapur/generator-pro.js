@@ -313,7 +313,7 @@ const generate = async () => {
         const outputDir = path.join(CONFIG.rootDir, slug);
         await fs.mkdir(outputDir, { recursive: true }); // Pastikan folder kategori ada
         await Bun.write(path.join(outputDir, 'index.html'), pageContent);
-/////////////////////////////////
+
         // 5. GENERATE RSS PER KATEGORI
         const categoryItems = articles.map(art => ({
           title: art[0],
@@ -337,7 +337,6 @@ const generate = async () => {
         await Bun.write(rssFilePath, categoryRssContent);
 
         console.log(`✅ Kategori [${cat}] & RSS Feed [feed-${slug}.xml] berhasil dibuat.`);
-        ///////////////////////////////////
         console.log(`✅ Kategori [${cat}] berhasil dibuat dengan ${articles.length} artikel tersuntik.`);
       }
     }

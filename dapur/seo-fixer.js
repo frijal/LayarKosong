@@ -53,7 +53,7 @@ async function mirrorAndConvert(externalUrl, baseUrl) {
 
     // Pastikan folder tujuan ada
     const dirPath = path.dirname(localPath);
-    await $`mkdir -p ${dirPath}`; 
+    await $`mkdir -p ${dirPath}`;
 
     if (isSvg) {
       await Bun.write(localPath, buffer);
@@ -189,7 +189,7 @@ async function fixSEO() {
 
   console.log('🧼 Memulai SEO Fixer (Bun Paralel Mode)...');
 const startTime = performance.now();
-  
+
   const glob = new Glob(`${targetFolder}/*.html`);
   const files = [];
   for await (const file of glob.scan(".")) {

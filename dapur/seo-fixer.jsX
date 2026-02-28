@@ -128,7 +128,7 @@ async function fixSEO() {
     head.append(`\n    <meta property="og:locale" content="id_ID">`);
     head.append(`\n    <meta property="og:site_name" content="Layar Kosong">`);
     head.append(`\n    <link rel="icon" href="/favicon.ico">`);
-    head.append(`\n    <link rel="manifest" href="/site.webmanifest">`);    
+    head.append(`\n    <link rel="manifest" href="/site.webmanifest">`);
     head.append(`\n    <link rel="canonical" href="${canonicalUrl}">`);
     head.append(`\n    <meta property="og:url" content="${canonicalUrl}">`);
     head.append(`\n    <meta property="twitter:url" content="${canonicalUrl}">`);
@@ -144,7 +144,7 @@ async function fixSEO() {
     head.append(`\n    <meta name="description" content="${finalMetaDesc}">`);
     head.append(`\n    <meta property="og:description" content="${finalOgDesc}">`);
     head.append(`\n    <meta name="twitter:description" content="${finalTwitterDesc}">`);
-    
+
     head.append(`\n    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`);
     head.append(`\n    <meta name="twitter:creator" content="@responaja">`);
     head.append(`\n    <meta name="bluesky:creator" content="@dalam.web.id">`);
