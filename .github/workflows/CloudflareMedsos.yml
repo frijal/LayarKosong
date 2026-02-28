@@ -73,7 +73,7 @@ jobs:
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        run: bun run dapur/post-to-mastodon.js
+        run: bun run dapur/post-to-mastodon.ts
 
       - name: ⚙️ 3. Threads Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'threads'
