@@ -64,7 +64,7 @@ jobs:
 
       - name: '4️⃣ Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
-        run: bun run dapur/generator-pro.js
+        run: bun run dapur/generator-pro.ts
         env:
           RSS_LIMIT: 30
 
