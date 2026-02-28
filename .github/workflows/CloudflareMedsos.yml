@@ -115,26 +115,7 @@ jobs:
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-        run: bun run dapur/post-to-facebook.ts
-
- #     - name: 🔵 7a. Process Facebook (Data Prep)
- #       if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
- #       id: fb_info
- #       continue-on-error: true
- #       run: bun run dapur/post-to-facebook.ts
-
-  #    - name: 🚀 7b. Send to Facebook Page
-  #      if: (github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook') && steps.fb_info.outputs.url != ''
-  #      continue-on-error: true
-  #      run: |
-  #        curl -X POST "https://graph.facebook.com/v24.0/${{ secrets.FB_PAGE_ID }}/feed" \
-  #          -d "message=${{ steps.fb_info.outputs.encoded_msg }}" \
-  #          -d "link=${{ steps.fb_info.outputs.url }}" \
-  #          -d "access_token=${{ secrets.FB_PAGE_TOKEN }}"
-          
-  #        if [ -f /tmp/temp_new_url_facebook.txt ]; then
-  #          cat /tmp/temp_new_url_facebook.txt >> mini/posted-facebook.txt
-  #        fi
+        run: bun run dapur/post-to-facebook.ts 
 
       - name: ⚙️ 8. Generate LLMs Index
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'llms_index'
