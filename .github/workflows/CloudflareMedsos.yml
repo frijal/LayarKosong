@@ -81,7 +81,7 @@ jobs:
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
-        run: bun run dapur/post-to-threads.ts
+        run: bun run dapur/post-to-threads.js
 
       - name: 🆕 4. LinkedIn Post Script
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'linkedin'
@@ -109,7 +109,6 @@ jobs:
         run: bun run dapur/post-to-discord.ts
 
       - name: 🚀 7. Process & Send to Facebook Page
-        # Gabungkan kondisi agar lebih rapi
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         continue-on-error: true
         env:
