@@ -78,6 +78,7 @@ jobs:
             s/content=\"Temukan /content=\"/g;
 
             # Font Awesome class mapping (dipisah)
+            s/far fa-copyright/fa-brands fa-creative-commons-zero/g;
             s/fas fa-copyright/fa-brands fa-creative-commons-zero/g;
             s/\bfab /fa-brands /g;
             s/\bfar /fa-regular /g;
@@ -94,7 +95,7 @@ jobs:
         run: bun install      
 
       - name: 🧹 Sterilize Schema (Node.js)
-        run: bun run dapur/clean-schema.js artikelx/      
+        run: bun run dapur/clean-schema.ts artikelx/      
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
       - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
@@ -126,7 +127,7 @@ jobs:
               SECTION='<section id="related-marquee-section"><div id="related-marquee-container"></div></section>'
               
               # URUTAN SCRIPT: Markdown -> IPos -> Marquee -> Pesbuk
-              SCRIPTS='<script defer src="/ext/markdown.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script>'
+              SCRIPTS='<script defer src="/ext/markdown.js"></script><script defer src="/ext/marquee-url.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/response.js"></script>'
               
               # Masukkan semuanya sekaligus sebelum </body>
               sed -i "/<\/body>/i $ELEMENTS$SECTION$SCRIPTS" "$file"

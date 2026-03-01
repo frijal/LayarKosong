@@ -43,18 +43,18 @@ jobs:
 
       - name: 🧹 Menjalankan Tukang Sapu (Cleanup)
         run: |
-          if [ -f dapur/cleanup.js ]; then
+          if [ -f dapur/cleanup.ts ]; then
             echo "🔥 Membersihkan node_modules dan membangun ulang lockfile..."
-            bun run dapur/cleanup.js
+            bun run dapur/cleanup.ts
           else
             bun install
           fi
 
       - name: 🕵️ Detektif Scan (Cek paket yang mati setelah upgrade)
         run: |
-          if [ -f dapur/cek-mubazir.js ]; then
+          if [ -f dapur/cek-mubazir.ts ]; then
             echo "--- LAPORAN DETEKTIF SETELAH UPGRADE ---"
-            bun run dapur/cek-mubazir.js
+            bun run dapur/cek-mubazir.ts
           fi
 
       - name: 🧪 Audit & Test
@@ -86,8 +86,8 @@ jobs:
 
             Perubahan yang dilakukan:
             - Semua paket di-upgrade ke versi **Latest/Major**.
-            - `dapur/cleanup.js` telah membersihkan dan mengoptimalkan `node_modules`.
-            - `dapur/cek-mubazir.js` telah memverifikasi penggunaan dependensi.
+            - `dapur/cleanup.ts` telah membersihkan dan mengoptimalkan `node_modules`.
+            - `dapur/cek-mubazir.ts` telah memverifikasi penggunaan dependensi.
 
             **Catatan Penting:** Upgrade versi Major seringkali membawa *breaking changes*. Mohon cek kembali fungsi-fungsi krusial di blog **Layar Kosong** sebelum melakukan merge.
           labels: dependencies, major, breaking-change

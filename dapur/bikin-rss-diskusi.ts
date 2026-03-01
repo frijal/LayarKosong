@@ -142,7 +142,7 @@ async function run() {
         displayImage = `\n\n![Thumbnail](${imgUrl})`;
       }
 
-      const bodyContent = `### [${art.title}](${art.link})${displayImage}\n\n${art.description}\n\n---\n**Baca selengkapnya di:** [Layar Kosong](${art.link})`;
+      const bodyContent = `### [${art.title}](${art.link})${displayImage}\n\n${art.description}\n\n---\n**Kupas Tuntas semuanya di:** [${art.link}](${art.link})`;
 
       await octokit.graphql(`
         mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {

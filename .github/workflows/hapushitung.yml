@@ -31,12 +31,12 @@ jobs:
 
       # ========== AUTOMATION SCRIPTS ==========
       - name: 🕵️ Update Dashboard Jadwal
-        run: bun run dapur/workflow-list.js || echo "Script dashboard tidak ditemukan, skip."
+        run: bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
 
       - name: 📸 Scan Unused Images
         run: |
           echo "🔎 Menjalankan pengecekan gambar..."
-          bun run dapur/cek-gambar.js || echo "Script cek-gambar tidak ditemukan, skip."
+          bun run dapur/cek-gambar.ts || echo "Script cek-gambar tidak ditemukan, skip."
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
       - name: 📊 Generate Detailed Content Report

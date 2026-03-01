@@ -42,19 +42,13 @@ jobs:
           # Install Python audit tools
           pip install pip-check-reqs
 
-      # --------------------
-      # PREPARE WORKDIR
-      # --------------------
-      - name: 📁 Create Audit Directory
-        run: mkdir -p sementara/audit
-
       # ====================
       # BAGIAN 1: INSPECTOR
       # ====================
       - name: 🧠 JavaScript Syntax Check
         run: |
           echo "Memeriksa syntax JavaScript di dapur/..."
-          for file in dapur/*.js; do
+          for file in dapur/*.ts; do
             if [ -f "$file" ]; then
               node --check "$file" && echo "✅ $file: OK" || exit 1
             fi
@@ -81,7 +75,7 @@ jobs:
 
           echo "--- Unused Dependency Report (Layar Kosong Detective) ---" > "$UNUSED_REPORT"
           # Pakai script custom Mas Bro sebagai pengganti dependensi check
-          bun run dapur/cek-mubazir.js >> "$UNUSED_REPORT"
+          bun run dapur/cek-mubazir.ts >> "$UNUSED_REPORT"
 
       - name: 🐍 Python Dependency Audit
         run: |
@@ -108,7 +102,7 @@ jobs:
         run: |
           if [ -f dapur/cleanup.js ]; then
             echo "Menjalankan Cleanup Auto v2.0..."
-            bun run dapur/cleanup.js
+            bun run dapur/cleanup.ts
           else
             echo "ℹ️ Tidak ada script cleanup, skip."
           fi
