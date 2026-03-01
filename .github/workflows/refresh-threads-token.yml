@@ -26,20 +26,28 @@ jobs:
       - name: Install axios
         run: bun install
         
-      - name: Get New Token
+      - name: Get & Display New Token
         id: refresh_token
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
         run: |
-          # Jalankan script yang ada di folder dapur/
-          # Kita simpan outputnya ke environment variable GitHub
-          NEW_TOKEN=$(bun run dapur/refresh-threads-token.ts)
-          echo "NEW_THREADS_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
+          # 1. Jalankan script dan tangkap tokennya
+          RAW_TOKEN=$(bun run dapur/refresh-threads-token.ts)
+          
+          # 2. Cek apakah token kosong atau gagal
+          if [ -z "$RAW_TOKEN" ]; then
+            echo "❌ Gagal mendapatkan token baru!"
+            exit 1
+          fi
 
-      - name: Update GitHub Secret
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          # Update secret THREADS_ACCESS_TOKEN dengan token baru
-          # Menggunakan flag --repo agar spesifik ke repo Layar Kosong
-          gh secret set THREADS_ACCESS_TOKEN --body "$NEW_THREADS_TOKEN" --repo ${{ github.repository }}
+          # 3. Tampilkan plain text langsung di log
+          # Kita beri spasi sedikit di awal biar lebih jelas dibaca
+          echo "---------------------------------------------------------"
+          echo "🔑 THREADS ACCESS TOKEN (PLAIN)"
+          echo "---------------------------------------------------------"
+          echo ""
+          echo "$RAW_TOKEN"
+          echo ""
+          echo "---------------------------------------------------------"
+          echo "📍 Lokasi: Balikpapan | Silakan salin manual ke Secret."
+          echo "---------------------------------------------------------"
