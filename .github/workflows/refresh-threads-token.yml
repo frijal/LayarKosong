@@ -1,8 +1,7 @@
 name: Token Auto Refresh Threads
 
 on:
-  workflow_dispatch: # Bisa klik manual dari tab Actions
-
+  workflow_dispatch:
 jobs:
   refresh:
     runs-on: ubuntu-latest
