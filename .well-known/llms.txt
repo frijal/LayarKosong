@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.39
+document_version: 16.40
 last_updated: 2026-03-01
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 1 Maret 2026)
-> Menampilkan 1007 artikel versi 16.39.
+> Menampilkan 1008 artikel versi 16.40.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -112,6 +112,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Negeri Syam yang Mulia: 14 Abad Sejarah, Keberkahan, dan Janji Ilahi yang Menggetarkan](https://dalam.web.id/jejak-sejarah/negeri-syam-mulia) : Jelajahi sejarah 14 abad Negeri Syam, tanah yang diberkahi dalam Al-Qur’an dan hadis. Baca selengkapnya tentang keistimewaan, futuhat, dan perannya di akhir zaman.
 - [Mekanisme Pemakzulan Presiden di Indonesia: Proses Hukum Tegas Berdasarkan UUD 1945 dan 3 Lembaga Kunci](https://dalam.web.id/jejak-sejarah/mekanisme-pemakzulan-presiden) : Pemakzulan presiden di Indonesia diatur dalam UUD 1945 melalui peran DPR, MK, dan MPR. Simak proses lengkap, syarat, dan dasar hukumnya secara jelas dan sistematis. Disajikan dengan bahasa santai dan mendalam.
 - [Ghulul dan Fasad fil Ardh: 7 Bahaya Besar yang Menghancurkan Amanah dan Peradaban](https://dalam.web.id/jejak-sejarah/ghulul-dan-fasad-fil-ardh) : Ghulul dan Fasad fil Ardh adalah dua konsep penting dalam hukum Islam yang menjelaskan pengkhianatan amanah dan kerusakan sosial. Pelajari makna, dalil, dampak, dan solusi menurut syariat Islam.
 - [Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam](https://dalam.web.id/jejak-sejarah/beda-hadis-dengan-sunnah) : Beda Hadis dengan Sunnah sering dianggap sama, padahal keduanya memiliki perbedaan mendasar dalam makna dan fungsi. Simak penjelasan lengkap, dalil, serta pandangan ulama dalam artikel ini.
