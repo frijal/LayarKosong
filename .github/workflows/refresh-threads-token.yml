@@ -30,7 +30,7 @@ jobs:
         run: |
           # Jalankan script yang ada di folder dapur/
           # Kita simpan outputnya ke environment variable GitHub
-          NEW_TOKEN=$(bun run dapur/refresh-threads-token.js)
+          NEW_TOKEN=$(bun run dapur/refresh-threads-token.ts)
           echo "NEW_THREADS_TOKEN=$NEW_TOKEN" >> $GITHUB_ENV
 
       - name: Update GitHub Secret
