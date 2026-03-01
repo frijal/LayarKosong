@@ -101,19 +101,19 @@ jobs:
       
       - name: '6️⃣ Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
-        run: bun run dapur/inject-schema.js
+        run: bun run dapur/inject-schema.ts
 
       - name: '7️⃣ Convert HTML to Markdown'
         if: env.DO_CONVERT_MARKDOWN == 'true'
-        run: bun run dapur/html-to-markdown.js
+        run: bun run dapur/html-to-markdown.ts
         
       - name: '8️⃣ Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
-        run: bun run dapur/minify-html.js
+        run: bun run dapur/minify-html.ts
 
       - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: bun run dapur/minify-jsonxml.js     
+        run: bun run dapur/minify-jsonxml.ts     
 
       - name: '🔟 Commit and Push'
         run: |
