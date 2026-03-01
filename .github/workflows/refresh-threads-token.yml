@@ -2,7 +2,6 @@ name: Token Auto Refresh Threads
 
 on:
   schedule:
-    - cron: '0 0 */49 * *' # Otomatis tiap 50 hari
   workflow_dispatch: # Bisa klik manual dari tab Actions
 
 jobs:
