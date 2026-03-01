@@ -1,7 +1,6 @@
 name: Token Auto Refresh Threads
 
 on:
-  schedule:
   workflow_dispatch: # Bisa klik manual dari tab Actions
 
 jobs:
