@@ -19,7 +19,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install Dependencies
-        run: bun install happy-dom glob
+        run: bun install
 
       - name: 🕵️‍♂️ Run SEO Audit
         run: bun run dapur/audit-seo.ts
