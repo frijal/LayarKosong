@@ -123,13 +123,18 @@ async function processFile(file: string, baseUrl: string) {
         // Logika Gambar Meta (Tetap Mirroring)
         let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
         $('meta[name="twitter:image"]').attr('content') ||
-        $('img').first().attr('src') || '';
+        $('img').first().attr('src') ||
+        '/thumbnail.webp'; // <--- FALLBACK SAKTI
 
+        // Jika gambar eksternal (http), lakukan mirroring. Jika lokal, biarkan saja.
         if (metaImgUrl && metaImgUrl.startsWith('http')) {
             const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
             if (mirroredPath.startsWith('/img')) {
                 metaImgUrl = `${baseUrl}${mirroredPath}`;
             }
+        } else if (metaImgUrl.startsWith('/')) {
+            // Pastikan path lokal diawali dengan baseUrl agar bot sosmed bisa baca
+            metaImgUrl = `${baseUrl}${metaImgUrl}`;
         }
 
         // --- 3. OPERASI STERILISASI (CLEANUP) ---
@@ -159,6 +164,8 @@ async function processFile(file: string, baseUrl: string) {
             `<meta property="og:url" content="${canonicalUrl}">`,
             `<meta property="twitter:url" content="${canonicalUrl}">`,
             `<meta property="twitter:domain" content="https://dalam.web.id">`,
+            // --- TWITTER CARD DI SINI SAJA ---
+            `<meta name="twitter:card" content="summary_large_image">`,
             `<meta property="og:title" content="${escapedTitle}">`,
             `<meta name="twitter:title" content="${escapedTitle}">`,
             `<meta property="og:type" content="article">`,
@@ -176,21 +183,16 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:site" content="@responaja">`,
             `<meta property="article:author" content="https://facebook.com/frijal">`,
             `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
-            `<meta property="fb:app_id" content="175216696195384">`
+            `<meta property="fb:app_id" content="175216696195384">`,
+            // --- SEMUA TAG IMAGE BERKUMPUL DI BAWAH ---
+            `<meta itemprop="image" content="${metaImgUrl}">`,
+            `<meta name="twitter:image" content="${metaImgUrl}">`,
+            `<meta property="twitter:image" content="${metaImgUrl}">`,
+            `<meta property="og:image" content="${metaImgUrl}">`,
+            `<meta property="og:image:alt" content="${escapedTitle}">`,
+            `<meta property="og:image:width" content="1200">`,
+            `<meta property="og:image:height" content="675">`
         ];
-
-        if (metaImgUrl) {
-            metaTags.push(
-        `<meta itemprop="image" content="${metaImgUrl}">`,
-        `<meta name="twitter:image" content="${metaImgUrl}">`,
-        `<meta property="twitter:image" content="${metaImgUrl}">`,
-        `<meta property="og:image" content="${metaImgUrl}">`,
-        `<meta property="og:image:alt" content="${escapedTitle}">`,
-        `<meta property="og:image:width" content="1200">`,
-        `<meta property="og:image:height" content="675">`,
-        `<meta name="twitter:card" content="summary_large_image">`
-            );
-        }
 
         existingTags.forEach(tag => metaTags.push(`<meta property="article:tag" content="${tag}">`));
         if (publishedTime) metaTags.push(`<meta property="article:published_time" content="${publishedTime}">`);
