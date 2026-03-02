@@ -1,13 +1,12 @@
 # 📋 Hasil Audit SEO Layar Kosong
-📅 Tanggal: 2/3/2026, 20.37.57
+📅 Tanggal: 2/3/2026, 21.54.43
 
 <details>
-<summary><b>🏷️ Core Meta & Branding (2 Masalah)</b></summary>
+<summary><b>🏷️ Core Meta & Branding (1 Masalah)</b></summary>
 
 | File | Masalah |
 | :--- | :--- |
 | `lainnya/Kalkulator-Laundry-Berkah.html` | Canonical Tag<br>Favicon.ico<br>Author |
-| `artikel/Kalkulator-Laundry-Berkah.html` | Canonical Tag<br>Favicon.ico<br>Author |
 
 </details>
 
@@ -21,12 +20,11 @@
 </details>
 
 <details>
-<summary><b>📊 Open Graph (OG) Tags (2 Masalah)</b></summary>
+<summary><b>📊 Open Graph (OG) Tags (1 Masalah)</b></summary>
 
 | File | Masalah |
 | :--- | :--- |
 | `lainnya/Kalkulator-Laundry-Berkah.html` | OG Site Name |
-| `artikel/Kalkulator-Laundry-Berkah.html` | OG Site Name |
 
 </details>
 
@@ -57,20 +55,6 @@
 | `gaya-hidup/pola-hidup-sehat-untuk-usus.html` | Twitter Card |
 | `gaya-hidup/kurangi-cahaya-ketika-tidur.html` | Twitter Card |
 | `gaya-hidup/minuman-bantu-pencernaan.html` | Twitter Card |
-| `lainnya/password-generator-bikin-kata-sandi.html` | Twitter Card |
-| `lainnya/ujian-nasional-catatan-video.html` | Twitter Card |
-| `lainnya/kalkulator-listrik-real-time-2026.html` | Twitter Card |
-| `lainnya/Kalkulator-Laundry-Berkah.html` | Twitter Card |
-| `lainnya/buruk-sangka-menggunjing.html` | Twitter Card |
-| `lainnya/silaturahmi-vs-silaturahim.html` | Twitter Card |
-| `lainnya/pt-badak-ngl.html` | Twitter Card |
-| `lainnya/lirik-pulang-nostalgia.html` | Twitter Card |
-| `lainnya/editor-json-pro.html` | Twitter Card |
-| `lainnya/axel-download.html` | Twitter Card |
-| `lainnya/iwan-fals-bangunlah-putra-putri-pertiwi.html` | Twitter Card |
-| `lainnya/bookmark-link-manager.html` | Twitter Card |
-| `lainnya/100-perintah-allah-dalam-quran.html` | Twitter Card |
-| `lainnya/makan-untuk-hidup-hidup-untuk-makan.html` | Twitter Card |
 | `jejak-sejarah/anas-bin-malik.html` | Twitter Card |
 | `jejak-sejarah/hijab-yang-berkeadaban.html` | Twitter Card |
 | `jejak-sejarah/hukum-perayaan-hari-kelahiran-dalam-islam.html` | Twitter Card |
@@ -143,10 +127,62 @@
 | `olah-media/multi-video-youtube-gallery.html` | Twitter Card |
 | `olah-media/ubah-gabung.html` | Twitter Card |
 | `olah-media/kode-generator-gambar.html` | Twitter Card |
+| `lainnya/password-generator-bikin-kata-sandi.html` | Twitter Card |
+| `lainnya/ujian-nasional-catatan-video.html` | Twitter Card |
+| `lainnya/kalkulator-listrik-real-time-2026.html` | Twitter Card |
+| `lainnya/Kalkulator-Laundry-Berkah.html` | Twitter Card |
+| `lainnya/buruk-sangka-menggunjing.html` | Twitter Card |
+| `lainnya/silaturahmi-vs-silaturahim.html` | Twitter Card |
+| `lainnya/pt-badak-ngl.html` | Twitter Card |
+| `lainnya/lirik-pulang-nostalgia.html` | Twitter Card |
+| `lainnya/editor-json-pro.html` | Twitter Card |
+| `lainnya/axel-download.html` | Twitter Card |
+| `lainnya/iwan-fals-bangunlah-putra-putri-pertiwi.html` | Twitter Card |
+| `lainnya/bookmark-link-manager.html` | Twitter Card |
+| `lainnya/100-perintah-allah-dalam-quran.html` | Twitter Card |
+| `lainnya/makan-untuk-hidup-hidup-untuk-makan.html` | Twitter Card |
+| `sistem-terbuka/gui-package-managers.html` | Twitter Card |
+| `sistem-terbuka/alias-linux.html` | Twitter Card |
+| `sistem-terbuka/fix-git-ssh-windows.html` | Twitter Card |
+| `sistem-terbuka/cachyos-paru-upgrade-cepat.html` | Twitter Card |
+| `sistem-terbuka/linux-mirror-guide-all.html` | Twitter Card |
+| `sistem-terbuka/daftar-alternatif-windows-linux.html` | Twitter Card |
+| `sistem-terbuka/file-manager-linux.html` | Twitter Card |
+| `sistem-terbuka/flatpak-linux.html` | Twitter Card |
+| `sistem-terbuka/analisis-ram-dmidecode.html` | Twitter Card |
+| `sistem-terbuka/linux-package-manager.html` | Twitter Card |
+| `sistem-terbuka/apa-itu-pkgbuild.html` | Twitter Card |
+| `sistem-terbuka/github-lambat-firefox-debian.html` | Twitter Card |
+| `sistem-terbuka/generator-desktop-autostart-linux.html` | Twitter Card |
+| `sistem-terbuka/bersih-pip-cache.html` | Twitter Card |
+| `sistem-terbuka/keamanan-linux-vs-windows.html` | Twitter Card |
+| `sistem-terbuka/docs-linux-mirror.html` | Twitter Card |
+| `sistem-terbuka/cara-autostart-skrip-di-ubuntu.html` | Twitter Card |
+| `sistem-terbuka/efisiensi-ubuntu.html` | Twitter Card |
+| `sistem-terbuka/linux-package-manager-formal.html` | Twitter Card |
+| `sistem-terbuka/cara-instal-paru-arch.html` | Twitter Card |
+| `sistem-terbuka/fix-git-ssh-fedora.html` | Twitter Card |
+| `sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.html` | Twitter Card |
+| `sistem-terbuka/aur-explained.html` | Twitter Card |
+| `sistem-terbuka/cachyos-paru-gagal-update.html` | Twitter Card |
+| `sistem-terbuka/membedah-hasil-apt-audit-lengkap.html` | Twitter Card |
+| `sistem-terbuka/arti-peringatan-apt-policy-reject-signature.html` | Twitter Card |
+| `sistem-terbuka/file-permission.html` | Twitter Card |
+| `sistem-terbuka/fix-git-ssh-slackware.html` | Twitter Card |
+| `sistem-terbuka/cachyos-paru-update.html` | Twitter Card |
+| `sistem-terbuka/linux-mirrors-all.html` | Twitter Card |
+| `sistem-terbuka/gui-package-managers-comparison.html` | Twitter Card |
+| `sistem-terbuka/instal-cloudflare-warp-linux-2025.html` | Twitter Card |
+| `sistem-terbuka/jangan-crying-baby-linux.html` | Twitter Card |
+| `sistem-terbuka/kereta-api-di-terminal-sl.html` | Twitter Card |
+| `sistem-terbuka/fix-git-ssh-debian.html` | Twitter Card |
+| `sistem-terbuka/membedah-hasil-apt-audit.html` | Twitter Card |
+| `warta-tekno/pemasangan-ubuntu-10-10.html` | Twitter Card |
 | `warta-tekno/noreferrer-tanpa-target-blank.html` | Twitter Card |
 | `warta-tekno/faq-ai-umkm.html` | Twitter Card |
 | `warta-tekno/koleksi-tools-wajib-coba.html` | Twitter Card |
 | `warta-tekno/mengatasi-error-git-push-non-fast-forward.html` | Twitter Card |
+| `warta-tekno/workflow-backup-ke-server-remote-menggunakan-rsync-via-SSH-cron.html` | Twitter Card |
 | `warta-tekno/auto-upgrade-all-npm-packages.html` | Twitter Card |
 | `warta-tekno/mengapa-banyak-branch.html` | Twitter Card |
 | `warta-tekno/fix-git-ssh-macos.html` | Twitter Card |
@@ -155,9 +191,11 @@
 | `warta-tekno/evolusi-browser-engine.html` | Twitter Card |
 | `warta-tekno/lisensi-perangkat-lunak.html` | Twitter Card |
 | `warta-tekno/konfigurasi-git-email-noreply.html` | Twitter Card |
+| `warta-tekno/windows-vs-linux-kebiasaan.html` | Twitter Card |
 | `warta-tekno/git-merge-conflict.html` | Twitter Card |
 | `warta-tekno/cleanup-doc.html` | Twitter Card |
 | `warta-tekno/strategi-branching-github.html` | Twitter Card |
+| `warta-tekno/sejarah-rsync.html` | Twitter Card |
 | `warta-tekno/optimasi-workflow-harian-github-actions.html` | Twitter Card |
 | `warta-tekno/grammarly-ai-writing-assistant.html` | Twitter Card |
 | `warta-tekno/membuat-git-orphan-branch.html` | Twitter Card |
@@ -167,43 +205,61 @@
 | `warta-tekno/peran-hr-it-cepat-tergantikan-ai.html` | Twitter Card |
 | `warta-tekno/cleanup.html` | Twitter Card |
 | `warta-tekno/kesimpulan-ai-umkm.html` | Twitter Card |
+| `warta-tekno/solusi-login-loop-debian.html` | Twitter Card |
 | `warta-tekno/tools-ai-untuk-umkm.html` | Twitter Card |
 | `warta-tekno/gh-force-merge.html` | Twitter Card |
 | `warta-tekno/evolusi-mesin-browser.html` | Twitter Card |
+| `warta-tekno/peramban-ringan-linux-terbaik.html` | Twitter Card |
 | `warta-tekno/mengenal-upscrolled-media-sosial-anti-sensor.html` | Twitter Card |
+| `warta-tekno/paru-software-nonresmi.html` | Twitter Card |
 | `warta-tekno/cleanup-series.html` | Twitter Card |
 | `warta-tekno/json-published-time-artikel-editor.html` | Twitter Card |
+| `warta-tekno/paru-lintas-distro.html` | Twitter Card |
 | `warta-tekno/chatgpt-asisten-virtual-umkm.html` | Twitter Card |
 | `warta-tekno/deploy-checklist.html` | Twitter Card |
 | `warta-tekno/build-workflow.html` | Twitter Card |
 | `warta-tekno/panduan-skrip-fix-html.html` | Twitter Card |
 | `warta-tekno/tren-masa-depan-ai-umkm.html` | Twitter Card |
+| `warta-tekno/Skrip-Otomatis-ChRoot.html` | Twitter Card |
+| `warta-tekno/opensuse-mirror.html` | Twitter Card |
 | `warta-tekno/noreferrer.html` | Twitter Card |
+| `warta-tekno/rev-linux.html` | Twitter Card |
 | `warta-tekno/cleanup-dependencies.html` | Twitter Card |
 | `warta-tekno/winget-instal-20-aplikasi.html` | Twitter Card |
+| `warta-tekno/skrip-otomatis-chroot-linux.html` | Twitter Card |
 | `warta-tekno/git-passive-branch-merge.html` | Twitter Card |
+| `warta-tekno/oss-di-sekolah.html` | Twitter Card |
 | `warta-tekno/panduan-kontribusi-layar-kosong.html` | Twitter Card |
 | `warta-tekno/peran-ai-bantu-umkm-bersaing.html` | Twitter Card |
+| `warta-tekno/slackware-nixos-mirror.html` | Twitter Card |
 | `warta-tekno/jasper-ai-content-writer.html` | Twitter Card |
 | `warta-tekno/warp-cli-registration-new-2025.html` | Twitter Card |
 | `warta-tekno/pengecekan-laporan-konten-harian.html` | Twitter Card |
 | `warta-tekno/memahami-ikon-github-actions.html` | Twitter Card |
+| `warta-tekno/ringkasan-windows-vs-linux.html` | Twitter Card |
 | `warta-tekno/git-clean-merged-branches.html` | Twitter Card |
 | `warta-tekno/pengaturan-posisi-json.html` | Twitter Card |
+| `warta-tekno/suara-hati-foss-kaltim-pemilukada.html` | Twitter Card |
 | `warta-tekno/github-badges.html` | Twitter Card |
+| `warta-tekno/niri.html` | Twitter Card |
 | `warta-tekno/manajer-kata-sandi-firefox.html` | Twitter Card |
 | `warta-tekno/cleanup-comparison.html` | Twitter Card |
 | `warta-tekno/pemisah-json-mingguan-offline.html` | Twitter Card |
 | `warta-tekno/cleanup-auto.html` | Twitter Card |
+| `warta-tekno/xpenguins.html` | Twitter Card |
+| `warta-tekno/sudo-tanpa-password.html` | Twitter Card |
 | `warta-tekno/git-prevent-auto-merge-request.html` | Twitter Card |
 | `warta-tekno/copy-ai-konten-otomatis.html` | Twitter Card |
 | `warta-tekno/cleanup-tools.html` | Twitter Card |
 | `warta-tekno/notion-ai-productivity-partner.html` | Twitter Card |
 | `warta-tekno/quickbooks-ai-keuangan-umkm.html` | Twitter Card |
+| `warta-tekno/nixos-mirror.html` | Twitter Card |
 | `warta-tekno/gemini-asisten-virtual-umkm.html` | Twitter Card |
 | `warta-tekno/git-repo-size-reduction.html` | Twitter Card |
 | `warta-tekno/canva-magic-studio-desain-ai.html` | Twitter Card |
 | `warta-tekno/blokir-situs-anak.html` | Twitter Card |
+| `warta-tekno/slackware-mirror.html` | Twitter Card |
+| `warta-tekno/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html` | Twitter Card |
 | `warta-tekno/gh-force-clean.html` | Twitter Card |
 | `warta-tekno/cleanup-guide.html` | Twitter Card |
 | `warta-tekno/git-cek-branch-merged.html` | Twitter Card |
@@ -218,6 +274,7 @@
 | `warta-tekno/bikin-edit-json-komposisi-kategori-elemen.html` | Twitter Card |
 | `warta-tekno/cloudflare-api.html` | Twitter Card |
 | `warta-tekno/build-deploy-clean-branch.html` | Twitter Card |
+| `warta-tekno/zorin-os-18-beta.html` | Twitter Card |
 | `opini-sosial/polemik-sayyidina-shalawat.html` | Twitter Card |
 | `opini-sosial/penjelasan-lengkap-tentang-sahabat.html` | Twitter Card |
 | `opini-sosial/penurunan-kognitif.html` | Twitter Card |
@@ -238,65 +295,6 @@
 | `opini-sosial/kerja-halal.html` | Twitter Card |
 | `opini-sosial/penurunan-kognitif-di-era-medsos.html` | Twitter Card |
 | `opini-sosial/bahaya-ghibah.html` | Twitter Card |
-| `sistem-terbuka/pemasangan-ubuntu-10-10.html` | Twitter Card |
-| `sistem-terbuka/gui-package-managers.html` | Twitter Card |
-| `sistem-terbuka/workflow-backup-ke-server-remote-menggunakan-rsync-via-SSH-cron.html` | Twitter Card |
-| `sistem-terbuka/alias-linux.html` | Twitter Card |
-| `sistem-terbuka/fix-git-ssh-windows.html` | Twitter Card |
-| `sistem-terbuka/cachyos-paru-upgrade-cepat.html` | Twitter Card |
-| `sistem-terbuka/linux-mirror-guide-all.html` | Twitter Card |
-| `sistem-terbuka/daftar-alternatif-windows-linux.html` | Twitter Card |
-| `sistem-terbuka/file-manager-linux.html` | Twitter Card |
-| `sistem-terbuka/flatpak-linux.html` | Twitter Card |
-| `sistem-terbuka/windows-vs-linux-kebiasaan.html` | Twitter Card |
-| `sistem-terbuka/analisis-ram-dmidecode.html` | Twitter Card |
-| `sistem-terbuka/linux-package-manager.html` | Twitter Card |
-| `sistem-terbuka/sejarah-rsync.html` | Twitter Card |
-| `sistem-terbuka/solusi-login-loop-debian.html` | Twitter Card |
-| `sistem-terbuka/peramban-ringan-linux-terbaik.html` | Twitter Card |
-| `sistem-terbuka/paru-software-nonresmi.html` | Twitter Card |
-| `sistem-terbuka/apa-itu-pkgbuild.html` | Twitter Card |
-| `sistem-terbuka/github-lambat-firefox-debian.html` | Twitter Card |
-| `sistem-terbuka/generator-desktop-autostart-linux.html` | Twitter Card |
-| `sistem-terbuka/paru-lintas-distro.html` | Twitter Card |
-| `sistem-terbuka/Skrip-Otomatis-ChRoot.html` | Twitter Card |
-| `sistem-terbuka/opensuse-mirror.html` | Twitter Card |
-| `sistem-terbuka/rev-linux.html` | Twitter Card |
-| `sistem-terbuka/bersih-pip-cache.html` | Twitter Card |
-| `sistem-terbuka/keamanan-linux-vs-windows.html` | Twitter Card |
-| `sistem-terbuka/docs-linux-mirror.html` | Twitter Card |
-| `sistem-terbuka/skrip-otomatis-chroot-linux.html` | Twitter Card |
-| `sistem-terbuka/oss-di-sekolah.html` | Twitter Card |
-| `sistem-terbuka/slackware-nixos-mirror.html` | Twitter Card |
-| `sistem-terbuka/cara-autostart-skrip-di-ubuntu.html` | Twitter Card |
-| `sistem-terbuka/efisiensi-ubuntu.html` | Twitter Card |
-| `sistem-terbuka/ringkasan-windows-vs-linux.html` | Twitter Card |
-| `sistem-terbuka/linux-package-manager-formal.html` | Twitter Card |
-| `sistem-terbuka/cara-instal-paru-arch.html` | Twitter Card |
-| `sistem-terbuka/suara-hati-foss-kaltim-pemilukada.html` | Twitter Card |
-| `sistem-terbuka/niri.html` | Twitter Card |
-| `sistem-terbuka/fix-git-ssh-fedora.html` | Twitter Card |
-| `sistem-terbuka/cara-memperbaiki-GRUB-bootloader-yang-rusak-pada-Debian-dan-turunannya.html` | Twitter Card |
-| `sistem-terbuka/aur-explained.html` | Twitter Card |
-| `sistem-terbuka/cachyos-paru-gagal-update.html` | Twitter Card |
-| `sistem-terbuka/xpenguins.html` | Twitter Card |
-| `sistem-terbuka/sudo-tanpa-password.html` | Twitter Card |
-| `sistem-terbuka/membedah-hasil-apt-audit-lengkap.html` | Twitter Card |
-| `sistem-terbuka/arti-peringatan-apt-policy-reject-signature.html` | Twitter Card |
-| `sistem-terbuka/file-permission.html` | Twitter Card |
-| `sistem-terbuka/fix-git-ssh-slackware.html` | Twitter Card |
-| `sistem-terbuka/cachyos-paru-update.html` | Twitter Card |
-| `sistem-terbuka/nixos-mirror.html` | Twitter Card |
-| `sistem-terbuka/linux-mirrors-all.html` | Twitter Card |
-| `sistem-terbuka/slackware-mirror.html` | Twitter Card |
-| `sistem-terbuka/xsolve-WiFi-Realtek-di-Linux-yang-sinyal-lemah.html` | Twitter Card |
-| `sistem-terbuka/gui-package-managers-comparison.html` | Twitter Card |
-| `sistem-terbuka/instal-cloudflare-warp-linux-2025.html` | Twitter Card |
-| `sistem-terbuka/jangan-crying-baby-linux.html` | Twitter Card |
-| `sistem-terbuka/kereta-api-di-terminal-sl.html` | Twitter Card |
-| `sistem-terbuka/fix-git-ssh-debian.html` | Twitter Card |
-| `sistem-terbuka/membedah-hasil-apt-audit.html` | Twitter Card |
-| `sistem-terbuka/zorin-os-18-beta.html` | Twitter Card |
 | `artikel/Susah-Tidur.html` | Twitter Card |
 | `artikel/polemik-sayyidina-shalawat.html` | Twitter Card |
 | `artikel/pemasangan-ubuntu-10-10.html` | Twitter Card |
