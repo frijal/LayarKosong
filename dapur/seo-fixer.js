@@ -151,6 +151,7 @@ const rawContent = await globalThis.Bun.file(file).text();
     `<meta name="fediverse:creator" content="@frijal@mastodon.social">`,
     `<meta name="googlebot" content="max-image-preview:large">`,
     `<meta name="twitter:site" content="@responaja">`,
+    `<meta name="twitter:card" content="${metaImgUrl ? 'summary_large_image' : 'summary'}">`,
     `<meta property="article:author" content="https://facebook.com/frijal">`,
     `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
     `<meta property="fb:app_id" content="175216696195384">`
@@ -160,12 +161,8 @@ const rawContent = await globalThis.Bun.file(file).text();
     metaTags.push(
       `<meta itemprop="image" content="${metaImgUrl}">`,
       `<meta name="twitter:image" content="${metaImgUrl}">`,
-      `<meta property="twitter:image" content="${metaImgUrl}">`,
       `<meta property="og:image" content="${metaImgUrl}">`,
-      `<meta property="og:image:alt" content="${escapedTitle}">`,
-      `<meta property="og:image:width" content="1200">`,
-      `<meta property="og:image:height" content="675">`,
-      `<meta name="twitter:card" content="summary_large_image">`
+      `<meta property="og:image:alt" content="${escapedTitle}">`
     );
   }
 
