@@ -22,12 +22,14 @@ async function auditSEO() {
 
     for (const filePath of files) {
         try {
-            let content = await readFile(filePath, "utf-8");
+            let rawContent = await readFile(filePath, "utf-8");
 
             // STRATEGI ANTI-CRASH:
-            // Hapus isi tag <style> dan <script> agar Happy-DOM tidak mencoba mem-parsing CSS/JS
-            content = content.replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '<style></style>');
-            content = content.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '<script></script>');
+            // Kita "sunat" isinya. Hapus semua teks di dalam <style>...</style> dan <script>...</script>
+            // supaya parser CSS/JS Happy-DOM tidak aktif dan tidak memicu SyntaxError.
+            const cleanContent = rawContent
+            .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '<style></style>')
+            .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '<script></script>');
 
             const window = new Window({
                 settings: {
@@ -39,43 +41,47 @@ async function auditSEO() {
 
             const document = window.document;
 
-            // Gunakan innerHTML pada elemen utama
-            document.documentElement.innerHTML = content;
+            // Gunakan innerHTML pada documentElement agar lebih stabil daripada document.write
+            document.documentElement.innerHTML = cleanContent;
 
             const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
-            // Ambil tag secara primitif
+            // Ambil tag secara primitif (Metode paling stabil)
             const allMetas = Array.from(document.getElementsByTagName('meta'));
             const allLinks = Array.from(document.getElementsByTagName('link'));
             const allImgs = Array.from(document.getElementsByTagName('img'));
 
-            // Helper pencarian (tetap gunakan ini karena aman)
-            const hasMeta = (attrName: string, attrValue: string, isProperty = false) =>
-            allMetas.some(m => m.getAttribute(isProperty ? 'property' : 'name') === attrValue);
+            // Helper pencarian atribut (Anti-Crash)
+            const hasMeta = (attr: string, value: string, isProperty = false) =>
+            allMetas.some(m => m.getAttribute(isProperty ? 'property' : 'name') === value);
 
             const hasLink = (rel: string) => allLinks.some(l => l.getAttribute('rel') === rel);
 
-            // --- MULAI AUDIT ---
+            // --- EKSEKUSI AUDIT ---
             if (!hasLink('canonical')) issues[1].push("Canonical Tag");
             if (!hasLink('icon')) issues[1].push("Favicon.ico");
             if (!hasMeta('name', 'author')) issues[1].push("Author");
+            if (!hasMeta('name', 'theme-color')) issues[1].push("Theme Color");
 
-            // Cek Alt Text pada gambar
+            // OG & Social
+            if (!hasMeta('property', 'og:site_name', true)) issues[3].push("OG Site Name");
+            if (!hasMeta('name', 'twitter:card')) issues[4].push("Twitter Card");
+
+            // Alt Text Gambar
             let noAltCount = 0;
             for (const img of allImgs) {
                 if (!img.getAttribute('alt')) noAltCount++;
             }
-            if (noAltCount > 0) issues[5].push(`${noAltCount} Image(s) missing Alt text`);
+            if (noAltCount > 0) issues[5].push(`${noAltCount} Image(s) tanpa Alt text`);
 
-            // ... (lanjutkan logika audit lainnya sesuai kebutuhan)
-
+            // Simpan hasil
             for (let i = 1; i <= 6; i++) {
                 if (issues[i].length > 0) {
                     results[i].push(`| \`${filePath}\` | ${issues[i].join("<br>")} |`);
                 }
             }
         } catch (fileError) {
-            console.error(`⚠️ Gagal memproses ${filePath}:`, fileError.message);
+            console.error(`⚠️ Gagal total di ${filePath}:`, fileError.message);
         }
     }
 
