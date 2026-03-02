@@ -24,24 +24,28 @@ async function auditSEO() {
         try {
             let rawContent = await readFile(filePath, "utf-8");
 
-            // STRATEGI ANTI-CRASH:
-            // Kita "sunat" isinya. Hapus semua teks di dalam <style>...</style> dan <script>...</script>
-            // supaya parser CSS/JS Happy-DOM tidak aktif dan tidak memicu SyntaxError.
+            // STRATEGI NUCLEAR:
+            // 1. Hapus isi <style> dan <script>
+            // 2. Hapus semua atribut style="..." (inline styles) agar CSS parser tidak jalan
             const cleanContent = rawContent
             .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '<style></style>')
-            .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '<script></script>');
+            .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '<script></script>')
+            .replace(/\sstyle=(["'])(?:(?=(\\?))\2[\s\S])*?\1/gi, '') // Hapus inline style dengan tanda kutip
+            .replace(/\sstyle=[^\s\t\n>]+/gi, ''); // Hapus inline style tanpa tanda kutip (minify style=color:red)
 
             const window = new Window({
                 settings: {
                     disableCSSFileLoading: true,
                     disableJavaScriptFileLoading: true,
-                    disableJavaScriptEvaluation: true
-                }
+                    disableJavaScriptEvaluation: true,
+                    // Tambahan: beri tahu Happy-DOM untuk tidak memproses CSS sama sekali jika opsinya ada
+                    enableCSSParser: false
+                } as any
             });
 
             const document = window.document;
 
-            // Gunakan innerHTML pada documentElement agar lebih stabil daripada document.write
+            // Masukkan konten yang sudah "steril"
             document.documentElement.innerHTML = cleanContent;
 
             const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
