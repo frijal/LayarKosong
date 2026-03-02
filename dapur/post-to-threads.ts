@@ -74,7 +74,7 @@ async function postToThreads(): Promise<void> {
     // Step 1: Create Container
     const containerBody = {
       media_type: 'TEXT',
-      text: `${target.desc}\n\n#LayarKosong #Repost`,
+      text: `${target.desc}\n\n#Repost`,
       link_attachment: target.url,
       access_token: ACCESS_TOKEN
     };
