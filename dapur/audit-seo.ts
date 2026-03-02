@@ -1,8 +1,7 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { Window } from "happy-dom";
 import { glob } from "glob";
 
-// Konfigurasi
 const FOLDERS = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno", "artikel"];
 const REPORT_PATH = `./mini/laporan-audit-${new Date().toISOString().split('T')[0].replace(/-/g, '')}.md`;
 
@@ -16,97 +15,81 @@ const TITLES: Record<number, string> = {
 };
 
 async function auditSEO() {
-    console.log("🚀 Memulai Audit SEO ala Bun...");
+    console.log("🚀 Memulai Audit SEO ala Bun (Stability Mode)...");
     const results: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
-    // Ambil semua file HTML
     const files = await glob(`./{${FOLDERS.join(",")}}/**/*.html`, { recursive: true });
 
     for (const filePath of files) {
-        const content = await readFile(filePath, "utf-8");
-        const window = new Window();
-        const document = window.document;
-        document.write(content);
+        try {
+            const content = await readFile(filePath, "utf-8");
+            const window = new Window();
+            const document = window.document;
+            document.write(content);
 
-        const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+            const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
-        // HELPER BARU: Pakai fungsi ini supaya kalau selector gagal, script nggak mati
-        const safeQuery = (selector: string) => {
-            try {
-                return document.querySelector(selector);
-            } catch (e) {
-                return null;
+            // Ambil semua tag sekaligus agar hemat resource
+            const allMetas = Array.from(document.getElementsByTagName('meta'));
+            const allLinks = Array.from(document.getElementsByTagName('link'));
+            const allScripts = Array.from(document.getElementsByTagName('script'));
+            const allImgs = Array.from(document.getElementsByTagName('img'));
+
+            // Helper pencarian atribut manual (Anti-Crash)
+            const hasMeta = (attr: string, value: string, isProperty = false) =>
+            allMetas.some(m => m.getAttribute(isProperty ? 'property' : 'name') === value);
+
+            const hasLink = (rel: string) => allLinks.some(l => l.getAttribute('rel') === rel);
+
+            // 1. CORE
+            if (!hasLink('canonical')) issues[1].push("Canonical Tag");
+            if (!hasLink('icon')) issues[1].push("Favicon.ico");
+            if (!hasMeta('name', 'author')) issues[1].push("Author");
+            if (!hasMeta('name', 'theme-color')) issues[1].push("Theme Color");
+
+            // 2. SOCIAL
+            if (!hasMeta('name', 'fediverse:creator')) issues[2].push("Fediverse Creator");
+            if (!hasMeta('name', 'twitter:creator')) issues[2].push("Twitter Creator");
+            if (!hasMeta('name', 'bluesky:creator')) issues[2].push("Bluesky Creator");
+
+            // 3. OG (Property)
+            if (!hasMeta('property', 'og:site_name', true)) issues[3].push("OG Site Name");
+            if (!hasMeta('property', 'og:title', true)) issues[3].push("OG Title");
+
+            // 4. TWITTER
+            if (!hasMeta('name', 'twitter:card')) issues[4].push("Twitter Card");
+
+            // 5. IMAGES & ALT
+            if (!hasMeta('property', 'og:image', true)) issues[5].push("OG Image");
+
+            let noAltCount = 0;
+            for (const img of allImgs) {
+                if (!img.getAttribute('alt')) noAltCount++;
             }
-        };
-
-        // 1. CORE & BRANDING
-        if (!safeQuery('link[rel="canonical"]')) issues[1].push("Canonical Tag");
-        if (!safeQuery('link[rel="icon"]')) issues[1].push("Favicon.ico");
-
-        // Kita pakai cara lebih umum untuk meta author & theme
-        const metaAuthor = Array.from(document.querySelectorAll('meta')).find(m => m.getAttribute('name') === 'author');
-        if (!metaAuthor || metaAuthor.getAttribute('content') !== "Fakhrul Rijal") issues[1].push("Author");
-
-        const metaTheme = Array.from(document.querySelectorAll('meta')).find(m => m.getAttribute('name') === 'theme-color');
-        if (!metaTheme) issues[1].push("Theme Color");
-
-        if (!safeQuery('link[rel="license"]')) issues[1].push("CC0 License Link");
-        if (!safeQuery('meta[name="robots"]')) issues[1].push("Robots Meta");
-
-        // 2. SOCIAL CREATORS
-        const allMetas = Array.from(document.querySelectorAll('meta'));
-        if (!allMetas.find(m => m.getAttribute('name') === 'fediverse:creator')) issues[2].push("Fediverse Creator");
-        if (!allMetas.find(m => m.getAttribute('name') === 'twitter:creator')) issues[2].push("Twitter Creator");
-        if (!allMetas.find(m => m.getAttribute('name') === 'bluesky:creator')) issues[2].push("Bluesky Creator");
-
-        // 3. OPEN GRAPH (OG) - Menggunakan property
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:site_name')) issues[3].push("OG Site Name");
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:locale')) issues[3].push("OG Locale");
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:type')) issues[3].push("OG Type Article");
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:url')) issues[3].push("OG URL");
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:title')) issues[3].push("OG Title");
-
-        // 4. TWITTER & FACEBOOK
-        if (!allMetas.find(m => m.getAttribute('name') === 'twitter:card')) issues[4].push("Twitter Card");
-        if (!allMetas.find(m => m.getAttribute('property') === 'article:author')) issues[4].push("Article Author (FB)");
-
-        // 5. IMAGES
-        if (!allMetas.find(m => m.getAttribute('property') === 'og:image')) issues[5].push("OG Image");
-        if (!allMetas.find(m => m.getAttribute('name') === 'twitter:image')) issues[5].push("Twitter Image");
-
-        const images = document.querySelectorAll('img');
-        let noAltCount = 0;
-        images.forEach(img => {
-            if (!img.getAttribute('alt')) noAltCount++;
-        });
             if (noAltCount > 0) issues[5].push(`${noAltCount} Image(s) missing Alt text`);
 
             // 6. ASSETS
-            if (!safeQuery('link[type="application/rss+xml"]')) issues[6].push("RSS Feed Link");
-            if (!safeQuery('script[type="application/ld+json"]')) issues[6].push("Schema JSON-LD");
-            if (!allMetas.find(m => m.getAttribute('name') === 'description')) issues[6].push("Meta Description");
+            if (!allScripts.some(s => s.getAttribute('type') === 'application/ld+json')) issues[6].push("Schema JSON-LD");
+            if (!hasMeta('name', 'description')) issues[6].push("Meta Description");
 
-        // Rekap ke results
-        for (let i = 1; i <= 6; i++) {
-            if (issues[i].length > 0) {
-                results[i].push(`| \`${filePath}\` | ${issues[i].join("<br>")} |`);
+            for (let i = 1; i <= 6; i++) {
+                if (issues[i].length > 0) {
+                    results[i].push(`| \`${filePath}\` | ${issues[i].join("<br>")} |`);
+                }
             }
+        } catch (fileError) {
+            console.error(`⚠️ Gagal memproses ${filePath}:`, fileError.message);
         }
     }
 
-    // Generate Markdown Report
-    let report = `# 📋 Hasil Audit SEO Layar Kosong (Bun Engine)\n`;
-    report += `📅 Tanggal Audit: ${new Date().toLocaleString('id-ID')}\n\n`;
-
+    // Generate Report
+    let report = `# 📋 Hasil Audit SEO Layar Kosong\n📅 Tanggal: ${new Date().toLocaleString('id-ID')}\n\n`;
     for (let i = 1; i <= 6; i++) {
-        report += `<details>\n<summary><b>${TITLES[i]} (${results[i].length} Masalah)</b></summary>\n\n`;
-        report += `| File | Masalah Terdeteksi |\n| :--- | :--- |\n`;
-        report += results[i].length > 0 ? results[i].join("\n") : "| - | ✅ Semua beres |";
-        report += `\n\n</details>\n\n`;
+        report += `<details>\n<summary><b>${TITLES[i]} (${results[i].length} Masalah)</b></summary>\n\n| File | Masalah |\n| :--- | :--- |\n${results[i].length > 0 ? results[i].join("\n") : "| - | ✅ Semua beres |"}\n\n</details>\n\n`;
     }
 
     await Bun.write(REPORT_PATH, report);
-    console.log(`✅ Laporan selesai dibuat di: ${REPORT_PATH}`);
+    console.log(`✅ Laporan sukses di ${REPORT_PATH}`);
 }
 
 auditSEO();
