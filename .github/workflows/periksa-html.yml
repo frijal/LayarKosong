@@ -1,4 +1,4 @@
-name: 📋 Audit Komponen SEO Lengkap
+name: 📋 SEO Audit Layar Kosong
 
 on:
   workflow_dispatch:
@@ -6,72 +6,30 @@ on:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: 🧩 Checkout kode
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          persist-credentials: true
 
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - name: 🚀 Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          python-version: '3.x'
-          cache: 'pip'
+          bun-version: latest
 
-      - name: 📦 Install BeautifulSoup
-        run: pip install beautifulsoup4
+      - name: 📦 Install Dependencies
+        run: bun install happy-dom glob
 
-      - name: 🕵️ Audit Penggunaan CSS (Daftar Aset Aktif)
-        run: |         
-          # 2. Buat Header Markdown
-          echo "# 📋 Daftar Penggunaan CSS Lokal" > mini/daftar-css.md
-          echo "Terakhir diperbarui: $(date -u +'%Y-%m-%d %H:%M:%S') UTC" >> mini/daftar-css.md
-          echo -e "\n| File Artikel | Path CSS |" >> mini/daftar-css.md
-          echo "| :--- | :--- |" >> mini/daftar-css.md
-          
-          # 3. Scanning di 7+ folder (artikel dan kategori lainnya)
-          # Menggunakan -PHo agar kuat menghadapi file yang sudah di-minify
-          find ./artikel ./gaya-hidup ./jejak-sejarah ./lainnya ./olah-media ./opini-sosial ./sistem-terbuka ./warta-tekno -name "*.html" -type f 2>/dev/null | \
-          xargs grep -PHo '(?<=href=")[^"]*?\.css[^"]*?(?=")' | \
-          grep -vE "marquee-url\.css|fontawesome\.css" | \
-          sed 's/^\.\///' | \
-          sed 's/:/ | /' | \
-          sed 's/^/| /' | \
-          sed 's/$/ |/' >> mini/daftar-css.md          
-          
-          # 4. Tambahkan footer jika tidak ada hasil
-          if [ $(wc -l < mini/daftar-css.md) -le 4 ]; then
-            echo -e "\n> ℹ️ Tidak ditemukan penggunaan CSS dari folder /ext." >> mini/daftar-css.md
-          fi
-          
-          echo "✅ Laporan aset berhasil dibuat di mini/daftar-css.md"
+      - name: 🕵️‍♂️ Run SEO Audit
+        run: bun run dapur/audit-seo.ts
 
-      - name: 🔍 Jalankan Audit SEO (Python)
-        id: run_audit
-        run: |   # Eksekusi skrip audit Python yang sudah mendukung <details> dan BS4
-          python dapur/audit_seo.py
-          
-          # Ambil file laporan terbaru untuk Summary
-          LATEST_REPORT=$(ls -t mini/laporan-audit-*.md | head -1)
-          cat "$LATEST_REPORT" >> $GITHUB_STEP_SUMMARY
-          echo "REPORT_FILE=$LATEST_REPORT" >> $GITHUB_OUTPUT
-
-      - name: 💾 Simpan Laporan ke Repo
-        if: always()
+      - name: 📝 Commit & Push Report
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          git add mini/*.md
-          
-          # Commit hanya jika ada file baru atau perubahan
-          if ! git diff --cached --quiet; then
-            git commit -m "🤖 docs: audit SEO (Python + Details Format) $(date +'%Y-%m-%d')"
-            git push
-          else
-            echo "💤 Tidak ada perubahan pada laporan audit."
-          fi
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "actions@github.com"
+          git add .
+          # Hanya commit kalau ada perubahan (agar tidak error jika tidak ada issue baru)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update SEO audit report [skip ci]" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
