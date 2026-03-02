@@ -23,11 +23,25 @@ async function auditSEO() {
     for (const filePath of files) {
         try {
             const content = await readFile(filePath, "utf-8");
-            const window = new Window();
+
+            // KONFIGURASI PENTING: Matikan semua fitur yang tidak perlu
+            const window = new Window({
+                settings: {
+                    disableCSSFileLoading: true,   // JANGAN download file CSS
+                    disableJavaScriptFileLoading: true, // JANGAN download JS
+                    disableJavaScriptEvaluation: true,  // JANGAN jalankan JS
+                    disableComputedStyle: true,    // JANGAN hitung style CSS
+                }
+            });
+
             const document = window.document;
+
+            // Kita masukkan konten secara bertahap agar tidak memicu fetch otomatis
             document.write(content);
 
             const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+
+
 
             // Ambil semua tag sekaligus agar hemat resource
             const allMetas = Array.from(document.getElementsByTagName('meta'));
