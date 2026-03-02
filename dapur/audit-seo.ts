@@ -24,23 +24,23 @@ async function auditSEO() {
         try {
             const content = await readFile(filePath, "utf-8");
 
-            // KONFIGURASI PENTING: Matikan semua fitur yang tidak perlu
+            // Gunakan settings yang standar dan pasti didukung
             const window = new Window({
                 settings: {
-                    disableCSSFileLoading: true,   // JANGAN download file CSS
-                    disableJavaScriptFileLoading: true, // JANGAN download JS
-                    disableJavaScriptEvaluation: true,  // JANGAN jalankan JS
-                    disableComputedStyle: true,    // JANGAN hitung style CSS
+                    disableCSSFileLoading: true,
+                    disableJavaScriptFileLoading: true,
+                    disableJavaScriptEvaluation: true
+                    // Hapus disableComputedStyle karena menyebabkan error "Unknown setting"
                 }
             });
 
             const document = window.document;
 
-            // Kita masukkan konten secara bertahap agar tidak memicu fetch otomatis
-            document.write(content);
+            // Trik Jitu: Alih-alih document.write, kita langsung injeksi innerHTML
+            // Ini jauh lebih aman karena tidak memicu siklus 'loading' document yang memanggil parser CSS
+            document.documentElement.innerHTML = content;
 
             const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
-
 
 
             // Ambil semua tag sekaligus agar hemat resource
