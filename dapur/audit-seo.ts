@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { Window } from "happy-dom";
+import { parseHTML } from "linkedom";
 import { glob } from "glob";
 
 const FOLDERS = ["gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno", "artikel"];
@@ -15,70 +15,43 @@ const TITLES: Record<number, string> = {
 };
 
 async function auditSEO() {
-    console.log("🚀 Memulai Audit SEO ala Bun (Stability Mode)...");
+    console.log("🚀 Memulai Audit SEO ala Bun (LinkeDOM Engine)...");
     const results: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
     const files = await glob(`./{${FOLDERS.join(",")}}/**/*.html`, { recursive: true });
 
     for (const filePath of files) {
         try {
-            let rawContent = await readFile(filePath, "utf-8");
+            const content = await readFile(filePath, "utf-8");
 
-            // STRATEGI NUCLEAR:
-            // 1. Hapus isi <style> dan <script>
-            // 2. Hapus semua atribut style="..." (inline styles) agar CSS parser tidak jalan
-            const cleanContent = rawContent
-            .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '<style></style>')
-            .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '<script></script>')
-            .replace(/\sstyle=(["'])(?:(?=(\\?))\2[\s\S])*?\1/gi, '') // Hapus inline style dengan tanda kutip
-            .replace(/\sstyle=[^\s\t\n>]+/gi, ''); // Hapus inline style tanpa tanda kutip (minify style=color:red)
-
-            const window = new Window({
-                settings: {
-                    disableCSSFileLoading: true,
-                    disableJavaScriptFileLoading: true,
-                    disableJavaScriptEvaluation: true,
-                    // Tambahan: beri tahu Happy-DOM untuk tidak memproses CSS sama sekali jika opsinya ada
-                    enableCSSParser: false
-                } as any
-            });
-
-            const document = window.document;
-
-            // Masukkan konten yang sudah "steril"
-            document.documentElement.innerHTML = cleanContent;
+            // LinkeDOM: Langsung parse, sangat ringan, tidak download CSS/JS
+            const { document } = parseHTML(content);
 
             const issues: Record<number, string[]> = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
-            // Ambil tag secara primitif (Metode paling stabil)
             const allMetas = Array.from(document.getElementsByTagName('meta'));
             const allLinks = Array.from(document.getElementsByTagName('link'));
             const allImgs = Array.from(document.getElementsByTagName('img'));
 
-            // Helper pencarian atribut (Anti-Crash)
             const hasMeta = (attr: string, value: string, isProperty = false) =>
             allMetas.some(m => m.getAttribute(isProperty ? 'property' : 'name') === value);
 
             const hasLink = (rel: string) => allLinks.some(l => l.getAttribute('rel') === rel);
 
-            // --- EKSEKUSI AUDIT ---
+            // --- LOGIKA AUDIT (Sama seperti sebelumnya) ---
             if (!hasLink('canonical')) issues[1].push("Canonical Tag");
             if (!hasLink('icon')) issues[1].push("Favicon.ico");
             if (!hasMeta('name', 'author')) issues[1].push("Author");
             if (!hasMeta('name', 'theme-color')) issues[1].push("Theme Color");
-
-            // OG & Social
             if (!hasMeta('property', 'og:site_name', true)) issues[3].push("OG Site Name");
             if (!hasMeta('name', 'twitter:card')) issues[4].push("Twitter Card");
 
-            // Alt Text Gambar
             let noAltCount = 0;
             for (const img of allImgs) {
                 if (!img.getAttribute('alt')) noAltCount++;
             }
             if (noAltCount > 0) issues[5].push(`${noAltCount} Image(s) tanpa Alt text`);
 
-            // Simpan hasil
             for (let i = 1; i <= 6; i++) {
                 if (issues[i].length > 0) {
                     results[i].push(`| \`${filePath}\` | ${issues[i].join("<br>")} |`);
