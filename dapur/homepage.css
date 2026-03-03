@@ -1,3 +1,4 @@
+
 :root {
   --header-bg: #ffffff; /* Ganti solid agar tidak butuh blur */
   --header-border: rgba(0, 0, 0, 0.05);
@@ -599,60 +600,6 @@
    margin-bottom: 6px;
    letter-spacing: 0.3px;
  }
-
- /* --- CUSTOM TOOLTIP --- */
- .mini-text h4 {
-   position: relative;
-   cursor: help;
- }
-
- /* Kotak Tooltip */
- .mini-text h4::after {
-   content: attr(data-tooltip); /* Mengambil teks dari atribut data-tooltip */
-   position: absolute;
-   bottom: 125%;
-   left: 50%;
-   transform: translateX(-50%) scale(0.8);
-   background: var(--bg-card);
-   color: var(--text-main);
-   padding: 10px 15px;
-   border-radius: 8px;
-   font-size: 0.75rem;
-   font-family: 'Inter', sans-serif;
-   font-weight: 400;
-   width: 220px;
-   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-   border: 1px solid var(--primary);
-   visibility: hidden;
-   opacity: 0;
-   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-   z-index: 100;
-   line-height: 1.4;
-   pointer-events: none;
- }
-
- /* Panah Tooltip */
- .mini-text h4::before {
-   content: '';
-   position: absolute;
-   bottom: 110%;
-   left: 50%;
-   transform: translateX(-50%);
-   border: 8px solid transparent;
-   border-top-color: var(--primary);
-   visibility: hidden;
-   opacity: 0;
-   transition: 0.3s;
-   z-index: 100;
- }
-
- /* Efek Hover */
-.mini-text h4:hover::after,
-.mini-text h4:hover::before {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-}
 
 /* --- HEADER TOOLS RESPONSIVE --- */
 .header-tools {
