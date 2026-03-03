@@ -1,7 +1,7 @@
 // ----------------------------------------------------------
 // FILE: /ext/blog-engine.ts
-// Versi V6.9 (Dynamic Feed & Hero Slider)
-// Updated: 2026-03-03 (Fix Minify & Filter Logic)
+// Versi V7.0 (High Performance Sidebar & Global Export)
+// Updated: 2026-03-03
 // ----------------------------------------------------------
 
 interface Article {
@@ -19,12 +19,14 @@ interface RawData {
   [category: string]: RawArticleData[];
 }
 
+// --- VARIABEL GLOBAL ---
 let allData: Article[] = [];
 let displayedData: Article[] = [];
 let heroData: Article[] = [];
 let currentHeroIndex: number = 0;
 let heroTimer: ReturnType<typeof setInterval> | null = null;
 let limit: number = 6;
+let currentActiveCategory: string = 'All'; // <-- TAMBAHKAN INI (Untuk simpan status kategori)
 
 async function fetchData(): Promise<void> {
   try {
@@ -36,7 +38,6 @@ async function fetchData(): Promise<void> {
 
     for (const cat in data) {
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-
       data[cat].forEach(item => {
         const fileName = item[1];
         const fileSlug = fileName.endsWith('.html') ? fileName.replace(/\.html$/, '') : fileName;
@@ -71,7 +72,7 @@ function initSite(): void {
   renderHero();
   renderCategories();
   renderArchives();
-  renderSidebar();
+  renderSidebar(); // Inisialisasi awal
   renderFeed();
 
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
@@ -111,7 +112,6 @@ function initSite(): void {
     });
   }
 
-  // --- Filter Logic Fix ---
   const yFilter = document.getElementById('yearFilter') as HTMLSelectElement | null;
   const mFilter = document.getElementById('monthFilter') as HTMLSelectElement | null;
 
@@ -126,6 +126,66 @@ function initSite(): void {
   }
 }
 
+// --- FUNGSI SIDEBAR YANG DIPERBAIKI ---
+function renderSidebar(cat: string = currentActiveCategory): void {
+  currentActiveCategory = cat; // Update state kategori aktif
+
+  const side = document.getElementById('sidebarRandom');
+  if (!side) return;
+  side.innerHTML = '';
+
+  // Pilih pool data berdasarkan kategori
+  const pool = currentActiveCategory === 'All'
+  ? allData
+  : allData.filter(item => item.category === currentActiveCategory);
+
+  const randoms: Article[] = [];
+  const usedIndices = new Set<number>();
+  const targetCount = 7;
+  const maxToGet = Math.min(targetCount, pool.length);
+
+  while (randoms.length < maxToGet) {
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    if (!usedIndices.has(randomIndex)) {
+      randoms.push(pool[randomIndex]);
+      usedIndices.add(randomIndex);
+    }
+  }
+
+  side.innerHTML = randoms.map(item => {
+    const cleanTitle = item.title.replace(/"/g, '&quot;');
+    return `
+    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink:0;">
+    <div class="mini-text">
+    <h4 style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
+    <a href="${item.url}" title="${cleanTitle}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    ${item.title}
+    </a>
+    </h4>
+    <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">${item.category}</small>
+    </div>
+    </div>`;
+  }).join('');
+}
+
+// --- EKSPOR KE GLOBAL AGAR TOMBOL HTML BISA AKSES ---
+(window as any).renderSidebar = renderSidebar;
+
+function filterByCat(cat: string, el?: HTMLElement): void {
+  if (el) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
+  renderFeed(true);
+  renderSidebar(cat); // Panggil sidebar dengan kategori terpilih
+}
+
+(window as any).filterByCat = filterByCat;
+
+// --- SISA FUNGSI LAINNYA ---
 function renderHero(): void {
   if (heroData.length === 0) return;
   const heroEl = document.getElementById('hero');
@@ -145,15 +205,12 @@ function renderHero(): void {
   <strong style="color:var(--secondary);">Ungkap Faktanya →</strong>
   </p>
   </div>
-  </a>
-  `).join('');
+  </a>`).join('');
 
-  const navHTML = `
-  <div class="hero-nav">
+  const navHTML = `<div class="hero-nav">
   <button class="nav-btn prev" id="heroPrev"><i class="fa-solid fa-chevron-left"></i></button>
   <button class="nav-btn next" id="heroNext"><i class="fa-solid fa-chevron-right"></i></button>
-  </div>
-  `;
+  </div>`;
 
   const existingNav = heroEl.querySelector('.hero-nav');
   if (existingNav) existingNav.remove();
@@ -173,11 +230,8 @@ function updateHeroPosition(): void {
   if (!wrapper) return;
   const offset = currentHeroIndex * 100;
   wrapper.style.transform = `translateX(-${offset}%)`;
-
   const slides = document.querySelectorAll('.hero-slide');
-  slides.forEach((slide, idx) => {
-    slide.classList.toggle('active', idx === currentHeroIndex);
-  });
+  slides.forEach((slide, idx) => { slide.classList.toggle('active', idx === currentHeroIndex); });
 }
 
 function startHeroSlider(): void {
@@ -185,23 +239,17 @@ function startHeroSlider(): void {
   heroTimer = setInterval(() => {
     currentHeroIndex = (currentHeroIndex + 1) % heroData.length;
     updateHeroPosition();
-  }, 6000);
+  }, 4600);
 }
 
 function stopHeroSlider(): void {
-  if (heroTimer) {
-    clearInterval(heroTimer);
-    heroTimer = null;
-  }
+  if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
 }
 
 function moveHero(direction: number): void {
   currentHeroIndex += direction;
-  if (currentHeroIndex >= heroData.length) {
-    currentHeroIndex = 0;
-  } else if (currentHeroIndex < 0) {
-    currentHeroIndex = heroData.length - 1;
-  }
+  if (currentHeroIndex >= heroData.length) { currentHeroIndex = 0; }
+  else if (currentHeroIndex < 0) { currentHeroIndex = heroData.length - 1; }
   updateHeroPosition();
   stopHeroSlider();
   startHeroSlider();
@@ -240,8 +288,7 @@ function renderFeed(reset: boolean = false): void {
     <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>
     </a>
     </div>
-    </div>
-    `;
+    </div>`;
   });
 
   const loadMoreBtn = document.getElementById('loadMore');
@@ -251,84 +298,24 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       loadMoreBtn.innerHTML = 'Klik Selanjutnya...';
-      loadMoreBtn.onclick = () => {
-        limit += 6;
-        renderFeed();
-        renderSidebar();
-      };
+      loadMoreBtn.onclick = () => { limit += 6; renderFeed(); renderSidebar(); };
     }
   }
-}
-
-function renderSidebar(currentCategory: string = 'All'): void {
-  const side = document.getElementById('sidebarRandom');
-  if (!side) return;
-  side.innerHTML = '';
-
-  // 1. Tentukan sumber data: dari kategori tertentu atau semua
-  const pool = currentCategory === 'All'
-  ? allData
-  : allData.filter(item => item.category === currentCategory);
-
-  // 2. Ambil 7 artikel secara acak dari pool yang dipilih
-  const randoms: Article[] = [];
-  const usedIndices = new Set<number>();
-  const targetCount = 7; // Sesuai permintaanmu
-
-  // Safety check jika artikel di kategori tersebut kurang dari 7
-  const maxToGet = Math.min(targetCount, pool.length);
-
-  while (randoms.length < maxToGet) {
-    const randomIndex = Math.floor(Math.random() * pool.length);
-    if (!usedIndices.has(randomIndex)) {
-      randoms.push(pool[randomIndex]);
-      usedIndices.add(randomIndex);
-    }
-  }
-
-  // 3. Render HTML
-  const htmlContent = randoms.map(item => {
-    const cleanTitle = item.title.replace(/"/g, '&quot;');
-    return `
-    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}"
-    onerror="this.src='/thumbnail.webp'"
-    style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
-    <div class="mini-text">
-    <h4 style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
-    <a href="${item.url}" title="${cleanTitle}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-    ${item.title}
-    </a>
-    </h4>
-    <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">
-    ${item.category}
-    </small>
-    </div>
-    </div>
-    `;
-  }).join('');
-
-  side.innerHTML = htmlContent;
 }
 
 function renderCategories(): void {
   const cats = [...new Set(allData.map(i => i.category))];
   const container = document.getElementById('categoryPills');
   if (!container) return;
-
   container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>`;
   cats.forEach(c => {
     const pillId = `pill-${c.replace(/\s+/g, '-')}`;
     container.innerHTML += `<div class="pill" id="${pillId}">${c}</div>`;
   });
-
-  // Re-attach listeners (Safety from minify)
   document.getElementById('pill-all')?.addEventListener('click', function() { filterByCat('All', this); });
   cats.forEach(c => {
     const pillId = `pill-${c.replace(/\s+/g, '-')}`;
-    document.getElementById(pillId)?.addEventListener('click', function() {
-      filterByCat(c, this);
-    });
+    document.getElementById(pillId)?.addEventListener('click', function() { filterByCat(c, this); });
   });
 }
 
@@ -350,10 +337,8 @@ function updateMonthDropdown(): void {
   const ySelect = document.getElementById('yearFilter') as HTMLSelectElement | null;
   const mSelect = document.getElementById('monthFilter') as HTMLSelectElement | null;
   if (!ySelect || !mSelect) return;
-
   const selectedYear = ySelect.value;
   const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-
   mSelect.innerHTML = '<option value="">Bulan</option>';
   if (selectedYear) {
     const availableMonths = [...new Set(allData.filter(i => i.date.getFullYear().toString() === selectedYear).map(i => i.date.getMonth()))].sort((a, b) => a - b);
@@ -364,24 +349,15 @@ function updateMonthDropdown(): void {
       mSelect.appendChild(opt);
     });
     mSelect.disabled = false;
-  } else {
-    mSelect.disabled = true;
-  }
+  } else { mSelect.disabled = true; }
 }
 
 function runFilters(): void {
   const y = (document.getElementById('yearFilter') as HTMLSelectElement).value;
   const m = (document.getElementById('monthFilter') as HTMLSelectElement).value;
   const heroSection = document.getElementById('hero');
-
-  if (y !== "") {
-    if (heroSection) heroSection.style.display = 'none';
-    stopHeroSlider();
-  } else {
-    if (heroSection) heroSection.style.display = 'block';
-    startHeroSlider();
-  }
-
+  if (y !== "") { if (heroSection) heroSection.style.display = 'none'; stopHeroSlider(); }
+  else { if (heroSection) heroSection.style.display = 'block'; startHeroSlider(); }
   displayedData = allData.filter(i => {
     const matchY = y ? i.date.getFullYear().toString() === y : true;
     const matchM = m !== "" ? i.date.getMonth().toString() === m : true;
@@ -391,33 +367,12 @@ function runFilters(): void {
   renderSidebar();
 }
 
-function filterByCat(cat: string, el: HTMLElement): void {
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-
-  // Update data utama yang tampil di Feed
-  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
-
-  renderFeed(true);
-
-  // Panggil sidebar dengan kategori yang dipilih
-  renderSidebar(cat);
-}
-
-// Global Exports (Supaya bisa dipanggil dari HTML kalau terpaksa)
 (window as any).sendToWA = function(): void {
   const name = (document.getElementById('contact-name') as HTMLInputElement).value;
   const message = (document.getElementById('contact-message') as HTMLTextAreaElement).value;
-
-  if (!name || !message) {
-    alert("Isi nama dan pesannya dulu dong, Bro... 😀");
-    return;
-  }
-
+  if (!name || !message) { alert("Isi nama dan pesannya dulu dong, Bro... 😀"); return; }
   const noWA = "6281578163858";
   const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Pesan:* ${message}`;
-
-  // Membuka WA
   window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
   (document.getElementById('contact-name') as HTMLInputElement).value = "";
   (document.getElementById('contact-message') as HTMLTextAreaElement).value = "";
