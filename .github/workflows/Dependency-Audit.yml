@@ -100,7 +100,7 @@ jobs:
       # ====================
       - name: 🛠️ Run Auto-Fixer
         run: |
-          if [ -f dapur/cleanup.js ]; then
+          if [ -f dapur/cleanup.ts ]; then
             echo "Menjalankan Cleanup Auto v2.0..."
             bun run dapur/cleanup.ts
           else
