@@ -47,7 +47,7 @@
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+
 <meta name="ai:summary" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
 <meta name="ai:prompt_hint" content="Skrip untuk mengatur substituter (mirror) tercepat di NixOS guna mempercepat proses build dan update. Otomatis backup konfigurasi lama.">
     
@@ -124,7 +124,7 @@
             <div class="col">
                 <article>
                     <h1>Skrip nixos-mirror.sh: Atur Mirror Tercepat untuk NixOS</h1>
-<div id="iposbrowser"></div>
+
                     <p class="lead">NixOS menggunakan file <code>nix.conf</code> untuk mengatur substituter (mirror repositori). Dengan menambahkan mirror yang lebih cepat, kita bisa mempercepat proses seperti <code>nix-env</code> dan <code>nixos-rebuild</code>. Skrip ini akan mengotomatiskan proses tersebut.</p>
                     <div class="warning-box">
                         <strong>Peringatan Penting:</strong> Jalankan skrip ini dengan hak akses <code>sudo</code> karena akan mengubah file sistem di <code>/etc/nix/nix.conf</code>. Selain itu, pastikan Anda mengganti placeholder <code>trusted-public-keys</code> dengan kunci publik yang valid dari mirror yang Anda gunakan.

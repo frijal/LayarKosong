@@ -205,7 +205,7 @@
       overflow: auto;
     }
   </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+
 <meta name="ai:summary" content="Workflow GitHub Actions yang membalik alur: cek perubahan terlebih dulu di daftar file terizinkan, baru jalankan rsync dan deploy ke branch site. Dengan penjelasan santai, opsi logging, dan contoh YAML siap pakai.">
 <meta name="ai:prompt_hint" content="Workflow GitHub Actions yang membalik alur: cek perubahan terlebih dulu di daftar file terizinkan, baru jalankan rsync dan deploy ke branch site. Dengan penjelasan santai, opsi logging, dan contoh YAML siap pakai.">
     
@@ -280,7 +280,7 @@
         <div class="title">
           <span class="badge"><h1>⚠️ Build and Deploy to Clean Branch</h1></span>
           <span>Alur Dibalik: cek perubahan dulu, baru rsync + deploy</span>
-<div id="iposbrowser"></div>
+
         </div>
         <p class="subtitle">
           Intinya: sebelum melakukan <span class="kbd">rsync</span> dan deploy, workflow ini membandingkan isi daftar file yang diizinkan dengan versi sebelumnya di branch <span class="kbd">site</span>. Kalau tidak ada perubahan, langkah <span class="kbd">rsync</span> dan deploy dilewati.

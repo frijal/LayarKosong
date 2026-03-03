@@ -54,7 +54,7 @@
         .copy-btn:hover { background: var(--accent); }
         footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+
 <meta name="ai:summary" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
 <meta name="ai:prompt_hint" content="Tips mengelola dokumen saat memasang banyak Distro dalam satu komputer. Gunakan partisi besar dan softlink agar dokumen tidak duplikat dan mudah diakses.">
     
@@ -140,7 +140,7 @@
             <div class="col">
                 <article>
                     <h1>Manajemen Dokumen di Lingkungan Multi-Distro</h1>
-<div id="iposbrowser"></div>
+
                     <p class="lead">Bagi Anda yang hobi memasang banyak distro Linux dalam satu komputer (multi-boot), seringkali muncul masalah duplikasi dokumen. Solusinya adalah dengan membuat partisi data terpusat dan menggunakan symbolic link.</p>
                     <p>Permasalahan utamanya adalah setiap distro baru memiliki direktori <code>/home</code> sendiri. Jika Anda menyimpan dokumen di sana, file-file tersebut tidak akan bisa diakses dari distro lain, yang berujung pada duplikasi file, pemborosan ruang disk, dan kebingungan versi dokumen.</p>
                     <h2>Langkah 1: Buat Partisi Data Terpusat</h2>
