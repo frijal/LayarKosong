@@ -127,50 +127,45 @@ function initSite(): void {
 }
 
 // --- FUNGSI SIDEBAR YANG DIPERBAIKI ---
-function renderSidebar(cat: string = currentActiveCategory): void {
-  currentActiveCategory = cat; // Update state kategori aktif
-
+function renderSidebar() {
   const side = document.getElementById('sidebarRandom');
   if (!side) return;
   side.innerHTML = '';
 
-  // Pilih pool data berdasarkan kategori
-  const pool = currentActiveCategory === 'All'
-  ? allData
-  : allData.filter(item => item.category === currentActiveCategory);
+  const heroSection = document.getElementById('hero');
+  const isHeroVisible = heroSection && heroSection.style.display !== 'none';
+  const titlesInHero = heroData.map(h => h.title);
+  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
 
-  const randoms: Article[] = [];
-  const usedIndices = new Set<number>();
-  const targetCount = 7;
-  const maxToGet = Math.min(targetCount, pool.length);
+  const availableForSidebar = allData.filter(item => {
+    const isNotDuplicateInFeed = !displayedTitles.includes(item.title);
+    const isNotDuplicateInHero = !titlesInHero.includes(item.title);
+    return isNotDuplicateInFeed && isNotDuplicateInHero;
+  });
 
-  while (randoms.length < maxToGet) {
-    const randomIndex = Math.floor(Math.random() * pool.length);
-    if (!usedIndices.has(randomIndex)) {
-      randoms.push(pool[randomIndex]);
-      usedIndices.add(randomIndex);
-    }
-  }
+  const randoms = [...availableForSidebar].sort(() => 0.5 - Math.random()).slice(0, 5);
 
   side.innerHTML = randoms.map(item => {
+    // Membersihkan tanda kutip agar tidak merusak HTML atribut
+    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
     const cleanTitle = item.title.replace(/"/g, '&quot;');
 
-    // Format tanggal DD-MM-YY
+    // Format Tanggal DD-MM-YY
     const d = item.date;
-    const formattedDate = `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getFullYear())}`;
+    const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
 
     return `
     <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
     <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink:0;">
     <div class="mini-text">
-    <h4 style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
-    <a href="${item.url}" title="${cleanTitle}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
+    <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
     ${item.title}
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
     <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">${item.category}</small>
-    <span style="color: var(--text-muted, #777); font-size: 0.7rem; opacity: 0.8;">• ${formattedDate}</span>
+    <span style="color: #777; font-size: 0.7rem; opacity: 0.8;">• ${formattedDate}</span>
     </div>
     </div>
     </div>`;
