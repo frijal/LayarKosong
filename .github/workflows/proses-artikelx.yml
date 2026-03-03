@@ -150,8 +150,8 @@ jobs:
       - name: Commit & Push
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions@github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           
           # PERBAIKAN: img/ ditambahkan agar gambar hasil mirroring ikut ter-upload
           git add .
