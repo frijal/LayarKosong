@@ -12,8 +12,8 @@
     <a href="/sitemap/" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
     <a href="/feed/" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
     ${K>1?`
-      <a href="${Z(J.list[X][1],j)}" title="${J.list[X][0]}" class="btn-emoji">⏩</a>
-      <a href="${Z(J.list[W][1],j)}" title="${J.list[W][0]}" class="btn-emoji">⏪</a>
+      <a href="${Z(J.list[W][1],j)}" title="${J.list[W][0]}" class="btn-emoji">⏩</a>
+      <a href="${Z(J.list[X][1],j)}" title="${J.list[X][0]}" class="btn-emoji">⏪</a>
       `:""}
       </div>`,!Y.parentElement)document.body.appendChild(Y)}function q(){let j=document.getElementById("internal-nav");if(!j)return;let J=Array.from(document.querySelectorAll("h1, h2, h3, h4")).filter((K)=>K.innerText.trim().length>0&&!K.closest(".floating-nav")&&!j.contains(K)&&!K.closest("#layar-kosong-header"));if(J.length===0){j.style.display="none";return}let V='<ul class="nav-list">';J.forEach((K,W)=>{if(!K.id)K.id=K.innerText.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${W}`;V+=`<li class="nav-item nav-${K.tagName.toLowerCase()}"><a href="#${K.id}" class="nav-link">${K.innerText.trim()}</a></li>`}),j.innerHTML=V+"</ul>"}function A(j,Q){let J=document.getElementById("related-articles-grid");if(!J)return;let V=O(Q,j);if(!V){J.style.display="none";return}let K=V.list.filter((W)=>W[1]!==Q).sort(()=>0.5-Math.random()).slice(0,6);J.innerHTML=K.map(([W,X,Y])=>`
     <div class="rel-card-mini">
