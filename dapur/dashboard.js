@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const col = document.createElement('div')
       col.className = 'column'
       // Tambahin style biar kolomnya gak mepet-mepet amat
-      col.style.minWidth = '250px'; 
+      col.style.minWidth = '250px';
       col.style.margin = '0 10px';
       container.appendChild(col)
       return col
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     categories.forEach((cat, index) => {
       const col = cols[index % columnCount]
-      
+
       // GANTI div jadi details biar bisa open-close
       const catDiv = document.createElement('details')
       catDiv.className = 'category'
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Kita tambahin jumlah item di judul biar informatif
       const itemCount = renderData[cat] ? renderData[cat].length : 0
       header.textContent = `${cat} (${itemCount})`
-      
+
       catDiv.appendChild(header)
 
       const list = document.createElement('div')
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         itemDiv.dataset.image = image
         itemDiv.dataset.lastmod = lastmod
         itemDiv.dataset.description = description
-        
+
         // Sedikit styling item biar rapi di dalam scroll
         itemDiv.style.padding = '8px';
         itemDiv.style.marginBottom = '5px';
@@ -209,13 +209,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         img.src = image
         img.alt = title
         // Pastikan gambar gak kegedean
-        img.style.width = '40px'; 
+        img.style.width = '40px';
         img.style.height = '40px';
         img.style.objectFit = 'cover';
         img.style.borderRadius = '4px';
 
         const span = document.createElement('span')
-        span.textContent = title
+        span.innerHTML = title
         span.style.fontSize = '13px';
 
         itemDiv.appendChild(img)
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const items = []
       catDiv.querySelectorAll('.item').forEach((itemDiv) => {
         items.push([
-          itemDiv.querySelector('span').textContent,
+          itemDiv.querySelector('span').innerText,
           itemDiv.dataset.file,
           itemDiv.dataset.image,
           itemDiv.dataset.lastmod,
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const regex = new RegExp(`(${text})`, 'gi')
     document.querySelectorAll('.item').forEach((item) => {
       const span = item.querySelector('span')
-      const original = span.dataset.original || span.textContent
+      const original = span.dataset.original || span.innerHTML
       span.dataset.original = original
       if (!text) {
         span.innerHTML = original

@@ -154,6 +154,11 @@ function renderSidebar(cat: string = currentActiveCategory): void {
 
   side.innerHTML = randoms.map(item => {
     const cleanTitle = item.title.replace(/"/g, '&quot;');
+
+    // Format tanggal DD-MM-YY
+    const d = item.date;
+    const formattedDate = `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getFullYear()).slice(-2)}`;
+
     return `
     <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
     <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink:0;">
@@ -163,7 +168,10 @@ function renderSidebar(cat: string = currentActiveCategory): void {
     ${item.title}
     </a>
     </h4>
+    <div style="display: flex; align-items: center; gap: 5px;">
     <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">${item.category}</small>
+    <span style="color: var(--text-muted, #777); font-size: 0.7rem; opacity: 0.8;">• ${formattedDate}</span>
+    </div>
     </div>
     </div>`;
   }).join('');
