@@ -2,7 +2,7 @@ name: "🟢 Automation & MedSos (Full Bun)"
 
 on:
   schedule:
-    - cron: "*/210 * * * *" 
+    - cron: "0 */3.91 * * *"
   workflow_dispatch:
     inputs:
       task:
