@@ -260,37 +260,55 @@ function renderFeed(reset: boolean = false): void {
   }
 }
 
-function renderSidebar(): void {
+function renderSidebar(currentCategory: string = 'All'): void {
   const side = document.getElementById('sidebarRandom');
   if (!side) return;
   side.innerHTML = '';
 
-  const titlesInHero = heroData.map(h => h.title);
-  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
+  // 1. Tentukan sumber data: dari kategori tertentu atau semua
+  const pool = currentCategory === 'All'
+  ? allData
+  : allData.filter(item => item.category === currentCategory);
 
-  const availableForSidebar = allData.filter(item =>
-  !displayedTitles.includes(item.title) && !titlesInHero.includes(item.title)
-  );
+  // 2. Ambil 7 artikel secara acak dari pool yang dipilih
+  const randoms: Article[] = [];
+  const usedIndices = new Set<number>();
+  const targetCount = 7; // Sesuai permintaanmu
 
-  const randoms = [...availableForSidebar].sort(() => 0.5 - Math.random()).slice(0, 5);
+  // Safety check jika artikel di kategori tersebut kurang dari 7
+  const maxToGet = Math.min(targetCount, pool.length);
 
-  randoms.forEach(item => {
-    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
+  while (randoms.length < maxToGet) {
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    if (!usedIndices.has(randomIndex)) {
+      randoms.push(pool[randomIndex]);
+      usedIndices.add(randomIndex);
+    }
+  }
+
+  // 3. Render HTML
+  const htmlContent = randoms.map(item => {
     const cleanTitle = item.title.replace(/"/g, '&quot;');
-    side.innerHTML += `
-    <div class="mini-item" style="animation: fadeIn 0.5s ease">
-    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'">
+    return `
+    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}"
+    onerror="this.src='/thumbnail.webp'"
+    style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink: 0;">
     <div class="mini-text">
-    <h4 data-tooltip="${cleanSummary}">
-    <a href="${item.url}" title="${cleanTitle}" style="text-decoration:none; color:inherit;">
-    ${item.title.substring(0, 50)}...
+    <h4 style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
+    <a href="${item.url}" title="${cleanTitle}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    ${item.title}
     </a>
     </h4>
-    <small style="color:var(--text-muted)">${item.date.toLocaleDateString('id-ID')}</small>
+    <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">
+    ${item.category}
+    </small>
     </div>
     </div>
     `;
-  });
+  }).join('');
+
+  side.innerHTML = htmlContent;
 }
 
 function renderCategories(): void {
@@ -376,8 +394,14 @@ function runFilters(): void {
 function filterByCat(cat: string, el: HTMLElement): void {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
+
+  // Update data utama yang tampil di Feed
   displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
+
   renderFeed(true);
+
+  // Panggil sidebar dengan kategori yang dipilih
+  renderSidebar(cat);
 }
 
 // Global Exports (Supaya bisa dipanggil dari HTML kalau terpaksa)
