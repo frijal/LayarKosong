@@ -48,7 +48,7 @@ jobs:
       - name: 🧠 JavaScript Syntax Check
         run: |
           echo "Memeriksa syntax JavaScript di dapur/..."
-          for file in dapur/*.ts; do
+          for file in dapur/*.js; do
             if [ -f "$file" ]; then
               node --check "$file" && echo "✅ $file: OK" || exit 1
             fi
