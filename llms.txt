@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.52
+document_version: 16.53
 last_updated: 2026-03-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 Maret 2026)
-> Menampilkan 1010 artikel versi 16.52.
+> Menampilkan 1012 artikel versi 16.53.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -272,6 +272,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu'ti yang Lebih Sehat dan Berkelanjutan](https://dalam.web.id/lainnya/satu-sekolah-satu-dapur-mbg) : Mengupas gagasan Satu Sekolah Satu Dapur MBG dari Abdul Mu’ti: solusi makanan bergizi yang memberdayakan masyarakat, membandingkan dengan sistem SPPG yang sentralistik.
 - [Parlemen Bisu di Tengah Sejumlah Isu](https://dalam.web.id/lainnya/parlemen-bisu-2026) : DRI terkesan bisu saat anggaran pendidikan digunting, ritel modern mau dimatikan, dan impor indukan ayam serta mobil digulirkan? Analisis 5W+1H dan E-E-AAT oleh Makinuddin Samin.
 - [Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir?](https://dalam.web.id/lainnya/ujian-rakyat-pemimpin-bodoh) : Mengupas tuntas fenomena ujian bagi rakyat karena pemimpin bodoh. Apakah ini takdir atau konsekuensi logis dari pilihan politik? Simak analisis mendalam 5W+1H di sini.
 - [Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal](https://dalam.web.id/lainnya/zakat-lebih-utama-dari-sodaqoh) : Zakat adalah rukun Islam keempat, wajib bagi yang mampu. Sedekah sunnah tapi mulia. Mana yang lebih utama? Simak penjelasan lengkap prioritas zakat vs sodaqoh.
@@ -414,6 +415,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [GambitHunter Juara Hackathon OpenAI: AI Pembasmi Judi Online Buatan Indonesia](https://dalam.web.id/opini-sosial/gambit-hunter-juara-hackathon) : Tim Software Engineer Indonesia raih Juara 2 di OpenAI Codex Hackathon Singapura lewat GambitHunter, aplikasi AI pemberantas judi online. Simak cara kerjanya!
 - [Waspadai Empat Isi Kerja Sama Indonesia–AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan?](https://dalam.web.id/opini-sosial/kerja-sama-indonesia-as-analisis-kritis) : terhadap narasi kerja sama Indonesia–AS, isu Board of Peace, impor besar, dan dampaknya pada kedaulatan ekonomi serta politik luar negeri Indonesia.
 - [Sesat Pikir Ketua Bappenas: 5 Dampak Serius Jika Makan Gratis Lebih Diprioritaskan dari Lapangan Kerja](https://dalam.web.id/opini-sosial/sesat-pikir-bappenas-makan-gratis-vs-lapangan-kerja) : Sesat Pikir Ketua Bappenas: Menyuapi Anak, Membiarkan Orangtuanya Menganggur — analisis kritis tentang prioritas Makan Bergizi Gratis dibanding penciptaan lapangan kerja di Indonesia.
 - [REZIM SAKAU: 7 Fakta Mengejutkan soal Utang, Impor, dan Ancaman Kedaulatan Ekonomi](https://dalam.web.id/opini-sosial/rezim-sakau-utang-impor-ancaman-ekonomi) : REZIM SAKAU: MEMBAYAR NAPAS BANGSA DENGAN UTANG DAN IMPOR — analisis kritis tentang lonjakan utang, gelombang impor, dan dampaknya terhadap industri serta kedaulatan ekonomi Indonesia.
