@@ -141,7 +141,7 @@ jobs:
           shopt -s nullglob
           files=(artikelx/*.html)
           if [[ ${#files[@]} -gt 0 ]]; then
-            mv -f "${files[@]}" artikel/
+            mv -f "${files[@]}" artikelZZ/
             echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
           else
             echo "Tidak ada file di artikelx/"
