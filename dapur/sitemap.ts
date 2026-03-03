@@ -66,6 +66,12 @@ function shuffle<T>(array: T[]): T[] {
   return array;
 }
 
+function decodeHTML(text: string): string {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = text;
+  return txt.value;
+}
+
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return '';
@@ -114,14 +120,14 @@ async function loadTOC(): Promise<void> {
 
     Object.keys(data).forEach((cat) => {
       grouped[cat] = data[cat]
-        .map((arr) => ({
-          title: arr[0],
-          file: arr[1],
-          image: arr[2],
-          lastmod: arr[3],
-          description: arr[4] || '',
-          category: cat,
-        }))
+      .map((arr) => ({
+        title: decodeHTML(arr[0]), // Perbaikan di sini
+                     file: arr[1],
+                     image: arr[2],
+                     lastmod: arr[3],
+                     description: decodeHTML(arr[4] || ''), // Perbaikan di sini juga
+                     category: cat,
+      }))
         .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
     });
 
@@ -159,7 +165,9 @@ async function loadTOC(): Promise<void> {
 
           const a = document.createElement('a');
           a.href = getCleanUrl(item.file, item.category);
-          a.textContent = item.title;
+          const cleanTitle = decodeHTML(item.title);
+          a.textContent = cleanTitle;
+          a.setAttribute('data-original-title', cleanTitle); // Simpan judul bersih di sini
 
           const statusSpan = document.createElement('span');
           if (visitedLinks.includes(item.file)) {
@@ -259,11 +267,18 @@ if (searchInput) {
           item.style.display = 'flex';
           catVisible = true;
           countVisible++;
+
+          // Ambil teks asli yang sudah bersih (bukan dari dataset yang mungkin ter-encode)
+          const originalTitle = item.querySelector('a')?.getAttribute('data-original-title') || text;
           const regex = new RegExp(`(${term})`, 'gi');
-          titleLink.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
+
+          if (titleLink) {
+            titleLink.innerHTML = originalTitle.replace(regex, '<span class="highlight">$1</span>');
+          }
         } else if (!term) {
           item.style.display = 'flex';
-          titleLink.textContent = titleLink.getAttribute('title') || text; // Fallback to title/text
+          // Kembalikan ke teks asli tanpa span highlight
+          titleLink.textContent = item.querySelector('a')?.getAttribute('data-original-title') || text;
           catVisible = true;
         } else {
           item.style.display = 'none';

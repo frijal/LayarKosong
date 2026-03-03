@@ -1,10 +1,9 @@
 // ----------------------------------------------------------
 // FILE: /ext/blog-engine.ts
 // Versi V6.9 (Dynamic Feed & Hero Slider)
-// Updated: 2026-03-01 (TS Conversion)
+// Updated: 2026-03-03 (Fix Minify & Filter Logic)
 // ----------------------------------------------------------
 
-// --- INTERFACES ---
 interface Article {
   category: string;
   title: string;
@@ -14,22 +13,18 @@ interface Article {
   summary: string;
 }
 
-// Struktur dari artikel.json: [Judul, Filename, Image, Date, Description]
 type RawArticleData = [string, string, string, string, string?];
 
 interface RawData {
   [category: string]: RawArticleData[];
 }
 
-// --- GLOBAL STATE ---
 let allData: Article[] = [];
 let displayedData: Article[] = [];
 let heroData: Article[] = [];
 let currentHeroIndex: number = 0;
 let heroTimer: ReturnType<typeof setInterval> | null = null;
 let limit: number = 6;
-
-// --- FUNCTIONS ---
 
 async function fetchData(): Promise<void> {
   try {
@@ -39,7 +34,6 @@ async function fetchData(): Promise<void> {
 
     allData = [];
 
-    // Flatten data & Sesuaikan URL ke V6.9
     for (const cat in data) {
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
 
@@ -50,7 +44,7 @@ async function fetchData(): Promise<void> {
         allData.push({
           category: cat,
           title: item[0],
-          url: `/${catSlug}/${fileSlug}`, // URL Cantik V6.9
+          url: `/${catSlug}/${fileSlug}`,
           img: item[2],
           date: new Date(item[3]),
                      summary: item[4] || ''
@@ -61,7 +55,6 @@ async function fetchData(): Promise<void> {
     allData.sort((a, b) => b.date.getTime() - a.date.getTime());
     displayedData = [...allData];
 
-    // Ambil 1 artikel terbaru dari setiap kategori untuk Hero
     const categories = [...new Set(allData.map(item => item.category))];
     heroData = categories.map(cat => allData.find(item => item.category === cat) as Article);
 
@@ -82,13 +75,12 @@ function initSite(): void {
   renderFeed();
 
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
-  const heroSection = document.getElementById('hero') as HTMLElement | null;
+  const clearBtn = document.getElementById('clearSearch');
+  const heroSection = document.getElementById('hero');
 
   if (searchInput) {
     searchInput.addEventListener('input', (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      const val = target.value.toLowerCase();
-
+      const val = (e.target as HTMLInputElement).value.toLowerCase();
       if (val.length > 0) {
         if (heroSection) heroSection.style.display = 'none';
         stopHeroSlider();
@@ -107,13 +99,11 @@ function initSite(): void {
     });
   }
 
-  const clearBtn = document.getElementById('clearSearch');
   if (clearBtn && searchInput) {
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
       if (heroSection) heroSection.style.display = 'block';
       displayedData = [...allData];
-
       renderFeed(true);
       renderSidebar();
       startHeroSlider();
@@ -121,18 +111,25 @@ function initSite(): void {
     });
   }
 
-  // Casting ke any karena assigned langsung ke properti onchange
+  // --- Filter Logic Fix ---
   const yFilter = document.getElementById('yearFilter') as HTMLSelectElement | null;
   const mFilter = document.getElementById('monthFilter') as HTMLSelectElement | null;
 
-  if (yFilter) yFilter.onchange = runFilters;
-  if (mFilter) mFilter.onchange = runFilters;
+  if (yFilter) {
+    yFilter.addEventListener('change', () => {
+      updateMonthDropdown();
+      runFilters();
+    });
+  }
+  if (mFilter) {
+    mFilter.addEventListener('change', runFilters);
+  }
 }
 
 function renderHero(): void {
   if (heroData.length === 0) return;
-  const heroEl = document.getElementById('hero') as HTMLElement | null;
-  const wrapper = document.getElementById('heroSliderWrapper') as HTMLElement | null;
+  const heroEl = document.getElementById('hero');
+  const wrapper = document.getElementById('heroSliderWrapper');
   if (!heroEl || !wrapper) return;
 
   heroEl.classList.remove('skeleton');
@@ -162,7 +159,6 @@ function renderHero(): void {
   if (existingNav) existingNav.remove();
   heroEl.insertAdjacentHTML('beforeend', navHTML);
 
-  // Re-attach event listeners (lebih aman daripada inline onclick di TS)
   document.getElementById('heroPrev')?.addEventListener('click', (e) => { e.preventDefault(); moveHero(-1); });
   document.getElementById('heroNext')?.addEventListener('click', (e) => { e.preventDefault(); moveHero(1); });
 
@@ -173,7 +169,7 @@ function renderHero(): void {
 }
 
 function updateHeroPosition(): void {
-  const wrapper = document.getElementById('heroSliderWrapper') as HTMLElement | null;
+  const wrapper = document.getElementById('heroSliderWrapper');
   if (!wrapper) return;
   const offset = currentHeroIndex * 100;
   wrapper.style.transform = `translateX(-${offset}%)`;
@@ -213,7 +209,7 @@ function moveHero(direction: number): void {
 
 function renderFeed(reset: boolean = false): void {
   if (reset) limit = 6;
-  const container = document.getElementById('newsFeed') as HTMLElement | null;
+  const container = document.getElementById('newsFeed');
   if (!container) return;
   container.innerHTML = '';
 
@@ -248,13 +244,13 @@ function renderFeed(reset: boolean = false): void {
     `;
   });
 
-  const loadMoreBtn = document.getElementById('loadMore') as HTMLElement | null;
+  const loadMoreBtn = document.getElementById('loadMore');
   if (loadMoreBtn) {
     if (limit >= filteredItems.length) {
       loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
+      loadMoreBtn.innerHTML = 'Klik Selanjutnya...';
       loadMoreBtn.onclick = () => {
         limit += 6;
         renderFeed();
@@ -265,7 +261,7 @@ function renderFeed(reset: boolean = false): void {
 }
 
 function renderSidebar(): void {
-  const side = document.getElementById('sidebarRandom') as HTMLElement | null;
+  const side = document.getElementById('sidebarRandom');
   if (!side) return;
   side.innerHTML = '';
 
@@ -302,16 +298,17 @@ function renderCategories(): void {
   const container = document.getElementById('categoryPills');
   if (!container) return;
 
-  const pillsHTML = cats.map(c =>
-  `<div class="pill" id="pill-${c.replace(/\s+/g, '')}">${c}</div>`
-  ).join('');
-
-  container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>` + pillsHTML;
-
-  // Re-attach listeners
-  document.getElementById('pill-all')?.addEventListener('click', function(this: HTMLElement) { filterByCat('All', this); });
+  container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>`;
   cats.forEach(c => {
-    document.getElementById(`pill-${c.replace(/\s+/g, '')}`)?.addEventListener('click', function(this: HTMLElement) {
+    const pillId = `pill-${c.replace(/\s+/g, '-')}`;
+    container.innerHTML += `<div class="pill" id="${pillId}">${c}</div>`;
+  });
+
+  // Re-attach listeners (Safety from minify)
+  document.getElementById('pill-all')?.addEventListener('click', function() { filterByCat('All', this); });
+  cats.forEach(c => {
+    const pillId = `pill-${c.replace(/\s+/g, '-')}`;
+    document.getElementById(pillId)?.addEventListener('click', function() {
       filterByCat(c, this);
     });
   });
@@ -322,7 +319,12 @@ function renderArchives(): void {
   const ySelect = document.getElementById('yearFilter') as HTMLSelectElement | null;
   if (!ySelect) return;
   ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
-  years.forEach(y => ySelect.innerHTML += `<option value="${y}">${y}</option>`);
+  years.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y.toString();
+    opt.textContent = y.toString();
+    ySelect.appendChild(opt);
+  });
   updateMonthDropdown();
 }
 
@@ -333,11 +335,16 @@ function updateMonthDropdown(): void {
 
   const selectedYear = ySelect.value;
   const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-  mSelect.innerHTML = '<option value="">Bulan</option>';
 
+  mSelect.innerHTML = '<option value="">Bulan</option>';
   if (selectedYear) {
-    const availableMonths = [...new Set(allData.filter(i => i.date.getFullYear().toString() == selectedYear).map(i => i.date.getMonth()))].sort((a, b) => a - b);
-    availableMonths.forEach(m => { mSelect.innerHTML += `<option value="${m}">${monthsName[m]}</option>`; });
+    const availableMonths = [...new Set(allData.filter(i => i.date.getFullYear().toString() === selectedYear).map(i => i.date.getMonth()))].sort((a, b) => a - b);
+    availableMonths.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.toString();
+      opt.textContent = monthsName[m];
+      mSelect.appendChild(opt);
+    });
     mSelect.disabled = false;
   } else {
     mSelect.disabled = true;
@@ -353,7 +360,7 @@ function runFilters(): void {
     if (heroSection) heroSection.style.display = 'none';
     stopHeroSlider();
   } else {
-    if (heroSection) heroSection.style.display = 'flex';
+    if (heroSection) heroSection.style.display = 'block';
     startHeroSlider();
   }
 
@@ -373,12 +380,10 @@ function filterByCat(cat: string, el: HTMLElement): void {
   renderFeed(true);
 }
 
-// Global functions for HTML access
+// Global Exports (Supaya bisa dipanggil dari HTML kalau terpaksa)
 (window as any).sendToWA = function(): void {
-  const nameInput = document.getElementById('contact-name') as HTMLInputElement;
-  const messageInput = document.getElementById('contact-message') as HTMLTextAreaElement;
-  const name = nameInput.value;
-  const message = messageInput.value;
+  const name = (document.getElementById('contact-name') as HTMLInputElement).value;
+  const message = (document.getElementById('contact-message') as HTMLTextAreaElement).value;
 
   if (!name || !message) {
     alert("Isi nama dan pesannya dulu dong, Bro... 😀");
@@ -388,10 +393,10 @@ function filterByCat(cat: string, el: HTMLElement): void {
   const noWA = "6281578163858";
   const text = `Halo Layar Kosong!%0A%0A*Nama:* ${name}%0A*Pesan:* ${message}`;
 
-  // Implementasi toast sederhana atau panggil showToast jika ada
+  // Membuka WA
   window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
-  nameInput.value = "";
-  messageInput.value = "";
+  (document.getElementById('contact-name') as HTMLInputElement).value = "";
+  (document.getElementById('contact-message') as HTMLTextAreaElement).value = "";
 };
 
 fetchData();
