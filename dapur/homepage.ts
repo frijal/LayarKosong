@@ -126,46 +126,47 @@ function initSite(): void {
   }
 }
 
-// --- FUNGSI SIDEBAR YANG DIPERBAIKI ---
 function renderSidebar() {
   const side = document.getElementById('sidebarRandom');
   if (!side) return;
   side.innerHTML = '';
 
-  const heroSection = document.getElementById('hero');
-  const isHeroVisible = heroSection && heroSection.style.display !== 'none';
-  const titlesInHero = heroData.map(h => h.title);
+  // 1. Ambil kategori yang sedang aktif dari Pill yang punya class 'active'
+  const activePill = document.querySelector('.pill.active');
+  const currentCategory = activePill ? activePill.textContent.trim() : 'All';
+
+  // 2. Filter artikel berdasarkan kategori aktif (Jika 'Kategori/All', ambil semua)
+  let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
+  ? [...allData]
+  : allData.filter(item => item.category === currentCategory);
+
+  // 3. Hindari duplikasi dengan artikel yang sedang tampil di Feed Utama
   const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
+  const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
 
-  const availableForSidebar = allData.filter(item => {
-    const isNotDuplicateInFeed = !displayedTitles.includes(item.title);
-    const isNotDuplicateInHero = !titlesInHero.includes(item.title);
-    return isNotDuplicateInFeed && isNotDuplicateInHero;
-  });
+  // 4. Acak dan ambil 7 item
+  const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 7);
 
-  const randoms = [...availableForSidebar].sort(() => 0.5 - Math.random()).slice(0, 5);
-
+  // 5. Render ke HTML (Sudah menggunakan tooltip 'title' bawaan browser)
   side.innerHTML = randoms.map(item => {
-    // Membersihkan tanda kutip agar tidak merusak HTML atribut
     const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
     const cleanTitle = item.title.replace(/"/g, '&quot;');
 
-    // Format Tanggal DD-MM-YY
     const d = item.date;
     const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
 
     return `
     <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex-shrink:0;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
     <div class="mini-text">
-    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3;">
+    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
     <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
     ${item.title}
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: var(--primary); font-weight: bold; font-size: 0.7rem; text-transform: uppercase;">${item.category}</small>
-    <span style="color: #777; font-size: 0.7rem; opacity: 0.8;">• ${formattedDate}</span>
+    <small style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</small>
+    <span style="color: #888; font-size: 0.65rem;">• ${formattedDate}</span>
     </div>
     </div>
     </div>`;
