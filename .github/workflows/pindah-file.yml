@@ -40,8 +40,8 @@ jobs:
 
       - name: Commit perubahan
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add -A
           git commit -m "Move *.${{ github.event.inputs.file_extension }} from ${{ github.event.inputs.source_folder }} to ${{ github.event.inputs.destination_folder }}" || echo "Tidak ada perubahan"
           git push
