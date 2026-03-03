@@ -83,8 +83,8 @@ jobs:
       # =========================================================
       - name: 💾 Save Changes
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           
           # Add cache dan hasil generate LLM
           git add mini/indexnow-cache.txt llms.txt llms.md llms-index.html
