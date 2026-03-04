@@ -13,7 +13,7 @@ on:
         options:
           - audit       # Hanya cek kesehatan dapur (Cepat)
           - upgrade     # Update paket + Sync Aset + Audit
-          - manage      # Add/Remove paket + Sync Aset + Audit
+          - paket      # Add/Remove paket + Sync Aset + Audit
       upgrade_type:
         description: 'Tipe upgrade (khusus upgrade)'
         required: false
@@ -21,7 +21,7 @@ on:
         type: choice
         options: [minor, latest]
       action:
-        description: 'Aksi (khusus manage)'
+        description: 'Aksi (khusus paket)'
         required: false
         default: 'add'
         type: choice
@@ -49,13 +49,13 @@ jobs:
 
       # --- STEP 1: EKSEKUSI PAKET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🚀 Upgrade/Manage Packages
-        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
+        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
           if [[ "${{ github.event.inputs.mode }}" == "upgrade" || "${{ github.event_name }}" == 'schedule' ]]; then
             bun install
             bunx npm-check-updates -u --target ${{ github.event.inputs.upgrade_type || 'minor' }}
             bun install
-          elif [[ "${{ github.event.inputs.mode }}" == "manage" && -n "${{ github.event.inputs.packages }}" ]]; then
+          elif [[ "${{ github.event.inputs.mode }}" == "paket" && -n "${{ github.event.inputs.packages }}" ]]; then
             [[ "${{ github.event.inputs.action }}" == "add" ]] && \
             ([[ "${{ github.event.inputs.is_dev }}" == "true" ]] && bun add -d ${{ github.event.inputs.packages }} || bun add ${{ github.event.inputs.packages }}) || \
             bun remove ${{ github.event.inputs.packages }}
@@ -64,7 +64,7 @@ jobs:
 
       # --- STEP 2: SYNC ASET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🌈 Sync & Map Assets
-        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
+        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
           
