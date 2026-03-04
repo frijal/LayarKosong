@@ -14,6 +14,12 @@ on:
           - audit       # Hanya jalankan sapu-bersih.ts          
           - manage      # Tambah/Hapus paket spesifik
           - upgrade     # Upgrade semua paket (Minor/Latest)
+      upgrade_type:
+        description: 'Tipe upgrade (khusus mode upgrade)'
+        required: false
+        default: 'minor'
+        type: choice
+        options: [minor, latest]
       action:
         description: 'Aksi (khusus mode manage)'
         required: false
@@ -31,12 +37,7 @@ on:
         required: false
         type: boolean
         default: false
-      upgrade_type:
-        description: 'Tipe upgrade (khusus mode upgrade)'
-        required: false
-        default: 'minor'
-        type: choice
-        options: [minor, latest]
+      
 
 permissions:
   contents: write
