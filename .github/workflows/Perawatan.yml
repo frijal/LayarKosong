@@ -129,12 +129,38 @@ jobs:
           # Save Metadata
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
-          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
-          
+          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt          
+      
+      - name: 🔍 Verifikasi Integritas Font
+        id: font_check
+        run: |
+          FONT_DIR="dapur/fontawesome-webfonts"
+          OUTPUT="mini/fontawesome-verify.txt"
+          PREV="mini/fontawesome-verify-prev.txt"
+          [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
+          printf "Font Integrity Report - $(date)\nFilename | Size | SHA-256\n" > "$OUTPUT"
+          find "$FONT_DIR" -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
+              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
+          done
+          if [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
+            echo "alert=true" >> $GITHUB_OUTPUT
+          else
+            echo "alert=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: 📨 Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
         with:
-          title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled Upgrade' }})"
+          title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled' }})"
           commit-message: "chore: automated maintenance and asset sync"
           branch: "maintenance-update"
           delete-branch: true
+          body: |
+            🔧 **Operasi Pemeliharaan Berhasil!**
+
+            **Detail Perubahan:**
+            - **Mode:** `${{ github.event.inputs.mode || 'Scheduled Upgrade' }}`
+            - **Aset:** Highlight.js & Font Awesome telah diperbarui ke versi terbaru.
+            - **Integrity Check:** ${{ steps.font_check.outputs.alert == 'true' && '🚨 **WARNING:** Ada perubahan hash pada file font!' || '✅ Font aman (tidak ada perubahan hash).' }}
+            
+            *Silakan cek file `mini/asset-info.txt` untuk detail versi.*
