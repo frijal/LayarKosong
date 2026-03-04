@@ -1,0 +1,9 @@
+{
+  "aggressiveCompression": true,
+  "schedule": "weekly",
+  "include": [
+    "img/**"
+  ],
+  "prTitle": "🚀 [ImgBot] Optimalisasi Gambar di Folder /img (Semua Level)",
+  "prBody": "Halo! ImgBot telah memproses semua gambar di folder **img/** dan seluruh sub-foldernya.\n\n**Statistik Penghematan:**\n* Total: {optimization_ratio}\n\n**Detail Perubahan:**\n{optimization_details}"
+}
