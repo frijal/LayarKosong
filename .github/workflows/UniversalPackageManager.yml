@@ -114,7 +114,7 @@ jobs:
           if [ -f package.json ]; then
             echo -e "\n--- Analisis Struktur Dapur Terbaru ---" >> "$REPORT"
             # Pastikan panggil detektif versi .ts kita yang baru!
-            bun run dapur/sapu-node.ts >> "$REPORT" || echo "Audit script tidak ditemukan." >> "$REPORT"
+            bun run dapur/sapu-bersih.ts >> "$REPORT" || echo "Audit script tidak ditemukan." >> "$REPORT"
           fi
 
       - name: Commit and Push Changes
