@@ -2,7 +2,7 @@ name: "🛠️ Dapur Maintenance (All-in-One)"
 
 on:
   schedule:
-    - cron: '0 8 9 * *'
+    - cron: '0 8 9 * *' # Bulanan otomatis
   workflow_dispatch:
     inputs:
       mode:
@@ -11,11 +11,11 @@ on:
         default: 'audit'
         type: choice
         options:
-          - audit
-          - upgrade
-          - manage
+          - audit       # Hanya cek kesehatan dapur (Cepat)
+          - upgrade     # Update paket + Sync Aset + Audit
+          - manage      # Add/Remove paket + Sync Aset + Audit
       upgrade_type:
-        description: 'Tipe upgrade'
+        description: 'Tipe upgrade (khusus upgrade)'
         required: false
         default: 'minor'
         type: choice
@@ -41,39 +41,17 @@ permissions:
   pull-requests: write
 
 jobs:
-  # JOB 1: AUDIT (Hanya Log, Tidak Memicu PR Aset)
-  audit-dapur:
+  maintenance:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
       - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
-      
-      - name: 🧹 Jalankan Sapu Bersih
-        run: |
-          bun run dapur/sapu-bersih.ts
-        
-      - name: 💾 Simpan Laporan Audit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions[bot]"
-          git add sementara/audit/
-          git commit -m "chore: update audit logs [$(date +'%Y-%m-%d')]" || echo "No changes"
-          git push origin main || echo "Nothing to push"
 
-  # JOB 2: EKSEKUSI (Upgrade, Manage, & Sync Aset)
-  execute-maintenance:
-    needs: audit-dapur
-    if: |
-      github.event_name == 'schedule' || 
-      (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
-      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
-      
+      # --- STEP 1: EKSEKUSI PAKET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🚀 Upgrade/Manage Packages
+        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
         run: |
-          if [[ "${{ github.event.inputs.mode }}" == "upgrade" || "${{ github.event_name }}" == "schedule" ]]; then
+          if [[ "${{ github.event.inputs.mode }}" == "upgrade" || "${{ github.event_name }}" == 'schedule' ]]; then
             bun install
             bunx npm-check-updates -u --target ${{ github.event.inputs.upgrade_type || 'minor' }}
             bun install
@@ -84,12 +62,13 @@ jobs:
             bun install --production
           fi
 
+      # --- STEP 2: SYNC ASET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🌈 Sync & Map Assets
-        run: |                   
-          # Ambil paket terbaru tapi jangan disimpan di package.json permanen
+        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
+        run: |
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
           
-          # Highlight.js Styles
+          # Mapping Highlight.js & Font Awesome (Statis Copy)
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
           cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
@@ -101,45 +80,37 @@ jobs:
           cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
           
-          # Font Awesome Sync
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
-          # Update Metadata (TANPA TANGGAL agar diff tidak sensitif)
+          # Metadata Tanpa Tanggal
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER" | sort > mini/asset-info.txt
+
+      # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
+      - name: 🧹 Jalankan Sapu Bersih (Audit)
+        run: |
+          bun run dapur/sapu-bersih.ts
 
       - name: 🔍 Font Integrity Check (Statis)
         id: font_check
         run: |
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
-          
-          # Geser output lama ke prev untuk pembandingan
           [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV" || touch "$PREV"
-          
-          # Header Statis (Tanpa Date/Time)
           printf "Font Integrity Report\nFilename | Size | SHA-256\n" > "$OUTPUT"
-          
-          # Scan font
           find dapur/fontawesome-webfonts -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
               printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
           done
-          
-          # Hitung Alert (Hanya jika PREV tidak kosong)
-          if [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
-            echo "alert=true" >> $GITHUB_OUTPUT
-          else
-            echo "alert=false" >> $GITHUB_OUTPUT
-          fi
+          [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null && echo "alert=true" >> $GITHUB_OUTPUT || echo "alert=false" >> $GITHUB_OUTPUT
 
+      # --- STEP 4: FILTER & CREATE PR ---
       - name: 🛡️ Change Detection
         id: filter
         run: |
           git add .
-          # Cek apakah ada perubahan nyata di staging (package.json, lockfile, atau file di dapur/ & mini/)
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
           else
@@ -150,13 +121,14 @@ jobs:
         if: steps.filter.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@3499eb61835cc0015c0b786e203d74b1e8f55e43
         with:
-          title: "chore: 🛠️ Dapur Update (${{ github.event.inputs.mode || 'Auto' }})"
-          commit-message: "chore: sync dependencies and assets"
+          title: "chore: 🛠️ Dapur Maintenance [${{ github.event.inputs.mode || 'Auto' }}]"
+          commit-message: "chore: automated sync and audit result"
           branch: "maintenance-update"
           delete-branch: true
           body: |
             🔧 **Maintenance Selesai!**
             
-            Ditemukan pembaruan pada paket atau aset di folder `dapur/`.
+            **Detail:**
+            - **Mode:** `${{ github.event.inputs.mode || 'Scheduled' }}`
             - **Font Integrity:** ${{ steps.font_check.outputs.alert == 'true' && '🚨 BERUBAH' || '✅ IDENTIK' }}
-            - **Waktu Eksekusi:** $(date -u)
+            - **Log Audit:** Silakan cek folder `sementara/audit/`.
