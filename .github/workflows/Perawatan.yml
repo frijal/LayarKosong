@@ -99,7 +99,7 @@ jobs:
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
           
       - name: 📨 Create Pull Request
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled' }})"
           commit-message: "chore: automated maintenance"
