@@ -5,7 +5,7 @@ import { $, BunFile } from "bun";
 // --- CONFIG ---
 const TARGET_KARANTINA = "./dapur/XXX";
 const SCAN_FOLDERS = ["./dapur"];
-const IGNORE_DIRS = ['node_modules', 'ext' '.git', 'dist', 'out', 'XXX'];
+const IGNORE_DIRS = ['node_modules', 'ext', '.git', 'dist', 'out', 'XXX'];
 const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml', '.toml'];
 const SCRIPT_NAME = basename(import.meta.url);
 
