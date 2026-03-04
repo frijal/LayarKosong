@@ -150,7 +150,7 @@ jobs:
           fi
 
       - name: 📨 Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        uses: peter-evans/create-pull-request@3499eb61835cc0015c0b786e203d74b1e8f55e43
         with:
           title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled' }})"
           commit-message: "chore: automated maintenance and asset sync"
