@@ -11,9 +11,9 @@ on:
         default: 'audit'
         type: choice
         options:
-          - audit       # Hanya jalankan sapu-bersih.ts
-          - upgrade     # Upgrade semua paket (Minor/Latest)
+          - audit       # Hanya jalankan sapu-bersih.ts          
           - manage      # Tambah/Hapus paket spesifik
+          - upgrade     # Upgrade semua paket (Minor/Latest)
       action:
         description: 'Aksi (khusus mode manage)'
         required: false
