@@ -54,7 +54,7 @@ jobs:
       - name: 🧪 Audit Keamanan (Bun Way)
         run: |
           # Menggunakan audit bawaan Bun yang lebih paham bun.lock
-          bun pm audit || echo "⚠️ Ada temuan audit, silakan cek manual."
+          bun pm scan || echo "⚠️ Ada temuan audit, silakan cek manual."
 
       - name: 🧪 Jalankan Unit Test
         run: |
