@@ -139,25 +139,50 @@ jobs:
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
           [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
-          printf "Font Integrity Report - $(date)\nFilename | Size | SHA-256\n" > "$OUTPUT"
+          
+          # Gunakan format statis untuk baris pertama agar diff tidak terpicu hanya karena tanggal
+          printf "Font Integrity Report\nFilename | Size | SHA-256\n" > "$OUTPUT"
+          
           find "$FONT_DIR" -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
               printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
           done
           [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null && echo "alert=true" >> $GITHUB_OUTPUT || echo "alert=false" >> $GITHUB_OUTPUT
 
+          if [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
+            echo "alert=true" >> $GITHUB_OUTPUT
+          else
+            echo "alert=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🛡️ Filter PR (Cek Perubahan Nyata)
+        id: filter_changes
+        run: |
+          git add .
+          # Kita cek status, tapi abaikan file yang isinya cuma metadata waktu jika memungkinkan.
+          # Namun cara terbaik adalah melihat apakah ada file krusial yang berubah:
+          # (package.json, bun.lockb, atau file CSS/JS di dapur/)
+          
+          CHANGES=$(git status --porcelain)
+          
+          if [[ -z "$CHANGES" ]]; then
+            echo "has_real_changes=false" >> $GITHUB_OUTPUT
+          else
+            # Opsional: Jika hanya asset-info.txt yang berubah dan isinya cuma tanggal, bisa difilter lagi di sini.
+            echo "has_real_changes=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: 📨 Create Pull Request
+        # PR HANYA dibuat jika ada perubahan nyata (paket upgrade atau file aset baru)
+        if: steps.filter_changes.outputs.has_real_changes == 'true'
         uses: peter-evans/create-pull-request@3499eb61835cc0015c0b786e203d74b1e8f55e43
         with:
-          title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled' }})"
+          title: "chore: 🛠️ Maintenance Update (${{ github.event.inputs.mode || 'Scheduled' }})"
           commit-message: "chore: automated maintenance and asset sync"
           branch: "maintenance-update"
           delete-branch: true
           body: |
             🔧 **Operasi Pemeliharaan Berhasil!**
 
-            **Detail Perubahan:**
-            - **Mode:** `${{ github.event.inputs.mode || 'Scheduled Upgrade' }}`
-            - **Aset:** Highlight.js & Font Awesome telah diperbarui ke versi terbaru.
-            - **Integrity Check:** ${{ steps.font_check.outputs.alert == 'true' && '🚨 **WARNING:** Ada perubahan hash pada file font!' || '✅ Font aman (tidak ada perubahan hash).' }}
-            
-            *Silakan cek file `mini/asset-info.txt` untuk detail versi.*
+            **Detail:**
+            - Ada pembaruan pada dependencies atau aset (Highlight.js/Font Awesome).
+            - Integrity Font Check: ${{ steps.font_check.outputs.alert == 'true' && '🚨 **ALERT!**' || '✅ Aman' }}
