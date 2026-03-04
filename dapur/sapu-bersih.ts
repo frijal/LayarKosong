@@ -7,6 +7,9 @@ const TARGET_KARANTINA = "./dapur/XXX";
 const SCAN_FOLDERS = ["./dapur"]; // Fokus hanya di area pengembangan
 const IGNORE_DIRS = ['node_modules', '.git', 'dist', 'out', 'XXX'];
 const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml', '.toml'];
+// DAFTAR FILE JS YANG TIDAK BOLEH DISAPU (Pengecualian)
+const PROTECTED_FILES = ['highlight.js'];
+//////////
 const SCRIPT_NAME = basename(import.meta.url);
 
 // --- HELPER UNTUK CEK IDENTIK ---
@@ -75,29 +78,39 @@ async function main() {
     for (const folder of SCAN_FOLDERS) {
         if (!(await exists(folder))) continue;
         const files = await readdir(folder);
-        const jsFiles = files.filter(f => extname(f) === '.js');
+
+        // Filter file .js yang bukan bagian dari PROTECTED_FILES
+        const jsFiles = files.filter(f =>
+        extname(f) === '.js' && !PROTECTED_FILES.includes(f)
+        );
 
         for (const jsFile of jsFiles) {
             const base = basename(jsFile, '.js');
             const tsFile = `${base}.ts`;
+
+            // Hanya proses jika ada kembaran .ts-nya
             if (files.includes(tsFile)) {
                 const jsPath = join(folder, jsFile);
                 const tsPath = join(folder, tsFile);
 
-                // Cek Identitas Logika
+                // --- 🧬 PROSES AUDIT IDENTITAS ---
                 const cJs = await getNormalizedContent(Bun.file(jsPath));
                 const cTs = await getNormalizedContent(Bun.file(tsPath));
                 const status = (cJs === cTs) ? "\x1b[32m✅ IDENTIK\x1b[0m" : "\x1b[33m⚠️ BERBEDA\x1b[0m";
 
                 console.log(`   📄 ${base.padEnd(25)} -> ${status}`);
 
-                // Jika berbeda, tampilkan sedikit diff
+                // --- 🕵️ TAMPILKAN DIFF JIKA BERBEDA ---
                 if (cJs !== cTs) {
                     const proc = await $`diff -u -b -B ${jsPath} ${tsPath}`.nothrow().quiet();
                     const diffLines = proc.stdout.toString().split('\n')
                     .filter(l => (l.startsWith('+') || l.startsWith('-')) && !l.match(/^(\+\+\+|---)/))
-                    .slice(0, 2);
-                    diffLines.forEach(l => console.log(`      ${l.startsWith('+') ? '\x1b[32m' : '\x1b[31m'}${l}\x1b[0m`));
+                    .slice(0, 2); // Ambil 2 baris perbedaan teratas
+
+                    diffLines.forEach(l => {
+                        const color = l.startsWith('+') ? '\x1b[32m' : '\x1b[31m';
+                        console.log(`      ${color}${l}\x1b[0m`);
+                    });
                 }
             }
         }
@@ -113,12 +126,14 @@ async function main() {
     for (const folder of SCAN_FOLDERS) {
         if (!(await exists(folder))) continue;
         const files = await readdir(folder);
-        // Cari JS yang punya kembaran TS
+
+        // Hanya pindahkan JS yang punya kembaran TS DAN tidak masuk PROTECTED_FILES
         for (const tsFile of files.filter(f => extname(f) === '.ts')) {
             const jsFile = `${basename(tsFile, '.ts')}.js`;
-            if (files.includes(jsFile)) {
+
+            if (files.includes(jsFile) && !PROTECTED_FILES.includes(jsFile)) {
                 await rename(join(folder, jsFile), join(TARGET_KARANTINA, jsFile));
-                console.log(`   🚚 Moved: ${jsFile}`);
+                console.log(`   🚚 Moved to Karantina: ${jsFile}`);
                 movedCount++;
             }
         }
@@ -134,7 +149,7 @@ async function main() {
     await $`bun install`;
 
     console.log("\n" + "=".repeat(50));
-    console.log(`✨ SELESAI! ${movedCount} file .js diamankan ke XXX.`);
+    console.log(`\n✨ SELESAI! ${movedCount} file .js masuk XXX.`);
     console.log("=".repeat(50));
 }
 

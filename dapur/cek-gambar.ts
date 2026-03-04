@@ -1,11 +1,16 @@
-import { file as bunFile, write, existsSync, readdirSync, lstatSync } from "bun";
+import { file as bunFile, write } from "bun";
+import * as fs from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
 
 // ========== CONFIG ==========
-const IMG_FOLDER = './img/';
-const OUTPUT_FILE = './img/gambarnganggur.txt';
-const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'ext', '.github']);
+const ROOT_DIR = process.cwd();
+const IMG_FOLDER = path.join(ROOT_DIR, "img");
+const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
+
+const SKIP_FOLDERS = new Set([
+".devcontainer", ".git", ".github", ".well-known", "artikel", "artikelx", "dapur", "ext", "functions", "gaya-hidup", "jejak-sejarah", "lainnya", "mini", "node_modules", "olah-media", "opini-sosial", "sementara", "sistem-terbuka", "warta-tekno"
+]);
 
 interface ImageFile {
   fullPath: string;
@@ -15,32 +20,38 @@ interface ImageFile {
 const usedBasenames = new Set<string>();
 
 /**
- * Fungsi Rekursif untuk ambil SEMUA .webp di dalam img/ sub-sub-sub folder
+ * Ambil SEMUA file .webp secara rekursif
  */
 function getAllPhysicalImages(dir: string): ImageFile[] {
   let results: ImageFile[] = [];
-  if (!existsSync(dir)) return results;
 
-  const list = readdirSync(dir, { withFileTypes: true });
+  if (!fs.existsSync(dir)) return results;
+
+  const list = fs.readdirSync(dir, { withFileTypes: true });
+
   for (const entry of list) {
-    const res = path.join(dir, entry.name);
+    const fullPath = path.join(dir, entry.name);
+
     if (entry.isDirectory()) {
-      results = results.concat(getAllPhysicalImages(res));
-    } else if (entry.name.toLowerCase().endsWith('.webp')) {
+      results = results.concat(getAllPhysicalImages(fullPath));
+    } else if (entry.name.toLowerCase().endsWith(".webp")) {
       results.push({
-        fullPath: res,
+        fullPath,
         basename: entry.name
       });
     }
   }
+
   return results;
 }
 
 /**
- * Fungsi Rekursif untuk scan referensi di semua file .html
+ * Scan semua file HTML dan kumpulkan referensi .webp
  */
 async function walkAndScanHtml(dir: string): Promise<void> {
-  const files = readdirSync(dir, { withFileTypes: true });
+  if (!fs.existsSync(dir)) return;
+
+  const files = fs.readdirSync(dir, { withFileTypes: true });
 
   for (const entry of files) {
     const fullPath = path.join(dir, entry.name);
@@ -48,15 +59,17 @@ async function walkAndScanHtml(dir: string): Promise<void> {
     if (entry.isDirectory()) {
       if (SKIP_FOLDERS.has(entry.name)) continue;
       await walkAndScanHtml(fullPath);
-    } else if (entry.name.endsWith('.html')) {
+    } else if (entry.name.endsWith(".html")) {
       try {
         const content = await bunFile(fullPath).text();
-        // Regex untuk mencari nama file .webp di dalam atribut src, content, dsb
-        const matches = content.match(/([^/\\"\']+\.webp)/ig);
+        const matches = content.match(/([^/\\\"']+\.webp)/gi);
+
         if (matches) {
-          matches.forEach(m => usedBasenames.add(path.basename(m)));
+          matches.forEach(m =>
+          usedBasenames.add(path.basename(m))
+          );
         }
-      } catch (e) {
+      } catch {
         console.warn(`⚠️ Gagal baca ${fullPath}`);
       }
     }
@@ -64,42 +77,55 @@ async function walkAndScanHtml(dir: string): Promise<void> {
 }
 
 async function runCleaner() {
-  console.log('🚀 Memulai Deep Scan V10.0 (Bun Recursive Mode)...');
-  console.log('📍 Lokasi: Balikpapan | Status: Cleaning Mode ON');
+  console.log("🚀 Memulai Deep Scan V10.0 (Bun CI Safe Mode)...");
+  console.log("📍 Mode: Deterministic | Git Runner Compatible");
 
-  // 1. Ambil semua gambar fisik (Deep Dive)
+  // 1️⃣ Ambil semua gambar fisik
   const allImages = getAllPhysicalImages(IMG_FOLDER);
 
-  // 2. Cari semua yang terpakai di HTML (Async)
-  await walkAndScanHtml('./');
+  if (allImages.length === 0) {
+    console.log("📭 Tidak ada file .webp ditemukan.");
+  }
 
-  // 3. Filter: Cari yang fisiknya ada tapi namanya TIDAK ADA di daftar referensi HTML
-  const unused = allImages.filter(img => !usedBasenames.has(img.basename));
+  // 2️⃣ Scan referensi HTML
+  await walkAndScanHtml(ROOT_DIR);
 
-  // 4. Eksekusi
+  // 3️⃣ Cari yang tidak terpakai
+  const unused = allImages.filter(
+    img => !usedBasenames.has(img.basename)
+  );
+
+  // 4️⃣ Eksekusi
   if (unused.length > 0) {
-    const logContent = unused.map(img => img.fullPath).sort().join('\n') + '\n';
+    const logContent =
+    unused.map(img => img.fullPath).sort().join("\n") + "\n";
+
     await write(OUTPUT_FILE, logContent);
 
-    console.log(`✅ Ditemukan ${unused.length} gambar nganggur di kedalaman folder.`);
+    console.log(
+      `🗑️ Ditemukan ${unused.length} gambar tidak terpakai.`
+    );
 
     let cleanedCount = 0;
+
     for (const img of unused) {
-      if (existsSync(img.fullPath)) {
+      if (fs.existsSync(img.fullPath)) {
         try {
-          console.log(`→ Git RM: ${img.fullPath}`);
-          // Gunakan execSync untuk memastikan operasi git selesai sebelum lanjut
-          execSync(`git rm -f "${img.fullPath}"`, { stdio: 'ignore' });
+          console.log(`→ git rm ${img.fullPath}`);
+          execSync(`git rm -f "${img.fullPath}"`, {
+            stdio: "ignore"
+          });
           cleanedCount++;
-        } catch (err) {
+        } catch {
           console.error(`❌ Gagal hapus ${img.fullPath}`);
         }
       }
     }
-    console.log(`\n✨ Successfully cleaned ${cleanedCount} files from various depths.`);
+
+    console.log(`✨ Berhasil membersihkan ${cleanedCount} file.`);
   } else {
-    await write(OUTPUT_FILE, '');
-    console.log("😎 Aman! Semua gambar di semua subfolder terpakai.");
+    await write(OUTPUT_FILE, "");
+    console.log("😎 Aman! Semua gambar masih dipakai.");
   }
 }
 
