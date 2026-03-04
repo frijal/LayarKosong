@@ -1,0 +1,106 @@
+name: "🛠️ Dapur Maintenance (All-in-One)"
+
+on:
+  schedule:
+    - cron: '0 8 9 * *' # Bulanan otomatis
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pilih Mode Operasi'
+        required: true
+        default: 'audit'
+        type: choice
+        options:
+          - audit       # Hanya jalankan sapu-bersih.ts
+          - upgrade     # Upgrade semua paket (Minor/Latest)
+          - manage      # Tambah/Hapus paket spesifik
+      packages:
+        description: 'Nama paket (khusus mode manage)'
+        required: false
+      upgrade_type:
+        description: 'Tipe upgrade (khusus mode upgrade)'
+        required: false
+        default: 'minor'
+        type: choice
+        options: [minor, latest]
+
+# PINDAHKAN KE SINI (Sejajar dengan 'on' dan 'jobs')
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # JOB 1: AUDIT (CEPAT & TANPA INSTALL)
+  audit-dapur:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      
+      - name: 🧹 Jalankan Sapu Bersih
+        run: bun run dapur/sapu-bersih.ts
+        
+      - name: 💾 Simpan Laporan Audit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions[bot]"
+          git add . && git commit -m "chore: audit dapur [$(date +'%Y-%m-%d')]" || echo "Clean"
+          git push origin main || echo "No changes"
+
+  # JOB 2: EKSEKUSI (Hanya jalan jika pilih Upgrade atau Manage)
+  execute-maintenance:
+    needs: audit-dapur
+    if: |
+      github.event_name == 'schedule' || 
+      (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      
+      # LOGIKA UPGRADE SEMUA
+      - name: 🚀 Mega Upgrade
+        if: github.event.inputs.mode == 'upgrade' || github.event_name == 'schedule'
+        run: |
+          bun install
+          bunx npm-check-updates -u --target ${{ github.event.inputs.upgrade_type || 'minor' }}
+          bun install
+          
+      # LOGIKA MANAGE PAKET SPESIFIK
+      - name: 📦 Manage Packages
+        if: github.event.inputs.mode == 'manage'
+        run: |
+          if [[ -n "${{ github.event.inputs.packages }}" ]]; then
+            bun add ${{ github.event.inputs.packages }}
+          fi
+
+      # LOGIKA UPDATE ASSETS (HIGHLIGHT.JS & FONT AWESOME)
+      - name: 🌈 Update Assets (Highlight.js & Font Awesome)
+        run: |
+          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
+          cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
+          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/prism-okaidia.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/prism.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css dapur/atom-one-dark.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css dapur/atom-one-light.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/monokai.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
+          
+          mkdir -p dapur/fontawesome-webfonts
+          cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
+          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
+          sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
+
+          HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
+          FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
+          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
+          
+      - name: 📨 Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled' }})"
+          commit-message: "chore: automated maintenance"
+          branch: "maintenance-update"
