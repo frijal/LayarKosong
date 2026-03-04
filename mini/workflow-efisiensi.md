@@ -1,21 +1,19 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 03.59.25 WITA
+> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 04.31.13 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
 | CloudflareMedsos.yml | bikin-rss-diskusi.ts | 🟡 Ada | `@octokit/core` | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | rapikan-cloudflare.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-mastodon.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| CloudflareMedsos.yml | post-to-threads.ts | 🟡 Ada | `fs`, `path` | ✅ Sudah Optimal |
-| CloudflareMedsos.yml | post-to-linkedin.ts | 🟡 Ada | `fs` | ✅ Sudah Optimal |
+| CloudflareMedsos.yml | post-to-threads.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| CloudflareMedsos.yml | post-to-linkedin.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-tumblr.ts | 🟡 Ada | `tumblr.js` | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | post-to-discord.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-facebook.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | generate_llms.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| delete-diskusi.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| Dependency-Audit.yml | cek-mubazir.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| Dependency-Audit.yml | cleanup.ts | 🟡 Ada | - | ❓ Script tidak ditemukan |
+| delete-diskusi.yml | sapu-bersih.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | inject-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | html-to-markdown.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
