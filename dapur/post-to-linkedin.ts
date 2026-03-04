@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 
 const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-linkedin.txt';

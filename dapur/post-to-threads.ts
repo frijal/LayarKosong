@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import path from 'path';
+import * as fs from 'node:fs';
+import path from 'node:path';
 
 const JSON_FILE = 'artikel.json';
 const DATABASE_DIR = 'mini';
