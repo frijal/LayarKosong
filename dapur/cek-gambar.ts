@@ -9,7 +9,15 @@ const IMG_FOLDER = path.join(ROOT_DIR, "img");
 const OUTPUT_FILE = path.join(IMG_FOLDER, "gambarnganggur.txt");
 
 const SKIP_FOLDERS = new Set([
-".devcontainer", ".git", ".github", ".well-known", "artikel", "artikelx", "dapur", "ext", "functions", "gaya-hidup", "jejak-sejarah", "lainnya", "mini", "node_modules", "olah-media", "opini-sosial", "sementara", "sistem-terbuka", "warta-tekno"
+  "node_modules",
+  ".git",
+  "img",
+  "dapur",
+  "sementara",
+  "artikelx",
+  "mini",
+  "ext",
+  ".github"
 ]);
 
 interface ImageFile {
