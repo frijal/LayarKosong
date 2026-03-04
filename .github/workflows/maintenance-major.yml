@@ -35,16 +35,15 @@ jobs:
           bunx npm-check-updates -u --target latest
           echo "✅ package.json telah diperbarui ke versi Major."
 
-      - name: 🧹 Operasi Sapu Bersih (Cleanup & Mubazir)
+      - name: 🧹 Operasi Super Clean (Audit, Karantina & Reset)
         run: |
-          if [ -f dapur/sapu-node.ts ]; then
-            echo "🔥 Menjalankan script sapu-node..."
-            bun run dapur/sapu-node.ts
+          if [ -f dapur/sapu-bersih.ts ]; then
+            echo "🔥 Menjalankan robot pembersih super..."
+            # Kita jalankan script gabungan yang baru
+            bun run dapur/sapu-bersih.ts
           else
-            echo "⚠️ Script sapu-node tidak ditemukan, melakukan reset standar..."
-            # Fallback jika file script tidak ada
-            rm -rf node_modules package-lock.json yarn.lock pnpm-lock.yaml bun.lockb
-            bun install
+            echo "⚠️ Script utama tidak ditemukan, fallback ke sapu-node..."
+            bun run dapur/sapu-node.ts || echo "Semua audit gagal, manual reset..."
           fi
 
       - name: 🧪 Jalankan Unit Test
