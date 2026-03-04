@@ -8,8 +8,8 @@ var X=[],k=[],G=[],_=0,U=null,L=6;async function B(){try{let j=await fetch("arti
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${O.category}</small>
-    <span style="color: #888; font-size: 0.65rem;">• ${T}</span>
+    <small style="color: #888; font-size: 0.65rem;">• ${T}</small>
+    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${O.category}</span>
     </div>
     </div>
     </div>`}).join("")}window.renderSidebar=$;function w(j,z){if(z)document.querySelectorAll(".pill").forEach((q)=>q.classList.remove("active")),z.classList.add("active");k=j==="All"?[...X]:X.filter((q)=>q.category===j),V(!0),$(j)}window.filterByCat=w;function g(){if(G.length===0)return;let j=document.getElementById("hero"),z=document.getElementById("heroSliderWrapper");if(!j||!z)return;j.classList.remove("skeleton"),z.innerHTML=G.map((K)=>`

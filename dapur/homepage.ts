@@ -165,8 +165,8 @@ function renderSidebar() {
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</small>
-    <span style="color: #888; font-size: 0.65rem;">• ${formattedDate}</span>
+    <small style="color: #888; font-size: 0.65rem;">• ${formattedDate}</small>
+    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
     </div>
     </div>
     </div>`;
