@@ -8,7 +8,7 @@ var X=[],k=[],G=[],_=0,U=null,L=6;async function B(){try{let j=await fetch("arti
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: #888; font-size: 0.65rem;">• ${T}</small>
+    <small style="color: #888; font-size: 0.65rem;">${T} •</small>
     <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${O.category}</span>
     </div>
     </div>
