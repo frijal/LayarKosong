@@ -9,7 +9,7 @@ const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml'];
 const SCRIPT_NAME = basename(import.meta.url);
 
 async function main() {
-    // 1. Load package.json menggunakan Bun.file
+    // 1. Load package.json
     const pkgFile = Bun.file("./package.json");
     if (!(await pkgFile.exists())) {
         console.error("❌ Waduh, package.json mana? Pastikan jalankan di root ya.");
@@ -19,20 +19,30 @@ async function main() {
     const pkg = await pkgFile.json();
     const allDeps = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
 
-    // Tempat menyimpan hasil investigasi
+    // 2. Periksa bun.lock (Penting untuk integritas instalasi)
+    const lockFile = Bun.file("./bun.lock"); 
+    // Catatan: Jika kamu pakai versi lama, mungkin namanya bun.lockb
+    const lockFileOld = Bun.file("./bun.lockb");
+
+    console.log(`\n--- 🛡️ INTEGRITY CHECK ---`);
+    if (await lockFile.exists() || await lockFileOld.exists()) {
+        console.log("✅ bun.lock ditemukan. Dependensi terkunci dengan aman.");
+    } else {
+        console.warn("⚠️ Peringatan: bun.lock tidak ditemukan! Jalankan `bun install` dulu Mas Bro.");
+    }
+    console.log(`--------------------------\n`);
+
     const usageMap = new Map<string, Set<string>>();
     allDeps.forEach(dep => usageMap.set(dep, new Set()));
 
     console.log(`🔍 Investigasi Paket Layar Kosong (JS/TS/HTML/YAML)... \n`);
 
-    // 2. Fungsi Scan Rekursif (Asynchronous)
+    // 3. Fungsi Scan Rekursif
     async function scan(dir: string) {
         const items = await readdir(dir);
 
         const tasks = items.map(async (item) => {
             const fullPath = join(dir, item);
-
-            // Skip folder yang tidak perlu
             if (IGNORE_DIRS.includes(item)) return;
 
             const s = await stat(fullPath);
@@ -41,13 +51,11 @@ async function main() {
                 return;
             }
 
-            // Filter file berdasarkan ekstensi
             const ext = extname(item);
             if (EXTENSIONS.includes(ext) && item !== SCRIPT_NAME) {
                 const content = await Bun.file(fullPath).text();
 
                 allDeps.forEach(dep => {
-                    // Regex fleksibel untuk import, require, atau CLI command di YAML
                     const escapedDep = dep.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     const regex = new RegExp(`(['"]${escapedDep}['"\/])|(\\b${escapedDep}\\b)`, 'g');
 
@@ -63,37 +71,32 @@ async function main() {
 
     await scan("./");
 
-    // 3. CETAK LAPORAN
+    // 4. CETAK LAPORAN
     console.log('='.repeat(80));
-    console.log('📊 LAPORAN PENGGUNAAN PAKET (TOTAL SCAN)');
+    console.log('📊 LAPORAN PENGGUNAAN PAKET');
     console.log('='.repeat(80));
 
     const unused: string[] = [];
 
     usageMap.forEach((files, dep) => {
         if (files.size > 0) {
-            console.log(`✅ ${dep.toUpperCase()}`);
-            console.log(`   Ditemukan di ${files.size} file.`);
-            // Tampilkan 3 lokasi pertama saja biar tidak banjir log
-            const locations = Array.from(files).slice(0, 3);
-            locations.forEach(f => console.log(`   - ${f}`));
-            if (files.size > 3) console.log(`   - ...dan ${files.size - 3} lainnya.`);
-            console.log('');
+            console.log(`✅ ${dep.toUpperCase()} (${files.size} file)`);
         } else {
             unused.push(dep);
-            console.log(`❌ ${dep.toUpperCase()}`);
-            console.log(`   (SAMA SEKALI TIDAK DITEMUKAN)\n`);
+            console.log(`❌ ${dep.toUpperCase()} (TIDAK TERPAKAI)`);
         }
     });
 
     console.log('='.repeat(80));
+    
     if (unused.length > 0) {
-        console.log(`\n💡 Mas Bro, paket ini resmi jadi "penumpang gelap":`);
+        console.log(`\n💡 Paket "Penumpang Gelap" ditemukan!`);
+        console.log(`Untuk membersihkan, jalankan:`);
         console.log(`👉 bun remove ${unused.join(' ')}`);
+        console.log(`\nSetelah itu, bun.lock akan otomatis terupdate.`);
     } else {
-        console.log('\n✨ Bersih! Semua paket ternyata punya andil di kode atau workflow.');
+        console.log('\n✨ Bersih! Semua paket aman terkendali.');
     }
-    console.log('='.repeat(80) + '\n');
 }
 
 main();
