@@ -1,10 +1,10 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 03.28.16 WITA
+> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 03.44.29 WITA
 
 | Workflow File | Script .ts | Status Bun Install | Rekomendasi |
 | :--- | :--- | :--- | :--- |
-| UniversalPackageManager.yml | sapu-node.ts | 🟡 Ada | ⚡ **Hapus bun install!** (Hanya pakai internal API) |
+| UniversalPackageManager.yml | sapu-bersih.ts | 🟡 Ada | ⚡ **Hapus bun install!** (Hanya pakai internal API) |
 | CloudflareMedsos.yml | bikin-rss-diskusi.ts | 🟡 Ada | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | rapikan-cloudflare.ts | 🟡 Ada | ⚡ **Hapus bun install!** (Hanya pakai internal API) |
 | CloudflareMedsos.yml | post-to-mastodon.ts | 🟡 Ada | ⚡ **Hapus bun install!** (Hanya pakai internal API) |
