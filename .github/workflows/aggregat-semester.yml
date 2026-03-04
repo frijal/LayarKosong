@@ -13,19 +13,19 @@ jobs:
 
     steps:
       - name: 🚀 Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - name: 🍞 Set up Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          python-version: '3.x'
-          cache: 'pip' # Opsional: mempercepat run berikutnya
-      
+          bun-version: latest
+
       - name: ⚙️ Run Aggregation Script 
-        run: python3 dapur/build_aggregation.py
+        # Ganti path ini jika file .ts kamu berada di folder lain
+        run: bun dapur/build-aggregation.ts
 
       - name: 💾 Commit and Push Changes
         run: |
@@ -35,10 +35,10 @@ jobs:
           # Tambahkan file hasil agregasi dan file log
           git add .        
           
-          # Cek apakah ada perubahan sebelum commit (biar gak error kalau gak ada artikel baru)
+          # Cek apakah ada perubahan sebelum commit
           if git diff --cached --quiet; then
             echo "Tidak ada konten baru, skip commit."
           else
-            git commit -m "chore: auto-generate weekly aggregation $(date +'%Y-%m-%d') "
+            git commit -m "chore: auto-generate semester aggregation $(date +'%Y-%m-%d')"
             git push
           fi
