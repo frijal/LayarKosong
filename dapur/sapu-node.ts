@@ -3,31 +3,30 @@ import { join, basename, extname } from "node:path";
 import { $ } from "bun";
 
 /**
- * KONFIGURASI
+ * CONFIG: Menyertakan folder .github agar penggunaan di workflow terdeteksi.
  */
 const IGNORE_DIRS = ['node_modules', '.git', 'dist', 'out', '.well-known'];
-const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml'];
+const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml', '.toml'];
 const SCRIPT_NAME = basename(import.meta.url);
 
 async function main() {
-    console.log("🚀 Memulai Operasi Sapu Bersih (Full Bun Migration)...");
+    console.log("🚀 Memulai Operasi Sapu Bersih (Audit Full-Path & Workflows)...");
 
-    // 1. LOAD PACKAGE.JSON
     const pkgFile = Bun.file("./package.json");
-    if (!(await pkgFile.exists())) {
-        console.error("❌ package.json tidak ketemu!");
-        return;
-    }
+    if (!(await pkgFile.exists())) return;
+
     const pkg = await pkgFile.json();
     const allDeps = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
-    const usageMap = new Map<string, number>();
-    allDeps.forEach(dep => usageMap.set(dep, 0));
+    
+    const usageTracker = new Map<string, Set<string>>();
+    allDeps.forEach(dep => usageTracker.set(dep, new Set()));
 
-    // 2. SCAN PENGGUNAAN (DETEKTIF MUBAZIR)
     async function scan(dir: string) {
         const items = await readdir(dir);
         for (const item of items) {
             const fullPath = join(dir, item);
+            
+            // Jangan skip folder .github
             if (IGNORE_DIRS.includes(item)) continue;
 
             const s = await stat(fullPath);
@@ -35,41 +34,58 @@ async function main() {
                 await scan(fullPath);
             } else if (EXTENSIONS.includes(extname(item)) && item !== SCRIPT_NAME) {
                 const content = await Bun.file(fullPath).text();
+                
                 allDeps.forEach(dep => {
+                    // Regex fleksibel: mendeteksi paket di import, script shell, atau command YAML/bunx
                     const escapedDep = dep.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     const regex = new RegExp(`(['"]${escapedDep}['"\/])|(\\b${escapedDep}\\b)`, 'g');
-                    if (regex.test(content)) usageMap.set(dep, (usageMap.get(dep) || 0) + 1);
+                    
+                    if (regex.test(content)) {
+                        usageTracker.get(dep)?.add(fullPath);
+                    }
                 });
             }
         }
     }
 
-    console.log("🔍 Menganalisis paket yang tidak terpakai...");
+    console.log("🔍 Memindai seluruh kode dan GitHub Workflows...");
     await scan("./");
 
-    // Filter paket mubazir (kecuali wrangler/paket penting lainnya)
-    const unused = allDeps.filter(dep => usageMap.get(dep) === 0 && dep !== 'wrangler');
+    console.log("\n" + "=".repeat(60));
+    console.log("📋 AUDIT PENGGUNAAN PAKET LAYAR KOSONG");
+    console.log("=".repeat(60));
 
-    // 3. EKSEKUSI PENGHAPUSAN PAKET
+    const unused: string[] = [];
+
+    usageTracker.forEach((paths, dep) => {
+        if (paths.size > 0) {
+            console.log(`✅ ${dep.toUpperCase()}`);
+            console.log(`   Ditemukan di: ${Array.from(paths).join(', ')}`);
+        } else {
+            unused.push(dep);
+            console.log(`❌ ${dep.toUpperCase()}: Tidak terdeteksi penggunaan.`);
+        }
+    });
+
+    console.log("=".repeat(60));
+
+    // Eksekusi penghapusan otomatis
     if (unused.length > 0) {
-        console.log(`🧹 Menghapus ${unused.length} paket mubazir: ${unused.join(', ')}`);
+        console.log(`🧹 Membuang paket mubazir: ${unused.join(', ')}`);
         await $`bun remove ${unused}`;
-    } else {
-        console.log("✨ Tidak ada paket mubazir. Semua bersih!");
     }
 
-    // 4. HARD RESET (HAPUS JEJAK NON-BUN)
-    console.log("🔥 Melakukan Hard Reset & Pembersihan Lockfile...");
+    // Hard Reset Ekosistem
+    console.log("\n🔥 Hard Reset: Menghapus lockfile lama & Reinstall via Bun...");
     const garbage = ['node_modules', 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb'];
     for (const target of garbage) {
         await rm(target, { recursive: true, force: true }).catch(() => {});
     }
 
-    // 5. FRESH INSTALL
-    console.log("📦 Menginstal ulang dependensi (Murni Bun)...");
+    // Instalasi murni menggunakan Bun
     await $`bun install`;
 
-    console.log("\n✅ SEMUA SELESAI! Repo Layar Kosong sekarang super ramping dan murni Bun.");
+    console.log("\n✨ SEMUA SELESAI! Repo murni Bun, ramping, dan siap deploy.");
 }
 
 main().catch(console.error);
