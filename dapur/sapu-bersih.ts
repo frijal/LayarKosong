@@ -1,70 +1,136 @@
-import { Octokit } from "@octokit/core";
+import { readdir, stat, rm, mkdir, rename, exists } from "node:fs/promises";
+import { join, basename, extname } from "node:path";
+import { $, BunFile } from "bun";
 
-/**
- * Script ini menggunakan GitHub GraphQL API v4
- * Pastikan GITHUB_TOKEN memiliki scope 'write:discussion'
- */
+// --- CONFIG ---
+const TARGET_KARANTINA = "./dapur/XXX";
+const SCAN_FOLDERS = ["./dapur"];
+const IGNORE_DIRS = ['node_modules', 'ext' '.git', 'dist', 'out', 'XXX'];
+const EXTENSIONS = ['.js', '.mjs', '.cjs', '.ts', '.html', '.yml', '.yaml', '.toml'];
+const SCRIPT_NAME = basename(import.meta.url);
 
-const token = Bun.env.GITHUB_TOKEN;
-const repoEnv = Bun.env.GITHUB_REPOSITORY;
-
-if (!token || !repoEnv) {
-  console.error("❌ Error: GITHUB_TOKEN dan GITHUB_REPOSITORY harus ada di ENV.");
-  process.exit(1);
+// --- HELPER UNTUK CEK IDENTIK ---
+async function getNormalizedContent(file: BunFile) {
+    let text = await file.text();
+    return text
+        .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '') // Hapus komentar
+        .replace(/:\s*[a-zA-Z<>\[\]]+/g, '')    // Hapus Type Annotations
+        .replace(/\s+/g, ' ')                   // Normalisasi whitespace
+        .trim();
 }
 
-const [owner, repo] = repoEnv.split('/');
-const octokit = new Octokit({ auth: token });
+async function main() {
+    console.log("🚀 MEMULAI OPERASI SUPER CLEANER (Layar Kosong Edition)\n");
 
-async function nukeAllDiscussions() {
-  try {
-    console.log(`🧹 Memulai pembersihan diskusi di ${owner}/${repo}...`);
+    // ============================================================
+    // 1. SAPU-NODE: Audit Dependensi
+    // ============================================================
+    console.log("🔍 LANGKAH 1: Sapu-Node (Audit Dependensi)");
+    const pkgFile = Bun.file("./package.json");
+    if (await pkgFile.exists()) {
+        const pkg = await pkgFile.json();
+        const allDeps = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
+        const packageToFiles = new Map<string, Set<string>>();
 
-    // 1. Ambil diskusi (menggunakan GraphQL)
-    const getQuery = `
-      query($owner: String!, $name: String!) {
-        repository(owner: $owner, name: $name) {
-          discussions(first: 100) {
-            nodes { id title }
-          }
+        allDeps.forEach(dep => packageToFiles.set(dep, new Set()));
+
+        const scanner = async (dir: string) => {
+            const items = await readdir(dir);
+            for (const item of items) {
+                const fullPath = join(dir, item);
+                if (IGNORE_DIRS.includes(item)) continue;
+                const s = await stat(fullPath);
+                if (s.isDirectory()) await scanner(fullPath);
+                else if (EXTENSIONS.includes(extname(item)) && item !== SCRIPT_NAME) {
+                    const content = await Bun.file(fullPath).text();
+                    allDeps.forEach(dep => {
+                        const regex = new RegExp(`(['"]${dep.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"\/])|(\\b${dep}\\b)`, 'g');
+                        if (regex.test(content)) packageToFiles.get(dep)?.add(fullPath);
+                    });
+                }
+            }
+        };
+        await scanner("./");
+        
+        const unused: string[] = [];
+        packageToFiles.forEach((paths, dep) => {
+            if (paths.size === 0) unused.push(dep);
+        });
+        console.log(`   ✅ Audit selesai. Ditemukan ${unused.length} paket mubazir.\n`);
+    }
+
+    // ============================================================
+    // 2. BEDAH-KODE: Tampilkan Perbedaan Visual
+    // ============================================================
+    console.log("🕵️ LANGKAH 2: Bedah-Kode (Diff Visual)");
+    for (const folder of SCAN_FOLDERS) {
+        if (!(await exists(folder))) continue;
+        const files = await readdir(folder);
+        const jsFiles = files.filter(f => extname(f) === '.js');
+
+        for (const jsFile of jsFiles) {
+            const base = basename(jsFile, '.js');
+            const tsFile = `${base}.ts`;
+            if (files.includes(tsFile)) {
+                console.log(`   🔍 Perbedaan di ${base}:`);
+                const proc = await $`diff -u -b -B ${join(folder, jsFile)} ${join(folder, tsFile)}`.nothrow().quiet();
+                const diffLines = proc.stdout.toString().split('\n')
+                    .filter(line => (line.startsWith('+') || line.startsWith('-')) && !line.startsWith('---') && !line.startsWith('+++'))
+                    .slice(0, 3); // Ambil 3 baris saja buat preview
+                diffLines.forEach(l => console.log(`      ${l.startsWith('+') ? '\x1b[32m' : '\x1b[31m'}${l}\x1b[0m`));
+            }
         }
-      }
-    `;
-
-    const res: any = await octokit.graphql(getQuery, { owner, name: repo });
-    const discussions = res.repository.discussions.nodes;
-
-    if (discussions.length === 0) {
-      console.log('✅ Bersih! Tidak ada diskusi yang ditemukan.');
-      return;
     }
+    console.log("");
 
-    console.log(`📝 Menemukan ${discussions.length} diskusi. Menghapus satu per satu...`);
+    // ============================================================
+    // 3. CEK-IDENTIK: Verifikasi Logika Inti
+    // ============================================================
+    console.log("🧬 LANGKAH 3: Cek-Identik (Verifikasi Logika)");
+    for (const folder of SCAN_FOLDERS) {
+        if (!(await exists(folder))) continue;
+        const files = await readdir(folder);
+        const jsFiles = files.filter(f => extname(f) === '.js');
 
-    // 2. Hapus diskusi secara berurutan
-    // Kita gunakan loop biasa agar tidak terkena Rate Limit GitHub jika terlalu banyak
-    for (const disc of discussions) {
-      process.stdout.write(`🗑️ Menghapus: ${disc.title.slice(0, 50)}... `);
-
-      await octokit.graphql(`
-        mutation($id: ID!) {
-          deleteDiscussion(input: {id: $id}) { clientMutationId }
+        for (const jsFile of jsFiles) {
+            const base = basename(jsFile, '.js');
+            const tsFile = `${base}.ts`;
+            if (files.includes(tsFile)) {
+                const cJs = await getNormalizedContent(Bun.file(join(folder, jsFile)));
+                const cTs = await getNormalizedContent(Bun.file(join(folder, tsFile)));
+                const status = (cJs === cTs) ? "✅ IDENTIK" : "⚠️ BERBEDA";
+                console.log(`   📄 ${base.padEnd(25)} -> ${status}`);
+            }
         }
-      `, { id: disc.id });
+    }
+    console.log("");
 
-      console.log("✅ OK");
+    // ============================================================
+    // 4. KARANTINA: Eksekusi Pemindahan
+    // ============================================================
+    console.log(`📦 LANGKAH 4: Karantina (Pemindahan ke ${TARGET_KARANTINA})`);
+    if (!(await exists(TARGET_KARANTINA))) await mkdir(TARGET_KARANTINA, { recursive: true });
+
+    let movedCount = 0;
+    for (const folder of SCAN_FOLDERS) {
+        if (!(await exists(folder))) continue;
+        const files = await readdir(folder);
+        for (const f of files.filter(f => extname(f) === '.ts')) {
+            const jsFile = `${basename(f, '.ts')}.js`;
+            if (files.includes(jsFile)) {
+                await rename(join(folder, jsFile), join(TARGET_KARANTINA, jsFile));
+                movedCount++;
+            }
+        }
     }
 
-    console.log(`\n♻️ Selesai! Berhasil menghapus ${discussions.length} diskusi.`);
-    console.log(`💡 Jika diskusi kamu > 100, jalankan script ini sekali lagi.`);
+    console.log(`\n🔥 Finishing: Reinstalling Dependencies...`);
+    await rm('node_modules', { recursive: true, force: true }).catch(() => {});
+    await $`bun install`;
 
-  } catch (err: any) {
-    if (err.message.includes("401")) {
-      console.error("❌ Token tidak valid atau expired.");
-    } else {
-      console.error("❌ Gagal nuklir diskusi:", err.message);
-    }
-  }
+    console.log("\n" + "=".repeat(50));
+    console.log(`✨ SELESAI! ${movedCount} file .js masuk XXX. Dapur sudah steril.`);
+    console.log("=".repeat(50));
 }
 
-nukeAllDiscussions();
+main().catch(console.error);
