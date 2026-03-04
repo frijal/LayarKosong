@@ -1,6 +1,6 @@
 {
   "name": "layarkosong",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Fakhrul Rijal <frijal@gmail.com>",
   "repository": {
     "type": "git",
@@ -43,14 +43,16 @@
   "license": "Unlicense",
   "private": true,
   "scripts": {
-    "fixseo": "bun run ext/seo-fixer.js",
-    "ci-fix-meta-image": "bun run ext/seo-fixer.js artikelx",
-    "ci-fix-meta-main": "bun run ext/seo-fixer.js artikel",
-    "ci-generate-xml-rss": "bun run ext/generator-pro.js",
-    "ci-screenshot": "bun run ext/screenshot-puppeteer.js",
+    "fixseo": "bun run dapur/seo-fixer.ts",
+    "ci-fix-meta-image": "bun run dapur/seo-fixer.ts artikelx",
+    "ci-fix-meta-main": "bun run dapur/seo-fixer.ts artikel",
+    "ci-generate-xml-rss": "bun run dapur/generator-pro.ts",
+    "ci-screenshot": "bun run dapur/screenshot-puppeteer.ts",
     "ci-all": "bun run ci-fix-meta-image && bun run ci-generate-xml-rss && bun run ci-screenshot",
-    "generate-ai-api": "bun run ext/generate-ai-api.js",
-    "check-deps": "bun run ext/cek-mubazir.js"
+    "generate-ai-api": "bun run dapur/generate-ai-api.ts",
+    "check-deps": "bun run dapur/cek-mubazir.ts",
+    "sapu": "bun run dapur/sapu-node.ts",
+    "karantina": "bun run dapur/cek-identik.ts"
   },
   "type": "module"
 }
