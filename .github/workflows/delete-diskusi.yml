@@ -20,9 +20,6 @@ jobs:
         uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
         with:
           bun-version: latest         
-      
-      - name: 📦 Install
-        run: bun install
         
       - name: Run Delete Script
         env:
