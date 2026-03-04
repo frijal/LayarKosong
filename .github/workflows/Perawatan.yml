@@ -51,14 +51,29 @@ jobs:
       - name: 🚀 Upgrade/Manage Packages
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
-          if [[ "${{ github.event.inputs.mode }}" == "upgrade" || "${{ github.event_name }}" == 'schedule' ]]; then
+          MODE="${{ github.event.inputs.mode }}"
+          ACTION="${{ github.event.inputs.action }}"
+          PKGS="${{ github.event.inputs.packages }}"
+          IS_DEV="${{ github.event.inputs.is_dev }}"
+          UPGRADE_TYPE="${{ github.event.inputs.upgrade_type || 'minor' }}"
+
+          if [[ "$MODE" == "upgrade" || "${{ github.event_name }}" == "schedule" ]]; then
+            echo "Running Mega Upgrade..."
             bun install
-            bunx npm-check-updates -u --target ${{ github.event.inputs.upgrade_type || 'minor' }}
+            bunx npm-check-updates -u --target "$UPGRADE_TYPE"
             bun install
-          elif [[ "${{ github.event.inputs.mode }}" == "paket" && -n "${{ github.event.inputs.packages }}" ]]; then
-            [[ "${{ github.event.inputs.action }}" == "add" ]] && \
-            ([[ "${{ github.event.inputs.is_dev }}" == "true" ]] && bun add -d ${{ github.event.inputs.packages }} || bun add ${{ github.event.inputs.packages }}) || \
-            bun remove ${{ github.event.inputs.packages }}
+          elif [[ "$MODE" == "paket" && -n "$PKGS" ]]; then
+            if [[ "$ACTION" == "add" ]]; then
+              echo "Adding packages: $PKGS"
+              if [[ "$IS_DEV" == "true" ]]; then
+                bun add -d $PKGS
+              else
+                bun add $PKGS
+              fi
+            elif [[ "$ACTION" == "remove" ]]; then
+              echo "Removing packages: $PKGS"
+              bun remove $PKGS
+            fi
             bun install --production
           fi
 
