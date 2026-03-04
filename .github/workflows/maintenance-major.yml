@@ -8,20 +8,18 @@ on:
 jobs:
   major-upgrade:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pull-requests: write
 
     steps:
       - name: 🧩 Checkout kode
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4 # Gunakan v4 yang stabil
         with:
           fetch-depth: 1
-          persist-credentials: true
 
       - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -30,53 +28,53 @@ jobs:
 
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
-          # 1. Jalankan ncu tanpa install global (-g), lebih cepat & bersih
           echo "--- DAFTAR UPGRADE MAJOR ---"
-          bunx npm-check-updates --target latest --format group
-          
-          # 2. Update package.json secara otomatis
+          # Kita pakai bunx langsung untuk NCU
           bunx npm-check-updates -u --target latest
-          
-          # 3. PENTING: Sinkronisasi ulang agar bun.lockb diperbarui
-          # Tanpa ini, build selanjutnya bisa error karena mismatch versi
-          bun install
+          echo "✅ package.json telah diperbarui ke versi Major terbaru."
 
-      - name: 🧹 Menjalankan Tukang Sapu (Cleanup)
+      - name: 🧹 Menjalankan Tukang Sapu & Hard Reset
         run: |
           if [ -f dapur/cleanup.ts ]; then
-            echo "🔥 Membersihkan node_modules dan membangun ulang lockfile..."
+            echo "🔥 Menjalankan Cleanup: Hapus node_modules dan Rebuild Lockfile..."
             bun run dapur/cleanup.ts
           else
+            echo "⚠️ Script cleanup tidak ditemukan, melakukan install standar..."
+            rm -rf node_modules bun.lock # Hapus manual jika script tidak ada
             bun install
           fi
 
-      - name: 🕵️ Detektif Scan (Cek paket yang mati setelah upgrade)
+      - name: 🕵️ Detektif Scan (Cek paket mati)
         run: |
           if [ -f dapur/cek-mubazir.ts ]; then
             echo "--- LAPORAN DETEKTIF SETELAH UPGRADE ---"
             bun run dapur/cek-mubazir.ts
           fi
 
-      - name: 🧪 Audit & Test
+      - name: 🧪 Audit Keamanan (Bun Way)
         run: |
-          # Menggunakan bunx untuk menjalankan audit tanpa install permanen
-          bunx audit-ci --low || true
-          
-          # Menggunakan bun test (fitur test runner bawaan Bun yang super cepat)
+          # Menggunakan audit bawaan Bun yang lebih paham bun.lock
+          bun pm audit || echo "⚠️ Ada temuan audit, silakan cek manual."
+
+      - name: 🧪 Jalankan Unit Test
+        run: |
           bun test || echo "No tests found, skipping..."
 
-      - name: 🔍 Cek perubahan final
+      - name: 🔍 Cek Perubahan Final
         id: check_changes
         run: |
-          if [[ -n "$(git status --porcelain package.json package-lock.json)" ]]; then
+          # Cek perubahan pada package.json atau bun.lock
+          if [[ -n "$(git status --porcelain package.json bun.lock)" ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
+            echo "📢 Ditemukan perubahan versi."
           else
             echo "changes=false" >> $GITHUB_OUTPUT
+            echo "💤 Tidak ada perubahan."
           fi
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/major-upgrade-${{ github.run_id }}
           title: 'chore: 🚨 Major Dependency Upgrade'
@@ -89,11 +87,7 @@ jobs:
             - `dapur/cleanup.ts` telah membersihkan dan mengoptimalkan `node_modules`.
             - `dapur/cek-mubazir.ts` telah memverifikasi penggunaan dependensi.
 
-            **Catatan Penting:** Upgrade versi Major seringkali membawa *breaking changes*. Mohon cek kembali fungsi-fungsi krusial di blog **Layar Kosong** sebelum melakukan merge.
+            **Catatan untuk Layar Kosong:**
+            Upgrade versi Major seringkali membawa *breaking changes*. Mohon cek kembali fungsi-fungsi krusial sebelum melakukan merge.
           labels: dependencies, major, breaking-change
           reviewers: frijal
-          draft: false
-
-      - name: ℹ️ Tidak ada perubahan
-        if: steps.check_changes.outputs.changes == 'false'
-        run: echo "💤 Semua paket sudah berada di versi paling baru."
