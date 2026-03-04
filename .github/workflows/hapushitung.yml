@@ -24,11 +24,6 @@ jobs:
         with:
           bun-version: latest
 
-      - name: 🛠️ Maintenance & Update
-        run: |
-          bun update --latest
-          bun install 
-
       # ========== AUTOMATION SCRIPTS ==========
       - name: 🕵️ Update Dashboard Jadwal
         run: bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
