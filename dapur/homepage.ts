@@ -283,10 +283,10 @@ function renderFeed(reset: boolean = false): void {
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
     <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
     ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
     </time>
+    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
     </div>
     <h3 class="card-title">${item.title}</h3>
     <p class="card-excerpt">${item.summary.substring(0, 200)}...</p>

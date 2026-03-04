@@ -32,10 +32,10 @@ var X=[],k=[],G=[],_=0,U=null,L=6;async function B(){try{let j=await fetch("arti
     <div class="card-body">
     <a href="${Z.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${Z.category}</small>
     <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${Z.date.toISOString()}">
     ${Z.date.toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"})}
     </time>
+    <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${Z.category}</small>
     </div>
     <h3 class="card-title">${Z.title}</h3>
     <p class="card-excerpt">${Z.summary.substring(0,200)}...</p>
