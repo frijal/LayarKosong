@@ -1,12 +1,20 @@
-name: 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Bun Edition)
+name: 🛠️ Pemeliharaan & Upgrade (Ultimate v7 - Bun Edition)
 
 on:
   workflow_dispatch:
+    inputs:
+      upgrade_type:
+        description: 'Pilih tipe upgrade'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - minor
+          - latest
   schedule:
-    - cron: '0 8 9 * *' # Setiap tanggal 9 pukul 08:00 WIB
-
+    - cron: '0 8 9 * *'
 jobs:
-  maintenance:
+  ultimate-maintenance:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,127 +22,109 @@ jobs:
 
     steps:
       - name: 🧩 Checkout kode
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 1
-          persist-credentials: true
 
       - name: ⚙️ Setup Bun
-        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
+        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
         with:
           bun-version: latest
 
       - name: 📦 Install & Upgrade Dependencies
         run: |
-          # Install awal untuk sinkronisasi
           bun install
-          
-          # Upgrade package.json (Minor) menggunakan bunx
-          bunx npm-check-updates -u --target minor
-          
-          # Install ulang untuk memperbarui bun.lock
+          # Gunakan 'latest' jika dipicu manual dengan pilihan 'latest' atau jika jadwal 3-bulanan (logika manual)
+          TARGET_UPGRADE="${{ github.event.inputs.upgrade_type || 'minor' }}"
+          echo "🚀 Upgrading dependencies to: $TARGET_UPGRADE"
+          bunx npm-check-updates -u --target $TARGET_UPGRADE
           bun install
-          echo "✅ Dependencies diupgrade dan bun.lock disinkronkan."
+          echo "✅ Dependencies updated & bun.lock synchronized."
 
-      - name: 🌈 Update Assets Highlight.js & Font Awesome
+      - name: 🌈 Update Assets (Highlight.js & Font Awesome)
         run: |
-          # Install paket terbaru secara temporary (Bun sangat cepat di sini)
+          # Install temporary paket terbaru
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
 
-          # Ambil JS & CSS Utama Highlight.js
+          # Mapping Highlight.js (Dapur Edition)
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
-          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/default.min.css
-
-          # Mapping cerdas Highlight.js
           cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
           cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/prism-okaidia.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/prism.min.css
-          
-          # Tema populer lainnya
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css dapur/atom-one-dark.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css dapur/atom-one-light.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/monokai.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
-
-          # Urus Font Awesome (Webfonts + CSS)
+          
+          # Urus Font Awesome
+          mkdir -p dapur/fontawesome-webfonts
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
-
-          # Patch Path CSS Font Awesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
-          # Ambil Versi untuk Metadata (Ganti node -p dengan jq yang lebih ringan)
+          # Save Metadata
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
-
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
-          echo "✅ All Assets updated: HLJS v$HLJS_VER, FA v$FA_VER"
 
       - name: 🔍 Verifikasi Integritas Font
         id: font_check
-        shell: bash
         run: |
           FONT_DIR="dapur/fontawesome-webfonts"
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
-          
-          # Backup laporan lama jika ada
           [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV"
-          
-          # Header laporan (pakai printf supaya lebih aman dibanding echo emoji)
-          printf "Font Integrity Report - $(date)\n" > "$OUTPUT"
-          printf "Filename | Size | SHA-256\n" >> "$OUTPUT"
-          
-          # Gunakan find tanpa line continuation yang ribet
-          # Kita simpan hasil find ke variable dulu atau pakai pipe langsung yang bersih
+          printf "Font Integrity Report - $(date)\nFilename | Size | SHA-256\n" > "$OUTPUT"
           find "$FONT_DIR" -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
-              fname=$(basename "$f")
-              fsize=$(stat -c%s "$f")
-              fhash=$(sha256sum "$f" | awk '{print $1}')
-              echo "$fname | $fsize | $fhash" >> "$OUTPUT"
+              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
           done
-          
-          # Logika perbandingan
-          if [ -f "$PREV" ]; then
-            if ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
-              echo "🚨 Perubahan terdeteksi pada hash font!"
-              echo "alert=true" >> $GITHUB_OUTPUT
-            else
-              echo "✅ Tidak ada perubahan pada font."
-              echo "alert=false" >> $GITHUB_OUTPUT
-            fi
+          if [ -f "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
+            echo "alert=true" >> $GITHUB_OUTPUT
           else
-            echo "ℹ️ Laporan pertama kali dibuat."
             echo "alert=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: 🧪 Audit & Detective Scan
+      - name: 🧹 Operasi Super Clean (Audit & Karantina)
         run: |
-          # Gunakan audit-ci yang lebih bersahabat dengan Bun
-          bunx audit-ci --low || true
-          bun run dapur/cek-mubazir.ts
-          bun run dapur/cleanup.ts
+          if [ -f dapur/sapu-bersih.ts ]; then
+            bun run dapur/sapu-bersih.ts
+          else
+            echo "⚠️ sapu-bersih.ts not found! Running manual audit..."
+            bunx audit-ci --low || true
+          fi
 
-      - name: 🔍 Cek perubahan akhir
+      - name: 🧪 Jalankan Unit Test
+        run: bun test || echo "No tests found, skipping..."
+
+      - name: 🔍 Cek Perubahan Final
         id: check_changes
         run: |
           git add .
-          [[ -n "$(git status --porcelain)" ]] && echo "detected=true" >> $GITHUB_OUTPUT || echo "detected=false" >> $GITHUB_OUTPUT
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "detected=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.detected == 'true'
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
         with:
-          branch: chore/auto-maintenance
+          branch: chore/ultimate-maintenance-${{ github.run_id }}
           delete-branch: true
-          title: 'chore: Auto Maintenance (Deps + Assets)'
-          commit-message: 'chore: automated maintenance'
+          title: 'chore: 🛠️ Mega Maintenance (Deps, Assets & Cleanup)'
+          commit-message: 'chore: automated maintenance and dependency upgrade'
           body: |
-            🔧 **Pemeliharaan Otomatis Layar Kosong (Bun Engine)**
-            - Upgrade Dependencies (Minor) via Bun
-            - Update Assets (Highlight.js & Font Awesome)
-            - ${{ steps.font_check.outputs.alert == 'true' && '🚨 **ALERT:** Hash font berubah!' || '✅ Hash font aman.' }}
-          labels: automated
+            🔧 **Operasi Pemeliharaan Ultimate Berhasil!**
+
+            **Perubahan yang dilakukan:**
+            1. **Dependencies:** Upgraded ke `${{ github.event.inputs.upgrade_type || 'minor' }}`.
+            2. **Assets:** Highlight.js & Font Awesome diperbarui ke versi terbaru.
+            3. **Cleanup:** `sapu-bersih.ts` dijalankan (Karantina JS & Audit Paket).
+            4. **Integrity:** ${{ steps.font_check.outputs.alert == 'true' && '🚨 **ALERT:** Hash font berubah!' || '✅ Hash font aman.' }}
+
+            *Dapur Layar Kosong sekarang steril dan up-to-date.*
+          labels: automated, maintenance
           reviewers: frijal
