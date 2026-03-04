@@ -2,7 +2,7 @@ name: Zemester Content Aggregation
 
 on:
   schedule:
-    - cron: '0 1 1 1,7 *'
+    - cron: '30 1 1 1,7 *'
   workflow_dispatch:
 
 jobs:
