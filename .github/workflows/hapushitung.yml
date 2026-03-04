@@ -25,10 +25,10 @@ jobs:
           bun-version: latest
 
       # ========== AUTOMATION SCRIPTS ==========
-      - name: 📸 Scan Unused Images
-        run: |
-          echo "🔎 Menjalankan pengecekan gambar..."
-          bun run dapur/cek-gambar.ts || echo "Script cek-gambar tidak ditemukan, skip."
+#      - name: 📸 Scan Unused Images
+#        run: |
+#          echo "🔎 Menjalankan pengecekan gambar..."
+#          bun run dapur/cek-gambar.ts || echo "Script cek-gambar tidak ditemukan, skip."
 
       - name: 🕵️ Update Dashboard Jadwal
         run: | 
