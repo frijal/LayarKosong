@@ -1,44 +1,65 @@
-name: Package Uninstaller
+name: Universal Package Manager
 
 on:
   workflow_dispatch:
     inputs:
-      packages_to_remove:
-        description: 'Masukkan nama paket (contoh: playwright requests)'
+      action:
+        description: 'Pilih Aksi'
+        required: true
+        default: 'add'
+        type: choice
+        options:
+          - add
+          - remove
+      packages:
+        description: 'Nama paket (contoh: axios lodash)'
         required: true
         default: ''
+      is_dev:
+        description: 'Install sebagai DevDependency? (Hanya untuk Bun/Node)'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
-  uninstall-process:
+  manage-packages:
     runs-on: ubuntu-latest
-    
     permissions:
       contents: write
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          persist-credentials: true
 
-      - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
+      - name: 'Setup Bun.js'
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: '🗑️ Bun Package Uninstall'
+      - name: '📦 Bun Package Operation'
         if: hashFiles('package.json') != ''
         run: |
-          echo "Processing package removal using Bun..."
-          # Gunakan bun remove, ini jauh lebih cepat daripada npm uninstall
-          bun remove ${{ github.event.inputs.packages_to_remove }}
+          ACTION="${{ github.event.inputs.action }}"
+          PKGS="${{ github.event.inputs.packages }}"
+          IS_DEV="${{ github.event.inputs.is_dev }}"
           
-          # Hapus dependensi yang tidak terpakai dan bersihkan lockfile
+          if [ "$ACTION" == "add" ]; then
+            echo "Installing $PKGS via Bun..."
+            if [ "$IS_DEV" == "true" ]; then
+              bun add -d $PKGS
+            else
+              bun add $PKGS
+            fi
+          else
+            echo "Removing $PKGS via Bun..."
+            bun remove $PKGS
+          fi
+          
+          # Optimasi lockfile
           bun install --production
 
-      # --- PYTHON SECTION (AUTO-SKIP LOGIC) ---
-      # Kita cek dulu apakah ada file python, kalau nggak ada, step di bawah bakal di-skip total
       - name: Check if Python files exist
         id: check_python
         run: |
@@ -50,36 +71,50 @@ jobs:
 
       - name: Setup Python
         if: steps.check_python.outputs.has_python == 'true'
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-          cache: 'pip' # Sekarang aman karena sudah dipastikan filenya ada
+          cache: 'pip'
 
-      - name: Python Uninstall
+      - name: Python Package Operation
         if: steps.check_python.outputs.has_python == 'true'
         run: |
-          PACKAGES="${{ github.event.inputs.packages_to_remove }}"
-          if [ -f requirements.txt ]; then
-            for pkg in $PACKAGES; do
-              sed -i "/^${pkg}==/d; /^${pkg}>=/d; /^${pkg}$/d" requirements.txt
+          ACTION="${{ github.event.inputs.action }}"
+          PKGS="${{ github.event.inputs.packages }}"
+          
+          if [ "$ACTION" == "add" ]; then
+            echo "Adding $PKGS to Python environment..."
+            for pkg in $PKGS; do
+              # Tambahkan ke requirements.txt jika belum ada
+              if ! grep -q "^${pkg}=" requirements.txt; then
+                echo "$pkg" >> requirements.txt
+              fi
             done
+            pip install $PKGS
+          else
+            echo "Removing $PKGS from Python environment..."
+            if [ -f requirements.txt ]; then
+              for pkg in $PKGS; do
+                sed -i "/^${pkg}==/d; /^${pkg}>=/d; /^${pkg}$/d" requirements.txt
+              done
+            fi
+            pip uninstall -y $PKGS || true
           fi
-          pip uninstall -y $PACKAGES || true
 
-      # --- FINAL LOGGING & COMMIT ---
-      - name: Generate Audit Report (Layar Kosong Detective Mode)
+      - name: Generate Audit Report
         run: |
           DATE=$(date +'%Y-%m-%d')
           mkdir -p sementara/audit
-          REPORT="sementara/audit/cleanup_$DATE.txt"
-
-          echo "Universal Cleanup Report ($DATE)" > "$REPORT"
-          echo "Paket yang dihapus: ${{ github.event.inputs.packages_to_remove }}" >> "$REPORT"
+          REPORT="sementara/audit/package_log_$DATE.txt"
+          
+          echo "Universal Package Manager Report ($DATE)" > "$REPORT"
+          echo "Aksi: ${{ github.event.inputs.action }}" >> "$REPORT"
+          echo "Paket: ${{ github.event.inputs.packages }}" >> "$REPORT"
           
           if [ -f package.json ]; then
-            echo -e "\n--- Analisis Paket Setelah Uninstall (Detektif Internal) ---" >> "$REPORT"
-            # Langsung panggil detektifnya pakai Bun!
-            bun run dapur/sapu-node.ts >> "$REPORT" || echo "Audit gagal dijalankan." >> "$REPORT"
+            echo -e "\n--- Analisis Struktur Dapur Terbaru ---" >> "$REPORT"
+            # Pastikan panggil detektif versi .ts kita yang baru!
+            bun run dapur/sapu-node.ts >> "$REPORT" || echo "Audit script tidak ditemukan." >> "$REPORT"
           fi
 
       - name: Commit and Push Changes
@@ -88,9 +123,11 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           
+          ACTION_LABEL="${{ github.event.inputs.action == 'add' && 'install' || 'cleanup' }}"
+          
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "chore: universal cleanup [${{ github.event.inputs.packages_to_remove }}]"
+            git commit -m "chore: $ACTION_LABEL [${{ github.event.inputs.packages }}]"
             git push
           fi
