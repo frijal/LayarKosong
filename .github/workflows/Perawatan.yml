@@ -47,8 +47,8 @@ jobs:
   audit-dapur:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
       
       - name: 🧹 Jalankan Sapu Bersih
         run: bun run dapur/sapu-bersih.ts
@@ -68,8 +68,8 @@ jobs:
       (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
       
       # LOGIKA UPGRADE SEMUA
       - name: 🚀 Mega Upgrade
@@ -132,7 +132,7 @@ jobs:
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nupdated=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > mini/asset-info.txt
           
       - name: 📨 Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           title: "chore: 🛠️ Maintenance Result (${{ github.event.inputs.mode || 'Scheduled Upgrade' }})"
           commit-message: "chore: automated maintenance and asset sync"
