@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.58
+document_version: 16.59
 last_updated: 2026-03-04
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 4 Maret 2026)
-> Menampilkan 1012 artikel versi 16.58.
+> Menampilkan 1013 artikel versi 16.59.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -112,6 +112,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Muhammadiyah Agama Baru? Memahami Zakat Fitrah & penyaluran ke Palestina](https://dalam.web.id/jejak-sejarah/muhammadiyah-zakat-palestina) : Viral tuduhan Muhammadiyah agama baru karena salurkan zakat ke Palestina. Simak penjelasan fikih zakat fitrah, siapa wajib, dan bolehkah lintas negara.
 - [Muhammadiyah & Sholat Gerhana 3 Maret 2026: Hisab vs Rukyat](https://dalam.web.id/jejak-sejarah/muhammadiyah-sholat-gerhana-3-maret-2026) : Muhammadiyah akan menggelar sholat gerhana 3 Maret 2026 malam ke-15 Ramadhan. Simak penjelasan hisab, dalil sunnah, dan mengini hari pemerintah.
 - [Negeri Syam yang Mulia: 14 Abad Sejarah, Keberkahan, dan Janji Ilahi yang Menggetarkan](https://dalam.web.id/jejak-sejarah/negeri-syam-mulia) : Jelajahi sejarah 14 abad Negeri Syam, tanah yang diberkahi dalam Al-Qur’an dan hadis. Baca selengkapnya tentang keistimewaan, futuhat, dan perannya di akhir zaman.
 - [Mekanisme Pemakzulan Presiden di Indonesia: Proses Hukum Tegas Berdasarkan UUD 1945 dan 3 Lembaga Kunci](https://dalam.web.id/jejak-sejarah/mekanisme-pemakzulan-presiden) : Pemakzulan presiden di Indonesia diatur dalam UUD 1945 melalui peran DPR, MK, dan MPR. Simak proses lengkap, syarat, dan dasar hukumnya secara jelas dan sistematis. Disajikan dengan bahasa santai dan mendalam.
