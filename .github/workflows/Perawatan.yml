@@ -45,7 +45,7 @@ jobs:
   audit-dapur:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
       - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
       
       - name: 🧹 Jalankan Sapu Bersih
@@ -68,7 +68,7 @@ jobs:
       (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'manage')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
       - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
       
       - name: 🚀 Upgrade/Manage Packages
