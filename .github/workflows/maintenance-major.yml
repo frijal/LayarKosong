@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: 🧩 Checkout kode
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4 # Gunakan v4 yang stabil
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -29,7 +29,7 @@ jobs:
       - name: 🔍 Preview & Apply Major Upgrades
         run: |
           echo "--- DAFTAR UPGRADE MAJOR ---"
-          # Kita pakai bunx langsung untuk NCU
+          # Menggunakan ncu untuk update manifest ke versi latest
           bunx npm-check-updates -u --target latest
           echo "✅ package.json telah diperbarui ke versi Major terbaru."
 
@@ -39,8 +39,8 @@ jobs:
             echo "🔥 Menjalankan Cleanup: Hapus node_modules dan Rebuild Lockfile..."
             bun run dapur/cleanup.ts
           else
-            echo "⚠️ Script cleanup tidak ditemukan, melakukan install standar..."
-            rm -rf node_modules bun.lock # Hapus manual jika script tidak ada
+            echo "⚠️ Script cleanup tidak ditemukan, melakukan reset manual..."
+            rm -rf node_modules bun.lock
             bun install
           fi
 
@@ -51,10 +51,10 @@ jobs:
             bun run dapur/cek-mubazir.ts
           fi
 
-      - name: 🧪 Audit Keamanan (Bun Way)
+      - name: 🧪 Audit Keamanan
         run: |
-          # Menggunakan audit bawaan Bun yang lebih paham bun.lock
-          bun pm scan || echo "⚠️ Ada temuan audit, silakan cek manual."
+          # Menggunakan audit-advisory karena 'bun pm scan' butuh config eksternal
+          bunx audit-advisory || echo "⚠️ Ada temuan audit, silakan cek manual di lokal."
 
       - name: 🧪 Jalankan Unit Test
         run: |
@@ -63,7 +63,7 @@ jobs:
       - name: 🔍 Cek Perubahan Final
         id: check_changes
         run: |
-          # Cek perubahan pada package.json atau bun.lock
+          # Memantau perubahan pada manifest dan lockfile
           if [[ -n "$(git status --porcelain package.json bun.lock)" ]]; then
             echo "changes=true" >> $GITHUB_OUTPUT
             echo "📢 Ditemukan perubahan versi."
@@ -74,7 +74,7 @@ jobs:
 
       - name: 📨 Buat Pull Request
         if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/major-upgrade-${{ github.run_id }}
           title: 'chore: 🚨 Major Dependency Upgrade'
