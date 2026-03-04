@@ -10,12 +10,13 @@ interface WorkflowStats {
     name: string;
     cron: string;
     humanDesc: string;
-    witaHour: number; // untuk sorting
-    witaMin: number;  // untuk sorting
+    witaHour: number;
+    witaMin: number;
 }
 
 /**
  * Menerjemahkan format CRON ke bahasa manusia (Indonesian)
+ * Fokus pada kejelasan waktu Balikpapan (WITA)
  */
 function translateCron(cron: string): string {
     const parts = cron.split(/\s+/);
@@ -24,25 +25,36 @@ function translateCron(cron: string): string {
     const [min, hour, dom, mon, dow] = parts;
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
-    // Preset khusus (UTC → WITA)
-    if (cron === "0 0 * * *") return "Setiap pukul 08:00 WITA";
-    if (cron === "0 1 * * *") return "Setiap pukul 09:00 WITA";
-    if (cron === "0 17 * * *") return "Setiap pukul 01:00 dini hari WITA";
-
     let desc = "Setiap ";
 
-    if (min === "*" && hour === "*") {
-        desc += "menit";
-    } else if (hour === "*" && min !== "*") {
-        desc += `menit ke-${min}`;
-    } else if (hour !== "*" && min !== "*") {
-        const hWita = (parseInt(hour, 10) + 8) % 24;
-        desc += `pukul ${hWita.toString().padStart(2, "0")}:${min.padStart(2, "0")} WITA`;
+    // 1. Logika Jam & Menit (Konversi ke WITA)
+    if (hour.includes("/") || hour === "*") {
+        // Handle interval (misal */4)
+        const interval = hour.split("/")[1] || "1";
+        desc += `pukul ${min.padStart(2, "0")}:00 (Interval ${interval} jam)`;
+    } else {
+        // Handle jam spesifik atau list jam (misal 2,6,10)
+        const hoursWita = hour.split(",")
+        .map(h => (parseInt(h, 10) + 8) % 24)
+        .sort((a, b) => a - b)
+        .map(h => h.toString().padStart(2, "0") + ":" + min.padStart(2, "0"));
+
+        desc += `pukul ${hoursWita.join(", ")} WITA`;
     }
 
-    if (dom !== "*") desc += `, tanggal ${dom}`;
-    if (mon !== "*") desc += `, bulan ke-${mon}`;
+    // 2. Tanggal (Day of Month)
+    if (dom !== "*") {
+        desc += dom.includes("/")
+        ? `, setiap ${dom.split("/")[1]} hari`
+        : `, tanggal ${dom}`;
+    }
 
+    // 3. Bulan
+    if (mon !== "*") {
+        desc += `, bulan ke-${mon}`;
+    }
+
+    // 4. Hari (Day of Week)
     if (dow !== "*") {
         const dayNames = dow
         .split(",")
@@ -55,13 +67,19 @@ function translateCron(cron: string): string {
 }
 
 /**
- * Ambil jam & menit WITA dari cron
+ * Parsing jam pertama untuk sorting dashboard
  */
 function parseWitaFromCron(cron: string): [number, number] {
     const parts = cron.split(/\s+/);
     if (parts.length !== 5) return [0, 0];
-    const min = parseInt(parts[0], 10) || 0;
-    const hour = parseInt(parts[1], 10) || 0;
+
+    const minStr = parts[0].includes(",") ? parts[0].split(",")[0] : parts[0];
+    const hourStr = parts[1].includes(",") ? parts[1].split(",")[0] : parts[1];
+    const hourBase = hourStr.includes("/") ? hourStr.split("/")[0] : hourStr;
+
+    const min = parseInt(minStr, 10) || 0;
+    const hour = hourBase === "*" ? 0 : parseInt(hourBase, 10) || 0;
+
     const hWita = (hour + 8) % 24;
     return [hWita, min];
 }
@@ -88,8 +106,8 @@ async function generateDashboard() {
 
         try {
             const content = await bunFile(filePath).text();
-
             const nameMatch = content.match(/^name:\s*(.+)/m);
+            // Regex lebih kuat untuk menangkap cron di dalam quotes atau tidak
             const cronMatch = content.match(/cron:\s*['"]?([^'#\n\r"']+)['"]?/);
 
             if (cronMatch) {
@@ -105,12 +123,12 @@ async function generateDashboard() {
                              witaMin,
                 });
             }
-        } catch {
+        } catch (e) {
             console.warn(`⚠️ Gagal membaca ${fileName}`);
         }
     }
 
-    // === SORT berdasarkan jam + menit WITA ===
+    // === SORT berdasarkan urutan waktu WITA ===
     results.sort((a, b) => {
         if (a.witaHour !== b.witaHour) return a.witaHour - b.witaHour;
         return a.witaMin - b.witaMin;
@@ -125,7 +143,7 @@ async function generateDashboard() {
     })}\n\n`;
 
     if (results.length === 0) {
-        report += "Tidak ada workflow dengan cron schedule ditemukan.\n";
+        report += "> ℹ️ Tidak ada workflow dengan schedule ditemukan.\n";
     } else {
         report += "| 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Jadwal Lokal (Balikpapan) |\n";
         report += "| :--- | :--- | :--- |\n";
@@ -133,10 +151,12 @@ async function generateDashboard() {
         for (const res of results) {
             report += `| ${res.name} | \`${res.cron}\` | ${res.humanDesc} |\n`;
         }
+
+        report += "\n---\n*Dashboard ini dibuat otomatis oleh robot dapur.*";
     }
 
     await write(OUTPUT_FILE, report);
-    console.log(`✅ Dashboard diperbarui: ${OUTPUT_FILE}`);
+    console.log(`✅ Laporan dashboard berhasil dibuat di: ${OUTPUT_FILE}`);
 }
 
 generateDashboard();
