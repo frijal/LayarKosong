@@ -1,17 +1,14 @@
 # 🗓️ Dashboard Jadwal Otomatis Layar Kosong
 
-> **Catatan:** Semua waktu di bawah menggunakan standar **UTC**. Tambahkan 7 jam untuk konversi ke **WIB** (Balikpapan).
+> **Terakhir Diperbarui:** Kamis, 05 Maret 2026 pukul 02.38.13 WITA
 
-| 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Penjelasan Waktu | 🔗 Link Alat |
-| :--- | :--- | :--- | :--- |
-| "🟢 Layar Kosong: Super Automation & MedSos (Full Bun)" | `0 */4 * * *` | Setiap jam */4:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_*/4_*_*_*) |
-| 🔆 Pengecekan & Laporan Konten Harian | `0 11 * * *` | Setiap jam 11:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_11_*_*_*) |
-| 🚨 Major Dependency Upgrade (Scheduled & Manual) | `0 2 1 */3 *` | Setiap jam 02:00 (UTC), tanggal 1, bulan ke-*/3 | [Crontab Guru](https://crontab.guru/#0_2_1_*/3_*) |
-| Zemester Content Aggregation | `0 1 1 1,7 *` | Setiap jam 01:00 (UTC), tanggal 1, bulan ke-1,7 | [Crontab Guru](https://crontab.guru/#0_1_1_1,7_*) |
-| 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt | `0 7 * * *` | Setiap jam 07:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_7_*_*_*) |
-| 🛠️ Pemeliharaan Dependensi (Ultra-Optimal v6 Final - Bun Edition) | `0 8 9 * *` | Setiap jam 08:00 (UTC), tanggal 9 | [Crontab Guru](https://crontab.guru/#0_8_9_*_*) |
-| XCleanup Old GitHub Actions Cache | `0 0 */6 * *` | Setiap jam 00:00 (UTC), tanggal */6 | [Crontab Guru](https://crontab.guru/#0_0_*/6_*_*) |
-| Renovate | `0 20 * * *` | Setiap jam 20:00 (UTC) | [Crontab Guru](https://crontab.guru/#0_20_*_*_*) |
-| Token Auto Refresh LinkedIn | `0 0 */50 * *` | Setiap jam 00:00 (UTC), tanggal */50 | [Crontab Guru](https://crontab.guru/#0_0_*/50_*_*) |
-| 🐳 Build and Push to GHCR | `0 0 4 * *` | Setiap jam 00:00 (UTC), tanggal 4 | [Crontab Guru](https://crontab.guru/#0_0_4_*_*) |
-| Token Auto Refresh Threads | `0 0 */49 * *` | Setiap jam 00:00 (UTC), tanggal */49 | [Crontab Guru](https://crontab.guru/#0_0_*/49_*_*) |
+| 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Jadwal Lokal (Balikpapan) |
+| :--- | :--- | :--- |
+| Renovate | `0 20 * * *` | Setiap pukul 04:00 WITA |
+| 🟢 Automation & MedSos (Full Bun) | `0 */4 * * *` | Setiap pukul NaN:00 WITA |
+| XCleanup Old GitHub Actions Cache | `0 0 */6 * *` | Setiap pukul 08:00 WITA, tanggal */6 |
+| Zemester Content Aggregation | `0 1 1 1,7 *` | Setiap pukul 09:00 WITA, tanggal 1, bulan ke-1,7 |
+| 🐳 Build and Push to GHCR | `0 6 4 * *` | Setiap pukul 14:00 WITA, tanggal 4 |
+| 🤖 Ping Feeds, Sitemap, & Generate LLMs.txt | `0 7 * * *` | Setiap pukul 15:00 WITA |
+| 🛠️ Pemeliharaan & Upgrade (Ultimate v7 - Bun Edition) | `0 8 9 * *` | Setiap pukul 16:00 WITA, tanggal 9 |
+| 🔆 Pengecekan & Laporan Konten Harian | `0 11 * * *` | Setiap pukul 19:00 WITA |
