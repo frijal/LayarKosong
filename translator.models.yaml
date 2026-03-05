@@ -1,0 +1,10 @@
+# Translation models configuration
+# Digunakan untuk backend Ollama lokal
+models:
+  default:
+    - mistral
+  
+  # Kamu bisa menambahkan per-bahasa jika ingin menggunakan 
+  # model yang berbeda (misalnya: model lain untuk bahasa teknis)
+  # chinese:
+  #   - llama3
