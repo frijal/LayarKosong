@@ -1,152 +1,188 @@
-import { readdir, readFile, writeFile, mkdir } from "fs/promises";
-import path from "path";
-import pLimit from "p-limit";
-import cliProgress from "cli-progress";
-import { parse, TextNode } from "node-html-parser";
+import { readdirSync, statSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
+import { join, dirname } from "path";
+import crypto from "crypto";
 
-const SOURCE_DIRS = ["gaya-hidup"];
+const SOURCE_FOLDERS = ["gaya hidup"];
 const TARGET_ROOT = "en";
 
-const API = "http://127.0.0.1:11434/api/generate";
-const MODEL = "qwen2.5:3b";
+const WORKERS = 8;
 
-const WORKERS = 6;
+const CACHE_FILE = ".translate-cache.json";
 
-const limit = pLimit(WORKERS);
+let cache: Record<string,string> = {};
 
-async function translate(text:string){
-  if(!text.trim()) return text;
+if (existsSync(CACHE_FILE)) {
+  cache = JSON.parse(readFileSync(CACHE_FILE,"utf8"));
+}
 
-  const res = await fetch(API,{
+function walk(dir:string):string[]{
+
+  let results:string[] = [];
+
+  for (const file of readdirSync(dir)) {
+
+    const full = join(dir,file);
+
+    const stat = statSync(full);
+
+    if(stat.isDirectory()) results = results.concat(walk(full));
+    else if(file.endsWith(".html")) results.push(full);
+
+  }
+
+  return results;
+
+}
+
+function hash(content:string){
+
+  return crypto.createHash("sha1").update(content).digest("hex");
+
+}
+
+function ensureDir(path:string){
+
+  if(!existsSync(path)){
+    mkdirSync(path,{recursive:true});
+  }
+
+}
+
+async function translateHTML(html:string){
+
+  const prompt = `
+Translate this HTML to English.
+
+Rules:
+- DO NOT break HTML tags
+- DO NOT modify <script>, <style>, <code>
+- Keep structure identical
+- Translate title and meta description
+- Rewrite internal links to /en/
+
+HTML:
+
+${html}
+`;
+
+  const res = await fetch("http://localhost:11434/api/generate",{
     method:"POST",
-    headers:{ "Content-Type":"application/json"},
+    headers:{"Content-Type":"application/json"},
     body:JSON.stringify({
-      model:MODEL,
-      prompt:`Translate Indonesian to English. Only translate the text.\n${text}`,
+      model:"llama3",
+      prompt,
       stream:false
     })
   });
 
   const json = await res.json();
-  return json.response?.trim() || text;
+
+  return json.response;
+
 }
 
-function shouldSkip(el:any){
-  const tag = el.tagName?.toLowerCase();
-  return tag==="script" || tag==="style" || tag==="code";
-}
+async function worker(queue:string[],progress:any){
 
-async function translateHTML(html:string){
+  while(queue.length){
 
-  const root = parse(html);
+    const file = queue.pop();
 
-  const nodes:TextNode[]=[];
+    if(!file) return;
 
-  root.querySelectorAll("*").forEach(el=>{
+    const html = readFileSync(file,"utf8");
 
-    if(shouldSkip(el)) return;
+    const fileHash = hash(html);
 
-    el.childNodes.forEach(node=>{
-      if(node instanceof TextNode){
-        nodes.push(node);
-      }
-    });
+    const target = join(TARGET_ROOT,file);
 
-  });
+    ensureDir(dirname(target));
 
-  for(const node of nodes){
+    if(existsSync(target)){
 
-    const original=node.rawText;
-
-    if(!original.trim()) continue;
-
-    try{
-      const translated=await translate(original);
-      node.rawText=translated;
-    }catch{
-      node.rawText=original;
-    }
-
-  }
-
-  return root.toString();
-}
-
-async function ensureDir(dir:string){
-  await mkdir(dir,{recursive:true});
-}
-
-async function walk(dir:string):Promise<string[]>{
-
-  const files:string[]=[];
-
-  async function scan(d:string){
-
-    const items=await readdir(d,{withFileTypes:true});
-
-    for(const item of items){
-
-      const p=path.join(d,item.name);
-
-      if(item.isDirectory()) await scan(p);
-
-      else if(item.name.endsWith(".html")) files.push(p);
+      progress.done++;
+      continue;
 
     }
 
+    if(cache[fileHash]){
+
+      writeFileSync(target,cache[fileHash]);
+      progress.done++;
+      continue;
+
+    }
+
+    const translated = await translateHTML(html);
+
+    cache[fileHash] = translated;
+
+    writeFileSync(target,translated);
+
+    progress.done++;
+
   }
-
-  await scan(dir);
-
-  return files;
 
 }
 
-async function processFile(src:string,dest:string){
+function progressBar(done:number,total:number,start:number){
 
-  const html=await readFile(src,"utf8");
+  const percent = Math.floor((done/total)*100);
 
-  const translated=await translateHTML(html);
+  const width = 40;
 
-  await ensureDir(path.dirname(dest));
+  const filled = Math.floor(width*(done/total));
 
-  await writeFile(dest,translated);
+  const bar = "█".repeat(filled)+"░".repeat(width-filled);
+
+  const elapsed = (Date.now()-start)/1000;
+
+  const rate = done/elapsed;
+
+  const eta = ((total-done)/rate)||0;
+
+  process.stdout.write(
+    `\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`
+  );
 
 }
 
 async function main(){
 
-  const all:string[]=[];
+  let files:string[] = [];
 
-  for(const dir of SOURCE_DIRS){
+  for(const folder of SOURCE_FOLDERS){
 
-    const files=await walk(dir);
-
-    all.push(...files);
+    files = files.concat(walk(folder));
 
   }
 
-  const bar=new cliProgress.SingleBar({},cliProgress.Presets.shades_classic);
+  const queue = [...files];
 
-  bar.start(all.length,0);
+  const progress = {done:0};
 
-  await Promise.all(all.map(file=>
+  const start = Date.now();
 
-    limit(async()=>{
+  const workers = [];
 
-      const dest=path.join(TARGET_ROOT,file);
+  for(let i=0;i<WORKERS;i++){
 
-      await processFile(file,dest);
+    workers.push(worker(queue,progress));
 
-      bar.increment();
+  }
 
-    })
+  const interval = setInterval(()=>{
 
-  ));
+    progressBar(progress.done,files.length,start);
 
-  bar.stop();
+  },200);
 
-  console.log("Done");
+  await Promise.all(workers);
+
+  clearInterval(interval);
+
+  writeFileSync(CACHE_FILE,JSON.stringify(cache,null,2));
+
+  console.log("\n\nDone translating",files.length,"articles");
 
 }
 
