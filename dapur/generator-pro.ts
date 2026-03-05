@@ -189,5 +189,49 @@ if (tmp) {
         await Bun.write(`${C.root}/feed-${s}.xml`, buildRss(`Kategori ${sanitize(cat)}`, (arts as any[]).map(a => ({title:a[0], file:a[1], img:a[2], lastmod:a[3], desc:a[4], category:cat, loc:`${C.base}/${s}/${a[1].replace('.html','')}`})).slice(0,C.limit), rUrl, `Artikel ${cat}`));
     }
 }
+// bikin halaman feed. html
+// --- GENERATE STATIC FEED PAGE ---
+const feedTemplatePath = `${C.art}/-/template-feed.html`; // Simpan HTML Anda tadi sebagai template di sini
+const feedTemplate = await Bun.file(feedTemplatePath).text().catch(() => '');
+
+if (feedTemplate) {
+    const feedItemsHTML = flat.slice(0, C.limit).map(it => {
+        const encodedLink = encodeURIComponent(it.loc);
+        const encodedText = encodeURIComponent(it.desc || it.title);
+        const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(it.lastmod));
+        const cleanCat = it.category.replace(/[\u{1F300}-\u{1F6FF}]/gu, '').trim(); // Hapus emoji untuk meta
+
+        return `
+        <div class="feed-item">
+        <div class="feed-item-thumbnail">
+        <img src="${it.img}" alt="${it.title}" loading="lazy">
+        </div>
+        <div class="feed-item-content">
+        <h2><a href="${it.loc}" rel="noreferrer">${it.title}</a></h2>
+        <div class="feed-meta">
+        <span class="feed-meta-item"><i class="fa-solid fa-calendar-alt"></i><span>${displayDate}</span></span>
+        <span class="feed-meta-item"><i class="fa-solid fa-folder-open"></i><span>${cleanCat}</span></span>
+        </div>
+        <p>${(it.desc || it.title).substring(0, 150)}...</p>
+        <div class="social-share">
+        <span>Bagikan:</span>
+        <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+        </div>
+        </div>`;
+    }).join('');
+
+    // Ganti placeholder di template dengan HTML yang sudah jadi
+    const finalFeedPage = feedTemplate
+    .replace('<div id="loading"></div>', '') // Hapus loading spinner
+    .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
+    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, ''); // Hapus script fetch otomatis
+
+    await Bun.write(`${C.root}/feed.html`, finalFeedPage);
+    console.log('✨ Static Feed Page Generated.');
+}
 console.log('✅ Selesai. Pindah kategori otomatis sukses.');
 })();
