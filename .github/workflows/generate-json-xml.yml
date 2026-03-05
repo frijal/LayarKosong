@@ -68,35 +68,46 @@ jobs:
         env:
           RSS_LIMIT: 30
 
-      - name: '5️⃣ Update sitemap.txt (Native Bun)'
+      - name: '5️⃣ Update sitemap.txt (Native Bun - Sorted by Date)'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
-          echo "📝 Membuat sitemap.txt (Clean URL)..."
+          echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
           bun -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
-            const urls = [];
+            const articleList = [];
             const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
             const BASE_URL = 'https://dalam.web.id';
 
+            // 1. Kumpulkan semua artikel ke dalam satu flat array agar bisa diurutkan
             for (const [cat, posts] of Object.entries(data)) {
               const catSlug = slugify(cat);
               posts.forEach(p => {
-                const fileSlug = p[1].replace('.html', '').replace(/^\//, '');
-                urls.push(BASE_URL + '/' + catSlug + '/' + fileSlug);
+                articleList.push({
+                  url: BASE_URL + '/' + catSlug + '/' + p[1].replace('.html', '').replace(/^\//, ''),
+                  date: new Date(p[3].substring(0, 10)) // Ambil tanggal dari indeks ke-3
+                });
               });
             }
 
-            const manualUrls = [
+            // 2. Sortir berdasarkan tanggal (Ascending: Lama -> Baru)
+            articleList.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+            // 3. Masukkan URL Manual di awal
+            const finalUrls = [
               '', '/jejak-sejarah', '/lainnya', '/olah-media', 
               '/opini-sosial', '/sistem-terbuka', '/warta-tekno', 
               '/gaya-hidup', '/about', '/privacy', '/search', 
               '/security-policy', '/data-deletion-form', '/disclaimer', 
               '/feed', '/img', '/lisensi', '/sitemap'
-            ];
-            manualUrls.forEach(u => urls.push(BASE_URL + u));
+            ].map(u => BASE_URL + u);
 
-            fs.writeFileSync('sitemap.txt', [...new Set(urls)].join('\n') + '\n');
+            // 4. Masukkan URL Artikel yang sudah tersortir
+            articleList.forEach(art => finalUrls.push(art.url));
+
+            // 5. Simpan dan buang duplikasi (jika ada)
+            fs.writeFileSync('sitemap.txt', [...new Set(finalUrls)].join('\n') + '\n');
+            console.log('✅ sitemap.txt berhasil diurutkan berdasarkan tanggal terbit.');
           "
       
       - name: '6️⃣ Inject SEO Schema'
