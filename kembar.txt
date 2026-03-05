@@ -1,0 +1,193 @@
+🚀 Mencari kembaran lintas ekstensi...
+
+📦 Group: SINGLE_WORD
+   🟦 artikelcleaner.ts
+   🟦 carikembar.ts
+   🟨 carinama.js
+   🟨 dapur/cleanup.js
+   🟨 dapur/darkmode.js
+   🟦 dapur/dashboard.ts
+   🐚 dapur/gantikata.sh
+   🟨 dapur/generator.js
+   🟦 dapur/header.ts
+   🟨 dapur/highlight.js
+   🟦 dapur/homepage.ts
+   🟨 dapur/index.js
+   🟨 dapur/indexhtml.js
+   🟦 dapur/iposbrowser.ts
+   🟨 dapur/kategoriAI.js
+   🟦 dapur/koki.ts
+   🟦 dapur/lightbox.ts
+   🟦 dapur/markdown.ts
+   🟨 dapur/marquee.js
+   🟨 dapur/perbaikimetaartikelhtml.js
+   🟨 dapur/pesbuk.js
+   🟨 dapur/pesbukdiskus.js
+   🟦 dapur/response.ts
+   🟨 dapur/rss.js
+   🟦 dapur/sitemap.ts
+   🟨 dapur/terjemah.js
+   🟨 dapur/titleToCategory.js
+   🟨 dapur/toc.js
+   🟨 dapur/visited.js
+   🟨 functions/[[path]].js
+
+📦 Group: UNUSED
+   🐍 mini/periksa-unused.py
+
+📦 Group: CLEANUP
+   🐚 mini/auto_cleanup.sh
+
+📦 Group: RSS
+   🟦 dapur/bikin-rss-diskusi.ts
+
+📦 Group: SCHEMA
+   🟦 dapur/clean-schema.ts
+   🟦 dapur/inject-schema.ts
+
+📦 Group: INDEXNOW
+   🟨 dapur/generate_indexnow.js
+
+📦 Group: TO
+   🟦 dapur/html-to-markdown.ts
+   🟨 dapur/post-to-bluesky.js
+   🟦 dapur/post-to-discord.ts
+   🟦 dapur/post-to-facebook.ts
+   🟨 dapur/post-to-lemmy.js
+   🟦 dapur/post-to-linkedin.ts
+   🟦 dapur/post-to-mastodon.ts
+   🟦 dapur/post-to-threads.ts
+   🟦 dapur/post-to-tumblr.ts
+   🟨 dapur/post-to-twitter.js
+
+📦 Group: UTIL
+   🟨 dapur/indexhtml-util.js
+
+📦 Group: INIT
+   🟨 dapur/sitemap-init.js
+
+📦 Group: LINKEDIN
+   🟦 dapur/refresh-linkedin-token.ts
+
+📦 Group: PENCARIAN
+   🟦 dapur/halaman-pencarian.ts
+
+📦 Group: META
+   🟨 dapur/inject-meta.js
+
+📦 Group: BERSIH
+   🟦 dapur/sapu-bersih.ts
+
+📦 Group: PRO
+   🟦 dapur/generator-pro.ts
+
+📦 Group: REDIRECTS
+   🟦 dapur/generate-redirects.ts
+
+📦 Group: CLUSTER
+   🟨 dapur/topic-cluster.js
+
+📦 Group: RENDER
+   🟨 dapur/indexhtml-render.js
+
+📦 Group: ARTICLES
+   🟨 dapur/related-articles.js
+
+📦 Group: LIST
+   🟦 dapur/workflow-list.ts
+
+📦 Group: MAIN
+   🟨 dapur/indexhtml-main.js
+
+📦 Group: TEST
+   🟦 dapur/kesehatan.test.ts
+
+📦 Group: FIXER
+   🐚 dapur/dependency-fixer.sh
+   🟦 dapur/seo-fixer.ts
+
+📦 Group: CLASSES
+   🟨 dapur/extract-classes.js
+
+📦 Group: CLOUDFLARE
+   🟦 dapur/rapikan-cloudflare.ts
+
+📦 Group: THREADS
+   🟦 dapur/refresh-threads-token.ts
+
+📦 Group: BLOK
+   🐚 dapur/cari_blok_dinamis.sh
+   🐚 dapur/hapus_blok.sh
+
+📦 Group: GAMBAR
+   🟦 dapur/cek-gambar.ts
+   🐍 dapur/cek_gambar.py
+
+📦 Group: BY
+   🟨 dapur/related-by-topic.js
+
+📦 Group: CSS
+   🟨 dapur/fix-css-paths.js
+
+📦 Group: LD
+   🐍 dapur/hapus-LD_JSON-bahaya.py
+
+📦 Group: NODE
+   🟦 dapur/sapu-node.ts
+
+📦 Group: URL
+   🟦 dapur/marquee-url.ts
+
+📦 Group: CACHE
+   🐍 dapur/periksa-cache.py
+
+📦 Group: AI
+   🟨 dapur/generate-ai-api.js
+
+📦 Group: MUBAZIR
+   🟦 dapur/cek-mubazir.ts
+
+📦 Group: SEO
+   🟦 dapur/audit-seo.ts
+
+📦 Group: GITIGNORE
+   🟨 dapur/generate-gitignore.js
+
+📦 Group: LLMS
+   🟦 dapur/generate_llms.ts
+
+📦 Group: PUPPETEER
+   🟨 dapur/screenshot-puppeteer.js
+
+📦 Group: SCRIPT
+   🐍 dapur/rapikan-script-internal.py
+
+📦 Group: GITHUB
+   🐚 dapur/cek-github.sh
+
+📦 Group: DUPLIKAT
+   🟦 dapur/bersihkan-duplikat-metatag.ts
+
+📦 Group: IDENTIK
+   🟦 dapur/cek-identik.ts
+
+📦 Group: HTML
+   🟦 dapur/minify-html.ts
+
+📦 Group: RELATED
+   🟨 dapur/generate-related.js
+
+📦 Group: JSONXML
+   🟦 dapur/minify-jsonxml.ts
+
+📦 Group: WORKFLOW
+   🟦 dapur/audit-workflow-efisiensi.ts
+
+📦 Group: AGGREGATION
+   🟦 dapur/build-aggregation.ts
+
+📦 Group: LINKS
+   🟨 dapur/check-links-lokal.js
+
+📦 Group: ICONS
+   🟨 dapur/icons/generate-icons.js

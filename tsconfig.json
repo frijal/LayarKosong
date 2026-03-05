@@ -5,8 +5,8 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true, // Sekarang ini pasti terbaca
-    "noEmit": true,           // Koma sudah ditambahkan di sini
+    "resolveJsonModule": true,
+    "noEmit": true,
     "strict": true,
     "skipLibCheck": true,
     "types": ["bun-types"]
