@@ -5,7 +5,19 @@ const C = {
 };
 
 const slug = (t: any) => t.toString().toLowerCase().trim().replace(/^[^\w\s]*/u,'').replace(/ & /g,'-and-').replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
-const iso = (d: any) => new Date(d).toISOString().replace(/\.\d+Z$/, '+08:00');
+// const iso = (d: any) => new Date(d).toISOString().replace(/\.\d+Z$/, '+08:00');
+
+// Fungsi iso yang lebih aman (nggak gampang meledak kalau dpt input busuk)
+const iso = (d: any) => {
+    const parsedDate = new Date(d);
+    // Kalau tanggal nggak valid, pakai waktu sekarang sebagai fallback
+    const finalDate = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+    return finalDate.toISOString().replace(/\.\d+Z$/, '+08:00');
+};
+
+
+
+
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
 const mime = (u: string) => ({ 'png':'image/png', 'webp':'image/webp', 'svg':'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
