@@ -117,7 +117,22 @@ async function main() {
             console.error("❌ Detail Response Facebook:", result);
             throw new Error(result.error?.message || "Gagal posting ke FB");
         }
+        // Tambahan: Daftarkan ke Facebook News Tab jika sukses
+        if (result.id) {
+            console.log(`📡 Mendaftarkan ${target.url} ke Facebook News Tab...`);
 
+            // Gunakan endpoint Graph API untuk scope news_tab
+            const newsUrl = `https://graph.facebook.com/?id=${encodeURIComponent(target.url)}&scopes=news_tab&access_token=${CONFIG.accessToken}`;
+
+            const newsResponse = await fetch(newsUrl, { method: "POST" });
+            const newsResult = await newsResponse.json();
+
+            if (newsResponse.ok) {
+                console.log("✅ Berhasil terdaftar di Facebook News Tab!");
+            } else {
+                console.warn("⚠️ Gagal daftar News Tab (mungkin bukan konten berita/bukan publisher):", newsResult);
+            }
+        }
         // 5. Update Database (Hanya jika fetch berhasil)
         // Menambahkan URL ke database agar tidak dipost ulang di kemudian hari
         const newContent = postedDatabase + (postedDatabase.endsWith('\n') ? '' : '\n') + target.url + "\n";
