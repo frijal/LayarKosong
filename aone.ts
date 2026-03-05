@@ -8,13 +8,13 @@ const globScanner = new Bun.Glob("**/*.{py,ts,js,sh}");
 const allFiles = await Array.fromAsync(globScanner.scan({
     ignore: [
         "node_modules/**", "dist/**", "mini", "artikel/**", "ext/**",
-        "sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**"
+        "sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**", "functions/**"
     ]
 }));
 
 // --- 2. KONFIGURASI SEARCHER ---
 const SEARCH_DIR = './';
-const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'functions', 'artikelx', 'mini', 'XXX']);
+const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'XXX']);
 const EXTENSIONS = new Set(['.html', '.js', '.yml', '.ts', '.py', '.css', '.json', '.sh']);
 
 /**

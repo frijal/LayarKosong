@@ -1,9 +1,10 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 04.46.56 WITA
+> **Audit Terakhir:** Kamis, 05 Maret 2026 pukul 12.32.46 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
+| aggregat-semester.yml | build-aggregation.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | bikin-rss-diskusi.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | rapikan-cloudflare.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-mastodon.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
@@ -23,11 +24,10 @@
 | hapushitung.yml | workflow-list.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | koki.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
+| Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom`, `glob` | ✅ Sudah Optimal |
 | proses-artikelx.yml | clean-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | proses-artikelx.yml | seo-fixer.ts | 🟡 Ada | `cheerio`, `sharp` | ✅ Sudah Optimal |
-| UniversalPackageManager.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| upgrade-everything.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 
 
 ---
