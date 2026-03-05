@@ -263,7 +263,7 @@ if (feedTemplate) {
         <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-telegram"></i></a>
 
-        <a href="https://threads.net/intent/post?text=${encodedText}&url=${encodedLink}"
+        <a href="https://www.threads.com/intent/post?text=${encodedText}&url=${encodedLink}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-threads"></i></a>
 
         </div>
