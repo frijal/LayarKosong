@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9 - Minify-Safe Version)
+// FILE: sitemap-script.ts (V6.9 - Final Production Build)
 // -------------------------------------------------------
 
 interface Article {
@@ -15,6 +15,7 @@ interface ArticleData {
   [category: string]: [string, string, string, string, string][];
 }
 
+// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
@@ -77,9 +78,9 @@ function updateStats(total: number, read: number, term: string = ''): void {
   totalCountEl.innerHTML = `
   <span class="total-stat">Total: <strong>${total}</strong></span>
   <span class="separator">|</span>
-  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
+  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> \uD83D\uDC4D</span>
   <span class="separator">|</span>
-  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📚</span>
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> \uD83D\uDCD3</span>
   `;
 }
 
@@ -161,13 +162,14 @@ async function loadTOC(): Promise<void> {
         a.textContent = item.title;
 
         const statusSpan = document.createElement('span');
+        // PERBAIKAN CLEAN CODE: Gunakan Unicode agar tidak berubah jadi &amp;
         if (visitedLinks.includes(item.file)) {
           statusSpan.className = 'label-visited';
-          statusSpan.textContent = 'sudah dibaca 👍';
-          a.classList.add('visited');
+      statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
+      a.classList.add('visited');
         } else {
           statusSpan.className = 'label-new';
-          statusSpan.textContent = '📚 belum dibaca';
+          statusSpan.textContent = '\uD83D\uDCD3 belum dibaca';
         }
 
         const dateSpan = document.createElement('span');
@@ -222,10 +224,9 @@ async function loadTOC(): Promise<void> {
       m.innerHTML = shuffledMarquee
       .map((d) => {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
-        // Gunakan simbol peluru Unicode asli
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' \u2022 '); // \u2022 adalah simbol peluru (•) yang tahan minify
+      .join(' \u2022 '); // Simbol peluru bersih
     }
   } catch (e) {
     console.error('Gagal load artikel.json', e);
@@ -256,11 +257,10 @@ if (searchInput) {
           catVisible = true;
           countVisible++;
 
-          // Gunakan regex yang lebih aman untuk highlight
           const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
           titleLink.innerHTML = text.replace(
             new RegExp(`(${safeTerm})`, 'gi'),
-            '<span class="highlight">$1</span>'
+                                             '<span class="highlight">$1</span>'
           );
         }
         else if (!term) {
