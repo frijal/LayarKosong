@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * IP & OS Browser Info v4.3 (TypeScript Edition)
+ * IP, OS, Browser Info & Article Date v4.4 (Merged Edition)
  * =================================================================================
  */
 
@@ -19,7 +19,7 @@ interface GeoResult {
     code: string;
 }
 
-// Map untuk path icon (Pastikan file ini ada di folder /ext/icons/)
+// Map untuk path icon
 const browserIcons: Record<string, string> = {
     Firefox: '/ext/icons/firefox.svg',
     Chrome: '/ext/icons/chrome.svg',
@@ -41,86 +41,96 @@ document.addEventListener('DOMContentLoaded', async () => {
     const target = document.getElementById('iposbrowser') as HTMLElement | null;
     if (!target) return;
 
-    // 2. Deteksi Browser & OS
+    // --- BAGIAN A: DETEKSI USER AGENT ---
     const ua = navigator.userAgent;
     const browser = /(firefox|fxios)/i.test(ua) ? 'Firefox' :
-                    /edg/i.test(ua) ? 'Edge' :
-                    /chrome|crios/i.test(ua) ? 'Chrome' :
-                    /safari/i.test(ua) ? 'Safari' : 'Unknown';
+    /edg/i.test(ua) ? 'Edge' :
+    /chrome|crios/i.test(ua) ? 'Chrome' :
+    /safari/i.test(ua) ? 'Safari' : 'Unknown';
 
-    const os = /android/i.test(ua) ? 'Android' :
-               /iphone|ipad|ipod/i.test(ua) ? 'iOS' :
-               ua.includes('Windows') ? 'Windows' :
-               ua.includes('Mac') ? 'macOS' :
-               ua.includes('Linux') ? 'Linux' : 'Unknown';
+const os = /android/i.test(ua) ? 'Android' :
+/iphone|ipad|ipod/i.test(ua) ? 'iOS' :
+ua.includes('Windows') ? 'Windows' :
+ua.includes('Mac') ? 'macOS' :
+ua.includes('Linux') ? 'Linux' : 'Unknown';
 
-    // 3. Fetch GeoIP (Privacy Friendly)
-    async function fetchGeo(): Promise<GeoResult | null> {
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            const d: GeoData = await res.json();
-            return d.error ? null : { city: d.city, country: d.country_name, code: d.country_code };
-        } catch {
-            return null;
-        }
+// --- BAGIAN B: AMBIL TANGGAL ARTIKEL (METADATA) ---
+const getArticleDate = (): string | null => {
+    let rawDate: string | null = null;
+
+    // Cek Meta Tag
+    const metaTag = document.querySelector('meta[property="article:published_time"]');
+    if (metaTag) rawDate = metaTag.getAttribute('content');
+
+    // Cek JSON-LD jika Meta Tag tidak ada
+    if (!rawDate) {
+        const jsonScripts = document.querySelectorAll('script[type="application/ld+json"]');
+        jsonScripts.forEach(script => {
+            try {
+                const data = JSON.parse(script.textContent || '');
+                rawDate = data.datePublished || data.dateModified || rawDate;
+            } catch (e) {}
+        });
     }
 
-    const geo = await fetchGeo();
+    if (rawDate) {
+        const dateObj = new Date(rawDate);
+        return dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+    return null;
+};
 
-    // Helper untuk generate icon HTML
-    const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" style="width:22px; height:22px; display:block; transition:transform 0.3s ease;">`;
+// --- BAGIAN C: FETCH GEOIP ---
+async function fetchGeo(): Promise<GeoResult | null> {
+    try {
+        const res = await fetch('https://ipapi.co/json/');
+        const d: GeoData = await res.json();
+        return d.error ? null : { city: d.city, country: d.country_name, code: d.country_code };
+    } catch {
+        return null;
+    }
+}
 
-    const geoHTML = geo ? `
-    <div class="geo-block" style="display:flex; align-items:center; gap:6px;">
-        <img class="geo-flag" src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="${geo.code}" style="width:20px; height:auto; border-radius:2px; border:1px solid rgba(0,0,0,0.1);">
-        <span>${geo.city ? geo.city + ', ' : ''}${geo.country}</span>
-    </div>` : '';
+// Eksekusi Fetch & Date Finder secara paralel
+const [geo, articleDate] = await Promise.all([fetchGeo(), Promise.resolve(getArticleDate())]);
 
-    // 4. Render HTML
-    target.innerHTML = `
-    <div id="ipos-browser-info" style="display:flex; align-items:center; justify-content:center; gap:15px; font-size:0.85rem; padding:5px;">
-        <div class="browser-block" style="display:flex; align-items:center; gap:6px;">
-            <span class="icon">${getIconHTML(browserIcons[browser] || browserIcons.Unknown, browser)}</span>
-            <span class="text">${browser}</span>
-        </div>
-        <div class="os-block" style="display:flex; align-items:center; gap:6px;">
-            <span class="icon">${getIconHTML(osIcons[os] || osIcons.Unknown, os)}</span>
-            <span class="text">${os}</span>
-        </div>
-        ${geoHTML}
-    </div>`;
+// --- BAGIAN D: RENDER HTML ---
+const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" style="width:18px; height:18px; display:block; transition:transform 0.3s ease;">`;
+
+const geoHTML = geo ? `
+<div class="info-block" style="display:flex; align-items:center; gap:6px;">
+<img src="https://flagcdn.com/24x18/${geo.code.toLowerCase()}.png" alt="${geo.code}" style="width:18px; height:auto; border-radius:2px;">
+<span>${geo.city || geo.country}</span>
+</div>` : '';
+
+const dateHTML = articleDate ? `
+<div class="info-block" style="display:flex; align-items:center; gap:6px; border-left: 1px solid rgba(128,128,128,0.3); padding-left: 10px;">
+<span style="opacity: 0.8;"><i class="fa-solid fa-code"></i> ${articleDate}</span>
+</div>` : '';
+
+target.innerHTML = `
+<div id="ipos-browser-info" style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:0.8rem; padding:5px; flex-wrap: wrap;">
+<div class="info-block" style="display:flex; align-items:center; gap:6px;">
+${getIconHTML(browserIcons[browser] || browserIcons.Unknown, browser)}
+<span>${browser}</span>
+</div>
+<div class="info-block" style="display:flex; align-items:center; gap:6px;">
+${getIconHTML(osIcons[os] || osIcons.Unknown, os)}
+<span>${os}</span>
+</div>
+${geoHTML}
+${dateHTML}
+</div>`;
 });
 
-// 5. Injeksi CSS (Optimasi Dark Mode)
+// --- BAGIAN E: INJEKSI CSS ---
 const style = document.createElement('style');
 style.textContent = `
-:root {
-    --ipos-text: #222;
-    --ipos-shadow: rgba(255, 255, 255, 0.5);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root { --ipos-text: #eee; --ipos-shadow: rgba(0, 0, 0, 0.5); }
-}
-
-/* Dukungan class tema manual di blog kamu */
-body.dark-mode :root, body.dark :root {
-    --ipos-text: #e6e6e6; --ipos-shadow: rgba(0, 0, 0, 0.5);
-}
-
-#ipos-browser-info {
-    color: var(--ipos-text);
-    text-shadow: 1px 1px 1px var(--ipos-shadow);
-    transition: color 0.3s ease;
-}
-
-#ipos-browser-info img:hover {
-    transform: scale(1.2) rotate(5deg) !important;
-}
-
-/* Sembunyikan di layar kecil agar tidak berantakan */
-@media (max-width: 600px) {
-    #ipos-browser-info { display: none !important; }
-}
+:root { --ipos-text: #444; --ipos-shadow: rgba(255, 255, 255, 0.5); }
+@media (prefers-color-scheme: dark) { :root { --ipos-text: #ccc; --ipos-shadow: rgba(0, 0, 0, 0.5); } }
+body.dark-mode :root, body.dark :root { --ipos-text: #e6e6e6; --ipos-shadow: rgba(0, 0, 0, 0.5); }
+#ipos-browser-info { color: var(--ipos-text); transition: all 0.3s ease; }
+#ipos-browser-info .info-block:hover { opacity: 0.7; }
+@media (max-width: 480px) { #ipos-browser-info { font-size: 0.7rem; gap: 8px; } }
 `;
 document.head.appendChild(style);
