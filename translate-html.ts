@@ -2,7 +2,7 @@ import { readdir, mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { parse, TextNode, HTMLElement } from "node-html-parser";
 
-const SOURCE_DIRS = ["gaya-hidup", "jejak-sejarah", "lainnya"];
+const SOURCE_DIRS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
 
 const MODEL = "qwen2.5:3b";
