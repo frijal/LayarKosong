@@ -7,12 +7,11 @@ import pLimit from "p-limit";
 // ---------------- CONFIG ----------------
 const SOURCE_FOLDERS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
-const WORKERS = 2;          // small batch for Codespace CPU
-const BATCH_SIZE = 5;       // process 5 files per batch
-const CHUNK_SIZE = 3000;    // max chars per request
+const WORKERS = 2;          // small batch for Codespace
+const CHUNK_SIZE = 1500;    // small chunk for CPU
 const CACHE_FILE = ".translate-cache.json";
 const AI_API = "http://localhost:11434/api/generate";
-const MODEL = "llama3:8b"; // or phi3 / mistral
+const MODEL = "qwen2.5:3b"; // safer for CPU Codespace
 
 // ---------------- CACHE ----------------
 let cache: Record<string,string> = {};
@@ -33,31 +32,34 @@ function walk(dir:string):string[]{
 }
 
 // ---------------- TRANSLATE ----------------
-async function translateText(text:string){
-    if(!text.trim()) return text;
+async function translateTextWithRetry(text:string, retries=3){
+    for(let attempt=1; attempt<=retries; attempt++){
+        try{
+            const controller = new AbortController();
+            const timeout = setTimeout(()=>controller.abort(), 180_000); // 3 menit
 
-    const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 60000); // 60 detik
+            const res = await fetch(AI_API,{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({
+                    model:MODEL,
+                    prompt:`Translate Indonesian to English. Only translate text, preserve HTML tags. Rewrite internal links to /en/.\n${text}`,
+                    stream:false
+                }),
+                signal: controller.signal
+            });
 
-    try{
-        const res = await fetch(AI_API,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-                model:MODEL,
-                prompt:`Translate Indonesian to English. Only translate text, do NOT touch HTML tags. Rewrite internal links to /en/.\n${text}`,
-                stream:false
-            }),
-            signal: controller.signal
-        });
-        const json = await res.json();
-        return json.response?.trim() || text;
-    }catch(e){
-        console.error("Translate request failed:", e);
-        return text;
-    }finally{
-        clearTimeout(timeout);
+            clearTimeout(timeout);
+            const json = await res.json();
+            return json.response?.trim() || text;
+
+        }catch(e){
+            console.warn(`Attempt ${attempt} failed:`, e.name || e);
+            if(attempt===retries) return text;
+            await new Promise(r=>setTimeout(r,1000));
+        }
     }
+    return text;
 }
 
 // ---------------- HTML PROCESS ----------------
@@ -111,17 +113,13 @@ async function translateHTML(html:string){
         }
     });
 
-    // All text nodes
     const textNodes = extractTextNodes(root);
     const allNodes = [...metaNodes, ...textNodes];
-
-    // Chunk
     const chunks = chunkTextNodes(allNodes, CHUNK_SIZE);
 
-    // Translate each chunk
     for(const chunk of chunks){
         const originalText = chunk.map(n=>n.rawText).join("\n");
-        const translatedText = await translateText(originalText);
+        const translatedText = await translateTextWithRetry(originalText);
         const translatedLines = translatedText.split("\n");
         for(let i=0;i<chunk.length;i++){
             if(translatedLines[i]) chunk[i].rawText = translatedLines[i];
@@ -181,9 +179,8 @@ async function main(){
     const start = Date.now();
     const limit = pLimit(WORKERS);
 
-    for(let i=0;i<total;i+=BATCH_SIZE){
-        const batch = files.slice(i,i+BATCH_SIZE);
-        await Promise.all(batch.map(f=>limit(async()=>{
+    for(const f of files){
+        await limit(async()=>{
             await processFile(f);
             done++;
             const percent = Math.floor(done/total*100);
@@ -192,10 +189,9 @@ async function main(){
             const width = 40;
             const bar = "█".repeat(Math.floor(width*(done/total)))+"░".repeat(width-Math.floor(width*(done/total)));
             process.stdout.write(`\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`);
-        })));
+        });
     }
 
-    // Save cache
     writeFileSync(CACHE_FILE,JSON.stringify(cache,null,2));
     console.log("\n✅ Translation complete.");
 }
