@@ -105,12 +105,17 @@ function getCleanUrl(file: string, category: string): string {
   const fileSlug = file.replace('.html', '');
   return `/${catSlug}/${fileSlug}`;
 }
-
+// Tambahkan pengaman pada regex search
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 // --- CORE LOGIC ---
 
 async function loadTOC(): Promise<void> {
   try {
     const res = await fetch('artikel.json');
+    if (!res.ok) throw new Error("File artikel.json tidak ditemukan"); // Tambahkan validasi fetch
+
     const data: RawArticleData = await res.json();
     const toc = document.getElementById('toc');
     if (!toc) return;
@@ -118,126 +123,106 @@ async function loadTOC(): Promise<void> {
     toc.innerHTML = '';
     grouped = {};
 
+    // Mapping data
     Object.keys(data).forEach((cat) => {
       grouped[cat] = data[cat]
       .map((arr) => ({
-        title: decodeHTML(arr[0]), // Perbaikan di sini
+        title: decodeHTML(arr[0]),
                      file: arr[1],
                      image: arr[2],
                      lastmod: arr[3],
-                     description: decodeHTML(arr[4] || ''), // Perbaikan di sini juga
+                     description: decodeHTML(arr[4] || ''),
                      category: cat,
       }))
-        .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+      .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
     });
 
+    // Hitung total
     const totalArticles = Object.values(grouped).reduce((sum, arr) => sum + arr.length, 0);
     updateStats(totalArticles, visitedLinks.length);
 
     const shuffledColors = shuffle([...categoryColors]);
     const categoryTooltip = document.getElementById('category-tooltip');
 
+    // Render Kategori
     Object.keys(grouped)
-      .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
-      .forEach((cat, index) => {
-        const catDiv = document.createElement('div');
-        catDiv.className = 'category';
-        const color = shuffledColors[index % shuffledColors.length];
-        catDiv.style.setProperty('--category-color', color);
+    .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
+    .forEach((cat, index) => {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'category';
+      const color = shuffledColors[index % shuffledColors.length];
+      catDiv.style.setProperty('--category-color', color);
 
-        catDiv.innerHTML = `
-          <div class="category-content">
-            <div class="category-header">
-              ${cat} <span class="badge">${grouped[cat].length}</span>
-            </div>
-            <div class="toc-list" style="display: none;"></div>
-          </div>
-        `;
+      catDiv.innerHTML = `
+      <div class="category-content">
+      <div class="category-header" style="cursor:pointer">
+      ${cat} <span class="badge">${grouped[cat].length}</span>
+      </div>
+      <div class="toc-list" style="display: none;"></div>
+      </div>
+      `;
 
-        const catList = catDiv.querySelector('.toc-list') as HTMLElement;
-        grouped[cat].forEach((item) => {
-          const el = document.createElement('div');
-          el.className = 'toc-item';
-          el.dataset.text = item.title.toLowerCase();
+      const catList = catDiv.querySelector('.toc-list') as HTMLElement;
 
-          const titleDiv = document.createElement('div');
-          titleDiv.className = 'toc-title';
+      // Render Item Artikel
+      grouped[cat].forEach((item) => {
+        const el = document.createElement('div');
+        el.className = 'toc-item';
+        el.dataset.text = item.title.toLowerCase();
 
-          const a = document.createElement('a');
-          a.href = getCleanUrl(item.file, item.category);
-          const cleanTitle = decodeHTML(item.title);
-          a.textContent = cleanTitle;
-          a.setAttribute('data-original-title', cleanTitle); // Simpan judul bersih di sini
+        const a = document.createElement('a');
+        a.href = getCleanUrl(item.file, item.category);
+        const cleanTitle = item.title;
+        a.textContent = cleanTitle;
+        a.setAttribute('data-original-title', cleanTitle);
 
-          const statusSpan = document.createElement('span');
-          if (visitedLinks.includes(item.file)) {
-            statusSpan.className = 'label-visited';
-            statusSpan.textContent = 'sudah dibaca 👍';
-            a.classList.add('visited');
-          } else {
-            statusSpan.className = 'label-new';
-            statusSpan.textContent = '📚 belum dibaca';
-          }
+        // Logika Visited
+        const isVisited = visitedLinks.includes(item.file);
+        const statusHTML = isVisited
+        ? '<span class="label-visited">sudah dibaca 👍</span>'
+        : '<span class="label-new">📚 belum dibaca</span>';
 
-          const dateSpan = document.createElement('span');
-          dateSpan.className = 'toc-date';
-          dateSpan.textContent = ` [${formatDate(item.lastmod)}]`;
+      el.innerHTML = `
+      <div class="toc-title">
+      ${a.outerHTML}
+      ${statusHTML}
+      <span class="toc-date"> [${formatDate(item.lastmod)}]</span>
+      </div>
+      `;
 
-          a.addEventListener('click', () => {
-            if (!visitedLinks.includes(item.file)) {
-              visitedLinks.push(item.file);
-              localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
-              updateStats(totalArticles, visitedLinks.length);
-            }
-          });
-
-          const description = item.description || 'Tidak ada deskripsi.';
-          a.addEventListener('mouseenter', () => {
-            if (categoryTooltip) {
-              categoryTooltip.innerHTML = description;
-              categoryTooltip.style.display = 'block';
-            }
-          });
-          a.addEventListener('mousemove', (e: MouseEvent) => {
-            if (categoryTooltip) {
-              categoryTooltip.style.left = e.clientX + 15 + 'px';
-              categoryTooltip.style.top = e.clientY + 15 + 'px';
-            }
-          });
-          a.addEventListener('mouseleave', () => {
-            if (categoryTooltip) categoryTooltip.style.display = 'none';
-          });
-
-          titleDiv.appendChild(a);
-          titleDiv.appendChild(statusSpan);
-          titleDiv.appendChild(dateSpan);
-          el.appendChild(titleDiv);
-          catList.appendChild(el);
-        });
-
-        const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
-        catHeader.addEventListener('click', () => {
-          catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
-          updateTOCToggleText();
-        });
-
-        toc.appendChild(catDiv);
+      // Re-binding event listener karena kita menggunakan innerHTML
+      const newA = el.querySelector('a') as HTMLAnchorElement;
+      newA.addEventListener('click', () => {
+        if (!visitedLinks.includes(item.file)) {
+          visitedLinks.push(item.file);
+          localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
+        }
       });
 
-    const m = document.getElementById('marquee-content');
-    if (m) {
-      const allArticles = Object.values(grouped).flat();
-      const shuffledMarquee = shuffle([...allArticles]);
-      m.innerHTML = shuffledMarquee
-        .map((d) => {
-          const cleanDesc = d.description.replace(/"/g, '&quot;');
-          const url = getCleanUrl(d.file, d.category);
-          return `<a href="${url}" data-description="${cleanDesc}">${d.title}</a>`;
-        })
-        .join(' &bull; ');
-    }
+      // Tooltip
+      newA.addEventListener('mouseenter', (e) => {
+        if (categoryTooltip) {
+          categoryTooltip.innerHTML = item.description || 'Tidak ada deskripsi.';
+          categoryTooltip.style.display = 'block';
+        }
+      });
+
+      catList.appendChild(el);
+      });
+
+      // Event Toggle Header
+      const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
+      catHeader.addEventListener('click', () => {
+        const isHidden = catList.style.display === 'none';
+        catList.style.display = isHidden ? 'block' : 'none';
+        updateTOCToggleText();
+      });
+
+      toc.appendChild(catDiv);
+    });
+
   } catch (e) {
-    console.error('Gagal load artikel.json', e);
+    console.error('Kritis: Gagal memuat sitemap', e);
   }
 }
 
