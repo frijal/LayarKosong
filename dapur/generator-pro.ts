@@ -5,20 +5,12 @@ const C = {
 };
 
 const slug = (t: any) => t.toString().toLowerCase().trim().replace(/^[^\w\s]*/u,'').replace(/ & /g,'-and-').replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
-// const iso = (d: any) => new Date(d).toISOString().replace(/\.\d+Z$/, '+08:00');
 
-// Fungsi iso yang lebih aman (nggak gampang meledak kalau dpt input busuk)
-const iso = (d: any) => {
-    const parsedDate = new Date(d);
-    // Kalau tanggal nggak valid, pakai waktu sekarang sebagai fallback
-    const finalDate = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
-    return finalDate.toISOString().replace(/\.\d+Z$/, '+08:00');
-};
-
-
-
+const iso = (d: any) => {const parsedDate = new Date(d);const finalDate = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+return finalDate.toISOString().replace(/\.\d+Z$/, '+08:00');};
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
+
 const mime = (u: string) => ({ 'png':'image/png', 'webp':'image/webp', 'svg':'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
 const buildRss = (t: string, items: any[], link: string, desc: string) => `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${t}]]></title><link>${C.base}/</link><description>${desc}</description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it => `<item><title><![CDATA[${it.title}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(it.title)}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="0" type="${mime(it.img)}"/></item>`).join('')}</channel></rss>`;
