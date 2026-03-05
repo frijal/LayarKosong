@@ -20,7 +20,7 @@ interface Stats {
 // ========== CONFIG ==========
 const folders: string[] = [
   'gaya-hidup', 'jejak-sejarah', 'lainnya',
-  'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 
 let stats: Stats = {
@@ -49,15 +49,23 @@ async function processFile(filePath: string): Promise<void> {
 
     if (!originalHTML.trim()) return;
 
-    // Skip jika sudah diproses atau ini index.html utama
-    if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal') || filePath.endsWith('index.html')) {
+    // --- LOGIKA SKIP YANG DISEMPURNAKAN ---
+    // 1. Skip jika sudah ada signature
+    if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
+      stats.skipped++;
+      return;
+    }
+
+    // 2. Hanya skip index.html jika posisinya ada di root utama
+    // (index.html di dalam folder kategori tetap akan diproses)
+    if (filePath === 'index.html') {
       stats.skipped++;
       return;
     }
 
     const sizeBefore = Buffer.byteLength(originalHTML, 'utf8');
 
-    // --- PERBAIKAN KOMENTAR JS (Optimized Regex) ---
+    // --- PERBAIKAN KOMENTAR JS ---
     originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
       return match.replace(/^[ \t]*\/\/(?!#).*/gm, '');
     });
@@ -65,7 +73,6 @@ async function processFile(filePath: string): Promise<void> {
     const tgl = new Date().toISOString().slice(0, 10);
     const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
-    // Minify menggunakan Bun Buffer
     const output = minify(Buffer.from(originalHTML), {
       allow_noncompliant_unquoted_attribute_values: true,
       allow_optimal_entities: true,
@@ -86,7 +93,6 @@ async function processFile(filePath: string): Promise<void> {
     const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
     const saved = sizeBefore - sizeAfter;
 
-    // Bun.write (Atomic & Fast)
     await write(filePath, minifiedHTML);
 
     stats.success++;
@@ -109,26 +115,29 @@ async function run(): Promise<void> {
   console.log('📂 Lokasi: Balikpapan | Status: Turbo Bun 🚀');
 
   const startTime = nanoseconds();
-
-  // Koleksi semua task menggunakan Glob scan
   const tasks: Promise<void>[] = [];
+
+  // 1. Masukkan feed.html secara manual jika ada di root
+  const feedFile = bunFile("feed.html");
+  if (await feedFile.exists()) {
+    tasks.push(processFile("feed.html"));
+  }
+
+  // 2. Scan folder kategori (termasuk index.html di dalamnya)
   for (const folder of folders) {
     const glob = new Glob(`${folder}/**/*.html`);
-    // Menggunakan scanSync atau for await untuk iterasi file
     for (const file of glob.scanSync(".")) {
       tasks.push(processFile(file));
     }
   }
 
-  // Eksekusi paralel (Concurrent Processing)
   await Promise.all(tasks);
 
   const endTime = nanoseconds();
   const duration = (endTime - startTime) / 1e9;
-
   const totalSavingPercent = stats.totalBefore > 0
-    ? ((stats.totalSaved / stats.totalBefore) * 100).toFixed(2)
-    : "0";
+  ? ((stats.totalSaved / stats.totalBefore) * 100).toFixed(2)
+  : "0";
 
   console.log('\n' + '='.repeat(60));
   console.log('📊 REKAP PROSES LAYAR KOSONG (BUN NATIVE)');
