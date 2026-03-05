@@ -59,8 +59,8 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     console.log('🚀 Diet Mode V8.6 (Anti-Entity Edition)');
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(()=>({})),
-                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(()=>''),
-                                              Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
+        Bun.file(`${C.root}/sitemap.txt`).text().catch(()=>''),
+        Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
     ]);
 
     const urls = new Set(stm.split('\n').filter(Boolean));
