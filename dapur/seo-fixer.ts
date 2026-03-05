@@ -157,13 +157,14 @@ async function processFile(file: string, baseUrl: string) {
         // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
         const metaTags = [
             `<meta property="og:locale" content="id_ID">`,
-            `<meta property="og:site_name" content="Layar Kosong">`,
-            `<link rel="icon" href="/favicon.ico">`,
-            <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
-            `<link rel="manifest" href="/site.webmanifest">`,
             `<link rel="canonical" href="${canonicalUrl}">`,
             `<meta property="og:url" content="${canonicalUrl}">`,
             `<meta property="twitter:url" content="${canonicalUrl}">`,
+            `<meta property="og:site_name" content="Layar Kosong">`,
+            `<link rel="icon" href="/favicon.ico">`,
+            `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
+            `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
+            `<link rel="manifest" href="/site.webmanifest">`,
             `<meta name="twitter:card" content="summary_large_image">`,
             `<meta name="twitter:widgets:new-embed-design" content="on">`,
             `<meta property="og:title" content="${escapedTitle}">`,
