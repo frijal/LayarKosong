@@ -19,7 +19,7 @@ jobs:
           persist-credentials: true
 
       - name: 🍞 Set up Bun
-        uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
+        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
         with:
           bun-version: latest
 
