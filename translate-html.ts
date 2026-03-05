@@ -4,7 +4,7 @@ import pLimit from "p-limit";
 import cliProgress from "cli-progress";
 import { parse, TextNode } from "node-html-parser";
 
-const SOURCE_DIRS = ["gaya-hidup","jejak-sejarah","lainnya"];
+const SOURCE_DIRS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
 
 const API = "http://127.0.0.1:11434/api/generate";
