@@ -227,7 +227,6 @@ if (tmp) {
     console.log('📂 Static Category Pages Generated (Clean Mode).');
 }
 // bikin halaman feed. html
-// --- GENERATE STATIC FEED PAGE ---
 const feedTemplatePath = `${C.art}/-/template-feed.html`; // Simpan HTML Anda tadi sebagai template di sini
 const feedTemplate = await Bun.file(feedTemplatePath).text().catch(() => '');
 
@@ -252,16 +251,22 @@ if (feedTemplate) {
         <p>${(it.desc || it.title).substring(0, 150)}...</p>
         <div class="social-share">
         <span>Bagikan:</span>
-        <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}"
+        onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-twitter"></i></a>
+
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}"
+        onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-facebook"></i></a>
+
+        <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}"
+        onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-whatsapp"></i></a>
+
+        <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}"
+        onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-telegram"></i></a>
         </div>
         </div>
         </div>`;
     }).join('');
 
-    // Ganti placeholder di template dengan HTML yang sudah jadi
     const finalFeedPage = feedTemplate
     .replace('<div id="loading"></div>', '') // Hapus loading spinner
     .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
