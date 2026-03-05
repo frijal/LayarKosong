@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.65
+document_version: 16.66
 last_updated: 2026-03-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 Maret 2026)
-> Menampilkan 1019 artikel versi 16.65.
+> Menampilkan 1020 artikel versi 16.66.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -274,6 +274,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih](https://dalam.web.id/lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi) : KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Analisis komprehensif mengenai skema Koperasi Desa Merah Putih, struktur pembiayaan Rp3 miliar per desa, risiko fiskal, dan dampaknya bagi ekonomi desa.
 - [Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus](https://dalam.web.id/lainnya/saldi-isra-sidang-mk-kuota-hangus) : Hakim MK Saldi Isra kritik transparansi operator seluler soal kuota hangus dalam sidang uji materi UU Telekomunikasi. Cek detail argumennya di sini.
 - [Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu'ti yang Lebih Sehat dan Berkelanjutan](https://dalam.web.id/lainnya/satu-sekolah-satu-dapur-mbg) : Mengupas gagasan Satu Sekolah Satu Dapur MBG dari Abdul Mu’ti: solusi makanan bergizi yang memberdayakan masyarakat, membandingkan dengan sistem SPPG yang sentralistik.
 - [Parlemen Bisu di Tengah Sejumlah Isu](https://dalam.web.id/lainnya/parlemen-bisu-2026) : DRI terkesan bisu saat anggaran pendidikan digunting, ritel modern mau dimatikan, dan impor indukan ayam serta mobil digulirkan? Analisis 5W+1H dan E-E-AAT oleh Makinuddin Samin.
