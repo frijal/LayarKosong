@@ -71,11 +71,31 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
     for (const f of files) {
         let d: any = null, cat: any = null;
+
+        // 1. Cari di cache (artikel.json root)
         for (const [c, its] of Object.entries(eta)) {
             const found = (its as any[]).find(i => i[1] === f);
             if (found) { d = [...found]; d[0] = decodeHTML(d[0]); cat = c; break; }
         }
 
+        // --- FUNGSI OTOMATISASI PEMINDAHAN ---
+        if (d) {
+            let targetCat = null;
+            // Cek apakah ada instruksi kategori berbeda di artikel/artikel.json (master)
+            for (const [mc, mits] of Object.entries(mst)) {
+                if ((mits as any[]).find(i => i[1] === f)) { targetCat = mc; break; }
+            }
+            // Jika tidak ada di master, cek titleToCategory
+            if (!targetCat) targetCat = titleToCategory(d[0]);
+
+            // Jika kategori saat ini berbeda dengan target, paksa re-scan
+            if (cat !== targetCat) {
+                urls.delete(`${C.base}/${slug(cat)}/${f.replace('.html','')}`);
+                d = null;
+            }
+        }
+
+        // Lanjut proses jika data masih valid
         if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html','')}`)) {
             (final[cat] ??= []).push(d);
             flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html','')}` });
@@ -83,11 +103,18 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
             continue;
         }
 
+        // 2. Jika tidak valid/berubah, baca file fisik
         const txt = await Bun.file(`${C.art}/${f}`).text();
         const rawT = (txt.match(/<title>(.*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
-        const t = decodeHTML(rawT); // Judul bersih untuk JSON
+        const t = decodeHTML(rawT);
 
-        const c = titleToCategory(t);
+        // Tentukan kategori (prioritas: Master JSON > titleToCategory)
+        let c = null;
+        for (const [mc, mits] of Object.entries(mst)) {
+            if ((mits as any[]).find(i => i[1] === f)) { c = mc; break; }
+        }
+        if (!c) c = titleToCategory(t);
+
         const url = `${C.base}/${slug(c)}/${f.replace('.html','')}`;
         const date = txt.match(/article:published_time" content="(.*?)"/i)?.[1] || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
         const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html','')}.webp`;
@@ -102,7 +129,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         valid.add(`${slug(c)}/${f}`);
     }
 
-    // Cleanup files lama
+    // Cleanup files lama & Sinkronisasi Sitemap
     for (const s of C.cats) {
         const d = `${C.root}/${s}`;
         await require('fs').promises.mkdir(d, { recursive: true });
@@ -162,5 +189,5 @@ if (tmp) {
         await Bun.write(`${C.root}/feed-${s}.xml`, buildRss(`Kategori ${sanitize(cat)}`, (arts as any[]).map(a => ({title:a[0], file:a[1], img:a[2], lastmod:a[3], desc:a[4], category:cat, loc:`${C.base}/${s}/${a[1].replace('.html','')}`})).slice(0,C.limit), rUrl, `Artikel ${cat}`));
     }
 }
-console.log('✅ Selesai. Data artikel.json sekarang bersih.');
+console.log('✅ Selesai. Pindah kategori otomatis sukses.');
 })();
