@@ -3,9 +3,10 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"], // Tambahkan ini
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
-//    "resolveJsonModule": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
     "skipLibCheck": true,
