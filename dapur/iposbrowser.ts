@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>` : '';
 
     const dateHTML = articleDate ? `
-    <div class="info-block" style="display:flex; align-items:center; gap:6px; border-left: 1px solid rgba(128,128,128,0.3); padding-left: 10px;">
-        <span style="opacity: 0.8;"><i class="fa-solid fa-code"></i> ${articleDate}</span>
+    <div class="info-block" style="display:flex; align-items:center; gap:6px;">
+        <span><i class="fa-solid fa-code"></i> ${articleDate}</span>
     </div>` : '';
 
     target.innerHTML = `

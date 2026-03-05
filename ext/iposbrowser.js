@@ -3,8 +3,8 @@ var _={Firefox:"/ext/icons/firefox.svg",Chrome:"/ext/icons/chrome.svg",Edge:"/ex
         <img src="https://flagcdn.com/24x18/${x.code.toLowerCase()}.png" alt="${x.code}" style="width:18px; height:auto; border-radius:2px;">
         <span>${x.city||x.country}</span>
     </div>`:"",f=X?`
-    <div class="info-block" style="display:flex; align-items:center; gap:6px; border-left: 1px solid rgba(128,128,128,0.3); padding-left: 10px;">
-        <span style="opacity: 0.8;"><i class="fa-solid fa-code"></i> ${X}</span>
+    <div class="info-block" style="display:flex; align-items:center; gap:6px;">
+        <span><i class="fa-solid fa-code"></i> ${X}</span>
     </div>`:"";W.innerHTML=`
     <div id="ipos-browser-info" style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:0.8rem; padding:5px; flex-wrap: wrap;">
         <div class="info-block" style="display:flex; align-items:center; gap:6px;">
