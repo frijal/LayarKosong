@@ -1,23 +1,24 @@
 import { readdirSync, statSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import crypto from "crypto";
-import pLimit from "p-limit";
 import { parse, HTMLElement, TextNode } from "node-html-parser";
+import pLimit from "p-limit";
 
-// -------------------- CONFIG --------------------
+// ---------------- CONFIG ----------------
 const SOURCE_FOLDERS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
-const WORKERS = 8;
-const CHUNK_SIZE = 3000; // max chars per AI request
+const WORKERS = 2;          // small batch for Codespace CPU
+const BATCH_SIZE = 5;       // process 5 files per batch
+const CHUNK_SIZE = 3000;    // max chars per request
 const CACHE_FILE = ".translate-cache.json";
 const AI_API = "http://localhost:11434/api/generate";
-const MODEL = "llama3:8b"; // bisa diganti phi3 / mistral
+const MODEL = "llama3:8b"; // or phi3 / mistral
 
-// -------------------- CACHE --------------------
+// ---------------- CACHE ----------------
 let cache: Record<string,string> = {};
 if(existsSync(CACHE_FILE)) cache = JSON.parse(readFileSync(CACHE_FILE,"utf8"));
 
-// -------------------- UTILS --------------------
+// ---------------- UTILS ----------------
 function hash(content:string){ return crypto.createHash("sha1").update(content).digest("hex"); }
 function ensureDir(path:string){ if(!existsSync(path)) mkdirSync(path,{recursive:true}); }
 function walk(dir:string):string[]{
@@ -31,23 +32,35 @@ function walk(dir:string):string[]{
     return results;
 }
 
-// -------------------- TRANSLATE --------------------
+// ---------------- TRANSLATE ----------------
 async function translateText(text:string){
     if(!text.trim()) return text;
-    const res = await fetch(AI_API,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-            model:MODEL,
-            prompt:`Translate Indonesian to English. Only translate text, do NOT touch HTML tags. Rewrite internal links to /en/.\n${text}`,
-            stream:false
-        })
-    });
-    const json = await res.json();
-    return json.response?.trim() || text;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 60000); // 60 detik
+
+    try{
+        const res = await fetch(AI_API,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                model:MODEL,
+                prompt:`Translate Indonesian to English. Only translate text, do NOT touch HTML tags. Rewrite internal links to /en/.\n${text}`,
+                stream:false
+            }),
+            signal: controller.signal
+        });
+        const json = await res.json();
+        return json.response?.trim() || text;
+    }catch(e){
+        console.error("Translate request failed:", e);
+        return text;
+    }finally{
+        clearTimeout(timeout);
+    }
 }
 
-// -------------------- HTML PROCESS --------------------
+// ---------------- HTML PROCESS ----------------
 function shouldSkip(el:HTMLElement){ 
     const tag = el.tagName?.toLowerCase();
     return tag==="script" || tag==="style" || tag==="code";
@@ -92,10 +105,8 @@ async function translateHTML(html:string){
             metaNodes.push(tag.firstChild);
         }
         if(tag.tagName.toLowerCase() === "meta" && tag.getAttribute("content")){
-            // Wrap content as TextNode for translation
             const txt = new TextNode(tag.getAttribute("content"));
             metaNodes.push(txt);
-            // store ref to set later
             (tag as any)._tmpContentNode = txt;
         }
     });
@@ -107,13 +118,11 @@ async function translateHTML(html:string){
     // Chunk
     const chunks = chunkTextNodes(allNodes, CHUNK_SIZE);
 
-    // Translate chunks sequentially
+    // Translate each chunk
     for(const chunk of chunks){
         const originalText = chunk.map(n=>n.rawText).join("\n");
         const translatedText = await translateText(originalText);
         const translatedLines = translatedText.split("\n");
-
-        // Apply back to nodes
         for(let i=0;i<chunk.length;i++){
             if(translatedLines[i]) chunk[i].rawText = translatedLines[i];
         }
@@ -135,14 +144,15 @@ async function translateHTML(html:string){
     return root.toString();
 }
 
-// -------------------- PROCESS FILE --------------------
+// ---------------- PROCESS FILE ----------------
 async function processFile(src:string){
     const html = readFileSync(src,"utf8");
     const fileHash = hash(html);
     const target = join(TARGET_ROOT,src);
     ensureDir(dirname(target));
 
-    if(existsSync(target)) return; // skip already translated
+    // Skip if already translated
+    if(existsSync(target)) return;
     if(cache[fileHash]){
         writeFileSync(target,cache[fileHash]);
         return;
@@ -153,33 +163,41 @@ async function processFile(src:string){
     writeFileSync(target,translated);
 }
 
-// -------------------- MAIN --------------------
+// ---------------- MAIN ----------------
 async function main(){
     let files:string[] = [];
     for(const folder of SOURCE_FOLDERS){
+        if(!existsSync(folder)){
+            console.warn(`Folder ${folder} tidak ditemukan, dilewati`);
+            continue;
+        }
         files = files.concat(walk(folder));
     }
 
-    const limit = pLimit(WORKERS);
-    let done = 0;
     const total = files.length;
-    const start = Date.now();
+    console.log(`Found ${total} HTML files to translate.`);
 
-    await Promise.all(files.map(f=>limit(async()=>{
-        await processFile(f);
-        done++;
-        const percent = Math.floor(done/total*100);
-        const elapsed = (Date.now()-start)/1000;
-        const eta = ((total-done)/(done/elapsed))||0;
-        const width = 40;
-        const bar = "█".repeat(Math.floor(width*(done/total)))+"░".repeat(width-Math.floor(width*(done/total)));
-        process.stdout.write(`\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`);
-    })));
+    let done = 0;
+    const start = Date.now();
+    const limit = pLimit(WORKERS);
+
+    for(let i=0;i<total;i+=BATCH_SIZE){
+        const batch = files.slice(i,i+BATCH_SIZE);
+        await Promise.all(batch.map(f=>limit(async()=>{
+            await processFile(f);
+            done++;
+            const percent = Math.floor(done/total*100);
+            const elapsed = (Date.now()-start)/1000;
+            const eta = ((total-done)/(done/elapsed))||0;
+            const width = 40;
+            const bar = "█".repeat(Math.floor(width*(done/total)))+"░".repeat(width-Math.floor(width*(done/total)));
+            process.stdout.write(`\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`);
+        })));
+    }
 
     // Save cache
     writeFileSync(CACHE_FILE,JSON.stringify(cache,null,2));
-
-    console.log("\n\n✅ Done translating",total,"articles");
+    console.log("\n✅ Translation complete.");
 }
 
 main();
