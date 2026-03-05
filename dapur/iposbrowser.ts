@@ -19,9 +19,7 @@ const browserIcons: Record<string, string> = {
 };
 
 const osIcons: Record<string, string> = {
-    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg',
-    Linux: '/ext/icons/linux.svg', Android: '/ext/icons/android.svg',
-    iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
+    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg', Linux: '/ext/icons/linux.svg', Android: '/ext/icons/android.svg', iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
