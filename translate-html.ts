@@ -2,7 +2,7 @@ import { readdirSync, statSync, mkdirSync, existsSync, readFileSync, writeFileSy
 import { join, dirname } from "path";
 import crypto from "crypto";
 
-const SOURCE_FOLDERS = ["gaya hidup"];
+const SOURCE_FOLDERS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
 
 const WORKERS = 8;
