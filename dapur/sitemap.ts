@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9.2 - Debugged & Robust)
+// FILE: sitemap-script.ts (V6.9 - Final Production Build)
 // -------------------------------------------------------
 
 interface Article {
@@ -15,13 +15,16 @@ interface ArticleData {
   [category: string]: [string, string, string, string, string][];
 }
 
+// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
     if (!stored) return [];
     const parsed = JSON.parse(stored);
     return Array.isArray(parsed) ? parsed : [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 };
 
 let visitedLinks: string[] = getVisitedLinks();
@@ -58,33 +61,45 @@ function shuffle<T>(array: T[]): T[] {
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return '';
-  return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear()).slice(-2)}`;
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yy = String(d.getFullYear()).slice(-2);
+  return `${dd}.${mm}.${yy}`;
 }
 
 function updateStats(total: number, read: number, term: string = ''): void {
-  const el = document.getElementById('totalCount');
-  if (!el) return;
+  const totalCountEl = document.getElementById('totalCount');
+  if (!totalCountEl) return;
   if (term) {
-    el.innerHTML = `Menemukan <strong>${total}</strong> artikel dari "${term}"`;
+    totalCountEl.innerHTML = `Menemukan <strong>${total}</strong> artikel dari pencarian "${term}"`;
     return;
   }
-  el.innerHTML = `Total: <strong>${total}</strong> | Dibaca: <strong>${read}</strong> \uD83D\uDC4D | Sisa: <strong>${total - read}</strong> \uD83D\uDCD3`;
+  const unread = total - read;
+  totalCountEl.innerHTML = `
+  <span class="total-stat">Total: <strong>${total}</strong></span>
+  <span class="separator">|</span>
+  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> \uD83D\uDC4D</span>
+  <span class="separator">|</span>
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> \uD83D\uDCD3</span>
+  `;
 }
 
 function getCleanUrl(file: string, category: string): string {
   const catSlug = category.toLowerCase().replace(/\s+/g, '-');
-  return `/${catSlug}/${file.replace('.html', '')}`;
+  const fileSlug = file.replace('.html', '');
+  return `/${catSlug}/${fileSlug}`;
 }
 
 const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
 
 function updateTOCToggleText(): void {
-  const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-  if (!lists.length || !tocToggleBtn) return;
-  tocToggleBtn.textContent = lists.every(l => l.style.display === 'none') ? 'Buka Semua' : 'Tutup Semua';
+  const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+  if (allLists.length === 0 || !tocToggleBtn) return;
+  const allCollapsed = allLists.every((list) => list.style.display === 'none');
+  tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
 }
 
-async function loadTOC() {
+async function loadTOC(): Promise<void> {
   try {
     const res = await fetch('artikel.json');
     const data: ArticleData = await res.json();
@@ -94,129 +109,219 @@ async function loadTOC() {
     toc.innerHTML = '';
     grouped = {};
 
-    Object.keys(data).forEach(cat => {
-      grouped[cat] = data[cat].map(arr => ({
-        title: arr[0], file: arr[1], image: arr[2], lastmod: arr[3], description: arr[4], category: cat
-      })).sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+    Object.keys(data).forEach((cat) => {
+      grouped[cat] = data[cat]
+      .map((arr) => ({
+        title: arr[0],
+        file: arr[1],
+        image: arr[2],
+        lastmod: arr[3],
+        description: arr[4],
+        category: cat,
+      }))
+      .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
     });
 
     const allArticles = Object.values(grouped).flat();
     updateStats(allArticles.length, visitedLinks.length);
 
-    const colors = shuffle(categoryColors);
-    const tooltip = document.getElementById('category-tooltip');
+    const shuffledColors = shuffle(categoryColors);
+    const categoryTooltip = document.getElementById('category-tooltip');
 
-    Object.keys(grouped).sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime()).forEach((cat, idx) => {
+    Object.keys(grouped)
+    .sort((a, b) => {
+      const dateA = new Date(grouped[a][0].lastmod).getTime();
+      const dateB = new Date(grouped[b][0].lastmod).getTime();
+      return dateB - dateA;
+    })
+    .forEach((cat, index) => {
       const catDiv = document.createElement('div');
       catDiv.className = 'category';
-      catDiv.style.setProperty('--category-color', colors[idx % colors.length]);
-      catDiv.innerHTML = `<div class="category-content"><div class="category-header">${cat} <span class="badge">${grouped[cat].length}</span></div><div class="toc-list" style="display: none;"></div></div>`;
+      const color = shuffledColors[index % shuffledColors.length];
+      catDiv.style.setProperty('--category-color', color);
+      catDiv.innerHTML = `
+      <div class="category-content">
+      <div class="category-header">
+      ${cat} <span class="badge">${grouped[cat].length}</span>
+      </div>
+      <div class="toc-list" style="display: none;"></div>
+      </div>
+      `;
 
-      const list = catDiv.querySelector('.toc-list') as HTMLElement;
-      grouped[cat].forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'toc-item';
-        row.setAttribute('data-text', item.title.toLowerCase());
-        row.setAttribute('data-title-raw', item.title);
+      const catList = catDiv.querySelector('.toc-list') as HTMLElement;
+      grouped[cat].forEach((item) => {
+        const el = document.createElement('div');
+        el.className = 'toc-item';
+        el.setAttribute('data-text', item.title.toLowerCase());
+
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'toc-title';
 
         const a = document.createElement('a');
         a.href = getCleanUrl(item.file, item.category);
         a.textContent = item.title;
-        if (visitedLinks.includes(item.file)) a.classList.add('visited');
 
-        const status = document.createElement('span');
+        const statusSpan = document.createElement('span');
+        // PERBAIKAN CLEAN CODE: Gunakan Unicode agar tidak berubah jadi &amp;
         if (visitedLinks.includes(item.file)) {
-          status.className = 'label-visited';
-          status.textContent = 'sudah dibaca \uD83D\uDC4D';
+          statusSpan.className = 'label-visited';
+          statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
+          a.classList.add('visited');
         } else {
-          status.className = 'label-new';
-          status.textContent = '\uD83D\uDCD3 belum dibaca';
+          statusSpan.className = 'label-new';
+          statusSpan.textContent = '\uD83D\uDCD3 belum dibaca';
         }
 
-        const date = document.createElement('span');
-        date.className = 'toc-date';
-        date.textContent = `[${formatDate(item.lastmod)}]`;
+        const dateSpan = document.createElement('span');
+        dateSpan.className = 'toc-date';
+        dateSpan.textContent = `[${formatDate(item.lastmod)}]`;
 
-        a.onclick = () => {
+        a.addEventListener('click', () => {
           if (!visitedLinks.includes(item.file)) {
             visitedLinks.push(item.file);
             localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
             updateStats(allArticles.length, visitedLinks.length);
           }
-        };
+        });
 
-        if (tooltip) {
-          a.onmouseenter = () => { tooltip.innerHTML = item.description || '...'; tooltip.style.display = 'block'; };
-          a.onmousemove = (e) => { tooltip.style.left = (e.clientX + 15) + 'px'; tooltip.style.top = (e.clientY + 15) + 'px'; };
-          a.onmouseleave = () => tooltip.style.display = 'none';
+        const description = item.description || 'Tidak ada deskripsi.';
+      a.addEventListener('mouseenter', () => {
+        if (categoryTooltip) {
+          categoryTooltip.innerHTML = description;
+          categoryTooltip.style.display = 'block';
         }
-
-        const titleWrap = document.createElement('div');
-        titleWrap.className = 'toc-title';
-        titleWrap.append(a, status, date);
-        row.appendChild(titleWrap);
-        list.appendChild(row);
+      });
+      a.addEventListener('mousemove', (e: MouseEvent) => {
+        if (categoryTooltip) {
+          categoryTooltip.style.left = (e.clientX + 15) + 'px';
+          categoryTooltip.style.top = (e.clientY + 15) + 'px';
+        }
+      });
+      a.addEventListener('mouseleave', () => {
+        if (categoryTooltip) categoryTooltip.style.display = 'none';
       });
 
-      const header = catDiv.querySelector('.category-header') as HTMLElement;
-      header.onclick = () => { list.style.display = (list.style.display === 'block' ? 'none' : 'block'); updateTOCToggleText(); };
+        titleDiv.appendChild(a);
+        titleDiv.appendChild(statusSpan);
+        titleDiv.appendChild(dateSpan);
+        el.appendChild(titleDiv);
+        catList.appendChild(el);
+      });
+
+      const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
+      catHeader.addEventListener('click', () => {
+        const currentDisplay = catList.style.display;
+        catList.style.display = currentDisplay === 'block' ? 'none' : 'block';
+        updateTOCToggleText();
+      });
+
       toc.appendChild(catDiv);
     });
 
     const m = document.getElementById('marquee-content');
     if (m) {
-      m.innerHTML = shuffle(allArticles).map(d => `<a href="${getCleanUrl(d.file, d.category)}">${d.title}</a>`).join(' \u2022 ');
+      const shuffledMarquee = shuffle(allArticles);
+      m.innerHTML = shuffledMarquee
+      .map((d) => {
+        const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
+        return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
+      })
+      .join(' \u2022 '); // Simbol peluru bersih
     }
-  } catch (err) { console.error("Crash loadTOC:", err); }
+  } catch (e) {
+    console.error('Gagal load artikel.json', e);
+  }
 }
 
 const searchInput = document.getElementById('search') as HTMLInputElement | null;
+const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
+
 if (searchInput) {
-  searchInput.oninput = () => {
-    const val = searchInput.value.toLowerCase();
-    let found = 0;
-    Array.from(document.querySelectorAll('.category')).forEach(c => {
-      let hasItem = false;
-      const items = Array.from(c.querySelectorAll('.toc-item')) as HTMLElement[];
-      items.forEach(i => {
-        const raw = i.getAttribute('data-title-raw') || "";
-        const low = (i.getAttribute('data-text') || "").toLowerCase();
-        const a = i.querySelector('a');
-        if (!a) return;
-        if (val && low.includes(val)) {
-          i.style.display = 'flex'; hasItem = true; found++;
-          const reg = new RegExp(`(${val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-          a.innerHTML = raw.replace(reg, '<span class="highlight">$1</span>');
-        } else if (!val) {
-          i.style.display = 'flex'; hasItem = true; a.textContent = raw;
-        } else { i.style.display = 'none'; }
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
+    if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
+
+    let countVisible = 0;
+    const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
+
+    categories.forEach((category) => {
+      let catVisible = false;
+      const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
+
+      items.forEach((item) => {
+        const text = item.getAttribute('data-text') || '';
+        const titleLink = item.querySelector('a') as HTMLAnchorElement;
+
+        if (term && text.includes(term)) {
+          item.style.display = 'flex';
+          catVisible = true;
+          countVisible++;
+
+          const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          titleLink.innerHTML = text.replace(
+            new RegExp(`(${safeTerm})`, 'gi'),
+                                             '<span class="highlight">$1</span>'
+          );
+        }
+        else if (!term) {
+          item.style.display = 'flex';
+          titleLink.textContent = text;
+          catVisible = true;
+        } else {
+          item.style.display = 'none';
+        }
       });
-      (c as HTMLElement).style.display = hasItem ? 'block' : 'none';
-      const l = c.querySelector('.toc-list') as HTMLElement;
-      if (l && val) l.style.display = hasItem ? 'block' : 'none';
+
+      category.style.display = catVisible ? 'block' : 'none';
+      const list = category.querySelector('.toc-list') as HTMLElement;
+      if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
     });
-      updateStats(val ? found : Object.values(grouped).flat().length, visitedLinks.length, val);
+
+      const allArticlesCount = Object.values(grouped).flat().length;
+      if (term) updateStats(countVisible, visitedLinks.length, term);
+      else updateStats(allArticlesCount, visitedLinks.length);
       updateTOCToggleText();
-  };
+  });
 }
 
-const clr = document.getElementById('clearSearch');
-if (clr && searchInput) clr.onclick = () => { searchInput.value = ''; searchInput.oninput!(new Event('input') as any); };
+if (clearBtn && searchInput) {
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+  });
+}
 
 if (tocToggleBtn) {
-  tocToggleBtn.onclick = () => {
-    const isBuka = tocToggleBtn.textContent === 'Buka Semua';
-    Array.from(document.querySelectorAll('.toc-list')).forEach(l => (l as HTMLElement).style.display = isBuka ? 'block' : 'none');
-    updateTOCToggleText();
+  tocToggleBtn.addEventListener('click', () => {
+    const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+    const isOpening = tocToggleBtn.textContent === 'Buka Semua';
+  lists.forEach((list) => {
+    list.style.display = isOpening ? 'block' : 'none';
+  });
+  updateTOCToggleText();
+  });
+}
+
+function initDarkMode(): void {
+  const darkSwitch = document.getElementById('darkSwitch') as HTMLInputElement | null;
+  const setMode = (isDark: boolean) => {
+    document.body.classList.toggle('dark-mode', isDark);
+    if (darkSwitch) darkSwitch.checked = isDark;
+    localStorage.setItem('darkMode', String(isDark));
   };
+
+  const saved = localStorage.getItem('darkMode');
+  if (saved !== null) setMode(saved === 'true');
+  else setMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  if (darkSwitch) {
+    darkSwitch.addEventListener('change', () => setMode(darkSwitch.checked));
+  }
 }
 
-function initDark() {
-  const sw = document.getElementById('darkSwitch') as HTMLInputElement | null;
-  const set = (d: boolean) => { document.body.classList.toggle('dark-mode', d); if(sw) sw.checked = d; localStorage.setItem('darkMode', String(d)); };
-  const s = localStorage.getItem('darkMode');
-  if (s !== null) set(s === 'true'); else set(window.matchMedia('(prefers-color-scheme: dark)').matches);
-  if (sw) sw.onchange = () => set(sw.checked);
-}
-
-document.addEventListener('DOMContentLoaded', () => { loadTOC().then(initDark); });
+document.addEventListener('DOMContentLoaded', () => {
+  loadTOC().then(() => {
+    initDarkMode();
+    updateTOCToggleText();
+  });
+});
