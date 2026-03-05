@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (match && match[3]) {
                 const dateObj = new Date(match[3]);
-                return dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                return dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
             }
         } catch (e) {
             console.warn("Gagal mengambil tanggal:", e);
