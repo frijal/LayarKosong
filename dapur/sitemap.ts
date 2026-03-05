@@ -1,10 +1,8 @@
 // -------------------------------------------------------
 // FILE: sitemap-script.ts (V6.9 Compatible)
-// Updated: 2026-03-01
 // -------------------------------------------------------
 
-// --- INTERFACES ---
-interface ArticleItem {
+interface Article {
   title: string;
   file: string;
   image: string;
@@ -13,13 +11,15 @@ interface ArticleItem {
   category: string;
 }
 
-interface RawArticleData {
-  [category: string]: [string, string, string, string, string?][];
+// Data mentah dari JSON biasanya berupa array of arrays: [title, file, img, date, desc]
+type RawArticleData = [string, string, string, string, string];
+
+interface ArticleData {
+  [category: string]: RawArticleData[];
 }
 
-// --- STATE ---
 const visitedLinks: string[] = JSON.parse(localStorage.getItem('visitedLinks') || '[]');
-let grouped: Record<string, ArticleItem[]> = {};
+let grouped: Record<string, Article[]> = {};
 
 const categoryColors: string[] = [
   'linear-gradient(90deg, #004d40, #26a69a)',
@@ -56,20 +56,12 @@ const categoryColors: string[] = [
   'linear-gradient(90deg, #fbc02d, #ffeb3b)',
 ];
 
-// --- HELPERS ---
-
 function shuffle<T>(array: T[]): T[] {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
-
-function decodeHTML(text: string): string {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = text;
-  return txt.value;
 }
 
 function formatDate(dateStr: string): string {
@@ -92,11 +84,11 @@ function updateStats(total: number, read: number, term: string = ''): void {
 
   const unread = total - read;
   totalCountEl.innerHTML = `
-    <span class="total-stat">Total: <strong>${total}</strong></span>
-    <span class="separator">|</span>
-    <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
-    <span class="separator">|</span>
-    <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📚</span>
+  <span class="total-stat">Total: <strong>${total}</strong></span>
+  <span class="separator">|</span>
+  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
+  <span class="separator">|</span>
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📚</span>
   `;
 }
 
@@ -105,46 +97,37 @@ function getCleanUrl(file: string, category: string): string {
   const fileSlug = file.replace('.html', '');
   return `/${catSlug}/${fileSlug}`;
 }
-// Tambahkan pengaman pada regex search
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-// --- CORE LOGIC ---
 
 async function loadTOC(): Promise<void> {
   try {
     const res = await fetch('artikel.json');
-    if (!res.ok) throw new Error("File artikel.json tidak ditemukan"); // Tambahkan validasi fetch
-
-    const data: RawArticleData = await res.json();
+    const data: ArticleData = await res.json();
     const toc = document.getElementById('toc');
     if (!toc) return;
 
     toc.innerHTML = '';
     grouped = {};
 
-    // Mapping data
     Object.keys(data).forEach((cat) => {
       grouped[cat] = data[cat]
       .map((arr) => ({
-        title: decodeHTML(arr[0]),
-                     file: arr[1],
-                     image: arr[2],
-                     lastmod: arr[3],
-                     description: decodeHTML(arr[4] || ''),
-                     category: cat,
+        title: arr[0],
+        file: arr[1],
+        image: arr[2],
+        lastmod: arr[3],
+        description: arr[4],
+        category: cat,
       }))
       .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
     });
 
-    // Hitung total
-    const totalArticles = Object.values(grouped).reduce((sum, arr) => sum + arr.length, 0);
+    const allArticles = Object.values(grouped).flat();
+    const totalArticles = allArticles.length;
     updateStats(totalArticles, visitedLinks.length);
 
     const shuffledColors = shuffle([...categoryColors]);
     const categoryTooltip = document.getElementById('category-tooltip');
 
-    // Render Kategori
     Object.keys(grouped)
     .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
     .forEach((cat, index) => {
@@ -155,7 +138,7 @@ async function loadTOC(): Promise<void> {
 
       catDiv.innerHTML = `
       <div class="category-content">
-      <div class="category-header" style="cursor:pointer">
+      <div class="category-header">
       ${cat} <span class="badge">${grouped[cat].length}</span>
       </div>
       <div class="toc-list" style="display: none;"></div>
@@ -163,115 +146,129 @@ async function loadTOC(): Promise<void> {
       `;
 
       const catList = catDiv.querySelector('.toc-list') as HTMLElement;
-
-      // Render Item Artikel
       grouped[cat].forEach((item) => {
         const el = document.createElement('div');
         el.className = 'toc-item';
         el.dataset.text = item.title.toLowerCase();
 
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'toc-title';
+
         const a = document.createElement('a');
         a.href = getCleanUrl(item.file, item.category);
-        const cleanTitle = item.title;
-        a.textContent = cleanTitle;
-        a.setAttribute('data-original-title', cleanTitle);
+        a.textContent = item.title;
 
-        // Logika Visited
-        const isVisited = visitedLinks.includes(item.file);
-        const statusHTML = isVisited
-        ? '<span class="label-visited">sudah dibaca 👍</span>'
-        : '<span class="label-new">📚 belum dibaca</span>';
-
-      el.innerHTML = `
-      <div class="toc-title">
-      ${a.outerHTML}
-      ${statusHTML}
-      <span class="toc-date"> [${formatDate(item.lastmod)}]</span>
-      </div>
-      `;
-
-      // Re-binding event listener karena kita menggunakan innerHTML
-      const newA = el.querySelector('a') as HTMLAnchorElement;
-      newA.addEventListener('click', () => {
-        if (!visitedLinks.includes(item.file)) {
-          visitedLinks.push(item.file);
-          localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
+        const statusSpan = document.createElement('span');
+        if (visitedLinks.includes(item.file)) {
+          statusSpan.className = 'label-visited';
+          statusSpan.textContent = 'sudah dibaca 👍';
+          a.classList.add('visited');
+        } else {
+          statusSpan.className = 'label-new';
+          statusSpan.textContent = '📚 belum dibaca';
         }
-      });
 
-      // Tooltip
-      newA.addEventListener('mouseenter', (e) => {
+        const dateSpan = document.createElement('span');
+        dateSpan.className = 'toc-date';
+        dateSpan.textContent = `[${formatDate(item.lastmod)}]`;
+
+        a.addEventListener('click', () => {
+          if (!visitedLinks.includes(item.file)) {
+            visitedLinks.push(item.file);
+            localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
+            updateStats(totalArticles, visitedLinks.length);
+          }
+        });
+
+        const description = item.description || 'Tidak ada deskripsi.';
+      a.addEventListener('mouseenter', () => {
         if (categoryTooltip) {
-          categoryTooltip.innerHTML = item.description || 'Tidak ada deskripsi.';
+          categoryTooltip.innerHTML = description;
           categoryTooltip.style.display = 'block';
         }
       });
-
-      catList.appendChild(el);
+      a.addEventListener('mousemove', (e: MouseEvent) => {
+        if (categoryTooltip) {
+          categoryTooltip.style.left = e.clientX + 15 + 'px';
+          categoryTooltip.style.top = e.clientY + 15 + 'px';
+        }
+      });
+      a.addEventListener('mouseleave', () => {
+        if (categoryTooltip) categoryTooltip.style.display = 'none';
       });
 
-      // Event Toggle Header
+        titleDiv.appendChild(a);
+        titleDiv.appendChild(statusSpan);
+        titleDiv.appendChild(dateSpan);
+        el.appendChild(titleDiv);
+        catList.appendChild(el);
+      });
+
       const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
       catHeader.addEventListener('click', () => {
-        const isHidden = catList.style.display === 'none';
-        catList.style.display = isHidden ? 'block' : 'none';
+        catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
         updateTOCToggleText();
       });
 
       toc.appendChild(catDiv);
     });
 
+    const m = document.getElementById('marquee-content');
+    if (m) {
+      const shuffledMarquee = shuffle([...allArticles]);
+      m.innerHTML = shuffledMarquee
+      .map((d) => {
+        const cleanDescription = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
+        const url = getCleanUrl(d.file, d.category);
+        return `<a href="${url}" data-description="${cleanDescription}">${d.title}</a>`;
+      })
+      .join(' &bull; ');
+    }
   } catch (e) {
-    console.error('Kritis: Gagal memuat sitemap', e);
+    console.error('Gagal load artikel.json', e);
   }
 }
-
-// --- INTERACTIVE ELEMENTS ---
 
 const searchInput = document.getElementById('search') as HTMLInputElement;
 const clearBtn = document.getElementById('clearSearch') as HTMLElement;
 
 if (searchInput) {
-  searchInput.addEventListener('input', function(this: HTMLInputElement) {
+  searchInput.addEventListener('input', function (this: HTMLInputElement) {
     const term = this.value.toLowerCase();
     if (clearBtn) clearBtn.style.display = this.value ? 'block' : 'none';
 
     let countVisible = 0;
-    const allArticlesCount = Object.values(grouped).flat().length;
+    const allArticlesArray = Object.values(grouped).flat();
+    const allArticlesCount = allArticlesArray.length;
 
-    document.querySelectorAll('.category').forEach((categoryEl) => {
-      const category = categoryEl as HTMLElement;
+    document.querySelectorAll('.category').forEach((category) => {
+      const catEl = category as HTMLElement;
       let catVisible = false;
 
-      category.querySelectorAll('.toc-item').forEach((itemEl) => {
-        const item = itemEl as HTMLElement;
-        const text = item.dataset.text || '';
-        const titleLink = item.querySelector('a') as HTMLElement;
+      catEl.querySelectorAll('.toc-item').forEach((item) => {
+        const itemEl = item as HTMLElement;
+        const text = itemEl.dataset.text || '';
+        const titleLink = itemEl.querySelector('a');
 
-        if (term && text.includes(term)) {
-          item.style.display = 'flex';
-          catVisible = true;
-          countVisible++;
-
-          // Ambil teks asli yang sudah bersih (bukan dari dataset yang mungkin ter-encode)
-          const originalTitle = item.querySelector('a')?.getAttribute('data-original-title') || text;
-          const regex = new RegExp(`(${term})`, 'gi');
-
-          if (titleLink) {
-            titleLink.innerHTML = originalTitle.replace(regex, '<span class="highlight">$1</span>');
+        if (titleLink) {
+          if (term && text.includes(term)) {
+            itemEl.style.display = 'flex';
+            catVisible = true;
+            countVisible++;
+            const regex = new RegExp(`(${term})`, 'gi');
+            titleLink.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
+          } else if (!term) {
+            itemEl.style.display = 'flex';
+            titleLink.textContent = text;
+            catVisible = true;
+          } else {
+            itemEl.style.display = 'none';
           }
-        } else if (!term) {
-          item.style.display = 'flex';
-          // Kembalikan ke teks asli tanpa span highlight
-          titleLink.textContent = item.querySelector('a')?.getAttribute('data-original-title') || text;
-          catVisible = true;
-        } else {
-          item.style.display = 'none';
         }
       });
 
-      category.style.display = catVisible ? 'block' : 'none';
-      const tocList = category.querySelector('.toc-list') as HTMLElement;
+      catEl.style.display = catVisible ? 'block' : 'none';
+      const tocList = catEl.querySelector('.toc-list') as HTMLElement;
       if (tocList) {
         tocList.style.display = term && catVisible ? 'block' : 'none';
       }
@@ -295,13 +292,12 @@ if (clearBtn) {
   });
 }
 
-const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement;
 let tocCollapsed = false;
+const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement;
 
 function updateTOCToggleText(): void {
-  if (!tocToggleBtn) return;
   const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-  if (allLists.length === 0) return;
+  if (allLists.length === 0 || !tocToggleBtn) return;
 
   const allCollapsed = allLists.every((list) => list.style.display === 'none');
   tocCollapsed = allCollapsed;
@@ -311,8 +307,8 @@ function updateTOCToggleText(): void {
 if (tocToggleBtn) {
   tocToggleBtn.addEventListener('click', () => {
     tocCollapsed = !tocCollapsed;
-    (document.querySelectorAll('.toc-list') as NodeListOf<HTMLElement>).forEach((list) => {
-      list.style.display = tocCollapsed ? 'none' : 'block';
+    document.querySelectorAll('.toc-list').forEach((list) => {
+      (list as HTMLElement).style.display = tocCollapsed ? 'none' : 'block';
     });
     updateTOCToggleText();
   });
@@ -322,27 +318,25 @@ function initDarkMode(): void {
   const darkSwitch = document.getElementById('darkSwitch') as HTMLInputElement | null;
   const saved = localStorage.getItem('darkMode');
 
-  const setDarkMode = (isDark: boolean) => {
+  function setDarkMode(isDark: boolean): void {
     if (isDark) document.body.classList.add('dark-mode');
     else document.body.classList.remove('dark-mode');
     if (darkSwitch) darkSwitch.checked = isDark;
-  };
+  }
 
   if (saved !== null) {
     setDarkMode(saved === 'true');
   } else {
-    setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
   }
 
   if (darkSwitch) {
     darkSwitch.addEventListener('change', () => {
-      localStorage.setItem('darkMode', darkSwitch.checked.toString());
+      localStorage.setItem('darkMode', String(darkSwitch.checked));
       setDarkMode(darkSwitch.checked);
     });
   }
 }
-
-// --- INIT ---
 
 document.addEventListener('DOMContentLoaded', () => {
   loadTOC().then(() => {
