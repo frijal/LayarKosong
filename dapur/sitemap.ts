@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9 Compatible)
+// FILE: sitemap-script.ts (V6.9 - Minify-Safe Version)
 // -------------------------------------------------------
 
 interface Article {
@@ -15,7 +15,6 @@ interface ArticleData {
   [category: string]: [string, string, string, string, string][];
 }
 
-// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
@@ -90,6 +89,15 @@ function getCleanUrl(file: string, category: string): string {
   return `/${catSlug}/${fileSlug}`;
 }
 
+const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
+
+function updateTOCToggleText(): void {
+  const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+  if (allLists.length === 0 || !tocToggleBtn) return;
+  const allCollapsed = allLists.every((list) => list.style.display === 'none');
+  tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
+}
+
 async function loadTOC(): Promise<void> {
   try {
     const res = await fetch('artikel.json');
@@ -120,7 +128,11 @@ async function loadTOC(): Promise<void> {
     const categoryTooltip = document.getElementById('category-tooltip');
 
     Object.keys(grouped)
-    .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
+    .sort((a, b) => {
+      const dateA = new Date(grouped[a][0].lastmod).getTime();
+      const dateB = new Date(grouped[b][0].lastmod).getTime();
+      return dateB - dateA;
+    })
     .forEach((cat, index) => {
       const catDiv = document.createElement('div');
       catDiv.className = 'category';
@@ -139,7 +151,7 @@ async function loadTOC(): Promise<void> {
       grouped[cat].forEach((item) => {
         const el = document.createElement('div');
         el.className = 'toc-item';
-        el.dataset.text = item.title.toLowerCase();
+        el.setAttribute('data-text', item.title.toLowerCase());
 
         const titleDiv = document.createElement('div');
         titleDiv.className = 'toc-title';
@@ -179,8 +191,8 @@ async function loadTOC(): Promise<void> {
       });
       a.addEventListener('mousemove', (e: MouseEvent) => {
         if (categoryTooltip) {
-          categoryTooltip.style.left = e.clientX + 15 + 'px';
-          categoryTooltip.style.top = e.clientY + 15 + 'px';
+          categoryTooltip.style.left = (e.clientX + 15) + 'px';
+          categoryTooltip.style.top = (e.clientY + 15) + 'px';
         }
       });
       a.addEventListener('mouseleave', () => {
@@ -196,7 +208,8 @@ async function loadTOC(): Promise<void> {
 
       const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
       catHeader.addEventListener('click', () => {
-        catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
+        const currentDisplay = catList.style.display;
+        catList.style.display = currentDisplay === 'block' ? 'none' : 'block';
         updateTOCToggleText();
       });
 
@@ -208,8 +221,8 @@ async function loadTOC(): Promise<void> {
       const shuffledMarquee = shuffle(allArticles);
       m.innerHTML = shuffledMarquee
       .map((d) => {
-        const cleanDescription = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
-        return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDescription}">${d.title}</a>`;
+        const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
+        return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
       .join(' &bull; ');
     }
@@ -218,73 +231,64 @@ async function loadTOC(): Promise<void> {
   }
 }
 
-const searchInput = document.getElementById('search') as HTMLInputElement;
-const clearBtn = document.getElementById('clearSearch') as HTMLElement;
+const searchInput = document.getElementById('search') as HTMLInputElement | null;
+const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
 
 if (searchInput) {
-  searchInput.addEventListener('input', function(this: HTMLInputElement) {
-    const term = this.value.toLowerCase();
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
     if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
 
     let countVisible = 0;
-    const allArticlesCount = Object.values(grouped).flat().length;
+    const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
 
-    document.querySelectorAll('.category').forEach((category) => {
-      const catEl = category as HTMLElement;
+    categories.forEach((category) => {
       let catVisible = false;
-      catEl.querySelectorAll('.toc-item').forEach((item) => {
-        const itemEl = item as HTMLElement;
-        const text = itemEl.dataset.text || '';
-        const titleLink = itemEl.querySelector('a') as HTMLAnchorElement;
+      const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
+
+      items.forEach((item) => {
+        const text = item.getAttribute('data-text') || '';
+        const titleLink = item.querySelector('a') as HTMLAnchorElement;
 
         if (term && text.includes(term)) {
-          itemEl.style.display = 'flex';
+          item.style.display = 'flex';
           catVisible = true;
           countVisible++;
           titleLink.innerHTML = text.replace(new RegExp(`(${term})`, 'gi'), '<span class="highlight">$1</span>');
         } else if (!term) {
-          itemEl.style.display = 'flex';
+          item.style.display = 'flex';
           titleLink.textContent = text;
           catVisible = true;
         } else {
-          itemEl.style.display = 'none';
+          item.style.display = 'none';
         }
       });
-      catEl.style.display = catVisible ? 'block' : 'none';
-      const list = catEl.querySelector('.toc-list') as HTMLElement;
-      if (list) list.style.display = term && catVisible ? 'block' : 'none';
+
+      category.style.display = catVisible ? 'block' : 'none';
+      const list = category.querySelector('.toc-list') as HTMLElement;
+      if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
     });
 
+      const allArticlesCount = Object.values(grouped).flat().length;
       if (term) updateStats(countVisible, visitedLinks.length, term);
       else updateStats(allArticlesCount, visitedLinks.length);
       updateTOCToggleText();
   });
 }
 
-if (clearBtn) {
+if (clearBtn && searchInput) {
   clearBtn.addEventListener('click', () => {
-    if (searchInput) {
-      searchInput.value = '';
-      searchInput.dispatchEvent(new Event('input'));
-    }
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
   });
-}
-
-const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement;
-
-function updateTOCToggleText(): void {
-  const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-  if (allLists.length === 0 || !tocToggleBtn) return;
-  const allCollapsed = allLists.every((list) => list.style.display === 'none');
-  tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
 }
 
 if (tocToggleBtn) {
   tocToggleBtn.addEventListener('click', () => {
-    const lists = document.querySelectorAll('.toc-list');
-    const shouldCollapse = tocToggleBtn.textContent === 'Tutup Semua';
+    const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+    const isOpening = tocToggleBtn.textContent === 'Buka Semua';
   lists.forEach((list) => {
-    (list as HTMLElement).style.display = shouldCollapse ? 'none' : 'block';
+    list.style.display = isOpening ? 'block' : 'none';
   });
   updateTOCToggleText();
   });
