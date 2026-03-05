@@ -222,9 +222,10 @@ async function loadTOC(): Promise<void> {
       m.innerHTML = shuffledMarquee
       .map((d) => {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
+        // Gunakan simbol peluru Unicode asli
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' &bull; ');
+      .join(' \u2022 '); // \u2022 adalah simbol peluru (•) yang tahan minify
     }
   } catch (e) {
     console.error('Gagal load artikel.json', e);
@@ -254,8 +255,15 @@ if (searchInput) {
           item.style.display = 'flex';
           catVisible = true;
           countVisible++;
-          titleLink.innerHTML = text.replace(new RegExp(`(${term})`, 'gi'), '<span class="highlight">$1</span>');
-        } else if (!term) {
+
+          // Gunakan regex yang lebih aman untuk highlight
+          const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          titleLink.innerHTML = text.replace(
+            new RegExp(`(${safeTerm})`, 'gi'),
+            '<span class="highlight">$1</span>'
+          );
+        }
+        else if (!term) {
           item.style.display = 'flex';
           titleLink.textContent = text;
           catVisible = true;
