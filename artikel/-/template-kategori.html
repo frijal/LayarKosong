@@ -337,6 +337,7 @@
     <header id="main-header" class="new-header">
       <div class="new-header-container">
         <!-- Logo (hidden on mobile, visible on desktop) -->
+
         <div class="header-logo-container">
           <!-- DITAMBAHKAN: Tag <a> pembungkus untuk logo -->
           <a href="https://dalam.web.id/disclaimer.html" aria-label="disclaimer">
@@ -392,58 +393,7 @@
       <div id="loading">Memuat...</div>
       <div id="article-grid"></div>
     </div>
-   <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const TARGET_CATEGORY = '%%CATEGORY_NAME%%';
-        const DATA_URL = '../artikel.json';
-        const articleGrid = document.getElementById('article-grid');
-        const loadingIndicator = document.getElementById('loading');
-        const pageTitleText = document.getElementById('category-title-text');
-        const fetchAndDisplayCategory = async () => {
-          if (pageTitleText) {
-            const titleText = TARGET_CATEGORY.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
-            pageTitleText.textContent = titleText;
-          }
-          try {
-            const response = await fetch(`${DATA_URL}?v=${new Date().getTime()}`);
-            if (!response.ok) throw new Error(`Status ${response.status}`);
-            const allData = await response.json();
-            const articles = allData[TARGET_CATEGORY];
-            if (!articles || articles.length === 0) {
-              articleGrid.innerHTML = `<p class="message">Tidak ada artikel ditemukan.</p>`;
-              return;
-            }
-            let articlesHTML = '';
-            articles.sort((a, b) => new Date(b[3]) - new Date(a[3]));
-            articles.forEach((article) => {
-              const [title, fileName, image, pubDate, description] = article;
-              const cleanUrl = fileName.replace('.html', '');
-              const formattedDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(pubDate));
-              let displayDesc = description || 'Klik untuk membaca selengkapnya...';
-              if (displayDesc.length > 100) displayDesc = displayDesc.substring(0, 100) + '...';
-              articlesHTML += `
-                <a href="${cleanUrl}" class="article-card">
-                    <div class="card-thumbnail">
-                        <img src="${image}" alt="${title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
-                    </div>
-                    <div class="card-content">
-                        <h2>${title}</h2>
-                        <p>${displayDesc}</p>
-                        <span class="card-meta">${formattedDate}</span>
-                    </div>
-                </a>`;
-            });
-            articleGrid.innerHTML = articlesHTML;
-          } catch (error) {
-            console.error('Error:', error);
-            articleGrid.innerHTML = `<p class="message" style="color: #ff6b6b;">Gagal memuat data artikel.</p>`;
-          } finally {
-            loadingIndicator.style.display = 'none';
-          }
-        };
-        fetchAndDisplayCategory();
-      });
-    </script>
+
   <script defer="" src="/ext/markdown.js"></script>
 </body>
 </html>

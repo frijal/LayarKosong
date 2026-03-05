@@ -172,22 +172,59 @@ await Promise.all([
                   Bun.write(C.root+'/rss.xml', buildRss('Layar Kosong', flat.slice(0,C.limit), C.base+'/rss.xml', 'Feed artikel terbaru'))
 ]);
 
-// Build Category Pages
+// Build Category Pages (Static Version)
 const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(()=>'');
 if (tmp) {
     for (const [cat, arts] of Object.entries(final)) {
         const s = slug(cat);
         const rUrl = `${C.base}/feed-${s}.xml`;
+        const categoryNameClean = sanitize(decodeHTML(cat));
+
+        // 1. Rakit daftar artikel secara statis
+        const categoryArticlesHTML = (arts as any[])
+        .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
+        .map(a => {
+            const title = a[0];
+            const cleanUrl = a[1].replace('.html', '');
+            const image = a[2];
+            const formattedDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(a[3]));
+            let displayDesc = (a[4] || title).substring(0, 100) + '...';
+
+        return `
+        <a href="${cleanUrl}" class="article-card">
+        <div class="card-thumbnail">
+        <img src="${image}" alt="${title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
+        </div>
+        <div class="card-content">
+        <h2>${title}</h2>
+        <p>${displayDesc}</p>
+        <span class="card-meta">${formattedDate}</span>
+        </div>
+        </a>`;
+        }).join('');
+
+        // 2. Siapkan Schema JSON-LD
         const hp = JSON.stringify((arts as any[]).map(a => ({"@type":"WebPage","name":a[0],"url":`${C.base}/${s}/${a[1].replace('.html','')}`,"datePublished":a[3],"description":a[4]||a[0]})), null, 2);
-        let pg = tmp.replace(/%%TITLE%%|%%DESCRIPTION%%/g, sanitize(decodeHTML(cat)))
+
+        // 3. Inject ke Template
+        let pg = tmp
+        .replace(/%%TITLE%%|%%DESCRIPTION%%/g, categoryNameClean)
         .replace(/%%CATEGORY_NAME%%/g, decodeHTML(cat))
         .replace(/%%RSS_URL%%/g, rUrl)
         .replace(/%%CANONICAL_URL%%/g, `${C.base}/${s}`)
         .replace(/%%ICON%%/g, cat.match(/(\p{Emoji})/u)?.[0] || '📁')
+        .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${categoryNameClean}</span>`)
+        .replace('<div id="loading">Memuat...</div>', '')
+        .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}</div>`)
+        .replace(/<script>[\s\S]*?fetchAndDisplayCategory\(\);[\s\S]*?<\/script>/, '') // Buang script fetch
         .replace(/"inLanguage": "id-ID"/, `"inLanguage": "id-ID",\n  "hasPart": ${hp}`);
+
         await Bun.write(`${C.root}/${s}/index.html`, pg);
-        await Bun.write(`${C.root}/feed-${s}.xml`, buildRss(`Kategori ${sanitize(cat)}`, (arts as any[]).map(a => ({title:a[0], file:a[1], img:a[2], lastmod:a[3], desc:a[4], category:cat, loc:`${C.base}/${s}/${a[1].replace('.html','')}`})).slice(0,C.limit), rUrl, `Artikel ${cat}`));
+
+        // Tetap buat RSS Feed per kategori
+        await Bun.write(`${C.root}/feed-${s}.xml`, buildRss(`Kategori ${categoryNameClean}`, (arts as any[]).map(a => ({title:a[0], file:a[1], img:a[2], lastmod:a[3], desc:a[4], category:cat, loc:`${C.base}/${s}/${a[1].replace('.html','')}`})).slice(0,C.limit), rUrl, `Artikel ${cat}`));
     }
+    console.log('📂 Static Category Pages Generated.');
 }
 // bikin halaman feed. html
 // --- GENERATE STATIC FEED PAGE ---
