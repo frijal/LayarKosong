@@ -1,189 +1,185 @@
 import { readdirSync, statSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import crypto from "crypto";
+import pLimit from "p-limit";
+import { parse, HTMLElement, TextNode } from "node-html-parser";
 
+// -------------------- CONFIG --------------------
 const SOURCE_FOLDERS = ["gaya-hidup"];
 const TARGET_ROOT = "en";
-
 const WORKERS = 8;
-
+const CHUNK_SIZE = 3000; // max chars per AI request
 const CACHE_FILE = ".translate-cache.json";
+const AI_API = "http://localhost:11434/api/generate";
+const MODEL = "llama3:8b"; // bisa diganti phi3 / mistral
 
+// -------------------- CACHE --------------------
 let cache: Record<string,string> = {};
+if(existsSync(CACHE_FILE)) cache = JSON.parse(readFileSync(CACHE_FILE,"utf8"));
 
-if (existsSync(CACHE_FILE)) {
-  cache = JSON.parse(readFileSync(CACHE_FILE,"utf8"));
-}
-
+// -------------------- UTILS --------------------
+function hash(content:string){ return crypto.createHash("sha1").update(content).digest("hex"); }
+function ensureDir(path:string){ if(!existsSync(path)) mkdirSync(path,{recursive:true}); }
 function walk(dir:string):string[]{
-
-  let results:string[] = [];
-
-  for (const file of readdirSync(dir)) {
-
-    const full = join(dir,file);
-
-    const stat = statSync(full);
-
-    if(stat.isDirectory()) results = results.concat(walk(full));
-    else if(file.endsWith(".html")) results.push(full);
-
-  }
-
-  return results;
-
+    let results:string[] = [];
+    for(const file of readdirSync(dir)){
+        const full = join(dir,file);
+        const stat = statSync(full);
+        if(stat.isDirectory()) results = results.concat(walk(full));
+        else if(file.endsWith(".html")) results.push(full);
+    }
+    return results;
 }
 
-function hash(content:string){
-
-  return crypto.createHash("sha1").update(content).digest("hex");
-
+// -------------------- TRANSLATE --------------------
+async function translateText(text:string){
+    if(!text.trim()) return text;
+    const res = await fetch(AI_API,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            model:MODEL,
+            prompt:`Translate Indonesian to English. Only translate text, do NOT touch HTML tags. Rewrite internal links to /en/.\n${text}`,
+            stream:false
+        })
+    });
+    const json = await res.json();
+    return json.response?.trim() || text;
 }
 
-function ensureDir(path:string){
+// -------------------- HTML PROCESS --------------------
+function shouldSkip(el:HTMLElement){ 
+    const tag = el.tagName?.toLowerCase();
+    return tag==="script" || tag==="style" || tag==="code";
+}
 
-  if(!existsSync(path)){
-    mkdirSync(path,{recursive:true});
-  }
+function extractTextNodes(root:HTMLElement){
+    const nodes:TextNode[] = [];
+    root.querySelectorAll("*").forEach(el=>{
+        if(shouldSkip(el)) return;
+        el.childNodes.forEach(node=>{
+            if(node instanceof TextNode && node.rawText.trim()) nodes.push(node);
+        });
+    });
+    return nodes;
+}
 
+function chunkTextNodes(nodes:TextNode[], maxChars:number){
+    const chunks:TextNode[][] = [];
+    let current:TextNode[] = [];
+    let len = 0;
+    for(const node of nodes){
+        if(len + node.rawText.length > maxChars){
+            if(current.length) chunks.push(current);
+            current = [];
+            len = 0;
+        }
+        current.push(node);
+        len += node.rawText.length;
+    }
+    if(current.length) chunks.push(current);
+    return chunks;
 }
 
 async function translateHTML(html:string){
+    const root = parse(html) as HTMLElement;
 
-  const prompt = `
-Translate this HTML to English.
+    // Meta tags
+    const metaTags = root.querySelectorAll("title, meta[name='description']");
+    const metaNodes:TextNode[] = [];
+    metaTags.forEach(tag=>{
+        if(tag.tagName.toLowerCase() === "title" && tag.firstChild instanceof TextNode){
+            metaNodes.push(tag.firstChild);
+        }
+        if(tag.tagName.toLowerCase() === "meta" && tag.getAttribute("content")){
+            // Wrap content as TextNode for translation
+            const txt = new TextNode(tag.getAttribute("content"));
+            metaNodes.push(txt);
+            // store ref to set later
+            (tag as any)._tmpContentNode = txt;
+        }
+    });
 
-Rules:
-- DO NOT break HTML tags
-- DO NOT modify <script>, <style>, <code>
-- Keep structure identical
-- Translate title and meta description
-- Rewrite internal links to /en/
+    // All text nodes
+    const textNodes = extractTextNodes(root);
+    const allNodes = [...metaNodes, ...textNodes];
 
-HTML:
+    // Chunk
+    const chunks = chunkTextNodes(allNodes, CHUNK_SIZE);
 
-${html}
-`;
+    // Translate chunks sequentially
+    for(const chunk of chunks){
+        const originalText = chunk.map(n=>n.rawText).join("\n");
+        const translatedText = await translateText(originalText);
+        const translatedLines = translatedText.split("\n");
 
-  const res = await fetch("http://localhost:11434/api/generate",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      model:"mistral",
-      prompt,
-      stream:false
-    })
-  });
-
-  const json = await res.json();
-
-  return json.response;
-
-}
-
-async function worker(queue:string[],progress:any){
-
-  while(queue.length){
-
-    const file = queue.pop();
-
-    if(!file) return;
-
-    const html = readFileSync(file,"utf8");
-
-    const fileHash = hash(html);
-
-    const target = join(TARGET_ROOT,file);
-
-    ensureDir(dirname(target));
-
-    if(existsSync(target)){
-
-      progress.done++;
-      continue;
-
+        // Apply back to nodes
+        for(let i=0;i<chunk.length;i++){
+            if(translatedLines[i]) chunk[i].rawText = translatedLines[i];
+        }
     }
 
+    // Restore meta description
+    metaTags.forEach(tag=>{
+        if(tag.tagName.toLowerCase() === "meta" && (tag as any)._tmpContentNode){
+            tag.setAttribute("content",(tag as any)._tmpContentNode.rawText);
+        }
+    });
+
+    // Rewrite internal links <a href="/">
+    root.querySelectorAll("a").forEach(a=>{
+        const href = a.getAttribute("href");
+        if(href?.startsWith("/")) a.setAttribute("href", "/en"+href);
+    });
+
+    return root.toString();
+}
+
+// -------------------- PROCESS FILE --------------------
+async function processFile(src:string){
+    const html = readFileSync(src,"utf8");
+    const fileHash = hash(html);
+    const target = join(TARGET_ROOT,src);
+    ensureDir(dirname(target));
+
+    if(existsSync(target)) return; // skip already translated
     if(cache[fileHash]){
-
-      writeFileSync(target,cache[fileHash]);
-      progress.done++;
-      continue;
-
+        writeFileSync(target,cache[fileHash]);
+        return;
     }
 
     const translated = await translateHTML(html);
-
     cache[fileHash] = translated;
-
     writeFileSync(target,translated);
-
-    progress.done++;
-
-  }
-
 }
 
-function progressBar(done:number,total:number,start:number){
-
-  const percent = Math.floor((done/total)*100);
-
-  const width = 40;
-
-  const filled = Math.floor(width*(done/total));
-
-  const bar = "█".repeat(filled)+"░".repeat(width-filled);
-
-  const elapsed = (Date.now()-start)/1000;
-
-  const rate = done/elapsed;
-
-  const eta = ((total-done)/rate)||0;
-
-  process.stdout.write(
-    `\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`
-  );
-
-}
-
+// -------------------- MAIN --------------------
 async function main(){
+    let files:string[] = [];
+    for(const folder of SOURCE_FOLDERS){
+        files = files.concat(walk(folder));
+    }
 
-  let files:string[] = [];
+    const limit = pLimit(WORKERS);
+    let done = 0;
+    const total = files.length;
+    const start = Date.now();
 
-  for(const folder of SOURCE_FOLDERS){
+    await Promise.all(files.map(f=>limit(async()=>{
+        await processFile(f);
+        done++;
+        const percent = Math.floor(done/total*100);
+        const elapsed = (Date.now()-start)/1000;
+        const eta = ((total-done)/(done/elapsed))||0;
+        const width = 40;
+        const bar = "█".repeat(Math.floor(width*(done/total)))+"░".repeat(width-Math.floor(width*(done/total)));
+        process.stdout.write(`\r ${bar} ${percent}% | ${done}/${total} | ETA ${eta.toFixed(0)}s`);
+    })));
 
-    files = files.concat(walk(folder));
+    // Save cache
+    writeFileSync(CACHE_FILE,JSON.stringify(cache,null,2));
 
-  }
-
-  const queue = [...files];
-
-  const progress = {done:0};
-
-  const start = Date.now();
-
-  const workers = [];
-
-  for(let i=0;i<WORKERS;i++){
-
-    workers.push(worker(queue,progress));
-
-  }
-
-  const interval = setInterval(()=>{
-
-    progressBar(progress.done,files.length,start);
-
-  },200);
-
-  await Promise.all(workers);
-
-  clearInterval(interval);
-
-  writeFileSync(CACHE_FILE,JSON.stringify(cache,null,2));
-
-  console.log("\n\nDone translating",files.length,"articles");
-
+    console.log("\n\n✅ Done translating",total,"articles");
 }
 
 main();
