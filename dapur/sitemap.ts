@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9 - Final Production Build)
+// FILE: sitemap-script.ts (V6.9.1 - Anti-HTML-Entity Patch)
 // -------------------------------------------------------
 
 interface Article {
@@ -15,7 +15,6 @@ interface ArticleData {
   [category: string]: [string, string, string, string, string][];
 }
 
-// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
@@ -154,6 +153,9 @@ async function loadTOC(): Promise<void> {
         el.className = 'toc-item';
         el.setAttribute('data-text', item.title.toLowerCase());
 
+        // PROTEKSI: Simpan judul asli agar ampersand (&) tidak rusak
+        el.setAttribute('data-title-raw', item.title);
+
         const titleDiv = document.createElement('div');
         titleDiv.className = 'toc-title';
 
@@ -162,7 +164,6 @@ async function loadTOC(): Promise<void> {
         a.textContent = item.title;
 
         const statusSpan = document.createElement('span');
-        // PERBAIKAN CLEAN CODE: Gunakan Unicode agar tidak berubah jadi &amp;
         if (visitedLinks.includes(item.file)) {
           statusSpan.className = 'label-visited';
       statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
@@ -226,7 +227,7 @@ async function loadTOC(): Promise<void> {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' \u2022 '); // Simbol peluru bersih
+      .join(' \u2022 ');
     }
   } catch (e) {
     console.error('Gagal load artikel.json', e);
@@ -250,6 +251,7 @@ if (searchInput) {
 
       items.forEach((item) => {
         const text = item.getAttribute('data-text') || '';
+        const rawTitle = item.getAttribute('data-title-raw') || '';
         const titleLink = item.querySelector('a') as HTMLAnchorElement;
 
         if (term && text.includes(term)) {
@@ -258,14 +260,15 @@ if (searchInput) {
           countVisible++;
 
           const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          titleLink.innerHTML = text.replace(
+          // Gunakan rawTitle sebagai basis agar & tidak jadi &amp;
+          titleLink.innerHTML = rawTitle.replace(
             new RegExp(`(${safeTerm})`, 'gi'),
-                                             '<span class="highlight">$1</span>'
+                                                 '<span class="highlight">$1</span>'
           );
         }
         else if (!term) {
           item.style.display = 'flex';
-          titleLink.textContent = text;
+          titleLink.textContent = rawTitle; // Kembali ke teks asli yang bersih
           catVisible = true;
         } else {
           item.style.display = 'none';
