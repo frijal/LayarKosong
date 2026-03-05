@@ -1,125 +1,153 @@
 import { readdir, readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
 import pLimit from "p-limit";
-import { parse } from "node-html-parser";
+import cliProgress from "cli-progress";
+import { parse, TextNode } from "node-html-parser";
 
-const SOURCE_DIRS = ["gaya-hidup"];
+const SOURCE_DIRS = ["gaya-hidup","jejak-sejarah","lainnya"];
 const TARGET_ROOT = "en";
 
+const API = "http://127.0.0.1:11434/api/generate";
 const MODEL = "qwen2.5:3b";
-const OLLAMA_URL = "http://127.0.0.1:11434/api/generate";
 
 const WORKERS = 6;
 
-let total = 0;
-let done = 0;
+const limit = pLimit(WORKERS);
 
-async function translateArticle(text: string) {
-  const res = await fetch(OLLAMA_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: MODEL,
-      prompt: `Translate Indonesian to English. Keep HTML tags unchanged.\n\n${text}`,
-      stream: false
+async function translate(text:string){
+  if(!text.trim()) return text;
+
+  const res = await fetch(API,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json"},
+    body:JSON.stringify({
+      model:MODEL,
+      prompt:`Translate Indonesian to English. Only translate the text.\n${text}`,
+      stream:false
     })
   });
 
   const json = await res.json();
-  return json.response || text;
+  return json.response?.trim() || text;
 }
 
-function protectBlocks(html: string) {
-  const blocks: string[] = [];
-
-  const protectedHTML = html.replace(
-    /<(script|style|code)[\s\S]*?<\/\1>/gi,
-    (match) => {
-      const id = blocks.length;
-      blocks.push(match);
-      return `___BLOCK_${id}___`;
-    }
-  );
-
-  return { protectedHTML, blocks };
+function shouldSkip(el:any){
+  const tag = el.tagName?.toLowerCase();
+  return tag==="script" || tag==="style" || tag==="code";
 }
 
-function restoreBlocks(html: string, blocks: string[]) {
-  return html.replace(/___BLOCK_(\d+)___/g, (_, i) => blocks[i]);
-}
+async function translateHTML(html:string){
 
-async function processFile(src: string, dest: string) {
-  try {
-    const html = await readFile(src, "utf8");
+  const root = parse(html);
 
-    const { protectedHTML, blocks } = protectBlocks(html);
+  const nodes:TextNode[]=[];
 
-    const translated = await translateArticle(protectedHTML);
+  root.querySelectorAll("*").forEach(el=>{
 
-    const restored = restoreBlocks(translated, blocks);
+    if(shouldSkip(el)) return;
 
-    await writeFile(dest, restored);
-
-    done++;
-    process.stdout.write(`\r${done}/${total} translated`);
-  } catch (err) {
-    console.error("\nError:", src, err);
-  }
-}
-
-async function walk(dir: string): Promise<string[]> {
-  const files: string[] = [];
-
-  async function scan(d: string) {
-    const items = await readdir(d, { withFileTypes: true });
-
-    for (const item of items) {
-      const p = path.join(d, item.name);
-
-      if (item.isDirectory()) {
-        await scan(p);
-      } else if (item.name.endsWith(".html")) {
-        files.push(p);
+    el.childNodes.forEach(node=>{
+      if(node instanceof TextNode){
+        nodes.push(node);
       }
+    });
+
+  });
+
+  for(const node of nodes){
+
+    const original=node.rawText;
+
+    if(!original.trim()) continue;
+
+    try{
+      const translated=await translate(original);
+      node.rawText=translated;
+    }catch{
+      node.rawText=original;
     }
+
+  }
+
+  return root.toString();
+}
+
+async function ensureDir(dir:string){
+  await mkdir(dir,{recursive:true});
+}
+
+async function walk(dir:string):Promise<string[]>{
+
+  const files:string[]=[];
+
+  async function scan(d:string){
+
+    const items=await readdir(d,{withFileTypes:true});
+
+    for(const item of items){
+
+      const p=path.join(d,item.name);
+
+      if(item.isDirectory()) await scan(p);
+
+      else if(item.name.endsWith(".html")) files.push(p);
+
+    }
+
   }
 
   await scan(dir);
+
   return files;
+
 }
 
-async function ensureDir(filePath: string) {
-  const dir = path.dirname(filePath);
-  await mkdir(dir, { recursive: true });
+async function processFile(src:string,dest:string){
+
+  const html=await readFile(src,"utf8");
+
+  const translated=await translateHTML(html);
+
+  await ensureDir(path.dirname(dest));
+
+  await writeFile(dest,translated);
+
 }
 
-async function main() {
-  const allFiles: string[] = [];
+async function main(){
 
-  for (const dir of SOURCE_DIRS) {
-    const files = await walk(dir);
-    allFiles.push(...files);
+  const all:string[]=[];
+
+  for(const dir of SOURCE_DIRS){
+
+    const files=await walk(dir);
+
+    all.push(...files);
+
   }
 
-  total = allFiles.length;
+  const bar=new cliProgress.SingleBar({},cliProgress.Presets.shades_classic);
 
-  console.log("Total HTML:", total);
+  bar.start(all.length,0);
 
-  const limit = pLimit(WORKERS);
+  await Promise.all(all.map(file=>
 
-  await Promise.all(
-    allFiles.map((file) =>
-      limit(async () => {
-        const dest = path.join(TARGET_ROOT, file);
+    limit(async()=>{
 
-        await ensureDir(dest);
+      const dest=path.join(TARGET_ROOT,file);
 
-        await processFile(file, dest);
-      })
-    )
-  );
+      await processFile(file,dest);
 
-  console.log("\nDone.");
+      bar.increment();
+
+    })
+
+  ));
+
+  bar.stop();
+
+  console.log("Done");
+
 }
 
 main();
