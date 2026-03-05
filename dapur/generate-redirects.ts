@@ -1,4 +1,4 @@
-import data from "./artikel.json"; // Bun bisa langsung import JSON!
+import data from "../artikel.json"; // Bun bisa langsung import JSON!
 
 const OUTPUT_FILE = "_redirects2";
 

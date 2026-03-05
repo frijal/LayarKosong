@@ -2,12 +2,13 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "bundler", // Bun lebih suka "bundler" daripada "node"
-    "types": ["bun-types"],       // Supaya autocomplete fitur Bun muncul (seperti Bun.file, Bun.serve)
-    "strict": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true, // Sekarang ini pasti terbaca
+    "noEmit": true,           // Koma sudah ditambahkan di sini
+    "strict": true,
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true, // Fitur keren Bun: bisa import file .ts langsung
-    "noEmit": true                     // Bun yang bakal jalanin kodenya langsung, gak perlu di-convert manual ke .js
+    "types": ["bun-types"]
   }
 }
