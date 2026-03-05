@@ -1,85 +1,83 @@
-import { glob } from "glob";
-import fs from "node:fs";
-import path from "node:path";
+import { file, write } from "bun";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, basename, extname } from "node:path";
 
-// --- 1. KONFIGURASI SCANNER (Sama dengan carikembar.ts) ---
-const allFiles = await glob("**/*.{py,ts,js,sh}", {
+// --- 1. KONFIGURASI SCANNER (Pakai Bun.Glob bawaan) ---
+const globScanner = new Bun.Glob("**/*.{py,ts,js,sh}");
+
+const allFiles = await Array.fromAsync(globScanner.scan({
     ignore: [
-        "node_modules/**", "dist/**", "artikel/**", "ext/**", 
+        "node_modules/**", "dist/**", "mini", "artikel/**", "ext/**",
         "sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**"
     ]
-});
+}));
 
-// --- 2. KONFIGURASI SEARCHER (Sama dengan script cari kamu) ---
+// --- 2. KONFIGURASI SEARCHER ---
 const SEARCH_DIR = './';
 const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'XXX']);
 const EXTENSIONS = new Set(['.html', '.js', '.yml', '.ts', '.py', '.css', '.json', '.sh']);
 
 /**
- * Fungsi untuk mengecek apakah sebuah string (fileName) ada di dalam file lain
+ * Cek keberadaan string di dalam file (Fast Stream)
  */
-function isStringInFile(filePath, query) {
+async function isStringInFile(filePath: string, query: string): Promise<boolean> {
     try {
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = await file(filePath).text();
         return content.includes(query);
-    } catch (err) {
+    } catch {
         return false;
     }
 }
 
 /**
- * Fungsi rekursif untuk mencari keberadaan string di seluruh direktori
+ * Rekursif: Cari string ke seluruh penjuru dapur
  */
-function checkExistenceGlobally(dir, query, originalFilePath) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
+async function checkExistenceGlobally(dir: string, query: string, originalPath: string): Promise<boolean> {
+    const entries = readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
+        const fullPath = join(dir, entry.name);
 
         if (entry.isDirectory()) {
             if (SKIP_FOLDERS.has(entry.name)) continue;
-            if (checkExistenceGlobally(fullPath, query, originalFilePath)) return true;
+            if (await checkExistenceGlobally(fullPath, query, originalPath)) return true;
             continue;
         }
 
-        const ext = path.extname(entry.name).toLowerCase();
+        const ext = extname(entry.name).toLowerCase();
         if (!EXTENSIONS.has(ext)) continue;
 
-        // Jangan hitung jika query ditemukan di dalam dirinya sendiri
-        if (fullPath === originalFilePath) continue;
+        // Jangan cek diri sendiri
+        if (fullPath.includes(originalPath)) continue;
 
-        if (isStringInFile(fullPath, query)) return true;
+        if (await isStringInFile(fullPath, query)) return true;
     }
     return false;
 }
 
-// --- 3. EKSEKUSI AUDIT ---
-console.log("🚀 Memulai audit file 'Yatim Piatu'...");
+// --- 3. EKSEKUSI ---
+console.log(`🔍 Memulai audit referensi untuk ${allFiles.length} file...`);
 const fileHilang: string[] = [];
 
 for (const filePath of allFiles) {
-    const fileName = path.basename(filePath);
-    
-    // Kita cari nama filenya saja (misal: 'audit-seo.ts') di file lain
-    process.stdout.write(`🔍 Mengecek: ${fileName} ... `);
-    
-    const isUsed = checkExistenceGlobally(SEARCH_DIR, fileName, filePath);
-    
+    const nameOnly = basename(filePath);
+
+    // Tampilkan progres di terminal agar tidak dikira hang
+    process.stdout.write(`🔎 Check: ${nameOnly} ... `);
+
+    const isUsed = await checkExistenceGlobally(SEARCH_DIR, nameOnly, filePath);
+
     if (!isUsed) {
-        console.log("❌ TIDAK DITEMUKAN");
+        console.log("❌ HILANG");
         fileHilang.push(filePath);
     } else {
-        console.log("✅ Digunakan");
+        console.log("✅ OK");
     }
 }
 
-// --- 4. SIMPAN HASIL ---
-const outputContent = fileHilang.length > 0 
-    ? fileHilang.join('\n') 
-    : "Semua file aktif ditemukan panggilannya di file lain.";
-
-fs.writeFileSync('hilang.txt', outputContent, 'utf8');
+// --- 4. OUTPUT KE hilang.txt ---
+const resultData = fileHilang.join("\n");
+await write("hilang.txt", resultData || "Semua file ditemukan referensinya.");
 
 console.log("\n---");
-console.log(`📝 Selesai! Ada ${fileHilang.length} file yang tidak ditemukan panggilannya.`);
-console.log(`📂 Daftar file hilang telah disimpan di: hilang.txt`);
+console.log(`✅ Selesai! ${fileHilang.length} file masuk daftar hilang.txt`);
