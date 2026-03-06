@@ -1,4 +1,5 @@
-# translator.models.yaml
-models:
-  default:
-    - mistral:latest
+# translator.config.yaml
+source_directory: content
+target_language: en
+# Pastikan target directory ini merujuk ke folder yang sudah kamu buat
+target_directory: content/en
