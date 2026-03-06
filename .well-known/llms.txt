@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.66
-last_updated: 2026-03-05
+document_version: 16.67
+last_updated: 2026-03-06
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 5 Maret 2026)
-> Menampilkan 1020 artikel versi 16.66.
+## Index Artikel Terbaru (Updated: 6 Maret 2026)
+> Menampilkan 1021 artikel versi 16.67.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -419,6 +419,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [THR ASN Kena Pajak atau Tidak Ini 7 Fakta Penting yang Harus Anda Tahu 2026](https://dalam.web.id/opini-sosial/thr-asn-kena-pajak-atau-tidak-2026) : Apakah THR ASN kena pajak atau tidak pada tahun 2026 Simak penjelasan lengkap aturan pemerintah perbedaan dengan karyawan swasta serta dasar hukum pajak THR ASN
 - [Waspadai Empat Isi Kerja Sama Indonesia–AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan?](https://dalam.web.id/opini-sosial/kerja-sama-indonesia-as-analisis-kritis) : terhadap narasi kerja sama Indonesia–AS, isu Board of Peace, impor besar, dan dampaknya pada kedaulatan ekonomi serta politik luar negeri Indonesia.
 - [Sesat Pikir Ketua Bappenas: 5 Dampak Serius Jika Makan Gratis Lebih Diprioritaskan dari Lapangan Kerja](https://dalam.web.id/opini-sosial/sesat-pikir-bappenas-makan-gratis-vs-lapangan-kerja) : Sesat Pikir Ketua Bappenas: Menyuapi Anak, Membiarkan Orangtuanya Menganggur — analisis kritis tentang prioritas Makan Bergizi Gratis dibanding penciptaan lapangan kerja di Indonesia.
 - [REZIM SAKAU: 7 Fakta Mengejutkan soal Utang, Impor, dan Ancaman Kedaulatan Ekonomi](https://dalam.web.id/opini-sosial/rezim-sakau-utang-impor-ancaman-ekonomi) : REZIM SAKAU: MEMBAYAR NAPAS BANGSA DENGAN UTANG DAN IMPOR — analisis kritis tentang lonjakan utang, gelombang impor, dan dampaknya terhadap industri serta kedaulatan ekonomi Indonesia.
