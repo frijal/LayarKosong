@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.68
+document_version: 16.69
 last_updated: 2026-03-06
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 6 Maret 2026)
-> Menampilkan 1021 artikel versi 16.68.
+> Menampilkan 1025 artikel versi 16.69.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -561,6 +561,10 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Pancasila: Antara Ideologi, Kesepakatan Bangsa, dan Realitas Penerapannya](https://dalam.web.id/sistem-terbuka/pancasila-ideologi-kesepakatan-penerapan) : Apakah Pancasila ideologi atau kesepakatan? Seberapa baik penerapannya? Apakah Indonesia benar-benar kacau? Simak penjelasan historis, konstitusional, dan realistis.
+- [Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik](https://dalam.web.id/sistem-terbuka/kritik-narasi-pejabat-perang-iran-israel) : Esai kritik terhadap retorika dramatis pejabat Indonesia dalam merespons perang Iran-Israel. Analisis data energi, diplomasi heroik, dan ajakan berpikir rasional.
+- [Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi](https://dalam.web.id/sistem-terbuka/linux-ringan-dell-latitude-d430) : Dell Latitude D430 (Core Duo 2GB) butuh Linux super ringan. Simak rekomendasi AntiX, MX, Puppy, cara identifikasi Wi-Fi, dan tweak performa. untuk pemula.
+- [Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet](https://dalam.web.id/sistem-terbuka/pemakzulan-isu-bop-analisis-komentar) : Analisis komentar warganet soal pemakzulan presiden, isu BOP, dan kedaulatan negara. Simak proses hukum, sentimen publik, dan narasi yang berkembang di media sosial.
 - [Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)](https://dalam.web.id/sistem-terbuka/setup-email-cloudflare-komunitas) : setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.
 - [Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash](https://dalam.web.id/sistem-terbuka/otomasi-cek-dns-mx-spf-dmarc) : Cara otomatis cek status propagasi DNS MX SPF dan DMARC untuk domain Jaga Data Pribadi Tetap Aman menggunakan script Bash dan Bun yang praktis
 - [Cara Setup MX Cloudflare Gratis untuk Email Komunitas](https://dalam.web.id/sistem-terbuka/setup-email-komunitas-cloudflare) : cara setup email komunitas gratis pakai Cloudflare tanpa simpan data email langsung masuk ke Gmail
