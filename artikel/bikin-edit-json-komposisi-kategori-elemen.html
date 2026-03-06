@@ -473,7 +473,7 @@
     }
     else if (input.classList.contains('field-image')) {
       const imgEl = row.querySelector('.preview-image');
-      const placeholder = 'https://dalam.web.id/thumbnail.webp';
+      const placeholder = 'https://dalam.web.id/img/bikin-edit-json-komposisi-kategori-elemen.webp';
       if (value) {
         imgEl.src = value;
       } else {
@@ -518,7 +518,7 @@
     div.classList.add('element-row');
     // Ambil yyyy-mm-dd dari ISO string (jika ada)
     const dateValue = data.date ? data.date.substring(0, 10) : '';
-    const placeholderImg = 'https://dalam.web.id/thumbnail.webp';
+    const placeholderImg = 'https://dalam.web.id/img/bikin-edit-json-komposisi-kategori-elemen.webp';
     const imgSrc = escapeHtml(data.image || placeholderImg);
     // Placeholder teks untuk preview
     const titlePreview = escapeHtml(data.title || 'Judul...');
