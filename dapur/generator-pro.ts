@@ -112,10 +112,10 @@ const mod = flat[0]?.lastmod || iso(new Date());
 
 await Promise.all([
     Bun.write(`${C.root}/sitemap.xml`, `${hdr}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['sitemap-1','image-sitemap-1','video-sitemap-1'].map(s => `<sitemap><loc>${C.base}/${s}.xml</loc><lastmod>${mod}</lastmod></sitemap>`).join('')}</sitemapindex>`),
-                  Bun.write(`${C.root}/sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xP}</urlset>`),
-                  Bun.write(`${C.root}/image-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${xI}</urlset>`),
-                  Bun.write(`${C.root}/video-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${xV}</urlset>`),
-                  Bun.write(C.root+'/rss.xml', buildRss('Layar Kosong', flat.slice(0,C.limit), C.base+'/rss.xml', 'Feed artikel terbaru'))
+    Bun.write(`${C.root}/sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xP}</urlset>`),
+    Bun.write(`${C.root}/image-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${xI}</urlset>`),
+    Bun.write(`${C.root}/video-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${xV}</urlset>`),
+    Bun.write(C.root+'/rss.xml', buildRss('Layar Kosong', flat.slice(0,C.limit), C.base+'/rss.xml', 'Feed artikel terbaru'))
 ]);
 
 // Build Category Pages (Static Version)
