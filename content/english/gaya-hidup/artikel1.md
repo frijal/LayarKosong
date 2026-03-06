@@ -1,9 +1,9 @@
- Title of Article Test
+# Title of Test Article
 This is a paragraph to test our translation system.
 
-Sub-Title Cool
+## Cool Sub-title
 - First list item
-- Bold list item (second list item)
+- Bold list item two
 
 > This is an important quote that needs to be translated.
 
