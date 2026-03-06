@@ -271,23 +271,43 @@
   function initInternalNav(): void {
     const tocContainer: HTMLElement | null = document.getElementById('internal-nav');
     if (!tocContainer) return;
-    const headings: HTMLElement[] = Array.from(document.querySelectorAll('h1, h2, h3, h4')) as HTMLElement[];
+
+    // Hapus h1 dari selektor, mulai dari h2 sampai h4
+    const headings: HTMLElement[] = Array.from(document.querySelectorAll('h2, h3, h4')) as HTMLElement[];
 
     const filteredHeadings = headings.filter(h =>
-      h.innerText.trim().length > 0 &&
-      !h.closest('.floating-nav') &&
-      !tocContainer.contains(h) &&
-      !h.closest('#layar-kosong-header')
+    h.innerText.trim().length > 0 &&
+    !h.closest('.floating-nav') &&
+    !tocContainer.contains(h) &&
+    !h.closest('#layar-kosong-header')
     );
 
-    if (filteredHeadings.length === 0) { tocContainer.style.display = 'none'; return; }
+    if (filteredHeadings.length === 0) {
+      tocContainer.style.display = 'none';
+return;
+    }
 
     let tocHtml: string = '<ul class="nav-list">';
-    filteredHeadings.forEach((h, i) => {
-      if (!h.id) h.id = h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `section-${i}`;
-      tocHtml += `<li class="nav-item nav-${h.tagName.toLowerCase()}"><a href="#${h.id}" class="nav-link">${h.innerText.trim()}</a></li>`;
-    });
-    tocContainer.innerHTML = tocHtml + '</ul>';
+
+filteredHeadings.forEach((h, i) => {
+  // Generate ID yang lebih aman jika belum ada
+  if (!h.id) {
+    h.id = h.innerText
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || `section-${i}`;
+  }
+
+  // Menambahkan class spesifik berdasarkan level heading (nav-h2, nav-h3, dst)
+  // agar kamu bisa mengatur indentasi di CSS
+  const level = h.tagName.toLowerCase();
+  tocHtml += `
+  <li class="nav-item nav-${level}">
+  <a href="#${h.id}" class="nav-link">${h.innerText.trim()}</a>
+  </li>`;
+});
+
+tocContainer.innerHTML = tocHtml + '</ul>';
   }
 
   function initRelatedGrid(allData: AllData, currentFile: string): void {

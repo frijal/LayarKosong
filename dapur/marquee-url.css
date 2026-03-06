@@ -16,6 +16,11 @@
   --text-main: #212529;                  /* Hitam pekat untuk teks utama */
   --text-muted: #666666;                 /* Abu-abu untuk teks sekunder */
   --shadow-color: rgba(0, 0, 0, 0.15);
+  /* Default: Mode Terang */
+  --toc-text: #333333;
+  --toc-opacity: 0.7;
+  --toc-hover-opacity: 1;
+  --toc-accent: #007bff; /* Sesuaikan dengan var(--accent) milikmu */
 }
 
 /* ==========================================================
@@ -30,6 +35,9 @@
     --text-main: #e0e0e0;                /* Putih terang untuk teks utama */
     --text-muted: #a0a0a0;               /* Abu terang untuk teks sekunder */
     --shadow-color: rgba(0, 0, 0, 0.5);
+    --toc-text: #eeeeee;
+    --toc-opacity: 0.6;
+    --toc-hover-opacity: 1;
   }
 }
 
@@ -222,9 +230,11 @@ width: 240px;
 max-height: calc(100vh - 150px);
 overflow-y: auto;
 z-index: 1000;
-color: var(--text-main); /* Menggunakan variabel */
+/* Gunakan variabel yang fleksibel */
+color: var(--toc-text);
 background: transparent;
 pointer-events: none;
+scrollbar-width: thin; /* Untuk Firefox agar scrollbar tidak merusak estetika */
 }
 
 #internal-nav .nav-list {
@@ -232,37 +242,49 @@ list-style: none;
 padding: 0;
 margin: 0;
 display: flex;
-color: inherit;
 flex-direction: column;
-gap: 10px;
+gap: 8px; /* Sedikit lebih rapat agar compact */
 }
 
 #internal-nav .nav-link {
 display: block;
 width: 100%;
 pointer-events: auto;
-padding: 2px 0;
+padding: 4px 0;
 font-size: 13px;
 font-weight: 500;
-color: var(--text-main); /* Pastikan variabel dipanggil ulang */
-opacity: 0.8;
+color: inherit;
+opacity: var(--toc-opacity);
+text-decoration: none;
 white-space: normal;
 word-wrap: break-word;
-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+transition: all 0.2s ease-in-out;
 }
 
 #internal-nav .nav-link:hover {
-color: var(--accent);
-opacity: 1;
-transform: translateX(-8px);
-font-weight: 700;
+color: var(--toc-accent);
+opacity: var(--toc-hover-opacity);
+/* Ubah ke positif agar teks bergeser ke kanan (menjauhi margin kiri) */
+transform: translateX(5px);
+font-weight: 600;
 }
 
-/* Hierarki Indentasi TOC */
-#internal-nav .nav-h1 { font-weight: 800; font-size: 14px; margin-bottom: 5px; opacity: 1; }
-#internal-nav .nav-h2 { margin-left: 12px; }
-#internal-nav .nav-h3 { margin-left: 24px; font-size: 12px; }
-#internal-nav .nav-h4 { margin-left: 36px; font-size: 11px; }
+/* Hierarki Indentasi TOC (Tanpa H1) */
+#internal-nav .nav-h2 {
+font-weight: 600;
+font-size: 13.5px;
+}
+
+#internal-nav .nav-h3 {
+margin-left: 15px;
+font-size: 12.5px;
+}
+
+#internal-nav .nav-h4 {
+margin-left: 25px;
+font-size: 11.5px;
+opacity: 0.5; /* H4 dibuat lebih subtle */
+}
 
 /* ========================
  * 5. MARQUEE & FLOATING NAV (BOTTOM)
@@ -454,6 +476,12 @@ a:hover { opacity: 0.8; }
 /* ========================
  * 7. RESPONSIVE (MEDIA QUERIES)
  * ======================== */
+@media (max-width: 1024px) {
+  #internal-nav {
+  display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .floating-nav { left: 10px; right: 10px; bottom: 40px; }
   .nav-right { gap: 8px; }
