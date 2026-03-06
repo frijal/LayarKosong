@@ -1,1 +1,0 @@
- This is a text for testing our translation system.
