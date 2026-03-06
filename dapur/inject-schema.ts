@@ -47,12 +47,12 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": `${cleanBase}#website`,
+        "@id": `${cleanBase}/#website`,
         "url": cleanBase,
         "name": SITE_NAME,
         "publisher": {
           "@type": "Organization",
-          "@id": `${cleanBase}#organization`,
+          "@id": `${cleanBase}/#organization`,
           "name": SITE_NAME,
           "url": cleanBase,
           "logo": { "@type": "ImageObject", "url": `${cleanBase}/logo.png` }
@@ -61,14 +61,24 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
       {
         "@type": "Article",
         "@id": `${articleUrl}#article`,
-        "isPartOf": { "@id": `${cleanBase}#website` },
+        "isPartOf": { "@id": `${cleanBase}/#website` },
         "mainEntityOfPage": { "@type": "WebPage", "@id": articleUrl },
         "headline": headline,
         "description": desc || headline,
         "articleSection": catDisplayName,
         "keywords": buildKeywords(headline, catDisplayName, fileSlug),
-        "image": { "@type": "ImageObject", "url": image || `${cleanBase}/logo.png` },
-        "author": { "@type": "Person", "name": AUTHOR, "url": `${cleanBase}/about` },
+        "image": {
+          "@type": "ImageObject",
+          "url": image || `${cleanBase}/logo.png`,
+          "width": 1200,
+          "height": 630
+        },
+        "author": {
+          "@type": "Person",
+          "name": AUTHOR,
+          "url": `${cleanBase}/about`,
+          "sameAs": [`${cleanBase}/about`]
+        },
         "datePublished": iso_date,
         "dateModified": iso_date,
         "license": LICENSE_URL
@@ -80,6 +90,17 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
           { "@type": "ListItem", "position": 1, "name": "Beranda", "item": cleanBase },
           { "@type": "ListItem", "position": 2, "name": catDisplayName, "item": `${cleanBase}/${catSlug}` },
           { "@type": "ListItem", "position": 3, "name": headline, "item": articleUrl }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${cleanBase}/#footer-nav`,
+        "name": "Navigasi Legal",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Privacy Policy", "item": `${cleanBase}/privacy` },
+          { "@type": "ListItem", "position": 2, "name": "Disclaimer", "item": `${cleanBase}/disclaimer` },
+          { "@type": "ListItem", "position": 3, "name": "About", "item": `${cleanBase}/about` },
+          { "@type": "ListItem", "position": 4, "name": "Security Policy", "item": `${cleanBase}/security-policy` }
         ]
       }
     ]
