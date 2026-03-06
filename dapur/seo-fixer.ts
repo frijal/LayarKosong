@@ -56,7 +56,7 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
 
         const buffer = Buffer.from(await response.arrayBuffer());
 
-        // Pastikan folder tujuan ada
+        // Membuat folder tujuan
         await mkdir(path.dirname(localPath), { recursive: true });
 
         // LOGIKA SELEKSI:
@@ -174,7 +174,6 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:description" content="${finalTwitterDesc}">`,
             `<meta property="twitter:domain" content="https://dalam.web.id">`,
             `<meta property="og:type" content="article">`,
-            `<meta name="theme-color" content="#00b0ed">`,
             `<meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">`,
             `<meta name="author" content="Fakhrul Rijal">`,
             `<link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">`,
@@ -193,7 +192,8 @@ async function processFile(file: string, baseUrl: string) {
             `<meta property="og:image" content="${metaImgUrl}">`,
             `<meta property="og:image:alt" content="${escapedTitle}">`,
             `<meta property="og:image:width" content="1200">`,
-            `<meta property="og:image:height" content="675">`
+            `<meta property="og:image:height" content="675">`,
+            `<meta name="theme-color" content="#00b0ed">`
         ];
 
         existingTags.forEach(tag => metaTags.push(`<meta property="article:tag" content="${tag}">`));
