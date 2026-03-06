@@ -254,7 +254,7 @@ if (feedTemplate) {
         <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-twitter"></i></a>
 
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&t={encodedText}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-facebook"></i></a>
 
         <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}"
