@@ -87,9 +87,9 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
         "@type": "BreadcrumbList",
         "@id": `${articleUrl}#breadcrumb`,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Beranda", "item": cleanBase },
+          { "@type": "WebPage", "position": 1, "name": "Beranda", "item": cleanBase },
           { "@type": "ListItem", "position": 2, "name": catDisplayName, "item": `${cleanBase}/${catSlug}` },
-          { "@type": "ListItem", "position": 3, "name": headline, "item": articleUrl }
+          { "@type": "Article", "position": 3, "name": headline, "item": articleUrl }
         ]
       },
       {
@@ -97,11 +97,11 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
         "@id": `${cleanBase}/#footer-nav`,
         "name": "Navigasi Legal",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Privacy Policy", "item": `${cleanBase}/privacy.html` },
-          { "@type": "ListItem", "position": 2, "name": "Disclaimer", "item": `${cleanBase}/disclaimer.html` },
-          { "@type": "ListItem", "position": 3, "name": "About", "item": `${cleanBase}/about.html` },
-          { "@type": "ListItem", "position": 4, "name": "Security Policy", "item": `${cleanBase}/security-policy.html` },
-          { "@type": "ListItem", "position": 5, "name": "Lisensi", "item": `${cleanBase}/lisensi.html` }
+          { "@type": "WebPage", "position": 1, "name": "Privacy Policy", "item": `${cleanBase}/privacy` },
+          { "@type": "WebPage", "position": 2, "name": "Disclaimer", "item": `${cleanBase}/disclaimer` },
+          { "@type": "WebPage", "position": 3, "name": "About", "item": `${cleanBase}/about` },
+          { "@type": "WebPage", "position": 4, "name": "Security Policy", "item": `${cleanBase}/security-policy` },
+          { "@type": "WebPage", "position": 5, "name": "Lisensi", "item": `${cleanBase}/lisensi` }
         ]
       }
     ]
