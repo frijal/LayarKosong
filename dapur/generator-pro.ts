@@ -9,33 +9,16 @@ const C = {
     cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno']
 };
 
-/**
- * Fungsi untuk membersihkan HTML Entities menjadi teks murni
- */
 const decodeHTML = (str: string) => {
-    const entities: Record<string, string> = {
-        '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"',
-        '&#39;': "'", '&apos;': "'", '&bull;': '•', '&ndash;': '–',
-        '&mdash;': '—', '&nbsp;': ' '
-    };
-    let t = str.replace(/&[a-z0-9#]+;/gi, (m) => entities[m.toLowerCase()] || m);
-    t = t.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
-    t = t.replace(/&#x([a-f0-9]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
-    return t.trim();
+    const entities: Record<string, string> = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&apos;': "'", '&bull;': '•', '&ndash;': '–', '&mdash;': '—', '&nbsp;': ' ' };
+    return str.replace(/&[a-z0-9#]+;/gi, (m) => entities[m.toLowerCase()] || m)
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&#x([a-f0-9]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16))).trim();
 };
 
-const slug = (t: any) => t.toString().toLowerCase().trim()
-.replace(/^[^\w\s]*/u,'')
-.replace(/ & /g,'-and-')
-.replace(/[^a-z0-9\s-]/g,'')
-.replace(/\s+/g,'-')
-.replace(/-+/g,'-');
+const slug = (t: any) => t.toString().toLowerCase().trim().replace(/^[^\w\s]*/u,'').replace(/ & /g,'-and-').replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
 
-const iso = (d: any) => {
-    const parsedDate = new Date(d);
-    const finalDate = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
-    return finalDate.toISOString().replace(/\.\d+Z$/, '+08:00');
-};
+const iso = (d: any) => new Date(isNaN(Date.parse(d)) ? new Date() : d).toISOString().replace(/\.\d+Z$/, '+08:00');
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
 
@@ -44,23 +27,23 @@ const mime = (u: string) => ({ 'png':'image/png', 'webp':'image/webp', 'svg':'im
 const buildRss = (t: string, items: any[], link: string, desc: string) =>
 `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${decodeHTML(t)}]]></title><link>${C.base}/</link><description>${desc}</description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it => `<item><title><![CDATA[${decodeHTML(it.title)}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(decodeHTML(it.title))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="0" type="${mime(it.img)}"/></item>`).join('')}</channel></rss>`;
 
-const distribute = async (f: string, cat: string, url: string, pre?: string) => {
+const distribute = async (f: string, cat: string, url: string, html: string) => {
     const dir = `${C.root}/${slug(cat)}`;
     await require('fs').promises.mkdir(dir, { recursive: true });
-    let html = pre || await Bun.file(`${C.art}/${f}`).text();
-    html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">`)
+    const content = html
+    .replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">`)
     .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">`)
     .replace(new RegExp(`${C.base}/artikel/${f.replace('.html','')}`, 'g'), url)
     .replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
-    await Bun.write(`${dir}/${f}`, html);
+    await Bun.write(`${dir}/${f}`, content);
 };
 
 (async () => {
-    console.log('🚀 Diet Mode V8.6 (Anti-Entity Edition)');
+    console.log('🚀 Diet Mode V8.7 (Enhanced Master-Date Integration)');
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(()=>({})),
-        Bun.file(`${C.root}/sitemap.txt`).text().catch(()=>''),
-        Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
+                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(()=>''),
+                                              Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
     ]);
 
     const urls = new Set(stm.split('\n').filter(Boolean));
@@ -70,56 +53,29 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     const valid = new Set();
 
     for (const f of files) {
-        let d: any = null, cat: any = null;
-
-        // 1. Cari di cache (artikel.json root)
-        for (const [c, its] of Object.entries(eta)) {
-            const found = (its as any[]).find(i => i[1] === f);
-            if (found) { d = [...found]; d[0] = decodeHTML(d[0]); cat = c; break; }
-        }
-
-        // --- FUNGSI OTOMATISASI PEMINDAHAN ---
-        if (d) {
-            let targetCat = null;
-            // Cek apakah ada instruksi kategori berbeda di artikel/artikel.json (master)
-            for (const [mc, mits] of Object.entries(mst)) {
-                if ((mits as any[]).find(i => i[1] === f)) { targetCat = mc; break; }
-            }
-            // Jika tidak ada di master, cek titleToCategory
-            if (!targetCat) targetCat = titleToCategory(d[0]);
-
-            // Jika kategori saat ini berbeda dengan target, paksa re-scan
-            if (cat !== targetCat) {
-                urls.delete(`${C.base}/${slug(cat)}/${f.replace('.html','')}`);
-                d = null;
-            }
-        }
-
-        // Lanjut proses jika data masih valid
-        if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html','')}`)) {
-            (final[cat] ??= []).push(d);
-            flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html','')}` });
-            valid.add(`${slug(cat)}/${f}`);
-            continue;
-        }
-
-        // 2. Jika tidak valid/berubah, baca file fisik
         const txt = await Bun.file(`${C.art}/${f}`).text();
-        const rawT = (txt.match(/<title>(.*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
-        const t = decodeHTML(rawT);
+        const t = decodeHTML((txt.match(/<title>(.*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim());
 
-        // Tentukan kategori (prioritas: Master JSON > titleToCategory)
-        let c = null;
+        // 1. Tentukan Kategori (Prioritas: Master JSON > titleToCategory)
+        let c: string | null = null;
         for (const [mc, mits] of Object.entries(mst)) {
             if ((mits as any[]).find(i => i[1] === f)) { c = mc; break; }
         }
         if (!c) c = titleToCategory(t);
 
+        // 2. Tentukan Tanggal (Prioritas: Master JSON > Meta HTML > File Stat)
+        let dateVal = null;
+        for (const mits of Object.values(mst)) {
+            const found = (mits as any[]).find(i => i[1] === f);
+            if (found && found[3]) { dateVal = found[3]; break; }
+        }
+        const date = dateVal || txt.match(/article:published_time" content="(.*?)"/i)?.[1] || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
+
         const url = `${C.base}/${slug(c)}/${f.replace('.html','')}`;
-        const date = txt.match(/article:published_time" content="(.*?)"/i)?.[1] || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
         const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html','')}.webp`;
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
 
+        // 3. Simpan data
         const newData = [t, f, img, iso(date), desc];
         await distribute(f, c, url, txt);
 
@@ -129,26 +85,80 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         valid.add(`${slug(c)}/${f}`);
     }
 
-    // Cleanup files lama & Sinkronisasi Sitemap
-    for (const s of C.cats) {
-        const d = `${C.root}/${s}`;
-        await require('fs').promises.mkdir(d, { recursive: true });
-        for (const f of [...new Bun.Glob("*.html").scanSync(d)]) {
-            if (f !== 'index.html' && !valid.has(`${s}/${f}`)) {
-                await require('fs').promises.unlink(`${d}/${f}`);
-                urls.delete(`${C.base}/${s}/${f.replace('.html','')}`);
-            }
+    // --- FUNGSI OTOMATISASI PEMINDAHAN ---
+    if (d) {
+        let targetCat = null;
+        // Cek apakah ada instruksi kategori berbeda di artikel/artikel.json (master)
+        for (const [mc, mits] of Object.entries(mst)) {
+            if ((mits as any[]).find(i => i[1] === f)) { targetCat = mc; break; }
+        }
+        // Jika tidak ada di master, cek titleToCategory
+        if (!targetCat) targetCat = titleToCategory(d[0]);
+
+        // Jika kategori saat ini berbeda dengan target, paksa re-scan
+        if (cat !== targetCat) {
+            urls.delete(`${C.base}/${slug(cat)}/${f.replace('.html','')}`);
+            d = null;
         }
     }
 
-    flat.sort((a,b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
-    await Promise.all([
-        Bun.write(`${C.root}/sitemap.txt`, [...urls].sort().join('\n')),
-                      Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2))
-    ]);
+    // Lanjut proses jika data masih valid
+    if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html','')}`)) {
+        (final[cat] ??= []).push(d);
+        flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html','')}` });
+        valid.add(`${slug(cat)}/${f}`);
+        continue;
+    }
 
-    // Build XML Sitemaps
-    let xP = '', xI = '', xV = '';
+    // 2. Jika tidak valid/berubah, baca file fisik
+    const txt = await Bun.file(`${C.art}/${f}`).text();
+
+
+
+    const rawT = (txt.match(/<title>(.*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
+    const t = decodeHTML(rawT);
+
+    // Tentukan kategori (prioritas: Master JSON > titleToCategory)
+    let c = null;
+    for (const [mc, mits] of Object.entries(mst)) {
+        if ((mits as any[]).find(i => i[1] === f)) { c = mc; break; }
+    }
+    if (!c) c = titleToCategory(t);
+
+    const url = `${C.base}/${slug(c)}/${f.replace('.html','')}`;
+    const date = txt.match(/article:published_time" content="(.*?)"/i)?.[1] || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
+    const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html','')}.webp`;
+    const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
+
+    const newData = [t, f, img, iso(date), desc];
+    await distribute(f, c, url, txt);
+
+    (final[c] ??= []).push(newData);
+    flat.push({ title: t, file: f, img, lastmod: iso(date), desc, category: c, loc: url });
+    urls.add(url);
+    valid.add(`${slug(c)}/${f}`);
+}
+
+// Cleanup files lama & Sinkronisasi Sitemap
+for (const s of C.cats) {
+    const d = `${C.root}/${s}`;
+    await require('fs').promises.mkdir(d, { recursive: true });
+    for (const f of [...new Bun.Glob("*.html").scanSync(d)]) {
+        if (f !== 'index.html' && !valid.has(`${s}/${f}`)) {
+            await require('fs').promises.unlink(`${d}/${f}`);
+            urls.delete(`${C.base}/${s}/${f.replace('.html','')}`);
+        }
+    }
+}
+
+flat.sort((a,b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+await Promise.all([
+    Bun.write(`${C.root}/sitemap.txt`, [...urls].sort().join('\n')),
+                  Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2))
+]);
+
+// Build XML Sitemaps
+let xP = '', xI = '', xV = '';
 for (const it of flat) {
     xP += `<url><loc>${it.loc}</loc><lastmod>${it.lastmod}</lastmod></url>`;
     xI += `<url><loc>${it.loc}</loc><lastmod>${it.lastmod}</lastmod><image:image><image:loc>${it.img}</image:loc><image:caption><![CDATA[${it.title}]]></image:caption></image:image></url>`;
@@ -279,5 +289,5 @@ if (feedTemplate) {
     await Bun.write(`${C.root}/feed.html`, finalFeedPage);
     console.log('✨ Static Feed Page Generated.');
 }
-console.log('✅ Selesai. Pindah kategori otomatis sukses.');
+console.log('✅ Sinkronisasi Selesai.');
 })();
