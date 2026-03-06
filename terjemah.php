@@ -16,7 +16,15 @@ foreach ($files as $file) {
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             'model' => 'mistral:latest',
-            'prompt' => "Translate the following Markdown content to English. Maintain the original Markdown structure and formatting:\n\n" . $content,
+            'prompt' => "You are a professional translator. Translate the following Markdown text into English. 
+CRITICAL RULES:
+1. Translate all content inside the Markdown, including headings, lists, and paragraphs.
+2. Keep all Markdown syntax (hashes, bold, italics, code blocks, links) exactly as they are.
+3. Do not omit any part of the text.
+4. Output only the translated English text, no conversational filler.
+
+Text to translate:
+" . $content,
             'stream' => false
         ]));
         
