@@ -84,7 +84,7 @@ const distribute = async (f: string, cat: string, url: string, html: string) => 
         urls.add(url);
         valid.add(`${slug(c)}/${f}`);
     }
-
+}
     // --- FUNGSI OTOMATISASI PEMINDAHAN ---
     if (d) {
         let targetCat = null;
