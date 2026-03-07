@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <!-- Meta dasar / SEO -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator THR Indonesia</title>
+<meta name="description" content="Kalkulator THR (Tunjangan Hari Raya) Indonesia — Kemenaker terbaru.">
+<meta name="keywords" content="THR, Tunjangan Hari Raya, Kalkulator THR, Kemenaker, Pajak THR, Gaji Lebaran">
+<meta name="author" content="Mas Rijal">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="Kalkulator THR Indonesia">
+<meta property="og:description" content="Kalkulator THR (Tunjangan Hari Raya) Indonesia — Kemenaker terbaru.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-thr.html">
+<meta property="og:image" content="https://pbs.twimg.com/media/HCz-ce2bQAElxgW.jpg">
+<meta property="og:site_name" content="Layar Kosong">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator THR Indonesia">
+<meta name="twitter:description" content="Kalkulator THR (Tunjangan Hari Raya) Indonesia — Kemenaker terbaru.">
+<meta name="twitter:image" content="https://pbs.twimg.com/media/HCz-ce2bQAElxgW.jpg">
+<meta name="twitter:site" content="@responaja">
+<meta name="twitter:creator" content="@responaja">
+
+<!-- Favicon / Manifest -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/styles.css">
+<script src="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/script.js"></script>
+</head>
+
+<body>
+    <!-- Ambient animated background behind the glass -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="bento-grid">
+
+        <!-- Header Bento -->
+        <header class="bento-item glass item-header">
+            <div>
+                <h1 class="text-gradient">Kalkulator THR</h1>
+                <p class="subtitle">Hitung THR presisi sesuai Peraturan Menteri Ketenagakerjaan Nomor 6 Tahun 2016 &
+                    Peraturan Pemerintah Nomor 36 Tahun 2021.</p>
+            </div>
+        </header>
+
+        <!-- Info Bento -->
+        <aside class="bento-item glass item-info">
+            <div class="info-content">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="info-icon">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <div class="info-text">
+                    <p><strong>Masa kerja ≥ 12 bulan</strong>: Berhak mendapat 1 bulan upah penuh (Gaji Pokok +
+                        Tunjangan Tetap).</p>
+                    <p><strong>Masa kerja 1–11 bulan</strong>: Dihitung proporsional (Masa Kerja / 12 × 1 bulan upah).
+                    </p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Form Bento -->
+        <main class="bento-item glass item-form">
+            <div class="field-group">
+                <label for="empName">Nama Karyawan</label>
+                <input type="text" id="empName" placeholder="Masukkan nama..." required>
+            </div>
+            <div class="field-row mt-3">
+                <div class="field-group">
+                    <label for="joinDate">Mulai Kerja</label>
+                    <input type="date" id="joinDate" required>
+                </div>
+                <div class="field-group">
+                    <label for="hariRayaDate">Hari Raya</label>
+                    <input type="date" id="hariRayaDate" required>
+                </div>
+            </div>
+
+            <div class="field-group mt-3">
+                <label for="gajiPokok">Gaji Pokok</label>
+                <div class="input-currency">
+                    <span class="currency-prefix">Rp</span>
+                    <input type="text" id="gajiPokok" inputmode="numeric" placeholder="5.000.000" required>
+                </div>
+            </div>
+
+            <div class="field-group mt-3">
+                <label for="tunjanganTetap">Tunjangan Tetap</label>
+                <div class="input-currency">
+                    <span class="currency-prefix">Rp</span>
+                    <input type="text" id="tunjanganTetap" inputmode="numeric" placeholder="0">
+                </div>
+            </div>
+
+            <button type="button" class="btn-primary mt-4" id="btnCalculate">
+                <span>Hitung THR Saya</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+            </button>
+        </main>
+
+        <!-- Result Bento -->
+        <section class="bento-item glass item-result hide-bento" id="resultCard">
+            <h2 class="result-label">Total THR Anda</h2>
+            <div class="result-amount-wrapper">
+                <span class="currency-symbol">Rp</span>
+                <span class="result-amount" id="resultAmount">0</span>
+            </div>
+            <p class="result-desc" id="resultDetails"></p>
+        </section>
+
+        <!-- Breakdown Bento -->
+        <section class="bento-item glass item-breakdown hide-bento" id="breakdownCard">
+            <div class="breakdown-header">
+                <h3>Rincian Hitungan</h3>
+                <button type="button" class="btn-print" id="btnPrint" aria-label="Cetak Resi" title="Cetak Resi THR">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </button>
+            </div>
+            <div class="breakdown-list" id="breakdownGrid"></div>
+        </section>
+
+    </div>
+
+    <!-- Hidden Receipt Template for Export -->
+    <div class="receipt-wrapper">
+        <div id="receiptTemplate" class="receipt-export">
+            <div class="receipt-brand">
+                <h2>RESI PEMBAYARAN THR</h2>
+                <p>Tunjangan Hari Raya Keagamaan</p>
+                <div class="receipt-recipient" id="receiptName"></div>
+            </div>
+
+            <div class="receipt-divider"></div>
+
+            <div class="receipt-list" id="receiptGrid"></div>
+
+            <div class="receipt-divider dashed"></div>
+
+            <div class="receipt-footer">
+                <p><strong>Apresiasi untuk Dedikasi Anda</strong><br>Terima kasih atas loyalitas dan kontribusi hebat
+                    Anda. Menjelang hari kemenangan, semoga tunjangan ini menyempurnakan kebahagiaan dan persiapan Anda
+                    menyambut Hari Raya bersama keluarga tercinta.</p>
+                <div class="receipt-date" id="receiptDate"></div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script></body>
+
+</html>
