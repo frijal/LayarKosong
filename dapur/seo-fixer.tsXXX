@@ -35,19 +35,13 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
 
         const ext = path.extname(url.pathname).toLowerCase();
         const isSvg = ext === '.svg';
-        const isGif = ext === '.gif';
+        const isGif = ext === '.gif'; // Deteksi GIF
 
         // Jika SVG/GIF, pakai ekstensi asli. Selain itu, paksa ke .webp (JPG/PNG).
         const finalExt = (isSvg || isGif) ? ext : '.webp';
 
         const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
-
-        // --- FIX URL ENCODING (%3D, %28, dll) ---
-        // decodeURIComponent akan merubah %3D jadi '=', dll.
-        // Lalu kita hapus karakter yang kurang ramah di filesystem.
-        const decodedPathname = decodeURIComponent(url.pathname).replace(/[:=()]/g, '');
-
-        const localPathName = ext ? decodedPathname.replace(ext, finalExt) : `${decodedPathname}${finalExt}`;
+        const localPathName = ext ? url.pathname.replace(ext, finalExt) : `${url.pathname}${finalExt}`;
         const localPath = path.join('img', safeHostname, localPathName);
 
         // Bun.file check jauh lebih cepat
@@ -67,8 +61,10 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
 
         // LOGIKA SELEKSI:
         if (isSvg || isGif) {
+            // Langsung tulis apa adanya (Kopi murni)
             await Bun.write(localPath, buffer);
         } else {
+            // Hanya JPG/PNG yang diproses Sharp ke WebP
             await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
         }
 
@@ -86,7 +82,7 @@ async function processFile(file: string, baseUrl: string) {
     const $ = load(rawContent, { decodeEntities: false });
     const head = $('head');
 
-    // 1. MIRRORING GAMBAR DALAM BODY
+    // 1. MIRRORING GAMBAR DALAM BODY (Paralel)
     const imgElements = $('img').toArray();
     await Promise.all(imgElements.map(async (el) => {
         const src = $(el).attr('src');
@@ -106,14 +102,17 @@ async function processFile(file: string, baseUrl: string) {
     const rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
     const rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
 
-    // --- LOGIKA TANGGAL (FIX REDECLARATION) ---
+    // --- PERBAIKAN DI SINI: Gunakan let dan hapus duplikasi baris ---
     let publishedTime = $('meta[property="article:published_time"]').attr('content');
     let modifiedTime = $('meta[property="article:modified_time"]').attr('content');
 
+    // Ambil waktu sekarang sebagai cadangan (Fallback)
     const now = new Date().toISOString();
 
+    // Hanya isi jika datanya TIDAK ADA (null/undefined)
     if (!publishedTime) publishedTime = now;
     if (!modifiedTime) modifiedTime = now;
+    // -------------------------------------------------------------
 
     const existingTags: string[] = [];
     $('meta[property="article:tag"]').each((_, el) => {
@@ -121,32 +120,47 @@ async function processFile(file: string, baseUrl: string) {
         if (tag) existingTags.push(tag);
     });
 
+        // Buat Fallback dari paragraf pertama jika deskripsi kosong
         const firstP = $('p').first().text().trim();
         const fallbackDesc = firstP ? prepareDesc(firstP.substring(0, 160)) : 'Layar Kosong - Catatan dan Opini.';
 
-        const finalMetaDesc = prepareDesc(rawMetaDesc || fallbackDesc);
-        const finalOgDesc = prepareDesc(rawOgDesc || rawMetaDesc || fallbackDesc);
-        const finalTwitterDesc = prepareDesc(rawTwitterDesc || rawMetaDesc || fallbackDesc);
+        // DIFERENSIASI: Masing-masing platform punya variabel sendiri
+        const finalMetaDesc = prepareDesc(rawMetaDesc || fallbackDesc); // Untuk Google
+        const finalOgDesc = prepareDesc(rawOgDesc || rawMetaDesc || fallbackDesc); // Untuk FB/WA (Lebih luwes)
+        const finalTwitterDesc = prepareDesc(rawTwitterDesc || rawMetaDesc || fallbackDesc); // Untuk X (Singkat/Punchy)
 
+        // Logika Gambar Meta (Tetap Mirroring)
         let metaImgUrl = $('meta[property="og:image"]').attr('content') ||
         $('meta[name="twitter:image"]').attr('content') ||
         $('img').first().attr('src') ||
-        '/thumbnail.webp';
+        '/thumbnail.webp'; // <--- FALLBACK SAKTI
 
+        // Jika gambar eksternal (http), lakukan mirroring. Jika lokal, biarkan saja.
         if (metaImgUrl && metaImgUrl.startsWith('http')) {
             const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
             if (mirroredPath.startsWith('/img')) {
                 metaImgUrl = `${baseUrl}${mirroredPath}`;
             }
         } else if (metaImgUrl.startsWith('/')) {
+            // Pastikan path lokal diawali dengan baseUrl agar bot sosmed bisa baca
             metaImgUrl = `${baseUrl}${metaImgUrl}`;
         }
 
         // --- 3. OPERASI STERILISASI (CLEANUP) ---
+        // 1. Set Identitas Dokumen
         $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
+
+        // 2. Sapu Bersih Semua Link Lama (Canonical, Icon, License)
         $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"]').remove();
+
+        // 3. Sapu Bersih Deskripsi (Semua platform & variasi penulisan)
         $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
+
+        // 4. Sapu Bersih Meta Sosmed & Identitas (Gunakan Selector Wildcard agar ringkas)
+        // Ini menghapus og:, twitter:, article:, bluesky:, fediverse:, dll.
         $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="twitter:"], meta[property^="article:"], meta[itemprop="image"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
+
+        // 5. Sapu Bersih Meta Branding & Crawler
         $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[property="fb:app_id"]').remove();
 
         // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
@@ -180,6 +194,7 @@ async function processFile(file: string, baseUrl: string) {
             `<meta property="article:author" content="https://facebook.com/frijal">`,
             `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
             `<meta property="fb:app_id" content="175216696195384">`,
+            // --- SEMUA TAG IMAGE BERKUMPUL DI BAWAH ---
             `<meta itemprop="image" content="${metaImgUrl}">`,
             `<meta name="twitter:image" content="${metaImgUrl}">`,
             `<meta property="twitter:image" content="${metaImgUrl}">`,
@@ -196,6 +211,7 @@ async function processFile(file: string, baseUrl: string) {
 
         head.append('\n    ' + metaTags.join('\n    ') + '\n');
 
+        // 4. BODY FIXES
         $('img').each((_, el) => {
             if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
         });
@@ -205,6 +221,7 @@ async function processFile(file: string, baseUrl: string) {
 
 async function fixSEO() {
     const baseUrl = BASE_URL;
+
     console.log('🧼 Memulai SEO Fixer (Bun Turbo TS Mode)...');
     const startTime = performance.now();
 
@@ -219,6 +236,7 @@ async function fixSEO() {
         return;
     }
 
+    // Batching agar tidak overload jika file sangat banyak (Chunk 5 file sekaligus)
     const CHUNK_SIZE = 5;
     for (let i = 0; i < files.length; i += CHUNK_SIZE) {
         const chunk = files.slice(i, i + CHUNK_SIZE);
