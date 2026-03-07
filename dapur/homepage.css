@@ -142,6 +142,21 @@
    flex-shrink: 0; /* Mencegah ikon gepeng kalau ruang sempit */
    transition: transform 0.3s ease;
  }
+ /* Pastikan H1 dengan class .logo mengikuti aturan display flex */
+ h1.logo {
+   margin: 0;
+   padding: 0;
+   font-size: 1.4rem; /* Sesuaikan dengan font-size .logo sebelumnya */
+ }
+
+ /* Pastikan link di dalam H1.logo mengambil seluruh area agar tetap bisa diklik */
+ h1.logo a {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   text-decoration: none;
+   color: inherit;
+ }
  .search-bar {
    background: rgba(150, 150, 150, 0.1);
    border: 1px solid var(--header-border);
