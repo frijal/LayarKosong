@@ -33,42 +33,45 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
             return externalUrl.replace(baseUrl, '');
         }
 
-        const ext = path.extname(url.pathname).toLowerCase();
+        // --- FIX EKSTENSI & ENCODING ---
+        let ext = path.extname(url.pathname).toLowerCase();
         const isSvg = ext === '.svg';
         const isGif = ext === '.gif';
 
-        // Jika SVG/GIF, pakai ekstensi asli. Selain itu, paksa ke .webp (JPG/PNG).
+        // Jika tidak ada ekstensi (ext === ""), kita paksa finalExt jadi .webp
         const finalExt = (isSvg || isGif) ? ext : '.webp';
 
         const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
 
-        // --- FIX URL ENCODING (%3D, %28, dll) ---
-        // decodeURIComponent akan merubah %3D jadi '=', dll.
-        // Lalu kita hapus karakter yang kurang ramah di filesystem.
+        // Decode dan hapus karakter yang dilarang filesystem
         const decodedPathname = decodeURIComponent(url.pathname).replace(/[:=()]/g, '');
 
-        const localPathName = ext ? decodedPathname.replace(ext, finalExt) : `${decodedPathname}${finalExt}`;
+        // Jika ada ekstensi, ganti ke finalExt. Jika TIDAK ADA, tambahkan finalExt.
+        const localPathName = ext
+        ? decodedPathname.replace(ext, finalExt)
+        : `${decodedPathname}${finalExt}`;
+
         const localPath = path.join('img', safeHostname, localPathName);
 
         // Bun.file check jauh lebih cepat
         const fileTarget = Bun.file(localPath);
         if (await fileTarget.exists()) return `/${localPath.replace(/\\/g, '/')}`;
 
-        // Download pakai Fetch Native Bun
+        // Download
         const response = await fetch(externalUrl, {
             headers: { 'User-Agent': 'Mozilla/5.0' }
         });
         if (!response.ok) throw new Error('Download Gagal');
 
         const buffer = Buffer.from(await response.arrayBuffer());
-
-        // Membuat folder tujuan
         await mkdir(path.dirname(localPath), { recursive: true });
 
-        // LOGIKA SELEKSI:
+        // --- PROSES SHARP ---
         if (isSvg || isGif) {
             await Bun.write(localPath, buffer);
         } else {
+            // Sharp akan mendeteksi format asli dari buffer (magic bytes)
+            // lalu mengubahnya menjadi webp
             await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
         }
 
@@ -106,12 +109,10 @@ async function processFile(file: string, baseUrl: string) {
     const rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
     const rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
 
-    // --- LOGIKA TANGGAL (FIX REDECLARATION) ---
     let publishedTime = $('meta[property="article:published_time"]').attr('content');
     let modifiedTime = $('meta[property="article:modified_time"]').attr('content');
 
     const now = new Date().toISOString();
-
     if (!publishedTime) publishedTime = now;
     if (!modifiedTime) modifiedTime = now;
 
