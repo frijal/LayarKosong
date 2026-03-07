@@ -68,7 +68,7 @@ for (const filePath of allFiles) {
     const isUsed = await checkExistenceGlobally(SEARCH_DIR, nameOnly, filePath);
 
     if (!isUsed) {
-        console.log("❌ HILANG");
+        console.log("❌ JOMBLO");
         fileHilang.push(filePath);
     } else {
         console.log("✅ OK");
