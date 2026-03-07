@@ -71,7 +71,7 @@ jobs:
             -not -path '*/img/*' \
             -not -path '*/mini/*' \
             -not -path '*/sementara/*' \
-            -exec sed -i |s#$SEARCH#$REPLACE#g| {} +
+            -exec sed -i "s#$SEARCH#$REPLACE#g" {} +
           
           echo "✅ Penggantian selesai!"
 
