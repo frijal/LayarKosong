@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.72
-last_updated: 2026-03-06
+document_version: 16.73
+last_updated: 2026-03-07
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 6 Maret 2026)
-> Menampilkan 1025 artikel versi 16.72.
+## Index Artikel Terbaru (Updated: 7 Maret 2026)
+> Menampilkan 1027 artikel versi 16.73.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -851,6 +851,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) – Panduan Lengkap](https://dalam.web.id/warta-tekno/fix-windows-network-drive-smb) : Panduan langkah demi langkah memperbaiki akses network drive di Windows 10/11: mapping SMB share dengan credentials yang benar dan reconnect otomatis. Atasi error access denied, multiple connections, dan password prompt berulang.
+- [Cara Memblokir Akses Internet Windows 11 untuk Dial-Up](https://dalam.web.id/warta-tekno/cara-blokir-internet-windows-11-dial-up) : memblokir internet di Windows 11 untuk pengguna dial-up: kurangi background traffic atau blok total dengan firewall. Ikuti langkah mudahnya!
 - [GambitHunter Juara Hackathon OpenAI: AI Pembasmi Judi Online Buatan Indonesia](https://dalam.web.id/warta-tekno/gambit-hunter-juara-hackathon) : Tim Software Engineer Indonesia raih Juara 2 di OpenAI Codex Hackathon Singapura lewat GambitHunter, aplikasi AI pemberantas judi online. Simak cara kerjanya!
 - [MOS – Sistem Operasi Modular Ringan untuk Homelab dan Server rumahan](https://dalam.web.id/warta-tekno/mos-modular-operation-system) : MOS adalah OS berbasis Devuan untuk server rumah dan homelab. Ringan, modular, siap pakai dengan Docker, LXC, QEMU, mergerfs, SnapRAID. Fokus pada privasi dan kesederhanaan.
 - [Google Peringatkan 1 Miliar Ponsel Android Kini Berisiko – Apa yang Perlu Anda Tahu](https://dalam.web.id/warta-tekno/google-android-1-miliar-berisiko) : Google mengeluarkan peringatan serius: lebih dari 1 miliar ponsel Android tidak lagi mendapat pembaruan keamanan sistem. Simak penyebab, risiko, dan solusinya.
