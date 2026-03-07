@@ -14,7 +14,7 @@ const allFiles = await Array.fromAsync(globScanner.scan({
 
 // --- 2. KONFIGURASI SEARCHER ---
 const SEARCH_DIR = './';
-const SKIP_FOLDERS = new Set(['node_modules', 'opini-sosial', 'olah-media', 'lainnya', 'jejak-sejarah', 'gaya-hidup', 'warta-tekno', 'sistem-terbuka', '.git', 'sementara', 'artikelx', 'mini', 'XXX']);
+const SKIP_FOLDERS = new Set(['node_modules', '.git', 'sementara', 'artikelx', 'mini', 'XXX']);
 const EXTENSIONS = new Set(['.html']);
 
 /**

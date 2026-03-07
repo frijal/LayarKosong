@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Listrik Real-Time 2026</title>
-    
+
     <meta name="keywords" content="kalkulator listrik, tagihan listrik PLN 2026, hitung biaya listrik real-time, tarif listrik 2026, hemat listrik, kalkulator kWh">
     <meta name="news_keywords" content="kalkulator listrik, tarif listrik PLN, tagihan listrik 2026, hemat energi">
     <link rel="stylesheet" href="/ext/fontawesome.css">
@@ -121,82 +121,18 @@
             font-size: 0.9rem;
         }
         @media (max-width: 768px) {
-        .device-row { 
-        grid-template-columns: 1fr 1fr; 
+        .device-row {
+        grid-template-columns: 1fr 1fr;
         gap: 8px; /* Biar lebih rapat sedikit di HP */
         }
         .device-row div:first-child { grid-column: span 2; }
-        .share-grid { 
-        grid-template-columns: 1fr; 
+        .share-grid {
+        grid-template-columns: 1fr;
         margin-bottom: 50px; /* Tambah margin bawah biar gak nabrak footer */
         }
         }
     </style>
 <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 
     <meta property="og:locale" content="id_ID">
@@ -228,10 +164,10 @@
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <meta property="fb:app_id" content="175216696195384">
-    <meta itemprop="image" content="https://dalam.web.id/thumbnail.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
+    <meta property="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/G9rLUCkaQAA4VLO.webp">
     <meta property="og:image:alt" content="Kalkulator Listrik Real-Time 2026">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="675">
@@ -323,7 +259,7 @@
         const watts = document.querySelectorAll('.dev-watt');
         const hours = document.querySelectorAll('.dev-hours');
         let totalKwh = 0;
-        let listWA = ""; 
+        let listWA = "";
         for (let i = 0; i < names.length; i++) {
             let n = names[i].value || "Alat s/n";
             let q = parseFloat(qtys[i].value) || 0;
@@ -337,13 +273,13 @@
                 // Format rupiah per alat
                 let formatRpAlat = hargaPerAlat.toLocaleString('id-ID', { maximumFractionDigits: 0 });
                 // Format baris: * Nama (Watt x Unit x Jam = Rp. Harga)
-                listWA += `* ${n} (${w} watt x ${q} unit x ${h} jam = Rp. ${formatRpAlat})%0A`; 
+                listWA += `* ${n} (${w} watt x ${q} unit x ${h} jam = Rp. ${formatRpAlat})%0A`;
             }
         }
         const totalRupiah = totalKwh * tarif;
         const formatDuit = "Rp " + totalRupiah.toLocaleString('id-ID', { maximumFractionDigits: 0 });
         document.getElementById('total-tagihan').innerText = formatDuit;
-        document.getElementById('summary-info').innerHTML = totalKwh > 0 
+        document.getElementById('summary-info').innerHTML = totalKwh > 0
             ? `Total Konsumsi: <strong>${totalKwh.toFixed(2)} kWh</strong> / Bulan`
             : "Silakan masukkan data alat...";
         resultState = { total: formatDuit, list: listWA };

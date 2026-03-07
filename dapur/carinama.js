@@ -9,7 +9,7 @@ if (!SEARCH_QUERY) {
     process.exit(1);
 }
 const SEARCH_DIR = './';
-const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini']);
+const SKIP_FOLDERS = new Set(['node_modules', '.git', 'img', 'sementara', 'artikelx', 'mini', 'opini-sosial', 'olah-media', 'lainnya', 'jejak-sejarah', 'gaya-hidup', 'warta-tekno', 'sistem-terbuka']);
 
 // Ekstensi yang akan dipindai (tambahkan atau kurangi sesuai kebutuhan)
 const EXTENSIONS = new Set(['.html', '.js', '.yml', '.ts', '.py', '.css']);
