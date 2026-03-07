@@ -102,8 +102,17 @@ async function processFile(file: string, baseUrl: string) {
     const rawOgDesc = $('meta[property="og:description"]').attr('content') || '';
     const rawTwitterDesc = $('meta[name="twitter:description"]').attr('content') || '';
 
-    const publishedTime = $('meta[property="article:published_time"]').attr('content');
-    const modifiedTime = $('meta[property="article:modified_time"]').attr('content');
+    // --- PERBAIKAN DI SINI: Gunakan let dan hapus duplikasi baris ---
+    let publishedTime = $('meta[property="article:published_time"]').attr('content');
+    let modifiedTime = $('meta[property="article:modified_time"]').attr('content');
+
+    // Ambil waktu sekarang sebagai cadangan (Fallback)
+    const now = new Date().toISOString();
+
+    // Hanya isi jika datanya TIDAK ADA (null/undefined)
+    if (!publishedTime) publishedTime = now;
+    if (!modifiedTime) modifiedTime = now;
+    // -------------------------------------------------------------
 
     const existingTags: string[] = [];
     $('meta[property="article:tag"]').each((_, el) => {
