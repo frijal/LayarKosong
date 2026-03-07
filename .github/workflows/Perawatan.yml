@@ -84,27 +84,27 @@ jobs:
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest --no-save
           
           # Mapping Highlight.js & Font Awesome (Statis Copy)
+          cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
+          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
-          cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
-          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/prism-okaidia.min.css
-          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/prism.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-dark.min.css dapur/atom-one-dark.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/atom-one-light.min.css dapur/atom-one-light.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/default.min.css dapur/prism.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/github*.css dapur/
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/monokai.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/prism-okaidia.min.css
+          cp node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
           cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
-          cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
-          cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
           # Metadata Tanpa Tanggal          
-          HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
           H2C_VER=$(cat node_modules/html2canvas/package.json | jq -r .version)
           H2PDF_VER=$(cat node_modules/html2pdf.js/package.json | jq -r .version)
+          HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nhtml2canvas=$H2C_VER" | sort > mini/asset-info.txt
 
       # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
