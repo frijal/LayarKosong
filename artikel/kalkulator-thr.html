@@ -8,29 +8,83 @@
 <meta name="keywords" content="THR, Tunjangan Hari Raya, Kalkulator THR, Kemenaker, Pajak THR, Gaji Lebaran">
 
 
-<!-- Open Graph / Social Media -->
-
-
-
-
-
-
-
-<!-- Twitter Card -->
-
-
-
-
-
-
-
-<!-- Favicon / Manifest -->
-
-
 <link rel="apple-touch-icon" href="/favicon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/styles.css">
 <script src="https://cdn.jsdelivr.net/gh/fadhilramadan/Kalkulator-THR/script.js"></script>
+
+    
+    
+    
+    
+    
+    
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<style>
+/* Gaya dasar tabel */
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    background: white;
+}
+
+.responsive-table th, .responsive-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.responsive-table thead {
+    background-color: #f4f4f4;
+}
+
+/* Membuat tabel bisa di-scroll secara horizontal di layar kecil */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Responsivitas untuk layar HP */
+@media screen and (max-width: 600px) {
+    .responsive-table th, .responsive-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+</style>
 
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-thr">
@@ -87,10 +141,9 @@
         <!-- Header Bento -->
         <header class="bento-item glass item-header">
             <div>
-                <h1 class="text-gradient">Kalkulator THR</h1>
+                <h1 class="text-gradient">Kalkulator Tunjangan Hari Raya</h1>
 <div id="iposbrowser"></div>
-                <p class="subtitle">Hitung THR presisi sesuai Peraturan Menteri Ketenagakerjaan Nomor 6 Tahun 2016 &amp;
-                    Peraturan Pemerintah Nomor 36 Tahun 2021.</p>
+                <p class="subtitle">Bisa digunakan untuk menghitung Seluruh THR bagi Hari Raya yang ada di Indonesia, yaitu Idul Fitri, Natal, Nyepi, Waisak, dan Imlek.</p>
             </div>
         </header>
 
@@ -110,7 +163,85 @@
                 </div>
             </div>
         </aside>
+         <aside class="bento-item glass item-info">
+            <div class="info-content">
 
+                <div class="info-text">
+
+<p><a href="https://opensource.org/licenses/MIT"><img src="https://dalam.web.id/img/img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+
+<p><strong>Kalkulator THR</strong> adalah alat bantu berbasis web untuk menghitung estimasi Tunjangan Hari Raya Keagamaan secara presisi sesuai regulasi ketenagakerjaan di Indonesia (Permenaker No. 6 Tahun 2016 &amp; PP No. 36 Tahun 2021).</p>
+
+<p>Dibuat dengan antarmuka modern, aplikasi ini memudahkan karyawan maupun HR untuk melakukan simulasi perhitungan tanpa perlu rumus manual yang rumit.</p>
+
+<h2>✨ Fitur Utama</h2>
+<ul>
+<li><strong>Hitung Presisi</strong>: Otomatis membedakan perhitungan Masa Kerja ≥ 12 bulan (Penuh) dan 1–11 bulan (Proporsional).</li>
+<li><strong>Export Resi</strong>: Unduh hasil perhitungan dalam bentuk gambar (PNG) yang elegan untuk disimpan atau dibagikan.</li>
+<li><strong>Modern UI</strong>: Desain Bento Grid dengan efek Glassmorphism dan latar belakang ambient yang dinamis.</li>
+<li><strong>Live Currency</strong>: Input angka otomatis diformat ke Rupiah (IDR) secara real-time.</li>
+<li><strong>Mobile Friendly</strong>: Responsif untuk berbagai ukuran layar.</li>
+</ul>
+
+<h2>⚖️ Dasar Hukum Perhitungan</h2>
+<p>Aplikasi ini mengikuti pedoman resmi dari regulasi ketenagakerjaan Indonesia:</p>
+
+<h3>📜 Regulasi yang Digunakan</h3>
+<div class="table-wrapper">
+    <table class="responsive-table">
+    <thead>
+<tr>
+<th>#</th>
+<th>Peraturan</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Peraturan Menteri Ketenagakerjaan No. 6 Tahun 2016</strong></td>
+<td>Tentang Tunjangan Hari Raya Keagamaan Bagi Pekerja/Buruh di Perusahaan</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Peraturan Pemerintah No. 36 Tahun 2021</strong></td>
+<td>Tentang Pengupahan (Pasal 54-57)</td>
+</tr>
+</tbody>
+</table></div>
+
+<h3>📋 Ketentuan Perhitungan</h3>
+<ol>
+<li><strong>Masa kerja ≥ 12 bulan</strong>: Berhak mendapatkan <strong>1 bulan upah</strong> (Gaji Pokok + Tunjangan Tetap).</li>
+<li><strong>Masa kerja 1–11 bulan</strong>: Dihitung proporsional dengan rumus: <code>(Masa Kerja / 12) × 1 Bulan Upah</code></li>
+<li><strong>Masa kerja &lt; 1 bulan</strong>: Belum berhak mendapatkan THR.</li>
+</ol>
+
+<h3>💡 Komponen Upah yang Dihitung</h3>
+<ul>
+<li>✅ <strong>Gaji Pokok</strong></li>
+<li>✅ <strong>Tunjangan Tetap</strong> (tunjangan yang diberikan secara tetap setiap bulan)</li>
+<li>❌ <strong>Tunjangan Tidak Tetap</strong> (bonus, insentif, uang lembur, dll.)</li>
+</ul>
+
+
+<h3>Setelah Aplikasi Terbuka:</h3>
+<ol>
+<li>Masukkan <strong>Nama Karyawan</strong>.</li>
+<li>Masukkan <strong>Tanggal Mulai Kerja</strong> dan <strong>Tanggal Hari Raya</strong>.</li>
+<li>Masukkan jumlah <strong>Gaji Pokok</strong> dan <strong>Tunjangan Tetap</strong> (jika ada).</li>
+<li>Klik tombol <strong>"Hitung THR Saya"</strong>.</li>
+<li>Hasil perhitungan akan muncul di layar.</li>
+<li>Untuk menyimpan hasil, klik tombol <strong>Download Printer</strong> di bagian hasil.</li>
+</ol>
+
+
+<h2>📄 Lisensi</h2>
+<p>Proyek ini dilisensikan di bawah <strong>MIT License</strong>. Anda bebas menggunakan, memodifikasi, dan mendistribusikan kode ini untuk keperluan pribadi maupun komersial.</p>
+
+                </div>
+            </div>
+        </aside>
         <!-- Form Bento -->
         <main class="bento-item glass item-form">
             <div class="field-group">
@@ -202,6 +333,14 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
 
 <script src="/ext/html2canvas.min.js"></script>
 
