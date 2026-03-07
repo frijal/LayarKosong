@@ -81,7 +81,7 @@ jobs:
       - name: 🌈 Sync & Map Assets
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
-          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest --no-save
+          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest --no-save
           
           # Mapping Highlight.js & Font Awesome (Statis Copy)
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
@@ -94,15 +94,16 @@ jobs:
           cp node_modules/@highlightjs/cdn-assets/styles/monokai.min.css dapur/monokai.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
           cp node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
-          
+          cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js          
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
-          # Metadata Tanpa Tanggal
+          # Metadata Tanpa Tanggal          
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
-          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER" | sort > mini/asset-info.txt
+          H2C_VER=$(cat node_modules/html2canvas/package.json | jq -r .version)
+          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nhtml2canvas=$H2C_VER" | sort > mini/asset-info.txt
 
       # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
       - name: 🧹 Jalankan Sapu Bersih (Audit)
