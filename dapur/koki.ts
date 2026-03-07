@@ -8,7 +8,7 @@ const menuAndalan = [
 ];
 
 const menuAsli = [
-"bookmark.json", "icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "highlight.js", "monokai.min.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "vs-dark.min.css", "vs.min.css", "html2canvas.min.js"
+"bookmark.json", "icons", "fontawesome-webfonts", "fontawesome.css", "atom-one-dark.min.css", "atom-one-light.min.css", "default.min.css", "github-dark-dimmed.min.css", "github-dark.min.css", "github.min.css", "highlight.js", "monokai.min.css", "prism.min.css", "prism-okaidia.min.css", "prism-tomorrow.min.css", "prism-toolbar.min.css", "vs-dark.min.css", "vs.min.css", "html2canvas.min.js", "html2pdf.bundle.min.js"
 ];
 
 const sourceDir = import.meta.dir;
