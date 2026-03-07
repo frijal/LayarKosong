@@ -46,6 +46,14 @@ my @MAP = (
   { rx => qr{https://.*/highlight\.min\.js}i, repl => '/ext/highlight.js' },
   { rx => qr{https://.*/styles/github(-dark)?\.min\.css}i, repl => '/ext/github-dark.min.css' },
   { rx => qr{https://.*/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
+
+  # --- HTML2CANVAS ---
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/html2canvas/[\d\.]+/html2canvas\.min\.js}i, repl => '/ext/html2canvas.min.js' },
+  { rx => qr{https://html2canvas\.hertzen\.com/dist/html2canvas\.min\.js}i, repl => '/ext/html2canvas.min.js' },
+  { rx => qr{https://cdn\.jsdelivr\.net/npm/html2canvas@[\d\.]+/dist/html2canvas\.min\.js}i, repl => '/ext/html2canvas.min.js' },
+
+  # --- HTML2PDF.JS ---
+  { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/html2pdf\.js/[\d\.]+/html2pdf\.bundle\.min\.js}i, repl => '/ext/html2pdf.bundle.min.js' },
 );
 
 ## 🔄 FUNCTION: URL Replacement
