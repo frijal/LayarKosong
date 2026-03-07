@@ -3,11 +3,11 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, basename, extname } from "node:path";
 
 // --- 1. KONFIGURASI SCANNER (Pakai Bun.Glob bawaan) ---
-const globScanner = new Bun.Glob("**/*.{py,ts,js,sh}");
+const globScanner = new Bun.Glob("**/*.{webp,py,ts,js,sh}");
 
 const allFiles = await Array.fromAsync(globScanner.scan({
     ignore: [
-        "node_modules/**", "dist/**", "mini", "artikel/**", "ext/**",
+        "node_modules/**", "dist/**", "mini", "ext/**",
         "sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**", "functions/**"
     ]
 }));
