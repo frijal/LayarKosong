@@ -75,12 +75,39 @@ jobs:
           
           echo "✅ Penggantian selesai!"
 
-      - name: "Check Git Status"
+      - name: Check Git Status
         id: status
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
+            # Optional: list changed files for PR body
+            git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//' > changed_files.txt
+            echo "changed_files=$(cat changed_files.txt)" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
           fi
+
+      - name: Create Pull Request
+        if: steps.status.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: ganti text pada file ${{ github.event.inputs.extensions }}"
+          branch: "ganti-txt/${{ github.run_id }}"
+          delete-branch: true
+          title: "Mass Replace (${{ github.event.inputs.extensions }}): ${{ github.event.inputs.search_text }}"
+          body: |
+            ## 🤖 Automated Replacement Report
+
+            - **Workflow Run:** `${{ github.workflow }}`
+            - **Waktu Eksekusi:** `${{ github.event.head_commit.timestamp || github.event.repository.pushed_at }}`
+            - **Cari:** `${{ github.event.inputs.search_text }}`
+            - **Ganti:** `${{ github.event.inputs.replace_text }}`
+            - **Ekstensi:** `${{ github.event.inputs.extensions }}`
+            - **Folder:** `${{ github.event.inputs.folder }}`
+
+            ### 📝 Daftar File yang Diubah
+            ```text
+            ${{ steps.status.outputs.changed_files || 'Tidak ada file yang berubah' }}
+            ```
