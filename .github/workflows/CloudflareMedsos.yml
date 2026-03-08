@@ -108,7 +108,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: bun run dapur/post-to-discord.ts
 
-      - name: 🚀 7. Process & Send to Facebook Page
+      - name: 🚀 7. Facebook Page Process & Sent
         if: github.event_name == 'schedule' || inputs.task == 'all' || inputs.task == 'facebook'
         continue-on-error: true
         env:
