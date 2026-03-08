@@ -33,27 +33,35 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
             return externalUrl.replace(baseUrl, '');
         }
 
-        // --- LOGIKA PENAMAAN FILE (DENGAN HASH) ---
-        // Menggunakan Hash agar URL panjang (seperti Facebook) tetap aman di filesystem
-        const fileHash = Bun.hash(externalUrl).toString(16);
-        let ext = path.extname(url.pathname).split('?')[0].toLowerCase(); // Buang query string dari ekstensi
+        // --- STRATEGI PENAMAAN FILE ---
+        // 1. Ambil format dari query ?format= (penting buat Twitter/X)
+        const paramFormat = url.searchParams.get('format');
 
-        const isSvg = ext === '.svg';
-        const isGif = ext === '.gif';
-        const finalExt = (isSvg || isGif) ? ext : '.webp';
+        // 2. Ambil ekstensi dari pathname (fallback)
+        const pathExt = path.extname(url.pathname).toLowerCase();
+
+        // 3. Gabungkan: prioritaskan paramFormat, jika tidak ada baru gunakan pathExt
+        const detectedExt = paramFormat ? `.${paramFormat}` : pathExt;
+
+        // 4. Buat hash dari URL bersih (tanpa query) agar nama file konsisten
+        const cleanUrl = externalUrl.split('?')[0];
+        const fileHash = Bun.hash(cleanUrl).toString(16);
+
+        const isSvg = detectedExt === '.svg';
+        const isGif = detectedExt === '.gif';
+        const finalExt = (isSvg || isGif) ? detectedExt : '.webp';
 
         const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
         const localPath = path.join('img', safeHostname, `${fileHash}${finalExt}`);
 
-        // Cek jika file sudah ada
+        // Cek file
         const fileTarget = Bun.file(localPath);
         if (await fileTarget.exists()) return `/${localPath.replace(/\\/g, '/')}`;
 
-        // Download dengan Header agar tidak diblokir CDN (Facebook/Cloudflare)
+        // Download
         const response = await fetch(externalUrl, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                                     'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.160 Safari/537.36'
             }
         });
         if (!response.ok) throw new Error(`Download Gagal: ${response.status}`);
@@ -65,16 +73,14 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
         if (isSvg || isGif) {
             await Bun.write(localPath, buffer);
         } else {
-            // Ubah semua format (JPG/PNG/HEIC) ke WebP
             await sharp(buffer)
-            .rotate() // Menjaga orientasi foto HP agar tidak miring
+            .rotate() // Penting buat foto HP agar tidak miring
             .webp({ quality: 85, effort: 6 })
             .toFile(localPath);
         }
 
         return `/${localPath.replace(/\\/g, '/')}`;
     } catch (err) {
-        // console.error(`Gagal memproses: ${externalUrl}`);
         return externalUrl;
     }
 }
