@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.81
+document_version: 16.82
 last_updated: 2026-03-08
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 8 Maret 2026)
-> Menampilkan 1029 artikel versi 16.81.
+> Menampilkan 1030 artikel versi 16.82.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -853,6 +853,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Koperasi Desa: Berhenti Kosmetik, Mulai Menguasai Pasar](https://dalam.web.id/warta-tekno/koperasi-desa-berhenti-kosmetik-menguasai-pasar) : Koperasi desa sering gagal karena hanya jadi pengecer. Pelajari dari KUD Minatani, Koperasi Susu Warga Mulya, dan CU Keling Kumang yang sukses kuasai pasar.
 - [Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) – Panduan Lengkap](https://dalam.web.id/warta-tekno/fix-windows-network-drive-smb) : Panduan langkah demi langkah memperbaiki akses network drive di Windows 10/11: mapping SMB share dengan credentials yang benar dan reconnect otomatis. Atasi error access denied, multiple connections, dan password prompt berulang.
 - [Cara Memblokir Akses Internet Windows 11 untuk Dial-Up](https://dalam.web.id/warta-tekno/cara-blokir-internet-windows-11-dial-up) : memblokir internet di Windows 11 untuk pengguna dial-up: kurangi background traffic atau blok total dengan firewall. Ikuti langkah mudahnya!
 - [GambitHunter Juara Hackathon OpenAI: AI Pembasmi Judi Online Buatan Indonesia](https://dalam.web.id/warta-tekno/gambit-hunter-juara-hackathon) : Tim Software Engineer Indonesia raih Juara 2 di OpenAI Codex Hackathon Singapura lewat GambitHunter, aplikasi AI pemberantas judi online. Simak cara kerjanya!
