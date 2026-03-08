@@ -33,35 +33,30 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
             return externalUrl.replace(baseUrl, '');
         }
 
-        // --- FIX EKSTENSI & ENCODING ---
-        let ext = path.extname(url.pathname).toLowerCase();
+        // --- LOGIKA PENAMAAN FILE (DENGAN HASH) ---
+        // Menggunakan Hash agar URL panjang (seperti Facebook) tetap aman di filesystem
+        const fileHash = Bun.hash(externalUrl).toString(16);
+        let ext = path.extname(url.pathname).split('?')[0].toLowerCase(); // Buang query string dari ekstensi
+
         const isSvg = ext === '.svg';
         const isGif = ext === '.gif';
-
-        // Jika tidak ada ekstensi (ext === ""), kita paksa finalExt jadi .webp
         const finalExt = (isSvg || isGif) ? ext : '.webp';
 
         const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, '_');
+        const localPath = path.join('img', safeHostname, `${fileHash}${finalExt}`);
 
-        // Decode dan hapus karakter yang dilarang filesystem
-        const decodedPathname = decodeURIComponent(url.pathname).replace(/[:=()]/g, '');
-
-        // Jika ada ekstensi, ganti ke finalExt. Jika TIDAK ADA, tambahkan finalExt.
-        const localPathName = ext
-        ? decodedPathname.replace(ext, finalExt)
-        : `${decodedPathname}${finalExt}`;
-
-        const localPath = path.join('img', safeHostname, localPathName);
-
-        // Bun.file check jauh lebih cepat
+        // Cek jika file sudah ada
         const fileTarget = Bun.file(localPath);
         if (await fileTarget.exists()) return `/${localPath.replace(/\\/g, '/')}`;
 
-        // Download
+        // Download dengan Header agar tidak diblokir CDN (Facebook/Cloudflare)
         const response = await fetch(externalUrl, {
-            headers: { 'User-Agent': 'Mozilla/5.0' }
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                                     'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8'
+            }
         });
-        if (!response.ok) throw new Error('Download Gagal');
+        if (!response.ok) throw new Error(`Download Gagal: ${response.status}`);
 
         const buffer = Buffer.from(await response.arrayBuffer());
         await mkdir(path.dirname(localPath), { recursive: true });
@@ -70,13 +65,16 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
         if (isSvg || isGif) {
             await Bun.write(localPath, buffer);
         } else {
-            // Sharp akan mendeteksi format asli dari buffer (magic bytes)
-            // lalu mengubahnya menjadi webp
-            await sharp(buffer).webp({ quality: 85 }).toFile(localPath);
+            // Ubah semua format (JPG/PNG/HEIC) ke WebP
+            await sharp(buffer)
+            .rotate() // Menjaga orientasi foto HP agar tidak miring
+            .webp({ quality: 85, effort: 6 })
+            .toFile(localPath);
         }
 
         return `/${localPath.replace(/\\/g, '/')}`;
     } catch (err) {
+        // console.error(`Gagal memproses: ${externalUrl}`);
         return externalUrl;
     }
 }
