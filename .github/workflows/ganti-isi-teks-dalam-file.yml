@@ -90,7 +90,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.status.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        uses: peter-evans/create-pull-request@a45d1fb447fcaf601166e405fd4f335cde1a8aa8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: ganti text pada file ${{ github.event.inputs.extensions }}"
