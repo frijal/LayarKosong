@@ -231,7 +231,7 @@ async function fixSEO() {
     }
 
     const duration = (performance.now() - startTime) / 1000;
-    console.log(`\n✅ Selesai! ${files.length} file diproses dalam ${duration.toFixed(2)} detik.`);
+    console.log(`\n✅ Selesai! ${files.length} judul artikel diproses dalam ${duration.toFixed(2)} detik.`);
 }
 
 fixSEO().catch(err => console.error(err));
