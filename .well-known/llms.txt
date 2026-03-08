@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.82
+document_version: 16.83
 last_updated: 2026-03-08
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 8 Maret 2026)
-> Menampilkan 1030 artikel versi 16.82.
+> Menampilkan 1035 artikel versi 16.83.
 
 ## Gaya Hidup
 - [Jangan Mudah Menghakimi Orang Lain: Belajar Menjaga Hati dan Lisan dalam Islam](https://dalam.web.id/gaya-hidup/jangan-mudah-menghakimi-orang-lain) : Jangan mudah menghakimi orang lain karena apa yang terlihat belum tentu seperti yang kita sangka. Pelajari bahaya suudzon, pentingnya husnuzan, dan cara menjaga hati serta lisan menurut Islam.
@@ -112,6 +112,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Seruan Padjadjaran: Unpad Peringatkan Bahaya BoP, ART, dan Agresi Israel](https://dalam.web.id/jejak-sejarah/seruan-padjadjaran-bop-art-israel-iran) : Dewan Profesor Unpad serukan kajian kritis atas Board of Peace (BoP), Agreement on Reciprocal Trade (ART) dengan AS, dan agresi Israel ke Iran. Simak dampaknya bagi Indonesia.
 - [Akhirnya Muhammadiyah Menghalalkan Kripto: Perdebatan Fiqh Klasik dan Realitas Ekonomi Digital](https://dalam.web.id/jejak-sejarah/muhammadiyah-kripto) : Akhirnya Muhammadiyah menghalalkan kripto sebagai aset digital setelah perdebatan panjang antara fiqh klasik dan realitas ekonomi digital. Simak penjelasan lengkapnya.
 - [Pancasila: Antara Ideologi, Kesepakatan Bangsa, dan Realitas Penerapannya](https://dalam.web.id/jejak-sejarah/pancasila-ideologi-kesepakatan-penerapan) : Apakah Pancasila ideologi atau kesepakatan? Seberapa baik penerapannya? Apakah Indonesia benar-benar kacau? Simak penjelasan historis, konstitusional, dan realistis.
 - [Ilmuwan Muslim Temukan Gravitasi Berabad-abad Sebelum Newton](https://dalam.web.id/jejak-sejarah/sejarah-gravitasi-ilmuwan-muslim) : Ternyata bukan Newton yang pertama kali bicara gravitasi. Simak penemuan Ibn Khordadbeh dan Al-Biruni berabad-abad sebelum dongeng apel Isaac Newton muncul.
@@ -421,6 +422,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Di Atas Kertas Puluhan Ribu, Di Lapangan Baru Sebagian: Menguji Koperasi Merah Putih](https://dalam.web.id/opini-sosial/koperasi-merah-putih-realita-lapangan) : Puluhan ribu Koperasi Merah Putih terbentuk, tapi berapa yang benar-benar berjalan? Penelusuran di Jateng, Jatim, DIY, Kalbar, dan lainnya mengungkap kesenjangan.
 - [Kalkulator THR Indonesia](https://dalam.web.id/opini-sosial/kalkulator-thr) : Kalkulator THR (Tunjangan Hari Raya) Indonesia — Kemenaker terbaru.
 - [Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik](https://dalam.web.id/opini-sosial/kritik-narasi-pejabat-perang-iran-israel) : Esai kritik terhadap retorika dramatis pejabat Indonesia dalam merespons perang Iran-Israel. Analisis data energi, diplomasi heroik, dan ajakan berpikir rasional.
 - [Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet](https://dalam.web.id/opini-sosial/pemakzulan-isu-bop-analisis-komentar) : Analisis komentar warganet soal pemakzulan presiden, isu BOP, dan kedaulatan negara. Simak proses hukum, sentimen publik, dan narasi yang berkembang di media sosial.
@@ -566,6 +568,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA](https://dalam.web.id/sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra) : LibreOffice kritik Komisi Eropa karena pakai format XLSX proprietary dalam konsultasi Cyber Resilience Act. Simak kronologi, respons cepat, dan pentingnya standar terbuka.
+- [Tiang Listrik di Halaman Rumah: Beban Estetika atau Hak Kompensasi? Menakar Keadilan Hukum Antara PLN dan Rakyat](https://dalam.web.id/sistem-terbuka/tiang-listrik-pln-hak-kompensasi-warga) : Advokat Darius Leka mengupas tuntas hak kompensasi warga atas tiang listrik PLN di lahan pribadi. Simak dasar hukum, langkah-langkah, dan pengalaman warga.
+- [AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas](https://dalam.web.id/sistem-terbuka/ai-claude-temukan-bug-firefox-cepat) : AI Claude Opus 4.6 temukan lebih dari 100 bug di Firefox dalam dua minggu, termasuk 14 kerentanan severity tinggi. Baca bagaimana AI mengubah keamanan siber.
 - [Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)](https://dalam.web.id/sistem-terbuka/setup-email-cloudflare-komunitas) : setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.
 - [Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi](https://dalam.web.id/sistem-terbuka/linux-ringan-dell-latitude-d430) : Dell Latitude D430 (Core Duo 2GB) butuh Linux super ringan. Simak rekomendasi AntiX, MX, Puppy, cara identifikasi Wi-Fi, dan tweak performa. untuk pemula.
 - [Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash](https://dalam.web.id/sistem-terbuka/otomasi-cek-dns-mx-spf-dmarc) : Cara otomatis cek status propagasi DNS MX SPF dan DMARC untuk domain Jaga Data Pribadi Tetap Aman menggunakan script Bash dan Bun yang praktis
