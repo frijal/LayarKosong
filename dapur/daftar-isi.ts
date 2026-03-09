@@ -1,8 +1,11 @@
-// Simpan sebagai extract.ts (atau .js)
+// Simpan sebagai extract.ts
 // Jalankan dengan: bun extract.ts
 
 const data = await Bun.file('artikel.json').json();
 let output = '';
+
+// Kita kumpulkan semua artikel ke dalam satu array besar agar mudah diurutkan
+const allArticles = [];
 
 for (const [category, articles] of Object.entries(data)) {
     for (const item of articles) {
@@ -10,9 +13,16 @@ for (const [category, articles] of Object.entries(data)) {
         const [title, slug, , date, desc] = item;
         const cleanDesc = (desc || '').replace(/\|/g, '-');
         
-        output += `${category}|${title}|${slug}|${date}|${cleanDesc}\n`;
+        allArticles.push({ category, title, slug, date, desc: cleanDesc });
     }
 }
 
-await Bun.write('daftar-isi.txt', output.trim());
-console.log('Mantap! artikel.txt sudah jadi dengan Bun 🚀');
+// Urutkan berdasarkan tanggal (paling baru di atas)
+allArticles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Bangun output string dengan urutan: Date|Category|Title|Slug|Description
+output = allArticles
+    .map(a => `${a.date}|${a.category}|${a.title}|${a.slug}|${a.desc}`)
+    .join('\n');
+
+await Bun.write('daftar-isi.txt', output);
