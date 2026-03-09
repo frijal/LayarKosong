@@ -123,7 +123,9 @@ jobs:
         run: bun run dapur/minify-html.ts
 
       - name: 'bikin daftar isi'
-        run: bun run dapur/daftar-isi.ts
+        run: |
+          bun run dapur/daftar-isi.ts
+          bun run dapur/generate_llms.ts
 
       - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
