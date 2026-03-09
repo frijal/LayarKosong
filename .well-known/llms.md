@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.90
+document_version: 16.91
 last_updated: 2026-03-09
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 9 Maret 2026)
-> Menampilkan 1044 artikel versi 16.90.
+> Menampilkan 1045 artikel versi 16.91.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
@@ -864,6 +864,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji](https://dalam.web.id/warta-tekno/fiqih-haji-memahami-konsep-mampu) : Fiqih Haji menjelaskan bahwa ibadah haji hanya diwajibkan bagi muslim yang mampu. Artikel ini membahas makna kemampuan dalam fiqih haji serta relevansinya dengan panjangnya antrean haji di Indonesia.
 - [Android dan Rencana Pembatasan Developer: Dampak pada Ekosistem Sumber Terbuka](https://dalam.web.id/warta-tekno/android-rencana-registrasi-developer) : Google berencana mewajibkan semua developer Android registrasi dengan identitas dan biaya. Simak analisis dampak pada keterbukaan, privasi, dan masa depan sideloading.
 - [AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas](https://dalam.web.id/warta-tekno/ai-claude-temukan-bug-firefox-cepat) : AI Claude Opus 4.6 temukan lebih dari 100 bug di Firefox dalam dua minggu, termasuk 14 kerentanan severity tinggi. Baca bagaimana AI mengubah keamanan siber.
 - [Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) – Panduan Lengkap](https://dalam.web.id/warta-tekno/fix-windows-network-drive-smb) : Panduan langkah demi langkah memperbaiki akses network drive di Windows 10/11: mapping SMB share dengan credentials yang benar dan reconnect otomatis. Atasi error access denied, multiple connections, dan password prompt berulang.
