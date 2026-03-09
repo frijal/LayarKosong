@@ -13,37 +13,39 @@ https://:version.:project.pages.dev/*
 # 2. DATA & XML (Wajib Fresh / No-Cache)
 # =========================================================
 /feed-gaya-hidup.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-jejak-sejarah.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-lainnya.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-olah-media.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-opini-sosial.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-sistem-terbuka.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /feed-warta-tekno.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /artikel.json
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
+/daftar-isi.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /rss.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /sitemap.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /image-sitemap-1.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /sitemap-1.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /video-sitemap-1.xml
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /sitemap.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /llms.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /.well-known/llms.txt
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 # =========================================================
 # 3. ASSET STATIS (Long-term Cache)
 # =========================================================
@@ -123,7 +125,7 @@ https://:version.:project.pages.dev/*
 /sitemap.html
   Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
 /sitemap
-  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200  
+  Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
 # --- Artikel Berdasarkan Kategori ---
 /gaya-hidup/*
   Cache-Control: public, max-age=31536000, stale-while-revalidate=2419200
