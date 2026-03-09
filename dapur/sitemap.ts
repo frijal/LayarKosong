@@ -89,10 +89,10 @@ function getCleanUrl(file: string, category: string): string {
 const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
 
 function updateTOCToggleText(): void {
-  const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-  if (allLists.length === 0 || !tocToggleBtn) return;
-  const allCollapsed = allLists.every((list) => list.style.display === 'none');
-  tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
+	const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+	if (allLists.length === 0 || !tocToggleBtn) return;
+	const allCollapsed = allLists.every((list) => list.style.display === 'none');
+	tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
 }
 
 async function loadTOC(): Promise<void> {
