@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.88
+document_version: 16.89
 last_updated: 2026-03-09
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 9 Maret 2026)
-> Menampilkan 1043 artikel versi 16.88.
+> Menampilkan 1044 artikel versi 16.89.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
@@ -573,6 +573,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Cara Ampuh Menghapus File Duplikat dengan FDupes di Linux dan Windows](https://dalam.web.id/sistem-terbuka/tutorial-fdupes-hapus-file-duplikat) : cara menggunakan fdupes untuk mencari dan menghapus file kembar secara otomatis. Menggunakan prinsip 5W1H untuk pemula hingga ahli.
 - [Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula](https://dalam.web.id/sistem-terbuka/linux-distro-berisiko-untuk-pemula) : Arch, Gentoo, NixOS, Slackware: distro Linux yang populer tapi berisiko untuk pemula. Simak penjelasan lengkap dan alternatif yang lebih ramah.
 - [Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif](https://dalam.web.id/sistem-terbuka/cara-bersihkan-cachyos-arch-linux) : membersihkan sistem CachyOS dan Arch Linux dari sampah nodejs, pipx, cache pacman, hingga sisa build AUR agar hardisk tetap lega.
 - [LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA](https://dalam.web.id/sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra) : LibreOffice kritik Komisi Eropa karena pakai format XLSX proprietary dalam konsultasi Cyber Resilience Act. Simak kronologi, respons cepat, dan pentingnya standar terbuka.
