@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.89
+document_version: 16.90
 last_updated: 2026-03-09
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 9 Maret 2026)
-> Menampilkan 1044 artikel versi 16.89.
+> Menampilkan 1044 artikel versi 16.90.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
