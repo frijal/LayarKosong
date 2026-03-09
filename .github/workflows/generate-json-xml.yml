@@ -109,7 +109,11 @@ jobs:
             fs.writeFileSync('sitemap.txt', [...new Set(finalUrls)].join('\n') + '\n');
             console.log('✅ sitemap.txt berhasil diurutkan berdasarkan tanggal terbit.');
           "
-      
+      - name: 'bikin daftar isi'
+        run: |
+          bun run dapur/daftar-isi.ts
+          bun run dapur/generate_llms.ts
+          
       - name: '6️⃣ Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
@@ -120,12 +124,7 @@ jobs:
         
       - name: '8️⃣ Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
-        run: bun run dapur/minify-html.ts
-
-      - name: 'bikin daftar isi'
-        run: |
-          bun run dapur/daftar-isi.ts
-          bun run dapur/generate_llms.ts
+        run: bun run dapur/minify-html.ts      
 
       - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
