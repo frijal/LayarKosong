@@ -109,7 +109,7 @@ async function loadTOC(): Promise<void> {
     lines.forEach((line) => {
       if (!line.trim()) return;
       // Format: date|category|title|file|description
-      const [date, cat, title, file, desc] = line.split('|');
+      const [date, cat, title, file, desc] = line.split('#');
 
       if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push({
