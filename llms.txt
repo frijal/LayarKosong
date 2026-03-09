@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.84
-last_updated: 2026-03-08
+document_version: 16.85
+last_updated: 2026-03-09
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 8 Maret 2026)
-> Menampilkan 1042 artikel versi 16.84.
+## Index Artikel Terbaru (Updated: 9 Maret 2026)
+> Menampilkan 1043 artikel versi 16.85.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
@@ -351,7 +351,6 @@ document_type: llm_behavior_and_entity_guidance
 - [ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka](https://dalam.web.id/olah-media/odf-vs-ooxml-libreoffice-onlyoffice) : debat standar dokumen ODF vs OOXML. Mengapa LibreOffice menuduh ONLYOFFICE sebagai fake open-source? Simak panduan kedaulatan digital ini.
 - [Web Tool Generator - All in One](https://dalam.web.id/olah-media/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
 - [Sosial Media dan Video Embed Generator](https://dalam.web.id/olah-media/social-video-embed-generator) : Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.
-- [Ambil Thumbnail YouTube dan Shorts High Resolution](https://dalam.web.id/olah-media/ambil-thumbnail-youtube-short) : Cara paling santai dan gratis untuk mengambil thumbnail video YouTube serta YouTube Shorts dalam resolusi tinggi HD hingga 4K tanpa aplikasi tambahan.
 - [Ambil Thumbnail YouTube High Resolution Gratis](https://dalam.web.id/olah-media/ambil-gambar-thumbnail-youtube) : Cara paling mudah dan cepat untuk mengambil thumbnail video YouTube dalam resolusi tinggi HD 4K tanpa aplikasi tambahan secara gratis dan aman.
 - [Frijal Reverse Converter — Konversi HTML ke Markdown Otomatis](https://dalam.web.id/olah-media/html-to-markdown-reverse-converter) : Alat konversi HTML ke Markdown yang cerdas. Membersihkan tag HTML menjadi format Markdown rapi tanpa merusak CSS atau ikon.
 - [Markdown Viewer dan Editor](https://dalam.web.id/olah-media/markdown-viewer-editor) : Markdown Viewer dan Editor adalah alat untuk menulis, mengedit, dan melihat pratinjau Markdown secara cepat, ringan, dan efisien langsung di browser. Cocok untuk developer, penulis, dan blogger.
@@ -575,6 +574,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Sistem Terbuka
 - [Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula](https://dalam.web.id/sistem-terbuka/linux-distro-berisiko-untuk-pemula) : Arch, Gentoo, NixOS, Slackware: distro Linux yang populer tapi berisiko untuk pemula. Simak penjelasan lengkap dan alternatif yang lebih ramah.
+- [Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif](https://dalam.web.id/sistem-terbuka/cara-bersihkan-cachyos-arch-linux) : membersihkan sistem CachyOS dan Arch Linux dari sampah nodejs, pipx, cache pacman, hingga sisa build AUR agar hardisk tetap lega.
 - [LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA](https://dalam.web.id/sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra) : LibreOffice kritik Komisi Eropa karena pakai format XLSX proprietary dalam konsultasi Cyber Resilience Act. Simak kronologi, respons cepat, dan pentingnya standar terbuka.
 - [Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)](https://dalam.web.id/sistem-terbuka/setup-email-cloudflare-komunitas) : setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.
 - [Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi](https://dalam.web.id/sistem-terbuka/linux-ringan-dell-latitude-d430) : Dell Latitude D430 (Core Duo 2GB) butuh Linux super ringan. Simak rekomendasi AntiX, MX, Puppy, cara identifikasi Wi-Fi, dan tweak performa. untuk pemula.
@@ -898,6 +898,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita](https://dalam.web.id/warta-tekno/misteri-error-418-teko-ajaib) : Eksplorasi mendalam Error 418 I’m a Teapot. Bagaimana lelucon April Mop 1998 menjadi legenda abadi dalam protokol HTTP dan simbol perlawanan kreatif para programmer dunia.
 - [Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️](https://dalam.web.id/warta-tekno/sejarah-layout-keyboard-qwerty) : Pernah mikir gak kenapa susunan keyboard itu QWERTY bukan ABCD? Ternyata alasannya bukan biar kita lambat, tapi karena mesin tik zaman dulu gampang macet. Simak sejarah lengkapnya di sini!
 - [Misteri Alam Semesta: Mengapa Matahari, Bulan, dan Bintang Tak Pernah Bertabrakan? 🌌](https://dalam.web.id/warta-tekno/misteri-alam-semesta-gerak-benda-langit) : Kupas tuntas rahasia di balik pergerakan teratur matahari, bulan, dan bintang menurut Al-Qur’an dan ilmu pengetahuan. Temukan keagungan ciptaan Allah dalam sistem tata surya yang menakjubkan ini.
+- [Ambil Thumbnail YouTube dan Shorts High Resolution](https://dalam.web.id/warta-tekno/ambil-thumbnail-youtube-short) : Cara paling santai dan gratis untuk mengambil thumbnail video YouTube serta YouTube Shorts dalam resolusi tinggi HD hingga 4K tanpa aplikasi tambahan.
 - [KominFudge: Panduan Lengkap Menembus Blokir Internet Indonesia](https://dalam.web.id/warta-tekno/kominfudge-panduan-pemula) : Panduan komprehensif untuk menembus penyensoran internet di Indonesia. Pelajari cara mengganti DNS, menghindari DPI, memilih ISP, dan alat untuk akses internet bebas.
 - [Kenapa Pake VPN Internet Malah Makin Ngebut? Ini Penjelasan Teknis Tapi Santai](https://dalam.web.id/warta-tekno/vpn-bikin-internet-cepat) : Membongkar mitos dan fakta kenapa VPN atau Cloudflare WARP justru bikin internet lebih cepat dan responsif dibanding polosan ISP lokal. Simak analisis routing, throttling, dan pengalaman user.
 - [Microsoft PowerToys: Panduan Lengkap 2026 - Tingkatkan Produktivitas Windows Anda](https://dalam.web.id/warta-tekno/microsoft-powertoys-panduan-lengkap-2026) : Panduan komprehensif Microsoft PowerToys 2026. Temukan 25+ utilitas gratis untuk mengkustomisasi Windows, meningkatkan efisiensi kerja, dan menyederhanakan tugas sehari-hari. Instalasi, fitur terbaru, tips ahli.
