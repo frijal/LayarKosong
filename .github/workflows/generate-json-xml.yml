@@ -71,7 +71,7 @@ jobs:
       - name: '5️⃣ Update sitemap.txt (Native Bun - Sorted by Date)'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
-          bun run dapur/daftar-isi.ts
+          bun run dapur/koki.ts --once
           bun run dapur/generate_llms.ts
           echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
           bun -e "
