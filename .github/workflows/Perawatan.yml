@@ -108,7 +108,9 @@ jobs:
           echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nhtml2canvas=$H2C_VER" | sort > mini/asset-info.txt
 
           # Generate Checksum for integrity verification (Final Step)
-          find dapur/ -type f -exec sha256sum {} + | sort > mini/asset-checksums.txt
+          for file in dapur/*.css dapur/*.js; do
+                [ -e "$file" ] && sha256sum "$file"
+            done | sort > mini/asset-checksums.txt
 
       # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
       - name: 🧹 Jalankan Sapu Bersih (Audit)
