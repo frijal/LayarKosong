@@ -124,8 +124,11 @@ jobs:
 
       - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: bun run dapur/minify-jsonxml.ts     
+        run: bun run dapur/minify-jsonxml.ts
 
+      - name: 'bikin daftar isi'
+        run: bun run dapur/daftar-isi.ts 
+        
       - name: '🔟 Commit and Push'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
