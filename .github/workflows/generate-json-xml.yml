@@ -71,6 +71,8 @@ jobs:
       - name: '5️⃣ Update sitemap.txt (Native Bun - Sorted by Date)'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
+          bun run dapur/daftar-isi.ts
+          bun run dapur/generate_llms.ts
           echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
           bun -e "
             const fs = require('fs');
@@ -109,10 +111,6 @@ jobs:
             fs.writeFileSync('sitemap.txt', [...new Set(finalUrls)].join('\n') + '\n');
             console.log('✅ sitemap.txt berhasil diurutkan berdasarkan tanggal terbit.');
           "
-      - name: 'bikin daftar isi'
-        run: |
-          bun run dapur/daftar-isi.ts
-          bun run dapur/generate_llms.ts
           
       - name: '6️⃣ Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
