@@ -99,10 +99,7 @@ jobs:
 
             echo "✅ Laporan disederhanakan: $REPORT_PATH"
           
-      # ========== COMMIT & PUSH ==========
-      - name: Jalankan Koki (Mode Sekali Jalan)
-        run: bun run dapur/koki.ts --once
-        
+      # ========== COMMIT & PUSH ==========             
       - name: 📮 Commit & Push All Changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
