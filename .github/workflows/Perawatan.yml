@@ -81,7 +81,7 @@ jobs:
       - name: 🌈 Sync & Map Assets
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
-          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest --no-save
+          bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest --no-save --trusted
           
           # Mapping Highlight.js & Font Awesome (Statis Copy)
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
