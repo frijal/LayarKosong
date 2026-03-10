@@ -73,6 +73,7 @@ jobs:
         run: |
           bun run dapur/koki.ts --once
           bun run dapur/generate_llms.ts
+          bun run dapur/artikeljson-split-kategori.ts
           echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
           bun -e "
             const fs = require('fs');
@@ -122,11 +123,11 @@ jobs:
         
       - name: '8️⃣ Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
-        run: bun run dapur/minify-html.ts      
+        run: bun run dapur/minify-html.ts
 
       - name: '9️⃣ Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: bun run dapur/minify-jsonxml.ts      
+        run: bun run dapur/minify-jsonxml.ts
         
       - name: '🔟 Commit and Push'
         run: |
