@@ -1,126 +1,79 @@
 /**
- * MASTER DATA PROVIDER (High Performance)
- * Shared Promise + Memory Cache + Compiled Mapper
+ * MASTER DATA PROVIDER (Ultra Fast & Tiny)
  */
 
 declare global {
 	interface Window {
-		siteDataProvider: {
-			getFor: (uiName: string) => Promise<any>;
-		};
+		siteDataProvider: { getFor: (ui: string) => Promise<any> };
 	}
 }
 
-type RawRow = any[];
-type RawData = Record<string, RawRow[]>;
+type Row = any[];
+type DB = Record<string, Row[]>;
 
-interface FieldMapping {
-	[key: string]: number;
-}
+const ALL = { title:0,id:1,image:2,date:3,description:4 };
 
-const SEMUANYA: FieldMapping = {
-	title: 0,
-	id: 1,
-	image: 2,
-	date: 3,
-	description: 4
+const UI: Record<string, Record<string,number>> = {
+	"homepage.ts": ALL,
+	"sitemap.ts": ALL,
+	"halaman-pencarian.ts": ALL,
+	"img.html": { title:1,url:2,date:3 },
+	"iposbrowser.ts": { slug:1,date:3 },
+	"marquee-url.ts": { title:0,id:1,image:2,description:4 }
 };
 
-const UI_REQUIREMENTS: Record<string, FieldMapping> = {
-	"homepage.ts": SEMUANYA,
-	"sitemap.ts": SEMUANYA,
-	"halaman-pencarian.ts": SEMUANYA,
-	"img.html": { title: 1, url: 2, date: 3 },
-	"iposbrowser.ts": { slug: 1, date: 3 },
-	"marquee-url.ts": { title: 0, id: 1, image: 2, description: 4 }
-};
+const mapperCache: Record<string,Function> = {};
 
-/* compile mapper sekali saja */
-const mapperCache: Record<string, Function> = {};
+function mapper(schema:Record<string,number>){
 
-function getMapper(schema: FieldMapping) {
+	const k = JSON.stringify(schema);
+	if(mapperCache[k]) return mapperCache[k];
 
-	const key = JSON.stringify(schema);
+	const f = Object.entries(schema)
+	.map(([n,i])=>`"${n}":r[${i}]`)
+	.join(",");
 
-	if (mapperCache[key]) return mapperCache[key];
-
-	const fields = Object.entries(schema);
-
-	const fn = new Function(
-		"row",
-		"return {" +
-		fields.map(([k, i]) => `"${k}":row[${i}]`).join(",") +
-		"}"
-	);
-
-	mapperCache[key] = fn;
-
-	return fn;
+	return mapperCache[k] = new Function("r",`return{${f}}`);
 }
 
-(window as any).siteDataProvider = {
+window.siteDataProvider = {
 
-	cache: null as RawData | null,
-	promise: null as Promise<RawData> | null,
+	c:null as DB|null,
+	p:null as Promise<DB>|null,
 
-	async getData(): Promise<RawData> {
+	async getData(){
 
-		if (this.cache) return this.cache;
+		if(this.c) return this.c;
+		if(this.p) return this.p;
 
-		if (this.promise) return this.promise;
+		this.p = fetch("/artikel.json")
+		.then(r=>r.json())
+		.then((d:DB)=> (this.c=d,this.p=null,d));
 
-		this.promise = fetch("/artikel.json")
-		.then(r => {
-
-			if (!r.ok) throw new Error("Gagal memuat DB");
-
-			return r.json();
-
-		})
-		.then((data: RawData) => {
-
-			this.cache = data;
-			this.promise = null;
-
-			return data;
-
-		})
-		.catch(err => {
-
-			console.error("Data Provider Error:", err);
-
-			this.promise = null;
-
-			return this.cache || {};
-		});
-
-		return this.promise;
+		return this.p;
 	},
 
-	async getFor(uiName: string) {
+	async getFor(ui:string){
 
-		const rawData = await this.getData();
-		const schema = UI_REQUIREMENTS[uiName];
+		const db = await this.getData();
+		const s = UI[ui];
 
-		if (!schema) return rawData;
+		if(!s) return db;
 
-		const mapper = getMapper(schema);
+		const m = mapper(s);
+		const out:Record<string,any[]> = {};
 
-		const result: Record<string, any[]> = {};
+		for(const k in db){
 
-		for (const category of Object.keys(rawData)) {
+			const rows = db[k];
+			const arr = new Array(rows.length);
 
-			const rows = rawData[category];
+			for(let i=0;i<rows.length;i++)
+				arr[i] = m(rows[i]);
 
-			const mapped = new Array(rows.length);
-
-			for (let i = 0; i < rows.length; i++) {
-				mapped[i] = mapper(rows[i]);
-			}
-
-			result[category] = mapped;
+			out[k] = arr;
 		}
 
-		return result;
+		return out;
 	}
 };
