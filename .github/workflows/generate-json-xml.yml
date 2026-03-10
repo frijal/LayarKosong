@@ -73,7 +73,6 @@ jobs:
         run: |
           bun run dapur/koki.ts --once
           bun run dapur/generate_llms.ts
-          bun run dapur/artikeljson-split-kategori.ts
           echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
           bun -e "
             const fs = require('fs');
