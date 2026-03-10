@@ -28,6 +28,8 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /artikel.json
   Cache-Control: public, max-age=0, must-revalidate
+/ext/data-provider.js
+  Cache-Control: public, max-age=0, must-revalidate
 /rss.xml
   Cache-Control: public, max-age=3600, stale-while-revalidate=2419200
 /sitemap.xml
