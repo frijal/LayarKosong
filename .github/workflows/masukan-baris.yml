@@ -37,13 +37,19 @@ jobs:
 
       - name: Inject content
         run: |
-          TARGET="${{ github.event.inputs.target_string }}"
-          SENTENCE="${{ github.event.inputs.sentence }}"
+          # Kita gunakan perl karena dia tidak memproses kutip ganda di dalam string 
+          # sesulit sed dan sangat handal untuk injeksi baris baru.
           
-          if [[ "${{ github.event.inputs.position }}" == "sesudah" ]]; then
-            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec sed -i "s#$TARGET#$TARGET\n$SENTENCE#g" {} +
+          POSITION="${{ github.event.inputs.position }}"
+          TARGET='${{ github.event.inputs.target_string }}'
+          SENTENCE='${{ github.event.inputs.sentence }}'
+          
+          # Gunakan QUOTEMETA untuk memastikan target aman dari karakter regex
+          # Kita gunakan delimiter '|' karena tag html sudah pakai '/'
+          if [[ "$POSITION" == "sesudah" ]]; then
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|\$& \n$SENTENCE|g" {} +
           else
-            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec sed -i "s#$TARGET#$SENTENCE\n$TARGET#g" {} +
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|$SENTENCE \n\$&|g" {} +
           fi
 
       - name: Create Pull Request
@@ -52,6 +58,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "CI: Auto-inject content into *.${{ github.event.inputs.file_extension }}"
           title: "Auto-inject: Update file content"
-          body: "Workflow otomatis menambahkan script ke file target."
+          body: "Workflow otomatis menambahkan script ke file target menggunakan Perl agar karakter kutip tetap terjaga."
           branch: "auto-inject-changes"
           delete-branch: true
