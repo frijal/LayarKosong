@@ -43,17 +43,19 @@ if (!container) {
 }
 
 // Load JSON
-let data
+let data;
 try {
     const res = await fetch('https://cdn.jsdelivr.net/gh/frijal/LayarKosong@main/artikel.json');
-    const data = await res.json();
 
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
 
-    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
-        data = await res.json()
+    data = await res.json();
+    console.log("Data berhasil dimuat:", data);
 } catch (err) {
-    console.error('Gagal load artikel.json:', err)
-    return
+    console.error('Gagal load artikel.json:', err);
+    return;
 }
 
 // === PERUBAHAN DIMULAI ===
