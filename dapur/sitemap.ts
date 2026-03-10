@@ -1,18 +1,17 @@
 // -------------------------------------------------------
-// FILE: sitemap.ts (FINAL FULL PRODUCTION BUILD)
+// FILE: sitemap.ts (FINAL CLEANED PRODUCTION BUILD)
 // -------------------------------------------------------
 
 interface Article {
   title: string;
   file: string;
-  image: string;
   lastmod: string;
   description: string;
   category: string;
 }
 
 interface ArticleData {
-  [category: string]: any[]; // Sesuai dengan struktur data provider
+  [category: string]: any[];
 }
 
 // PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
@@ -111,7 +110,6 @@ async function loadTOC(): Promise<void> {
       grouped[cat] = data[cat].map((item: any) => ({
         title: item.title,
         file: item.id,
-        image: item.image,
         lastmod: item.date,
         description: item.description,
         category: cat
@@ -243,11 +241,8 @@ function initDarkMode(): void {
   }
 }
 
-// Inisialisasi Event Listener Global
 document.addEventListener('DOMContentLoaded', () => {
-  // Inisialisasi fitur UI (Dark Mode & Toggle) agar tidak terpengaruh timing loadTOC
   initDarkMode();
-
   const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
   if (tocToggleBtn) {
     tocToggleBtn.addEventListener('click', () => {
@@ -259,30 +254,21 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTOCToggleText();
     });
   }
-
-  // Load Data
   loadTOC();
-
-  // Search Logic
   const searchInput = document.getElementById('search') as HTMLInputElement | null;
   const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
-
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.toLowerCase();
       if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
-
       let countVisible = 0;
       const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
-
       categories.forEach((category) => {
         let catVisible = false;
         const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
-
         items.forEach((item) => {
           const text = item.getAttribute('data-text') || '';
           const titleLink = item.querySelector('a') as HTMLAnchorElement;
-
           if (term && text.includes(term)) {
             item.style.display = 'flex';
             catVisible = true;
@@ -301,14 +287,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const list = category.querySelector('.toc-list') as HTMLElement;
         if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
       });
-
         const allArticlesCount = Object.values(grouped).flat().length;
         if (term) updateStats(countVisible, visitedLinks.length, term);
         else updateStats(allArticlesCount, visitedLinks.length);
         updateTOCToggleText();
     });
   }
-
   if (clearBtn && searchInput) {
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
