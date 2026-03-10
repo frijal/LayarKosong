@@ -25,33 +25,7 @@
   --primary-dark: #388bfd;
 
   --feed-color: var(--primary);
-
-    /* Palet Warna Kategori */
-    --c0: linear-gradient(90deg, #004d40, #26a69a); --c1: linear-gradient(90deg, #00796b, #009688);
-    --c2: linear-gradient(90deg, #00897b, #01579b); --c3: linear-gradient(90deg, #009688, #4db6ac);
-    --c4: linear-gradient(90deg, #00acc1, #26c6da); --c5: linear-gradient(90deg, #0288d1, #03a9f4);
-    --c6: linear-gradient(90deg, #0d47a1, #00bcd4); --c7: linear-gradient(90deg, #0d47a1, #1976d2);
-    --c8: linear-gradient(90deg, #1565c0, #64b5f6); --c9: linear-gradient(90deg, #1976d2, #2196f3);
-    --c10: linear-gradient(90deg, #1a237e, #3949ab); --c11: linear-gradient(90deg, #1b5e20, #4caf50);
-    --c12: linear-gradient(90deg, #212121, #616161); --c13: linear-gradient(90deg, #212121, #455a64);
-    --c14: linear-gradient(90deg, #2196f3, #00bcd4); --c15: linear-gradient(90deg, #2e7d32, #8bc34a);
-    --c16: linear-gradient(90deg, #2e7d32, #4caf50); --c17: linear-gradient(90deg, #33691e, #8bc34a);
-    --c18: linear-gradient(90deg, #37474f, #b0bec5); --c19: linear-gradient(90deg, #388e3c, #4caf50);
-    --c20: linear-gradient(90deg, #3e2723, #a1887f); --c21: linear-gradient(90deg, #3e2723, #ffc107);
-    --c22: linear-gradient(90deg, #607d8b, #9e9e9e); --c23: linear-gradient(90deg, #6d4c41, #ffb300);
-    --c24: linear-gradient(90deg, #b71c1c, #ff7043); --c25: linear-gradient(90deg, #cddc39, #8bc34a);
-    --c26: linear-gradient(90deg, #d32f2f, #f44336); --c27: linear-gradient(90deg, #d84315, #ffca28);
-    --c28: linear-gradient(90deg, #e65100, #ffab00); --c29: linear-gradient(90deg, #f44336, #ff9800);
-    --c30: linear-gradient(90deg, #f57c00, #ff9800); --c31: linear-gradient(90deg, #fbc02d, #ffeb3b);
-  }
-
-  .category {
-    /* Default warna jika index tidak ada */
-    --category-color: var(--c0);
-    background: var(--category-color);
-    border-radius: 8px;
-    padding: 1px;
-  }
+}
 
 * {
   box-sizing: border-box;

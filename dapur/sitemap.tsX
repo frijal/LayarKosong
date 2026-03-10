@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9 - Final Production Build)
+// FILE: sitemap.ts (FINAL FULL PRODUCTION BUILD)
 // -------------------------------------------------------
 
 interface Article {
@@ -12,7 +12,7 @@ interface Article {
 }
 
 interface ArticleData {
-  [category: string]: [string, string, string, string, string][];
+  [category: string]: any[]; // Sesuai dengan struktur data provider
 }
 
 // PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
@@ -90,9 +90,8 @@ function getCleanUrl(file: string, category: string): string {
   return `/${catSlug}/${fileSlug}`;
 }
 
-const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
-
 function updateTOCToggleText(): void {
+  const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
   const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
   if (allLists.length === 0 || !tocToggleBtn) return;
   const allCollapsed = allLists.every((list) => list.style.display === 'none');
@@ -101,8 +100,7 @@ function updateTOCToggleText(): void {
 
 async function loadTOC(): Promise<void> {
   try {
-    const res = await fetch('artikel.json');
-    const data: ArticleData = await res.json();
+    const data = await (window as any).siteDataProvider.getFor('sitemap.ts');
     const toc = document.getElementById('toc');
     if (!toc) return;
 
@@ -110,16 +108,16 @@ async function loadTOC(): Promise<void> {
     grouped = {};
 
     Object.keys(data).forEach((cat) => {
-      grouped[cat] = data[cat]
-      .map((arr) => ({
-        title: arr[0],
-        file: arr[1],
-        image: arr[2],
-        lastmod: arr[3],
-        description: arr[4],
-        category: cat,
-      }))
-      .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+      grouped[cat] = data[cat].map((item: any) => ({
+        title: item.title,
+        file: item.id,
+        image: item.image,
+        lastmod: item.date,
+        description: item.description,
+        category: cat
+      })).sort((a: Article, b: Article) =>
+      new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime()
+      );
     });
 
     const allArticles = Object.values(grouped).flat();
@@ -129,11 +127,7 @@ async function loadTOC(): Promise<void> {
     const categoryTooltip = document.getElementById('category-tooltip');
 
     Object.keys(grouped)
-    .sort((a, b) => {
-      const dateA = new Date(grouped[a][0].lastmod).getTime();
-      const dateB = new Date(grouped[b][0].lastmod).getTime();
-      return dateB - dateA;
-    })
+    .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
     .forEach((cat, index) => {
       const catDiv = document.createElement('div');
       catDiv.className = 'category';
@@ -162,7 +156,6 @@ async function loadTOC(): Promise<void> {
         a.textContent = item.title;
 
         const statusSpan = document.createElement('span');
-        // PERBAIKAN CLEAN CODE: Gunakan Unicode agar tidak berubah jadi &amp;
         if (visitedLinks.includes(item.file)) {
           statusSpan.className = 'label-visited';
           statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
@@ -210,8 +203,7 @@ async function loadTOC(): Promise<void> {
 
       const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
       catHeader.addEventListener('click', () => {
-        const currentDisplay = catList.style.display;
-        catList.style.display = currentDisplay === 'block' ? 'none' : 'block';
+        catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
         updateTOCToggleText();
       });
 
@@ -226,80 +218,12 @@ async function loadTOC(): Promise<void> {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' \u2022 '); // Simbol peluru bersih
+      .join(' \u2022 ');
     }
+    updateTOCToggleText();
   } catch (e) {
-    console.error('Gagal load artikel.json', e);
+    console.error('Gagal load artikel via provider', e);
   }
-}
-
-const searchInput = document.getElementById('search') as HTMLInputElement | null;
-const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
-
-if (searchInput) {
-  searchInput.addEventListener('input', () => {
-    const term = searchInput.value.toLowerCase();
-    if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
-
-    let countVisible = 0;
-    const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
-
-    categories.forEach((category) => {
-      let catVisible = false;
-      const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
-
-      items.forEach((item) => {
-        const text = item.getAttribute('data-text') || '';
-        const titleLink = item.querySelector('a') as HTMLAnchorElement;
-
-        if (term && text.includes(term)) {
-          item.style.display = 'flex';
-          catVisible = true;
-          countVisible++;
-
-          const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          titleLink.innerHTML = text.replace(
-            new RegExp(`(${safeTerm})`, 'gi'),
-                                             '<span class="highlight">$1</span>'
-          );
-        }
-        else if (!term) {
-          item.style.display = 'flex';
-          titleLink.textContent = text;
-          catVisible = true;
-        } else {
-          item.style.display = 'none';
-        }
-      });
-
-      category.style.display = catVisible ? 'block' : 'none';
-      const list = category.querySelector('.toc-list') as HTMLElement;
-      if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
-    });
-
-      const allArticlesCount = Object.values(grouped).flat().length;
-      if (term) updateStats(countVisible, visitedLinks.length, term);
-      else updateStats(allArticlesCount, visitedLinks.length);
-      updateTOCToggleText();
-  });
-}
-
-if (clearBtn && searchInput) {
-  clearBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    searchInput.dispatchEvent(new Event('input'));
-  });
-}
-
-if (tocToggleBtn) {
-  tocToggleBtn.addEventListener('click', () => {
-    const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-    const isOpening = tocToggleBtn.textContent === 'Buka Semua';
-  lists.forEach((list) => {
-    list.style.display = isOpening ? 'block' : 'none';
-  });
-  updateTOCToggleText();
-  });
 }
 
 function initDarkMode(): void {
@@ -319,9 +243,76 @@ function initDarkMode(): void {
   }
 }
 
+// Inisialisasi Event Listener Global
 document.addEventListener('DOMContentLoaded', () => {
-  loadTOC().then(() => {
-    initDarkMode();
+  // Inisialisasi fitur UI (Dark Mode & Toggle) agar tidak terpengaruh timing loadTOC
+  initDarkMode();
+
+  const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
+  if (tocToggleBtn) {
+    tocToggleBtn.addEventListener('click', () => {
+      const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
+      const isOpening = tocToggleBtn.textContent === 'Buka Semua';
+    lists.forEach((list) => {
+      list.style.display = isOpening ? 'block' : 'none';
+    });
     updateTOCToggleText();
-  });
+    });
+  }
+
+  // Load Data
+  loadTOC();
+
+  // Search Logic
+  const searchInput = document.getElementById('search') as HTMLInputElement | null;
+  const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.toLowerCase();
+      if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
+
+      let countVisible = 0;
+      const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
+
+      categories.forEach((category) => {
+        let catVisible = false;
+        const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
+
+        items.forEach((item) => {
+          const text = item.getAttribute('data-text') || '';
+          const titleLink = item.querySelector('a') as HTMLAnchorElement;
+
+          if (term && text.includes(term)) {
+            item.style.display = 'flex';
+            catVisible = true;
+            countVisible++;
+            const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            titleLink.innerHTML = text.replace(new RegExp(`(${safeTerm})`, 'gi'), '<span class="highlight">$1</span>');
+          } else if (!term) {
+            item.style.display = 'flex';
+            titleLink.textContent = text;
+            catVisible = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        category.style.display = catVisible ? 'block' : 'none';
+        const list = category.querySelector('.toc-list') as HTMLElement;
+        if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
+      });
+
+        const allArticlesCount = Object.values(grouped).flat().length;
+        if (term) updateStats(countVisible, visitedLinks.length, term);
+        else updateStats(allArticlesCount, visitedLinks.length);
+        updateTOCToggleText();
+    });
+  }
+
+  if (clearBtn && searchInput) {
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+    });
+  }
 });
