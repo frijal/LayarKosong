@@ -5,17 +5,17 @@
 interface Article {
   title: string;
   file: string;
-  image?: string;
+  image: string;
   lastmod: string;
   description: string;
   category: string;
 }
 
 interface ArticleData {
-  [category: string]: Article[];
+  [category: string]: any[]; // Sesuai dengan struktur data provider
 }
 
-// Proteksi visitedLinks
+// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
@@ -28,7 +28,7 @@ const getVisitedLinks = (): string[] => {
 };
 
 let visitedLinks: string[] = getVisitedLinks();
-let grouped: ArticleData = {};
+let grouped: Record<string, Article[]> = {};
 
 const categoryColors: string[] = [
   'linear-gradient(90deg, #004d40, #26a69a)', 'linear-gradient(90deg, #00796b, #009688)',
@@ -78,9 +78,9 @@ function updateStats(total: number, read: number, term: string = ''): void {
   totalCountEl.innerHTML = `
   <span class="total-stat">Total: <strong>${total}</strong></span>
   <span class="separator">|</span>
-  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
+  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> \uD83D\uDC4D</span>
   <span class="separator">|</span>
-  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📓</span>
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> \uD83D\uDCD3</span>
   `;
 }
 
@@ -100,20 +100,20 @@ function updateTOCToggleText(): void {
 
 async function loadTOC(): Promise<void> {
   try {
-    const data: ArticleData = await (window as any).siteDataProvider.getFor('sitemap.ts');
+    const data = await (window as any).siteDataProvider.getFor('sitemap.ts');
     const toc = document.getElementById('toc');
     if (!toc) return;
+
     toc.innerHTML = '';
     grouped = {};
 
-    // Grouping artikel per kategori
     Object.keys(data).forEach((cat) => {
       grouped[cat] = data[cat].map((item: any) => ({
         title: item.title,
         file: item.id,
-        image: item.image || '',
+        image: item.image,
         lastmod: item.date,
-        description: item.description || 'Tidak ada deskripsi.',
+        description: item.description,
         category: cat
       })).sort((a: Article, b: Article) =>
       new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime()
@@ -127,7 +127,7 @@ async function loadTOC(): Promise<void> {
     const categoryTooltip = document.getElementById('category-tooltip');
 
     Object.keys(grouped)
-    .sort((a, b) => (grouped[b][0]?.lastmod ? new Date(grouped[b][0].lastmod).getTime() : 0) - (grouped[a][0]?.lastmod ? new Date(grouped[a][0].lastmod).getTime() : 0))
+    .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
     .forEach((cat, index) => {
       const catDiv = document.createElement('div');
       catDiv.className = 'category';
@@ -158,11 +158,11 @@ async function loadTOC(): Promise<void> {
         const statusSpan = document.createElement('span');
         if (visitedLinks.includes(item.file)) {
           statusSpan.className = 'label-visited';
-          statusSpan.textContent = 'sudah dibaca 👍';
+          statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
           a.classList.add('visited');
         } else {
           statusSpan.className = 'label-new';
-          statusSpan.textContent = '📓 belum dibaca';
+          statusSpan.textContent = '\uD83D\uDCD3 belum dibaca';
         }
 
         const dateSpan = document.createElement('span');
@@ -177,27 +177,28 @@ async function loadTOC(): Promise<void> {
           }
         });
 
-        a.addEventListener('mouseenter', () => {
-          if (categoryTooltip) {
-            categoryTooltip.innerHTML = item.description;
-            categoryTooltip.style.display = 'block';
-          }
-        });
-        a.addEventListener('mousemove', (e: MouseEvent) => {
-          if (categoryTooltip) {
-            categoryTooltip.style.left = (e.clientX + 15) + 'px';
-            categoryTooltip.style.top = (e.clientY + 15) + 'px';
-          }
-        });
-        a.addEventListener('mouseleave', () => {
-          if (categoryTooltip) categoryTooltip.style.display = 'none';
-        });
+        const description = item.description || 'Tidak ada deskripsi.';
+      a.addEventListener('mouseenter', () => {
+        if (categoryTooltip) {
+          categoryTooltip.innerHTML = description;
+          categoryTooltip.style.display = 'block';
+        }
+      });
+      a.addEventListener('mousemove', (e: MouseEvent) => {
+        if (categoryTooltip) {
+          categoryTooltip.style.left = (e.clientX + 15) + 'px';
+          categoryTooltip.style.top = (e.clientY + 15) + 'px';
+        }
+      });
+      a.addEventListener('mouseleave', () => {
+        if (categoryTooltip) categoryTooltip.style.display = 'none';
+      });
 
-          titleDiv.appendChild(a);
-          titleDiv.appendChild(statusSpan);
-          titleDiv.appendChild(dateSpan);
-          el.appendChild(titleDiv);
-          catList.appendChild(el);
+        titleDiv.appendChild(a);
+        titleDiv.appendChild(statusSpan);
+        titleDiv.appendChild(dateSpan);
+        el.appendChild(titleDiv);
+        catList.appendChild(el);
       });
 
       const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
@@ -209,7 +210,6 @@ async function loadTOC(): Promise<void> {
       toc.appendChild(catDiv);
     });
 
-    // Marquee
     const m = document.getElementById('marquee-content');
     if (m) {
       const shuffledMarquee = shuffle(allArticles);
@@ -218,16 +218,14 @@ async function loadTOC(): Promise<void> {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' • ');
+      .join(' \u2022 ');
     }
-
     updateTOCToggleText();
   } catch (e) {
     console.error('Gagal load artikel via provider', e);
   }
 }
 
-// Dark mode toggle
 function initDarkMode(): void {
   const darkSwitch = document.getElementById('darkSwitch') as HTMLInputElement | null;
   const setMode = (isDark: boolean) => {
@@ -235,14 +233,19 @@ function initDarkMode(): void {
     if (darkSwitch) darkSwitch.checked = isDark;
     localStorage.setItem('darkMode', String(isDark));
   };
+
   const saved = localStorage.getItem('darkMode');
   if (saved !== null) setMode(saved === 'true');
   else setMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-  if (darkSwitch) darkSwitch.addEventListener('change', () => setMode(darkSwitch.checked));
+  if (darkSwitch) {
+    darkSwitch.addEventListener('change', () => setMode(darkSwitch.checked));
+  }
 }
 
+// Inisialisasi Event Listener Global
 document.addEventListener('DOMContentLoaded', () => {
+  // Inisialisasi fitur UI (Dark Mode & Toggle) agar tidak terpengaruh timing loadTOC
   initDarkMode();
 
   const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
@@ -257,9 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Load Data
   loadTOC();
 
-  // Search input
+  // Search Logic
   const searchInput = document.getElementById('search') as HTMLInputElement | null;
   const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
 
@@ -267,15 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.toLowerCase();
       if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
+
       let countVisible = 0;
       const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
 
       categories.forEach((category) => {
         let catVisible = false;
         const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
+
         items.forEach((item) => {
           const text = item.getAttribute('data-text') || '';
           const titleLink = item.querySelector('a') as HTMLAnchorElement;
+
           if (term && text.includes(term)) {
             item.style.display = 'flex';
             catVisible = true;
