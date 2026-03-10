@@ -3,17 +3,36 @@
  * Pemetaan kolom JSON ke objek UI yang mudah dibaca.
  */
 
-interface FieldMapping {
-	[columnName: string]: number;
+declare global {
+	interface Window {
+		siteDataProvider: {
+			getFor: (uiName: string) => Promise<any>;
+		};
+	}
 }
 
+interface FieldMapping {[columnName: string]: number;}
+
+// 2. Definisikan struktur default (Single Source of Truth)
+const SEMUANYA: FieldMapping = {
+	title: 0,
+	id: 1,
+	image: 2,
+	date: 3,
+	description: 4
+};
+
+// 3. Gabungkan semuanya ke dalam satu objek utama
 const UI_REQUIREMENTS: { [key: string]: FieldMapping } = {
-	'homepage.ts': 		{ title: 0, id: 1, image: 2, date: 3, description: 4 },
-	'img.html':			{ title: 1, url: 2, date: 3 },
-	'iposbrowser.ts':	{ slug: 1, date: 3 },
-	'marquee-url.ts':	{ title: 0, id: 1, image: 2, description: 4 },
-	'sitemap.ts':		{ title: 0, id: 1, image: 2, date: 3, description: 4 },
-	'search':			{ title: 0, summary: 4 }
+	// Menggunakan SEMUANYA untuk yang butuh semua data
+	'homepage.ts':            SEMUANYA,
+	'sitemap.ts':             SEMUANYA,
+	'halaman-pencarian.ts':   SEMUANYA,
+
+	// Menggunakan kustomisasi untuk yang butuh data spesifik
+	'img.html':               { title: 1, url: 2, date: 3 },
+	'iposbrowser.ts':         { slug: 1, date: 3 },
+	'marquee-url.ts':         { title: 0, id: 1, image: 2, description: 4 },
 };
 
 (window as any).siteDataProvider = {
