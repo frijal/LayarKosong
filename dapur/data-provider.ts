@@ -1,6 +1,6 @@
 /**
- * MASTER DATA PROVIDER (Optimized)
- * Menggunakan Singleton Pattern & Memory Caching untuk menghindari Fetch berulang.
+ * MASTER DATA PROVIDER (High Performance)
+ * Shared Promise + Memory Cache + Compiled Mapper
  */
 
 declare global {
@@ -11,65 +11,116 @@ declare global {
 	}
 }
 
-interface FieldMapping { [columnName: string]: number; }
+type RawRow = any[];
+type RawData = Record<string, RawRow[]>;
 
-const SEMUANYA: FieldMapping = { title: 0, id: 1, image: 2, date: 3, description: 4 };
+interface FieldMapping {
+	[key: string]: number;
+}
 
-const UI_REQUIREMENTS: { [key: string]: FieldMapping } = {
-	'homepage.ts': SEMUANYA,
-	'sitemap.ts': SEMUANYA,
-	'halaman-pencarian.ts': SEMUANYA,
-	'img.html': { title: 1, url: 2, date: 3 },
-	'iposbrowser.ts': { slug: 1, date: 3 },
-	'marquee-url.ts': { title: 0, id: 1, image: 2, description: 4 },
+const SEMUANYA: FieldMapping = {
+	title: 0,
+	id: 1,
+	image: 2,
+	date: 3,
+	description: 4
 };
 
-(window as any).siteDataProvider = {
-	cache: null, // In-memory cache
-	promise: null,
+const UI_REQUIREMENTS: Record<string, FieldMapping> = {
+	"homepage.ts": SEMUANYA,
+	"sitemap.ts": SEMUANYA,
+	"halaman-pencarian.ts": SEMUANYA,
+	"img.html": { title: 1, url: 2, date: 3 },
+	"iposbrowser.ts": { slug: 1, date: 3 },
+	"marquee-url.ts": { title: 0, id: 1, image: 2, description: 4 }
+};
 
-	async getData(): Promise<any> {
-		// Jika sudah ada di RAM (memory), langsung kembalikan
+/* compile mapper sekali saja */
+const mapperCache: Record<string, Function> = {};
+
+function getMapper(schema: FieldMapping) {
+
+	const key = JSON.stringify(schema);
+
+	if (mapperCache[key]) return mapperCache[key];
+
+	const fields = Object.entries(schema);
+
+	const fn = new Function(
+		"row",
+		"return {" +
+		fields.map(([k, i]) => `"${k}":row[${i}]`).join(",") +
+		"}"
+	);
+
+	mapperCache[key] = fn;
+
+	return fn;
+}
+
+(window as any).siteDataProvider = {
+
+	cache: null as RawData | null,
+	promise: null as Promise<RawData> | null,
+
+	async getData(): Promise<RawData> {
+
 		if (this.cache) return this.cache;
 
-		// Jika request sedang berjalan, kembalikan promise yang sama (mencegah duplikasi fetch)
 		if (this.promise) return this.promise;
 
-		// Fetch baru
-		this.promise = fetch('/artikel.json')
-		.then(res => res.ok ? res.json() : Promise.reject('Gagal memuat DB'))
-		.then(data => {
-			this.cache = data; // Simpan di RAM
-			this.promise = null; // Reset promise agar bisa di-fetch ulang jika perlu
+		this.promise = fetch("/artikel.json")
+		.then(r => {
+
+			if (!r.ok) throw new Error("Gagal memuat DB");
+
+			return r.json();
+
+		})
+		.then((data: RawData) => {
+
+			this.cache = data;
+			this.promise = null;
+
 			return data;
+
 		})
 		.catch(err => {
-			console.error('Data Provider Error:', err);
+
+			console.error("Data Provider Error:", err);
+
 			this.promise = null;
-			return {};
+
+			return this.cache || {};
 		});
 
 		return this.promise;
 	},
 
-	async getFor(uiName: string): Promise<any> {
+	async getFor(uiName: string) {
+
 		const rawData = await this.getData();
 		const schema = UI_REQUIREMENTS[uiName];
 
-		// Jika tidak ada skema, kembalikan data mentah
 		if (!schema) return rawData;
 
-		// Transformasi data sesuai kebutuhan UI
-		const transformed: any = {};
-		for (const category in rawData) {
-			transformed[category] = rawData[category].map((item: any[]) => {
-				const obj: any = {};
-				for (const key in schema) {
-					obj[key] = item[schema[key]];
-				}
-				return obj;
-			});
+		const mapper = getMapper(schema);
+
+		const result: Record<string, any[]> = {};
+
+		for (const category of Object.keys(rawData)) {
+
+			const rows = rawData[category];
+
+			const mapped = new Array(rows.length);
+
+			for (let i = 0; i < rows.length; i++) {
+				mapped[i] = mapper(rows[i]);
+			}
+
+			result[category] = mapped;
 		}
-		return transformed;
+
+		return result;
 	}
 };
