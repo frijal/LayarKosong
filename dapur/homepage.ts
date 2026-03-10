@@ -1,46 +1,47 @@
 /**
  * =================================================================================
- * homepage.ts v7.1 (Optimized with siteDataProvider)
+ * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider
  * =================================================================================
  */
 
-// Interface sekarang merepresentasikan objek rapi, bukan array mentah
 interface Article {
   category: string;
   title: string;
-  id: string; // Menggantikan filename
+  id: string; // id menggantikan filename
   url: string;
   img: string;
   date: Date;
   summary: string;
 }
 
+// --- VARIABEL GLOBAL (DIPERTAHANKAN) ---
 let allData: Article[] = [];
 let displayedData: Article[] = [];
 let heroData: Article[] = [];
+let currentHeroIndex: number = 0;
+let heroTimer: ReturnType<typeof setInterval> | null = null;
 let limit: number = 6;
 let currentActiveCategory: string = 'All';
 
 async function fetchData(): Promise<void> {
   try {
-    // Memanggil siteDataProvider untuk mendapatkan data yang sudah dipetakan
+    // MENGGUNAKAN PROVIDER (Menggantikan fetch manual)
     const data = await (window as any).siteDataProvider.getFor('homepage.ts');
 
     allData = [];
 
-    // Iterasi kategori dari objek yang sudah dipetakan
+    // Iterasi kategori dari data provider
     for (const cat in data) {
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-
       data[cat].forEach((item: any) => {
-        // Karena sudah dipetakan di data-provider, kita akses via property
+        // ID di provider sudah sesuai dengan filename dari JSON
         const fileSlug = item.id.replace(/\.html$/, '');
 
         allData.push({
           category: cat,
           title: item.title,
           id: item.id,
-          url: `/${catSlug}/${fileSlug}/`,
+          url: `/${catSlug}/${fileSlug}`,
           img: item.image,
           date: new Date(item.date),
                      summary: item.description || ''
@@ -57,15 +58,18 @@ async function fetchData(): Promise<void> {
     initSite();
     startHeroSlider();
   } catch (e) {
-    console.error("Gagal load data via provider", e);
+    console.error("Gagal ambil data via provider", e);
+    const feed = document.getElementById('newsFeed');
+    if (feed) feed.innerHTML = "<p>Gagal memuat konten.</p>";
   }
 }
 
+// --- LOGIKA INI Tetap sama seperti kode aslimu ---
 function initSite(): void {
   renderHero();
   renderCategories();
   renderArchives();
-  renderSidebar(); // Inisialisasi awal
+  renderSidebar();
   renderFeed();
 
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
@@ -122,26 +126,51 @@ function initSite(): void {
 function renderSidebar() {
   const side = document.getElementById('sidebarRandom');
   if (!side) return;
+  side.innerHTML = '';
 
-  // Menggunakan currentActiveCategory yang sudah tersinkronisasi
-  let filteredForSidebar = (currentActiveCategory === 'All' || currentActiveCategory === 'Kategori')
+  // 1. Ambil kategori yang sedang aktif dari Pill yang punya class 'active'
+  const activePill = document.querySelector('.pill.active');
+  const currentCategory = activePill ? activePill.textContent.trim() : 'All';
+
+  // 2. Filter artikel berdasarkan kategori aktif (Jika 'Kategori/All', ambil semua)
+  let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
   ? [...allData]
-  : allData.filter(item => item.category === currentActiveCategory);
+  : allData.filter(item => item.category === currentCategory);
 
+  // 3. Hindari duplikasi dengan artikel yang sedang tampil di Feed Utama
   const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
   const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
+
+  // 4. Acak dan ambil 7 item
   const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 7);
 
-  side.innerHTML = randoms.map(item => `
-  <div class="mini-item">
-  <img src="${item.img}" class="mini-thumb" alt="${item.title}" onerror="this.src='/thumbnail.webp'">
-  <div class="mini-text">
-  <h4><a href="${item.url}">${item.title}</a></h4>
-  <small>${item.date.toLocaleDateString('id-ID')} • <span>${item.category}</span></small>
-  </div>
-  </div>`).join('');
+  // 5. Render ke HTML (Sudah menggunakan tooltip 'title' bawaan browser)
+  side.innerHTML = randoms.map(item => {
+    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
+    const cleanTitle = item.title.replace(/"/g, '&quot;');
+
+    const d = item.date;
+    const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
+
+    return `
+    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
+    <div class="mini-text">
+    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
+    <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    ${item.title}
+    </a>
+    </h4>
+    <div style="display: flex; align-items: center; gap: 5px;">
+    <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
+    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
+    </div>
+    </div>
+    </div>`;
+  }).join('');
 }
 
+// --- EKSPOR KE GLOBAL AGAR TOMBOL HTML BISA AKSES ---
 (window as any).renderSidebar = renderSidebar;
 
 function filterByCat(cat: string, el?: HTMLElement): void {
@@ -349,5 +378,6 @@ function runFilters(): void {
   (document.getElementById('contact-name') as HTMLInputElement).value = "";
   (document.getElementById('contact-message') as HTMLTextAreaElement).value = "";
 };
+
 
 fetchData();
