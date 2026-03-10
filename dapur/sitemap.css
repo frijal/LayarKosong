@@ -303,6 +303,7 @@ body.dark-mode #footerInfo {
 }
 
 /* Bagian Konten Utama */
+/* PERBAIKAN: Kontainer #toc tidak perlu padding, karena sudah diatur oleh .sticky-controls-content */
 #toc {
 max-width: 1200px;
 margin-left: auto;
@@ -312,8 +313,8 @@ margin-right: auto;
 /* ==== PERUBAHAN MARQUEE DI SINI ==== */
 #marquee {
 /* Membuat marquee lebih sempit dan memposisikannya di tengah */
-max-width: 1200px;
-margin: 1.5rem auto;
+max-width: 1200px; /* Anda bisa sesuaikan nilainya, misal 1100px atau 90% */
+margin: 1.5rem auto; /* Mengatur margin atas/bawah dan membuatnya rata tengah */
 
 /* Properti yang sudah ada */
 overflow: hidden;
@@ -618,6 +619,7 @@ animation: radar 2s infinite ease-out;
 animation-delay: 1s;
 }
 
+/* PERBAIKAN: Menghapus @keyframes radar yang duplikat */
 @keyframes radar {
   0% {
     transform: scale(0.5);
