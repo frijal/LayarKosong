@@ -1,28 +1,323 @@
-(function(){function P(){return window.innerWidth<=768||"ontouchstart"in window||navigator.maxTouchPoints>0}function R(j){return j?j.replace(/\.html$/,""):""}function k(){let K=window.location.pathname.split("/").filter(Boolean).pop();if(!K||K==="artikel")return"";return K.endsWith(".html")?K:`${K}.html`}function B(j,K){for(let[E,Q]of Object.entries(K))if(Q.some((J)=>J[1]===j))return`/${E.toLowerCase().replace(/\s+/g,"-")}/${j.replace(".html","")}/`;return`/artikel/${R(j)}`}function O(j,K){for(let[E,Q]of Object.entries(K))if(Q.some((J)=>J[1]===j))return{name:E,slug:E.toLowerCase().replace(/\s+/g,"-"),list:Q};return null}function Z(){let j=document.getElementById("related-marquee-container");if(!j)return;let K=getComputedStyle(document.body).backgroundColor,[E,Q,J]=(K.match(/\d+/g)||["0","0","0"]).map(Number),W=0.299*E+0.587*Q+0.114*J;j.classList.toggle("theme-light",W>128)}function w(){let j=document.getElementById("related-marquee-container");if(!j)return;j.addEventListener("click",(K)=>{let Q=K.target.closest("a");if(!Q)return;let J=Q.dataset.articleId;if(!J)return;let W=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]");if(!W.includes(J))W.push(J),localStorage.setItem("read_marquee_articles",JSON.stringify(W))})}function A(){let j=document.getElementById("progress");if(!j)return;let K=()=>{let{documentElement:E,body:Q}=document,J=E.scrollTop||Q.scrollTop,W=E.scrollHeight||Q.scrollHeight,V=E.clientHeight,X=W-V,_=X>0?J/X*100:0;j.style.width=_+"%"};document.addEventListener("scroll",K,{passive:!0}),K()}function U(j,K){let E=document.getElementById("related-marquee-container");if(!E)return;try{let Q=O(K,j);if(!Q)return;let J=Q.list.filter((Y)=>Y[1]!==K),W=JSON.parse(localStorage.getItem("read_marquee_articles")||"[]"),V=J.filter((Y)=>!W.includes(Y[1]));if(V.length===0){E.innerHTML='<p class="marquee-message">Semua artikel terkait sudah dibaca. \uD83D\uDE0A</p>';return}V.sort(()=>0.5-Math.random());let X=" • ",_=P(),G=V.map(([Y,L,,,S])=>{return`<a href="${B(L,j)}" data-article-id="${L}" title="${_?Y:S||Y}">${Y}</a>${X}`}).join("");E.innerHTML=`<div class="marquee-content">${G.repeat(10)}</div>`;let $=E.querySelector(".marquee-content");if($){let Y=$.offsetWidth,L=_?40:75;$.style.animationDuration=`${Y/2/L}s`}w()}catch(Q){console.error("Marquee Error:",Q)}}function y(j){let K=document.querySelector(".search-floating-container"),E=document.getElementById("floatingSearchInput"),Q=K?.querySelector(".clear-button"),J=K?.querySelector(".floating-results-container");if(!K||!E||!Q||!J)return;let W=()=>{let V=E.value.trim();if(V.length>0)window.location.href=`/search/?q=${encodeURIComponent(V)}`};E.addEventListener("input",()=>{let V=E.value.trim();Q.style.display=V.length?"block":"none";let X=V.toLowerCase();if(X.length<3){J.style.display="none";return}let _=[];for(let G in j)for(let $ of j[G])if(($[0]+" "+($[4]||"")).toLowerCase().includes(X))_.push($);if(_.length>0){let $=_.slice(0,5).map((Y)=>`
-        <a href="${B(Y[1],j)}">
-        <strong>${Y[0]}</strong>
-        <small>${Y[4]?Y[4].substring(0,60)+"...":"Lihat artikel"}</small>
-        </a>
-        `).join("");J.innerHTML=$,J.style.display="block"}else J.innerHTML='<div class="no-results">❌ Tidak ditemukan</div>',J.style.display="block"}),E.addEventListener("keydown",(V)=>{if(V.key==="Enter")V.preventDefault(),W()}),Q.addEventListener("click",()=>{E.value="",J.style.display="none",Q.style.display="none"}),document.addEventListener("click",(V)=>{if(!K.contains(V.target))J.style.display="none"})}function H(j,K){let E=O(K,j);if(!E)return;let Q=E.list.findIndex((_)=>_[1]===K),J=E.list.length,W=(Q-1+J)%J,V=(Q+1)%J,X=document.getElementById("dynamic-nav-container")||document.createElement("div");if(X.id="dynamic-nav-container",X.className="floating-nav",X.innerHTML=`
-    <div class="nav-left">
-    <a href="/${E.slug}/" class="category-link visible">${E.name}</a>
-    </div>
-    <div class="nav-right">
-    <a href="/" title="Home" class="btn-emoji">\uD83C\uDFE0</a>
-    <a href="/sitemap/" title="Daftar Isi" class="btn-emoji">\uD83D\uDCC4</a>
-    <a href="/feed/" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
-    ${J>1?`
-      <a href="${B(E.list[W][1],j)}" title="${E.list[W][0]}" class="btn-emoji">⏩</a>
-      <a href="${B(E.list[V][1],j)}" title="${E.list[V][0]}" class="btn-emoji">⏪</a>
-      `:""}
-      </div>`,!X.parentElement)document.body.appendChild(X)}function q(){let j=document.getElementById("internal-nav");if(!j)return;let E=Array.from(document.querySelectorAll("h2, h3, h4")).filter((J)=>J.innerText.trim().length>0&&!J.closest(".floating-nav")&&!j.contains(J)&&!J.closest("#layar-kosong-header"));if(E.length===0){j.style.display="none";return}let Q='<ul class="nav-list">';E.forEach((J,W)=>{if(!J.id)J.id=J.innerText.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${W}`;let V=J.tagName.toLowerCase();Q+=`
-  <li class="nav-item nav-${V}">
-  <a href="#${J.id}" class="nav-link">${J.innerText.trim()}</a>
-  </li>`}),j.innerHTML=Q+"</ul>"}function M(j,K){let E=document.getElementById("related-articles-grid");if(!E)return;let Q=O(K,j);if(!Q){E.style.display="none";return}let J=Q.list.filter((W)=>W[1]!==K).sort(()=>0.5-Math.random()).slice(0,6);E.innerHTML=J.map(([W,V,X])=>`
-    <div class="rel-card-mini">
-    <a href="${B(V,j)}">
-    <div class="rel-img-mini"><img src="${X||"/thumbnail.webp"}" alt="${W}" loading="lazy" onerror="this.src='/thumbnail.webp'"></div>
-    <div class="rel-info-mini"><h4>${W}</h4></div>
-    </a>
-    </div>
-    `).join("")}async function z(){try{q(),A();let j=null,K=sessionStorage.getItem("artikel_data_cache");if(K)j=JSON.parse(K);else{let E=await fetch("/artikel.json");if(!E.ok)throw Error("Gagal memuat artikel.json");j=await E.json(),sessionStorage.setItem("artikel_data_cache",JSON.stringify(j))}if(j){let E=k();U(j,E),M(j,E),y(j),H(j,E),Z(),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",Z)}}catch(j){console.error("Layar Kosong Init Error:",j)}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",z);else z()})();
+/**
+ * =================================================================================
+ * marquee-url.ts v7.0 (Optimized with siteDataProvider)
+ * =================================================================================
+ */
+
+(function (): void {
+  'use strict';
+
+  // ---------------------------
+  // 1. HELPER FUNCTIONS
+  // ---------------------------
+function isMobileDevice(): boolean {
+  return (window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
+}
+
+function cleanSlug(id: string): string {
+  return id ? id.replace(/\.html$/, '') : '';
+}
+
+function getCurrentFileName(): string {
+  const path = window.location.pathname;
+  let name = path.split('/').filter(Boolean).pop();
+  if (!name || name === 'artikel') return '';
+  return name.endsWith('.html') ? name : `${name}.html`;
+}
+
+// LOGIKA URL: Tetap mencari kategori untuk membangun path /kategori/slug/
+function getFullUrl(fileName: string, allData: any): string {
+  for (const [catName, articles] of Object.entries(allData)) {
+    const catArticles = articles as any[];
+    if (catArticles.some((a: any) => a.id === fileName)) {
+      const catSlug = catName.toLowerCase().replace(/\s+/g, '-');
+      return `/${catSlug}/${fileName.replace('.html', '')}/`;
+    }
+  }
+  return `/${cleanSlug(fileName)}/`;
+}
+
+function getCategoryInfo(fileName: string, allData: any) {
+  for (const [catName, articles] of Object.entries(allData)) {
+    const catArticles = articles as any[];
+    if (catArticles.some((a: any) => a.id === fileName)) {
+      return {
+        name: catName,
+ slug: catName.toLowerCase().replace(/\s+/g, '-'),
+ list: catArticles
+      };
+    }
+  }
+  return null;
+}
+
+function adaptMarqueeTextColor(): void {
+  const container = document.getElementById('related-marquee-container');
+  if (!container) return;
+  const bg = getComputedStyle(document.body).backgroundColor;
+  const [r, g, b] = (bg.match(/\d+/g) || ['0', '0', '0']).map(Number);
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+  container.classList.toggle('theme-light', luminance > 128);
+}
+
+function registerReadTracker(): void {
+  const container = document.getElementById('related-marquee-container');
+  if (!container) return;
+  container.addEventListener('click', (e: Event) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest('a');
+    if (!link) return;
+    const id = link.dataset.articleId;
+    if (!id) return;
+    const read: string[] = JSON.parse(localStorage.getItem('read_marquee_articles') || '[]');
+    if (!read.includes(id)) {
+      read.push(id);
+      localStorage.setItem('read_marquee_articles', JSON.stringify(read));
+    }
+  });
+}
+
+// ---------------------------
+// 2. PROGRESS BAR
+// ---------------------------
+function initProgressBar(): void {
+  const bar: HTMLElement | null = document.getElementById('progress');
+  if (!bar) return;
+  const onScroll = (): void => {
+    const h: HTMLElement = document.documentElement;
+    const b: HTMLElement = document.body;
+    const scrollTop: number = h.scrollTop || b.scrollTop;
+    const scrollHeight: number = h.scrollHeight || b.scrollHeight;
+    const clientHeight: number = h.clientHeight;
+    const max: number = scrollHeight - clientHeight;
+    const perc: number = max > 0 ? (scrollTop / max) * 100 : 0;
+    bar.style.width = perc + '%';
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// ---------------------------
+// 3. MARQUEE
+// ---------------------------
+function initCategoryMarquee(data: any, currentFile: string): void {
+  const container = document.getElementById('related-marquee-container');
+  if (!container) return;
+
+  const catInfo = getCategoryInfo(currentFile, data);
+  if (!catInfo) return;
+
+  const filtered = catInfo.list.filter((i: any) => i.id !== currentFile);
+  const read = JSON.parse(localStorage.getItem('read_marquee_articles') || '[]');
+  const unread = filtered.filter((i: any) => !read.includes(i.id));
+
+  if (unread.length === 0) {
+    container.innerHTML = '<p class="marquee-message">Semua artikel terkait sudah dibaca. 😊</p>';
+    return;
+  }
+
+  unread.sort(() => 0.5 - Math.random());
+  const isMobile = isMobileDevice();
+  const html = unread.map(item => {
+    const url = getFullUrl(item.id, data);
+    const tooltip = isMobile ? item.title : (item.description || item.title);
+    return `<a href="${url}" data-article-id="${item.id}" title="${tooltip}">${item.title}</a> • `;
+  }).join('');
+
+  container.innerHTML = `<div class="marquee-content">${html.repeat(10)}</div>`;
+  const mc = container.querySelector('.marquee-content') as HTMLElement | null;
+  if (mc) {
+    const w: number = mc.offsetWidth;
+    const speed: number = isMobile ? 40 : 75;
+    mc.style.animationDuration = `${w / 2 / speed}s`;
+  }
+  registerReadTracker();
+} catch (err) {
+  console.error('Marquee Error:', err);
+}
+}
+
+// ---------------------------
+// 4. FLOATING SEARCH (DENGAN URL DINAMIS & ENTER REDIRECT)
+// ---------------------------
+function initFloatingSearch(allData: any): void {
+  const wrap = document.querySelector('.search-floating-container') as HTMLElement | null;
+  const input = document.getElementById('floatingSearchInput') as HTMLInputElement | null;
+  const clear = wrap?.querySelector('.clear-button') as HTMLElement | null;
+  const results = wrap?.querySelector('.floating-results-container') as HTMLElement | null;
+
+  if (!wrap || !input || !clear || !results) return;
+
+  const goToSearchPage = (): void => {
+    const query: string = input.value.trim();
+    if (query.length > 0) {
+      window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+    }
+  };
+
+  input.addEventListener('input', () => {
+    const v: string = input.value.trim();
+    clear.style.display = v.length ? 'block' : 'none';
+
+    const q: string = v.toLowerCase();
+    if (q.length < 3) { results.style.display = 'none'; return; }
+
+    let matches: any[] = [];
+    // Mengakses data sebagai objek, bukan lagi array indeks
+    for (const cat in allData) {
+      for (const item of allData[cat]) {
+        // Akses item.title dan item.description sesuai mapping di data-provider
+        if ((item.title + ' ' + (item.description || '')).toLowerCase().includes(q)) {
+          matches.push(item);
+        }
+      }
+    }
+
+    if (matches.length > 0) {
+      const topMatches = matches.slice(0, 5);
+      const html: string = topMatches.map(item => `
+      <a href="${getFullUrl(item.id, allData)}">
+      <strong>${item.title}</strong>
+      <small>${item.description ? item.description.substring(0, 60) + '...' : 'Lihat artikel'}</small>
+      </a>
+      `).join('');
+      results.innerHTML = html;
+      results.style.display = 'block';
+    } else {
+      results.innerHTML = `<div class="no-results">❌ Tidak ditemukan</div>`;
+      results.style.display = 'block';
+    }
+  });
+
+  input.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      goToSearchPage();
+    }
+  });
+
+  clear.addEventListener('click', () => {
+    input.value = '';
+    results.style.display = 'none';
+    clear.style.display = 'none';
+    input.focus();
+  });
+
+  document.addEventListener('click', (e: MouseEvent) => {
+    if (!wrap.contains(e.target as Node)) results.style.display = 'none';
+  });
+}
+
+// ---------------------------
+// 5. NAV ICONS (DENGAN URL DINAMIS & OBJECT-BASED ACCESS)
+// ---------------------------
+function initNavIcons(allData: any, currentFile: string): void {
+  const catInfo = getCategoryInfo(currentFile, allData);
+  if (!catInfo) return;
+
+  // Sekarang mengakses .id alih-alih [1]
+  const idx = catInfo.list.findIndex((a: any) => a.id === currentFile);
+  const total = catInfo.list.length;
+  const nextI = (idx - 1 + total) % total;
+  const prevI = (idx + 1) % total;
+
+  const nav = (document.getElementById('dynamic-nav-container') || document.createElement('div')) as HTMLElement;
+  nav.id = 'dynamic-nav-container';
+  nav.className = 'floating-nav';
+
+nav.innerHTML = `
+<div class="nav-left">
+<a href="/${catInfo.slug}/" class="category-link visible">${catInfo.name}</a>
+</div>
+<div class="nav-right">
+<a href="/" title="Home" class="btn-emoji">🏠</a>
+<a href="/sitemap/" title="Daftar Isi" class="btn-emoji">📄</a>
+<a href="/feed/" title="RSS Feed" class="btn-emoji">📡</a>
+${total > 1 ? `
+  <a href="${getFullUrl(catInfo.list[nextI].id, allData)}" title="${catInfo.list[nextI].title}" class="btn-emoji">⏩</a>
+  <a href="${getFullUrl(catInfo.list[prevI].id, allData)}" title="${catInfo.list[prevI].title}" class="btn-emoji">⏪</a>
+  ` : ''}
+  </div>`;
+
+  if (!nav.parentElement) document.body.appendChild(nav);
+}
+
+// ---------------------------
+// 6. INTERNAL TOC & RELATED GRID
+// ---------------------------
+function initInternalNav(): void {
+  const tocContainer = document.getElementById('internal-nav');
+  if (!tocContainer) return;
+
+  const headings = Array.from(document.querySelectorAll('h2, h3, h4')) as HTMLElement[];
+  const filteredHeadings = headings.filter(h =>
+  h.innerText.trim().length > 0 &&
+  !h.closest('.floating-nav') &&
+  !tocContainer.contains(h) &&
+  !h.closest('#layar-kosong-header')
+  );
+
+  if (filteredHeadings.length === 0) {
+    tocContainer.style.display = 'none';
+    return;
+  }
+
+  let tocHtml = '<ul class="nav-list">';
+filteredHeadings.forEach((h, i) => {
+  if (!h.id) {
+    h.id = h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `section-${i}`;
+  }
+  const level = h.tagName.toLowerCase();
+  tocHtml += `
+  <li class="nav-item nav-${level}">
+  <a href="#${h.id}" class="nav-link">${h.innerText.trim()}</a>
+  </li>`;
+});
+tocContainer.innerHTML = tocHtml + '</ul>';
+}
+
+function initRelatedGrid(allData: any, currentFile: string): void {
+  const gridContainer = document.getElementById('related-articles-grid');
+  if (!gridContainer) return;
+
+  const catInfo = getCategoryInfo(currentFile, allData);
+  if (!catInfo) {
+    gridContainer.style.display = 'none';
+return;
+  }
+
+  // Akses properti objek: item.id dan item.image
+  const related = catInfo.list
+  .filter((i: any) => i.id !== currentFile)
+  .sort(() => 0.5 - Math.random())
+  .slice(0, 6);
+
+  gridContainer.innerHTML = related.map((item: any) => `
+  <div class="rel-card-mini">
+  <a href="${getFullUrl(item.id, allData)}">
+  <div class="rel-img-mini">
+  <img src="${item.image || '/thumbnail.webp'}" alt="${item.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
+  </div>
+  <div class="rel-info-mini"><h4>${item.title}</h4></div>
+  </a>
+  </div>
+  `).join('');
+}
+// ---------------------------
+// 7. MAIN INITIALIZATION
+// ---------------------------
+async function initializeApp(): Promise<void> {
+  while (!(window as any).siteDataProvider) await new Promise(r => setTimeout(r, 100));
+
+  // Mengambil data yang sudah dipetakan sesuai kebutuhan UI marquee
+  const data = await (window as any).siteDataProvider.getFor('marquee-url.ts');
+  const currentFile = getCurrentFileName();
+
+  if (data) {
+    initCategoryMarquee(data, currentFile);
+    initFloatingSearch(data);
+  }
+}
+
+document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', initializeApp) : initializeApp();
+})();
