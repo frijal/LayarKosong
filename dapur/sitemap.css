@@ -46,11 +46,11 @@
 }
 
 .category {
-  /* Default warna jika index tidak ada */
+  /* Hapus deklarasi background statis di sini jika ada */
   --category-color: var(--c0);
-  background: var(--category-color);
+  background: var(--category-color) !important; /* Gunakan !important agar JS menang */
   border-radius: 8px;
-  padding: 1px;
+  padding: 3px; /* Bingkai gradien */
 }
 
 * {
@@ -407,11 +407,11 @@ gap: 0.75rem;
 
 .category-content {
   background-color: var(--surface-light);
-  border-radius: 7px;
+  border-radius: 5px; /* Sedikit lebih kecil agar gradien terlihat */
   overflow: hidden;
-  /* PERUBAHAN: Menambahkan margin kecil agar gradien di parent terlihat */
-  margin: 2px;
 }
+
+/* Penting: Pastikan dark mode juga transparan */
 body.dark-mode .category-content {
   background-color: var(--surface-dark);
 }
