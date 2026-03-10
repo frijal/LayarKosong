@@ -1,81 +1,57 @@
-name: masukkan baris sebelum atau sesudah
+name: Inject content via PR
+
 on:
   workflow_dispatch:
     inputs:
       position:
-        description: 'Sissipkan "sebelum" atau "sesudah" target?'
+        description: 'Sisipkan "sebelum" atau "sesudah" target?'
         required: true
         type: choice
-        default: 'sesudah'
-        options:
-          - sesudah
-          - sebelum
+        options: [sesudah, sebelum]
       target_string:
-        description: 'Masukkan teks target (contoh: <body>, </body>)'
+        description: 'Target (contoh: </title>)'
         required: true
-        default: '<body>'
+        default: '</title>'
       sentence:
-        description: 'Masukkan kalimat/HTML yang akan disisipkan'
+        description: 'Kalimat yang disisipkan'
         required: true
-        type: string
-        default: '<div style="background-color: #e1f5fe; text-align: center; padding: 5px; font-size: 0.9em;">Ini adalah contoh kalimat.</div>'
+        default: '<script src="/ext/data-provider.js" defer></script>'
       target_directory:
-        description: 'Folder target (contoh: ., artikel/, mini/)'
+        description: 'Folder target'
         required: true
-        type: string
         default: '.'
-      # BARU: Kolom input untuk menentukan ekstensi file
       file_extension:
-        description: 'Ekstensi file target (contoh: html, txt, js, css)'
+        description: 'Ekstensi file (html, js, dll)'
         required: true
-        type: string
         default: 'html'
 
 jobs:
-  inject-and-commit:
+  inject-and-pr:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 1
-          persist-credentials: true
+        uses: actions/checkout@v4
 
-      - name: Inject sentence into files
+      - name: Inject content
         run: |
-          # Mengambil nilai dari semua input
-          POSITION="${{ github.event.inputs.position }}"
           TARGET="${{ github.event.inputs.target_string }}"
           SENTENCE="${{ github.event.inputs.sentence }}"
-          DIRECTORY="${{ github.event.inputs.target_directory }}"
-          EXTENSION="${{ github.event.inputs.file_extension }}"
-
-          # Langkah untuk meng-escape karakter khusus pada input TARGET
-          ESCAPED_TARGET=$(printf '%s\n' "$TARGET" | sed -e 's/[]\/$*.^[]/\\&/g');
-
-          echo "Tipe File: *.$EXTENSION"
-          echo "Folder Target: $DIRECTORY"
-          echo "Posisi: $POSITION"
-          echo "Target: $TARGET"
-
-          # MODIFIKASI: Perintah 'find' sekarang menggunakan ekstensi file yang dinamis
-          if [[ "$POSITION" == "sesudah" ]]; then
-            find "$DIRECTORY" -type f -name "*.$EXTENSION" -exec sed -i "s|$ESCAPED_TARGET|&\n$SENTENCE|" {} +
-          elif [[ "$POSITION" == "sebelum" ]]; then
-            find "$DIRECTORY" -type f -name "*.$EXTENSION" -exec sed -i "s|$ESCAPED_TARGET|$SENTENCE\n&|" {} +
-          fi
-
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com
-          git config --local user.name "github-actions[bot]"
-
-          if ! git diff --quiet; then
-            git add .
-            git commit -m "CI: Auto-inject content into *.$EXTENSION files [skip ci]"
-            git push
+          
+          if [[ "${{ github.event.inputs.position }}" == "sesudah" ]]; then
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec sed -i "s#$TARGET#$TARGET\n$SENTENCE#g" {} +
           else
-            echo "Tidak ada perubahan yang perlu di-commit."
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec sed -i "s#$TARGET#$SENTENCE\n$TARGET#g" {} +
           fi
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "CI: Auto-inject content into *.${{ github.event.inputs.file_extension }}"
+          title: "Auto-inject: Update file content"
+          body: "Workflow otomatis menambahkan script ke file target."
+          branch: "auto-inject-changes"
+          delete-branch: true
