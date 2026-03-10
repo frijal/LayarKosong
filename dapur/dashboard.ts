@@ -45,7 +45,10 @@ if (!container) {
 // Load JSON
 let data
 try {
-    const res = await fetch('../artikel.json')
+    const res = await fetch('https://cdn.jsdelivr.net/gh/frijal/LayarKosong@main/artikel.json');
+    const data = await res.json();
+
+
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
         data = await res.json()
 } catch (err) {
