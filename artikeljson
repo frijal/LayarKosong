@@ -1,0 +1,306 @@
+🔍 Mencari string: "artikel.json" di ekstensi: .html, .js, .yml, .ts, .py, .css
+---
+
+📍 Ditemukan di: artikel/editor-json-pro.html
+   Baris 209: <meta name="description" content="Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.">
+   Baris 210: <meta property="og:description" content="Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.">
+   Baris 211: <meta name="twitter:description" content="Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.">
+   Baris 267: <p>Belum ada data. Silakan upload file <code>artikel.json</code> kamu.</p>
+   Baris 510: dl.setAttribute("download", "artikel.json");
+
+📍 Ditemukan di: artikel/editor-json-artikel-mingguan.html
+   Baris 185: <p>Unggah file <code>artikel.json</code> dengan format kategori → array artikel, lalu potong per minggu berdasarkan tanggal.</p>
+
+📍 Ditemukan di: artikel/-/warta-tekno.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/olah-media.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/opini-sosial.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/lainnya.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/sistem-terbuka.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/jejak-sejarah.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/-/gaya-hidup.html
+   Baris 431: const DATA_URL = '../../artikel.json';
+
+📍 Ditemukan di: artikel/build-deploy-clean-branch.html
+   Baris 398: --include='artikel.json' \
+
+📍 Ditemukan di: artikel/editor-artikel-json-pro.html
+   Baris 222: <button onclick="loadFromUrl()">Load URL</button> pakai aja URL file .json ini <i class="fa-regular fa-circle-right"></i> <code>https://dalam.web.id/artikel.json</code>
+   Baris 223: <input id="jsonUrlInput" placeholder="https://dalam.web.id/artikel.json" style="width:auto"> atau
+
+📍 Ditemukan di: artikel/workflow-cloudflare.html
+   Baris 213: - 'artikel.json'
+   Baris 249: --include='artikel.json' \
+
+📍 Ditemukan di: artikel/build-workflow.html
+   Baris 187: - name: Copy artikel.json ke folder artikel/
+   Baris 188: run: cp -f artikel.json artikel/
+   Baris 210: 4️⃣ <b>Copy artikel.json</b> — Menyalin metadata hasil build ke folder <code>artikel/</code> agar mudah diakses oleh front-end.
+
+📍 Ditemukan di: artikel/agregat-2025-semester2.html
+   Baris 1597: <div class="content">Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.</div>
+
+📍 Ditemukan di: artikel/analisis-skrip-generator-konten-nodejs.html
+   Baris 186: <meta name="ai:summary" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
+   Baris 187: <meta name="ai:prompt_hint" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
+   Baris 274: <meta name="description" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
+   Baris 275: <meta property="og:description" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
+   Baris 276: <meta name="twitter:description" content="Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.">
+   Baris 313: <li>Sebuah "database" pusat dalam format JSON (<code>artikel.json</code>).</li>
+   Baris 337: masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
+   Baris 338: jsonOut: path.join(__dirname, '..', 'artikel.json'),
+   Baris 471: '⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.',
+   Baris 537: // Cek apakah file output (artikel.json di root) sudah ada
+   Baris 543: console.log('🟡 File output artikel.json tidak ditemukan, akan dibuat ulang.');
+   Baris 568: console.log('✅ File artikel.json di root dibuat ulang karena tidak ada.');
+   Baris 571: '✅ artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.',
+   Baris 587: <p>Skrip mulai dengan memuat <code>artikel/artikel.json</code>. File ini bertindak sebagai "ingatan" atau kondisi terakhir. Jika tidak ada, ia akan memulai dari nol.</p>
+   Baris 615: <p>Ini bagian efisiennya. Skrip hanya akan menulis ulang <code>artikel.json</code>, <code>sitemap.xml</code>, dan halaman kategori <strong>jika ada perubahan</strong>. Jika tidak, ia akan berhenti dan menghemat waktu.</p>
+
+📍 Ditemukan di: artikel/pengaturan-posisi-json.html
+   Baris 278: <button id="downloadBtn">💾 Download artikel.json</button>
+
+📍 Ditemukan di: ext/homepage.js
+   Baris 1: var X=[],k=[],G=[],_=0,U=null,L=6;async function B(){try{let j=await fetch("artikel.json");if(!j.ok)throw Error("Gagal load JSON");let z=await j.json();X=[];for(let J in z){let K=J.toLowerCase().replace(/\s+/g,"-");z[J].forEach((Q)=>{let R=Q[1],O=R.endsWith(".html")?R.replace(/\.html$/,""):R;X.push({category:J,title:Q[0],url:`/${K}/${O}`,img:Q[2],date:new Date(Q[3]),summary:Q[4]||""})})}X.sort((J,K)=>K.date.getTime()-J.date.getTime()),k=[...X],G=[...new Set(X.map((J)=>J.category))].map((J)=>X.find((K)=>K.category===J)),v(),W()}catch(j){console.error("Gagal ambil data",j);let z=document.getElementById("newsFeed");if(z)z.innerHTML="<p>Gagal memuat konten.</p>"}}function v(){g(),x(),F(),$(),V();let j=document.getElementById("searchInput"),z=document.getElementById("clearSearch"),q=document.getElementById("hero");if(j)j.addEventListener("input",(Q)=>{let R=Q.target.value.toLowerCase();if(R.length>0){if(q)q.style.display="none";Y()}else{if(q)q.style.display="block";W()}k=X.filter((O)=>O.title.toLowerCase().includes(R)||O.summary&&O.summary.toLowerCase().includes(R)),V(!0),$()});if(z&&j)z.addEventListener("click",()=>{if(j.value="",q)q.style.display="block";k=[...X],V(!0),$(),W(),j.focus()});let J=document.getElementById("yearFilter"),K=document.getElementById("monthFilter");if(J)J.addEventListener("change",()=>{M(),C()});if(K)K.addEventListener("change",C)}function $(){let j=document.getElementById("sidebarRandom");if(!j)return;j.innerHTML="";let z=document.querySelector(".pill.active"),q=z?z.textContent.trim():"All",J=q==="All"||q==="Kategori"?[...X]:X.filter((O)=>O.category===q),K=k.slice(0,L).map((O)=>O.title),R=[...J.filter((O)=>!K.includes(O.title))].sort(()=>0.5-Math.random()).slice(0,7);j.innerHTML=R.map((O)=>{let Z=(O.summary||"").replace(/"/g,"&quot;"),N=O.title.replace(/"/g,"&quot;"),A=O.date,T=`${String(A.getDate()).padStart(2,"0")}.${String(A.getMonth()+1).padStart(2,"0")}.${String(A.getFullYear())}`;return`
+
+📍 Ditemukan di: ext/dashboard.html
+   Baris 130: <button id="downloadBtn">💾 Download artikel.json</button>
+
+📍 Ditemukan di: ext/marquee-url.js
+   Baris 28: `).join("")}async function z(){try{q(),A();let j=null,K=sessionStorage.getItem("artikel_data_cache");if(K)j=JSON.parse(K);else{let E=await fetch("/artikel.json");if(!E.ok)throw Error("Gagal memuat artikel.json");j=await E.json(),sessionStorage.setItem("artikel_data_cache",JSON.stringify(j))}if(j){let E=k();U(j,E),M(j,E),y(j),H(j,E),Z(),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",Z)}}catch(j){console.error("Layar Kosong Init Error:",j)}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",z);else z()})();
+
+📍 Ditemukan di: ext/iposbrowser.js
+   Baris 1: var _={Firefox:"/ext/icons/firefox.svg",Chrome:"/ext/icons/chrome.svg",Edge:"/ext/icons/edge.svg",Safari:"/ext/icons/safari.svg",Unknown:"/ext/icons/unknown.svg"},$={Windows:"/ext/icons/windows.svg",macOS:"/ext/icons/macios.svg",Linux:"/ext/icons/linux.svg",Android:"/ext/icons/android.svg",iOS:"/ext/icons/macios.svg",Unknown:"/ext/icons/unknown.svg"};document.addEventListener("DOMContentLoaded",async()=>{let W=document.getElementById("iposbrowser");if(!W)return;let j=navigator.userAgent,B=/(firefox|fxios)/i.test(j)?"Firefox":/edg/i.test(j)?"Edge":/chrome|crios/i.test(j)?"Chrome":/safari/i.test(j)?"Safari":"Unknown",Q=/android/i.test(j)?"Android":/iphone|ipad|ipod/i.test(j)?"iOS":j.includes("Windows")?"Windows":j.includes("Mac")?"macOS":j.includes("Linux")?"Linux":"Unknown";async function F(){try{let q=window.location.pathname.split("/").filter(Boolean).pop()||"index.html",v=q.endsWith(".html")?q:`${q}.html`,Z=sessionStorage.getItem("artikel_data_cache"),z;if(Z)z=JSON.parse(Z);else z=await(await fetch("/artikel.json")).json(),sessionStorage.setItem("artikel_data_cache",JSON.stringify(z));let U=Object.values(z).flat().find((V)=>V[1]===v);if(U&&U[3])return new Date(U[3]).toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"})}catch(q){console.warn("Gagal mengambil tanggal:",q)}return null}async function K(){try{let v=await(await fetch("https://ipapi.co/json/")).json();return v.error?null:{city:v.city,country:v.country_name,code:v.country_code}}catch{return null}}let[x,X]=await Promise.all([K(),F()]),Y=(q,v)=>`<img src="${q}" alt="${v}" style="width:18px; height:18px; display:block; transition:transform 0.3s ease;">`,O=x?`
+
+📍 Ditemukan di: ext/ujihalaman.html
+   Baris 66: <h2>2. Uji Semua Artikel dari <code>artikel.json</code></h2>
+   Baris 111: // --- Uji Semua Artikel dari artikel.json ---
+   Baris 208: fetch('/artikel.json')
+   Baris 212: container.innerHTML = '❌ Gagal memuat artikel.json'
+
+📍 Ditemukan di: ext/halaman-pencarian.js
+   Baris 1: document.addEventListener("DOMContentLoaded",async()=>{let N=document.getElementById("main-header");if(N)new ResizeObserver((F)=>{for(let B of F)document.body.style.paddingTop=`${B.contentRect.height}px`}).observe(N);let P=document.documentElement,_=(b)=>{P.classList.toggle("dark",b==="dark"),P.classList.toggle("light",b==="light"),localStorage.setItem("theme",b)},$=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");_($);let W=document.getElementById("current-year");if(W)W.textContent=new Date().getFullYear().toString();let A=document.getElementById("search-results"),G=document.getElementById("loading-indicator"),X=document.getElementById("search-query-display"),E=new URLSearchParams(window.location.search).get("q")?.trim()||"";if(X)X.innerHTML=E?`Hasil Pencarian untuk: <span class="font-bold">"${E}"</span>`:"Pencarian",document.title=E?`${E} - Cari di Layar Kosong`:"Pencarian di Layar Kosong";if(!E){if(G)G.style.display="none";if(A)A.innerHTML='<p class="text-center text-red-500 py-10">Silakan ketik kata kunci pada kolom pencarian...</p>';return}fetch("artikel.json").then((b)=>{if(!b.ok)throw Error("Gagal ambil data");return b.json()}).then((b)=>{let F=[],B=E.toLowerCase();if(Object.entries(b).forEach(([H,j])=>{let J=H.toLowerCase().replace(/\s+/g,"-");j.forEach((K)=>{let[M,z,v,L,Z]=K;if(M?.toLowerCase().includes(B)||Z?.toLowerCase().includes(B))F.push({title:M,filename:z,imageUrl:v,dateISO:L,description:Z,category:H,catSlug:J})})}),G)G.style.display="none";k(F,E)}).catch((b)=>{if(G)G.style.display="none";if(A)A.innerHTML=`<p class="text-center text-red-500">Error: ${b.message}</p>`});function k(b,F){if(!A)return;if(b.length===0){A.innerHTML=`<p style="text-align:center; color:var(--color-fallback-text); padding: 40px 0;">Tidak ditemukan artikel untuk "${F}"</p>`;return}A.innerHTML=`<p class="text-muted">ditemukan ${b.length} judul artikel...</p>`;let B=document.createElement("div");B.className="search-grid";let H=(j)=>{if(!j)return"";let J=F.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),K=new RegExp(`(${J})`,"gi");return j.replace(K,"<mark>$1</mark>")};b.forEach((j)=>{let J=j.filename?j.filename.replace(".html",""):"#",K=`/${j.catSlug}/${J}`,M=j.dateISO?new Date(j.dateISO).toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}):"",z=document.createElement("div");z.className="result-card",z.style.display="flex",z.style.flexDirection="column",z.style.borderRadius="8px",z.style.overflow="hidden",z.style.height="100%",z.innerHTML=`
+
+📍 Ditemukan di: ext/json-xml.html
+   Baris 571: a.download = 'artikel.json'
+
+📍 Ditemukan di: ext/dashboard.js
+   Baris 1: document.addEventListener("DOMContentLoaded",async()=>{let Z=document.getElementById("categories"),_=document.createElement("div");_.style.textAlign="center",_.style.marginBottom="10px";let Q=document.createElement("input");Q.type="text",Q.placeholder="\uD83D\uDD0D Cari artikel...",Q.style.padding="6px 10px",Q.style.width="300px",Q.style.fontSize="14px",Q.style.borderRadius="4px",Q.style.border="1px solid #ccc";let V=document.createElement("button");V.textContent="❌",V.style.marginLeft="5px",V.style.padding="6px 10px",V.style.fontSize="14px",V.style.cursor="pointer";let W=document.createElement("button");W.textContent="↩️ Undo",W.style.marginLeft="5px",W.style.padding="6px 10px",W.style.fontSize="14px",W.style.cursor="pointer",_.appendChild(Q),_.appendChild(V),_.appendChild(W),Z.parentNode.insertBefore(_,Z);let S=document.getElementById("downloadBtn");if(!Z){console.error("Container #categories tidak ditemukan!");return}let $;try{let j=await fetch("../artikel.json");if(!j.ok)throw Error(`HTTP error! status: ${j.status}`);$=await j.json()}catch(j){console.error("Gagal load artikel.json:",j);return}let E=Object.keys($).map((j)=>{let z=$[j].reduce((q,G)=>{let K=new Date(G[3]);return K>q?K:q},new Date(0));return{name:j,latestDate:z}}).sort((j,z)=>z.latestDate-j.latestDate).map((j)=>j.name),O=3,h=Array.from({length:O},()=>{let j=document.createElement("div");return j.className="column",Z.appendChild(j),j}),k=JSON.parse(JSON.stringify($)),f=null;function w(j){j.addEventListener("dragstart",(z)=>{f=j,z.dataTransfer.effectAllowed="move",setTimeout(()=>j.style.display="none",0)}),j.addEventListener("dragend",()=>{f.style.display="flex",f=null})}function b(j){j.addEventListener("dragover",(z)=>{z.preventDefault(),z.dataTransfer.dropEffect="move"}),j.addEventListener("drop",(z)=>{if(z.preventDefault(),f)j.appendChild(f)})}let F=document.createElement("div");F.id="contextMenu",document.body.appendChild(F);function C(){F.innerHTML="",E.forEach((j)=>{let z=document.createElement("div");z.textContent=j,z.addEventListener("click",()=>{if(F.currentItem){let q=document.querySelector(`.item-list[data-category="${j}"]`);if(q)q.appendChild(F.currentItem);F.currentItem=null}F.style.display="none"}),F.appendChild(z)})}C(),document.addEventListener("click",(j)=>{if(!F.contains(j.target))F.style.display="none"});function B(j){j.addEventListener("contextmenu",(z)=>{z.preventDefault(),F.currentItem=j,F.style.left=z.pageX+"px",F.style.top=z.pageY+"px",F.style.display="block"})}function L(j){Z.innerHTML="";let z=Array.from({length:O},()=>{let q=document.createElement("div");return q.className="column",q.style.minWidth="250px",q.style.margin="0 10px",Z.appendChild(q),q});E.forEach((q,G)=>{let K=z[G%O],R=document.createElement("details");R.className="category",R.dataset.category=q,R.open=!0;let y=document.createElement("summary"),X=j[q]?j[q].length:0;y.textContent=`${q} (${X})`,R.appendChild(y);let H=document.createElement("div");H.className="item-list",H.dataset.category=q,j[q].slice().sort((P,J)=>new Date(J[3])-new Date(P[3])).forEach((P)=>{let[J,I,T,M,p]=P,A=document.createElement("div");A.className="item",A.draggable=!0,A.dataset.file=I,A.dataset.image=T,A.dataset.lastmod=M,A.dataset.description=p,A.style.padding="8px",A.style.marginBottom="5px",A.style.borderBottom="1px solid #eee",A.style.display="flex",A.style.alignItems="center",A.style.gap="10px";let Y=document.createElement("img");Y.src=T,Y.alt=J,Y.style.width="40px",Y.style.height="40px",Y.style.objectFit="cover",Y.style.borderRadius="4px";let U=document.createElement("span");U.innerHTML=J,U.style.fontSize="13px",A.appendChild(Y),A.appendChild(U),w(A),B(A),H.appendChild(A)}),R.appendChild(H),K.appendChild(R),b(H)})}L($),S.addEventListener("click",()=>{let j={};document.querySelectorAll(".category").forEach((K)=>{let R=K.dataset.category,y=[];K.querySelectorAll(".item").forEach((X)=>{y.push([X.querySelector("span").innerText,X.dataset.file,X.dataset.image,X.dataset.lastmod,X.dataset.description])}),j[R]=y});let z=new Blob([JSON.stringify(j,null,2)],{type:"application/json"}),q=URL.createObjectURL(z),G=document.createElement("a");G.href=q,G.download="artikel.json",G.click(),URL.revokeObjectURL(q)});function N(j){let z=new RegExp(`(${j})`,"gi");document.querySelectorAll(".item").forEach((q)=>{let G=q.querySelector("span"),K=G.dataset.original||G.innerHTML;if(G.dataset.original=K,!j)G.innerHTML=K,q.style.display="flex";else if(K.toLowerCase().includes(j.toLowerCase()))G.innerHTML=K.replace(z,"<mark>$1</mark>"),q.style.display="flex";else q.style.display="none"})}Q.addEventListener("input",(j)=>N(j.target.value)),V.addEventListener("click",()=>{Q.value="",N("")}),W.addEventListener("click",()=>L(k))});
+
+📍 Ditemukan di: ext/sitemap.js
+   Baris 7: `}function B(z,F){let H=F.toLowerCase().replace(/\s+/g,"-"),Q=z.replace(".html","");return`/${H}/${Q}`}var U=document.getElementById("tocToggle");function I(){let z=Array.from(document.querySelectorAll(".toc-list"));if(z.length===0||!U)return;let F=z.every((H)=>H.style.display==="none");U.textContent=F?"Buka Semua":"Tutup Semua"}async function h(){try{let F=await(await fetch("artikel.json")).json(),H=document.getElementById("toc");if(!H)return;H.innerHTML="",$={},Object.keys(F).forEach((X)=>{$[X]=F[X].map((J)=>({title:J[0],file:J[1],image:J[2],lastmod:J[3],description:J[4],category:X})).sort((J,W)=>new Date(W.lastmod).getTime()-new Date(J.lastmod).getTime())});let Q=Object.values($).flat();M(Q.length,G.length);let _=x(C),Y=document.getElementById("category-tooltip");Object.keys($).sort((X,J)=>{let W=new Date($[X][0].lastmod).getTime();return new Date($[J][0].lastmod).getTime()-W}).forEach((X,J)=>{let W=document.createElement("div");W.className="category";let P=_[J%_.length];W.style.setProperty("--category-color",P),W.innerHTML=`
+   Baris 14: `;let R=W.querySelector(".toc-list");$[X].forEach((Z)=>{let w=document.createElement("div");w.className="toc-item",w.setAttribute("data-text",Z.title.toLowerCase());let N=document.createElement("div");N.className="toc-title";let q=document.createElement("a");q.href=B(Z.file,Z.category),q.textContent=Z.title;let j=document.createElement("span");if(G.includes(Z.file))j.className="label-visited",j.textContent="sudah dibaca \uD83D\uDC4D",q.classList.add("visited");else j.className="label-new",j.textContent="\uD83D\uDCD3 belum dibaca";let V=document.createElement("span");V.className="toc-date",V.textContent=`[${L(Z.lastmod)}]`,q.addEventListener("click",()=>{if(!G.includes(Z.file))G.push(Z.file),localStorage.setItem("visitedLinks",JSON.stringify(G)),M(Q.length,G.length)});let b=Z.description||"Tidak ada deskripsi.";q.addEventListener("mouseenter",()=>{if(Y)Y.innerHTML=b,Y.style.display="block"}),q.addEventListener("mousemove",(A)=>{if(Y)Y.style.left=A.clientX+15+"px",Y.style.top=A.clientY+15+"px"}),q.addEventListener("mouseleave",()=>{if(Y)Y.style.display="none"}),N.appendChild(q),N.appendChild(j),N.appendChild(V),w.appendChild(N),R.appendChild(w)}),W.querySelector(".category-header").addEventListener("click",()=>{let Z=R.style.display;R.style.display=Z==="block"?"none":"block",I()}),H.appendChild(W)});let O=document.getElementById("marquee-content");if(O){let X=x(Q);O.innerHTML=X.map((J)=>{let W=(J.description||"Tidak ada deskripsi.").replace(/"/g,"&quot;");return`<a href="${B(J.file,J.category)}" data-description="${W}">${J.title}</a>`}).join(" • ")}}catch(z){console.error("Gagal load artikel.json",z)}}var K=document.getElementById("search"),E=document.getElementById("clearSearch");if(K)K.addEventListener("input",()=>{let z=K.value.toLowerCase();if(E)E.style.display=z?"block":"none";let F=0;Array.from(document.querySelectorAll(".category")).forEach((_)=>{let Y=!1;Array.from(_.querySelectorAll(".toc-item")).forEach((J)=>{let W=J.getAttribute("data-text")||"",P=J.querySelector("a");if(z&&W.includes(z)){J.style.display="flex",Y=!0,F++;let R=z.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");P.innerHTML=W.replace(new RegExp(`(${R})`,"gi"),'<span class="highlight">$1</span>')}else if(!z)J.style.display="flex",P.textContent=W,Y=!0;else J.style.display="none"}),_.style.display=Y?"block":"none";let X=_.querySelector(".toc-list");if(X)X.style.display=z&&Y?"block":"none"});let Q=Object.values($).flat().length;if(z)M(F,G.length,z);else M(Q,G.length);I()});if(E&&K)E.addEventListener("click",()=>{K.value="",K.dispatchEvent(new Event("input"))});if(U)U.addEventListener("click",()=>{let z=Array.from(document.querySelectorAll(".toc-list")),F=U.textContent==="Buka Semua";z.forEach((H)=>{H.style.display=F?"block":"none"}),I()});function v(){let z=document.getElementById("darkSwitch"),F=(Q)=>{if(document.body.classList.toggle("dark-mode",Q),z)z.checked=Q;localStorage.setItem("darkMode",String(Q))},H=localStorage.getItem("darkMode");if(H!==null)F(H==="true");else F(window.matchMedia("(prefers-color-scheme: dark)").matches);if(z)z.addEventListener("change",()=>F(z.checked))}document.addEventListener("DOMContentLoaded",()=>{h().then(()=>{v(),I()})});
+
+📍 Ditemukan di: img.html
+   Baris 220: const JSON_URL = 'https://dalam.web.id/artikel.json';
+
+📍 Ditemukan di: functions/[[path]].js
+   Baris 15: // Ambil data artikel.json dari root domain kamu
+   Baris 16: const jsonUrl = `${url.origin}/artikel.json`;
+
+📍 Ditemukan di: index.html
+   Baris 1: <!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Layar Kosong</title><meta name="description" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."><meta name="author" content="frijal"><meta name="publisher" content="Layar Kosong"><meta name="yandex-verification" content="8ba05f5f00d79c5a"><link rel="canonical" href="https://dalam.web.id/"><link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><link rel="alternate" type="application/rss+xml" title="RSS Feed Layar Kosong" href="https://dalam.web.id/rss.xml"><link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="fediverse:creator" content="@frijal@mastodon.social"><link rel="stylesheet" href="/ext/homepage.css"><link rel="stylesheet" href="/ext/fontawesome.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Layar Kosong"><meta property="og:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."><meta property="og:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka."><meta property="og:url" content="https://dalam.web.id/"><meta property="og:image" content="https://dalam.web.id/thumbnail.webp"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta property="og:locale" content="id_ID"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@responaja"><meta name="twitter:creator" content="@responaja"><meta name="twitter:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."><meta name="twitter:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka."><meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dalam.web.id/#website","url":"https://dalam.web.id/","name":"Layar Kosong","alternateName":"Blog Frijal","publisher":{"@id":"https://dalam.web.id/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://dalam.web.id/search?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://dalam.web.id/#organization","name":"Layar Kosong","url":"https://dalam.web.id/","logo":{"@type":"ImageObject","url":"https://dalam.web.id/logo.png","width":512,"height":512},"founder":{"@id":"https://dalam.web.id/#person"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://t.me/frijal"}},{"@type":"Person","@id":"https://dalam.web.id/#person","name":"Fakhrul Rijal","url":"https://dalam.web.id/","jobTitle":"Blogger & Tech Enthusiast","worksFor":{"@id":"https://dalam.web.id/#organization"},"sameAs":["https://x.com/responaja","https://github.com/frijal","https://linkedin.com/in/frijal","https://www.youtube.com/@frijal","https://facebook.com/frijal","https://mastodon.social/@frijal"]},{"@type":"WebPage","@id":"https://dalam.web.id/#homepage","url":"https://dalam.web.id/","name":"Layar Kosong","isPartOf":{"@id":"https://dalam.web.id/#website"},"about":{"@id":"https://dalam.web.id/#organization"},"description":"Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."},{"@type":"Blog","@id":"https://dalam.web.id/#blog","url":"https://dalam.web.id/","name":"Layar Kosong","description":"Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.","publisher":{"@id":"https://dalam.web.id/#organization"}},{"@type":"SiteNavigationElement","name":"Opini Sosial","url":"https://dalam.web.id/opini-sosial/"},{"@type":"SiteNavigationElement","name":"Jejak Sejarah","url":"https://dalam.web.id/jejak-sejarah/"},{"@type":"SiteNavigationElement","name":"Sistem Terbuka","url":"https://dalam.web.id/sistem-terbuka/"},{"@type":"SiteNavigationElement","name":"Warta Tekno","url":"https://dalam.web.id/warta-tekno/"},{"@type":"SiteNavigationElement","name":"Lainnya","url":"https://dalam.web.id/lainnya/"},{"@type":"SiteNavigationElement","name":"Gaya Hidup","url":"https://dalam.web.id/gaya-hidup/"},{"@type":"SiteNavigationElement","name":"Olah Media","url":"https://dalam.web.id/olah-media/"},{"@type":"BreadcrumbList","@id":"https://dalam.web.id/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://dalam.web.id/"}]}]}</script><script src="/ext/homepage.js"></script></head><body><header><div class="container nav-box"><h1 class="logo"><a href="https://dalam.web.id/" rel="home">Layar<span>Kosong</span><img src="/favicon.svg" alt="" class="logo-icon"></a></h1><nav class="header-tools" aria-label="Navigasi header"><div class="archive-box-header"><a href="/feed" class="btn-header"><i class="fa-solid fa-rss" aria-hidden="true"></i><span>Atom RSS</span></a><a href="/sitemap" class="btn-header"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Daftar Isi</span></a><label for="yearFilter" class="sr-only">Filter Tahun</label><select id="yearFilter"><option value="">Tahun</option></select><label for="monthFilter" class="sr-only">Filter Bulan</label><select id="monthFilter" disabled="disabled"><option value="">Bulan</option></select></div><div class="search-wrapper"><label for="searchInput" class="sr-only">Cari artikel</label><input type="search" id="searchInput" class="search-bar" placeholder="cari sesuatu..."><button id="clearSearch" class="clear-btn" type="button" aria-label="Hapus pencarian">❌</button></div></nav></div></header><div class="container"><div id="hero" class="hero skeleton"><div id="heroSliderWrapper" class="hero-slider-wrapper"></div></div><div class="toolbar"><div class="pills" id="categoryPills"><div class="pill active" onclick='filterByCat("All")'>Kategori</div></div></div><div class="main-grid"><main><div id="newsFeed" class="news-feed"></div><div style="text-align:center;margin:40px 0"><button id="loadMore" class="pill">Muat Lebih Banyak</button></div></main><aside><div class="sidebar-box"><h3 class="sidebar-title">Rekomendasi Acak<i class="fa-solid fa-recycle"></i></h3><div id="sidebarRandom"></div><button onclick="renderSidebar()" style="background:0 0;border:none;color:var(--primary);cursor:pointer;font-size:1rem;width:100%;text-align:right"><i class="fa-solid fa-shuffle"></i>Acak Lagi...</button></div><div class="contact-card"><h3>Hubungi Kami</h3><p style="font-size:.8rem;margin-bottom:10px">Kirim saran atau kerjasama</p><input type="text" id="contact-name" placeholder="Nama" required><textarea id="contact-message" placeholder="Pesan" required></textarea><button type="button" onclick="sendToWA()" class="pill" style="width:100%;background:var(--secondary);color:#000;font-weight:700;margin-top:10px;border:none;cursor:pointer">Kirim ke WhatsApp<i class="fa-brands fa-whatsapp"></i></button></div></aside></div></div><footer class="page-footer"><div class="footer-content"><div class="footer-section"><p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p><div class="footer-social"><a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a><a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a><a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-linkedin"></i></a><a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a><a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-threads"></i></a><a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a><a rel="me" href="https://mastodon.social/@frijal" target="_blank"><i class="fa-brands fa-mastodon"></i></a><a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a></div></div><div class="footer-section"><div class="footer-links"><a href="/rss.xml" target="_blank">RSS Feed</a><a href="/sitemap.xml" target="_blank">Peta Situs</a><a href="/privacy">Privacy</a><a href="/about">Tentang Kita</a><a href="/disclaimer">Disclaimer</a><a href="/artikel.json" target="_blank">Sumber Terbuka</a></div><div class="footer-copyright"><p>🄯 2025 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p></div></div></div></footer></body></html>
+
+📍 Ditemukan di: dapur/rss.js
+   Baris 10: const artikelJsonPath = path.join(__dirname, '../artikel.json');
+   Baris 75: // Karena artikel.json menggunakan nama file dengan ekstensi,
+   Baris 107: console.error('❌ ERROR: File artikel.json tidak ditemukan. Proses dibatalkan.');
+
+📍 Ditemukan di: dapur/post-to-linkedin.ts
+   Baris 3: const JSON_FILE = 'artikel.json';
+
+📍 Ditemukan di: dapur/indexhtml.js
+   Baris 107: // 🔹 Main: load artikel.json
+   Baris 113: const response = await fetch('artikel.json');
+   Baris 114: if (!response.ok) throw new Error('Gagal memuat artikel.json');
+   Baris 170: console.error('Ada kendala saat memuat artikel.json:', error);
+
+📍 Ditemukan di: dapur/build-aggregation.ts
+   Baris 8: const JSON_FILE = "artikel.json";
+
+📍 Ditemukan di: dapur/dashboard.html
+   Baris 130: <button id="downloadBtn">💾 Download artikel.json</button>
+
+📍 Ditemukan di: dapur/minify-jsonxml.ts
+   Baris 7: './artikel.json',
+
+📍 Ditemukan di: dapur/post-to-tumblr.ts
+   Baris 23: const ARTICLE_FILE = "artikel.json";
+
+📍 Ditemukan di: dapur/iposbrowser.ts
+   Baris 56: const res = await fetch('/artikel.json');
+
+📍 Ditemukan di: dapur/kategoriAI.js
+   Baris 13: const JSON_PATH = path.join(process.cwd(), 'artikel.json');
+   Baris 66: console.error("❌ Error: File artikel.json tidak ditemukan!");
+
+📍 Ditemukan di: dapur/ujihalaman.html
+   Baris 66: <h2>2. Uji Semua Artikel dari <code>artikel.json</code></h2>
+   Baris 111: // --- Uji Semua Artikel dari artikel.json ---
+   Baris 208: fetch('/artikel.json')
+   Baris 212: container.innerHTML = '❌ Gagal memuat artikel.json'
+
+📍 Ditemukan di: dapur/post-to-facebook.ts
+   Baris 5: articleFile: "artikel.json",
+   Baris 51: console.error("❌ Error: artikel.json tidak ditemukan");
+
+📍 Ditemukan di: dapur/generate_llms.ts
+   Baris 5: const ARTIKEL_JSON_PATH = "artikel.json";
+
+📍 Ditemukan di: dapur/marquee-url.ts
+   Baris 349: const res: Response = await fetch('/artikel.json');
+   Baris 350: if (!res.ok) throw new Error('Gagal memuat artikel.json');
+
+📍 Ditemukan di: dapur/post-to-discord.ts
+   Baris 5: articleFile: "artikel.json",
+
+📍 Ditemukan di: dapur/marquee.js
+   Baris 5: * @param {string} jsonPath Jalur file artikel.json (e.g., '/artikel.json')
+
+📍 Ditemukan di: dapur/post-to-mastodon.ts
+   Baris 2: const ARTICLE_FILE = "artikel.json";
+
+📍 Ditemukan di: dapur/json-xml.html
+   Baris 571: a.download = 'artikel.json'
+
+📍 Ditemukan di: dapur/post-to-lemmy.js
+   Baris 7: articleFile: "artikel.json",
+
+📍 Ditemukan di: dapur/post-to-bluesky.js
+   Baris 6: const JSON_FILE = "artikel.json";
+   Baris 18: console.error("❌ Error: artikel.json tidak ditemukan");
+
+📍 Ditemukan di: dapur/daftar-isi.ts
+   Baris 4: const data = await Bun.file('artikel.json').json();
+
+📍 Ditemukan di: dapur/inject-schema.ts
+   Baris 117: const data: ArtikelData = await file("artikel.json").json();
+
+📍 Ditemukan di: dapur/generator.js
+   Baris 16: masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
+   Baris 17: jsonOut: path.join(__dirname, '..', 'artikel.json'),
+   Baris 259: console.warn('⚠️ Master JSON (artikel/artikel.json) tidak ditemukan, memulai dari awal.');
+   Baris 359: console.log('✅ artikel.json, sitemap.xml, dan halaman kategori berhasil diperbarui.');
+
+📍 Ditemukan di: dapur/indexhtml-main.js
+   Baris 9: const response = await fetch('artikel.json');
+   Baris 10: if (!response.ok) throw new Error('Gagal memuat artikel.json');
+   Baris 74: console.error('Ada kendala saat memuat artikel.json:', error);
+
+📍 Ditemukan di: dapur/sitemap.ts
+   Baris 104: const res = await fetch('artikel.json');
+   Baris 232: console.error('Gagal load artikel.json', e);
+
+📍 Ditemukan di: dapur/generate-redirects.ts
+   Baris 1: import data from "../artikel.json"; // Bun bisa langsung import JSON!
+
+📍 Ditemukan di: dapur/dashboard.ts
+   Baris 48: const res = await fetch('../artikel.json')
+   Baris 52: console.error('Gagal load artikel.json:', err)
+   Baris 262: a.download = 'artikel.json'
+
+📍 Ditemukan di: dapur/artikeljson-split-kategori.ts
+   Baris 3: // Deskripsi: Pemecah artikel.json (Versi Prefix kat-)
+   Baris 10: const sourceFile = "artikel.json";
+   Baris 15: console.error("❌ File artikel.json tidak ditemukan!");
+
+📍 Ditemukan di: dapur/generator-pro.ts
+   Baris 61: Bun.file(`${C.root}/artikel.json`).json().catch(()=>({})),
+   Baris 63: Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
+   Baris 75: // 1. Cari di cache (artikel.json root)
+   Baris 84: // Cek apakah ada instruksi kategori berbeda di artikel/artikel.json (master)
+   Baris 147: Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2))
+
+📍 Ditemukan di: dapur/post-to-twitter.js
+   Baris 5: const JSON_FILE = 'artikel.json';
+   Baris 15: console.error("❌ Error: artikel.json tidak ditemukan");
+
+📍 Ditemukan di: dapur/toc.js
+   Baris 6: const res = await fetch('artikel.json')
+   Baris 83: console.error('Gagal load artikel.json:', e)
+
+📍 Ditemukan di: dapur/halaman-pencarian.ts
+   Baris 73: fetch('artikel.json')
+
+📍 Ditemukan di: dapur/inject-date.ts
+   Baris 12: // Pastikan path ke artikel.json benar
+   Baris 13: const masterPath = `${C.art}/artikel.json`;
+   Baris 18: console.error('❌ Gagal membaca atau artikel.json kosong di:', masterPath);
+
+📍 Ditemukan di: dapur/XXX/post-to-facebook.js
+   Baris 5: const JSON_FILE = "artikel.json";
+   Baris 18: // 1. Cek file artikel.json
+   Baris 20: console.error("❌ Error: artikel.json tidak ditemukan");
+
+📍 Ditemukan di: dapur/XXX/homepage.js
+   Baris 10: const res = await fetch('artikel.json');
+
+📍 Ditemukan di: dapur/XXX/post-to-discord.js
+   Baris 7: articleFile: "artikel.json",
+
+📍 Ditemukan di: dapur/XXX/inject-schema.js
+   Baris 88: const data = JSON.parse(fs.readFileSync("artikel.json", "utf-8"));
+
+📍 Ditemukan di: dapur/XXX/marquee-url.js
+   Baris 310: const res = await fetch('/artikel.json');
+   Baris 311: if (!res.ok) throw new Error('Gagal memuat artikel.json');
+
+📍 Ditemukan di: dapur/XXX/minify-jsonxml.js
+   Baris 5: './artikel.json',
+
+📍 Ditemukan di: dapur/XXX/halaman-pencarian.js
+   Baris 47: fetch('artikel.json')
+
+📍 Ditemukan di: dapur/XXX/generator-pro.js
+   Baris 16: masterJson: path.join(__dirname, '..', 'artikel', 'artikel.json'),
+   Baris 17: jsonOut: path.join(__dirname, '..', 'artikel.json'),
+   Baris 162: // --- GATE 1: CEK ETALASE (artikel.json Root) ---
+   Baris 188: // --- GATE 3: CEK MASTER (artikel/artikel.json) ---
+
+📍 Ditemukan di: dapur/XXX/post-to-mastodon.js
+   Baris 6: const ARTICLE_FILE = "artikel.json";
+
+📍 Ditemukan di: dapur/XXX/generate_llms.js
+   Baris 6: const ARTIKEL_JSON_PATH = "artikel.json";
+
+📍 Ditemukan di: dapur/XXX/dashboard.js
+   Baris 48: const res = await fetch('../artikel.json')
+   Baris 52: console.error('Gagal load artikel.json:', err)
+   Baris 262: a.download = 'artikel.json'
+
+📍 Ditemukan di: dapur/XXX/sitemap.js
+   Baris 87: const res = await fetch('artikel.json'); // Asumsi sitemap ada di root
+   Baris 218: console.error('Gagal load artikel.json', e);
+
+📍 Ditemukan di: dapur/XXX/post-to-threads.js
+   Baris 4: const JSON_FILE = 'artikel.json';
+
+📍 Ditemukan di: dapur/XXX/post-to-tumblr.js
+   Baris 7: const ARTICLE_FILE = "artikel.json";
+
+📍 Ditemukan di: dapur/homepage.ts
+   Baris 33: const res = await fetch('artikel.json');
+
+📍 Ditemukan di: dapur/post-to-threads.ts
+   Baris 4: const JSON_FILE = 'artikel.json';
+
+📍 Ditemukan di: dapur/generate_indexnow.js
+   Baris 9: const ARTIKEL_JSON_PATH = 'artikel.json'; // Path ke file JSON di root
+   Baris 19: // Baca artikel.json di root
+
+📍 Ditemukan di: llms-index.html
+   Baris 365: - [Editor Artikel JSON Pro - Kelola Konten Layar Kosong](https://dalam.web.id/lainnya/editor-json-pro) : Alat editor JSON khusus untuk mengelola database artikel.json dengan mudah, cepat, dan aman. Fitur edit kategori, artikel, dan ekspor data presisi.
+   Baris 1071: - [Bedah Skrip Generator Konten Cerdas (Node.js)](https://dalam.web.id/warta-tekno/analisis-skrip-generator-konten-nodejs) : Bedah tuntas skrip Node.js canggih yang mengotomatiskan pembuatan artikel.json, sitemap.xml, dan halaman kategori, lengkap dengan fitur self-healing.
+---
+✅ Selesai! Ditemukan di 78 file berbeda.

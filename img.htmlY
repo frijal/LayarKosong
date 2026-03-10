@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeri Gambar – Koleksi Visual Artikel</title>
-<script src="/ext/data-provider.js"></script>
 <meta name="description" content="Galeri gambar Layar Kosong berisi koleksi visual WebP dari artikel-artikel blog Frijal. Telusuri gambar secara cepat dalam format galeri yang rapi dan ringan.">
 <meta name="news_keywords" content="galeri gambar, koleksi gambar, webp, galeri artikel, blog frijal, layar kosong, portofolio visual">
 <meta name="promphint" content="Halaman galeri yang menampilkan kumpulan gambar WebP dari artikel blog, disusun dalam tampilan grid yang mudah dinavigasi.">
@@ -216,8 +215,10 @@
         <img id="lightbox-img" class="lightbox-content">
         <a id="lightbox-caption" class="lightbox-caption" href="#"></a>
     </div>
-   <script>
-    const BASE_URL = 'https://dalam.web.id';
+    <script>
+    // Konfigurasi V6.9: Target langsung ke root json dan folder kategori
+    const JSON_URL = 'https://dalam.web.id/artikel.json';
+    const BASE_URL = 'https://dalam.web.id'; // Digunakan untuk membangun Clean URL
     const statusDiv = document.getElementById('status');
     const galleryContainer = document.getElementById('gallery-container');
     const sortSelect = document.getElementById('sort-select');
@@ -229,7 +230,7 @@
     const lightboxNext = document.getElementById('lightbox-next');
     let allImageData = [];
     let currentIndex = 0;
-
+    // Helper slugify sesuai dengan logika generator-pro.js kamu
     const slugify = (text) => {
         return text.toString().toLowerCase().trim()
             .replace(/^[^\w\s]*/u, '')
@@ -238,50 +239,51 @@
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-');
     };
-
     async function fetchAndDisplayImages() {
-        if(statusDiv) statusDiv.textContent = 'Menunggu Data Provider... ⏳';
-
-        // Mekanisme penjaga: Tunggu sampai window.siteDataProvider tersedia
-        while (!window.siteDataProvider) {
-            await new Promise(r => setTimeout(r, 100));
-        }
-
+        if(statusDiv) statusDiv.textContent = 'Menghubungkan ke Database V6.9... ⏳';
         try {
-            const data = await window.siteDataProvider.getFor('img.html');
+            const response = await fetch(`${JSON_URL}?t=${new Date().getTime()}`);
+            if (!response.ok) throw new Error(`Gagal memuat data: ${response.status}`);
+            const data = await response.json();
+            // Transformasi data sesuai struktur generator-pro.js V6.9
             const extractedData = [];
-
             for (const [categoryName, articles] of Object.entries(data)) {
-                const catSlug = slugify(categoryName);
+                const catSlug = slugify(categoryName); // Foldernya
                 articles.forEach(item => {
-                    // item.url adalah indeks 2, item.title adalah indeks 1 (slug)
-                    if (item.url && item.url.startsWith('http')) {
-                        const slugOnly = item.title.replace('.html', '');
+                    // Struktur V6.9 dalam array:
+                    // item[0] = Judul (Title)
+                    // item[1] = Nama File (file.html)
+                    // item[2] = URL Gambar (Image URL)
+                    // item[3] = Tanggal Publikasi (ISO8601)
+                    // item[4] = Deskripsi (Description)
+                    if (item[2] && item[2].startsWith('http')) {
+                        const fileName = item[1];
+                        const slugOnly = fileName.replace('.html', '');
+                        // Membangun Clean URL V6.9: baseUrl/kategori/slug
+                        const cleanUrl = `${BASE_URL}/${catSlug}/${slugOnly}`;
                         extractedData.push({
-                            title: item.title,
-                            url: item.url,
-                            loc: `${BASE_URL}/${catSlug}/${slugOnly}`,
-                            date: item.date,
+                            title: item[1],
+                            url: item[2],
+                            loc: cleanUrl,
+                            date: item[3],
+                            desc: item[4] || '',
                             category: categoryName,
-                            type: item.url.split('.').pop().split('?')[0]
+                            type: item[2].split('.').pop().split('?')[0]
                         });
                     }
                 });
             }
-
             allImageData = extractedData;
             if (allImageData.length === 0) {
                 if(statusDiv) statusDiv.textContent = 'Tidak ada aset visual ditemukan.';
                 return;
             }
-            if(statusDiv) statusDiv.textContent = `Terkoneksi: ${allImageData.length} artikel dimuat.`;
+            if(statusDiv) statusDiv.textContent = `V6.9 Terkoneksi: ${allImageData.length} artikel dimuat.`;
             sortAndRender();
         } catch (error) {
-            if(statusDiv) statusDiv.textContent = `Error: ${error.message}`;
+            if(statusDiv) statusDiv.textContent = `Error V6.9: ${error.message}`;
         }
     }
-
-
     function sortAndRender() {
         const sortBy = sortSelect ? sortSelect.value : 'date_desc';
         allImageData.sort((a, b) => {
@@ -309,19 +311,14 @@
             galleryContainer.appendChild(thumb);
         });
     }
-function updateLightbox() {
-    const current = allImageData[currentIndex];
-    lightboxImg.src = current.url;
-
-    // Pastikan caption bisa jadi link
-    lightboxCaption.textContent = current.title;
-
-    // Jika lightboxCaption adalah elemen <a>, maka ini bekerja:
-    if (lightboxCaption.tagName === 'A') {
+    function updateLightbox() {
+        const current = allImageData[currentIndex];
+        lightboxImg.src = current.url;
+        lightboxCaption.textContent = current.title;
+        // Gunakan Clean URL V6.9 untuk link di caption
         lightboxCaption.href = current.loc;
         lightboxCaption.target = "_blank";
     }
-}
     function openLightbox(index) {
         currentIndex = index;
         updateLightbox();
@@ -340,8 +337,10 @@ function updateLightbox() {
         currentIndex = (currentIndex - 1 + allImageData.length) % allImageData.length;
         updateLightbox();
     }
+    // Social Share & Initializers
     document.addEventListener('DOMContentLoaded', () => {
         fetchAndDisplayImages();
+        // Share buttons logic
         const shareData = {
             '.social-twitter': `https://x.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`,
             '.social-facebook': `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
