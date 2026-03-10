@@ -1,6 +1,6 @@
 /**
- * MASTER DATA PROVIDER (Ultra-Performance)
- * Menghapus validasi runtime, fokus pada kecepatan eksekusi.
+ * MASTER DATA PROVIDER (Ultra-Performance & Flicker-Free)
+ * Menggunakan Pre-fetching agar data siap SEBELUM UI diproses.
  */
 
 declare global {
@@ -24,17 +24,32 @@ const UI_REQUIREMENTS: Record<string, any> = {
 
 const mapperCache: Record<string, Function> = {};
 
+// Menggunakan generator untuk memetakan data dengan efisiensi tinggi
 function getMapper(schema: any) {
 	const key = JSON.stringify(schema);
-	return mapperCache[key] ||= new Function("r", "return {" + Object.entries(schema).map(([k, i]) => `"${k}":r[${i}]`).join(",") + "}");
+	if (mapperCache[key]) return mapperCache[key];
+
+	return mapperCache[key] = new Function("r", "return {" +
+	Object.entries(schema).map(([k, i]) => `"${k}":r[${i}]`).join(",") +
+	"}");
 }
 
-(window as any).siteDataProvider = {
+const Provider = {
 	cache: null as RawData | null,
-	promise: null as Promise<RawData> | null,
+
+	// PRE-FETCHING: Request dimulai detik ini juga, tanpa menunggu dipanggil
+	promise: fetch("/artikel.json")
+	.then(r => r.json())
+	.then(d => {
+		Provider.cache = d;
+		return d;
+	}),
 
 	async getData(): Promise<RawData> {
-		return this.cache || (this.promise ||= fetch("/artikel.json").then(r => r.json()).then(d => this.cache = d));
+		// Jika sudah ada di memori, kembalikan instan
+		if (this.cache) return this.cache;
+		// Jika belum, join ke promise yang sudah jalan
+		return this.promise;
 	},
 
 	async getFor(uiName: string) {
@@ -49,9 +64,13 @@ function getMapper(schema: any) {
 			const rows = rawData[cat];
 			const len = rows.length;
 			const mapped = new Array(len);
-			for (let i = 0; i < len; i++) mapped[i] = mapper(rows[i]);
+			for (let i = 0; i < len; i++) {
+				mapped[i] = mapper(rows[i]);
+			}
 			result[cat] = mapped;
 		}
 		return result;
 	}
 };
+
+(window as any).siteDataProvider = Provider;
