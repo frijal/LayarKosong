@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap-script.ts (V6.9 - Final Production Build)
+// FILE: sitemap.ts
 // -------------------------------------------------------
 
 interface Article {
@@ -101,25 +101,28 @@ function updateTOCToggleText(): void {
 
 async function loadTOC(): Promise<void> {
   try {
-    const res = await fetch('artikel.json');
-    const data: ArticleData = await res.json();
+    // INTEGRASI: Mengambil data yang sudah dipetakan dari provider
+    // Pastikan di data-provider.ts, mapping untuk 'sitemap.ts' sudah diatur
+    const data = await (window as any).siteDataProvider.getFor('sitemap.ts');
+
     const toc = document.getElementById('toc');
     if (!toc) return;
 
     toc.innerHTML = '';
     grouped = {};
 
+    // Iterasi kategori dari data objek
     Object.keys(data).forEach((cat) => {
-      grouped[cat] = data[cat]
-      .map((arr) => ({
-        title: arr[0],
-        file: arr[1],
-        image: arr[2],
-        lastmod: arr[3],
-        description: arr[4],
-        category: cat,
-      }))
-      .sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+      grouped[cat] = data[cat].map((item: any) => ({
+        title: item.title,
+        file: item.id, // item.id sudah berisi nama file
+        image: item.image,
+        lastmod: item.date, // Mapping date ke lastmod
+        description: item.description,
+        category: cat
+      })).sort((a: Article, b: Article) =>
+      new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime()
+      );
     });
 
     const allArticles = Object.values(grouped).flat();
@@ -218,6 +221,7 @@ async function loadTOC(): Promise<void> {
       toc.appendChild(catDiv);
     });
 
+    // INTEGRASI MARQUEE (Sudah menggunakan grouped data)
     const m = document.getElementById('marquee-content');
     if (m) {
       const shuffledMarquee = shuffle(allArticles);
@@ -226,12 +230,13 @@ async function loadTOC(): Promise<void> {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' \u2022 '); // Simbol peluru bersih
+      .join(' \u2022 ');
     }
   } catch (e) {
-    console.error('Gagal load artikel.json', e);
+    console.error('Gagal load artikel.json via provider', e);
   }
 }
+
 
 const searchInput = document.getElementById('search') as HTMLInputElement | null;
 const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
