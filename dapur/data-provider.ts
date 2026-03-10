@@ -1,5 +1,5 @@
 /**
- * MASTER DATA PROVIDER (Ultra Fast & Tiny)
+ * MASTER DATA PROVIDER (Ultra Fast & Flicker-Free)
  */
 
 declare global {
@@ -11,69 +11,52 @@ declare global {
 type Row = any[];
 type DB = Record<string, Row[]>;
 
-const ALL = { title:0,id:1,image:2,date:3,description:4 };
-
-const UI: Record<string, Record<string,number>> = {
-	"homepage.ts": ALL,
-	"sitemap.ts": ALL,
-	"halaman-pencarian.ts": ALL,
-	"img.html": { title:1,url:2,date:3 },
-	"iposbrowser.ts": { slug:1,date:3 },
-	"marquee-url.ts": { title:0,id:1,image:2,description:4 }
+const SEMUANYA = { title: 0, id: 1, image: 2, date: 3, description: 4 };
+const UI: Record<string, Record<string, number>> = {
+	"homepage.ts": SEMUANYA,
+	"sitemap.ts": SEMUANYA,
+	"halaman-pencarian.ts": SEMUANYA,
+	"img.html": { title: 1, url: 2, date: 3 },
+	"iposbrowser.ts": { slug: 1, date: 3 },
+	"marquee-url.ts": { title: 0, id: 1, image: 2, description: 4 }
 };
 
-const mapperCache: Record<string,Function> = {};
+const mapperCache: Record<string, Function> = {};
 
-function mapper(schema:Record<string,number>){
-
+// Mapper dengan caching yang lebih ringkas
+const getMapper = (schema: Record<string, number>) => {
 	const k = JSON.stringify(schema);
-	if(mapperCache[k]) return mapperCache[k];
+	return mapperCache[k] ??= new Function("r", `return{${Object.entries(schema).map(([n, i]) => `"${n}":r[${i}]`)}}`);
+};
 
-	const f = Object.entries(schema)
-	.map(([n,i])=>`"${n}":r[${i}]`)
-	.join(",");
-
-	return mapperCache[k] = new Function("r",`return{${f}}`);
-}
+// EAGER LOADING: Fetch dimulai SEGERA saat skrip dimuat (tanpa menunggu method dipanggil)
+const dataPromise: Promise<DB> = fetch("/artikel.json")
+.then(r => r.json())
+.catch(() => ({})); // Fallback aman jika gagal
 
 window.siteDataProvider = {
+	c: null as DB | null,
 
-	c:null as DB|null,
-	p:null as Promise<DB>|null,
-
-	async getData(){
-
-		if(this.c) return this.c;
-		if(this.p) return this.p;
-
-		this.p = fetch("/artikel.json")
-		.then(r=>r.json())
-		.then((d:DB)=> (this.c=d,this.p=null,d));
-
-		return this.p;
+	async getData(): Promise<DB> {
+		return this.c ??= await dataPromise;
 	},
 
-	async getFor(ui:string){
-
+	async getFor(ui: string) {
 		const db = await this.getData();
 		const s = UI[ui];
+		if (!s) return db;
 
-		if(!s) return db;
+		const m = getMapper(s);
+		const out: Record<string, any[]> = {};
 
-		const m = mapper(s);
-		const out:Record<string,any[]> = {};
-
-		for(const k in db){
-
+		// Loop performa tinggi dengan cache length
+		for (const k in db) {
 			const rows = db[k];
-			const arr = new Array(rows.length);
-
-			for(let i=0;i<rows.length;i++)
-				arr[i] = m(rows[i]);
-
+			const len = rows.length;
+			const arr = new Array(len);
+			for (let i = 0; i < len; i++) arr[i] = m(rows[i]);
 			out[k] = arr;
 		}
-
 		return out;
 	}
 };
