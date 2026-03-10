@@ -43,7 +43,9 @@ async function fetchData(): Promise<void> {
           id: item.id,
           url: `/${catSlug}/${fileSlug}`,
           img: item.image,
-          date: new Date(item.date),
+          // Pastikan format date bisa diproses, jika item.date hanya '2026-03-10',
+          // tambahkan jam agar tidak ada isu timezone
+          date: item.date ? new Date(item.date) : new Date(),
                      summary: item.description || ''
         });
       });
@@ -123,14 +125,14 @@ function initSite(): void {
   }
 }
 
-function renderSidebar() {
+function renderSidebar(targetCat?: string) {
   const side = document.getElementById('sidebarRandom');
   if (!side) return;
   side.innerHTML = '';
 
   // 1. Ambil kategori yang sedang aktif dari Pill yang punya class 'active'
   const activePill = document.querySelector('.pill.active');
-  const currentCategory = activePill ? activePill.textContent.trim() : 'All';
+  const currentCategory = targetCat || (activePill ? activePill.textContent.trim() : 'All');
 
   // 2. Filter artikel berdasarkan kategori aktif (Jika 'Kategori/All', ambil semua)
   let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
@@ -380,4 +382,8 @@ function runFilters(): void {
 };
 
 
-fetchData();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', fetchData);
+} else {
+  fetchData(); // Panggil langsung jika DOM sudah siap
+}
