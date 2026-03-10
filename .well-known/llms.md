@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 16.97
+document_version: 16.98
 last_updated: 2026-03-10
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 10 Maret 2026)
-> Menampilkan 1045 artikel versi 16.97.
+> Menampilkan 1045 artikel versi 16.98.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
@@ -574,11 +574,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)](https://dalam.web.id/sistem-terbuka/setup-email-cloudflare-komunitas) : setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.
 - [Cara Ampuh Menghapus File Duplikat dengan FDupes di Linux dan Windows](https://dalam.web.id/sistem-terbuka/tutorial-fdupes-hapus-file-duplikat) : cara menggunakan fdupes untuk mencari dan menghapus file kembar secara otomatis. Menggunakan prinsip 5W1H untuk pemula hingga ahli.
 - [Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula](https://dalam.web.id/sistem-terbuka/linux-distro-berisiko-untuk-pemula) : Arch, Gentoo, NixOS, Slackware: distro Linux yang populer tapi berisiko untuk pemula. Simak penjelasan lengkap dan alternatif yang lebih ramah.
 - [Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif](https://dalam.web.id/sistem-terbuka/cara-bersihkan-cachyos-arch-linux) : membersihkan sistem CachyOS dan Arch Linux dari sampah nodejs, pipx, cache pacman, hingga sisa build AUR agar hardisk tetap lega.
 - [LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA](https://dalam.web.id/sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra) : LibreOffice kritik Komisi Eropa karena pakai format XLSX proprietary dalam konsultasi Cyber Resilience Act. Simak kronologi, respons cepat, dan pentingnya standar terbuka.
+- [Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)](https://dalam.web.id/sistem-terbuka/setup-email-cloudflare-komunitas) : setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.
 - [Linux untuk Dell Latitude D430 (2GB RAM): 5 Rekomendasi Ringan & Cara Atasi Wi-Fi](https://dalam.web.id/sistem-terbuka/linux-ringan-dell-latitude-d430) : Dell Latitude D430 (Core Duo 2GB) butuh Linux super ringan. Simak rekomendasi AntiX, MX, Puppy, cara identifikasi Wi-Fi, dan tweak performa. untuk pemula.
 - [Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash](https://dalam.web.id/sistem-terbuka/otomasi-cek-dns-mx-spf-dmarc) : Cara otomatis cek status propagasi DNS MX SPF dan DMARC untuk domain Jaga Data Pribadi Tetap Aman menggunakan script Bash dan Bun yang praktis
 - [Cara Setup MX Cloudflare Gratis untuk Email Komunitas](https://dalam.web.id/sistem-terbuka/setup-email-komunitas-cloudflare) : cara setup email komunitas gratis pakai Cloudflare tanpa simpan data email langsung masuk ke Gmail
