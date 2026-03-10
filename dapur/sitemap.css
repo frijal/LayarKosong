@@ -15,7 +15,7 @@
   --border-dark: #30363d;
   --hover-dark: rgba(139, 148, 158, 0.1);
 
-  /* Variabel Aksen & Lainnya */
+  /* Variabel Aksen & Ikon */
   --accent-color: #58a6ff;
   --highlight-bg: #ffe066;
   --highlight-text: #333;
@@ -23,7 +23,7 @@
   --primary-dark: #388bfd;
   --feed-color: var(--primary);
 
-  /* Palet Warna Kategori (32 Gradien) */
+  /* Palet Warna Kategori */
   --c0: linear-gradient(90deg, #004d40, #26a69a); --c1: linear-gradient(90deg, #00796b, #009688);
   --c2: linear-gradient(90deg, #00897b, #01579b); --c3: linear-gradient(90deg, #009688, #4db6ac);
   --c4: linear-gradient(90deg, #00acc1, #26c6da); --c5: linear-gradient(90deg, #0288d1, #03a9f4);
@@ -42,7 +42,6 @@
   --c30: linear-gradient(90deg, #f57c00, #ff9800); --c31: linear-gradient(90deg, #fbc02d, #ffeb3b);
 }
 
-/* Base Styles */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -52,28 +51,40 @@ body {
 }
 body.dark-mode { background-color: var(--bg-dark); color: var(--text-dark); --feed-color: #fff; }
 
-/* Sticky Header */
+/* Komponen Kategori & TOC */
+.category {
+  --category-color: var(--c0);
+  background: var(--category-color);
+  border-radius: 8px;
+  padding: 1px;
+  margin-bottom: 0.75rem;
+}
+.category-content { background-color: var(--surface-light); border-radius: 7px; overflow: hidden; }
+body.dark-mode .category-content { background-color: var(--surface-dark); }
+.category-header {
+  padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; font-weight: bold; background: var(--category-color); color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.category-header:hover { filter: brightness(1.1); }
+
+/* Layout & Kontrol */
 .sticky-controls { position: sticky; top: 0; z-index: 1000; background-color: var(--bg-light); border-bottom: 1px solid var(--border-light); padding: 1rem 1.5rem; width: 100%; }
 body.dark-mode .sticky-controls { background-color: var(--bg-dark); border-bottom-color: var(--border-dark); }
 .sticky-controls-content { max-width: 1200px; margin: 0 auto; }
-
-/* Search & Info */
-#search { width: 100%; padding: 10px 40px 10px 15px; border-radius: 6px; border: 1px solid var(--border-light); background-color: var(--surface-light); color: var(--text-light); }
-body.dark-mode #search { border-color: var(--border-dark); background-color: var(--surface-dark); color: var(--text-dark); }
+#toc { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
 
 /* Marquee */
-#marquee { max-width: 1200px; margin: 1.5rem auto; overflow: hidden; background-color: var(--surface-light); border: 1px solid var(--border-light); border-radius: 8px; padding: 0.75rem 0; display: flex; align-items: center; }
+#marquee {
+max-width: 1200px; margin: 1.5rem auto; overflow: hidden; background-color: var(--surface-light);
+border: 1px solid var(--border-light); border-radius: 8px; padding: 0.75rem 0; display: flex; align-items: center;
+}
 body.dark-mode #marquee { background-color: var(--surface-dark); border-color: var(--border-dark); }
 #marquee-content { display: inline-block; padding-left: 100%; animation: marquee 3200s linear infinite; }
 @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
 
-/* Kategori */
-.category { --category-color: var(--c0); background: var(--category-color); border-radius: 8px; padding: 1px; margin-bottom: 0.75rem; }
-.category-content { background-color: var(--surface-light); border-radius: 7px; overflow: hidden; }
-body.dark-mode .category-content { background-color: var(--surface-dark); }
-.category-header { padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; background: var(--category-color); color: #ffffff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-
-/* TOC Item */
+/* Elemen TOC & Status */
+.toc-list { padding: 0.5rem 0; display: none; }
 .toc-item { display: flex; padding: 0.75rem 1.25rem; border-top: 1px solid var(--border-light); }
 body.dark-mode .toc-item { border-top-color: var(--border-dark); }
 .toc-title a { color: var(--text-light); text-decoration: none; flex-grow: 1; }
@@ -84,5 +95,11 @@ body.dark-mode .toc-title a { color: var(--text-dark); }
 .label-visited { color: #1a7f37; background-color: #dafbe1; font-size: 0.75rem; padding: 0.1rem 0.5rem; border-radius: 1rem; }
 .label-new { color: #57606a; background-color: #f6f8fa; font-size: 0.75rem; padding: 0.1rem 0.5rem; border-radius: 1rem; border: 1px solid #d0d7de; }
 
-/* Responsive */
+/* Animasi Radar RSS */
+@keyframes radar {
+  0% { transform: scale(0.5); stroke-opacity: 0.8; }
+  100% { transform: scale(2.5); stroke-opacity: 0; }
+}
+
+/* Media Query */
 @media (max-width: 768px) { body { padding-top: 120px; } }
