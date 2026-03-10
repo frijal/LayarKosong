@@ -1,6 +1,6 @@
 // ----------------------------------------------------------
 // FILE: split.ts
-// Deskripsi: Pemecah artikel.json (Versi Clean Name - No Prefix)
+// Deskripsi: Pemecah artikel.json (Versi Prefix kat-)
 // Run: bun run split.ts
 // ----------------------------------------------------------
 
@@ -8,8 +8,6 @@ import { file, write } from "bun";
 
 async function splitArticleData() {
 	const sourceFile = "artikel.json";
-
-	console.log(`🚀 Memulai pemecahan ${sourceFile} di root...`);
 
 	try {
 		const rawFile = file(sourceFile);
@@ -23,18 +21,18 @@ async function splitArticleData() {
 		const categories = Object.keys(data);
 
 		for (const cat of categories) {
-			// Slug untuk nama file (Contoh: "Gaya Hidup" -> "gaya-hidup.json")
+			// Slug untuk nama file (Contoh: "Gaya Hidup" -> "kat-gaya-hidup.json")
 			const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
 			const articles = data[cat];
 
-			// 1. Simpan file kategori di root tanpa prefix 'cat-'
-			const categoryFileName = `${catSlug}.json`;
+			// 1. Simpan file kategori dengan prefix 'kat-'
+			const categoryFileName = `kat-${catSlug}.json`;
 			await write(categoryFileName, JSON.stringify({ [cat]: articles }));
 
 			console.log(`✅ Terbuat: ${categoryFileName} (${articles.length} artikel)`);
 
-			// 2. Isi Manifest (Hanya metadata dasar untuk LCP cepat)
-			// Kita ambil 3 artikel terbaru per kategori
+			// 2. Isi Manifest (Ringan, hanya metadata dasar)
+			// Kita ambil 3 artikel terbaru per kategori untuk pengisian awal UI
 			manifest[cat] = articles.slice(0, 3).map((item: any) => [
 				item[0], // Title
 				item[1], // Slug/File
@@ -46,7 +44,7 @@ async function splitArticleData() {
 
 		// 3. Simpan manifest.json di root
 		await write(`manifest.json`, JSON.stringify(manifest));
-		console.log(`\n✨ SELESAI! File tersimpan sejajar di root.`);
+		console.log(`\n✨ SELESAI! Semua file kategori kini berawalan 'kat-'.`);
 
 	} catch (error) {
 		console.error("❌ Error saat memproses:", error);
