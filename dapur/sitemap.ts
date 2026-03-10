@@ -10,6 +10,26 @@ interface Article {
   category: string;
 }
 
+// Daftar gradien langsung di dalam script untuk memastikan warna pasti muncul
+const CATEGORY_COLORS = [
+  "linear-gradient(90deg, #004d40, #26a69a)", "linear-gradient(90deg, #00796b, #009688)",
+  "linear-gradient(90deg, #00897b, #01579b)", "linear-gradient(90deg, #009688, #4db6ac)",
+  "linear-gradient(90deg, #00acc1, #26c6da)", "linear-gradient(90deg, #0288d1, #03a9f4)",
+  "linear-gradient(90deg, #0d47a1, #00bcd4)", "linear-gradient(90deg, #0d47a1, #1976d2)",
+  "linear-gradient(90deg, #1565c0, #64b5f6)", "linear-gradient(90deg, #1976d2, #2196f3)",
+  "linear-gradient(90deg, #1a237e, #3949ab)", "linear-gradient(90deg, #1b5e20, #4caf50)",
+  "linear-gradient(90deg, #212121, #616161)", "linear-gradient(90deg, #212121, #455a64)",
+  "linear-gradient(90deg, #2196f3, #00bcd4)", "linear-gradient(90deg, #2e7d32, #8bc34a)",
+  "linear-gradient(90deg, #2e7d32, #4caf50)", "linear-gradient(90deg, #33691e, #8bc34a)",
+  "linear-gradient(90deg, #37474f, #b0bec5)", "linear-gradient(90deg, #388e3c, #4caf50)",
+  "linear-gradient(90deg, #3e2723, #a1887f)", "linear-gradient(90deg, #3e2723, #ffc107)",
+  "linear-gradient(90deg, #607d8b, #9e9e9e)", "linear-gradient(90deg, #6d4c41, #ffb300)",
+  "linear-gradient(90deg, #b71c1c, #ff7043)", "linear-gradient(90deg, #cddc39, #8bc34a)",
+  "linear-gradient(90deg, #d32f2f, #f44336)", "linear-gradient(90deg, #d84315, #ffca28)",
+  "linear-gradient(90deg, #e65100, #ffab00)", "linear-gradient(90deg, #f44336, #ff9800)",
+  "linear-gradient(90deg, #f57c00, #ff9800)", "linear-gradient(90deg, #fbc02d, #ffeb3b)"
+];
+
 const getVisitedLinks = (): string[] => {
   try {
     const stored = localStorage.getItem('visitedLinks');
@@ -20,7 +40,6 @@ const getVisitedLinks = (): string[] => {
 let visitedLinks: string[] = getVisitedLinks();
 let grouped: Record<string, Article[]> = {};
 
-// Helper untuk mengacak urutan
 const shuffle = <T>(array: T[]): T[] => {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -30,7 +49,6 @@ const shuffle = <T>(array: T[]): T[] => {
   return arr;
 };
 
-// Index warna 0-31 untuk dipetakan ke variabel CSS --c0 s/d --c31
 const colorIndices = shuffle([...Array(32).keys()]);
 
 const debounce = (fn: Function, delay: number) => {
@@ -86,46 +104,46 @@ async function loadTOC(): Promise<void> {
       allArticles.push(...grouped[cat]);
     });
 
-    // Render Categories
     Object.keys(grouped).sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
     .forEach((cat, index) => {
       const catDiv = document.createElement('div');
       catDiv.className = 'category';
 
-      // Penggunaan mapping warna dari variabel CSS
+      // Mengatur background langsung melalui JS agar tidak ada konflik CSS
       const colorIndex = colorIndices[index % 32];
-      catDiv.style.setProperty('--category-color', `var(--c${colorIndex})`);
+      catDiv.style.setProperty('background', CATEGORY_COLORS[colorIndex], 'important');
+      catDiv.style.borderRadius = '8px';
+      catDiv.style.padding = '3px';
 
-      catDiv.innerHTML = `
-      <div class="category-content">
-      <div class="category-header">${cat} <span class="badge">${grouped[cat].length}</span></div>
-      <div class="toc-list" style="display: none;"></div>
+    catDiv.innerHTML = `
+    <div class="category-content">
+    <div class="category-header">${cat} <span class="badge">${grouped[cat].length}</span></div>
+    <div class="toc-list" style="display: none;"></div>
+    </div>`;
+
+    const catList = catDiv.querySelector('.toc-list') as HTMLElement;
+    catList.innerHTML = grouped[cat].map(item => {
+      const visited = visitedLinks.includes(item.file);
+      return `
+      <div class="toc-item" data-text="${item.title.toLowerCase()}">
+      <div class="toc-title">
+      <a href="${getCleanUrl(item.file, item.category)}" class="${visited ? 'visited' : ''}" data-file="${item.file}">${item.title}</a>
+      <span class="${visited ? 'label-visited' : 'label-new'}">${visited ? 'sudah dibaca 👍' : '📓 belum dibaca'}</span>
+      <span class="toc-date">[${formatDate(item.lastmod)}]</span>
+      </div>
       </div>`;
+    }).join('');
 
-      const catList = catDiv.querySelector('.toc-list') as HTMLElement;
-      catList.innerHTML = grouped[cat].map(item => {
-        const visited = visitedLinks.includes(item.file);
-        return `
-        <div class="toc-item" data-text="${item.title.toLowerCase()}">
-        <div class="toc-title">
-        <a href="${getCleanUrl(item.file, item.category)}" class="${visited ? 'visited' : ''}" data-file="${item.file}">${item.title}</a>
-        <span class="${visited ? 'label-visited' : 'label-new'}">${visited ? 'sudah dibaca 👍' : '📓 belum dibaca'}</span>
-        <span class="toc-date">[${formatDate(item.lastmod)}]</span>
-        </div>
-        </div>`;
-      }).join('');
-
-      catDiv.querySelector('.category-header')?.addEventListener('click', () => {
-        catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
-        updateTOCToggleText();
-      });
-      fragment.appendChild(catDiv);
+    catDiv.querySelector('.category-header')?.addEventListener('click', () => {
+      catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
+      updateTOCToggleText();
+    });
+    fragment.appendChild(catDiv);
     });
 
     toc.appendChild(fragment);
     updateStats(allArticles.length, visitedLinks.length);
 
-    // Event Delegation
     toc.addEventListener('click', (e) => {
       const target = (e.target as HTMLElement).closest('a');
       if (target?.dataset.file) {
@@ -138,7 +156,6 @@ async function loadTOC(): Promise<void> {
       }
     });
 
-    // Marquee
     const m = document.getElementById('marquee-content');
     if (m) m.innerHTML = allArticles.map(d => `<a href="${getCleanUrl(d.file, d.category)}">${d.title}</a>`).join(' • ');
 
