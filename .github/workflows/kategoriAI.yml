@@ -6,6 +6,8 @@ on:
 jobs:
   classify:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -23,8 +25,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-
+        
       - name: Process Categories
         env:
           # Mengambil semua 12 secret API Key (0-11)
