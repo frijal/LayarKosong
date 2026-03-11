@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.9
+document_version: 17.10
 last_updated: 2026-03-11
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 11 Maret 2026)
-> Menampilkan 1062 artikel versi 17.9.
+> Menampilkan 1063 artikel versi 17.10.
 
 ## Gaya Hidup
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
@@ -585,6 +585,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [MX Linux 25.1 XFCE Panduan Instal Btrfs Snapper untuk PC Lawas](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce-btrfs-snapper) : Panduan langkah langkah instal MX Linux 25.1 XFCE pada PC lawas dengan Btrfs dan Snapper untuk snapshot rollback dan performa optimal
 - [Top 10 Reasons MX Linux is Better Than Ubuntu for Older PC](https://dalam.web.id/sistem-terbuka/top-10-reasons-mx-linux-better-than-ubuntu-for-older-pcs) : Top 10 alasan MX Linux lebih cocok dari Ubuntu untuk PC lawas. XFCE ringan, persyaratan rendah, MX Tools, Snapper Btrfs, SysVinit.
 - [MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce) : Ulasan lengkap MX Linux 25.1 XFCE. Stabilitas Debian 13 Trixie, MX Tools, XFCE ringan, Btrfs snapshot, Snapper. Cocok untuk daily driver.
 - [Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas](https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs) : Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan.
