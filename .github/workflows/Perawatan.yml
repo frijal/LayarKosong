@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
-      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461
+      - uses: oven-sh/setup-bun@v2
 
       # --- STEP 1: EKSEKUSI PAKET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🚀 Upgrade/Manage Packages
