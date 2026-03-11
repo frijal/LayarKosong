@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.6
+document_version: 17.7
 last_updated: 2026-03-11
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,12 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 11 Maret 2026)
-> Menampilkan 1053 artikel versi 17.6.
+> Menampilkan 1053 artikel versi 17.7.
 
 ## Gaya Hidup
+- [Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim](https://dalam.web.id/gaya-hidup/spanyol-umumkan-inisiatif-baru-buka-darsgah-untuk-gadis-muslim) : Spanyol umumkan buka 50000 Darsgah untuk gadis Muslim. PM Pedro Sánchez janji anak perempuan Muslim bisa belajar Al-Quran dengan tenang dan hormat. Inisiatif besar 2026 ini dukung kebebasan beragama di Eropa.
+- [Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77](https://dalam.web.id/gaya-hidup/memaknai-ketidakpuasan-dunia-energi-kehidupan-dan-pesan-al-qasas-ayat-77) : Pernah merasa tidak puas dengan hidup? Ternyata itu energi positif! Pelajari cara mengubahnya jadi kekuatan dengan pesan indah QS Al-Qasas ayat 77. Artikel santai lengkap pakai 5W1H
+- [Menyiapkan Kader Ulama, Politik, dan Profesional: Agenda Strategis Menuju Muktamar Muhammadiyah ke-49](https://dalam.web.id/gaya-hidup/menyiapkan-kader-ulama-politik-dan-profesional-agenda-strategis-menuju-muktamar-muhammadiyah-ke-49) : Menjelang Muktamar Muhammadiyah ke-49 di Sumatera Utara 2027, Muhammadiyah fokus menyiapkan kader ulama, politik, dan profesional. Artikel lengkap 5W1H santai tentang masa depan gerakan Islam berkemajuan
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
 - [Tiang Listrik di Halaman Rumah: Beban Estetika atau Hak Kompensasi? Menakar Keadilan Hukum Antara PLN dan Rakyat](https://dalam.web.id/gaya-hidup/tiang-listrik-pln-hak-kompensasi-warga) : Advokat Darius Leka mengupas tuntas hak kompensasi warga atas tiang listrik PLN di lahan pribadi. Simak dasar hukum, langkah-langkah, dan pengalaman warga.
 - [Akhirnya Muhammadiyah Menghalalkan Kripto: Perdebatan Fiqh Klasik dan Realitas Ekonomi Digital](https://dalam.web.id/gaya-hidup/muhammadiyah-kripto) : Akhirnya Muhammadiyah menghalalkan kripto sebagai aset digital setelah perdebatan panjang antara fiqh klasik dan realitas ekonomi digital. Simak penjelasan lengkapnya.
@@ -115,10 +118,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
-- [Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim](https://dalam.web.id/jejak-sejarah/spanyol-umumkan-inisiatif-baru-buka-darsgah-untuk-gadis-muslim) : Spanyol umumkan buka 50000 Darsgah untuk gadis Muslim. PM Pedro Sánchez janji anak perempuan Muslim bisa belajar Al-Quran dengan tenang dan hormat. Inisiatif besar 2026 ini dukung kebebasan beragama di Eropa.
 - [Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah](https://dalam.web.id/jejak-sejarah/kisah-gua-tsur-laba-laba-dan-burung-merpati-yang-melindungi-nabi-muhammad-saat-hijrah) : Kisah Gua Tsur saat hijrah Nabi Muhammad SAW. Laba-laba dan burung merpati lindungi Rasulullah dan Abu Bakr dari musuh. Hikmah besar tentang perlindungan Allah yang tak terduga.
 - [Fenomena Gereja Diubah Jadi Masjid di Amerika Serikat: Alasan Praktis dan Contoh Nyata](https://dalam.web.id/jejak-sejarah/fenomena-gereja-diubah-jadi-masjid-di-amerika-serikat) : Fenomena gereja di Amerika Serikat diubah menjadi masjid semakin sering terjadi. Alasan praktis, biaya murah, zonasi mudah, plus contoh nyata seperti di Syracuse dan Toledo. Baca lengkap kisahnya di sini.
-- [Menyiapkan Kader Ulama, Politik, dan Profesional: Agenda Strategis Menuju Muktamar Muhammadiyah ke-49](https://dalam.web.id/jejak-sejarah/menyiapkan-kader-ulama-politik-dan-profesional-agenda-strategis-menuju-muktamar-muhammadiyah-ke-49) : Menjelang Muktamar Muhammadiyah ke-49 di Sumatera Utara 2027, Muhammadiyah fokus menyiapkan kader ulama, politik, dan profesional. Artikel lengkap 5W1H santai tentang masa depan gerakan Islam berkemajuan
 - [Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains](https://dalam.web.id/jejak-sejarah/keajaiban-tulang-ekor-dalam-islam) : penjelasan hadis tentang tulang ekor (Ajbu Ath-Thanab), ayat Al-Qur’an Surat Ya-Sin, dan kaitannya dengan embriologi modern. Artikel lengkap 5W+1H.
 - [Otto Iskandardinata - Si Jalak Harupat, Guru Muhammadiyah dan Pahlawan Nasional Indonesia](https://dalam.web.id/jejak-sejarah/si-jalak-harupat-otto-iskandardinata) : Otto Iskandardinata, Si Jalak Harupat, adalah guru Muhammadiyah, pahlawan nasional, tokoh pengusul Soekarno sebagai presiden. Simak kisah lengkap 5W+1H.
 - [Muhammadiyah Agama Baru? Memahami Zakat Fitrah & penyaluran ke Palestina](https://dalam.web.id/jejak-sejarah/muhammadiyah-zakat-palestina) : Viral tuduhan Muhammadiyah agama baru karena salurkan zakat ke Palestina. Simak penjelasan fikih zakat fitrah, siapa wajib, dan bolehkah lintas negara.
@@ -427,6 +428,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa](https://dalam.web.id/opini-sosial/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa) : kisah inspiratif bagaimana gerakan Aisyiyah sejak 1917 menjadi rahim peradaban yang melahirkan dan menguatkan tokoh besar Indonesia seperti Ahmad Dahlan Soekarno dan Soedirman Artikel lengkap pakai 5W1H dan cerita santai
 - [Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji](https://dalam.web.id/opini-sosial/fiqih-haji-memahami-konsep-mampu) : Fiqih Haji menjelaskan bahwa ibadah haji hanya diwajibkan bagi muslim yang mampu. Artikel ini membahas makna kemampuan dalam fiqih haji serta relevansinya dengan panjangnya antrean haji di Indonesia.
 - [Opini: Ketika Rumah Sendiri Belum Beres, Perlukah Terlalu Sibuk di Panggung Global?](https://dalam.web.id/opini-sosial/opini-rumah-berantakan-global) : Kritik terhadap prioritas pemerintah: rumah sendiri masih berantakan namun sibuk di dunia internasional. Analisis 5W+1H tentang perlunya fokus pada masalah dalam negeri.
 - [Malu dengan Presiden Prabowo? Refleksi atas Arah Politik Luar Negeri Indonesia](https://dalam.web.id/opini-sosial/refleksi-politik-luar-negeri-prabowo) : Refleksi atas arah politik luar negeri Indonesia: antara tradisi bebas aktif dan kedekatan dengan tokoh global seperti Prabowo, Trump, Netanyahu.
@@ -870,8 +872,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77](https://dalam.web.id/warta-tekno/memaknai-ketidakpuasan-dunia-energi-kehidupan-dan-pesan-al-qasas-ayat-77) : Pernah merasa tidak puas dengan hidup? Ternyata itu energi positif! Pelajari cara mengubahnya jadi kekuatan dengan pesan indah QS Al-Qasas ayat 77. Artikel santai lengkap pakai 5W1H
-- [Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa](https://dalam.web.id/warta-tekno/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa) : kisah inspiratif bagaimana gerakan Aisyiyah sejak 1917 menjadi rahim peradaban yang melahirkan dan menguatkan tokoh besar Indonesia seperti Ahmad Dahlan Soekarno dan Soedirman Artikel lengkap pakai 5W1H dan cerita santai
 - [Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026](https://dalam.web.id/warta-tekno/microsoft-copilot-cowork) : Microsoft Copilot Cowork adalah agen AI revolusioner yang mengeksekusi tugas nyata di Outlook, Teams, dan Excel. Pelajari 4 fungsi utamanya dan cara kerjanya di 2026.
 - [Android dan Rencana Pembatasan Developer: Dampak pada Ekosistem Sumber Terbuka](https://dalam.web.id/warta-tekno/android-rencana-registrasi-developer) : Google berencana mewajibkan semua developer Android registrasi dengan identitas dan biaya. Simak analisis dampak pada keterbukaan, privasi, dan masa depan sideloading.
 - [AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas](https://dalam.web.id/warta-tekno/ai-claude-temukan-bug-firefox-cepat) : AI Claude Opus 4.6 temukan lebih dari 100 bug di Firefox dalam dua minggu, termasuk 14 kerentanan severity tinggi. Baca bagaimana AI mengubah keamanan siber.
