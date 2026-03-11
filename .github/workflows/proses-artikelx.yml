@@ -61,7 +61,7 @@ jobs:
             s/Dalam.web.id/Jaga Data Pribadi Tetap Aman/g;
             s#\b dalam.web.id # Jaga Data Pribadi Tetap Aman #g;
             s#\b Dalam.web.id # Jaga Data Pribadi Tetap Aman #g;
-            s/twitter.com/x.com/g;
+            s|twitter.com|x.com|g;
 
             # SEO fluff (dipisah)
             s/Analisis mendalam //g;
@@ -112,17 +112,21 @@ jobs:
             # 1. CSS & RSS di Head
             if ! grep -q 'marquee-url.css' "$file"; then
               sed -i '/<\/head>/i <link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">' "$file"
-            fi      
+            fi
+
+            if ! grep -q 'href="/data-deletion"' "$file"; then
+              FOOTER_LINKS='<a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy"></a> <a target="_blank" href="/security-policy">⚔️</a>'
+               sed -i "/<\/footer>/i $FOOTER_LINKS" "$file"
+            fi
             
             # 2. IPosBrowser Container setelah H1
             if ! grep -q 'id="iposbrowser"' "$file"; then
               sed -i '/<\/h1>/a <div id="iposbrowser"></div>' "$file"
-            fi      
+            fi
             
             # 3. Gabungkan semua elemen Body agar urutan script TIDAK TERBALIK
             # Kita cek salah satu penanda unik, misal 'search-floating-container'
             if ! grep -q 'class="search-floating-container"' "$file"; then
-              # Kita susun string raksasa dengan urutan yang BENAR
               # Urutan: Progress -> Header -> Search -> Section Marquee -> SCRIPTS
               ELEMENTS='<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div>'
               SECTION='<section id="related-marquee-section"><div id="related-marquee-container"></div></section>'
