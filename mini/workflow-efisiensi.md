@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Selasa, 10 Maret 2026 pukul 19.35.29 WITA
+> **Audit Terakhir:** Rabu, 11 Maret 2026 pukul 19.35.57 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -17,7 +17,6 @@
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | generate_llms.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| generate-json-xml.yml | artikeljson-split-kategori.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | inject-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | html-to-markdown.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | minify-html.ts | 🟡 Ada | `@minify-html/node` | ✅ Sudah Optimal |
