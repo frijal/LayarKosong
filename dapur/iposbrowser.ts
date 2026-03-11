@@ -102,7 +102,7 @@ const geoHTML = geo ? `
 
 const dateHTML = articleDate ? `
 <div class="info-block" style="display:flex; align-items:center; gap:6px;">
-<span><i class="fa-solid fa-code"></i> ${articleDate}</span>
+<span>🗓️ ${articleDate}</span>
 </div>` : '';
 
 target.innerHTML = `

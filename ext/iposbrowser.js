@@ -4,7 +4,7 @@ var j={Firefox:"/ext/icons/firefox.svg",Chrome:"/ext/icons/chrome.svg",Edge:"/ex
 <span>${B.city||B.country_name}</span>
 </div>`:"",m=Y?`
 <div class="info-block" style="display:flex; align-items:center; gap:6px;">
-<span><i class="fa-solid fa-code"></i> ${Y}</span>
+<span>\uD83D\uDDD3️ ${Y}</span>
 </div>`:"";X.innerHTML=`
 <div id="ipos-browser-info" style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:0.8rem; padding:5px; flex-wrap: wrap;">
 <div class="info-block" style="display:flex; align-items:center; gap:6px;">
