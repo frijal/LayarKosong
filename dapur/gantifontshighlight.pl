@@ -25,28 +25,35 @@ unless (@files) {
 ## 🗺️ REPLACEMENT MAP
 # Map: url-regex => replacement-path
 my @MAP = (
-  # --- PRISM CSS (Berbagai Tema) ---
-  { rx => qr{https://.*/prism-vsc-dark-plus\.min\.css}i, repl => '/ext/vs-dark.min.css' },
-  { rx => qr{https://.*/prism-tomorrow\.min\.css}i, repl => '/ext/prism-tomorrow.min.css' },
-  { rx => qr{https://.*/prism-twilight\.min\.css}i, repl => '/ext/vs-dark.min.css' },
-  { rx => qr{https://.*/prism-okaidia\.min\.css}i, repl => '/ext/monokai.min.css' },
-  { rx => qr{https://.*/prism-one-dark\.min\.css}i, repl => '/ext/atom-one-dark.min.css' },
-  { rx => qr{https://.*/prism-one-light\.min\.css}i, repl => '/ext/atom-one-light.min.css' },
-  { rx => qr{https://.*/prism-coy\.min\.css}i, repl => '/ext/default.min.css' },
-  { rx => qr{https://.*/prism(-toolbar)?\.?min?\.css}i, repl => '/ext/default.min.css' },
+  # --- GitHub Series ---
+  { rx => qr{https://.*/github-dark-dimmed\.min\.css}i, repl => '/ext/github-dark-dimmed.min.css' },
+  { rx => qr{https://.*/github-dark-dimmed\.css}i,     repl => '/ext/github-dark-dimmed.css' },
+  { rx => qr{https://.*/github-dark\.min\.css}i,        repl => '/ext/github-dark.min.css' },
+  { rx => qr{https://.*/github-dark\.css}i,            repl => '/ext/github-dark.css' },
+  { rx => qr{https://.*/github\.min\.css}i,             repl => '/ext/github.min.css' },
+  { rx => qr{https://.*/github\.css}i,                 repl => '/ext/github.css' },
 
-  # --- FONT AWESOME ---
+  # --- Atom Series ---
+  { rx => qr{https://.*/atom-one-dark\.min\.css}i,     repl => '/ext/atom-one-dark.min.css' },
+  { rx => qr{https://.*/atom-one-light\.min\.css}i,    repl => '/ext/atom-one-light.min.css' },
+
+  # --- Prism & Variants ---
+  { rx => qr{https://.*/prism-okaidia\.min\.css}i,     repl => '/ext/prism-okaidia.min.css' },
+  { rx => qr{https://.*/prism-tomorrow\.min\.css}i,    repl => '/ext/prism-tomorrow.min.css' },
+  { rx => qr{https://.*/prism-toolbar\.min\.css}i,     repl => '/ext/prism-toolbar.min.css' },
+  { rx => qr{https://.*/prism\.min\.css}i,             repl => '/ext/prism.min.css' },
+
+  # --- VS & Monokai ---
+  { rx => qr{https://.*/(prism-vsc-dark-plus|vs-dark)\.min\.css}i, repl => '/ext/vs-dark.min.css' },
+  { rx => qr{https://.*/vs\.min\.css}i,                 repl => '/ext/vs.min.css' },
+  { rx => qr{https://.*/monokai\.min\.css}i,           repl => '/ext/monokai.min.css' },
+  
+  { rx => qr{https://.*/(styles/default|prism-coy)\.min\.css}i, repl => '/ext/default.min.css' },
+  { rx => qr{https://.*/leaflet\.css}i, repl => '/ext/leaflet.css' },
+  
   { rx => qr{https://.*/all(\.min)?\.css}i, repl => '/ext/fontawesome.css' },
   { rx => qr{https://use\.fontawesome\.com/releases/v[\d\.\-a-z]+/css/all\.css}i, repl => '/ext/fontawesome.css' },
-
-  # --- LEAFLET & MAPS ---
-  { rx => qr{https://.*/leaflet\.css}i, repl => '/ext/leaflet.css' },
-
-  # --- HIGHLIGHT.JS (JS & CSS) ---
-  { rx => qr{https://.*/highlight\.min\.js}i, repl => '/ext/highlight.js' },
-  { rx => qr{https://.*/styles/github(-dark)?\.min\.css}i, repl => '/ext/github-dark.min.css' },
-  { rx => qr{https://.*/styles/default\.min\.css}i, repl => '/ext/default.min.css' },
-
+  
   # --- HTML2CANVAS ---
   { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/html2canvas/[\d\.]+/html2canvas\.min\.js}i, repl => '/ext/html2canvas.min.js' },
   { rx => qr{https://html2canvas\.hertzen\.com/dist/html2canvas\.min\.js}i, repl => '/ext/html2canvas.min.js' },
@@ -54,6 +61,7 @@ my @MAP = (
 
   # --- HTML2PDF.JS ---
   { rx => qr{https://cdnjs\.cloudflare\.com/ajax/libs/html2pdf\.js/[\d\.]+/html2pdf\.bundle\.min\.js}i, repl => '/ext/html2pdf.bundle.min.js' },
+  { rx => qr{https://.*/highlight\.min\.js}i, repl => '/ext/highlight.js' },
 );
 
 ## 🔄 FUNCTION: URL Replacement
