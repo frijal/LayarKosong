@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.10
+document_version: 17.11
 last_updated: 2026-03-11
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 11 Maret 2026)
-> Menampilkan 1063 artikel versi 17.10.
+> Menampilkan 1064 artikel versi 17.11.
 
 ## Gaya Hidup
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
@@ -880,6 +880,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
 - [Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id](https://dalam.web.id/warta-tekno/deprecation-node20-github-actions) : Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis
 - [Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖](https://dalam.web.id/warta-tekno/perbandingan-ai-chatbot-terbaik) : memilih AI Chatbot terbaik berdasarkan kebutuhan: ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, dan Copilot. Update terbaru 2026.
 - [Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026](https://dalam.web.id/warta-tekno/microsoft-copilot-cowork) : Microsoft Copilot Cowork adalah agen AI revolusioner yang mengeksekusi tugas nyata di Outlook, Teams, dan Excel. Pelajari 4 fungsi utamanya dan cara kerjanya di 2026.
