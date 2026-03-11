@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// FILE: sitemap.ts (FINAL CLEANED PRODUCTION BUILD)
+// FILE: sitemap.ts (OPTIMIZED PRODUCTION BUILD)
 // -------------------------------------------------------
 
 interface Article {
@@ -10,277 +10,238 @@ interface Article {
   category: string;
 }
 
-interface ArticleData {
-  [category: string]: any[];
-}
+type ArticleGroup = Record<string, Article[]>;
 
-// PROTEKSI: Memastikan visitedLinks selalu diperlakukan sebagai Array murni
-const getVisitedLinks = (): string[] => {
+const getVisitedLinks = (): Set<string> => {
   try {
     const stored = localStorage.getItem('visitedLinks');
-    if (!stored) return [];
+    if (!stored) return new Set();
     const parsed = JSON.parse(stored);
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? new Set(parsed) : new Set();
   } catch {
-    return [];
+    return new Set();
   }
 };
 
-let visitedLinks: string[] = getVisitedLinks();
-let grouped: Record<string, Article[]> = {};
+let visitedLinks = getVisitedLinks();
+let grouped: ArticleGroup = {};
 
-const categoryColors: string[] = [
-  'linear-gradient(90deg, #004d40, #26a69a)', 'linear-gradient(90deg, #00796b, #009688)',
-  'linear-gradient(90deg, #00897b, #01579b)', 'linear-gradient(90deg, #009688, #4db6ac)',
-  'linear-gradient(90deg, #00acc1, #26c6da)', 'linear-gradient(90deg, #0288d1, #03a9f4)',
-  'linear-gradient(90deg, #0d47a1, #00bcd4)', 'linear-gradient(90deg, #0d47a1, #1976d2)',
-  'linear-gradient(90deg, #1565c0, #64b5f6)', 'linear-gradient(90deg, #1976d2, #2196f3)',
-  'linear-gradient(90deg, #1a237e, #3949ab)', 'linear-gradient(90deg, #1b5e20, #4caf50)',
-  'linear-gradient(90deg, #212121, #616161)', 'linear-gradient(90deg, #212121, #455a64)',
-  'linear-gradient(90deg, #2196f3, #00bcd4)', 'linear-gradient(90deg, #2e7d32, #8bc34a)',
-  'linear-gradient(90deg, #2e7d32, #4caf50)', 'linear-gradient(90deg, #33691e, #8bc34a)',
-  'linear-gradient(90deg, #37474f, #b0bec5)', 'linear-gradient(90deg, #388e3c, #4caf50)',
-  'linear-gradient(90deg, #3e2723, #a1887f)', 'linear-gradient(90deg, #3e2723, #ffc107)',
-  'linear-gradient(90deg, #607d8b, #9e9e9e)', 'linear-gradient(90deg, #6d4c41, #ffb300)',
-  'linear-gradient(90deg, #b71c1c, #ff7043)', 'linear-gradient(90deg, #cddc39, #8bc34a)',
-  'linear-gradient(90deg, #d32f2f, #f44336)', 'linear-gradient(90deg, #d84315, #ffca28)',
-  'linear-gradient(90deg, #e65100, #ffab00)', 'linear-gradient(90deg, #f44336, #ff9800)',
-  'linear-gradient(90deg, #f57c00, #ff9800)', 'linear-gradient(90deg, #fbc02d, #ffeb3b)',
+const categoryColors = [
+  'linear-gradient(90deg,#004d40,#26a69a)','linear-gradient(90deg,#00796b,#009688)',
+  'linear-gradient(90deg,#00897b,#01579b)','linear-gradient(90deg,#009688,#4db6ac)',
+  'linear-gradient(90deg,#00acc1,#26c6da)','linear-gradient(90deg,#0288d1,#03a9f4)',
+  'linear-gradient(90deg,#0d47a1,#00bcd4)','linear-gradient(90deg,#0d47a1,#1976d2)',
+  'linear-gradient(90deg,#1565c0,#64b5f6)','linear-gradient(90deg,#1976d2,#2196f3)',
+  'linear-gradient(90deg,#1a237e,#3949ab)','linear-gradient(90deg,#1b5e20,#4caf50)',
+  'linear-gradient(90deg,#212121,#616161)','linear-gradient(90deg,#212121,#455a64)',
+  'linear-gradient(90deg,#2196f3,#00bcd4)','linear-gradient(90deg,#2e7d32,#8bc34a)',
+  'linear-gradient(90deg,#2e7d32,#4caf50)','linear-gradient(90deg,#33691e,#8bc34a)',
+  'linear-gradient(90deg,#37474f,#b0bec5)','linear-gradient(90deg,#388e3c,#4caf50)',
+  'linear-gradient(90deg,#3e2723,#a1887f)','linear-gradient(90deg,#3e2723,#ffc107)',
+  'linear-gradient(90deg,#607d8b,#9e9e9e)','linear-gradient(90deg,#6d4c41,#ffb300)',
+  'linear-gradient(90deg,#b71c1c,#ff7043)','linear-gradient(90deg,#cddc39,#8bc34a)',
+  'linear-gradient(90deg,#d32f2f,#f44336)','linear-gradient(90deg,#d84315,#ffca28)',
+  'linear-gradient(90deg,#e65100,#ffab00)','linear-gradient(90deg,#f44336,#ff9800)',
+  'linear-gradient(90deg,#f57c00,#ff9800)','linear-gradient(90deg,#fbc02d,#ffeb3b)'
 ];
 
-function shuffle<T>(array: T[]): T[] {
+const shuffle = <T>(array: T[]): T[] => {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.random() * (i + 1) | 0;
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
-}
+};
 
-function formatDate(dateStr: string): string {
+const formatDate = (dateStr: string): string => {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return '';
-  const dd = String(d.getDate()).padStart(2, '0');
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const yy = String(d.getFullYear()).slice(-2);
-  return `${dd}.${mm}.${yy}`;
-}
+  return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getFullYear()).slice(-2)}`;
+};
 
-function updateStats(total: number, read: number, term: string = ''): void {
-  const totalCountEl = document.getElementById('totalCount');
-  if (!totalCountEl) return;
-  if (term) {
-    totalCountEl.innerHTML = `Menemukan <strong>${total}</strong> artikel dari pencarian "${term}"`;
+const getCleanUrl = (file: string, category: string): string => {
+  const catSlug = category.toLowerCase().replace(/\s+/g,'-');
+  return `/${catSlug}/${file.replace('.html','')}`;
+};
+
+const updateStats = (total:number, read:number, term=''):void=>{
+  const el=document.getElementById('totalCount');
+  if(!el) return;
+
+  if(term){
+    el.innerHTML=`Menemukan <strong>${total}</strong> artikel dari pencarian "${term}"`;
     return;
   }
-  const unread = total - read;
-  totalCountEl.innerHTML = `
+
+  const unread=total-read;
+
+  el.innerHTML=`
   <span class="total-stat">Total: <strong>${total}</strong></span>
   <span class="separator">|</span>
   <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
   <span class="separator">|</span>
-  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📖</span>
-  `;
-}
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📓</span>`;
+};
 
-function getCleanUrl(file: string, category: string): string {
-  const catSlug = category.toLowerCase().replace(/\s+/g, '-');
-  const fileSlug = file.replace('.html', '');
-  return `/${catSlug}/${fileSlug}`;
-}
+const saveVisited=()=>{
+  localStorage.setItem('visitedLinks',JSON.stringify([...visitedLinks]));
+};
 
-function updateTOCToggleText(): void {
-  const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
-  const allLists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-  if (allLists.length === 0 || !tocToggleBtn) return;
-  const allCollapsed = allLists.every((list) => list.style.display === 'none');
-  tocToggleBtn.textContent = allCollapsed ? 'Buka Semua' : 'Tutup Semua';
-}
+const buildArticleItem=(item:Article,allCount:number)=>{
+  const el=document.createElement('div');
+  el.className='toc-item';
+  el.dataset.text=item.title.toLowerCase();
 
-async function loadTOC(): Promise<void> {
-  try {
-    const data = await (window as any).siteDataProvider.getFor('sitemap.ts');
-    const toc = document.getElementById('toc');
-    if (!toc) return;
+  const titleDiv=document.createElement('div');
+  titleDiv.className='toc-title';
 
-    toc.innerHTML = '';
-    grouped = {};
+  const a=document.createElement('a');
+  a.href=getCleanUrl(item.file,item.category);
+  a.textContent=item.title;
 
-    Object.keys(data).forEach((cat) => {
-      grouped[cat] = data[cat].map((item: any) => ({
-        title: item.title,
-        file: item.id,
-        lastmod: item.date,
-        description: item.description,
-        category: cat
-      })).sort((a: Article, b: Article) =>
-      new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime()
-      );
-    });
+  const status=document.createElement('span');
+  const date=document.createElement('span');
 
-    const allArticles = Object.values(grouped).flat();
-    updateStats(allArticles.length, visitedLinks.length);
+  date.className='toc-date';
+  date.textContent=`[${formatDate(item.lastmod)}]`;
 
-    const shuffledColors = shuffle(categoryColors);
-    const categoryTooltip = document.getElementById('category-tooltip');
+  if(visitedLinks.has(item.file)){
+    status.className='label-visited';
+    status.textContent='sudah dibaca 👍';
+    a.classList.add('visited');
+  }else{
+    status.className='label-new';
+    status.textContent='📓 belum dibaca';
+  }
 
-    Object.keys(grouped)
-    .sort((a, b) => new Date(grouped[b][0].lastmod).getTime() - new Date(grouped[a][0].lastmod).getTime())
-    .forEach((cat, index) => {
-      const catDiv = document.createElement('div');
-      catDiv.className = 'category';
-      const color = shuffledColors[index % shuffledColors.length];
-      catDiv.style.setProperty('--category-color', color);
-      catDiv.innerHTML = `
-      <div class="category-content">
-      <div class="category-header">
-      ${cat} <span class="badge">${grouped[cat].length}</span>
-      </div>
-      <div class="toc-list" style="display: none;"></div>
-      </div>
-      `;
-
-      const catList = catDiv.querySelector('.toc-list') as HTMLElement;
-      grouped[cat].forEach((item) => {
-        const el = document.createElement('div');
-        el.className = 'toc-item';
-        el.setAttribute('data-text', item.title.toLowerCase());
-
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'toc-title';
-
-        const a = document.createElement('a');
-        a.href = getCleanUrl(item.file, item.category);
-        a.textContent = item.title;
-
-        const statusSpan = document.createElement('span');
-        if (visitedLinks.includes(item.file)) {
-          statusSpan.className = 'label-visited';
-          statusSpan.textContent = 'sudah dibaca 👍';
-          a.classList.add('visited');
-        } else {
-          statusSpan.className = 'label-new';
-          statusSpan.textContent = '📖 belum dibaca';
-        }
-
-        const dateSpan = document.createElement('span');
-        dateSpan.className = 'toc-date';
-        dateSpan.textContent = `[${formatDate(item.lastmod)}]`;
-
-        a.addEventListener('click', () => {
-          if (!visitedLinks.includes(item.file)) {
-            visitedLinks.push(item.file);
-            localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
-            updateStats(allArticles.length, visitedLinks.length);
-          }
-        });
-
-        const description = item.description || 'Tidak ada deskripsi.';
-      a.addEventListener('mouseenter', () => {
-        if (categoryTooltip) {
-          categoryTooltip.innerHTML = description;
-          categoryTooltip.style.display = 'block';
-        }
-      });
-      a.addEventListener('mousemove', (e: MouseEvent) => {
-        if (categoryTooltip) {
-          categoryTooltip.style.left = (e.clientX + 15) + 'px';
-          categoryTooltip.style.top = (e.clientY + 15) + 'px';
-        }
-      });
-      a.addEventListener('mouseleave', () => {
-        if (categoryTooltip) categoryTooltip.style.display = 'none';
-      });
-
-        titleDiv.appendChild(a);
-        titleDiv.appendChild(statusSpan);
-        titleDiv.appendChild(dateSpan);
-        el.appendChild(titleDiv);
-        catList.appendChild(el);
-      });
-
-      const catHeader = catDiv.querySelector('.category-header') as HTMLElement;
-      catHeader.addEventListener('click', () => {
-        catList.style.display = catList.style.display === 'block' ? 'none' : 'block';
-        updateTOCToggleText();
-      });
-
-      toc.appendChild(catDiv);
-    });
-
-    const m = document.getElementById('marquee-content');
-    if (m) {
-      const shuffledMarquee = shuffle(allArticles);
-      m.innerHTML = shuffledMarquee
-      .map((d) => {
-        const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
-        return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
-      })
-      .join(' • ');
+  a.onclick=()=>{
+    if(!visitedLinks.has(item.file)){
+      visitedLinks.add(item.file);
+      saveVisited();
+      updateStats(allCount,visitedLinks.size);
     }
-    updateTOCToggleText();
-  } catch (e) {
-    console.error('Gagal load artikel via provider', e);
+  };
+
+  titleDiv.append(a,status,date);
+  el.appendChild(titleDiv);
+
+  return el;
+};
+
+async function loadTOC(){
+
+  try{
+
+    const data=await (window as any).siteDataProvider.getFor('sitemap.ts');
+
+    const toc=document.getElementById('toc');
+    if(!toc) return;
+
+    toc.innerHTML='';
+    grouped={};
+
+    Object.keys(data).forEach(cat=>{
+      grouped[cat]=data[cat]
+      .map((item:any)=>({
+        title:item.title,
+        file:item.id,
+        lastmod:item.date,
+        description:item.description,
+        category:cat
+      }))
+      .sort((a,b)=>new Date(b.lastmod).getTime()-new Date(a.lastmod).getTime());
+    });
+
+    const allArticles=Object.values(grouped).flat();
+    updateStats(allArticles.length,visitedLinks.size);
+
+    const colors=shuffle(categoryColors);
+    const frag=document.createDocumentFragment();
+
+    Object.keys(grouped).forEach((cat,i)=>{
+
+      const catDiv=document.createElement('div');
+      catDiv.className='category';
+      catDiv.style.setProperty('--category-color',colors[i%colors.length]);
+
+      const header=document.createElement('div');
+      header.className='category-header';
+      header.innerHTML=`${cat} <span class="badge">${grouped[cat].length}</span>`;
+
+      const list=document.createElement('div');
+      list.className='toc-list';
+      list.style.display='none';
+
+      const listFrag=document.createDocumentFragment();
+
+      grouped[cat].forEach(item=>{
+        listFrag.appendChild(buildArticleItem(item,allArticles.length));
+      });
+
+      list.appendChild(listFrag);
+
+      header.onclick=()=>{
+        list.style.display=list.style.display==='block'?'none':'block';
+      };
+
+      catDiv.append(header,list);
+      frag.appendChild(catDiv);
+
+    });
+
+    toc.appendChild(frag);
+
+  }catch(e){
+    console.error('loadTOC error',e);
   }
+
 }
 
-// Eksekusi Inisialisasi
-document.addEventListener('DOMContentLoaded', () => {
-  const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
-  if (tocToggleBtn) {
-    tocToggleBtn.addEventListener('click', () => {
-      const lists = Array.from(document.querySelectorAll('.toc-list')) as HTMLElement[];
-      const isOpening = tocToggleBtn.textContent === 'Buka Semua';
-    lists.forEach((list) => {
-      list.style.display = isOpening ? 'block' : 'none';
-    });
-    updateTOCToggleText();
-    });
-  }
-  loadTOC();
+function initSearch(){
 
-  const searchInput = document.getElementById('search') as HTMLInputElement | null;
-  const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      const term = searchInput.value.toLowerCase();
-      if (clearBtn) clearBtn.style.display = term ? 'block' : 'none';
-      let countVisible = 0;
-      const categories = Array.from(document.querySelectorAll('.category')) as HTMLElement[];
-      categories.forEach((category) => {
-        let catVisible = false;
-        const items = Array.from(category.querySelectorAll('.toc-item')) as HTMLElement[];
-        items.forEach((item) => {
-          const text = item.getAttribute('data-text') || '';
-          const titleLink = item.querySelector('a') as HTMLAnchorElement;
-          if (term && text.includes(term)) {
-            item.style.display = 'flex';
-            catVisible = true;
-            countVisible++;
-            const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            titleLink.innerHTML = text.replace(new RegExp(`(${safeTerm})`, 'gi'), '<span class="highlight">$1</span>');
-          } else if (!term) {
-            item.style.display = 'flex';
-            titleLink.textContent = text;
-            catVisible = true;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-        category.style.display = catVisible ? 'block' : 'none';
-        const list = category.querySelector('.toc-list') as HTMLElement;
-        if (list) list.style.display = (term && catVisible) ? 'block' : 'none';
-      });
-        const allArticlesCount = Object.values(grouped).flat().length;
-        if (term) updateStats(countVisible, visitedLinks.length, term);
-        else updateStats(allArticlesCount, visitedLinks.length);
-        updateTOCToggleText();
+  const input=document.getElementById('search') as HTMLInputElement;
+  const clear=document.getElementById('clearSearch');
+
+  if(!input) return;
+
+  input.oninput=()=>{
+
+    const term=input.value.toLowerCase();
+    if(clear) clear.style.display=term?'block':'none';
+
+    let count=0;
+
+    document.querySelectorAll<HTMLElement>('.toc-item').forEach(item=>{
+
+      const text=item.dataset.text||'';
+
+    if(!term||text.includes(term)){
+      item.style.display='flex';
+      count++;
+    }else{
+      item.style.display='none';
+    }
+
     });
-  }
-  if (clearBtn && searchInput) {
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      searchInput.dispatchEvent(new Event('input'));
+
+    const total=Object.values(grouped).flat().length;
+
+    if(term) updateStats(count,visitedLinks.size,term);
+    else updateStats(total,visitedLinks.size);
+
+  };
+
+    clear?.addEventListener('click',()=>{
+      input.value='';
+      input.dispatchEvent(new Event('input'));
     });
-  }
+
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+  loadTOC();
+  initSearch();
+
 });
