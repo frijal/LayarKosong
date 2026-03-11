@@ -7,4 +7,4 @@ pages_build_output_dir = "../deploy_dir"
 
 [vars]
 BUN_VERSION = "latest"
-NODE_VERSION = "20" # Beberapa plugin butuh ini sebagai fallback
+NODE_VERSION = "24" # Beberapa plugin butuh ini sebagai fallback
