@@ -14,8 +14,6 @@ on:
       - '_headers'
 
   workflow_dispatch:
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read # Cukup READ saja, karena kita gak perlu push balik ke repo!
@@ -24,6 +22,8 @@ permissions:
 jobs:
   deploy-direct:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       # 1. Ambil source code dari main
