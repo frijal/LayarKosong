@@ -45,7 +45,7 @@ if (!container) {
 // Load JSON
 let data;
 try {
-    const res = await fetch('/artikel.json');
+    const res = await fetch('https://raw.githubusercontent.com/frijal/LayarKosong/refs/heads/main/artikel.json');
 
     if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
