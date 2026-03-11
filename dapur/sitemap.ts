@@ -77,9 +77,9 @@ function updateStats(total: number, read: number, term: string = ''): void {
   totalCountEl.innerHTML = `
   <span class="total-stat">Total: <strong>${total}</strong></span>
   <span class="separator">|</span>
-  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> \uD83D\uDC4D</span>
+  <span class="read-stat">Sudah Dibaca: <strong>${read}</strong> 👍</span>
   <span class="separator">|</span>
-  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> \uD83D\uDCD3</span>
+  <span class="unread-stat">Belum Dibaca: <strong>${unread}</strong> 📖</span>
   `;
 }
 
@@ -156,11 +156,11 @@ async function loadTOC(): Promise<void> {
         const statusSpan = document.createElement('span');
         if (visitedLinks.includes(item.file)) {
           statusSpan.className = 'label-visited';
-          statusSpan.textContent = 'sudah dibaca \uD83D\uDC4D';
+          statusSpan.textContent = 'sudah dibaca 👍';
           a.classList.add('visited');
         } else {
           statusSpan.className = 'label-new';
-          statusSpan.textContent = '\uD83D\uDCD3 belum dibaca';
+          statusSpan.textContent = '📖 belum dibaca';
         }
 
         const dateSpan = document.createElement('span');
@@ -216,7 +216,7 @@ async function loadTOC(): Promise<void> {
         const cleanDesc = (d.description || 'Tidak ada deskripsi.').replace(/"/g, '&quot;');
         return `<a href="${getCleanUrl(d.file, d.category)}" data-description="${cleanDesc}">${d.title}</a>`;
       })
-      .join(' \u2022 ');
+      .join(' • ');
     }
     updateTOCToggleText();
   } catch (e) {
@@ -224,25 +224,8 @@ async function loadTOC(): Promise<void> {
   }
 }
 
-function initDarkMode(): void {
-  const darkSwitch = document.getElementById('darkSwitch') as HTMLInputElement | null;
-  const setMode = (isDark: boolean) => {
-    document.body.classList.toggle('dark-mode', isDark);
-    if (darkSwitch) darkSwitch.checked = isDark;
-    localStorage.setItem('darkMode', String(isDark));
-  };
-
-  const saved = localStorage.getItem('darkMode');
-  if (saved !== null) setMode(saved === 'true');
-  else setMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-  if (darkSwitch) {
-    darkSwitch.addEventListener('change', () => setMode(darkSwitch.checked));
-  }
-}
-
+// Eksekusi Inisialisasi
 document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
   const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
   if (tocToggleBtn) {
     tocToggleBtn.addEventListener('click', () => {
@@ -255,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   loadTOC();
+
   const searchInput = document.getElementById('search') as HTMLInputElement | null;
   const clearBtn = document.getElementById('clearSearch') as HTMLElement | null;
   if (searchInput) {
