@@ -105,7 +105,7 @@ jobs:
           H2C_VER=$(cat node_modules/html2canvas/package.json | jq -r .version)
           H2PDF_VER=$(cat node_modules/html2pdf.js/package.json | jq -r .version)
           HLJS_VER=$(cat node_modules/@highlightjs/cdn-assets/package.json | jq -r .version)
-          echo -e "hljs=$HLJS_VER\nfontawesome=$FA_VER\nhtml2canvas=$H2C_VER" | sort > mini/asset-info.txt
+          echo -e "fontawesome=$FA_VER\nhtml2canvas=$H2C_VER\nhtml2pdf=$H2PDF_VER\nhljs=$HLJS_VER" | sort > mini/asset-info.txt
 
       # --- STEP 3: AUDIT (Selalu Jalan untuk SEMUA mode) ---
       - name: 🧹 Jalankan Sapu Bersih (Audit)
