@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.2
-last_updated: 2026-03-10
+document_version: 17.3
+last_updated: 2026-03-11
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 10 Maret 2026)
-> Menampilkan 1045 artikel versi 17.2.
+## Index Artikel Terbaru (Updated: 11 Maret 2026)
+> Menampilkan 1046 artikel versi 17.3.
 
 ## Gaya Hidup
 - [RADAR PERINGATAN DINI GAGAL GINJAL - Protokol Deteksi Dini oleh The Architect](https://dalam.web.id/gaya-hidup/radar-peringatan-dini-gagal-ginjal) : Kenali 4 sinyal peringatan dini gagal ginjal: urine berbusa, resistensi insulin, hipertensi senyap, dan protokol bilas darah mandiri. Selamatkan ginjal Anda sebelum terlambat.
@@ -422,6 +422,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026 | Dalam Web](https://dalam.web.id/opini-sosial/microsoft-copilot-cowork) : Microsoft Copilot Cowork adalah agen AI revolusioner yang mengeksekusi tugas nyata di Outlook, Teams, dan Excel. Pelajari 4 fungsi utamanya dan cara kerjanya di 2026.
 - [Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji](https://dalam.web.id/opini-sosial/fiqih-haji-memahami-konsep-mampu) : Fiqih Haji menjelaskan bahwa ibadah haji hanya diwajibkan bagi muslim yang mampu. Artikel ini membahas makna kemampuan dalam fiqih haji serta relevansinya dengan panjangnya antrean haji di Indonesia.
 - [Opini: Ketika Rumah Sendiri Belum Beres, Perlukah Terlalu Sibuk di Panggung Global?](https://dalam.web.id/opini-sosial/opini-rumah-berantakan-global) : Kritik terhadap prioritas pemerintah: rumah sendiri masih berantakan namun sibuk di dunia internasional. Analisis 5W+1H tentang perlunya fokus pada masalah dalam negeri.
 - [Malu dengan Presiden Prabowo? Refleksi atas Arah Politik Luar Negeri Indonesia](https://dalam.web.id/opini-sosial/refleksi-politik-luar-negeri-prabowo) : Refleksi atas arah politik luar negeri Indonesia: antara tradisi bebas aktif dan kedekatan dengan tokoh global seperti Prabowo, Trump, Netanyahu.
