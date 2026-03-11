@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.7
+document_version: 17.8
 last_updated: 2026-03-11
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,11 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 11 Maret 2026)
-> Menampilkan 1053 artikel versi 17.7.
+> Menampilkan 1061 artikel versi 17.8.
 
 ## Gaya Hidup
+- [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
+- [Realita Kebahagiaan Indonesia: Kritik Prof. Anhar Gonggong yang Bikin Sedih tapi Nyata](https://dalam.web.id/gaya-hidup/realita-kebahagiaan-indonesia-dari-pandangan-prof-anhar-gonggong) : Membahas pernyataan Prof. Anhar Gonggong tentang ketidakadilan di Indonesia, di mana rakyat menderita sementara pejabat hidup mewah. Analisis 5W1H soal kemiskinan, korupsi, dan cita-cita kemerdekaan.
 - [Spanyol Umumkan Inisiatif Baru Buka 50.000 Darsgah untuk Gadis Muslim](https://dalam.web.id/gaya-hidup/spanyol-umumkan-inisiatif-baru-buka-darsgah-untuk-gadis-muslim) : Spanyol umumkan buka 50000 Darsgah untuk gadis Muslim. PM Pedro Sánchez janji anak perempuan Muslim bisa belajar Al-Quran dengan tenang dan hormat. Inisiatif besar 2026 ini dukung kebebasan beragama di Eropa.
 - [Memaknai Ketidakpuasan Dunia: Energi Kehidupan dan Pesan Al-Qasas Ayat 77](https://dalam.web.id/gaya-hidup/memaknai-ketidakpuasan-dunia-energi-kehidupan-dan-pesan-al-qasas-ayat-77) : Pernah merasa tidak puas dengan hidup? Ternyata itu energi positif! Pelajari cara mengubahnya jadi kekuatan dengan pesan indah QS Al-Qasas ayat 77. Artikel santai lengkap pakai 5W1H
 - [Menyiapkan Kader Ulama, Politik, dan Profesional: Agenda Strategis Menuju Muktamar Muhammadiyah ke-49](https://dalam.web.id/gaya-hidup/menyiapkan-kader-ulama-politik-dan-profesional-agenda-strategis-menuju-muktamar-muhammadiyah-ke-49) : Menjelang Muktamar Muhammadiyah ke-49 di Sumatera Utara 2027, Muhammadiyah fokus menyiapkan kader ulama, politik, dan profesional. Artikel lengkap 5W1H santai tentang masa depan gerakan Islam berkemajuan
@@ -283,6 +285,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk – Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [Laporan Kalkulator Zakat Fitrah Lengkap](https://dalam.web.id/lainnya/kalkulator-zakat-fitrah-lengkap-laporan) : Laporan Kalkulator lengkap penerimaan dan penyaluran Zakat Fitrah secara transparan. Lihat rincian data pembagian zakat selengkapnya di sini.
 - [Harga Sebuah Kapal Induk dan Sepiring Makan Anak Sekolah](https://dalam.web.id/lainnya/harga-sebuah-kapal-induk-dan-sepiring-makan-anak-sekolah) : Rocky Gerung bandingkan harga satu kapal induk USS Gerald R Ford sekitar 200 triliun rupiah dengan program Makan Bergizi Gratis MBG. Refleksi santai tentang prioritas anggaran negara antara pertahanan dan gizi anak Indonesia
 - [KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih](https://dalam.web.id/lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi) : KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Analisis komprehensif mengenai skema Koperasi Desa Merah Putih, struktur pembiayaan Rp3 miliar per desa, risiko fiskal, dan dampaknya bagi ekonomi desa.
 - [Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus](https://dalam.web.id/lainnya/saldi-isra-sidang-mk-kuota-hangus) : Hakim MK Saldi Isra kritik transparansi operator seluler soal kuota hangus dalam sidang uji materi UU Telekomunikasi. Cek detail argumennya di sini.
@@ -428,6 +431,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳](https://dalam.web.id/opini-sosial/kerja-sama-indonesia-india-2026) : Analisis kerja sama Indonesia dan India tahun 2026 mulai dari impor 35.000 unit Mahindra Scorpio hingga pengadaan rudal supersonik BrahMos senilai 7 triliun rupiah.
 - [Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa](https://dalam.web.id/opini-sosial/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa) : kisah inspiratif bagaimana gerakan Aisyiyah sejak 1917 menjadi rahim peradaban yang melahirkan dan menguatkan tokoh besar Indonesia seperti Ahmad Dahlan Soekarno dan Soedirman Artikel lengkap pakai 5W1H dan cerita santai
 - [Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji](https://dalam.web.id/opini-sosial/fiqih-haji-memahami-konsep-mampu) : Fiqih Haji menjelaskan bahwa ibadah haji hanya diwajibkan bagi muslim yang mampu. Artikel ini membahas makna kemampuan dalam fiqih haji serta relevansinya dengan panjangnya antrean haji di Indonesia.
 - [Opini: Ketika Rumah Sendiri Belum Beres, Perlukah Terlalu Sibuk di Panggung Global?](https://dalam.web.id/opini-sosial/opini-rumah-berantakan-global) : Kritik terhadap prioritas pemerintah: rumah sendiri masih berantakan namun sibuk di dunia internasional. Analisis 5W+1H tentang perlunya fokus pada masalah dalam negeri.
@@ -581,6 +585,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Top 10 Reasons MX Linux is Better Than Ubuntu for Older PC](https://dalam.web.id/sistem-terbuka/top-10-reasons-mx-linux-better-than-ubuntu-for-older-pcs) : Top 10 alasan MX Linux lebih cocok dari Ubuntu untuk PC lawas. XFCE ringan, persyaratan rendah, MX Tools, Snapper Btrfs, SysVinit.
+- [MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce) : Ulasan lengkap MX Linux 25.1 XFCE. Stabilitas Debian 13 Trixie, MX Tools, XFCE ringan, Btrfs snapshot, Snapper. Cocok untuk daily driver.
+- [Panduan Instalasi MX Linux 25.1 XFCE dengan Btrfs dan Snapper di PC Lawas](https://dalam.web.id/sistem-terbuka/panduan-instalasi-mx-linux-btrfs) : Cara lengkap instalasi MX Linux 25.1 XFCE di PC lawas. Panduan step by step konfigurasi Btrfs dan Snapper untuk fitur rollback sistem yang aman dan ringan.
 - [Cara Ampuh Menghapus File Duplikat dengan FDupes di Linux dan Windows](https://dalam.web.id/sistem-terbuka/tutorial-fdupes-hapus-file-duplikat) : cara menggunakan fdupes untuk mencari dan menghapus file kembar secara otomatis. Menggunakan prinsip 5W1H untuk pemula hingga ahli.
 - [Stop! 4 Distro Linux Ini Tidak Senyaman yang Kamu Kira untuk Pemula](https://dalam.web.id/sistem-terbuka/linux-distro-berisiko-untuk-pemula) : Arch, Gentoo, NixOS, Slackware: distro Linux yang populer tapi berisiko untuk pemula. Simak penjelasan lengkap dan alternatif yang lebih ramah.
 - [Cara Membersihkan Sistem CachyOS Arch Linux dengan Efektif](https://dalam.web.id/sistem-terbuka/cara-bersihkan-cachyos-arch-linux) : membersihkan sistem CachyOS dan Arch Linux dari sampah nodejs, pipx, cache pacman, hingga sisa build AUR agar hardisk tetap lega.
@@ -872,6 +879,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖](https://dalam.web.id/warta-tekno/perbandingan-ai-chatbot-terbaik) : memilih AI Chatbot terbaik berdasarkan kebutuhan: ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, dan Copilot. Update terbaru 2026.
 - [Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026](https://dalam.web.id/warta-tekno/microsoft-copilot-cowork) : Microsoft Copilot Cowork adalah agen AI revolusioner yang mengeksekusi tugas nyata di Outlook, Teams, dan Excel. Pelajari 4 fungsi utamanya dan cara kerjanya di 2026.
 - [Android dan Rencana Pembatasan Developer: Dampak pada Ekosistem Sumber Terbuka](https://dalam.web.id/warta-tekno/android-rencana-registrasi-developer) : Google berencana mewajibkan semua developer Android registrasi dengan identitas dan biaya. Simak analisis dampak pada keterbukaan, privasi, dan masa depan sideloading.
 - [AI Claude Temukan Bug Firefox Lebih Cepat dari Komunitas](https://dalam.web.id/warta-tekno/ai-claude-temukan-bug-firefox-cepat) : AI Claude Opus 4.6 temukan lebih dari 100 bug di Firefox dalam dua minggu, termasuk 14 kerentanan severity tinggi. Baca bagaimana AI mengubah keamanan siber.
