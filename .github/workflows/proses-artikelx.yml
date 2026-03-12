@@ -21,6 +21,14 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
+      - name: '2. Setup Bun.js'
+        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
+        with:
+          bun-version: latest     
+
+      - name: Install Node dependencies
+        run: bun install
+
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
           run: |
@@ -87,15 +95,7 @@ jobs:
             s/\bfar /fa-regular /g;
             s/\bfas /fa-solid /g;
           ' "$file"
-          done
-
-      - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
-        with:
-          bun-version: latest     
-
-      - name: Install Node dependencies
-        run: bun install      
+          done            
 
       - name: 🧹 Sterilize Schema (Node.js)
         run: bun run dapur/clean-schema.ts artikelx/      
