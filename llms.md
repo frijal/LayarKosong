@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.17
+document_version: 17.18
 last_updated: 2026-03-12
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,10 +39,9 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 12 Maret 2026)
-> Menampilkan 1069 artikel versi 17.17.
+> Menampilkan 1069 artikel versi 17.18.
 
 ## Gaya Hidup
-- [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/gaya-hidup/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
 - [Realita Kebahagiaan Indonesia: Kritik Prof. Anhar Gonggong yang Bikin Sedih tapi Nyata](https://dalam.web.id/gaya-hidup/realita-kebahagiaan-indonesia-dari-pandangan-prof-anhar-gonggong) : Membahas pernyataan Prof. Anhar Gonggong tentang ketidakadilan di Indonesia, di mana rakyat menderita sementara pejabat hidup mewah. Analisis 5W1H soal kemiskinan, korupsi, dan cita-cita kemerdekaan.
@@ -885,6 +884,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
 - [Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id](https://dalam.web.id/warta-tekno/deprecation-node20-github-actions) : Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis
 - [Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖](https://dalam.web.id/warta-tekno/perbandingan-ai-chatbot-terbaik) : memilih AI Chatbot terbaik berdasarkan kebutuhan: ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, dan Copilot. Update terbaru 2026.
