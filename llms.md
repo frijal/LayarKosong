@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.18
+document_version: 17.19
 last_updated: 2026-03-12
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 12 Maret 2026)
-> Menampilkan 1069 artikel versi 17.18.
+> Menampilkan 1069 artikel versi 17.19.
 
 ## Gaya Hidup
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
