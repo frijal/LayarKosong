@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.11
-last_updated: 2026-03-11
+document_version: 17.12
+last_updated: 2026-03-12
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 11 Maret 2026)
-> Menampilkan 1064 artikel versi 17.11.
+## Index Artikel Terbaru (Updated: 12 Maret 2026)
+> Menampilkan 1065 artikel versi 17.12.
 
 ## Gaya Hidup
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
@@ -431,6 +431,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Krisis Driver Ojek Online di Indonesia: Mengapa Sekarang Sulit Dapat Driver?](https://dalam.web.id/opini-sosial/krisis-driver-ojek-online) : ojek online semakin sulit didapat? Simak analisis mendalam krisis driver ojol di Indonesia terkait kesejahteraan, tarif, dan dampaknya bagi konsumen.
 - [Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳](https://dalam.web.id/opini-sosial/kerja-sama-indonesia-india-2026) : Analisis kerja sama Indonesia dan India tahun 2026 mulai dari impor 35.000 unit Mahindra Scorpio hingga pengadaan rudal supersonik BrahMos senilai 7 triliun rupiah.
 - [Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa](https://dalam.web.id/opini-sosial/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa) : kisah inspiratif bagaimana gerakan Aisyiyah sejak 1917 menjadi rahim peradaban yang melahirkan dan menguatkan tokoh besar Indonesia seperti Ahmad Dahlan Soekarno dan Soedirman Artikel lengkap pakai 5W1H dan cerita santai
 - [Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji](https://dalam.web.id/opini-sosial/fiqih-haji-memahami-konsep-mampu) : Fiqih Haji menjelaskan bahwa ibadah haji hanya diwajibkan bagi muslim yang mampu. Artikel ini membahas makna kemampuan dalam fiqih haji serta relevansinya dengan panjangnya antrean haji di Indonesia.
