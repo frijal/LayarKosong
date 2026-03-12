@@ -73,46 +73,9 @@ jobs:
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
           bun run dapur/koki.ts --once
+          bun run dapur/bikin-sitemap-txt.ts
           bun run dapur/generate_llms.ts
-          echo "📝 Mengurutkan dan membuat sitemap.txt (Terbaru di Bawah)..."
-          bun -e "
-            const fs = require('fs');
-            const data = JSON.parse(fs.readFileSync('artikel.json', 'utf8'));
-            const articleList = [];
-            const slugify = (t) => t.toLowerCase().trim().replace(/\s+/g, '-');
-            const BASE_URL = 'https://dalam.web.id';
-
-            // 1. Kumpulkan semua artikel ke dalam satu flat array agar bisa diurutkan
-            for (const [cat, posts] of Object.entries(data)) {
-              const catSlug = slugify(cat);
-              posts.forEach(p => {
-                articleList.push({
-                  url: BASE_URL + '/' + catSlug + '/' + p[1].replace('.html', '').replace(/^\//, ''),
-                  date: new Date(p[3].substring(0, 10)) // Ambil tanggal dari indeks ke-3
-                });
-              });
-            }
-
-            // 2. Sortir berdasarkan tanggal (Ascending: Lama -> Baru)
-            articleList.sort((a, b) => a.date.getTime() - b.date.getTime());
-
-            // 3. Masukkan URL Manual di awal
-            const finalUrls = [
-              '', '/jejak-sejarah', '/lainnya', '/olah-media', 
-              '/opini-sosial', '/sistem-terbuka', '/warta-tekno', 
-              '/gaya-hidup', '/about', '/privacy', '/search', 
-              '/security-policy', '/data-deletion-form', '/disclaimer', 
-              '/feed', '/img', '/lisensi', '/sitemap'
-            ].map(u => BASE_URL + u);
-
-            // 4. Masukkan URL Artikel yang sudah tersortir
-            articleList.forEach(art => finalUrls.push(art.url));
-
-            // 5. Simpan dan buang duplikasi (jika ada)
-            fs.writeFileSync('sitemap.txt', [...new Set(finalUrls)].join('\n') + '\n');
-            console.log('✅ sitemap.txt berhasil diurutkan berdasarkan tanggal terbit.');
-          "
-          
+                    
       - name: '6️⃣ Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
