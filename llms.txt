@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.16
+document_version: 17.17
 last_updated: 2026-03-12
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,10 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 12 Maret 2026)
-> Menampilkan 1069 artikel versi 17.16.
+> Menampilkan 1069 artikel versi 17.17.
 
 ## Gaya Hidup
-- [Pencurian Teknologi Motorola oleh Hytera: Pelajaran Etika Bisnis Global](https://dalam.web.id/gaya-hidup/pencurian-teknologi-motorola-hytera) : Kasus Hytera denda $50 juta karena curi rahasia dagang Motorola. Simak kronologi 5W+1H, dampak hukum, dan pelajaran etika bisnis di era global.
+- [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/gaya-hidup/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
 - [Realita Kebahagiaan Indonesia: Kritik Prof. Anhar Gonggong yang Bikin Sedih tapi Nyata](https://dalam.web.id/gaya-hidup/realita-kebahagiaan-indonesia-dari-pandangan-prof-anhar-gonggong) : Membahas pernyataan Prof. Anhar Gonggong tentang ketidakadilan di Indonesia, di mana rakyat menderita sementara pejabat hidup mewah. Analisis 5W1H soal kemiskinan, korupsi, dan cita-cita kemerdekaan.
