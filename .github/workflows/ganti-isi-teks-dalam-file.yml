@@ -83,8 +83,8 @@ jobs:
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
             # Optional: list changed files for PR body
-            git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//' > changed_files.txt
-            echo "changed_files=$(cat changed_files.txt)" >> $GITHUB_OUTPUT
+            git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//' > sementara/changed_files.txt
+            echo "changed_files=$(cat sementara/changed_files.txt)" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
