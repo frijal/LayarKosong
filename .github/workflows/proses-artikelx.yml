@@ -30,11 +30,9 @@ jobs:
         run: bun install
 
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
-        run: |          
-          set -euo pipefail
-          if [[ -f dapur/gantifontshighlight.ts ]]; then
-            bun dapur/gantifontshighlight.ts --quiet --no-backup
-          fi
+        run: |
+          set -euo pipefail          
+          bun dapur/gantifontshighlight.ts --quiet --no-backup
           
       - name: 🛠️ Replace Content (Perl, SAFE)
         run: |
