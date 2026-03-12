@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Rabu, 11 Maret 2026 pukul 19.35.57 WITA
+> **Audit Terakhir:** Kamis, 12 Maret 2026 pukul 19.33.51 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,6 +13,7 @@
 | CloudflareMedsos.yml | post-to-tumblr.ts | 🟡 Ada | `tumblr.js` | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | post-to-discord.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-facebook.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| CloudflareMedsos.yml | indexnow.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | delete-diskusi.yml | sapu-bersih.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
