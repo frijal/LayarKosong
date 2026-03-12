@@ -23,10 +23,10 @@ jobs:
 
       - name: 🛠️ Ganti ke Rumah aja, fontaws dan highlight.js (Bun Mode)
         run: |
+          run: |
           set -euo pipefail
-          if [[ -f dapur/gantifontshighlight.pl ]]; then
-            chmod +x dapur/gantifontshighlight.pl
-            perl dapur/gantifontshighlight.pl --quiet --no-backup
+          if [[ -f dapur/gantifontshighlight.ts ]]; then
+            bun dapur/gantifontshighlight.ts --quiet --no-backup
           fi
           
       - name: 🛠️ Replace Content (Perl, SAFE)
