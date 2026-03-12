@@ -4,8 +4,8 @@ const HOST = "dalam.web.id";
 const KEY = process.env.INDEXNOW_KEY;
 const SITEMAP_FILE = "./sitemap.txt";
 const CACHE_FILE = "./mini/indexnow-cache.txt";
+const BATCH_SIZE = 700; // Ukuran maksimal per pengiriman
 
-// Daftar Provider IndexNow
 const PROVIDERS = [
   "https://bing.com/indexnow",
   "https://yandex.com/indexnow",
@@ -13,56 +13,68 @@ const PROVIDERS = [
 ];
 
 async function submitIndexNow() {
-  if (!KEY) throw new Error("INDEXNOW_KEY is missing in env!");
+  if (!KEY) throw new Error("INDEXNOW_KEY is missing!");
 
-  // 1. Load Sitemap & Cache
   const sitemap = existsSync(SITEMAP_FILE) ? readFileSync(SITEMAP_FILE, "utf-8").split("\n").filter(Boolean) : [];
   const cache = existsSync(CACHE_FILE) ? new Set(readFileSync(CACHE_FILE, "utf-8").split("\n").filter(Boolean)) : new Set();
 
-  // 2. Filter URL Baru
   const newUrls = sitemap.filter(url => !cache.has(url));
 
   if (newUrls.length === 0) {
-    console.log("✅ No new URLs to submit.");
+    console.log("✅ Tidak ada URL baru.");
     return;
   }
 
-  // Limit 1000 URL per batch agar tidak kena rate limit (429)
-  const batch = newUrls.slice(0, 1000);
-  const payload = {
-    host: HOST,
-    key: KEY,
-    keyLocation: `https://${HOST}/${KEY}.txt`,
-    urlList: batch
-  };
+  console.log(`📂 Total URL baru ditemukan: ${newUrls.length}`);
 
-  console.log(`🚀 Submitting ${batch.length} URLs to ${PROVIDERS.length} providers...`);
+  // 1. Proses pemecahan menjadi batch
+  for (let i = 0; i < newUrls.length; i += BATCH_SIZE) {
+    const batch = newUrls.slice(i, i + BATCH_SIZE);
+    const currentBatchNum = Math.floor(i / BATCH_SIZE) + 1;
+    const totalBatches = Math.ceil(newUrls.length / BATCH_SIZE);
 
-  // 3. Kirim ke Semua Provider secara Paralel
-  const requests = PROVIDERS.map(async (url) => {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify(payload)
-      });
+    console.log(`\n📦 Memproses Batch ${currentBatchNum}/${totalBatches} (${batch.length} URL)...`);
 
-      if (response.ok) {
-        console.log(`✅ Success [${new URL(url).hostname}]`);
-      } else {
-        console.error(`❌ Failed [${new URL(url).hostname}]: ${response.status} ${response.statusText}`);
+    const payload = {
+      host: HOST,
+      key: KEY,
+      keyLocation: `https://${HOST}/${KEY}.txt`,
+      urlList: batch
+    };
+
+    // 2. Kirim ke semua provider untuk batch saat ini
+    const requests = PROVIDERS.map(async (url) => {
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          console.log(`   ✅ Success [${new URL(url).hostname}]`);
+        } else {
+          console.error(`   ❌ Failed [${new URL(url).hostname}]: ${response.status}`);
+        }
+      } catch (err) {
+        console.error(`   💥 Error [${new URL(url).hostname}]:`, err.message);
       }
-    } catch (err) {
-      console.error(`💥 Error [${new URL(url).hostname}]:`, err.message);
+    });
+
+    await Promise.all(requests);
+
+    // 3. Update cache per batch agar jika batch selanjutnya gagal, batch ini tetap aman
+    batch.forEach(url => cache.add(url));
+    writeFileSync(CACHE_FILE, Array.from(cache).join("\n"));
+    
+    // Beri jeda 2 detik antar batch agar tidak dianggap spam
+    if (i + BATCH_SIZE < newUrls.length) {
+      console.log("   ⏳ Menunggu 2 detik sebelum batch berikutnya...");
+      await new Promise(resolve => setTimeout(resolve, 3600));
     }
-  });
+  }
 
-  await Promise.all(requests);
-
-  // 4. Update Cache (Hanya yang masuk batch)
-  const updatedCache = [...Array.from(cache), ...batch].join("\n");
-  writeFileSync(CACHE_FILE, updatedCache);
-  console.log("💾 Cache updated.");
+  console.log("\n✨ Semua proses selesai!");
 }
 
 submitIndexNow();
