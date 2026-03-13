@@ -89,10 +89,9 @@ function addElements(html: string): string {
   if (!html.includes("marquee-url.css")) {
     html = html.replace(
       "</head>",
-      `<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml"></head>`
+      `<link rel="stylesheet" href="/ext/marquee-url.css"></head>`
     );
   }
-
   // 2. Footer links
   if (!html.includes('href="/data-deletion"')) {
     const footerLinks = [

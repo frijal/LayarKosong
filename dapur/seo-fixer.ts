@@ -164,8 +164,8 @@ async function processFile(file: string, baseUrl: string) {
         // --- 3. OPERASI STERILISASI (CLEANUP) ---
         $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
 
-        // Menghapus link rel yang sudah ada
-        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"], link[rel="sitemap"], link[rel="search"], link[rel="manifest"]').remove();
+        // Menghapus link rel yang sudah ada (termasuk feed lama agar tidak duplikat)
+        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"], link[rel="sitemap"], link[rel="search"], link[rel="manifest"], link[rel="alternate"]').remove();
 
         // Menghapus meta description
         $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
@@ -186,6 +186,7 @@ async function processFile(file: string, baseUrl: string) {
             `<script defer src="/ext/data-provider.js"></script>`,
             `<link rel="icon" href="/favicon.ico">`,
             `<link rel="sitemap" type="application/xml" href="/sitemap.xml">`,
+            `<link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="${baseUrl}/rss.xml">`,
             `<link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">`,
             `<link rel="manifest" href="/site.webmanifest">`,
             `<meta name="twitter:card" content="summary_large_image">`,
