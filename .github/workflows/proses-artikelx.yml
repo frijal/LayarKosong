@@ -37,7 +37,7 @@ jobs:
           set -euo pipefail          
           bun dapur/gantifontshighlight.ts --quiet --no-backup
 
-      - name: 🛠️ Edit Komponen HTML (Bun.js)
+      - name: 🔰 Edit Komponen HTML (Bun.js)
         run: bun run dapur/Edit-Komponen-HTML.ts
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
