@@ -101,7 +101,7 @@ function addElements(html: string): string {
       `<a target="_blank" href="/data-deletion-form">📝</a>`,
       `<a target="_blank" href="/disclaimer">⚠️</a>`,
       `<a target="_blank" href="/lisensi">📚</a>`,
-      `<a target="_blank" href="/privacy"></a>`,
+      `<a target="_blank" href="/privacy">🔰</a>`,
       `<a target="_blank" href="/security-policy">⚔️</a>`,
     ].join(" ");
     html = html.replace("</footer>", `${footerLinks}</footer>`);
