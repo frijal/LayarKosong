@@ -1,13 +1,13 @@
 // -------------------------------------------------------
-// FILE: Edit-Komponen-HTML.ts
+// FILE: proses-artikel.ts
 // Pengganti langkah Perl + Sed di GitHub Actions
-// Jalankan: bun run Edit-Komponen-HTML.ts
+// Jalankan: bun run proses-artikel.ts
 // -------------------------------------------------------
 
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-const artikelDir = join(import.meta.dir, "artikelx/");
+const artikelDir = join(process.cwd(), "artikelx");
 
 if (!existsSync(artikelDir)) {
   console.error(`❌ Folder tidak ditemukan: ${artikelDir}`);
@@ -101,7 +101,7 @@ function addElements(html: string): string {
       `<a target="_blank" href="/data-deletion-form">📝</a>`,
       `<a target="_blank" href="/disclaimer">⚠️</a>`,
       `<a target="_blank" href="/lisensi">📚</a>`,
-      `<a target="_blank" href="/privacy">🔰</a>`,
+      `<a target="_blank" href="/privacy"></a>`,
       `<a target="_blank" href="/security-policy">⚔️</a>`,
     ].join(" ");
     html = html.replace("</footer>", `${footerLinks}</footer>`);
