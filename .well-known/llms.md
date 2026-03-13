@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.22
+document_version: 17.23
 last_updated: 2026-03-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 Maret 2026)
-> Menampilkan 1070 artikel versi 17.22.
+> Menampilkan 1071 artikel versi 17.23.
 
 ## Gaya Hidup
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
@@ -590,6 +590,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar](https://dalam.web.id/sistem-terbuka/cachyos-maret-2026-changelog) : CachyOS Maret 2026 hadir dengan pratinjau desktop animasi di installer, integrasi Winboat, perombakan edisi Handheld, kernel linux-cachyos dirilis terpisah, dan mirror baru di Rusia, Swedia, Kanada.
 - [MX Linux 25.1 XFCE Panduan Instal Btrfs Snapper untuk PC Lawas](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce-btrfs-snapper) : Panduan langkah langkah instal MX Linux 25.1 XFCE pada PC lawas dengan Btrfs dan Snapper untuk snapshot rollback dan performa optimal
 - [Top 10 Reasons MX Linux is Better Than Ubuntu for Older PC](https://dalam.web.id/sistem-terbuka/top-10-reasons-mx-linux-better-than-ubuntu-for-older-pcs) : Top 10 alasan MX Linux lebih cocok dari Ubuntu untuk PC lawas. XFCE ringan, persyaratan rendah, MX Tools, Snapper Btrfs, SysVinit.
 - [MX Linux 25.1 XFCE Swiss Army Knife Debian Based Distros](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce) : Ulasan lengkap MX Linux 25.1 XFCE. Stabilitas Debian 13 Trixie, MX Tools, XFCE ringan, Btrfs snapshot, Snapper. Cocok untuk daily driver.
