@@ -104,22 +104,8 @@ async function processFile(file: string, baseUrl: string) {
     }));
 
     // --- 2. LOGIKA DATA SEO ---
-    const rawTitle = $('title').text().trim() || 'Layar Kosong';
-
-    // 1. Bersihkan judul dari brand jika ada (untuk OG/Social Media)
-    const ogTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '').trim();
-
-    // 2. Pastikan SEO title selalu punya akhiran " - Layar Kosong"
-    const seoTitle = `${ogTitle} - Layar Kosong`;
-
-    // 3. Escape untuk attribute HTML (untuk keamanan)
-    const escapedSeoTitle = escapeHtmlAttr(seoTitle);
-    const escapedOgTitle = escapeHtmlAttr(ogTitle);
-
-    // 4. Update DOM untuk SEO Title agar konsisten di setiap file
-    $('title').text(seoTitle);
-
-    // 5. Persiapkan URL dan Metadata lainnya
+    const articleTitle = $('title').text().split(' - ')[0].trim() || 'Layar Kosong';
+    const escapedTitle = escapeHtmlAttr(articleTitle);
     const cleanFileName = baseName.replace('.html', '');
     const canonicalUrl = `${baseUrl}/artikel/${cleanFileName}`.replace(/\/$/, '');
 
@@ -182,8 +168,8 @@ async function processFile(file: string, baseUrl: string) {
             `<link rel="manifest" href="/site.webmanifest">`,
             `<meta name="twitter:card" content="summary_large_image">`,
             `<meta name="twitter:widgets:new-embed-design" content="on">`,
-            `<meta property="og:title" content="${escapedOgTitle}">`,
-            `<meta name="twitter:title" content="${escapedOgTitle}">`,
+            `<meta property="og:title" content="${escapedTitle}">`,
+            `<meta name="twitter:title" content="${escapedTitle}">`,
             `<meta name="description" content="${finalMetaDesc}">`,
             `<meta property="og:description" content="${finalOgDesc}">`,
             `<meta name="twitter:description" content="${finalTwitterDesc}">`,
@@ -204,7 +190,7 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:image" content="${metaImgUrl}">`,
             `<meta property="twitter:image" content="${metaImgUrl}">`,
             `<meta property="og:image" content="${metaImgUrl}">`,
-            `<meta property="og:image:alt" content="${escapedOgTitle}">`,
+            `<meta property="og:image:alt" content="${escapedTitle}">`,
             `<meta property="og:image:width" content="1200">`,
             `<meta property="og:image:height" content="675">`,
             `<meta name="theme-color" content="#00b0ed">`
@@ -217,7 +203,7 @@ async function processFile(file: string, baseUrl: string) {
         head.append('\n    ' + metaTags.join('\n    ') + '\n');
 
         $('img').each((_, el) => {
-            if (!$(el).attr('alt')) $(el).attr('alt', seoTitle);
+            if (!$(el).attr('alt')) $(el).attr('alt', articleTitle);
         });
 
             await Bun.write(file, $.html());
@@ -250,4 +236,3 @@ async function fixSEO() {
 }
 
 fixSEO().catch(err => console.error(err));
-

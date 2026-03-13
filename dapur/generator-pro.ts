@@ -105,7 +105,9 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
         // 2. Jika tidak valid/berubah, baca file fisik
         const txt = await Bun.file(`${C.art}/${f}`).text();
-        const rawT = (txt.match(/<title>(.*?)<\/title>/i)?.[1] || 'Tanpa Judul').trim();
+        const rawT = (txt.match(/property="og:title" content="(.*?)"/i)?.[1] ||
+        txt.match(/<title>(.*?)<\/title>/i)?.[1].replace(/\s*-\s*Layar Kosong$/i, '') ||
+        'Tanpa Judul').trim();
         const t = decodeHTML(rawT);
 
         // Tentukan kategori (prioritas: Master JSON > titleToCategory)
