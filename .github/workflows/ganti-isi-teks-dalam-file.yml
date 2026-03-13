@@ -38,12 +38,12 @@ jobs:
           bun-version: latest
 
       - name: Run Filtered Replacement
-        run: |
-          bun run dapur/ganti-teks.ts \
-            "${{ github.event.inputs.search_text }}" \
-            "${{ github.event.inputs.replace_text }}" \
-            "${{ github.event.inputs.folder }}" \
-            "${{ github.event.inputs.extensions }}"
+        env:
+          SEARCH: ${{ github.event.inputs.search_text }}
+          REPLACE: ${{ github.event.inputs.replace_text }}
+          FOLDER: ${{ github.event.inputs.folder }}
+          EXT: ${{ github.event.inputs.extensions }}
+        run: bun run dapur/ganti-teks.ts
 
       - name: Check Git Status
         id: status
