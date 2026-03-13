@@ -224,25 +224,7 @@ async function loadTOC(): Promise<void> {
   }
 }
 
-function initDarkMode(): void {
-  const darkSwitch = document.getElementById('darkSwitch') as HTMLInputElement | null;
-  const setMode = (isDark: boolean) => {
-    document.body.classList.toggle('dark-mode', isDark);
-    if (darkSwitch) darkSwitch.checked = isDark;
-    localStorage.setItem('darkMode', String(isDark));
-  };
-
-  const saved = localStorage.getItem('darkMode');
-  if (saved !== null) setMode(saved === 'true');
-  else setMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-  if (darkSwitch) {
-    darkSwitch.addEventListener('change', () => setMode(darkSwitch.checked));
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
   const tocToggleBtn = document.getElementById('tocToggle') as HTMLElement | null;
   if (tocToggleBtn) {
     tocToggleBtn.addEventListener('click', () => {
