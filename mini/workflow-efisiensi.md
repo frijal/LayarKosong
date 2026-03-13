@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Kamis, 12 Maret 2026 pukul 19.33.51 WITA
+> **Audit Terakhir:** Jumat, 13 Maret 2026 pukul 19.34.04 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -17,6 +17,7 @@
 | delete-diskusi.yml | sapu-bersih.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| generate-json-xml.yml | bikin-sitemap-txt.ts | 🟡 Ada | `fs` | ✅ Sudah Optimal |
 | generate-json-xml.yml | generate_llms.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | inject-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | html-to-markdown.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
@@ -27,6 +28,7 @@
 | hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom`, `glob` | ✅ Sudah Optimal |
+| proses-artikelx.yml | gantifontshighlight.ts | 🟡 Ada | `fs/promises`, `fs`, `path` | ✅ Sudah Optimal |
 | proses-artikelx.yml | clean-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | proses-artikelx.yml | seo-fixer.ts | 🟡 Ada | `cheerio`, `sharp` | ✅ Sudah Optimal |
 
