@@ -163,9 +163,17 @@ async function processFile(file: string, baseUrl: string) {
 
         // --- 3. OPERASI STERILISASI (CLEANUP) ---
         $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
-        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"]').remove();
+
+        // Menghapus link rel yang sudah ada
+        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"], link[rel="sitemap"], link[rel="search"], link[rel="manifest"]').remove();
+
+        // Menghapus meta description
         $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
+
+        // Menghapus meta social & open graph
         $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="twitter:"], meta[property^="article:"], meta[itemprop="image"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
+
+        // Menghapus meta lainnya
         $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[property="fb:app_id"]').remove();
 
         // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
