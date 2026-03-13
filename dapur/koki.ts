@@ -35,7 +35,7 @@ async function masak(name: string) {
         const outName = name.replace(/\.ts$/, '.js');
         const finalOutPath = join(targetDir, outName);
         try {
-          await $`bun build ${sourcePath} --outfile ${finalOutPath} --minify`.quiet();
+          await $`bun build ${sourcePath} --outfile ${finalOutPath} --minify --format iife --target browser`.quiet();
         } catch {
           cpSync(sourcePath, finalOutPath);
         }
