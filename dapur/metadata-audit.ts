@@ -38,32 +38,40 @@ async function generateTitleReport() {
 
     for (const filePath of sortedFiles) {
       const html = await readFile(filePath, "utf-8");
-      const $ = cheerio.load(html);
+
+      // Menggunakan konfigurasi agar lebih tangguh terhadap HTML minified
+      const $ = cheerio.load(html, {
+        xmlMode: false,
+        decodeEntities: true
+      });
 
       const title = $("title").first().text().trim() || "*(Missing)*";
       const ogTitle = $('meta[property="og:title"]').attr("content")?.trim() || "*(Missing)*";
       const ogSiteName = $('meta[property="og:site_name"]').attr("content")?.trim() || "*(Missing)*";
 
-      // 1. Cek SEO Title (Harus ada brand)
+      // 1. Cek SEO Title: Harus mengandung Brand
       const hasBrandInTitle = title.toLowerCase().includes(BRAND_NAME.toLowerCase());
 
-      // 2. Cek OG Title (Harus ada tag-nya DAN tidak boleh mengandung brand)
+      // 2. Cek OG Title: Harus ada (bukan Missing) DAN tidak mengandung brand
       const hasOGTitle = ogTitle !== "*(Missing)*";
       const hasNoBrandInOGTitle = hasOGTitle && !ogTitle.toLowerCase().includes(BRAND_NAME.toLowerCase());
 
-      // 3. Cek OG Site Name (Harus ada brand)
+      // 3. Cek OG Site Name: Harus persis sama dengan BRAND_NAME
       const hasBrandInOGSite = ogSiteName.toLowerCase() === BRAND_NAME.toLowerCase();
 
+      // Logika Status
       let status = "❌ Check Failed";
 
-      // Status Perfect: SEO title benar, OG title ada & bersih, OG site name benar
+      // Perfect: Semua kondisi terpenuhi
       if (hasBrandInTitle && hasNoBrandInOGTitle && hasBrandInOGSite) {
         status = "✅ Perfect";
-      } else if (hasBrandInTitle || hasBrandInOGSite || hasOGTitle) {
+      }
+      // Partial: Jika ada elemen yang benar tapi belum lengkap/sempurna
+      else if (hasBrandInTitle || hasBrandInOGSite || hasOGTitle) {
         status = "⚠️ Partial";
       }
 
-      // Kecualikan file teknis
+      // Kecualikan file teknis dari kewajiban brand
       const isCritical = !filePath.startsWith("google") && !filePath.includes("404.html");
       const finalStatus = isCritical ? status : "-";
 
