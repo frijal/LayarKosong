@@ -6,13 +6,13 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 
-const SEARCH  = process.argv[2] ?? "";
-const REPLACE = process.argv[3] ?? "";
-const TARGET  = process.argv[4] ?? ".";
-const EXTS    = (process.argv[5] ?? "")
-  .split(",")
-  .map((e) => `.${e.trim()}`)
-  .filter((e) => e.length > 1);
+const SEARCH  = process.env.SEARCH  ?? process.argv[2] ?? "";
+const REPLACE = process.env.REPLACE ?? process.argv[3] ?? "";
+const TARGET  = process.env.FOLDER  ?? process.argv[4] ?? ".";
+const EXTS    = (process.env.EXT    ?? process.argv[5] ?? "")
+.split(",")
+.map((e) => `.${e.trim()}`)
+.filter((e) => e.length > 1);
 
 const EXCLUDED_DIRS = new Set(["node_modules", "functions", "img", "mini", "sementara"]);
 
