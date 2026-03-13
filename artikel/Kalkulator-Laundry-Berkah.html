@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-    <meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Kalkulator Laundry Berkah - Layar Kosong</title> 
-<script defer="" src="/ext/data-provider.js"></script><meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name="keywords"><script defer="" src="/ext/html2canvas.min.js"></script>
-  
+    <meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Kalkulator Laundry Berkah - Layar Kosong</title>
+<meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name="keywords"><script defer="" src="/ext/html2canvas.min.js"></script>
+
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -46,15 +46,15 @@
     left: -9999px; /* Lempar ke luar layar supaya user gak lihat */
     top: 0;
     display: block !important; /* Biar html2canvas selalu bisa baca */
-    width: 300px; 
+    width: 300px;
     background: #fff;
     color: #000;
     padding: 15px;
     font-family: 'Courier New', Courier, monospace;
     box-sizing: border-box; /* Kunci agar padding tidak nambah lebar */
 }
-    .nota-summary table, 
-.nota-summary tr, 
+    .nota-summary table,
+.nota-summary tr,
 .nota-summary td {
     display: table !important; /* Reset kelakuan mobile-responsive */
     width: 100% !important;
@@ -123,7 +123,7 @@
 }
 
 
-    
+
     @media (max-width: 600px) {
       table, thead, tbody, th, td, tr { display: block; }
       thead tr { display: none; }
@@ -134,70 +134,6 @@
   </style>
 <meta name="ai:summary" content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.">
 <meta name="ai:prompt_hint" content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan.">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    
-    
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-<link rel="stylesheet" href="/ext/marquee-url.css">
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/Kalkulator-Laundry-Berkah">
     <meta property="og:url" content="https://dalam.web.id/artikel/Kalkulator-Laundry-Berkah">
@@ -242,7 +178,7 @@
 </head>
 <body>
 <div class="container" id="nota-belanja">
-<h1><a href="/" style="text-decoration: none; color: inherit;">Kalkulator</a> 🧾 Laundry Berkah</h1><div id="iposbrowser"></div>
+<h1><a href="/" style="text-decoration: none; color: inherit;">Kalkulator</a> 🧾 Laundry Berkah</h1>
   <div class="konsumen-box">
     <label for="namaKonsumen">Nama Konsumen:</label>
     <input type="text" id="namaKonsumen" placeholder="siapa nama konsumen?" required="">
@@ -400,7 +336,7 @@ function exportSummary() {
         const qty = tr.querySelector(".jumlah").value;
         const hargaSatuan = tr.querySelector(".harga").value; // Mengambil harga per unit
         const sub = tr.querySelector(".subtotal").value;
-        
+
 itemsHtml += `
     <tr style="border-bottom: 1px solid #eee;">
         <td style="padding: 8px 0 0 0; vertical-align: top;">
@@ -418,7 +354,7 @@ itemsHtml += `
             <h3>LAUNDRY BERKAH</h3>
             <p style="font-size:11px; margin: 5px 0;">Balikpapan</p>
         </div>
-        
+
         <div class="nota-info">
             Tggl : ${tgl} - ${jam}<br>
             Nama : ${nama}
@@ -426,7 +362,7 @@ itemsHtml += `
                 <table class="nota-table">
 <thead>
     <tr style="border-bottom: 2px solid #000;">
-    
+
     </tr>
 </thead>
             <tbody>
@@ -443,9 +379,9 @@ itemsHtml += `
         </div>`;
 const p = document.getElementById("nota-summary");
 p.innerHTML = content;
-html2canvas(p, { 
-    scale: 3, 
-    useCORS: true, 
+html2canvas(p, {
+    scale: 3,
+    useCORS: true,
     backgroundColor: "#ffffff",
     width: 300,        // Kunci lebar elemen
     windowWidth: 300,  // Kunci lebar viewport virtual
@@ -458,7 +394,7 @@ html2canvas(p, {
     link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
     link.href = canvas.toDataURL("image/webp", 0.9);
     link.click();
-    
+
     // Opsional: bersihkan innerHTML setelah export
     p.innerHTML = "";
 });
@@ -500,5 +436,4 @@ function resetForm() {
 window.addEventListener("load", muatDariLocalStorage);
 </script>
 
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
 </body></html>
