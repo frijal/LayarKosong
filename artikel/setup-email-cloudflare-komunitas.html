@@ -1,0 +1,480 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung) - Layar Kosong</title> 
+<script defer="" src="/ext/data-provider.js"></script>
+  <!-- Metadata untuk https://dalam.web.id/artikel/ -->
+  
+  
+  <meta name="keywords" content="Cloudflare email routing, MX record gratis, forward email komunitas, setup email domain, cloudflare mx gratis, email routing indonesia, 5w1h email cloudflare">
+  <meta name="news_keywords" content="Cloudflare, email routing, MX record, forward email, komunitas, gratis, SPF, DMARC, Gmail, Proton">
+  <meta name="promphint" content="Panduan teknis non-teknis setup email domain dengan Cloudflare, fokus pada kebutuhan komunitas dan organisasi kecil. Penjelasan 5W+1H, E-E-AAT, tanpa simpan email.">
+  
+  
+
+  <!-- Open Graph / Facebook -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <!-- Twitter Card -->
+  
+  
+  
+  
+  
+
+  <!-- Font Awesome 6 (gratis) -->
+  <link rel="stylesheet" href="/ext/fontawesome.css">
+
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Variabel warna untuk tema terang/gelap berdasarkan preferensi sistem */
+    :root {
+      --bg: #ffffff;
+      --text: #1e1e2f;
+      --accent: #2c3e50;
+      --accent-light: #34495e;
+      --border: #e0e0e0;
+      --code-bg: #f5f5f5;
+      --card-bg: #f9f9f9;
+      --shadow: rgba(0,0,0,0.05) 0 4px 8px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a2c;
+        --text: #eaeaea;
+        --accent: #7f8c8d;
+        --accent-light: #95a5a6;
+        --border: #2a2a3a;
+        --code-bg: #2d2d3a;
+        --card-bg: #252536;
+        --shadow: rgba(0,0,0,0.3) 0 4px 12px;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-size: 1.2rem;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg);
+    }
+
+    /* Tipografi santai */
+    h1 {
+      font-size: 2rem;
+      margin: 1rem 0 0.5rem;
+      border-left: 6px solid #f39c12;
+      padding-left: 1rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid var(--border);
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--accent-light);
+    }
+
+    p, li {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: #e67e22;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul, ol {
+      padding-left: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Gaya kode & kutipan */
+    code {
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Tabel responsif */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    th {
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Gambar responsif */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 2rem auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Kartu highlight */
+    .highlight {
+      background: var(--card-bg);
+      border-left: 6px solid #f39c12;
+      padding: 1.2rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .highlight i {
+      margin-right: 0.5rem;
+      color: #f39c12;
+    }
+
+    /* Komentar & related articles placeholder */
+    #response, #related-articles-grid {
+      background: var(--card-bg);
+      border: 2px dashed var(--border);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 16px;
+      margin: 2rem 0 1rem;
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Emoji inline */
+    .emoji-icon {
+      font-size: 1.2rem;
+      margin-right: 0.2rem;
+    }
+
+    /* Responsif ekstra */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.4rem; }
+      .container { padding: 0 0.5rem; }
+    }
+  </style>
+
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+<link rel="stylesheet" href="/ext/marquee-url.css">
+
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/setup-email-cloudflare-komunitas">
+    <meta property="og:url" content="https://dalam.web.id/artikel/setup-email-cloudflare-komunitas">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/setup-email-cloudflare-komunitas">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)">
+    <meta name="twitter:title" content="Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)">
+    <meta name="description" content="setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.">
+    <meta property="og:description" content="setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.">
+    <meta name="twitter:description" content="setup MX record Cloudflare Email Routing gratis untuk komunitas. Email langsung forward ke Gmail/Proton, tanpa simpan di Cloudflare. Lengkap dengan SPF, DMARC, dan cara kirim email.">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp">
+    <meta property="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp">
+    <meta property="og:image:alt" content="Cara Setup MX Cloudflare untuk Email Komunitas (Gratis, Forward Langsung)">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="Cloudflare">
+    <meta property="article:tag" content="Email Routing">
+    <meta property="article:tag" content="MX Record">
+    <meta property="article:tag" content="Komunitas">
+    <meta property="article:tag" content="Gratis">
+    <meta property="article:published_time" content="2026-03-07T14:00:00+07:00">
+    <meta property="article:modified_time" content="2026-03-13T23:30:59.522Z">
+</head>
+<body>
+  <div class="container">
+    <!-- Judul dan emoji -->
+    <h1><i class="fa-solid fa-envelope-open-text" style="color: #f39c12;"></i> Cara Setup MX Record Cloudflare untuk Email Komunitas (Gratis, Tanpa Simpan Email)</h1>
+<div id="iposbrowser"></div>
+    <p><em>📅 7 Maret 2026 · ☕ 8 menit baca · oleh <strong>dalam.web.id</strong></em></p>
+
+    <!-- Gambar unggulan -->
+
+
+    <!-- Pendahuluan dengan 5W+1H -->
+    <div class="highlight">
+      <p><i class="fa-solid fa-lightbulb"></i> <strong>5W+1H sekilas:</strong> Mau domain sendiri untuk email komunitas tapi nggak mau ribet kelola server? Cloudflare Email Routing solusinya. <strong>Apa?</strong> Layanan gratis Cloudflare yang jadi penerima email (via MX) lalu langsung forward ke inbox tujuan. <strong>Siapa?</strong> Cocok untuk komunitas, organisasi kecil, atau pribadi. <strong>Di mana?</strong> Di dashboard Cloudflare. <strong>Kapan?</strong> Kapan saja domain udah pake Cloudflare. <strong>Mengapa?</strong> Gratis, nggak simpan email, gampang diatur. <strong>Bagaimana?</strong> Ikuti langkah-langkah di bawah!</p>
+    </div>
+
+    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCncG7xawAIb9ty.webp" alt="Ilustrasi email routing Cloudflare untuk komunitas" width="100%" height="auto" loading="lazy">    <h2>🧭 1. Konsep Dasar: Cloudflare Hanya Jadi Penerus</h2>
+    <p>Cloudflare <strong>bukan mail server</strong>. Dia cuma:</p>
+    <ul>
+      <li>✅ Menerima email via MX record</li>
+      <li>✅ Meneruskannya (forward) ke email tujuan (Gmail, Proton, dll)</li>
+      <li>❌ Tidak menyimpan email apapun</li>
+      <li>❌ Tidak bisa kirim email (butuh SMTP terpisah)</li>
+    </ul>
+    <p>Alurnya gini:</p>
+    <pre>Pengirim → MX Cloudflare → (langsung forward) → Inbox tujuan (Gmail/Proton/dll)</pre>
+
+    <h2>🚀 2. Cara Setup MX + Forward Email (Gratis)</h2>
+    <h3><i class="fa-solid fa-globe"></i> 2.1 Tambah Domain ke Cloudflare</h3>
+    <ul>
+      <li>Login Cloudflare, klik <strong>Add site</strong>, masukkan domain kamu.</li>
+      <li>Pilih <strong>Free plan</strong>.</li>
+      <li>Ganti nameserver domain sesuai petunjuk Cloudflare (di registrar domain).</li>
+      <li>Tunggu propagasi (biasa 1-24 jam).</li>
+    </ul>
+
+    <h3><i class="fa-solid fa-mail-bulk"></i> 2.2 Aktifkan Email Routing</h3>
+    <ul>
+      <li>Masuk ke dashboard: <strong>Domain → Email → Email Routing</strong>.</li>
+      <li>Klik <strong>Enable Email Routing</strong>.</li>
+      <li>Cloudflare otomatis nambahin MX record:</li>
+    </ul>
+    <pre>MX  10  mx1.cloudflare.net
+MX  20  mx2.cloudflare.net</pre>
+
+    <h3><i class="fa-solid fa-route"></i> 2.3 Buat Forwarding Rules</h3>
+    <p>Misal kamu punya alamat <code>admin@domainkamu.com</code> mau dikirim ke <code>gmailkamu@gmail.com</code>:</p>
+    <ul>
+      <li>Klik <strong>Add rule</strong>.</li>
+      <li>Custom address: <code>admin</code> (atau apapun).</li>
+      <li>Destination: <code>gmailkamu@gmail.com</code>.</li>
+      <li>Cloudflare kirim email verifikasi, confirm.</li>
+      <li>Selesai. Email apapun ke <code>admin@domainkamu.com</code> langsung masuk ke Gmail tujuan.</li>
+    </ul>
+    <p>Kamu bisa bikin banyak rule, bahkan satu alamat bisa forward ke beberapa tujuan (pisah koma).</p>
+
+    <h3><i class="fa-solid fa-shield-alt"></i> 2.4 Konfigurasi SPF (wajib biar nggak masuk spam)</h3>
+    <p>Tambahkan TXT record di Cloudflare DNS:</p>
+    <pre>Nama: @ (atau domainkamu.com)
+TXT: v=spf1 include:_spf.mx.cloudflare.net ~all</pre>
+    <p>Kalau kamu juga pakai Gmail untuk kirim, gabungkan:</p>
+    <pre>v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all</pre>
+    <p><strong>Peringatan:</strong> cuma boleh ada 1 record SPF. Gabungkan semuanya.</p>
+
+    <h3><i class="fa-solid fa-dmarc"></i> 2.5 DMARC (rekomendasi)</h3>
+    <p>Tambahkan TXT record dengan host <code>_dmarc</code>:</p>
+    <pre>v=DMARC1; p=quarantine; rua=mailto:admin@domainkamu.com</pre>
+    <p>Setelah stabil bisa naikkan ke <code>p=reject</code>.</p>
+
+    <h2>📬 3. Kirim Email dari Alamat Domain (karena Cloudflare nggak bisa kirim)</h2>
+    <p>Kamu perlu SMTP terpisah. Berikut opsi paling umum:</p>
+
+    <h3><i class="fa-brands fa-google"></i> Opsi A: Kirim via Gmail SMTP (gratis, mudah)</h3>
+    <ul>
+      <li>Di Gmail: <strong>Settings → Lihat semua setelan → Akun dan impor → Kirim email sebagai</strong>.</li>
+      <li>Tambahkan alamat <code>admin@domainkamu.com</code>.</li>
+      <li>SMTP: <code>smtp.gmail.com</code>, port 587, TLS, pakai email Gmail dan App Password (kalau 2FA aktif).</li>
+      <li>Nanti email keluar lewat server Gmail, tapi <em>From</em> pake alamat domainmu.</li>
+    </ul>
+
+    <h3><i class="fa-solid fa-shield"></i> Opsi B: Proton (privacy, butuh bayar untuk custom domain)</h3>
+    <p>Proton Mail Plus bisa tambah custom domain, dapat DKIM otomatis. Kirim via Proton Bridge atau web.</p>
+
+    <h3><i class="fa-solid fa-server"></i> Opsi C: Custom SMTP (Mailgun, Resend, SendGrid)</h3>
+    <p>Lebih profesional, cocok untuk komunitas yang sering kirim massal. Nanti tambahin DKIM dari provider masing-masing. Contoh SPF ditambah <code>include:mailgun.org</code>.</p>
+
+    <h2>🖥️ 4. Setup Thunderbird (opsional, sebagai email client)</h2>
+    <p>Thunderbird bisa dipakai untuk baca email dari Gmail/Proton via IMAP, dan kirim via SMTP yang sudah dipilih. Gak perlu setting incoming dari Cloudflare.</p>
+
+    <h2>👥 5. Khusus untuk Komunitas: Banyak Alamat, Banyak Pengurus</h2>
+    <h3>5.1 Role-based address (best practice)</h3>
+    <ul>
+      <li><code>ketua@domain.com</code> → forward ke email pribadi ketua</li>
+      <li><code>sekretaris@domain.com</code> → forward ke email pribadi sekretaris</li>
+      <li><code>media@domain.com</code> → forward ke tim media (bisa ke satu atau beberapa email)</li>
+      <li><code>bendahara@domain.com</code> → ke email bendahara</li>
+    </ul>
+    <p>Di Cloudflare kamu bisa buat rule masing-masing. Bisa juga satu alamat dikirim ke banyak orang (pisah koma).</p>
+
+    <h3>5.2 Catch-all untuk fleksibilitas</h3>
+    <p>Buat rule catch-all: <code>*@domainkamu.com</code> → ke satu inbox utama. Cocok kalau komunitas sering bikin alamat dadakan (misal <code>event2026@domain.com</code>). Tapi waspada spam.</p>
+
+    <h3>5.3 Tabel perbandingan model komunitas</h3>
+    <table>
+      <thead><tr><th>Model</th><th>Cocok untuk</th><th>Kompleksitas</th></tr></thead>
+      <tbody>
+        <tr><td>Semua ke 1 Gmail (dengan filter)</td><td>Komunitas kecil</td><td>Rendah</td></tr>
+        <tr><td>Role-based forward</td><td>Komunitas aktif dengan struktur</td><td>Sedang</td></tr>
+        <tr><td>SMTP khusus + catch-all</td><td>Komunitas besar, sering kirim massal</td><td>Tinggi</td></tr>
+      </tbody>
+    </table>
+
+    <h2>🧪 6. Cek apakah setup sudah benar</h2>
+    <ul>
+      <li>Kirim email tes ke <code>admin@domainkamu.com</code> dari akun lain.</li>
+      <li>Cek MX record: <code>dig mx domainkamu.com</code> (harus muncul mx1, mx2 cloudflare).</li>
+      <li>Cek SPF: <code>dig txt domainkamu.com</code>.</li>
+    </ul>
+
+    <!-- Ringkasan tabel fitur -->
+    <h2>🎯 Ringkasan fitur Cloudflare Email Routing</h2>
+    <table>
+      <thead><tr><th>Fitur</th><th>Gratis?</th><th>Perlu server sendiri?</th></tr></thead>
+      <tbody>
+        <tr><td>MX record</td><td>✅</td><td>❌</td></tr>
+        <tr><td>Forward email</td><td>✅</td><td>❌</td></tr>
+        <tr><td>Inbox storage</td><td>❌ (tidak disimpan)</td><td>—</td></tr>
+        <tr><td>Kirim email</td><td>❌</td><td>✅ (pakai SMTP lain)</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Pesan penting keamanan -->
+    <div class="highlight">
+      <i class="fa-solid fa-exclamation-triangle"></i> <strong>Penting:</strong> Cloudflare tidak menyediakan layanan kirim email. Untuk membalas email dari alamat domain, kamu harus konfigurasi SMTP di Gmail/Proton/mailgun. Jangan lupa gabungkan SPF-nya!
+    </div>
+
+    <!-- Komentar dan related articles (placeholder) -->
+    <div id="response"></div>
+    <div id="related-articles-grid"></div>
+
+    <!-- Footer -->
+    <footer>
+      <p><i class="fa-brands fa-creative-commons-zero"></i> 2026 Jaga Data Pribadi Tetap Aman — Artikel ini ditulis berdasarkan prinsip E-E-A-T dan pengalaman komunitas.  Dibuat dengan <i class="fa-solid fa-heart" style="color: #e74c3c;"></i> untuk berbagi.</p>
+     <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
+</footer>
+  </div>
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+
+</body></html>
