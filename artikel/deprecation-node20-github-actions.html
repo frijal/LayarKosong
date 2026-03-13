@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Basic SEO and E E A T -->
+  <title>Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id - Layar Kosong</title>
+  
+  
+
+  <!-- Open Graph safe variations -->
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  <meta name="news_keywords" content="Node20 Node24 GitHub Actions migrasi CI">
+
+  <!-- Twitter Card safe variations -->
+  
+  
+  
+
+  <!-- Prompt hint meta as requested -->
+  <meta name="promphint" content="Apa yang harus dilakukan saat Node 20 dideprekasi di GitHub Actions Jawab Singkat Uji di Node 24 perbarui native deps dan siapkan runner modern">
+
+  <!-- Author and publisher for E E A T -->
+  
+  <meta name="publisher" content="dalam web id">
+
+  <!-- Preload LCP image to help Core Web Vitals -->
+  <link rel="preload" as="image" href="https://pbs.twimg.com/media/HDIy_68akAA45GM?format=jpg&amp;name=large">
+
+  <!-- Fonts and icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ext/fontawesome.css">
+
+  <!-- Highlight js for code blocks -->
+  <link rel="stylesheet" href="/ext/github.min.css">
+  <script src="/ext/highlight.js" defer=""></script>
+
+  <!-- Minimal CSS mobile first, prefers color scheme for theme only via CSS -->
+  <style>
+    :root{
+      --maxw:1000px;
+      --pad:18px;
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#555555;
+      --accent:#0b74de;
+      --card:#f7f7f8;
+      --radius:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 1.2rem;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root{
+        --bg:#0b0b0c;
+        --text:#e9eef6;
+        --muted:#9aa6b2;
+        --accent:#4fb3ff;
+        --card:#0f1113;
+      }
+    }
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-text-size-adjust:100%;
+      line-height:1.6;
+    }
+
+    /* Single column centered layout */
+    .page{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:28px var(--pad);
+      box-sizing:border-box;
+    }
+
+    header{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .thumb{
+      width:72px;
+      height:72px;
+      border-radius:8px;
+      overflow:hidden;
+      background:var(--card);
+      flex:0 0 72px;
+    }
+
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    h1{
+      margin:0;
+      font-size:1.6rem;
+      font-weight:700;
+    }
+
+
+
+    .lead{
+      margin:14px 0 18px 0;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    /* Reserve aspect ratio for main image to avoid CLS */
+    .hero{
+      position:relative;
+      width:100%;
+      overflow:hidden;
+      border-radius:10px;
+      background:var(--card);
+      margin-bottom:14px;
+    }
+    .hero::before{ content:""; display:block; padding-top:40%; } /* wide but not huge */
+    .hero img{ position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:block; }
+
+    main article{ margin-bottom:20px; padding:14px; border-radius:var(--radius); background:transparent; }
+
+    h2{ margin:0 0 10px 0; font-size:1.15rem; display:flex; gap:8px; align-items:center; }
+
+    p{ margin:0 0 12px 0; }
+    ul{ margin:0 0 12px 18px; }
+    ol{ margin:0 0 12px 18px; }
+
+    table{ width:100%; border-collapse:collapse; margin:10px 0; font-size:0.95rem; }
+    table th, table td{ text-align:left; padding:8px; border-bottom:1px solid rgba(0,0,0,0.06); }
+    @media (prefers-color-scheme: dark){ table th, table td{ border-bottom:1px solid rgba(255,255,255,0.04); } }
+
+    pre{ background:var(--card); padding:12px; border-radius:8px; overflow:auto; font-size:0.95rem; }
+    code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; }
+
+    #response, #related-articles-grid{
+      margin-top:18px;
+      padding:12px;
+      background:var(--card);
+      border-radius:8px;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    footer{ margin-top:28px; padding:18px 0; color:var(--muted); font-size:0.9rem; text-align:center; }
+
+    a{ color:var(--accent); text-decoration:none; }
+    a:focus{ outline:3px solid rgba(11,116,222,0.18); outline-offset:3px; }
+
+    @media (min-width:700px){
+      h1{ font-size:1.9rem; }
+    }
+
+    @media (min-width:1200px){
+      .page{ padding:36px var(--pad); }
+    }
+  </style>
+
+  <!-- Structured data for E E A T -->
+  
+
+    
+    
+    
+    
+    
+    <script defer="" src="/ext/data-provider.js"></script>
+    
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<link rel="stylesheet" href="/ext/marquee-url.css"><link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+
+    <meta property="og:locale" content="id_ID">
+    <link rel="canonical" href="https://dalam.web.id/artikel/deprecation-node20-github-actions">
+    <meta property="og:url" content="https://dalam.web.id/artikel/deprecation-node20-github-actions">
+    <meta property="twitter:url" content="https://dalam.web.id/artikel/deprecation-node20-github-actions">
+    <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta property="og:title" content="Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id">
+    <meta name="twitter:title" content="Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id">
+    <meta name="description" content="Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis">
+    <meta property="og:description" content="Node 20 akan EOL April 2026. Panduan uji dan migrasi action ke Node 24 termasuk env flags dan native modules">
+    <meta name="twitter:description" content="Ringkasan dan langkah migrasi ke Node 24 untuk action dan runner">
+    <meta property="twitter:domain" content="https://dalam.web.id">
+    <meta property="og:type" content="article">
+    <meta name="robots" content="index, max-snippet:-1, max-video-preview:-1, follow, max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <link rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="bluesky:creator" content="@dalam.web.id">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta name="googlebot" content="max-image-preview:large">
+    <meta name="twitter:site" content="@responaja">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp">
+    <meta property="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp">
+    <meta property="og:image:alt" content="Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="theme-color" content="#00b0ed">
+    <meta property="article:tag" content="Node js">
+    <meta property="article:tag" content="GitHub Actions">
+    <meta property="article:tag" content="CI CD">
+    <meta property="article:tag" content="Migrasi">
+    <meta property="article:published_time" content="2026-03-11T14:47:00.357Z">
+    <meta property="article:modified_time" content="2026-03-11T14:47:00.357Z">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="thumb">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp" alt="Deprecation Node image" width="1200" height="675" loading="eager">
+      </div>
+      <div>
+        <h1>Deprecation Node 20 pada GitHub Actions dan Cara Migrasi ke Node 24 🔁</h1>
+<div id="iposbrowser"></div>
+      </div>
+    </header>
+
+    <main>
+      <p class="lead">Ringkasnya Node 20 akan mencapai end of life dan GitHub Actions berencana migrasi ke Node 24. Di halaman ini aku jelaskan apa yang berubah siapa terdampak kapan dan bagaimana langkah praktis untuk memigrasi action dan runner Anda. Santai dan langsung ke inti.</p>
+
+      <div class="hero">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/46245a14afe7784e.webp" alt="Ilustrasi Node deprecation" loading="lazy">
+      </div>
+
+      <!-- 5W1H -->
+      <article>
+        <h2>Apa yang terjadi</h2>
+        <p>Node 20 akan mencapai end of life pada April 2026. GitHub Actions memulai proses deprecation dan berencana menjadikan Node 24 sebagai default pada 2 Juni 2026. Runner terbaru mendukung Node 20 dan Node 24 namun default akan berubah. Ada flag env untuk menguji atau menunda transisi.</p>
+      </article>
+
+      <article>
+        <h2>Siapa yang terdampak</h2>
+        <p>Pengguna GitHub Actions yang menjalankan JavaScript actions atau custom actions berbasis Node. Juga pemilik self hosted runner terutama yang memakai macOS lama atau arsitektur ARM32. Repos yang bergantung pada modul native perlu perhatian khusus.</p>
+      </article>
+
+      <article>
+        <h2>Kapan perubahan berlaku</h2>
+        <p>Ringkasan tanggal penting</p>
+        <ul>
+          <li>Node 20 EOL April 2026</li>
+          <li>Runner mulai default ke Node 24 pada 2 Juni 2026</li>
+          <li>Node 20 akan dihapus dari runner pada musim gugur 2026</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>Di mana perubahan ini relevan</h2>
+        <p>Perubahan berlaku pada GitHub hosted runners dan self hosted runners. Jika Anda mengandalkan macOS runner versi lama atau ARM32 self hosted runner, Anda harus meninjau kompatibilitas karena Node 24 tidak mendukung macOS 13.4 dan tidak mendukung ARM32.</p>
+      </article>
+
+      <article>
+        <h2>Mengapa ini penting</h2>
+        <p>Node versi lama tidak lagi menerima pembaruan keamanan dan perbaikan. Migrasi memastikan CI tetap aman dan kompatibel dengan ekosistem paket terbaru. Selain itu perubahan default runner dapat memicu kegagalan build jika dependensi belum kompatibel dengan Node 24.</p>
+      </article>
+
+      <article>
+        <h2>Bagaimana langkah langkah migrasi praktis</h2>
+        <p>Langkah langkah prioritas yang aku rekomendasikan untuk tim dan repo</p>
+        <ol>
+          <li>Uji lokal dengan Node 24 menggunakan nvm</li>
+          <li>Perbarui engines di package json jika siap</li>
+          <li>Perbarui dan rebuild native modules seperti sharp</li>
+          <li>Uji workflow di GitHub Actions dengan env flag untuk Node 24</li>
+          <li>Siapkan runner modern untuk macOS dan arsitektur yang didukung</li>
+        </ol>
+      </article>
+
+      <!-- Detailed migration steps and commands -->
+      <article>
+        <h2>Langkah detail dan perintah contoh</h2>
+        <p>Contoh perintah untuk uji lokal dan CI</p>
+
+        <h3>Uji lokal dengan nvm</h3>
+        <pre><code class="bash">nvm install 24
+nvm use 24
+npm ci
+npm run test</code></pre>
+
+        <h3>Perbarui engines di package json</h3>
+        <pre><code class="json">{
+  "engines": {
+    "node": "&gt;=24.0.0"
+  }
+}</code></pre>
+
+        <h3>Rebuild native modules</h3>
+        <pre><code class="bash">npm ci
+npm rebuild
+# atau jika perlu build from source
+npm ci --build-from-source</code></pre>
+
+        <h3>Uji workflow di GitHub Actions dengan env flag</h3>
+        <pre><code class="yaml">env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true</code></pre>
+
+        <h3>Jika perlu tunda transisi sementara</h3>
+        <pre><code class="yaml">env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true</code></pre>
+      </article>
+
+      <article>
+        <h2>Daftar paket di package json yang perlu diperiksa</h2>
+        <p>Contoh daftar dependensi yang Anda sebutkan sebelumnya. Periksa versi dan kompatibilitas native modules</p>
+        <pre><code class="text">@minify-html/node ^0.18.1
+@xmldom/xmldom ^0.9.8
+cheerio ^1.2.0
+glob ^13.0.6
+sharp ^0.34.5
+tumblr.js ^5.0.1
+wrangler ^4.72.0
+node &gt;=20.0.0</code></pre>
+        <p>Perhatikan khusus sharp dan modul native lain. Cari rilis yang menyatakan dukungan Node 24 dan lakukan rebuild.</p>
+      </article>
+
+      <article>
+        <h2>Risiko umum dan mitigasi</h2>
+        <ul>
+          <li>Build native gagal mitigasi perbarui modul dan rebuild</li>
+          <li>macOS runner lama tidak kompatibel mitigasi upgrade runner atau gunakan self hosted modern</li>
+          <li>Self hosted ARM32 tidak didukung mitigasi pindah ke x64 atau ARM64</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>Checklist migrasi singkat</h2>
+        <ol>
+          <li>Backup konfigurasi CI dan workflow</li>
+          <li>Perbarui engines di package json jika sesuai</li>
+          <li>Perbarui dependensi native ke versi yang mendukung Node 24</li>
+          <li>Jalankan test matrix pada Node 24</li>
+          <li>Perbarui dokumentasi dan beri tahu tim</li>
+          <li>Rencanakan cutover sebelum 2 Juni 2026</li>
+        </ol>
+      </article>
+
+      <article>
+        <h2>FAQ singkat</h2>
+        <p><strong>Apakah aku harus migrasi sekarang</strong> Jika repo Anda menggunakan modul native atau runner macOS lama sebaiknya uji sekarang dan rencanakan migrasi.</p>
+        <p><strong>Bagaimana jika build gagal di Node 24</strong> Periksa error rebuild native modules perbarui versi modul dan jalankan npm rebuild atau build from source.</p>
+      </article>
+
+      <article>
+        <h2>Referensi dan sumber</h2>
+        <p>Ringkasan ini berdasarkan pengumuman deprecation dan praktik migrasi umum untuk Node dan CI. Pastikan cek dokumentasi resmi GitHub Actions dan rilis modul native yang Anda gunakan.</p>
+      </article>
+
+      <!-- Placeholder divs for comments and related articles as requested -->
+      <div id="response"></div>
+      <div id="related-articles-grid"></div>
+    </main>
+
+    <footer>
+      <div>🄯 2026 Jaga Data Pribadi Tetap Aman • Panduan teknis dan rekomendasi.</div>
+<a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a>
+    </footer>
+  </div>
+
+  <!-- Minimal JS only to initialize highlight js and keep script tiny for INP -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        if(window.hljs) hljs.highlightAll();
+      }catch(e){}
+    });
+  </script>
+
+
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+</body></html>
