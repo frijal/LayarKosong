@@ -83,7 +83,7 @@ async function runCleanerLocal(): Promise<void> {
     console.log(`📊 HASIL PEMBERSIHAN (BUN OPTIMIZED)`);
     console.log(`📂 Total file HTML diproses : ${countTotal}`);
     console.log(`✨ File berhasil dibersihkan : ${countCleaned}`);
-    console.log(`😴 File sudah lama bersih   : ${countTotal - countCleaned}`);
+    console.log(`😴 File tidak memiliki markup schema   : ${countTotal - countCleaned}`);
     console.log("-".repeat(50));
 }
 
