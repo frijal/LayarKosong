@@ -1,4 +1,4 @@
-name: "Mass Replace via Sed (PR)"
+name: "Mass Replace via Bun (PR)"
 
 on:
   workflow_dispatch:
@@ -25,65 +25,31 @@ permissions:
 jobs:
   replace:
     runs-on: ubuntu-latest
-   
+
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Run Filtered Replacement
-        shell: bash
         run: |
-          SEARCH="${{ github.event.inputs.search_text }}"
-          REPLACE="${{ github.event.inputs.replace_text }}"
-          TARGET="${{ github.event.inputs.folder }}"
-          EXT="${{ github.event.inputs.extensions }}"
-
-          # Membangun array argumen pencarian ekstensi
-          # Menggunakan Array jauh lebih aman daripada string + eval
-          FIND_EXT_ARGS=()
-          
-          if [ -n "$EXT" ]; then
-            IFS=',' read -ra ADDR <<< "$EXT"
-            FIND_EXT_ARGS+=("(")
-            first=true
-            for i in "${ADDR[@]}"; do
-              clean_ext="*.${i// /}"
-              if [ "$first" = true ]; then
-                FIND_EXT_ARGS+=("-name" "$clean_ext")
-                first=false
-              else
-                FIND_EXT_ARGS+=("-o" "-name" "$clean_ext")
-              fi
-            done
-            FIND_EXT_ARGS+=(")")
-          else
-            FIND_EXT_ARGS+=("-type" "f")
-          fi
-
-          echo "🔍 Mencari: \"$SEARCH\" -> \"$REPLACE\""
-          echo "📂 Filter Ekstensi: $EXT"
-
-          # Eksekusi find TANPA eval. 
-          # "${FIND_EXT_ARGS[@]}" akan diekspansi dengan benar beserta tanda kurungnya.
-          find "$TARGET" -type f "${FIND_EXT_ARGS[@]}" \
-            -not -path '*/.*' \
-            -not -path '*/node_modules/*' \
-            -not -path '*/functions/*' \
-            -not -path '*/img/*' \
-            -not -path '*/mini/*' \
-            -not -path '*/sementara/*' \
-            -exec sed -i "s#$SEARCH#$REPLACE#g" {} +
-          
-          echo "✅ Penggantian selesai!"
+          bun run dapur/ganti-teks.ts \
+            "${{ github.event.inputs.search_text }}" \
+            "${{ github.event.inputs.replace_text }}" \
+            "${{ github.event.inputs.folder }}" \
+            "${{ github.event.inputs.extensions }}"
 
       - name: Check Git Status
         id: status
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
-            # Optional: list changed files for PR body
-            git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//' > sementara/changed_files.txt
-            echo "changed_files=$(cat sementara/changed_files.txt)" >> $GITHUB_OUTPUT
+            CHANGED=$(git --no-pager status --porcelain | awk '{print $2}' | tr '\n' ',' | sed 's/,$//')
+            echo "changed_files=$CHANGED" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "::notice::Tidak ada perubahan pada ekstensi file tersebut."
