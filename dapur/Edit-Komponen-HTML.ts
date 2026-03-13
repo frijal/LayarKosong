@@ -7,7 +7,7 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-const artikelDir = join(import.meta.dir, "artikelx");
+const artikelDir = join(import.meta.dir, "./artikelx");
 
 if (!existsSync(artikelDir)) {
   console.error(`❌ Folder tidak ditemukan: ${artikelDir}`);
