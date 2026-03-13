@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.29
+document_version: 17.30
 last_updated: 2026-03-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 Maret 2026)
-> Menampilkan 1071 artikel versi 17.29.
+> Menampilkan 1071 artikel versi 17.30.
 
 ## Gaya Hidup
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
@@ -888,7 +888,7 @@ document_type: llm_behavior_and_entity_guidance
 ## Warta Tekno
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
-- [Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24 - dalam web id](https://dalam.web.id/warta-tekno/deprecation-node20-github-actions) : Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis
+- [Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24](https://dalam.web.id/warta-tekno/deprecation-node20-github-actions) : Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis
 - [Perbandingan AI Chatbot Terbaik 2026: Mana yang Cocok untuk Tugasmu? 🤖](https://dalam.web.id/warta-tekno/perbandingan-ai-chatbot-terbaik) : memilih AI Chatbot terbaik berdasarkan kebutuhan: ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, dan Copilot. Update terbaru 2026.
 - [Microsoft Copilot Cowork: Agen AI yang Mengubah Cara Kerja di 2026](https://dalam.web.id/warta-tekno/microsoft-copilot-cowork) : Microsoft Copilot Cowork adalah agen AI revolusioner yang mengeksekusi tugas nyata di Outlook, Teams, dan Excel. Pelajari 4 fungsi utamanya dan cara kerjanya di 2026.
 - [Android dan Rencana Pembatasan Developer: Dampak pada Ekosistem Sumber Terbuka](https://dalam.web.id/warta-tekno/android-rencana-registrasi-developer) : Google berencana mewajibkan semua developer Android registrasi dengan identitas dan biaya. Simak analisis dampak pada keterbukaan, privasi, dan masa depan sideloading.
