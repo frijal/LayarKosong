@@ -41,7 +41,7 @@ jobs:
         run: bun run dapur/Edit-Komponen-HTML.ts
 
       # Menjalankan Mirroring & WebP Optimization di folder artikelx
-      - name: Inject SEO, Mirror Images & WebP (seo-fixer.js)
+      - name: Inject SEO, Mirror Images & WebP (seo-fixer.ts)
         run: |
           set -euo pipefail
           bun run dapur/seo-fixer.ts artikelx/      
