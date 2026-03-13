@@ -108,6 +108,7 @@ const buildHtmlPage = (v: string, fullMarkdown: string) => `
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Layar Kosong - LLM Index v${v}</title>
+<meta property="og:site_name" content="Layar Kosong">
 <style>
 * { box-sizing: border-box; }
 body {
