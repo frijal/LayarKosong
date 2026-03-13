@@ -40,6 +40,7 @@ function replaceContent(html: string): string {
 
     // branding title
     .replaceAll(" - Layar Kosong", "")
+    .replaceAll(" - dalam web id", "")
 
     // hapus anchor branding
     .replace(/<a[^>]*>\s*Dalam Web\s*<\/a>/g, "")
