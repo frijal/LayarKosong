@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Jumat, 13 Maret 2026 pukul 19.34.04 WITA
+> **Audit Terakhir:** Sabtu, 14 Maret 2026 pukul 02.50.00 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,6 +15,7 @@
 | CloudflareMedsos.yml | post-to-facebook.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | indexnow.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | delete-diskusi.yml | sapu-bersih.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
+| ganti-isi-teks-dalam-file.yml | ganti-teks.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | bikin-sitemap-txt.ts | 🟡 Ada | `fs` | ✅ Sudah Optimal |
@@ -26,10 +27,12 @@
 | hapushitung.yml | cek-gambar.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | workflow-list.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
+| hapushitung.yml | metadata-audit.ts | ⚪ Tidak Ada | `glob`, `cheerio` | 🚨 **Butuh bun install!** |
 | Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom`, `glob` | ✅ Sudah Optimal |
-| proses-artikelx.yml | gantifontshighlight.ts | 🟡 Ada | `fs/promises`, `fs`, `path` | ✅ Sudah Optimal |
 | proses-artikelx.yml | clean-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| proses-artikelx.yml | gantifontshighlight.ts | 🟡 Ada | `fs/promises`, `fs`, `path` | ✅ Sudah Optimal |
+| proses-artikelx.yml | Edit-Komponen-HTML.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | proses-artikelx.yml | seo-fixer.ts | 🟡 Ada | `cheerio`, `sharp` | ✅ Sudah Optimal |
 
 
