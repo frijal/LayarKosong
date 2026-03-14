@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/14/2026, 8:31:25 AM
+Generated on: 3/14/2026, 11:27:16 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/14/2026, 8:31:25 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.30 | *(Missing)* | Layar Kosong | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v17.32 | LLM Index v17.32 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -958,6 +958,7 @@ Generated on: 3/14/2026, 8:31:25 AM
 | `artikel/shutdown-windows-cepat.html` | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh - Layar Kosong | 4 Cara Mempercepat Shutdown Windows - Tips Ampuh | Layar Kosong | ✅ Perfect |
 | `artikel/si-jalak-harupat-otto-iskandardinata.html` | Otto Iskandardinata - Si Jalak Harupat, Guru Muhammadiyah dan Pahlawan Nasional Indonesia - Layar Kosong | Otto Iskandardinata - Si Jalak Harupat, Guru Muhammadiyah dan Pahlawan Nasional Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/siapa-mahram-kita.html` | Siapa Saja Mahram Kita? Panduan untuk Wanita Muslimah - Layar Kosong | Siapa Saja Mahram Kita? Panduan untuk Wanita Muslimah | Layar Kosong | ✅ Perfect |
+| `artikel/siapa-sebenarnya-ulil-amri.html` | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern - Layar Kosong | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern | Layar Kosong | ✅ Perfect |
 | `artikel/sikat-gigi-aduk.html` | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman - Layar Kosong | Bahaya Menggunakan Sikat Gigi untuk Mengaduk Minuman | Layar Kosong | ✅ Perfect |
 | `artikel/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
 | `artikel/sisi-gelap-aplikator.html` | Sisi Gelap 5 Raksasa Aplikator: Perang Harga dan Nasib Mereka - Layar Kosong | Sisi Gelap 5 Raksasa Aplikator: Perang Harga dan Nasib Mereka | Layar Kosong | ✅ Perfect |
@@ -1338,6 +1339,7 @@ Generated on: 3/14/2026, 8:31:25 AM
 | `jejak-sejarah/shalahuddin-yerusalem.html` | Shalahuddin dan Pembebasan Yerusalem - Pelajaran dari Sejarah - Layar Kosong | Shalahuddin dan Pembebasan Yerusalem - Pelajaran dari Sejarah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/si-jalak-harupat-otto-iskandardinata.html` | Otto Iskandardinata - Si Jalak Harupat, Guru Muhammadiyah dan Pahlawan Nasional Indonesia - Layar Kosong | Otto Iskandardinata - Si Jalak Harupat, Guru Muhammadiyah dan Pahlawan Nasional Indonesia | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/siapa-mahram-kita.html` | Siapa Saja Mahram Kita? Panduan untuk Wanita Muslimah - Layar Kosong | Siapa Saja Mahram Kita? Panduan untuk Wanita Muslimah | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/siapa-sebenarnya-ulil-amri.html` | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern - Layar Kosong | Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sultan-murad-iii.html` | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan - Layar Kosong | Kisah Sultan Murad III - Antara Cahaya Ilmu dan Bayangan Kemewahan | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sumur-rumah-madinah.html` | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah - Layar Kosong | Sumur Rumah: wakaf Utsman, sakinah bagi Madinah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/tabayun-era-digital.html` | Tabayun di Era Digital: Stop Sebar Hoaks, Utamakan Klarifikasi - Layar Kosong | Tabayun di Era Digital: Stop Sebar Hoaks, Utamakan Klarifikasi | Layar Kosong | ✅ Perfect |
