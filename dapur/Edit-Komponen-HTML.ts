@@ -26,6 +26,12 @@ if (files.length === 0) {
 // -------------------------------------------------------
 function replaceContent(html: string): string {
   return html
+
+    // branding title
+    .replaceAll(" - Layar Kosong", "")
+    .replaceAll(" - dalam web id", "")
+    .replaceAll(" - Dalam.web.id", "")
+
     // URL icon
     .replaceAll("https://dalam[.]web[.]id/assets/apple-touch-icon.png", "https://dalam.web.id/ext/icons/apple-touch-icon.png")
     .replaceAll("https://dalam[.]web[.]id/apple-touch-icon.png", "https://dalam.web.id/ext/icons/apple-touch-icon.png")
@@ -37,11 +43,6 @@ function replaceContent(html: string): string {
     // Font Awesome version
     .replaceAll("Font Awesome 5 Free", "Font Awesome 7 Free")
     .replaceAll("Font Awesome 6 Free", "Font Awesome 7 Free")
-
-    // branding title
-    .replaceAll(" - Layar Kosong", "")
-    .replaceAll(" - dalam web id", "")
-    .replaceAll(" - Dalam.web.id", "")
 
     // hapus anchor branding
     .replace(/<a[^>]*>\s*Dalam Web\s*<\/a>/g, "")
