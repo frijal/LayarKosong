@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.31
+document_version: 17.32
 last_updated: 2026-03-14
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 14 Maret 2026)
-> Menampilkan 1071 artikel versi 17.31.
+> Menampilkan 1072 artikel versi 17.32.
 
 ## Gaya Hidup
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
@@ -121,6 +121,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern](https://dalam.web.id/jejak-sejarah/siapa-sebenarnya-ulil-amri) : Menelusuri makna Ulil Amri dalam QS An-Nisa 59. Apakah presiden di sistem demokrasi termasuk ulil amri? Simak pandangan ulama klasik dan kontemporer.
 - [Hisab: Evolusi Kepastian Waktu Islam di Era Modern](https://dalam.web.id/jejak-sejarah/hisab-evolusi-kepastian-waktu-islam) : Mengenal evolusi penentuan waktu Islam dari rukyat ke hisab. Simak alasan mengapa perhitungan matematis menjadi kunci efisiensi ekonomi dan kepastian hukum saat ini.
 - [Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah](https://dalam.web.id/jejak-sejarah/kisah-gua-tsur-laba-laba-dan-burung-merpati-yang-melindungi-nabi-muhammad-saat-hijrah) : Kisah Gua Tsur saat hijrah Nabi Muhammad SAW. Laba-laba dan burung merpati lindungi Rasulullah dan Abu Bakr dari musuh. Hikmah besar tentang perlindungan Allah yang tak terduga.
 - [Fenomena Gereja Diubah Jadi Masjid di Amerika Serikat: Alasan Praktis dan Contoh Nyata](https://dalam.web.id/jejak-sejarah/fenomena-gereja-diubah-jadi-masjid-di-amerika-serikat) : Fenomena gereja di Amerika Serikat diubah menjadi masjid semakin sering terjadi. Alasan praktis, biaya murah, zonasi mudah, plus contoh nyata seperti di Syracuse dan Toledo. Baca lengkap kisahnya di sini.

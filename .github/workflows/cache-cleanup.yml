@@ -1,4 +1,4 @@
-name: XCleanup Old GitHub Actions Cache
+name: "XCleanup Old GitHub Actions Cache"
 
 on:
   schedule:
@@ -6,13 +6,12 @@ on:
   workflow_dispatch: # bisa dijalankan manual
 
 permissions:
-  actions: write
-  contents: read
+  actions: write # Diperlukan untuk menghapus cache
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-   
+    
     steps:
       - name: Cleanup caches older than 7 days
         env:
@@ -22,8 +21,9 @@ jobs:
         run: |
           set -e
 
+          # Menghitung detik dari batas waktu (7 hari)
           NOW=$(date +%s)
-          LIMIT=$((DAYS * 8640))
+          LIMIT=$((DAYS * 86400)) # Diperbaiki: 86400 detik per hari
 
           echo "Fetching caches for $REPO"
           PAGE=1

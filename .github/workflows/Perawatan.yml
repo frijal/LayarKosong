@@ -46,7 +46,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
-      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
       # --- STEP 1: EKSEKUSI PAKET (Hanya jika mode Upgrade/Manage/Schedule) ---
       - name: 🚀 Upgrade/Manage Packages
@@ -138,7 +141,7 @@ jobs:
 
       - name: 📨 Create Pull Request
         if: steps.filter.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@a45d1fb447fcaf601166e405fd4f335cde1a8aa8
+        uses: peter-evans/create-pull-request@36d7c8468b48f9c2f8f29e260e82f10d4b90d2bd
         with:
           title: "chore: 🛠️ Dapur Maintenance [${{ github.event.inputs.mode || 'Auto' }}]"
           commit-message: "chore: automated sync and audit result"
