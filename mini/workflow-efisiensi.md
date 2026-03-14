@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Sabtu, 14 Maret 2026 pukul 19.41.53 WITA
+> **Audit Terakhir:** Sabtu, 14 Maret 2026 pukul 20.19.56 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -29,7 +29,7 @@
 | hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | metadata-audit.ts | ⚪ Tidak Ada | `glob`, `cheerio` | 🚨 **Butuh bun install!** |
 | Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom`, `glob` | ✅ Sudah Optimal |
+| periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom` | ✅ Sudah Optimal |
 | proses-artikelx.yml | clean-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | proses-artikelx.yml | gantifontshighlight.ts | 🟡 Ada | `fs/promises`, `fs`, `path` | ✅ Sudah Optimal |
 | proses-artikelx.yml | Edit-Komponen-HTML.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
@@ -37,4 +37,4 @@
 
 
 ---
-💡 **Info:** Jika kolom **Paket Eksternal** kosong (`-`), script hanya menggunakan API internal (`node:` atau `bun`) dan tidak membutuhkan step `bun install`.
+💡 **Info:** Jika kolom **Paket Eksternal** kosong, script hanya menggunakan API internal dan tidak butuh `bun install`.

@@ -1,9 +1,5 @@
 # Website Metadata Audit Report
-<<<<<<< HEAD
-Generated on: 3/14/2026, 8:41:20 AM
-=======
-Generated on: 3/14/2026, 11:41:54 AM
->>>>>>> 8ebd39f9487ecc13f78e19d1cad7b6bc78c79400
+Generated on: 3/14/2026, 12:19:57 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -17,11 +13,7 @@ Generated on: 3/14/2026, 11:41:54 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-<<<<<<< HEAD
-| `llms-index.html` | Layar Kosong - LLM Index v17.31 | LLM Index v17.31 | Layar Kosong | ✅ Perfect |
-=======
 | `llms-index.html` | Layar Kosong - LLM Index v17.32 | LLM Index v17.32 | Layar Kosong | ✅ Perfect |
->>>>>>> 8ebd39f9487ecc13f78e19d1cad7b6bc78c79400
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
