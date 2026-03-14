@@ -1,83 +1,49 @@
-import { file, write } from "bun";
-import { readdirSync, readFileSync } from "node:fs";
-import { join, basename, extname } from "node:path";
+import { file, write, Glob } from "bun";
+import { basename } from "node:path";
 
-// --- 1. KONFIGURASI SCANNER (Pakai Bun.Glob bawaan) ---
-const globScanner = new Bun.Glob("**/*.{webp}");
+// --- 1. KONFIGURASI ---
+const IGNORE_PATTERNS = [
+    "node_modules/**", "dist/**", "mini/**", "ext/**",
+"sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**", "functions/**"
+];
 
-const allFiles = await Array.fromAsync(globScanner.scan({
-    ignore: [
-        "node_modules/**", "dist/**", "mini", "ext/**",
-        "sementara/**", "artikelx/**", "dapur/XXX/**", ".git/**", "functions/**"
-    ]
-}));
+const globScanner = new Glob("**/*.{webp}");
+const targetScanner = new Glob("**/*.html");
 
-// --- 2. KONFIGURASI SEARCHER ---
-const SEARCH_DIR = './';
-const SKIP_FOLDERS = new Set(['node_modules', '.git', 'sementara', 'artikelx', 'mini', 'XXX']);
-const EXTENSIONS = new Set(['.html']);
+// --- 2. PROSES AUDIT ---
+console.log("🔍 Memulai audit referensi gambar... (ini mungkin butuh waktu)");
 
-/**
- * Cek keberadaan string di dalam file (Fast Stream)
- */
-async function isStringInFile(filePath: string, query: string): Promise<boolean> {
-    try {
-        const content = await file(filePath).text();
-        return content.includes(query);
-    } catch {
-        return false;
-    }
-}
+// Scan semua gambar dan target file
+const allImages = await Array.fromAsync(globScanner.scan({ ignore: IGNORE_PATTERNS }));
+const allTargetFiles = await Array.fromAsync(targetScanner.scan({ ignore: IGNORE_PATTERNS }));
 
-/**
- * Rekursif: Cari string ke seluruh penjuru dapur
- */
-async function checkExistenceGlobally(dir: string, query: string, originalPath: string): Promise<boolean> {
-    const entries = readdirSync(dir, { withFileTypes: true });
+// Load semua isi HTML ke memori untuk efisiensi pencarian (Opsional tapi jauh lebih cepat)
+const targetContents = await Promise.all(
+    allTargetFiles.map(async (p) => await file(p).text())
+);
 
-    for (const entry of entries) {
-        const fullPath = join(dir, entry.name);
-
-        if (entry.isDirectory()) {
-            if (SKIP_FOLDERS.has(entry.name)) continue;
-            if (await checkExistenceGlobally(fullPath, query, originalPath)) return true;
-            continue;
-        }
-
-        const ext = extname(entry.name).toLowerCase();
-        if (!EXTENSIONS.has(ext)) continue;
-
-        // Jangan cek diri sendiri
-        if (fullPath.includes(originalPath)) continue;
-
-        if (await isStringInFile(fullPath, query)) return true;
-    }
-    return false;
-}
-
-// --- 3. EKSEKUSI ---
-console.log(`🔍 Memulai audit referensi untuk ${allFiles.length} file...`);
 const fileHilang: string[] = [];
 
-for (const filePath of allFiles) {
-    const nameOnly = basename(filePath);
+// --- 3. EKSEKUSI (Logika sama, tanpa log per-file) ---
+for (const imgPath of allImages) {
+    const nameOnly = basename(imgPath);
 
-    // Tampilkan progres di terminal agar tidak dikira hang
-    process.stdout.write(`🔎 Check: ${nameOnly} ... `);
-
-    const isUsed = await checkExistenceGlobally(SEARCH_DIR, nameOnly, filePath);
+    // Cek apakah nama gambar ada di salah satu isi file HTML
+    const isUsed = targetContents.some(content => content.includes(nameOnly));
 
     if (!isUsed) {
-        console.log("❌ JOMBLO");
-        fileHilang.push(filePath);
-    } else {
-        console.log("✅ OK");
+        fileHilang.push(imgPath);
     }
 }
 
-// --- 4. OUTPUT KE hilang.txt ---
-const resultData = fileHilang.join("\n");
-await write("hilang.txt", resultData || "Semua file ditemukan referensinya.");
+// --- 4. OUTPUT FINAL ---
+const resultData = fileHilang.length > 0
+? fileHilang.join("\n")
+: "Semua file ditemukan referensinya.";
 
-console.log("\n---");
-console.log(`✅ Selesai! ${fileHilang.length} file masuk daftar hilang.txt`);
+await write("hilang.txt", resultData);
+
+console.log(`✅ Audit selesai!`);
+console.log(`📊 Total gambar dipindai: ${allImages.length}`);
+console.log(`📝 File jomblo ditemukan: ${fileHilang.length}`);
+console.log(`💾 Hasil disimpan di: hilang.txt`);

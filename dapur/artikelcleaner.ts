@@ -1,53 +1,61 @@
-import { Glob } from "bun";
+import { file, write, Glob } from "bun";
 
-// 1. Ambil target folder dari argumen terminal (contoh: bun run cleaner-text.ts ./artikel)
+// 1. Ambil target folder
 const targetFolder = Bun.argv[2];
 
 if (!targetFolder) {
-  console.error("❌ Mohon masukkan nama folder tujuan!");
-  console.log("Contoh: bun run cleaner-text.ts ./nama-folder");
+  console.error("❌ Mohon masukkan nama folder tujuan! Contoh: bun run cleaner.ts ./artikel");
   process.exit(1);
 }
 
-// 2. Baca isi file.txt yang berisi "sampah" kode
-const blacklistFile = Bun.file("file.txt");
-if (!(await blacklistFile.exists())) {
-  console.error("❌ file.txt tidak ditemukan!");
+// 2. Baca "sampah" (junkCode) sekali saja di awal
+const junkCode = (await file("file.txt").text()).trim();
+
+if (!junkCode) {
+  console.error("❌ file.txt kosong atau tidak ditemukan!");
   process.exit(1);
 }
-
-// Ambil teks, trim spasi di awal/akhir agar pencarian lebih akurat
-const junkCode = (await blacklistFile.text()).trim();
 
 async function cleanJunkCode(filePath: string) {
-  const file = Bun.file(filePath);
-  const originalContent = await file.text();
+  const f = file(filePath);
+  const content = await f.text();
 
-  // Jika kode junk ditemukan, hapus (ganti dengan string kosong)
-  if (originalContent.includes(junkCode)) {
-    // Kita gunakan replaceAll untuk jaga-jaga kalau kodenya muncul berkali-kali di satu file
-    const cleanedContent = originalContent.split(junkCode).join("");
-    
-    await Bun.write(filePath, cleanedContent);
-    console.log(`✅ Berhasil dibersihkan: ${filePath}`);
-  } else {
-    console.log(`– Tidak ditemukan kode junk di: ${filePath}`);
+  if (content.includes(junkCode)) {
+    // Bun.write secara otomatis melakukan overwrite file tersebut
+    await write(filePath, content.split(junkCode).join(""));
+    return true; // Menandakan file dibersihkan
   }
+  return false;
 }
 
 async function main() {
-  const glob = new Glob(`${targetFolder}/**/*.html`);
-  
-  console.log(`🚀 Memulai operasi pembersihan teks...`);
-  console.log(`📝 Mencari kode yang ada di file.txt...`);
+  console.log(`🚀 Memulai pembersihan...`);
 
-  let count = 0;
-  for await (const file of glob.scan()) {
-    await cleanJunkCode(file);
-    count++;
+  const glob = new Glob(`${targetFolder}/**/*.html`);
+  let cleanedCount = 0;
+  let totalFiles = 0;
+
+  // Scan file dan jalankan pembersihan secara paralel
+  // Menggunakan Promise.all agar I/O tidak mengantri
+  const tasks: Promise<void>[] = [];
+
+  for await (const path of glob.scan()) {
+    totalFiles++;
+    tasks.push(
+      cleanJunkCode(path).then(wasCleaned => {
+        if (wasCleaned) {
+          console.log(`✅ Dibersihkan: ${path}`);
+          cleanedCount++;
+        }
+      })
+    );
   }
 
-  console.log(`\n✨ Selesai! Memeriksa total ${count} file.`);
+  await Promise.all(tasks);
+
+  console.log(`\n✨ Selesai!`);
+  console.log(`📊 Total file diperiksa: ${totalFiles}`);
+  console.log(`🗑️ Total file dibersihkan: ${cleanedCount}`);
 }
 
 main();
