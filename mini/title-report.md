@@ -1,9 +1,9 @@
 # Website Metadata Audit Report
-Generated on: 3/14/2026, 8:31:25 AM
+Generated on: 3/14/2026, 8:41:20 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| `404.html` | 404 - Tersesat di - Layar Kosong | *(Missing)* | Layar Kosong | - |
+| `404.html` | 404 - Tersesat di - Layar Kosong | 404 Not Found | Layar Kosong | - |
 | `about.html` | Tentang Kami - Layar Kosong | Tentang Kami | Layar Kosong | ✅ Perfect |
 | `data-deletion-form.html` | Formulir Penghapusan Data / Data Deletion Form - Layar Kosong | Formulir Penghapusan Data / Data Deletion Form | Layar Kosong | ✅ Perfect |
 | `data-deletion.html` | Instruksi Penghapusan Data / Data Deletion - Layar Kosong | Cara meminta penghapusan data | Layar Kosong | ✅ Perfect |
@@ -13,7 +13,7 @@ Generated on: 3/14/2026, 8:31:25 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.30 | *(Missing)* | Layar Kosong | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v17.31 | LLM Index v17.31 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
