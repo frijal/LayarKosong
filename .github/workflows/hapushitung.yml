@@ -41,12 +41,11 @@ jobs:
       - name: 📊 Generate Simplified Content Report
         id: generate_report
         run: |
-            # 1. Setup Awal
-            DATE=$(date +'%Y-%m-%d')
-            REPORT_PATH="mini/${DATE}-laporan_konten.md"
-    
-            echo "📊 Membuat laporan ringkas..."
-
+          # Definisikan tanggal dan simpan ke GITHUB_ENV agar bisa diakses langkah lain
+          DATE=$(date +'%Y-%m-%d')
+          echo "REPORT_DATE=$DATE" >> $GITHUB_ENV          
+          REPORT_PATH="mini/${DATE}-laporan_konten.md"          
+          echo "📊 Membuat laporan ringkas..."
             declare -A ext_count
             declare -A ext_folders
             total_files=0
@@ -101,7 +100,7 @@ jobs:
 
             echo "✅ Laporan disederhanakan: $REPORT_PATH"
           
-      # ========== COMMIT & PUSH ==========             
+      # ========== COMMIT & PUSH ==========
       - name: 📮 Commit & Push All Changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
@@ -112,7 +111,8 @@ jobs:
             
             git add .
             
-            DATE=${{ env.REPORT_DATE }}
+            # Sekarang env.REPORT_DATE sudah tersedia!
+            DATE=$REPORT_DATE
             added_count=$(git diff --staged --name-status | grep -c "^A" || true)
             deleted_count=$(git diff --staged --name-status | grep -c "^D" || true)
             
