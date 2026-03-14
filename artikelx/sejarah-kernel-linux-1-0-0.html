@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia</title>
+
+    <meta name="description" content="Kisah lengkap sejarah rilis perdana kernel Linux 1.0.0 oleh Linus Torvalds pada 14 Maret 1994. Pelajari bagaimana sistem operasi ini lahir dan mendominasi dunia teknologi.">
+    <link rel="canonical" href="https://dalam.web.id/artikel/sejarah-kernel-linux-1-0-0.html">
+    <meta property="og:title" content="Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia">
+    <meta property="og:description" content="Dari proyek mahasiswa di Helsinki hingga menjadi fondasi komputasi modern. Inilah sejarah rilis stabil pertama kernel Linux 1.0.0 beserta perjalanan awal Linus Torvalds.">
+    <meta property="og:image" content="https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/651628155_10241031530714325_5013480569807871957_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e06c5d&_nc_eui2=AeF_arx3K8_VAAnFoIKgYzTKhiou5chvYK6GKi7lyG9grsq44kn0g9ukfau7tR4phKs&_nc_ohc=nE9obFRCz1MQ7kNvwHtMuCn&_nc_oc=Adn_L-NbzkJzvNShzU6uzt4v383QHC89db2ArqOqxb4OP9YDnjLBYV6TFF8N3hBpaoS6cfa5GkgUVy9eH9gXIhDU&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=EcgsNKGxdWyAXqSFs_5Sug&_nc_ss=8&oh=00_AfwbHTvDykNGlJJzeLENkyhrrkc3We-V5SI40kx6uD2YCg&oe=69BB58C6">
+    <meta property="og:url" content="https://dalam.web.id/artikel/sejarah-kernel-linux-1-0-0.html">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds">
+    <meta name="twitter:description" content="Baca sejarah seru rilisnya kernel Linux 1.0.0 pada 14 Maret 1994. Awal mula revolusi open source yang mengubah dunia komputasi dari proyek garasi ke ranah enterprise.">
+    <meta name="twitter:image" content="https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/651628155_10241031530714325_5013480569807871957_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e06c5d&_nc_eui2=AeF_arx3K8_VAAnFoIKgYzTKhiou5chvYK6GKi7lyG9grsq44kn0g9ukfau7tR4phKs&_nc_ohc=nE9obFRCz1MQ7kNvwHtMuCn&_nc_oc=Adn_L-NbzkJzvNShzU6uzt4v383QHC89db2ArqOqxb4OP9YDnjLBYV6TFF8N3hBpaoS6cfa5GkgUVy9eH9gXIhDU&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=EcgsNKGxdWyAXqSFs_5Sug&_nc_ss=8&oh=00_AfwbHTvDykNGlJJzeLENkyhrrkc3We-V5SI40kx6uD2YCg&oe=69BB58C6">
+
+    <meta name="promphint" content="Siapa pencipta Linux? Linus Torvalds menciptakan kernel Linux. Kapan Linux 1.0.0 rilis? Pada 14 Maret 1994.">
+    <meta name="news_keywords" content="Linux, Linus Torvalds, Kernel Linux, Sejarah Linux, Sistem Operasi, Open Source">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Linus Torvalds">
+    <meta property="article:tag" content="Sejarah Teknologi">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="Sistem Operasi">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS Variables untuk preferensi tema */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #0066cc;
+            --meta-color: #666666;
+            --border-color: #dddddd;
+            --footer-bg: #f9f9f9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --link-color: #66b3ff;
+                --meta-color: #aaaaaa;
+                --border-color: #333333;
+                --footer-bg: #1e1e1e;
+            }
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                        line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout Widescreen 1 Kolom */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Typography & Spacing */
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--link-color);
+        }
+
+        a:hover {
+            border-bottom-style: solid;
+        }
+
+        .meta-info {
+            color: var(--meta-color);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        /* Image Optimization for LCP & CLS */
+        .featured-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 2 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        /* Comments / Grid Section */
+        #related-articles-grid, #response {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--meta-color);
+        }
+
+        /* Utility */
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Awal Linus Torvalds Mengubah Dunia 🚀</h1>
+        <div class="meta-info">
+            <i class="fa-solid fa-calendar icon"></i> Dipublikasikan: 14 Maret 1994 (Kilas Balik) &nbsp; | &nbsp;
+            <i class="fa-solid fa-user icon"></i> Penulis: Fakhrul Rijal
+        </div>
+    </header>
+
+    <main>    <p>Halo semuanya! Bicara tentang dunia teknologi dan <em>open source</em>, kita nggak bisa lepas dari nama besar yang satu ini. Mari kita bahas secara santai tapi mendalam tentang apa, siapa, kapan, di mana, mengapa, dan bagaimana (5W+1H) sistem operasi sejuta umat ini bisa lahir.</p>
+        <img src="https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/651628155_10241031530714325_5013480569807871957_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e06c5d&_nc_eui2=AeF_arx3K8_VAAnFoIKgYzTKhiou5chvYK6GKi7lyG9grsq44kn0g9ukfau7tR4phKs&_nc_ohc=nE9obFRCz1MQ7kNvwHtMuCn&_nc_oc=Adn_L-NbzkJzvNShzU6uzt4v383QHC89db2ArqOqxb4OP9YDnjLBYV6TFF8N3hBpaoS6cfa5GkgUVy9eH9gXIhDU&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=EcgsNKGxdWyAXqSFs_5Sug&_nc_ss=8&oh=00_AfwbHTvDykNGlJJzeLENkyhrrkc3We-V5SI40kx6uD2YCg&oe=69BB58C6" alt="Ilustrasi Sejarah Linux" width="1000" height="500" class="featured-image" loading="eager" fetchpriority="high">
+
+
+
+        <h2>Lahirnya Versi Stabil Pertama 🐧</h2>
+        <p>Tepat pada <strong>14 Maret 1994</strong>, Linus Torvalds mempresentasikan versi 1.0.0 dari kernel Linux di University of Helsinki. Momen ini menjadi titik sejarah rilis stabil pertamanya. Linux kemudian menjadi fondasi dari keluarga sistem operasi mirip Unix (Unix-like), yang didistribusikan dengan berbagai nama, semuanya punya satu kesamaan: menggunakan kernel Linux sebagai komponen intinya.</p>
+        <p>Saat ini, berbagai perusahaan teknologi raksasa, mulai dari Google, IBM, Oracle Corporation, Hewlett-Packard, Red Hat, Canonical, Novell, hingga Valve, ikut terjun aktif dalam pengembangan dan distribusi sistem berbasis Linux. Luar biasa, kan?</p>
+
+        <h2>Dari Rasa Frustrasi Menjadi Inovasi 💡</h2>
+        <p>Kalau ditarik mundur, ide awal kernel Linux ini digagas pada bulan Agustus 1991 oleh Linus Torvalds, yang saat itu masih seorang mahasiswa muda asal Finlandia (lahir di Helsinki, 28 Desember 1969). Torvalds, seorang <em>programmer</em> yang sangat antusias, merasa kurang puas dengan sistem operasi Minix.</p>
+        <p>Buat kamu yang belum tahu, Minix itu sistem pembelajaran mirip Unix yang dikembangkan oleh Andrew Tanenbaum, Profesor Sistem Komputer di Vrije Universiteit Amsterdam. Kenapa Torvalds kecewa? Karena Minix punya dukungan yang sangat terbatas buat arsitektur 32-bit i386 terbaru, padahal saat itu prosesor Intel 80386 lagi mulai populer dan terjangkau.</p>
+        <p>Karena dorongan itulah, Torvalds akhirnya mulai mengembangkan kernel mirip Unix-nya sendiri. Tujuannya simpel saat itu: dia cuma pengen mendalami cara kerja sistem operasi di komputer Intel 80386 barunya.</p>
+
+        <h2>Melepas Ketergantungan dan Menggandeng GNU 🤝</h2>
+        <p>Di tahap awal pengembangannya, Torvalds masih memakai Minix sebagai lingkungan pengembangannya (<em>development environment</em>). Tapi hebatnya, kernel Linux ini nggak butuh <em>userland</em> dari Minix untuk bisa jalan (<em>userland</em> atau <em>user space</em> itu kumpulan program dan <em>library</em> di atas kernel yang bukan bagian dari kernel itu sendiri).</p>
+        <p>Rasa tidak puas Torvalds terhadap lisensi Minix yang mengekang bikin dia mantap untuk membuat Linux sepenuhnya mandiri. Nah, supaya bisa jadi satu sistem operasi yang utuh, kernel Linux ini kemudian digabungkan dengan <em>software</em> dari proyek GNU. Proyek GNU sendiri diluncurkan tahun 1984 oleh Richard Stallman dan dipromosikan oleh Free Software Foundation, yang menyuplai sebagian besar kebutuhan <em>userland</em> tersebut.</p>
+        <p>Pada tahun 1992, Torvalds mengambil langkah cerdas dengan mengadopsi lisensi <strong>GPLv2</strong> untuk kernelnya. Pilihan ini memastikan kebebasan penggunaan dan kompatibilitas dengan ekosistem GNU, tapi tetap menjaga identitas Linux sebagai proyek yang independen.</p>
+
+        <h2>Perkembangan Versi Demi Versi 📈</h2>
+        <p>Perkembangannya cukup ngebut. Mulai dari versi 0.01 ke atas, sistem ini sudah bisa melakukan kompilasi dan menjalankan GNU Bash shell. Sampai versi 0.10, proses kompilasi dan instalasi kernel masih butuh sistem Minix, karena Linux waktu itu masih bergantung pada <em>filesystem</em> Minix dan belum punya lingkungan <em>build</em> yang mandiri.</p>
+        <p>Barulah pada versi 0.11, Linux akhirnya bisa mengompilasi dirinya sendiri! Sistem yang dibangun berbasis kernel Linux ini dengan cepat melampaui Minix dari segi fungsionalitas. Kernel ini dipadukan dengan komponen-komponen GNU dan program <em>user-space</em> lainnya, yang pada akhirnya memungkinkan terciptanya sebuah sistem operasi yang lengkap dan sepenuhnya bebas.</p>
+        <p>Puncaknya, pada 12 Maret 1994, <em>patch level</em> keenam belas dari seri 0.99 resmi dirilis sebagai <strong>Linux 1.0</strong>.</p>
+
+        <h2>Distro Linux Masa Kini 🌍</h2>
+        <p>Satu hal yang perlu diluruskan: apa yang sering kita sebut "Linux" saat ini sebenarnya adalah sebuah sistem operasi yang dibangun di sekeliling kernel Linux. Kernelnya sendiri belum bisa disebut sebagai sistem yang utuh.</p>
+        <p>Makanya kita kenal istilah distribusi (atau biasa disebut "distro"). Distro-distro ini dikembangkan oleh komunitas atau perusahaan yang merakit kernel Linux bareng <em>software</em> tambahan (kebanyakan dari proyek GNU) supaya jadi OS yang siap pakai. Tiap distro pakai versi kernelnya masing-masing yang seringkali udah dimodifikasi, dan biasanya punya ciri khas di bagian seleksi paket (<em>package manager</em>), repositori, serta layanan dukungan teknisnya.</p>
+        <p>Hari ini, Linux hadir sebagai pilar yang tangguh dan stabil di dunia komputasi, menawarkan alternatif yang sangat kuat untuk melawan perangkat lunak berbayar (<em>proprietary</em>). Linux banyak banget dipakai di infrastruktur jaringan, <em>server</em>, hingga dunia penelitian.</p>
+
+        <p style="margin-top: 30px; font-weight: bold;">
+            [Artikel ini di ketik pakai <i class="fa-brands fa-debian"></i> Debian Linux 🙂]
+        </p>
+    </main>
+
+    <div id="related-articles-grid"></div>
+    <div id="response"></div>
+
+    <footer>
+        <p><i class="fa-solid fa-code icon"></i> Dibuat dengan semangat Open Source. &copy; 2026 Layar Kosong.</p>
+    </footer>
+</div>
+
+</body>
+</html>
