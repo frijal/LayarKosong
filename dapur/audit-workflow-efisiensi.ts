@@ -1,4 +1,6 @@
-import { write, file, readdir } from "bun";
+// Ganti baris import pertama menjadi:
+import { write, file } from "bun";
+import { readdir } from "node:fs/promises"; // Tetap gunakan ini untuk readdir
 import { join, dirname } from "node:path";
 
 // ========== CONFIG ==========
