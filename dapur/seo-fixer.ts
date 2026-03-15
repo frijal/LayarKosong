@@ -209,13 +209,14 @@ async function processFile(file: string, baseUrl: string) {
             `<meta property="article:author" content="https://facebook.com/frijal">`,
             `<meta property="article:publisher" content="https://facebook.com/frijalpage">`,
             `<meta property="fb:app_id" content="175216696195384">`,
+            `<meta property="fb:pages" content="61585927168308">`,
             `<meta itemprop="image" content="${metaImgUrl}">`,
             `<meta name="twitter:image" content="${metaImgUrl}">`,
-            `<meta property="twitter:image" content="${metaImgUrl}">`,
             `<meta property="og:image" content="${metaImgUrl}">`,
             `<meta property="og:image:alt" content="${escapedOgTitle}">`,
             `<meta property="og:image:width" content="1200">`,
             `<meta property="og:image:height" content="675">`,
+            `<meta property="og:image:type" content="image/webp" />`,
             `<meta name="theme-color" content="#00b0ed">`
         ];
 
