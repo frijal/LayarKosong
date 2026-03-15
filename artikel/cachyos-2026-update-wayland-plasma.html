@@ -286,7 +286,7 @@
         <p>Mungkin kamu bertanya, <em>"Kenapa sih harus ganti ke Wayland? X11 kan masih jalan?"</em>. Jawabannya simpel: <strong>Keamanan dan Efisiensi.</strong> X11 itu teknologi yang umurnya sudah puluhan tahun dan sudah sulit untuk dikembangkan lagi untuk menangani layar modern dengan *refresh rate* tinggi atau HDR.</p>
         <p>CachyOS ingin memastikan penggunanya mendapatkan teknologi paling mutakhir. Penggantian SDDM menjadi <strong>Plasma Login Manager</strong> juga krusial karena integrasi yang lebih mulus dengan sesi Wayland, mengurangi *glitch* saat transisi dari layar *boot* ke desktop.</p>
         <h2>Bagaimana Detail Perubahan Teknisnya? (How)</h2>
-        <p>Mari kita bedah satu per satu secara mendalam. Jangan skip bagian ini kalau kamu mau tahu apa saja yang berubah di balik kap mesinnya:</p>
+        <p>Mari kita kupas satu per satu secara mendalam. Jangan skip bagian ini kalau kamu mau tahu apa saja yang berubah di balik kap mesinnya:</p>
         <h3>1. Limine Jadi Bootloader Default 🛠️</h3>
         <p>Lupakan sejenak GRUB yang terkadang ribet. CachyOS kini secara resmi menjadikan <strong>Limine</strong> sebagai *bootloader* default mereka. Limine dikenal sangat ringan, modern, dan mendukung protokol *boot* yang lebih luas tanpa drama konfigurasi yang berbelit. Ini bikin proses *startup* terasa lebih instan.</p>
         <h3>2. Optimasi Btrfs dengan Kompresi Level 1 💾</h3>

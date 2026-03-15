@@ -391,7 +391,7 @@
         <p><code>cpx</code> menggunakan kemampuan <em>multi-threading</em> dan asynchronous di Rust (dengan bantuan library seperti <code>rayon</code> dan <code>jwalk</code>) untuk menjalankan beberapa operasi copy secara bersamaan. Ia juga memanfaatkan fitur kernel Linux seperti <code>copy_file_range</code> untuk mempercepat copy di dalam filesystem yang sama, serta mendukung <em>reflink</em> (copy-on-write) di filesystem seperti Btrfs atau XFS. Selain itu, <code>cpx</code> menyimpan metadata file yang sudah dicopy (ukuran, checksum) sehingga ketika proses diulang dengan opsi <code>--resume</code>, ia bisa melewati file yang sudah utuh.</p>
 
         <h2>Fitur-Fitur Unggulan yang Bikin Jatuh Hati</h2>
-        <p>Mari kita bedah satu per satu fitur yang membuat <code>cpx</code> layak dicoba. Saya akan sertakan emoji dan ikon biar makin hidup.</p>
+        <p>Mari kita kupas satu per satu fitur yang membuat <code>cpx</code> layak dicoba. Saya akan sertakan emoji dan ikon biar makin hidup.</p>
 
         <h3><i class="fa-solid fa-rocket feature-icon"></i> Penyalinan Paralel (Parallel Copying)</h3>
         <p>Ini adalah fitur <em>headliner</em>. Dengan opsi <code>-j</code> (atau <code>--parallel</code>), Anda bisa menentukan berapa banyak operasi copy yang dijalankan bersamaan. Default-nya 4, tapi Anda bisa meningkatkannya sesuai kemampuan CPU dan I/O. Bayangkan menyalin ribuan file kecil; daripada menyalin satu per satu, <code>cpx</code> mengerjakan banyak sekaligus, sehingga total waktu berkurang drastis. Pada pengujian terhadap kode sumber Rust (sekitar 65 ribu file), <code>cpx</code> dengan 16 thread hanya butuh 1,09 detik, sementara <code>cp</code> membutuhkan 4,55 detik — sekitar 4,17 kali lebih cepat! 🔥</p>
