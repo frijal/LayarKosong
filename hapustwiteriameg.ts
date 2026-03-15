@@ -1,13 +1,10 @@
 import { join } from "node:path";
 import { readdir, stat } from "node:fs/promises";
 
-// Mengambil argumen ketiga (index 2) dari command line
-// Contoh: bun clean-meta.ts ./src -> targetParam adalah "./src"
 const targetParam = Bun.argv[2];
 
 if (!targetParam) {
   console.error("❌ Tolong masukkan target direktori!");
-  console.log("Contoh: bun clean-meta.ts ./folder-html");
   process.exit(1);
 }
 
@@ -25,22 +22,25 @@ async function cleanTwitterImageMeta(directory: string) {
         const htmlFile = Bun.file(fullPath);
         const content = await htmlFile.text();
 
-        // Regex untuk menghapus tag property="twitter:image" secara bersih
-        const twitterImageRegex = /<meta\s+property="twitter:image"\s+content=".*?">\s*/g;
+        // PENJELASAN REGEX AMAN:
+        // <meta\s+ -> Cari tag meta
+        // (?=[^>]*\bproperty=["']?twitter:image\b) -> Lookahead: Pastikan di dalam tag ini ADA 'property=twitter:image'
+        // [^>]* -> Ambil semua karakter di dalam tag tersebut
+        // >\s* -> Sampai penutup tag dan hapus baris baru
+        // Ini TIDAK akan menyentuh tag yang menggunakan 'name=twitter:image'
+        const safeRegex = /<meta\s+(?=[^>]*\bproperty=["']?twitter:image\b)[^>]*>\s*/g;
 
-        if (twitterImageRegex.test(content)) {
-          const updatedContent = content.replace(twitterImageRegex, "");
+        if (safeRegex.test(content)) {
+          const updatedContent = content.replace(safeRegex, "");
           await Bun.write(fullPath, updatedContent);
-          console.log(`✅ Cleaned: ${fullPath}`);
+          console.log(`✅ Cleaned (property only): ${fullPath}`);
         }
       }
     }
   } catch (err) {
-    console.error(`❌ Gagal memproses ${directory}:`, err.message);
+    console.error(`❌ Gagal:`, err.message);
   }
 }
 
-console.log(`🚀 Memulai pembersihan di: ${targetParam}`);
-cleanTwitterImageMeta(targetParam).then(() => {
-  console.log("✨ Selesai!");
-});
+console.log(`🚀 Membersihkan 'property=twitter:image', menjaga 'name=twitter:image'...`);
+cleanTwitterImageMeta(targetParam);
