@@ -91,7 +91,7 @@ async function main() {
 
     const target = allPosts[0];
     const catHashtag = "#" + target.category.replace(/\s+/g, "").toLowerCase();
-    const message = `${target.desc}\n\n${target.title}\n\n${catHashtag}\n\n${target.url}`;
+    const message = `${target.desc}\n\n${catHashtag}\n\n${target.url}`;
 
     // 4. Eksekusi Post (Menggantikan peran curl di YAML)
     console.log(`🚀 Mengirim ke Facebook Page: ${target.title}`);
