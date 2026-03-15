@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.35
+document_version: 17.36
 last_updated: 2026-03-15
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 15 Maret 2026)
-> Menampilkan 1083 artikel versi 17.35.
+> Menampilkan 1085 artikel versi 17.36.
 
 ## Gaya Hidup
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
@@ -440,6 +440,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Satu Kiblat Satu Kalender: Perjalanan Panjang Menuju Kalender Hijriah Global](https://dalam.web.id/opini-sosial/perjalanan-kalender-hijriah-global-oki) : sejarah dan fakta di balik upaya penyatuan kalender Hijriah global oleh OKI mulai dari simposium Tunis 2009 hingga Resolusi Istanbul 2025
 - [Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026](https://dalam.web.id/opini-sosial/larangan-medsos-anak-16-tahun) : Pemerintah Indonesia resmi terbitkan Permen Komdigi Nomor 9 Tahun 2026 yang melarang anak di bawah 16 tahun punya akun media sosial mandiri mulai 28 Maret 2026.
 - [Menanti Keppres Pindah ke Nusantara: Sekarang Ibu Kota RI Ada di Mana?](https://dalam.web.id/opini-sosial/status-ibu-kota-indonesia-mk) : Hakim MK pertanyakan status hukum Ibu Kota Indonesia saat ini. Jakarta sudah dicabut statusnya tapi Keppres IKN belum terbit. Simak ulasan lengkapnya di sini.
 - [Konsep Kaizen Perbaikan Berkelanjutan untuk Efisiensi Kerja - Dalam Web Id](https://dalam.web.id/opini-sosial/konsep-kaizen-perbaikan-berkelanjutan) : filosofi Kaizen cara meningkatkan efisiensi dan kualitas kerja melalui langkah kecil yang berkelanjutan setiap hari
@@ -600,6 +601,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya](https://dalam.web.id/sistem-terbuka/4-distro-linux-turunan-terbaik) : daftar 4 distro Linux turunan terbaik seperti Linux Mint CachyOS Pop OS dan Ultramarine yang memberikan performa dan kenyamanan lebih baik dari basis aslinya
 - [Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia](https://dalam.web.id/sistem-terbuka/sejarah-kernel-linux-1-0-0) : Kisah lengkap sejarah rilis perdana kernel Linux 1.0.0 oleh Linus Torvalds pada 14 Maret 1994. Pelajari bagaimana sistem operasi ini lahir dan mendominasi dunia teknologi.
 - [CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar](https://dalam.web.id/sistem-terbuka/cachyos-maret-2026-changelog) : CachyOS Maret 2026 hadir dengan pratinjau desktop animasi di installer, integrasi Winboat, perombakan edisi Handheld, kernel linux-cachyos dirilis terpisah, dan mirror baru di Rusia, Swedia, Kanada.
 - [MX Linux 25.1 XFCE Panduan Instal Btrfs Snapper untuk PC Lawas](https://dalam.web.id/sistem-terbuka/mx-linux-25-1-xfce-btrfs-snapper) : Panduan langkah langkah instal MX Linux 25.1 XFCE pada PC lawas dengan Btrfs dan Snapper untuk snapshot rollback dan performa optimal
