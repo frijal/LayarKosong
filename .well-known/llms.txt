@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.34
-last_updated: 2026-03-14
+document_version: 17.35
+last_updated: 2026-03-15
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 14 Maret 2026)
-> Menampilkan 1080 artikel versi 17.34.
+## Index Artikel Terbaru (Updated: 15 Maret 2026)
+> Menampilkan 1083 artikel versi 17.35.
 
 ## Gaya Hidup
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
@@ -123,6 +123,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia](https://dalam.web.id/jejak-sejarah/muhammad-ali-taher-pahlawan-palestina) : Kisah inspiratif Muhammad Ali Taher tokoh Palestina yang menyerahkan seluruh kekayaannya demi kemerdekaan Indonesia pada 1948
 - [Penjelasan Muhammadiyah Terkait Perbedaan Idul Fitri: Biar Nggak Gagal Paham](https://dalam.web.id/jejak-sejarah/penjelasan-muhammadiyah-perbedaan-idul-fitri) : penjelasan Ketua PP Muhammadiyah berkaitan dengan perbedaan keputusan hari Raya Idul Fitri. Dengar tuntas sampai selesai agar tidak gagal paham.
 - [Sejarah Nabi Bani Israil: Daftar Lengkap dan Hasil Dakwahnya](https://dalam.web.id/jejak-sejarah/sejarah-nabi-bani-israil-dan-hasil-dakwah) : Lalu jaman sekarang ada Orang yang sok jago ingin jadi Juru Kedamaian?! Menelusuri sejarah nabi-nabi yang diutus kepada Bani Israil menurut Al-Quran. Dari Nabi Yaqub hingga Nabi Isa, serta rekam jejak pembangkangan kaumnya.
 - [Siapa Ulil Amri? Bedah Fikih Politik Islam & Pemimpin Modern](https://dalam.web.id/jejak-sejarah/siapa-sebenarnya-ulil-amri) : Menelusuri makna Ulil Amri dalam QS An-Nisa 59. Apakah presiden di sistem demokrasi termasuk ulil amri? Simak pandangan ulama klasik dan kontemporer.
@@ -439,6 +440,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026](https://dalam.web.id/opini-sosial/larangan-medsos-anak-16-tahun) : Pemerintah Indonesia resmi terbitkan Permen Komdigi Nomor 9 Tahun 2026 yang melarang anak di bawah 16 tahun punya akun media sosial mandiri mulai 28 Maret 2026.
 - [Menanti Keppres Pindah ke Nusantara: Sekarang Ibu Kota RI Ada di Mana?](https://dalam.web.id/opini-sosial/status-ibu-kota-indonesia-mk) : Hakim MK pertanyakan status hukum Ibu Kota Indonesia saat ini. Jakarta sudah dicabut statusnya tapi Keppres IKN belum terbit. Simak ulasan lengkapnya di sini.
 - [Konsep Kaizen Perbaikan Berkelanjutan untuk Efisiensi Kerja - Dalam Web Id](https://dalam.web.id/opini-sosial/konsep-kaizen-perbaikan-berkelanjutan) : filosofi Kaizen cara meningkatkan efisiensi dan kualitas kerja melalui langkah kecil yang berkelanjutan setiap hari
 - [Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik](https://dalam.web.id/opini-sosial/surat-terbuka-aiman-witjaksono-ruang-diskursus-publik) : Sebuah surat terbuka yang menyoroti kualitas diskusi publik di televisi khususnya program Rakyat Bersuara serta pentingnya menghadirkan debat berbasis ilmu dan data
@@ -895,6 +897,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
 - [Deprecation Node 20 pada GitHub Actions dan Migrasi ke Node 24](https://dalam.web.id/warta-tekno/deprecation-node20-github-actions) : Penjelasan deprecation Node 20 pada GitHub Actions dan panduan migrasi ke Node 24 langkah langkah praktis
