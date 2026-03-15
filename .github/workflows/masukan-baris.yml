@@ -11,11 +11,11 @@ on:
       target_string:
         description: 'Target (contoh: </title>)'
         required: true
-        default: ' '
+        default: ''
       sentence:
         description: 'Kalimat yang disisipkan'
         required: true
-        default: ' '
+        default: ''
       target_directory:
         description: 'Folder target'
         required: true
