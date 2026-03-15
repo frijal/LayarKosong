@@ -11,11 +11,11 @@ on:
       target_string:
         description: 'Target (contoh: </title>)'
         required: true
-        default: '</title>'
+        default: ' '
       sentence:
         description: 'Kalimat yang disisipkan'
         required: true
-        default: '<script src="/ext/data-provider.js" defer></script>'
+        default: ' '
       target_directory:
         description: 'Folder target'
         required: true
@@ -51,9 +51,9 @@ jobs:
           # Gunakan QUOTEMETA untuk memastikan target aman dari karakter regex
           # Kita gunakan delimiter '|' karena tag html sudah pakai '/'
           if [[ "$POSITION" == "sesudah" ]]; then
-            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|\$& \n$SENTENCE|g" {} +
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|\$& $SENTENCE|g" {} +
           else
-            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|$SENTENCE \n\$&|g" {} +
+            find "${{ github.event.inputs.target_directory }}" -type f -name "*.${{ github.event.inputs.file_extension }}" -exec perl -i -pe "s|\Q$TARGET\E|$SENTENCE \$&|g" {} +
           fi
 
       - name: Create Pull Request
