@@ -53,6 +53,7 @@ function replaceContent(html: string): string {
 
     // branding teks lainnya
     .replaceAll("Dalam Web Artikel", "Jaga Data Pribadi Tetap Aman")
+    .replaceAll("Dalam Web Id", "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Redaksi Dalam Web", "Jaga Data Pribadi Tetap Aman")
     .replaceAll("Dalam.web.id", "Jaga Data Pribadi Tetap Aman")
     .replace(/\b dalam\.web\.id /g, " Jaga Data Pribadi Tetap Aman ")
