@@ -1,5 +1,3 @@
-import { writeFileSync } from "node:fs";
-
 // Nama file input dan output
 const INPUT_FILE = "./artikel.json";
 const OUTPUT_FILE = "./redirectmap.json";
@@ -17,26 +15,25 @@ async function simplifyJson() {
     const data = await file.json();
     const simplified: Record<string, string> = {};
 
-    console.log("⏳ Memproses data...");
+    console.log("⏳ Memproses data (Preserving Case)...");
 
     for (const category in data) {
-      // Normalisasi nama kategori (sama seperti logika di Cloudflare Function)
-      const catSlug = category.toLowerCase().trim().replace(/\s+/g, '-');
+    
+      const catSlug = category.trim().replace(/\s+/g, '-');
 
       data[category].forEach((post: any[]) => {
-        // post[1] adalah slug asli (misal: "judul-artikel.html")
-        // Kita simpan tanpa .html agar pencocokan di Edge lebih ringan
+    
         const cleanSlug = post[1]
-        .replace('.html', '')
-        .replace(/\//g, '')
-        .toLowerCase() // TAMBAHKAN INI
-        .trim();       // TAMBAHKAN INI
-
-        simplified[cleanSlug] = catSlug.toLowerCase();
+          .replace('.html', '')
+          .replace(/\//g, '')
+          .trim();
+        
+        // Simpan ke object tanpa paksaan huruf kecil
+        simplified[cleanSlug] = catSlug;
       });
     }
 
-    // Tulis hasil ke file baru (minified untuk menghemat ukuran)
+    // Tulis hasil ke file baru
     await Bun.write(OUTPUT_FILE, JSON.stringify(simplified));
 
     const oldSize = (file.size / 1024).toFixed(2);
