@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.36
-last_updated: 2026-03-15
+document_version: 17.37
+last_updated: 2026-03-16
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 15 Maret 2026)
-> Menampilkan 1085 artikel versi 17.36.
+## Index Artikel Terbaru (Updated: 16 Maret 2026)
+> Menampilkan 1085 artikel versi 17.37.
 
 ## Gaya Hidup
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
