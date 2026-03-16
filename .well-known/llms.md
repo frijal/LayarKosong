@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.37
+document_version: 17.38
 last_updated: 2026-03-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 16 Maret 2026)
-> Menampilkan 1085 artikel versi 17.37.
+> Menampilkan 1088 artikel versi 17.38.
 
 ## Gaya Hidup
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
@@ -293,6 +293,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk - Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [Rumus Upah Lembur Lengkap dan Cara Hitungnya](https://dalam.web.id/lainnya/rumus-upah-lembur) : aturan upah lembur di Indonesia termasuk dasar hukum dan rumus perhitungan upah lembur
 - [Laporan Kalkulator Zakat Fitrah Lengkap](https://dalam.web.id/lainnya/kalkulator-zakat-fitrah-lengkap-laporan) : Laporan Kalkulator lengkap penerimaan dan penyaluran Zakat Fitrah secara transparan. Lihat rincian data pembagian zakat selengkapnya di sini.
 - [Harga Sebuah Kapal Induk dan Sepiring Makan Anak Sekolah](https://dalam.web.id/lainnya/harga-sebuah-kapal-induk-dan-sepiring-makan-anak-sekolah) : Rocky Gerung bandingkan harga satu kapal induk USS Gerald R Ford sekitar 200 triliun rupiah dengan program Makan Bergizi Gratis MBG. Refleksi santai tentang prioritas anggaran negara antara pertahanan dan gizi anak Indonesia
 - [KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Tentang Skema Koperasi Desa Merah Putih](https://dalam.web.id/lainnya/kdmp-fase-baru-investasi-desa-atau-risiko-fiskal-tersembunyi) : KDMP Fase Baru: Investasi Desa atau Risiko Fiskal Tersembunyi? Analisis komprehensif mengenai skema Koperasi Desa Merah Putih, struktur pembiayaan Rp3 miliar per desa, risiko fiskal, dan dampaknya bagi ekonomi desa.
@@ -899,6 +900,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/warta-tekno/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
+- [Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI](https://dalam.web.id/warta-tekno/analisis-putusan-mk-yim-vs-bgs) : kupas tuntas perbedaan tafsir Menko Yusril Ihza Mahendra dan Menkes Budi Gunadi Sadikin atas Putusan MK Nomor 111 PUU XXII 2024 terkait kolegium medis
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
