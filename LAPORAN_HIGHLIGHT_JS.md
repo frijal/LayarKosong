@@ -1,0 +1,74 @@
+# Audit Status Highlight.js
+
+### ✅ Memiliki Keduanya (Library + Trigger)
+- `artikel/refind-cachyos-theme.html`
+- `artikel/tips-belajar-bahasa-dari-membaca.html`
+- `artikel/ubuntu-wsl-pro.html`
+- `artikel/tutorial-fdupes-hapus-file-duplikat.html`
+- `artikel/microfetch-fetch-tool-super-cepat.html`
+- `artikel/remove-windows-ai.html`
+- `artikel/mx-linux-25-1-xfce-btrfs-snapper.html`
+- `artikel/analisis-ram-dmidecode.html`
+- `artikel/cara-kerja-github-workflow-maintenance.html`
+- `artikel/migrasi-github-actions-node-24-bun.html`
+- `artikel/deprecation-node20-github-actions.html`
+- `artikel/cachyos-maret-2026-changelog.html`
+- `artikel/panduan-instalasi-mx-linux-btrfs.html`
+- `artikel/usia-instalasi-linux.html`
+- `artikel/panduan-automasi-pr-github-peter-evans.html`
+- `artikel/cara-bersihkan-cachyos-arch-linux.html`
+- `artikel/microsoft-copilot-cowork.html`
+- `sistem-terbuka/refind-cachyos-theme.html`
+- `sistem-terbuka/ubuntu-wsl-pro.html`
+- `sistem-terbuka/tutorial-fdupes-hapus-file-duplikat.html`
+- `sistem-terbuka/microfetch-fetch-tool-super-cepat.html`
+- `sistem-terbuka/mx-linux-25-1-xfce-btrfs-snapper.html`
+- `sistem-terbuka/analisis-ram-dmidecode.html`
+- `sistem-terbuka/cachyos-maret-2026-changelog.html`
+- `sistem-terbuka/panduan-instalasi-mx-linux-btrfs.html`
+- `sistem-terbuka/usia-instalasi-linux.html`
+- `sistem-terbuka/cara-bersihkan-cachyos-arch-linux.html`
+- `gaya-hidup/tips-belajar-bahasa-dari-membaca.html`
+- `warta-tekno/remove-windows-ai.html`
+- `warta-tekno/cara-kerja-github-workflow-maintenance.html`
+- `warta-tekno/migrasi-github-actions-node-24-bun.html`
+- `warta-tekno/deprecation-node20-github-actions.html`
+- `warta-tekno/panduan-automasi-pr-github-peter-evans.html`
+- `warta-tekno/microsoft-copilot-cowork.html`
+
+### ⚠️ Hanya Library (Tanpa Trigger)
+- `artikel/maulid-ringkas.html`
+- `artikel/windows-vs-linux-kebiasaan.html`
+- `artikel/konversi-pdf-lokal-poppler.html`
+- `artikel/fiqih-haji-memahami-konsep-mampu.html`
+- `artikel/poac-perencanaan-partisipatif.html`
+- `artikel/maulid-perbandingan.html`
+- `artikel/maulid-slides.html`
+- `artikel/cara-hitung-lembur-hari-raya.html`
+- `artikel/penjelasan-markdown-js.html`
+- `artikel/xpenguins.html`
+- `artikel/ventoy-multi-boot-usb-drag-drop.html`
+- `artikel/keamanan-linux-vs-windows.html`
+- `sistem-terbuka/windows-vs-linux-kebiasaan.html`
+- `sistem-terbuka/xpenguins.html`
+- `sistem-terbuka/ventoy-multi-boot-usb-drag-drop.html`
+- `sistem-terbuka/keamanan-linux-vs-windows.html`
+- `olah-media/konversi-pdf-lokal-poppler.html`
+- `opini-sosial/poac-perencanaan-partisipatif.html`
+- `warta-tekno/penjelasan-markdown-js.html`
+- `jejak-sejarah/maulid-ringkas.html`
+- `jejak-sejarah/maulid-perbandingan.html`
+- `jejak-sejarah/maulid-slides.html`
+
+### ⚠️ Hanya Trigger (Tanpa Library)
+- `artikel/cleanup-dependencies.html`
+- `artikel/cleanup-comparison.html`
+- `artikel/imagemagick-paksa-rasio-16-9.html`
+- `artikel/gabung-pdf.html`
+- `artikel/menjalankan-rencana.html`
+- `data-deletion.html`
+- `olah-media/imagemagick-paksa-rasio-16-9.html`
+- `olah-media/gabung-pdf.html`
+- `opini-sosial/menjalankan-rencana.html`
+- `warta-tekno/cleanup-dependencies.html`
+- `warta-tekno/cleanup-comparison.html`
