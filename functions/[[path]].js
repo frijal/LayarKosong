@@ -22,22 +22,27 @@ export async function onRequest(context) {
       const cache = caches.default;
       const mapUrl = `${url.origin}/redirectmap.json`;
       
-      // Cek cache
+      // Cek apakah ada di cache
       let mapResponse = await cache.match(mapUrl);
       
       if (!mapResponse) {
         const fetchRes = await fetch(mapUrl);
         
         if (fetchRes.ok) {
+          // KUNCI: Gunakan .clone() agar response bisa dibaca dua kali
+          // 1. Untuk dimasukkan ke cache
+          // 2. Untuk di-parse menjadi JSON
           mapResponse = new Response(fetchRes.body, fetchRes);
-          // Tambahkan header cache untuk 10 hari
           mapResponse.headers.append("Cache-Control", "s-maxage=864000");
+          
           context.waitUntil(cache.put(mapUrl, mapResponse.clone()));
         }
       }
 
+      // Jika ada respon (dari cache atau fetch baru), proses JSON-nya
       if (mapResponse && mapResponse.ok) {
-        const map = await mapResponse.json();
+        // Kita gunakan clone() agar stream utama tidak tertutup
+        const map = await mapResponse.clone().json();
         
         // Cek eksak (Case-Sensitive)
         if (map.hasOwnProperty(originalSlug)) {
