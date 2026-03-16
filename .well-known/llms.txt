@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.46
+document_version: 17.47
 last_updated: 2026-03-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 16 Maret 2026)
-> Menampilkan 1090 artikel versi 17.46.
+> Menampilkan 1090 artikel versi 17.47.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -448,7 +448,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Satu Kiblat Satu Kalender: Perjalanan Panjang Menuju Kalender Hijriah Global](https://dalam.web.id/opini-sosial/perjalanan-kalender-hijriah-global-oki) : sejarah dan fakta di balik upaya penyatuan kalender Hijriah global oleh OKI mulai dari simposium Tunis 2009 hingga Resolusi Istanbul 2025
 - [Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026](https://dalam.web.id/opini-sosial/larangan-medsos-anak-16-tahun) : Pemerintah Indonesia resmi terbitkan Permen Komdigi Nomor 9 Tahun 2026 yang melarang anak di bawah 16 tahun punya akun media sosial mandiri mulai 28 Maret 2026.
 - [Menanti Keppres Pindah ke Nusantara: Sekarang Ibu Kota RI Ada di Mana?](https://dalam.web.id/opini-sosial/status-ibu-kota-indonesia-mk) : Hakim MK pertanyakan status hukum Ibu Kota Indonesia saat ini. Jakarta sudah dicabut statusnya tapi Keppres IKN belum terbit. Simak ulasan lengkapnya di sini.
-- [Konsep Kaizen Perbaikan Berkelanjutan untuk Efisiensi Kerja - Dalam Web Id](https://dalam.web.id/opini-sosial/konsep-kaizen-perbaikan-berkelanjutan) : filosofi Kaizen cara meningkatkan efisiensi dan kualitas kerja melalui langkah kecil yang berkelanjutan setiap hari
+- [Konsep Kaizen Perbaikan Berkelanjutan untuk Efisiensi Kerja - Jaga Data Pribadi Tetap Aman](https://dalam.web.id/opini-sosial/konsep-kaizen-perbaikan-berkelanjutan) : filosofi Kaizen cara meningkatkan efisiensi dan kualitas kerja melalui langkah kecil yang berkelanjutan setiap hari
 - [Surat Terbuka Untuk Aiman Witjaksono Tentang Kualitas Diskursus Publik](https://dalam.web.id/opini-sosial/surat-terbuka-aiman-witjaksono-ruang-diskursus-publik) : Sebuah surat terbuka yang menyoroti kualitas diskusi publik di televisi khususnya program Rakyat Bersuara serta pentingnya menghadirkan debat berbasis ilmu dan data
 - [Polemik Program Makan Bergizi Gratis Dinilai Cerminkan Otoritarianisme Birokrasi](https://dalam.web.id/opini-sosial/polemik-mbg-busyro-muqoddas-demokrasi) : Ketua PP Muhammadiyah Busyro Muqoddas menilai polemik program Makan Bergizi Gratis menunjukkan gejala otoritarianisme birokrasi dan pentingnya jalur konstitusional melalui Mahkamah Konstitusi
 - [Krisis Driver Ojek Online di Indonesia: Mengapa Sekarang Sulit Dapat Driver?](https://dalam.web.id/opini-sosial/krisis-driver-ojek-online) : ojek online semakin sulit didapat? Simak analisis mendalam krisis driver ojol di Indonesia terkait kesejahteraan, tarif, dan dampaknya bagi konsumen.
