@@ -2,39 +2,48 @@ export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
   
-  // 1. Ambil path, decode karakter spesial (misal %20 jadi spasi), 
-  // lalu ubah ke huruf kecil semua agar case-insensitive.
   const decodedPath = decodeURIComponent(url.pathname).toLowerCase();
-
-  // 2. Pecah path dan ambil segmen terakhir (slug)
   const pathSegments = decodedPath.split('/').filter(Boolean);
   let requestedSlug = pathSegments[pathSegments.length - 1] || "";
-
-  // 3. Bersihkan slug dari ekstensi .html dan trailing slashes
   requestedSlug = requestedSlug.replace('.html', '').trim();
 
   const response = await next();
 
-  // Hanya proses jika 404 dan slug tidak kosong
   if (response.status === 404 && requestedSlug) {
     try {
-      const mapRes = await fetch(`${url.origin}/redirectmap.json`);
-      if (!mapRes.ok) return response;
+      const cache = caches.default;
+      const mapUrl = `${url.origin}/redirectmap.json`;
+      
+      // 1. Coba cari di Cache terlebih dahulu
+      let mapResponse = await cache.match(mapUrl);
 
-      const map = await mapRes.json();
-
-      // 4. Cek kecocokan di map
-      // Karena kunci di JSON sudah kita buat kecil & bersih di script Bun,
-      // maka pencocokan akan selalu akurat.
-      if (map[requestedSlug]) {
-        const category = map[requestedSlug];
+      // 2. Jika tidak ada di cache (Cache Miss), lakukan fetch manual
+      if (!mapResponse) {
+        const fetchRes = await fetch(mapUrl);
         
-        // Redirect 301 ke URL tujuan yang bersih
-        // Menggunakan url.origin agar tetap di domain yang sama
-        return Response.redirect(`${url.origin}/${category}/${requestedSlug}`, 301);
+        if (fetchRes.ok) {
+          // Buat salinan response karena kita perlu menyimpan ke cache
+          // dan juga menggunakannya (parsing JSON)
+          mapResponse = new Response(fetchRes.body, fetchRes);
+          
+          // Set durasi cache (misal: simpan selama 1 jam agar tetap update)
+          mapResponse.headers.append("Cache-Control", "s-maxage=864000");
+          
+          // Simpan ke cache secara background (jangan ditunggu/waitUntil)
+          context.waitUntil(cache.put(mapUrl, mapResponse.clone()));
+        }
+      }
+
+      if (mapResponse && mapResponse.ok) {
+        const map = await mapResponse.json();
+
+        if (map[requestedSlug]) {
+          const category = map[requestedSlug];
+          return Response.redirect(`${url.origin}/${category}/${requestedSlug}`, 301);
+        }
       }
     } catch (err) {
-      console.error("Smart Redirect Error:", err);
+      console.error("Smart Redirect Cache Error:", err);
     }
   }
 
