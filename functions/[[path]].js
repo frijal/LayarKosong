@@ -39,7 +39,10 @@ export async function onRequest(context) {
           return Response.redirect(`${url.origin}/${category}/${matchKey}`, 301);
         }
       }
-    } 
+    } catch (err) {
+      // Catch block tetap ada untuk mencegah error runtime, 
+      // tapi tanpa perintah console apa pun di dalamnya
+    }
   }
 
   return response;
