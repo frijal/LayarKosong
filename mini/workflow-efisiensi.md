@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Senin, 16 Maret 2026 pukul 20.56.13 WITA
+> **Audit Terakhir:** Senin, 16 Maret 2026 pukul 21.01.27 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -24,11 +24,11 @@
 | generate-json-xml.yml | html-to-markdown.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | minify-html.ts | 🟡 Ada | `@minify-html/node` | ✅ Sudah Optimal |
 | generate-json-xml.yml | minify-jsonxml.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| hapushitung.yml | indexnow.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
-| hapushitung.yml | cek-gambar.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
-| hapushitung.yml | workflow-list.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
-| hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
-| hapushitung.yml | metadata-audit.ts | ⚪ Tidak Ada | `glob`, `cheerio` | 🚨 **Butuh bun install!** |
+| hapushitung.yml | indexnow.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| hapushitung.yml | cek-gambar.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| hapushitung.yml | workflow-list.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| hapushitung.yml | audit-workflow-efisiensi.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| hapushitung.yml | metadata-audit.ts | 🟡 Ada | `glob`, `cheerio` | ✅ Sudah Optimal |
 | Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom` | ✅ Sudah Optimal |
 | proses-artikelx.yml | Edit-Komponen-HTML.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
