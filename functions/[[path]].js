@@ -2,9 +2,11 @@ export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
   
-  // 1. Ambil slug asli untuk kebutuhan redirect nantinya
-  const pathSegments = decodeURIComponent(url.pathname).split('/').filter(Boolean);
-  const originalSlug = (pathSegments[pathSegments.length - 1] || "").replace(/\.html$/, '').trim();
+  // 1. Ambil path, hilangkan trailing slash, dan hapus ekstensi .html
+  // Kita tidak menggunakan toLowerCase() di sini agar tetap Case-Sensitive
+  const cleanPath = decodeURIComponent(url.pathname).replace(/\/$/, '').replace(/\.html$/, '');
+  const pathSegments = cleanPath.split('/').filter(Boolean);
+  const originalSlug = pathSegments[pathSegments.length - 1] || "";
 
   const response = await next();
 
@@ -27,21 +29,18 @@ export async function onRequest(context) {
       if (mapResponse && mapResponse.ok) {
         const map = await mapResponse.json();
         
-        // 3. Logika Hybrid: 
-        // Cari pakai lowercase agar "kebal", tapi ambil nilai aslinya dari JSON
-        const lowerSlug = originalSlug.toLowerCase();
-        const mapKeys = Object.keys(map);
-        const matchKey = mapKeys.find(k => k.toLowerCase() === lowerSlug);
-
-        if (matchKey) {
-          const category = map[matchKey];
-          // Redirect ke URL yang sudah ditentukan di map
-          return Response.redirect(`${url.origin}/${category}/${matchKey}`, 301);
+        // 3. Pencarian Case-Sensitive Murni
+        // Menggunakan slug yang sudah dibersihkan dari .html dan /
+        if (map.hasOwnProperty(originalSlug)) {
+          const category = map[originalSlug];
+          const catSlug = category.trim().replace(/\s+/g, '-');
+          
+          // Redirect ke URL tujuan
+          return Response.redirect(`${url.origin}/${catSlug}/${originalSlug}`, 301);
         }
       }
     } catch (err) {
-      // Catch block tetap ada untuk mencegah error runtime, 
-      // tapi tanpa perintah console apa pun di dalamnya
+      // Menjaga agar script tetap silent jika terjadi error fetch
     }
   }
 
