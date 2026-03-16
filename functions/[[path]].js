@@ -1,21 +1,24 @@
 export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
-
-  // Ambil path, hapus trailing slash, dan hapus ekstensi .html (case-insensitive removal)
-  // Tidak ada toLowerCase() sehingga lookup tetap case-sensitive
-  const cleanPath = decodeURIComponent(url.pathname).replace(/\/$/, '').replace(/\.html$/i, '');
+  
+  // Ambil path, decode, lalu bersihkan dari trailing slash
+  const cleanPath = decodeURIComponent(url.pathname).replace(/\/$/, '');
+  
+  // Ambil segmen terakhir sebagai slug
   const pathSegments = cleanPath.split('/').filter(Boolean);
-  const originalSlug = pathSegments[pathSegments.length - 1] || "";
+  const rawSlug = pathSegments[pathSegments.length - 1] || "";
+  
+  // Bersihkan .html hanya jika ada di akhir (sama dengan regex di Bun)
+  const originalSlug = rawSlug.replace(/\.html$/, '').trim();
 
   const response = await next();
 
-  // Hanya proses jika 404 dan ada slug
   if (response.status === 404 && originalSlug) {
     try {
       const cache = caches.default;
       const mapUrl = `${url.origin}/redirectmap.json`;
-
+      
       let mapResponse = await cache.match(mapUrl);
       if (!mapResponse) {
         const fetchRes = await fetch(mapUrl);
@@ -28,18 +31,17 @@ export async function onRequest(context) {
 
       if (mapResponse && mapResponse.ok) {
         const map = await mapResponse.json();
-
-        // Pencarian Case-Sensitive Murni: hanya cocok bila key persis sama
-        if (Object.prototype.hasOwnProperty.call(map, originalSlug)) {
-          const category = map[originalSlug];
-          // Ganti spasi dengan '-' untuk path kategori, tetapi JANGAN ubah case
-          const catSlug = String(category).trim().replace(/\s+/g, '-');
-
+        
+        // Pencarian Case-Sensitive Murni
+        if (map.hasOwnProperty(originalSlug)) {
+          const catSlug = map[originalSlug];
+          
+          // Redirect ke URL tujuan: /kategori-rapi/Slug-Asli
           return Response.redirect(`${url.origin}/${catSlug}/${originalSlug}`, 301);
         }
       }
     } catch (err) {
-      // silent on error (tetap kembalikan response asli)
+      // Silent
     }
   }
 
