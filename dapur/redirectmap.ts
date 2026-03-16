@@ -26,10 +26,13 @@ async function simplifyJson() {
       data[category].forEach((post: any[]) => {
         // post[1] adalah slug asli (misal: "judul-artikel.html")
         // Kita simpan tanpa .html agar pencocokan di Edge lebih ringan
-        const cleanSlug = post[1].replace('.html', '').replace(/\//g, '');
-        
-        // Simpan ke object baru: { "slug": "kategori" }
-        simplified[cleanSlug] = catSlug;
+        const cleanSlug = post[1]
+        .replace('.html', '')
+        .replace(/\//g, '')
+        .toLowerCase() // TAMBAHKAN INI
+        .trim();       // TAMBAHKAN INI
+
+        simplified[cleanSlug] = catSlug.toLowerCase();
       });
     }
 
