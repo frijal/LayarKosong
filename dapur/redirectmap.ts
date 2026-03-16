@@ -1,72 +1,36 @@
-// Nama file input dan output
 const INPUT_FILE = "./artikel.json";
 const OUTPUT_FILE = "./redirectmap.json";
 
 async function simplifyJson() {
   try {
     const file = Bun.file(INPUT_FILE);
-
-    if (!(await file.exists())) {
-      console.error(`❌ File ${INPUT_FILE} tidak ditemukan!`);
-      return;
-    }
+    if (!(await file.exists())) return;
 
     const data = await file.json();
-    const simplified = {};
-
-    console.log("⏳ Memproses data (preserve original case)...");
-
-    const normalizeSlug = (raw) => {
-      if (raw == null) return "";
-      let s = String(raw);
-      try { s = decodeURIComponent(s); } catch (e) {}
-      s = s.trim();
-      s = s.split(/[?#]/)[0];        // hapus query/hash
-      s = s.replace(/^\/+/, "");     // hapus leading slash
-      s = s.replace(/\/+$/, "");     // hapus trailing slash
-      s = s.replace(/\.html$/i, ""); // hapus ekstensi .html atau .HTML (tidak mengubah case slug)
-      return s;
-    };
+    const simplified: Record<string, string> = {};
 
     for (const category in data) {
-      const posts = data[category];
-      if (!Array.isArray(posts)) {
-        console.warn(`⚠️  Skipping category ${category} because it is not an array`);
-        continue;
-      }
+      // Kategori tetap dinormalisasi (lowercase + dash) agar URL tujuan rapi
+      const catSlug = category.toLowerCase().trim().replace(/\s+/g, '-');
 
-      for (const post of posts) {
-        let rawSlug = "";
-        if (Array.isArray(post)) {
-          rawSlug = post.find((p) => typeof p === "string" && p.length > 0) ?? post[1] ?? post[0] ?? "";
-        } else if (typeof post === "string") {
-          rawSlug = post;
-        } else if (post && typeof post === "object") {
-          rawSlug = post.slug ?? post.url ?? post.path ?? "";
-        }
-
-        const cleanSlug = normalizeSlug(rawSlug);
-        if (!cleanSlug) continue;
-
-        // Simpan slug persis sebagai key dan category persis sebagai value
-        if (!simplified.hasOwnProperty(cleanSlug)) {
-          simplified[cleanSlug] = String(category);
-        }
-      }
+      data[category].forEach((post: any[]) => {
+        // Slug dibersihkan persis sama dengan cara Cloudflare menangani path
+        // 1. Hapus .html (jika ada di akhir)
+        // 2. Hapus semua slash
+        // 3. Trim spasi
+        const cleanSlug = post[1]
+          .replace(/\.html$/, '') 
+          .replace(/\//g, '')
+          .trim();
+        
+        simplified[cleanSlug] = catSlug;
+      });
     }
 
-    await Bun.write(OUTPUT_FILE, JSON.stringify(simplified, null, 2), { encoding: "utf8" });
-
-    const oldSize = (file.size / 1024).toFixed(2);
-    const newSize = (Bun.file(OUTPUT_FILE).size / 1024).toFixed(2);
-
-    console.log(`✅ Berhasil membuat ${OUTPUT_FILE}`);
-    console.log(`📊 Ukuran Lama: ${oldSize} KB`);
-    console.log(`📊 Ukuran Baru: ${newSize} KB`);
-    console.log(`🚀 File disimpan sebagai: ${OUTPUT_FILE}`);
+    await Bun.write(OUTPUT_FILE, JSON.stringify(simplified));
+    console.log(`✅ Berhasil diproses dengan Preserving Case.`);
   } catch (error) {
-    console.error("❌ Terjadi kesalahan:", error);
+    console.error(error);
   }
 }
-
 simplifyJson();
