@@ -25,6 +25,9 @@ jobs:
         with:
           bun-version: latest
 
+      - name: '3. Install Dependencies'
+        run: bun install 
+
       # ========== AUTOMATION SCRIPTS ==========
       - name: 🔍 IndexNow Sync
         continue-on-error: true
