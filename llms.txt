@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.44
+document_version: 17.45
 last_updated: 2026-03-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 16 Maret 2026)
-> Menampilkan 1089 artikel versi 17.44.
+> Menampilkan 1090 artikel versi 17.45.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -295,6 +295,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk - Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat](https://dalam.web.id/lainnya/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional) : Putusan MK 16 Maret 2026: UU No.12/1980 tentang hak keuangan pejabat dinyatakan inkonstitusional bersyarat. DPR diberi waktu 2 tahun perbaiki aturan pensiun.
 - [Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI](https://dalam.web.id/lainnya/analisis-putusan-mk-yim-vs-bgs) : kupas tuntas perbedaan tafsir Menko Yusril Ihza Mahendra dan Menkes Budi Gunadi Sadikin atas Putusan MK Nomor 111 PUU XXII 2024 terkait kolegium medis
 - [Rumus Upah Lembur Lengkap dan Cara Hitungnya](https://dalam.web.id/lainnya/rumus-upah-lembur) : aturan upah lembur di Indonesia termasuk dasar hukum dan rumus perhitungan upah lembur
 - [Laporan Kalkulator Zakat Fitrah Lengkap](https://dalam.web.id/lainnya/kalkulator-zakat-fitrah-lengkap-laporan) : Laporan Kalkulator lengkap penerimaan dan penyaluran Zakat Fitrah secara transparan. Lihat rincian data pembagian zakat selengkapnya di sini.
