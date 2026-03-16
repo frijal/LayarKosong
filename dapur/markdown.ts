@@ -60,7 +60,7 @@ function convertInlineMarkdown(text: string): string {
 // === 2️⃣ Proses Markdown di halaman ==
 function enhanceMarkdown(): void {
   // Masukkan 'li' kembali ke dalam selektor agar teks di dalam list di-render
-  const selector = "p, blockquote, td, th, h1, h2, h3, h4, h5, h6, li, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  const selector = "p, blockquote, td, th, h1, h2, h3, h4, h5, h6, li, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .language-markdown, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   
   document.querySelectorAll(selector).forEach((el) => {
     const element = el as HTMLElement;
