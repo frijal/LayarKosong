@@ -70,40 +70,76 @@ async function processFile(file: string) {
   if (/index\.html$/i.test(file)) return null;
 
   let content = await fs.readFile(file, "utf8");
-  let replaced = 0, cleaned = 0;
+  let replaced = 0, cleaned = 0, injected = 0;
 
+  // 1. Proses penggantian URL (MAP)
   for (const m of MAP) {
-    content = content.replace(m.combined, (_m, p1, p2, p3) => { replaced++; return `${p1}${p2}${p3}${m.repl}${p3}`; });
+    content = content.replace(m.combined, (_m, p1, p2, p3) => {
+      replaced++;
+      return `${p1}${p2}${p3}${m.repl}${p3}`;
+    });
   }
 
+  // 2. Bersihkan atribut
   if (replaced > 0) {
     content = content.replace(ATTR_REGEX, () => { cleaned++; return ""; });
   }
 
-  if (replaced > 0 || cleaned > 0) {
+  // 3. Injeksi Trigger CERDAS (Hanya jika ada kode)
+  // Deteksi: Apakah ada <pre>, <code>, atau pola markdown ``` ?
+  const hasCodeElements = /<pre|<code|```/i.test(content);
+  const hasTrigger = /hljs\.highlightAll\(\)/.test(content);
+
+  if (hasCodeElements && !hasTrigger && content.includes("</body>")) {
+    const injection = `\n<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>\n</body>`;
+    content = content.replace("</body>", injection);
+    injected = 1;
+  }
+
+  // 4. Simpan jika ada perubahan
+  if (replaced > 0 || cleaned > 0 || injected > 0) {
     if (!dryRun) {
       if (!noBackup) await fs.copyFile(file, `${file}.bak`);
       await fs.writeFile(file, content, "utf8");
     }
-    return { file, replaced, cleaned };
+    return { file, replaced, cleaned, injected };
   }
   return null;
 }
 
-// -------------------- EXECUTION --------------------
+// -------------------- EXECUTION & REPORTING --------------------
 const files = expandGlobs(["*.html", "artikelx/*.html", "artikel/*.html"]);
 if (files.length === 0) {
   if (!quiet) console.log("⚠️ Tidak ada file HTML ditemukan.");
   process.exit(0);
 }
 
+// Menjalankan pemrosesan
 const results = await Promise.all(files.map(processFile));
+
+// Mengolah statistik dari hasil pemrosesan
 const stats = results.filter(Boolean).reduce((acc, curr) => ({
   files: acc.files + 1,
   rep: acc.rep + (curr?.replaced || 0),
-  cln: acc.cln + (curr?.cleaned || 0)
-}), { files: 0, rep: 0, cln: 0 });
+                                                             cln: acc.cln + (curr?.cleaned || 0),
+                                                             inj: acc.inj + (curr?.injected || 0) // Menghitung injeksi trigger otomatis
+}), { files: 0, rep: 0, cln: 0, inj: 0 });
 
+// Laporan hasil akhir
 if (!quiet) {
-  console.log(`\n🎯 Selesai! ${stats.files} file diperbarui. Total URL: ${stats.rep}, Atribut dibersihkan: ${stats.cln}.`);
+  console.log(`\n---------------------------------------------------------`);
+  console.log(`🎯 Operasi "Layar Kosong Bersih" Selesai!`);
+  console.log(`---------------------------------------------------------`);
+  console.log(`✅ File diperbarui        : ${stats.files}`);
+  console.log(`🔗 URL CDN diganti        : ${stats.rep}`);
+  console.log(`🧹 Atribut dibersihkan    : ${stats.cln}`);
+  console.log(`🚀 Trigger baru disuntik  : ${stats.inj}`);
+  console.log(`---------------------------------------------------------`);
+
+  const statusMessage = stats.files > 0
+  ? "Semua artikel sudah ramping & SEO ready!"
+  : "Tidak ada perubahan, blog sudah sangat bersih!";
+
+  console.log(`🏁 ${statusMessage}`);
+  console.log(`---------------------------------------------------------`);
 }
