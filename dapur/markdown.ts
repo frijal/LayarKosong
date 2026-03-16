@@ -1,69 +1,12 @@
 /**
  * =============================================================
- * MARKDOWN ENHANCER v4.3 (TypeScript Edition)
+ * MARKDOWN ENHANCER v4.4 (Lean Edition)
+ * Fokus: Hanya konversi Markdown, highlight.js diurus terpisah.
  * =============================================================
  */
 
-// Deklarasi global agar TypeScript mengenali window.hljs dari script eksternal
-declare global {
-  interface Window {
-    hljs: any;
-  }
-}
-
-(async function () {
-  // === 1️⃣ Muat highlight.js jika diperlukan ===
-  async function loadHighlightJSIfNeeded(): Promise<any> {
-    const hasCodeBlocks = document.querySelector("pre code");
-    if (!hasCodeBlocks) return null;
-
-    if (window.hljs) return window.hljs;
-
-    // Cek apakah script sedang dimuat oleh elemen lain
-    if (document.querySelector('script[src="/ext/highlight.js"]')) {
-      return new Promise((resolve) => {
-        const check = setInterval(() => {
-          if (window.hljs) {
-            clearInterval(check);
-            resolve(window.hljs);
-          }
-        }, 100);
-      });
-    }
-
-    const script = document.createElement("script");
-    script.src = "/ext/highlight.js";
-    script.defer = true;
-    document.head.appendChild(script);
-
-    await new Promise((res) => (script.onload = res));
-    return window.hljs;
-  }
-
-  // === 2️⃣ Terapkan tema highlight.js sesuai sistem ===
-  function applyHighlightTheme(): void {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const existing = document.querySelector("link[data-hljs-theme]") as HTMLLinkElement | null;
-    const newHref = prefersDark ? "/ext/github-dark.min.css" : "/ext/github.min.css";
-
-    if (existing) {
-      if (existing.href !== newHref && !existing.href.endsWith(newHref)) {
-        existing.href = newHref;
-      }
-    } else {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = newHref;
-      link.dataset.hljsTheme = "true";
-      document.head.appendChild(link);
-    }
-  }
-
-  function setupThemeListener(): void {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyHighlightTheme);
-  }
-
-  // === 3️⃣ Markdown converter (Regex Engine) ===
+(function () {
+  // === 1️⃣ Markdown converter (Regex Engine) ===
   function convertInlineMarkdown(text: string): string {
     return text
       .replace(/&gt;/g, ">")
@@ -74,7 +17,7 @@ declare global {
       })
       // Horizontal Rule
       .replace(/^([\-\*_]){3,}\s*$/gm, "<hr>")
-      // Table (Auto Data-Label for Mobile)
+      // Table
       .replace(/((?:\|.*\|\n)+)/g, (match) => {
         const rows = match.trim().split("\n").filter((r) => r.trim());
         if (rows.length < 2) return match;
@@ -106,30 +49,31 @@ declare global {
       .replace(/~~(.*?)~~/g, '<del>$1</del>')
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^\*])\*([^\*]+)\*([^\*]|$)/g, "$1<em>$2</em>$3")
-      // Inline Code (Single Backtick)
+      // Inline Code
       .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
-      // Lists
+      // Lists (Tetap aman untuk <ol>)
       .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>")
       .replace(/(<li>.*<\/li>)/gs, (match) => {
-        return match.includes('<ul>') ? match : `<ul>${match}</ul>`;
+        if (match.includes('<ul>') || match.includes('<ol>')) return match;
+        return `<ul>${match}</ul>`;
       });
   }
 
-  // === 4️⃣ Proses Markdown di halaman ==
+  // === 2️⃣ Proses Markdown di halaman ==
   function enhanceMarkdown(): void {
-    const selector = "p, ol, ul, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
-
+    const selector = "p, blockquote, td, th, h1, h2, h3, h4, h5, h6, alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
     document.querySelectorAll(selector).forEach((el) => {
       const element = el as HTMLElement;
-      if (element.classList.contains("no-md")) return;
-      let original = element.innerHTML;
+      if (element.classList.contains("no-md") || element.closest('ol')) return;
+      
+      const original = element.innerHTML;
       if (!original.trim()) return;
       const rendered = convertInlineMarkdown(original);
       if (rendered !== original) { element.innerHTML = rendered; }
     });
   }
 
-  // === 5️⃣ Fix Display Inline Code ===
+  // === 3️⃣ Fix Display Inline Code ===
   function fixInlineCodeDisplay(): void {
     document.querySelectorAll<HTMLElement>("code.inline-code").forEach((el) => {
       el.style.display = "inline";
@@ -137,24 +81,10 @@ declare global {
     });
   }
 
-  // === 6️⃣ Highlight JS Init ===
-  async function highlightIfPresent(): Promise<void> {
-    const codeBlocks = document.querySelectorAll("pre code");
-    if (!codeBlocks.length) return;
-    const hljs = await loadHighlightJSIfNeeded();
-    if (!hljs) return;
-    applyHighlightTheme();
-    setupThemeListener();
-    codeBlocks.forEach((el) => {
-      try { window.hljs.highlightElement(el); } catch (e) {}
-    });
-  }
-
   // === 🚀 Main Launch ===
-  async function run(): Promise<void> {
+  function run(): void {
     enhanceMarkdown();
     fixInlineCodeDisplay();
-    await highlightIfPresent();
   }
 
   if (document.readyState === "loading") {
