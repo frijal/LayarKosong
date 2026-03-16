@@ -85,15 +85,26 @@ async function processFile(file: string) {
     content = content.replace(ATTR_REGEX, () => { cleaned++; return ""; });
   }
 
-  // 3. Injeksi Trigger CERDAS (Hanya jika ada kode)
-  // Deteksi: Apakah ada <pre>, <code>, atau pola markdown ``` ?
+  // 3. Injeksi Trigger CERDAS (Tepat setelah highlight.js)
   const hasCodeElements = /<pre|<code|```/i.test(content);
   const hasTrigger = /hljs\.highlightAll\(\)/.test(content);
 
-  if (hasCodeElements && !hasTrigger && content.includes("</body>")) {
-    const injection = `\n<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>\n</body>`;
-    content = content.replace("</body>", injection);
-    injected = 1;
+  if (hasCodeElements && !hasTrigger) {
+    // Cari posisi script highlight.js
+    const hljsScriptMatch = content.match(/<script[^>]*src=["']?\/ext\/highlight\.js["']?[^>]*><\/script>/i);
+
+    if (hljsScriptMatch) {
+      const injection = `\n<script>hljs.highlightAll();</script>`;
+      // Gabungkan script asli dengan injection
+      const newContent = content.replace(hljsScriptMatch[0], hljsScriptMatch[0] + injection);
+      content = newContent;
+      injected = 1;
+    } else if (content.includes("</body>")) {
+      // Fallback: Jika tidak ditemukan tag script di atas, tetap taruh di bawah
+      const injection = `\n<script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>\n</body>`;
+      content = content.replace("</body>", injection);
+      injected = 1;
+    }
   }
 
   // 4. Simpan jika ada perubahan
