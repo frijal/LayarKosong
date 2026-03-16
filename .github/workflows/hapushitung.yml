@@ -26,6 +26,14 @@ jobs:
           bun-version: latest
 
       # ========== AUTOMATION SCRIPTS ==========
+      - name: 🔍 IndexNow Sync
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          touch mini/indexnow-cache.txt
+          bun run dapur/indexnow.ts
+      
       - name: 📸 Scan Unused Images
         run: |
           echo "🔎 Menjalankan pengecekan gambar..."
