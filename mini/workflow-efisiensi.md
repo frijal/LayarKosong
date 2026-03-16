@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Senin, 16 Maret 2026 pukul 19.50.54 WITA
+> **Audit Terakhir:** Senin, 16 Maret 2026 pukul 20.56.13 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,6 @@
 | CloudflareMedsos.yml | post-to-tumblr.ts | 🟡 Ada | `tumblr.js` | ✅ Sudah Optimal |
 | CloudflareMedsos.yml | post-to-discord.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | CloudflareMedsos.yml | post-to-facebook.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| CloudflareMedsos.yml | indexnow.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | delete-diskusi.yml | sapu-bersih.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | ganti-isi-teks-dalam-file.yml | ganti-teks.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
@@ -25,6 +24,7 @@
 | generate-json-xml.yml | html-to-markdown.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | minify-html.ts | 🟡 Ada | `@minify-html/node` | ✅ Sudah Optimal |
 | generate-json-xml.yml | minify-jsonxml.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
+| hapushitung.yml | indexnow.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | cek-gambar.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | workflow-list.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
 | hapushitung.yml | audit-workflow-efisiensi.ts | ⚪ Tidak Ada | - | ✅ Sudah Optimal |
