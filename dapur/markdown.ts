@@ -59,23 +59,27 @@ function convertInlineMarkdown(text: string): string {
 
 // === 2️⃣ Proses Markdown di halaman ==
 function enhanceMarkdown(): void {
-  const selector = "p, blockquote, td, th, h1, h2, h3, h4, h5, h6, alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  // Masukkan 'li' kembali ke dalam selektor agar teks di dalam list di-render
+  const selector = "p, blockquote, td, th, h1, h2, h3, h4, h5, h6, li, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  
   document.querySelectorAll(selector).forEach((el) => {
     const element = el as HTMLElement;
-    if (element.classList.contains("no-md") || element.closest('ol')) return;
+
+    // Filter: 
+    // 1. Lewati jika punya class "no-md"
+    // 2. Lewati jika sudah ada di dalam <pre> (karena itu area highlight.js)
+    // 3. Lewati jika itu adalah elemen list yang sebenarnya sudah terproses (hindari rekursi)
+    if (element.classList.contains("no-md") || 
+        element.closest('pre') || 
+        (element.tagName === 'LI' && element.querySelector('ul, ol'))) return;
     
     const original = element.innerHTML;
     if (!original.trim()) return;
+    
     const rendered = convertInlineMarkdown(original);
-    if (rendered !== original) { element.innerHTML = rendered; }
-  });
-}
-
-// === 3️⃣ Fix Display Inline Code ===
-function fixInlineCodeDisplay(): void {
-  document.querySelectorAll<HTMLElement>("code.inline-code").forEach((el) => {
-    el.style.display = "inline";
-    el.style.fontFamily = "'Courier New', Courier, monospace";
+    if (rendered !== original) { 
+      element.innerHTML = rendered; 
+    }
   });
 }
 
