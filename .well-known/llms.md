@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.38
+document_version: 17.39
 last_updated: 2026-03-16
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,10 +39,12 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 16 Maret 2026)
-> Menampilkan 1088 artikel versi 17.38.
+> Menampilkan 1088 artikel versi 17.39.
 
 ## Gaya Hidup
+- [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
+- [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/gaya-hidup/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
 - [Krisis Driver Online: Bongkar Borok Aplikator dan Kapitalisme Ojol](https://dalam.web.id/gaya-hidup/krisis-driver-online-kapitalisme-ojol) : Kenapa driver ojol makin susah dicari? Bongkar rahasia algoritma berbayar, layanan hemat, dan kapitalisme aplikator yang mencekik driver dan merugikan customer.
 - [Krisis Driver Ojek Online Saat Ramadhan Ketika Customer Sulit Dapat Driver](https://dalam.web.id/gaya-hidup/krisis-driver-ojek-online-ramadhan) : Fenomena sulit mendapatkan driver ojek online menjelang buka puasa semakin ramai diperbincangkan. Artikel ini membahas pengalaman driver dan penyebab sebenarnya dari sisi operasional lapangan.
 - [Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver?](https://dalam.web.id/gaya-hidup/krisis-ojol-2026) : Analisis lengkap penyebab krisis ojol, mulai dari potongan aplikasi, berkurangnya driver, hingga dampak bagi konsumen. Simak selengkapnya di dalam.web.id.
@@ -293,6 +295,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk - Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI](https://dalam.web.id/lainnya/analisis-putusan-mk-yim-vs-bgs) : kupas tuntas perbedaan tafsir Menko Yusril Ihza Mahendra dan Menkes Budi Gunadi Sadikin atas Putusan MK Nomor 111 PUU XXII 2024 terkait kolegium medis
 - [Rumus Upah Lembur Lengkap dan Cara Hitungnya](https://dalam.web.id/lainnya/rumus-upah-lembur) : aturan upah lembur di Indonesia termasuk dasar hukum dan rumus perhitungan upah lembur
 - [Laporan Kalkulator Zakat Fitrah Lengkap](https://dalam.web.id/lainnya/kalkulator-zakat-fitrah-lengkap-laporan) : Laporan Kalkulator lengkap penerimaan dan penyaluran Zakat Fitrah secara transparan. Lihat rincian data pembagian zakat selengkapnya di sini.
 - [Harga Sebuah Kapal Induk dan Sepiring Makan Anak Sekolah](https://dalam.web.id/lainnya/harga-sebuah-kapal-induk-dan-sepiring-makan-anak-sekolah) : Rocky Gerung bandingkan harga satu kapal induk USS Gerald R Ford sekitar 200 triliun rupiah dengan program Makan Bergizi Gratis MBG. Refleksi santai tentang prioritas anggaran negara antara pertahanan dan gizi anak Indonesia
@@ -366,7 +369,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Qana’ah: Kunci Kekayaan Hati dan Keberuntungan Sejati](https://dalam.web.id/lainnya/qanaah-kekayaan-hati-keberuntungan) : Mengulas Hadits Muslim No. 1054 dan penjelasan Ibnul Qayyim tentang sifat Qanaah (merasa cukup). Pelajari bagaimana Qanaah adalah kekayaan sejati dan jalan menuju keberuntungan di dunia dan akhirat.
 
 ## Olah Media
-- [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/olah-media/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
 - [ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka](https://dalam.web.id/olah-media/odf-vs-ooxml-libreoffice-onlyoffice) : debat standar dokumen ODF vs OOXML. Mengapa LibreOffice menuduh ONLYOFFICE sebagai fake open-source? Simak panduan kedaulatan digital ini.
 - [Web Tool Generator - All in One](https://dalam.web.id/olah-media/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
 - [Sosial Media dan Video Embed Generator](https://dalam.web.id/olah-media/social-video-embed-generator) : Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.
@@ -900,8 +902,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/warta-tekno/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
-- [Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI](https://dalam.web.id/warta-tekno/analisis-putusan-mk-yim-vs-bgs) : kupas tuntas perbedaan tafsir Menko Yusril Ihza Mahendra dan Menkes Budi Gunadi Sadikin atas Putusan MK Nomor 111 PUU XXII 2024 terkait kolegium medis
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
