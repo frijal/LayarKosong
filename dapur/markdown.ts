@@ -41,7 +41,7 @@ function enhanceMarkdown(): void {
 
     const originalHTML = target.innerHTML;
     const rawContent = originalHTML.trim();
-    const hasMarkdown = /[\*\#_\[\]]/.test(rawContent);
+    const hasMarkdown = /[\*\#_\[\]`]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
       target.classList.add("rendered");
