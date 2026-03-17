@@ -1,63 +1,82 @@
-import { marked } from './marked.js';
-
 /**
- * MARKDOWN ENHANCER v6.1 (Hybrid Logic)
- * Mengambil inspirasi dari kode lama yang stabil,
- * tapi tetap menggunakan power dari marked.js yang sudah di-bundle.
+ * MARKDOWN ENHANCER v7.0 (Pure Regex - No Library)
+ * Fokus: Ringan, Tanpa Loop, Aman untuk Minified HTML.
  */
 
-function setupMarked() {
-  marked.setOptions({
-    gfm: true,
-    breaks: true
-  });
+function parseMarkdown(text: string): string {
+  return text
+  // 1. Bersihkan entitas HTML dasar
+  .replace(/&gt;/g, ">")
+
+  // 2. Blockquote (Harus di awal agar tidak bentrok)
+  .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
+
+  // 3. Header (h1 - h6)
+  .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
+  .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
+  .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
+  .replace(/^### (.*)$/gm, "<h3>$1</h3>")
+  .replace(/^## (.*)$/gm, "<h2>$1</h2>")
+  .replace(/^# (.*)$/gm, "<h1>$1</h1>")
+
+  // 4. Bold & Italic
+  .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  .replace(/__(.*?)__/g, "<strong>$1</strong>")
+  .replace(/\*(.*?)\*/g, "<em>$1</em>")
+  .replace(/_(.*?)_/g, "<em>$1</em>")
+
+  // 5. Link & Image
+  .replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" class="md-img">')
+  .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+
+  // 6. Inline Code
+  .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+
+  // 7. Horizontal Rule
+  .replace(/^([\-\*_]){3,}\s*$/gm, "<hr>")
+
+  // 8. List Item (Sederhana)
+  .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>");
 }
 
 function enhanceMarkdown() {
-  // Daftar selektor yang kamu sukai dari kode lama
+  // Selektor yang paling krusial saja
   const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((el) => {
     const target = el as HTMLElement;
 
-    // Skip jika sudah diproses atau dilarang
+    // Proteksi: Jangan proses jika sudah dirender atau dilarang
     if (target.classList.contains("no-md") || target.classList.contains("rendered")) return;
 
-    let rawContent = target.innerHTML
-    .replace(/&gt;/g, '>') // Trik dari kode lama untuk blockquote
-    .trim();
+    const originalHTML = target.innerHTML;
+    const rawContent = originalHTML.trim();
 
-    // Deteksi apakah ada simbol Markdown sebelum memproses
+    // Deteksi simbol MD (agar tidak memproses teks normal secara percuma)
     const hasMarkdown = /[\*\#\_\[\]]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
-      // PROSES RENDER
-      const rendered = marked.parse(rawContent);
+      // TANDAI DULU sebelum eksekusi untuk cegah loop
+      target.classList.add("rendered");
 
-      // TRICK: Agar tidak terjadi infinite loop pada tag <p>,
-      // kita bersihkan tag <p> pembungkus yang dihasilkan oleh marked
-      // karena elemen aslinya (target) biasanya sudah berupa <p> atau <li>
-      const finalOutput = rendered.replace(/^<p>/, '').replace(/<\/p>$/, '');
+      const newHTML = parseMarkdown(rawContent);
 
-      if (target.innerHTML !== finalOutput) {
-        // Tandai dulu baru ubah HTML
-        target.classList.add('rendered');
-        target.innerHTML = finalOutput;
+      // Hanya update jika ada perubahan nyata
+      if (newHTML !== originalHTML) {
+        target.innerHTML = newHTML;
       }
     }
   });
 }
 
 function run() {
-  setupMarked();
   enhanceMarkdown();
 
-  // Observer yang pasif: hanya jalan jika ada elemen baru ditambahkan
+  // Observer yang sangat efisien
   const observer = new MutationObserver((mutations) => {
-    const shouldRun = mutations.some(m => m.addedNodes.length > 0);
-    if (shouldRun) {
-      // Gunakan requestAnimationFrame agar tidak freeze
+    const hasNewNodes = mutations.some(m => m.addedNodes.length > 0);
+    if (hasNewNodes) {
       window.requestAnimationFrame(() => {
         enhanceMarkdown();
       });
@@ -67,6 +86,7 @@ function run() {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
+// Inisialisasi
 if (document.readyState === "complete" || document.readyState === "interactive") {
   run();
 } else {
