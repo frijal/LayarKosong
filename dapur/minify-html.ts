@@ -61,11 +61,10 @@ async function processFile(filePath: string): Promise<void> {
     // ========== TAHAP 1: PROTEKSI & SOFT-MINIFY SCRIPT INLINE ==========
     const scriptPlaceholders: string[] = [];
 
-    html = html.replace(/<script(?![^>]*\bsrc\b)[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
+    // Regex ini akan mengabaikan script yang punya src ATAU type="application/ld+json"
+    html = html.replace(/<script(?![^>]*\bsrc\b)(?![^>]*\btype=['"]?application\/ld\+json['"]?)[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
       const softMinified = content
-      // Hapus komentar /* */
       .replace(/\/\*[\s\S]*?\*\//g, '')
-      // Hapus komentar // tapi hati-hati jangan hapus URL (https://)
       .replace(/([^\\:]|^)\/\/.*/g, '$1')
       .replace(/^\s+|\s+$/gm, '')
       .replace(/\n+/g, ' ')
@@ -73,6 +72,8 @@ async function processFile(filePath: string): Promise<void> {
       .trim();
 
       const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
+      // Kita simpan seluruh tag pembuka 'match' agar atribut selain src/type tetap terjaga
+      // Tapi karena kita ingin soft-minify, kita rakit ulang:
       scriptPlaceholders.push(`<script>${softMinified}</script>`);
       return id;
     });
@@ -86,7 +87,7 @@ async function processFile(filePath: string): Promise<void> {
       allow_optimal_entities: true,
       allow_removing_spaces_between_attributes: true,
       collapse_whitespaces: true,
-      ensure_spec_compliant_unquoted_attribute_values: false, // WAJIB TRUE agar kutip aman
+      ensure_spec_compliant_unquoted_attribute_values: true, // WAJIB TRUE agar kutip aman
       keep_comments: false,
       keep_html_and_head_opening_tags: true,
       keep_spaces_between_attributes: false,
