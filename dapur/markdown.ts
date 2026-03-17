@@ -1,8 +1,8 @@
 import { marked } from 'marked';
 
 /**
- * MARKDOWN ENHANCER v5.1 (Universal Semantic Support)
- * Dioptimalkan untuk: article, section, main, dan container kustom.
+ * MARKDOWN ENHANCER v5.2 (Universal Support)
+ * Mempertahankan semua selector lama + Dukungan Semantic HTML (main, article, section)
  */
 
 function setupMarked() {
@@ -46,32 +46,34 @@ function setupMarked() {
 }
 
 function enhanceMarkdown() {
-   const selector = "main, article, section, .meta, .markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  // Seluruh selector lama dipertahankan + Penambahan elemen semantik di awal
+  const selector = "main, article, section, .meta, .markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((container) => {
     const el = container as HTMLElement;
 
-    // Skip jika manual override atau sudah pernah di-render
+    // 1. Skip jika sudah dirender atau dilarang
     if (el.classList.contains("no-md") || el.classList.contains("rendered")) return;
 
-    // Proteksi: Jangan membedah ulang kontainer besar jika anak-anaknya sudah ter-render
-    // Ini krusial agar tidak terjadi double-rendering antara <article> dan <section>
-    if (el.querySelector('.rendered')) return;
+    // 2. Proteksi Double-Rendering:
+    // Jika elemen ini adalah pembungkus (seperti article) yang di dalamnya ada section yang akan dirender,
+    // maka kita biarkan section-nya saja yang memproses agar konten tidak muncul dua kali.
+    if ((el.tagName === 'ARTICLE' || el.tagName === 'MAIN') && el.querySelector('section')) {
+      return;
+    }
 
-    // Proteksi Highlighting
+    // 3. Proteksi PRE/Code
     if (el.tagName === 'PRE' && el.querySelector('code[class*="language-"]')) return;
 
+    // 4. Ambil konten dan bersihkan
     let rawContent = el.innerHTML
     .replace(/&gt;/g, '>')
-    .replace(/<p>/g, '')  // Bersihkan tag p bawaan agar tidak konflik dengan parser
+    .replace(/<p>/g, '')  // Hapus tag p bawaan agar tidak konflik
     .replace(/<\/p>/g, '\n')
     .trim();
 
-    /**
-     * Smart Check: Hanya render jika mengandung karakter Markdown
-     * agar tidak membebani elemen yang isinya murni HTML/Teks biasa.
-     */
+    // 5. Smart Check: Hanya render jika mengandung karakter Markdown
     const hasMarkdown = /[\*\#\_\[\]]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
