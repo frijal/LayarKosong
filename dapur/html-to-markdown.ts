@@ -90,7 +90,7 @@ async function processFiles() {
     const percent = stats.totalBefore > 0 ? ((saved / stats.totalBefore) * 100).toFixed(2) : "0";
 
     console.log('\n' + '='.repeat(60));
-    console.log('📊 REKAP OPERASI "LAYAR KOSONG BERSIH"');
+    console.log('📊 Rekap konversi ke Markdown Sederhana');
     console.log('='.repeat(60));
     console.log(`📂 File diproses   : ${stats.processed}`);
     console.log(`✅ File diubah     : ${stats.changed}`);
