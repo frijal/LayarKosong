@@ -53,66 +53,76 @@ function enhanceMarkdown(): void {
   });
 }
 
-function initHighlight(): void {
-  if (window.hljs) {
-    document.querySelectorAll("pre code").forEach((block) => {
-      window.hljs.highlightElement(block as HTMLElement);
-    });
-  }
-}
+function checkAndLoadHighlight(): void {
+  // TINGKAT 1: Cek apakah ada kebutuhan (elemen <pre><code>)
+  const hasCode = document.querySelector("pre code");
+  if (!hasCode) return;
 
-function ensureHighlightJS(theme: string): void {
-  // Script highlight.js
-  let existingScript = Array.from(document.scripts).find(
-    s => s.src && s.src.includes("/ext/highlight.js")
-  );
-
-  if (!existingScript) {
-    const script = document.createElement("script");
-    script.src = "/ext/highlight.js";
-    script.defer = true;
-    script.onload = initHighlight;
-    document.head.appendChild(script);
-  } else {
-    initHighlight();
-  }
-
-  // CSS tema
+  // TINGKAT 2: Tentukan tema berdasarkan preferensi user
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = prefersDark ? "github-dark.min.css" : "github.min.css";
   const themeHref = `/ext/${theme}`;
-  let existingLink = document.querySelector(`link[href*="${theme}"]`);
 
-  if (!existingLink) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = themeHref;
-    document.head.appendChild(link);
+  // TINGKAT 3: Cek ketersediaan aset (Native Check)
+  const hasJS = Array.from(document.scripts).some(s => s.src && s.src.includes("/ext/highlight.js"));
+  const hasCSS = !!document.querySelector(`link[href*="${theme}"]`);
+
+  // TINGKAT 4: Inject hanya jika ada yang kurang (Lazy Inject)
+  if (!hasJS || !hasCSS) {
+    // Inject Script jika belum ada
+    if (!hasJS) {
+      const script = document.createElement("script");
+      script.src = "/ext/highlight.js";
+      script.defer = true;
+      script.onload = () => {
+        if (window.hljs) {
+          document.querySelectorAll("pre code").forEach((block) => {
+            window.hljs.highlightElement(block as HTMLElement);
+          });
+        }
+      };
+      document.head.appendChild(script);
+    } else {
+      // Jika JS sudah ada tapi CSS yang hilang, langsung trigger highlight
+      if (window.hljs) {
+        document.querySelectorAll("pre code").forEach((block) => {
+          window.hljs.highlightElement(block as HTMLElement);
+        });
+      }
+    }
+
+    // Inject CSS jika belum ada
+    if (!hasCSS) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = themeHref;
+      document.head.appendChild(link);
+    }
   }
 }
+
+
 
 function start(): void {
   enhanceMarkdown();
 
-  const observer = new MutationObserver((mutations) => {
-    if (mutations.some(m => m.addedNodes.length > 0)) {
-      window.requestAnimationFrame(enhanceMarkdown);
-    }
+  // Pantau perubahan DOM (misal artikel baru muncul via AJAX)
+  const observer = new MutationObserver(() => {
+    window.requestAnimationFrame(() => {
+      enhanceMarkdown();
+      checkAndLoadHighlight();
+    });
   });
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Deteksi Mode Gelap Browser
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  // Jalankan pengecekan awal
+  checkAndLoadHighlight();
 
-  // Fungsi untuk pasang tema sesuai kondisi
-  const updateTheme = (isDark: boolean) => {
-    const theme = isDark ? "github-dark.min.css" : "github.min.css"; // Sesuaikan pilihanmu di sini
-    ensureHighlightJS(theme);
-  };
-
-  // Jalankan saat pertama kali muat
-  updateTheme(prefersDark.matches);
-
-  // Pantau jika user ganti mode OS (Dark/Light) tanpa refresh halaman
-  prefersDark.addEventListener("change", (e) => updateTheme(e.matches));
+  // Pantau perubahan tema OS
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    // Jika tema berubah, kita jalankan lagi pengecekan untuk swap CSS tema
+    checkAndLoadHighlight();
+  });
 }
 
 // Inisialisasi
