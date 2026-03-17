@@ -62,7 +62,7 @@ async function processFile(filePath: string): Promise<void> {
     const scriptPlaceholders: string[] = [];
 
     html = html.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
-      // Jika ada src → biarkan utuh, minifier utama akan rapikan atribut
+      // Jika ada src → biarkan utuh
       if (/src\s*=/.test(match)) {
         return match;
       }
@@ -76,15 +76,17 @@ async function processFile(filePath: string): Promise<void> {
       }
 
       // Script inline aplikasi biasa → soft-minify isi
+      // Hapus komentar & whitespace berlebih, tapi jangan sentuh string literal
       const softMinified = content
-      .replace(/\/\*[\s\S]*?\*\//g, '')      // hapus komentar blok
-      .replace(/([^\\:]|^)\/\/.*/g, '$1')    // hapus komentar baris
-      .replace(/\s+/g, ' ')                  // rapikan whitespace
-      .trim();
+      .replace(/\/\*[\s\S]*?\*\//g, '')        // hapus komentar blok
+      .replace(/(^|[^:])\/\/.*$/gm, '$1')      // hapus komentar baris (aman)
+    .replace(/[ \t]+/g, ' ')                 // rapikan spasi horizontal
+    .replace(/\n{2,}/g, '\n')                // rapikan newline berlebih
+    .trim();
 
-      const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
-      scriptPlaceholders.push(`<script>${softMinified}</script>`);
-      return id;
+    const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
+    scriptPlaceholders.push(`<script>${softMinified}</script>`);
+    return id;
     });
 
     // ========== TAHAP 2: PROSES MINIFY HTML UTAMA ==========
