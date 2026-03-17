@@ -105,11 +105,18 @@ jobs:
           cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
           
-          # --- COPY MARKED KE DAPUR ---
-          # Ini agar kamu punya file mentahnya di laptop tanpa node_modules
-          find node_modules/marked -name "marked.umd.js" -o -name "marked.min.js" | xmllint --xpath "string(//)" - 2>/dev/null | xargs -I {} cp {} dapur/marked.js || \
-          find node_modules/marked -type f -name "*.js" | head -n 1 | xargs -I {} cp {} dapur/marked.js
-          echo "✅ Marked berhasil diamankan ke dapur/marked.js"
+          # --- PERBAIKAN COPY MARKED (STRUKTUR V17+) ---
+          # Bun menyimpan hasil install di node_modules/marked/lib/
+          if [ -d "node_modules/marked/lib" ]; then
+            cp node_modules/marked/lib/marked.umd.js dapur/marked.js
+            echo "✅ Marked UMD berhasil disalin ke dapur/marked.js"
+          elif [ -f "node_modules/marked/marked.min.js" ]; then
+            cp node_modules/marked/marked.min.js dapur/marked.js
+            echo "✅ Marked Min berhasil disalin ke dapur/marked.js"
+          else
+            echo "❌ Gagal menemukan file marked, mencoba pencarian agresif..."
+            find node_modules/marked -name "*.js" -exec cp {} dapur/marked.js \; -quit
+          fi
           
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
           
