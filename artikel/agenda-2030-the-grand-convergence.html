@@ -602,7 +602,7 @@
         <p style="margin-top: 15px;"><em>Fitur komentar sedang dalam pengembangan. Untuk sementara, silakan lanjutkan diskusi di platform media sosial dengan tagar #Konvergensi2030</em></p>
     </div>
     <!-- Artikel Terkait -->
-    <div id="AAAAAAAAAAAAAA">
+    <div id="response">
         <h3><i class="fa-solid fa-newspaper"></i> Artikel Terkait</h3>
         <p>Eksplorasi lebih lanjut tentang topik terkait:</p>
         <p style="margin-top: 15px;"><em>Daftar artikel terkait akan muncul di sini. Sistem rekomendasi sedang disempurnakan untuk menyajikan konten yang paling relevan dengan minat Anda.</em></p>
@@ -674,7 +674,7 @@
                 }
             });
             // Mencegah layout shift dengan reservasi ruang untuk elemen dinamis
-            const dynamicElements = document.querySelectorAll('#related-articles-grid, #AAAAAAAAAAAAAA');
+            const dynamicElements = document.querySelectorAll('#related-articles-grid, #response');
             dynamicElements.forEach(el => {
                 el.style.minHeight = el.offsetHeight + 'px';
             });
