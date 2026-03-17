@@ -58,22 +58,31 @@ async function processFile(filePath: string): Promise<void> {
 
     const sizeBefore = Buffer.byteLength(html, 'utf8');
 
-    // ========== TAHAP 1: PROTEKSI & SOFT-MINIFY SCRIPT INLINE ==========
+    // ========== TAHAP 1: PROTEKSI & SOFT-MINIFY SCRIPT ==========
     const scriptPlaceholders: string[] = [];
 
-    // Regex ini akan mengabaikan script yang punya src ATAU type="application/ld+json"
-    html = html.replace(/<script(?![^>]*\bsrc\b)(?![^>]*\btype=['"]?application\/ld\+json['"]?)[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
+    html = html.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
+      // Jika ada src → biarkan utuh, minifier utama akan rapikan atribut
+      if (/src\s*=/.test(match)) {
+        return match;
+      }
+
+      // Jika JSON-LD → rapikan whitespace JSON
+      if (/type\s*=\s*['"]?application\/ld\+json['"]?/i.test(match)) {
+        const compactJson = content.replace(/\s+/g, ' ').trim();
+        const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
+        scriptPlaceholders.push(`<script type=application/ld+json>${compactJson}</script>`);
+        return id;
+      }
+
+      // Script inline aplikasi biasa → soft-minify isi
       const softMinified = content
-      .replace(/\/\*[\s\S]*?\*\//g, '')
-      .replace(/([^\\:]|^)\/\/.*/g, '$1')
-      .replace(/^\s+|\s+$/gm, '')
-      .replace(/\n+/g, ' ')
-      .replace(/\s{2,}/g, ' ')
+      .replace(/\/\*[\s\S]*?\*\//g, '')      // hapus komentar blok
+      .replace(/([^\\:]|^)\/\/.*/g, '$1')    // hapus komentar baris
+      .replace(/\s+/g, ' ')                  // rapikan whitespace
       .trim();
 
       const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
-      // Kita simpan seluruh tag pembuka 'match' agar atribut selain src/type tetap terjaga
-      // Tapi karena kita ingin soft-minify, kita rakit ulang:
       scriptPlaceholders.push(`<script>${softMinified}</script>`);
       return id;
     });
@@ -83,19 +92,19 @@ async function processFile(filePath: string): Promise<void> {
     const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
     const output = minify(Buffer.from(html), {
-      allow_noncompliant_unquoted_attribute_values: false, // lebih aman & sesuai standar
-      allow_optimal_entities: true,                       // tetap ringkas
-      allow_removing_spaces_between_attributes: true,     // hemat ukuran
-      collapse_whitespaces: true,                         // kompres spasi
-      ensure_spec_compliant_unquoted_attribute_values: true, // jaga kepatuhan standar
-      keep_comments: false,                               // hapus komentar
-      keep_html_and_head_opening_tags: true,              // tetap sesuai struktur dokumen
-      keep_spaces_between_attributes: false,              // hapus spasi antar atribut bila aman
-      minify_css: true,                                   // minifikasi CSS inline
-      minify_doctype: true,                               // sederhanakan doctype
-      minify_js: true,                                    // minifikasi JS inline
-      remove_processing_instructions: true,               // hapus instruksi XML/SGML
-      remove_bangs: false                                 // biarkan tanda seru khusus tetap ada
+      allow_noncompliant_unquoted_attribute_values: false,
+      allow_optimal_entities: true,
+      allow_removing_spaces_between_attributes: true,
+      collapse_whitespaces: true,
+      ensure_spec_compliant_unquoted_attribute_values: true,
+      keep_comments: false,
+      keep_html_and_head_opening_tags: true,
+      keep_spaces_between_attributes: false,
+      minify_css: true,
+      minify_doctype: true,
+      minify_js: true,
+      remove_processing_instructions: true,
+      remove_bangs: false
     });
 
     let minifiedHTML = output.toString();
@@ -135,13 +144,11 @@ async function run(): Promise<void> {
   const startTime = nanoseconds();
   const tasks: Promise<void>[] = [];
 
-  // 1. Masukkan feed.html secara manual jika ada di root
   const feedFile = bunFile("feed.html");
   if (await feedFile.exists()) {
     tasks.push(processFile("feed.html"));
   }
 
-  // 2. Scan folder kategori (termasuk index.html di dalamnya)
   for (const folder of folders) {
     const glob = new Glob(`${folder}/**/*.html`);
     for (const file of glob.scanSync(".")) {
