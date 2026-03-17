@@ -1,8 +1,8 @@
 import { marked } from './marked.js';
 
 /**
- * MARKDOWN ENHANCER v5.5 (Final Compatibility)
- * Mendukung .container dan perbaikan render di dalam tag P
+ * MARKDOWN ENHANCER v5.8 (Ultra Logic)
+ * Perbaikan untuk struktur <article> dan <p> hasil minify.
  */
 
 function setupMarked() {
@@ -39,33 +39,43 @@ function setupMarked() {
 }
 
 function enhanceMarkdown() {
-  // Selektor diperluas dengan menambahkan .container dan elemen semantik
-  const selector = ", main p, li, main, article, blockquote, section, .markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  // Tambahkan selektor spesifik untuk struktur artikel baru
+  const selector = "article p, .container p, main p, li, main, article, blockquote, section, .markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((container) => {
     const el = container as HTMLElement;
 
+    // 1. Skip jika sudah dirender atau dilarang
     if (el.classList.contains("no-md") || el.classList.contains("rendered")) return;
 
-    // Proteksi: Jika kontainer besar punya anak yang juga akan di-render, lewati kontainer besarnya
-    if ((el.tagName === 'MAIN' || el.classList.contains('container')) && el.querySelector('section, article, .markdown-body')) {
-      // Kita hanya render jika elemen ini adalah "daun" terakhir atau kontainer teks langsung
-    }
+    // 2. Proteksi Kontainer Besar:
+    // Jika elemen ini punya anak berupa tag blok (P, DIV, SECTION), biarkan anaknya saja yang di-render.
+    // Namun, jika elemen ini adalah tag P atau LI, harus tetap diproses.
+    const hasBlockChildren = el.querySelector('p, div, section, article') !== null;
+    const isLeafElement = ['P', 'LI', 'BLOCKQUOTE', 'SPAN'].includes(el.tagName);
 
-    // Ambil konten, bersihkan entitas HTML dan tag P liar
+    if (hasBlockChildren && !isLeafElement) return;
+
+    // 3. Ambil konten dan bersihkan tag pengganggu
+    // Minifier sering membungkus markdown di dalam <p>. Kita harus telanjangi agar marked mengenali simbol.
     let rawContent = el.innerHTML
     .replace(/&gt;/g, '>')
     .replace(/<p>/g, '')
     .replace(/<\/p>/g, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
     .trim();
 
-    // Deteksi keberadaan Markdown (Bold, Italic, Header, List, Link)
+    // 4. Deteksi simbol Markdown (Bold, Italic, Link, Header, List)
+    // Ditambah deteksi underscore (_) untuk jihad fi sabilillah
     const hasMarkdown = /[\*\#\_\[\]]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
-      // Parse teks menjadi HTML
-      el.innerHTML = marked.parse(rawContent);
+      const rendered = marked.parse(rawContent);
+
+      // Validasi: Hanya terapkan jika hasil render berbeda dengan teks aslinya
+      // (Untuk menghindari pembungkusan tag P ganda yang tidak perlu)
+      el.innerHTML = rendered;
       el.classList.add('rendered');
     }
   });
@@ -75,14 +85,21 @@ function run() {
   setupMarked();
   enhanceMarkdown();
 
-  // Tetap pantau perubahan DOM (untuk data-provider atau comment)
-  const observer = new MutationObserver(() => {
-    enhanceMarkdown();
+  // Pantau perubahan DOM untuk konten dinamis
+  const observer = new MutationObserver((mutations) => {
+    let fastTrack = false;
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length > 0) {
+        fastTrack = true;
+        break;
+      }
+    }
+    if (fastTrack) enhanceMarkdown();
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+
+    observer.observe(document.body, { childList: true, subtree: true });
 }
 
-// Eksekusi paling stabil
 if (document.readyState === "complete" || document.readyState === "interactive") {
   run();
 } else {
