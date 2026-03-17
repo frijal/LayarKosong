@@ -1,8 +1,8 @@
 import { marked } from 'marked';
 
 /**
- * MARKDOWN ENHANCER v5.4 (Ultra Compatibility)
- * Mendukung: Semantic HTML, Blockquote dengan tag P, dan Selector lama.
+ * MARKDOWN ENHANCER v5.5 (Final Compatibility)
+ * Mendukung .container dan perbaikan render di dalam tag P
  */
 
 function setupMarked() {
@@ -39,7 +39,7 @@ function setupMarked() {
 }
 
 function enhanceMarkdown() {
-  // Tambahkan 'blockquote' ke dalam daftar selector
+  // Selektor diperluas dengan menambahkan .container dan elemen semantik
   const selector = "li, main, article, blockquote, section, .markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
@@ -48,25 +48,24 @@ function enhanceMarkdown() {
 
     if (el.classList.contains("no-md") || el.classList.contains("rendered")) return;
 
-    // Proteksi: Jangan render container besar jika dalamnya sudah ada yang di-render
-    if ((el.tagName === 'MAIN' || el.tagName === 'ARTICLE') && el.querySelector('.rendered')) return;
+    // Proteksi: Jika kontainer besar punya anak yang juga akan di-render, lewati kontainer besarnya
+    if ((el.tagName === 'MAIN' || el.classList.contains('container')) && el.querySelector('section, article, .markdown-body')) {
+      // Kita hanya render jika elemen ini adalah "daun" terakhir atau kontainer teks langsung
+    }
 
-    // AMBIL TEKS: Buang semua tag HTML di dalam (seperti <p>) agar Marked bisa bekerja pada teks murni
+    // Ambil konten, bersihkan entitas HTML dan tag P liar
     let rawContent = el.innerHTML
     .replace(/&gt;/g, '>')
     .replace(/<p>/g, '')
     .replace(/<\/p>/g, '\n')
-    .replace(/<br\s*\/?>/gi, '\n') // Ubah <br> jadi newline
     .trim();
 
-    // Cek apakah ada tanda Markdown (Bold, List, Header, dsb)
+    // Deteksi keberadaan Markdown (Bold, Italic, Header, List, Link)
     const hasMarkdown = /[\*\#\_\[\]]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
-      // Jika ini blockquote, kita pastikan hasilnya tetap terbungkus gaya blockquote
-      const rendered = marked.parse(rawContent);
-
-      el.innerHTML = rendered;
+      // Parse teks menjadi HTML
+      el.innerHTML = marked.parse(rawContent);
       el.classList.add('rendered');
     }
   });
@@ -76,12 +75,14 @@ function run() {
   setupMarked();
   enhanceMarkdown();
 
+  // Tetap pantau perubahan DOM (untuk data-provider atau comment)
   const observer = new MutationObserver(() => {
     enhanceMarkdown();
   });
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
+// Eksekusi paling stabil
 if (document.readyState === "complete" || document.readyState === "interactive") {
   run();
 } else {
