@@ -69,7 +69,7 @@ function sapuJagat() {
   });
 }
 
-const folder = "artikel";
+const folder = "./artikel";
 console.log(`🧹 Membersihkan whiteline di folder ${folder}...`);
 
 try {
