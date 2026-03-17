@@ -255,7 +255,7 @@
             Token disimpan secara lokal di browser kamu jika kamu menyetujui fitur "Save Password". Jangan pernah memberikan kode token kamu kepada siapa pun. Token ini memberikan akses penuh untuk memodifikasi file di repository yang kamu pilih.
         </p>
     </div>
-    <div id="AAAAAAAAAAAAAA"></div><div id="BBBBBBBBBBBBBB"></div>
+    <div id="AAAAAAAAAAAAAA"></div><div id="related-articles-grid"></div>
 </section>
 <footer style="margin-top: 80px; border-top: 1px solid #e1e4e8; padding: 40px 20px; background-color: #fff; color: #586069;">
     <div style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
@@ -345,7 +345,7 @@
             reader.onload = async () => {
                 const base64Content = reader.result.split(',')[1];
 
-                const BBBBBBBBBBBBBB = await fetch(`https://api.github.com/repos/${repo}/contents/${fullPath}`, {
+                const related-articles-grid = await fetch(`https://api.github.com/repos/${repo}/contents/${fullPath}`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `token ${token}`,
@@ -357,9 +357,9 @@
                     })
                 });
 
-                const data = await BBBBBBBBBBBBBB.json();
+                const data = await related-articles-grid.json();
 
-                if (BBBBBBBBBBBBBB.ok) {
+                if (related-articles-grid.ok) {
                     const customBaseUrl = "https://dalam.web.id";
                     const finalUrl = `${customBaseUrl}/${fullPath}`;
 
@@ -386,6 +386,6 @@
 
 
 
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/BBBBBBBBBBBBBB.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/related-articles-grid.js"></script>
 
 </body></html>
