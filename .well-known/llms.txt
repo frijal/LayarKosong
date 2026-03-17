@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.49
+document_version: 17.50
 last_updated: 2026-03-17
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 17 Maret 2026)
-> Menampilkan 1090 artikel versi 17.49.
+> Menampilkan 1089 artikel versi 17.50.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -349,7 +349,6 @@ document_type: llm_behavior_and_entity_guidance
 - [10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙](https://dalam.web.id/lainnya/10-kalimat-muslim) : Tingkatkan kualitas lisan dengan 10 kalimat mulia dalam Islam. Lengkap dengan makna, waktu pengucapan, dan keutamaannya untuk keseharian yang lebih berkah.
 - [Kontroversi Larangan Jilbab di Sekolah Negeri (1980-1990)](https://dalam.web.id/lainnya/larangan-jilbab-1980-1990) : Pada dekade 1980-an hingga awal 1990-an, kebijakan mengenai atribut sekolah di Indonesia menghadapi salah satu kontroversi terbesarnya.
 - [PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat](https://dalam.web.id/lainnya/pt-badak-ngl) : PT Badak NGL — profil singkat dan lokasi fasilitas. Informasi: alamat kota Bontang, Kalimantan Timur; ringkasan operasi; FAQ singkat.
-- [Aku Cinta Indonesia - Warisan Nilai dari Film Anak ’ACI’ (1985)](https://dalam.web.id/lainnya/aku-cinta-indonesia) : Sejarah singkat film serial anak ACI (Aku Cinta Indonesia), nilai karakter yang diajarkan, lirik lagu, dan relevansinya untuk generasi masa kini.
 - [100 Perintah Allah Kepada Manusia di Dalam Al-Qur’an](https://dalam.web.id/lainnya/100-perintah-allah-dalam-quran) : Daftar 100 perintah dan larangan Allah SWT kepada manusia yang tercatat di dalam Al-Qur’an, lengkap dengan dalil surat dan ayatnya. Sebuah panduan hidup bagi setiap Muslim.
 - [Aturan Buruk Sangka dan Menggunjing - Menjaga Hati, Menjaga Silaturahim](https://dalam.web.id/lainnya/buruk-sangka-menggunjing) : Penjelasan tentang bahaya buruk sangka (su’u zhan) dan menggunjing menurut Al-Qur’an dan Hadits; tanda, hukum, dan langkah praktis menjauhinya.
 - [Gunakan Perangkat Lunak Bebas Terbuka di Sekolah](https://dalam.web.id/lainnya/oss-sekolah) : Ajaklah semua orang untuk menggunakan perangkat lunak bebas terbuka di sekolah. Alternatif gratis seperti Linux, LibreOffice, GIMP, dan GNUCash bisa menghemat biaya pendidikan.
