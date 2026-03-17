@@ -83,19 +83,19 @@ async function processFile(filePath: string): Promise<void> {
     const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
     const output = minify(Buffer.from(html), {
-      allow_noncompliant_unquoted_attribute_values: true, // Set ke false agar lebih standar
-      allow_optimal_entities: true,
-      allow_removing_spaces_between_attributes: true,
-      collapse_whitespaces: true,
-      ensure_spec_compliant_unquoted_attribute_values: true, // WAJIB TRUE agar kutip aman
-      keep_comments: false,
-      keep_html_and_head_opening_tags: true,
-      keep_spaces_between_attributes: false,
-      minify_css: true,
-      minify_doctype: true,
-      minify_js: true,
-      remove_processing_instructions: true,
-      remove_bangs: false, // Tetap false agar <!DOCTYPE html> tidak rusak
+      allow_noncompliant_unquoted_attribute_values: false, // lebih aman & sesuai standar
+      allow_optimal_entities: true,                       // tetap ringkas
+      allow_removing_spaces_between_attributes: true,     // hemat ukuran
+      collapse_whitespaces: true,                         // kompres spasi
+      ensure_spec_compliant_unquoted_attribute_values: true, // jaga kepatuhan standar
+      keep_comments: false,                               // hapus komentar
+      keep_html_and_head_opening_tags: true,              // tetap sesuai struktur dokumen
+      keep_spaces_between_attributes: false,              // hapus spasi antar atribut bila aman
+      minify_css: true,                                   // minifikasi CSS inline
+      minify_doctype: true,                               // sederhanakan doctype
+      minify_js: true,                                    // minifikasi JS inline
+      remove_processing_instructions: true,               // hapus instruksi XML/SGML
+      remove_bangs: false                                 // biarkan tanda seru khusus tetap ada
     });
 
     let minifiedHTML = output.toString();
