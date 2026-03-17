@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/16/2026, 1:01:27 PM
+Generated on: 3/17/2026, 11:44:46 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.43 | LLM Index v17.43 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v17.50 | LLM Index v17.50 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -87,7 +87,6 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `artikel/akhir-hidup-microsoft-publisher-2026.html` | Akhir Hidup Microsoft Publisher: Panduan Lengkap Menyelamatkan File Desain Anda Sebelum 2026 - Layar Kosong | Akhir Hidup Microsoft Publisher: Panduan Lengkap Menyelamatkan File Desain Anda Sebelum 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/akidah-lima-alasan.html` | Lima Alasan Kenapa Harus Belajar Akidah - Layar Kosong | Lima Alasan Kenapa Harus Belajar Akidah | Layar Kosong | ✅ Perfect |
 | `artikel/akses-nextcloud-cloudflare-tunnel.html` | Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel - Layar Kosong | Akses Nextcloud dari Luar Rumah via Cloudflare Tunnel | Layar Kosong | ✅ Perfect |
-| `artikel/aku-cinta-indonesia.html` | Aku Cinta Indonesia - Warisan Nilai dari Film Anak 'ACI' (1985) - Layar Kosong | Aku Cinta Indonesia - Warisan Nilai dari Film Anak ’ACI’ (1985) | Layar Kosong | ✅ Perfect |
 | `artikel/al-baqarah-11-12-tafsir-kerusakan.html` | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak - Layar Kosong | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak | Layar Kosong | ✅ Perfect |
 | `artikel/album-thumbnail-json-generator.html` | Album Thumbnail Viewer & JSON Generator - Layar Kosong | Album Thumbnail Viewer & JSON Generator | Layar Kosong | ✅ Perfect |
 | `artikel/alias-linux.html` | Tips & Trik Linux: Pahami Perintah 'Alias' Biar Nge-terminal Lebih Cepat! ⚡ - Layar Kosong | Tips & Trik Linux: Pahami Perintah ’Alias’ Biar Nge-terminal Lebih Cepat! ⚡ | Layar Kosong | ✅ Perfect |
@@ -721,6 +720,7 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `artikel/misteri-alam-semesta-gerak-benda-langit.html` | Misteri Alam Semesta: Mengapa Matahari, Bulan, dan Bintang Tak Pernah Bertabrakan? 🌌 - Layar Kosong | Misteri Alam Semesta: Mengapa Matahari, Bulan, dan Bintang Tak Pernah Bertabrakan? 🌌 | Layar Kosong | ✅ Perfect |
 | `artikel/misteri-error-418-teko-ajaib.html` | Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita - Layar Kosong | Misteri Error 418: Kisah Teko Ajaib di Balik Protokol Internet Kita | Layar Kosong | ✅ Perfect |
 | `artikel/misteri-mr-crack-bj-habibie.html` | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara - Layar Kosong | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara | Layar Kosong | ✅ Perfect |
+| `artikel/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional.html` | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat - Layar Kosong | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat | Layar Kosong | ✅ Perfect |
 | `artikel/mk-tolak-nikah-beda-agama.html` | Analisis Tajam: Mengapa MK Tolak Nikah Beda Agama dan Dampaknya Bagi Kita - Layar Kosong | Analisis Tajam: Mengapa MK Tolak Nikah Beda Agama dan Dampaknya Bagi Kita | Layar Kosong | ✅ Perfect |
 | `artikel/monitor-trafik-jaringan-linux-otomatis.html` | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol - Layar Kosong | Cara Monitor Trafik Jaringan Linux Otomatis: Anti DDoS dan Kuota Jebol | Layar Kosong | ✅ Perfect |
 | `artikel/mos-modular-operation-system.html` | MOS - Sistem Operasi Modular Ringan untuk Homelab dan Server rumahan - Layar Kosong | MOS - Sistem Operasi Modular Ringan untuk Homelab dan Server rumahan | Layar Kosong | ✅ Perfect |
@@ -870,6 +870,7 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `artikel/polemik-mbg-busyro-muqoddas-demokrasi.html` | Polemik Program Makan Bergizi Gratis Dinilai Cerminkan Otoritarianisme Birokrasi - Layar Kosong | Polemik Program Makan Bergizi Gratis Dinilai Cerminkan Otoritarianisme Birokrasi | Layar Kosong | ✅ Perfect |
 | `artikel/polemik-sayyidina-shalawat.html` | Polemik Sayyidina dalam Shalawat: Antara Ta'zhim dan Ta'abbudi - Layar Kosong | Polemik Sayyidina dalam Shalawat: Antara Ta’zhim dan Ta’abbudi | Layar Kosong | ✅ Perfect |
 | `artikel/polemik-sppg-asn-pppk-keadilan-honorer.html` | Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer? - Layar Kosong | Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer? | Layar Kosong | ✅ Perfect |
+| `artikel/politik-memperkuat-yang-sudah-ada.html` | Politik yang Memperkuat yang Sudah Ada - Refleksi Kebijakan Publik - Layar Kosong | Politik yang Memperkuat yang Sudah Ada - Refleksi Kebijakan Publik | Layar Kosong | ✅ Perfect |
 | `artikel/posisi-muhammadiyah-terhadap-mazhab.html` | Benarkah Muhammadiyah Tidak Bermazhab? Pahami Posisi Fikih yang Sebenarnya! 🧐 - Layar Kosong | Benarkah Muhammadiyah Tidak Bermazhab? Pahami Posisi Fikih yang Sebenarnya! 🧐 | Layar Kosong | ✅ Perfect |
 | `artikel/ppdb-sktm-palsu.html` | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya - Layar Kosong | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya | Layar Kosong | ✅ Perfect |
 | `artikel/pph-pasal-23-atas-bunga-pinjaman.html` | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan - Layar Kosong | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan | Layar Kosong | ✅ Perfect |
@@ -1398,7 +1399,6 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `lainnya/agregat-2024-semester1.html` | Arsip Layar Kosong: Semester 1 2024 - Layar Kosong | Arsip Layar Kosong: Semester 1 2024 | Layar Kosong | ⚠️ Partial |
 | `lainnya/agregat-2025-semester1.html` | Arsip Layar Kosong: Semester 1 2025 - Layar Kosong | Arsip Layar Kosong: Semester 1 2025 | Layar Kosong | ⚠️ Partial |
 | `lainnya/agregat-2025-semester2.html` | Arsip Layar Kosong: Semester 2 2025 - Layar Kosong | Arsip Layar Kosong: Semester 2 2025 | Layar Kosong | ⚠️ Partial |
-| `lainnya/aku-cinta-indonesia.html` | Aku Cinta Indonesia - Warisan Nilai dari Film Anak 'ACI' (1985) - Layar Kosong | Aku Cinta Indonesia - Warisan Nilai dari Film Anak ’ACI’ (1985) | Layar Kosong | ✅ Perfect |
 | `lainnya/anak-raja-vs-adab-malik-badri.html` | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan - Layar Kosong | Anak Jadi ’Raja Kecil’? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan | Layar Kosong | ✅ Perfect |
 | `lainnya/analisis-putusan-mk-yim-vs-bgs.html` | Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI - Layar Kosong | Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI | Layar Kosong | ✅ Perfect |
 | `lainnya/asml-mesin-paling-kompleks-manusia.html` | ASML: Mengenal Mesin Paling Kompleks di Muka Bumi - Layar Kosong | ASML: Mengenal Mesin Paling Kompleks di Muka Bumi | Layar Kosong | ✅ Perfect |
@@ -1447,6 +1447,7 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `lainnya/menguasai-5w1h-penulisan-artikel.html` | Menguasai 5W+1H: Rahasia Artikel Berbobot - Layar Kosong | Menguasai 5W+1H: Rahasia Artikel Berbobot | Layar Kosong | ✅ Perfect |
 | `lainnya/mexico-tolak-trump-board-of-peace.html` | Meksiko Tolak Undangan ke Board of Peace - Layar Kosong | Meksiko Tolak Undangan ke Board of Peace | Layar Kosong | ✅ Perfect |
 | `lainnya/misteri-mr-crack-bj-habibie.html` | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara - Layar Kosong | Misteri Mr. Crack: Bagaimana Rumus B.J. Habibie Menyelamatkan Ribuan Nyawa di Udara | Layar Kosong | ✅ Perfect |
+| `lainnya/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional.html` | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat - Layar Kosong | MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat | Layar Kosong | ✅ Perfect |
 | `lainnya/oss-sekolah.html` | Gunakan Perangkat Lunak Bebas Terbuka di Sekolah - Layar Kosong | Gunakan Perangkat Lunak Bebas Terbuka di Sekolah | Layar Kosong | ✅ Perfect |
 | `lainnya/panduan-lengkap-snbp-2026.html` | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator - Layar Kosong | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator | Layar Kosong | ✅ Perfect |
 | `lainnya/parlemen-bisu-2026.html` | Parlemen Bisu di Tengah Sejumlah Isu - Layar Kosong | Parlemen Bisu di Tengah Sejumlah Isu | Layar Kosong | ✅ Perfect |
@@ -1665,6 +1666,7 @@ Generated on: 3/16/2026, 1:01:27 PM
 | `opini-sosial/polemik-mbg-busyro-muqoddas-demokrasi.html` | Polemik Program Makan Bergizi Gratis Dinilai Cerminkan Otoritarianisme Birokrasi - Layar Kosong | Polemik Program Makan Bergizi Gratis Dinilai Cerminkan Otoritarianisme Birokrasi | Layar Kosong | ✅ Perfect |
 | `opini-sosial/polemik-sayyidina-shalawat.html` | Polemik Sayyidina dalam Shalawat: Antara Ta'zhim dan Ta'abbudi - Layar Kosong | Polemik Sayyidina dalam Shalawat: Antara Ta’zhim dan Ta’abbudi | Layar Kosong | ✅ Perfect |
 | `opini-sosial/polemik-sppg-asn-pppk-keadilan-honorer.html` | Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer? - Layar Kosong | Polemik Pengangkatan Pegawai SPPG Jadi ASN PPPK: Di Mana Keadilan Buat Guru Honorer? | Layar Kosong | ✅ Perfect |
+| `opini-sosial/politik-memperkuat-yang-sudah-ada.html` | Politik yang Memperkuat yang Sudah Ada - Refleksi Kebijakan Publik - Layar Kosong | Politik yang Memperkuat yang Sudah Ada - Refleksi Kebijakan Publik | Layar Kosong | ✅ Perfect |
 | `opini-sosial/ppdb-sktm-palsu.html` | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya - Layar Kosong | Fenomena “kemiskinan mendadak” di PPDB - SKTM palsu dan jalan keluarnya | Layar Kosong | ✅ Perfect |
 | `opini-sosial/pph-pasal-23-atas-bunga-pinjaman.html` | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan - Layar Kosong | PPh Pasal 23 atas Bunga Pinjaman: Tarif, Pengecualian, dan Contoh Perhitungan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/prioritas-pendidikan-vs-makan-gratis.html` | Antara Sekolah Gratis dan Kotak Makan: Menggugat Logika Prioritas Bangsa - Layar Kosong | Antara Sekolah Gratis dan Kotak Makan: Menggugat Logika Prioritas Bangsa | Layar Kosong | ✅ Perfect |
