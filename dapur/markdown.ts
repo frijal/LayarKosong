@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { marked } from './marked.js';
 
 /**
  * MARKDOWN ENHANCER v5.5 (Final Compatibility)

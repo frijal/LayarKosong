@@ -35,8 +35,11 @@ async function masak(name: string) {
         const outName = name.replace(/\.ts$/, '.js');
         const finalOutPath = join(targetDir, outName);
         try {
-          await $`bun build ${sourcePath} --outfile ${finalOutPath} --minify --format iife --target browser`.quiet();
-        } catch {
+          // Tambahkan --compile atau pastikan --target browser
+          // Kita arahkan Bun untuk mem-bundle semuanya menjadi satu file (standalone)
+          await $`bun build ${sourcePath} --outfile ${finalOutPath} --minify --format iife --target browser --no-external`.quiet();
+        } catch (err) {
+          // Jika gagal build, baru copy mentahnya
           cpSync(sourcePath, finalOutPath);
         }
       }
