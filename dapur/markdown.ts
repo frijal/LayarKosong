@@ -26,8 +26,20 @@ function parseMarkdown(text: string): string {
   .replace(/_(.*?)_/g, "<em>$1</em>")
 
   // 5. Link & Image
-  .replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" class="md-img">')
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+  .replace(/!
+
+  \[([^\]
+
+  ]*)\]
+
+  \((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" class="md-img">')
+  .replace(/
+
+  \[([^\]
+
+  ]+)\]
+
+  \((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
 
   // 6. Inline Code
   .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
@@ -40,29 +52,24 @@ function parseMarkdown(text: string): string {
 }
 
 function enhanceMarkdown() {
-  // Selektor yang paling krusial saja
   const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, footer, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((el) => {
     const target = el as HTMLElement;
-
-    // Proteksi: Jangan proses jika sudah dirender atau dilarang
     if (target.classList.contains("no-md") || target.classList.contains("rendered")) return;
 
     const originalHTML = target.innerHTML;
     const rawContent = originalHTML.trim();
+    const hasMarkdown = /[\*\#\_
 
-    // Deteksi simbol MD (agar tidak memproses teks normal secara percuma)
-    const hasMarkdown = /[\*\#\_\[\]]/.test(rawContent);
+    \[\]
+
+    ]/.test(rawContent);
 
     if (rawContent && hasMarkdown) {
-      // TANDAI DULU sebelum eksekusi untuk cegah loop
       target.classList.add("rendered");
-
       const newHTML = parseMarkdown(rawContent);
-
-      // Hanya update jika ada perubahan nyata
       if (newHTML !== originalHTML) {
         target.innerHTML = newHTML;
       }
@@ -73,7 +80,6 @@ function enhanceMarkdown() {
 function run() {
   enhanceMarkdown();
 
-  // Observer yang sangat efisien
   const observer = new MutationObserver((mutations) => {
     const hasNewNodes = mutations.some(m => m.addedNodes.length > 0);
     if (hasNewNodes) {
@@ -86,9 +92,54 @@ function run() {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
+/**
+ * Pastikan highlight.js dan tema CSS dipanggil dengan aman
+ */
+function ensureHighlightJS(theme: string) {
+  // Script highlight.js
+  let existingScript = document.querySelector('script[src="/ext/highlight.js"]');
+  if (!existingScript) {
+    const script = document.createElement("script");
+    script.src = "/ext/highlight.js";
+    script.defer = true;
+    document.head.appendChild(script);
+    script.onload = () => {
+      if (window.hljs) {
+        document.querySelectorAll("pre code").forEach((block) => {
+          window.hljs.highlightElement(block as HTMLElement);
+        });
+      }
+    };
+  } else {
+    if (window.hljs) {
+      document.querySelectorAll("pre code").forEach((block) => {
+        window.hljs.highlightElement(block as HTMLElement);
+      });
+    }
+  }
+
+  // CSS tema
+  const themeHref = `/ext/${theme}`;
+  let existingLink = document.querySelector(`link[href="${themeHref}"]`);
+  if (!existingLink) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = themeHref;
+    document.head.appendChild(link);
+  }
+}
+
 // Inisialisasi
 if (document.readyState === "complete" || document.readyState === "interactive") {
   run();
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = prefersDark ? "atom-one-dark.min.css" : "atom-one-light.min.css";
+  ensureHighlightJS(theme);
 } else {
-  document.addEventListener("DOMContentLoaded", run);
+  document.addEventListener("DOMContentLoaded", () => {
+    run();
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = prefersDark ? "atom-one-dark.min.css" : "atom-one-light.min.css";
+    ensureHighlightJS(theme);
+  });
 }
