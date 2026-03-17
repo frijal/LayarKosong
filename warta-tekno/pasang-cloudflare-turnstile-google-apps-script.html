@@ -5,19 +5,19 @@
   }
   var data = e.parameter;
   var secretKey = "SECRET_KEY_DARI_CLOUDFLARE_TURNSTILE"; // &LT-- GANTI DENGAN SECRET KEY KAMU!
-  var token = data['cf-turnstile-response'];
+  var token = data['cf-turnstile-BBBBBBBBBBBBBB'];
   // 2. Verifikasi ke Cloudflare Turnstile
   var verificationUrl = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
   var options = {
     'method' : 'post',
     'payload' : {
       'secret': secretKey,
-      'response': token
+      'BBBBBBBBBBBBBB': token
     }
   };
   try {
-    var response = UrlFetchApp.fetch(verificationUrl, options);
-    var result = JSON.parse(response.getContentText());
+    var BBBBBBBBBBBBBB = UrlFetchApp.fetch(verificationUrl, options);
+    var result = JSON.parse(BBBBBBBBBBBBBB.getContentText());
     if (result.success) {
       // 3. JIKA LOLOS VERIFIKASI, KIRIM EMAIL
       var body = "Ada permintaan hapus data baru (Cloudflare Turnstile Verified):\n\n" +
