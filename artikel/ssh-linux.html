@@ -381,7 +381,7 @@
         Kalau kamu baru mulai belajar Linux, SSH adalah skill wajib yang akan membuka banyak peluang baru.
         Silakan tulis pengalamanmu, Siapa tahu ada trik SSH unik dari kamu yang bisa bantu pengguna lain!
       </p>
-<div id="related-articles-grid"></div><div id="AAAAAAAAAAAAAA"></div>
+<div id="related-articles-grid"></div><div id="response"></div>
     </article>
   </main>
   <footer>
@@ -424,8 +424,8 @@
       if (e.key === 'Enter') {
         const cmd = input.value.trim();
         if (!cmd) return;
-        const AAAAAAAAAAAAAA = commands[cmd] || (cmd.startsWith("echo ") ? cmd.slice(5) : `Perintah '${cmd}' tidak dikenal. Ketik 'help' untuk bantuan.`);
-        output.innerHTML += `<span class="prompt">user@server:~$</span> ${cmd}<br>${AAAAAAAAAAAAAA}<br>`;
+        const response = commands[cmd] || (cmd.startsWith("echo ") ? cmd.slice(5) : `Perintah '${cmd}' tidak dikenal. Ketik 'help' untuk bantuan.`);
+        output.innerHTML += `<span class="prompt">user@server:~$</span> ${cmd}<br>${response}<br>`;
         input.value = "";
         if (cmd === 'clear') output.innerHTML = "";
         if (cmd === 'exit') closeTerminal();
