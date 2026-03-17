@@ -47,7 +47,7 @@ function setupMarked() {
 }
 
 function enhanceMarkdown() {
-  const selector = ".markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
+  const selector = ".markdown-body, .article-container, .narasi, .language-markdown, .alert, .alert-box, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .container, .danger-box, .disclaimer, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .meta, .meta-info, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((container) => {
@@ -58,6 +58,8 @@ function enhanceMarkdown() {
 
     const rawContent = el.innerHTML
     .replace(/&gt;/g, '>')
+    .replace(/<p>/g, '')
+    .replace(/<\/p>/g, '\n')
     .trim();
 
     if (rawContent) {
