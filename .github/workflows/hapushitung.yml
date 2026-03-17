@@ -47,6 +47,7 @@ jobs:
             bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
             bun run dapur/audit-workflow-efisiensi.ts
             bun run dapur/metadata-audit.ts
+            sed -i '/^\s*$/d' artikel/*.html
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
       - name: 📊 Generate Simplified Content Report
