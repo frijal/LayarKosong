@@ -40,7 +40,6 @@
 - `artikel/maulid-ringkas.html`
 - `artikel/windows-vs-linux-kebiasaan.html`
 - `artikel/konversi-pdf-lokal-poppler.html`
-- `artikel/fiqih-haji-memahami-konsep-mampu.html`
 - `artikel/poac-perencanaan-partisipatif.html`
 - `artikel/maulid-perbandingan.html`
 - `artikel/maulid-slides.html`
