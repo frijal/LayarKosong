@@ -92,19 +92,27 @@ function ensureHighlightJS(theme: string): void {
 function start(): void {
   enhanceMarkdown();
 
-  // Observer untuk konten dinamis
   const observer = new MutationObserver((mutations) => {
     if (mutations.some(m => m.addedNodes.length > 0)) {
       window.requestAnimationFrame(enhanceMarkdown);
     }
   });
-
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Tema berdasarkan skema warna
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const theme = prefersDark ? "atom-one-dark.min.css" : "atom-one-light.min.css";
-  ensureHighlightJS(theme);
+  // Deteksi Mode Gelap Browser
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // Fungsi untuk pasang tema sesuai kondisi
+  const updateTheme = (isDark: boolean) => {
+    const theme = isDark ? "github-dark.min.css" : "github.min.css"; // Sesuaikan pilihanmu di sini
+    ensureHighlightJS(theme);
+  };
+
+  // Jalankan saat pertama kali muat
+  updateTheme(prefersDark.matches);
+
+  // Pantau jika user ganti mode OS (Dark/Light) tanpa refresh halaman
+  prefersDark.addEventListener("change", (e) => updateTheme(e.matches));
 }
 
 // Inisialisasi
