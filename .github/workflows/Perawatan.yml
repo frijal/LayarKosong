@@ -85,11 +85,11 @@ jobs:
       - name: 🌈 Sync & Map Assets
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
-          # 1. Install Dependencies
+          # 1. Pastikan marked terinstall agar bisa di-import oleh markdown.ts
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest marked@latest --no-save --trusted
           bun pm untrusted
           
-          # Mapping Assets (Standard)
+          # 2. Copy aset statis (Seperti biasa)
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
           cp node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           cp node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
@@ -105,18 +105,11 @@ jobs:
           cp node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
-
-          # 2. Bundling Markdown.js (Marked + Custom Logic)
-          # Kita gunakan ESM import agar Bun bisa mem-bundle Marked ke dalam satu file
-          echo "import { marked } from 'marked';" > bundle-entry.js
-          echo "window.marked = marked;" >> bundle-entry.js
-          cat dapur/markdown-src.js >> bundle-entry.js
           
-          # Output menjadi markdown.js (minify) agar panggilannya tetap sama di HTML
-          bun build bundle-entry.js --minify --outfile dapur/markdown.js
-          rm bundle-entry.js
+          # 3. Eksekusi Koki (Ini yang akan melakukan transpile markdown.ts ke /ext/markdown.js)
+          bun dapur/koki.ts --once
 
-          # 3. Metadata
+          # 4. Update Metadata
           FA_VER=$(cat node_modules/@fortawesome/fontawesome-free/package.json | jq -r .version)
           H2C_VER=$(cat node_modules/html2canvas/package.json | jq -r .version)
           H2PDF_VER=$(cat node_modules/html2pdf.js/package.json | jq -r .version)
