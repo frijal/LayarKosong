@@ -19,8 +19,7 @@ interface Stats {
 
 // ========== CONFIG ==========
 const folders: string[] = [
-  'gaya-hidup', 'jejak-sejarah', 'lainnya',
-'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+  'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 
 let stats: Stats = {
@@ -45,51 +44,69 @@ const formatBytes = (bytes: number): string => {
 async function processFile(filePath: string): Promise<void> {
   try {
     const f = bunFile(filePath);
-    let originalHTML = await f.text();
+    let html = await f.text();
 
-    if (!originalHTML.trim()) return;
-
-    // --- LOGIKA SKIP YANG DISEMPURNAKAN ---
-    // 1. Skip jika sudah ada signature
-    if (originalHTML.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
+    if (!html.trim() || html.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
       stats.skipped++;
       return;
     }
 
-    // 2. Hanya skip index.html jika posisinya ada di root utama
-    // (index.html di dalam folder kategori tetap akan diproses)
     if (filePath === 'index.html') {
       stats.skipped++;
       return;
     }
 
-    const sizeBefore = Buffer.byteLength(originalHTML, 'utf8');
+    const sizeBefore = Buffer.byteLength(html, 'utf8');
 
-    // --- PERBAIKAN KOMENTAR JS ---
-    originalHTML = originalHTML.replace(/<script[\s\S]*?<\/script>/gi, (match) => {
-      return match.replace(/^[ \t]*\/\/(?!#).*/gm, '');
+    // ========== TAHAP 1: PROTEKSI & SOFT-MINIFY SCRIPT INLINE ==========
+    const scriptPlaceholders: string[] = [];
+
+    html = html.replace(/<script(?![^>]*\bsrc\b)[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
+      const softMinified = content
+      // Hapus komentar /* */
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      // Hapus komentar // tapi hati-hati jangan hapus URL (https://)
+      .replace(/([^\\:]|^)\/\/.*/g, '$1')
+      .replace(/^\s+|\s+$/gm, '')
+      .replace(/\n+/g, ' ')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+      const id = `__SCRIPT_SOFT_${scriptPlaceholders.length}__`;
+      scriptPlaceholders.push(`<script>${softMinified}</script>`);
+      return id;
     });
 
+    // ========== TAHAP 2: PROSES MINIFY HTML UTAMA ==========
     const tgl = new Date().toISOString().slice(0, 10);
     const minifySignature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
 
-    const output = minify(Buffer.from(originalHTML), {
-      allow_noncompliant_unquoted_attribute_values: true,
+    const output = minify(Buffer.from(html), {
+      allow_noncompliant_unquoted_attribute_values: true, // Set ke false agar lebih standar
       allow_optimal_entities: true,
       allow_removing_spaces_between_attributes: true,
       collapse_whitespaces: true,
-      ensure_spec_compliant_unquoted_attribute_values: false,
+      ensure_spec_compliant_unquoted_attribute_values: false, // WAJIB TRUE agar kutip aman
       keep_comments: false,
-      keep_html_and_head_opening_tags: false,
+      keep_html_and_head_opening_tags: true,
       keep_spaces_between_attributes: false,
       minify_css: true,
       minify_doctype: true,
       minify_js: true,
-      remove_bangs: true,
       remove_processing_instructions: true,
+      remove_bangs: false, // Tetap false agar <!DOCTYPE html> tidak rusak
     });
 
-    const minifiedHTML = output.toString() + minifySignature;
+    let minifiedHTML = output.toString();
+
+    // ========== TAHAP 3: KEMBALIKAN SCRIPT YANG SUDAH RAMPING ==========
+    scriptPlaceholders.forEach((tag, index) => {
+      const id = `__SCRIPT_SOFT_${index}__`;
+      minifiedHTML = minifiedHTML.replace(id, tag);
+    });
+
+    minifiedHTML += minifySignature;
+
     const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
     const saved = sizeBefore - sizeAfter;
 
