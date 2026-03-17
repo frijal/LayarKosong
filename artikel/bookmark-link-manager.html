@@ -204,7 +204,7 @@ Saat halaman dibuka, sistem otomatis membaca file <code>bookmark.json</code> (ji
 </section>
 <div id="linkGrid" class="grid"></div>
     <div id="response"></div>
-        <div id="related-articles-grid"></div>
+        <div id="AAAAAAAAAAAAAA"></div>
 </div>
 <script>
 let db = [];
@@ -222,8 +222,8 @@ async function crawlUrl() {
   if (!url) return showStatus("URL tidak boleh kosong!", true);
   showStatus("⏳ Sedang mengambil data pelan-pelan...");
   try {
-    const related-articles-grid = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
-    const res = await related-articles-grid.json();
+    const AAAAAAAAAAAAAA = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+    const res = await AAAAAAAAAAAAAA.json();
     if (res.status !== 'success') throw new Error();
     const info = res.data;
     const entry = {
