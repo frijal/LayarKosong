@@ -107,7 +107,9 @@ jobs:
           
           # --- COPY MARKED KE DAPUR ---
           # Ini agar kamu punya file mentahnya di laptop tanpa node_modules
-          cp node_modules/marked/marked.min.js dapur/marked.js
+          find node_modules/marked -name "marked.umd.js" -o -name "marked.min.js" | xmllint --xpath "string(//)" - 2>/dev/null | xargs -I {} cp {} dapur/marked.js || \
+          find node_modules/marked -type f -name "*.js" | head -n 1 | xargs -I {} cp {} dapur/marked.js
+          echo "✅ Marked berhasil diamankan ke dapur/marked.js"
           
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
           
