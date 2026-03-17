@@ -69,15 +69,6 @@ function sapuJagat() {
   });
 }
 
-const folder = "./artikel";
-console.log(`🧹 Membersihkan whiteline di folder ${folder}...`);
-
-try {
-  // -maxdepth 1 memastikan find hanya melihat file tepat di bawah folder artikel/
-  await $`find ${folder} -maxdepth 1 -type f -name "*.html" -exec sed -i '/^\\s*$/d' {} +`.quiet();  console.log("✨ Semua artikel sudah 'dijepit' dan bersih dari baris kosong.");
-} catch (err) {
-  console.error("❌ Gagal membersihkan whiteline:", err);
-}
 
 // --- EKSEKUSI UTAMA ---
 sapuJagat();
