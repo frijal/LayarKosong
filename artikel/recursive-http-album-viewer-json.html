@@ -473,12 +473,12 @@
                 // Contoh: https://.../album/data.json -> https://.../album/
                 baseURL = url.substring(0, url.lastIndexOf('/') + 1);
                 // 1. Ambil file JSON
-                const BBBBBBBBBBBBBB = await fetch(url, { cache: 'no-store' }); // Jangan cache list
-                if (!BBBBBBBBBBBBBB.ok) {
-                    throw new Error(`Gagal mengambil data: ${BBBBBBBBBBBBBB.statusText}`);
+                const related-articles-grid = await fetch(url, { cache: 'no-store' }); // Jangan cache list
+                if (!related-articles-grid.ok) {
+                    throw new Error(`Gagal mengambil data: ${related-articles-grid.statusText}`);
                 }
                 // 2. Parse JSON
-                const imagePaths = await BBBBBBBBBBBBBB.json();
+                const imagePaths = await related-articles-grid.json();
                 if (!Array.isArray(imagePaths)) {
                     throw new Error('File JSON tidak berisi array.');
                 }
