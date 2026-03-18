@@ -77,6 +77,7 @@ async function processFile(filePath: string): Promise<void> {
 			ensure_spec_compliant_unquoted_attribute_values: true,
 			keep_comments: false,
 			keep_html_and_head_opening_tags: true,
+			keep_spaces_between_attributes: false,
 			minify_css: true,
 			minify_js: false,
 		});
