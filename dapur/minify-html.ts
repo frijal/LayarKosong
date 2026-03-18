@@ -79,7 +79,6 @@ async function processFile(filePath: string): Promise<void> {
 			keep_html_and_head_opening_tags: true,
 			keep_spaces_between_attributes: false,
 			minify_css: true,
-			minify_js: false,
 		});
 		
 		let minifiedHTML = output.toString();
