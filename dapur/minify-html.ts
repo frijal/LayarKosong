@@ -16,7 +16,8 @@ interface Stats {
 }
 // ========== CONFIG ==========
 const folders: string[] = [
-    'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+    'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 
+    'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 let stats: Stats = {
     success: 0, skipped: 0, failed: 0, errorList: [], 
@@ -74,35 +75,26 @@ async function processFile(filePath: string): Promise<void> {
         
         // TAHAP 2: MINIFY HTML
         const output = minify(Buffer.from(html), {
-            allow_noncompliant_unquoted_attribute_values: true,
-            collapse_whitespaces: true,
-            ensure_spec_compliant_unquoted_attribute_values: true,
-            keep_comments: false,
-            keep_html_and_head_opening_tags: true,
-            keep_spaces_between_attributes: false,
-            minify_css: true,
+		allow_noncompliant_unquoted_attribute_values: true,
+        collapse_whitespaces: true,
+		ensure_spec_compliant_unquoted_attribute_values: true,
+        keep_comments: false,
+        keep_html_and_head_opening_tags: true,
+        keep_spaces_between_attributes: false,
+        minify_css: true,
         });
         
         let minifiedHTML = output.toString();
         
-        // TAHAP 3: INJEKSI BALIK & SIGNATURE (VERSI PERBAIKAN)
-        for (const [id, fullTag] of scriptPlaceholders) {
-            minifiedHTML = minifiedHTML.replace(id, fullTag);
-        }
-        
-        const tgl = new Date().toISOString().slice(0, 10);
-        const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
-        
-        // Masukkan signature ke dalam </html> agar tidak error di browser
-        if (minifiedHTML.includes('</html>')) {
-            minifiedHTML = minifiedHTML.replace('</html>', `${signature}</html>`);
-        } else {
-            // Fallback jika tidak ada tag </html> (misal file fragmen)
-            minifiedHTML = minifiedHTML.trimEnd() + "\n" + signature;
-        }
-        
-        const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
-        await write(filePath, minifiedHTML);
+        // TAHAP 3: INJEKSI BALIK & SIGNATURE (RAPAT)
+for (const [id, fullTag] of scriptPlaceholders) {
+    minifiedHTML = minifiedHTML.replace(id, fullTag);
+}
+const tgl = new Date().toISOString().slice(0, 10);
+const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
+// Hapus tag </html> lama, lalu gabungkan tanpa baris baru
+minifiedHTML = minifiedHTML.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
+await write(filePath, minifiedHTML);
         
         stats.success++;
         stats.totalBefore += sizeBefore;
