@@ -31,6 +31,7 @@ function replaceContent(html: string): string {
     .replaceAll(" - Layar Kosong", "")
     .replaceAll(" - dalam web id", "")
     .replaceAll(" - Dalam.web.id", "")
+    .replaceAll(" | Dalam.web.id", "")
 
     // URL icon
     .replaceAll("https://dalam[.]web[.]id/assets/apple-touch-icon.png", "https://dalam.web.id/ext/icons/apple-touch-icon.png")
