@@ -16,8 +16,7 @@ interface Stats {
 }
 // ========== CONFIG ==========
 const folders: string[] = [
-    'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 
-    'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+    'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 let stats: Stats = {
     success: 0, skipped: 0, failed: 0, errorList: [], 
