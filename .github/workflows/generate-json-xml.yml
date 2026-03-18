@@ -101,7 +101,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "✅ Tidak ada perubahan."
           else
-            git commit -m "build: 🚀 optimized site assets (schema, minify, sitemap) [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "beres: 🚀 artikel tampil [$(date +'%Y-%m-%d %H:%M')]"
             git pull --rebase origin main
             git push origin main
           fi
