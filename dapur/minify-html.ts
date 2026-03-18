@@ -86,16 +86,28 @@ async function processFile(filePath: string): Promise<void> {
         
         let minifiedHTML = output.toString();
         
-        // TAHAP 3: INJEKSI BALIK & SIGNATURE (RAPAT)
-for (const [id, fullTag] of scriptPlaceholders) {
-    minifiedHTML = minifiedHTML.replace(id, fullTag);
-}
-const tgl = new Date().toISOString().slice(0, 10);
-const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
-// Hapus tag </html> lama, lalu gabungkan tanpa baris baru
-minifiedHTML = minifiedHTML.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
-await write(filePath, minifiedHTML);
+        // TAHAP 3: INJEKSI BALIK & SIGNATURE (VERSI FIX STATS)
+        for (const [id, fullTag] of scriptPlaceholders) {
+            minifiedHTML = minifiedHTML.replace(id, fullTag);
+        }
         
+        const tgl = new Date().toISOString().slice(0, 10);
+        const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
+        
+        // Gabungkan signature secara rapat sebelum </html>
+        if (minifiedHTML.includes('</html>')) {
+            minifiedHTML = minifiedHTML.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
+        } else {
+            minifiedHTML = minifiedHTML.trimEnd() + signature;
+        }
+        
+        // PINDAHKAN sizeAfter ke sini (Sebelum hitung statistik)
+        const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
+        
+        // Tulis file
+        await write(filePath, minifiedHTML);
+        
+        // Update Stats
         stats.success++;
         stats.totalBefore += sizeBefore;
         stats.totalAfter += sizeAfter;
