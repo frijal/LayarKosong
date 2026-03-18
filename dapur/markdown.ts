@@ -13,40 +13,30 @@ declare global {
 function parseMarkdown(text: string): string {
   let res = text.replace(/&gt;/g, ">");
 
-  // 1. HEADERS (Minified-Safe)
-  // Mencari '#' yang didahului oleh awal string ATAU penutup tag HTML '>' ATAU spasi
-  res = res.replace(/(?:^|>|\s)(#+)\s+(.*?)(?=\n|<|$)/g, (match, hashes, title) => {
-    const lvl = hashes.length;
-    return `<h${lvl}>${title}</h${lvl}>`;
-  });
-
-  // 2. BLOCKQUOTE (Nested & Minified-Safe)
-  // Mencari '>' yang didahului oleh penutup tag atau spasi, tapi bukan bagian dari tag HTML
-  res = res.replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>");
-
-  // 3. LIST ITEMS
-  res = res.replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
-
-  // 4. INLINE FORMATTING (Bold, Italic, Code)
+  // Ganti ^ dan $ dengan pola yang lebih fleksibel
   res = res
+    .replace(/(?:^|>|\s)###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
+    .replace(/(?:^|>|\s)##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
+    .replace(/(?:^|>|\s)#### (.*?)(?=\n|<|$)/g, "<h4>$1</h4>")
+    .replace(/(?:^|>|\s)### (.*?)(?=\n|<|$)/g, "<h3>$1</h3>")
+    .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
+    .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>")
+    
+    // Bold, Italic, Link (Tetap sama karena ini biasanya aman)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/__(.*?)__/g, "<strong>$1</strong>")
     .replace(/\*(.*?)\*/g, "<em>$1</em>")
     .replace(/_(.*?)_/g, "<em>$1</em>")
-    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-
-  // 5. LINKS & IMAGES
-  res = res
     .replace(/!\[([^\]]*)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="md-img">')
-    .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+    .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+    
+    // List & Quote (Diperkuat untuk minified)
+    .replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
+    .replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
 
-  // 6. AUTO-WRAPPER & CLEANUP
-  // Gabungkan <li> yang berurutan ke dalam <ul>
-  res = res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
-  // Gabungkan <blockquote> yang berurutan
-  res = res.replace(/<\/blockquote><blockquote>/g, "<br>");
-
-  return res;
+  // Auto wrap list
+  return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
 }
 
 function enhanceMarkdown(): void {
