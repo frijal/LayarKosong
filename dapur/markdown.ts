@@ -12,23 +12,39 @@ declare global {
 
 function parseMarkdown(text: string): string {
   return text
-  .replace(/&gt;/g, ">")
-  .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
-  .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
-  .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
-  .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
-  .replace(/^### (.*)$/gm, "<h3>$1</h3>")
-  .replace(/^## (.*)$/gm, "<h2>$1</h2>")
-  .replace(/^# (.*)$/gm, "<h1>$1</h1>")
-  .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-  .replace(/__(.*?)__/g, "<strong>$1</strong>")
-  .replace(/\*(.*?)\*/g, "<em>$1</em>")
-  .replace(/_(.*?)_/g, "<em>$1</em>")
-  .replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" class="md-img">')
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-  .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
-  .replace(/^([\-\*_]){3,}\s*$/gm, "<hr>")
-  .replace(/^\s*[-*+] (.*)$/gm, "<li>$1</li>");
+    // 1. Standarisasi Quote
+    .replace(/&gt;/g, ">")
+
+    // 2. Headers (Minified Safe: Mencari # setelah awal teks, newline, atau penutup tag HTML '>')
+    .replace(/(?:^|\n|>)\s?###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
+    .replace(/(?:^|\n|>)\s?##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
+    .replace(/(?:^|\n|>)\s?#### (.*?)(?=\n|<|$)/g, "<h4>$1</h4>")
+    .replace(/(?:^|\n|>)\s?### (.*?)(?=\n|<|$)/g, "<h3>$1</h3>")
+    .replace(/(?:^|\n|>)\s?## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
+    .replace(/(?:^|\n|>)\s?# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>")
+
+    // 3. Blockquote (Mencari '>' yang bukan bagian dari tag HTML)
+    .replace(/(?:^|\n|(?<=[\s>]))>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
+
+    // 4. List Items & Auto-Wrapper UL
+    .replace(/(?:^|\n|>)\s*[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>")
+    // Bungkus semua <li> yang berurutan menjadi <ul>
+    .replace(/(<li>.*?<\/li>)/gms, "<ul>$1</ul>")
+
+    // 5. Inline Styles (Bold, Italic, Code)
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.*?)__/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    .replace(/_(.*?)_/g, "<em>$1</em>")
+    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+
+    // 6. Media & Links
+    .replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" class="md-img">')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+
+    // 7. Cleanup & Polish
+    .replace(/<\/blockquote><blockquote>/g, "<br>") // Gabungkan quote yang terpisah newline
+    .replace(/<\/ul><ul>/g, ""); // Gabungkan UL yang terpisah
 }
 
 function enhanceMarkdown(): void {
