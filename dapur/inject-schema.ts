@@ -134,16 +134,15 @@ async function main() {
         } else {
           html = schema + html;
         }
-        // 3. Injeksi Signature (Masuk ke dalam </html>)
-        // Gunakan variabel signature yang sudah didefinisikan di atas (dekat results)
+        // 3. Injeksi Signature (Rapat & Anti-Error)
+        // Kita hapus </html> lama (jika ada) lalu tempel signature + </html> secara rapat
         if (html.includes('</html>')) {
-          // Sisipkan tepat sebelum tag penutup html
-          html = html.replace('</html>', `${signature}</html>`);
+          html = html.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
         } else {
-          // Jika file fragmen/komponen, baru boleh taruh di paling bawah
-          html = html.trimEnd() + "\n" + signature + "\n";
+          // Jika file fragmen/komponen
+          html = html.trimEnd() + signature;
         }
-        // 4. Tulis file (Tanpa tambahan signature di parameter write)
+        // 4. Tulis file
         await write(htmlPath, html);
         
         results.changed++;
