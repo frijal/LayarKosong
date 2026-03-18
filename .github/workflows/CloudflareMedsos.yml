@@ -148,7 +148,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ Ga ada kerjaan baru, skip commit."
           else
-            git commit -m "chore: automation MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "chore: MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
             git pull origin main --rebase --autostash
             git push
           fi
