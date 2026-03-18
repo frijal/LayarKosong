@@ -80,8 +80,6 @@ async function processFiles() {
             await write(fullPath, updated);
             stats.changed++;
             console.log(`   ✅ Clean: ...${fileName}`);
-        } else {
-            console.log(`   ⏭️ Skip (no change): ...${fileName}`);
         }
     }
 
