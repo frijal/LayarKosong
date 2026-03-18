@@ -1,30 +1,24 @@
 import { file, write } from "bun";
 import { existsSync, readFileSync } from "node:fs"; // Bun tetap support node:fs untuk sync checks
 import path from "node:path";
-
 // ========== TYPES ==========
 type ArticleEntry = [string, string, string, string, string?];
 type ArtikelData = Record<string, ArticleEntry[]>;
-
 // ========== CONFIG ==========
 const BASE_URL = "https://dalam.web.id";
 const SITE_NAME = "Layar Kosong";
 const AUTHOR = "Fakhrul Rijal";
 const LICENSE_URL = "https://creativecommons.org/publicdomain/zero/1.0/";
-
 const ALLOWED_CATEGORIES = new Set([
   "gaya-hidup", "jejak-sejarah", "lainnya",
   "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ]);
-
 const SCHEMA_REGEX = /<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*/gi;
 const SIGNATURE_KEY = "schema_oleh_Fakhrul_Rijal";
 const STOPWORDS = new Set(["yang", "untuk", "dengan", "adalah", "dalam", "dari", "pada", "atau", "itu", "dan", "sebuah", "aku", "ke", "saya", "ini", "gue", "gua", "elu", "elo"]);
-
 // ========== UTILITIES ==========
 const slugify = (t: unknown): string => String(t).trim().toLowerCase().replace(/\s+/g, "-");
 const categoryNameClean = (c: string): string => String(c).trim().replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
-
 function buildKeywords(headline: string, category: string, slug: string): string {
   const words = String(headline || "").toLowerCase().split(/[^\w]+/).filter(w => w.length > 3 && !STOPWORDS.has(w));
   const base = new Set<string>(words);
@@ -33,7 +27,6 @@ function buildKeywords(headline: string, category: string, slug: string): string
   base.add("layar kosong");
   return Array.from(base).slice(0, 12).join(", ");
 }
-
 function buildCombinedSchema(category: string, article: ArticleEntry): string {
   const [headline, filename, image, iso_date, desc] = article;
   const catSlug = slugify(category);
@@ -41,7 +34,6 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
   const cleanBase = BASE_URL.replace(/\/+$/, "");
   const articleUrl = `${cleanBase}/${catSlug}/${fileSlug}`;
   const catDisplayName = categoryNameClean(category);
-
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -106,10 +98,8 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
       }
     ]
   };
-
   return `<script type="application/ld+json">${JSON.stringify(schemaData)}</script>\n`;
 }
-
 // ========== MAIN ==========
 async function main() {
   try {
@@ -117,31 +107,26 @@ async function main() {
     const data: ArtikelData = await file("artikel.json").json();
     const results = { changed: 0, skipped: 0, missing: 0 };
     const signature = `<noscript>${SIGNATURE_KEY}_${new Date().toISOString().slice(0, 10)}</noscript>`;
-
     for (const [category, articles] of Object.entries(data)) {
       const catSlug = slugify(category);
       if (!ALLOWED_CATEGORIES.has(catSlug) || !Array.isArray(articles)) continue;
-
       for (const article of articles) {
         const htmlPath = path.join(catSlug, String(article[1]).replace(/^\//, ""));
-
         if (!existsSync(htmlPath)) {
           results.missing++;
           continue;
         }
-
         let html = await file(htmlPath).text();
-
         if (html.includes(SIGNATURE_KEY)) {
           results.skipped++;
           continue;
         }
-
-        // Clean & Build
+        // ========== PERBAIKAN INJECTION & SIGNATURE ==========
+        
+        // 1. Bersihkan schema lama & buat yang baru
         html = html.replace(SCHEMA_REGEX, "");
         const schema = buildCombinedSchema(category, article);
-
-        // Injection Logic
+        // 2. Injeksi Schema (Tetap di bagian atas/head)
         if (/<style/i.test(html)) {
           html = html.replace(/<style/i, `${schema}<style`);
         } else if (/<\/head>/i.test(html)) {
@@ -149,18 +134,25 @@ async function main() {
         } else {
           html = schema + html;
         }
-
-        // Bun.write jauh lebih efisien untuk operasi write file
-        await write(htmlPath, html.trimEnd() + "\n" + signature + "\n");
+        // 3. Injeksi Signature (Masuk ke dalam </html>)
+        // Gunakan variabel signature yang sudah didefinisikan di atas (dekat results)
+        if (html.includes('</html>')) {
+          // Sisipkan tepat sebelum tag penutup html
+          html = html.replace('</html>', `${signature}</html>`);
+        } else {
+          // Jika file fragmen/komponen, baru boleh taruh di paling bawah
+          html = html.trimEnd() + "\n" + signature + "\n";
+        }
+        // 4. Tulis file (Tanpa tambahan signature di parameter write)
+        await write(htmlPath, html);
+        
         results.changed++;
-        console.log(`✅ Injected: ${htmlPath}`);
+        console.log(`✅ Injected & Signed: ${htmlPath}`);
       }
     }
-
     console.log(`\n🚀 SEO Injection Selesai!\n🆕 Baru: ${results.changed}\n⏭️  Skip: ${results.skipped}\n❌ Hilang: ${results.missing}`);
   } catch (err) {
     console.error("❌ Error:", err);
   }
 }
-
 main();
