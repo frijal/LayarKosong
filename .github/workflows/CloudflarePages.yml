@@ -91,7 +91,10 @@ jobs:
 
             INCLUDE_ARGS=""
             for pattern in ${{ github.event.inputs.sparse }}; do
-              INCLUDE_ARGS="$INCLUDE_ARGS --include='$pattern'"
+              if [[ "$pattern" != *"*"* ]]; then
+                pattern="$pattern/***"
+              fi
+                INCLUDE_ARGS="$INCLUDE_ARGS --include='$pattern'"
             done
 
             eval rsync -a --delete \
