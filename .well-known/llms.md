@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.59
+document_version: 17.60
 last_updated: 2026-03-18
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 18 Maret 2026)
-> Menampilkan 1089 artikel versi 17.59.
+> Menampilkan 1095 artikel versi 17.60.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -125,6 +125,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik](https://dalam.web.id/jejak-sejarah/kritik-mbg-dan-sunnah-nabi) : Mengkritik program Makan Bergizi Gratis (MBG) dianggap mencela makanan? Yuk bedah hadis Nabi soal adab makan vs pengawasan kebijakan publik yang mubazir.
+- [Santri Nilai Wacana Dialog dengan Israel Langkah Tolol](https://dalam.web.id/jejak-sejarah/santri-kritik-diplomasi-israel) : Santri kritik rencana pemerintah berdialog dengan Israel. Sebut langkah tolol karena sejarah Bani Israil ingkar janji. Simak analisis 5W+1H dan latar kisah nabi.
 - [Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia](https://dalam.web.id/jejak-sejarah/muhammad-ali-taher-pahlawan-palestina) : Kisah inspiratif Muhammad Ali Taher tokoh Palestina yang menyerahkan seluruh kekayaannya demi kemerdekaan Indonesia pada 1948
 - [Penjelasan Muhammadiyah Terkait Perbedaan Idul Fitri: Biar Nggak Gagal Paham](https://dalam.web.id/jejak-sejarah/penjelasan-muhammadiyah-perbedaan-idul-fitri) : penjelasan Ketua PP Muhammadiyah berkaitan dengan perbedaan keputusan hari Raya Idul Fitri. Dengar tuntas sampai selesai agar tidak gagal paham.
 - [Sejarah Nabi Bani Israil: Daftar Lengkap dan Hasil Dakwahnya](https://dalam.web.id/jejak-sejarah/sejarah-nabi-bani-israil-dan-hasil-dakwah) : Lalu jaman sekarang ada Orang yang sok jago ingin jadi Juru Kedamaian?! Menelusuri sejarah nabi-nabi yang diutus kepada Bani Israil menurut Al-Quran. Dari Nabi Yaqub hingga Nabi Isa, serta rekam jejak pembangkangan kaumnya.
@@ -295,6 +297,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk - Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [Pelajaran dari Malaysia: Mahathir, Jet Tempur, dan Kemandirian Teknologi](https://dalam.web.id/lainnya/pelajaran-mahathir-jet-tempur-kemandirian) : Mahathir Mohamad ungkap pembelian jet F/A-18 dari AS: pesawat canggih tapi bisa dikendalikan dari jarak jauh. Pelajaran pahit kemandirian teknologi pertahanan.
 - [MK Nyatakan UU Pensiun Pejabat No.12/1980 Inkonstitusional Bersyarat](https://dalam.web.id/lainnya/mk-nyatakan-uu-pensiun-pejabat-inkonstitusional) : Putusan MK 16 Maret 2026: UU No.12/1980 tentang hak keuangan pejabat dinyatakan inkonstitusional bersyarat. DPR diberi waktu 2 tahun perbaiki aturan pensiun.
 - [Analisis Putusan MK 111: Menko YIM vs Menkes BGS Menurut IDAI](https://dalam.web.id/lainnya/analisis-putusan-mk-yim-vs-bgs) : kupas tuntas perbedaan tafsir Menko Yusril Ihza Mahendra dan Menkes Budi Gunadi Sadikin atas Putusan MK Nomor 111 PUU XXII 2024 terkait kolegium medis
 - [Rumus Upah Lembur Lengkap dan Cara Hitungnya](https://dalam.web.id/lainnya/rumus-upah-lembur) : aturan upah lembur di Indonesia termasuk dasar hukum dan rumus perhitungan upah lembur
@@ -443,6 +446,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo](https://dalam.web.id/opini-sosial/logika-iri-pemerintah-prabowo) : Menganalisis pernyataan Presiden Prabowo soal pengamat yang iri pada keberhasilan pemerintah. Benarkah dalam demokrasi rakyat bisa iri pada mandatnya sendiri?
+- [Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah](https://dalam.web.id/opini-sosial/analisis-asn-mbg-kdmp-5w1h) : Moratorium ASN, gaji PPPK telat, MBG keracunan massal, KDMP mangkrak. Analisis 5W+1H mengapa program ini berisiko jadi beban negara.
 - [Politik yang Memperkuat yang Sudah Ada - Refleksi Kebijakan Publik](https://dalam.web.id/opini-sosial/politik-memperkuat-yang-sudah-ada) : Refleksi kebijakan publik yang menekankan memperkuat potensi yang sudah ada di masyarakat untuk pembangunan yang lebih efektif dan berkelanjutan
 - [Satu Kiblat Satu Kalender: Perjalanan Panjang Menuju Kalender Hijriah Global](https://dalam.web.id/opini-sosial/perjalanan-kalender-hijriah-global-oki) : sejarah dan fakta di balik upaya penyatuan kalender Hijriah global oleh OKI mulai dari simposium Tunis 2009 hingga Resolusi Istanbul 2025
 - [Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026](https://dalam.web.id/opini-sosial/larangan-medsos-anak-16-tahun) : Pemerintah Indonesia resmi terbitkan Permen Komdigi Nomor 9 Tahun 2026 yang melarang anak di bawah 16 tahun punya akun media sosial mandiri mulai 28 Maret 2026.
@@ -605,6 +610,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Pilih Distro Linux Stabil - Tips Longevity dan Recovery](https://dalam.web.id/sistem-terbuka/memilih-distro-linux-stabil) : Bingung pilih distro Linux yang tahan lama? Simak panduan memilih distro stabil seperti Debian, Ubuntu, dan Mint agar tidak terjebak distro musiman.
 - [4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya](https://dalam.web.id/sistem-terbuka/4-distro-linux-turunan-terbaik) : daftar 4 distro Linux turunan terbaik seperti Linux Mint CachyOS Pop OS dan Ultramarine yang memberikan performa dan kenyamanan lebih baik dari basis aslinya
 - [Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia](https://dalam.web.id/sistem-terbuka/sejarah-kernel-linux-1-0-0) : Kisah lengkap sejarah rilis perdana kernel Linux 1.0.0 oleh Linus Torvalds pada 14 Maret 1994. Pelajari bagaimana sistem operasi ini lahir dan mendominasi dunia teknologi.
 - [CachyOS Maret 2026 Rilis: Installer Animasi, Winboat, Handheld Makin Gahar](https://dalam.web.id/sistem-terbuka/cachyos-maret-2026-changelog) : CachyOS Maret 2026 hadir dengan pratinjau desktop animasi di installer, integrasi Winboat, perombakan edisi Handheld, kernel linux-cachyos dirilis terpisah, dan mirror baru di Rusia, Swedia, Kanada.
