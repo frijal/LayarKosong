@@ -1,6 +1,6 @@
 # ⚡ Laporan Efisiensi Workflow Layar Kosong
 
-> **Audit Terakhir:** Selasa, 17 Maret 2026 pukul 19.44.46 WITA
+> **Audit Terakhir:** Rabu, 18 Maret 2026 pukul 19.49.42 WITA
 
 | Workflow File | Script .ts | Status Install | Paket Eksternal | Rekomendasi |
 | :--- | :--- | :--- | :--- | :--- |
@@ -29,6 +29,7 @@
 | hapushitung.yml | workflow-list.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | hapushitung.yml | audit-workflow-efisiensi.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | hapushitung.yml | metadata-audit.ts | 🟡 Ada | `glob`, `cheerio` | ✅ Sudah Optimal |
+| Perawatan.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | Perawatan.yml | sapu-bersih.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | periksa-html.yml | audit-seo.ts | 🟡 Ada | `linkedom` | ✅ Sudah Optimal |
 | proses-artikelx.yml | Edit-Komponen-HTML.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
