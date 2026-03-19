@@ -129,7 +129,7 @@ jobs:
             deleted_count=$(git diff --staged --name-status | grep -c "^D" || true)
             
             # [skip ci] sangat penting untuk mencegah infinite loop!
-            git commit -m "chore: Daily maintenance report ($DATE) 📊 [skip ci]
+            git commit -m "chore: Perawatan Harian ($DATE) 📊 [skip ci]
 
             - Added: $added_count file(s)
             - Deleted: $deleted_count file(s)
