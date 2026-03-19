@@ -22,6 +22,7 @@ permissions:
 jobs:
   deploy-direct:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
    
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
