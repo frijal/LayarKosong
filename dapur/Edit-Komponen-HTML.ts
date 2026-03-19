@@ -39,8 +39,6 @@ function replaceContent(html: string): string {
     // copyright symbol
     .replaceAll("&copy;", "🄯")
     .replaceAll("©", "🄯")
-    .replaceAll("&rarr;", "→")
-    .replaceAll("&amp;", "&")
 
     // Font Awesome version
     .replaceAll("Font Awesome 5 Free", "Font Awesome 7 Free")
