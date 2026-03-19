@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.76
+document_version: 17.77
 last_updated: 2026-03-19
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 19 Maret 2026)
-> Menampilkan 1102 artikel versi 17.76.
+> Menampilkan 1103 artikel versi 17.77.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -451,6 +451,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah?](https://dalam.web.id/opini-sosial/hukum-ikut-pemerintah-hari-raya-beda-quran-sunnah) : Apakah seorang muslim ikut berdosa jika pemimpin mengambil keputusan hari raya yang tidak sesuai Al Quran dan Sunnah beserta dalil larangan taqlid buta
 - [Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap](https://dalam.web.id/opini-sosial/efek-sekolah-daring-dan-kebijakan-hemat-bbm) : Analisis lengkap dampak sekolah daring terhadap pendidikan anak dan hubungan kebijakan hemat BBM. Solusi praktis dan rekomendasi kebijakan.
 - [Kebijakan Sekolah Daring dan WFA untuk Hemat BBM: Antara Efisiensi dan Beban Sosial](https://dalam.web.id/opini-sosial/kebijakan-sekolah-daring-hemat-bbm) : kebijakan sekolah daring dan work from home untuk hemat BBM. Dampak pada pendidikan anak, biaya hidup, dan alternatif solusi.
 - [Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo](https://dalam.web.id/opini-sosial/logika-iri-pemerintah-prabowo) : Menganalisis pernyataan Presiden Prabowo soal pengamat yang iri pada keberhasilan pemerintah. Benarkah dalam demokrasi rakyat bisa iri pada mandatnya sendiri?
