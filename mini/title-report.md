@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/19/2026, 11:37:59 AM
+Generated on: 3/19/2026, 12:42:48 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/19/2026, 11:37:59 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.73 | LLM Index v17.73 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v17.74 | LLM Index v17.74 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -1138,6 +1138,7 @@ Generated on: 3/19/2026, 11:37:59 AM
 | `artikel/zakat-untuk-mbg-analisis.html` | Zakat untuk MBG: Dari Rukun Islam Jadi Rukun Anggaran? Analisis Ekonomi dan Syariat - Layar Kosong | Zakat untuk MBG: Dari Rukun Islam Jadi Rukun Anggaran? Analisis Ekonomi dan Syariat | Layar Kosong | ✅ Perfect |
 | `artikel/zorin-os-18-beta.html` | Zorin OS 18 Beta Diluncurkan dengan Desktop yang Dirancang Ulang - Layar Kosong | Zorin OS 18 Beta Diluncurkan dengan Desktop yang Dirancang Ulang | Layar Kosong | ✅ Perfect |
 | `artikel/zsync-blankon.html` | Panduan ZSync untuk ISO BlankOn Rote - Layar Kosong | Panduan ZSync untuk ISO BlankOn Rote | Layar Kosong | ✅ Perfect |
+| `artikelx/paradoks-hilal-rukyat-hisab-astronomi-islam.html` | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Dalam Web | ⚠️ Partial |
 | `gaya-hidup/16-tahun-ojol-tanpa-uu.html` | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda - Layar Kosong | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/adab-tata-cara-minum-dalam-islam.html` | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil - Layar Kosong | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/angkringan-jogja.html` | Angkringan Jogja - Kuliner Tradisional Yang Legendaris - Layar Kosong | Angkringan Jogja - Kuliner Tradisional Yang Legendaris | Layar Kosong | ✅ Perfect |
