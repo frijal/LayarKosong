@@ -13,28 +13,36 @@ declare global {
 function parseMarkdown(text: string): string {
   let res = text.replace(/&gt;/g, ">");
 
-  // Ganti ^ dan $ dengan pola yang lebih fleksibel
+  // 1. Heading (Tetap sama)
   res = res
-    .replace(/(?:^|>|\s)###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
-    .replace(/(?:^|>|\s)##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
-    .replace(/(?:^|>|\s)#### (.*?)(?=\n|<|$)/g, "<h4>$1</h4>")
-    .replace(/(?:^|>|\s)### (.*?)(?=\n|<|$)/g, "<h3>$1</h3>")
-    .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
-    .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>")
+  .replace(/(?:^|>|\s)###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
+  .replace(/(?:^|>|\s)##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
+  .replace(/(?:^|>|\s)#### (.*?)(?=\n|<|$)/g, "<h4>$1</h4>")
+  .replace(/(?:^|>|\s)### (.*?)(?=\n|<|$)/g, "<h3>$1</h3>")
+  .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
+  .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
-    // Bold, Ialic, Link (Tetap sama karena ini biasanya aman)
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/__(.*?)__/g, "<strong>$1</strong>")
-    .replace(/\*(.*?)\*/g, "<em>$1</em>")
-    .replace(/!\[([^\]]*)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="md-img">')
-    .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
-    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+  // 2. PROTEKSI: Proses Image & Link duluan sebelum Bold/Italic
+  // Kita proses ![]() dan []() agar underscore di dalam (URL) tidak terganggu
+  res = res
+  .replace(/!\[([^\]]*)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="md-img">')
+  .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+  .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
-    // List & Quote (Diperkuat untuk minified)
-    .replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
-    .replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
+  // 3. Bold & Italic (Diberi batasan kata agar tidak memakan isi tag HTML)
+  // Menggunakan regex yang lebih selektif agar tidak menyentuh atribut src="..." atau href="..."
+  res = res
+  .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  .replace(/__(.*?)__/g, "<strong>$1</strong>")
+  // Regex Italic di bawah ini hanya akan bekerja jika TIDAK di dalam tag HTML (atribut)
+  .replace(/(^|[^\w])\*([^*]+)\*([^\w]|$)/g, "$1<em>$2</em>$3")
+  .replace(/(^|[^\w])_([^_]+)_([^\w]|$)/g, "$1<em>$2</em>$3");
 
-  // Auto wrap list
+  // 4. List & Quote
+  res = res
+  .replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
+  .replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
+
   return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
 }
 
