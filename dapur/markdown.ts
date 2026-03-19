@@ -11,9 +11,16 @@ declare global {
 }
 
 function parseMarkdown(text: string): string {
+  // 1. Unescape awal agar quote (>) bisa terbaca meskipun di-minify
   let res = text.replace(/&gt;/g, ">");
 
-  // 1. Heading (Tetap sama)
+  // 2. PROTEKSI URL: Proses Image & Link duluan
+  res = res
+  .replace(/!\[([^\]]*)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="md-img">')
+  .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+  .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
+  // 3. HEADING: Deteksi # hanya jika di awal baris/setelah tag
   res = res
   .replace(/(?:^|>|\s)###### (.*?)(?=\n|<|$)/g, "<h6>$1</h6>")
   .replace(/(?:^|>|\s)##### (.*?)(?=\n|<|$)/g, "<h5>$1</h5>")
@@ -22,27 +29,23 @@ function parseMarkdown(text: string): string {
   .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
   .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
-  // 2. PROTEKSI: Proses Image & Link duluan sebelum Bold/Italic
-  // Kita proses ![]() dan []() agar underscore di dalam (URL) tidak terganggu
-  res = res
-  .replace(/!\[([^\]]*)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="md-img">')
-  .replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
-  .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+  // 4. PENGAMAN SPASI: Bold & Italic (Inti perbaikan URL)
+  // Syarat: Diapit spasi/tag, dan isinya tidak boleh diawali/diakhiri spasi
 
-  // 3. Bold & Italic (Diberi batasan kata agar tidak memakan isi tag HTML)
-  // Menggunakan regex yang lebih selektif agar tidak menyentuh atribut src="..." atau href="..."
-  res = res
-  .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-  .replace(/__(.*?)__/g, "<strong>$1</strong>")
-  // Regex Italic di bawah ini hanya akan bekerja jika TIDAK di dalam tag HTML (atribut)
-  .replace(/(^|[^\w])\*([^*]+)\*([^\w]|$)/g, "$1<em>$2</em>$3")
-  .replace(/(^|[^\w])_([^_]+)_([^\w]|$)/g, "$1<em>$2</em>$3");
+  // Bold (**) & (__)
+  res = res.replace(/(^|>|\s)\*\*([^\s*][^*]*[^\s*])\*\*(\s|<|$)/g, "$1<strong>$2</strong>$3");
+  res = res.replace(/(^|>|\s)__([^\s_][^_]*[^\s_])__(\s|<|$)/g, "$1<strong>$2</strong>$3");
 
-  // 4. List & Quote
+  // Italic (*) & (_)
+  res = res.replace(/(^|>|\s)\*([^\s*][^*]*[^\s*])\*(\s|<|$)/g, "$1<em>$2</em>$3");
+  res = res.replace(/(^|>|\s)_([^\s_][^_]*[^\s_])_(\s|<|$)/g, "$1<em>$2</em>$3");
+
+  // 5. LIST & QUOTE
   res = res
   .replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
   .replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
 
+  // Auto wrap list <li> ke dalam <ul>
   return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
 }
 
