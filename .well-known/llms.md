@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.75
+document_version: 17.76
 last_updated: 2026-03-19
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 19 Maret 2026)
-> Menampilkan 1102 artikel versi 17.75.
+> Menampilkan 1102 artikel versi 17.76.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -125,6 +125,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran?](https://dalam.web.id/jejak-sejarah/paradoks-hilal-rukyat-hisab-astronomi-islam) : Allah memberi Akal yang sangat berharga kepada manusia. Gunakan untuk mikir, termasuk memahami Sains. Sains adalah cara kita membaca ayat-ayat Allah yang tercipta di alam semesta. Kalau menolak sains, silakan lepas Akal, tidak usah pakai Akal.
 - [Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik](https://dalam.web.id/jejak-sejarah/kritik-mbg-dan-sunnah-nabi) : Mengkritik program Makan Bergizi Gratis (MBG) dianggap mencela makanan? Yuk bedah hadis Nabi soal adab makan vs pengawasan kebijakan publik yang mubazir.
 - [Santri Nilai Wacana Dialog dengan Israel Langkah Tolol](https://dalam.web.id/jejak-sejarah/santri-kritik-diplomasi-israel) : Santri kritik rencana pemerintah berdialog dengan Israel. Sebut langkah tolol karena sejarah Bani Israil ingkar janji. Simak analisis 5W+1H dan latar kisah nabi.
 - [Muhammad Ali Taher Pahlawan Palestina yang Serahkan Hartanya untuk Indonesia](https://dalam.web.id/jejak-sejarah/muhammad-ali-taher-pahlawan-palestina) : Kisah inspiratif Muhammad Ali Taher tokoh Palestina yang menyerahkan seluruh kekayaannya demi kemerdekaan Indonesia pada 1948
@@ -616,7 +617,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
-- [Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran?](https://dalam.web.id/sistem-terbuka/paradoks-hilal-rukyat-hisab-astronomi-islam) : Allah memberi Akal yang sangat berharga kepada manusia. Gunakan untuk mikir, termasuk memahami Sains. Sains adalah cara kita membaca ayat-ayat Allah yang tercipta di alam semesta. Kalau menolak sains, silakan lepas Akal, tidak usah pakai Akal.
 - [Pilih Distro Linux Stabil - Tips Longevity dan Recovery](https://dalam.web.id/sistem-terbuka/memilih-distro-linux-stabil) : Bingung pilih distro Linux yang tahan lama? Simak panduan memilih distro stabil seperti Debian, Ubuntu, dan Mint agar tidak terjebak distro musiman.
 - [4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya](https://dalam.web.id/sistem-terbuka/4-distro-linux-turunan-terbaik) : daftar 4 distro Linux turunan terbaik seperti Linux Mint CachyOS Pop OS dan Ultramarine yang memberikan performa dan kenyamanan lebih baik dari basis aslinya
 - [Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia](https://dalam.web.id/sistem-terbuka/sejarah-kernel-linux-1-0-0) : Kisah lengkap sejarah rilis perdana kernel Linux 1.0.0 oleh Linus Torvalds pada 14 Maret 1994. Pelajari bagaimana sistem operasi ini lahir dan mendominasi dunia teknologi.
