@@ -8,7 +8,7 @@ sudo netselect-apt jammy  # Ubuntu 22.04</code></pre></div><div><h3>Pindahkan ha
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo mv sources.list /etc/apt/sources.list
 # Refresh apt
-sudo apt update</code></pre></div><div><h3>Tips</h3><ul><li>Jika netselect-apt sulit dijalankan, gunakan `apt-fast` atau pilih mirror manual lewat daftar resmi.<li>Untuk Ubuntu gunakan GUI <strong>Software & Updates → Download from → Other → Select Best Server</strong>.</ul></div></div></section><section><h2>2. Arch Linux & Manjaro (pacman) — reflector / pacman-mirrors</h2><p>Arch: pakai `reflector`. Manjaro: pakai `pacman-mirrors`.<div class=section-grid><div><h3>Arch — contoh</h3><pre><button class=copy-btn onclick=copyCode(this)>Copy</button><code class=language-bash># Install reflector (jika belum ada)
+sudo apt update</code></pre></div><div><h3>Tips</h3><ul><li>Jika netselect-apt sulit dijalankan, gunakan `apt-fast` atau pilih mirror manual lewat daftar resmi.<li>Untuk Ubuntu gunakan GUI **Software & Updates → Download from → Other → Select Best Server**.</ul></div></div></section><section><h2>2. Arch Linux & Manjaro (pacman) — reflector / pacman-mirrors</h2><p>Arch: pakai `reflector`. Manjaro: pakai `pacman-mirrors`.<div class=section-grid><div><h3>Arch — contoh</h3><pre><button class=copy-btn onclick=copyCode(this)>Copy</button><code class=language-bash># Install reflector (jika belum ada)
 sudo pacman -S --noconfirm reflector
 # Pilih 5 mirror terbaru dari Indonesia, urut menurut speed, simpan ke mirrorlist
 sudo reflector --country "Indonesia" --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
