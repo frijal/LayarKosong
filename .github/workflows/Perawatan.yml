@@ -43,7 +43,6 @@ permissions:
 jobs:
   maintenance:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
     
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
