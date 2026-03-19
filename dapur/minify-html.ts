@@ -46,11 +46,24 @@ const cleanInvisibleChars = (html: string, filePath: string): string => {
 
     // Entity populer → simbol langsung
     const entities: { [key: string]: string } = {
-        "&nbsp;": "\u00A0",
-        "&amp;": "&",
-        "&rarr;": "→",
-        "&lt;": "<",
-        "&gt;": ">"
+    "&nbsp;": "\u00A0",
+    "&reg;": "®",
+    "&trade;": "™",
+    "&amp;": "&",
+    "&quot;": "\"",
+    "&apos;": "'",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&rarr;": "→",
+    "&larr;": "←",
+    "&uarr;": "↑",
+    "&darr;": "↓",
+    "&euro;": "€",
+    "&yen;": "¥",
+    "&pound;": "£",
+    "&sect;": "§",
+    "&para;": "¶",
+    "&deg;": "°"
     };
 
     for (const [entity, symbol] of Object.entries(entities)) {
