@@ -1,7 +1,6 @@
 // -------------------------------------------------------
 // FILE: proses-artikel.ts
 // Pengganti langkah Perl + Sed di GitHub Actions
-// Jalankan: bun run proses-artikel.ts
 // -------------------------------------------------------
 
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
