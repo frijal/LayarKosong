@@ -29,15 +29,17 @@ function parseMarkdown(text: string): string {
   .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
   .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
-  // 4. PENGAMAN SPASI: Bold & Italic (Inti perbaikan URL)
-  // Syarat: Diapit spasi/tag, dan isinya tidak boleh diawali/diakhiri spasi
+  // 4. PENGAMAN SPASI & TAG: Bold & Italic
+  // Kita tambahkan '>' di grup pertama agar <p>**Teks** bisa terbaca
 
-  // Bold (**) & (__)
+  // Bold (**)
   res = res.replace(/(^|>|\s)\*\*([^\s*][^*]*[^\s*])\*\*(\s|<|$)/g, "$1<strong>$2</strong>$3");
+  // Bold (__)
   res = res.replace(/(^|>|\s)__([^\s_][^_]*[^\s_])__(\s|<|$)/g, "$1<strong>$2</strong>$3");
 
-  // Italic (*) & (_)
+  // Italic (*)
   res = res.replace(/(^|>|\s)\*([^\s*][^*]*[^\s*])\*(\s|<|$)/g, "$1<em>$2</em>$3");
+  // Italic (_)
   res = res.replace(/(^|>|\s)_([^\s_][^_]*[^\s_])_(\s|<|$)/g, "$1<em>$2</em>$3");
 
   // 5. LIST & QUOTE
