@@ -40,34 +40,41 @@ const formatBytes = (bytes: number): string => {
 
 const cleanInvisibleChars = (html: string, filePath: string): string => {
     const before = html.length;
-    let cleaned = html
-    .replace(/\u00A0/g, " ") // NBSP → spasi biasa
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, ""); // hapus zero-width
 
-    // Entity populer → simbol langsung
+    // Jangan sentuh URL encoded (%xx)
+    let cleaned = html
+    .replace(/\u00A0/g, " ")
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");
+
+    // Entity populer → simbol langsung, tapi hindari dalam URL
     const entities: { [key: string]: string } = {
-    "&nbsp;": "\u00A0",
-    "&reg;": "®",
-    "&trade;": "™",
-    "&amp;": "&",
-    "&rarr;": "→",
-    "&larr;": "←",
-    "&uarr;": "↑",
-    "&darr;": "↓",
-    "&euro;": "€",
-    "&yen;": "¥",
-    "&pound;": "£",
-    "&sect;": "§",
-    "&para;": "¶",
-    "&deg;": "°"
+        "&nbsp;": "\u00A0",
+        "&copy;": "©",
+        "&reg;": "®",
+        "&trade;": "™",
+        "&amp;": "&",
+        "&quot;": "\"",
+        "&apos;": "'",
+        "&lt;": "<",
+        "&gt;": ">",
+        "&rarr;": "→",
+        "&larr;": "←",
+        "&uarr;": "↑",
+        "&darr;": "↓",
+        "&euro;": "€",
+        "&yen;": "¥",
+        "&pound;": "£",
+        "&sect;": "§",
+        "&para;": "¶",
+        "&deg;": "°"
     };
 
     for (const [entity, symbol] of Object.entries(entities)) {
-        const count = (cleaned.match(new RegExp(entity, "g")) || []).length;
-        if (count > 0) {
-            stats.entityCounts[entity] = (stats.entityCounts[entity] || 0) + count;
-            cleaned = cleaned.replace(new RegExp(entity, "g"), symbol);
-        }
+        // Replace hanya jika entity tidak berada dalam URL (src/href)
+        cleaned = cleaned.replace(
+            new RegExp(`(?![^"]*(src|href)=)${entity}`, "g"),
+                                  symbol
+        );
     }
 
     const diff = before - cleaned.length;
@@ -77,6 +84,7 @@ const cleanInvisibleChars = (html: string, filePath: string): string => {
     }
     return cleaned;
 };
+
 
 const softMinifyJS = (code: string): string =>
     code
