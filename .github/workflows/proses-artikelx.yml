@@ -13,6 +13,7 @@ permissions:
 jobs:
   process_articles:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
    
     steps:
       - name: Checkout repository
