@@ -59,7 +59,7 @@
       a {
         color: #90caf9;
       }
-      .related-article, #response, pre, figure img {
+      .related-article, #related-articles-grid, pre, figure img {
         background-color: #1e1e1e;
         border-color: #333;
       }
@@ -159,7 +159,7 @@
     li {
       margin-bottom: 0.5rem;
     }
-    #related-articles-grid {
+    #response {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
@@ -186,7 +186,7 @@
         border-color: #333;
       }
     }
-    #response {
+    #related-articles-grid {
       border: 2px dashed #aaa;
       border-radius: 30px;
       padding: 2.5rem;
@@ -195,7 +195,7 @@
       text-align: center;
     }
     @media (prefers-color-scheme: dark) {
-      #response {
+      #related-articles-grid {
         background: #1e1e1e;
         border-color: #444;
       }
@@ -616,12 +616,12 @@
       <p>Jadi, siap menyambut GNOME 50? 😊</p>
     </section>
 
-    <!-- Div response (kolom komentar) -->
-    <div id="response">
+    <!-- Div related-articles-grid (kolom komentar) -->
+    <div id="related-articles-grid">
         </div>
 
     <!-- Related articles grid -->
-    <div id="related-articles-grid">
+    <div id="response">
       </div>
 
     <!-- Footer -->
@@ -632,5 +632,5 @@
   </article>
 </div>
 
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/related-articles-grid.js"></script>
 </body></html>
