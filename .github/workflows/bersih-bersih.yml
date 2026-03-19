@@ -15,7 +15,6 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
    
     permissions:
       contents: write # penting agar bisa commit & push
