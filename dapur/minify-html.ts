@@ -1,5 +1,6 @@
 import { minify } from '@minify-html/node';
 import { Glob, file as bunFile, write, nanoseconds } from "bun";
+
 // ========== TYPES ==========
 interface ErrorDetail {
     path: string;
@@ -13,7 +14,9 @@ interface Stats {
     totalSaved: number;
     totalBefore: number;
     totalAfter: number;
+    totalInvisibleRemoved: number; 
 }
+
 // ========== CONFIG ==========
 const folders: string[] = [
     'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 
@@ -21,8 +24,10 @@ const folders: string[] = [
 ];
 let stats: Stats = {
     success: 0, skipped: 0, failed: 0, errorList: [], 
-    totalSaved: 0, totalBefore: 0, totalAfter: 0
+    totalSaved: 0, totalBefore: 0, totalAfter: 0,
+    totalInvisibleRemoved: 0
 };
+
 // ========== UTILITIES ==========
 const formatBytes = (bytes: number): string => {
     if (bytes === 0) return '0 B';
@@ -31,6 +36,20 @@ const formatBytes = (bytes: number): string => {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
+
+const cleanInvisibleChars = (html: string, filePath: string): string => {
+  const before = html.length;
+  const cleaned = html
+    .replace(/\u00A0/g, " ") // NBSP → spasi
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, ""); // hapus zero-width
+  const diff = before - cleaned.length;
+  if (diff > 0) {
+    stats.totalInvisibleRemoved += diff;
+    console.log(`🧹 ${filePath}: ${diff} invisible chars removed`);
+  }
+  return cleaned;
+};
+
 const softMinifyJS = (code: string): string => 
     code
         .replace(/\/\*[\s\S]*?\*\//g, '')
@@ -38,17 +57,21 @@ const softMinifyJS = (code: string): string =>
         .replace(/\n\s+/g, ' ')
         .replace(/\s{2,}/g, ' ')
         .trim();
+
+// ========== CORE ==========
 async function processFile(filePath: string): Promise<void> {
     try {
         const f = bunFile(filePath);
         let html = await f.text();
+
+        // Bersihkan invisible characters dulu
+        html = cleanInvisibleChars(html, filePath);
         
-        // Cek apakah sudah pernah diproses oleh script ini
+        // Skip jika kosong atau sudah dijepit
         if (!html.trim() || html.includes('udah_dijepit_oleh_Fakhrul_Rijal')) {
             stats.skipped++;
             return;
         }
-        
         if (filePath === 'index.html') {
             stats.skipped++;
             return;
@@ -58,13 +81,14 @@ async function processFile(filePath: string): Promise<void> {
         const scriptPlaceholders = new Map<string, string>();
         let scriptCounter = 0;
         
-        // TAHAP 1: PROTEKSI SCRIPT
+        // Proteksi script
         html = html.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, (match, content) => {
             if (/src\s*=/.test(match)) return match;
             
             const isJsonLd = /type\s*=\s*['"]?application\/ld\+json['"]?/i.test(match);
+            // JSON-LD → rapat, tanpa trim
             const processed = isJsonLd 
-                ? content.replace(/\s+/g, ' ').trim() 
+                ? content.replace(/\s+/g, ' ') 
                 : softMinifyJS(content);
             
             const id = `___LK_JS_${scriptCounter++}___`;
@@ -73,20 +97,20 @@ async function processFile(filePath: string): Promise<void> {
             return id;
         });
         
-        // TAHAP 2: MINIFY HTML
+        // Minify HTML
         const output = minify(Buffer.from(html), {
-		allow_noncompliant_unquoted_attribute_values: true,
-        collapse_whitespaces: true,
-		ensure_spec_compliant_unquoted_attribute_values: true,
-        keep_comments: false,
-        keep_html_and_head_opening_tags: true,
-        keep_spaces_between_attributes: false,
-        minify_css: true,
+            allow_noncompliant_unquoted_attribute_values: true,
+            collapse_whitespaces: true,
+            ensure_spec_compliant_unquoted_attribute_values: true,
+            keep_comments: false,
+            keep_html_and_head_opening_tags: true,
+            keep_spaces_between_attributes: false,
+            minify_css: true,
         });
         
         let minifiedHTML = output.toString();
         
-        // TAHAP 3: INJEKSI BALIK & SIGNATURE (VERSI FIX STATS)
+        // Injeksi balik script & signature
         for (const [id, fullTag] of scriptPlaceholders) {
             minifiedHTML = minifiedHTML.replace(id, fullTag);
         }
@@ -94,17 +118,14 @@ async function processFile(filePath: string): Promise<void> {
         const tgl = new Date().toISOString().slice(0, 10);
         const signature = `<noscript>udah_dijepit_oleh_Fakhrul_Rijal_${tgl}</noscript>`;
         
-        // Gabungkan signature secara rapat sebelum </html>
         if (minifiedHTML.includes('</html>')) {
             minifiedHTML = minifiedHTML.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
         } else {
             minifiedHTML = minifiedHTML.trimEnd() + signature;
         }
         
-        // PINDAHKAN sizeAfter ke sini (Sebelum hitung statistik)
         const sizeAfter = Buffer.byteLength(minifiedHTML, 'utf8');
         
-        // Tulis file
         await write(filePath, minifiedHTML);
         
         // Update Stats
@@ -118,6 +139,8 @@ async function processFile(filePath: string): Promise<void> {
         stats.errorList.push({ path: filePath, error: err.message });
     }
 }
+
+
 async function run(): Promise<void> {
     console.log('🧼 Memulai Minify Ultra (Full Parallel Mode)...');
     console.log('📂 Lokasi: Balikpapan | User: Fakhrul Rijal | Status: No Limit 🚀');
@@ -132,7 +155,7 @@ async function run(): Promise<void> {
         for (const file of glob.scanSync(".")) fileList.push(file);
     }
     
-    // Hajar semua sekaligus
+    // Proses paralel
     await Promise.all(fileList.map(file => processFile(file)));
     
     const endTime = nanoseconds();
@@ -150,6 +173,7 @@ async function run(): Promise<void> {
     console.log(`📉 Total Sebelum      : ${formatBytes(stats.totalBefore)}`);
     console.log(`📉 Total Sesudah      : ${formatBytes(stats.totalAfter)}`);
     console.log(`🚀 Ruang Dihemat      : ${formatBytes(stats.totalSaved)} (${savingPercent}%)`);
+    console.log(`🧹 Invisible Removed   : ${stats.totalInvisibleRemoved} chars`);
     console.log('='.repeat(60));
     
     if (stats.failed > 0) {
@@ -157,4 +181,5 @@ async function run(): Promise<void> {
         stats.errorList.forEach((item, i) => console.log(`${i+1}. ${item.path} -> ${item.error}`));
     }
 }
+
 run();
