@@ -65,7 +65,8 @@ function replaceContent(html: string): string {
     .replaceAll("twitter.com", "x.com")
 
     // SEO fluff
-    .replaceAll("Analisis mendalam ", "")
+    .replaceAll("Analisis lengkap ", "")
+    .replaceAll("Analisis mendalam ", "")     
     .replaceAll("Analisis tajam ", "")
     .replaceAll("Artikel mendalam ", "")
     .replaceAll("Panduan lengkap ", "")
