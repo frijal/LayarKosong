@@ -1,4 +1,4 @@
-masukkan disini import { minify } from '@minify-html/node';
+import { minify } from '@minify-html/node';
 import { Glob, file as bunFile, write, nanoseconds } from "bun";
 // ========== TYPES ==========
 interface ErrorDetail {
