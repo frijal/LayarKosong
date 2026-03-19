@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/18/2026, 11:49:42 AM
+Generated on: 3/19/2026, 11:37:59 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.59 | LLM Index v17.59 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v17.73 | LLM Index v17.73 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -99,6 +99,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/amr-bin-al-ash.html` | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah - Layar Kosong | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah | Layar Kosong | ✅ Perfect |
 | `artikel/anak-raja-vs-adab-malik-badri.html` | Anak Jadi 'Raja Kecil'? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan - Layar Kosong | Anak Jadi ’Raja Kecil’? 👑 Malik Badri dan Bahaya Worldview Hollywood dalam Pengasuhan | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-anggaran-pendidikan-vs-gizi-2026.html` | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar - Layar Kosong | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar | Layar Kosong | ✅ Perfect |
+| `artikel/analisis-asn-mbg-kdmp-5w1h.html` | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah - Layar Kosong | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-indonesia-board-of-peace.html` | Analisis Indonesia di Board of Peace: Jebakan Diplomasi atau Strategi Jitu? - Layar Kosong | Analisis Indonesia di Board of Peace: Jebakan Diplomasi atau Strategi Jitu? | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-kasus-ira-puspadewi.html` | Analisis Mendalam Kasus Ira Puspadewi: Integritas BUMN vs. Kriminalisasi Keputusan Bisnis - Layar Kosong | Analisis Mendalam Kasus Ira Puspadewi: Integritas BUMN vs. Kriminalisasi Keputusan Bisnis | Layar Kosong | ✅ Perfect |
 | `artikel/analisis-kritis-board-of-peace-gaza.html` | Mengapa Keterlibatan Indonesia dalam Board of Peace untuk Gaza Justru Mengkhianati Perjuangan Palestina? - Layar Kosong | Mengapa Keterlibatan Indonesia dalam Board of Peace untuk Gaza Justru Mengkhianati Perjuangan Palestina? | Layar Kosong | ✅ Perfect |
@@ -288,6 +289,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/editor-artikel-json-pro.html` | Editor Artikel JSON Pro - Layar Kosong | Editor Artikel JSON Pro | Layar Kosong | ✅ Perfect |
 | `artikel/editor-json-artikel-mingguan.html` | Editor JSON Artikel Mingguan (Format Array) - Layar Kosong | Editor JSON Artikel Mingguan (Format Array) | Layar Kosong | ✅ Perfect |
 | `artikel/editor-json-pro.html` | Editor Artikel JSON Pro - Kelola Konten Layar Kosong - Layar Kosong | Editor Artikel JSON Pro - Kelola Konten Layar Kosong | Layar Kosong | ⚠️ Partial |
+| `artikel/efek-sekolah-daring-dan-kebijakan-hemat-bbm.html` | Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap - Layar Kosong | Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/efisiensi-ubuntu.html` | Meningkatkan Efisiensi Ubuntu dengan 4 Trik Optimasi Sederhana 🚀 - Layar Kosong | Meningkatkan Efisiensi Ubuntu dengan 4 Trik Optimasi Sederhana 🚀 | Layar Kosong | ✅ Perfect |
 | `artikel/ekspedisi-ifriqiyah.html` | Ekspedisi Ifriqiyah Tunisia, 27 H / 647 M - Layar Kosong | Ekspedisi Ifriqiyah Tunisia, 27 H / 647 M | Layar Kosong | ✅ Perfect |
 | `artikel/emmabuntus-de-6-review-linux-etika.html` | Emmabuntüs DE 6: Review Lengkap Linux Berhati Mulia untuk Lawan Limbah Elektronik - Layar Kosong | Emmabuntüs DE 6: Review Lengkap Linux Berhati Mulia untuk Lawan Limbah Elektronik | Layar Kosong | ✅ Perfect |
@@ -506,6 +508,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/keajaiban-tulang-ekor-dalam-islam.html` | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains - Layar Kosong | Keajaiban Tulang Ekor dalam Islam: Hadis, Al-Qur’an, dan Sains | Layar Kosong | ✅ Perfect |
 | `artikel/keamanan-linux-vs-windows.html` | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) - Layar Kosong | Open Source Lebih Aman? Mengapa Linux Unggul dari Windows (Analisis Teknis) | Layar Kosong | ✅ Perfect |
 | `artikel/kebijakan-3-kategori-sekolah-2026.html` | Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi? - Layar Kosong | Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi? | Layar Kosong | ✅ Perfect |
+| `artikel/kebijakan-sekolah-daring-hemat-bbm.html` | Kebijakan Sekolah Daring dan WFA untuk Hemat BBM: Antara Efisiensi dan Beban Sosial - Layar Kosong | Kebijakan Sekolah Daring dan WFA untuk Hemat BBM: Antara Efisiensi dan Beban Sosial | Layar Kosong | ✅ Perfect |
 | `artikel/kebutuhan-dasar-rakyat-2026.html` | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis - Layar Kosong | Sebenarnya rakyat tidak minta yang macam-macam: 3 Kebutuhan Dasar yang Bisa Mengubah Bangsa Secara Drastis | Layar Kosong | ✅ Perfect |
 | `artikel/kecilkan-var-log-debian.html` | Cara Ampuh Mengecilkan /var/log/ di Debian 13 - Layar Kosong | Cara Ampuh Mengecilkan /var/log/ di Debian 13 | Layar Kosong | ✅ Perfect |
 | `artikel/keindahan-surga-tak-terbayangkan.html` | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? - Layar Kosong | Keindahan Surga Yang Tak Terbayangkan: Benarkah Lebih Indah dari Dunia? | Layar Kosong | ✅ Perfect |
@@ -577,6 +580,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/krisis-driver-ojek-online.html` | Krisis Driver Ojek Online di Indonesia: Mengapa Sekarang Sulit Dapat Driver? - Layar Kosong | Krisis Driver Ojek Online di Indonesia: Mengapa Sekarang Sulit Dapat Driver? | Layar Kosong | ✅ Perfect |
 | `artikel/krisis-driver-online-kapitalisme-ojol.html` | Krisis Driver Online: Bongkar Borok Aplikator dan Kapitalisme Ojol - Layar Kosong | Krisis Driver Online: Bongkar Borok Aplikator dan Kapitalisme Ojol | Layar Kosong | ✅ Perfect |
 | `artikel/krisis-ojol-2026.html` | Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver? - Layar Kosong | Fenomena KrisisOjol: Kenapa Pesanan Ojek Online Semakin Sulit Didapat Driver? | Layar Kosong | ✅ Perfect |
+| `artikel/kritik-mbg-dan-sunnah-nabi.html` | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik - Layar Kosong | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik | Layar Kosong | ✅ Perfect |
 | `artikel/kritik-narasi-pejabat-perang-iran-israel.html` | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik - Layar Kosong | Kritik Narasi Pejabat: Antara Drama dan Kepentingan Politik | Layar Kosong | ✅ Perfect |
 | `artikel/kubuntu-11-10.html` | Kubuntu 11.10 - Panduan dan Pengalaman - Layar Kosong | Kubuntu 11.10 - Panduan dan Pengalaman | Layar Kosong | ✅ Perfect |
 | `artikel/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
@@ -620,6 +624,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/lirik-pulang-nostalgia.html` | Pulang - Nostalgia, Rindu, dan Senyum Kecil - Layar Kosong | Pulang - Nostalgia, Rindu, dan Senyum Kecil | Layar Kosong | ✅ Perfect |
 | `artikel/lisan-dijaga-neraka.html` | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat - Layar Kosong | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat | Layar Kosong | ✅ Perfect |
 | `artikel/lisensi-perangkat-lunak.html` | Lisensi Perangkat Lunak: Perbedaan Permisif vs Copyleft (GPL, MIT, Apache) - Layar Kosong | Lisensi Perangkat Lunak: Perbedaan Permisif vs Copyleft (GPL, MIT, Apache) | Layar Kosong | ✅ Perfect |
+| `artikel/logika-iri-pemerintah-prabowo.html` | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo - Layar Kosong | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo | Layar Kosong | ✅ Perfect |
 | `artikel/logika-matematika-idul-fitri-2026.html` | Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari - Layar Kosong | Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari | Layar Kosong | ✅ Perfect |
 | `artikel/lts-vs-rolling-release.html` | LTS vs Rolling Release: Manakah yang Lebih Baik untuk Anda? - Layar Kosong | LTS vs Rolling Release: Manakah yang Lebih Baik untuk Anda? | Layar Kosong | ✅ Perfect |
 | `artikel/lumen5-video-maker-ai.html` | Lumen5: Sulap Tulisan Jadi Video Keren untuk Media Sosial - Layar Kosong | Lumen5: Sulap Tulisan Jadi Video Keren untuk Media Sosial | Layar Kosong | ✅ Perfect |
@@ -672,6 +677,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/membuat-git-orphan-branch.html` | Cara Membuat Orphan Branch di Git & GitHub - Layar Kosong | Cara Membuat Orphan Branch di Git & GitHub | Layar Kosong | ✅ Perfect |
 | `artikel/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.html` | Cara Memeriksa Kondisi Baterai di Linux via Terminal - Layar Kosong | Cara Memeriksa Kondisi Baterai di Linux via Terminal | Layar Kosong | ✅ Perfect |
 | `artikel/memilih-desktop-environment.html` | Memilih Desktop Environment untuk Linux - Layar Kosong | Memilih Desktop Environment untuk Linux | Layar Kosong | ✅ Perfect |
+| `artikel/memilih-distro-linux-stabil.html` | Pilih Distro Linux Stabil - Tips Longevity dan Recovery - Layar Kosong | Pilih Distro Linux Stabil - Tips Longevity dan Recovery | Layar Kosong | ✅ Perfect |
 | `artikel/memilih-distro-linux.html` | Memilih Distribusi Linux yang Tepat 🐧 - Layar Kosong | Memilih Distribusi Linux yang Tepat 🐧 | Layar Kosong | ✅ Perfect |
 | `artikel/memilih-golput.html` | Memilih Golput - Alasan Teknis, Psikologis, dan Ideologis - Layar Kosong | Memilih Golput - Alasan Teknis, Psikologis, dan Ideologis | Layar Kosong | ✅ Perfect |
 | `artikel/menara-masjid-fungsi-vs-gengsi.html` | Menara Masjid: Dulu Mata Iman Melihat Lapar Sekarang Simbol Kemewahan - Layar Kosong | Menara Masjid: Dulu Mata Iman Melihat Lapar Sekarang Simbol Kemewahan | Layar Kosong | ✅ Perfect |
@@ -809,6 +815,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/pasar-takjil-vs-mbg-ekonomi-hantu.html` | Pasar Takjil vs MBG: Ekonomi Hantu yang Terancam Monopoli Kebaikan - Layar Kosong | Pasar Takjil vs MBG: Ekonomi Hantu yang Terancam Monopoli Kebaikan | Layar Kosong | ✅ Perfect |
 | `artikel/password-generator-bikin-kata-sandi.html` | Bikin Kata Sandi Kuat - Generator - Layar Kosong | Bikin Kata Sandi Kuat - Generator | Layar Kosong | ✅ Perfect |
 | `artikel/pearos-26-2-released-liquid-gel-design.html` | Review pearOS 26.2: Inovasi Liquid Gel Design dan Wayland Session Terbaru - Layar Kosong | Review pearOS 26.2: Inovasi Liquid Gel Design dan Wayland Session Terbaru | Layar Kosong | ✅ Perfect |
+| `artikel/pelajaran-mahathir-jet-tempur-kemandirian.html` | Pelajaran dari Malaysia: Mahathir, Jet Tempur, dan Kemandirian Teknologi - Layar Kosong | Pelajaran dari Malaysia: Mahathir, Jet Tempur, dan Kemandirian Teknologi | Layar Kosong | ✅ Perfect |
 | `artikel/pemakzulan-isu-bop-analisis-komentar.html` | Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet - Layar Kosong | Komentar Politik Viral: Memahami Pemakzulan, Isu BOP, dan Sentimen Warganet | Layar Kosong | ✅ Perfect |
 | `artikel/pemasangan-ubuntu-10-10.html` | Pemasangan Ubuntu 10.10 - Panduan Santai & Lengkap - Layar Kosong | Pemasangan Ubuntu 10.10 - Panduan Santai & Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/pembaruan-otomatis-fedora.html` | Pembaruan Otomatis Fedora: Perlukah? - Layar Kosong | Pembaruan Otomatis Fedora: Perlukah? | Layar Kosong | ✅ Perfect |
@@ -917,6 +924,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/rekor-ddos-29tbps-aisuru-botnet.html` | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! - Layar Kosong | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! | Layar Kosong | ✅ Perfect |
 | `artikel/remove-old-kernels.html` | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman - Layar Kosong | Hapus Kernel Lama di Linux: Simpan yang Penting, Bersihkan yang Aman | Layar Kosong | ✅ Perfect |
 | `artikel/remove-windows-ai.html` | Remove Windows AI: Hapus Copilot dan Recall - Layar Kosong | Remove Windows AI: Hapus Copilot dan Recall | Layar Kosong | ✅ Perfect |
+| `artikel/rencana-wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua | Layar Kosong | ✅ Perfect |
 | `artikel/rescuezilla-panduan.html` | Rescuezilla: Alat Pemulihan Sistem Mudah & Powerful 🛠️ - Layar Kosong | Rescuezilla: Alat Pemulihan Sistem Mudah & Powerful 🛠️ | Layar Kosong | ✅ Perfect |
 | `artikel/rev-linux.html` | Membaca Teks Terbalik dengan Perintah 'rev' di Linux - Layar Kosong | Membaca Teks Terbalik dengan Perintah ’rev’ di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/revolusi-dapur-dme.html` | Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara! - Layar Kosong | Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara! | Layar Kosong | ✅ Perfect |
@@ -936,6 +944,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/saldi-isra-sidang-mk-kuota-hangus.html` | Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus - Layar Kosong | Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus | Layar Kosong | ✅ Perfect |
 | `artikel/salman-al-farisi-pencari-cahaya.html` | Salman al-Farisi: Sang Pencari Cahaya - Inspirasi Sejati - Layar Kosong | Salman al-Farisi: Sang Pencari Cahaya - Inspirasi Sejati | Layar Kosong | ✅ Perfect |
 | `artikel/samba-server-config.html` | Panduan Mudah Berbagi Folder dengan Samba Server Configuration - Layar Kosong | Panduan Mudah Berbagi Folder dengan Samba Server Configuration | Layar Kosong | ✅ Perfect |
+| `artikel/santri-kritik-diplomasi-israel.html` | Santri Nilai Wacana Dialog dengan Israel Langkah Tolol - Layar Kosong | Santri Nilai Wacana Dialog dengan Israel Langkah Tolol | Layar Kosong | ✅ Perfect |
 | `artikel/satu-anak-satu-lele-satu-dusta-satu-bintang.html` | Satu Anak Satu Lele Satu Dusta Satu Bintang Ironi Gizi di Negeri 1001 Janji - Layar Kosong | Satu Anak Satu Lele Satu Dusta Satu Bintang Ironi Gizi di Negeri 1001 Janji | Layar Kosong | ✅ Perfect |
 | `artikel/satu-sekolah-satu-dapur-mbg.html` | Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu'ti yang Lebih Sehat dan Berkelanjutan - Layar Kosong | Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu’ti yang Lebih Sehat dan Berkelanjutan | Layar Kosong | ✅ Perfect |
 | `artikel/saudi-whoosh-kereta-cepat.html` | SAUDI vs WHOOSH: Proyek Kereta Cepat, Kok Biayanya Mirip Padahal Jarak Berbeda? - Layar Kosong | SAUDI vs WHOOSH: Proyek Kereta Cepat, Kok Biayanya Mirip Padahal Jarak Berbeda? | Layar Kosong | ✅ Perfect |
@@ -958,6 +967,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/sejarah-rs-pku-muhammadiyah-yogyakarta.html` | Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Sejak 1923 - Layar Kosong | Sejarah RS PKU Muhammadiyah Yogyakarta: Mengabdi Sejak 1923 | Layar Kosong | ✅ Perfect |
 | `artikel/sejarah-rsync.html` | Sejarah dan Keuntungan Menggunakan Rsync - Layar Kosong | Sejarah dan Keuntungan Menggunakan Rsync | Layar Kosong | ✅ Perfect |
 | `artikel/sejarah-singkat-yogyakarta.html` | Sejarah Singkat & Perkembangan Kota Yogyakarta - Ngayogyakarta Hadiningrat - Layar Kosong | Sejarah Singkat & Perkembangan Kota Yogyakarta - Ngayogyakarta Hadiningrat | Layar Kosong | ✅ Perfect |
+| `artikel/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `artikel/sekolah-jateng-tak-wajib-libur-minggu.html` | Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu! - Layar Kosong | Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu! | Layar Kosong | ✅ Perfect |
 | `artikel/selamat-ulang-tahun-vim-33-tahun.html` | Selamat Ulang Tahun ke-33 Vim! Editor Teks Legendaris - Layar Kosong | Selamat Ulang Tahun ke-33 Vim! Editor Teks Legendaris | Layar Kosong | ✅ Perfect |
 | `artikel/self-hosting-debian-pemula.html` | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! - Layar Kosong | Ubah PC Jadul Jadi Server Pribadi: Bye-Bye Cloud Berbayar! | Layar Kosong | ✅ Perfect |
@@ -1103,6 +1113,8 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `artikel/wayland-vs-xorg.html` | Wayland vs X11: Mana yang Lebih Baik untuk Linux? - Layar Kosong | Wayland vs X11: Mana yang Lebih Baik untuk Linux? | Layar Kosong | ✅ Perfect |
 | `artikel/web-tool-generator-all-in-one.html` | Web Tool Generator - All in One - Layar Kosong | Web Tool Generator - All in One | Layar Kosong | ✅ Perfect |
 | `artikel/website-dari-json.html` | Cara Membuat Website dari Data .json - Layar Kosong | Cara Membuat Website dari Data .json | Layar Kosong | ✅ Perfect |
+| `artikel/wfa-sekolah-daring-2026.html` | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru - Layar Kosong | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru | Layar Kosong | ✅ Perfect |
+| `artikel/wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? | Layar Kosong | ✅ Perfect |
 | `artikel/whoosh-vs-saudi-land-bridge.html` | Whoosh vs Saudi Land Bridge: Biaya Sama 11x Beda Jarak? Ini Penjelasannya - Layar Kosong | Whoosh vs Saudi Land Bridge: Biaya Sama 11x Beda Jarak? Ini Penjelasannya | Layar Kosong | ✅ Perfect |
 | `artikel/wifi-gratis-taman-bekapai-balikpapan.html` | Wifi Gratis di Taman Bekapai, Balikpapan - Catatan Siang PENGACARA - Layar Kosong | Wifi Gratis di Taman Bekapai, Balikpapan - Catatan Siang PENGACARA | Layar Kosong | ✅ Perfect |
 | `artikel/wigo-balikpapan.html` | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap - Layar Kosong | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1296,6 +1308,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `jejak-sejarah/kisah-gua-tsur-laba-laba-dan-burung-merpati-yang-melindungi-nabi-muhammad-saat-hijrah.html` | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah - Layar Kosong | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-keluarga-sahabat-abu-dujanah.html` | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah - Layar Kosong | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-qarun.html` | Kisah Qarun: Pelajaran Pahit Tentang Harta dan Kesombongan (QS. Al-Qaṣaṣ) - Layar Kosong | Kisah Qarun: Pelajaran Pahit Tentang Harta dan Kesombongan (QS. Al-Qaṣaṣ) | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/kritik-mbg-dan-sunnah-nabi.html` | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik - Layar Kosong | Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/label-nonhalal-jaga-iman.html` | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman - Layar Kosong | Label Nonhalal, Lalu Umat Disuruh Jaga Iman Sendiri? Analisis Mendalam - Jaga Data Pribadi Tetap Aman | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/langit-sama-tanggal-beda-ramadan-2026.html` | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 - Layar Kosong | Dengan Langit yang Sama Kita Berbeda Tanggal - Analisis Awal Ramadhan 2026 | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/larangan-ghibah.html` | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) | Layar Kosong | ✅ Perfect |
@@ -1353,6 +1366,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `jejak-sejarah/saf-shalat.html` | Luruskan dan Rapatkan Saf Shalat: Panduan Praktis dan Etika Jamaah - Layar Kosong | Luruskan dan Rapatkan Saf Shalat: Panduan Praktis dan Etika Jamaah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/said-bin-zaid-sahabat-surga.html` | Sa‘id bin Zaid: Sahabat yang Dijamin Surga & Doanya Mustajab - Layar Kosong | Sa‘id bin Zaid: Sahabat yang Dijamin Surga & Doanya Mustajab | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/salman-al-farisi-pencari-cahaya.html` | Salman al-Farisi: Sang Pencari Cahaya - Inspirasi Sejati - Layar Kosong | Salman al-Farisi: Sang Pencari Cahaya - Inspirasi Sejati | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/santri-kritik-diplomasi-israel.html` | Santri Nilai Wacana Dialog dengan Israel Langkah Tolol - Layar Kosong | Santri Nilai Wacana Dialog dengan Israel Langkah Tolol | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sejarah-bpm-sultan-kutai.html` | Kesalahan Protokoler & Sejarah BPM: Sultan Kutai yang Terpinggirkan - Layar Kosong | Kesalahan Protokoler & Sejarah BPM: Sultan Kutai yang Terpinggirkan | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sejarah-fujiko-f-fujio-pencipta-doraemon.html` | Sejarah Fujiko F. Fujio: Duo Genius Pencipta Doraemon yang Mengubah Dunia Animasi - Layar Kosong | Sejarah Fujiko F. Fujio: Duo Genius Pencipta Doraemon yang Mengubah Dunia Animasi | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sejarah-hubungan-indonesia-israel.html` | Sejarah Lengkap Hubungan Indonesia-Israel: Fakta, Analisis, dan Masa Depan Diplomasi - Layar Kosong | Sejarah Lengkap Hubungan Indonesia-Israel: Fakta, Analisis, dan Masa Depan Diplomasi | Layar Kosong | ✅ Perfect |
@@ -1452,21 +1466,26 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `lainnya/panduan-lengkap-snbp-2026.html` | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator - Layar Kosong | Panduan Resmi SNBP 2026: Kuota, Jadwal, Portofolio & Aturan TKA Validator | Layar Kosong | ✅ Perfect |
 | `lainnya/parlemen-bisu-2026.html` | Parlemen Bisu di Tengah Sejumlah Isu - Layar Kosong | Parlemen Bisu di Tengah Sejumlah Isu | Layar Kosong | ✅ Perfect |
 | `lainnya/password-generator-bikin-kata-sandi.html` | Bikin Kata Sandi Kuat - Generator - Layar Kosong | Bikin Kata Sandi Kuat - Generator | Layar Kosong | ✅ Perfect |
+| `lainnya/pelajaran-mahathir-jet-tempur-kemandirian.html` | Pelajaran dari Malaysia: Mahathir, Jet Tempur, dan Kemandirian Teknologi - Layar Kosong | Pelajaran dari Malaysia: Mahathir, Jet Tempur, dan Kemandirian Teknologi | Layar Kosong | ✅ Perfect |
 | `lainnya/polemik-mbg-bulan-puasa-2026.html` | Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman - Layar Kosong | Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman | Layar Kosong | ✅ Perfect |
 | `lainnya/privasi-layar-kosong.html` | Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong - Layar Kosong | Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lainnya/prosedur-laporan-polisi-diterima.html` | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak - Layar Kosong | Cara Agar Laporan Polisi Segera Diterima dan Tidak Ditolak | Layar Kosong | ✅ Perfect |
 | `lainnya/pt-badak-ngl.html` | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat - Layar Kosong | PT Badak NGL - Lokasi, Ringkasan & Fakta - Panduan Singkat | Layar Kosong | ✅ Perfect |
 | `lainnya/qanaah-kekayaan-hati-keberuntungan.html` | Qana'ah: Kunci Kekayaan Hati dan Keberuntungan Sejati - Layar Kosong | Qana’ah: Kunci Kekayaan Hati dan Keberuntungan Sejati | Layar Kosong | ✅ Perfect |
+| `lainnya/rencana-wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua | Layar Kosong | ✅ Perfect |
 | `lainnya/revolusi-dapur-dme.html` | Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara! - Layar Kosong | Revolusi Dapur: Indonesia Siap Ganti LPG dengan DME Batu Bara! | Layar Kosong | ✅ Perfect |
 | `lainnya/rumus-upah-lembur.html` | Rumus Upah Lembur Lengkap dan Cara Hitungnya - Layar Kosong | Rumus Upah Lembur Lengkap dan Cara Hitungnya | Layar Kosong | ✅ Perfect |
 | `lainnya/saldi-isra-sidang-mk-kuota-hangus.html` | Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus - Layar Kosong | Saldi Isra Bawa Kartu Perdana ke MK: Debat Kuota Internet Hangus | Layar Kosong | ✅ Perfect |
 | `lainnya/satu-sekolah-satu-dapur-mbg.html` | Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu'ti yang Lebih Sehat dan Berkelanjutan - Layar Kosong | Satu Sekolah Satu Dapur MBG: Gagasan Abdul Mu’ti yang Lebih Sehat dan Berkelanjutan | Layar Kosong | ✅ Perfect |
+| `lainnya/sekolah-daring-hemat-bbm.html` | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? - Layar Kosong | Sekolah Daring Demi Hemat BBM: Solusi Cerdas atau Bikin Orang Tua Ngelus Dada? | Layar Kosong | ✅ Perfect |
 | `lainnya/silaturahmi-vs-silaturahim.html` | Silaturahmi atau Silaturahim? Mana yang Benar? - Layar Kosong | Silaturahmi atau Silaturahim? Mana yang Benar? | Layar Kosong | ✅ Perfect |
 | `lainnya/tarif-listrik-januari-maret-2026.html` | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya - Layar Kosong | Tarif Listrik 2026 Fix Tidak Naik! Simak Cara Hitung dan Daftar Harganya | Layar Kosong | ✅ Perfect |
 | `lainnya/terjebak-dopamine-loop-scroll-medsos.html` | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? - Layar Kosong | Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental? | Layar Kosong | ✅ Perfect |
 | `lainnya/ujian-nasional-catatan-video.html` | Ujian Nasional: catatan singkat, video, dan visual - Layar Kosong | Ujian Nasional: catatan singkat, video, dan visual | Layar Kosong | ✅ Perfect |
 | `lainnya/ujian-rakyat-pemimpin-bodoh.html` | Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir? - Layar Kosong | Ujian bagi Rakyat Karena Pemimpin Bodoh: Realita atau Takdir? | Layar Kosong | ✅ Perfect |
 | `lainnya/waktu-sangat-terbatas.html` | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ - Layar Kosong | Waktu Itu Terbatas! Jangan Sia-siakan Detik Berhargamu ⏳ | Layar Kosong | ✅ Perfect |
+| `lainnya/wfa-sekolah-daring-2026.html` | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru - Layar Kosong | WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru | Layar Kosong | ✅ Perfect |
+| `lainnya/wfa-sekolah-daring-hemat-bbm.html` | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? - Layar Kosong | WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran? | Layar Kosong | ✅ Perfect |
 | `lainnya/wigo-balikpapan.html` | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap - Layar Kosong | WiGO 4G & Komunitas Blogger Balikpapan: Dokumentasi Lengkap | Layar Kosong | ✅ Perfect |
 | `lainnya/zakat-lebih-utama-dari-sodaqoh.html` | Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal - Layar Kosong | Zakat Lebih Utama Dibanding Sedekah? Jangan Salah Prioritas dalam Beramal | Layar Kosong | ✅ Perfect |
 | `olah-media/40-tahun-excel-sejarah-spreadsheet.html` | 40 Tahun Excel: Kisah dari Layar Monokrom Mac Jadi Raja Spreadsheet - Layar Kosong | 40 Tahun Excel: Kisah dari Layar Monokrom Mac Jadi Raja Spreadsheet | Layar Kosong | ✅ Perfect |
@@ -1546,6 +1565,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `opini-sosial/agreement-of-reciprocal-trade-politik-bebas-aktif.html` | Agreement of Reciprocal Trade 2026 Berakhirnya Politik Bebas Aktif Indonesia - Layar Kosong | Agreement of Reciprocal Trade 2026 Berakhirnya Politik Bebas Aktif Indonesia | Layar Kosong | ✅ Perfect |
 | `opini-sosial/agrinas-palma-nusantara-kontroversi-koperasi-merah-putih.html` | Agrinas & Koperasi Merah Putih: Antara Mimpi Energi & Kontroversi Impor Mobil - Layar Kosong | Agrinas & Koperasi Merah Putih: Antara Mimpi Energi & Kontroversi Impor Mobil | Layar Kosong | ✅ Perfect |
 | `opini-sosial/analisis-anggaran-pendidikan-vs-gizi-2026.html` | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar - Layar Kosong | Anggaran 2026: Antara Perut Kenyang dan Otak Pintar | Layar Kosong | ✅ Perfect |
+| `opini-sosial/analisis-asn-mbg-kdmp-5w1h.html` | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah - Layar Kosong | Rekrutmen ASN, MBG, KDMP: Analisis Kebijakan Bermasalah | Layar Kosong | ✅ Perfect |
 | `opini-sosial/analisis-indonesia-board-of-peace.html` | Analisis Indonesia di Board of Peace: Jebakan Diplomasi atau Strategi Jitu? - Layar Kosong | Analisis Indonesia di Board of Peace: Jebakan Diplomasi atau Strategi Jitu? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/analisis-kasus-ira-puspadewi.html` | Analisis Mendalam Kasus Ira Puspadewi: Integritas BUMN vs. Kriminalisasi Keputusan Bisnis - Layar Kosong | Analisis Mendalam Kasus Ira Puspadewi: Integritas BUMN vs. Kriminalisasi Keputusan Bisnis | Layar Kosong | ✅ Perfect |
 | `opini-sosial/analisis-kritis-board-of-peace-gaza.html` | Mengapa Keterlibatan Indonesia dalam Board of Peace untuk Gaza Justru Mengkhianati Perjuangan Palestina? - Layar Kosong | Mengapa Keterlibatan Indonesia dalam Board of Peace untuk Gaza Justru Mengkhianati Perjuangan Palestina? | Layar Kosong | ✅ Perfect |
@@ -1573,6 +1593,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `opini-sosial/doa-buruk-penguasa-zalim.html` | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) - Layar Kosong | Bolehkah Berdoa Buruk Untuk Penguasa Zalim? (Diskusi Online Kajian Sholihah, 17/2/2026) | Layar Kosong | ✅ Perfect |
 | `opini-sosial/drama-beras-uea-medan.html` | Drama Beras UEA di Medan: Dari Rencana Retur Hingga di Eksekusi Muhammadiyah - Layar Kosong | Drama Beras UEA di Medan: Dari Rencana Retur Hingga di Eksekusi Muhammadiyah | Layar Kosong | ✅ Perfect |
 | `opini-sosial/e-ktam-masa.html` | e-KTAM Hadir di MASA: Panduan Lengkap Kartu Anggota Digital Muhammadiyah - Layar Kosong | e-KTAM Hadir di MASA: Panduan Lengkap Kartu Anggota Digital Muhammadiyah | Layar Kosong | ✅ Perfect |
+| `opini-sosial/efek-sekolah-daring-dan-kebijakan-hemat-bbm.html` | Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap - Layar Kosong | Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap | Layar Kosong | ✅ Perfect |
 | `opini-sosial/evaluasi-mbg-puskesmas-solusi.html` | Evaluasi Kritis Program MBG: Antara Niat Mulia dan Pentingnya Peran Puskesmas - Layar Kosong | Evaluasi Kritis Program MBG: Antara Niat Mulia dan Pentingnya Peran Puskesmas | Layar Kosong | ✅ Perfect |
 | `opini-sosial/evaluasi-tax-amnesty-defisit-apbn.html` | Evaluasi Program Tax Amnesty dan Dampaknya terhadap Defisit APBN: Antara Harapan, Euforia, dan Realita - Layar Kosong | Evaluasi Program Tax Amnesty dan Dampaknya terhadap Defisit APBN: Antara Harapan, Euforia, dan Realita | Layar Kosong | ✅ Perfect |
 | `opini-sosial/fatamorgana-kebangkitan-vs-cahaya-sejati.html` | Fatamorgana Kebangkitan vs Cahaya Kebangkitan Sejati - Layar Kosong | Fatamorgana Kebangkitan vs Cahaya Kebangkitan Sejati | Layar Kosong | ✅ Perfect |
@@ -1598,6 +1619,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `opini-sosial/kasih-ibu-kediri.html` | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja - Layar Kosong | Kasih Ibu Sepanjang Masa - Potret di Kediri Saat Senja | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kasus-ira-puspadewi-bumn.html` | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? - Layar Kosong | Kasus Ira Puspadewi: Di Mana Batas Korupsi dan Kelalaian Bisnis BUMN? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kebijakan-3-kategori-sekolah-2026.html` | Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi? - Layar Kosong | Kebijakan 3 Kategori Sekolah 2026: Transformasi atau Diskriminasi? | Layar Kosong | ✅ Perfect |
+| `opini-sosial/kebijakan-sekolah-daring-hemat-bbm.html` | Kebijakan Sekolah Daring dan WFA untuk Hemat BBM: Antara Efisiensi dan Beban Sosial - Layar Kosong | Kebijakan Sekolah Daring dan WFA untuk Hemat BBM: Antara Efisiensi dan Beban Sosial | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kejeniusan-dadan-hindayana-nitrit-sayur.html` | Dadan Hindayana: Kejeniusan Level Ahli Temukan Musuh Nitrit di Sayur - Layar Kosong | Dadan Hindayana: Kejeniusan Level Ahli Temukan Musuh Nitrit di Sayur | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kejujuran-bisnis.html` | Kejujuran: Pondasi Bisnis yang Berkah - Layar Kosong | Kejujuran: Pondasi Bisnis yang Berkah | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kekuasaan-jadi-dagangan.html` | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman - Layar Kosong | Saat Kekuasaan Jadi Dagangan Dunia - Renungan Akhir Zaman | Layar Kosong | ✅ Perfect |
@@ -1624,6 +1646,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `opini-sosial/kuhp-baru-kebebasan-sipil.html` | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil - Layar Kosong | KUHP Baru Resmi Berlaku, Pasal Penghinaan dan Demo Picu Kekhawatiran Kebebasan Sipil | Layar Kosong | ✅ Perfect |
 | `opini-sosial/larangan-medsos-anak-16-tahun.html` | Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026 - Layar Kosong | Pemerintah Resmi Larang Anak Dibawah 16 Tahun Punya Medsos Mulai Maret 2026 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51.html` | Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur'an dan Relevansinya dengan Isu Palestina - Layar Kosong | Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur’an dan Relevansinya dengan Isu Palestina | Layar Kosong | ✅ Perfect |
+| `opini-sosial/logika-iri-pemerintah-prabowo.html` | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo - Layar Kosong | Benarkah Rakyat Iri kepada Pemerintah? Menelaah Logika Demokrasi Prabowo | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makan-bergizi-gratis-pilar-ekonomi-bantahan-telak.html` | Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect - Layar Kosong | Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makan-gratis-vs-gaji-guru.html` | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? - Layar Kosong | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makan-siang-masa-depan.html` | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG - Layar Kosong | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG | Layar Kosong | ✅ Perfect |
@@ -1874,6 +1897,7 @@ Generated on: 3/18/2026, 11:49:42 AM
 | `sistem-terbuka/membedah-hasil-apt-audit.html` | Mengupas Hasil 'apt --audit': Arti & Solusi Lengkapnya - Layar Kosong | Mengupas Hasil ’apt --audit’: Arti & Solusi Lengkapnya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memeriksa-kondisi-baterai-di-Linux-menggunakan-command-line.html` | Cara Memeriksa Kondisi Baterai di Linux via Terminal - Layar Kosong | Cara Memeriksa Kondisi Baterai di Linux via Terminal | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memilih-desktop-environment.html` | Memilih Desktop Environment untuk Linux - Layar Kosong | Memilih Desktop Environment untuk Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/memilih-distro-linux-stabil.html` | Pilih Distro Linux Stabil - Tips Longevity dan Recovery - Layar Kosong | Pilih Distro Linux Stabil - Tips Longevity dan Recovery | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/memilih-distro-linux.html` | Memilih Distribusi Linux yang Tepat 🐧 - Layar Kosong | Memilih Distribusi Linux yang Tepat 🐧 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengenal-linux-dan-floss.html` | Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula - Layar Kosong | Mengenal Linux dan FLOSS: Panduan Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengganti-kata-dengan-perl.html` | Mengganti Kata dalam Banyak Dokumen dengan Perl - Layar Kosong | Mengganti Kata dalam Banyak Dokumen dengan Perl | Layar Kosong | ✅ Perfect |
