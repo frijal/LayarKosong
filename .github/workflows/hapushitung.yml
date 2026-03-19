@@ -47,8 +47,7 @@ jobs:
             bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
             bun run dapur/audit-workflow-efisiensi.ts
             bun run dapur/metadata-audit.ts
-            sed -i '/^\s*$/d' artikel/*.html
-            find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/ /g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
+            sed -i '/^\s*$/d' artikel/*.html            
             cp -u artikel/artikel.json sementara/ 
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
