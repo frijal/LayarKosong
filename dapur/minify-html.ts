@@ -15,17 +15,18 @@ interface Stats {
     totalBefore: number;
     totalAfter: number;
     totalInvisibleRemoved: number;
+    entityCounts: { [key: string]: number }; // baru
 }
 
 // ========== CONFIG ==========
 const folders: string[] = [
-    'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media',
-    'opini-sosial', 'sistem-terbuka', 'warta-tekno'
+'gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'
 ];
 let stats: Stats = {
     success: 0, skipped: 0, failed: 0, errorList: [],
     totalSaved: 0, totalBefore: 0, totalAfter: 0,
-    totalInvisibleRemoved: 0
+    totalInvisibleRemoved: 0,
+    entityCounts: {}
 };
 
 // ========== UTILITIES ==========
@@ -39,15 +40,26 @@ const formatBytes = (bytes: number): string => {
 
 const cleanInvisibleChars = (html: string, filePath: string): string => {
     const before = html.length;
-    const cleaned = html
-    // Invisible characters
+    let cleaned = html
     .replace(/\u00A0/g, " ") // NBSP → spasi biasa
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "") // hapus zero-width
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, ""); // hapus zero-width
 
-    // Entity populer → simbol langsung (lebih hemat byte)
-    .replace(/&nbsp;/g, "\u00A0")   // non-breaking space
-    .replace(/&amp;/g, "&")
-    .replace(/&rarr;/g, "→");
+    // Entity populer → simbol langsung
+    const entities: { [key: string]: string } = {
+        "&nbsp;": "\u00A0",
+        "&amp;": "&",
+        "&rarr;": "→",
+        "&lt;": "<",
+        "&gt;": ">"
+    };
+
+    for (const [entity, symbol] of Object.entries(entities)) {
+        const count = (cleaned.match(new RegExp(entity, "g")) || []).length;
+        if (count > 0) {
+            stats.entityCounts[entity] = (stats.entityCounts[entity] || 0) + count;
+            cleaned = cleaned.replace(new RegExp(entity, "g"), symbol);
+        }
+    }
 
     const diff = before - cleaned.length;
     if (diff > 0) {
@@ -181,6 +193,13 @@ async function run(): Promise<void> {
     console.log(`📉 Total Sesudah      : ${formatBytes(stats.totalAfter)}`);
     console.log(`🚀 Ruang Dihemat      : ${formatBytes(stats.totalSaved)} (${savingPercent}%)`);
     console.log(`🧹 Invisible Removed   : ${stats.totalInvisibleRemoved} chars`);
+    if (Object.keys(stats.entityCounts).length > 0) {
+        console.log("🔎 Entity Breakdown:");
+        for (const [entity, count] of Object.entries(stats.entityCounts)) {
+            console.log(`   ${entity} → ${count} kali`);
+        }
+    }
+
     console.log('='.repeat(60));
 
     if (stats.failed > 0) {
