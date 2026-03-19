@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 17.79
+document_version: 17.80
 last_updated: 2026-03-19
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 19 Maret 2026)
-> Menampilkan 1104 artikel versi 17.79.
+> Menampilkan 1105 artikel versi 17.80.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -298,6 +298,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Sejarah Kerajaan Seljuk - Dari Suku Nomaden ke Kekaisaran](https://dalam.web.id/jejak-sejarah/sejarah-kerajaan-seljuk) : Sejarah Dinasti Seljuk: asal-usul Turki Oghuz, kejayaan Tughril Beg, Alp Arslan, dan Malik Shah, madrasah Nizāmiyyah, Perang Salib, hingga serangan Mongol. Disajikan santai, responsif, dan full-screen.
 
 ## Lainnya
+- [Gaji Layak Guru: Hadiah atau Prasyarat Kualitas Pendidikan?](https://dalam.web.id/lainnya/gaji-guru-layak-prasyarat-kualitas) : Mengupas logika terbalik tuntutan kualitas guru sebelum kenaikan gaji. Analisis 5W 1H tentang kesejahteraan guru kehormatan dan standar pendidikan dunia.
 - [WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua](https://dalam.web.id/lainnya/rencana-wfa-sekolah-daring-hemat-bbm) : Analisis lengkap WFA dan sekolah daring untuk hemat BBM di Indonesia. Kekhawatiran wali murid soal anak malas belajar daring, biaya kuota, dan alternatif yang lebih masuk akal. Pakai 5W 1H dan fakta nyata dari pengalaman COVID
 - [WFA dan Sekolah Daring untuk Hemat BBM: Solusi Tepat atau Salah Sasaran?](https://dalam.web.id/lainnya/wfa-sekolah-daring-hemat-bbm) : Kebijakan WFA dan sekolah daring untuk hemat BBM menuai pro kontra. Apakah solusi ini efektif atau justru membebani masyarakat? Simak analisis lengkap berbasis fakta.
 - [WFA dan Sekolah Daring 2026 Efektif atau Masalah Baru](https://dalam.web.id/lainnya/wfa-sekolah-daring-2026) : Analisis santai kebijakan WFA dan sekolah daring 2026 dampak ke pendidikan biaya dan BBM apakah solusi atau masalah baru
