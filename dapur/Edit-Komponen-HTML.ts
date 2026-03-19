@@ -39,6 +39,8 @@ function replaceContent(html: string): string {
     // copyright symbol
     .replaceAll("&copy;", "🄯")
     .replaceAll("©", "🄯")
+    .replaceAll("&rarr;", "→")
+    .replaceAll("&amp;", "&")
 
     // Font Awesome version
     .replaceAll("Font Awesome 5 Free", "Font Awesome 7 Free")
@@ -65,7 +67,7 @@ function replaceContent(html: string): string {
 
     // SEO fluff
     .replaceAll("Analisis lengkap ", "")
-    .replaceAll("Analisis mendalam ", "")     
+    .replaceAll("Analisis mendalam ", "")
     .replaceAll("Analisis tajam ", "")
     .replaceAll("Artikel mendalam ", "")
     .replaceAll("Panduan lengkap ", "")
