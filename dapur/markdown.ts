@@ -22,7 +22,7 @@ function parseMarkdown(text: string): string {
     .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
     .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>")
 
-    // Bold, Italic, Link (Tetap sama karena ini biasanya aman)
+    // Bold, Ialic, Link (Tetap sama karena ini biasanya aman)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/__(.*?)__/g, "<strong>$1</strong>")
     .replace(/\*(.*?)\*/g, "<em>$1</em>")
