@@ -80,10 +80,31 @@ jobs:
             source/ deploy_dir/
             
           echo "✅ Ready to deploy contents of deploy_dir/"
-
-      - name: Deploy to Cloudflare Pages
-        run: bunx wrangler pages deploy --branch=main
+     
+      - name: Deploy to Cloudflare Pages (with retry)
+        run: |
+          max_attempts=3
+          attempt=1
+          until [ $attempt -gt $max_attempts ]
+          do
+          echo "🚀 Attempt $attempt to deploy..."
+          if bunx wrangler pages deploy --branch=main; then
+          echo "✅ Deploy succeeded on attempt $attempt"
+          break
+          else
+          echo "⚠️ Deploy failed on attempt $attempt"
+          attempt=$((attempt+1))
+          if [ $attempt -le $max_attempts ]; then
+          echo "🔄 Retrying in 15 seconds..."
+          sleep 15
+          else
+          echo "❌ All attempts failed"
+          exit 1
+          fi
+          fi
+          done
         working-directory: source
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
