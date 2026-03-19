@@ -29,18 +29,21 @@ function parseMarkdown(text: string): string {
   .replace(/(?:^|>|\s)## (.*?)(?=\n|<|$)/g, "<h2>$1</h2>")
   .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
-  // 4. PENGAMAN SPASI & TAG: Bold & Italic
-  // Kita tambahkan '>' di grup pertama agar <p>**Teks** bisa terbaca
+  // 4. PENGAMAN SPASI, TAG, & TANDA BACA
+  // Awal: (^|>|\s) -> Awal baris, setelah tag, atau spasi
+  // Akhir: ([\s.,!?;:<]|$) -> Spasi, tanda baca umum, tag pembuka, atau akhir baris
+
+  const endBoundary = /([\s.,!?;:<]|$)/;
 
   // Bold (**)
-  res = res.replace(/(^|>|\s)\*\*([^\s*][^*]*[^\s*])\*\*(\s|<|$)/g, "$1<strong>$2</strong>$3");
+  res = res.replace(/(^|>|\s)\*\*([^\s*][^*]*[^\s*])\*\*([\s.,!?;:<]|$)/g, "$1<strong>$2</strong>$3");
   // Bold (__)
-  res = res.replace(/(^|>|\s)__([^\s_][^_]*[^\s_])__(\s|<|$)/g, "$1<strong>$2</strong>$3");
+  res = res.replace(/(^|>|\s)__([^\s_][^_]*[^\s_])__([\s.,!?;:<]|$)/g, "$1<strong>$2</strong>$3");
 
   // Italic (*)
-  res = res.replace(/(^|>|\s)\*([^\s*][^*]*[^\s*])\*(\s|<|$)/g, "$1<em>$2</em>$3");
+  res = res.replace(/(^|>|\s)\*([^\s*][^*]*[^\s*])\*([\s.,!?;:<]|$)/g, "$1<em>$2</em>$3");
   // Italic (_)
-  res = res.replace(/(^|>|\s)_([^\s_][^_]*[^\s_])_(\s|<|$)/g, "$1<em>$2</em>$3");
+  res = res.replace(/(^|>|\s)_([^\s_][^_]*[^\s_])_([\s.,!?;:<]|$)/g, "$1<em>$2</em>$3");
 
   // 5. LIST & QUOTE
   res = res
