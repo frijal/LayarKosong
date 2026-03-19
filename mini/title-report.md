@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/19/2026, 12:42:48 PM
+Generated on: 3/19/2026, 3:52:15 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v17.74 | LLM Index v17.74 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v17.79 | LLM Index v17.79 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -414,6 +414,7 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `artikel/grammarly-ai-writing-assistant.html` | Grammarly: Nulis Keren dan Profesional Pakai Bantuan AI - Layar Kosong | Grammarly: Nulis Keren dan Profesional Pakai Bantuan AI | Layar Kosong | ✅ Perfect |
 | `artikel/grand-tjokro-balikpapan-2017.html` | Hotel Tour Grand Tjokro Balikpapan - Kopdar Blogger & Influencer (2017) - Layar Kosong | Hotel Tour Grand Tjokro Balikpapan - Kopdar Blogger & Influencer (2017) | Layar Kosong | ✅ Perfect |
 | `artikel/grub-recovery-bundle.html` | Bundle Perbaikan GRUB Bootloader (Debian & Turunannya) - Layar Kosong | Bundle Perbaikan GRUB Bootloader (Debian & Turunannya) | Layar Kosong | ✅ Perfect |
+| `artikel/gugatan-ptun-prabowo-perjanjian-art-amerika.html` | Tentang Perjanjian ART Amerika: Kenapa Presiden Prabowo Digugat ke PTUN? - Layar Kosong | Tentang Perjanjian ART Amerika: Kenapa Presiden Prabowo Digugat ke PTUN? | Layar Kosong | ✅ Perfect |
 | `artikel/gui-package-managers-comparison.html` | Perbandingan GUI Package Manager di Linux - Layar Kosong | Perbandingan GUI Package Manager di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/gui-package-managers.html` | GUI Package Manager di Linux - Layar Kosong | GUI Package Manager di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/hadis-muslim-1598-riba.html` | Satu Rantai Dosa: Hadis Muslim 1598 dan Laknat bagi Pelaku Riba hingga Saksinya 🚫 - Layar Kosong | Satu Rantai Dosa: Hadis Muslim 1598 dan Laknat bagi Pelaku Riba hingga Saksinya 🚫 | Layar Kosong | ✅ Perfect |
@@ -439,6 +440,7 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `artikel/hoaks-mati-listrik-nasional.html` | Hoaks Mati Listrik Nasional dan Bisnis Ketakutan - Layar Kosong | Hoaks Mati Listrik Nasional dan Bisnis Ketakutan | Layar Kosong | ✅ Perfect |
 | `artikel/hst-oss.html` | Implementasi Open Source Software di Hulu Sungai Tengah - Layar Kosong | Implementasi Open Source Software di Hulu Sungai Tengah | Layar Kosong | ✅ Perfect |
 | `artikel/html-to-markdown-reverse-converter.html` | Frijal Reverse Converter - Konversi HTML ke Markdown Otomatis - Layar Kosong | Frijal Reverse Converter - Konversi HTML ke Markdown Otomatis | Layar Kosong | ✅ Perfect |
+| `artikel/hukum-ikut-pemerintah-hari-raya-beda-quran-sunnah.html` | Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah? - Layar Kosong | Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah? | Layar Kosong | ✅ Perfect |
 | `artikel/hukum-islam-berpihak-penjajah.html` | Hukum Islam Tentang Berpihak kepada Penjajah: Penjelasan Tegas, Dalil Kuat, dan Prinsip Penting - Layar Kosong | Hukum Islam Tentang Berpihak kepada Penjajah: Penjelasan Tegas, Dalil Kuat, dan Prinsip Penting | Layar Kosong | ✅ Perfect |
 | `artikel/hukum-mendengarkan-aib.html` | Hukum Mendengarkan Aib Orang Lain dalam Islam - Penjelasan Lengkap - Layar Kosong | Hukum Mendengarkan Aib Orang Lain dalam Islam - Penjelasan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/hukum-mengucapkan-rip.html` | RIP Dilarang? ❌ Pencerahan Hukum Mengucapkan "Rest In Peace" Menurut Islam - Layar Kosong | RIP Dilarang? ❌ Pencerahan Hukum Mengucapkan "Rest In Peace" Menurut Islam | Layar Kosong | ✅ Perfect |
@@ -806,6 +808,7 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `artikel/panduan-seo-metadata-blog.html` | Panduan Lengkap SEO dan Metadata untuk Blog Anda - Layar Kosong | Panduan Lengkap SEO dan Metadata untuk Blog Anda | Layar Kosong | ✅ Perfect |
 | `artikel/panduan-skrip-fix-html.html` | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML - Layar Kosong | Panduan Lengkap: Membuat Skrip Otomatis untuk Memperbaiki HTML | Layar Kosong | ✅ Perfect |
 | `artikel/panel-untuk-githubpages.html` | Panel Terbaik untuk Pengguna GitHub Pages - Layar Kosong | Panel Terbaik untuk Pengguna GitHub Pages | Layar Kosong | ✅ Perfect |
+| `artikel/paradoks-hilal-rukyat-hisab-astronomi-islam.html` | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? - Layar Kosong | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Layar Kosong | ✅ Perfect |
 | `artikel/paradox-bonus-demografi-kua-sepi.html` | Paradox Negara Bonus Demografi tapi KUA Sepi, Dampak Makro Marry is Scary - Layar Kosong | Paradox Negara Bonus Demografi tapi KUA Sepi, Dampak Makro Marry is Scary | Layar Kosong | ✅ Perfect |
 | `artikel/parlemen-bisu-2026.html` | Parlemen Bisu di Tengah Sejumlah Isu - Layar Kosong | Parlemen Bisu di Tengah Sejumlah Isu | Layar Kosong | ✅ Perfect |
 | `artikel/paru-lintas-distro.html` | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch - Layar Kosong | Paru Bukan Hanya Milik CachyOS! AUR Helper Lintas Distro Arch | Layar Kosong | ✅ Perfect |
@@ -1138,7 +1141,6 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `artikel/zakat-untuk-mbg-analisis.html` | Zakat untuk MBG: Dari Rukun Islam Jadi Rukun Anggaran? Analisis Ekonomi dan Syariat - Layar Kosong | Zakat untuk MBG: Dari Rukun Islam Jadi Rukun Anggaran? Analisis Ekonomi dan Syariat | Layar Kosong | ✅ Perfect |
 | `artikel/zorin-os-18-beta.html` | Zorin OS 18 Beta Diluncurkan dengan Desktop yang Dirancang Ulang - Layar Kosong | Zorin OS 18 Beta Diluncurkan dengan Desktop yang Dirancang Ulang | Layar Kosong | ✅ Perfect |
 | `artikel/zsync-blankon.html` | Panduan ZSync untuk ISO BlankOn Rote - Layar Kosong | Panduan ZSync untuk ISO BlankOn Rote | Layar Kosong | ✅ Perfect |
-| `artikelx/paradoks-hilal-rukyat-hisab-astronomi-islam.html` | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Dalam Web | ⚠️ Partial |
 | `gaya-hidup/16-tahun-ojol-tanpa-uu.html` | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda - Layar Kosong | 16 Tahun Ojol Tanpa Undang-Undang: Negara Tahu, Mampu, Tapi Menunda | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/adab-tata-cara-minum-dalam-islam.html` | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil - Layar Kosong | Adab dan Tata Cara Minum dalam Islam - Panduan Praktis dan Dalil | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/angkringan-jogja.html` | Angkringan Jogja - Kuliner Tradisional Yang Legendaris - Layar Kosong | Angkringan Jogja - Kuliner Tradisional Yang Legendaris | Layar Kosong | ✅ Perfect |
@@ -1346,6 +1348,7 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `jejak-sejarah/pahlawan-islam.html` | Pahlawan Sejati dalam Sejarah Islam - Layar Kosong | Pahlawan Sejati dalam Sejarah Islam | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/pandangan-muhammadiyah-board-of-peace.html` | Pandangan Kritis Muhammadiyah Terhadap Board of Peace - Layar Kosong | Pandangan Kritis Muhammadiyah Terhadap Board of Peace | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/panduan-lengkap-shalat-lail.html` | Panduan Lengkap Shalat Lail (Tahajjud, Witir, Tarawih): Tata Cara dan Keutamaannya - Layar Kosong | Panduan Lengkap Shalat Lail (Tahajjud, Witir, Tarawih): Tata Cara dan Keutamaannya | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/paradoks-hilal-rukyat-hisab-astronomi-islam.html` | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? - Layar Kosong | Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran? | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/penaklukan-mesir.html` | Penaklukan Mesir (19-21 H / 640-642 M): Dari Madinah ke Alexandria, lahirnya Fusthath - Layar Kosong | Penaklukan Mesir (19-21 H / 640-642 M): Dari Madinah ke Alexandria, lahirnya Fusthath | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/Penaklukan-Persia.html` | Sejarah Islam Penaklukan Persia - Layar Kosong | Sejarah Islam Penaklukan Persia | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/penjelasan-muhammadiyah-perbedaan-idul-fitri.html` | Penjelasan Muhammadiyah Terkait Perbedaan Idul Fitri: Biar Nggak Gagal Paham - Layar Kosong | Penjelasan Muhammadiyah Terkait Perbedaan Idul Fitri: Biar Nggak Gagal Paham | Layar Kosong | ✅ Perfect |
@@ -1600,9 +1603,11 @@ Generated on: 3/19/2026, 12:42:48 PM
 | `opini-sosial/fatamorgana-kebangkitan-vs-cahaya-sejati.html` | Fatamorgana Kebangkitan vs Cahaya Kebangkitan Sejati - Layar Kosong | Fatamorgana Kebangkitan vs Cahaya Kebangkitan Sejati | Layar Kosong | ✅ Perfect |
 | `opini-sosial/fiqih-haji-memahami-konsep-mampu.html` | Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji - Layar Kosong | Fiqih Haji: Memahami Konsep Mampu sebagai Syarat Wajib Ibadah Haji | Layar Kosong | ✅ Perfect |
 | `opini-sosial/fotografi-privasi-hak-potret.html` | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP - Layar Kosong | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP | Layar Kosong | ✅ Perfect |
+| `opini-sosial/gugatan-ptun-prabowo-perjanjian-art-amerika.html` | Tentang Perjanjian ART Amerika: Kenapa Presiden Prabowo Digugat ke PTUN? - Layar Kosong | Tentang Perjanjian ART Amerika: Kenapa Presiden Prabowo Digugat ke PTUN? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hadis-muslim-1598-riba.html` | Satu Rantai Dosa: Hadis Muslim 1598 dan Laknat bagi Pelaku Riba hingga Saksinya 🚫 - Layar Kosong | Satu Rantai Dosa: Hadis Muslim 1598 dan Laknat bagi Pelaku Riba hingga Saksinya 🚫 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hadits-mungkar-tangan-lisan-hati.html` | Hadits Mungkar: Ketika Tangan, Lisan, dan Hati Tak Cukup - Jangan Sekutu Kebatilan - Layar Kosong | Hadits Mungkar: Ketika Tangan, Lisan, dan Hati Tak Cukup - Jangan Sekutu Kebatilan | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hilangnya-amanah-munculnya-ruwaibidha.html` | Zaman Ruwaibidhah: Ketika Si Bodoh Ikut Mengatur Urusan Publik - Layar Kosong | Zaman Ruwaibidhah: Ketika Si Bodoh Ikut Mengatur Urusan Publik | Layar Kosong | ✅ Perfect |
+| `opini-sosial/hukum-ikut-pemerintah-hari-raya-beda-quran-sunnah.html` | Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah? - Layar Kosong | Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hukum-mengucapkan-rip.html` | RIP Dilarang? ❌ Pencerahan Hukum Mengucapkan "Rest In Peace" Menurut Islam - Layar Kosong | RIP Dilarang? ❌ Pencerahan Hukum Mengucapkan "Rest In Peace" Menurut Islam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hukum-pajak-dalam-islam.html` | Menjawab Hukum Membayar Pajak: Perspektif Fikih Kontemporer - Layar Kosong | Menjawab Hukum Membayar Pajak: Perspektif Fikih Kontemporer | Layar Kosong | ✅ Perfect |
 | `opini-sosial/hukum-pinjaman-online.html` | Hukum Pinjaman Online (PINJOL) dalam Islam: Haram dan Bahaya - Layar Kosong | Hukum Pinjaman Online (PINJOL) dalam Islam: Haram dan Bahaya | Layar Kosong | ✅ Perfect |

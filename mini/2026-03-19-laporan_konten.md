@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 19 Mar 2026 | 12:42 WITA
+Update: 19 Mar 2026 | 15:52 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -15,11 +15,11 @@ Update: 19 Mar 2026 | 12:42 WITA
 | 📄 /sementara/jurukunci | **1** | sementara |
 | 🎨 css   | **49** | dapur, ext |
 | 📄 gif   | **1** | img |
-| 🎨 html  | **2273** | sitemap.html, dapur, warta-tekno, img.html, artikel, security-policy.html, ext, privacy.html, index.html, sistem-terbuka, artikelx, search.html, data-deletion.html, disclaimer.html, gaya-hidup, olah-media, jejak-sejarah, llms-index.html, feed.html, 404.html, opini-sosial, lisensi.html, about.html, lainnya, google2e9cfaf2f2923d27.html, data-deletion-form.html |
+| 🎨 html  | **2278** | sitemap.html, dapur, warta-tekno, img.html, artikel, security-policy.html, ext, privacy.html, index.html, sistem-terbuka, search.html, data-deletion.html, disclaimer.html, gaya-hidup, olah-media, jejak-sejarah, llms-index.html, feed.html, 404.html, opini-sosial, lisensi.html, about.html, lainnya, google2e9cfaf2f2923d27.html, data-deletion-form.html |
 | 📄 ico   | **4** | dapur, artikel, ext, favicon.ico |
 | 🖼️ jpg   | **1** | thumbnail.jpg |
 | 📜 js    | **60** | dapur, ext, functions, sementara |
-| 📄 json  | **7** | dapur, artikel, ext, package.json, tsconfig.json, redirectmap.json, artikel.json |
+| 📄 json  | **8** | dapur, artikel, ext, package.json, tsconfig.json, sementara, redirectmap.json, artikel.json |
 | 📄 lock  | **1** | bun.lock |
 | 📝 md    | **6** | SECURITY.md, README.md, disclaimer.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md, llms.md |
 | 🖼️ png   | **101** | img, dapur, logo.png, favicon.png, artikel, ext, thumbnail.png |
@@ -31,9 +31,9 @@ Update: 19 Mar 2026 | 12:42 WITA
 | 📄 tsX   | **2** | dapur |
 | 📄 txt   | **28** | llms.txt, img, dapur, artikel, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, sementara, sitemap.txt, ads.txt, robots.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **494** | img, thumbnail.webp |
+| 🖼️ webp  | **497** | img, thumbnail.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **14** | feed-olah-media.xml, opensearch.xml, sitemap.xml, video-sitemap-1.xml, feed-opini-sosial.xml, image-sitemap-1.xml, BingSiteAuth.xml, feed-lainnya.xml, feed-sistem-terbuka.xml, feed-gaya-hidup.xml, rss.xml, feed-jejak-sejarah.xml, feed-warta-tekno.xml |
 | 📄 xsl   | **1** | sitemap-style.xsl |
 
-**Total File:** 3187
+**Total File:** 3196
