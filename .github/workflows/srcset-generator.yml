@@ -31,5 +31,5 @@ jobs:
           path: |
             output/
             img/**/*-sm.webp
-          retention-days: 7
+          retention-days: 3
           if-no-files-found: warn # Supaya tidak error jika folder output kosong
