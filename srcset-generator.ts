@@ -18,7 +18,7 @@ let stats = { total: 0, processed: 0, skipped: 0 };
  */
 async function discoverContainers(files: string[]) {
   const containers = new Set<string>(['figure', 'picture']); // Default targets
-  
+
   for (const file of files) {
     try {
       const html = await readFile(file, 'utf-8');
@@ -36,19 +36,21 @@ async function discoverContainers(files: string[]) {
   return Array.from(containers).join(', ');
 }
 
+// ... (bagian atas tetap sama)
+
 async function processHtmlFile(filePath: string, containerSelectors: string) {
   stats.total++;
   const fileName = path.basename(filePath);
-  
+
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
 
-    // FILTER: Gambar internal yang belum punya <picture>
     const imageCandidates = $('body img').toArray().filter(el => {
       const $img = $(el);
       const src = $img.attr('src');
-      const isInternal = src && (src.startsWith('/img/') || src.startsWith(`${BASE_URL}/img/`));
+      // Kita buat lebih fleksibel: pokoknya yang ada kata 'img' atau mengarah ke internal
+      const isInternal = src && (src.startsWith('/img/') || src.startsWith('img/') || src.startsWith(BASE_URL));
       const hasPicture = $img.closest('picture').length > 0;
       return isInternal && !hasPicture;
     });
@@ -59,21 +61,31 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
     }
 
     const articleTitle = ($('title').text().split(' - ')[0] || 'Layar Kosong').trim();
-    let fileHasIssue = false;
+    let fileHasProcessedAnyImage = false;
 
     for (const el of imageCandidates) {
       const $img = $(el);
-      const src = $img.attr('src')!;
-      const localInputPath = src.startsWith(BASE_URL) ? `.${src.replace(BASE_URL, '')}` : `.${src}`;
+      let src = $img.attr('src')!;
 
-      if (!fs.existsSync(localInputPath) || INVALID_CHARS.test(path.basename(localInputPath))) {
-        fileHasIssue = true; break;
+      // Normalisasi Path: Hilangkan BASE_URL jika ada
+      let cleanSrc = src.replace(BASE_URL, '');
+      if (cleanSrc.startsWith('/')) cleanSrc = cleanSrc.substring(1);
+
+      // Coba cari file di lokasi relatif
+      const localInputPath = path.resolve(process.cwd(), cleanSrc);
+
+      if (!fs.existsSync(localInputPath)) {
+        // LOG DEBUG: Aktifkan ini jika masih 0 untuk tahu script nyari ke mana
+         console.log(`🔍 File tak ditemukan: ${localInputPath}`);
+        continue;
       }
+
+      if (INVALID_CHARS.test(path.basename(localInputPath))) continue;
 
       try {
         const imageInstance = sharp(localInputPath);
         const meta = await imageInstance.metadata().catch(() => null);
-        if (!meta || !meta.width || !meta.height) { fileHasIssue = true; break; }
+        if (!meta || !meta.width) continue;
 
         const dirName = path.dirname(localInputPath);
         const baseName = path.basename(localInputPath, '.webp');
@@ -83,7 +95,7 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
         const originalWidth = meta.width;
         const targetWidth = originalWidth > 1000 ? 1000 : originalWidth;
 
-        // 1. Image Optimization
+        // Proses gambar
         const desktopBuffer = await imageInstance.rotate().resize(targetWidth, null, { withoutEnlargement: true }).webp({ quality: 82 }).toBuffer();
         await writeFile(desktopPath, desktopBuffer);
 
@@ -91,33 +103,29 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
           await sharp(localInputPath).rotate().resize(480, null, { withoutEnlargement: true }).webp({ quality: 75 }).toFile(mobilePath);
         }
 
-        // 2. Smart Caption (Menggunakan selector hasil discovery)
-        const parent = $img.closest(containerSelectors);
-        const caption = parent.length ? parent.find('figcaption, .image-caption, .caption, .kg-bookmark-metadata').text().trim() : "";
-        const finalAlt = ($img.attr('alt') || caption || articleTitle).replace(/\s+/g, ' ').trim();
+        // Generate URL untuk HTML (Pastikan pakai forward slash)
+        const webDesktopUrl = `${BASE_URL}/img/${baseName}.webp`;
+        const webMobileUrl = `${BASE_URL}/img/${baseName}-sm.webp`;
 
-        // 3. HTML Generation
-        const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
-        const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
-        
         const pictureHtml = `
-<picture style="display: block; text-align: center;">
-  ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
-  <img src="${webDesktopUrl}" 
-       alt="${finalAlt}" 
-       width="${targetWidth}" 
-       height="${Math.round(targetWidth * (meta.height / originalWidth))}" 
-       style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;" 
-       loading="lazy" 
-       decoding="async">
-</picture>`.trim();
+        <picture style="display: block; text-align: center;">
+        ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
+        <img src="${webDesktopUrl}"
+        alt="${($img.attr('alt') || articleTitle).replace(/\s+/g, ' ').trim()}"
+        width="${targetWidth}"
+        height="${Math.round(targetWidth * (meta.height! / originalWidth))}"
+        style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
+        loading="lazy"
+        decoding="async">
+        </picture>`.trim();
 
         $img.replaceWith(pictureHtml);
+        fileHasProcessedAnyImage = true;
 
-      } catch (e) { fileHasIssue = true; break; }
+      } catch (e) { continue; }
     }
 
-    if (!fileHasIssue) {
+    if (fileHasProcessedAnyImage) {
       await mkdir(OUTPUT_DIR, { recursive: true });
       await writeFile(path.join(OUTPUT_DIR, fileName), $.html());
       stats.processed++;
