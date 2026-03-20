@@ -1,0 +1,31 @@
+name: Generate Srcset Prototype
+
+on:
+  workflow_dispatch:
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Deps
+        run: bun install
+
+      - name: Run Generator
+        run: bun run srcset-generator.ts
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: srcset-results
+          path: |
+            output/
+            img/**/*-sm.webp
+          retention-days: 7
