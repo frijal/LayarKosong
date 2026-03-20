@@ -2,20 +2,18 @@ import { glob } from 'glob';
 import { load } from 'cheerio';
 import path from 'node:path';
 import sharp from 'sharp';
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, rename } from 'node:fs/promises';
 import fs from 'node:fs';
 
 const BASE_URL = 'https://dalam.web.id';
 const SOURCE_DIR = 'artikel';
 const OUTPUT_DIR = 'output';
-const INVALID_CHARS = /[<>:"/\\|?*\r\n]/;
+
+// Karakter yang dilarang oleh GitHub Actions & NTFS
+const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 let stats = { total: 0, processed: 0, skipped: 0 };
 
-/**
- * FUNGSI DYNAMIC DISCOVERY
- * Mencari semua jenis pembungkus gambar agar bisa menangkap caption/alt dengan akurat.
- */
 async function discoverContainers(files: string[]) {
   const containers = new Set<string>(['figure', 'picture']);
   for (const file of files) {
@@ -33,8 +31,6 @@ async function discoverContainers(files: string[]) {
   return Array.from(containers).join(', ');
 }
 
-// ... (Bagian atas tetap sama)
-
 async function processHtmlFile(filePath: string, containerSelectors: string) {
   stats.total++;
   const fileName = path.basename(filePath);
@@ -45,7 +41,6 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
 
     const imageCandidates = $('body img').toArray().filter(el => {
       const src = $(el).attr('src');
-      // Pastikan hanya ambil yang internal
       return src && (src.startsWith('/img/') || src.startsWith('img/') || src.includes(BASE_URL + '/img/'));
     });
 
@@ -55,66 +50,68 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
     }
 
     const articleTitle = ($('title').text().split(' - ')[0] || 'Layar Kosong').trim();
-    let fileHasProcessedAnyImage = false;
+    let fileHasChanged = false;
 
     for (const el of imageCandidates) {
       const $img = $(el);
-      let src = $img.attr('src')!;
+      let originalSrc = $img.attr('src')!;
 
-      // 1. NORMALISASI PATH (PENTING!)
-      // Kita bersihkan semua embel-embel agar tersisa path murni dari root project
-      let cleanPath = src.replace(BASE_URL, '').replace(/^\/+/, '');
+      // 1. PATH MURNI (Hapus BASE_URL & slash awal)
+      let cleanPath = originalSrc.replace(BASE_URL, '').replace(/^\/+/, '');
+      const fullPathSource = path.join(process.cwd(), cleanPath);
 
-      // Sekarang cleanPath seharusnya: "img/folder/gambar.webp"
-      const localInputPath = path.join(process.cwd(), cleanPath);
-
-      // DEBUG: Aktifkan baris di bawah ini jika masih 0 untuk lihat script nyari ke mana
-      // console.log(`🔎 Mencari file di: ${localInputPath}`);
-
-      if (!fs.existsSync(localInputPath)) {
-        continue; // Jika file fisik tidak ada, skip gambarnya saja
-      }
+      if (!fs.existsSync(fullPathSource)) continue;
 
       try {
-        const imageInstance = sharp(localInputPath);
+        const imageInstance = sharp(fullPathSource);
         const meta = await imageInstance.metadata();
         if (!meta || !meta.width) continue;
 
-        const originalWidth = meta.width;
-        const targetWidth = originalWidth > 1000 ? 1000 : originalWidth;
+        // 2. SANITISASI NAMA FILE (Penting!)
+        const dirName = path.dirname(cleanPath);
+        const baseNameOriginal = path.basename(cleanPath, '.webp');
+        const baseNameSafe = baseNameOriginal.replace(FORBIDDEN_CHARS, '-');
 
-        // Tentukan folder tujuan (sama dengan folder asal)
-        const dirName = path.dirname(localInputPath);
-        const baseName = path.basename(localInputPath, '.webp');
+        const desktopRelative = path.join(dirName, `${baseNameSafe}.webp`);
+        const mobileRelative = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
-        const desktopFilePath = path.join(dirName, `${baseName}.webp`);
-        const mobileFilePath = path.join(dirName, `${baseName}-sm.webp`);
+        // Path Fisik Absolut
+        const desktopAbs = path.join(process.cwd(), desktopRelative);
+        const mobileAbs = path.join(process.cwd(), mobileRelative);
 
-        // PROSES SHARP
+        // Pastikan folder tujuan ada (terutama untuk path dalam)
+        await mkdir(path.dirname(desktopAbs), { recursive: true });
+
+        // Jika nama file berubah karena sanitisasi, rename file aslinya dulu
+        if (baseNameSafe !== baseNameOriginal) {
+          // Kami biarkan file asli, tapi simpan hasil optimasi ke nama yang aman
+        }
+
+        const targetWidth = meta.width > 1000 ? 1000 : meta.width;
+
+        // Proses Sharp
         await imageInstance
         .rotate()
         .resize(targetWidth, null, { withoutEnlargement: true })
         .webp({ quality: 82 })
-        .toFile(desktopFilePath + '.tmp'); // Gunakan .tmp dulu biar nggak bentrok
+        .toFile(desktopAbs + '.tmp');
 
-        // Rename dari .tmp ke asli (untuk overwrite yang aman)
-        if (fs.existsSync(desktopFilePath + '.tmp')) {
-          fs.renameSync(desktopFilePath + '.tmp', desktopFilePath);
+        if (fs.existsSync(desktopAbs + '.tmp')) {
+          if (fs.existsSync(desktopAbs)) fs.unlinkSync(desktopAbs);
+          fs.renameSync(desktopAbs + '.tmp', desktopAbs);
         }
 
-        if (originalWidth > 480) {
-          await sharp(localInputPath)
+        if (meta.width > 480) {
+          await sharp(fullPathSource)
           .rotate()
           .resize(480, null, { withoutEnlargement: true })
           .webp({ quality: 75 })
-          .toFile(mobileFilePath);
+          .toFile(mobileAbs);
         }
 
-        // 2. URL WEB (Tetap gunakan struktur folder asli)
-        // Kita ambil folder dari cleanPath (misal: "img/blogger/...")
-        const webDir = path.dirname(cleanPath).replace(/\\/g, '/');
-        const webDesktopUrl = `${BASE_URL}/${webDir}/${baseName}.webp`;
-        const webMobileUrl = `${BASE_URL}/${webDir}/${baseName}-sm.webp`;
+        // 3. GENERATE URL AMAN (Web friendly)
+        const webDesktopUrl = `${BASE_URL}/${desktopRelative.replace(/\\/g, '/')}`;
+        const webMobileUrl = `${BASE_URL}/${mobileRelative.replace(/\\/g, '/')}`;
 
         const parent = $img.closest(containerSelectors);
         const caption = parent.length ? parent.find('figcaption, .image-caption, .caption').text().trim() : "";
@@ -133,35 +130,28 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
         </picture>`.trim();
 
         $img.replaceWith(pictureHtml);
-        fileHasProcessedAnyImage = true;
+        fileHasChanged = true;
 
-      } catch (e) {
-        // console.error(`❌ Error Sharp pada ${cleanPath}:`, e.message);
-        continue;
-      }
+      } catch (e) { continue; }
     }
 
-    if (fileHasProcessedAnyImage) {
-      await mkdir(OUTPUT_DIR, { recursive: true });
-      await writeFile(path.join(OUTPUT_DIR, fileName), $.html());
+    if (fileHasChanged) {
+      const outputFilePath = path.join(OUTPUT_DIR, fileName);
+      await mkdir(path.dirname(outputFilePath), { recursive: true });
+      await writeFile(outputFilePath, $.html());
       stats.processed++;
     } else {
       stats.skipped++;
     }
 
-  } catch (err) {
-    stats.skipped++;
-  }
+  } catch (err) { stats.skipped++; }
 }
 
-// MAIN EXECUTION
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`\n🔍 Fase 1: Discovery (Mendeteksi struktur blok unik)...`);
-const dynamicSelectors = await discoverContainers(files);
+console.log(`🔍 Discovery...`);
+const selectors = await discoverContainers(files);
 
-console.log(`\n🔍 Fase 2: Transformasi (Memproses ${files.length} file)...`);
-for (const file of files) {
-  await processHtmlFile(file, dynamicSelectors);
-}
+console.log(`🚀 Memproses ${files.length} file...`);
+for (const f of files) await processHtmlFile(f, selectors);
 
 console.log(`\n✅ Selesai!\n📊 Berhasil: ${stats.processed}\n📊 Skip: ${stats.skipped}\n`);
