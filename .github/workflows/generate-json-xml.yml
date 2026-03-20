@@ -68,7 +68,7 @@ jobs:
       - name: '3. Install Dependencies'
         run: bun install 
 
-      - name: '4 🖼️ Optimize Images & Generate Srcset'
+      - name: '4. Optimize Images & Generate Srcset'
         if: env.DO_SRCSET == 'true' # <-- Gunakan env di sini
         run: bun run dapur/srcset-generator.ts
 
