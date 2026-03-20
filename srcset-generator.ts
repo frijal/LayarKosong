@@ -2,14 +2,22 @@ import { glob } from 'glob';
 import { load } from 'cheerio';
 import path from 'node:path';
 import sharp from 'sharp';
-import { writeFile, readFile } from 'node:fs/promises';
+import { writeFile, readFile, appendFile } from 'node:fs/promises';
 import fs from 'node:fs';
 
 const BASE_URL = 'https://dalam.web.id';
-const SOURCE_DIR = 'artikel';
+const SOURCE_DIR = 'artikel'; // Folder ini yang akan di-update di dalam runner
+const CACHE_FILE = 'mini/srcset-gambar.txt';
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 let stats = { total: 0, processed: 0, skipped: 0 };
+let optimizedCache = new Set<string>();
+
+// 1. Muat Cache (Jika ada)
+if (fs.existsSync(CACHE_FILE)) {
+  const content = fs.readFileSync(CACHE_FILE, 'utf-8');
+  optimizedCache = new Set(content.split('\n').map(line => line.trim()).filter(Boolean));
+}
 
 async function processHtmlFile(filePath: string) {
   stats.total++;
@@ -17,8 +25,6 @@ async function processHtmlFile(filePath: string) {
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
-
-    // Mengambil judul dari tag <title> dan membersihkan brand suffix
     const pageTitle = $('title').first().text().split(' - ')[0].trim() || 'Layar Kosong';
 
     const imageCandidates = $('body img').toArray().filter(el => {
@@ -33,19 +39,12 @@ async function processHtmlFile(filePath: string) {
 
     let fileHasChanged = false;
     let isFirstImage = true;
-
-    // --- [UPDATE: COUNTER UNTUK ALT UNIQUE] ---
     let imageCounter = 0;
 
     for (const el of imageCandidates) {
       const $img = $(el);
       const originalSrc = $img.attr('src')!;
-
-      const cleanPath = originalSrc
-      .replace(BASE_URL, '')
-      .replace(/^https?:\/\/dalam\.web\.id/, '')
-      .replace(/^\/+/, '');
-
+      const cleanPath = originalSrc.replace(BASE_URL, '').replace(/^https?:\/\/dalam\.web\.id/, '').replace(/^\/+/, '');
       const fullPathSource = path.resolve(cleanPath);
 
       if (!fs.existsSync(fullPathSource)) continue;
@@ -56,51 +55,47 @@ async function processHtmlFile(filePath: string) {
         if (!meta || !meta.width || !meta.height) continue;
 
         const dirName = path.dirname(cleanPath);
-        const baseNameOriginal = path.basename(cleanPath, '.webp');
-        const baseNameSafe = baseNameOriginal.replace(FORBIDDEN_CHARS, '-');
-
+        const baseNameSafe = path.basename(cleanPath, '.webp').replace(FORBIDDEN_CHARS, '-');
         const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
         const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
-        const desktopAbs = path.resolve(desktopPath);
-        const mobileAbs = path.resolve(mobilePath);
+        // --- OPTIMASI GAMBAR (Hanya jika belum ada di cache) ---
+        if (!optimizedCache.has(cleanPath)) {
+          const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
-        // 1. Generate Versi Desktop
-        const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-        await imageInstance
-        .rotate()
-        .resize(targetWidth, null, { withoutEnlargement: true })
-        .webp({ quality: 82 })
-        .toFile(desktopAbs + '.tmp');
-
-        if (fs.existsSync(desktopAbs + '.tmp')) {
-          if (fs.existsSync(desktopAbs)) fs.unlinkSync(desktopAbs);
-          fs.renameSync(desktopAbs + '.tmp', desktopAbs);
-        }
-
-        // 2. Generate Versi Mobile
-        if (meta.width > 480) {
-          await sharp(fullPathSource)
+          await imageInstance
           .rotate()
-          .resize(480, null, { withoutEnlargement: true })
-          .webp({ quality: 75 })
-          .toFile(mobileAbs);
+          .resize(targetWidth, null, { withoutEnlargement: true })
+          .webp({ quality: 82 })
+          .toFile(path.resolve(desktopPath) + '.tmp');
+
+          if (fs.existsSync(path.resolve(desktopPath) + '.tmp')) {
+            if (fs.existsSync(path.resolve(desktopPath))) fs.unlinkSync(path.resolve(desktopPath));
+            fs.renameSync(path.resolve(desktopPath) + '.tmp', path.resolve(desktopPath));
+          }
+
+          if (meta.width > 480) {
+            await sharp(fullPathSource)
+            .rotate()
+            .resize(480, null, { withoutEnlargement: true })
+            .webp({ quality: 75 })
+            .toFile(path.resolve(mobileAbsPath(mobilePath)));
+          }
+
+          await appendFile(CACHE_FILE, `${cleanPath}\n`);
+          optimizedCache.add(cleanPath);
+          console.log(` ✨ Sharp Optimized: ${cleanPath}`);
         }
 
-        // --- [LOGIKA ALT TEXT UNIQUE] ---
+        // --- TRANSFORMASI HTML (In-Memory Runner) ---
         imageCounter++;
         const originalAlt = $img.attr('alt')?.trim();
+        let finalAlt = originalAlt || pageTitle;
+        if (!originalAlt && imageCounter > 1) finalAlt = `${pageTitle} - ${imageCounter}`;
 
-        let finalAlt = originalAlt && originalAlt !== '' ? originalAlt : pageTitle;
-
-        // Jika menggunakan fallback (pageTitle) dan ini bukan gambar pertama, tambahkan nomor
-        if ((!originalAlt || originalAlt === '') && imageCounter > 1) {
-          finalAlt = `${pageTitle} - ${imageCounter}`;
-        }
-
-        // Optimasi LCP
         const loadingAttr = isFirstImage ? 'eager' : 'lazy';
         const priorityAttr = isFirstImage ? 'fetchpriority="high"' : '';
+        const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
         const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
         const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
@@ -123,31 +118,31 @@ async function processHtmlFile(filePath: string) {
         isFirstImage = false;
 
       } catch (e: any) {
-        console.error(`   ❌ Error Sharp (${path.basename(cleanPath)}): ${e.message}`);
-        continue;
+        console.error(`❌ Skip ${cleanPath}: ${e.message}`);
       }
     }
 
     if (fileHasChanged) {
+      // Menulis ulang file di folder artikel/ milik runner
       await writeFile(filePath, $.html());
       stats.processed++;
-      console.log(`✅ Updated: ${path.basename(filePath)}`);
-    } else {
-      stats.skipped++;
+      console.log(`✅ File Updated for next step: ${path.basename(filePath)}`);
     }
 
   } catch (err) {
-    console.error(`❌ Gagal memproses ${filePath}`);
-    stats.skipped++;
+    console.error(`❌ Gagal: ${filePath}`);
   }
 }
 
-// JALANKAN PROSES
+// Helper untuk path absolut mobile
+function mobileAbsPath(p: string) { return path.resolve(p); }
+
+// EKSEKUSI
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🚀 Memproses ${files.length} file dengan Alt-Unique numbering...\n`);
+console.log(`🚀 Runner Step: Mengolah ${files.length} file HTML & Gambar...\n`);
 
 for (const f of files) {
   await processHtmlFile(f);
 }
 
-console.log(`\n📊 RINGKASAN:\n------------------\nBerhasil diupdate: ${stats.processed}\nTetap (Skip)     : ${stats.skipped}\nTotal File       : ${stats.total}\n`);
+console.log(`\n📊 RINGKASAN RUNNER:\n------------------\nUpdate HTML : ${stats.processed}\nTotal File  : ${stats.total}\n`);
