@@ -9,6 +9,9 @@ const BASE_URL = 'https://dalam.web.id';
 const SOURCE_DIR = 'artikel';
 const OUTPUT_DIR = 'output';
 
+// Karakter yang dilarang oleh sistem file (NTFS/GitHub Artifacts)
+const INVALID_CHARS = /[<>:"/\\|?*\r\n]/;
+
 async function processHtmlFile(filePath: string) {
   const fileName = path.basename(filePath);
   const htmlContent = await readFile(filePath, 'utf-8');
@@ -18,6 +21,7 @@ async function processHtmlFile(filePath: string) {
   const articleTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '').trim();
 
   const imgElements = $('img').toArray();
+  let hasError = false;
 
   for (const el of imgElements) {
     const $img = $(el);
@@ -33,6 +37,14 @@ async function processHtmlFile(filePath: string) {
     }
 
     if (localInputPath && fs.existsSync(localInputPath)) {
+      // --- LOGIKA SKIP ---
+      // Cek apakah nama file mengandung karakter terlarang seperti *
+      if (INVALID_CHARS.test(path.basename(localInputPath))) {
+        console.warn(`⚠️ SKIP: File "${fileName}" dilewati karena nama gambar tidak valid: ${localInputPath}`);
+        hasError = true;
+        break; // Keluar dari loop gambar untuk file HTML ini
+      }
+
       try {
         let captionText = "";
         const parentFigure = $img.closest('figure');
@@ -54,6 +66,7 @@ async function processHtmlFile(filePath: string) {
         const desktopPath = path.join(dirName, `${baseName}.webp`);
         const mobilePath = path.join(dirName, `${baseName}-sm.webp`);
 
+        // Proses Gambar
         const image = sharp(localInputPath);
         const meta = await image.metadata();
 
@@ -61,16 +74,14 @@ async function processHtmlFile(filePath: string) {
         const ratio = (meta.height || 600) / originalWidth;
         const targetWidth = originalWidth > 1000 ? 1000 : originalWidth;
 
-        // Proses Desktop
         await image.rotate()
           .resize(targetWidth, null, { withoutEnlargement: true })
           .webp({ quality: 82 })
-          .toFile(desktopPath + '.tmp'); // Gunakan tmp agar tidak konflik saat baca/tulis
+          .toFile(desktopPath + '.tmp');
         fs.renameSync(desktopPath + '.tmp', desktopPath);
 
-        // Proses Mobile
         if (originalWidth > 480) {
-          await sharp(localInputPath) // Re-init untuk mobile resize
+          await sharp(localInputPath)
             .rotate()
             .resize(480, null, { withoutEnlargement: true })
             .webp({ quality: 75 })
@@ -94,19 +105,23 @@ async function processHtmlFile(filePath: string) {
 
         $img.replaceWith(pictureHtml);
       } catch (err) {
-        console.error(`❌ Gagal: ${localInputPath}`, err);
+        console.error(`❌ Gagal proses gambar di ${fileName}:`, err);
+        hasError = true;
+        break;
       }
     }
   }
 
-  await mkdir(OUTPUT_DIR, { recursive: true });
-  await writeFile(path.join(OUTPUT_DIR, fileName), $.html());
-  console.log(`✅ Berhasil: ${fileName}`);
+  // Hanya tulis ke folder output jika tidak ada error/skip pada file ini
+  if (!hasError) {
+    await mkdir(OUTPUT_DIR, { recursive: true });
+    await writeFile(path.join(OUTPUT_DIR, fileName), $.html());
+    console.log(`✅ BERHASIL: ${fileName}`);
+  }
 }
 
-// Menggunakan Glob v13 pattern
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🔍 Ditemukan ${files.length} file. Memulai konversi...`);
+console.log(`🔍 Memproses ${files.length} file...`);
 
 for (const file of files) {
   await processHtmlFile(file);
