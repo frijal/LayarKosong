@@ -134,7 +134,7 @@ async function processHtmlFile(filePath: string) {
   }
 }
 
-// Helper untuk path absolut mobile
+// Helper untuk path absolut mobil
 function mobileAbsPath(p: string) { return path.resolve(p); }
 
 // EKSEKUSI
