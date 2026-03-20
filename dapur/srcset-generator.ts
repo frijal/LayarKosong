@@ -62,12 +62,12 @@ async function processHtmlFile(filePath: string) {
         // --- OPTIMASI GAMBAR (Hanya jika belum ada di cache) ---
         if (!optimizedCache.has(cleanPath)) {
           const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-
+          
           await imageInstance
-          .rotate()
-          .resize(targetWidth, null, { withoutEnlargement: true })
-          .webp({ quality: 82 })
-          .toFile(path.resolve(desktopPath) + '.tmp');
+            .rotate()
+            .resize(targetWidth, null, { withoutEnlargement: true })
+            .webp({ quality: 82 })
+            .toFile(path.resolve(desktopPath) + '.tmp');
 
           if (fs.existsSync(path.resolve(desktopPath) + '.tmp')) {
             if (fs.existsSync(path.resolve(desktopPath))) fs.unlinkSync(path.resolve(desktopPath));
@@ -76,10 +76,10 @@ async function processHtmlFile(filePath: string) {
 
           if (meta.width > 480) {
             await sharp(fullPathSource)
-            .rotate()
-            .resize(480, null, { withoutEnlargement: true })
-            .webp({ quality: 75 })
-            .toFile(path.resolve(mobileAbsPath(mobilePath)));
+              .rotate()
+              .resize(480, null, { withoutEnlargement: true })
+              .webp({ quality: 75 })
+              .toFile(path.resolve(mobileAbsPath(mobilePath)));
           }
 
           await appendFile(CACHE_FILE, `${cleanPath}\n`);
@@ -96,22 +96,22 @@ async function processHtmlFile(filePath: string) {
         const loadingAttr = isFirstImage ? 'eager' : 'lazy';
         const priorityAttr = isFirstImage ? 'fetchpriority="high"' : '';
         const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-
+        
         const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
         const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
 
         const pictureHtml = `
-        <picture style="display: block; text-align: center;">
-        ${meta.width > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
-        <img src="${webDesktopUrl}"
-        ${priorityAttr}
-        alt="${finalAlt.replace(/"/g, '&quot;')}"
-        width="${targetWidth}"
-        height="${Math.round(targetWidth * (meta.height / meta.width))}"
-        style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
-        loading="${loadingAttr}"
-        decoding="async">
-        </picture>`.trim();
+<picture style="display: block; text-align: center;">
+  ${meta.width > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
+  <img src="${webDesktopUrl}"
+       ${priorityAttr}
+       alt="${finalAlt.replace(/"/g, '&quot;')}"
+       width="${targetWidth}"
+       height="${Math.round(targetWidth * (meta.height / meta.width))}"
+       style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
+       loading="${loadingAttr}"
+       decoding="async">
+</picture>`.trim();
 
         $img.replaceWith(pictureHtml);
         fileHasChanged = true;
@@ -134,7 +134,7 @@ async function processHtmlFile(filePath: string) {
   }
 }
 
-// Helper untuk path absolut mobil
+// Helper untuk path absolut mobile
 function mobileAbsPath(p: string) { return path.resolve(p); }
 
 // EKSEKUSI
