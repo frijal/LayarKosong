@@ -19,13 +19,21 @@ let stats = {
 async function processHtmlFile(filePath: string) {
   stats.total++;
   const fileName = path.basename(filePath);
-
+  
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
 
-    // Cek gambar hanya di body
-    const bodyImages = $('body img').toArray();
+    /**
+     * PERBAIKAN FILTER:
+     * Hanya ambil tag <img> yang punya src dan mengarah ke internal /img/
+     * Ini akan otomatis melewati placeholder Lightbox yang tidak punya src.
+     */
+    const bodyImages = $('body img').toArray().filter(el => {
+      const src = $(el).attr('src');
+      return src && (src.startsWith('/img/') || src.startsWith(`${BASE_URL}/img/`));
+    });
+
     if (bodyImages.length === 0) {
       stats.skipped++;
       return;
@@ -38,27 +46,22 @@ async function processHtmlFile(filePath: string) {
 
     for (const el of bodyImages) {
       const $img = $(el);
-      const src = $img.attr('src');
-      if (!src) continue;
+      const src = $img.attr('src')!; // Sudah pasti ada karena filter di atas
 
-      let localInputPath = "";
-      if (src.startsWith(BASE_URL + '/img/')) {
-        localInputPath = `.${src.replace(BASE_URL, '')}`;
-      } else if (src.startsWith('/img/')) {
-        localInputPath = `.${src}`;
-      }
+      let localInputPath = src.startsWith(BASE_URL) 
+        ? `.${src.replace(BASE_URL, '')}` 
+        : `.${src}`;
 
-      // Validasi: File harus ada dan nama harus bersih dari karakter aneh (*)
-      if (!localInputPath || !fs.existsSync(localInputPath) || INVALID_CHARS.test(path.basename(localInputPath))) {
+      // Validasi Eksistensi & Nama File
+      if (!fs.existsSync(localInputPath) || INVALID_CHARS.test(path.basename(localInputPath))) {
         fileHasIssue = true;
-        break;
+        break; 
       }
 
       try {
         const imageInstance = sharp(localInputPath);
         const meta = await imageInstance.metadata().catch(() => null);
 
-        // Jika metadata gagal dibaca (format tak didukung/korup), skip file ini
         if (!meta || !meta.width || !meta.height) {
           fileHasIssue = true;
           break;
@@ -73,37 +76,39 @@ async function processHtmlFile(filePath: string) {
         const ratio = meta.height / originalWidth;
         const targetWidth = originalWidth > 1000 ? 1000 : originalWidth;
 
-        // Gunakan buffer agar tidak konflik baca-tulis pada file yang sama
+        // Proses Desktop ke Buffer (Overwrite Safety)
         const desktopBuffer = await imageInstance
-        .rotate()
-        .resize(targetWidth, null, { withoutEnlargement: true })
-        .webp({ quality: 82 })
-        .toBuffer();
-
+          .rotate()
+          .resize(targetWidth, null, { withoutEnlargement: true })
+          .webp({ quality: 82 })
+          .toBuffer();
+        
         await writeFile(desktopPath, desktopBuffer);
 
+        // Proses Mobile
         if (originalWidth > 480) {
           await sharp(localInputPath)
-          .rotate()
-          .resize(480, null, { withoutEnlargement: true })
-          .webp({ quality: 75 })
-          .toFile(mobilePath);
+            .rotate()
+            .resize(480, null, { withoutEnlargement: true })
+            .webp({ quality: 75 })
+            .toFile(mobilePath);
         }
 
         const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
         const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
-
+        
+        // Generate <picture> syntax
         const pictureHtml = `
-        <picture style="display: block; text-align: center;">
-        ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
-        <img src="${webDesktopUrl}"
-        alt="${($img.attr('alt') || articleTitle).replace(/\s+/g, ' ').trim()}"
-        width="${targetWidth}"
-        height="${Math.round(targetWidth * ratio)}"
-        style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
-        loading="lazy"
-        decoding="async">
-        </picture>`.trim();
+<picture style="display: block; text-align: center;">
+  ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
+  <img src="${webDesktopUrl}" 
+       alt="${($img.attr('alt') || articleTitle).replace(/\s+/g, ' ').trim()}" 
+       width="${targetWidth}" 
+       height="${Math.round(targetWidth * ratio)}" 
+       style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;" 
+       loading="lazy" 
+       decoding="async">
+</picture>`.trim();
 
         $img.replaceWith(pictureHtml);
 
@@ -128,12 +133,15 @@ async function processHtmlFile(filePath: string) {
 
 // EKSEKUSI
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🔍 Memproses ${files.length} file...`);
+console.log(`\n🔍 Memulai pemindaian ${files.length} file di folder /${SOURCE_DIR}...\n`);
 
 for (const file of files) {
   await processHtmlFile(file);
 }
 
-console.log(`\n✅ Selesai!`);
-console.log(`📊 Berhasil : ${stats.processed}`);
-console.log(`📊 Dilewati : ${stats.skipped}`);
+console.log(`---`);
+console.log(`📊 RINGKASAN FINAL:`);
+console.log(`   - Total File Ditemukan : ${stats.total}`);
+console.log(`   - Berhasil Diproses    : ${stats.processed}`);
+console.log(`   - Dilewati (Skip)      : ${stats.skipped}`);
+console.log(`---\n✨ Selesai! Cek folder /${OUTPUT_DIR}\n`);
