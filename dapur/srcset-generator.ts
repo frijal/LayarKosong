@@ -56,8 +56,6 @@ async function processHtmlFile(filePath: string) {
         const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
         // --- LOGIKA CERDAS: CEK CACHE & FISIK ---
-        // Jika sudah ada di cache, kita TIDAK JALANKAN Sharp
-        // --- LOGIKA CERDAS: CEK CACHE & FISIK ---
         if (!optimizedCache.has(cleanPath)) {
           const absDesktopPath = path.resolve(desktopPath);
           const absMobilePath = path.resolve(mobilePath);
