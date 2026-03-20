@@ -32,37 +32,45 @@ function cleanHTML(html: string): string {
 
     /**
      * FUNGSI PEMBANTU: smartConvert
-     * Menambahkan spasi secara cerdas jika ada karakter di depan tag.
+     * Menambahkan spasi hanya jika didahului alfabet/angka.
+     * Tidak akan menyentuh/memakan karakter '>' dari tag sebelumnya.
      */
     const smartConvert = (text: string, regex: RegExp, symbol: string) => {
         return text.replace(regex, (match, prevChar, tag, content) => {
             const trimmed = content.trim();
             if (!trimmed) return '';
 
-            // Cek apakah ada karakter alfabet/angka tepat sebelum tag
-            // Jika ada, tambahkan spasi di depannya.
-            const prefix = (prevChar && /[\w\d]/.test(prevChar)) ? `${prevChar} ` : (prevChar || '');
+            // LOGIKA KRITIKAL:
+            // Jika prevChar adalah '>', itu milik tag HTML. JANGAN tambah spasi.
+            // Jika prevChar adalah huruf/angka, TAMBAH spasi.
+            let prefix = prevChar || '';
+            if (prevChar && /[\w\d]/.test(prevChar)) {
+                prefix = `${prevChar} `;
+            }
+
             return `${prefix}${symbol}${trimmed}${symbol}`;
         });
     };
 
-    // 2. CONVERT: Bold, Italic, Strikethrough secara Universal
-    // Regex: ([\s\S])? menangkap 1 karakter apapun sebelum tag (jika ada)
-    updated = smartConvert(updated, /([\s\S])?<(strong|b)[^>]*>([\s\S]*?)<\/\2>/gi, '**');
-    updated = smartConvert(updated, /([\s\S])?<(em|i)[^>]*>([\s\S]*?)<\/\2>/gi, '*');
-    updated = smartConvert(updated, /([\s\S])?<(del|s|strike)[^>]*>([\s\S]*?)<\/\2>/gi, '~~');
+    // 2. CONVERT: Bold, Italic, Strikethrough
+    // Regex diubah: ([^>])? artinya tangkap 1 karakter asalkan BUKAN penutup tag '>'
+    updated = smartConvert(updated, /([^>])?<(strong|b)[^>]*>([\s\S]*?)<\/\2>/gi, '**');
+    updated = smartConvert(updated, /([^>])?<(em|i)[^>]*>([\s\S]*?)<\/\2>/gi, '*');
+    updated = smartConvert(updated, /([^>])?<(del|s|strike)[^>]*>([\s\S]*?)<\/\2>/gi, '~~');
 
-    // 3. CONVERT: Inline Code (Juga dengan proteksi spasi)
-    updated = updated.replace(/([\s\S])?<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, prevChar, codeText) => {
+    // 3. CONVERT: Inline Code
+    updated = updated.replace(/([^>])?<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, prevChar, codeText) => {
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
-            const prefix = (prevChar && /[\w\d]/.test(prevChar)) ? `${prevChar} ` : (prevChar || '');
-            return `${prefix}\`${codeText.trim()}\``;
+            let prefix = prevChar || '';
+    if (prevChar && /[\w\d]/.test(prevChar)) {
+        prefix = `${prevChar} `;
+    }
+    return `${prefix}\`${codeText.trim()}\``;
         }
         return match;
     });
 
     // 4. FIX: Pembersihan Spasi Internal Markdown
-    // Merapatkan simbol dengan kontennya, tapi tidak merusak spasi antar kata.
     updated = updated
     .replace(/\*\*\s+/g, '**').replace(/\s+\*\*/g, '**')
     .replace(/\*\s+/g, '*').replace(/\s+\*/g, '*')
