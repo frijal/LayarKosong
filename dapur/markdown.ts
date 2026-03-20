@@ -29,11 +29,16 @@ function parseMarkdown(text: string): string {
   .replace(/(?:^|>|\s)# (.*?)(?=\n|<|$)/g, "<h1>$1</h1>");
 
   // 4. BOLD, ITALIC, & STRIKETHROUGH
-  res = res.replace(/(^|>|\s)\*\*([^\s*][^*]*[^\s*])\*\*([\s.,!?;:<]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|\s)__([^\s_][^_]*[^\s_])__([\s.,!?;:<]|$)/g, "$1<strong>$2</strong>$3");
-  res = res.replace(/(^|>|\s)\*([^\s*][^*]*[^\s*])\*([\s.,!?;:<]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|\s)_([^\s_][^_]*[^\s_])_([\s.,!?;:<]|$)/g, "$1<em>$2</em>$3");
-  res = res.replace(/(^|>|\s)~~([^\s~][^~]*[^\s~])~~([\s.,!?;:<]|$)/g, "$1<del>$2</del>$3");
+  // BOLD
+  f = f.replace(/(^|>|[\s(])\*\*([^\s*][^*]*[^\s*])\*\*([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
+  f = f.replace(/(^|>|[\s(])__([^\s_][^_]*[^\s_])__([\s.,!?;:<()'"\/]|$)/g, "$1<strong>$2</strong>$3");
+
+  // ITALIC
+  f = f.replace(/(^|>|[\s(])\*([^\s*][^*]*[^\s*])\*([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
+  f = f.replace(/(^|>|[\s(])_([^\s_][^_]*[^\s_])_([\s.,!?;:<()'"\/]|$)/g, "$1<em>$2</em>$3");
+
+  // STRIKETHROUGH
+  f = f.replace(/(^|>|[\s(])~~([^\s~][^~]*[^\s~])~~([\s.,!?;:<()'"\/]|$)/g, "$1<del>$2</del>$3");
 
   // 5. BLOCKQUOTE — anchor ke awal baris dengan flag 'm'
   res = res.replace(/^[ \t]*>[ \t]?(.*?)[ \t]*$/gm, "<blockquote>$1</blockquote>");
