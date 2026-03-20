@@ -22,13 +22,14 @@ jobs:
         run: bun install
 
       - name: Run Generator
-        run: bun run srcset-generator.ts
+        run: bun run srcset-generator.ts      
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: srcset-results
           path: |
             output/
             img/**/*-sm.webp
           retention-days: 7
+          if-no-files-found: warn # Supaya tidak error jika folder output kosong
