@@ -268,7 +268,7 @@
         <p>Fitur ini menghemat sumber daya *origin server* Anda dengan membuang *traffic* sampah sejak di **Cloudflare Edge**.</p>
         <hr>
         <h2><i class="fa-solid fa-binoculars"></i> 1. Fokus Utama: Evaluasi Header HTTP</h2>
-        <p>Bagaimana Cloudflare tahu apakah Anda manusia atau *script* bot yang buruk? Jawabannya ada di **HTTP Header**. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi (*header*) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
+        <p>Bagaimana Cloudflare tahu apakah Anda manusia atau *script* bot yang buruk? Jawabannya ada di **HTTP Header**. Setiap kali peramban Anda meminta halaman web, ia mengirimkan serangkaian informasi ( *header*) yang mendeskripsikan dirinya, seperti tipe peramban, bahasa yang disukai, dan versi sistem operasi.</p>
         <div class="image-container">
             <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIN3IHYdd3q3H_1LKwEk9pB25RsuXyYwufFtf5WslgMMRCSRSsVZLwf9W3FhfKL4WqHORtixomyiJx34pMFjHTHO49t8n4ez7HDF-4ugelYE0yvT3oGq6CqvZo9mWgPB6JCI54R1Os0Ahdx6mZOejOELOS2i3r6xPYuNYWQ4ojZOnH0_TJ4PaU9b0QlhU/s1600/integrity.webp" alt="Diagram proses pemeriksaan integritas browser oleh Cloudflare">
             <p style="font-size:0.9em;">**Gambar:** Proses pemindaian dan pemeriksaan *header* yang dilakukan Cloudflare di lapisan Edge Network.</p>
@@ -277,7 +277,7 @@
         <p>Bot sederhana sering kali gagal meniru *header* ini dengan sempurna, dan disitulah Cloudflare memergoki mereka:</p>
         <ul>
             <li><b>Header yang Hilang atau Tidak Lengkap:</b> Peramban sungguhan harus memiliki <em>header</em> standar seperti <code>User-Agent</code> dan <code>Accept-Encoding</code>. Jika <em>header</em> ini hilang atau terlalu singkat, maka adalah tanda bahwa itu bukan peramban sungguhan.</li>
-            <li>**Format yang Salah (*Mal-Formed*):** Jika nilai *header* memiliki format yang secara teknis tidak mungkin ada (misalnya, *User-Agent* yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
+            <li>**Format yang Salah ( *Mal-Formed*):** Jika nilai *header* memiliki format yang secara teknis tidak mungkin ada (misalnya, *User-Agent* yang tidak terdaftar atau tidak sesuai sintaks HTTP), itu akan ditandai sebagai ancaman.</li>
             <li>**Ketidaksesuaian Logika:** Misalnya, *browser* menyatakan dirinya sebagai Chrome terbaru tetapi tidak meminta *header* tertentu yang seharusnya diminta oleh Chrome (perilaku yang didasarkan pada basis data Cloudflare tentang perilaku *browser* normal).</li>
         </ul>
         <hr>
@@ -304,7 +304,7 @@
                 </tr>
                 <tr>
                     <td>**Pertahanan Lini Pertama**</td>
-                    <td>Fitur ini menyaring ancaman paling dasar (*low-hanging fruit*) seperti *scanner* kerentanan otomatis dan *scraper* yang malas sebelum mereka bertemu WAF yang lebih canggih.</td>
+                    <td>Fitur ini menyaring ancaman paling dasar ( *low-hanging fruit*) seperti *scanner* kerentanan otomatis dan *scraper* yang malas sebelum mereka bertemu WAF yang lebih canggih.</td>
                 </tr>
                 <tr>
                     <td>**Menghemat Kuota Aturan WAF**</td>
