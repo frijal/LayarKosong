@@ -33,20 +33,20 @@ async function discoverContainers(files: string[]) {
   return Array.from(containers).join(', ');
 }
 
+// ... (Bagian atas tetap sama)
+
 async function processHtmlFile(filePath: string, containerSelectors: string) {
   stats.total++;
   const fileName = path.basename(filePath);
-  
+
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
 
     const imageCandidates = $('body img').toArray().filter(el => {
-      const $img = $(el);
-      const src = $img.attr('src');
-      const isInternal = src && (src.startsWith('/img/') || src.startsWith('img/') || src.startsWith(BASE_URL));
-      const hasPicture = $img.closest('picture').length > 0;
-      return isInternal && !hasPicture;
+      const src = $(el).attr('src');
+      // Pastikan hanya ambil yang internal
+      return src && (src.startsWith('/img/') || src.startsWith('img/') || src.includes(BASE_URL + '/img/'));
     });
 
     if (imageCandidates.length === 0) {
@@ -60,64 +60,85 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
     for (const el of imageCandidates) {
       const $img = $(el);
       let src = $img.attr('src')!;
-      
-      // 1. NORMALISASI PATH FISIK
-      let cleanPath = src.replace(BASE_URL, '');
-      if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
-      
-      const localInputPath = path.resolve(process.cwd(), cleanPath);
 
-      if (!fs.existsSync(localInputPath) || INVALID_CHARS.test(path.basename(localInputPath))) continue;
+      // 1. NORMALISASI PATH (PENTING!)
+      // Kita bersihkan semua embel-embel agar tersisa path murni dari root project
+      let cleanPath = src.replace(BASE_URL, '').replace(/^\/+/, '');
+
+      // Sekarang cleanPath seharusnya: "img/folder/gambar.webp"
+      const localInputPath = path.join(process.cwd(), cleanPath);
+
+      // DEBUG: Aktifkan baris di bawah ini jika masih 0 untuk lihat script nyari ke mana
+      // console.log(`🔎 Mencari file di: ${localInputPath}`);
+
+      if (!fs.existsSync(localInputPath)) {
+        continue; // Jika file fisik tidak ada, skip gambarnya saja
+      }
 
       try {
         const imageInstance = sharp(localInputPath);
-        const meta = await imageInstance.metadata().catch(() => null);
-        if (!meta || !meta.width || !meta.height) continue;
-
-        // 2. LOGIKA FOLDER RECURSIVE
-        const dirName = path.dirname(cleanPath); // Misal: img/blogger.../b/
-        const baseName = path.basename(cleanPath, '.webp');
-        
-        // Path fisik untuk simpan file
-        const desktopFilePath = path.resolve(process.cwd(), dirName, `${baseName}.webp`);
-        const mobileFilePath = path.resolve(process.cwd(), dirName, `${baseName}-sm.webp`);
+        const meta = await imageInstance.metadata();
+        if (!meta || !meta.width) continue;
 
         const originalWidth = meta.width;
         const targetWidth = originalWidth > 1000 ? 1000 : originalWidth;
 
-        // Proses Sharp
-        const desktopBuffer = await imageInstance.rotate().resize(targetWidth, null, { withoutEnlargement: true }).webp({ quality: 82 }).toBuffer();
-        await writeFile(desktopFilePath, desktopBuffer);
+        // Tentukan folder tujuan (sama dengan folder asal)
+        const dirName = path.dirname(localInputPath);
+        const baseName = path.basename(localInputPath, '.webp');
 
-        if (originalWidth > 480) {
-          await sharp(localInputPath).rotate().resize(480, null, { withoutEnlargement: true }).webp({ quality: 75 }).toFile(mobileFilePath);
+        const desktopFilePath = path.join(dirName, `${baseName}.webp`);
+        const mobileFilePath = path.join(dirName, `${baseName}-sm.webp`);
+
+        // PROSES SHARP
+        await imageInstance
+        .rotate()
+        .resize(targetWidth, null, { withoutEnlargement: true })
+        .webp({ quality: 82 })
+        .toFile(desktopFilePath + '.tmp'); // Gunakan .tmp dulu biar nggak bentrok
+
+        // Rename dari .tmp ke asli (untuk overwrite yang aman)
+        if (fs.existsSync(desktopFilePath + '.tmp')) {
+          fs.renameSync(desktopFilePath + '.tmp', desktopFilePath);
         }
 
-        // 3. NORMALISASI URL WEB (Menjaga struktur folder asli)
-        const webDesktopUrl = `${BASE_URL}/${dirName.replace(/\\/g, '/')}/${baseName}.webp`;
-        const webMobileUrl = `${BASE_URL}/${dirName.replace(/\\/g, '/')}/${baseName}-sm.webp`;
-        
-        // Cari Caption dari container terdekat hasil discovery
+        if (originalWidth > 480) {
+          await sharp(localInputPath)
+          .rotate()
+          .resize(480, null, { withoutEnlargement: true })
+          .webp({ quality: 75 })
+          .toFile(mobileFilePath);
+        }
+
+        // 2. URL WEB (Tetap gunakan struktur folder asli)
+        // Kita ambil folder dari cleanPath (misal: "img/blogger/...")
+        const webDir = path.dirname(cleanPath).replace(/\\/g, '/');
+        const webDesktopUrl = `${BASE_URL}/${webDir}/${baseName}.webp`;
+        const webMobileUrl = `${BASE_URL}/${webDir}/${baseName}-sm.webp`;
+
         const parent = $img.closest(containerSelectors);
         const caption = parent.length ? parent.find('figcaption, .image-caption, .caption').text().trim() : "";
         const finalAlt = ($img.attr('alt') || caption || articleTitle).replace(/\s+/g, ' ').trim();
 
         const pictureHtml = `
-<picture style="display: block; text-align: center;">
-  ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
-  <img src="${webDesktopUrl}" 
-       alt="${finalAlt}" 
-       width="${targetWidth}" 
-       height="${Math.round(targetWidth * (meta.height / originalWidth))}" 
-       style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;" 
-       loading="lazy" 
-       decoding="async">
-</picture>`.trim();
+        <picture style="display: block; text-align: center;">
+        ${originalWidth > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
+        <img src="${webDesktopUrl}"
+        alt="${finalAlt}"
+        width="${targetWidth}"
+        height="${Math.round(targetWidth * (meta.height / originalWidth))}"
+        style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
+        loading="lazy"
+        decoding="async">
+        </picture>`.trim();
 
         $img.replaceWith(pictureHtml);
         fileHasProcessedAnyImage = true;
 
-      } catch (e) { continue; }
+      } catch (e) {
+        // console.error(`❌ Error Sharp pada ${cleanPath}:`, e.message);
+        continue;
+      }
     }
 
     if (fileHasProcessedAnyImage) {
@@ -128,7 +149,9 @@ async function processHtmlFile(filePath: string, containerSelectors: string) {
       stats.skipped++;
     }
 
-  } catch (err) { stats.skipped++; }
+  } catch (err) {
+    stats.skipped++;
+  }
 }
 
 // MAIN EXECUTION
