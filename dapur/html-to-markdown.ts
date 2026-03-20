@@ -21,47 +21,44 @@ let stats: Stats = {
     totalAfter: 0
 };
 
-/**
- * Fungsi inti untuk membersihkan HTML dan mengubahnya ke Markdown sederhana.
- * Menggunakan teknik placeholder untuk melindungi blok kode dan script.
- */
 function cleanHTML(html: string): string {
     const scriptPlaceholders: string[] = [];
 
-    // 1. PROTEKSI: Sembunyikan isi <script> agar tidak rusak oleh regex
+    // 1. PROTEKSI: Script tetap aman
     let updated = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
         const id = `__SCRIPT_PROTECT_${scriptPlaceholders.length}__`;
         scriptPlaceholders.push(match);
         return id;
     });
 
-    // 2. CONVERT: Pre-formatted code (sering terjadi di ekspor Blogger)
-    updated = updated.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
+    // 2. CONVERT: Bold, Italic, Strikethrough (DENGAN TRIMMING INTERNAL)
+        updated = updated
+    .replace(/<(strong|b)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '**$2**')
+    .replace(/<(em|i)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '*$2*')
+    .replace(/<(del|s|strike)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '~~$2~~');
 
-    // 3. CONVERT: Bold, Italic, Strikethrough
-    // Menggunakan [^>]* agar tetap menangkap tag meskipun ada atribut class/style
-    updated = updated
-    .replace(/<(strong|b)[^>]*>(.*?)<\/\1>/gi, '**$2**')
-    .replace(/<(em|i)[^>]*>(.*?)<\/\1>/gi, '*$2*')
-    .replace(/<(del|s|strike)[^>]*>(.*?)<\/\1>/gi, '~~$2~~');
+    // 3. FIX: Pembersihan Spasi Antar Tag (Penting untuk metadata)
+        updated = updated
+    .replace(/\*\*\s+/g, '**')
+    .replace(/\s+\*\*/g, '**')
+    .replace(/\*\s+/g, '*')
+    .replace(/\s+\*/g, '*');
 
-    // 4. CONVERT: Links (Hanya jika tidak punya class/atribut khusus & bukan gambar)
+    // 4. CONVERT: Links & Code (Sama seperti sebelumnya)
     updated = updated.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
         const isComplex = /class=|id=|style=|target=|rel=/i.test(match);
-        const hasTags = /<[^>]+>/.test(text); // Jika di dalam link ada tag lain (seperti img), biarkan HTML
-        return (isComplex || hasTags) ? match : `[${text}](${url})`;
+        const hasTags = /<[^>]+>/.test(text);
+        return (isComplex || hasTags) ? match : `[${text.trim()}](${url})`;
     });
 
-    // 5. CONVERT: Inline Code
-    // Hanya jika tidak ada baris baru dan bukan bagian dari tag <pre>
-    updated = updated.replace(/<code[^>]*>([\s\S]*?)<\/code>/gi, (match, codeText) => {
+    updated = updated.replace(/<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, codeText) => {
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
-            return `\`${codeText}\``;
+            return `\`${codeText.trim()}\``;
         }
         return match;
     });
 
-    // 6. RESTORE: Kembalikan isi <script>
+    // 5. RESTORE: Kembalikan Script
     scriptPlaceholders.forEach((tag, index) => {
         const id = `__SCRIPT_PROTECT_${index}__`;
         updated = updated.replace(id, tag);
