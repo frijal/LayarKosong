@@ -2,7 +2,7 @@ import { glob } from 'glob';
 import { load } from 'cheerio';
 import path from 'node:path';
 import sharp from 'sharp';
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { writeFile, readFile } from 'node:fs/promises';
 import fs from 'node:fs';
 
 const BASE_URL = 'https://dalam.web.id';
@@ -18,7 +18,9 @@ async function processHtmlFile(filePath: string) {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
 
-    // Mencari gambar yang berasal dari domain eksternal (Blogger/Medium) yang sudah di-mirror ke /img/
+    // Mengambil judul dari tag <title> dan membersihkan brand suffix
+    const pageTitle = $('title').first().text().split(' - ')[0].trim() || 'Layar Kosong';
+
     const imageCandidates = $('body img').toArray().filter(el => {
       const src = $(el).attr('src');
       return src && (src.startsWith('/img/') || src.startsWith('img/') || src.includes('/img/'));
@@ -30,12 +32,15 @@ async function processHtmlFile(filePath: string) {
     }
 
     let fileHasChanged = false;
+    let isFirstImage = true;
+
+    // --- [UPDATE: COUNTER UNTUK ALT UNIQUE] ---
+    let imageCounter = 0;
 
     for (const el of imageCandidates) {
       const $img = $(el);
       const originalSrc = $img.attr('src')!;
 
-      // Normalisasi path agar bisa dibaca filesystem
       const cleanPath = originalSrc
       .replace(BASE_URL, '')
       .replace(/^https?:\/\/dalam\.web\.id/, '')
@@ -43,7 +48,6 @@ async function processHtmlFile(filePath: string) {
 
       const fullPathSource = path.resolve(cleanPath);
 
-      // Cek apakah file asli ada
       if (!fs.existsSync(fullPathSource)) continue;
 
       try {
@@ -51,7 +55,6 @@ async function processHtmlFile(filePath: string) {
         const meta = await imageInstance.metadata();
         if (!meta || !meta.width || !meta.height) continue;
 
-        // Sanitisasi nama file untuk menghindari karakter terlarang
         const dirName = path.dirname(cleanPath);
         const baseNameOriginal = path.basename(cleanPath, '.webp');
         const baseNameSafe = baseNameOriginal.replace(FORBIDDEN_CHARS, '-');
@@ -62,7 +65,7 @@ async function processHtmlFile(filePath: string) {
         const desktopAbs = path.resolve(desktopPath);
         const mobileAbs = path.resolve(mobilePath);
 
-        // 1. Generate Versi Desktop (Max width 1000px)
+        // 1. Generate Versi Desktop
         const targetWidth = meta.width > 1000 ? 1000 : meta.width;
         await imageInstance
         .rotate()
@@ -70,13 +73,12 @@ async function processHtmlFile(filePath: string) {
         .webp({ quality: 82 })
         .toFile(desktopAbs + '.tmp');
 
-        // Swap file temp ke asli
         if (fs.existsSync(desktopAbs + '.tmp')) {
           if (fs.existsSync(desktopAbs)) fs.unlinkSync(desktopAbs);
           fs.renameSync(desktopAbs + '.tmp', desktopAbs);
         }
 
-        // 2. Generate Versi Mobile (Width 480px) jika gambar cukup besar
+        // 2. Generate Versi Mobile
         if (meta.width > 480) {
           await sharp(fullPathSource)
           .rotate()
@@ -85,7 +87,21 @@ async function processHtmlFile(filePath: string) {
           .toFile(mobileAbs);
         }
 
-        // 3. Update HTML dengan format <picture>
+        // --- [LOGIKA ALT TEXT UNIQUE] ---
+        imageCounter++;
+        const originalAlt = $img.attr('alt')?.trim();
+
+        let finalAlt = originalAlt && originalAlt !== '' ? originalAlt : pageTitle;
+
+        // Jika menggunakan fallback (pageTitle) dan ini bukan gambar pertama, tambahkan nomor
+        if ((!originalAlt || originalAlt === '') && imageCounter > 1) {
+          finalAlt = `${pageTitle} - ${imageCounter}`;
+        }
+
+        // Optimasi LCP
+        const loadingAttr = isFirstImage ? 'eager' : 'lazy';
+        const priorityAttr = isFirstImage ? 'fetchpriority="high"' : '';
+
         const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
         const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
 
@@ -93,16 +109,18 @@ async function processHtmlFile(filePath: string) {
         <picture style="display: block; text-align: center;">
         ${meta.width > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
         <img src="${webDesktopUrl}"
-        alt="${($img.attr('alt') || 'Layar Kosong').replace(/\s+/g, ' ').trim()}"
+        ${priorityAttr}
+        alt="${finalAlt.replace(/"/g, '&quot;')}"
         width="${targetWidth}"
         height="${Math.round(targetWidth * (meta.height / meta.width))}"
         style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
-        loading="lazy"
+        loading="${loadingAttr}"
         decoding="async">
         </picture>`.trim();
 
         $img.replaceWith(pictureHtml);
         fileHasChanged = true;
+        isFirstImage = false;
 
       } catch (e: any) {
         console.error(`   ❌ Error Sharp (${path.basename(cleanPath)}): ${e.message}`);
@@ -111,7 +129,6 @@ async function processHtmlFile(filePath: string) {
     }
 
     if (fileHasChanged) {
-      // LANGSUNG TIMPA FILE ASLI
       await writeFile(filePath, $.html());
       stats.processed++;
       console.log(`✅ Updated: ${path.basename(filePath)}`);
@@ -127,7 +144,7 @@ async function processHtmlFile(filePath: string) {
 
 // JALANKAN PROSES
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🚀 Memproses ${files.length} file secara langsung ke folder ${SOURCE_DIR}/ dan img/...\n`);
+console.log(`🚀 Memproses ${files.length} file dengan Alt-Unique numbering...\n`);
 
 for (const f of files) {
   await processHtmlFile(f);
