@@ -6,22 +6,21 @@ import { writeFile, readFile, appendFile } from 'node:fs/promises';
 import fs from 'node:fs';
 
 const BASE_URL = 'https://dalam.web.id';
-const SOURCE_DIR = 'artikel'; // Folder ini yang akan di-update di dalam runner
+const SOURCE_DIR = 'artikel';
 const CACHE_FILE = 'mini/srcset-gambar.txt';
+const SITEMAP_FILE = 'sitemap.txt';
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 let stats = { total: 0, processed: 0, skipped: 0 };
 let optimizedCache = new Set<string>();
 
-// 1. Muat Cache (Jika ada)
+// 1. Muat Cache Gambar (Agar tidak resize ulang gambar yang sama)
 if (fs.existsSync(CACHE_FILE)) {
   const content = fs.readFileSync(CACHE_FILE, 'utf-8');
   optimizedCache = new Set(content.split('\n').map(line => line.trim()).filter(Boolean));
 }
 
 async function processHtmlFile(filePath: string) {
-  stats.total++;
-
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
@@ -32,10 +31,7 @@ async function processHtmlFile(filePath: string) {
       return src && (src.startsWith('/img/') || src.startsWith('img/') || src.includes('/img/'));
     });
 
-    if (imageCandidates.length === 0) {
-      stats.skipped++;
-      return;
-    }
+    if (imageCandidates.length === 0) return;
 
     let fileHasChanged = false;
     let isFirstImage = true;
@@ -59,15 +55,15 @@ async function processHtmlFile(filePath: string) {
         const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
         const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
-        // --- OPTIMASI GAMBAR (Hanya jika belum ada di cache) ---
+        // --- OPTIMASI GAMBAR ---
         if (!optimizedCache.has(cleanPath)) {
           const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-          
+
           await imageInstance
-            .rotate()
-            .resize(targetWidth, null, { withoutEnlargement: true })
-            .webp({ quality: 82 })
-            .toFile(path.resolve(desktopPath) + '.tmp');
+          .rotate()
+          .resize(targetWidth, null, { withoutEnlargement: true })
+          .webp({ quality: 82 })
+          .toFile(path.resolve(desktopPath) + '.tmp');
 
           if (fs.existsSync(path.resolve(desktopPath) + '.tmp')) {
             if (fs.existsSync(path.resolve(desktopPath))) fs.unlinkSync(path.resolve(desktopPath));
@@ -76,10 +72,10 @@ async function processHtmlFile(filePath: string) {
 
           if (meta.width > 480) {
             await sharp(fullPathSource)
-              .rotate()
-              .resize(480, null, { withoutEnlargement: true })
-              .webp({ quality: 75 })
-              .toFile(path.resolve(mobileAbsPath(mobilePath)));
+            .rotate()
+            .resize(480, null, { withoutEnlargement: true })
+            .webp({ quality: 75 })
+            .toFile(path.resolve(mobilePath));
           }
 
           await appendFile(CACHE_FILE, `${cleanPath}\n`);
@@ -87,7 +83,7 @@ async function processHtmlFile(filePath: string) {
           console.log(` ✨ Sharp Optimized: ${cleanPath}`);
         }
 
-        // --- TRANSFORMASI HTML (In-Memory Runner) ---
+        // --- TRANSFORMASI HTML ---
         imageCounter++;
         const originalAlt = $img.attr('alt')?.trim();
         let finalAlt = originalAlt || pageTitle;
@@ -96,53 +92,67 @@ async function processHtmlFile(filePath: string) {
         const loadingAttr = isFirstImage ? 'eager' : 'lazy';
         const priorityAttr = isFirstImage ? 'fetchpriority="high"' : '';
         const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-        
+
         const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
         const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
 
         const pictureHtml = `
-<picture style="display: block; text-align: center;">
-  ${meta.width > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
-  <img src="${webDesktopUrl}"
-       ${priorityAttr}
-       alt="${finalAlt.replace(/"/g, '&quot;')}"
-       width="${targetWidth}"
-       height="${Math.round(targetWidth * (meta.height / meta.width))}"
-       style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
-       loading="${loadingAttr}"
-       decoding="async">
-</picture>`.trim();
+        <picture style="display: block; text-align: center;">
+        ${meta.width > 480 ? `<source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ''}
+        <img src="${webDesktopUrl}"
+        ${priorityAttr}
+        alt="${finalAlt.replace(/"/g, '&quot;')}"
+        width="${targetWidth}"
+        height="${Math.round(targetWidth * (meta.height / meta.width))}"
+        style="max-width: 100%; height: auto; width: ${targetWidth}px; border-radius: 16px; display: inline-block;"
+        loading="${loadingAttr}"
+        decoding="async">
+        </picture>`.trim();
 
         $img.replaceWith(pictureHtml);
         fileHasChanged = true;
         isFirstImage = false;
 
       } catch (e: any) {
-        console.error(`❌ Skip ${cleanPath}: ${e.message}`);
+        console.error(`❌ Skip Img ${cleanPath}: ${e.message}`);
       }
     }
 
     if (fileHasChanged) {
-      // Menulis ulang file di folder artikel/ milik runner
+      // TULIS KEMBALI KE ASALNYA (Hanya di Runner)
       await writeFile(filePath, $.html());
       stats.processed++;
-      console.log(`✅ File Updated for next step: ${path.basename(filePath)}`);
+      console.log(`✅ File di-Update untuk Generator: ${path.basename(filePath)}`);
     }
 
   } catch (err) {
-    console.error(`❌ Gagal: ${filePath}`);
+    console.error(`❌ Gagal proses file: ${filePath}`);
   }
 }
 
-// Helper untuk path absolut mobile
-function mobileAbsPath(p: string) { return path.resolve(p); }
-
 // EKSEKUSI
-const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🚀 Runner Step: Mengolah ${files.length} file HTML & Gambar...\n`);
+(async () => {
+  console.log('🚀 DO_SRCSET: Memfilter file via sitemap.txt...');
 
-for (const f of files) {
-  await processHtmlFile(f);
-}
+  const sitemapTxt = fs.existsSync(SITEMAP_FILE) ? await readFile(SITEMAP_FILE, 'utf-8') : '';
+  const existingUrls = new Set(sitemapTxt.split('\n').filter(Boolean).map(line => line.trim()));
 
-console.log(`\n📊 RINGKASAN RUNNER:\n------------------\nUpdate HTML : ${stats.processed}\nTotal File  : ${stats.total}\n`);
+  const allFiles = await glob(`${SOURCE_DIR}/*.html`);
+  stats.total = allFiles.length;
+
+  for (const f of allFiles) {
+    const fileName = path.basename(f);
+    const fileSlug = fileName.replace('.html', '');
+
+    // Jika belum ada di sitemap, artinya ini "file baru" yang perlu d srcset-kan
+    const isNew = ![...existingUrls].some(url => url.endsWith(`/${fileSlug}`));
+
+    if (isNew) {
+      await processHtmlFile(f);
+    } else {
+      stats.skipped++;
+    }
+  }
+
+  console.log(`\n📊 RINGKASAN:\n------------------\nDiproses (Baru) : ${stats.processed}\nAbaikan (Lama)   : ${stats.skipped}\nTotal Gudang    : ${stats.total}\n`);
+})();
