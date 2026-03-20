@@ -46,17 +46,22 @@ function parseMarkdown(text: string): string {
 
   // 5. LIST & QUOTE
   res = res
-  .replace(/(?:^|>|\s)>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
-  .replace(/(?:^|>|\s)[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
+  .replace(/(?:^|>)\s*>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
+  .replace(/(?:^|>)\s*[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
 
   // Auto wrap <li> ke dalam <ul>
   return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
+
+  // --- FITUR BARU: TIPOGRAFI EM-DASH ---
+  // Mengubah " -- " atau "--" menjadi em-dash (—)
+  // Kita gunakan &mdash; agar aman saat minifikasi HTML
+  res = res.replace(/--/g, "&mdash;");
 }
 
 function enhanceMarkdown(): void {
   // Daftar selector elemen yang boleh di-render Markdown-nya
   const selector = "p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6, footer, .alert, .alert-box, .article-container, .author-box, .box, .card, .callout, .code-block, .closing, .contact, .danger-box, .disclaimer, .fa-solid, .faq-item, .gallery, .highlight, .highlight-box, .info-box, .intro-alert, .intro-box, .item, .lead, .lede, .markdown, .markdown-body, .meta, .meta-info, .narasi, .note, .note-box, .post-meta, .quote, .quote-box, .success-box, .timeline-item, .tip, .tip-box, .tips, .warn, .warning, .warning-box, .zdummy, .zdummy1, .zdummy2, .zdummy3";
-  
+
   const targets = document.querySelectorAll(selector);
 
   targets.forEach((el) => {
