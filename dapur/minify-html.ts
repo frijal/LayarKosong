@@ -30,8 +30,7 @@ let stats: Stats = {
 
 // Folder target sesuai struktur kategori Layar Kosong
 const folders: string[] = [
-    "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media",
-"opini-sosial", "sistem-terbuka", "warta-tekno"
+    "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"
 ];
 
 /**
@@ -60,23 +59,25 @@ const restoreUrls = (html: string, urls: string[]): string => {
 /**
  * 2. CLEANER: Menghapus karakter invisible dan menormalkan entitas HTML
  * agar ukuran file lebih ramping sebelum di-minify.
+ *
+ * CATATAN: &gt; dan &lt; SENGAJA tidak di-decode di sini.
+ * Keduanya dibiarkan utuh agar Markdown Enhancer v7.5 di browser
+ * yang menanganinya via Step 1 parseMarkdown.
  */
 const cleanContent = (html: string): string => {
     const before = html.length;
     const { html: protectedHtml, urls } = protectUrls(html);
 
     let cleaned = protectedHtml
-    .replace(/\u00A0/g, " ") // Ubah non-breaking space ke spasi biasa
+    .replace(/\u00A0/g, " ")              // Ubah non-breaking space ke spasi biasa
     .replace(/[\u200B\u200C\u200D\uFEFF]/g, ""); // Hapus zero-width chars
 
     // Sederhanakan entitas umum ke simbol asli (UTF-8)
+    // &gt; dan &lt; DIKECUALIKAN — ditangani oleh Markdown Enhancer v7.5
     const entities: { [key: string]: string } = {
         "&nbsp;": " ",
         "&amp;": "&",
         "&quot;": "\"",
-        "&lt;": "<",
-        "&gt;": ">", // Sangat penting agar Markdown Enhancer v7.3 bisa baca boundary
-        "&copy;": "©",
         "&reg;": "®",
         "&deg;": "°"
     };
