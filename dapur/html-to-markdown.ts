@@ -3,8 +3,7 @@ import path from "node:path";
 
 const rootDir = path.join(import.meta.dir, '..');
 const targetFolders = [
-    "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media",
-"opini-sosial", "sistem-terbuka", "warta-tekno"
+"gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno"
 ];
 
 interface Stats {
@@ -24,41 +23,56 @@ let stats: Stats = {
 function cleanHTML(html: string): string {
     const scriptPlaceholders: string[] = [];
 
-    // 1. PROTEKSI: Script tetap aman
     let updated = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
         const id = `__SCRIPT_PROTECT_${scriptPlaceholders.length}__`;
         scriptPlaceholders.push(match);
         return id;
     });
 
-    // 2. CONVERT: Bold, Italic, Strikethrough (DENGAN TRIMMING INTERNAL)
-        updated = updated
-    .replace(/<(strong|b)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '**$2**')
-    .replace(/<(em|i)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '*$2*')
-    .replace(/<(del|s|strike)[^>]*>\s*([\s\S]*?)\s*<\/\1>/gi, '~~$2~~');
+    // 2. CONVERT: Bold, Italic, Strikethrough (Gunakan Callback untuk Garansi Penutup)
+    // Strategi: Trim konten di dalam tag dulu, baru bungkus dengan simbol Markdown
+    updated = updated
+    .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
+        const trimmed = content.trim();
+        return trimmed ? `**${trimmed}**` : '';
+    })
+    .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
+        const trimmed = content.trim();
+        return trimmed ? `*${trimmed}*` : '';
+    })
+    .replace(/<(del|s|strike)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
+        const trimmed = content.trim();
+        return trimmed ? `~~${trimmed}~~` : '';
+    });
 
-    // 3. FIX: Pembersihan Spasi Antar Tag (Penting untuk metadata)
-        updated = updated
+    // 3. FIX: Pembersihan Spasi Antar Tag (Sapu jagat untuk metadata)
+    // Memastikan tidak ada spasi yang "nyelip" di antara simbol Markdown dan teks
+    updated = updated
     .replace(/\*\*\s+/g, '**')
     .replace(/\s+\*\*/g, '**')
     .replace(/\*\s+/g, '*')
     .replace(/\s+\*/g, '*');
 
-    // 4. CONVERT: Links & Code (Sama seperti sebelumnya)
+    // 4. CONVERT: Links (Hanya jika sederhana & tidak membungkus tag lain seperti img)
     updated = updated.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
         const isComplex = /class=|id=|style=|target=|rel=/i.test(match);
         const hasTags = /<[^>]+>/.test(text);
         return (isComplex || hasTags) ? match : `[${text.trim()}](${url})`;
     });
 
+    // 5. CONVERT: Inline Code
     updated = updated.replace(/<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, codeText) => {
+        // Hanya konversi jika inline (tidak ada newline) dan tidak punya atribut selector
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
             return `\`${codeText.trim()}\``;
         }
         return match;
     });
 
-    // 5. RESTORE: Kembalikan Script
+    // 6. CONVERT: Pre-formatted code (Sering muncul di ekspor Blogger lama)
+    updated = updated.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
+
+    // 7. RESTORE: Kembalikan isi <script> ke posisi semula
     scriptPlaceholders.forEach((tag, index) => {
         const id = `__SCRIPT_PROTECT_${index}__`;
         updated = updated.replace(id, tag);
