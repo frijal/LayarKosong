@@ -120,7 +120,10 @@ tmpfs           7.8G     0  7.8G   0% /dev/shm
 /dev/nvme0n1p1  1.8T  762G  979G  44% /data</code><button class="copy-btn" data-target="code2">Salin</button></pre>
                     <p>Dari sini, kita bisa melihat ada 3 disk fisik utama yang aktif: <code>sda</code>, <code>sdb</code>, dan <code>nvme0n1</code>, beserta partisi-partisinya.</p>
                     <figure>
-                        <img src="/img/devconnected.com/wp-content/uploads/2019/08/hard-soft-links.webp" alt="Ilustrasi hard link vs soft link di Linux">
+                        <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/devconnected.com/wp-content/uploads/2019/08/hard-soft-links-sm.webp">
+        <img src="https://dalam.web.id/img/devconnected.com/wp-content/uploads/2019/08/hard-soft-links.webp" alt="Ilustrasi hard link vs soft link di Linux" width="916" height="595" style="max-width: 100%; height: auto; width: 916px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+        </picture>
                     </figure>
                     <h2>Filesystem Khusus: <code>tmpfs</code> &amp; <code>devtmpfs</code></h2>
                     <p>Jangan kaget jika Anda melihat entri yang bukan partisi fisik. <code>tmpfs</code> adalah filesystem sementara yang disimpan di RAM. Ini normal dan digunakan oleh sistem untuk efisiensi.</p>

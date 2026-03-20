@@ -162,7 +162,10 @@
     <article>
         <p>Ketika kamu lagi asyik <i>update</i> sistem Linux kesayangan, eh tiba-tiba muncul error yang bilang kalau partisi <code>/boot</code> kamu penuh? Atau mungkin pas kamu nyalain laptop, daftar pilihan di menu GRUB (layar hitam sebelum masuk OS) jadi panjang banget kayak antrean sembako? Kalau iya, itu tandanya kernel Linux kamu sudah menumpuk terlalu banyak, sob!</p>
         <p>Di dunia Linux, setiap kali sistem melakukan pembaruan keamanan, ia seringkali mengunduh "jantung" baru yang disebut kernel. Masalahnya, Linux secara default bakal menyimpan versi yang lama buat jaga-jaga kalau versi baru ada <i>bug</i>. Tapi kalau kelamaan didiamkan, file-file ini bakal makan tempat dan bikin sistem terasa "berantakan".</p>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp" alt="Ilustrasi Terminal Linux dan Kernel Update" class="main-image" loading="eager">
+    <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB-sm.webp">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/HAaB8j-b0AAt4YB.webp" alt="Ilustrasi Terminal Linux dan Kernel Update" width="1000" height="667" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+        </picture>
         <h2>Apa Itu Kernel dan Kenapa Harus Dihapus? (What &amp; Why) 🧐</h2>
         <p>Kernel adalah inti dari sistem operasi yang menjembatani antara <i>hardware</i> (perangkat keras) dan <i>software</i> (perangkat lunak). Singkatnya, tanpa kernel, laptop kamu cuma jadi rongsokan besi dan plastik doang.</p>
         <p>Kenapa kita harus menghapus versi lamanya? Pertama, efisiensi ruang penyimpanan. Satu paket kernel bisa memakan ratusan Megabyte. Kalau ada 10 kernel lama, itu sudah bergiga-giga terbuang sia-sia. Kedua, keamanan dan kerapian. Menyimpan terlalu banyak kernel lama di partisi boot yang terbatas bisa bikin sistem gagal <i>booting</i> saat mau melakukan update kernel berikutnya.</p>

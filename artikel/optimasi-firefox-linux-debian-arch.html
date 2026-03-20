@@ -172,7 +172,10 @@
         <h2>Kenapa Folder Firefox Bisa Membengkak? (The Logic)</h2>
         <p>Firefox menyimpan data kamu dalam format <strong>SQLite</strong>. Bayangin SQLite ini kayak lemari arsip. Setiap kali kamu nambah data (histori), dia nambah laci. Pas kamu hapus datanya, lacinya nggak hilang, cuma kosong aja. Nah, perintah <code>VACUUM</code> gunanya buat buang laci-laci kosong itu dan menyusun ulang lemari biar jadi ringkas lagi.</p>
         <p>Selain itu, ada folder bernama <code>storage/default</code>. Ini adalah tempat "sampah modern" di mana website menyimpan data <em>offline storage</em>. Website kayak YouTube, Spotify, atau Canva suka banget nyampah di sini. Kalau gak dibersihin, folder ini bisa jadi "lubang hitam" penyedot disk kamu.</p>
-        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp" alt="Firefox Storage Management Visualization" class="featured-image" style="margin-top: 20px;">
+        <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec-sm.webp">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_no9YMaYAAHpec.webp" alt="Firefox Storage Management Visualization" width="1000" height="667" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+        </picture>
         <h2>1. Solusi untuk Debian dan Ubuntu (Stabil dan Pasti)</h2>
         <p>Di Debian, stabilitas adalah segalanya. Kita bakal pake script yang sangat aman untuk membersihkan Firefox-ESR atau versi standar. Pastikan kamu sudah install <code>sqlite3</code> ya!</p>
         <div class="script-box">
