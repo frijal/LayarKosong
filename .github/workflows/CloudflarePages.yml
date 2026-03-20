@@ -51,7 +51,6 @@ jobs:
           # Logic 'satpam' rsync yang sama persis
           rsync -a --delete \
             --include='functions/***' \
-
             --include='ext/***' \
             --include='.well-known/***' \
             --include='img/***' \
