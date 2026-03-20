@@ -23,56 +23,52 @@ let stats: Stats = {
 function cleanHTML(html: string): string {
     const scriptPlaceholders: string[] = [];
 
+    // 1. PROTEKSI: Sembunyikan isi <script>
     let updated = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
         const id = `__SCRIPT_PROTECT_${scriptPlaceholders.length}__`;
         scriptPlaceholders.push(match);
         return id;
     });
 
-    // 2. CONVERT: Bold, Italic, Strikethrough (Gunakan Callback untuk Garansi Penutup)
-    // Strategi: Trim konten di dalam tag dulu, baru bungkus dengan simbol Markdown
-    updated = updated
-    .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
-        const trimmed = content.trim();
-        return trimmed ? `**${trimmed}**` : '';
-    })
-    .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
-        const trimmed = content.trim();
-        return trimmed ? `*${trimmed}*` : '';
-    })
-    .replace(/<(del|s|strike)[^>]*>([\s\S]*?)<\/\1>/gi, (_, __, content) => {
-        const trimmed = content.trim();
-        return trimmed ? `~~${trimmed}~~` : '';
-    });
+    /**
+     * FUNGSI PEMBANTU: smartConvert
+     * Menambahkan spasi secara cerdas jika ada karakter di depan tag.
+     */
+    const smartConvert = (text: string, regex: RegExp, symbol: string) => {
+        return text.replace(regex, (match, prevChar, tag, content) => {
+            const trimmed = content.trim();
+            if (!trimmed) return '';
 
-    // 3. FIX: Pembersihan Spasi Antar Tag (Sapu jagat untuk metadata)
-    // Memastikan tidak ada spasi yang "nyelip" di antara simbol Markdown dan teks
-    updated = updated
-    .replace(/\*\*\s+/g, '**')
-    .replace(/\s+\*\*/g, '**')
-    .replace(/\*\s+/g, '*')
-    .replace(/\s+\*/g, '*');
+            // Cek apakah ada karakter alfabet/angka tepat sebelum tag
+            // Jika ada, tambahkan spasi di depannya.
+            const prefix = (prevChar && /[\w\d]/.test(prevChar)) ? `${prevChar} ` : (prevChar || '');
+            return `${prefix}${symbol}${trimmed}${symbol}`;
+        });
+    };
 
-    // 4. CONVERT: Links (Hanya jika sederhana & tidak membungkus tag lain seperti img)
-    updated = updated.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
-        const isComplex = /class=|id=|style=|target=|rel=/i.test(match);
-        const hasTags = /<[^>]+>/.test(text);
-        return (isComplex || hasTags) ? match : `[${text.trim()}](${url})`;
-    });
+    // 2. CONVERT: Bold, Italic, Strikethrough secara Universal
+    // Regex: ([\s\S])? menangkap 1 karakter apapun sebelum tag (jika ada)
+    updated = smartConvert(updated, /([\s\S])?<(strong|b)[^>]*>([\s\S]*?)<\/\2>/gi, '**');
+    updated = smartConvert(updated, /([\s\S])?<(em|i)[^>]*>([\s\S]*?)<\/\2>/gi, '*');
+    updated = smartConvert(updated, /([\s\S])?<(del|s|strike)[^>]*>([\s\S]*?)<\/\2>/gi, '~~');
 
-    // 5. CONVERT: Inline Code
-    updated = updated.replace(/<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, codeText) => {
-        // Hanya konversi jika inline (tidak ada newline) dan tidak punya atribut selector
+    // 3. CONVERT: Inline Code (Juga dengan proteksi spasi)
+    updated = updated.replace(/([\s\S])?<code[^>]*>\s*([\s\S]*?)\s*<\/code>/gi, (match, prevChar, codeText) => {
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
-            return `\`${codeText.trim()}\``;
+            const prefix = (prevChar && /[\w\d]/.test(prevChar)) ? `${prevChar} ` : (prevChar || '');
+            return `${prefix}\`${codeText.trim()}\``;
         }
         return match;
     });
 
-    // 6. CONVERT: Pre-formatted code (Sering muncul di ekspor Blogger lama)
-    updated = updated.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
+    // 4. FIX: Pembersihan Spasi Internal Markdown
+    // Merapatkan simbol dengan kontennya, tapi tidak merusak spasi antar kata.
+    updated = updated
+    .replace(/\*\*\s+/g, '**').replace(/\s+\*\*/g, '**')
+    .replace(/\*\s+/g, '*').replace(/\s+\*/g, '*')
+    .replace(/~~\s+/g, '~~').replace(/\s+~~/g, '~~');
 
-    // 7. RESTORE: Kembalikan isi <script> ke posisi semula
+    // 5. RESTORE: Kembalikan isi <script>
     scriptPlaceholders.forEach((tag, index) => {
         const id = `__SCRIPT_PROTECT_${index}__`;
         updated = updated.replace(id, tag);
