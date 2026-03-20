@@ -39,8 +39,8 @@ function parseMarkdown(text: string): string {
   // 5. LIST & QUOTE (Anti-Dash Fix)
   // Menghapus '\s' di boundary awal agar tidak menangkap dash di tengah kalimat
   res = res
-  .replace(/(?:^|>)\s*>\s?(.*?)(?=\n|<|$)/g, "<blockquote>$1</blockquote>")
-  .replace(/(?:^|>)\s*[-*+]\s+(.*?)(?=\n|<|$)/g, "<li>$1</li>");
+  .replace(/^[ \t]*>[ \t]?(.*?)[ \t]*$/gm, "<blockquote>$1</blockquote>")
+  .res = res.replace(/^[ \t]*[-*+][ \t]+(.*?)[ \t]*$/gm, "<li>$1</li>");
 
   // Auto wrap <li> ke dalam <ul>
   return res.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>").replace(/<\/ul><ul>/g, "");
