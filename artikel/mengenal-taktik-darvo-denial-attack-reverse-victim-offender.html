@@ -332,7 +332,10 @@
     </div>
     <!-- Featured image (url placeholder dari perintah) -->
     <div class="featured-image">
-      <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA40SEva0AAEn5v.webp" alt="Ilustrasi manipulasi psikologis DARVO, dua wajah saling berhadapan dengan bayangan" loading="eager" fetchpriority="high">
+      <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/HA40SEva0AAEn5v-sm.webp">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA40SEva0AAEn5v.webp" fetchpriority="high" alt="Ilustrasi manipulasi psikologis DARVO, dua wajah saling berhadapan dengan bayangan" width="1000" height="667" style="max-width: 100%; height: auto; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+        </picture>
       <div class="caption">
         <i class="fa-solid fa-paint-brush"></i> Manipulasi dalam relasi — ilustrasi konsep DARVO
       </div>

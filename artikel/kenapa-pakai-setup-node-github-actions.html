@@ -246,7 +246,10 @@
         </ol>
         <h2>Bedah Kodenya</h2>
         <p>Contoh workflow yang sering dipake:</p>
-        <img src="https://dalam.web.id/img/github.blog/wp-content/uploads/2022/01/build-ci-cd-pipeline-actions_banner.webp" alt="Banner ilustrasi GitHub Actions CI/CD pipeline" class="article-image">
+        <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/github.blog/wp-content/uploads/2022/01/build-ci-cd-pipeline-actions_banner-sm.webp">
+        <img src="https://dalam.web.id/img/github.blog/wp-content/uploads/2022/01/build-ci-cd-pipeline-actions_banner.webp" fetchpriority="high" alt="Banner ilustrasi GitHub Actions CI/CD pipeline" width="1000" height="525" style="max-width: 100%; height: auto; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+        </picture>
         <div class="code-wrapper">
           <pre><button class="copy-btn"><i class="fa-solid fa-copy"></i> Salin</button><code>- <span class="keyword">name</span>: Setup Node.js
   <span class="keyword">uses</span>: actions/setup-node@v4

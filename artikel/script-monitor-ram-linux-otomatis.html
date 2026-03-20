@@ -153,7 +153,10 @@
     <article class="content">
         <p>Halo lagi, sobat <strong>Layar Kosong</strong>! Masih dari Balikpapan yang cerah, kali ini kita bakal bahas sesuatu yang nggak kalah krusial dari urusan disk penuh, yaitu: <strong>RAM (Random Access Memory)</strong>. Kalau Disk penuh itu kayak gudang yang gak muat barang, RAM penuh itu kayak otak yang lagi <em>blank</em> gara-gara kebanyakan mikir. Ujung-ujungnya? Server kamu  "ngehang" atau proses penting tiba-tiba mati sendiri.</p>
         <p>Pernah dengar istilah <strong>OOM (Out Of Memory) Killer</strong>? Itu adalah mekanisme di kernel Linux yang bakal "nembak mati" proses paling rakus saat RAM sudah kritis. Masalahnya, kadang yang ditembak itu justru proses penting kayak database atau web server. Ngeri kan?</p>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" alt="Linux RAM Monitoring Dashboard" class="featured-image">
+    <picture style="display: block; text-align: center;">
+        <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc-sm.webp">
+        <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nV6dNasAAb7Fc.webp" fetchpriority="high" alt="Linux RAM Monitoring Dashboard" width="1000" height="667" style="max-width: 100%; height: auto; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+        </picture>
         <h2>Apa Masalah Utama RAM di Linux? ("What")</h2>
         <p>Banyak pengguna pemula panik saat liat hasil <code>free -h</code> karena RAM-nya kelihatan hampir habis. Padahal, Linux itu pinter; dia pake sisa RAM buat <em>cache</em> dan <em>buffer</em> biar sistem lebih kencang. Yang jadi masalah itu kalau <strong>Available Memory</strong>-nya sudah menyentuh angka di bawah 10%. Di titik itulah server kamu  mulai berada di zona bahaya.</p>
         <div class="info-panel">
