@@ -144,7 +144,7 @@ async function processHtmlFile(filePath: string) {
     const fileName = path.basename(f);
     const fileSlug = fileName.replace('.html', '');
 
-    // Jika belum ada di sitemap, artinya ini "file baru" yang perlu d srcset-kan
+    // Jika belum ada di sitemap, artinya ini "file-baru" yang perlu d srcset-kan
     const isNew = ![...existingUrls].some(url => url.endsWith(`/${fileSlug}`));
 
     if (isNew) {
