@@ -14,7 +14,7 @@ const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 let stats = { total: 0, processed: 0, skipped: 0, optimized: 0 };
 let optimizedCache = new Set<string>();
 
-// 1. Muat Cache Gambar (Kunci agar tidak resize ulang)
+// 1. Muat Cache Gambar
 if (fs.existsSync(CACHE_FILE)) {
   const content = fs.readFileSync(CACHE_FILE, 'utf-8');
   optimizedCache = new Set(content.split('\n').map(line => line.trim()).filter(Boolean));
@@ -60,25 +60,21 @@ async function processHtmlFile(filePath: string) {
           const absDesktopPath = path.resolve(desktopPath);
           const absMobilePath = path.resolve(mobilePath);
 
-          // Cek apakah file fisik desktop sebenarnya sudah ada di folder img/
           if (fs.existsSync(absDesktopPath)) {
-            // Jika sudah ada, cukup masukkan ke cache agar tidak dicek lagi nanti
             optimizedCache.add(cleanPath);
             await appendFile(CACHE_FILE, `${cleanPath}\n`);
-            console.log(` ⚡ Cache Updated (Existing): ${cleanPath}`);
           } else {
-            // Jika benar-benar belum ada di cache DAN belum ada di folder fisik, baru SHARP bekerja
             stats.optimized++;
             const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
-            // 1. Buat versi Desktop
+            // 1. Desktop
             await imageInstance
             .rotate()
             .resize(targetWidth, null, { withoutEnlargement: true })
             .webp({ quality: 82 })
             .toFile(absDesktopPath);
 
-            // 2. Buat versi Mobile (khusus jika lebar > 480px)
+            // 2. Mobile
             if (meta.width > 480) {
               await sharp(fullPathSource)
               .rotate()
@@ -87,14 +83,12 @@ async function processHtmlFile(filePath: string) {
               .toFile(absMobilePath);
             }
 
-            // Catat ke cache log
             optimizedCache.add(cleanPath);
             await appendFile(CACHE_FILE, `${cleanPath}\n`);
-            console.log(` ✨ Sharp Optimized (New): ${cleanPath}`);
           }
         }
 
-        // --- TRANSFORMASI HTML (Selalu dijalankan untuk file baru di sitemap) ---
+        // --- TRANSFORMASI HTML ---
         imageCounter++;
         const originalAlt = $img.attr('alt')?.trim();
         let finalAlt = originalAlt || pageTitle;
@@ -121,14 +115,12 @@ async function processHtmlFile(filePath: string) {
         isFirstImage = false;
 
       } catch (e: any) {
-        console.error(`❌ Skip Img ${cleanPath}`);
+        // Silent error for images
       }
     }
 
     if (fileHasChanged) {
-      // Inilah penulisan ke folder fisik di dalam Runner GitHub.
-      // Karena GitHub Actions bersifat "disposable", file ini hanya ada sementara
-      // untuk dibaca oleh DO_GENERATOR sebelum semua musnah saat job selesai.
+      // Menulis ke folder artikel/ di dalam Runner saja
       await writeFile(filePath, $.html());
       stats.processed++;
     }
@@ -139,7 +131,7 @@ async function processHtmlFile(filePath: string) {
 }
 
 (async () => {
-  console.log('🧪 PENGUJIAN: Mode Cerdas (Sitemap Kosong, Image Cache Ada)');
+  console.log('🚀 RUNNER MODE: Memproses file di memori runner...');
 
   const sitemapTxt = fs.existsSync(SITEMAP_FILE) ? await readFile(SITEMAP_FILE, 'utf-8') : '';
   const urls = new Set(sitemapTxt.split('\n').filter(Boolean).map(line => line.trim()));
@@ -149,14 +141,14 @@ async function processHtmlFile(filePath: string) {
 
   for (const f of allFiles) {
     const fileSlug = path.basename(f, '.html');
-    const isAlreadyInSitemap = [...urls].some(url => url.endsWith(`/${fileSlug}`));
+    const isNew = ![...urls].some(url => url.endsWith(`/${fileSlug}`));
 
-    if (!isAlreadyInSitemap) {
+    if (isNew) {
       await processHtmlFile(f);
     } else {
       stats.skipped++;
     }
   }
 
-  console.log(`\n📊 HASIL UJI:\n------------------\nFile Baru Diolah : ${stats.processed}\nSharp Dijalankan : ${stats.optimized} (Harus 0 jika sukses)\nTotal Gudang     : ${stats.total}\n`);
+  console.log(`\n📊 RINGKASAN RUNNER:\n------------------\nFile Update (Runner) : ${stats.processed}\nSharp Executed       : ${stats.optimized}\nTotal Gudang         : ${stats.total}\n`);
 })();
