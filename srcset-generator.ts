@@ -7,20 +7,18 @@ import fs from 'node:fs';
 
 const BASE_URL = 'https://dalam.web.id';
 const SOURCE_DIR = 'artikel';
-const OUTPUT_DIR = 'output';
 const FORBIDDEN_CHARS = /[*:"<>|?]/g;
 
 let stats = { total: 0, processed: 0, skipped: 0 };
-let globalDebugCount = 0;
 
 async function processHtmlFile(filePath: string) {
   stats.total++;
-  const fileName = path.basename(filePath);
 
   try {
     const htmlContent = await readFile(filePath, 'utf-8');
     const $ = load(htmlContent, { decodeEntities: false });
 
+    // Mencari gambar yang berasal dari domain eksternal (Blogger/Medium) yang sudah di-mirror ke /img/
     const imageCandidates = $('body img').toArray().filter(el => {
       const src = $(el).attr('src');
       return src && (src.startsWith('/img/') || src.startsWith('img/') || src.includes('/img/'));
@@ -35,27 +33,17 @@ async function processHtmlFile(filePath: string) {
 
     for (const el of imageCandidates) {
       const $img = $(el);
-      let originalSrc = $img.attr('src')!;
+      const originalSrc = $img.attr('src')!;
 
-      // LOGIC PATH: Mencoba membersihkan URL menjadi path lokal
-      let cleanPath = originalSrc
+      // Normalisasi path agar bisa dibaca filesystem
+      const cleanPath = originalSrc
       .replace(BASE_URL, '')
       .replace(/^https?:\/\/dalam\.web\.id/, '')
-      .replace(/^\/+/, ''); // Menghilangkan / di awal agar jadi 'img/...'
+      .replace(/^\/+/, '');
 
-      const fullPathSource = path.join(process.cwd(), cleanPath);
+      const fullPathSource = path.resolve(cleanPath);
 
-      // DEBUG LOG: Kita cetak 20 sampel pertama untuk analisa
-      if (globalDebugCount < 20) {
-        console.log(`--- DEBUG INFO #${globalDebugCount} ---`);
-        console.log(`HTML File    : ${fileName}`);
-        console.log(`Original SRC : ${originalSrc}`);
-        console.log(`Clean Path   : ${cleanPath}`);
-        console.log(`Full Path    : ${fullPathSource}`);
-        console.log(`File Exists? : ${fs.existsSync(fullPathSource)}`);
-        globalDebugCount++;
-      }
-
+      // Cek apakah file asli ada
       if (!fs.existsSync(fullPathSource)) continue;
 
       try {
@@ -63,34 +51,32 @@ async function processHtmlFile(filePath: string) {
         const meta = await imageInstance.metadata();
         if (!meta || !meta.width || !meta.height) continue;
 
-        // Sanitisasi Nama File
+        // Sanitisasi nama file untuk menghindari karakter terlarang
         const dirName = path.dirname(cleanPath);
         const baseNameOriginal = path.basename(cleanPath, '.webp');
         const baseNameSafe = baseNameOriginal.replace(FORBIDDEN_CHARS, '-');
 
-        const desktopRelative = path.join(dirName, `${baseNameSafe}.webp`);
-        const mobileRelative = path.join(dirName, `${baseNameSafe}-sm.webp`);
+        const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
+        const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
-        const desktopAbs = path.join(process.cwd(), desktopRelative);
-        const mobileAbs = path.join(process.cwd(), mobileRelative);
+        const desktopAbs = path.resolve(desktopPath);
+        const mobileAbs = path.resolve(mobilePath);
 
-        // Pastikan folder tujuan ada
-        await mkdir(path.dirname(desktopAbs), { recursive: true });
-
+        // 1. Generate Versi Desktop (Max width 1000px)
         const targetWidth = meta.width > 1000 ? 1000 : meta.width;
-
-        // Optimasi Gambar
         await imageInstance
         .rotate()
         .resize(targetWidth, null, { withoutEnlargement: true })
         .webp({ quality: 82 })
         .toFile(desktopAbs + '.tmp');
 
+        // Swap file temp ke asli
         if (fs.existsSync(desktopAbs + '.tmp')) {
           if (fs.existsSync(desktopAbs)) fs.unlinkSync(desktopAbs);
           fs.renameSync(desktopAbs + '.tmp', desktopAbs);
         }
 
+        // 2. Generate Versi Mobile (Width 480px) jika gambar cukup besar
         if (meta.width > 480) {
           await sharp(fullPathSource)
           .rotate()
@@ -99,9 +85,9 @@ async function processHtmlFile(filePath: string) {
           .toFile(mobileAbs);
         }
 
-        // Update HTML
-        const webDesktopUrl = `${BASE_URL}/${desktopRelative.replace(/\\/g, '/')}`;
-        const webMobileUrl = `${BASE_URL}/${mobileRelative.replace(/\\/g, '/')}`;
+        // 3. Update HTML dengan format <picture>
+        const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, '/')}`;
+        const webMobileUrl = `${BASE_URL}/${mobilePath.replace(/\\/g, '/')}`;
 
         const pictureHtml = `
         <picture style="display: block; text-align: center;">
@@ -119,32 +105,32 @@ async function processHtmlFile(filePath: string) {
         fileHasChanged = true;
 
       } catch (e: any) {
-        console.log(`❌ Sharp Error pada ${cleanPath}: ${e.message}`);
+        console.error(`   ❌ Error Sharp (${path.basename(cleanPath)}): ${e.message}`);
         continue;
       }
     }
 
     if (fileHasChanged) {
-      const outputFilePath = path.join(OUTPUT_DIR, fileName);
-      await mkdir(path.dirname(outputFilePath), { recursive: true });
-      await writeFile(outputFilePath, $.html());
+      // LANGSUNG TIMPA FILE ASLI
+      await writeFile(filePath, $.html());
       stats.processed++;
+      console.log(`✅ Updated: ${path.basename(filePath)}`);
     } else {
       stats.skipped++;
     }
 
   } catch (err) {
+    console.error(`❌ Gagal memproses ${filePath}`);
     stats.skipped++;
   }
 }
 
-// EXECUTION
+// JALANKAN PROSES
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🚀 Memulai Diagnostik pada ${files.length} file...`);
-console.log(`CWD saat ini: ${process.cwd()}`);
+console.log(`🚀 Memproses ${files.length} file secara langsung ke folder ${SOURCE_DIR}/ dan img/...\n`);
 
 for (const f of files) {
   await processHtmlFile(f);
 }
 
-console.log(`\n✅ Selesai!\n📊 Berhasil: ${stats.processed}\n📊 Skip: ${stats.skipped}\n`);
+console.log(`\n📊 RINGKASAN:\n------------------\nBerhasil diupdate: ${stats.processed}\nTetap (Skip)     : ${stats.skipped}\nTotal File       : ${stats.total}\n`);
