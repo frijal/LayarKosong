@@ -100,19 +100,23 @@ jobs:
 
       - name: '10 Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
-        run: bun run dapur/minify-jsonxml.ts
-        
+        run: bun run dapur/minify-jsonxml.ts        
+      
       - name: '11 Commit and Push'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          
+          # Batalkan perubahan di folder artikel agar tetap <img> original di repo
+          git checkout artikel/
+          
+          # Add semua perubahan lainnya (JSON, XML, dan CACHE di folder mini/)
           git add .
+          
           if git diff --staged --quiet; then
-            echo "✅ Tidak ada perubahan."
+            echo "✅ Tidak ada perubahan data."
           else
-            git commit -m "beres: 🚀 artikel tampil [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "beres: 🚀 update data site [$(date +'%Y-%m-%d %H:%M')]"
             git pull --rebase origin main
             git push origin main
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
