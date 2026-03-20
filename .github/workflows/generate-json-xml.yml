@@ -70,7 +70,7 @@ jobs:
 
       - name: '4 🖼️ Optimize Images & Generate Srcset'
         if: env.DO_SRCSET == 'true' # <-- Gunakan env di sini
-        run: bun run ext/srcset-generator.ts
+        run: bun run dapur/srcset-generator.ts
 
       - name: '5 Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
