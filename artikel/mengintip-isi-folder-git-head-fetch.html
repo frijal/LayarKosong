@@ -162,7 +162,10 @@
         <section class="content-section">
             <p>👋 Pas lagi asyik nge-code buat project atau lagi rapihin repo di GitHub, kamu tiba-tiba kepikiran: <strong>"Sebenarnya Git itu tahu dari mana ya kalau aku lagi di branch ini?"</strong> atau <strong>"Pas aku ngetik git fetch, datanya lari ke mana sih sebelum aku merge?"</strong>.</p>
 <div style="text-align: center; display: block; margin: 15px auto;">
-  <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp" alt="gitHEAD gitFETCH_HEAD" style="width: 100%; height: auto;">
+  <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza-sm.webp">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/HA9PFsIbwAAWIza.webp" fetchpriority="high" alt="gitHEAD gitFETCH_HEAD" width="1000" height="667" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+</picture>
 </div>
             <p>Nah, buat kamu yang sering bergelut di terminal, memahami folder <code>.git</code> itu ibarat tahu cara kerja mesin mobil. Kamu nggak cuma bisa nyetir (push/pull), tapi juga bisa benerin kalau mogok. Hari ini kita bakal kupas tuntas dua makhluk penting: <code>git/HEAD</code> dan <code>git/FETCH_HEAD</code> menggunakan prinsip 5W+1H agar tercerahkan sampai ke akar-akarnya! 🧭</p>
         </section>

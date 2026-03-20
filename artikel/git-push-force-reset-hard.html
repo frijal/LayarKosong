@@ -262,8 +262,14 @@
     <pre><code>git push --force origin main</code></pre>
     <p>Perintah ini bilang ke remote: <em>"lupakan semua punya kamu, mulai sekarang pakai riwayatku"</em>. Remote nurut aja tanpa protes. Akibatnya, commit yang sebelumnya ada di remote (misalnya dari kolaborator) langsung lenyap dari main.</p>
     <!-- Gambar dari referensi visual -->
-    <img src="https://dalam.web.id/img/AAAAAA/pxeexqyfvf4hw3zxtbn.webp" alt="Ilustrasi Git force push" loading="lazy">
-    <img src="https://dalam.web.id/img/i.sstatic.net/Hg5bt.webp" alt="Diagram Git reset" loading="lazy">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/AAAAAA/pxeexqyfvf4hw3zxtbn-sm.webp">
+  <img src="https://dalam.web.id/img/AAAAAA/pxeexqyfvf4hw3zxtbn.webp" fetchpriority="high" alt="Ilustrasi Git force push" width="800" height="568" style="max-width: 100%; height: auto; width: 800px; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+</picture>
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/i.sstatic.net/Hg5bt-sm.webp">
+  <img src="https://dalam.web.id/img/i.sstatic.net/Hg5bt.webp" alt="Diagram Git reset" width="841" height="537" style="max-width: 100%; height: auto; width: 841px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
 
     <h2>4. Skenario Dunia Nyata Menggunakan Perintah Ini</h2>
     <h3>Memperbaiki Commit yang Rusak <i class="fa-solid fa-bug"></i></h3>
@@ -271,8 +277,14 @@
     <h3>Membersihkan Repositori Lokal <i class="fa-solid fa-broom"></i></h3>
     <p>Lagi eksperimen branch kotor, pengen balik ke kondisi bersih. Hard reset lokal aman banget, asal nggak ada perubahan penting yang belum di-commit. Tapi inget, yang lokal ya, jangan ngeremote.</p>
 
-    <img src="https://dalam.web.id/img/user-images.githubusercontent.com/1256329/80170009-f9d03200-85b4-11ea-94d3-3041887565ac.webp" alt="Contoh force push di console" loading="lazy">
-    <img src="https://dalam.web.id/img/cdn.prod.website-files.com/61c02e339c11997e6926e3d9/61c2e47b4d436d4d1a382d76_5e2a1539b3437be8c9018c2f_cover-git-push-force2.webp" alt="Meme git push force" loading="lazy">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/user-images.githubusercontent.com/1256329/80170009-f9d03200-85b4-11ea-94d3-3041887565ac-sm.webp">
+  <img src="https://dalam.web.id/img/user-images.githubusercontent.com/1256329/80170009-f9d03200-85b4-11ea-94d3-3041887565ac.webp" alt="Contoh force push di console" width="974" height="833" style="max-width: 100%; height: auto; width: 974px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/cdn.prod.website-files.com/61c02e339c11997e6926e3d9/61c2e47b4d436d4d1a382d76_5e2a1539b3437be8c9018c2f_cover-git-push-force2-sm.webp">
+  <img src="https://dalam.web.id/img/cdn.prod.website-files.com/61c02e339c11997e6926e3d9/61c2e47b4d436d4d1a382d76_5e2a1539b3437be8c9018c2f_cover-git-push-force2.webp" alt="Meme git push force" width="702" height="401" style="max-width: 100%; height: auto; width: 702px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
 
     <h2>5. Risiko dan Konsekuensi yang Harus Anda Ketahui <i class="fa-solid fa-skull-crossbones"></i></h2>
     <h3>Penjelasan Kehilangan Data</h3>
@@ -280,8 +292,14 @@
     <h3>Bahaya Kolaborasi Tim</h3>
     <p>Ini yang paling serem. Bayangin tim kamu udah kerja seminggu, tiba-tiba ada yang force push ke main. Pull request jadi merah, branch developer pada patah hati, dan yang paling parah: kepercayaan ilang. Udah kayak sinetron.</p>
 
-    <img src="https://dalam.web.id/img/git-scm.com/book/ms/v2/images/reset-hard.webp" alt="Visualisasi git reset hard" loading="lazy">
-    <img src="https://dalam.web.id/img/blog.sasworkshops.com/content/images/wordpress/2020/06/reflog.webp" alt="Contoh output git reflog" loading="lazy">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/git-scm.com/book/ms/v2/images/reset-hard-sm.webp">
+  <img src="https://dalam.web.id/img/git-scm.com/book/ms/v2/images/reset-hard.webp" alt="Visualisasi git reset hard" width="1000" height="878" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/blog.sasworkshops.com/content/images/wordpress/2020/06/reflog-sm.webp">
+  <img src="https://dalam.web.id/img/blog.sasworkshops.com/content/images/wordpress/2020/06/reflog.webp" alt="Contoh output git reflog" width="581" height="370" style="max-width: 100%; height: auto; width: 581px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
 
     <h2>6. Cara Memulihkan Pekerjaan yang Hilang</h2>
     <h3>Menggunakan Reflog <i class="fa-solid fa-clipboard-list"></i></h3>
@@ -290,8 +308,14 @@
     <h3>Mengembalikan Commit yang Dihapus</h3>
     <p>Kalau force push terjadi dan kamu punya clone lama, hash commit korban mungkin masih ada. Kamu bisa bikin branch baru dari hash itu, lalu push branch tersebut ke remote. Selesai. Tim selamat.</p>
 
-    <img src="https://dalam.web.id/img/rietta.com/images/posts/2019/05/git-protection/github-branch-protection-cover.webp" alt="Branch protection GitHub" loading="lazy">
-    <img src="https://dalam.web.id/img/make-school-courses.github.io/Git-Team-Workflow/images/1-complete-workflow.webp" alt="Alur kerja Git tim" loading="lazy">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/rietta.com/images/posts/2019/05/git-protection/github-branch-protection-cover-sm.webp">
+  <img src="https://dalam.web.id/img/rietta.com/images/posts/2019/05/git-protection/github-branch-protection-cover.webp" alt="Branch protection GitHub" width="1000" height="1000" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/make-school-courses.github.io/Git-Team-Workflow/images/1-complete-workflow-sm.webp">
+  <img src="https://dalam.web.id/img/make-school-courses.github.io/Git-Team-Workflow/images/1-complete-workflow.webp" alt="Alur kerja Git tim" width="1000" height="558" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
 
     <h2>7. Alternatif Lebih Aman untuk Force Push</h2>
     <h3>Menggunakan --force-with-lease <i class="fa-solid fa-shield-alt"></i></h3>
@@ -307,7 +331,10 @@
     <h3>Aturan Perlindungan Branch <i class="fa-solid fa-lock"></i></h3>
     <p>Di GitHub/GitLab, kamu bisa atur branch <code>main</code> atau <code>develop</code> supaya nggak bisa di-force push, bahkan oleh admin sekalipun. Wajib pake pull request dan review. Ini pagar utama.</p>
 
-    <img src="https://dalam.web.id/img/www.bitfarm-archiv.com/pics/Versioning.webp" alt="Konsep versioning" loading="lazy">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/www.bitfarm-archiv.com/pics/Versioning-sm.webp">
+  <img src="https://dalam.web.id/img/www.bitfarm-archiv.com/pics/Versioning.webp" alt="Konsep versioning" width="1000" height="500" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="lazy" decoding="async">
+</picture>
 
     <h2>9. Panduan Penggunaan Aman Langkah Demi Langkah</h2>
     <ol>

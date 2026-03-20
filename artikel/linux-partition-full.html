@@ -154,7 +154,10 @@
     <article>
         <p>Halo sobat tech! Selamat datang kembali di blog <strong>Layar Kosong</strong>. Pernah nggak sih kamu lagi asyik nge-deploy aplikasi, eh tiba-tiba koneksi SSH putus, database gagal *start*, atau log server isinya cuma `No space left on device`? Beuh, itu rasanya kayak lagi naik motor terus ban bocor di tengah jalan tol—ngeselin banget!</p>
         <p>Disk yang penuh pada partisi root (`/`) bukan cuma bikin risih, tapi bisa bikin server produksi kamu berhenti total. Seringkali masalah ini muncul tiba-tiba tanpa permisi. Tapi, sebelum kamu mencak-mencak dan asal ketik perintah hapus sana-sini, mari kita tarik napas dalam-dalam. Mengetahui *di mana* ruang disk itu habis jauh lebih penting daripada sekadar tahu kalau disk kamu penuh.</p>
-    <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp" alt="Linux Server Disk Full Diagnosis" loading="eager" width="900" height="506">
+    <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS-sm.webp">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G_nR_JAaIAAnopS.webp" fetchpriority="high" alt="Linux Server Disk Full Diagnosis" width="1000" height="667" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+</picture>
         <h2>Mengapa Partisi Root Penuh Sangat Berbahaya? ("Why")</h2>
         <p>Bayangin sistem operasi Linux itu kayak sebuah rumah. Partisi root adalah fondasinya. Kalau fondasinya penuh sesak sama sampah, penghuni rumah (proses sistem seperti SSH, Cron, Web Server) nggak bisa gerak. Beberapa dampak buruknya:</p>
         <ul>

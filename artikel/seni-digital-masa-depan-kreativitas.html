@@ -217,7 +217,10 @@
         <!-- Preload main image for better LCP -->
         <link rel="preload" as="image" href="https://dalam.web.id/img/pbs.twimg.com/media/G-UyrpcbsAAFcdb.webp">
         <figure>
-          <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-UyrpcbsAAFcdb.webp" alt="Ilustrasi seni digital" width="1600" height="900" loading="eager">
+          <picture style="display: block; text-align: center;">
+  <source media="(max-width: 500px)" srcset="https://dalam.web.id/img/pbs.twimg.com/media/G-UyrpcbsAAFcdb-sm.webp">
+  <img src="https://dalam.web.id/img/pbs.twimg.com/media/G-UyrpcbsAAFcdb.webp" fetchpriority="high" alt="Ilustrasi seni digital" width="1000" height="667" style="max-width: 100%; height: auto; width: 1000px; border-radius: 16px; display: inline-block;" loading="eager" decoding="async">
+</picture>
           <figcaption>Ilustrasi karya seni digital modern .  contoh visual untuk konteks pembahasan</figcaption>
         </figure>
         <!-- 5W1H Sections -->
