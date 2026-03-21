@@ -1,15 +1,20 @@
 import { file, write } from "bun";
-import { existsSync, readFileSync, appendFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync } from "node:fs";
 import { load } from "cheerio";
-import path from "node:path";
+import path, { join } from "node:path";
 import sharp from "sharp";
 
 // ========== CONFIG ==========
-const BASE_URL        = "https://dalam.web.id";
-const SITEMAP_FILE    = "sitemap.txt";
-const CACHE_FILE      = "mini/srcset-gambar.txt";
-const FORBIDDEN_CHARS = /[*:"<>|?]/g;
+const BASE_URL          = "https://dalam.web.id";
+const SITEMAP_FILE      = "sitemap.txt";
+const CACHE_FILE        = "mini/srcset-gambar.txt";
+const FORBIDDEN_CHARS   = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
+
+const ALLOWED_CATEGORIES = [
+  "gaya-hidup", "jejak-sejarah", "lainnya",
+"olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
+];
 
 // ========== CACHE ==========
 let optimizedCache = new Set<string>();
@@ -39,9 +44,9 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
   if (imageCandidates.length === 0) return "no-image";
 
-  const pageTitle    = $("title").first().text().split(" - ")[0].trim() || "Layar Kosong";
-  let isFirstImage   = true;
-  let imageCounter   = 0;
+  const pageTitle  = $("title").first().text().split(" - ")[0].trim() || "Layar Kosong";
+  let isFirstImage = true;
+  let imageCounter = 0;
   let fileHasChanged = false;
 
   for (const el of imageCandidates) {
@@ -153,43 +158,47 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
 // ========== MAIN ==========
 async function main() {
-  console.log("🚀 srcset — Membaca sitemap.txt, bekerja di folder kategori...");
+  console.log("🚀 srcset — Scan folder kategori, proses artikel baru saja...");
 
   // Pastikan folder cache ada
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
-  if (!existsSync(SITEMAP_FILE)) {
-    console.error(`❌ ${SITEMAP_FILE} tidak ditemukan. Pastikan bikin-sitemap-txt.ts sudah jalan duluan.`);
-    process.exit(1);
-  }
+  // Baca sitemap.txt lama (sebelum bikin-sitemap-txt.ts jalan)
+  // → berisi URL artikel yang SUDAH pernah diproses sebelumnya
+  const sitemapUrls = existsSync(SITEMAP_FILE)
+  ? new Set(
+    readFileSync(SITEMAP_FILE, "utf-8")
+    .split("\n").map(l => l.trim()).filter(Boolean)
+  )
+  : new Set<string>();
 
-  // Baca sitemap.txt — ambil hanya URL artikel (ada minimal 2 segmen path)
-  const urls = readFileSync(SITEMAP_FILE, "utf-8")
-  .split("\n")
-  .map(l => l.trim())
-  .filter(l => {
-    if (!l.startsWith(BASE_URL)) return false;
-    const pathname = l.replace(BASE_URL, "").replace(/^\//, "");
-    const segments = pathname.split("/").filter(Boolean);
-    return segments.length === 2; // hanya URL artikel: kategori/slug
+  console.log(`📄 sitemap.txt lama: ${sitemapUrls.size} URL terdaftar\n`);
+
+  // Kumpulkan semua .html dari folder kategori (kecuali index.html)
+  const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
+    try {
+      return readdirSync(cat)
+      .filter(f => f.endsWith(".html") && f !== "index.html")
+      .map(f => join(cat, f));
+    } catch {
+      return [];
+    }
   });
-
-  console.log(`📄 ${urls.length} URL artikel ditemukan di sitemap.txt\n`);
 
   const results = { processed: 0, skipped: 0, missing: 0, noImage: 0 };
 
-  for (const url of urls) {
-    // Konversi URL → path file di folder kategori
-    // https://dalam.web.id/warta-tekno/tulisan-a → warta-tekno/tulisan-a.html
-    const pathname = url.replace(BASE_URL, "").replace(/^\//, "");
-    const htmlPath = `${pathname}.html`;
+  for (const htmlPath of allFiles) {
+    // Konversi path → URL untuk dicocokkan ke sitemap
+    // warta-tekno/tulisan-a.html → https://dalam.web.id/warta-tekno/tulisan-a
+    const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
 
-    if (!existsSync(htmlPath)) {
-      results.missing++;
-      console.warn(`⚠️  File tidak ditemukan: ${htmlPath}`);
+    // Artikel lama → URL ada di sitemap → skip (cepat!)
+    if (sitemapUrls.has(url)) {
+      results.skipped++;
       continue;
     }
 
+    // Artikel baru → URL tidak ada di sitemap → proses
     const result = await processHtmlFile(htmlPath);
 
     if (result === "processed") { results.processed++; console.log(`✅ Processed: ${htmlPath}`); }
