@@ -61,8 +61,11 @@ async function processHtmlFile(filePath: string) {
       }
 
       try {
-        const imageInstance = sharp(fullPathSource);
+        // 1. Baca ke Buffer dulu supaya tidak 'mengunci' file asli
+        const inputBuffer = await readFile(fullPathSource);
+        const imageInstance = sharp(inputBuffer);
         const meta = await imageInstance.metadata();
+
         if (!meta || !meta.width || !meta.height) continue;
 
         const dirName = path.dirname(cleanPath);
@@ -75,8 +78,6 @@ async function processHtmlFile(filePath: string) {
         const absMobilePath = path.join(process.cwd(), mobilePath);
 
         const needsMobile = meta.width > 480;
-
-        // --- LOGIKA CERDAS: CEK CACHE & FISIK ---
         const physicalComplete = fs.existsSync(absDesktopPath) && (!needsMobile || fs.existsSync(absMobilePath));
 
         if (!optimizedCache.has(cleanPath) || !physicalComplete) {
@@ -84,22 +85,22 @@ async function processHtmlFile(filePath: string) {
             stats.optimized++;
             const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
-            // 1. Generate Desktop
-            await imageInstance
+            // Generate Desktop (Gunakan buffer agar tidak bentrok)
+            await sharp(inputBuffer)
             .rotate()
             .resize(targetWidth, null, { withoutEnlargement: true })
             .webp({ quality: 82 })
             .toFile(absDesktopPath);
 
-            // 2. Generate Mobile
+            // Generate Mobile
             if (needsMobile) {
-              await sharp(fullPathSource)
+              await sharp(inputBuffer)
               .rotate()
               .resize(480, null, { withoutEnlargement: true })
               .webp({ quality: 75 })
               .toFile(absMobilePath);
             }
-            console.log(` ✨ Sharp: ${cleanPath}`);
+            console.log(` ✨ Sharp Sukses: ${cleanPath}`);
           }
 
           if (!optimizedCache.has(cleanPath)) {
@@ -108,7 +109,7 @@ async function processHtmlFile(filePath: string) {
           }
         }
 
-        // --- TRANSFORMASI HTML ---
+        // --- TRANSFORMASI HTML TETAP JALAN ---
         imageCounter++;
         const originalAlt = $img.attr('alt')?.trim();
         let finalAlt = originalAlt || pageTitle;
@@ -134,8 +135,8 @@ async function processHtmlFile(filePath: string) {
         fileHasChanged = true;
         isFirstImage = false;
 
-      } catch (e) {
-        console.error(`❌ Sharp Error pada ${cleanPath}`);
+      } catch (e: any) {
+        console.error(`❌ Sharp Error pada ${cleanPath}: ${e.message}`);
       }
     }
 
