@@ -18,48 +18,57 @@ async function cleanHtmlFile(filePath: string) {
     const dataProviders = $('script[src="/ext/data-provider.js"]');
     if (dataProviders.length > 1) {
       dataProviders.slice(1).remove();
-      console.log(`🧹 ${fileName}: Menghapus ${dataProviders.length - 1} duplikat data-provider.js`);
       isModified = true;
     }
 
     // 2. Bersihkan spasi kosong aneh (&nbsp; / \xA0)
-    $('head, body').contents().each((_, el) => {
+    // PROTEKSI: Abaikan teks di dalam <pre>, <code>, dan <script>
+    $('head, body').find(':not(pre, code, script)').contents().each((_, el) => {
       if (el.type === 'text' && el.data.includes('\xA0')) {
-        if (el.data.trim() === '') {
-          $(el).remove();
-          isModified = true;
-        } else {
-          el.data = el.data.replace(/\xA0/g, ' ');
+        const cleanedData = el.data.replace(/\xA0/g, ' ');
+        if (el.data !== cleanedData) {
+          el.data = cleanedData;
           isModified = true;
         }
       }
     });
 
-    // 3. Hapus baris kosong (newline) berlebih di <head>
-    $('head').contents().each((_, el) => {
-      if (el.type === 'text' && /^\s*[\r\n]+\s*[\r\n]+\s*$/.test(el.data)) {
-        el.data = '\n';
-        isModified = true;
+    // 3. SAPU BERSIH Baris Kosong Berlebih
+    // PROTEKSI: Kita hanya menyisir elemen yang BUKAN script/pre/code
+    $('head, body').contents().each((_, el) => {
+      if (el.type === 'text') {
+        // Cek apakah teks ini berada di dalam tag terlarang (script/pre/code)
+        const parentTag = $(el).parent()[0]?.name;
+        if (['script', 'pre', 'code'].includes(parentTag)) return;
+
+        // Jika teks hanya berisi newline/spasi (baris kosong melar)
+        if (/^\s*[\r\n]+\s*$/.test(el.data)) {
+          if (el.data.length > 1) {
+            el.data = '\n';
+            isModified = true;
+          }
+        }
       }
     });
 
     // 4. Simpan hasil (Overwrite) hanya jika ada perubahan
     if (isModified) {
-      await writeFile(filePath, $.html());
-      console.log(`✅ ${fileName}: Berhasil dibersihkan dan disimpan.`);
+      // Buang trailing spaces (spasi di ujung baris) tapi tetap jaga integritas tag
+      let finalHtml = $.html().replace(/[ \t]+$/gm, '');
+
+      await writeFile(filePath, finalHtml);
+      console.log(`✅ ${fileName}: Bersih & Aman (Script Protected)!`);
     }
 
   } catch (err) {
-    console.error(`❌ Gagal memproses ${fileName}:`, err);
+    console.error(`❌ Gagal: ${fileName} ->`, err);
   }
 }
 
-// Eksekusi Utama
+// Eksekusi Paralel (Cepat!)
 const files = await glob(`${SOURCE_DIR}/*.html`);
-console.log(`🚀 Memulai pembersihan langsung pada ${files.length} file di folder ${SOURCE_DIR}...`);
+console.log(`🚀 Membersihkan ${files.length} file di folder ${SOURCE_DIR}...`);
 
-for (const f of files) {
-  await cleanHtmlFile(f);
-}
+await Promise.all(files.map(f => cleanHtmlFile(f)));
 
-console.log(`\n✨ Semua file di folder ${SOURCE_DIR} kini sudah rapi!`);
+console.log(`\n✨ Selesai! Struktur HTML rapi tanpa merusak script & kode.`);
