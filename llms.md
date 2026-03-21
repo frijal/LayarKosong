@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.20
+document_version: 18.21
 last_updated: 2026-03-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Maret 2026)
-> Menampilkan 1107 artikel versi 18.20.
+> Menampilkan 1107 artikel versi 18.21.
 
 ## Gaya Hidup
 - [Gerimis & Jagung Godog: Hangatnya Camilan Sederhana | Catatan Kuliner](https://dalam.web.id/gaya-hidup/jagung-godog-gerimis) : Ketika gerimis mengundang, nikmatnya jagung godog terasa berlipat. Cerita singkat, galeri foto, tips penyajian, dan fitur interaktif.
@@ -326,6 +326,7 @@ document_type: llm_behavior_and_entity_guidance
 - [AWAS!! Jangan Suka Ngumpat!](https://dalam.web.id/lainnya/jangan-suka-ngumpat) : Nasihat santai tapi serius tentang bahaya ngumpat menurut Qs. Al-Humazah. Daripada bikin hati berkarat, mending ngopi!
 - [Polemik MBG Ramadan 2026: Antara Gizi Anak, Nasib UMKM, dan Ujian Iman](https://dalam.web.id/lainnya/polemik-mbg-bulan-puasa-2026) : Mengupas tuntas polemik program Makan Bergizi Gratis (MBG) di bulan Puasa 2026. Bagaimana nasib UMKM, katering lokal, dan tantangan anak sekolah saat Ramadan?
 - [Aturan Buruk Sangka dan Menggunjing](https://dalam.web.id/lainnya/buruk-sangka-menggunjing) : Penjelasan tentang bahaya buruk sangka (su’u zhan) dan menggunjing menurut Al-Qur’an dan Hadits; tanda, hukum, dan langkah praktis menjauhinya.
+- [Aku Cinta Indonesia](https://dalam.web.id/lainnya/aku-cinta-indonesia) : Sejarah singkat film serial anak ACI (Aku Cinta Indonesia), nilai karakter yang diajarkan, lirik lagu, dan relevansinya untuk generasi masa kini.
 - [Terjebak dalam Dopamine Loop: Mengapa Scroll Medsos Bikin Lelah Mental?](https://dalam.web.id/lainnya/terjebak-dopamine-loop-scroll-medsos) : Mengapa kita merasa lelah padahal hanya scroll medsos? Simak analisis mendalam tentang kecanduan dopamine, algoritma toxic, dan cara memulihkan kesehatan mental di era digital.
 - [Privasi Kamu Prioritas Kami: Sistem Hapus Data Baru di Layar Kosong](https://dalam.web.id/lainnya/privasi-layar-kosong) : Layar Kosong kini menghadirkan sistem permintaan hapus data yang lebih aman, privat, dan bebas spam menggunakan teknologi Cloudflare Turnstile. Keamanan data Anda adalah janji kami.
 - [Kalkulator Laundry Berkah](https://dalam.web.id/lainnya/Kalkulator-Laundry-Berkah) : No description.
@@ -515,7 +516,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Fatamorgana Kebangkitan vs Cahaya Kebangkitan Sejati](https://dalam.web.id/opini-sosial/fatamorgana-kebangkitan-vs-cahaya-sejati) : Menelaah makna kebangkitan sebuah bangsa melampaui angka ekonomi dan teknologi. Membedah keruntuhan peradaban materi dan solusi nyata melalui cahaya Islam.
 - [Kendaraan Itu Milik Kami Bukan Barang Sitaan Negara](https://dalam.web.id/opini-sosial/kendaraan-milik-kami-bukan-sitaan-negara) : Kepemilikan kendaraan adalah hak mutlak pembeli yang sah secara hukum melalui BPKB bukan ditentukan oleh status pajak tahunan semata. Simak ulasan lengkapnya di sini.
 - [Larangan Menjadikan Yahudi sebagai Teman dalam Al-Qur’an dan Relevansinya dengan Isu Palestina](https://dalam.web.id/opini-sosial/larangan-yahudi-teman-al-maidah-ayat-51) : Tentang larangan Al-Quran dalam Surat Al-Ma’idah ayat 51 terkait hubungan dengan Yahudi dan Nasrani, serta relevansinya dengan situasi kontemporer di Palestina dan kontroversi kebijakan di Indonesia.
-- [Aku Cinta Indonesia](https://dalam.web.id/opini-sosial/aku-cinta-indonesia) : Sejarah singkat film serial anak ACI (Aku Cinta Indonesia), nilai karakter yang diajarkan, lirik lagu, dan relevansinya untuk generasi masa kini.
 - [Apakah BSU 2026 Akan Cair? Cek Fakta Terbaru dan Cara Mengeceknya](https://dalam.web.id/opini-sosial/apakah-bsu-2026-akan-cair) : Kabar BSU 2026 Rp600 Ribu cair Januari kembali mencuat. Simak fakta terbaru, syarat penerima, dan cara cek status resminya di sini agar tidak tertipu!
 - [AGENDA 2030: The Grand Convergence — Bagaimana Sepiring Nasi Gratis Menjadi Kunci Penjara Digital Anda](https://dalam.web.id/opini-sosial/agenda-2030-the-grand-convergence) : tentang Agenda 2030 dan konvergensi besar yang mengubah makanan gratis menjadi alat kontrol digital. Bagaimana program Makan Bergizi Gratis (MBG) dan Digital ID membentuk masa depan dunia.
 - [Kejujuran: Pondasi Bisnis yang Berkah](https://dalam.web.id/opini-sosial/kejujuran-bisnis) : Refleksi santai tentang kejujuran dalam bisnis—godaan, bahaya kebohongan kecil, teguran untuk pedagang, dan menemukan berkah. Isi artikel asli dipertahankan, dengan desain fullscreen, interaktif, dan ceria.
