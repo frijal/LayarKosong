@@ -61,24 +61,24 @@ jobs:
           persist-credentials: true      
 
       - name: '2. Setup Bun.js'
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: latest
       
       - name: '3. Install Dependencies'
         run: bun install 
 
-      - name: '4. Optimize Images & Generate Srcset'
-        if: env.DO_SRCSET == 'true' # <-- Gunakan env di sini
-        run: bun run dapur/srcset-generator.ts
-
-      - name: '5 Generate artikel.json, Sitemap XML & RSS'
+      - name: '4. Generate artikel.json, Sitemap XML & RSS'
         if: env.DO_GENERATOR == 'true'
         run: bun run dapur/generator-pro.ts
         env:
           RSS_LIMIT: 30
 
-      - name: '6 Update sitemap.txt (Native Bun - Sorted by Date)'
+      - name: '5. Optimize Images & Generate Srcset'
+        if: env.DO_SRCSET == 'true'
+        run: bun run dapur/srcset-generator.ts
+
+      - name: '6. Update sitemap.txt (Native Bun - Sorted by Date)'
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
           bun run dapur/koki.ts --once
@@ -86,29 +86,26 @@ jobs:
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
                     
-      - name: '7 Inject SEO Schema'
+      - name: '7. Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
         run: bun run dapur/inject-schema.ts
 
-      - name: '8 Convert HTML to Markdown'
+      - name: '8. Convert HTML to Markdown'
         if: env.DO_CONVERT_MARKDOWN == 'true'
         run: bun run dapur/html-to-markdown.ts
         
-      - name: '9 Minify HTML'
+      - name: '9. Minify HTML'
         if: env.DO_MINIFY_HTML == 'true'
         run: bun run dapur/minify-html.ts
 
-      - name: '10 Minify Data (JSON & XML)'
+      - name: '10. Minify Data (JSON & XML)'
         if: env.DO_MINIFY_JSONXML == 'true'
         run: bun run dapur/minify-jsonxml.ts        
       
-      - name: '11 Commit and Push'
+      - name: '11. Commit and Push'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          
-          # Batalkan perubahan di folder artikel agar tetap <img> original di repo
-          git checkout artikel/
+          git config --local user.name "github-actions[bot]"        
           
           # Add semua perubahan lainnya (JSON, XML, dan CACHE di folder mini/)
           git add .
