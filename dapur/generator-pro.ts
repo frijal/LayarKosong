@@ -144,10 +144,7 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     }
 
     flat.sort((a,b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
-    await Promise.all([
-        Bun.write(`${C.root}/sitemap.txt`, [...urls].sort().join('\n')),
-                      Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2))
-    ]);
+    await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
     // Build XML Sitemaps
     let xP = '', xI = '', xV = '';
