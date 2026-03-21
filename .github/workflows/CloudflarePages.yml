@@ -49,7 +49,7 @@ jobs:
           echo "🧹 Filtering files using rsync..."
           
           # Logic 'satpam' rsync yang sama persis
-          rsync -a --delete \            
+          rsync -a --delete \
             --include='functions/***' \
             --include='ext/***' \
             --include='.well-known/***' \
