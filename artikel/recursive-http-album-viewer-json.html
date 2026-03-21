@@ -1,16 +1,15 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
-  <!-- Title -->
-  <title>Recursive HTTP Album Viewer (via JSON) - Layar Kosong</title>
+<!-- Title -->
+  <title>Recursive HTTP Album Viewer (via JSON) - Layar Kosong</title> 
+<script defer="" src="/ext/data-provider.js"></script>
   <!-- Charset & Viewport -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Canonical -->
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  
-  <!-- SEO Meta -->
-  
-  <meta name="keywords" content="Recursive HTTP Album Viewer, JSON album viewer, galeri HTTP, viewer interaktif, web album, responsive gallery">
+<!-- SEO Meta -->
+<meta name="keywords" content="Recursive HTTP Album Viewer, JSON album viewer, galeri HTTP, viewer interaktif, web album, responsive gallery">
   <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <style>
         /* --- Global & Tipografi --- */
@@ -256,35 +255,9 @@
             }
         }
     </style>
-<link rel="stylesheet" href="/ext/marquee-url.css">
 <meta name="ai:summary" content="Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.">
 <meta name="ai:prompt_hint" content="Recursive HTTP Album Viewer (via JSON) memungkinkan penjelajahan album gambar langsung dari server HTTP dengan data JSON. Mendukung navigasi folder, thumbnail, dan tampilan responsif.">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+<link rel="stylesheet" href="/ext/marquee-url.css">
 
     
     
@@ -296,6 +269,37 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+<meta property="fb:pages" content="917962134736490">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/recursive-http-album-viewer-json">
     <meta property="og:url" content="https://dalam.web.id/artikel/recursive-http-album-viewer-json">
@@ -328,21 +332,22 @@
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <meta property="fb:app_id" content="175216696195384">
     <meta property="fb:pages" content="917962134736490">
-    <meta itemprop="image" content="https://dalam.web.id/thumbnail.webp">
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta itemprop="image" content="https://dalam.web.id/img/recursive-http-album-viewer-json.webp">
+    <meta name="twitter:image" content="https://dalam.web.id/img/recursive-http-album-viewer-json.webp">
+    <meta property="og:image" content="https://dalam.web.id/img/recursive-http-album-viewer-json.webp">
     <meta property="og:image:alt" content="Recursive HTTP Album Viewer (via JSON)">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="675">
     <meta property="og:image:type" content="image/webp">
     <meta name="theme-color" content="#00b0ed">
-    <meta property="article:published_time" content="2026-03-21T16:37:51.144Z">
-    <meta property="article:modified_time" content="2026-03-21T16:37:51.144Z">
+    <meta property="article:published_time" content="2025-10-25T13:28:45.354+00:00">
+    <meta property="article:modified_time" content="2026-03-13T23:36:06.023Z">
 </head>
 <body>
     <div class="container">
         <h1>Recursive HTTP Album Viewer</h1>
 <div id="iposbrowser"></div>
+
         <div class="controls">
             <label for="jsonUrlInput" style="display:block; margin-bottom: 10px; font-weight: 600;">Masukkan URL ke file <code>album.json</code> Anda:</label>
             <div class="url-loader">
@@ -409,12 +414,12 @@
                 // Contoh: https://.../album/data.json -> https://.../album/
                 baseURL = url.substring(0, url.lastIndexOf('/') + 1);
                 // 1. Ambil file JSON
-                const response = await fetch(url, { cache: 'no-store' }); // Jangan cache list
-                if (!response.ok) {
-                    throw new Error(`Gagal mengambil data: ${response.statusText}`);
+                const related-articles-grid = await fetch(url, { cache: 'no-store' }); // Jangan cache list
+                if (!related-articles-grid.ok) {
+                    throw new Error(`Gagal mengambil data: ${related-articles-grid.statusText}`);
                 }
                 // 2. Parse JSON
-                const imagePaths = await response.json();
+                const imagePaths = await related-articles-grid.json();
                 if (!Array.isArray(imagePaths)) {
                     throw new Error('File JSON tidak berisi array.');
                 }
