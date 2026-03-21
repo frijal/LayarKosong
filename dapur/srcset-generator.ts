@@ -11,6 +11,9 @@ const CACHE_FILE        = "mini/srcset-gambar.txt";
 const FORBIDDEN_CHARS   = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
 
+// Ekstensi yang TIDAK diproses — biarkan bentuk aslinya
+const SKIP_EXTENSIONS   = new Set([".svg", ".gif"]);
+
 const ALLOWED_CATEGORIES = [
   "gaya-hidup", "jejak-sejarah", "lainnya",
 "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
@@ -39,7 +42,13 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
   const imageCandidates = $("body img").toArray().filter(el => {
     const src = $(el).attr("src");
-    return src && src.includes("/img/");
+    if (!src || !src.includes("/img/")) return false;
+
+    // Lewati .svg dan .gif — biarkan pada bentuk aslinya
+    const ext = path.extname(src.split("?")[0]).toLowerCase();
+    if (SKIP_EXTENSIONS.has(ext)) return false;
+
+    return true;
   });
 
   if (imageCandidates.length === 0) return "no-image";
@@ -159,6 +168,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 // ========== MAIN ==========
 async function main() {
   console.log("🚀 srcset — Scan folder kategori, proses artikel baru saja...");
+  console.log(`🚫 Skip ekstensi    : ${[...SKIP_EXTENSIONS].join(", ")}`);
 
   // Pastikan folder cache ada
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
@@ -172,7 +182,7 @@ async function main() {
   )
   : new Set<string>();
 
-  console.log(`📄 sitemap.txt lama: ${sitemapUrls.size} URL terdaftar\n`);
+  console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
   // Kumpulkan semua .html dari folder kategori (kecuali index.html)
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
@@ -185,11 +195,11 @@ async function main() {
     }
   });
 
-  const results = { processed: 0, skipped: 0, missing: 0, noImage: 0 };
+  const results = { processed: 0, skipped: 0, noImage: 0, missing: 0 };
 
   for (const htmlPath of allFiles) {
     // Konversi path → URL untuk dicocokkan ke sitemap
-    // warta-tekno/tulisan-a.html → https://dalam.web.id/warta-tekno/tulisan-a
+
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
 
     // Artikel lama → URL ada di sitemap → skip (cepat!)
