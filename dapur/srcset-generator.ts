@@ -55,27 +55,38 @@ async function processHtmlFile(filePath: string) {
         const desktopPath = path.join(dirName, `${baseNameSafe}.webp`);
         const mobilePath = path.join(dirName, `${baseNameSafe}-sm.webp`);
 
-        // --- LOGIKA CERDAS: CEK CACHE & FISIK ---
-        if (!optimizedCache.has(cleanPath)) {
-          const absDesktopPath = path.resolve(desktopPath);
-          const absMobilePath = path.resolve(mobilePath);
+        // --- LOGIKA CERDAS: CEK CACHE & KELENGKAPAN FISIK ---
+        const absDesktopPath = path.resolve(desktopPath);
+        const absMobilePath = path.resolve(mobilePath);
+        const needsMobile = meta.width > 480;
 
-          if (fs.existsSync(absDesktopPath)) {
-            optimizedCache.add(cleanPath);
-            await appendFile(CACHE_FILE, `${cleanPath}\n`);
+        // Cek apakah file fisik benar-benar lengkap di folder
+        const physicalComplete = fs.existsSync(absDesktopPath) && (!needsMobile || fs.existsSync(absMobilePath));
+
+        // Jalankan Sharp JIKA: Belum ada di cache ATAU file fisik tidak lengkap
+        if (!optimizedCache.has(cleanPath) || !physicalComplete) {
+
+          if (physicalComplete) {
+            // Kasus: Fisik ada tapi cache belum mencatat (Update cache saja)
+            if (!optimizedCache.has(cleanPath)) {
+              optimizedCache.add(cleanPath);
+              await appendFile(CACHE_FILE, `${cleanPath}\n`);
+              console.log(` ⚡ Cache Updated: ${cleanPath}`);
+            }
           } else {
+            // Kasus: Salah satu file fisik hilang/belum dibuat (Jalankan Sharp)
             stats.optimized++;
             const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
-            // 1. Desktop
+            // 1. Generate Desktop
             await imageInstance
             .rotate()
             .resize(targetWidth, null, { withoutEnlargement: true })
             .webp({ quality: 82 })
             .toFile(absDesktopPath);
 
-            // 2. Mobile
-            if (meta.width > 480) {
+            // 2. Generate Mobile
+            if (needsMobile) {
               await sharp(fullPathSource)
               .rotate()
               .resize(480, null, { withoutEnlargement: true })
@@ -83,8 +94,12 @@ async function processHtmlFile(filePath: string) {
               .toFile(absMobilePath);
             }
 
-            optimizedCache.add(cleanPath);
-            await appendFile(CACHE_FILE, `${cleanPath}\n`);
+            // Update Cache setelah Sharp berhasil
+            if (!optimizedCache.has(cleanPath)) {
+              optimizedCache.add(cleanPath);
+              await appendFile(CACHE_FILE, `${cleanPath}\n`);
+            }
+            console.log(` ✨ Sharp Optimized (Fix/New): ${cleanPath}`);
           }
         }
 
