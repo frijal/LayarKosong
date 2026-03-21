@@ -25,11 +25,11 @@ const decodeHTML = (str: string) => {
 };
 
 const slug = (t: any) => t.toString().toLowerCase().trim()
-.replace(/^[^\w\s]*/u,'')
-.replace(/ & /g,'-and-')
-.replace(/[^a-z0-9\s-]/g,'')
-.replace(/\s+/g,'-')
-.replace(/-+/g,'-');
+.replace(/^[^\w\s]*/u, '')
+.replace(/ & /g, '-and-')
+.replace(/[^a-z0-9\s-]/g, '')
+.replace(/\s+/g, '-')
+.replace(/-+/g, '-');
 
 const iso = (d: any) => {
     const parsedDate = new Date(d);
@@ -39,7 +39,7 @@ const iso = (d: any) => {
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
 
-const mime = (u: string) => ({ 'png':'image/png', 'webp':'image/webp', 'svg':'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
+const mime = (u: string) => ({ 'png': 'image/png', 'webp': 'image/webp', 'svg': 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
 const buildRss = (t: string, items: any[], link: string, desc: string) =>
 `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${decodeHTML(t)}]]></title><link>${C.base}/</link><description>${desc}</description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it => `<item><title><![CDATA[${decodeHTML(it.title)}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(decodeHTML(it.title))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="0" type="${mime(it.img)}"/></item>`).join('')}</channel></rss>`;
@@ -50,17 +50,17 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     let html = pre || await Bun.file(`${C.art}/${f}`).text();
     html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">`)
     .replace(/<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${url}">`)
-    .replace(new RegExp(`${C.base}/artikel/${f.replace('.html','')}`, 'g'), url)
+    .replace(new RegExp(`${C.base}/artikel/${f.replace('.html', '')}`, 'g'), url)
     .replace(/\/artikel\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
     await Bun.write(`${dir}/${f}`, html);
 };
 
 (async () => {
-    console.log('🚀 Diet Mode V8.6 (Anti-Entity Edition)');
+    console.log('🚀 Diet Mode V8.7 (Fix Tanggal dari Master)');
     const [eta, stm, mst] = await Promise.all([
-        Bun.file(`${C.root}/artikel.json`).json().catch(()=>({})),
-        Bun.file(`${C.root}/sitemap.txt`).text().catch(()=>''),
-        Bun.file(`${C.art}/artikel.json`).json().catch(()=>({}))
+        Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
+                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls = new Set(stm.split('\n').filter(Boolean));
@@ -90,15 +90,15 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
             // Jika kategori saat ini berbeda dengan target, paksa re-scan
             if (cat !== targetCat) {
-                urls.delete(`${C.base}/${slug(cat)}/${f.replace('.html','')}`);
+                urls.delete(`${C.base}/${slug(cat)}/${f.replace('.html', '')}`);
                 d = null;
             }
         }
 
         // Lanjut proses jika data masih valid
-        if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html','')}`)) {
+        if (d && urls.has(`${C.base}/${slug(cat)}/${f.replace('.html', '')}`)) {
             (final[cat] ??= []).push(d);
-            flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html','')}` });
+            flat.push({ title: d[0], file: f, img: d[2], lastmod: d[3], desc: d[4], category: cat, loc: `${C.base}/${slug(cat)}/${f.replace('.html', '')}` });
             valid.add(`${slug(cat)}/${f}`);
             continue;
         }
@@ -117,9 +117,24 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         }
         if (!c) c = titleToCategory(t);
 
-        const url = `${C.base}/${slug(c)}/${f.replace('.html','')}`;
-        const date = txt.match(/article:published_time" content="(.*?)"/i)?.[1] || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
-        const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html','')}.webp`;
+        const url = `${C.base}/${slug(c)}/${f.replace('.html', '')}`;
+
+        // ========== FIX: Prioritas tanggal ==========
+        // 1. Master JSON (artikel/artikel.json) → paling otoritatif
+        // 2. og:article:published_time di HTML   → fallback kedua
+        // 3. mtime file di disk                  → last resort
+        let masterDate: string | null = null;
+        for (const [, mits] of Object.entries(mst)) {
+            const found = (mits as any[]).find(i => i[1] === f);
+            if (found?.[3]) { masterDate = found[3]; break; }
+        }
+
+        const date = masterDate
+        || txt.match(/article:published_time" content="(.*?)"/i)?.[1]
+        || (await require('fs').promises.stat(`${C.art}/${f}`)).mtime;
+        // ============================================
+
+        const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html', '')}.webp`;
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
 
         const newData = [t, f, img, iso(date), desc];
@@ -131,19 +146,21 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
         valid.add(`${slug(c)}/${f}`);
     }
 
-    // Cleanup files lama & Sinkronisasi Sitemap
+    // Cleanup files lama
     for (const s of C.cats) {
         const d = `${C.root}/${s}`;
         await require('fs').promises.mkdir(d, { recursive: true });
         for (const f of [...new Bun.Glob("*.html").scanSync(d)]) {
             if (f !== 'index.html' && !valid.has(`${s}/${f}`)) {
                 await require('fs').promises.unlink(`${d}/${f}`);
-                urls.delete(`${C.base}/${s}/${f.replace('.html','')}`);
+                urls.delete(`${C.base}/${s}/${f.replace('.html', '')}`);
             }
         }
     }
 
-    flat.sort((a,b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+    flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
+
+    // sitemap.txt dihandle oleh bikin-sitemap-txt.ts
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
     // Build XML Sitemaps
@@ -156,7 +173,7 @@ for (const it of flat) {
     const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)].map(m => m[1]).filter(s => !s.endsWith('.js'));
     vids.forEach(s => {
         const id = s.match(/embed\/([^/?]+)/)?.[1];
-        if(id) xV += `<url><loc>${it.loc}</loc><video:video><video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc><video:title><![CDATA[${it.title}]]></video:title><video:description><![CDATA[${it.desc || it.title}]]></video:description><video:player_loc>${s.replace(/&/g,'&amp;')}</video:player_loc></video:video></url>`;
+        if (id) xV += `<url><loc>${it.loc}</loc><video:video><video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc><video:title><![CDATA[${it.title}]]></video:title><video:description><![CDATA[${it.desc || it.title}]]></video:description><video:player_loc>${s.replace(/&/g, '&amp;')}</video:player_loc></video:video></url>`;
     });
 }
 
@@ -164,18 +181,17 @@ const hdr = `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/x
 const mod = flat[0]?.lastmod || iso(new Date());
 
 await Promise.all([
-    Bun.write(`${C.root}/sitemap.xml`, `${hdr}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['sitemap-1','image-sitemap-1','video-sitemap-1'].map(s => `<sitemap><loc>${C.base}/${s}.xml</loc><lastmod>${mod}</lastmod></sitemap>`).join('')}</sitemapindex>`),
-    Bun.write(`${C.root}/sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xP}</urlset>`),
-    Bun.write(`${C.root}/image-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${xI}</urlset>`),
-    Bun.write(`${C.root}/video-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${xV}</urlset>`),
-    Bun.write(C.root+'/rss.xml', buildRss('Layar Kosong', flat.slice(0,C.limit), C.base+'/rss.xml', 'Feed artikel terbaru'))
+    Bun.write(`${C.root}/sitemap.xml`, `${hdr}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['sitemap-1', 'image-sitemap-1', 'video-sitemap-1'].map(s => `<sitemap><loc>${C.base}/${s}.xml</loc><lastmod>${mod}</lastmod></sitemap>`).join('')}</sitemapindex>`),
+                  Bun.write(`${C.root}/sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xP}</urlset>`),
+                  Bun.write(`${C.root}/image-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${xI}</urlset>`),
+                  Bun.write(`${C.root}/video-sitemap-1.xml`, `${hdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">${xV}</urlset>`),
+                  Bun.write(C.root + '/rss.xml', buildRss('Layar Kosong', flat.slice(0, C.limit), C.base + '/rss.xml', 'Feed artikel terbaru'))
 ]);
 
 // Build Category Pages (Static Version)
 const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
 
 if (tmp) {
-    // Definisi formatter di luar loop untuk efisiensi memori (Optimization)
     const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' });
 
     for (const [cat, arts] of Object.entries(final)) {
@@ -227,7 +243,6 @@ if (tmp) {
         .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}</div>`)
         .replace(/"inLanguage": "id-ID"/, `"inLanguage": "id-ID",\n  "hasPart": ${hp}`);
 
-        // Pastikan folder kategori ada sebelum menulis file
         await Bun.write(`${C.root}/${s}/index.html`, pg);
 
         // 4. Buat RSS Feed per kategori
@@ -250,8 +265,9 @@ if (tmp) {
     }
     console.log('📂 Static Category Pages Generated (Clean Mode).');
 }
-// bikin halaman feed. html
-const feedTemplatePath = `${C.art}/-/template-feed.html`; // Simpan HTML Anda tadi sebagai template di sini
+
+// Build halaman feed.html
+const feedTemplatePath = `${C.art}/-/template-feed.html`;
 const feedTemplate = await Bun.file(feedTemplatePath).text().catch(() => '');
 
 if (feedTemplate) {
@@ -259,7 +275,7 @@ if (feedTemplate) {
         const encodedLink = encodeURIComponent(it.loc);
         const encodedText = encodeURIComponent(it.desc || it.title);
         const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(it.lastmod));
-        const cleanCat = it.category.replace(/[\u{1F300}-\u{1F6FF}]/gu, '').trim(); // Hapus emoji untuk meta
+        const cleanCat = it.category.replace(/[\u{1F300}-\u{1F6FF}]/gu, '').trim();
 
         return `
         <div class="feed-item">
@@ -277,31 +293,27 @@ if (feedTemplate) {
         <span>Bagikan:</span>
         <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-twitter"></i></a>
-
         <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&t=${encodedText}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-facebook"></i></a>
-
         <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-whatsapp"></i></a>
-
         <a href="https://t.me/share/url?url=${encodedLink}&text=${encodedText}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-telegram"></i></a>
-
         <a href="https://www.threads.com/intent/post?text=${encodedText}&url=${encodedLink}"
         onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-threads"></i></a>
-
         </div>
         </div>
         </div>`;
     }).join('');
 
     const finalFeedPage = feedTemplate
-    .replace('<div id="loading"></div>', '') // Hapus loading spinner
+    .replace('<div id="loading"></div>', '')
     .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
-    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, ''); // Hapus script fetch otomatis
+    .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '');
 
     await Bun.write(`${C.root}/feed.html`, finalFeedPage);
     console.log('✨ Static Feed Page Generated.');
 }
+
 console.log('✅ Selesai. Pindah kategori otomatis sukses.');
 })();
