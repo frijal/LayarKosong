@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.17
+document_version: 18.18
 last_updated: 2026-03-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Maret 2026)
-> Menampilkan 1107 artikel versi 18.17.
+> Menampilkan 1107 artikel versi 18.18.
 
 ## Gaya Hidup
 - [Gerimis & Jagung Godog: Hangatnya Camilan Sederhana | Catatan Kuliner](https://dalam.web.id/gaya-hidup/jagung-godog-gerimis) : Ketika gerimis mengundang, nikmatnya jagung godog terasa berlipat. Cerita singkat, galeri foto, tips penyajian, dan fitur interaktif.
