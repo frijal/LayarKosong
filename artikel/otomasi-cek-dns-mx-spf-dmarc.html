@@ -1,11 +1,12 @@
 <!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash - Layar Kosong</title><script defer="" src="/ext/data-provider.js"></script> 
-    <meta name="promphint" content="buatkan panduan otomasi pengecekan dns record mx spf dmarc menggunakan script bun dan bash untuk developer">
+<title>Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash - Layar Kosong</title> 
+<script defer="" src="/ext/data-provider.js"></script>
+<meta name="promphint" content="buatkan panduan otomasi pengecekan dns record mx spf dmarc menggunakan script bun dan bash untuk developer">
     <meta name="news_keywords" content="cek dns otomatis, script bash dns, bun js dns, propagasi mx record, spf dmarc check">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
+<link rel="stylesheet" href="/ext/fontawesome.css">
+<style>
         /* CSS Prefers-Color-Scheme (Zero JS) */
         :root {
             --bg-color: #ffffff;
@@ -15,6 +16,7 @@
             --border-color: #eaeaea;
             --accent-color: #ff4500;
         }
+
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a1a1a;
@@ -24,6 +26,7 @@
                 --border-color: #333333;
             }
         }
+
         /* Layout Widescreen 1 Kolom */
         body {
             margin: 0;
@@ -34,16 +37,19 @@
             font-size: 1.2rem;
             line-height: 1.6;
         }
+
         .main-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
+
         /* Responsive Typography */
         h1 { font-size: 2.2rem; line-height: 1.2; margin-top: 0; }
         h2 { font-size: 1.8rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 40px; }
         h3 { font-size: 1.4rem; margin-top: 30px; }
         p { margin-bottom: 20px; }
+
         /* Image Optimization for CWV (LCP/CLS) */
         .featured-image {
             width: 100%;
@@ -55,6 +61,7 @@
             margin-bottom: 30px;
             background-color: var(--code-bg);
         }
+
         /* Code Blocks */
         pre {
             background: var(--code-bg);
@@ -64,14 +71,17 @@
             border: 1px solid var(--border-color);
             font-size: 0.9rem;
         }
+
         code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
         /* Comment & Related Sections */
-        #response, #related-articles-grid {
+        #related-articles-grid, #response {
             margin: 40px 0;
             padding: 20px;
             background: var(--code-bg);
             border-radius: 8px;
         }
+
         footer {
             text-align: center;
             padding: 40px 0;
@@ -79,6 +89,7 @@
             color: gray;
             border-top: 1px solid var(--border-color);
         }
+
         /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
@@ -86,11 +97,58 @@
         }
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+<meta property="fb:pages" content="917962134736490">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/otomasi-cek-dns-mx-spf-dmarc">
     <meta property="og:url" content="https://dalam.web.id/artikel/otomasi-cek-dns-mx-spf-dmarc">
     <meta property="twitter:url" content="https://dalam.web.id/artikel/otomasi-cek-dns-mx-spf-dmarc">
     <meta property="og:site_name" content="Layar Kosong">
+    <script defer="" src="/ext/data-provider.js"></script>
     <link rel="icon" href="/favicon.ico">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="alternate" type="application/rss+xml" title="30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
@@ -115,14 +173,15 @@
     <meta name="twitter:site" content="@responaja">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
-    <meta property="fb:app_id" content="175216696195384"> 
-<meta property="fb:pages" content="917962134736490">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
     <meta itemprop="image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCnd1BlbIAAPO77.webp">
     <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCnd1BlbIAAPO77.webp">
     <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/media/HCnd1BlbIAAPO77.webp">
     <meta property="og:image:alt" content="Otomasi Cek Propagasi DNS MX SPF dan DMARC dengan Script Bun Bash">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="675">
+    <meta property="og:image:type" content="image/webp">
     <meta name="theme-color" content="#00b0ed">
     <meta property="article:tag" content="Automation">
     <meta property="article:tag" content="DNS">
@@ -132,6 +191,7 @@
     <meta property="article:modified_time" content="2026-03-13T23:36:03.778Z">
 </head>
 <body>
+
 <div class="main-container">
     <header>
         <h1><i class="fa-solid fa-microchip"></i> Otomasi Cek Propagasi DNS: MX, SPF, dan DMARC untuk dalam.web.id</h1>
@@ -141,41 +201,57 @@
             <i class="fa-solid fa-user-pen"></i> Fakhrul Rijal
         </p>
     </header>
+
+
     <article>
+
+
         <h2><i class="fa-brands fa-js"></i> Opsi 1: Pakai Bun (Modern &amp; Ngebut)</h2>
         <p>Kalau kamu sudah pakai <strong>Bun</strong> sepenuhnya, script ini jauh lebih rapi dan bisa memberikan output yang terstruktur (JSON atau teks berwarna).</p>
         <pre><code>// dns-check.ts
 import { resolveMx, resolveTxt } from "node:dns/promises";
+
 const domain = "dalam.web.id";
+
 async function checkDNS() {
   console.log("🔍 Mengecek DNS untuk " + domain + "...");
+
   try {
     const mx = await resolveMx(domain);
     console.log("✅ MX Records:", mx);
+
     const txt = await resolveTxt(domain);
     const spf = txt.find(t =&gt; t[0].includes("v=spf1"));
     console.log(spf ? "✅ SPF: " + spf : "❌ SPF tidak ditemukan");
+
     const dmarc = await resolveTxt("_dmarc." + domain);
     console.log(dmarc ? "✅ DMARC: " + dmarc : "❌ DMARC tidak ditemukan");
   } catch (e) {
     console.error("⚠️ Terjadi kesalahan atau record belum siap.");
   }
 }
+
 checkDNS();</code></pre>
     <img src="https://dalam.web.id/img/pbs.twimg.com/media/HCnd1BlbIAAPO77.webp" alt="Ilustrasi otomasi DNS dan server" class="featured-image" loading="eager">
+
         <h2><i class="fa-solid fa-terminal"></i> Opsi 2: Pakai Bash (Klasik &amp; Universal)</h2>
         <p>Script ini cocok kalau kamu lagi malas *install* runtime dan pengen yang langsung jalan di Arch Linux kesayangan kamu.</p>
         <pre><code>#!/bin/bash
 # dns-check.sh
 DOMAIN="dalam.web.id"
+
 echo "Checking DNS Records for $DOMAIN..."
 echo "------------------------------------"
+
 echo "📦 MX Records:"
 dig +short MX $DOMAIN
+
 echo -e "\n🛡️ SPF Record:"
 dig +short TXT $DOMAIN | grep "v=spf1"
+
 echo -e "\n🔐 DMARC Record:"
 dig +short TXT _dmarc.$DOMAIN | grep "v=DMARC1"
+
 echo "------------------------------------"
 echo "Done!"</code></pre>
     <h2><i class="fa-solid fa-circle-info"></i> Apa Itu Otomasi Cek DNS? (5W+1H)</h2>
@@ -189,16 +265,22 @@ echo "Done!"</code></pre>
         </p>
         <h2><i class="fa-solid fa-vial"></i> Prinsip E-E-A-T dalam Konfigurasi DNS</h2>
         <p>Data yang akurat adalah segalanya. Dengan mengotomasi pengecekan ini, kamu menunjukkan <strong>Expertise</strong> dan <strong>Authoritativeness</strong> dalam pengelolaan sistem. Hal ini juga memastikan <strong>Trustworthiness</strong> karena email yang kamu kirim dari domain komunitas tidak akan dianggap spam oleh server tujuan berkat record SPF dan DMARC yang valid.</p>
-        <div id="response">
-                   </div>
+
         <div id="related-articles-grid">
+                   </div>
+
+        <div id="response">
               </div>
     </article>
+
     <footer>
         <p>🄯 2026 Layar Kosong - Balikpapan, Indonesia. Dibuat dengan semangat otomasi.</p>
      <a target="_blank" href="/about">☕</a> <a target="_blank" href="/data-deletion">🛡️</a> <a target="_blank" href="/data-deletion-form">📝</a> <a target="_blank" href="/disclaimer">⚠️</a> <a target="_blank" href="/lisensi">📚</a> <a target="_blank" href="/privacy">🔰</a> <a target="_blank" href="/security-policy">⚔️</a> 
 </footer>
 </div>
+
+
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
+
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>
