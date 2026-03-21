@@ -196,7 +196,7 @@ const formatBytes = (bytes: number): string => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
-// ========== RUNNER ==========
+// ========== RUNNER =========
 const run = async (): Promise<void> => {
     const startTime = nanoseconds();
 
