@@ -39,33 +39,23 @@ const stats: Stats = {
     totalInvisibleRemoved: 0,
 };
 
-// ========== PROTECTION ==========
+// ========== PROTECTION: ATRIBUT ==========
 /**
  * Proteksi semua atribut yang nilainya TIDAK boleh disentuh minifier/cleaner:
- * - src="..."       → URL gambar, script, link
- * - href="..."      → URL link, canonical, alternate
- * - srcset="..."    → URL responsive image
- * - content="..."   → meta og:image, og:url, robots, article:published_time, dll
- * - action="..."    → form action URL
- * - data-src="..."  → lazy-load URL
- *
- * Semua placeholder berbentuk ___ATTR_N___ sehingga minifier tidak menyentuhnya.
+ * src, href, srcset, content, action, data-src, data-href, poster
+ * Termasuk tag <script src="..."> secara keseluruhan.
  */
 const protectAttributes = (html: string): { html: string; vault: string[] } => {
     const vault: string[] = [];
 
-    // Proteksi seluruh tag <script ... src="..."> agar tidak dihapus/dipecah
-    // Ini proteksi tag-level, bukan hanya atribut src-nya
     const protectedHtml = html
-
-    // 1. Proteksi <script> dengan atribut src — script eksternal
+    // 1. Proteksi tag <script src="..."> — script eksternal
     .replace(/<script\b[^>]*\bsrc\s*=\s*"[^"]*"[^>]*>/gi, (match) => {
         const id = `___ATTR_${vault.length}___`;
         vault.push(match);
         return id;
     })
-
-    // 2. Proteksi semua atribut bernilai penting (urutan penting!)
+    // 2. Proteksi semua atribut bernilai penting
     .replace(
         /\b(src|href|srcset|content|action|data-src|data-href|poster)\s*=\s*"([^"]*)"/gi,
              (match) => {
@@ -81,24 +71,42 @@ const protectAttributes = (html: string): { html: string; vault: string[] } => {
 const restoreAttributes = (html: string, vault: string[]): string =>
 vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
 
+// ========== PROTECTION: MARKDOWN SPACES ==========
+/**
+ * Proteksi spasi di sekitar markdown syntax marker.
+ * markdown.js butuh spasi sebagai boundary: [\s(] sebelum ** dan [\s.,!?] sesudahnya.
+ *
+ * Strategi: ganti spasi yang MENGAPIT marker dengan &#32; (HTML entity spasi)
+ * sehingga minifier tidak membuangnya, lalu restore setelah minifikasi.
+ *
+ * Marker yang dilindungi: ** __ * _ ~~ ` (backtick inline code)
+ */
+const protectMarkdownSpaces = (html: string): string => {
+    return html
+    // Spasi sebelum marker: " **" → "&#32;**"
+    .replace(/ (\*\*|__|\*|_|~~|`)/g, '&#32;$1')
+    // Spasi sesudah marker: "** " → "**&#32;"
+    .replace(/(\*\*|__|\*|_|~~|`) /g, '$1&#32;');
+};
+
+const restoreMarkdownSpaces = (html: string): string =>
+html.replaceAll('&#32;', ' ');
+
 // ========== CLEANER ==========
 /**
  * Hapus invisible chars & decode entitas umum.
  * AMAN: semua atribut penting sudah diproteksi sebelum fungsi ini dipanggil.
  *
  * &gt; dan &lt; DIKECUALIKAN — dikonsumsi Markdown Enhancer v7.5 di browser.
- * &amp; DIKECUALIKAN dari decode global — hanya decode di luar atribut,
- *   dan sudah aman karena atribut sudah diproteksi duluan.
+ * &amp; DIKECUALIKAN — bisa muncul di konten teks yang valid.
  */
 const cleanContent = (html: string): { cleaned: string; saved: number } => {
     const before = html.length;
 
     let cleaned = html
-    .replace(/\u00A0/g, " ")                              // non-breaking space → spasi biasa
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");          // hapus zero-width chars
+    .replace(/\u00A0/g, " ")                      // non-breaking space → spasi biasa
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");  // hapus zero-width chars
 
-    // Decode entitas — aman karena semua atribut sudah diproteksi
-    // &amp; dibiarkan karena bisa muncul di konten HTML yang valid (mis: teks Arab, kode)
     const entities: Record<string, string> = {
         "&nbsp;": " ",
         "&quot;": '"',
@@ -126,17 +134,21 @@ const processFile = async (filePath: string): Promise<void> => {
 
         const before = content.length;
 
-        // 1. Proteksi semua atribut penting dulu SEBELUM apapun disentuh
+        // 1. Proteksi atribut penting (src, href, content, dll)
         const { html: protected1, vault } = protectAttributes(content);
 
         // 2. Bersihkan invisible chars & entitas di luar atribut
         const { cleaned, saved } = cleanContent(protected1);
         stats.totalInvisibleRemoved += saved;
 
-        // 3. Kembalikan semua atribut yang diproteksi
-        const restored = restoreAttributes(cleaned, vault);
+        // 3. Proteksi spasi di sekitar markdown syntax
+        //    Dilakukan SETELAH cleanContent agar spasi normal sudah bersih duluan
+        const mdProtected = protectMarkdownSpaces(cleaned);
 
-        // 4. Minifikasi
+        // 4. Kembalikan atribut yang diproteksi
+        const restored = restoreAttributes(mdProtected, vault);
+
+        // 5. Minifikasi
         const minified = minifyHtml.minify(Buffer.from(restored), {
             allow_noncompliant_unquoted_attribute_values: true,
             collapse_whitespaces: false,
@@ -148,11 +160,14 @@ const processFile = async (filePath: string): Promise<void> => {
             minify_js: false,
         }).toString();
 
-        // 5. Injeksi signature rapat ke </html>
+        // 6. Restore &#32; → spasi normal setelah minifikasi selesai
+        const spacesRestored = restoreMarkdownSpaces(minified);
+
+        // 7. Injeksi signature rapat ke </html>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
-        const signed = minified.includes("</html>")
-        ? minified.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
-        : minified.trimEnd() + signature;
+        const signed = spacesRestored.includes("</html>")
+        ? spacesRestored.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
+        : spacesRestored.trimEnd() + signature;
 
         const after = signed.length;
 
@@ -185,7 +200,6 @@ const formatBytes = (bytes: number): string => {
 const run = async (): Promise<void> => {
     const startTime = nanoseconds();
 
-    // Kumpulkan semua file dari semua folder sekaligus
     const allFiles = (
         await Promise.all(
             folders.map(async (folder) => {
@@ -202,7 +216,6 @@ const run = async (): Promise<void> => {
         )
     ).flat();
 
-    // Proses semua file secara paralel penuh — lintas folder
     await Promise.all(allFiles.map(processFile));
 
     const duration = (nanoseconds() - startTime) / 1e9;
