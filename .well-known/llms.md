@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.10
+document_version: 18.11
 last_updated: 2026-03-21
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 21 Maret 2026)
-> Menampilkan 1106 artikel versi 18.10.
+> Menampilkan 1107 artikel versi 18.11.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -125,6 +125,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Tinggalkan Frase Ikut Pemerintah atau Ikut Muhammadiyah](https://dalam.web.id/jejak-sejarah/tinggalkan-frase-ikut-pemerintah-atau-muhammadiyah) : Frase Ikut pemerintah atau ikut Muhammadiyah dalam penentuan 1 Syawal menyesatkan dan memicu polarisasi. Simak analisis historis, normatif, dan ajakan meninggalkan dikotomi demi harmoni bangsa.
 - [Paradoks Hilal: Kenapa Umat Muslim Dulu Jago Astronomi, Sekarang Repot Tiap Lebaran?](https://dalam.web.id/jejak-sejarah/paradoks-hilal-rukyat-hisab-astronomi-islam) : Allah memberi Akal yang sangat berharga kepada manusia. Gunakan untuk mikir, termasuk memahami Sains. Sains adalah cara kita membaca ayat-ayat Allah yang tercipta di alam semesta. Kalau menolak sains, silakan lepas Akal, tidak usah pakai Akal.
 - [Kritik Program MBG vs Sunnah Nabi: Menakar Adab dan Kebijakan Publik](https://dalam.web.id/jejak-sejarah/kritik-mbg-dan-sunnah-nabi) : Mengkritik program Makan Bergizi Gratis (MBG) dianggap mencela makanan? Yuk bedah hadis Nabi soal adab makan vs pengawasan kebijakan publik yang mubazir.
 - [Santri Nilai Wacana Dialog dengan Israel Langkah Tolol](https://dalam.web.id/jejak-sejarah/santri-kritik-diplomasi-israel) : Santri kritik rencana pemerintah berdialog dengan Israel. Sebut langkah tolol karena sejarah Bani Israil ingkar janji. Simak analisis 5W+1H dan latar kisah nabi.
