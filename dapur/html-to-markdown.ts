@@ -11,6 +11,12 @@ const targetFolders = [
 // Signature — skip jika artikel sudah pernah diproses
 const MD_SIGNATURE = "markdown_oleh_Fakhrul_Rijal";
 
+// Boundary karakter yang TIDAK perlu tambah spasi (sudah aman untuk markdown.js)
+// Kalau karakter sesudah marker bukan salah satu ini → tambah spasi
+const SAFE_AFTER  = /[\s.,!?;:<)'"\/\]]/;
+// Kalau karakter sebelum marker bukan salah satu ini → tambah spasi
+const SAFE_BEFORE = /[\s(>'"\/\[]/;
+
 interface Stats {
     processed: number;
     changed: number;
@@ -26,6 +32,28 @@ let stats: Stats = {
     totalBefore: 0,
     totalAfter: 0
 };
+
+/**
+ * Konversi tag HTML ke markdown syntax.
+ * Auto-tambah spasi sebelum/sesudah marker kalau tidak ada boundary.
+ * Berlaku untuk: ** (bold), * (italic), ~~ (strikethrough), ` (inline code)
+ */
+function convertTag(
+    tag: string,         // regex match lengkap
+    before: string,      // karakter sebelum tag (dari capture group)
+inner: string,       // isi tag
+after: string,       // karakter sesudah tag (dari capture group)
+open: string,        // marker pembuka mis: **
+close: string        // marker penutup mis: **
+): string {
+    const needSpaceBefore = before && !SAFE_BEFORE.test(before);
+    const needSpaceAfter  = after  && !SAFE_AFTER.test(after);
+
+    const prefix = needSpaceBefore ? ' ' : '';
+    const suffix = needSpaceAfter  ? ' ' : '';
+
+    return `${before}${prefix}${open}${inner}${close}${suffix}${after}`;
+}
 
 function cleanHTML(html: string): string {
     const vault: string[] = [];
@@ -43,34 +71,47 @@ function cleanHTML(html: string): string {
     // Proteksi <style> — bukan konten artikel
     out = out.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, protect);
 
-    // Konversi markup — hasilnya dikonsumsi markdown.js di browser
-    // <li>, <p>, <blockquote>, <td>, <th> sengaja TIDAK diproteksi
-    // karena markdown.js memang render elemen-elemen tersebut
-
     // Pre block normalisasi
     out = out.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
 
-    // strong/b → **
-    out = out.replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**');
+    // ===== BOLD: <strong> / <b> → ** =====
+    // Capture 1 karakter sebelum dan sesudah tag untuk cek boundary
+    out = out.replace(/([\s\S]?)<(strong|b)>(.*?)<\/\2>([\s\S]?)/gi,
+                      (match, before, _tag, inner, after) =>
+                      convertTag(match, before, inner, after, '**', '**')
+    );
 
-    // em/i → *
-    out = out.replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*');
+    // ===== ITALIC: <em> / <i> → * =====
+    out = out.replace(/([\s\S]?)<(em|i)>(.*?)<\/\2>([\s\S]?)/gi,
+                      (match, before, _tag, inner, after) =>
+                      convertTag(match, before, inner, after, '*', '*')
+    );
 
-    // del/s/strike → ~~
-    out = out.replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~');
+    // ===== STRIKETHROUGH: <del> / <s> / <strike> → ~~ =====
+    out = out.replace(/([\s\S]?)<(del|s|strike)>(.*?)<\/\2>([\s\S]?)/gi,
+                      (match, before, _tag, inner, after) =>
+                      convertTag(match, before, inner, after, '~~', '~~')
+    );
 
-    // Link — hanya konversi yang bersih (tanpa atribut tambahan, tanpa gambar)
+    // ===== LINK: <a href="..."> → [teks](url) =====
+    // Hanya konversi yang bersih (tanpa atribut tambahan, tanpa gambar di dalamnya)
     out = out.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
         const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
         const containsImg = /<img\s[^>]*>/i.test(text);
         return (isProtected || containsImg) ? match : `[${text}](${url})`;
     });
 
-    // Inline code — satu baris, tanpa class/id
+    // ===== INLINE CODE: <code> → ` =====
+    // Hanya satu baris, tanpa class/id
     out = out.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
         if (match.toLowerCase().startsWith('<pre')) return match;
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
-            return `\`${codeText}\``;
+            // Capture 1 karakter sebelum/sesudah untuk boundary check
+            return match.replace(
+                /([\s\S]?)<code>([\s\S]*?)<\/code>([\s\S]?)/i,
+                                 (_m, before, inner, after) =>
+                                 convertTag(_m, before, inner, after, '`', '`')
+            );
         }
         return match;
     });
@@ -134,4 +175,4 @@ async function processFiles() {
 }
 
 await processFiles();
-console.log('🏁 Selesai! artikel pakai Markdown.');
+console.log('🏁 Selesai! Semua artikel kini lebih ramping.');
