@@ -39,48 +39,78 @@ const stats: Stats = {
     totalInvisibleRemoved: 0,
 };
 
-// ========== URL PROTECTION ==========
-const protectUrls = (html: string): { html: string; urls: string[] } => {
-    const urls: string[] = [];
-    const protectedHtml = html.replace(/(src|href)="([^"]*)"/gi, (match) => {
-        const id = `___URL_${urls.length}___`;
-        urls.push(match);
+// ========== PROTECTION ==========
+/**
+ * Proteksi semua atribut yang nilainya TIDAK boleh disentuh minifier/cleaner:
+ * - src="..."       → URL gambar, script, link
+ * - href="..."      → URL link, canonical, alternate
+ * - srcset="..."    → URL responsive image
+ * - content="..."   → meta og:image, og:url, robots, article:published_time, dll
+ * - action="..."    → form action URL
+ * - data-src="..."  → lazy-load URL
+ *
+ * Semua placeholder berbentuk ___ATTR_N___ sehingga minifier tidak menyentuhnya.
+ */
+const protectAttributes = (html: string): { html: string; vault: string[] } => {
+    const vault: string[] = [];
+
+    // Proteksi seluruh tag <script ... src="..."> agar tidak dihapus/dipecah
+    // Ini proteksi tag-level, bukan hanya atribut src-nya
+    const protectedHtml = html
+
+    // 1. Proteksi <script> dengan atribut src — script eksternal
+    .replace(/<script\b[^>]*\bsrc\s*=\s*"[^"]*"[^>]*>/gi, (match) => {
+        const id = `___ATTR_${vault.length}___`;
+        vault.push(match);
         return id;
-    });
-    return { html: protectedHtml, urls };
+    })
+
+    // 2. Proteksi semua atribut bernilai penting (urutan penting!)
+    .replace(
+        /\b(src|href|srcset|content|action|data-src|data-href|poster)\s*=\s*"([^"]*)"/gi,
+             (match) => {
+                 const id = `___ATTR_${vault.length}___`;
+                 vault.push(match);
+                 return id;
+             }
+    );
+
+    return { html: protectedHtml, vault };
 };
 
-const restoreUrls = (html: string, urls: string[]): string =>
-urls.reduce((acc, url, i) => acc.replace(`___URL_${i}___`, url), html);
+const restoreAttributes = (html: string, vault: string[]): string =>
+vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
 
 // ========== CLEANER ==========
 /**
  * Hapus invisible chars & decode entitas umum.
+ * AMAN: semua atribut penting sudah diproteksi sebelum fungsi ini dipanggil.
+ *
  * &gt; dan &lt; DIKECUALIKAN — dikonsumsi Markdown Enhancer v7.5 di browser.
+ * &amp; DIKECUALIKAN dari decode global — hanya decode di luar atribut,
+ *   dan sudah aman karena atribut sudah diproteksi duluan.
  */
-const cleanContent = (html: string): string => {
+const cleanContent = (html: string): { cleaned: string; saved: number } => {
     const before = html.length;
-    const { html: protectedHtml, urls } = protectUrls(html);
 
-    let cleaned = protectedHtml
-    .replace(/\u00A0/g, " ")
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");
+    let cleaned = html
+    .replace(/\u00A0/g, " ")                              // non-breaking space → spasi biasa
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");          // hapus zero-width chars
 
+    // Decode entitas — aman karena semua atribut sudah diproteksi
+    // &amp; dibiarkan karena bisa muncul di konten HTML yang valid (mis: teks Arab, kode)
     const entities: Record<string, string> = {
         "&nbsp;": " ",
-        "&amp;": "&",
         "&quot;": '"',
-        "&reg;": "®",
-        "&deg;": "°",
+        "&reg;":  "®",
+        "&deg;":  "°",
     };
 
     for (const [entity, symbol] of Object.entries(entities)) {
         cleaned = cleaned.replaceAll(entity, symbol);
     }
 
-    cleaned = restoreUrls(cleaned, urls);
-    stats.totalInvisibleRemoved += before - cleaned.length;
-    return cleaned;
+    return { cleaned, saved: before - cleaned.length };
 };
 
 // ========== PROCESSOR ==========
@@ -94,10 +124,20 @@ const processFile = async (filePath: string): Promise<void> => {
             return;
         }
 
-        const before  = content.length;
-        const cleaned = cleanContent(content);
+        const before = content.length;
 
-        const minified = minifyHtml.minify(Buffer.from(cleaned), {
+        // 1. Proteksi semua atribut penting dulu SEBELUM apapun disentuh
+        const { html: protected1, vault } = protectAttributes(content);
+
+        // 2. Bersihkan invisible chars & entitas di luar atribut
+        const { cleaned, saved } = cleanContent(protected1);
+        stats.totalInvisibleRemoved += saved;
+
+        // 3. Kembalikan semua atribut yang diproteksi
+        const restored = restoreAttributes(cleaned, vault);
+
+        // 4. Minifikasi
+        const minified = minifyHtml.minify(Buffer.from(restored), {
             allow_noncompliant_unquoted_attribute_values: true,
             collapse_whitespaces: false,
             ensure_spec_compliant_unquoted_attribute_values: true,
@@ -108,7 +148,7 @@ const processFile = async (filePath: string): Promise<void> => {
             minify_js: false,
         }).toString();
 
-        // Injeksi signature setelah minifikasi — rapat ke </html>
+        // 5. Injeksi signature rapat ke </html>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
         const signed = minified.includes("</html>")
         ? minified.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
