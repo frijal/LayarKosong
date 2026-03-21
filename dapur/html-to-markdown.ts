@@ -28,27 +28,46 @@ let stats: Stats = {
 };
 
 function cleanHTML(html: string): string {
-    // Lindungi isi <script> agar tidak ikut diubah
-    const scriptPlaceholders: string[] = [];
-    let protectedHTML = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
-        const id = `__SCRIPT_PROTECT_${scriptPlaceholders.length}__`;
-        scriptPlaceholders.push(match);
+    const vault: string[] = [];
+    const protect = (s: string) => {
+        const id = `__VAULT_${vault.length}__`;
+        vault.push(s);
         return id;
-    });
+    };
+    const restore = (s: string) =>
+    vault.reduce((acc, v, i) => acc.replaceAll(`__VAULT_${i}__`, v), s);
 
-    // Konversi markup umum
-    let updated = protectedHTML
-    .replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>')
-    .replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**')
-    .replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*')
-    .replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~')
-    .replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
+    // Proteksi <script> — bukan konten artikel
+    let out = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, protect);
+
+    // Proteksi <style> — bukan konten artikel
+    out = out.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, protect);
+
+    // Konversi markup — hasilnya dikonsumsi markdown.js di browser
+    // <li>, <p>, <blockquote>, <td>, <th> sengaja TIDAK diproteksi
+    // karena markdown.js memang render elemen-elemen tersebut
+
+    // Pre block normalisasi
+    out = out.replace(/<pre>`([\s\S]*?)`<\/pre>/gi, '<pre><code>$1</code></pre>');
+
+    // strong/b → **
+    out = out.replace(/<(strong|b)>(.*?)<\/\1>/gi, '**$2**');
+
+    // em/i → *
+    out = out.replace(/<(em|i)>(.*?)<\/\1>/gi, '*$2*');
+
+    // del/s/strike → ~~
+    out = out.replace(/<(del|s|strike)>(.*?)<\/\1>/gi, '~~$2~~');
+
+    // Link — hanya konversi yang bersih (tanpa atribut tambahan, tanpa gambar)
+    out = out.replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, (match, url, text) => {
         const isProtected = /class=|id=|style=|target=|rel=/i.test(match);
         const containsImg = /<img\s[^>]*>/i.test(text);
         return (isProtected || containsImg) ? match : `[${text}](${url})`;
     });
 
-    updated = updated.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
+    // Inline code — satu baris, tanpa class/id
+    out = out.replace(/<pre[\s\S]*?<\/pre>|<code>([\s\S]*?)<\/code>/gi, (match, codeText) => {
         if (match.toLowerCase().startsWith('<pre')) return match;
         if (codeText && !/\r|\n/.test(codeText) && !match.includes('class=') && !match.includes('id=')) {
             return `\`${codeText}\``;
@@ -56,20 +75,18 @@ function cleanHTML(html: string): string {
         return match;
     });
 
-    // Kembalikan isi <script> yang dilindungi
-    scriptPlaceholders.forEach((tag, index) => {
-        updated = updated.replace(`__SCRIPT_PROTECT_${index}__`, tag);
-    });
+    // Kembalikan semua yang diproteksi
+    out = restore(out);
 
-    // Injeksi signature di akhir file — sama polanya dengan inject-schema.ts
+    // Injeksi signature di akhir file
     const signature = `<noscript>${MD_SIGNATURE}</noscript>`;
-    if (updated.includes("</html>")) {
-        updated = updated.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`;
+    if (out.includes("</html>")) {
+        out = out.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`;
     } else {
-        updated = updated.trimEnd() + signature;
+        out = out.trimEnd() + signature;
     }
 
-    return updated;
+    return out;
 }
 
 async function processFiles() {
@@ -117,4 +134,4 @@ async function processFiles() {
 }
 
 await processFiles();
-console.log('🏁 Selesai! Semua artikel kini lebih ramping.');
+console.log('🏁 Selesai! artikel pakai Markdown.');
