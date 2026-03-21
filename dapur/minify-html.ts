@@ -4,7 +4,9 @@ import { nanoseconds } from "bun";
 import * as minifyHtml from "@minify-html/node";
 
 // ========== CONFIG ==========
-const MINIFY_SIGNATURE = "minify_oleh_Fakhrul_Rijal";
+// Bump versi signature → file lama (v1) tidak cocok → diproses ulang
+const MINIFY_SIGNATURE     = "minify_oleh_Fakhrul_Rijal_v2";
+const MINIFY_SIGNATURE_OLD = "minify_oleh_Fakhrul_Rijal";
 
 const folders: string[] = [
     "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media",
@@ -20,6 +22,7 @@ interface ErrorDetail {
 interface Stats {
     success: number;
     skipped: number;
+    reprocessed: number;
     failed: number;
     errorList: ErrorDetail[];
     totalSaved: number;
@@ -31,6 +34,7 @@ interface Stats {
 const stats: Stats = {
     success: 0,
     skipped: 0,
+    reprocessed: 0,
     failed: 0,
     errorList: [],
     totalSaved: 0,
@@ -40,11 +44,6 @@ const stats: Stats = {
 };
 
 // ========== PROTECTION: ATRIBUT ==========
-/**
- * Proteksi semua atribut yang nilainya TIDAK boleh disentuh minifier/cleaner:
- * src, href, srcset, content, action, data-src, data-href, poster
- * Termasuk tag <script src="..."> secara keseluruhan.
- */
 const protectAttributes = (html: string): { html: string; vault: string[] } => {
     const vault: string[] = [];
 
@@ -71,41 +70,42 @@ const protectAttributes = (html: string): { html: string; vault: string[] } => {
 const restoreAttributes = (html: string, vault: string[]): string =>
 vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
 
-// ========== PROTECTION: MARKDOWN SPACES ==========
-/**
- * Proteksi spasi di sekitar markdown syntax marker.
- * markdown.js butuh spasi sebagai boundary: [\s(] sebelum ** dan [\s.,!?] sesudahnya.
- *
- * Strategi: ganti spasi yang MENGAPIT marker dengan &#32; (HTML entity spasi)
- * sehingga minifier tidak membuangnya, lalu restore setelah minifikasi.
- *
- * Marker yang dilindungi: ** __ * _ ~~ ` (backtick inline code)
- */
-const protectMarkdownSpaces = (html: string): string => {
-    return html
-    // Spasi sebelum marker: " **" → "&#32;**"
-    .replace(/ (\*\*|__|\*|_|~~|`)/g, '&#32;$1')
-    // Spasi sesudah marker: "** " → "**&#32;"
-    .replace(/(\*\*|__|\*|_|~~|`) /g, '$1&#32;');
+// ========== PROTECTION: STYLE BLOCKS ==========
+// Proteksi <style> HANYA selama protectMarkdownSpaces jalan
+// agar CSS selector seperti * { } tidak ikut terkena replace spasi
+// Setelah protectMarkdownSpaces selesai, style DILEPAS kembali
+// supaya minify_css: true tetap bisa minify CSS
+const protectStyleBlocks = (html: string): { html: string; styles: string[] } => {
+    const styles: string[] = [];
+    const protected_ = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, (match) => {
+        const id = `___STYLE_${styles.length}___`;
+        styles.push(match);
+        return id;
+    });
+    return { html: protected_, styles };
 };
+
+const restoreStyleBlocks = (html: string, styles: string[]): string =>
+styles.reduce((acc, style, i) => acc.replace(`___STYLE_${i}___`, style), html);
+
+// ========== PROTECTION: MARKDOWN SPACES ==========
+// Spasi di sekitar markdown marker dilindungi agar tidak dibuang minifier
+// markdown.js butuh spasi sebagai boundary untuk render ** * ~~ `
+const protectMarkdownSpaces = (html: string): string =>
+html
+.replace(/ (\*\*|__|\*|_|~~|`)/g, '&#32;$1')
+.replace(/(\*\*|__|\*|_|~~|`) /g, '$1&#32;');
 
 const restoreMarkdownSpaces = (html: string): string =>
 html.replaceAll('&#32;', ' ');
 
 // ========== CLEANER ==========
-/**
- * Hapus invisible chars & decode entitas umum.
- * AMAN: semua atribut penting sudah diproteksi sebelum fungsi ini dipanggil.
- *
- * &gt; dan &lt; DIKECUALIKAN — dikonsumsi Markdown Enhancer v7.5 di browser.
- * &amp; DIKECUALIKAN — bisa muncul di konten teks yang valid.
- */
 const cleanContent = (html: string): { cleaned: string; saved: number } => {
     const before = html.length;
 
     let cleaned = html
-    .replace(/\u00A0/g, " ")                      // non-breaking space → spasi biasa
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");  // hapus zero-width chars
+    .replace(/\u00A0/g, " ")
+    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");
 
     const entities: Record<string, string> = {
         "&nbsp;": " ",
@@ -126,29 +126,43 @@ const processFile = async (filePath: string): Promise<void> => {
     try {
         const content = await readFile(filePath, "utf8");
 
-        // Skip jika sudah ada signature — artikel sudah pernah diminify
+        // Skip jika sudah ada signature versi baru
         if (content.includes(MINIFY_SIGNATURE)) {
             stats.skipped++;
             return;
         }
 
+        // Deteksi file lama (signature v1) — akan diproses ulang
+        const isReprocess = content.includes(MINIFY_SIGNATURE_OLD);
+        if (isReprocess) stats.reprocessed++;
+
         const before = content.length;
 
+        // Bersihkan signature lama sebelum diproses ulang
+        let html = isReprocess
+        ? content.replace(new RegExp(`<noscript>${MINIFY_SIGNATURE_OLD}<\\/noscript>`, 'g'), '')
+        : content;
+
         // 1. Proteksi atribut penting (src, href, content, dll)
-        const { html: protected1, vault } = protectAttributes(content);
+        const { html: protected1, vault } = protectAttributes(html);
 
         // 2. Bersihkan invisible chars & entitas di luar atribut
         const { cleaned, saved } = cleanContent(protected1);
         stats.totalInvisibleRemoved += saved;
 
-        // 3. Proteksi spasi di sekitar markdown syntax
-        //    Dilakukan SETELAH cleanContent agar spasi normal sudah bersih duluan
-        const mdProtected = protectMarkdownSpaces(cleaned);
+        // 3. Proteksi <style> sementara — agar CSS tidak kena protectMarkdownSpaces
+        const { html: noStyle, styles } = protectStyleBlocks(cleaned);
 
-        // 4. Kembalikan atribut yang diproteksi
-        const restored = restoreAttributes(mdProtected, vault);
+        // 4. Proteksi spasi markdown — aman, <style> sudah disingkirkan
+        const mdProtected = protectMarkdownSpaces(noStyle);
 
-        // 5. Minifikasi
+        // 5. Lepaskan <style> kembali — siap diminify oleh minify_css: true
+        const stylesRestored = restoreStyleBlocks(mdProtected, styles);
+
+        // 6. Kembalikan atribut yang diproteksi
+        const restored = restoreAttributes(stylesRestored, vault);
+
+        // 7. Minifikasi — minify_css: true akan handle <style> dengan benar
         const minified = minifyHtml.minify(Buffer.from(restored), {
             allow_noncompliant_unquoted_attribute_values: true,
             collapse_whitespaces: false,
@@ -160,10 +174,10 @@ const processFile = async (filePath: string): Promise<void> => {
             minify_js: false,
         }).toString();
 
-        // 6. Restore &#32; → spasi normal setelah minifikasi selesai
+        // 8. Restore spasi markdown setelah minifikasi
         const spacesRestored = restoreMarkdownSpaces(minified);
 
-        // 7. Injeksi signature rapat ke </html>
+        // 9. Injeksi signature versi baru
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
         const signed = spacesRestored.includes("</html>")
         ? spacesRestored.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
@@ -176,7 +190,6 @@ const processFile = async (filePath: string): Promise<void> => {
         stats.totalSaved  += before - after;
         stats.success++;
 
-        // Hanya tulis jika benar-benar lebih kecil
         if (after < before) {
             await writeFile(filePath, signed, "utf8");
         }
@@ -196,7 +209,7 @@ const formatBytes = (bytes: number): string => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 };
 
-// ========== RUNNER =========
+// ========== RUNNER ==========
 const run = async (): Promise<void> => {
     const startTime = nanoseconds();
 
@@ -225,6 +238,7 @@ const run = async (): Promise<void> => {
     console.log("=".repeat(60));
     console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(4)} detik`);
     console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
+    console.log(`🔄 Diproses Ulang    : ${stats.reprocessed} file (upgrade v1→v2)`);
     console.log(`⏭️  Di-skip           : ${stats.skipped} file`);
     console.log(`❌ Gagal Proses      : ${stats.failed} file`);
     console.log("-".repeat(60));
