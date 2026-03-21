@@ -47,7 +47,6 @@ jobs:
             bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
             bun run dapur/audit-workflow-efisiensi.ts
             bun run dapur/metadata-audit.ts
-            bun run dapur/rapikan-artikel-html.ts
             cp -u artikel/artikel.json sementara/ 
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
