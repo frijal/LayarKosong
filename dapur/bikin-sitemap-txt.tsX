@@ -4,13 +4,9 @@ const BASE_URL = "https://dalam.web.id";
 const SITEMAP_PATH = "sitemap.txt";
 const ARTIKEL_JSON = "artikel.json";
 
-// Sinkron dengan slug() di diet.ts
-const slug = (t: string) => t.toString().toLowerCase().trim()
-  .replace(/^[^\w\s]*/u, '')
-  .replace(/ & /g, '-and-')
-  .replace(/[^a-z0-9\s-]/g, '')
-  .replace(/\s+/g, '-')
-  .replace(/-+/g, '-');
+function slugify(text: string) {
+    return text.toLowerCase().trim().replace(/\s+/g, "-");
+}
 
 try {
     const data = JSON.parse(fs.readFileSync(ARTIKEL_JSON, "utf8"));
@@ -18,7 +14,7 @@ try {
 
     // 1. Kumpulkan Artikel
     for (const [cat, posts] of Object.entries(data) as [string, any[]][]) {
-        const catSlug = slug(cat); // ← dari slugify() ke slug()
+        const catSlug = slugify(cat);
         posts.forEach(p => {
             articleList.push({
                 url: `${BASE_URL}/${catSlug}/${p[1].replace('.html', '').replace(/^\//, '')}`,
@@ -45,7 +41,6 @@ try {
     // 5. Simpan
     fs.writeFileSync(SITEMAP_PATH, allUrls.join("\n") + "\n");
     console.log(`✅ ${SITEMAP_PATH} berhasil dibuat dengan ${allUrls.length} URL.`);
-
 } catch (error) {
     console.error("❌ Gagal membuat sitemap:", error);
     process.exit(1);
