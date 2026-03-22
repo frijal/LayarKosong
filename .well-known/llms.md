@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.43
+document_version: 18.44
 last_updated: 2026-03-22
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 22 Maret 2026)
-> Menampilkan 1109 artikel versi 18.43.
+> Menampilkan 1113 artikel versi 18.44.
 
 ## Gaya Hidup
+- [Kontroversi Anggaran MBG 1 Triliun Sehari: Prioritas Nutrisi atau Pemborosan Negara?](https://dalam.web.id/gaya-hidup/kontroversi-anggaran-mbg-vs-prioritas-nasional) : Mengupas tuntas perdebatan anggaran fantastis program Makan Bergizi Gratis (MBG) di Indonesia. Apakah tepat sasaran untuk gizi anak atau justru mengorbankan pertahanan, infrastruktur daerah, dan kesejahteraan guru honorer? Simak analisis mendalamnya di sini.
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
 - [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/gaya-hidup/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
@@ -624,6 +625,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Kebijakan Publik Indonesia yang Kontroversial 7 Fakta Keras Antara Teori dan Realita](https://dalam.web.id/sistem-terbuka/kebijakan-publik-indonesia-kontroversial-fakta-realita) : mengenai kebijakan publik Indonesia seperti WFA dan MBG yang sering terlihat rapi di atas kertas namun menghadirkan realita dan dampak berbeda di masyarakat.
 - [Pilih Distro Linux Stabil - Tips Longevity dan Recovery](https://dalam.web.id/sistem-terbuka/memilih-distro-linux-stabil) : Bingung pilih distro Linux yang tahan lama? Simak panduan memilih distro stabil seperti Debian, Ubuntu, dan Mint agar tidak terjebak distro musiman.
 - [4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya](https://dalam.web.id/sistem-terbuka/4-distro-linux-turunan-terbaik) : daftar 4 distro Linux turunan terbaik seperti Linux Mint CachyOS Pop OS dan Ultramarine yang memberikan performa dan kenyamanan lebih baik dari basis aslinya
 - [Sejarah Rilis Kernel Linux 1.0.0: Perjalanan Linus Torvalds Mengubah Dunia](https://dalam.web.id/sistem-terbuka/sejarah-kernel-linux-1-0-0) : Kisah lengkap sejarah rilis perdana kernel Linux 1.0.0 oleh Linus Torvalds pada 14 Maret 1994. Pelajari bagaimana sistem operasi ini lahir dan mendominasi dunia teknologi.
@@ -923,6 +925,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Tafsir QS Quraisy Ayat 4: Nikmat Pangan dan Keamanan dalam Pandangan Ulama](https://dalam.web.id/warta-tekno/tafsir-quraisy-ayat-4) : Kajian mendalam tafsir QS Quraisy ayat 4 menurut Ibnu Katsir, Al-Tabari, Al-Qurtubi, dan Quraish Shihab. Makna makanan dan rasa aman sebagai nikmat teologis, serta pesan universal untuk kehidupan.
+- [Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah](https://dalam.web.id/warta-tekno/panduan-migrasi-nodejs-ke-bun) : cara migrasi dari Node.js ke Bun untuk mempercepat pengembangan web. dengan prinsip 5W 1H untuk pemula hingga menengah.
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
 - [Panduan Migrasi GitHub Actions ke Node 24: Aman Untuk Pengguna Bun](https://dalam.web.id/warta-tekno/migrasi-github-actions-node-24-bun) : Node 20 akan EOL April 2026, GitHub Actions migrasi ke Node 24. Simak panduan lengkap untuk pengguna Bun, termasuk update engines, workflow YAML, dan penanganan modul native.
