@@ -14,7 +14,7 @@ const escapeHtmlAttr = (text: string) => {
     return text
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '’')
+    .replace(/'/g, '&#39;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 };
@@ -74,7 +74,7 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string) {
             await Bun.write(localPath, buffer);
         } else {
             await sharp(buffer)
-            .rotate() // Penting buat foto HP agar tidak miring
+            .rotate()
             .webp({ quality: 85, effort: 6 })
             .toFile(localPath);
         }
@@ -162,19 +162,52 @@ async function processFile(file: string, baseUrl: string) {
         }
 
         // --- 3. OPERASI STERILISASI (CLEANUP) ---
-        $('html').attr('lang', 'id').attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
+        // Pastikan SEMUA yang akan di-inject sudah dihapus lebih dulu
+        // sehingga hasil inject bersih, tidak ada duplikat apapun.
+        $('html')
+        .attr('lang', 'id')
+        .attr('prefix', 'og: https://ogp.me/ns# article: https://ogp.me/ns/article#');
 
-        // Menghapus link rel yang sudah ada (termasuk feed lama agar tidak duplikat)
-        $('link[rel="canonical"], link[rel="icon"], link[rel="shortcut icon"], link[rel="license"], link[rel="sitemap"], link[rel="search"], link[rel="manifest"], link[rel="alternate"]').remove();
+        // Hapus semua <link> yang akan di-inject ulang
+        $([
+            'link[rel="canonical"]',
+            'link[rel="icon"]',
+            'link[rel="shortcut icon"]',
+            'link[rel="license"]',
+            'link[rel="sitemap"]',
+            'link[rel="search"]',
+            'link[rel="manifest"]',
+            'link[rel="alternate"]',
+        ].join(', ')).remove();
 
-        // Menghapus meta description
-        $('meta[name="description"], meta[property="description"], meta[property="og:description"], meta[name="og:description"], meta[name="twitter:description"], meta[property="twitter:description"]').remove();
+        // Hapus <script> yang akan di-inject ulang
+        $('script[src="/ext/data-provider.js"]').remove();
 
-        // Menghapus meta social & open graph
-        $('meta[property^="og:"], meta[name^="twitter:"], meta[property^="twitter:"], meta[property^="article:"], meta[itemprop="image"], meta[name^="bluesky:"], meta[name^="fediverse:"]').remove();
-
-        // Menghapus meta lainnya
-        $('meta[name="author"], meta[name="robots"], meta[name="googlebot"], meta[name="theme-color"], meta[property="fb:app_id"]').remove();
+        // Hapus semua <meta> yang akan di-inject ulang
+        $([
+            // Open Graph
+            'meta[property^="og:"]',
+            // Twitter / X
+            'meta[name^="twitter:"]',
+            'meta[property^="twitter:"]',
+            // Article
+            'meta[property^="article:"]',
+            // Facebook
+            'meta[property="fb:app_id"]',
+            'meta[property="fb:pages"]',
+            // Social lainnya
+            'meta[name^="bluesky:"]',
+            'meta[name^="fediverse:"]',
+            // Itemprop
+            'meta[itemprop="image"]',
+            // Meta standar
+            'meta[name="description"]',
+            'meta[property="description"]',
+            'meta[name="author"]',
+            'meta[name="robots"]',
+            'meta[name="googlebot"]',
+            'meta[name="theme-color"]',
+        ].join(', ')).remove();
 
         // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
         const metaTags = [
@@ -214,9 +247,9 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:image" content="${metaImgUrl}">`,
             `<meta property="og:image" content="${metaImgUrl}">`,
             `<meta property="og:image:alt" content="${escapedOgTitle}">`,
-            `<meta property="og:image:width" content="1200">`,
-            `<meta property="og:image:height" content="675">`,
-            `<meta property="og:image:type" content="image/webp" />`,
+            `<meta property="og:image:width" content="1000">`,
+            `<meta property="og:image:height" content="618">`,
+            `<meta property="og:image:type" content="image/webp">`,
             `<meta name="theme-color" content="#00b0ed">`
         ];
 
@@ -260,4 +293,3 @@ async function fixSEO() {
 }
 
 fixSEO().catch(err => console.error(err));
-
