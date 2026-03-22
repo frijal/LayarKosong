@@ -93,8 +93,8 @@ function buildCombinedSchema(category: string, article: ArticleEntry): string {
         "image": {
           "@type": "ImageObject",
           "url": image || `${cleanBase}/logo.png`,
-          "width": 1000,
-          "height": 563
+          "width": 384,
+          "height": 384
         },
         "author": {
           "@type": "Person",
