@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.45
+document_version: 18.46
 last_updated: 2026-03-22
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,10 +39,9 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 22 Maret 2026)
-> Menampilkan 1113 artikel versi 18.45.
+> Menampilkan 1113 artikel versi 18.46.
 
 ## Gaya Hidup
-- [Kontroversi Anggaran MBG 1 Triliun Sehari: Prioritas Nutrisi atau Pemborosan Negara?](https://dalam.web.id/gaya-hidup/kontroversi-anggaran-mbg-vs-prioritas-nasional) : Mengupas tuntas perdebatan anggaran fantastis program Makan Bergizi Gratis (MBG) di Indonesia. Apakah tepat sasaran untuk gizi anak atau justru mengorbankan pertahanan, infrastruktur daerah, dan kesejahteraan guru honorer? Simak analisis mendalamnya di sini.
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
 - [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/gaya-hidup/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
@@ -457,6 +456,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Kontroversi Anggaran MBG 1 Triliun Sehari: Prioritas Nutrisi atau Pemborosan Negara?](https://dalam.web.id/opini-sosial/kontroversi-anggaran-mbg-vs-prioritas-nasional) : Mengupas tuntas perdebatan anggaran fantastis program Makan Bergizi Gratis (MBG) di Indonesia. Apakah tepat sasaran untuk gizi anak atau justru mengorbankan pertahanan, infrastruktur daerah, dan kesejahteraan guru honorer? Simak analisis mendalamnya di sini.
+- [Tafsir QS Quraisy Ayat 4: Nikmat Pangan dan Keamanan dalam Pandangan Ulama](https://dalam.web.id/opini-sosial/tafsir-quraisy-ayat-4) : Kajian mendalam tafsir QS Quraisy ayat 4 menurut Ibnu Katsir, Al-Tabari, Al-Qurtubi, dan Quraish Shihab. Makna makanan dan rasa aman sebagai nikmat teologis, serta pesan universal untuk kehidupan.
 - [Tentang Perjanjian ART Amerika: Kenapa Presiden Prabowo Digugat ke PTUN?](https://dalam.web.id/opini-sosial/gugatan-ptun-prabowo-perjanjian-art-amerika) : Karena perjanjian ini ditandatangani tanpa persetujuan Dewan Perwakilan Rakyat (DPR) dan tanpa adanya partisipasi publik yang bermakna. Pelanggaran sudah sangat jelas.
 - [Benarkah Dosa Salah Lebaran Bisa Ditransfer Ke Pemerintah?](https://dalam.web.id/opini-sosial/hukum-ikut-pemerintah-hari-raya-beda-quran-sunnah) : Apakah seorang muslim ikut berdosa jika pemimpin mengambil keputusan hari raya yang tidak sesuai Al Quran dan Sunnah beserta dalil larangan taqlid buta
 - [Efek Sekolah Daring dan Kebijakan Hemat BBM Analisis Lengkap](https://dalam.web.id/opini-sosial/efek-sekolah-daring-dan-kebijakan-hemat-bbm) : dampak sekolah daring terhadap pendidikan anak dan hubungan kebijakan hemat BBM. Solusi praktis dan rekomendasi kebijakan.
@@ -925,7 +926,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
-- [Tafsir QS Quraisy Ayat 4: Nikmat Pangan dan Keamanan dalam Pandangan Ulama](https://dalam.web.id/warta-tekno/tafsir-quraisy-ayat-4) : Kajian mendalam tafsir QS Quraisy ayat 4 menurut Ibnu Katsir, Al-Tabari, Al-Qurtubi, dan Quraish Shihab. Makna makanan dan rasa aman sebagai nikmat teologis, serta pesan universal untuk kehidupan.
 - [Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah](https://dalam.web.id/warta-tekno/panduan-migrasi-nodejs-ke-bun) : cara migrasi dari Node.js ke Bun untuk mempercepat pengembangan web. dengan prinsip 5W 1H untuk pemula hingga menengah.
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
