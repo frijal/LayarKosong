@@ -247,8 +247,8 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:image" content="${metaImgUrl}">`,
             `<meta property="og:image" content="${metaImgUrl}">`,
             `<meta property="og:image:alt" content="${escapedOgTitle}">`,
-            `<meta property="og:image:width" content="1200">`,
-            `<meta property="og:image:height" content="675">`,
+            `<meta property="og:image:width" content="1000">`,
+            `<meta property="og:image:height" content="618">`,
             `<meta property="og:image:type" content="image/webp">`,
             `<meta name="theme-color" content="#00b0ed">`
         ];
