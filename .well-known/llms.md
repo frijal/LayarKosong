@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.44
+document_version: 18.45
 last_updated: 2026-03-22
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 22 Maret 2026)
-> Menampilkan 1113 artikel versi 18.44.
+> Menampilkan 1113 artikel versi 18.45.
 
 ## Gaya Hidup
 - [Kontroversi Anggaran MBG 1 Triliun Sehari: Prioritas Nutrisi atau Pemborosan Negara?](https://dalam.web.id/gaya-hidup/kontroversi-anggaran-mbg-vs-prioritas-nasional) : Mengupas tuntas perdebatan anggaran fantastis program Makan Bergizi Gratis (MBG) di Indonesia. Apakah tepat sasaran untuk gizi anak atau justru mengorbankan pertahanan, infrastruktur daerah, dan kesejahteraan guru honorer? Simak analisis mendalamnya di sini.
