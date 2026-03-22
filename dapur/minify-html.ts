@@ -25,7 +25,6 @@ interface Stats {
     totalSaved: number;
     totalBefore: number;
     totalAfter: number;
-    totalInvisibleRemoved: number;
 }
 
 const stats: Stats = {
@@ -36,7 +35,6 @@ const stats: Stats = {
     totalSaved: 0,
     totalBefore: 0,
     totalAfter: 0,
-    totalInvisibleRemoved: 0,
 };
 
 // ========== PROTECTION: ATRIBUT ==========
@@ -105,28 +103,6 @@ const restoreMarkdownSpaces = (html: string): string => {
     .replace(/(\*\*|__|\*(?!\*)|_(?!_)|~~|`) {2,}/g, '$1 '); // double space SESUDAH marker
 };
 
-// ========== CLEANER ==========
-const cleanContent = (html: string): { cleaned: string; saved: number } => {
-    const before = html.length;
-
-    let cleaned = html
-    .replace(/\u00A0/g, " ")
-    .replace(/[\u200B\u200C\u200D\uFEFF]/g, "");
-
-    const entities: Record<string, string> = {
-        "&nbsp;": " ",
-        "&quot;": '"',
-        "&reg;":  "®",
-        "&deg;":  "°",
-    };
-
-    for (const [entity, symbol] of Object.entries(entities)) {
-        cleaned = cleaned.replaceAll(entity, symbol);
-    }
-
-    return { cleaned, saved: before - cleaned.length };
-};
-
 // ========== PROCESSOR ==========
 const processFile = async (filePath: string): Promise<void> => {
     try {
@@ -143,23 +119,19 @@ const processFile = async (filePath: string): Promise<void> => {
         // 1. Proteksi atribut penting (src, href, content, dll)
         const { html: protected1, vault } = protectAttributes(content);
 
-        // 2. Bersihkan invisible chars & entitas di luar atribut
-        const { cleaned, saved } = cleanContent(protected1);
-        stats.totalInvisibleRemoved += saved;
+        // 2. Proteksi <style> sementara — agar CSS tidak kena protectMarkdownSpaces
+        const { html: noStyle, styles } = protectStyleBlocks(protected1);
 
-        // 3. Proteksi <style> sementara — agar CSS tidak kena protectMarkdownSpaces
-        const { html: noStyle, styles } = protectStyleBlocks(cleaned);
-
-        // 4. Proteksi spasi markdown — aman, <style> sudah disingkirkan
+        // 3. Proteksi spasi markdown — aman, <style> sudah disingkirkan
         const mdProtected = protectMarkdownSpaces(noStyle);
 
-        // 5. Lepaskan <style> kembali — siap diminify oleh minify_css: true
+        // 4. Lepaskan <style> kembali — siap diminify oleh minify_css: true
         const stylesRestored = restoreStyleBlocks(mdProtected, styles);
 
-        // 6. Kembalikan atribut yang diproteksi
+        // 5. Kembalikan atribut yang diproteksi
         const restored = restoreAttributes(stylesRestored, vault);
 
-        // 7. Minifikasi — minify_css: true akan handle <style> dengan benar
+        // 6. Minifikasi — minify_css: true akan handle <style> dengan benar
         const minified = minifyHtml.minify(Buffer.from(restored), {
             allow_noncompliant_unquoted_attribute_values: true,
             collapse_whitespaces: false,
@@ -171,12 +143,12 @@ const processFile = async (filePath: string): Promise<void> => {
             minify_js: false,
         }).toString();
 
-        // 8. Restore spasi markdown + normalisasi double space
+        // 7. Restore spasi markdown + normalisasi double space
         // normalizeSpaces harus SETELAH minify karena minifier bisa
         // re-introduce double space saat serialisasi atribut
         const spacesRestored = normalizeSpaces(restoreMarkdownSpaces(minified));
 
-        // 9. Injeksi signature rapat ke </body>
+        // 8. Injeksi signature rapat ke </body>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
         const signed = spacesRestored.includes("</body>")
         ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
@@ -244,7 +216,6 @@ const run = async (): Promise<void> => {
     console.log(`📉 Ukuran Sebelum    : ${formatBytes(stats.totalBefore)}`);
     console.log(`📉 Ukuran Sesudah    : ${formatBytes(stats.totalAfter)}`);
     console.log(`🚀 Ruang Dihemat     : ${formatBytes(stats.totalSaved)}`);
-    console.log(`🧹 Karakter Dibuang  : ${stats.totalInvisibleRemoved} chars`);
     console.log("=".repeat(60));
 
     if (stats.failed > 0) {
