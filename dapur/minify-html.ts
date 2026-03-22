@@ -176,10 +176,10 @@ const processFile = async (filePath: string): Promise<void> => {
         // re-introduce double space saat serialisasi atribut
         const spacesRestored = normalizeSpaces(restoreMarkdownSpaces(minified));
 
-        // 9. Injeksi signature rapat ke </html>
+        // 9. Injeksi signature rapat ke </body>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
-        const signed = spacesRestored.includes("</html>")
-        ? spacesRestored.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
+        const signed = spacesRestored.includes("</body>")
+        ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
         : spacesRestored.trimEnd() + signature;
 
         const after = signed.length;
