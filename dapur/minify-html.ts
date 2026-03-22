@@ -4,9 +4,7 @@ import { nanoseconds } from "bun";
 import * as minifyHtml from "@minify-html/node";
 
 // ========== CONFIG ==========
-// Bump versi signature → file lama (v1) tidak cocok → diproses ulang
-const MINIFY_SIGNATURE     = "minify_oleh_Fakhrul_Rijal_v2";
-const MINIFY_SIGNATURE_OLD = "minify_oleh_Fakhrul_Rijal";
+const MINIFY_SIGNATURE = "minify_oleh_Fakhrul_Rijal";
 
 const folders: string[] = [
     "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media",
@@ -22,7 +20,6 @@ interface ErrorDetail {
 interface Stats {
     success: number;
     skipped: number;
-    reprocessed: number;
     failed: number;
     errorList: ErrorDetail[];
     totalSaved: number;
@@ -34,7 +31,6 @@ interface Stats {
 const stats: Stats = {
     success: 0,
     skipped: 0,
-    reprocessed: 0,
     failed: 0,
     errorList: [],
     totalSaved: 0,
@@ -126,25 +122,16 @@ const processFile = async (filePath: string): Promise<void> => {
     try {
         const content = await readFile(filePath, "utf8");
 
-        // Skip jika sudah ada signature versi baru
+        // Skip jika sudah ada signature — artikel sudah pernah diminify
         if (content.includes(MINIFY_SIGNATURE)) {
             stats.skipped++;
             return;
         }
 
-        // Deteksi file lama (signature v1) — akan diproses ulang
-        const isReprocess = content.includes(MINIFY_SIGNATURE_OLD);
-        if (isReprocess) stats.reprocessed++;
-
         const before = content.length;
 
-        // Bersihkan signature lama sebelum diproses ulang
-        let html = isReprocess
-        ? content.replace(new RegExp(`<noscript>${MINIFY_SIGNATURE_OLD}<\\/noscript>`, 'g'), '')
-        : content;
-
         // 1. Proteksi atribut penting (src, href, content, dll)
-        const { html: protected1, vault } = protectAttributes(html);
+        const { html: protected1, vault } = protectAttributes(content);
 
         // 2. Bersihkan invisible chars & entitas di luar atribut
         const { cleaned, saved } = cleanContent(protected1);
@@ -177,10 +164,10 @@ const processFile = async (filePath: string): Promise<void> => {
         // 8. Restore spasi markdown setelah minifikasi
         const spacesRestored = restoreMarkdownSpaces(minified);
 
-        // 9. Injeksi signature versi baru
+        // 9. Injeksi signature rapat ke </html>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
-        const signed = spacesRestored.includes("</html>")
-        ? spacesRestored.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
+        const signed = spacesRestored.includes("</body>")
+        ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
         : spacesRestored.trimEnd() + signature;
 
         const after = signed.length;
@@ -190,6 +177,7 @@ const processFile = async (filePath: string): Promise<void> => {
         stats.totalSaved  += before - after;
         stats.success++;
 
+        // Hanya tulis jika benar-benar lebih kecil
         if (after < before) {
             await writeFile(filePath, signed, "utf8");
         }
@@ -238,7 +226,6 @@ const run = async (): Promise<void> => {
     console.log("=".repeat(60));
     console.log(`⏱️  Waktu Tempuh      : ${duration.toFixed(4)} detik`);
     console.log(`✅ Berhasil Dijepit  : ${stats.success} file`);
-    console.log(`🔄 Diproses Ulang    : ${stats.reprocessed} file (upgrade v1→v2)`);
     console.log(`⏭️  Di-skip           : ${stats.skipped} file`);
     console.log(`❌ Gagal Proses      : ${stats.failed} file`);
     console.log("-".repeat(60));

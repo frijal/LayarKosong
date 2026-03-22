@@ -155,8 +155,8 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   let finalHtml = $.html();
   const signature = `<noscript>${PICTURE_SIGNATURE}</noscript>`;
 
-  if (finalHtml.includes("</html>")) {
-    finalHtml = finalHtml.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`;
+  if (finalHtml.includes("</body>")) {
+    finalHtml = finalHtml.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`;
   } else {
     finalHtml = finalHtml.trimEnd() + signature;
   }

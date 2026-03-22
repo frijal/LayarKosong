@@ -178,8 +178,8 @@ async function main() {
         }
 
         // 4. Injeksi signature di akhir file — rapat ke </html>
-        if (html.includes('</html>')) {
-          html = html.replace(/<\/html>\s*$/i, '').trimEnd() + `${signature}</html>`;
+        if (html.includes('</body>')) {
+          html = html.replace(/<\/body>\s*$/i, '').trimEnd() + `${signature}</body>`;
         } else {
           html = html.trimEnd() + signature;
         }

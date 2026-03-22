@@ -121,8 +121,8 @@ function cleanHTML(html: string): string {
 
     // Injeksi signature di akhir file
     const signature = `<noscript>${MD_SIGNATURE}</noscript>`;
-    if (out.includes("</html>")) {
-        out = out.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`;
+    if (out.includes("</body>")) {
+        out = out.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`;
     } else {
         out = out.trimEnd() + signature;
     }
