@@ -23,134 +23,6 @@
         .status-msg { text-align: center; font-size: 1.2rem; margin-top: 10px; color: #586069; }
     </style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/github-file-uploader">
     <meta property="og:url" content="https://dalam.web.id/artikel/github-file-uploader">
@@ -197,30 +69,21 @@
 <body>
 <h1></h1>
 <div id="iposbrowser"></div>
-
 <div class="card">
     <h2>🚀 GitHub File Uploader</h2>
-
     <form id="uploadForm">
         <label for="repo">Repository (Username/Repo):</label>
         <input type="text" id="repo" name="repo" placeholder="contoh: frijal/blog-storage" required="" autocomplete="username">
-
         <label for="token">GitHub Token (Fine-grained/Classic):</label>
         <input type="password" id="token" name="token" placeholder="github_pat_..." required="" autocomplete="current-password">
-
         <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-
         <label for="path">Path Folder di Repo (opsional):</label>
         <input type="text" id="path" placeholder="misal: img/posts">
-
         <label for="fileInput">Pilih File:</label>
         <input type="file" id="fileInput" required="">
-
         <button type="submit" id="uploadBtn">Upload ke GitHub</button>
     </form>
-
     <div id="status" class="status-msg"></div>
-
     <div id="result">
         <strong style="color: #22863a;">✅ Berhasil Diupload!</strong><br>
         <div class="url-box" id="fileUrl"></div>
@@ -232,12 +95,10 @@
     <p style="font-size: 1.2rem; line-height: 1.6;">
         Halaman ini adalah alat bantu (utility) untuk mengupload file langsung ke repository GitHub tanpa harus membuka antarmuka web GitHub. Ini sangat berguna untuk manajemen aset di <strong>Repository</strong> secara cepat.
     </p>
-
     <h4 style="margin-bottom: 10px;">Apa itu GitHub Token?</h4>
     <p style="font-size: 1.2rem; line-height: 1.6;">
         GitHub Token (Personal Access Token) bertindak sebagai "kunci digital" pengganti password. Token ini memberikan izin kepada aplikasi (halaman ini) untuk melakukan aksi spesifik—seperti menulis file—ke akun GitHub kamu secara aman.
     </p>
-
     <h4 style="margin-bottom: 10px;">Cara Mendapatkan Token (Fine-grained):</h4>
     <ol style="font-size: 1.2rem; line-height: 1.8; padding-left: 20px;">
         <li>Masuk ke akun GitHub kamu, lalu buka <strong>Settings</strong> &gt; <strong>Developer Settings</strong>.</li>
@@ -248,7 +109,6 @@
         <li>Pada <strong>Permissions</strong>, cari <strong>Contents</strong> dan ubah aksesnya menjadi <strong>"Read and write"</strong>.</li>
         <li>Klik <strong>Generate token</strong> dan salin kodenya. <em>(Ingat: Kode ini hanya muncul sekali!)</em></li>
     </ol>
-
     <div style="background-color: #fffbdd; border: 1px solid #d4a017; padding: 15px; border-radius: 6px; margin-top: 20px;">
         <strong style="color: #735c0f;">⚠️ Catatan Keamanan:</strong>
         <p style="font-size: 13px; margin: 5px 0 0; color: #735c0f;">
@@ -259,7 +119,6 @@
 </section>
 <footer style="margin-top: 80px; border-top: 1px solid #e1e4e8; padding: 40px 20px; background-color: #fff; color: #586069;">
     <div style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
-
         <div style="flex: 1; min-width: 250px;">
             <h3 style="color: #24292e; margin-bottom: 15px;">Layar Kosong</h3>
             <p style="font-size: 14px; line-height: 1.6;">
@@ -269,48 +128,36 @@
             <p style="font-size: 13px; margin-top: 10px;">
                 🄯 2026 <strong>Jaga Data Pribadi Tetap Aman.</strong></p>
         </div>
-
         <div style="flex: 1; min-width: 200px;">
             <h4 style="color: #24292e; margin-bottom: 15px; font-size: 15px;">Koneksi</h4>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
                 <a target="_blank" href="https://x.com/responaja" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-x-twitter"></i> Twitter</a>
-
 <a target="_blank" href="https://github.com/frijal" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-github"></i> GitHub</a>
-
 <a target="_blank" href="https://t.me/frijal" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-telegram"></i> Telegram</a>
-
 <a target="_blank" href="https://linkedin.com/in/frijal" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-
 <a target="_blank" href="https://threads.net/frijal" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-threads"></i> Threads</a>
-
 <a target="_blank" href="https://mastodon.social/@frijal" style="color: #0366d6; text-decoration: none;">
   <i class="fa-brands fa-mastodon"></i> Mastodon</a>
-
 <a target="_blank" href="https://www.youtube.com/@frijal" style="color: #d32f2f; text-decoration: none; font-size: 13px; display: block; margin-bottom: 5px;">
   <i class="fa-brands fa-youtube"></i> YouTube</a>
-
 <a target="_blank" href="https://tiktok.com/@gibah.dilarang" style="color: #000; text-decoration: none; font-size: 13px;">
   <i class="fa-brands fa-tiktok"></i> TikTok</a>
             </div>
         </div>
-
         <div style="flex: 0.5; min-width: 150px;">
             <h4 style="color: #24292e; margin-bottom: 15px; font-size: 15px;">Support</h4>
             <a target="_blank" href="https://paypal.me/FakhrulRijal" style="display: inline-block; background: #0070ba; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold;">
                 ☕ Buy me a coffee
             </a>
             <div style="margin-top: 15px;">
-
             </div>
         </div>
-
     </div>
-
     <div style="max-width: 800px; margin: 30px auto 0; padding-top: 20px; border-top: 1px dashed #eee; text-align: center; font-size: 12px; color: #999;">
         Built with Bun &amp; GitHub Actions • 
     </div>
@@ -320,7 +167,6 @@
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
         // Mencegah refresh halaman
         e.preventDefault();
-
         const token = document.getElementById('token').value;
         const repo = document.getElementById('repo').value;
         const path = document.getElementById('path').value;
@@ -328,23 +174,19 @@
         const status = document.getElementById('status');
         const result = document.getElementById('result');
         const uploadBtn = document.getElementById('uploadBtn');
-
         const file = fileInput.files[0];
         const fileName = file.name;
         // Bersihkan path dari slash di awal/akhir
         const cleanPath = path.replace(/^\/+|\/+$/g, '');
         const fullPath = cleanPath ? `${cleanPath}/${fileName}` : fileName;
-
         uploadBtn.disabled = true;
         status.innerText = "⏳ Sedang memproses file...";
         result.style.display = "none";
-
         try {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = async () => {
                 const base64Content = reader.result.split(',')[1];
-
                 const response = await fetch(`https://api.github.com/repos/${repo}/contents/${fullPath}`, {
                     method: 'PUT',
                     headers: {
@@ -356,13 +198,10 @@
                         content: base64Content
                     })
                 });
-
                 const data = await response.json();
-
                 if (response.ok) {
                     const customBaseUrl = "https://dalam.web.id";
                     const finalUrl = `${customBaseUrl}/${fullPath}`;
-
                     document.getElementById('fileUrl').innerText = finalUrl;
                     result.style.display = "block";
                     status.innerText = "✨ Upload selesai!";
@@ -376,16 +215,11 @@
             uploadBtn.disabled = false;
         }
     });
-
     function copyUrl() {
         const url = document.getElementById('fileUrl').innerText;
         navigator.clipboard.writeText(url);
         alert('URL disalin ke clipboard!');
     }
 </script>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-
 </body></html>

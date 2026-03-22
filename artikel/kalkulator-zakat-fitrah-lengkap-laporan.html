@@ -7,32 +7,26 @@
 <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
         .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-
         /* Header Laporan Kalkulator Cetak */
         .print-header { display: none; text-align: center; border-bottom: 2px solid #2e7d32; margin-bottom: 20px; padding-bottom: 15px; }
         .print-header h1 { margin: 0; color: #1b5e20; text-transform: uppercase; font-size: 20px; }
         .print-header p { margin: 5px 0; font-size: 14px; font-weight: bold; }
-
         h2.ui-title { color: #2e7d32; text-align: center; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #444; font-size: 14px; }
         input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; font-family: inherit; }
-
         .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
         .result-card { background: #f1f8e9; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #c8e6c9; }
         .result-card small { color: #2e7d32; display: block; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 11px; }
         .result-card span { font-size: 1.5em; font-weight: bold; color: #1b5e20; }
-
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
         th { background-color: #2e7d32; color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
-
         .btn-print { width: 100%; padding: 15px; background: #2e7d32; color: white; border: none; border-radius: 6px;
                      cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 25px; transition: 0.3s; }
         .btn-print:hover { background: #1b5e20; }
-
         /* Pengaturan Cetak (A4) */
         @media print {
             body { background: white; padding: 0; }
@@ -44,142 +38,7 @@
             td { border: 1px solid #333; }
         }
     </style>
-
 <link rel="stylesheet" href="/ext/marquee-url.css">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/kalkulator-zakat-fitrah-lengkap-laporan">
     <meta property="og:url" content="https://dalam.web.id/artikel/kalkulator-zakat-fitrah-lengkap-laporan">
@@ -226,7 +85,6 @@
     <meta property="article:modified_time" content="2026-03-11T13:48:17.310Z">
 </head>
 <body>
-
 <div class="container">
     <!-- Header Khusus Cetak -->
     <div class="print-header">
@@ -235,9 +93,7 @@
         <p>Tanggal Pembayaran: <span id="printTanggal"></span></p>
         <p style="font-size: 12px; font-weight: normal;">Tahun 1447 H / 2026 M</p>
     </div>
-
     <h2 class="ui-title">Kalkulator Zakat Fitrah</h2>
-
     <div class="form-grid">
         <div class="form-group">
             <label>Kepala Keluarga / Perwakilan:</label>
@@ -248,17 +104,14 @@
             <input type="date" id="tglBayar" oninput="updateHeader()">
         </div>
     </div>
-
     <div class="form-group">
         <label>Nama-nama Anggota Keluarga (Pisahkan dengan koma):</label>
         <textarea id="namaInput" placeholder="Contoh: Ahmad, Siti, Yusuf" oninput="updateTable()"></textarea>
     </div>
-
     <div class="form-group">
         <label>Berapa Harga Beras per Kg saat ini? (Rp):</label>
         <input type="number" id="hargaBeras" value="00" oninput="updateTable()">
     </div>
-
     <div class="result-grid">
         <div class="result-card">
             <small>Total Berat Beras</small>
@@ -269,7 +122,6 @@
             <span id="totalUang">Rp 0</span>
         </div>
     </div>
-
     <table id="tabelZakat">
         <thead>
             <tr>
@@ -282,22 +134,17 @@
             <!-- Data baris akan diisi oleh JavaScript -->
         </tbody>
     </table>
-
     <button class="btn-print" onclick="window.print()">Cetak Laporan Kalkulator / Simpan PDF</button>
 </div>
-
 <script>
     // Set default tanggal hari ini
     document.getElementById('tglBayar').valueAsDate = new Date();
     updateHeader();
-
     function updateHeader() {
         const nama = document.getElementById('kepalaKeluarga').value;
         const tgl = document.getElementById('tglBayar').value;
-
         // Update Judul
         document.getElementById('headerNama').innerText = nama ? "Laporan Kalkulator Zakat Fitrah Keluarga " + nama : "Laporan Kalkulator Zakat Fitrah Keluarga";
-
         // Format Tanggal untuk tampilan cetak
         if(tgl) {
             const opsi = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -305,17 +152,13 @@
             document.getElementById('printTanggal').innerText = tglFormat;
         }
     }
-
     function updateTable() {
         const input = document.getElementById('namaInput').value;
         const harga = document.getElementById('hargaBeras').value || 0;
         const tbody = document.getElementById('daftarNama');
-
         tbody.innerHTML = "";
-
         const daftarNama = input.split(',').map(n => n.trim()).filter(n => n !== "");
         const jumlahOrang = daftarNama.length;
-
         daftarNama.forEach((nama, index) => {
             let row = `<tr>
                 <td>${index + 1}</td>
@@ -324,17 +167,11 @@
             </tr>`;
             tbody.innerHTML += row;
         });
-
         const totalBeras = jumlahOrang * 2.5;
         const totalUang = totalBeras * harga;
-
         document.getElementById('totalBeras').innerText = totalBeras.toLocaleString('id-ID');
         document.getElementById('totalUang').innerText = "Rp " + totalUang.toLocaleString('id-ID');
     }
 </script>
-
-
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-
 </body></html>

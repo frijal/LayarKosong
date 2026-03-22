@@ -2,7 +2,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah - Layar Kosong</title> 
-
   <!-- Metadata SEO -->
 <meta name="keywords" content="systemd manager, tui, systemd, terminal ui, systemctl, journalctl, manajemen service linux, ratatui, zbus, rust, systemd manager tui">
   <meta name="news_keywords" content="systemd, TUI, manajemen service, systemctl alternatif, terminal linux">
@@ -226,137 +225,6 @@
     }
   </style>
 <link rel="stylesheet" href="/ext/marquee-url.css">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <meta property="og:locale" content="id_ID">
     <link rel="canonical" href="https://dalam.web.id/artikel/systemd-manager-tui">
     <meta property="og:url" content="https://dalam.web.id/artikel/systemd-manager-tui">
@@ -403,20 +271,16 @@
 </head>
 <body>
 <div class="container">
-
-
   <article>
     <header>
       <h1>🖥️ Systemd Manager TUI: Aplikasi Terminal untuk Mengelola Service systemd dengan Mudah</h1>
 <div id="iposbrowser"></div>
-
       <div class="article-meta">
         <span><i class="fa-solid fa-calendar-alt"></i> 28 Februari 2026</span>
         <span><i class="fa-solid fa-tags"></i> #systemd #TUI #Linux #Rust</span>
       </div>
       <p><em>Bagi pengguna Linux yang sering berurusan dengan systemd, terutama admin server atau pengguna tingkat lanjut, mengelola service (unit) bisa jadi tugas sehari-hari. Biasanya kita menggunakan perintah seperti <code>systemctl</code>, <code>journalctl</code>, dan lain-lain. Namun, bagaimana jika ada antarmuka terminal yang interaktif, dengan navigasi ala Vim, yang memudahkan kita melihat log, properti, dan mengontrol service? Kenalkan <strong>Systemd Manager TUI</strong> – tools berbasis Rust yang akan mengubah cara kita berinteraksi dengan systemd.</em></p>
     </header>
-
     <!-- 5W+1H PENJELASAN -->
     <section>
       <h2>🔎 Apa, Siapa, Kapan, Di Mana, Mengapa, Bagaimana? (5W+1H)</h2>
@@ -427,7 +291,6 @@
       <p><i class="fa-solid fa-balance-scale emoji-icon"></i> <strong>Mengapa perlu menggunakan TUI ini?</strong> Karena efisiensi. Dengan tampilan daftar yang bisa difilter (hanya running atau semua unit), navigasi cepat, dan akses langsung ke log dan properti tanpa harus menghafal perintah panjang. Juga, karena menggunakan D-Bus, interaksinya dengan systemd aman dan cepat. Ditambah lagi, tools ini open source (MIT License) dan ditulis dalam Rust yang terkenal aman dan cepat.</p>
       <p><i class="fa-solid fa-hand-holding-heart emoji-icon"></i> <strong>Bagaimana cara menggunakannya?</strong> Setelah diinstal, cukup jalankan perintah <code>systemd-manager-tui</code> di terminal. Kamu akan disambut dengan daftar unit systemd. Gunakan tombol panah atau hjkl untuk bergerak, Enter untuk melihat detail, dan shortcut yang ditampilkan di layar untuk melakukan tindakan (start, stop, dll).</p>
     </section>
-
     <!-- PREVIEW DAN FITUR -->
     <section>
       <h2>📸 Preview dan Fitur Unggulan</h2>
@@ -448,43 +311,34 @@
       </ul>
       <p>Untuk melihat tangkapan layar lebih lengkap, kunjungi <a href="https://github.com/matheus-git/systemd-manager-tui/blob/main/docs/screenshots.md" target="_blank" rel="noopener">halaman screenshots</a> di repositori.</p>
     </section>
-
     <!-- INSTALASI LENGKAP -->
     <section>
       <h2>📦 Cara Install Systemd Manager TUI di Berbagai Distribusi</h2>
       <p>Instalasi tools ini sangat mudah. Berikut langkah-langkahnya untuk setiap platform:</p>
-
       <h3>🐧 Ubuntu / Debian (via .deb)</h3>
       <p>Unduh file .deb dari <a href="https://github.com/matheus-git/systemd-manager-tui/releases" target="_blank">halaman Releases</a>, lalu install dengan:</p>
       <pre><code>sudo dpkg -i ./systemd-manager-tui_x.x.x-x_amd64.deb</code></pre>
       <p>Ganti <code>x.x.x-x</code> dengan versi terbaru. Jika ada dependensi yang kurang, jalankan <code>sudo apt install -f</code>.</p>
-
       <h3>🖥️ Fedora (via .rpm)</h3>
       <pre><code>sudo dnf install ./systemd-manager-tui_x.x.x-x_x86_64.rpm</code></pre>
-
       <h3>📀 Arch Linux (via AUR)</h3>
       <p>Package tersedia di AUR dengan nama <code>systemd-manager-tui</code>. Jika menggunakan yay:</p>
       <pre><code>yay -S systemd-manager-tui</code></pre>
       <p>Atau dengan paru, pamac, dll. Lihat di <a href="https://aur.archlinux.org/packages/systemd-manager-tui" target="_blank">AUR</a>.</p>
-
       <h3>❄️ NixOS (dengan flakes)</h3>
       <p>Jalankan langsung tanpa install:</p>
       <pre><code>nix run github:matheus-git/systemd-manager-tui</code></pre>
       <p>Untuk konfigurasi lebih lanjut, baca <a href="https://github.com/matheus-git/systemd-manager-tui/blob/main/docs/flakes.md" target="_blank">dokumentasi flakes</a>.</p>
-
       <h3>⚙️ Binary langsung</h3>
       <p>Unduh binary dari <a href="https://github.com/matheus-git/systemd-manager-tui/releases" target="_blank">Releases</a>, beri izin eksekusi, dan jalankan:</p>
       <pre><code>chmod +x systemd-manager-tui
 ./systemd-manager-tui</code></pre>
-
       <h3>🦀 Instalasi via Cargo (Rust)</h3>
       <p>Pastikan Rust dan Cargo sudah terinstall. Lalu jalankan:</p>
       <pre><code>cargo install --locked systemd-manager-tui</code></pre>
       <p>Binary akan ditempatkan di <code>~/.cargo/bin</code>, pastikan folder tersebut ada di PATH.</p>
-
       <p><i class="fa-solid fa-info-circle"></i> <strong>Tips:</strong> Setelah instalasi, kamu bisa membuat <em>alias</em> agar lebih mudah, misalnya <code>alias sdt='systemd-manager-tui'</code> di file <code>.bashrc</code> atau <code>.zshrc</code>.</p>
     </section>
-
     <!-- LIBRARY UTAMA DAN TEKNOLOGI -->
     <section>
       <h2>📚 Teknologi di Balik Systemd Manager TUI</h2>
@@ -495,7 +349,6 @@
       </ul>
       <p>Dengan kombinasi ini, Systemd Manager TUI mampu berkomunikasi langsung dengan systemd melalui D-Bus, tanpa perlu menjalankan perintah <code>systemctl</code> sebagai subproses. Hasilnya lebih responsif dan terintegrasi.</p>
     </section>
-
     <!-- CARA PENGGUNAAN DASAR -->
     <section>
       <h2>🕹️ Panduan Singkat Penggunaan</h2>
@@ -520,7 +373,6 @@
       <p>Kamu juga bisa berpindah mode antara unit system (global) dan unit user dengan menekan <kbd>u</kbd> (user) atau <kbd>U</kbd> (system). Filter hanya unit yang running dengan menekan <kbd>f</kbd>.</p>
       <p>Semua shortcut ditampilkan di bagian bawah layar, jadi kamu tidak perlu menghafal.</p>
     </section>
-
     <!-- KELEBIHAN DIBANDING SYSTEMCTL BIASA -->
     <section>
       <h2>⭐ Mengapa Systemd Manager TUI Lebih Unggul daripada systemctl?</h2>
@@ -534,29 +386,24 @@
         <li><strong>Ramah Vim</strong> – bagi pengguna Vim, navigasi dengan hjkl terasa alami dan cepat.</li>
       </ul>
     </section>
-
     <!-- KONTRIBUSI DAN LISENSI -->
     <section>
       <h2>🤝 Kontribusi dan Lisensi</h2>
       <p>Systemd Manager TUI adalah proyek open source yang dikelola oleh <a href="https://github.com/matheus-git" target="_blank">matheus-git</a> di GitHub. Kontribusi sangat terbuka! Jika kamu menemukan bug, punya ide fitur baru, atau ingin memperbaiki dokumentasi, silakan buka <em>issue</em> atau <em>pull request</em> di <a href="https://github.com/matheus-git/systemd-manager-tui" target="_blank">repositori utama</a>.</p>
       <p><i class="fa-solid fa-file-contract"></i> Lisensi: proyek ini menggunakan lisensi <strong>MIT License</strong>, yang berarti kamu bebas menggunakan, memodifikasi, dan mendistribusikannya, selama menyertakan pemberitahuan hak cipta asli.</p>
     </section>
-
     <!-- KESIMPULAN -->
     <section>
       <h2>🚀 Kesimpulan: Waktunya Beralih ke TUI?</h2>
       <p>Systemd Manager TUI adalah alat yang sangat berguna bagi siapa saja yang sering berinteraksi dengan systemd. Dengan antarmuka yang bersih, navigasi cepat, dan fitur lengkap, tools ini bisa meningkatkan produktivitas dan membuat pengelolaan service menjadi lebih menyenangkan. Apalagi didukung oleh teknologi modern Rust dan library ratatui/zbus, performanya cepat dan stabil.</p>
       <p>Jadi, tunggu apa lagi? Coba install sekarang dan rasakan kemudahan mengelola systemd langsung dari terminal favoritmu. Jangan lupa bagikan pengalamanmu di kolom komentar atau diskusi GitHub!</p>
     </section>
-
     <!-- Div related-articles-grid (kolom komentar) -->
     <div id="related-articles-grid">
     </div>
-
     <!-- Related articles grid -->
     <div id="response">
         </div>
-
     <!-- Footer -->
     <footer>
       <p>🄯 2026 Jaga Data Pribadi Tetap Aman – Informasi dari repositori resmi Systemd Manager TUI, dan dokumentasi teknis. Semua merek dagang adalah milik pemiliknya masing-masing. · <i class="fa-solid fa-globe"></i> <a href="https://dalam.web.id/artikel/">Indeks Artikel</a> <small>Dibuat dengan E‑E‑A‑T, prinsip 5W+1H, dan semangat open source. Font Awesome oleh Fonticons, Inc.</small></p>
@@ -564,8 +411,6 @@
 </footer>
   </article>
 </div>
-
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="dynamic-nav-container" class="floating-nav"></div><div id="internal-nav"></div><section id="related-marquee-section"><div id="related-marquee-container"></div></section><script defer="" src="/ext/markdown.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/marquee-url.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script>
-
 <script>document.addEventListener('DOMContentLoaded',() => {if(typeof hljs !== 'undefined') hljs.highlightAll();});</script>
 </body></html>
