@@ -1,0 +1,47 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":rebaseStalePrs"
+  ],
+  "enabledManagers": ["bun", "github-actions"],
+  "bun": {
+    "enabled": true
+  },
+  "constraints": {
+    "bun": "latest"
+  },
+  "postUpdateOptions": [
+    "bun-lockfile-fix"
+  ],
+  "packageRules": [
+    {
+      "description": "Group core web processing tools",
+      "matchPackageNames": [
+        "sharp", 
+        "@minify-html/node", 
+        "cheerio", 
+        "@xmldom/xmldom",
+        "glob"
+      ],
+      "groupName": "web-optimizers"
+    },
+    {
+      "description": "Group Cloudflare and Social API tools",
+      "matchPackageNames": ["wrangler", "tumblr.js"],
+      "groupName": "external-services",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["frijal"]
+  }
+}
