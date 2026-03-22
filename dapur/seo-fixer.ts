@@ -186,7 +186,7 @@ async function processFile(file: string, baseUrl: string) {
         // Hapus semua <meta> yang akan di-inject ulang
         $([
             // Open Graph
-            'meta[property^="og:"]',
+            'meta[property^="og:"]',  // termasuk og:image:width, og:image:height, og:image:type
             // Twitter / X
             'meta[name^="twitter:"]',
             'meta[property^="twitter:"]',
@@ -247,8 +247,8 @@ async function processFile(file: string, baseUrl: string) {
             `<meta name="twitter:image" content="${metaImgUrl}">`,
             `<meta property="og:image" content="${metaImgUrl}">`,
             `<meta property="og:image:alt" content="${escapedOgTitle}">`,
-            `<meta property="og:image:width" content="1000">`,
-            `<meta property="og:image:height" content="618">`,
+            `<meta property="og:image:width" content="1200">`,
+            `<meta property="og:image:height" content="675">`,
             `<meta property="og:image:type" content="image/webp">`,
             `<meta name="theme-color" content="#00b0ed">`
         ];
@@ -263,7 +263,13 @@ async function processFile(file: string, baseUrl: string) {
             if (!$(el).attr('alt')) $(el).attr('alt', seoTitle);
         });
 
-            await Bun.write(file, $.html());
+            // Bersihkan empty lines & invisible chars yang dihasilkan proses injeksi meta tag
+            const finalHtml = $.html()
+            .replace(/\u00A0/g, " ")                     // non-breaking space → spasi biasa
+            .replace(/[\u200B\u200C\u200D\uFEFF]/g, "") // hapus zero-width chars
+            .replace(/^\s*[\r\n]/gm, "");                // hapus empty lines
+
+            await Bun.write(file, finalHtml);
 }
 
 async function fixSEO() {
