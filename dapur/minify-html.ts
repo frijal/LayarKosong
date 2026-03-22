@@ -156,8 +156,8 @@ const processFile = async (filePath: string): Promise<void> => {
         // 5. Lepaskan <style> kembali — siap diminify oleh minify_css: true
         const stylesRestored = restoreStyleBlocks(mdProtected, styles);
 
-        // 6. Kembalikan atribut yang diproteksi + normalisasi double space
-        const restored = normalizeSpaces(restoreAttributes(stylesRestored, vault));
+        // 6. Kembalikan atribut yang diproteksi
+        const restored = restoreAttributes(stylesRestored, vault);
 
         // 7. Minifikasi — minify_css: true akan handle <style> dengan benar
         const minified = minifyHtml.minify(Buffer.from(restored), {
@@ -171,13 +171,15 @@ const processFile = async (filePath: string): Promise<void> => {
             minify_js: false,
         }).toString();
 
-        // 8. Restore spasi markdown setelah minifikasi
-        const spacesRestored = restoreMarkdownSpaces(minified);
+        // 8. Restore spasi markdown + normalisasi double space
+        // normalizeSpaces harus SETELAH minify karena minifier bisa
+        // re-introduce double space saat serialisasi atribut
+        const spacesRestored = normalizeSpaces(restoreMarkdownSpaces(minified));
 
-        // 9. Injeksi signature rapat ke </body>
+        // 9. Injeksi signature rapat ke </html>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
-        const signed = spacesRestored.includes("</body>")
-        ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
+        const signed = spacesRestored.includes("</html>")
+        ? spacesRestored.replace(/<\/html>\s*$/i, "").trimEnd() + `${signature}</html>`
         : spacesRestored.trimEnd() + signature;
 
         const after = signed.length;
