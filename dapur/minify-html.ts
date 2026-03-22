@@ -66,6 +66,10 @@ const protectAttributes = (html: string): { html: string; vault: string[] } => {
 const restoreAttributes = (html: string, vault: string[]): string =>
 vault.reduce((acc, original, i) => acc.replace(`___ATTR_${i}___`, original), html);
 
+// Normalisasi double space → single space di seluruh dokumen
+const normalizeSpaces = (html: string): string =>
+html.replace(/ {2,}/g, ' ');
+
 // ========== PROTECTION: STYLE BLOCKS ==========
 // Proteksi <style> HANYA selama protectMarkdownSpaces jalan
 // agar CSS selector seperti * { } tidak ikut terkena replace spasi
@@ -92,8 +96,14 @@ html
 .replace(/ (\*\*|__|\*|_|~~|`)/g, '&#32;$1')
 .replace(/(\*\*|__|\*|_|~~|`) /g, '$1&#32;');
 
-const restoreMarkdownSpaces = (html: string): string =>
-html.replaceAll('&#32;', ' ');
+const restoreMarkdownSpaces = (html: string): string => {
+    const restored = html.replaceAll('&#32;', ' ');
+    // Normalisasi double space yang mungkin terjadi di sekitar markdown marker
+    // akibat kombinasi spasi dari html-to-markdown + protectMarkdownSpaces
+    return restored
+    .replace(/ {2,}(\*\*|__|\*(?!\*)|_(?!_)|~~|`)/g, ' $1')  // double space SEBELUM marker
+    .replace(/(\*\*|__|\*(?!\*)|_(?!_)|~~|`) {2,}/g, '$1 '); // double space SESUDAH marker
+};
 
 // ========== CLEANER ==========
 const cleanContent = (html: string): { cleaned: string; saved: number } => {
@@ -146,8 +156,8 @@ const processFile = async (filePath: string): Promise<void> => {
         // 5. Lepaskan <style> kembali — siap diminify oleh minify_css: true
         const stylesRestored = restoreStyleBlocks(mdProtected, styles);
 
-        // 6. Kembalikan atribut yang diproteksi
-        const restored = restoreAttributes(stylesRestored, vault);
+        // 6. Kembalikan atribut yang diproteksi + normalisasi double space
+        const restored = normalizeSpaces(restoreAttributes(stylesRestored, vault));
 
         // 7. Minifikasi — minify_css: true akan handle <style> dengan benar
         const minified = minifyHtml.minify(Buffer.from(restored), {
@@ -164,7 +174,7 @@ const processFile = async (filePath: string): Promise<void> => {
         // 8. Restore spasi markdown setelah minifikasi
         const spacesRestored = restoreMarkdownSpaces(minified);
 
-        // 9. Injeksi signature rapat ke </html>
+        // 9. Injeksi signature rapat ke </body>
         const signature = `<noscript>${MINIFY_SIGNATURE}</noscript>`;
         const signed = spacesRestored.includes("</body>")
         ? spacesRestored.replace(/<\/body>\s*$/i, "").trimEnd() + `${signature}</body>`
