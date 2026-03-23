@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.49
-last_updated: 2026-03-22
+document_version: 18.50
+last_updated: 2026-03-23
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 22 Maret 2026)
-> Menampilkan 1114 artikel versi 18.49.
+## Index Artikel Terbaru (Updated: 23 Maret 2026)
+> Menampilkan 1115 artikel versi 18.50.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -627,6 +627,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya](https://dalam.web.id/sistem-terbuka/gnome-50-x11-wayland) : GNOME 50 resmi dirilis dengan menghapus X11 dari GDM, beralih penuh ke Wayland. Fitur VRR dan fractional scaling stabil, Nautilus makin cepat, dan aksesibilitas Orca ditingkatkan. Pelajari detailnya di sini.
 - [SparkyLinux 2026.03 Tiamat Rilis: Debian Testing Forky dengan Kernel 6.19](https://dalam.web.id/sistem-terbuka/sparkylinux-2026-03-tiamat) : SparkyLinux 2026.03 Tiamat hadir dengan kernel 6.19.6, Firefox ESR 140.8, dan dukungan GRUB UEFI 32-bit. Berbasis Debian Testing Forky, ISO rolling terbaru untuk pengguna Linux.
 - [Pilih Distro Linux Stabil - Tips Longevity dan Recovery](https://dalam.web.id/sistem-terbuka/memilih-distro-linux-stabil) : Bingung pilih distro Linux yang tahan lama? Simak panduan memilih distro stabil seperti Debian, Ubuntu, dan Mint agar tidak terjebak distro musiman.
 - [4 Distro Linux Turunan yang Jauh Lebih Mantap dari Aslinya](https://dalam.web.id/sistem-terbuka/4-distro-linux-turunan-terbaik) : daftar 4 distro Linux turunan terbaik seperti Linux Mint CachyOS Pop OS dan Ultramarine yang memberikan performa dan kenyamanan lebih baik dari basis aslinya
