@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 24 Mar 2026 | 14:11 WITA
+Update: 24 Mar 2026 | 14:15 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -34,9 +34,9 @@ Update: 24 Mar 2026 | 14:11 WITA
 | 📄 tsA   | **1** | dapur |
 | 📄 txt   | **29** | llms.txt, img, dapur, artikel, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, sementara, sitemap.txt, ads.txt, robots.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **1197** | img, thumbnail.webp |
+| 🖼️ webp  | **1183** | img, thumbnail.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **14** | feed-olah-media.xml, opensearch.xml, sitemap.xml, video-sitemap-1.xml, feed-opini-sosial.xml, image-sitemap-1.xml, BingSiteAuth.xml, feed-lainnya.xml, feed-sistem-terbuka.xml, feed-gaya-hidup.xml, rss.xml, feed-jejak-sejarah.xml, feed-warta-tekno.xml |
 | 📄 xsl   | **1** | sitemap-style.xsl |
 
-**Total File:** 3928
+**Total File:** 3914
