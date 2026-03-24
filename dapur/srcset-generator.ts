@@ -1,5 +1,5 @@
 import { file, write } from "bun";
-import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, appendFileSync, mkdirSync, readdirSync, copyFileSync } from "node:fs";
 import { load } from "cheerio";
 import path, { join } from "node:path";
 import sharp from "sharp";
@@ -88,29 +88,36 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const mobilePath     = path.join(dirName, `${baseNameSafe}-sm.webp`);
       const absDesktopPath = path.join(process.cwd(), desktopPath);
       const absMobilePath  = path.join(process.cwd(), mobilePath);
+
       const needsMobile    = meta.width > 480;
-      const physicalComplete =
-      existsSync(absDesktopPath) && (!needsMobile || existsSync(absMobilePath));
+      const physicalComplete = existsSync(absDesktopPath) && existsSync(absMobilePath);
 
       // Generate .webp ke img/ — ini yang akan di-commit ke repo
       if (!optimizedCache.has(cleanPath) || !physicalComplete) {
         if (!physicalComplete) {
           const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
+          // 1. Proses Desktop WebP
           await sharp(inputBuffer)
           .rotate()
           .resize(targetWidth, null, { withoutEnlargement: true })
           .webp({ quality: 82 })
           .toFile(absDesktopPath);
 
+          // 2. Proses Mobile WebP
           if (needsMobile) {
+            // Jika gambar besar, resize beneran
             await sharp(inputBuffer)
             .rotate()
             .resize(480, null, { withoutEnlargement: true })
             .webp({ quality: 75 })
             .toFile(absMobilePath);
+            console.log(`  ✨ WebP + Mobile OK: ${cleanPath}`);
+          } else {
+            // Jika gambar kecil, DUPLIKASI dari desktop hasil convert tadi
+            copyFileSync(absDesktopPath, absMobilePath);
+            console.log(`  👯 WebP + Duplicate OK (Small Image): ${cleanPath}`);
           }
-          console.log(`  ✨ WebP OK: ${cleanPath}`);
         }
 
         if (!optimizedCache.has(cleanPath)) {
@@ -128,8 +135,9 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, "/")}`;
       const webMobileUrl  = `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}`;
 
+      // Sekarang kita bisa pede selalu pakai <source> karena file -sm.webp PASTI ada (hasil duplikasi)
       const pictureHtml = `<picture style="display: block; text-align: center;">
-      ${needsMobile ? `  <source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ""}
+      <source media="(max-width: 500px)" srcset="${webMobileUrl}">
       <img src="${webDesktopUrl}"
       ${isFirstImage ? 'fetchpriority="high"' : ""}
       alt="${finalAlt.replace(/"/g, "&quot;")}"
@@ -151,7 +159,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 
   if (!fileHasChanged) return "no-change";
 
-  // Injeksi signature di akhir file — sama polanya dengan inject-schema.ts
+  // Injeksi signature di akhir file
   let finalHtml = $.html();
   const signature = `<noscript>${PICTURE_SIGNATURE}</noscript>`;
 
@@ -170,11 +178,8 @@ async function main() {
   console.log("🚀 srcset — Scan folder kategori, proses artikel baru saja...");
   console.log(`🚫 Skip ekstensi    : ${[...SKIP_EXTENSIONS].join(", ")}`);
 
-  // Pastikan folder cache ada
   mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
-  // Baca sitemap.txt lama (sebelum bikin-sitemap-txt.ts jalan)
-  // → berisi URL artikel yang SUDAH pernah diproses sebelumnya
   const sitemapUrls = existsSync(SITEMAP_FILE)
   ? new Set(
     readFileSync(SITEMAP_FILE, "utf-8")
@@ -184,7 +189,6 @@ async function main() {
 
   console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
-  // Kumpulkan semua .html dari folder kategori (kecuali index.html)
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
       return readdirSync(cat)
@@ -198,17 +202,13 @@ async function main() {
   const results = { processed: 0, skipped: 0, noImage: 0, missing: 0 };
 
   for (const htmlPath of allFiles) {
-    // Konversi path → URL untuk dicocokkan ke sitemap
-
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
 
-    // Artikel lama → URL ada di sitemap → skip (cepat!)
     if (sitemapUrls.has(url)) {
       results.skipped++;
       continue;
     }
 
-    // Artikel baru → URL tidak ada di sitemap → proses
     const result = await processHtmlFile(htmlPath);
 
     if (result === "processed") { results.processed++; console.log(`✅ Processed: ${htmlPath}`); }
@@ -225,7 +225,7 @@ async function main() {
   ❌ File hilang  : ${results.missing}
 
   🖼️  Output WebP  → img/            (akan di-commit ke repo)
-  📄 HTML         → folder kategori  (runner only, tidak di-commit)
+  📄 HTML          → folder kategori (runner only, tidak di-commit)
   `);
 }
 
