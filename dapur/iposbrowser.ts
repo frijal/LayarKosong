@@ -91,7 +91,7 @@ pcStyle.textContent = `
 .pc-block { display: flex; align-items: center; gap: 6px; }
 .pc-icon { width: 16px; height: 16px; display: block; object-fit: contain; }
 .pc-label { font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; }
-.pc-value { font-weight: 600; }
+.pc-value { font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
 @media (max-width: 480px) { #pagecounter-wrapper { gap: 8px; font-size: 0.7rem; } }
 `;
 document.head.appendChild(pcStyle);
