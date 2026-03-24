@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 24 Mar 2026 | 11:39 WITA
+Update: 24 Mar 2026 | 14:15 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -17,7 +17,8 @@ Update: 24 Mar 2026 | 11:39 WITA
 | 🎨 css   | **49** | dapur, ext |
 | 📄 cssA  | **1** | dapur |
 | 📄 gif   | **1** | img |
-| 🎨 html  | **2304** | sitemap.html, dapur, warta-tekno, img.html, artikel, security-policy.html, ext, privacy.html, index.html, sistem-terbuka, search.html, data-deletion.html, disclaimer.html, gaya-hidup, olah-media, jejak-sejarah, llms-index.html, feed.html, 404.html, opini-sosial, lisensi.html, about.html, lainnya, google2e9cfaf2f2923d27.html, data-deletion-form.html |
+| 🎨 html  | **2306** | sitemap.html, dapur, warta-tekno, img.html, artikel, security-policy.html, ext, privacy.html, index.html, sistem-terbuka, search.html, data-deletion.html, disclaimer.html, gaya-hidup, olah-media, jejak-sejarah, llms-index.html, feed.html, 404.html, opini-sosial, lisensi.html, about.html, lainnya, google2e9cfaf2f2923d27.html, data-deletion-form.html |
+| 📄 htmlA | **1** | index.htmlA |
 | 📄 ico   | **4** | dapur, artikel, ext, favicon.ico |
 | 🖼️ jpg   | **1** | thumbnail.jpg |
 | 📜 js    | **60** | dapur, ext, functions, sementara |
@@ -31,11 +32,11 @@ Update: 24 Mar 2026 | 11:39 WITA
 | 📄 toml  | **1** | wrangler.toml |
 | 📄 ts    | **60** | dapur, sementara |
 | 📄 tsA   | **1** | dapur |
-| 📄 txt   | **30** | llms.txt, img, dapur, artikel, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, sementara, sitemap.txt, ads.txt, robots.txt |
+| 📄 txt   | **29** | llms.txt, img, dapur, artikel, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, sementara, sitemap.txt, ads.txt, robots.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **1110** | img, thumbnail.webp |
+| 🖼️ webp  | **1183** | img, thumbnail.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **14** | feed-olah-media.xml, opensearch.xml, sitemap.xml, video-sitemap-1.xml, feed-opini-sosial.xml, image-sitemap-1.xml, BingSiteAuth.xml, feed-lainnya.xml, feed-sistem-terbuka.xml, feed-gaya-hidup.xml, rss.xml, feed-jejak-sejarah.xml, feed-warta-tekno.xml |
 | 📄 xsl   | **1** | sitemap-style.xsl |
 
-**Total File:** 3839
+**Total File:** 3914
