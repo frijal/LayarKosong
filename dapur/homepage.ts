@@ -48,13 +48,16 @@ function toPicture(
   const base      = dotIndex !== -1 ? urlBase.slice(0, dotIndex) : urlBase;
 
   // SVG & GIF tidak dikonversi — sama dengan logika SKIP_EXTENSIONS di srcset.ts
+  // Hanya gambar di /img/ yang dijamin punya WebP (diproses oleh srcset.ts)
   const skipExts  = new Set(['.svg', '.gif']);
-  const useWebP   = !skipExts.has(ext.toLowerCase());
+  const useWebP   = urlBase.includes('/img/') && !skipExts.has(ext.toLowerCase());
 
   const deskSrc   = useWebP ? `${base}.webp`     : imgUrl;
   const mobSrc    = useWebP ? `${base}-sm.webp`   : imgUrl;
 
   const cleanAlt  = alt.replace(/"/g, '&quot;');
+  // Escape single quote di URL agar aman dipakai di dalam onerror inline
+  const safeUrl   = imgUrl.replace(/'/g, '&#39;');
   const loading   = opts.loading ?? 'lazy';
   const fp        = opts.fetchpriority ? ' fetchpriority="high"' : '';
   const imgStyle  = opts.imgStyle ? ` style="${opts.imgStyle}"` : '';
@@ -66,7 +69,7 @@ function toPicture(
   ${useWebP ? `<source srcset="${deskSrc}">` : ''}
   <img src="${imgUrl}"${cls} alt="${cleanAlt}"
   loading="${loading}" decoding="async"${fp}${imgStyle}
-  onerror="this.src='/thumbnail.webp'">
+  onerror="this.onerror=null;this.src='${safeUrl}'">
   </picture>`;
 }
 
@@ -299,6 +302,7 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.onclick = () => { limit += 6; renderFeed(); renderSidebar(); };
     }
   }
+
 }
 
 // =================================================================================
@@ -348,6 +352,7 @@ function renderSidebar(targetCat?: string) {
     </div>
     </div>`;
   }).join('');
+
 }
 
 (window as any).renderSidebar = renderSidebar;

@@ -279,6 +279,7 @@ h1.logo a {
   width: 100%;
   overflow: hidden;
   line-height: 0; /* Hilangkan gap baseline bawaan inline img */
+  border-radius: 8px 8px 0 0; /* Sama dengan card-img — biar clip gambar rapi */
 }
 
 /* img.card-img di dalam picture — sama persis dengan sebelumnya */
@@ -287,6 +288,7 @@ h1.logo a {
   height: 180px;
   object-fit: cover;
   display: block;
+  border-radius: 8px 8px 0 0; /* Radius atas saja — bawah menyatu dengan card-body */
   transition: transform 0.4s ease, opacity 0.2s ease;
 }
 
