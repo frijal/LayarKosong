@@ -86,7 +86,7 @@ const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${al
 
 const viewsHTML = viewCount ? `
 <div class="pc-block">
-<span class="pc-label">VIEWS</span>
+<span class="pc-label">\u221E</span>
 <span class="pc-value">${viewCount.toLocaleString('id-ID')}</span>
 </div>` : '';
 
@@ -144,8 +144,9 @@ font-size: 0.75rem;
 }
 .pc-label {
     font-weight: 700;
-    font-size: 0.65rem;
-    opacity: 0.7;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
 .pc-value {
     font-weight: 600;
