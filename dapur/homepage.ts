@@ -1,21 +1,20 @@
 /**
  * =================================================================================
  * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider
- * + Responsive <picture> srcset untuk semua gambar (Feed, Sidebar, Hero)
  * =================================================================================
  */
 
 interface Article {
   category: string;
   title: string;
-  id: string;
+  id: string; // id menggantikan filename
   url: string;
   img: string;
   date: Date;
   summary: string;
 }
 
-// --- VARIABEL GLOBAL ---
+// --- VARIABEL GLOBAL (DIPERTAHANKAN) ---
 let allData: Article[] = [];
 let displayedData: Article[] = [];
 let heroData: Article[] = [];
@@ -24,74 +23,28 @@ let heroTimer: ReturnType<typeof setInterval> | null = null;
 let limit: number = 6;
 let currentActiveCategory: string = 'All';
 
-// =================================================================================
-// HELPER: Konversi URL gambar asli → <picture> dengan WebP srcset
-// Mengikuti konvensi penamaan dari srcset.ts:
-//   desktop → same-name.webp
-//   mobile  → same-name-sm.webp
-// =================================================================================
-function toPicture(
-  imgUrl: string,
-  alt: string,
-  opts: {
-    cls?: string;
-    style?: string;
-    fetchpriority?: boolean;
-    loading?: 'lazy' | 'eager';
-    imgStyle?: string;
-  } = {}
-): string {
-  // Pisah ekstensi dari URL (abaikan query string jika ada)
-  const urlBase   = imgUrl.split('?')[0];
-  const dotIndex  = urlBase.lastIndexOf('.');
-  const ext       = dotIndex !== -1 ? urlBase.slice(dotIndex) : '';
-  const base      = dotIndex !== -1 ? urlBase.slice(0, dotIndex) : urlBase;
-
-  // SVG & GIF tidak dikonversi — sama dengan logika SKIP_EXTENSIONS di srcset.ts
-  // Hanya gambar di /img/ yang dijamin punya WebP (diproses oleh srcset.ts)
-  const skipExts  = new Set(['.svg', '.gif']);
-  const useWebP   = urlBase.includes('/img/') && !skipExts.has(ext.toLowerCase());
-
-  const deskSrc   = useWebP ? `${base}.webp`     : imgUrl;
-  const mobSrc    = useWebP ? `${base}-sm.webp`   : imgUrl;
-
-  const cleanAlt  = alt.replace(/"/g, '&quot;');
-  // Escape single quote di URL agar aman dipakai di dalam onerror inline
-  const safeUrl   = imgUrl.replace(/'/g, '&#39;');
-  const loading   = opts.loading ?? 'lazy';
-  const fp        = opts.fetchpriority ? ' fetchpriority="high"' : '';
-  const imgStyle  = opts.imgStyle ? ` style="${opts.imgStyle}"` : '';
-  const cls       = opts.cls ? ` class="${opts.cls}"` : '';
-
-  return `
-  <picture${opts.style ? ` style="${opts.style}"` : ''}>
-  ${useWebP ? `<source media="(max-width: 500px)" srcset="${mobSrc}">` : ''}
-  ${useWebP ? `<source srcset="${deskSrc}">` : ''}
-  <img src="${imgUrl}"${cls} alt="${cleanAlt}"
-  loading="${loading}" decoding="async"${fp}${imgStyle}
-  onerror="this.onerror=null;this.src='${safeUrl}'">
-  </picture>`;
-}
-
-// =================================================================================
-// FETCH DATA
-// =================================================================================
 async function fetchData(): Promise<void> {
   try {
+    // MENGGUNAKAN PROVIDER (Menggantikan fetch manual)
     const data = await (window as any).siteDataProvider.getFor('homepage.ts');
 
     allData = [];
 
+    // Iterasi kategori dari data provider
     for (const cat in data) {
       const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
       data[cat].forEach((item: any) => {
+        // ID di provider sudah sesuai dengan filename dari JSON
         const fileSlug = item.id.replace(/\.html$/, '');
+
         allData.push({
           category: cat,
           title: item.title,
           id: item.id,
           url: `/${catSlug}/${fileSlug}`,
           img: item.image,
+          // Pastikan format date bisa diproses, jika item.date hanya '2026-03-10',
+          // tambahkan jam agar tidak ada isu timezone
           date: item.date ? new Date(item.date) : new Date(),
                      summary: item.description || ''
         });
@@ -113,9 +66,7 @@ async function fetchData(): Promise<void> {
   }
 }
 
-// =================================================================================
-// INIT
-// =================================================================================
+// --- LOGIKA INI Tetap sama seperti kode aslimu ---
 function initSite(): void {
   renderHero();
   renderCategories();
@@ -124,7 +75,7 @@ function initSite(): void {
   renderFeed();
 
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
-  const clearBtn    = document.getElementById('clearSearch');
+  const clearBtn = document.getElementById('clearSearch');
   const heroSection = document.getElementById('hero');
 
   if (searchInput) {
@@ -174,26 +125,80 @@ function initSite(): void {
   }
 }
 
-// =================================================================================
-// RENDER: HERO — pakai <img> absolut dalam container agar bisa pakai <picture>
-// CSS yang diperlukan: .hero-slide { position: relative; overflow: hidden; }
-// =================================================================================
+function renderSidebar(targetCat?: string) {
+  const side = document.getElementById('sidebarRandom');
+  if (!side) return;
+  side.innerHTML = '';
+
+  // 1. Ambil kategori yang sedang aktif dari Pill yang punya class 'active'
+  const activePill = document.querySelector('.pill.active');
+  const currentCategory = targetCat || (activePill ? activePill.textContent.trim() : 'All');
+
+  // 2. Filter artikel berdasarkan kategori aktif (Jika 'Kategori/All', ambil semua)
+  let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
+  ? [...allData]
+  : allData.filter(item => item.category === currentCategory);
+
+  // 3. Hindari duplikasi dengan artikel yang sedang tampil di Feed Utama
+  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
+  const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
+
+  // 4. Acak dan ambil 7 item
+  const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 11);
+
+  // 5. Render ke HTML (Sudah menggunakan tooltip 'title' bawaan browser)
+  side.innerHTML = randoms.map(item => {
+    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
+    const cleanTitle = item.title.replace(/"/g, '&quot;');
+
+    const d = item.date;
+    const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
+
+    return `
+    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+    <img src="${item.img}" class="mini-thumb" alt="${cleanTitle}" onerror="this.src='/thumbnail.webp'" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; flex-shrink:0;">
+    <div class="mini-text">
+    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
+    <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+    ${item.title}
+    </a>
+    </h4>
+    <div style="display: flex; align-items: center; gap: 5px;">
+    <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
+    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
+    </div>
+    </div>
+    </div>`;
+  }).join('');
+}
+
+// --- EKSPOR KE GLOBAL AGAR TOMBOL HTML BISA AKSES ---
+(window as any).renderSidebar = renderSidebar;
+
+function filterByCat(cat: string, el?: HTMLElement): void {
+  if (el) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
+  renderFeed(true);
+  renderSidebar(cat); // Panggil sidebar dengan kategori terpilih
+}
+
+(window as any).filterByCat = filterByCat;
+
+// --- SISA FUNGSI LAINNYA ---
 function renderHero(): void {
   if (heroData.length === 0) return;
-  const heroEl  = document.getElementById('hero');
+  const heroEl = document.getElementById('hero');
   const wrapper = document.getElementById('heroSliderWrapper');
   if (!heroEl || !wrapper) return;
 
   heroEl.classList.remove('skeleton');
 
-  wrapper.innerHTML = heroData.map((h, idx) => `
-  <a href="${h.url}" class="hero-slide">
-  ${toPicture(h.img, h.title, {
-    fetchpriority: idx === 0,   // Hanya slide pertama yang high priority
-    loading: idx === 0 ? 'eager' : 'lazy',
-    style: 'position:absolute;inset:0;width:100%;height:100%;',
-    imgStyle: 'width:100%;height:100%;object-fit:cover;display:block;'
-  })}
+  wrapper.innerHTML = heroData.map((h) => `
+  <a href="${h.url}" class="hero-slide" style="background-image: url('${h.img}')">
   <div class="hero-overlay"></div>
   <div class="hero-content">
   <span class="hero-cat">${h.category}</span>
@@ -253,20 +258,17 @@ function moveHero(direction: number): void {
   startHeroSlider();
 }
 
-// =================================================================================
-// RENDER: FEED — card artikel utama
-// =================================================================================
 function renderFeed(reset: boolean = false): void {
   if (reset) limit = 6;
   const container = document.getElementById('newsFeed');
   if (!container) return;
   container.innerHTML = '';
 
-  const heroSection    = document.getElementById('hero');
-  const isHeroVisible  = heroSection && heroSection.style.display !== 'none';
-  const titlesInHero   = heroData.map(h => h.title);
+  const heroSection = document.getElementById('hero');
+  const isHeroVisible = heroSection && heroSection.style.display !== 'none';
+  const titlesInHero = heroData.map(h => h.title);
 
-  const filteredItems  = displayedData.filter(item => {
+  const filteredItems = displayedData.filter(item => {
     if (isHeroVisible && titlesInHero.includes(item.title)) return false;
     return true;
   });
@@ -276,7 +278,7 @@ function renderFeed(reset: boolean = false): void {
   itemsToDisplay.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
-    ${toPicture(item.img, item.title, { cls: 'card-img', loading: 'lazy' })}
+    <img src="${item.img}" class="card-img" alt="${item.title}" onerror="this.src='/thumbnail.webp'">
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -302,79 +304,10 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.onclick = () => { limit += 6; renderFeed(); renderSidebar(); };
     }
   }
-
 }
-
-// =================================================================================
-// RENDER: SIDEBAR — artikel acak
-// =================================================================================
-function renderSidebar(targetCat?: string) {
-  const side = document.getElementById('sidebarRandom');
-  if (!side) return;
-  side.innerHTML = '';
-
-  const activePill      = document.querySelector('.pill.active');
-  const currentCategory = targetCat || (activePill ? activePill.textContent!.trim() : 'All');
-
-  let filteredForSidebar = (currentCategory === 'All' || currentCategory === 'Kategori')
-  ? [...allData]
-  : allData.filter(item => item.category === currentCategory);
-
-  const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
-  const finalAvailable  = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
-
-  const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 11);
-
-  side.innerHTML = randoms.map(item => {
-    const cleanSummary = (item.summary || '').replace(/"/g, '&quot;');
-    const cleanTitle   = item.title.replace(/"/g, '&quot;');
-
-    const d             = item.date;
-    const formattedDate = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getFullYear())}`;
-
-    return `
-    <div class="mini-item" style="animation: fadeIn 0.4s ease; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-    ${toPicture(item.img, cleanTitle, {
-      cls: 'mini-thumb',
-      loading: 'lazy',
-      imgStyle: 'width:55px;height:55px;object-fit:cover;border-radius:8px;flex-shrink:0;'
-    })}
-    <div class="mini-text">
-    <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
-    <a href="${item.url}" style="text-decoration: none; color: inherit; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-    ${item.title}
-    </a>
-    </h4>
-    <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
-    <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
-    </div>
-    </div>
-    </div>`;
-  }).join('');
-
-}
-
-(window as any).renderSidebar = renderSidebar;
-
-// =================================================================================
-// FILTER
-// =================================================================================
-function filterByCat(cat: string, el?: HTMLElement): void {
-  if (el) {
-    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-    el.classList.add('active');
-  }
-
-  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
-  renderFeed(true);
-  renderSidebar(cat);
-}
-
-(window as any).filterByCat = filterByCat;
 
 function renderCategories(): void {
-  const cats      = [...new Set(allData.map(i => i.category))];
+  const cats = [...new Set(allData.map(i => i.category))];
   const container = document.getElementById('categoryPills');
   if (!container) return;
   container.innerHTML = `<div class="pill active" id="pill-all">Kategori</div>`;
@@ -390,7 +323,7 @@ function renderCategories(): void {
 }
 
 function renderArchives(): void {
-  const years   = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
+  const years = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
   const ySelect = document.getElementById('yearFilter') as HTMLSelectElement | null;
   if (!ySelect) return;
   ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
@@ -407,14 +340,14 @@ function updateMonthDropdown(): void {
   const ySelect = document.getElementById('yearFilter') as HTMLSelectElement | null;
   const mSelect = document.getElementById('monthFilter') as HTMLSelectElement | null;
   if (!ySelect || !mSelect) return;
-  const selectedYear  = ySelect.value;
-  const monthsName    = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-  mSelect.innerHTML   = '<option value="">Bulan</option>';
+  const selectedYear = ySelect.value;
+  const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  mSelect.innerHTML = '<option value="">Bulan</option>';
   if (selectedYear) {
     const availableMonths = [...new Set(allData.filter(i => i.date.getFullYear().toString() === selectedYear).map(i => i.date.getMonth()))].sort((a, b) => a - b);
     availableMonths.forEach(m => {
-      const opt       = document.createElement('option');
-      opt.value       = m.toString();
+      const opt = document.createElement('option');
+      opt.value = m.toString();
       opt.textContent = monthsName[m];
       mSelect.appendChild(opt);
     });
@@ -423,8 +356,8 @@ function updateMonthDropdown(): void {
 }
 
 function runFilters(): void {
-  const y           = (document.getElementById('yearFilter') as HTMLSelectElement).value;
-  const m           = (document.getElementById('monthFilter') as HTMLSelectElement).value;
+  const y = (document.getElementById('yearFilter') as HTMLSelectElement).value;
+  const m = (document.getElementById('monthFilter') as HTMLSelectElement).value;
   const heroSection = document.getElementById('hero');
   if (y !== "") { if (heroSection) heroSection.style.display = 'none'; stopHeroSlider(); }
   else { if (heroSection) heroSection.style.display = 'block'; startHeroSlider(); }
@@ -435,13 +368,11 @@ function runFilters(): void {
   });
   renderFeed(true);
   renderSidebar();
-}
+};
 
-// =================================================================================
-// BOOT
-// =================================================================================
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', fetchData);
 } else {
-  fetchData();
+  fetchData(); // Panggil langsung jika DOM sudah siap
 }
