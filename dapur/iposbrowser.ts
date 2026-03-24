@@ -1,19 +1,12 @@
 /**
  * =================================================================================
- * IP, OS, Browser Info & JSON Article Date v4.7 (Optimized for DataProvider)
+ * View Counter & Article Date v5.1 (Namespace: pagecounter)
+ * Optimized for Layar Kosong V6.9 - Avoid CSS Conflict
  * =================================================================================
  */
 
-// 1. Definisi Tipe Data untuk Type Safety
-interface ArticleJson {
-    [category: string]: any[][];
-}
-
-interface GeoData {
-    city: string;
-    country_name: string;
-    country_code: string;
-    error?: boolean;
+interface ViewResponse {
+    views: number;
 }
 
 const browserIcons: Record<string, string> = {
@@ -22,7 +15,8 @@ const browserIcons: Record<string, string> = {
 };
 
 const osIcons: Record<string, string> = {
-    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg', Linux: '/ext/icons/linux.svg', Android: '/ext/icons/android.svg', iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
+    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg', Linux: '/ext/icons/linux.svg',
+    Android: '/ext/icons/android.svg', iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -42,89 +36,148 @@ ua.includes('Windows') ? 'Windows' :
 ua.includes('Mac') ? 'macOS' :
 ua.includes('Linux') ? 'Linux' : 'Unknown';
 
-// --- B. AMBIL TANGGAL VIA DATA PROVIDER ---
+// --- B. FETCH VIEW COUNTER ---
+async function fetchViews(): Promise<number | null> {
+    try {
+        const slug = window.location.pathname;
+        const res = await fetch(`/hit?url=${encodeURIComponent(slug)}`);
+        if (!res.ok) return null;
+        const data: ViewResponse = await res.json();
+        return data.views;
+    } catch { return null; }
+}
+
+// --- C. AMBIL TANGGAL VIA DATA PROVIDER ---
 async function getArticleDate(): Promise<string | null> {
     try {
-        // Mekanisme Penjaga: Tunggu sampai window.siteDataProvider ada
         while (!(window as any).siteDataProvider) {
             await new Promise(r => setTimeout(r, 100));
         }
-
         const currentPath = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
         const fileName = currentPath.endsWith('.html') ? currentPath : `${currentPath}.html`;
-
-        // Panggil provider (Data sudah di-cache oleh provider)
         const data = await (window as any).siteDataProvider.getData();
 
         let foundDate: string | null = null;
         for (const category in data) {
-
-
-            // Gunakan indeks yang jelas, atau idealnya dari konfigurasi provider
-
-
             const match = data[category].find((entry: any) => entry[1] === fileName);
             if (match) {
-                foundDate = match[3]; // Indeks 3 adalah tanggal
+                foundDate = match[3];
                 break;
             }
         }
-
         if (foundDate) {
-            return new Date(foundDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            return new Date(foundDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
         }
-    } catch (e) {
-        console.warn("Gagal mengambil tanggal via Provider:", e);
-    }
+    } catch (e) { console.warn("Gagal ambil tanggal:", e); }
     return null;
 }
 
-// --- C. FETCH GEOIP ---
-async function fetchGeo(): Promise<GeoData | null> {
-    try {
-        const res = await fetch('https://ipapi.co/json/');
-        const d: GeoData = await res.json();
-        return d.error ? null : d;
-    } catch { return null; }
-}
-
 // --- D. RENDER PARALEL ---
-//
-const [geo, articleDate] = await Promise.all([fetchGeo(), getArticleDate()]);
+const [viewCount, articleDate] = await Promise.all([fetchViews(), getArticleDate()]);
 
-const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" style="width:18px; height:18px; display:block;">`;
+const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" class="pc-icon">`;
 
-const geoHTML = geo ? `
-<div class="info-block" style="display:flex; align-items:center; gap:6px;">
-<img src="https://flagcdn.com/24x18/${geo.country_code.toLowerCase()}.png" alt="${geo.country_code}" style="width:18px; height:auto; border-radius:2px;">
-<span>${geo.city || geo.country_name}</span>
+// Render View Counter dengan Class unik pc-views
+const viewsHTML = viewCount ? `
+<div class="pc-block pc-views">
+<span class="pc-label">VIEWS</span>
+<span class="pc-value">${viewCount.toLocaleString('id-ID')}</span>
 </div>` : '';
 
 const dateHTML = articleDate ? `
-<div class="info-block" style="display:flex; align-items:center; gap:6px;">
-<span>🗓️ ${articleDate}</span>
+<div class="pc-block">
+<span class="pc-icon">🗓️</span>
+<span>${articleDate}</span>
 </div>` : '';
 
 target.innerHTML = `
-<div id="ipos-browser-info" style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:0.8rem; padding:5px; flex-wrap: wrap;">
-<div class="info-block" style="display:flex; align-items:center; gap:6px;">
+<div id="pagecounter-wrapper">
+<div class="pc-group">
+<div class="pc-block">
 ${getIconHTML(browserIcons[browser] || browserIcons.Unknown, browser)}
 <span>${browser}</span>
 </div>
-<div class="info-block" style="display:flex; align-items:center; gap:6px;">
+<div class="pc-block">
 ${getIconHTML(osIcons[os] || osIcons.Unknown, os)}
 <span>${os}</span>
 </div>
-${geoHTML}
+</div>
+<div class="pc-group">
 ${dateHTML}
+${viewsHTML}
+</div>
 </div>`;
 });
 
-// --- E. INJEKSI CSS ---
-const style = document.createElement('style');
-style.textContent = `
-#ipos-browser-info { color: #444; }
-@media (prefers-color-scheme: dark) { #ipos-browser-info { color: #ccc; } }
-@media (max-width: 480px) { #ipos-browser-info { font-size: 0.7rem; gap: 8px; } }
+// --- E. INJEKSI CSS (PageCounter Style) ---
+const pcStyle = document.createElement('style');
+pcStyle.textContent = `
+#pagecounter-wrapper {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+flex-wrap: wrap;
+font-family: var(--font-mono, 'JetBrains Mono', monospace);
+font-size: 0.75rem;
+margin: 15px 0;
+}
+.pc-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.pc-block {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #555;
+}
+.pc-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+    object-fit: contain;
+}
+.pc-views {
+    background: #222 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 0 !important;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+}
+.pc-label {
+    background: #555;
+    padding: 4px 8px;
+    font-weight: bold;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+}
+.pc-value {
+    padding: 4px 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+@media (prefers-color-scheme: dark) {
+    .pc-block {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #bbb;
+    }
+    .pc-views { background: #eee !important; color: #222 !important; }
+    .pc-label { background: #ccc; color: #222; }
+}
+@media (max-width: 480px) {
+    #pagecounter-wrapper { gap: 6px; }
+    .pc-block { padding: 3px 6px; font-size: 0.7rem; }
+}
 `;
-document.head.appendChild(style);
+document.head.appendChild(pcStyle);
