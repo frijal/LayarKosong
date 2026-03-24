@@ -1,7 +1,7 @@
 /**
  * =================================================================================
- * View Counter & Article Date v5.1 (Namespace: pagecounter)
- * Optimized for Layar Kosong V6.9 - Avoid CSS Conflict
+ * View Counter & Article Date v5.2 (Clean Inherit Style)
+ * Optimized for Layar Kosong V6.9 - Zero Decoration, Auto Theme
  * =================================================================================
  */
 
@@ -10,13 +10,20 @@ interface ViewResponse {
 }
 
 const browserIcons: Record<string, string> = {
-    Firefox: '/ext/icons/firefox.svg', Chrome: '/ext/icons/chrome.svg',
-    Edge: '/ext/icons/edge.svg', Safari: '/ext/icons/safari.svg', Unknown: '/ext/icons/unknown.svg'
+    Firefox: '/ext/icons/firefox.svg',
+    Chrome: '/ext/icons/chrome.svg',
+    Edge: '/ext/icons/edge.svg',
+    Safari: '/ext/icons/safari.svg',
+    Unknown: '/ext/icons/unknown.svg'
 };
 
 const osIcons: Record<string, string> = {
-    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg', Linux: '/ext/icons/linux.svg',
-    Android: '/ext/icons/android.svg', iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
+    Windows: '/ext/icons/windows.svg',
+    macOS: '/ext/icons/macios.svg',
+    Linux: '/ext/icons/linux.svg',
+    Android: '/ext/icons/android.svg',
+    iOS: '/ext/icons/macios.svg',
+    Unknown: '/ext/icons/unknown.svg'
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -36,7 +43,7 @@ ua.includes('Windows') ? 'Windows' :
 ua.includes('Mac') ? 'macOS' :
 ua.includes('Linux') ? 'Linux' : 'Unknown';
 
-// --- B. FETCH VIEW COUNTER ---
+// --- B. FETCH VIEW COUNTER (CLOUDFLARE FUNCTIONS) ---
 async function fetchViews(): Promise<number | null> {
     try {
         const slug = window.location.pathname;
@@ -77,17 +84,15 @@ const [viewCount, articleDate] = await Promise.all([fetchViews(), getArticleDate
 
 const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" class="pc-icon">`;
 
-// Render View Counter dengan Class unik pc-views
 const viewsHTML = viewCount ? `
-<div class="pc-block pc-views">
+<div class="pc-block">
 <span class="pc-label">VIEWS</span>
 <span class="pc-value">${viewCount.toLocaleString('id-ID')}</span>
 </div>` : '';
 
 const dateHTML = articleDate ? `
 <div class="pc-block">
-<span class="pc-icon">🗓️</span>
-<span>${articleDate}</span>
+<span>🗓️ ${articleDate}</span>
 </div>` : '';
 
 target.innerHTML = `
@@ -109,75 +114,44 @@ ${viewsHTML}
 </div>`;
 });
 
-// --- E. INJEKSI CSS (PageCounter Style) ---
+// --- E. INJEKSI CSS (Minimalis & Inherit) ---
 const pcStyle = document.createElement('style');
 pcStyle.textContent = `
 #pagecounter-wrapper {
 display: flex;
 align-items: center;
 justify-content: center;
-gap: 10px;
+gap: 12px;
 flex-wrap: wrap;
-font-family: var(--font-mono, 'JetBrains Mono', monospace);
-font-size: 0.75rem;
 margin: 15px 0;
+font-size: 0.75rem;
 }
 .pc-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
 }
 .pc-block {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #555;
 }
 .pc-icon {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     display: block;
     object-fit: contain;
 }
-.pc-views {
-    background: #222 !important;
-    color: #fff !important;
-    border: none !important;
-    padding: 0 !important;
-    overflow: hidden;
-    display: flex;
-    align-items: stretch;
-}
 .pc-label {
-    background: #555;
-    padding: 4px 8px;
-    font-weight: bold;
-    font-size: 0.6rem;
-    display: flex;
-    align-items: center;
+    font-weight: 700;
+    font-size: 0.65rem;
+    opacity: 0.7;
 }
 .pc-value {
-    padding: 4px 10px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-}
-@media (prefers-color-scheme: dark) {
-    .pc-block {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.1);
-        color: #bbb;
-    }
-    .pc-views { background: #eee !important; color: #222 !important; }
-    .pc-label { background: #ccc; color: #222; }
 }
 @media (max-width: 480px) {
-    #pagecounter-wrapper { gap: 6px; }
-    .pc-block { padding: 3px 6px; font-size: 0.7rem; }
+    #pagecounter-wrapper { gap: 8px; font-size: 0.7rem; }
 }
 `;
 document.head.appendChild(pcStyle);
