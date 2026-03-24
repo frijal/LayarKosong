@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.53
+document_version: 18.54
 last_updated: 2026-03-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 24 Maret 2026)
-> Menampilkan 1117 artikel versi 18.53.
+> Menampilkan 1118 artikel versi 18.54.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -628,6 +628,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
 - [10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026](https://dalam.web.id/sistem-terbuka/10-distro-linux-terbaik-2026) : 10 distro Linux terbaik 2026 untuk pemula hingga power user. Temukan performa, kemudahan, dan kustomisasi maksimal untuk desktop kamu.
 - [GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya](https://dalam.web.id/sistem-terbuka/gnome-50-x11-wayland) : GNOME 50 resmi dirilis dengan menghapus X11 dari GDM, beralih penuh ke Wayland. Fitur VRR dan fractional scaling stabil, Nautilus makin cepat, dan aksesibilitas Orca ditingkatkan. Pelajari detailnya di sini.
 - [SparkyLinux 2026.03 Tiamat Rilis: Debian Testing Forky dengan Kernel 6.19](https://dalam.web.id/sistem-terbuka/sparkylinux-2026-03-tiamat) : SparkyLinux 2026.03 Tiamat hadir dengan kernel 6.19.6, Firefox ESR 140.8, dan dukungan GRUB UEFI 32-bit. Berbasis Debian Testing Forky, ISO rolling terbaru untuk pengguna Linux.
