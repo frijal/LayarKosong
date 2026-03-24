@@ -28,7 +28,7 @@ async function simplifyJson() {
     }
 
     await Bun.write(OUTPUT_FILE, JSON.stringify(simplified));
-    console.log(`✅ Berhasil diproses dengan Preserving Case.`);
+    console.log(`✅ RedirectMap Berhasil diproses dengan Preserving Case.`);
   } catch (error) {
     console.error(error);
   }
