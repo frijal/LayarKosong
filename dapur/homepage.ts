@@ -1,7 +1,8 @@
 /**
  * =================================================================================
- * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider
+ * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (V6.9 Ready)
  * + Responsive <picture> srcset untuk semua gambar (Feed, Sidebar, Hero)
+ * + Optimized for WebP-only infrastructure
  * =================================================================================
  */
 
@@ -25,10 +26,8 @@ let limit: number = 6;
 let currentActiveCategory: string = 'All';
 
 // =================================================================================
-// HELPER: Konversi URL gambar asli → <picture> dengan WebP srcset
-// Mengikuti konvensi penamaan dari srcset.ts:
-//   desktop → same-name.webp
-//   mobile  → same-name-sm.webp
+// HELPER: Konversi URL gambar .webp → <picture> dengan varian mobile -sm.webp
+// Mengikuti konvensi: desktop -> file.webp, mobile -> file-sm.webp
 // =================================================================================
 function toPicture(
   imgUrl: string,
@@ -39,38 +38,33 @@ function toPicture(
     fetchpriority?: boolean;
     loading?: 'lazy' | 'eager';
     imgStyle?: string;
+    width?: number;
+    height?: number;
   } = {}
 ): string {
-  // Pisah ekstensi dari URL (abaikan query string jika ada)
-  const urlBase   = imgUrl.split('?')[0];
-  const dotIndex  = urlBase.lastIndexOf('.');
-  const ext       = dotIndex !== -1 ? urlBase.slice(dotIndex) : '';
-  const base      = dotIndex !== -1 ? urlBase.slice(0, dotIndex) : urlBase;
+  // Karena semua aset sudah .webp, kita hanya perlu generate path untuk mobile
+  const mobSrc = imgUrl.replace(".webp", "-sm.webp");
 
-  // SVG & GIF tidak dikonversi — sama dengan logika SKIP_EXTENSIONS di srcset.ts
-  // Hanya gambar di /img/ yang dijamin punya WebP (diproses oleh srcset.ts)
-  const skipExts  = new Set(['.svg', '.gif']);
-  const useWebP   = urlBase.includes('/img/') && !skipExts.has(ext.toLowerCase());
+  const cleanAlt = alt.replace(/"/g, '&quot;');
+  const loading  = opts.loading ?? 'lazy';
+  const fp       = opts.fetchpriority ? ' fetchpriority="high"' : '';
+  const cls      = opts.cls ? ` class="${opts.cls}"` : '';
 
-  const deskSrc   = useWebP ? `${base}.webp`     : imgUrl;
-  const mobSrc    = useWebP ? `${base}-sm.webp`   : imgUrl;
-
-  const cleanAlt  = alt.replace(/"/g, '&quot;');
-  // Escape single quote di URL agar aman dipakai di dalam onerror inline
-  const safeUrl   = imgUrl.replace(/'/g, '&#39;');
-  const loading   = opts.loading ?? 'lazy';
-  const fp        = opts.fetchpriority ? ' fetchpriority="high"' : '';
-  const imgStyle  = opts.imgStyle ? ` style="${opts.imgStyle}"` : '';
-  const cls       = opts.cls ? ` class="${opts.cls}"` : '';
+  // Styling dasar untuk menjaga aspek rasio dan estetika V6.9
+  const finalImgStyle = `max-width: 100%; height: auto; object-fit: cover; border-radius: 12px; ${opts.imgStyle || ''}`;
+  const wAttr = opts.width ? ` width="${opts.width}"` : '';
+  const hAttr = opts.height ? ` height="${opts.height}"` : '';
 
   return `
   <picture${opts.style ? ` style="${opts.style}"` : ''}>
-  ${useWebP ? `<source media="(max-width: 500px)" srcset="${mobSrc}">` : ''}
-  ${useWebP ? `<source srcset="${deskSrc}">` : ''}
-  <img src="${imgUrl}"${cls} alt="${cleanAlt}"
-  loading="${loading}" decoding="async"${fp}${imgStyle}
-  onerror="this.onerror=null;this.src='${safeUrl}'">
-  </picture>`;
+  <source media="(max-width: 500px)" srcset="${mobSrc}">
+  <img src="${imgUrl}"${cls}${wAttr}${hAttr}
+  alt="${cleanAlt}"
+  loading="${loading}"
+  decoding="async"${fp}
+  style="${finalImgStyle}"
+  onerror="this.onerror=null; this.src='${imgUrl}';">
+  </picture>`.trim();
 }
 
 // =================================================================================
@@ -175,8 +169,7 @@ function initSite(): void {
 }
 
 // =================================================================================
-// RENDER: HERO — pakai <img> absolut dalam container agar bisa pakai <picture>
-// CSS yang diperlukan: .hero-slide { position: relative; overflow: hidden; }
+// RENDER: HERO
 // =================================================================================
 function renderHero(): void {
   if (heroData.length === 0) return;
@@ -189,10 +182,12 @@ function renderHero(): void {
   wrapper.innerHTML = heroData.map((h, idx) => `
   <a href="${h.url}" class="hero-slide">
   ${toPicture(h.img, h.title, {
-    fetchpriority: idx === 0,   // Hanya slide pertama yang high priority
+    fetchpriority: idx === 0,
     loading: idx === 0 ? 'eager' : 'lazy',
+    width: 1000,
+    height: 500,
     style: 'position:absolute;inset:0;width:100%;height:100%;',
-    imgStyle: 'width:100%;height:100%;object-fit:cover;display:block;'
+    imgStyle: 'width:100%;height:100%;'
   })}
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -254,7 +249,7 @@ function moveHero(direction: number): void {
 }
 
 // =================================================================================
-// RENDER: FEED — card artikel utama
+// RENDER: FEED
 // =================================================================================
 function renderFeed(reset: boolean = false): void {
   if (reset) limit = 6;
@@ -276,7 +271,7 @@ function renderFeed(reset: boolean = false): void {
   itemsToDisplay.forEach(item => {
     container.innerHTML += `
     <div class="card" style="animation: fadeIn 0.5s ease">
-    ${toPicture(item.img, item.title, { cls: 'card-img', loading: 'lazy' })}
+    ${toPicture(item.img, item.title, { cls: 'card-img', loading: 'lazy', width: 480, height: 270 })}
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -302,11 +297,10 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.onclick = () => { limit += 6; renderFeed(); renderSidebar(); };
     }
   }
-
 }
 
 // =================================================================================
-// RENDER: SIDEBAR — artikel acak
+// RENDER: SIDEBAR
 // =================================================================================
 function renderSidebar(targetCat?: string) {
   const side = document.getElementById('sidebarRandom');
@@ -337,7 +331,9 @@ function renderSidebar(targetCat?: string) {
     ${toPicture(item.img, cleanTitle, {
       cls: 'mini-thumb',
       loading: 'lazy',
-      imgStyle: 'width:55px;height:55px;object-fit:cover;border-radius:8px;flex-shrink:0;'
+      width: 55,
+      height: 55,
+      imgStyle: 'width:55px;height:55px;border-radius:8px;flex-shrink:0;'
     })}
     <div class="mini-text">
     <h4 title="${cleanSummary}" style="margin: 0 0 4px 0; font-size: 0.85rem; line-height: 1.3; font-weight: 600;">
@@ -352,7 +348,6 @@ function renderSidebar(targetCat?: string) {
     </div>
     </div>`;
   }).join('');
-
 }
 
 (window as any).renderSidebar = renderSidebar;
