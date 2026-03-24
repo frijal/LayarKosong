@@ -8,3 +8,7 @@ pages_build_output_dir = "../deploy_dir"
 [vars]
 BUN_VERSION = "latest"
 NODE_VERSION = "24" # Beberapa plugin butuh ini sebagai fallback
+
+[[kv_namespaces]]
+binding = "COUNTS_KV"
+id = "5c5197918fee41a0b79f4212c00a7552" # Ganti dengan ID panjang yang kamu dapat tadi
