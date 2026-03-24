@@ -144,7 +144,7 @@ function renderSidebar(targetCat?: string) {
   const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
 
   // 4. Acak dan ambil 7 item
-  const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 11);
+  const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 7);
 
   // 5. Render ke HTML (Sudah menggunakan tooltip 'title' bawaan browser)
   side.innerHTML = randoms.map(item => {
@@ -368,7 +368,8 @@ function runFilters(): void {
   });
   renderFeed(true);
   renderSidebar();
-};
+}
+;
 
 
 if (document.readyState === 'loading') {
