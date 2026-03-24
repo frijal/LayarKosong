@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/24/2026, 11:39:29 AM
+Generated on: 3/24/2026, 2:11:29 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/24/2026, 11:39:29 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v18.53 | LLM Index v18.53 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v18.55 | LLM Index v18.55 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
@@ -622,6 +622,7 @@ Generated on: 3/24/2026, 11:39:29 AM
 | `artikel/linux-mirrors-all.html` | Mirror Selector Toolkit - Semua Distro - Layar Kosong | Mirror Selector Toolkit - Semua Distro | Layar Kosong | ✅ Perfect |
 | `artikel/linux-package-manager-formal.html` | Linux Package Manager: Definisi dan Fungsi - Layar Kosong | Linux Package Manager: Definisi dan Fungsi | Layar Kosong | ✅ Perfect |
 | `artikel/linux-package-manager.html` | Apa itu Linux Package Manager? - Layar Kosong | Apa itu Linux Package Manager? | Layar Kosong | ✅ Perfect |
+| `artikel/linux-package-managers.html` | Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows - Layar Kosong | Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows | Layar Kosong | ✅ Perfect |
 | `artikel/linux-partition-full-fix.html` | Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full - Layar Kosong | Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full | Layar Kosong | ✅ Perfect |
 | `artikel/linux-partition-full.html` | Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨 - Layar Kosong | Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨 | Layar Kosong | ✅ Perfect |
 | `artikel/linux-repo-guide.html` | Panduan Memilih Repository Linux Tercepat (2025 Edition) - Layar Kosong | Panduan Memilih Repository Linux Tercepat (2025 Edition) | Layar Kosong | ✅ Perfect |
@@ -1910,6 +1911,7 @@ Generated on: 3/24/2026, 11:39:29 AM
 | `sistem-terbuka/linux-mirrors-all.html` | Mirror Selector Toolkit - Semua Distro - Layar Kosong | Mirror Selector Toolkit - Semua Distro | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-package-manager-formal.html` | Linux Package Manager: Definisi dan Fungsi - Layar Kosong | Linux Package Manager: Definisi dan Fungsi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-package-manager.html` | Apa itu Linux Package Manager? - Layar Kosong | Apa itu Linux Package Manager? | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/linux-package-managers.html` | Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows - Layar Kosong | Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-partition-full-fix.html` | Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full - Layar Kosong | Panduan Darurat: Mengatasi Partisi Root (/) Linux 100% Full | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-partition-full.html` | Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨 - Layar Kosong | Partisi Root Linux 100% Full? Jangan Panik! Panduan Diagnosa Cerdas & Solusi Tuntas 🚨 | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-repo-guide.html` | Panduan Memilih Repository Linux Tercepat (2025 Edition) - Layar Kosong | Panduan Memilih Repository Linux Tercepat (2025 Edition) | Layar Kosong | ✅ Perfect |
