@@ -2,7 +2,7 @@
  * =================================================================================
  * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (V6.9 Ready)
  * + Responsive <picture> srcset untuk semua gambar (Feed, Sidebar, Hero)
- * + Optimized for WebP-only infrastructure
+ * + Smart Fallback: Jika -sm.webp (mobile) tidak ada, otomatis pakai .webp (desktop)
  * =================================================================================
  */
 
@@ -26,8 +26,8 @@ let limit: number = 6;
 let currentActiveCategory: string = 'All';
 
 // =================================================================================
-// HELPER: Konversi URL gambar .webp → <picture> dengan varian mobile -sm.webp
-// Mengikuti konvensi: desktop -> file.webp, mobile -> file-sm.webp
+// HELPER: Menyusun <picture> untuk aset WebP.
+// Logika: Coba -sm.webp di mobile, jika 404 browser otomatis pakai src di <img> (.webp desktop)
 // =================================================================================
 function toPicture(
   imgUrl: string,
@@ -42,7 +42,7 @@ function toPicture(
     height?: number;
   } = {}
 ): string {
-  // Karena semua aset sudah .webp, kita hanya perlu generate path untuk mobile
+  // Semua file sudah .webp. Kita hanya siapkan path spekulatif untuk mobile.
   const mobSrc = imgUrl.replace(".webp", "-sm.webp");
 
   const cleanAlt = alt.replace(/"/g, '&quot;');
@@ -50,11 +50,17 @@ function toPicture(
   const fp       = opts.fetchpriority ? ' fetchpriority="high"' : '';
   const cls      = opts.cls ? ` class="${opts.cls}"` : '';
 
-  // Styling dasar untuk menjaga aspek rasio dan estetika V6.9
+  // Styling standar Layar Kosong V6.9
   const finalImgStyle = `max-width: 100%; height: auto; object-fit: cover; border-radius: 12px; ${opts.imgStyle || ''}`;
   const wAttr = opts.width ? ` width="${opts.width}"` : '';
   const hAttr = opts.height ? ` height="${opts.height}"` : '';
 
+  /**
+   * MEKANISME FALLBACK OTOMATIS:
+   * 1. <source> memerintahkan browser layar < 500px untuk mencari -sm.webp.
+   * 2. Jika -sm.webp tidak ditemukan (404) atau tidak ada, browser akan
+   * mengabaikan <source> dan langsung memuat atribut src pada <img> (.webp asli).
+   */
   return `
   <picture${opts.style ? ` style="${opts.style}"` : ''}>
   <source media="(max-width: 500px)" srcset="${mobSrc}">
