@@ -21,6 +21,7 @@
   --reddit: #FF5700;
   --mastodon: #6364FF;
   --bluesky: #1185FE;
+  --discord: #5865F2;
 }
 
 /* Official brand colors — hanya untuk footer social */
@@ -34,6 +35,7 @@
 .page-footer .footer-social .fa-reddit          { color: var(--reddit); }
 .page-footer .footer-social .fa-twitter         { color: var(--twitter); }
 .page-footer .footer-social .fa-bluesky         { color: var(--bluesky); }
+.page-footer .footer-social .fa-discord         { color: var(--discord); }
 
 /* Animasi Teks */
 @keyframes slideTextUp {
