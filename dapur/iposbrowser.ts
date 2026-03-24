@@ -1,29 +1,22 @@
 /**
  * =================================================================================
- * View Counter & Article Date v5.2 (Clean Inherit Style)
- * Optimized for Layar Kosong V6.9 - Zero Decoration, Auto Theme
+ * PageCounter v6.0 (Views ~ Total) - Ultra Fast & Inherit Style
  * =================================================================================
  */
 
-interface ViewResponse {
-    views: number;
+interface PageStats {
+    v: number; // views per page
+    t: number; // total domain views
 }
 
 const browserIcons: Record<string, string> = {
-    Firefox: '/ext/icons/firefox.svg',
-    Chrome: '/ext/icons/chrome.svg',
-    Edge: '/ext/icons/edge.svg',
-    Safari: '/ext/icons/safari.svg',
-    Unknown: '/ext/icons/unknown.svg'
+    Firefox: '/ext/icons/firefox.svg', Chrome: '/ext/icons/chrome.svg',
+    Edge: '/ext/icons/edge.svg', Safari: '/ext/icons/safari.svg', Unknown: '/ext/icons/unknown.svg'
 };
 
 const osIcons: Record<string, string> = {
-    Windows: '/ext/icons/windows.svg',
-    macOS: '/ext/icons/macios.svg',
-    Linux: '/ext/icons/linux.svg',
-    Android: '/ext/icons/android.svg',
-    iOS: '/ext/icons/macios.svg',
-    Unknown: '/ext/icons/unknown.svg'
+    Windows: '/ext/icons/windows.svg', macOS: '/ext/icons/macios.svg', Linux: '/ext/icons/linux.svg',
+    Android: '/ext/icons/android.svg', iOS: '/ext/icons/macios.svg', Unknown: '/ext/icons/unknown.svg'
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -43,14 +36,11 @@ ua.includes('Windows') ? 'Windows' :
 ua.includes('Mac') ? 'macOS' :
 ua.includes('Linux') ? 'Linux' : 'Unknown';
 
-// --- B. FETCH VIEW COUNTER (CLOUDFLARE FUNCTIONS) ---
-async function fetchViews(): Promise<number | null> {
+// --- B. FETCH STATS (Views ~ Total) ---
+async function getStats(): Promise<PageStats | null> {
     try {
-        const slug = window.location.pathname;
-        const res = await fetch(`/hit?url=${encodeURIComponent(slug)}`);
-        if (!res.ok) return null;
-        const data: ViewResponse = await res.json();
-        return data.views;
+        const res = await fetch(`/hit?url=${encodeURIComponent(window.location.pathname)}`);
+        return res.ok ? await res.json() : null;
     } catch { return null; }
 }
 
@@ -64,95 +54,44 @@ async function getArticleDate(): Promise<string | null> {
         const fileName = currentPath.endsWith('.html') ? currentPath : `${currentPath}.html`;
         const data = await (window as any).siteDataProvider.getData();
 
-        let foundDate: string | null = null;
         for (const category in data) {
             const match = data[category].find((entry: any) => entry[1] === fileName);
-            if (match) {
-                foundDate = match[3];
-                break;
-            }
+            if (match) return new Date(match[3]).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
         }
-        if (foundDate) {
-            return new Date(foundDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-        }
-    } catch (e) { console.warn("Gagal ambil tanggal:", e); }
+    } catch { }
     return null;
 }
 
-// --- D. RENDER PARALEL ---
-const [viewCount, articleDate] = await Promise.all([fetchViews(), getArticleDate()]);
-
-const getIconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" class="pc-icon">`;
-
-const viewsHTML = viewCount ? `
-<div class="pc-block">
-<span class="pc-label">\u221E</span>
-<span class="pc-value">${viewCount.toLocaleString('id-ID')}</span>
-</div>` : '';
-
-const dateHTML = articleDate ? `
-<div class="pc-block">
-<span>🗓️ ${articleDate}</span>
-</div>` : '';
+// --- D. RENDER ---
+const [stats, articleDate] = await Promise.all([getStats(), getArticleDate()]);
+const iconHTML = (path: string, alt: string) => `<img src="${path}" alt="${alt}" class="pc-icon">`;
 
 target.innerHTML = `
 <div id="pagecounter-wrapper">
 <div class="pc-group">
-<div class="pc-block">
-${getIconHTML(browserIcons[browser] || browserIcons.Unknown, browser)}
-<span>${browser}</span>
-</div>
-<div class="pc-block">
-${getIconHTML(osIcons[os] || osIcons.Unknown, os)}
-<span>${os}</span>
-</div>
+<div class="pc-block">${iconHTML(browserIcons[browser] || browserIcons.Unknown, browser)} <span>${browser}</span></div>
+<div class="pc-block">${iconHTML(osIcons[os] || osIcons.Unknown, os)} <span>${os}</span></div>
 </div>
 <div class="pc-group">
-${dateHTML}
-${viewsHTML}
-</div>
-</div>`;
+${articleDate ? `<div class="pc-block">🗓️ ${articleDate}</div>` : ''}
+${stats ? `
+    <div class="pc-block">
+    <span class="pc-label">\u221E</span>
+    <span class="pc-value">${stats.v.toLocaleString('id-ID')} ~ ${stats.t.toLocaleString('id-ID')}</span>
+    </div>` : ''}
+    </div>
+    </div>`;
 });
 
-// --- E. INJEKSI CSS (Minimalis & Inherit) ---
+// --- E. CSS (Inherit & Minimalist) ---
 const pcStyle = document.createElement('style');
 pcStyle.textContent = `
-#pagecounter-wrapper {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 12px;
-flex-wrap: wrap;
-margin: 15px 0;
-font-size: 0.75rem;
-}
-.pc-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.pc-block {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.pc-icon {
-    width: 16px;
-    height: 16px;
-    display: block;
-    object-fit: contain;
-}
-.pc-label {
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-}
-.pc-value {
-    font-weight: 600;
-}
-@media (max-width: 480px) {
-    #pagecounter-wrapper { gap: 8px; font-size: 0.7rem; }
-}
+#pagecounter-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 15px 0; font-size: 0.75rem; }
+.pc-group { display: flex; gap: 10px; align-items: center; }
+.pc-block { display: flex; align-items: center; gap: 6px; }
+.pc-icon { width: 16px; height: 16px; display: block; object-fit: contain; }
+.pc-label { font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; }
+.pc-value { font-weight: 600; }
+@media (max-width: 480px) { #pagecounter-wrapper { gap: 8px; font-size: 0.7rem; } }
 `;
 document.head.appendChild(pcStyle);

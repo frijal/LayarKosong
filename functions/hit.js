@@ -1,32 +1,29 @@
-export async function onRequest(context) {
-  const { request, env } = context;
-  const url = new URL(request.url);
-  
-  // Ambil parameter ?url=, jika tidak ada pakai 'home'
-  let pageUrl = url.searchParams.get('url') || 'home';
-  
-  // Bersihkan slash di akhir agar konsisten
-  pageUrl = pageUrl.replace(/\/$/, "") || "home";
+export async function onRequest(context: { request: Request; env: any }) {
+    const { request, env } = context;
+    const pageSlug = new URL(request.url).searchParams.get("url");
+    
+    // Key identitas untuk KV
+    const pageKey = `view:${pageSlug}`;
+    const globalKey = "view:__total_domain__";
 
-  const kv = env.COUNTS_KV;
-  if (!kv) {
-    return new Response(JSON.stringify({ error: "KV Binding tidak ditemukan" }), { status: 500 });
-  }
+    // Ambil data lama (asumsikan 0 jika belum ada)
+    const [oldPage, oldTotal] = await Promise.all([
+        env.COUNTS_KV.get(pageKey),
+        env.COUNTS_KV.get(globalKey)
+    ]);
 
-  const key = `view:${pageUrl}`;
+    const v = (parseInt(oldPage) || 0) + 1;
+    const t = (parseInt(oldTotal) || 0) + 1;
 
-  try {
-    let count = parseInt(await kv.get(key)) || 0;
-    count++;
-    await kv.put(key, count.toString());
+    // FIRE AND FORGET: Simpan ke KV di background tanpa await
+    // Ini membuat respons JSON sampai ke browser pengunjung lebih cepat
+    env.COUNTS_KV.put(pageKey, v.toString());
+    env.COUNTS_KV.put(globalKey, t.toString());
 
-    return new Response(JSON.stringify({ views: count }), {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
+    return new Response(JSON.stringify({ v, t }), {
+        headers: { 
+            "content-type": "application/json",
+            "access-control-allow-origin": "*" 
+        }
     });
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
-  }
 }
