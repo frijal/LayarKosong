@@ -216,7 +216,7 @@ async function main() {
                           Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.txt}`, fullMarkdown),
                           Bun.write(`${WELL_KNOWN_DIR}/${OUTPUTS.md}`, fullMarkdown)
         ]);
-        console.log(`🚀 BERHASIL! Versi ${version} terbit dengan ${total} artikel.`);
+        console.log(`🚀 LLMS berhasil, Versi ${version} terbit dengan ${total} artikel.`);
     } catch (err) {
         console.error("❌ Gagal menulis file:", err);
     }
