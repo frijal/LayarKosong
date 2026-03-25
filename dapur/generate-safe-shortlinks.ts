@@ -1,62 +1,46 @@
-const INPUT_FILE = "./artikel.json";
-const MAPPING_FILE = "./shorturl.json";
+import { readdir } from "node:fs/promises";
 
 /**
- * Base62 Encoding untuk ID yang unik (0-9, a-z, A-Z)
+ * Sync Shortlinks ke shorturl.json
+ * Menghasilkan mapping permanen, unik, dan terproteksi dari nama folder sistem.
  */
-function toBase62(buffer: Uint8Array, length = 6): string {
-  const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += chars[buffer[i] % 62];
-  }
-  return result;
-}
-
-async function generateUniqueId(slug: string, existingIds: Set<string>): Promise<string> {
-  const hasher = new Bun.CryptoHasher("sha256");
-  hasher.update(slug);
-  let hashBuffer = hasher.digest();
-  
-  let id = toBase62(hashBuffer);
-  let salt = 0;
-
-  // Jika terjadi duplikasi ID (collision), tambahkan salt dan hash ulang
-  while (existingIds.has(id)) {
-    const retryHasher = new Bun.CryptoHasher("sha256");
-    retryHasher.update(slug + salt);
-    hashBuffer = retryHasher.digest();
-    id = toBase62(hashBuffer);
-    salt++;
-  }
-  
-  return id;
-}
-
-async function syncShortlinks() {
+export async function syncShorturls(inputPath: string, outputPath: string) {
   try {
-    // 1. Load data lama agar ID tidak berubah
+    // 1. Scan folder/file di root untuk daftar terlarang (Restricted ID)
+    const restricted = new Set(["_headers", "_redirects", "functions", "node_modules", "public"]);
+    try {
+      const entries = await readdir("./", { withFileTypes: true });
+      for (const entry of entries) {
+        // Ambil nama tanpa ekstensi (misal: 'index.html' -> 'index')
+        const name = entry.name.toLowerCase().split('.')[0];
+        restricted.add(name);
+      }
+    } catch (e) {
+      console.warn("⚠️ Gagal scan direktori root.");
+    }
+
+    // 2. Baca mapping lama dari shorturl.json
     let shortMap: Record<string, string> = {};
-    const mappingFile = Bun.file(MAPPING_FILE);
+    const mappingFile = Bun.file(outputPath);
     if (await mappingFile.exists()) {
       shortMap = await mappingFile.json();
     }
 
-    // 2. Load data artikel terbaru
-    const inputFile = Bun.file(INPUT_FILE);
-    if (!(await inputFile.exists())) return;
+    // 3. Baca data artikel.json
+    const inputFile = Bun.file(inputPath);
+    if (!(await inputFile.exists())) throw new Error("Input artikel.json tidak ditemukan!");
     const data = await inputFile.json();
 
-    // Buat kebalikan mapping (URL -> ID) untuk cek apakah artikel sudah punya ID
     const urlToId: Record<string, string> = {};
-    const usedIds = new Set<string>();
+    const usedIds = new Set<string>(restricted); 
     
+    // Daftarkan ID yang sudah terpakai agar tidak duplikat
     for (const [id, url] of Object.entries(shortMap)) {
       urlToId[url] = id;
       usedIds.add(id);
     }
 
-    // 3. Proses artikel dari artikel.json
+    // 4. Loop kategori dan artikel
     for (const category in data) {
       const catSlug = category.toLowerCase().trim().replace(/\s+/g, '-');
 
@@ -64,30 +48,44 @@ async function syncShortlinks() {
         const cleanSlug = post[1].replace(/\.html$/, '').replace(/\//g, '').trim();
         const fullUrl = `https://dalam.web.id/${catSlug}/${cleanSlug}`;
 
-        // Jika URL ini belum ada di mapping lama, buatkan ID baru
+        // Hanya buatkan ID jika URL belum ada di database
         if (!urlToId[fullUrl]) {
-          const newId = await generateUniqueId(cleanSlug, usedIds);
-          shortMap[newId] = fullUrl;
-          usedIds.add(newId);
-          urlToId[fullUrl] = newId;
-          console.log(`✨ ID Baru: ${newId} -> ${cleanSlug}`);
+          let salt = 0;
+          let id = "";
+          
+          while (true) {
+            const hasher = new Bun.CryptoHasher("sha256");
+            // Tambahkan salt jika terjadi bentrokan ID (Collision)
+            hasher.update(cleanSlug + (salt > 0 ? salt : ""));
+            const hashBuffer = hasher.digest();
+            
+            // Base62 Encoding (6 Karakter)
+            const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            id = "";
+            for (let i = 0; i < 6; i++) {
+              id += chars[hashBuffer[i] % 62];
+            }
+
+            // Jika ID tidak bentrok dengan folder atau ID lain, gunakan
+            if (!usedIds.has(id)) break;
+            salt++;
+          }
+
+          shortMap[id] = fullUrl;
+          usedIds.add(id);
+          urlToId[fullUrl] = id;
         }
       }
     }
 
-    // 4. Sortir berdasarkan ID agar file JSON rapi
-    const sortedMap = Object.keys(shortMap).sort().reduce((acc, key) => {
-      acc[key] = shortMap[key];
-      return acc;
-    }, {} as Record<string, string>);
-
-    // 5. Simpan kembali ke shortlinks.json
-    await Bun.write(MAPPING_FILE, JSON.stringify(sortedMap));
-    console.log(`✅ Sinkronisasi selesai. Total ${Object.keys(sortedMap).length} shortlinks.`);
+    // 5. Simpan secara MINIFIED ke shorturl.json
+    await Bun.write(outputPath, JSON.stringify(shortMap));
+    console.log(`✅ Update Berhasil: ${outputPath} siap digunakan.`);
 
   } catch (error) {
-    console.error("Gagal sinkronisasi shortlinks:", error);
+    console.error("❌ Error:", error);
   }
 }
 
-syncShortlinks();
+// Eksekusi fungsi
+syncShorturls("./artikel.json", "./shorturl.json");

@@ -2,6 +2,9 @@
 name = "layarkosong"
 compatibility_date = "2025-12-01"
 
+# Script utama untuk Short URL
+main = "shorturl.ts"
+
 # Pakai ../ karena Wrangler jalan di dalam folder 'source'
 pages_build_output_dir = "../deploy_dir"
 
