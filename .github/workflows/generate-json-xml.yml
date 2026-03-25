@@ -85,7 +85,6 @@ jobs:
           bun run dapur/bikin-sitemap-txt.ts
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
-          bun run dapur/generate-safe-shortlinks.ts
                     
       - name: '7. Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
