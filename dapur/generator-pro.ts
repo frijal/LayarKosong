@@ -178,39 +178,64 @@ for (const it of flat) {
 }
 
 // Gunakan format yang sama dengan contohmu
-const xmlHdr = `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//dalam.web.id/sitemap-index.xsl"?>`;
-const mod = flat[0]?.lastmod || iso(new Date());
+// --- KODE PENGGANTI SITEMAP (SINGLE PURE SITEMAP MODE) ---
 
-await Promise.all([
-    // 1. SITEMAP INDEX (Sesuai contoh komposisi yang kamu berikan)
-    Bun.write(`${C.root}/sitemap.xml`,
-              `${xmlHdr}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-              <sitemap><loc>${C.base}/sitemap-1.xml</loc><lastmod>${mod}</lastmod></sitemap>
-              <sitemap><loc>${C.base}/image-sitemap-1.xml</loc><lastmod>${mod}</lastmod></sitemap>
-              <sitemap><loc>${C.base}/video-sitemap-1.xml</loc><lastmod>${mod}</lastmod></sitemap>
-              </sitemapindex>`),
+// 1. Siapkan isi URL secara kolektif
+let combinedXmlEntries = '';
 
-              // 2. SITEMAP ARTIKEL (Detail)
-              // Struktur <urlset> ini akan dibaca oleh XSLT melalui seleksi sitemap:urlset/sitemap:url
-              Bun.write(`${C.root}/sitemap-1.xml`,
-                        `${xmlHdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                        ${flat.map(it => `<url><loc>${it.loc}</loc><lastmod>${it.lastmod}</lastmod></url>`).join('')}
-                        </urlset>`),
+for (const it of flat) {
+    // Ambil konten file untuk ekstraksi video secara real-time (seperti logika awalmu)
+    const txt = await Bun.file(`${C.art}/${it.file}`).text();
+    const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)]
+    .map(m => m[1])
+    .filter(s => !s.endsWith('.js'));
 
-                        // 3. IMAGE SITEMAP
-                        // Meskipun ada namespace image, XSLT tetap bisa membaca loc dan lastmod
-                        Bun.write(`${C.root}/image-sitemap-1.xml`,
-                                  `${xmlHdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-                                  ${xI}
-                                  </urlset>`),
+    let videoXml = '';
+vids.forEach(s => {
+    const id = s.match(/embed\/([^/?]+)/)?.[1];
+    if (id) {
+        videoXml += `
+        <video:video>
+        <video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
+        <video:title><![CDATA[${decodeHTML(it.title)}]]></video:title>
+        <video:description><![CDATA[${it.desc || decodeHTML(it.title)}]]></video:description>
+        <video:player_loc>${s.replace(/&/g, '&amp;')}</video:player_loc>
+        </video:video>`;
+    }
+});
 
-                                  // 4. VIDEO SITEMAP
-                                  // XSLT akan menampilkan daftar URL yang mengandung video
-                                  Bun.write(`${C.root}/video-sitemap-1.xml`,
-                                            `${xmlHdr}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-                                            ${xV}
-                                            </urlset>`)
-]);
+// Rakit satu entri <url> yang berisi artikel + gambar + video (jika ada)
+combinedXmlEntries += `
+<url>
+<loc>${it.loc}</loc>
+<lastmod>${it.lastmod}</lastmod>
+<image:image>
+<image:loc>${it.img}</image:loc>
+<image:caption><![CDATA[${decodeHTML(it.title)}]]></image:caption>
+</image:image>${videoXml}
+</url>`;
+}
+
+// 2. Tulis file sitemap.xml tunggal (Pure XML tanpa XSLT untuk menghindari blokir CSP)
+const finalSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${combinedXmlEntries}
+</urlset>`;
+
+await Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent);
+
+// 3. (Opsional) Hapus file sitemap lama yang sudah tidak digunakan agar bersih
+const oldFiles = ['sitemap-1.xml', 'image-sitemap-1.xml', 'video-sitemap-1.xml'];
+for (const oldFile of oldFiles) {
+    const path = `${C.root}/${oldFile}`;
+    if (await Bun.file(path).exists()) {
+        await require('fs').promises.unlink(path);
+    }
+}
+
+console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (All Assets Included)');
 
 // Build Category Pages (Static Version)
 const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
