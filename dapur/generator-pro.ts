@@ -1,4 +1,4 @@
-import { titleToCategory } from './titleToCategory.ts';
+import { titleToCategory } from '/ext/titleToCategory.ts';
 
 const C = {
     root: `${import.meta.dir}/..`,
