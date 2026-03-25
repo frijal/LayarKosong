@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.61
-last_updated: 2026-03-24
+document_version: 18.62
+last_updated: 2026-03-25
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -38,8 +38,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 24 Maret 2026)
-> Menampilkan 1121 artikel versi 18.61.
+## Index Artikel Terbaru (Updated: 25 Maret 2026)
+> Menampilkan 1121 artikel versi 18.62.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
