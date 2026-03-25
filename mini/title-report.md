@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/24/2026, 2:15:02 PM
+Generated on: 3/25/2026, 11:36:02 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,10 +13,10 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v18.56 | LLM Index v18.56 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v18.63 | LLM Index v18.63 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
-| `security-policy.html` | Security Policy - Layar Kosong | Security Policy | Layar Kosong | ✅ Perfect |
+| `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/10-distro-linux-terbaik-2026.html` | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 - Layar Kosong | 10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/10-kalimat-muslim.html` | 10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙 - Layar Kosong | 10 Kalimat Mulia yang Wajib Dibiasakan Setiap Hari 🌙 | Layar Kosong | ✅ Perfect |
@@ -546,6 +546,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `artikel/kesehatan-pencernaan-boker.html` | Kenapa Nggak Boker Tiap Hari? Kupas Tuntas Kesehatan Pencernaan - Layar Kosong | Kenapa Nggak Boker Tiap Hari? Kupas Tuntas Kesehatan Pencernaan | Layar Kosong | ✅ Perfect |
 | `artikel/kesimpulan-ai-umkm.html` | Masa Depan Milik Mereka yang Melek Teknologi - Layar Kosong | Masa Depan Milik Mereka yang Melek Teknologi | Layar Kosong | ✅ Perfect |
 | `artikel/kesultanan-utsmaniyah.html` | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum - Layar Kosong | Kesultanan Utsmaniyah: Osman, Orhan, Murad, Bayezid, dan Masa Interregnum | Layar Kosong | ✅ Perfect |
+| `artikel/ketika-orang-terdekat-menjadi-ujian.html` | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 - Layar Kosong | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 | Layar Kosong | ✅ Perfect |
 | `artikel/keunggulan-dan-kekurangan-Desktop-KDE.html` | Keunggulan & Kekurangan Desktop KDE Plasma - Layar Kosong | Keunggulan & Kekurangan Desktop KDE Plasma | Layar Kosong | ✅ Perfect |
 | `artikel/keutamaan-bulan-ramadhan.html` | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya - Layar Kosong | Keutamaan Bulan Ramadhan: Panduan Lengkap Keistimewaan dan Keberkahannya | Layar Kosong | ✅ Perfect |
 | `artikel/keutamaan-membela-kehormatan-saudara.html` | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! - Layar Kosong | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! | Layar Kosong | ✅ Perfect |
@@ -645,6 +646,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `artikel/makan-gratis-vs-gaji-guru.html` | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? - Layar Kosong | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? | Layar Kosong | ✅ Perfect |
 | `artikel/makan-siang-masa-depan.html` | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG - Layar Kosong | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG | Layar Kosong | ✅ Perfect |
 | `artikel/makan-untuk-hidup-hidup-untuk-makan.html` | Makan untuk Hidup, Hidup untuk Makan - Layar Kosong | Makan untuk Hidup, Hidup untuk Makan | Layar Kosong | ✅ Perfect |
+| `artikel/makna-at-taghabun-ayat-14.html` | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian - Layar Kosong | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian | Layar Kosong | ✅ Perfect |
 | `artikel/makna-az-zumar-53.html` | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
 | `artikel/malaysia-tolak-board-of-peace-trump.html` | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? - Layar Kosong | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? | Layar Kosong | ✅ Perfect |
 | `artikel/manajer-kata-sandi-firefox.html` | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu - Layar Kosong | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu | Layar Kosong | ✅ Perfect |
@@ -912,6 +914,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `artikel/radio-belum-mati.html` | Radio Belum Mati, Tapi Banyak yang Menyerah Terlalu Dini - Layar Kosong | Radio Belum Mati, Tapi Banyak yang Menyerah Terlalu Dini | Layar Kosong | ✅ Perfect |
 | `artikel/rahasia-kekuatan-puasa-ramadhan.html` | Rahasia Kekuatan Puasa Ramadhan Niat dan Khusyu - Layar Kosong | Rahasia Kekuatan Puasa Ramadhan Niat dan Khusyu | Layar Kosong | ✅ Perfect |
 | `artikel/rahasia-medis-di-balik-sujud.html` | Rahasia Medis di Balik Sujud Keajaiban Neurologi yang Ditemukan Dr. Fidelma - Layar Kosong | Rahasia Medis di Balik Sujud Keajaiban Neurologi yang Ditemukan Dr. Fidelma | Layar Kosong | ✅ Perfect |
+| `artikel/rahasia-sejarah-halal-bihalal.html` | Rahasia Sejarah Halal Bihalal: 7 Fakta Kuat yang Jarang Diketahui - Layar Kosong | Rahasia Sejarah Halal Bihalal: 7 Fakta Kuat yang Jarang Diketahui | Layar Kosong | ✅ Perfect |
 | `artikel/rahasia-tidur-berkualitas-tanpa-bangun-siang.html` | Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang - Layar Kosong | Rahasia Tidur Berkualitas Tanpa Harus Bangun Siang | Layar Kosong | ✅ Perfect |
 | `artikel/rahmah-adab-dan-rasa.html` | Ketika Ekonomi Cuma Pemicu - Rahmah, Adab, Dan Rasa - Layar Kosong | Ketika Ekonomi Cuma Pemicu - Rahmah, Adab, Dan Rasa | Layar Kosong | ✅ Perfect |
 | `artikel/ramadhan-dalam-keprihatinan.html` | Ramadhan Datang dalam Keprihatinan: Refleksi Iman di Tengah Luka Dunia - Layar Kosong | Ramadhan Datang dalam Keprihatinan: Refleksi Iman di Tengah Luka Dunia | Layar Kosong | ✅ Perfect |
@@ -1379,6 +1382,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `jejak-sejarah/queen-annes-revenge.html` | Queen Anne’s Revenge: Kisah La Concorde & Blackbeard - Layar Kosong | Queen Anne’s Revenge: Kisah La Concorde & Blackbeard | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/qunut-atau-tidak-qunut.html` | Qunut atau tidak qunut? Tenang, jangan ribut - Layar Kosong | Qunut atau tidak qunut? Tenang, jangan ribut | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/rahasia-kekuatan-puasa-ramadhan.html` | Rahasia Kekuatan Puasa Ramadhan Niat dan Khusyu - Layar Kosong | Rahasia Kekuatan Puasa Ramadhan Niat dan Khusyu | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/rahasia-sejarah-halal-bihalal.html` | Rahasia Sejarah Halal Bihalal: 7 Fakta Kuat yang Jarang Diketahui - Layar Kosong | Rahasia Sejarah Halal Bihalal: 7 Fakta Kuat yang Jarang Diketahui | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/ramadhan-dalam-keprihatinan.html` | Ramadhan Datang dalam Keprihatinan: Refleksi Iman di Tengah Luka Dunia - Layar Kosong | Ramadhan Datang dalam Keprihatinan: Refleksi Iman di Tengah Luka Dunia | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/saad-bin-abi-waqash.html` | Sa’ad bin Abi Waqqash - Sejarah yang Lembut Hati - Layar Kosong | Sa’ad bin Abi Waqqash - Sejarah yang Lembut Hati | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/sabar-menghadapi-ghibah.html` | Sabar Menghadapi Ghibah: Pelajaran Penting dalam Islam - Layar Kosong | Sabar Menghadapi Ghibah: Pelajaran Penting dalam Islam | Layar Kosong | ✅ Perfect |
@@ -1657,6 +1661,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `opini-sosial/kerja-halal.html` | Cara Memahami dan Mencari Kerja Halal - Panduan Singkat - Layar Kosong | Cara Memahami dan Mencari Kerja Halal - Panduan Singkat | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kerja-sama-indonesia-as-analisis-kritis.html` | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? - Layar Kosong | Waspadai Empat Isi Kerja Sama Indonesia-AS: Perangkap, Penipuan, Perbudakan, dan Penjajahan? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kerja-sama-indonesia-india-2026.html` | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 - Layar Kosong | Hubungan Strategis Indonesia-India 2026: Dari Pikap Desa ke Rudal BrahMos 🇮🇩🇮🇳 | Layar Kosong | ✅ Perfect |
+| `opini-sosial/ketika-orang-terdekat-menjadi-ujian.html` | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 - Layar Kosong | Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14 | Layar Kosong | ✅ Perfect |
 | `opini-sosial/keutamaan-membela-kehormatan-saudara.html` | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! - Layar Kosong | Keutamaan Membela Kehormatan Saudara: Jalan Pintas Menjauhi Api Neraka! | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kewajiban-presiden-menurut-islam.html` | Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam - Layar Kosong | Kewajiban Presiden dan Jajarannya Menurut Pandangan Islam Secara Mendalam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/kita-sadar-nggak-sih-jebakan-trump-prabowo-gaza.html` | Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza - Layar Kosong | Kita ini sadar nggak sih? Jebakan Trump untuk Prabowo, tameng hidup di Gaza | Layar Kosong | ✅ Perfect |
@@ -1678,6 +1683,7 @@ Generated on: 3/24/2026, 2:15:02 PM
 | `opini-sosial/makan-bergizi-gratis-pilar-ekonomi-bantahan-telak.html` | Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect - Layar Kosong | Makan Bergizi Gratis Bukan Pilar Ekonomi, Ini Bantahan Telak The Architect | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makan-gratis-vs-gaji-guru.html` | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? - Layar Kosong | Makan Gratis vs Guru Digaji Murah: Di Mana Nurani Kebijakan? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/makan-siang-masa-depan.html` | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG - Layar Kosong | Makan Siang ini, Dibayar oleh Masa Depan: Analisis Tajam Kebijakan MBG | Layar Kosong | ✅ Perfect |
+| `opini-sosial/makna-at-taghabun-ayat-14.html` | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian - Layar Kosong | Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian | Layar Kosong | ✅ Perfect |
 | `opini-sosial/malaysia-tolak-board-of-peace-trump.html` | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? - Layar Kosong | Malaysia Tolak Geng Barunya Trump: Kenapa Board of Peace Dianggap Sampah Diplomasi? | Layar Kosong | ✅ Perfect |
 | `opini-sosial/manuver-mikro-pendidikan-indonesia.html` | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu - Layar Kosong | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu | Layar Kosong | ✅ Perfect |
 | `opini-sosial/marie-muhammad-mr-clean.html` | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean - Layar Kosong | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean | Layar Kosong | ✅ Perfect |
