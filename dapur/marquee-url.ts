@@ -222,21 +222,78 @@ function initInternalNav(): void {
   }).join('') + '</ul>';
 }
 
-function initRelatedGrid(allData: any, currentFile: string): void {
+async function initRelatedGrid(allData: any, currentFile: string): Promise<void> {
   const grid = document.getElementById('related-articles-grid');
   if (!grid) return;
+
   const catInfo = getCategoryInfo(currentFile, allData);
   if (!catInfo) { grid.style.display = 'none'; return; }
 
-  const related = catInfo.list.filter((i: any) => i.id !== currentFile).sort(() => 0.5 - Math.random()).slice(0, 6);
-  grid.innerHTML = related.map((item: any) => `
-  <div class="rel-card-mini">
-  <a href="${getFullUrl(item.id, allData)}">
-  <div class="rel-img-mini"><img src="${item.image || '/thumbnail.webp'}" alt="${item.title}" loading="lazy" onerror="this.src='/thumbnail.webp'"></div>
-  <div class="rel-info-mini"><h4>${item.title}</h4></div>
-  </a>
-  </div>
-  `).join('');
+  let shortReverseMap: Record<string, string> = {};
+  try {
+    const res = await fetch('/shorturl.json');
+    if (res.ok) {
+      const data = await res.json();
+      for (const [id, url] of Object.entries(data)) {
+        shortReverseMap[url as string] = id;
+      }
+    }
+  } catch (e) {
+    console.warn("Gagal memuat shorturl");
+  }
+
+  const related = catInfo.list
+    .filter((i: any) => i.id !== currentFile)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 6);
+
+  grid.innerHTML = related.map((item: any) => {
+    const fullUrl = getFullUrl(item.id, allData);
+    const shortId = shortReverseMap[fullUrl] || "";
+    
+    // Fitur Click to Copy: Menggunakan navigator.clipboard
+    const shortDisplay = shortId 
+      ? `<div class="shorturl" 
+              title="Klik untuk salin link" 
+              onclick="copyToClipboard('dalam.web.id/${shortId}', this)">
+           dalam.web.id/${shortId}
+         </div>` 
+      : "";
+
+    return `
+      <div class="rel-wrapper">
+        ${shortDisplay}
+        <div class="rel-card-mini">
+          <a href="${fullUrl}">
+            <div class="rel-img-mini">
+              <img src="${item.image || '/thumbnail.webp'}" alt="${item.title}" loading="lazy" onerror="this.src='/thumbnail.webp'">
+            </div>
+            <div class="rel-info-mini">
+              <h4>${item.title}</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/**
+ * Fungsi Helper untuk Salin ke Clipboard
+ */
+function copyToClipboard(text: string, el: HTMLElement): void {
+  navigator.clipboard.writeText('https://' + text).then(() => {
+    const originalText = el.innerText;
+    el.innerText = "✅ Tersalin!";
+    el.style.color = "#27ae60";
+    
+    setTimeout(() => {
+      el.innerText = originalText;
+      el.style.color = "";
+    }, 1500);
+  }).catch(err => {
+    console.error('Gagal menyalin: ', err);
+  });
 }
 
 // ---------------------------
