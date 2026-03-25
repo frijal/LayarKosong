@@ -177,9 +177,6 @@ for (const it of flat) {
     });
 }
 
-// Gunakan format yang sama dengan contohmu
-// --- KODE PENGGANTI SITEMAP (SINGLE PURE SITEMAP MODE) ---
-
 // 1. Siapkan isi URL secara kolektif
 let combinedXmlEntries = '';
 
@@ -225,15 +222,6 @@ ${combinedXmlEntries}
 </urlset>`;
 
 await Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent);
-
-// 3. (Opsional) Hapus file sitemap lama yang sudah tidak digunakan agar bersih
-const oldFiles = ['sitemap-1.xml', 'image-sitemap-1.xml', 'video-sitemap-1.xml'];
-for (const oldFile of oldFiles) {
-    const path = `${C.root}/${oldFile}`;
-    if (await Bun.file(path).exists()) {
-        await require('fs').promises.unlink(path);
-    }
-}
 
 console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (All Assets Included)');
 
