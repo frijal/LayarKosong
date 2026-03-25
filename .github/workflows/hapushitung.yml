@@ -44,10 +44,10 @@ jobs:
 
       - name: 🕵️ Update Dashboard Jadwal
         run: | 
-            bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."
-            bun run dapur/audit-workflow-efisiensi.ts
+            bun run dapur/workflow-list.ts || echo "Script dashboard tidak ditemukan, skip."            
             bun run dapur/metadata-audit.ts
-            cp -u artikel/artikel.json sementara/ 
+            cp -u artikel/artikel.json sementara/
+      # bun run dapur/audit-workflow-efisiensi.ts
 
       # ========== CONTENT REPORT GENERATION (ANTI-ERROR V7.0) ==========
       - name: 📊 Generate Simplified Content Report
