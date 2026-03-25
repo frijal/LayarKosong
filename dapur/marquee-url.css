@@ -465,6 +465,32 @@ border-top: 1px solid var(--border);
   transform: scale(1.1);
 }
 
+.shorturl {
+  font-size: 0.65rem;
+  color: #666;
+  margin-bottom: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  background: #eee;
+  padding: 3px 8px;
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer; /* Kursor jadi tangan */
+  transition: all 0.2s ease;
+  user-select: none; /* Agar teks tidak ter-highlight biru saat diklik cepat */
+}
+
+.shorturl:hover {
+  background: #e0e0e0;
+  color: #000;
+}
+
+/* Wrapper opsional agar layout tetap rapi */
+.rel-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
 /* Global Link Fix */
 a {
  /* color: inherit; */
