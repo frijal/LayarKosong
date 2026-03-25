@@ -260,7 +260,7 @@ if (tmp) {
 
         // 2. Siapkan Schema JSON-LD
         const hp = JSON.stringify((arts as any[]).map(a => ({
-            "@type": "WebPage",
+            "@type": "Article",
             "name": a[0],
             "url": `${C.base}/${s}/${a[1].replace('.html', '')}`,
                                                             "datePublished": a[3],
