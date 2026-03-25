@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.66
+document_version: 18.67
 last_updated: 2026-03-25
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 25 Maret 2026)
-> Menampilkan 1121 artikel versi 18.66.
+> Menampilkan 1122 artikel versi 18.67.
 
 ## Gaya Hidup
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -631,6 +631,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern](https://dalam.web.id/sistem-terbuka/manhaj-tarjih-tajdid-muhammadiyah) : Manhaj Tarjih dan Tajdid Muhammadiyah adalah metode ilmiah dalam memahami Islam secara murni dan relevan Pelajari konsep fungsi dan penerapannya di sini
 - [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
 - [10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026](https://dalam.web.id/sistem-terbuka/10-distro-linux-terbaik-2026) : 10 distro Linux terbaik 2026 untuk pemula hingga power user. Temukan performa, kemudahan, dan kustomisasi maksimal untuk desktop kamu.
 - [GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya](https://dalam.web.id/sistem-terbuka/gnome-50-x11-wayland) : GNOME 50 resmi dirilis dengan menghapus X11 dari GDM, beralih penuh ke Wayland. Fitur VRR dan fractional scaling stabil, Nautilus makin cepat, dan aksesibilitas Orca ditingkatkan. Pelajari detailnya di sini.
