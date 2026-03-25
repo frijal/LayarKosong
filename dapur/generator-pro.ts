@@ -5,7 +5,6 @@ const C = {
     art: `${import.meta.dir}/../artikel`,
     base: 'https://dalam.web.id',
     limit: 30,
-    xsl: 'sitemap-style.xsl',
     cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno']
 };
 
