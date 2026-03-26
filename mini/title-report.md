@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 3/25/2026, 11:36:02 AM
+Generated on: 3/26/2026, 11:43:33 AM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,7 +13,7 @@ Generated on: 3/25/2026, 11:36:02 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC0 1.0 Universal Legal Code - Layar Kosong | CC0 1.0 Universal Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v18.63 | LLM Index v18.63 | Layar Kosong | ✅ Perfect |
+| `llms-index.html` | Layar Kosong - LLM Index v18.70 | LLM Index v18.70 | Layar Kosong | ✅ Perfect |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `search.html` | Hasil Pencarian Layar Kosong | Hasil Pencarian | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
@@ -652,6 +652,7 @@ Generated on: 3/25/2026, 11:36:02 AM
 | `artikel/manajer-kata-sandi-firefox.html` | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu - Layar Kosong | Manajer Kata Sandi Firefox: Penjaga Rahasia Digitalmu | Layar Kosong | ✅ Perfect |
 | `artikel/manfaat-bangun-subuh-kedokteran-modern.html` | Manfaat Bangun Subuh dari Pandangan Kedokteran Modern, Rahasia Tubuh Bugar dan Otak Cemerlang - Layar Kosong | Manfaat Bangun Subuh dari Pandangan Kedokteran Modern, Rahasia Tubuh Bugar dan Otak Cemerlang | Layar Kosong | ✅ Perfect |
 | `artikel/manfaat-kurma.html` | Manfaat Memakan Kurma - Khasiat, Nutrisi, dan Cara Mengonsumsinya - Layar Kosong | Manfaat Memakan Kurma - Khasiat, Nutrisi, dan Cara Mengonsumsinya | Layar Kosong | ✅ Perfect |
+| `artikel/manhaj-tarjih-tajdid-muhammadiyah.html` | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern - Layar Kosong | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern | Layar Kosong | ✅ Perfect |
 | `artikel/manuver-mikro-pendidikan-indonesia.html` | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu - Layar Kosong | Manuver di Ruang Mikro: Saat Kebijakan Makro Pendidikan Terasa Buntu | Layar Kosong | ✅ Perfect |
 | `artikel/marie-muhammad-mr-clean.html` | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean - Layar Kosong | Teladan Mar'ie Muhammad: Kisah Kesederhanaan Sang Mr. Clean | Layar Kosong | ✅ Perfect |
 | `artikel/markdown-viewer-editor.html` | Markdown Viewer dan Editor - Layar Kosong | Markdown Viewer dan Editor | Layar Kosong | ✅ Perfect |
@@ -1335,6 +1336,7 @@ Generated on: 3/25/2026, 11:36:02 AM
 | `jejak-sejarah/larangan-ghibah.html` | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) - Layar Kosong | Larangan Berburuk Sangka (Prasangka) dan Menggunjing (Ghibah) | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/lisan-dijaga-neraka.html` | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat - Layar Kosong | Lisan Dijaga, Supaya Terhindar dari Neraka 🔥 - Hadis Nabi: 70 Tahun Jatuh ke Neraka Cuma Gara-Gara Satu Kalimat | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/makna-az-zumar-53.html` | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan - Layar Kosong | Membedah Surat Az-Zumar Ayat 53: Ayat Paling Penuh Harapan | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah.html` | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern - Layar Kosong | Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/masa-penuh-fitnah.html` | Masa penuh fitnah: duduk lebih baik dari berdiri, berjalan, dan berlari - Layar Kosong | Masa penuh fitnah: duduk lebih baik dari berdiri, berjalan, dan berlari | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/masyitoh.html` | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid - Layar Kosong | Iman Masyitoh, Pelayan Istana Fir‘aun yang Syahid | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/maulid-kajian-lengkap.html` | Kajian Lengkap Maulid Nabi: Fatwa, Perbandingan Ulama, dan Sejarah - Layar Kosong | Kajian Lengkap Maulid Nabi: Fatwa, Perbandingan Ulama, dan Sejarah | Layar Kosong | ✅ Perfect |
