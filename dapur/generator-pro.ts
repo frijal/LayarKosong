@@ -58,8 +58,8 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     console.log('🚀 Diet Mode V8.7 (Fix Tanggal dari Master)');
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+		Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+        Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls = new Set(stm.split('\n').filter(Boolean));
@@ -220,9 +220,19 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${combinedXmlEntries}
 </urlset>`;
 
-await Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent);
+// 3. Tulis sitemap.xml + rss.xml secara bersamaan
+await Promise.all([
+    Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
+    Bun.write(`${C.root}/rss.xml`, buildRss(
+        'Layar Kosong',
+        flat.slice(0, C.limit),
+        `${C.base}/rss.xml`,
+        'Feed artikel terbaru dari Layar Kosong'
+    )),
+]);
 
 console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (All Assets Included)');
+console.log('📡 RSS Feed Global Berhasil Dibuat: rss.xml');
 
 // Build Category Pages (Static Version)
 const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
@@ -258,16 +268,8 @@ if (tmp) {
             </a>`;
         }).join('');
 
-        // 2. Siapkan Schema JSON-LD
-        const hp = JSON.stringify((arts as any[]).map(a => ({
-            "@type": "Article",
-            "name": a[0],
-            "url": `${C.base}/${s}/${a[1].replace('.html', '')}`,
-                                                            "datePublished": a[3],
-                                                            "description": a[4] || a[0]
-        })), null, 2);
-
-        // 3. Inject ke Template
+        // 2. Inject ke Template
+        // (Schema JSON-LD dihandle oleh seo-inject.ts yang berjalan setelah script ini)
         let pg = tmp
         .replace(/%%TITLE%%|%%DESCRIPTION%%/g, categoryNameClean)
         .replace(/%%CATEGORY_NAME%%/g, decodeHTML(cat))
@@ -276,8 +278,7 @@ if (tmp) {
         .replace(/%%ICON%%/g, cat.match(/(\p{Emoji})/u)?.[0] || '📁')
         .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${categoryNameClean}</span>`)
         .replace('<div id="loading">Memuat...</div>', '')
-        .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}</div>`)
-        .replace(/"inLanguage": "id-ID"/, `"inLanguage": "id-ID",\n  "hasPart": ${hp}`);
+        .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
 
         await Bun.write(`${C.root}/${s}/index.html`, pg);
 
