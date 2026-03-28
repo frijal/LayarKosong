@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.75
+document_version: 18.76
 last_updated: 2026-03-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Maret 2026)
-> Menampilkan 1123 artikel versi 18.75.
+> Menampilkan 1130 artikel versi 18.76.
 
 ## Gaya Hidup
+- [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
 - [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/gaya-hidup/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
@@ -125,6 +126,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
 - [Hukum Memancing dalam Islam: Panduan Lengkap Fikih untuk Pemancing Muslim](https://dalam.web.id/jejak-sejarah/hukum-memancing-dalam-islam) : Hukum memancing dalam Islam dijelaskan secara lengkap, mulai dari catch and release, konsumsi ikan, hingga pemancingan berbayar. Simak panduan fikih yang benar di sini.
 - [Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern](https://dalam.web.id/jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah) : Manhaj Tarjih dan Tajdid Muhammadiyah adalah metode ilmiah dalam memahami Islam secara murni dan relevan Pelajari konsep fungsi dan penerapannya di sini
 - [Rahasia Sejarah Halal Bihalal: 7 Fakta Kuat yang Jarang Diketahui](https://dalam.web.id/jejak-sejarah/rahasia-sejarah-halal-bihalal) : Halal Bihalal bukan sekadar tradisi biasa tetapi memiliki sejarah panjang dan makna mendalam dalam membangun ukhuwah Islamiyah di Indonesia
@@ -304,6 +306,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Rashdul Qibla: 2 Waktu Emas Cek Arah Kiblat Paling Akurat Tanpa Kompas](https://dalam.web.id/lainnya/rashdul-qibla) : Rashdul Qibla adalah fenomena saat matahari tepat di atas Ka'bah, memungkinkan pengecekan arah kiblat secara akurat tanpa kompas. Pelajari cara praktisnya di sini!
+- [Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah](https://dalam.web.id/lainnya/kebiasaan-pagi-rasulullah) : Kebiasaan pagi Rasulullah terbukti membantu meningkatkan produktivitas, fokus, dan keberkahan hidup. Pelajari 3 rutinitas pagi yang bisa Anda tiru mulai hari ini.
 - [MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili?](https://dalam.web.id/lainnya/menggugat-otoritas-keagamaan-mui) : fenomena otoritas keagamaan MUI dan kasus KH Cholil Nafis terkait pengumuman Idul Fitri dalam perspektif teologis dan sosial.
 - [Gaji Layak Guru: Hadiah atau Prasyarat Kualitas Pendidikan?](https://dalam.web.id/lainnya/gaji-guru-layak-prasyarat-kualitas) : Mengupas logika terbalik tuntutan kualitas guru sebelum kenaikan gaji. Analisis 5W 1H tentang kesejahteraan guru kehormatan dan standar pendidikan dunia.
 - [WFA dan Sekolah Daring untuk Hemat BBM: Efektifkah? Analisis 5W+1H dari Pengalaman Orang Tua](https://dalam.web.id/lainnya/rencana-wfa-sekolah-daring-hemat-bbm) : WFA dan sekolah daring untuk hemat BBM di Indonesia. Kekhawatiran wali murid soal anak malas belajar daring, biaya kuota, dan alternatif yang lebih masuk akal. Pakai 5W 1H dan fakta nyata dari pengalaman COVID
@@ -633,6 +637,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source](https://dalam.web.id/sistem-terbuka/age-verification-linux-2026) : Age Verification Linux menjadi isu besar di 2026. Pelajari dampaknya bagi pengguna Linux, privasi, dan masa depan internet dalam panduan lengkap ini.
 - [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
 - [10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026](https://dalam.web.id/sistem-terbuka/10-distro-linux-terbaik-2026) : 10 distro Linux terbaik 2026 untuk pemula hingga power user. Temukan performa, kemudahan, dan kustomisasi maksimal untuk desktop kamu.
 - [GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya](https://dalam.web.id/sistem-terbuka/gnome-50-x11-wayland) : GNOME 50 resmi dirilis dengan menghapus X11 dari GDM, beralih penuh ke Wayland. Fitur VRR dan fractional scaling stabil, Nautilus makin cepat, dan aksesibilitas Orca ditingkatkan. Pelajari detailnya di sini.
@@ -936,6 +941,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat](https://dalam.web.id/warta-tekno/ai-coding-agent-2026) : AI Coding Agent meningkatkan kecepatan coding, tetapi tidak mempercepat delivery project secara signifikan. Pelajari penyebab dan perubahan paradigma software development di sini.
+- [Windows 11 Speed Test 2026: Fitur Baru Praktis atau Sekadar Shortcut Biasa?](https://dalam.web.id/warta-tekno/windows-11-speed-test-2026) : Windows 11 kini memiliki fitur speed test di taskbar. Apakah ini benar-benar berguna atau hanya shortcut ke Bing? Simak ulasan lengkapnya di sini.
 - [Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah](https://dalam.web.id/warta-tekno/panduan-migrasi-nodejs-ke-bun) : cara migrasi dari Node.js ke Bun untuk mempercepat pengembangan web. dengan prinsip 5W 1H untuk pemula hingga menengah.
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
