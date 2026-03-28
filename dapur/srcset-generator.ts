@@ -15,8 +15,7 @@ const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
 const SKIP_EXTENSIONS   = new Set([".svg", ".gif"]);
 
 const ALLOWED_CATEGORIES = [
-  "gaya-hidup", "jejak-sejarah", "lainnya",
-"olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
+"gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
 // ========== CACHE ==========
@@ -128,14 +127,14 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, "/")}`;
       const webMobileUrl  = `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}`;
 
-      const pictureHtml = `<picture style="display: block; text-align: center;">
+      // Bagian transformasi di dalam loop imageCandidates
+      const pictureHtml = `<picture style="display: contents;">
       ${needsMobile ? `  <source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ""}
       <img src="${webDesktopUrl}"
       ${isFirstImage ? 'fetchpriority="high"' : ""}
       alt="${finalAlt.replace(/"/g, "&quot;")}"
       width="${meta.width > 1000 ? 1000 : meta.width}"
       height="${Math.round((meta.width > 1000 ? 1000 : meta.width) * (meta.height / meta.width))}"
-      style="max-width: 100%; height: auto; border-radius: 16px; display: inline-block;"
       loading="${isFirstImage ? "eager" : "lazy"}"
       decoding="async">
       </picture>`;
