@@ -56,7 +56,7 @@ async function getArticleDate(): Promise<string | null> {
 
         for (const category in data) {
             const match = data[category].find((entry: any) => entry[1] === fileName);
-            if (match) return new Date(match[3]).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+            if (match) return new Date(match[3]).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
         }
     } catch { }
     return null;
