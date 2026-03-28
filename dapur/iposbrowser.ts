@@ -66,7 +66,7 @@ async function getArticleDate(): Promise<string | null> {
 const [stats, articleDate] = await Promise.all([getStats(), getArticleDate()]);
 
 const iconHTML = (path: string, alt: string) =>
-`<img src="${path}" alt="${alt}" style="width:14px; height:14px; vertical-align:middle; margin-right:4px; opacity:0.7; filter:grayscale(0.5); display:inline-block;">`;
+`<img src="${path}" alt="${alt}" style="width:14px; height:14px; vertical-align:middle; margin-right:4px; display:inline-block;">`;
 
 // Inline style minimalis agar flexbox bekerja tanpa mengganggu CSS luar
 target.innerHTML = `
@@ -77,7 +77,7 @@ ${articleDate ? `<span style="white-space:nowrap;">🗓️ ${articleDate}</span>
 ${stats ? `
     <span style="white-space:nowrap;">
     <strong>\u221E</strong>
-    ${stats.v.toLocaleString('id-ID')} <small style="opacity:0.5">~</small> ${stats.t.toLocaleString('id-ID')}
+    ${stats.v.toLocaleString('id-ID')} <small>~</small> ${stats.t.toLocaleString('id-ID')}
     </span>` : ''}
     </div>`;
 });
