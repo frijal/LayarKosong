@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.86
+document_version: 18.87
 last_updated: 2026-03-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,10 +39,11 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Maret 2026)
-> Menampilkan 1139 artikel versi 18.86.
+> Menampilkan 1147 artikel versi 18.87.
 
 ## Gaya Hidup
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
+- [Kedaulatan SDA: Iran Menikmati Minyaknya, Indonesia Hanya Petugas Parkir](https://dalam.web.id/gaya-hidup/kedaulatan-sda-indonesia-vs-iran-pasal-33) : Indonesia gagal mengelola kekayaan alam seperti Iran? Pasal 33 UUD 1945 hanya jadi mantra kosong. Belajar dari Iran yang berdaulat penuh atas minyaknya, sementara Indonesia hanya jadi petugas parkir bagi korporasi. Analisis kritis hilirisasi, pajak, dan impor.
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
 - [Cara Jago Bahasa Lewat Membaca: Tips Nambah Kosakata dan Mindful Reading](https://dalam.web.id/gaya-hidup/tips-belajar-bahasa-dari-membaca) : langkah praktis membangun kosakata baru dan memahami tata bahasa melalui teknik mindful reading untuk meningkatkan kemahiran berbahasa Anda secara alami
 - [Cara Berpikir Kritis ala Socrates: Jangan Gampang Kena Tipu!](https://dalam.web.id/gaya-hidup/cara-berpikir-kritis-socrates) : cara menerapkan metode Sokratik dan berpikir kritis dalam kehidupan sehari-hari untuk menghindari manipulasi dan membangun kemandirian berpikir.
@@ -126,6 +127,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya](https://dalam.web.id/jejak-sejarah/diesel-runaway-horor-mesin-ngamuk) : Diesel runaway, horor mesin diesel yang meraung tak terkendali karena membakar oli sendiri. Pelajari penyebab, cara menghentikan dengan stall dan tutup intake, serta pencegahan dengan oil catch can. untuk mekanik dan pengguna diesel lawas.
 - [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
 - [Hukum Memancing dalam Islam: Panduan Lengkap Fikih untuk Pemancing Muslim](https://dalam.web.id/jejak-sejarah/hukum-memancing-dalam-islam) : Hukum memancing dalam Islam dijelaskan secara lengkap, mulai dari catch and release, konsumsi ikan, hingga pemancingan berbayar. Simak panduan fikih yang benar di sini.
 - [Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern](https://dalam.web.id/jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah) : Manhaj Tarjih dan Tajdid Muhammadiyah adalah metode ilmiah dalam memahami Islam secara murni dan relevan Pelajari konsep fungsi dan penerapannya di sini
@@ -468,6 +470,8 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Microsoft Copilot: Otomatisasi Pekerjaan Berjam-jam](https://dalam.web.id/opini-sosial/microsoft-copilot) : Panduan santai tentang Microsoft Copilot yang bisa otomatisasi pekerjaan berjam-jam di Excel, Word, dan PowerPoint.
+- [Pasukan Berjas Putih Kuba: Solidaritas Dokter yang Mendunia dan Jejaknya di Indonesia](https://dalam.web.id/opini-sosial/solidaritas-dokter-kuba-pasukan-berjas-putih) : Kisah solidaritas medis Kuba yang mengirimkan ribuan dokter ke seluruh dunia tanpa pamrih, termasuk saat bencana Aceh dan Jogja. Pelajari sejarah hubungan Indonesia Kuba dan krisis terkini.
 - [Ketika Orang Terdekat Menjadi Ujian: Refleksi Hati At-Taghabun 14](https://dalam.web.id/opini-sosial/ketika-orang-terdekat-menjadi-ujian) : Sebuah refleksi spiritual tentang ujian hidup yang datang dari keluarga terdekat berdasarkan QS At Taghabun Ayat 14 Bagaimana mencintai tanpa melalaikan Tuhan
 - [Makna Mendalam Q.S. At-Taghabun Ayat 14: Ketika Keluarga Menjadi Ujian](https://dalam.web.id/opini-sosial/makna-at-taghabun-ayat-14) : Mengupas makna mendalam QS At Taghabun Ayat 14 tentang bagaimana istri dan anak bisa menjadi musuh bagi keimanan serta solusi Qurani menghadapi ujian keluarga
 - [Kontroversi Anggaran MBG 1 Triliun Sehari: Prioritas Nutrisi atau Pemborosan Negara?](https://dalam.web.id/opini-sosial/kontroversi-anggaran-mbg-vs-prioritas-nasional) : Mengupas tuntas perdebatan anggaran fantastis program Makan Bergizi Gratis (MBG) di Indonesia. Apakah tepat sasaran untuk gizi anak atau justru mengorbankan pertahanan, infrastruktur daerah, dan kesejahteraan guru honorer? Simak analisis mendalamnya di sini.
@@ -641,9 +645,12 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Snap vs Flatpak: Pengalaman Pindah ke Flatpak yang Lebih Ringan dan Bebas Gangguan](https://dalam.web.id/sistem-terbuka/snap-vs-flatpak-pengalaman-pindah) : Perbandingan jujur Snap vs Flatpak: dari keterlambatan aplikasi, izin akses, hingga kebersihan sistem. Pelajari pengalaman pindah ke Flatpak dan kapan harus tetap pakai Snap. Cocok untuk pengguna Ubuntu dan Linux.
 - [Review 6 Model AI Terbaik Jangan Menghindari AI atau Ketinggalan Zaman](https://dalam.web.id/sistem-terbuka/review-6-model-ai-terbaik) : Review jujur performa 6 model AI terbaik mulai dari ChatGPT Claude hingga Gemini Temukan alat yang tepat untuk kerjamu agar tidak ketinggalan zaman
 - [ZRAM vs ZSWAP di Linux: Mana yang Lebih Cocok untuk Manajemen Memori?](https://dalam.web.id/sistem-terbuka/zram-vs-zswap-linux-optimasi-memory) : Perbandingan ZRAM dan ZSWAP pada Linux: cara kerja, kelebihan, kekurangan, dan rekomendasi mana yang sesuai dengan kebutuhan RAM dan workload Anda.
+- [PowerShell Perawatan Windows: 4 Perintah Ajaib yang Wajib Kamu Coba](https://dalam.web.id/sistem-terbuka/powershell-perawatan-windows-4-perintah) : 4 perintah PowerShell ajaib untuk merawat Windows: update aplikasi massal, bersihkan file sementara, perbaiki sistem dengan DISM+SFC, dan temukan penyebab storage penuh. Tutorial santai dengan prinsip 5W+1H dan E-E-A-T.
 - [Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source](https://dalam.web.id/sistem-terbuka/age-verification-linux-2026) : Age Verification Linux menjadi isu besar di 2026. Pelajari dampaknya bagi pengguna Linux, privasi, dan masa depan internet dalam panduan lengkap ini.
+- [5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME](https://dalam.web.id/sistem-terbuka/lingkungan-desktop-linux-alternatif) : Cari lingkungan desktop Linux selain GNOME? Simak ulasan lengkap Cinnamon, Pantheon, XFCE, MATE, KDE Plasma, dan LXQt. Cocok untuk laptop tua, pengguna Windows/Mac, atau yang ingin kustomisasi mendalam. Temukan yang paling hemat RAM dan sesuai workflow Anda!
 - [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
 - [10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026](https://dalam.web.id/sistem-terbuka/10-distro-linux-terbaik-2026) : 10 distro Linux terbaik 2026 untuk pemula hingga power user. Temukan performa, kemudahan, dan kustomisasi maksimal untuk desktop kamu.
 - [GNOME 50 Hadir: X11 Akhirnya Ditinggalkan, Wayland Sepenuhnya](https://dalam.web.id/sistem-terbuka/gnome-50-x11-wayland) : GNOME 50 resmi dirilis dengan menghapus X11 dari GDM, beralih penuh ke Wayland. Fitur VRR dan fractional scaling stabil, Nautilus makin cepat, dan aksesibilitas Orca ditingkatkan. Pelajari detailnya di sini.
@@ -952,6 +959,7 @@ document_type: llm_behavior_and_entity_guidance
 - [AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat](https://dalam.web.id/warta-tekno/ai-coding-agent-2026) : AI Coding Agent meningkatkan kecepatan coding, tetapi tidak mempercepat delivery project secara signifikan. Pelajari penyebab dan perubahan paradigma software development di sini.
 - [Windows 11 Speed Test 2026: Fitur Baru Praktis atau Sekadar Shortcut Biasa?](https://dalam.web.id/warta-tekno/windows-11-speed-test-2026) : Windows 11 kini memiliki fitur speed test di taskbar. Apakah ini benar-benar berguna atau hanya shortcut ke Bing? Simak ulasan lengkapnya di sini.
 - [Firefox 149 Hadir dengan Split Screen, Trust Panel, dan Performa Lebih Cepat](https://dalam.web.id/warta-tekno/firefox-149-split-screen-trust-panel) : Firefox 149 resmi dirilis dengan fitur split screen bawaan, panel keamanan terpadu, peningkatan performa PDF, dan autofill alamat di 5 negara. Simak detail lengkapnya.
+- [Stack Tools AI 2026: Upgrade Workflow Masa Depan](https://dalam.web.id/warta-tekno/ai-stack-2026-workflow-upgrade) : Tinggalkan cara lama! Kenali 11 tools AI revolusioner 2026: Perplexity AI, Claude, NotebookLM, Ideogram 2.0, Nano Banana, Gamma, Wispr Flow, Julius AI, Arc Browser, OpusClip, Windsurf. Workflow lebih cepat, hasil lebih cerdas.
 - [Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah](https://dalam.web.id/warta-tekno/panduan-migrasi-nodejs-ke-bun) : cara migrasi dari Node.js ke Bun untuk mempercepat pengembangan web. dengan prinsip 5W 1H untuk pemula hingga menengah.
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
