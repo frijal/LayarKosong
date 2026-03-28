@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.77
+document_version: 18.78
 last_updated: 2026-03-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Maret 2026)
-> Menampilkan 1130 artikel versi 18.77.
+> Menampilkan 1131 artikel versi 18.78.
 
 ## Gaya Hidup
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
@@ -306,6 +306,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas](https://dalam.web.id/lainnya/dilema-hemat-gas-pedagang-makanan) : Mengupas dampak imbauan Menteri ESDM Bahlil Lahadalia soal hemat LPG bagi pedagang makanan seperti soto, bakso, dan bubur yang butuh api standby.
 - [Rashdul Qibla: 2 Waktu Emas Cek Arah Kiblat Paling Akurat Tanpa Kompas](https://dalam.web.id/lainnya/rashdul-qibla) : Rashdul Qibla adalah fenomena saat matahari tepat di atas Ka'bah, memungkinkan pengecekan arah kiblat secara akurat tanpa kompas. Pelajari cara praktisnya di sini!
 - [Kebiasaan Pagi Rasulullah yang Powerful untuk Hidup Lebih Produktif dan Berkah](https://dalam.web.id/lainnya/kebiasaan-pagi-rasulullah) : Kebiasaan pagi Rasulullah terbukti membantu meningkatkan produktivitas, fokus, dan keberkahan hidup. Pelajari 3 rutinitas pagi yang bisa Anda tiru mulai hari ini.
 - [MENGGUGAT OTORITAS KEAGAMAAN MUI: Tuhan Kok Diwakili?](https://dalam.web.id/lainnya/menggugat-otoritas-keagamaan-mui) : fenomena otoritas keagamaan MUI dan kasus KH Cholil Nafis terkait pengumuman Idul Fitri dalam perspektif teologis dan sosial.
