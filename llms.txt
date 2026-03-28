@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.85
+document_version: 18.86
 last_updated: 2026-03-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Maret 2026)
-> Menampilkan 1138 artikel versi 18.85.
+> Menampilkan 1139 artikel versi 18.86.
 
 ## Gaya Hidup
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
@@ -641,6 +641,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Review 6 Model AI Terbaik Jangan Menghindari AI atau Ketinggalan Zaman](https://dalam.web.id/sistem-terbuka/review-6-model-ai-terbaik) : Review jujur performa 6 model AI terbaik mulai dari ChatGPT Claude hingga Gemini Temukan alat yang tepat untuk kerjamu agar tidak ketinggalan zaman
 - [ZRAM vs ZSWAP di Linux: Mana yang Lebih Cocok untuk Manajemen Memori?](https://dalam.web.id/sistem-terbuka/zram-vs-zswap-linux-optimasi-memory) : Perbandingan ZRAM dan ZSWAP pada Linux: cara kerja, kelebihan, kekurangan, dan rekomendasi mana yang sesuai dengan kebutuhan RAM dan workload Anda.
 - [Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source](https://dalam.web.id/sistem-terbuka/age-verification-linux-2026) : Age Verification Linux menjadi isu besar di 2026. Pelajari dampaknya bagi pengguna Linux, privasi, dan masa depan internet dalam panduan lengkap ini.
 - [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
