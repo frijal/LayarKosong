@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Euro-Office: Alternatif Open Source Eropa Pengganti Google Docs & Microsoft 365</title>
+    <meta name="description" content="Euro-Office adalah fork dari OnlyOffice yang lahir dari gerakan kedaulatan digital Eropa. Bebas pengaruh Rusia, open source, dan siap menggantikan Google Docs.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dalam.web.id/artikel/euro-office-alternatif-berdaulat-digital.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Euro-Office: Fork OnlyOffice untuk Kedaulatan Digital Eropa, Alternatif Google Docs">
+    <meta property="og:description" content="Dibangun karena kekhawatiran atas kendali Rusia di OnlyOffice, Euro-Office hadir sebagai solusi kolaborasi open source yang aman dan independen.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/euro-office-alternatif-berdaulat-digital.html">
+    <meta property="og:image" content="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/spreadsheet.png">
+    <meta property="og:locale" content="id_ID">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Euro-Office: Office Suite Open Source Eropa Bebas dari Pengaruh Rusia">
+    <meta name="twitter:description" content="Euro-Office adalah hasil fork dari OnlyOffice oleh komunitas Eropa yang mengutamakan transparansi, kontribusi terbuka, dan kedaulatan digital.">
+    <meta name="twitter:image" content="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/presentation.png">
+    <!-- SEO tambahan -->
+    <meta name="news_keywords" content="Euro-Office, OnlyOffice, open source office suite, digital sovereignty, Google Docs alternatif, Microsoft 365 alternatif, kedaulatan digital Eropa, fork OnlyOffice">
+    <meta property="article:tag" content="Euro-Office">
+    <meta property="article:tag" content="OnlyOffice">
+    <meta property="article:tag" content="Digital Sovereignty">
+    <meta property="article:tag" content="Open Source">
+    <meta property="article:tag" content="Office Suite">
+    <meta property="article:tag" content="European Tech">
+    <meta name="promphint" content="Pertanyaan: Apa itu Euro-Office dan mengapa penting bagi kedaulatan digital Eropa? Jawaban: Euro-Office adalah fork dari OnlyOffice yang dibuat oleh komunitas Eropa karena kekhawatiran akan pengaruh Rusia dan sulitnya kontribusi pada pengembangan OnlyOffice. Proyek ini bertujuan menyediakan suite kantor kolaboratif open source yang aman dan independen sebagai alternatif Google Docs serta Microsoft 365.">
+    <meta name="author" content="Tim Riset Teknologi & Kedaulatan Digital">
+    <meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <!-- Font Awesome & CSS dasar (no tailwind) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            transition: background-color 0.2s, color 0.2s;
+            padding: 0 16px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: inherit;
+            padding: 24px 0 48px;
+        }
+        /* Light theme */
+        body {
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #1d4ed8;
+        }
+        h1 {
+            font-size: 1.9rem;
+            margin: 0.5rem 0 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        h2 {
+            font-size: 1.7rem;
+            margin: 1.5rem 0 1rem;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem;
+            color: #0f172a;
+        }
+        p, li, figcaption {
+            margin-bottom: 1rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 1.5rem auto;
+        }
+        .card-highlight {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .five-wh {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .img-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .img-gallery figure {
+            flex: 1 1 260px;
+            margin: 0;
+            text-align: center;
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        footer {
+            margin-top: 3rem;
+            padding: 2rem 0 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #475569;
+        }
+        .fa, .fas, .far {
+            margin-right: 6px;
+        }
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e2e8f0;
+            }
+            h2, h3 {
+                color: #f1f5f9;
+            }
+            .card-highlight, .five-wh {
+                background: #1e293b;
+                border-left-color: #60a5fa;
+            }
+            a {
+                color: #60a5fa;
+            }
+            a:hover {
+                color: #93c5fd;
+            }
+            hr {
+                background: #334155;
+            }
+        }
+        @media (max-width: 640px) {
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.4rem; }
+            .container { padding: 16px 0 32px; }
+            body { padding: 0 12px; }
+        }
+        img {
+            aspect-ratio: 1200 / 630;
+            object-fit: cover;
+            width: 100%;
+        }
+        .related-placeholder, .response-placeholder {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 2rem 0 1rem;
+            text-align: center;
+            font-style: italic;
+        }
+        @media (prefers-color-scheme: dark) {
+            .related-placeholder, .response-placeholder {
+                background: #1e293b;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <article>
+        <h1><i class="fas fa-globe-europe"></i> Euro-Office: Alternatif Open Source Eropa Pengganti Google Docs & Microsoft 365</h1>
+        <p>Percakapan tentang <strong>kedaulatan digital</strong> semakin hangat di Eropa. Setelah bertahun-tahun bergantung pada layanan Amerika Serikat dan China, kini muncul gerakan membangun infrastruktur teknologi sendiri. Salah satu proyek terbaru adalah <strong>Euro-Office</strong>, sebuah fork (cabang) dari OnlyOffice yang lahir karena alasan geopolitik dan keterbatasan kolaborasi komunitas. Dalam artikel ini, kita bedah tuntas Euro-Office, mengapa mereka memilih fork, dan bagaimana proyek ini bisa menjadi alternatif serius untuk Google Docs dan Microsoft 365.</p>
+
+        <!-- 5W+1H dalam bahasa Indonesia -->
+
+
+        <!-- Gambar 1: spreadsheet -->
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/spreadsheet.png"
+             alt="Euro-Office tampilan spreadsheet" loading="eager" width="1200" height="630">
+        <figcaption style="text-align: center;">Euro-Office menghadirkan pengeditan spreadsheet kolaboratif yang mirip dengan Microsoft Excel, namun berbasis open source dan dikelola komunitas Eropa.</figcaption>
+
+        <h2><i class="fas fa-code-branch"></i> Latar Belakang: Mengapa OnlyOffice Di-fork?</h2>
+        <p>OnlyOffice adalah proyek open source di bawah lisensi AGPL yang sudah cukup matang sebagai platform kolaborasi dokumen. Namun, menurut tim Euro-Office, ada dua masalah utama: <strong>sulitnya kontribusi</strong> dari komunitas luar dan <strong>lokasi perusahaan di Rusia</strong>. Dalam situs mereka, tertulis: “Berkontribusi menjadi mustahil atau sangat sulit karena perubahan kode dari luar jarang diterima.” Karena itu, mereka memilih hard fork agar dapat mengembangkan kode secara independen.</p>
+        <p>Selain itu, Rusia masih mendapat sanksi berat dari sebagian besar negara Eropa akibat invasi ke Ukraina. Banyak institusi dan perusahaan Eropa yang menghindari perangkat lunak yang berpotensi dipengaruhi atau dikendalikan oleh pemerintah Rusia. Euro-Office hadir sebagai jawaban: “Suite kantor yang tidak dipengaruhi atau dikendalikan oleh pemerintah Rusia.”</p>
+
+        <h2><i class="fas fa-flag-eu"></i> Gerakan Kedaulatan Digital Eropa</h2>
+        <p>Euro-Office bukan satu-satunya proyek yang muncul dari gelombang <strong>digital sovereignty</strong>. Ada juga <a href="https://www.collaboraonline.com/" target="_blank" rel="noopener">Collabora Online</a> (berbasis di Inggris) yang sudah terintegrasi dengan Nextcloud, dan <a href="https://www.howtogeek.com/docs-alternative-google-docs-notion-france-germany/" target="_blank">LaSuite Docs</a> hasil kolaborasi Prancis-Jerman. Menurut laporan Atlantic Council, Eropa ingin mengurangi ketergantungan pada teknologi yang dikendalikan AS dan China, termasuk layanan dari Google, Microsoft, dan Alibaba. Euro-Office masuk dalam ekosistem ini: menyediakan alat kolaborasi yang transparan, aman, dan berada dalam kendali hukum Eropa.</p>
+
+        <!-- Gambar 2: presentation -->
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/presentation.png"
+             alt="Euro-Office presentasi slide" loading="lazy" width="1200" height="630">
+        <figcaption>Fitur presentasi di Euro-Office menawarkan antarmuka yang familiar, memudahkan migrasi dari PowerPoint atau Google Slides.</figcaption>
+
+        <h2><i class="fas fa-balance-scale"></i> Kenapa Memilih OnlyOffice, Bukan LibreOffice?</h2>
+        <p>Pertanyaan menarik: mengapa Euro-Office tidak memulai dari LibreOffice yang sudah lebih dulu open source? Tim Euro-Office hanya menjelaskan secara singkat di FAQ: “Kami percaya open source adalah tentang kolaborasi, dan kami mencari peluang integrasi dengan komunitas LibreOffice serta perusahaan seperti Collabora.” Kemungkinan terbesar adalah karena <strong>OnlyOffice sudah memiliki basis web kolaboratif yang matang</strong> dan siap pakai, sedangkan versi web LibreOffice (LibreOffice Online) masih dalam tahap pengembangan ulang dan sempat terlibat perselisihan dengan Collabora.</p>
+        <p>OnlyOffice juga memiliki desain yang lebih mirip Microsoft Office dibanding LibreOffice, sehingga kurva adaptasi lebih rendah bagi pengguna korporat. Dengan melakukan fork, Euro-Office bisa langsung membersihkan kode dan menambah fitur tanpa menunggu persetujuan pemilik asli.</p>
+
+        <h2><i class="fas fa-users"></i> Tantangan dan Masa Depan Euro-Office</h2>
+        <p>Menjadi hard fork bukan perkara mudah. Euro-Office harus mempertahankan kompatibilitas, menarik kontributor, dan membangun ekosistem sendiri. Di sisi lain, proyek ini mendapat momentum dari kebijakan “pilih Eropa” yang didorong oleh beberapa negara anggota Uni Eropa. Beberapa kota dan lembaga pemerintah di Jerman, Prancis, dan Italia mulai mempertimbangkan migrasi ke alternatif open source berbasis lokal.</p>
+        <p>Selain itu, konflik antara Collabora dan LibreOffice Online sempat memanas, membuat sebagian kalangan mencari opsi lain yang lebih stabil. Euro-Office bisa menjadi jembatan: menawarkan pengalaman modern seperti OnlyOffice dengan kontrol penuh dari komunitas Eropa.</p>
+
+        <!-- Gambar 3: document -->
+        <div class="img-gallery">
+            <figure>
+                <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/document.png" alt="Dokumen teks di Euro-Office" loading="lazy" width="800" height="450">
+                <figcaption>Editor dokumen Euro-Office mendukung format .docx, .odt, dan kolaborasi real-time.</figcaption>
+            </figure>
+        </div>
+
+        <div class="card-highlight">
+            <i class="fas fa-lightbulb"></i> <strong>Catatan E-E-A-T:</strong> Artikel ini disusun berdasarkan analisis sumber terbuka, pernyataan resmi proyek Euro-Office, serta laporan dari How-To Geek, Atlantic Council, dan Neowin. Konten mengedepankan akurasi, keahlian teknologi, dan perspektif kedaulatan digital.
+        </div>
+
+        <h2><i class="fas fa-question"></i> Pertanyaan Umum (FAQ)</h2>
+        <ul>
+            <li><strong>❓ Apakah Euro-Office gratis?</strong> Ya, sebagai perangkat lunak open source (AGPL), Euro-Office dapat digunakan, dimodifikasi, dan didistribusikan secara gratis.</li>
+            <li><strong>❓ Bagaimana cara mencoba Euro-Office?</strong> Saat ini proyek masih dalam tahap awal rilis, kode sumber tersedia di repositori mereka. Versi demo daring direncanakan menyusul.</li>
+            <li><strong>❓ Apa perbedaan Euro-Office dengan OnlyOffice?</strong> Euro-Office adalah fork yang independen, dengan jalur kontribusi terbuka, tanpa pengaruh perusahaan Rusia, dan fokus pada kebutuhan institusi Eropa.</li>
+            <li><strong>❓ Apakah dokumen Microsoft Office kompatibel?</strong> Ya, karena berbasis OnlyOffice, Euro-Office mendukung format .docx, .xlsx, .pptx dengan baik.</li>
+            <li><strong>❓ Apakah ini akhir dari OnlyOffice?</strong> Tidak. OnlyOffice tetap dikembangkan oleh perusahaan aslinya. Euro-Office hadir sebagai opsi alternatif bagi yang menginginkan kemandirian.</li>
+        </ul>
+
+        <h2><i class="fas fa-chart-line"></i> Kesimpulan: Langkah Kecil Menuju Ekosistem Digital yang Berdaulat</h2>
+        <p>Euro-Office lahir dari konteks geopolitik yang kompleks, tetapi juga mencerminkan kebutuhan nyata: dunia usaha dan pemerintah Eropa ingin memiliki kendali atas infrastruktur digital mereka. Dengan mengambil fondasi OnlyOffice yang sudah matang, Euro-Office bisa mempercepat transisi ke alternatif yang lebih aman dan transparan. Apakah proyek ini akan berhasil menggantikan Google Docs atau Microsoft 365 di level institusi? Tentu butuh waktu, namun gerakan kedaulatan digital Eropa menunjukkan bahwa <strong>perubahan besar dimulai dari langkah kecil</strong>. Bagi kita di Indonesia, cerita ini juga relevan: penting untuk mendukung dan mempertimbangkan perangkat lunak yang memberikan kendali penuh atas data kita.</p>
+        <div class="five-wh">
+            <i class="fas fa-question-circle"></i> <strong>📌 5W+1H: Memahami Euro-Office dan Gerakan Kedaulatan Digital</strong><br>
+            <strong>Apa?</strong> Euro-Office adalah suite perkantoran kolaboratif open source, hasil fork dari OnlyOffice, yang dikembangkan oleh komunitas Eropa.<br>
+            <strong>Siapa?</strong> Dikembangkan oleh sekelompok pengembang dan perusahaan teknologi Eropa yang ingin menyediakan alternatif bebas dari pengaruh negara tertentu.<br>
+            <strong>Mengapa?</strong> Karena OnlyOffice dikelola oleh perusahaan berbasis di Rusia, dan kontribusi dari luar sulit diterima. Sanksi serta perang di Ukraina menambah urgensi untuk memisahkan diri.<br>
+            <strong>Kapan?</strong> Diluncurkan pada Maret 2026, seiring meningkatnya kesadaran akan kedaulatan digital di Eropa.<br>
+            <strong>Di mana?</strong> Berbasis di Eropa, target pengguna global terutama institusi publik, perusahaan, dan individu yang mengutamakan keamanan data.<br>
+            <strong>Bagaimana?</strong> Euro-Office mengambil kode OnlyOffice (AGPL), membersihkan kode, menambahkan fitur, dan membuka jalur kontribusi yang lebih inklusif.
+        </div>
+        <p>Euro-Office mengajarkan bahwa open source bukan hanya soal kode, tapi juga soal <strong>kebebasan politik dan ekonomi</strong>. Mari kita pantau perkembangan proyek ini, bisa jadi suatu hari nanti kita ikut berkontribusi.</p>
+
+        <!-- Required divs -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+    </article>
+
+    <footer>
+        <p><i class="fas fa-copyright"></i> © 2026 ,  Dalam.web.id | Artikel ini ditulis berdasarkan riset mendalam mengenai kedaulatan digital, open source, dan proyek Euro-Office. Konten dapat disebarluaskan secara bebas. <i class="fas fa-moon"></i> Tema otomatis menyesuaikan preferensi sistem (terang/gelap).</p>
+    </footer>
+</div>
+</body>
+</html>

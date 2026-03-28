@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Firefox 149 Hadir dengan Split Screen, Trust Panel, dan Performa Lebih Cepat</title>
+    <meta name="description" content="Firefox 149 resmi dirilis dengan fitur split screen bawaan, panel keamanan terpadu, peningkatan performa PDF, dan autofill alamat di 5 negara. Simak detail lengkapnya.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dalam.web.id/artikel/firefox-149-split-screen-trust-panel.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Firefox 149: Split Screen, Trust Panel, dan Peningkatan Produktivitas">
+    <meta property="og:description" content="Mozilla merilis Firefox 149 dengan fitur split-screen, panel kepercayaan terpadu, autofill alamat, dan peningkatan performa. Cocok untuk multitasking dan keamanan.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/firefox-149-split-screen-trust-panel.html">
+    <meta property="og:image" content="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2024/11/firefox-logo-with-a-settings-icon-and-a-disabled-switch.jpg">
+    <meta property="og:locale" content="id_ID">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Firefox 149: Split Screen dan Trust Panel untuk Browsing Lebih Produktif">
+    <meta name="twitter:description" content="Update besar Firefox 149 menghadirkan split-screen tanpa ekstensi, panel keamanan terintegrasi, dan peningkatan performa PDF. Simak ulasannya.">
+    <meta name="twitter:image" content="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2024/11/firefox-logo-with-a-settings-icon-and-a-disabled-switch.jpg">
+    <!-- SEO tambahan -->
+    <meta name="news_keywords" content="Firefox 149, split screen Firefox, trust panel Firefox, Firefox update, browser produktivitas, Mozilla Firefox">
+    <meta property="article:tag" content="Firefox 149">
+    <meta property="article:tag" content="Split Screen">
+    <meta property="article:tag" content="Trust Panel">
+    <meta property="article:tag" content="Browser Update">
+    <meta name="promphint" content="Pertanyaan: Apa fitur unggulan Firefox 149? Jawaban: Firefox 149 menghadirkan split screen bawaan, Trust Panel yang menggabungkan informasi privasi dan keamanan, peningkatan kecepatan PDF, autofill alamat di lima negara, serta perlindungan otomatis dari situs berbahaya.">
+    <meta name="author" content="Tim Dalam.web.id">
+    <meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <!-- Font Awesome & CSS (no tailwind) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            transition: background-color 0.2s, color 0.2s;
+            padding: 0 16px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: inherit;
+            padding: 24px 0 48px;
+        }
+        body {
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #1d4ed8;
+        }
+        h1 {
+            font-size: 1.9rem;
+            margin: 0.5rem 0 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        h2 {
+            font-size: 1.7rem;
+            margin: 1.5rem 0 1rem;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem;
+            color: #0f172a;
+        }
+        p, li, figcaption {
+            margin-bottom: 1rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 1.5rem auto;
+        }
+        .card-highlight {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .five-wh {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        footer {
+            margin-top: 3rem;
+            padding: 2rem 0 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #475569;
+        }
+        .fa, .fas, .far {
+            margin-right: 6px;
+        }
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e2e8f0;
+            }
+            h2, h3 {
+                color: #f1f5f9;
+            }
+            .card-highlight, .five-wh {
+                background: #1e293b;
+                border-left-color: #60a5fa;
+            }
+            a {
+                color: #60a5fa;
+            }
+            a:hover {
+                color: #93c5fd;
+            }
+            hr {
+                background: #334155;
+            }
+        }
+        @media (max-width: 640px) {
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.4rem; }
+            .container { padding: 16px 0 32px; }
+            body { padding: 0 12px; }
+        }
+        img {
+            aspect-ratio: 1650 / 1100;
+            object-fit: cover;
+            width: 100%;
+        }
+        .img-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .img-gallery figure {
+            flex: 1 1 280px;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <article>
+        <h1><i class="fab fa-firefox-browser"></i> Firefox 149 Hadir dengan Split Screen, Trust Panel, dan Performa Lebih Cepat</h1>
+        <p>Mozilla resmi merilis <strong>Firefox 149</strong> lebih cepat satu hari dari jadwal. Update ini fokus pada multitasking cerdas dan fitur produktivitas. Setelah diuji coba selama beberapa bulan, fitur <strong>split screen</strong> bawaan akhirnya hadir. Ditambah dengan antarmuka baru, peningkatan keamanan, serta performa yang lebih halus. Yuk, kita bedah semua yang baru di Firefox 149.</p>
+
+        <!-- 5W+1H dalam bahasa Indonesia -->
+
+
+        <!-- Gambar 1: split view -->
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/firefox-149-split-view.jpg"
+             alt="Split view Firefox 149 menampilkan dua tab berdampingan"
+             loading="eager">
+        <figcaption style="text-align: center;">Split View memungkinkan browsing dua tab secara berdampingan tanpa perlu membuka jendela terpisah.</figcaption>
+
+        <h2><i class="fas fa-columns"></i> Split Screen Bawaan: Multitasking Tanpa Ekstensi</h2>
+        <p>Firefox akhirnya menyusul browser seperti Microsoft Edge, Vivaldi, dan Opera dengan fitur <strong>split screen</strong> bawaan. Fitur ini sangat berguna saat riset, membandingkan informasi, atau belanja online. Kamu bisa mengaktifkannya dengan klik kanan pada tab dan pilih ‘Open in Split View’. Dua tab akan tampil berdampingan dalam satu jendela, memudahkanmu bekerja tanpa bolak-balik antar tab.</p>
+        <p>Jika kamu sering beralih antar jendela browser, Split View akan menghemat banyak waktu dan membuat alur kerja lebih efisien.</p>
+
+        <h2><i class="fas fa-shield-alt"></i> Keamanan Lebih Kuat dengan Trust Panel</h2>
+        <p>Firefox 149 membawa perubahan signifikan pada bagaimana kita melihat informasi keamanan situs. Kini semua informasi privasi dan keamanan digabung menjadi satu <strong>Trust Panel</strong> yang dapat diakses dari bilah alamat. Kamu bisa langsung melihat izin situs (seperti notifikasi, lokasi), perlindungan pelacakan, dan status koneksi secara ringkas. Tidak perlu lagi membuka beberapa menu terpisah.</p>
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/firefox-149-trust-panel.jpg"
+             alt="Trust Panel Firefox 149 menampilkan izin situs dan proteksi privasi dalam satu popup"
+             loading="lazy">
+        <figcaption>Trust Panel: semua informasi keamanan dan privasi di satu tempat.</figcaption>
+
+        <p>Selain itu, Firefox 149 kini secara otomatis memotong notifikasi dan mencabut izin permanen untuk situs yang terdeteksi berbahaya oleh SafeBrowsing. Ini menghentikan situs mencurigakan mengirim notifikasi spam, iklan, atau upaya phishing yang sering menyusahkan pengguna.</p>
+
+        <h2><i class="fas fa-file-pdf"></i> PDF Lebih Cepat dan Mudah Diekspor</h2>
+        <p>Fitur akselerasi hardware yang diperbarui membuat file PDF terbuka lebih cepat, terutama dokumen besar atau yang banyak grafis. Kamu juga kini bisa mendownload gambar dari PDF melalui menu konteks, tanpa perlu screenshot atau membuka editor eksternal.</p>
+
+        <h2><i class="fas fa-share-alt"></i> Tombol Share di Toolbar</h2>
+        <p>Firefox 149 menambahkan tombol <strong>Share</strong> yang bisa dikustomisasi di toolbar. Cukup klik sekali untuk membagikan tab yang sedang dibuka menggunakan opsi berbagi bawaan Windows atau macOS. Tidak perlu lagi copy-paste URL. Kamu bisa menambahkan tombol ini melalui ‘Customize Toolbar’.</p>
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/03/firefox-149-share-button.jpg"
+             alt="Tombol Share di Firefox 149 untuk berbagi halaman dengan cepat"
+             loading="lazy">
+        <figcaption>Tombol Share memudahkan berbagi halaman tanpa copy-paste URL.</figcaption>
+
+        <h2><i class="fas fa-address-card"></i> Autofill Alamat untuk 5 Negara Baru</h2>
+        <p>Pengguna di Australia, India, Italia, Polandia, dan Austria kini bisa menikmati fitur <strong>Address Autofill</strong> pertama kalinya. Jika kamu lelah mengetik alamat berulang-ulang, fitur ini akan sangat membantu.</p>
+
+        <h2><i class="fas fa-tachometer-alt"></i> Peningkatan Performa dan Efisiensi Daya</h2>
+        <p>Firefox 149 juga menghadirkan beberapa peningkatan di bawah kap mesin:</p>
+        <ul>
+            <li>Performa upload HTTP/3 lebih stabil pada koneksi tidak stabil, cocok untuk pengguna dengan internet yang sering naik-turun.</li>
+            <li>Kompositor WebRender di Windows mengurangi penggunaan daya saat memutar video layar penuh, sehingga laptop lebih hemat baterai.</li>
+        </ul>
+
+        <div class="card-highlight">
+            <i class="fas fa-download"></i> <strong>Cara Update Firefox 149</strong><br>
+            Firefox biasanya akan mengunduh dan menginstal update secara otomatis. Jika tidak sabar, buka menu &gt; ‘About Firefox’ untuk memicu update manual. Unduh juga dari <a href="https://www.mozilla.org/firefox/new/" target="_blank" rel="noopener">situs resmi Mozilla</a>, Microsoft Store, atau Apple App Store.
+        </div>
+
+        <!-- Gambar terkait (dari outline) -->
+        <h2><i class="fas fa-cog"></i> Kustomisasi Lebih Lanjut</h2>
+        <p>Selain fitur baru, kamu juga bisa memaksimalkan Firefox dengan tweak konfigurasi untuk performa dan privasi. Seperti yang dibahas dalam artikel terkait:</p>
+        <img src="https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2024/11/firefox-logo-with-a-settings-icon-and-a-disabled-switch.jpg"
+             alt="Firefox settings icon"
+             loading="lazy">
+        <figcaption>Firefox menyediakan banyak opsi konfigurasi untuk menyempurnakan pengalaman browsing.</figcaption>
+        <p>Baca juga: <a href="https://dalam.web.id/warta-tekno/optimasi-keamanan-firefox-2026">Pengaturan about:config untuk Meningkatkan Performa dan Privasi Firefox</a> (artikel terkait).</p>
+
+        <h2><i class="fas fa-question-circle"></i> Pertanyaan Umum (FAQ)</h2>
+        <ul>
+            <li><strong>❓ Apakah split screen Firefox 149 bisa digunakan untuk lebih dari dua tab?</strong> Saat ini hanya dua tab. Namun kamu bisa membuka beberapa jendela split screen jika perlu.</li>
+            <li><strong>❓ Apakah Trust Panel menggantikan pengaturan privasi lama?</strong> Trust Panel adalah tampilan baru yang menyatukan informasi, pengaturan lama tetap bisa diakses melalui menu pengaturan.</li>
+            <li><strong>❓ Apakah fitur autofill alamat bisa digunakan di Indonesia?</strong> Belum, saat ini baru lima negara. Mozilla kemungkinan akan memperluas ke wilayah lain di update mendatang.</li>
+            <li><strong>❓ Apakah Firefox 149 lebih ringan dari versi sebelumnya?</strong> Ada peningkatan efisiensi daya dan performa upload, namun secara keseluruhan tetap ringan seperti biasanya.</li>
+            <li><strong>❓ Apakah update ini gratis?</strong> Ya, Firefox selalu gratis.</li>
+        </ul>
+
+        <h2><i class="fas fa-globe"></i> Kesimpulan: Firefox 149, Browser yang Makin Cerdas</h2>
+        <p>Dengan split screen bawaan, Trust Panel, serta peningkatan performa, Firefox 149 menunjukkan komitmen Mozilla terhadap produktivitas dan privasi pengguna. Fitur-fitur ini membuat Firefox semakin kompetitif di pasar browser, terutama bagi mereka yang menginginkan pengalaman browsing tanpa ketergantungan ekstensi tambahan. Jika kamu sudah menggunakan Firefox, segera update dan rasakan perbedaannya. Jika belum, ini saat yang tepat untuk mencoba.</p>
+    <div class="five-wh">
+            <i class="fas fa-question-circle"></i> <strong>📌 5W+1H: Memahami Update Firefox 149</strong><br>
+            <strong>Apa?</strong> Firefox 149 adalah versi terbaru browser Mozilla yang menghadirkan fitur split screen, Trust Panel, autofill alamat, dan peningkatan performa.<br>
+            <strong>Siapa?</strong> Ditujukan untuk semua pengguna Firefox di desktop (Windows, macOS, Linux) yang menginginkan browsing lebih produktif dan aman.<br>
+            <strong>Mengapa?</strong> Untuk menjawab kebutuhan multitasking tanpa ekstensi, serta memperkuat privasi dan keamanan dengan panel kepercayaan terpadu.<br>
+            <strong>Kapan?</strong> Dirilis pada Maret 2026, sehari lebih awal dari perkiraan.<br>
+            <strong>Di mana?</strong> Tersedia melalui update otomatis, situs resmi Mozilla, Microsoft Store, dan Apple App Store.<br>
+            <strong>Bagaimana?</strong> Pengguna bisa mendapatkan update secara gratis, mengaktifkan split screen melalui klik kanan tab, dan menikmati fitur baru lainnya.
+        </div>
+        <p>Jangan lupa eksplorasi fitur baru dan sesuaikan Firefox sesuai kebutuhanmu. Browsing yang aman, cepat, dan nyaman bukan lagi impian.</p>
+
+        <!-- Required divs -->
+        <div id="related-articles-grid"></div>
+        <div id="response"></div>
+    </article>
+
+    <footer>
+        <p><i class="fas fa-copyright"></i> © 2026 — Dalam.web.id | Artikel ini disusun berdasarkan rilis resmi Mozilla dan analisis fitur Firefox 149. Konten dapat dibagikan dengan bebas. <i class="fas fa-moon"></i> Tema otomatis menyesuaikan preferensi sistem (terang/gelap).</p>
+    </footer>
+</div>
+</body>
+</html>
