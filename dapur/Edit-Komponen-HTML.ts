@@ -27,11 +27,43 @@ function replaceContent(html: string): string {
   return html
 
     // branding title
-    .replaceAll(" - Layar Kosong", "")
-    .replaceAll(" - dalam web id", "")
-    .replaceAll(" - Dalam.web.id", "")
-    .replaceAll(" | Dalam.web.id", "")
-    .replaceAll(" | Dalam.Web.Id", "")    
+// Variasi untuk "Layar Kosong"
+.replaceAll(" - Layar Kosong", "")
+.replaceAll(" | Layar Kosong", "")
+.replaceAll(" - layar kosong", "")
+.replaceAll(" | layar kosong", "")
+.replaceAll(" - LAYAR KOSONG", "")
+.replaceAll(" | LAYAR KOSONG", "")
+.replaceAll(" – Layar Kosong", "") // Menggunakan en-dash (strip agak panjang)
+.replaceAll(" — Layar Kosong", "") // Menggunakan em-dash (strip paling panjang)
+
+// Variasi untuk "dalam web id" (tanpa titik)
+.replaceAll(" - dalam web id", "")
+.replaceAll(" | dalam web id", "")
+.replaceAll(" - Dalam web id", "")
+.replaceAll(" | Dalam web id", "")
+.replaceAll(" - Dalam Web Id", "")
+.replaceAll(" | Dalam Web Id", "")
+.replaceAll(" - DALAM WEB ID", "")
+.replaceAll(" | DALAM WEB ID", "")
+
+// Variasi untuk "dalam.web.id" (dengan titik)
+.replaceAll(" - dalam.web.id", "")
+.replaceAll(" | dalam.web.id", "")
+.replaceAll(" - Dalam.web.id", "")
+.replaceAll(" | Dalam.web.id", "")
+.replaceAll(" - Dalam.Web.Id", "")
+.replaceAll(" | Dalam.Web.Id", "")
+.replaceAll(" - DALAM.WEB.ID", "")
+.replaceAll(" | DALAM.WEB.ID", "")
+.replaceAll(" – dalam.web.id", "") // en-dash
+.replaceAll(" — dalam.web.id", "") // em-dash
+
+// Variasi ekstrem (tanpa spasi sebelum/sesudah pemisah)
+.replaceAll("-Layar Kosong", "")
+.replaceAll("|Layar Kosong", "")
+.replaceAll("-dalam.web.id", "")
+.replaceAll("|dalam.web.id", "")  
 
     // URL icon
     .replaceAll("https://dalam[.]web[.]id/assets/apple-touch-icon.png", "https://dalam.web.id/ext/icons/apple-touch-icon.png")
