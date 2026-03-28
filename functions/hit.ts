@@ -1,35 +1,54 @@
 export async function onRequest(context: { request: Request; env: any; ctx: any }) {
     const { request, env, ctx } = context;
-    const pageSlug = new URL(request.url).searchParams.get("url");
+    const url = new URL(request.url);
+    const pageSlug = url.searchParams.get("url");
+    const userAgent = request.headers.get("user-agent") || "";
 
     const pageKey = `view:${pageSlug}`;
     const globalKey = "view:__total_domain__";
 
-    // 1. Ambil data lama (tetap pakai await karena kita butuh nilainya sekarang)
+    // 1. FILTER BOT: Menghemat kuota dari crawler yang tidak perlu dihitung
+    const isBot = /bot|spider|crawl|lighthouse|facebook|twitter|whatsapp|telegram|discord/i.test(userAgent);
+
+    // Ambil data dari KV
     const [oldPage, oldTotal] = await Promise.all([
         env.COUNTS_KV.get(pageKey),
-                                                  env.COUNTS_KV.get(globalKey)
+        env.COUNTS_KV.get(globalKey)
     ]);
 
-    const v = (parseInt(oldPage) || 0) + 1;
-    const t = (parseInt(oldTotal) || 0) + 1;
+    let v = parseInt(oldPage) || 0;
+    let t = parseInt(oldTotal) || 0;
 
-    // 2. Gunakan ctx.waitUntil agar proses simpan berjalan di background
-    // Tanpa menahan kecepatan response ke pengunjung.
-    if (ctx && ctx.waitUntil) {
-        ctx.waitUntil(Promise.all([
-            env.COUNTS_KV.put(pageKey, v.toString()),
-                                  env.COUNTS_KV.put(globalKey, t.toString())
-        ]));
+    // 2. SAMPLING STRATEGY: Update KV setiap ~10 kunjungan manusia
+    const samplingRate = 10; 
+    const shouldUpdate = !isBot && (Math.random() < (1 / samplingRate));
+
+    if (shouldUpdate) {
+        // Tambahkan 10 sekaligus ke database agar angka tetap sinkron secara statistik
+        v += samplingRate;
+        t += samplingRate;
+
+        if (ctx && ctx.waitUntil) {
+            ctx.waitUntil(Promise.all([
+                env.COUNTS_KV.put(pageKey, v.toString()),
+                env.COUNTS_KV.put(globalKey, t.toString())
+            ]));
+        } else {
+            await Promise.all([
+                env.COUNTS_KV.put(pageKey, v.toString()),
+                env.COUNTS_KV.put(globalKey, t.toString())
+            ]);
+        }
     } else {
-        // Fallback jika dijalankan di environment yang tidak mendukung ctx
-        await Promise.all([
-            env.COUNTS_KV.put(pageKey, v.toString()),
-                          env.COUNTS_KV.put(globalKey, t.toString())
-        ]);
+        // Jika bukan bot tapi tidak kena jadwal update KV, 
+        // kita tampilkan angka +1 secara visual saja ke user
+        if (!isBot) {
+            v += 1;
+            t += 1;
+        }
     }
 
-    // 3. Respon dikirim seketika!
+    // 3. Respon JSON instan
     return new Response(JSON.stringify({ v, t }), {
         headers: {
             "content-type": "application/json",
