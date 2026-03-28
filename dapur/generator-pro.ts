@@ -50,13 +50,6 @@ const imgSize = async (url: string): Promise<number> => {
     }
 };
 
-/** Hitung jumlah artikel per kategori dan total keseluruhan */
-const countArticles = (data: Record<string, any[]>) => {
-    const perCat = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, v.length]));
-    const total  = Object.values(perCat).reduce((a, b) => a + b, 0);
-    return { perCat, total };
-};
-
 const buildRss = (
     t: string,
     items: any[],
@@ -180,10 +173,6 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
     flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
 
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
-
-    // Rekap jumlah artikel per kategori
-    const { perCat, total } = countArticles(final);
-    console.log(`📊 Total: ${total} artikel |`, perCat);
 
     // ── Build XML Sitemap + globalSizes (satu pass) ──────────────────────────
     const globalSizes      = new Map<string, number>();
