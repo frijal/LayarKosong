@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.78
+document_version: 18.79
 last_updated: 2026-03-28
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 28 Maret 2026)
-> Menampilkan 1131 artikel versi 18.78.
+> Menampilkan 1138 artikel versi 18.79.
 
 ## Gaya Hidup
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
@@ -391,6 +391,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Silaturahmi atau Silaturahim? Mana yang Benar?](https://dalam.web.id/lainnya/silaturahmi-vs-silaturahim) : Sering bingung pakai kata silaturahmi atau silaturahim? Ternyata keduanya benar dan baku menurut KBBI! Pahami beda makna, asal kata, dan konteks penggunaannya di sini.
 
 ## Olah Media
+- [Firefox 149 Hadir dengan Split Screen, Trust Panel, dan Performa Lebih Cepat](https://dalam.web.id/olah-media/firefox-149-split-screen-trust-panel) : Firefox 149 resmi dirilis dengan fitur split screen bawaan, panel keamanan terpadu, peningkatan performa PDF, dan autofill alamat di 5 negara. Simak detail lengkapnya.
 - [ODF vs OOXML: LibreOffice & ONLYOFFICE dalam Debat Standar Terbuka](https://dalam.web.id/olah-media/odf-vs-ooxml-libreoffice-onlyoffice) : debat standar dokumen ODF vs OOXML. Mengapa LibreOffice menuduh ONLYOFFICE sebagai fake open-source? Simak panduan kedaulatan digital ini.
 - [Web Tool Generator - All in One](https://dalam.web.id/olah-media/web-tool-generator-all-in-one) : Koleksi lengkap web tool generator gratis dalam satu tempat. Mulai dari generator kode, teks, hingga alat optimasi web yang cepat dan mudah digunakan.
 - [Sosial Media dan Video Embed Generator](https://dalam.web.id/olah-media/social-video-embed-generator) : Sosial Media dan Video Embed Generator dari Layar Kosong untuk membuat embed YouTube, Twitter/X, Instagram, TikTok, dan media sosial lainnya dengan cepat, ringan, dan SEO-friendly.
@@ -638,6 +639,9 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Penjilat dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya penjilatan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [Euro-Office: Alternatif Open Source Eropa Pengganti Google Docs & Microsoft 365](https://dalam.web.id/sistem-terbuka/euro-office-alternatif-berdaulat-digital) : Euro-Office adalah fork dari OnlyOffice yang lahir dari gerakan kedaulatan digital Eropa. Bebas pengaruh Rusia, open source, dan siap menggantikan Google Docs.
+- [LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs](https://dalam.web.id/sistem-terbuka/libreoffice-online-kembali) : LibreOffice Online, aplikasi web open source, akan dihidupkan kembali. Cocok untuk self-hosting, kontrol penuh data, dan kompatibilitas dokumen Microsoft Office.
+- [ZRAM vs ZSWAP di Linux: Mana yang Lebih Cocok untuk Manajemen Memori?](https://dalam.web.id/sistem-terbuka/zram-vs-zswap-linux-optimasi-memory) : Perbandingan ZRAM dan ZSWAP pada Linux: cara kerja, kelebihan, kekurangan, dan rekomendasi mana yang sesuai dengan kebutuhan RAM dan workload Anda.
 - [Age Verification Linux 2026: Dampak Besar yang Wajib Diketahui Pengguna Open Source](https://dalam.web.id/sistem-terbuka/age-verification-linux-2026) : Age Verification Linux menjadi isu besar di 2026. Pelajari dampaknya bagi pengguna Linux, privasi, dan masa depan internet dalam panduan lengkap ini.
 - [Kenapa Package Manager Linux Bikin Pengguna Gak Mau Balik ke Windows](https://dalam.web.id/sistem-terbuka/linux-package-managers) : alasan utama kenapa package manager Linux membuat instalasi dan update software jadi cepat aman dan sangat praktis untuk pengguna
 - [10 Distro Linux Terbaik yang Bakal Mengubah Pengalamanmu di 2026](https://dalam.web.id/sistem-terbuka/10-distro-linux-terbaik-2026) : 10 distro Linux terbaik 2026 untuk pemula hingga power user. Temukan performa, kemudahan, dan kustomisasi maksimal untuk desktop kamu.
@@ -942,8 +946,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Perjalanan Komunitas Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Perjalanan Komunitas Ubuntu Jogja menuju GCOS Jakarta, menerima penghargaan Komunitas FOSS terbaik. Lengkap dengan dokumentasi foto dan cerita perjalanan.
 
 ## Warta Tekno
+- [Panduan Keamanan Digital: Lindungi Privasi dari Ancaman Siber](https://dalam.web.id/warta-tekno/panduan-keamanan-digital-privasi) : langkah konkret melindungi data pribadi: password unik, autentikasi dua faktor, Signal, hapus data dari situs pencari orang, dan tips dari pakar keamanan.
+- [Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD](https://dalam.web.id/warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage) : Sony resmi menangguhkan penerimaan pesanan untuk hampir semua lini kartu memori CFexpress dan SD karena kelangkaan SSD global. Dampak AI data center, analisis lengkap.
 - [AI Coding Agent 2026: Fakta Mengejutkan Mengapa Development Tidak Jadi Lebih Cepat](https://dalam.web.id/warta-tekno/ai-coding-agent-2026) : AI Coding Agent meningkatkan kecepatan coding, tetapi tidak mempercepat delivery project secara signifikan. Pelajari penyebab dan perubahan paradigma software development di sini.
 - [Windows 11 Speed Test 2026: Fitur Baru Praktis atau Sekadar Shortcut Biasa?](https://dalam.web.id/warta-tekno/windows-11-speed-test-2026) : Windows 11 kini memiliki fitur speed test di taskbar. Apakah ini benar-benar berguna atau hanya shortcut ke Bing? Simak ulasan lengkapnya di sini.
+- [ODF Masa Depan, OOXML Masa Lalu: Kedaulatan Digital & Standar Terbuka](https://dalam.web.id/warta-tekno/odf-masa-depan-ooxml-masa-lalu) : ODF vs OOXML: mengapa format dokumen terbuka menentukan masa depan interoperabilitas dan kedaulatan digital. Analisis 5W+1H, keputusan Jerman, dan perangkap lock-in Microsoft.
 - [Panduan Migrasi Node.js ke Bun: Tutorial Cepat dan Mudah](https://dalam.web.id/warta-tekno/panduan-migrasi-nodejs-ke-bun) : cara migrasi dari Node.js ke Bun untuk mempercepat pengembangan web. dengan prinsip 5W 1H untuk pemula hingga menengah.
 - [Logika Matematika Idul Fitri 2026: Mengapa 21 Maret Tidak Mungkin Secara Syari](https://dalam.web.id/warta-tekno/logika-matematika-idul-fitri-2026) : Penjelasan konsistensi perhitungan hari kalender Qamariyah untuk Ramadan dan Idul Fitri 2026 berdasarkan durasi 29 atau 30 hari per bulan
 - [Pencurian Teknologi Motorola oleh Hytera Pelajaran Etika Bisnis di Era Global](https://dalam.web.id/warta-tekno/pencurian-teknologi-motorola-hytera-etika-bisnis) : Kasus pencurian teknologi Motorola oleh Hytera menunjukkan pentingnya etika bisnis dan perlindungan rahasia dagang dalam industri teknologi global
