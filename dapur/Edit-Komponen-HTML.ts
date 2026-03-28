@@ -61,6 +61,7 @@ function replaceContent(html: string): string {
     .replace(/\b dalam\.web\.id /g, " Jaga Data Pribadi Tetap Aman ")
     .replace(/\b Dalam\.web\.id /g, " Jaga Data Pribadi Tetap Aman ")
     .replaceAll("DALAM.WEB.ID", "Jaga Data Pribadi Tetap Aman")
+    .replaceAll("Dalam.Web.ID", "Jaga Data Pribadi Tetap Aman")    
 
     // twitter -> x
     .replaceAll("twitter.com", "x.com")
