@@ -40,23 +40,8 @@ const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').tri
 
 const mime = (u: string) => ({ 'png': 'image/png', 'webp': 'image/webp', 'svg': 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
-/**
- * Baca ukuran file gambar dari disk lokal.
- * Hanya proses URL yang berasal dari domain sendiri (C.base).
- * Gambar eksternal langsung return 0 tanpa mencoba stat.
- */
-const imgSize = async (url: string): Promise<number> => {
-    try {
-        if (!url.startsWith(C.base)) return 0; // gambar eksternal → skip
-        const localPath = url.replace(C.base, C.root);
-        return (await require('fs').promises.stat(localPath)).size;
-    } catch {
-        return 0;
-    }
-};
-
-const buildRss = (t: string, items: any[], link: string, desc: string, sizes: Map<string, number> = new Map()) =>
-`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${decodeHTML(t)}]]></title><link>${C.base}/</link><description>${desc}</description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it => `<item><title><![CDATA[${decodeHTML(it.title)}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(decodeHTML(it.title))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="${sizes.get(it.img) ?? 0}" type="${mime(it.img)}"/></item>`).join('')}</channel></rss>`;
+const buildRss = (t: string, items: any[], link: string, desc: string) =>
+`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${decodeHTML(t)}]]></title><link>${C.base}/</link><description>${desc}</description><language>id-ID</language><atom:link href="${link}" rel="self" type="application/rss+xml"/><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map(it => `<item><title><![CDATA[${decodeHTML(it.title)}]]></title><link>${it.loc}</link><guid>${it.loc}</guid><description><![CDATA[${it.desc || sanitize(decodeHTML(it.title))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${it.category}]]></category><enclosure url="${it.img}" length="0" type="${mime(it.img)}"/></item>`).join('')}</channel></rss>`;
 
 const distribute = async (f: string, cat: string, url: string, pre?: string) => {
     const dir = `${C.root}/${slug(cat)}`;
@@ -70,11 +55,11 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 };
 
 (async () => {
-    console.log('🚀 Diet Mode V8.8 (Fix enclosure length + dead code removed)');
+    console.log('🚀 Diet Mode V8.7 (Fix Tanggal dari Master)');
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+		Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+        Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls = new Set(stm.split('\n').filter(Boolean));
@@ -174,19 +159,29 @@ const distribute = async (f: string, cat: string, url: string, pre?: string) => 
 
     flat.sort((a, b) => new Date(b.lastmod).getTime() - new Date(a.lastmod).getTime());
 
+    // sitemap.txt dihandle oleh bikin-sitemap-txt.ts
     await Bun.write(`${C.root}/artikel.json`, JSON.stringify(final, null, 2));
 
-    // Build XML Sitemap + globalSizes dalam satu pass (efisien, tidak baca file dua kali)
-    const globalSizes = new Map<string, number>();
-    let combinedXmlEntries = '';
+    // Build XML Sitemaps
+    let xP = '', xI = '', xV = '';
+for (const it of flat) {
+    xP += `<url><loc>${it.loc}</loc><lastmod>${it.lastmod}</lastmod></url>`;
+    xI += `<url><loc>${it.loc}</loc><lastmod>${it.lastmod}</lastmod><image:image><image:loc>${it.img}</image:loc><image:caption><![CDATA[${it.title}]]></image:caption></image:image></url>`;
+
+    const txt = await Bun.file(`${C.art}/${it.file}`).text();
+    const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)].map(m => m[1]).filter(s => !s.endsWith('.js'));
+    vids.forEach(s => {
+        const id = s.match(/embed\/([^/?]+)/)?.[1];
+        if (id) xV += `<url><loc>${it.loc}</loc><video:video><video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc><video:title><![CDATA[${it.title}]]></video:title><video:description><![CDATA[${it.desc || it.title}]]></video:description><video:player_loc>${s.replace(/&/g, '&amp;')}</video:player_loc></video:video></url>`;
+    });
+}
+
+// 1. Siapkan isi URL secara kolektif
+let combinedXmlEntries = '';
 
 for (const it of flat) {
-    const [txt, size] = await Promise.all([
-        Bun.file(`${C.art}/${it.file}`).text(),
-                                          imgSize(it.img)
-    ]);
-    globalSizes.set(it.img, size);
-
+    // Ambil konten file untuk ekstraksi video secara real-time (seperti logika awalmu)
+    const txt = await Bun.file(`${C.art}/${it.file}`).text();
     const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)]
     .map(m => m[1])
     .filter(s => !s.endsWith('.js'));
@@ -205,6 +200,7 @@ vids.forEach(s => {
     }
 });
 
+// Rakit satu entri <url> yang berisi artikel + gambar + video (jika ada)
 combinedXmlEntries += `
 <url>
 <loc>${it.loc}</loc>
@@ -216,7 +212,7 @@ combinedXmlEntries += `
 </url>`;
 }
 
-// Tulis sitemap.xml tunggal (Pure XML tanpa XSLT untuk menghindari blokir CSP)
+// 2. Tulis file sitemap.xml tunggal (Pure XML tanpa XSLT untuk menghindari blokir CSP)
 const finalSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
@@ -224,16 +220,15 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${combinedXmlEntries}
 </urlset>`;
 
-// Tulis sitemap.xml + rss.xml secara bersamaan
+// 3. Tulis sitemap.xml + rss.xml secara bersamaan
 await Promise.all([
     Bun.write(`${C.root}/sitemap.xml`, finalSitemapContent),
-                  Bun.write(`${C.root}/rss.xml`, buildRss(
-                      'Layar Kosong',
-                      flat.slice(0, C.limit),
-                                                          `${C.base}/rss.xml`,
-                                                          'Feed artikel terbaru dari Layar Kosong',
-                                                          globalSizes
-                  )),
+    Bun.write(`${C.root}/rss.xml`, buildRss(
+        'Layar Kosong',
+        flat.slice(0, C.limit),
+        `${C.base}/rss.xml`,
+        'Feed artikel terbaru dari Layar Kosong'
+    )),
 ]);
 
 console.log('✅ Sitemap Tunggal Berhasil Dibuat: sitemap.xml (All Assets Included)');
@@ -274,6 +269,7 @@ if (tmp) {
         }).join('');
 
         // 2. Inject ke Template
+        // (Schema JSON-LD dihandle oleh seo-inject.ts yang berjalan setelah script ini)
         let pg = tmp
         .replace(/%%TITLE%%|%%DESCRIPTION%%/g, categoryNameClean)
         .replace(/%%CATEGORY_NAME%%/g, decodeHTML(cat))
@@ -286,21 +282,23 @@ if (tmp) {
 
         await Bun.write(`${C.root}/${s}/index.html`, pg);
 
-        // 3. Buat RSS Feed per kategori dengan image sizes dari globalSizes
-        const catItems = (arts as any[]).map(a => ({
-            title: a[0], file: a[1], img: a[2], lastmod: a[3], desc: a[4],
-            category: cat,
-            loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
-        })).slice(0, C.limit);
-
-        // Reuse globalSizes — gambar sudah di-stat saat build sitemap, tidak perlu ulang
-        await Bun.write(`${C.root}/feed-${s}.xml`, buildRss(
+        // 4. Buat RSS Feed per kategori
+        const rssContent = buildRss(
             `Kategori ${categoryNameClean}`,
-            catItems,
-            rUrl,
-            `Artikel ${cat}`,
-            globalSizes
-        ));
+            (arts as any[]).map(a => ({
+                title: a[0],
+                file: a[1],
+                img: a[2],
+                lastmod: a[3],
+                desc: a[4],
+                category: cat,
+                loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
+            })).slice(0, C.limit),
+                                    rUrl,
+                                    `Artikel ${cat}`
+        );
+
+        await Bun.write(`${C.root}/feed-${s}.xml`, rssContent);
     }
     console.log('📂 Static Category Pages Generated (Clean Mode).');
 }
