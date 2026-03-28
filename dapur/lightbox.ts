@@ -1,11 +1,11 @@
 /**
  * =================================================================================
- * Auto Lightbox Creator v4.3 (Final Bun-Ready)
+ * Auto Lightbox Creator v4.4 (Srcset & Bun-Ready)
+ * Optimized for high-performance and responsive images
  * =================================================================================
  */
 
 (() => {
-  // Interface untuk TypeScript agar Bun Build lebih mantap
   interface Config {
     selectors: string;
     minWidth: number;
@@ -15,10 +15,11 @@
   }
 
   const CONFIG: Config = {
-    selectors: 'article img, main img, .image-grid img, .albumlb img, .gallery img, .artikel-gambar img',
+    // Menambahkan 'picture img' agar kompatibel dengan sistem srcset kamu
+    selectors: 'article img, main img, picture img, .image-grid img, .albumlb img, .gallery img, .artikel-gambar img',
  minWidth: 50,
- mobileBreakpoint: 768, // Nonaktif di layar < 768px
- allowedExt: /\.(jpe?g|png|webp|avif)$/i,
+ mobileBreakpoint: 768,
+ allowedExt: /\.(jpe?g|png|webp|avif|svg)$/i,
  id: 'auto-lightbox'
   };
 
@@ -36,7 +37,10 @@
     if (img.title?.trim()) return img.title;
     const figCaption = img.closest('figure')?.querySelector('figcaption');
     if (figCaption) return (figCaption as HTMLElement).innerText;
-    const filename = img.src.split('/').pop()?.split('?')[0].split('.')[0] || "View Image";
+
+    // Fallback ke nama file dari currentSrc atau src
+    const source = img.currentSrc || img.src;
+    const filename = source.split('/').pop()?.split('?')[0].split('.')[0] || "View Image";
     return decodeURIComponent(filename).replace(/[-_]/g, ' ');
   };
 
@@ -54,8 +58,8 @@
     #${CONFIG.id} { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 100000; transition: opacity 0.3s; opacity: 0; backdrop-filter: blur(10px); font-family: sans-serif; }
     #${CONFIG.id}.open { display: flex; opacity: 1; }
     .lb-content { position: relative; display: flex; flex-direction: column; align-items: center; }
-    .lb-img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8); cursor: zoom-out; transition: opacity 0.3s; }
-    .lb-caption { color: #ccc; margin-top: 15px; font-size: 14px; text-align: center; max-width: 80%; line-height: 1.4; letter-spacing: 0.5px; text-transform: capitalize; transition: opacity 0.3s; }
+    .lb-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8); cursor: zoom-out; transition: opacity 0.3s; }
+    .lb-caption { color: #ccc; margin-top: 15px; font-size: 14px; text-align: center; max-width: 80%; line-height: 1.4; letter-spacing: 0.5px; text-transform: capitalize; transition: opacity 0.3s; font-weight: 300; }
     .lb-close { position: absolute; top: 20px; right: 25px; font-size: 40px; color: #fff; cursor: pointer; background: none; border: none; z-index: 10; line-height: 1; transition: 0.2s; }
     .lb-close:hover { transform: scale(1.2); color: #ff4d4d; }
     .lb-nav { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; pointer-events: none; top: 50%; transform: translateY(-50%); }
@@ -87,10 +91,14 @@
   const updateImg = (): void => {
     const target = galleryImages[currentIndex];
     if (!target || !lightboxImg || !lightboxCaption) return;
+
     lightboxImg.style.opacity = '0';
     lightboxCaption.style.opacity = '0';
-    lightboxImg.src = target.dataset.full || target.src;
+
+    // Prioritas: data-full > currentSrc (resolusi terbaik saat ini) > src
+    lightboxImg.src = target.dataset.full || target.currentSrc || target.src;
     lightboxCaption.innerText = getCaption(target);
+
     lightboxImg.onload = () => {
       if (lightboxImg) lightboxImg.style.opacity = '1';
       if (lightboxCaption) lightboxCaption.style.opacity = '1';
@@ -115,16 +123,22 @@
 
     document.addEventListener('click', (e: MouseEvent) => {
       if (isMobile()) return;
-      const clickedImg = (e.target as HTMLElement).closest(CONFIG.selectors) as HTMLImageElement;
-      if (!clickedImg) return;
 
-      // Refresh list saat klik agar gambar baru (lazy load) tetap masuk
+      const target = e.target as HTMLElement;
+      // Pastikan target adalah IMG dan sesuai dengan selector kita
+      if (target.tagName !== 'IMG' || !target.matches(CONFIG.selectors)) return;
+
+      const clickedImg = target as HTMLImageElement;
+
+      // Refresh list agar gambar baru tetap masuk (penting untuk lazy loading)
       galleryImages = getValidImages().filter(img => {
-        const isAlt = img.src.split('?')[0];
-        return CONFIG.allowedExt.test(isAlt);
+        const pathToCheck = img.currentSrc || img.src;
+        return CONFIG.allowedExt.test(pathToCheck.split('?')[0]);
       });
 
+      // Validasi dimensi gambar sebelum membuka lightbox
       if (clickedImg.naturalWidth < CONFIG.minWidth && clickedImg.width < CONFIG.minWidth) return;
+
       currentIndex = galleryImages.indexOf(clickedImg);
       if (currentIndex === -1) return;
 
@@ -140,7 +154,7 @@
     });
   };
 
-  // Jalankan tanpa menunggu DOMContentLoaded jika sudah siap
+  // Jalankan segera jika DOM sudah siap
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
