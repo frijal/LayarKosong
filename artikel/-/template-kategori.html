@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>%%TITLE%% - Layar Kosong</title><script defer="" src="/ext/data-provider.js"></script>
+    <title>%%TITLE%% - Layar Kosong</title>
     <meta
       name="description"
       content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
@@ -31,8 +31,8 @@
     <meta name="twitter:creator" content="@responaja">
     <meta name="bluesky:creator" content="@dalam.web.id">
     <meta name="twitter:site" content="@responaja">
-    <meta property="fb:app_id" content="175216696195384"> 
-<meta property="fb:pages" content="917962134736490">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -53,47 +53,46 @@
       content="Kumpulan lengkap artikel, tutorial, dan catatan tentang %%DESCRIPTION%%."
     />
     <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="/ext/fontawesome.css"/>
-<script type="application/ld+json" id="seo-schema">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "%%CANONICAL_URL%%#collection",
-  "url": "%%CANONICAL_URL%%",
-  "name": "%%CATEGORY_NAME%%",
-  "description": "Kumpulan artikel di kategori %%CATEGORY_NAME%% pada Layar Kosong.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "@id": "https://dalam.web.id/#website"
-  },
-  "inLanguage": "id-ID"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+    <script type="application/ld+json" id="seo-schema">
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Beranda",
-      "item": "https://dalam.web.id/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "%%CANONICAL_URL%%#collection",
+      "url": "%%CANONICAL_URL%%",
       "name": "%%CATEGORY_NAME%%",
-      "item": "%%CANONICAL_URL%%"
+      "description": "Kumpulan artikel di kategori %%CATEGORY_NAME%% pada Layar Kosong.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://dalam.web.id/#website"
+      },
+      "inLanguage": "id-ID"
     }
-  ]
-}
-</script>
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://dalam.web.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "%%CATEGORY_NAME%%",
+          "item": "%%CANONICAL_URL%%"
+        }
+      ]
+    }
+    </script>
     <style>
       :root {
+        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         --bg-color: #121212;
         --bg-color-translucent: rgba(18, 18, 18, 0.85);
         --surface-color: #1e1e1e;
@@ -121,7 +120,7 @@
         padding: 0;
       }
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-sans);
         background-color: var(--bg-color);
         color: var(--primary-text-color);
         line-height: 1.7;
@@ -204,7 +203,7 @@
         min-width: 0;
       }
       .search-input {
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-sans);
         width: 100%;
         padding: 0.5rem 1rem 0.5rem 2.5rem;
         border: 1px solid var(--border-color);
@@ -299,13 +298,12 @@
         font-size: 0.8rem;
         color: var(--secondary-text-color);
       }
-      #loading, .message {
+      .message {
         text-align: center;
         margin-top: 3rem;
         font-size: 1.1rem;
         color: var(--secondary-text-color);
       }
-      /* CSS Noscript - Jaga-jaga jika JS mati */
       .noscript-msg {
         background: #ff6b6b;
         color: white;
@@ -320,38 +318,34 @@
     </style>
   </head>
   <body>
-    <!-- HEADER BARU (CSS Kustom) -->
     <header id="main-header" class="new-header">
       <div class="new-header-container">
-        <!-- Logo (hidden on mobile, visible on desktop) -->
-
         <div class="header-logo-container">
-          <!-- DITAMBAHKAN: Tag <a> pembungkus untuk logo -->
           <a href="https://dalam.web.id/disclaimer.html" aria-label="disclaimer">
-  <img class="header-logo" src="/ext/icons/fsf.svg" alt="FSF" loading="lazy">
-  <img class="header-logo" src="/ext/icons/cloudflare.svg" alt="Cloudflare" loading="lazy">
-  <img class="header-logo" src="/ext/icons/thinkpad.svg" alt="ThinkPad" loading="lazy">
-  <img class="header-logo" src="/ext/icons/linuxfoundation.svg" alt="Linux Foundation" loading="lazy">
-  <img class="header-logo" src="/ext/icons/github.svg" alt="GitHub" loading="lazy">
-  <img class="header-logo" src="/ext/icons/copilot.svg" alt="Copilot" loading="lazy">
-  <img class="header-logo" src="/ext/icons/openai.svg" alt="OpenAI" loading="lazy">
-  <img class="header-logo" src="/ext/icons/gemini.svg" alt="Gemini" loading="lazy">
-  <img class="header-logo" src="/ext/icons/blogger.svg" alt="Blogger" loading="lazy">
-  <img class="header-logo" src="/ext/icons/linux.svg" alt="Linux" loading="lazy">
-  <img class="header-logo" src="/ext/icons/favicon.svg" alt="Layar Kosong" loading="lazy">
-</a>
+            <img class="header-logo" src="/ext/icons/fsf.svg" alt="FSF" loading="lazy">
+            <img class="header-logo" src="/ext/icons/cloudflare.svg" alt="Cloudflare" loading="lazy">
+            <img class="header-logo" src="/ext/icons/thinkpad.svg" alt="ThinkPad" loading="lazy">
+            <img class="header-logo" src="/ext/icons/linuxfoundation.svg" alt="Linux Foundation" loading="lazy">
+            <img class="header-logo" src="/ext/icons/github.svg" alt="GitHub" loading="lazy">
+            <img class="header-logo" src="/ext/icons/copilot.svg" alt="Copilot" loading="lazy">
+            <img class="header-logo" src="/ext/icons/openai.svg" alt="OpenAI" loading="lazy">
+            <img class="header-logo" src="/ext/icons/gemini.svg" alt="Gemini" loading="lazy">
+            <img class="header-logo" src="/ext/icons/blogger.svg" alt="Blogger" loading="lazy">
+            <img class="header-logo" src="/ext/icons/linux.svg" alt="Linux" loading="lazy">
+            <img class="header-logo" src="/ext/icons/favicon.svg" alt="Layar Kosong" loading="lazy">
+          </a>
         </div>
-    <noscript>
-      <div class="noscript-msg">
-        JavaScript dinonaktifkan. Kamu tetap bisa akses via
-        <a href="%%RSS_URL%%" style="color: white; text-decoration: underline;">RSS Feed</a>
-        atau kembali ke <a href="/" style="color: white; text-decoration: underline;">Beranda</a>.
-      </div>
-    </noscript>
+        <noscript>
+          <div class="noscript-msg">
+            JavaScript dinonaktifkan. Kamu tetap bisa akses via
+            <a href="%%RSS_URL%%" style="color: white; text-decoration: underline;">RSS Feed</a>
+            atau kembali ke <a href="/" style="color: white; text-decoration: underline;">Beranda</a>.
+          </div>
+        </noscript>
         <div class="header-bottom-row">
           <div class="header-left">
             <h1>
-              <span id="category-title-text">Memuat...</span>
+              <span id="category-title-text">%%ICON%% %%CATEGORY_NAME%%</span>
               <a href="%%RSS_URL%%" class="rss-link" title="Langganan RSS">
                 <i class="fa-solid fa-rss"></i>
               </a>
@@ -377,10 +371,7 @@
       </div>
     </header>
     <div class="container">
-      <div id="loading">Memuat...</div>
       <div id="article-grid"></div>
     </div>
-
-  <script defer="" src="/ext/markdown.js"></script>
-</body>
+  </body>
 </html>

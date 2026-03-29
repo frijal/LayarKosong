@@ -137,6 +137,7 @@ async function processFiles() {
     const glob = new Glob(pattern);
 
     for await (const fileName of glob.scan({ cwd: rootDir, onlyFiles: true })) {
+        if (path.basename(fileName) === 'index.html') continue;
         const fullPath = path.join(rootDir, fileName);
         const content  = await file(fullPath).text();
 
