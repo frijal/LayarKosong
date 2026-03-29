@@ -15,7 +15,7 @@ const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
 const SKIP_EXTENSIONS   = new Set([".svg", ".gif"]);
 
 const ALLOWED_CATEGORIES = [
-"gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
+  "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
 ];
 
 // ========== CACHE ==========
@@ -24,7 +24,7 @@ let optimizedCache = new Set<string>();
 if (existsSync(CACHE_FILE)) {
   optimizedCache = new Set(
     readFileSync(CACHE_FILE, "utf-8")
-    .split("\n").map(l => l.trim()).filter(Boolean)
+      .split("\n").map(l => l.trim()).filter(Boolean)
   );
 }
 
@@ -36,14 +36,14 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   // Skip jika sudah ada signature — artikel sudah pernah diproses
   if (htmlContent.includes(PICTURE_SIGNATURE)) return "skipped";
 
-  // Fallback safety: skip jika sudah ada <picture>
-  if ($("picture").length > 0) return "skipped";
-
+  // Kumpulkan kandidat gambar — hanya yang berada di /img/ dan bukan svg/gif
   const imageCandidates = $("body img").toArray().filter(el => {
     const src = $(el).attr("src");
-    if (!src || !src.includes("/img/")) return false;
+    if (!src) return false;
 
-    // Lewati .svg dan .gif — biarkan pada bentuk aslinya
+    // Hanya proses gambar lokal di folder /img/ (sesuaikan bila perlu)
+    if (!src.includes("/img/") && !src.startsWith("/") && !src.startsWith(BASE_URL)) return false;
+
     const ext = path.extname(src.split("?")[0]).toLowerCase();
     if (SKIP_EXTENSIONS.has(ext)) return false;
 
@@ -57,14 +57,76 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
   let imageCounter = 0;
   let fileHasChanged = false;
 
+  // Helper: safe update attributes on <img> without changing classes/structure
+  function updateImgAttrs($img: Cheerio, webDesktopUrl: string, webMobileUrl: string | null, meta: any, isFirst: boolean) {
+    const desktopWidth = meta.width > 1000 ? 1000 : meta.width;
+    const mobileWidth  = 480;
+    const needsMobile  = !!webMobileUrl && meta.width > mobileWidth;
+
+    const srcsetParts: string[] = [];
+    if (needsMobile && webMobileUrl) srcsetParts.push(`${webMobileUrl} ${mobileWidth}w`);
+    srcsetParts.push(`${webDesktopUrl} ${desktopWidth}w`);
+    const srcsetValue = srcsetParts.join(", ");
+
+    const sizesValue = needsMobile ? "(max-width: 500px) 480px, 1000px" : "1000px";
+    const heightValue = Math.round(desktopWidth * (meta.height / meta.width));
+
+    const parent = $img.parent();
+
+    if (parent.is("picture")) {
+      // Remove existing webp sources to avoid duplicates (idempotent)
+      parent.find('source[type="image/webp"]').remove();
+
+      if (needsMobile && webMobileUrl) {
+        parent.prepend(`<source type="image/webp" media="(max-width:500px)" srcset="${webMobileUrl}">`);
+      }
+      parent.prepend(`<source type="image/webp" srcset="${webDesktopUrl}">`);
+
+      // Update only necessary attributes on <img>
+      $img.attr({
+        src: webDesktopUrl,
+        srcset: srcsetValue,
+        sizes: sizesValue,
+        width: `${desktopWidth}`,
+        height: `${heightValue}`,
+        loading: isFirst ? "eager" : "lazy",
+        decoding: "async",
+      });
+      if (isFirst) $img.attr("fetchpriority", "high");
+    } else {
+      // Parent bukan picture: update <img> saja, preserve class/style/data-*
+      const currentSrc = $img.attr("src") || "";
+      const currentSrcset = $img.attr("srcset") || "";
+
+      // Skip if already set to same values (idempotensi)
+      if (currentSrc === webDesktopUrl && currentSrcset === srcsetValue) {
+        return false;
+      }
+
+      $img.attr({
+        src: webDesktopUrl,
+        srcset: srcsetValue,
+        sizes: sizesValue,
+        width: `${desktopWidth}`,
+        height: `${heightValue}`,
+        loading: isFirst ? "eager" : "lazy",
+        decoding: "async",
+      });
+      if (isFirst) $img.attr("fetchpriority", "high");
+    }
+
+    return true;
+  }
+
   for (const el of imageCandidates) {
     const $img        = $(el);
     const originalSrc = $img.attr("src")!;
 
+    // Normalize path to repo-relative
     const cleanPath = originalSrc
-    .replace(BASE_URL, "")
-    .replace(/^https?:\/\/dalam\.web\.id/, "")
-    .replace(/^\/+/, "");
+      .replace(BASE_URL, "")
+      .replace(/^https?:\/\/dalam\.web\.id/, "")
+      .replace(/^\/+/, "");
 
     const fullPathSource = path.join(process.cwd(), cleanPath);
 
@@ -89,7 +151,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
       const absMobilePath  = path.join(process.cwd(), mobilePath);
       const needsMobile    = meta.width > 480;
       const physicalComplete =
-      existsSync(absDesktopPath) && (!needsMobile || existsSync(absMobilePath));
+        existsSync(absDesktopPath) && (!needsMobile || existsSync(absMobilePath));
 
       // Generate .webp ke img/ — ini yang akan di-commit ke repo
       if (!optimizedCache.has(cleanPath) || !physicalComplete) {
@@ -97,17 +159,17 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
           const targetWidth = meta.width > 1000 ? 1000 : meta.width;
 
           await sharp(inputBuffer)
-          .rotate()
-          .resize(targetWidth, null, { withoutEnlargement: true })
-          .webp({ quality: 82 })
-          .toFile(absDesktopPath);
+            .rotate()
+            .resize(targetWidth, null, { withoutEnlargement: true })
+            .webp({ quality: 82 })
+            .toFile(absDesktopPath);
 
           if (needsMobile) {
             await sharp(inputBuffer)
-            .rotate()
-            .resize(480, null, { withoutEnlargement: true })
-            .webp({ quality: 75 })
-            .toFile(absMobilePath);
+              .rotate()
+              .resize(480, null, { withoutEnlargement: true })
+              .webp({ quality: 75 })
+              .toFile(absMobilePath);
           }
           console.log(`  ✨ WebP OK: ${cleanPath}`);
         }
@@ -118,33 +180,28 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         }
       }
 
-      // Transformasi HTML — wrap <img> jadi <picture>
+      // Transformasi HTML — TIDAK membungkus <img>, hanya menambahkan atribut / <source> jika parent sudah <picture>
       imageCounter++;
       const originalAlt = $img.attr("alt")?.trim();
       let finalAlt = originalAlt || pageTitle;
       if (!originalAlt && imageCounter > 1) finalAlt = `${pageTitle} - ${imageCounter}`;
 
+      // Set alt only if missing or empty (preserve existing alt)
+      if (!originalAlt) {
+        $img.attr("alt", finalAlt.replace(/"/g, "&quot;"));
+      }
+
       const webDesktopUrl = `${BASE_URL}/${desktopPath.replace(/\\/g, "/")}`;
-      const webMobileUrl  = `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}`;
+      const webMobileUrl  = needsMobile ? `${BASE_URL}/${mobilePath.replace(/\\/g, "/")}` : null;
 
-      // Bagian transformasi di dalam loop imageCandidates
-      const pictureHtml = `<picture style="display: contents;">
-      ${needsMobile ? `  <source media="(max-width: 500px)" srcset="${webMobileUrl}">` : ""}
-      <img src="${webDesktopUrl}"
-      ${isFirstImage ? 'fetchpriority="high"' : ""}
-      alt="${finalAlt.replace(/"/g, "&quot;")}"
-      width="${meta.width > 1000 ? 1000 : meta.width}"
-      height="${Math.round((meta.width > 1000 ? 1000 : meta.width) * (meta.height / meta.width))}"
-      loading="${isFirstImage ? "eager" : "lazy"}"
-      decoding="async">
-      </picture>`;
-
-      $img.replaceWith(pictureHtml);
-      isFirstImage   = false;
-      fileHasChanged = true;
+      const changed = updateImgAttrs($img, webDesktopUrl, webMobileUrl, meta, isFirstImage);
+      if (changed) {
+        isFirstImage = false;
+        fileHasChanged = true;
+      }
 
     } catch (e: any) {
-      console.error(`❌ Sharp Error pada ${cleanPath}: ${e.message}`);
+      console.error(`❌ Sharp Error pada ${cleanPath}: ${e?.message || e}`);
     }
   }
 
@@ -175,11 +232,11 @@ async function main() {
   // Baca sitemap.txt lama (sebelum bikin-sitemap-txt.ts jalan)
   // → berisi URL artikel yang SUDAH pernah diproses sebelumnya
   const sitemapUrls = existsSync(SITEMAP_FILE)
-  ? new Set(
-    readFileSync(SITEMAP_FILE, "utf-8")
-    .split("\n").map(l => l.trim()).filter(Boolean)
-  )
-  : new Set<string>();
+    ? new Set(
+        readFileSync(SITEMAP_FILE, "utf-8")
+          .split("\n").map(l => l.trim()).filter(Boolean)
+      )
+    : new Set<string>();
 
   console.log(`📄 sitemap.txt lama : ${sitemapUrls.size} URL terdaftar\n`);
 
@@ -187,8 +244,8 @@ async function main() {
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
     try {
       return readdirSync(cat)
-      .filter(f => f.endsWith(".html") && f !== "index.html")
-      .map(f => join(cat, f));
+        .filter(f => f.endsWith(".html") && f !== "index.html")
+        .map(f => join(cat, f));
     } catch {
       return [];
     }
@@ -198,7 +255,6 @@ async function main() {
 
   for (const htmlPath of allFiles) {
     // Konversi path → URL untuk dicocokkan ke sitemap
-
     const url = `${BASE_URL}/${htmlPath.replace(/\\/g, "/").replace(/\.html$/, "")}`;
 
     // Artikel lama → URL ada di sitemap → skip (cepat!)
@@ -219,11 +275,11 @@ async function main() {
   📊 RINGKASAN:
   ------------------
   ✅ Diproses     : ${results.processed}
-  ⏭️  Di-skip      : ${results.skipped}
-  🖼️  Tanpa gambar : ${results.noImage}
+  ⏭️ Di-skip      : ${results.skipped}
+  🖼️ Tanpa gambar : ${results.noImage}
   ❌ File hilang  : ${results.missing}
 
-  🖼️  Output WebP  → img/            (akan di-commit ke repo)
+  🖼️ Output WebP  → img/            (akan di-commit ke repo)
   📄 HTML         → folder kategori  (runner only, tidak di-commit)
   `);
 }
