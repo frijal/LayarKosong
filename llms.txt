@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.98
+document_version: 18.99
 last_updated: 2026-03-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Maret 2026)
-> Menampilkan 1156 artikel versi 18.98.
+> Menampilkan 1157 artikel versi 18.99.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -308,6 +308,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Istighfar: Kunci Pembuka Pintu Langit dan Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : Istighfar bukan hanya ucapan, ia kunci yang membuka pintu langit, melapangkan rezeki, dan menenangkan hati. Renungan santai: QS Nuh 10–12, mekanisme spiritual, dan langkah harian yang sederhana.
 
 ## Lainnya
+- [Seni Mengatur Porsi: Rahasia Makan Saat Lapar Berhenti Sebelum Kenyang](https://dalam.web.id/lainnya/seni-mengatur-porsi-makan) : Mengulas filosofi makan saat lapar dan berhenti sebelum kenyang dari sudut pandang kesehatan modern dan efisiensi tubuh.
 - [Cara Daftar UTBK SNBT 2026 dan Perubahan Kebijakannya](https://dalam.web.id/lainnya/utbk-snbt-2026-cara-daftar-dan-perubahan-kebijakan) : pendaftaran UTBK SNBT 2026 yang dibuka 25 Maret sampai 7 April 2026, termasuk tiga perubahan kebijakan penting yang perlu kamu ketahui sebelum mendaftar.
 - [Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas](https://dalam.web.id/lainnya/dilema-hemat-gas-pedagang-makanan) : Mengupas dampak imbauan Menteri ESDM Bahlil Lahadalia soal hemat LPG bagi pedagang makanan seperti soto, bakso, dan bubur yang butuh api standby.
 - [Rashdul Qibla: 2 Waktu Emas Cek Arah Kiblat Paling Akurat Tanpa Kompas](https://dalam.web.id/lainnya/rashdul-qibla) : Rashdul Qibla adalah fenomena saat matahari tepat di atas Ka'bah, memungkinkan pengecekan arah kiblat secara akurat tanpa kompas. Pelajari cara praktisnya di sini!
