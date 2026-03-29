@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.99
+document_version: 19.0
 last_updated: 2026-03-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Maret 2026)
-> Menampilkan 1157 artikel versi 18.99.
+> Menampilkan 1158 artikel versi 19.0.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
@@ -961,6 +961,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Meningkatkan Performa Firefox dengan Tweaks CSS - Panduan Lengkap](https://dalam.web.id/warta-tekno/meningkatkan-performa-firefox-dengan-tweaks-css) : Tingkatkan kecepatan dan responsivitas Firefox dengan tweaks CSS. Hilangkan animasi, kurangi beban UI, dan optimasi browser untuk hardware lemah.
 - [15 Kode userChrome.css Keren untuk Firefox - Kustomisasi Browser Maksimal](https://dalam.web.id/warta-tekno/15-kode-userchrome-css-keren-firefox) : Kumpulan 15 kode userChrome.css terbaik untuk mengubah tampilan Firefox. Dari tab minimalis, toolbar transparan, hingga efek neon dan vertical tabs.
 - [Cara Menggunakan userChrome.css di Firefox untuk Pemula (Panduan Lengkap)](https://dalam.web.id/warta-tekno/cara-menggunakan-userchrome-css-firefox) : menggunakan userChrome.css di Firefox untuk pemula. Ubah tampilan browser dengan CSS, mulai dari setup, contoh kode, hingga troubleshooting.
+- [Cara Memperbaiki Masalah Sinkronisasi Waktu di Windows 10 & 11 | Panduan Lengkap](https://dalam.web.id/warta-tekno/cara-memperbaiki-masalah-sinkronisasi-waktu-windows-10-11) : memperbaiki jam Windows 10/11 yang salah, tidak sinkron, atau error. Pelajari cara mengatur Windows Time Service dan NTP settings dengan mudah.
 - [Panduan Keamanan Digital: Lindungi Privasi dari Ancaman Siber](https://dalam.web.id/warta-tekno/panduan-keamanan-digital-privasi) : langkah konkret melindungi data pribadi: password unik, autentikasi dua faktor, Signal, hapus data dari situs pencari orang, dan tips dari pakar keamanan.
 - [Sony Hentikan Produksi Hampir Seluruh Kartu Memori Akibat Kelangkaan SSD](https://dalam.web.id/warta-tekno/sony-hentikan-produksi-memory-card-ssd-shortage) : Sony resmi menangguhkan penerimaan pesanan untuk hampir semua lini kartu memori CFexpress dan SD karena kelangkaan SSD global. Dampak AI data center, analisis lengkap.
 - [Microsoft Copilot: Otomatisasi Pekerjaan Berjam-jam](https://dalam.web.id/warta-tekno/microsoft-copilot) : Panduan santai tentang Microsoft Copilot yang bisa otomatisasi pekerjaan berjam-jam di Excel, Word, dan PowerPoint.
