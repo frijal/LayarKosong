@@ -12,7 +12,7 @@ const FORBIDDEN_CHARS   = /[*:"<>|?]/g;
 const PICTURE_SIGNATURE = "srcset_oleh_Fakhrul_Rijal";
 
 // Ekstensi yang TIDAK diproses — biarkan bentuk aslinya
-const SKIP_EXTENSIONS   = new Set([".svg", ".gif"]);
+const SKIP_EXTENSIONS   = new Set([".svg", ".ico", ".gif"]);
 
 const ALLOWED_CATEGORIES = [
   "gaya-hidup", "jejak-sejarah", "lainnya", "olah-media", "opini-sosial", "sistem-terbuka", "warta-tekno",
