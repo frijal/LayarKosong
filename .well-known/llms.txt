@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 18.93
+document_version: 18.94
 last_updated: 2026-03-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,9 +39,10 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Maret 2026)
-> Menampilkan 1149 artikel versi 18.93.
+> Menampilkan 1149 artikel versi 18.94.
 
 ## Gaya Hidup
+- [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
 - [Bahan Dapur Penurun Kolesterol Alami: Cara Sederhana Menjaga Kesehatan Jantung](https://dalam.web.id/gaya-hidup/bahan-dapur-penurun-kolesterol-alami) : Menurunkan kolesterol tidak selalu harus bergantung pada obat. Banyak bahan dapur sederhana yang ternyata memiliki manfaat besar untuk membantu mengontrol kadar kolesterol secara alami. Pelajari selengkapnya.
 - [Kedaulatan SDA: Iran Menikmati Minyaknya, Indonesia Hanya Petugas Parkir](https://dalam.web.id/gaya-hidup/kedaulatan-sda-indonesia-vs-iran-pasal-33) : Indonesia gagal mengelola kekayaan alam seperti Iran? Pasal 33 UUD 1945 hanya jadi mantra kosong. Belajar dari Iran yang berdaulat penuh atas minyaknya, sementara Indonesia hanya jadi petugas parkir bagi korporasi. Analisis kritis hilirisasi, pajak, dan impor.
 - [Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021](https://dalam.web.id/gaya-hidup/cara-hitung-lembur-hari-raya) : Bingung cara menghitung uang lembur saat bekerja di hari raya? Simak rumus upah lembur per jam 1/173 dan aturan kelipatannya sesuai hukum Indonesia.
@@ -127,7 +128,6 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
-- [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/jejak-sejarah/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
 - [10 Penyimpangan dari Ajaran Islam: Memahami Secara Adil & Objektif](https://dalam.web.id/jejak-sejarah/penyimpangan-ajaran-islam) : Penyimpangan dari ajaran Islam perlu dipahami secara objektif berdasarkan tauhid, syariat, dan adab. Pelajari 10 bentuk penyimpangan beserta penjelasannya di sini.
 - [Hukum Memancing dalam Islam: Panduan Lengkap Fikih untuk Pemancing Muslim](https://dalam.web.id/jejak-sejarah/hukum-memancing-dalam-islam) : Hukum memancing dalam Islam dijelaskan secara lengkap, mulai dari catch and release, konsumsi ikan, hingga pemancingan berbayar. Simak panduan fikih yang benar di sini.
 - [Manhaj Tarjih dan Tajdid Muhammadiyah Rahasia Keseimbangan Islam Modern](https://dalam.web.id/jejak-sejarah/manhaj-tarjih-tajdid-muhammadiyah) : Manhaj Tarjih dan Tajdid Muhammadiyah adalah metode ilmiah dalam memahami Islam secara murni dan relevan Pelajari konsep fungsi dan penerapannya di sini
