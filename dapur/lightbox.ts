@@ -1,10 +1,8 @@
 /**
- * lightbox.ts
- * Auto Lightbox (TypeScript, Bun-build friendly)
- * - Read-only to original DOM (does not wrap or replace <img>)
- * - Compatible with <picture>, srcset, sizes, data-full workflows
- * - Accessible controls, keyboard navigation, mobile-safe
- * - Designed to be built with: bun build lightbox.ts --outfile lightbox.js --minify --format iife --target browser
+ * lightbox.ts (Updated: Exclude *-sm.webp)
+ * - Menangkap SEMUA img di halaman (Desktop only)
+ * - Matikan otomatis di Mobile (< 768px)
+ * - EKSKLUSI: Gambar dengan nama file berakhiran *-sm.webp
  */
 
 (() => {
@@ -12,18 +10,17 @@
     selectors: string;
     minWidth: number;
     mobileBreakpoint: number;
-    allowedExt: RegExp;
+    excludeSuffix: string; // Tambahan untuk fleksibilitas
     id: string;
     closeOnEsc: boolean;
     showOnClickWithinLink: boolean;
   };
 
   const CONFIG: Config = {
-    selectors:
-    "article img, main img, picture img, .image-grid img, .albumlb img, .gallery img, .artikel-gambar img",
+    selectors: "img",
  minWidth: 50,
  mobileBreakpoint: 768,
- allowedExt: /\.(jpe?g|png|webp|avif|svg)$/i,
+ excludeSuffix: "-sm.webp", // Suffix yang dilarang masuk lightbox
  id: "auto-lightbox",
  closeOnEsc: true,
  showOnClickWithinLink: true,
@@ -38,17 +35,14 @@
 
   const isMobile = (): boolean => window.innerWidth < CONFIG.mobileBreakpoint;
 
-  // Smart caption: alt > title > figcaption > filename
   function getCaption(img: HTMLImageElement): string {
     if (img.alt && img.alt.trim()) return img.alt.trim();
     if (img.title && img.title.trim()) return img.title.trim();
-
     const fig = img.closest("figure");
     if (fig) {
       const fc = fig.querySelector("figcaption");
       if (fc) return (fc as HTMLElement).innerText.trim();
     }
-
     const source = img.currentSrc || img.src || "";
     const filename = (source.split("/").pop() || "").split("?")[0].split(".")[0] || "View Image";
     try {
@@ -64,14 +58,12 @@
 
   function createLightbox(): void {
     if (document.getElementById(CONFIG.id)) return;
-
     lightbox = document.createElement("div");
     lightbox.id = CONFIG.id;
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
     lightbox.setAttribute("aria-hidden", "true");
     lightbox.style.zIndex = "100000";
-
     lightbox.innerHTML = `
     <style>
     #${CONFIG.id} { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; transition: opacity 0.28s ease; opacity: 0; backdrop-filter: blur(8px); }
@@ -80,7 +72,6 @@
     .lb-img { max-width: 100%; max-height: 78vh; object-fit: contain; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); cursor: zoom-out; transition: opacity .18s ease; }
     .lb-caption { color: #e6eef8; margin-top: 6px; font-size: 14px; text-align: center; max-width: 86vw; line-height: 1.4; opacity: .95; font-weight: 300; }
     .lb-close { position: absolute; top: 12px; right: 14px; font-size: 30px; color: #fff; background: transparent; border: none; cursor: pointer; padding: 6px; border-radius: 6px; }
-    .lb-close:focus { outline: 2px solid rgba(255,255,255,0.12); }
     .lb-nav { position: absolute; inset: 0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
     .lb-btn { pointer-events:auto; background: rgba(255,255,255,0.04); color: #fff; border: none; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; font-size: 22px; display:flex; align-items:center; justify-content:center; }
     .lb-btn:hover { transform: scale(1.06); background: rgba(255,255,255,0.12); }
@@ -96,29 +87,20 @@
     <button class="lb-btn lb-next" aria-label="Next image">❯</button>
     </div>
     `;
-
     document.body.appendChild(lightbox);
-
     lightboxImg = lightbox.querySelector(".lb-img") as HTMLImageElement | null;
     lightboxCaption = lightbox.querySelector(".lb-caption") as HTMLElement | null;
-
     const closeBtn = lightbox.querySelector(".lb-close") as HTMLElement | null;
     const prevBtn = lightbox.querySelector(".lb-prev") as HTMLElement | null;
     const nextBtn = lightbox.querySelector(".lb-next") as HTMLElement | null;
-
     if (closeBtn) closeBtn.addEventListener("click", close);
     if (lightboxImg) lightboxImg.addEventListener("click", close);
     if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); move(-1); });
     if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); move(1); });
-
-    // Close when clicking backdrop
-    lightbox.addEventListener("click", (ev) => {
-      if (ev.target === lightbox) close();
-    });
+    lightbox.addEventListener("click", (ev) => { if (ev.target === lightbox) close(); });
   }
 
   function chooseBestSrc(img: HTMLImageElement): string {
-    // Priority: data-full > currentSrc (browser-chosen from srcset) > src
     const ds = (img as HTMLImageElement & { dataset: DOMStringMap }).dataset;
     if (ds && ds.full) return ds.full;
     if (img.currentSrc) return img.currentSrc;
@@ -142,37 +124,17 @@
   function updateImg(): void {
     const target = galleryImages[currentIndex];
     if (!target || !lightboxImg || !lightboxCaption || !lightbox) return;
-
-    // Prepare UI
     lightboxImg.style.opacity = "0";
     lightboxCaption.style.opacity = "0";
-
-    // Choose best src and set attributes
     const srcToUse = chooseBestSrc(target);
     lightboxImg.src = srcToUse;
     lightboxImg.alt = target.alt || target.title || "View Image";
     lightboxCaption.innerText = getCaption(target);
-
-    // If target had srcset/sizes, preserve them for lightbox image (helps high-res)
     preserveSrcsetIfPresent(target);
-
-    // When loaded, fade in
     lightboxImg.onload = () => {
       lightboxImg && (lightboxImg.style.opacity = "1");
       lightboxCaption && (lightboxCaption.style.opacity = "1");
     };
-
-    // Preload neighbor images (best-effort)
-    const nextIndex = (currentIndex + 1) % galleryImages.length;
-    const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    [nextIndex, prevIndex].forEach((i) => {
-      const img = galleryImages[i];
-      if (!img) return;
-      const url = (img as HTMLImageElement & { dataset: DOMStringMap }).dataset.full || img.currentSrc || img.src;
-      if (!url) return;
-      const p = new Image();
-      p.src = url;
-    });
   }
 
   function move(step: number): void {
@@ -189,7 +151,6 @@
     lightbox.classList.add("open");
     lightbox.setAttribute("aria-hidden", "false");
     isOpen = true;
-    // trap focus on close button for accessibility
     const closeBtn = lightbox.querySelector(".lb-close") as HTMLElement | null;
     if (closeBtn) closeBtn.focus();
   }
@@ -209,91 +170,48 @@
   }
 
   function init(): void {
-    // Do not initialize on small screens (configurable)
     if (isMobile()) return;
     createLightbox();
 
-    // Delegated click handler
     document.addEventListener("click", (e: MouseEvent) => {
       if (isMobile()) return;
-
       const target = e.target as HTMLElement | null;
       if (!target || target.tagName !== "IMG") return;
-
-      // Ensure clicked image matches selector
-      try {
-        if (!target.matches(CONFIG.selectors)) return;
-      } catch {
-        // Fallback: check presence in NodeList
-        const all = document.querySelectorAll(CONFIG.selectors);
-        if (!Array.prototype.includes.call(all, target)) return;
-      }
-
       const clickedImg = target as HTMLImageElement;
 
-      // Build fresh gallery list (supports lazy-loaded or dynamically injected images)
+      // Filter: Ukuran minimal DAN tidak mengandung suffix '-sm.webp'
       galleryImages = getValidImages().filter((img) => {
-        const pathToCheck = img.currentSrc || img.src || "";
-        return CONFIG.allowedExt.test(pathToCheck.split("?")[0]);
+        const src = img.currentSrc || img.src || "";
+        const isSmallFile = src.toLowerCase().includes(CONFIG.excludeSuffix);
+        const naturalW = img.naturalWidth || 0;
+        const domW = img.width || 0;
+
+        return !isSmallFile && (naturalW >= CONFIG.minWidth || domW >= CONFIG.minWidth);
       });
 
-      // Validate dimensions (prefer naturalWidth)
-      const naturalW = clickedImg.naturalWidth || 0;
-      const domW = clickedImg.width || 0;
-      if (naturalW < CONFIG.minWidth && domW < CONFIG.minWidth) return;
-
-      // Determine index
       const idx = galleryImages.indexOf(clickedImg);
       if (idx === -1) return;
 
-      // If image is inside a link, prevent navigation but allow lightbox
       const anchor = clickedImg.closest("a");
       if (anchor && CONFIG.showOnClickWithinLink) {
         e.preventDefault();
       }
-
       openAt(idx);
     });
 
-    // Keyboard navigation
     document.addEventListener("keydown", (e: KeyboardEvent) => {
       if (!isOpen || isMobile()) return;
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        move(1);
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        move(-1);
-      } else if (e.key === "Escape" && CONFIG.closeOnEsc) {
-        e.preventDefault();
-        close();
-      }
+      if (e.key === "ArrowRight") { move(1); }
+      else if (e.key === "ArrowLeft") { move(-1); }
+      else if (e.key === "Escape" && CONFIG.closeOnEsc) { close(); }
     });
 
-    // Close if window resized to mobile
     window.addEventListener("resize", () => {
       if (!lightbox) return;
       if (isMobile() && isOpen) close();
     });
-
-      // Observe DOM for newly added images (optional, lightweight)
-      try {
-        const observer = new MutationObserver((mutations) => {
-          // If new images are added that match selectors, refresh gallery on next click
-          for (const m of mutations) {
-            if (m.addedNodes && m.addedNodes.length > 0) {
-              // no-op: gallery is rebuilt on click, so nothing heavy here
-              break;
-            }
-          }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-      } catch {
-        // ignore if MutationObserver not available
-      }
   }
 
-  // Auto-init when DOM ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
