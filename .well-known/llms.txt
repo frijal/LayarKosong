@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 19.4
+document_version: 19.5
 last_updated: 2026-03-29
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -39,7 +39,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 29 Maret 2026)
-> Menampilkan 1158 artikel versi 19.4.
+> Menampilkan 1158 artikel versi 19.5.
 
 ## Gaya Hidup
 - [Makanan Halal dan Thayyib: Nikmat Rezeki Larangan Berlebihan](https://dalam.web.id/gaya-hidup/makanan-halal-thayyib-larangan-berlebihan) : Kupas tuntas panduan Al Quran tentang makanan halal dan thayyib. Pelajari mengapa larangan makan berlebihan adalah kunci gaya hidup sehat dan pencegahan penyakit.
